@@ -112,5 +112,7 @@
     "containsMilestoneTable": true,
     "containsMilestoneChecklist": true
   },
-  "lastUpdateName": "CodeUpdate-0017-GitHub-Actions-Runtime-Verification"
+  "lastUpdateName": "CodeUpdate-0017-GitHub-Actions-Runtime-Verification",
+  "currentCodeUpdate": "0018",
+  "buildVerification": "GitHub Actions cloud build; CodeUpdate-0018 fixes Core application contract compilation wiring."
 }

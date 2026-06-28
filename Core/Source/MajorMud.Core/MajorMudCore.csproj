@@ -4,6 +4,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>MajorMud.Core</AssemblyName>
-    <RootNamespace>MajorMud.Core</RootNamespace>
+    <RootNamespace>MajorMud.Reforged.Core</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Applications/**/*.cs" Link="Applications/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
 </Project>

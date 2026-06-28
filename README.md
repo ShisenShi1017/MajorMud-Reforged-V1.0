@@ -367,3 +367,10 @@ This update adds Core repository-backed loaders for the current canonical `Data/
 This repository includes `.github/workflows/dotnet-build.yml` so GitHub can restore and build the Core and application source projects in the cloud. This is the recommended verification path when the user does not want to install the .NET SDK locally. The repository may remain private. See `Docs/Architecture/GITHUB_ACTIONS_VERIFICATION.md`.
 
 `Bin/RuntimeArtifacts.json` documents the future runtime-ready executable locations. Normal users should launch compiled artifacts from `Bin/` and should not need the .NET SDK for normal runtime.
+
+
+## CodeUpdate-0018 GitHub Actions Build Repair
+
+CodeUpdate-0018 fixes the cloud build failure where application projects could not resolve `MajorMud.Reforged.Core.Applications` or `ReforgedApplicationBase`. The Core project file now explicitly compiles the shared application identity/base-shell contracts from `Core/Applications/`, while application projects continue to reference Core through their existing `ProjectReference` entries.
+
+The GitHub Actions Node.js 20 deprecation message is an Actions-runner/platform warning. It is separate from the C# compilation error fixed by this update.

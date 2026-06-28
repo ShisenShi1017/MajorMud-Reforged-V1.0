@@ -126,3 +126,13 @@
 - Updated `AI_CONTEXT.md` with the living Milestone 1 handoff table and completion checklist.
 - Reinforced the one-top-level-folder update ZIP rule in project documentation.
 - Preserved the no-.NET-SDK runtime requirement.
+
+
+## CodeUpdate-0018 - GitHub Actions Core Build Repair
+
+- Fixed the GitHub Actions build failure reported after CodeUpdate-0017.
+- Updated `Core/Source/MajorMud.Core/MajorMudCore.csproj` so the Core application identity/base-shell contracts under `Core/Applications/` are compiled into `MajorMud.Core`.
+- Preserved the existing app `ProjectReference` wiring from Server, Importer, Editor, Launcher, and Client into Core.
+- Added/retained `.github/workflows/dotnet-build.yml` as the cloud build verification path for private GitHub repositories.
+- Documented that the GitHub Node.js 20 warning is separate from the C# build failure and is not caused by MajorMud source code.
+- Preserved no-SDK normal runtime policy and protected `Saves/` / `ImportedDatabases/`.

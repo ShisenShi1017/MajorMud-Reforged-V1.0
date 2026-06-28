@@ -113,6 +113,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0018 | Fixed GitHub Actions Core build wiring by compiling `Core/Applications/` contracts into `MajorMud.Core`. |
 | 0017 | Added GitHub Actions cloud verification documentation, Bin runtime artifact expectations, and SDK-free runtime handoff catalog validation. |
 | 0016 | Added repository-backed Core Data loaders, a Core Data catalog, loader health checks, and GitHub Actions cloud build verification. |
 | 0015 | Added source-level Data cross-reference validation for rooms, items, monsters, shops, quests, loot tables, races, classes, and world data. |
@@ -125,6 +126,14 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 | 0008 | Added governance documents and Core service foundations. |
 | 0007 | Added Core contracts foundation. |
 
+
+## Code Update 0018 Handoff Notes
+
+Core Update 0018 responds to the GitHub Actions failure reported after CodeUpdate-0017. The workflow itself was valid enough to reveal a real source project wiring issue: app projects referenced `MajorMud.Core`, but `MajorMudCore.csproj` did not compile the shared application contracts located under `Core/Applications/`.
+
+The Core project file now explicitly includes `Core/Applications/**/*.cs`, making `ApplicationIdentity`, `ApplicationRole`, `IReforgedApplication`, and `ReforgedApplicationBase` available to Server, Importer, Editor, Launcher, and Client through the existing `ProjectReference` entries.
+
+The GitHub Node.js 20 warning is a GitHub Actions platform/runtime warning, not the MajorMud C# build failure. The blocking error fixed here is the missing Core namespace/base-class compile issue.
 
 ## Code Update 0017 Handoff Notes
 
@@ -152,8 +161,8 @@ This update is intentionally documentation/governance focused. It supports Miles
 
 ## Next Recommended Work
 
-1. Core Update 0018: Package Core contract smoke tests for development environments.
-2. Core Update 0019: Review GitHub Actions build results after the user pushes this update and fix any CI-reported build issues.
+1. Push CodeUpdate-0018 to GitHub and confirm whether Actions passes.
+2. Core Update 0019: Package Core contract smoke tests for development environments.
 3. Core Update 0020: Produce a final Milestone 1 verification report once all checklist items are satisfied.
 
 ## New Window Instruction
