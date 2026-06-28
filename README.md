@@ -353,3 +353,10 @@ Core Update 0011 continues Milestone 1 by wiring all application source shells t
 ## Code Update 0012 Notes
 
 Code Update 0012 continues Milestone 1 by adding shared source-level Core services for runtime configuration, logging, service registration, repository staging, JSON data file loading, data-record validation, Data JSON health checks, and application Core-reference health checks. These additions move the project closer to closing the Core Framework milestone while preserving the rule that normal runtime must not require the .NET SDK.
+
+## Current Code Update
+
+Current Code Update: **0016 - Repository-Backed Data Loaders**
+
+This update adds Core repository-backed loaders for the current canonical `Data/` JSON categories and a GitHub Actions workflow for cloud build verification. Normal runtime still does not require the .NET SDK on the user machine.
+

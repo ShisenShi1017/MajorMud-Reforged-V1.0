@@ -1,0 +1,25 @@
+name: .NET Build Verification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-core:
+    name: Restore and build Core
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore Core
+        run: dotnet restore Core/Source/MajorMud.Core/MajorMudCore.csproj
+
+      - name: Build Core
+        run: dotnet build Core/Source/MajorMud.Core/MajorMudCore.csproj --configuration Release --no-restore

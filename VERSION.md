@@ -1,10 +1,11 @@
 # MajorMud Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0015
+- Current Code Update: 0016
 - Current Database Version: 0009
-- Milestone: Milestone 1 - Core Framework / Data Cross-Reference Validation
+- Milestone: Milestone 1 - Core Framework / Repository-Backed Data Loaders
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
+- Build Verification: GitHub Actions can verify builds in the cloud with `.github/workflows/dotnet-build.yml`; the user does not need the .NET SDK locally.
 - Update Requirement: Code Updates run from their own extracted update folder and apply to the main project folder.
 - Update ZIP Requirement: Every update ZIP contains exactly one named top-level update folder.
 - Suggestion Policy: Approved suggestions become implementation requirements unless explicitly deferred or rejected.

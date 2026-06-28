@@ -23,10 +23,10 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 |---|---|
 | Project | MajorMud Reforged |
 | Current Milestone | Milestone 1 - Core Framework |
-| Current Code Update | 0015 |
+| Current Code Update | 0016 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0015-Data-Cross-Reference-Validation |
-| Milestone Estimate | 86-91% complete |
+| Last Update Name | CodeUpdate-0016-Repository-Backed-Data-Loaders |
+| Milestone Estimate | 89-93% complete |
 | Source of Truth | Latest user-uploaded repository ZIP after each applied update |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Exactly one named top-level update folder per ZIP |
@@ -42,8 +42,8 @@ Continue Milestone 1 until every Core Framework completion criterion is satisfie
 | Core configuration system | Substantially underway | Runtime provider supports defaults, JSON loading, environment overlays, and typed access. |
 | Core logging system | Substantially underway | Logger contract, in-memory logger, composite logger, and shared log entries exist. |
 | Validation framework | Nearly complete | Shared validation results, severities, data-record validator, JSON health checks, and Data cross-reference validation exist. |
-| Serialization framework | Substantially underway | JSON record loader/saver and serializer foundations exist. |
-| Repository interfaces | Substantially underway | Read-only/editable repository contracts and in-memory repository exist in Core. |
+| Serialization framework | Nearly complete | JSON record loader/saver plus repository-backed current Data category loaders exist. |
+| Repository interfaces | Nearly complete | Read-only/editable repository contracts, in-memory repository, catalog, and Data category loaders exist in Core. |
 | Shared data models | Substantially underway | Shared DataRecord/IReforgedDataRecord/GameEntity foundations reduce app-specific model drift. |
 | Event system | Substantially underway | Event contracts, base events, publisher/subscriber contracts, and in-memory event bus exist. |
 | Dependency injection/service registry | Substantially underway | Lightweight dependency-free service registry exists for application bootstrap. |
@@ -64,8 +64,8 @@ Continue Milestone 1 until every Core Framework completion criterion is satisfie
 | Core configuration fully functional | Substantially underway | Add final smoke tests and document expected config files. |
 | Core logging complete | Substantially underway | Add file/runtime sink expectations when Bin artifacts exist. |
 | Validation framework complete | Nearly complete | Cross-reference validation added in 0015; final smoke tests remain before Milestone 1 closure. |
-| Serialization framework complete | Substantially underway | Add repository-backed loaders for all current Data categories. |
-| Repository layer complete | Substantially underway | Add typed loaders and catalog wiring for current Data files. |
+| Serialization framework complete | Nearly complete | Repository-backed loaders for current Data categories added in 0016; final smoke tests remain. |
+| Repository layer complete | Nearly complete | Core Data catalog and repository-backed loaders added in 0016; typed category-specific models can be added as schemas stabilize. |
 | Event system complete | Substantially underway | Add final smoke tests before Milestone 1 closure. |
 | Dependency injection/service registry complete | Substantially underway | Add app bootstrap examples and final smoke tests. |
 | Version management complete | Substantially underway | Keep VERSION.md and ProjectManifest synchronized every update. |
@@ -73,7 +73,7 @@ Continue Milestone 1 until every Core Framework completion criterion is satisfie
 | Repository health checker complete | Nearly complete | Cross-reference validation added in 0015; final milestone health report remains. |
 | Shared utility library complete | In progress | Add utilities only when used by real Core code. |
 | Unit-test framework established | Started | Expand dependency-free smoke tests for Core contracts. |
-| Runtime does not require .NET SDK | Active rule | Runtime must use compiled/runtime-ready artifacts from `Bin/`. |
+| Runtime does not require .NET SDK | Active rule | Runtime must use compiled/runtime-ready artifacts from `Bin/`; GitHub Actions now verifies builds in the cloud. |
 | Update package has exactly one top-level labeled folder | Active rule | Verify every ZIP before reporting complete. |
 | Apply BAT runs from inside extracted update folder | Active rule | The BAT must automatically locate the project root. |
 
@@ -113,6 +113,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0016 | Added repository-backed Core Data loaders, a Core Data catalog, loader health checks, and GitHub Actions cloud build verification. |
 | 0015 | Added source-level Data cross-reference validation for rooms, items, monsters, shops, quests, loot tables, races, classes, and world data. |
 | 0014 | Standardized `AI_CONTEXT.md` as the authoritative handoff document, added required maintenance rules, and documented the handoff format. |
 | 0013 | Added duplicate model enforcement and repository health integration. |
@@ -122,6 +123,13 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 | 0009 | Added Core audit/test foundations and data record contracts. |
 | 0008 | Added governance documents and Core service foundations. |
 | 0007 | Added Core contracts foundation. |
+
+
+## Code Update 0016 Handoff Notes
+
+Core Update 0016 adds repository-backed loaders for the current canonical `Data/` JSON categories. The new loader projects flexible `CanonicalDataRecord` records into Core repositories while preserving raw JSON fields for future editor/server use. It also adds a Core Data catalog and integrates repository loader validation into Data JSON health checks.
+
+This update also implements the user's approved verification suggestion: `.github/workflows/dotnet-build.yml` runs `dotnet restore` and `dotnet build` in GitHub Actions, allowing cloud build verification without requiring the user to install the .NET SDK locally.
 
 ## Code Update 0015 Handoff Notes
 
@@ -137,10 +145,10 @@ This update is intentionally documentation/governance focused. It supports Miles
 
 ## Next Recommended Work
 
-1. Core Update 0016: Add repository-backed loaders for every current `Data/` category.
-2. Core Update 0017: Prepare compiled/runtime-ready `Bin/` artifact expectations without requiring SDK use by normal users.
-3. Core Update 0018: Package Core contract smoke tests for development environments.
-4. Core Update 0019: Produce a final Milestone 1 verification report once all checklist items are satisfied.
+1. Core Update 0017: Prepare compiled/runtime-ready `Bin/` artifact expectations without requiring SDK use by normal users.
+2. Core Update 0018: Package Core contract smoke tests for development environments.
+3. Core Update 0019: Use GitHub Actions build results as the no-local-SDK verification path.
+4. Core Update 0020: Produce a final Milestone 1 verification report once all checklist items are satisfied.
 
 ## New Window Instruction
 

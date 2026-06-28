@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0016 - Repository-Backed Data Loaders
+
+- Continued Milestone 1 Core Framework work.
+- Added Core repository-backed loaders for current canonical `Data/` categories.
+- Added flexible `CanonicalDataRecord` projection that preserves raw JSON fields while exposing common identity fields.
+- Added `CoreDataCatalog` and category descriptors for shared application bootstrap use.
+- Added Core data repository health checking and integrated it with Data JSON health checks.
+- Added GitHub Actions `.NET Build Verification` workflow so build verification can run in GitHub without requiring the user to install the .NET SDK locally.
+- Updated `AI_CONTEXT.md`, `README.md`, `VERSION.md`, `ProjectManifest.json`, documentation, and verification report.
+- Preserved no-SDK runtime policy, one-folder update ZIP policy, and protection of `Saves/` and `ImportedDatabases/`.
+
 ## CodeUpdate-0015 - Data Cross-Reference Validation
 
 - Continued Milestone 1 Core Framework validation work.

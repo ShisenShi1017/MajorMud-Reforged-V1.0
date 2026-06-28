@@ -1,9 +1,9 @@
 {
   "project": "MajorMud Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0015",
+  "codeUpdate": "0016",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / Data Cross-Reference Validation",
+  "milestone": "Milestone 1 - Core Framework / Repository-Backed Data Loaders",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
   "updatePolicy": "Extract the update ZIP directly into the main project folder, open the single labeled update folder, and run Apply-*.bat from inside it.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0015",
+    "currentCodeUpdate": "0016",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -63,11 +63,15 @@
       "world room exit reference checks",
       "room item and monster reference checks",
       "race-to-class reference checks",
-      "shop quest and loot-table reference scaffolding"
+      "shop quest and loot-table reference scaffolding",
+      "repository-backed loaders for current Data categories",
+      "Core data repository catalog",
+      "canonical flexible Data record loader",
+      "Core data repository health check",
+      "GitHub Actions cloud build verification workflow"
     ],
     "milestone1RemainingComponents": [
       "compiled Bin runtime handoff validation artifacts",
-      "repository-backed loaders for every current Data category",
       "Core contract smoke tests packaged for development environments",
       "final Milestone 1 verification report"
     ]
@@ -92,9 +96,9 @@
     "No duplicated models across applications": "Substantially underway"
   },
   "nextRecommendedWork": [
-    "Add repository-backed loaders for every current Data category.",
     "Prepare compiled/runtime-ready Bin artifact expectations without requiring SDK use by normal users.",
     "Package Core contract smoke tests for development environments.",
+    "Use GitHub Actions build results as the no-local-SDK verification path.",
     "Produce a final Milestone 1 verification report once all checklist items are satisfied."
   ],
   "updateZipPolicy": "Each update ZIP contains exactly one named top-level update folder; the apply BAT lives inside that folder and runs from there.",
@@ -104,5 +108,5 @@
     "containsMilestoneTable": true,
     "containsMilestoneChecklist": true
   },
-  "lastUpdateName": "CodeUpdate-0015-Data-Cross-Reference-Validation"
+  "lastUpdateName": "CodeUpdate-0016-Repository-Backed-Data-Loaders"
 }

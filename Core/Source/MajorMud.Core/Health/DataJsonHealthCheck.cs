@@ -27,6 +27,7 @@ public sealed class DataJsonHealthCheck
         if (!result.HasErrors)
         {
             result.Merge(new DataCrossReferenceHealthCheck().ValidateDataFolder(dataFolder));
+            result.Merge(new CoreDataRepositoryHealthCheck().ValidateDataFolder(dataFolder));
         }
 
         return result;
