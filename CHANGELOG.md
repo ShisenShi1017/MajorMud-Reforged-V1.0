@@ -1,28 +1,18 @@
-# MajorMud Reforged Changelog
+# Changelog
 
-## Code Update 0001 — Repository Reorganization & Core Foundation
+## Code Update 0002 - Repository Deduplication
 
-### Added
-- New streamlined repository layout.
-- `Core/` shared foundation folder.
-- `Apps/` app-family folders for Launcher, Server, Editor, Importer, and Client.
-- `Bin/Windows/` executable destination folders for each future app.
-- `Updates/Code/` and `Updates/DatabaseVersions/` folders.
-- Root `README.md` and `VERSION.md`.
-- Documentation for the reorganization and application platform direction.
+- Removed duplicate root `README.txt` in favor of `README.md`.
+- Removed redundant legacy PowerShell prototype archive.
+- Removed obsolete legacy client/editor/source placeholder folders.
+- Removed old backup snapshots that should not remain in the active repository tree.
+- Removed duplicate/obsolete changelog files from `Docs/`.
+- Added `.gitignore` for runtime logs, local backups, temporary reports, and build artifacts.
+- Preserved `Data/`, `ImportedDatabases/`, `Saves/`, `Apps/`, `Core/`, `Docs/`, `Tools/`, `Updates/`, and `Bin/`.
+- Updated documentation and handoff status.
 
-### Changed
-- Prototype and obsolete root folders are moved into `Legacy/DeprecatedRoots/`.
-- Old prototype launch scripts are moved into `Legacy/PrototypeLaunchers/`.
-- PowerShell remains archived only as historical prototype material.
-- Root README is replaced with the current update status.
+## Code Update 0001 - Repository Reorganization & Core Foundation
 
-### Protected
-- `Data/` remains the active standalone database.
-- `ImportedDatabases/` remains reference-only and is not overwritten.
-- `Saves/` is not moved or overwritten.
-
-### Not Included
-- No compiled `.exe` is claimed or included.
-- No .NET SDK installation is required.
-- No server gameplay feature is implemented in this update.
+- Established the streamlined repository layout.
+- Created `Apps/`, `Core/`, `Bin/`, `Updates/`, and supporting folders.
+- Moved prototype-era folders into `Legacy/` instead of deleting them.

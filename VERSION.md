@@ -1,22 +1,18 @@
-# MajorMud Reforged Version State
+# MajorMud Reforged Version Status
 
-| Item | Value |
-|---|---|
-| Project milestone | Repository Reorganization & Core Foundation |
-| Current code update | Code Update 0001 |
-| Current database model | Reforged `Data/` is authoritative |
-| Imported databases | Reference/fallback only |
-| Runtime dependency target | Standalone; no Access/OLEDB; no legacy `.DAT` required at runtime |
-| PowerShell status | Prototype/legacy only |
-| Executable status | Dedicated folders created; no executable claimed yet |
+- Current Code Update: 0002 - Repository Deduplication
+- Current Database Version: 0009 - Server-Ready Data Baseline
+- Current Milestone: Standalone Server Foundation
+- Current Source of Truth: latest user-uploaded repository ZIP after Code Update 0001
 
-## Next planned update
+## Active Direction
 
-**Code Update 0002 — Core Data Loader & Server Bootstrap**
+The project is moving away from PowerShell prototypes toward a standalone application platform with:
 
-Goals:
-- Add real Core data models.
-- Load `Data/` into memory.
-- Validate database structure.
-- Generate validation logs.
-- Start and stop server bootstrap cleanly.
+- `Core/` as the shared model/validation/runtime foundation
+- `Apps/Server/` as the first real application target
+- `Apps/Importer/` for repeatable database conversion and verification
+- `Apps/Editor/` for future real-time editing through the server
+- `Apps/Launcher/` for future update/app management
+
+No `.DAT`, MDB, ACCDB, or MegaMud files are used by the server at runtime. They remain source/reference inputs only.

@@ -1,40 +1,42 @@
 # Session Handoff
 
-## Current project state
+## Current State
 
-The project has moved from prototype scripting and import experimentation into the official application architecture phase.
+The repository has been reorganized and deduplicated.
 
-## Latest completed update
+Active layout:
 
-**Code Update 0001 — Repository Reorganization & Core Foundation**
+- `Apps/`
+- `Core/`
+- `Data/`
+- `Docs/`
+- `ImportedDatabases/`
+- `Reports/`
+- `Saves/`
+- `Tools/`
+- `Updates/`
+- `Bin/`
+- `Backups/` local output only
+- `Logs/` local output only
+- `Legacy/` minimal note only
 
-## What this update does
+## Last Completed Update
 
-- Creates the final streamlined top-level layout.
-- Moves obsolete prototype folders and old root scripts into `Legacy/`.
-- Establishes `Core/` as the shared foundation.
-- Creates app folders under `Apps/`.
-- Creates future executable folders under `Bin/Windows/`.
-- Replaces the root README with the current project status.
-- Adds `CHANGELOG.md` and `VERSION.md`.
+Code Update 0002 - Repository Deduplication
 
-## Current active source of truth
+## Important Rules
 
-- Code source of truth: the current repository after this update is applied.
-- Data source of truth: `Data/`.
-- Imported data source/reference: `ImportedDatabases/`.
+- Database Versions are for game data/import changes.
+- Code Updates are for code, repository, tooling, launcher, server, editor, and client changes.
+- Every update must run from its own extracted folder.
+- Every update must update root `README.md`.
+- Do not overwrite `Saves/` or `ImportedDatabases/` without explicit approval.
 
-## Next recommended step
+## Next Recommended Work
 
-**Code Update 0002 — Core Data Loader & Server Bootstrap**
+Start the real `Core` implementation for server loading:
 
-Implement:
-- Core data manifest model.
-- Core JSON loading helpers.
-- Core validation result model.
-- Server bootstrap that loads `Data/` only.
-- Validation report output under `Reports/` or `Logs/`.
-
-## Important reminder
-
-Do not require the user to install the .NET SDK or developer tools for normal use. Until prebuilt executables exist, do not claim executables exist.
+1. Define core model contracts.
+2. Add data manifest loader.
+3. Add validation result model.
+4. Add server bootstrap that reads only `Data/`.

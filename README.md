@@ -1,81 +1,48 @@
 # MajorMud Reforged
 
-## Current Status
+## Current status
 
-**Current milestone:** Code Update 0001 — Repository Reorganization & Core Foundation  
-**Primary goal:** Build a completely standalone MajorMud server, editor, importer, launcher, and future client using the Reforged `Data/` folder as the active game database.
+**Current milestone:** Standalone server foundation preparation  
+**Current database baseline:** Server-ready editable `Data/` from CSV + MegaMud `.mp` + native runtime references  
+**Current code update:** Code Update 0002 - Repository Deduplication
 
-## What changed in this update
+MajorMud Reforged is being developed as a standalone MajorMud-compatible server with a future real-time editor and client inspired by MegaMud 2.0.
 
-This update performs the approved repository cleanup before deeper server development begins.
+## Active repository layout
 
-- Creates the streamlined long-term layout:
-  - `Apps/Launcher/`
-  - `Apps/Server/`
-  - `Apps/Editor/`
-  - `Apps/Importer/`
-  - `Apps/Client/`
-  - `Core/`
-  - `Bin/Windows/Launcher/`
-  - `Bin/Windows/Server/`
-  - `Bin/Windows/Editor/`
-  - `Bin/Windows/Importer/`
-  - `Bin/Windows/Client/`
-  - `Updates/Code/`
-  - `Updates/DatabaseVersions/`
-- Moves obsolete prototype folders and scripts into `Legacy/` instead of deleting them.
-- Keeps `Data/` as the active standalone database.
-- Keeps `ImportedDatabases/` as source/reference only.
-- Keeps `Saves/` protected.
-- Establishes `Core/` as the shared foundation for the server, editor, importer, launcher, and future client.
-- Begins moving away from PowerShell prototypes toward compiled applications.
-- Adds/update documentation so future chats and developers can continue from the current state.
+- `Apps/` - future standalone applications: Launcher, Server, Editor, Importer, Client
+- `Core/` - shared game/data/validation/runtime foundation
+- `Data/` - Reforged's editable game database and server loading source
+- `ImportedDatabases/` - original MajorMud source/reference files only
+- `Docs/` - project vision, architecture, rules, handoff, release notes, database history
+- `Reports/` - generated validation/audit reports
+- `Saves/` - player save data; never overwritten by updates
+- `Tools/` - importer/update tooling
+- `Updates/` - Code Updates and Database Versions
+- `Bin/` - future compiled executables, each in its own folder
+- `Backups/` - local runtime backups only
+- `Logs/` - runtime logs only
+- `Legacy/` - no longer active; kept only for a short note unless future migration evidence is needed
 
-## Active top-level layout
+## What changed in Code Update 0002
 
-```text
-MajorMud-Reforged/
-├── Apps/
-│   ├── Launcher/
-│   ├── Server/
-│   ├── Editor/
-│   ├── Importer/
-│   └── Client/
-├── Bin/
-│   └── Windows/
-│       ├── Launcher/
-│       ├── Server/
-│       ├── Editor/
-│       ├── Importer/
-│       └── Client/
-├── Core/
-├── Data/
-├── ImportedDatabases/
-├── Docs/
-├── Reports/
-├── Saves/
-├── Tools/
-├── Updates/
-├── Backups/
-├── Legacy/
-├── README.md
-├── CHANGELOG.md
-└── VERSION.md
-```
+This update removed redundant prototype and duplicate repository files from the active tree:
 
-## Important development rules
+- Removed duplicate `README.txt`; `README.md` is now the only root readme.
+- Removed old PowerShell prototype archives from `Legacy/`.
+- Removed deprecated old client/editor/source placeholders from `Legacy/DeprecatedRoots/`.
+- Removed old repository backup snapshots from `Backups/`.
+- Removed obsolete duplicate changelog files from `Docs/`.
+- Added `.gitignore` rules to keep generated logs/backups out of normal repository uploads.
+- Preserved `Data/`, `ImportedDatabases/`, and `Saves/`.
 
-- `Data/` is the live editable Reforged database.
-- `ImportedDatabases/` is reference/fallback only after conversion.
-- Do not overwrite `Saves/`.
-- Do not overwrite original imported databases.
-- All Code Updates and Database Versions must run from their own extracted folder.
-- Every update must update this root README and the documentation in `Docs/`.
-- Do not claim an executable exists unless it has actually been built and included.
-- Executables must live in their own folder under `Bin/Windows/<AppName>/`.
+## Update rules
 
-## Next goal
+Every Code Update or Database Version must:
 
-Begin **Code Update 0002 — Core Data Loader & Server Bootstrap** using the new layout.
-
-That update should make the server load only from `Data/`, validate the database, build an in-memory world model, and shut down cleanly without depending on `.DAT`, `.mdb`, `.accdb`, CSV, or PowerShell runtime files.
+1. Run from its own extracted update folder.
+2. Include an `Apply-*.bat` until the compiled launcher/updater exists.
+3. Auto-locate the project root without requiring a typed path.
+4. Update this `README.md`.
+5. Update `CHANGELOG.md`, `VERSION.md`, and relevant docs.
+6. Preserve `Saves/` and `ImportedDatabases/` unless explicitly approved otherwise.

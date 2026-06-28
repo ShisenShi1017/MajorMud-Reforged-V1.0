@@ -1,7 +1,5 @@
 # Legacy
 
-This folder contains preserved historical/prototype material.
+The repository has been cleaned so legacy prototype files are no longer part of the active project tree.
 
-Nothing is deleted during repository cleanup. Obsolete folders and old scripts are moved here so they can be inspected later if needed.
-
-Active development should not happen inside `Legacy/` unless explicitly approved.
+If future work needs historical material, it should be reintroduced intentionally from source control or a named archive. The active project should stay streamlined around `Apps/`, `Core/`, `Data/`, `Docs/`, `Tools/`, and `Updates/`.

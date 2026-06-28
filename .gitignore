@@ -1,0 +1,14 @@
+# MajorMud Reforged generated/runtime files
+Logs/*
+!Logs/README.md
+Reports/*.tmp
+Reports/*.log
+Backups/*
+!Backups/README.md
+Bin/Windows/**/publish/
+Bin/Windows/**/*.pdb
+*.user
+*.suo
+.vs/
+
+# Keep source data and saves visible intentionally unless the project owner decides otherwise.
