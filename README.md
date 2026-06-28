@@ -6,17 +6,26 @@
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0013 — Duplicate Model Enforcement`
+**Current Code Update:** `CodeUpdate-0015 — Data Cross-Reference Validation`
 
 **Current Database Version:** `DatabaseVersion-0009 — Server-Ready Data Baseline`
 
 **Active Milestone:** `Milestone 1 — Core Framework`
 
-**Current Priority:** Finish Milestone 1 by enforcing no duplicate app models, completing cross-reference validation, adding Data loaders, and producing final verification before starting Milestone 2.
+**Current Priority:** Finish Milestone 1 by adding Data loaders, preparing Bin runtime expectations, expanding smoke tests, and producing final verification before starting Milestone 2.
 
 This README is the required starting point for every new ChatGPT session and every developer handoff.
 
 ---
+
+## CodeUpdate-0015 Summary
+
+Core Update 0015 expands Data JSON validation from individual file checks into cross-reference validation. The source-level Core health checks now index rooms, items, monsters, classes, races, shops, quests, loot tables, and world room data, then report missing references such as room exits pointing at missing rooms, rooms containing missing item or monster IDs, races using missing classes, and future shop/quest/loot-table references targeting missing records.
+
+
+## CodeUpdate-0014 Summary
+
+Core Update 0014 standardizes `AI_CONTEXT.md` as the authoritative handoff document for every new ChatGPT window and development continuation. It adds a required startup order, current repository facts, a living Milestone 1 status table, a completion checklist, update history, next recommended work, and maintenance rules requiring every future Code Update to refresh the handoff document.
 
 ## CodeUpdate-0013 Summary
 

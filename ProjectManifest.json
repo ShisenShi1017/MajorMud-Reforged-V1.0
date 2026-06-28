@@ -1,9 +1,9 @@
 {
   "project": "MajorMud Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0013",
+  "codeUpdate": "0015",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / Duplicate Model Enforcement",
+  "milestone": "Milestone 1 - Core Framework / Data Cross-Reference Validation",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
   "updatePolicy": "Extract the update ZIP directly into the main project folder, open the single labeled update folder, and run Apply-*.bat from inside it.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0013",
+    "currentCodeUpdate": "0015",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -52,22 +52,32 @@
       "Data JSON health check",
       "application Core-reference health check",
       "duplicate model enforcement health check",
-      "repository health duplicate model integration"
+      "repository health duplicate model integration",
+      "authoritative AI_CONTEXT handoff structure",
+      "handoff maintenance requirements",
+      "new-window startup order",
+      "living milestone status table",
+      "living completion checklist",
+      "source-level Data cross-reference health check",
+      "Data JSON cross-reference validation integration",
+      "world room exit reference checks",
+      "room item and monster reference checks",
+      "race-to-class reference checks",
+      "shop quest and loot-table reference scaffolding"
     ],
     "milestone1RemainingComponents": [
       "compiled Bin runtime handoff validation artifacts",
-      "expanded cross-reference validation rules for Data JSON",
       "repository-backed loaders for every current Data category",
       "Core contract smoke tests packaged for development environments",
       "final Milestone 1 verification report"
     ]
   },
   "updatePackagePolicy": "Every update ZIP contains exactly one labeled top-level folder named for the update.",
-  "handoffPolicy": "AI_CONTEXT.md is a living handoff document and must be updated every Code Update.",
+  "handoffPolicy": "AI_CONTEXT.md is the authoritative handoff document and must be updated every Code Update with current repository facts, status tables, checklist, update history, and next recommended work.",
   "milestoneStatus": {
     "Core configuration system": "Substantially underway",
     "Core logging system": "Substantially underway",
-    "Validation framework": "Substantially underway",
+    "Validation framework": "Nearly complete",
     "Serialization framework": "Substantially underway",
     "Repository interfaces": "Substantially underway",
     "Shared data models": "Substantially underway",
@@ -75,17 +85,17 @@
     "Dependency injection/service registry": "Substantially underway",
     "Version management": "Substantially underway",
     "Project manifest reader": "Substantially underway",
-    "Repository health checker": "Substantially underway",
+    "Repository health checker": "Nearly complete",
     "Shared utility library": "In progress",
     "Unit-test framework": "Started",
     "Applications using Core": "Substantially underway",
     "No duplicated models across applications": "Substantially underway"
   },
   "nextRecommendedWork": [
-    "Expand Data JSON validation into cross-reference checks for rooms, items, monsters, shops, spells, quests, and world data.",
-    "Add repository-backed loaders for each current Data category.",
+    "Add repository-backed loaders for every current Data category.",
     "Prepare compiled/runtime-ready Bin artifact expectations without requiring SDK use by normal users.",
-    "Create final Milestone 1 verification report when all checklist items are complete."
+    "Package Core contract smoke tests for development environments.",
+    "Produce a final Milestone 1 verification report once all checklist items are satisfied."
   ],
   "updateZipPolicy": "Each update ZIP contains exactly one named top-level update folder; the apply BAT lives inside that folder and runs from there.",
   "handoffStatus": {
@@ -93,5 +103,6 @@
     "mustUpdateEveryCodeUpdate": true,
     "containsMilestoneTable": true,
     "containsMilestoneChecklist": true
-  }
+  },
+  "lastUpdateName": "CodeUpdate-0015-Data-Cross-Reference-Validation"
 }

@@ -1,5 +1,24 @@
 # Changelog
 
+## CodeUpdate-0015 - Data Cross-Reference Validation
+
+- Continued Milestone 1 Core Framework validation work.
+- Added dependency-free source-level `DataCrossReferenceHealthCheck` for Data JSON relationship validation.
+- Integrated cross-reference checks into `DataJsonHealthCheck` after parse/root/duplicate-ID checks pass.
+- Added validation result merging support to source-level Core validation results.
+- Added checks for world room exits, room item references, room monster references, race class references, and future shop/quest/loot-table references.
+- Updated `AI_CONTEXT.md`, `README.md`, `VERSION.md`, `ProjectManifest.json`, docs, and verification report.
+- Preserved no-SDK runtime policy, one-folder update ZIP policy, and protection of `Saves/` and `ImportedDatabases/`.
+
+## CodeUpdate-0014 - AI Handoff Standardization
+
+- Continued Milestone 1 Core Framework governance and handoff work.
+- Standardized `AI_CONTEXT.md` as the authoritative handoff document for new ChatGPT windows and development sessions.
+- Added required session startup order, current repository facts, Milestone 1 status table, completion checklist, update history, and next recommended work.
+- Added `Docs/24-CoreUpdate0014-AI-Handoff-Standardization.md` documenting the handoff standard and required future maintenance.
+- Updated `README.md`, `VERSION.md`, and `ProjectManifest.json`.
+- Preserved no-SDK runtime policy, one-folder update ZIP policy, and protection of `Saves/` and `ImportedDatabases/`.
+
 ## CodeUpdate-0013 - Duplicate Model Enforcement
 
 - Continued Milestone 1 Core Framework work.

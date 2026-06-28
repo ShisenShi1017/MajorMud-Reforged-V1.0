@@ -8,4 +8,14 @@ public sealed class ValidationResult
 
     public void Add(ValidationSeverity severity, string code, string message, string? path = null, string? reference = null)
         => Issues.Add(new ValidationIssue(severity, code, message, path, reference));
+
+    public ValidationResult Merge(ValidationResult source)
+    {
+        foreach (var issue in source.Issues)
+        {
+            Issues.Add(issue);
+        }
+
+        return this;
+    }
 }

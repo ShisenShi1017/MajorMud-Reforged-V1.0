@@ -24,6 +24,11 @@ public sealed class DataJsonHealthCheck
             ValidateJsonFile(file, result);
         }
 
+        if (!result.HasErrors)
+        {
+            result.Merge(new DataCrossReferenceHealthCheck().ValidateDataFolder(dataFolder));
+        }
+
         return result;
     }
 
