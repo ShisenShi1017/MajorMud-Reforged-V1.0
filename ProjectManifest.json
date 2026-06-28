@@ -1,11 +1,11 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0020",
+  "codeUpdate": "0024",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / GitHub Actions Rebrand Path Repair",
+  "milestone": "Milestone 1 - Core Framework / Core Verification",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
-  "updatePolicy": "Extract the update ZIP directly into the main project folder, open the single labeled update folder, and run Apply-*.bat from inside it.",
+  "updatePolicy": "CodeUpdate ZIPs are patch-only packages unless explicitly requested otherwise; each ZIP must contain exactly one top-level update folder with Apply-CodeUpdate-XXXX.bat and UpdateManifest.json, and the BAT applies changed/new files into the main repository folder.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
   "preserve": [
     "Saves",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0019",
+    "currentCodeUpdate": "0024",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -76,7 +76,11 @@
       "Reforged source namespace rebrand",
       "Reforged assembly and project-file rename",
       "GitHub Actions paths updated for Reforged project names",
-      "old project-name textual branding cleanup"
+      "old project-name textual branding cleanup",
+      "Core verification smoke tests",
+      "startup diagnostics verification",
+      "patch-only CodeUpdate packaging policy",
+      "CodeUpdate BAT installer requirement"
     ],
     "milestone1RemainingComponents": [
       "GitHub Actions build result review after user push",

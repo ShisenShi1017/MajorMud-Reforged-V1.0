@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0024 - Core Verification
+
+- Added dependency-free Core event bus contracts and in-memory implementation.
+- Added Core startup diagnostics for DI, configuration, event publishing, and repository health.
+- Added `Tests/Source/Reforged.Core.Tests` smoke-test project.
+- Updated GitHub Actions to restore, build, and run smoke tests.
+- No gameplay feature work was introduced.
+
+
 ## CodeUpdate-0019 - Reforged Source Rebrand
 
 - Continued Milestone 1 Core Framework work after GitHub verified CodeUpdate-0018.

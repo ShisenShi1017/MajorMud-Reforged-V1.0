@@ -23,13 +23,13 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | Current Milestone | Milestone 1 - Core Framework |
-| Current Code Update | 0019 |
+| Current Code Update | 0024 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0019-Reforged-Source-Rebrand |
+| Last Update Name | CodeUpdate-0024-Core-Verification |
 | Milestone Estimate | 92-95% complete |
 | Source of Truth | Latest user-uploaded repository ZIP after each applied update |
 | Runtime Policy | No .NET SDK required for normal runtime |
-| Update Packaging Policy | Exactly one named top-level update folder per ZIP |
+| Update Packaging Policy | Patch-only ZIP with exactly one top-level update folder and included Apply-CodeUpdate BAT |
 
 
 ## CodeUpdate-0019 Current Handoff Note
@@ -95,6 +95,7 @@ Continue Milestone 1 until every Core Framework completion criterion is satisfie
 - Never overwrite `Saves/` or `ImportedDatabases/` unless explicitly approved.
 - Runtime must never require the .NET SDK. Development may use SDK tooling, but normal use must launch compiled/runtime-ready artifacts from `Bin/`.
 - Every Code Update and Database Version ZIP must contain exactly one top-level folder named for the update, such as `CodeUpdate-0014-AI-Handoff-Standardization/`.
+- Code Update ZIPs must be patch/update-only packages containing only changed/new update files plus required installer/manifest files; never package a rebuilt full repository unless the user explicitly asks for a full baseline.
 - Users must be able to extract the ZIP directly into the main project folder without manually creating an update folder.
 - The `Apply-*.bat` file must live inside that top-level update folder and run from there.
 - The apply script must automatically locate the project root.
@@ -175,3 +176,25 @@ GitHub Actions must use `.github/workflows/dotnet-build.yml` with `Reforged.*` p
 - Includes `Install-GitHub-Actions-Workflow.bat` at repository root.
 - The batch file copies `GitHubActions/dotnet-build.yml` to `.github/workflows/dotnet-build.yml`.
 - Continue to exclude protected user/runtime data directories from update packages unless explicitly requested.
+
+## CodeUpdate-0024 Handoff
+
+Milestone 1 completion has started. CodeUpdate-0024 is verification-only and avoids new gameplay systems.
+
+Completed in this update:
+
+- Added Core event system contracts and `InMemoryEventBus`.
+- Added `CoreStartupDiagnostics` and `StartupDiagnosticReport`.
+- Added `Reforged.Core.Tests` smoke-test project.
+- Updated GitHub Actions to build and run smoke tests.
+
+Important validation note:
+
+- The local packaging container did not include the .NET SDK. Treat GitHub Actions as the authoritative build/test result for this update.
+
+Next update:
+
+- CodeUpdate-0025 — Rebrand Completion.
+- Audit remaining `MajorMud` identifiers.
+- Complete remaining Reforged namespace/assembly/documentation cleanup where appropriate.
+

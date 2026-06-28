@@ -14,7 +14,7 @@ The active source, assembly, and project naming pattern is now `Reforged.*`. Git
 
 **Current Database Version:** `DatabaseVersion-0009 — Server-Ready Data Baseline`
 
-**Active Milestone:** `Milestone 1 — Core Framework`
+**Active Milestone:** `Milestone 1 — Core Framework / Completion Verification`
 
 **Current Priority:** Finish Milestone 1 by adding Data loaders, preparing Bin runtime expectations, expanding smoke tests, and producing final verification before starting Milestone 2.
 
@@ -165,6 +165,7 @@ Every Code Update must:
 - Verify the current Database Version.
 - Verify the current Project Version when present.
 - Verify the update follows the project vision.
+- Package only the changed/new update files, not a rebuilt copy of the entire repository.
 - Include an `Apply-CodeUpdate-XXXX.bat` file.
 - Run from its own extracted folder.
 - Require no manual path entry.
@@ -385,3 +386,10 @@ Install-GitHub-Actions-Workflow.bat
 ```
 
 Run it from the repository root after extracting the update. It copies `GitHubActions\dotnet-build.yml` into `.github\workflows\dotnet-build.yml`. After committing and pushing, GitHub Actions will restore and build the `Reforged.*` source projects in the cloud.
+
+### CodeUpdate-0024 Verification Track
+
+Milestone 1 closure has begun. Current work is verification-only: dependency injection, configuration loading, repository health, event-system behavior, startup diagnostics, and smoke tests. Gameplay feature work remains deferred until after Milestone 1 is closed.
+
+GitHub Actions is the authoritative build gate and now restores, builds, and runs the Core smoke-test project.
+

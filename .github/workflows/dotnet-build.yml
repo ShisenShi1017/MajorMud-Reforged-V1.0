@@ -45,3 +45,12 @@ jobs:
           dotnet build Apps/Source/Reforged.Editor/Reforged.Editor.csproj --configuration Release --no-restore
           dotnet build Apps/Source/Reforged.Launcher/Reforged.Launcher.csproj --configuration Release --no-restore
           dotnet build Apps/Source/Reforged.Client/Reforged.Client.csproj --configuration Release --no-restore
+
+      - name: Restore tests
+        run: dotnet restore Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj
+
+      - name: Build tests
+        run: dotnet build Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-restore
+
+      - name: Run core smoke tests
+        run: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build
