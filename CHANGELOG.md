@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0017 - GitHub Actions Runtime Verification
+
+- Continued Milestone 1 Core Framework work.
+- Added `.github/workflows/dotnet-build.yml` for cloud restore/build verification of Core and application source projects.
+- Added `Bin/RuntimeArtifacts.json` to document future runtime-ready executable handoff locations.
+- Added `BinRuntimeHandoffCatalog` and expanded `BinRuntimeHandoffValidator` for SDK-free runtime artifact expectation checks.
+- Added GitHub Actions verification documentation, including the recommendation that the repository may remain private.
+- Updated `README.md`, `VERSION.md`, `ProjectManifest.json`, and `AI_CONTEXT.md`.
+- Preserved no-local-SDK runtime policy, one-folder update ZIP policy, and protection of `Saves/` and `ImportedDatabases/`.
+
 ## CodeUpdate-0016 - Repository-Backed Data Loaders
 
 - Continued Milestone 1 Core Framework work.

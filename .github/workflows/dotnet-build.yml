@@ -1,14 +1,17 @@
-name: .NET Build Verification
+name: MajorMud Reforged Cloud Build
 
 on:
   push:
+    branches: [ main, master ]
   pull_request:
+    branches: [ main, master ]
   workflow_dispatch:
 
 jobs:
-  build-core:
-    name: Restore and build Core
+  build:
+    name: Restore and build source projects
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,3 +26,19 @@ jobs:
 
       - name: Build Core
         run: dotnet build Core/Source/MajorMud.Core/MajorMudCore.csproj --configuration Release --no-restore
+
+      - name: Restore applications
+        run: |
+          dotnet restore Apps/Source/MajorMud.Server/MajorMud.Server.csproj
+          dotnet restore Apps/Source/MajorMud.Importer/MajorMud.Importer.csproj
+          dotnet restore Apps/Source/MajorMud.Editor/MajorMud.Editor.csproj
+          dotnet restore Apps/Source/MajorMud.Launcher/MajorMud.Launcher.csproj
+          dotnet restore Apps/Source/MajorMud.Client/MajorMud.Client.csproj
+
+      - name: Build applications
+        run: |
+          dotnet build Apps/Source/MajorMud.Server/MajorMud.Server.csproj --configuration Release --no-restore
+          dotnet build Apps/Source/MajorMud.Importer/MajorMud.Importer.csproj --configuration Release --no-restore
+          dotnet build Apps/Source/MajorMud.Editor/MajorMud.Editor.csproj --configuration Release --no-restore
+          dotnet build Apps/Source/MajorMud.Launcher/MajorMud.Launcher.csproj --configuration Release --no-restore
+          dotnet build Apps/Source/MajorMud.Client/MajorMud.Client.csproj --configuration Release --no-restore

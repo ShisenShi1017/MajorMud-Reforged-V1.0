@@ -1,6 +1,9 @@
-# Client Executable Folder
+# Client Runtime Folder
 
-Future compiled Windows builds for the Client app belong here.
+Future compiled Windows runtime artifacts for the Client app belong here.
 
-No executable is included by Code Update 0001.
-This folder exists so future updates can place each `.exe` in its own dedicated folder.
+Expected future executable:
+
+- `MajorMud.Client.exe`
+
+No executable is required for Milestone 1 source-framework completion. Build verification should be performed by GitHub Actions using `.github/workflows/dotnet-build.yml`, then future release packaging can place compiled artifacts here so normal users do not need the .NET SDK locally.

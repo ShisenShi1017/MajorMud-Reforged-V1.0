@@ -23,10 +23,10 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 |---|---|
 | Project | MajorMud Reforged |
 | Current Milestone | Milestone 1 - Core Framework |
-| Current Code Update | 0016 |
+| Current Code Update | 0017 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0016-Repository-Backed-Data-Loaders |
-| Milestone Estimate | 89-93% complete |
+| Last Update Name | CodeUpdate-0017-GitHub-Actions-Runtime-Verification |
+| Milestone Estimate | 92-95% complete |
 | Source of Truth | Latest user-uploaded repository ZIP after each applied update |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Exactly one named top-level update folder per ZIP |
@@ -113,6 +113,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0017 | Added GitHub Actions cloud verification documentation, Bin runtime artifact expectations, and SDK-free runtime handoff catalog validation. |
 | 0016 | Added repository-backed Core Data loaders, a Core Data catalog, loader health checks, and GitHub Actions cloud build verification. |
 | 0015 | Added source-level Data cross-reference validation for rooms, items, monsters, shops, quests, loot tables, races, classes, and world data. |
 | 0014 | Standardized `AI_CONTEXT.md` as the authoritative handoff document, added required maintenance rules, and documented the handoff format. |
@@ -124,6 +125,12 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 | 0008 | Added governance documents and Core service foundations. |
 | 0007 | Added Core contracts foundation. |
 
+
+## Code Update 0017 Handoff Notes
+
+Core Update 0017 formalizes the GitHub Actions verification recommendation and runtime artifact handoff expectations. It adds `.github/workflows/dotnet-build.yml`, documents private-repository cloud verification, adds `Bin/RuntimeArtifacts.json`, and adds an SDK-free `BinRuntimeHandoffCatalog` for future runtime artifact checks.
+
+Normal users still do not need the .NET SDK locally. Build verification should come from GitHub Actions after the user pushes the update to their private GitHub repository.
 
 ## Code Update 0016 Handoff Notes
 
@@ -145,10 +152,9 @@ This update is intentionally documentation/governance focused. It supports Miles
 
 ## Next Recommended Work
 
-1. Core Update 0017: Prepare compiled/runtime-ready `Bin/` artifact expectations without requiring SDK use by normal users.
-2. Core Update 0018: Package Core contract smoke tests for development environments.
-3. Core Update 0019: Use GitHub Actions build results as the no-local-SDK verification path.
-4. Core Update 0020: Produce a final Milestone 1 verification report once all checklist items are satisfied.
+1. Core Update 0018: Package Core contract smoke tests for development environments.
+2. Core Update 0019: Review GitHub Actions build results after the user pushes this update and fix any CI-reported build issues.
+3. Core Update 0020: Produce a final Milestone 1 verification report once all checklist items are satisfied.
 
 ## New Window Instruction
 

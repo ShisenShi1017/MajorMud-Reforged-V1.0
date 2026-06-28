@@ -1,9 +1,9 @@
 {
   "project": "MajorMud Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0016",
+  "codeUpdate": "0017",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / Repository-Backed Data Loaders",
+  "milestone": "Milestone 1 - Core Framework / Runtime Artifact Expectations and GitHub Verification",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
   "updatePolicy": "Extract the update ZIP directly into the main project folder, open the single labeled update folder, and run Apply-*.bat from inside it.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0016",
+    "currentCodeUpdate": "0017",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -68,11 +68,15 @@
       "Core data repository catalog",
       "canonical flexible Data record loader",
       "Core data repository health check",
-      "GitHub Actions cloud build verification workflow"
+      "GitHub Actions cloud build verification workflow",
+      "Bin runtime artifact expectation catalog",
+      "SDK-free Bin runtime handoff catalog loader",
+      "GitHub Actions verification documentation",
+      "private repository GitHub Actions recommendation"
     ],
     "milestone1RemainingComponents": [
-      "compiled Bin runtime handoff validation artifacts",
       "Core contract smoke tests packaged for development environments",
+      "GitHub Actions build result review after user push",
       "final Milestone 1 verification report"
     ]
   },
@@ -96,9 +100,9 @@
     "No duplicated models across applications": "Substantially underway"
   },
   "nextRecommendedWork": [
-    "Prepare compiled/runtime-ready Bin artifact expectations without requiring SDK use by normal users.",
     "Package Core contract smoke tests for development environments.",
-    "Use GitHub Actions build results as the no-local-SDK verification path.",
+    "Review GitHub Actions build results after the user pushes the update.",
+    "Fix any CI-reported build issues before final Milestone 1 closure.",
     "Produce a final Milestone 1 verification report once all checklist items are satisfied."
   ],
   "updateZipPolicy": "Each update ZIP contains exactly one named top-level update folder; the apply BAT lives inside that folder and runs from there.",
@@ -108,5 +112,5 @@
     "containsMilestoneTable": true,
     "containsMilestoneChecklist": true
   },
-  "lastUpdateName": "CodeUpdate-0016-Repository-Backed-Data-Loaders"
+  "lastUpdateName": "CodeUpdate-0017-GitHub-Actions-Runtime-Verification"
 }

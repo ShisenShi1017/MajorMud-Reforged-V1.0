@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Defines the runtime-ready artifacts expected under Bin so normal users do not need the .NET SDK.",
+  "verificationSource": "GitHub Actions builds source projects in the cloud; future release packaging should place compiled artifacts in these Bin locations.",
+  "requirements": [
+    {
+      "applicationName": "Server",
+      "relativeExecutablePath": "Bin/Windows/Server/MajorMud.Server.exe",
+      "requiredForMilestoneOne": false
+    },
+    {
+      "applicationName": "Importer",
+      "relativeExecutablePath": "Bin/Windows/Importer/MajorMud.Importer.exe",
+      "requiredForMilestoneOne": false
+    },
+    {
+      "applicationName": "Editor",
+      "relativeExecutablePath": "Bin/Windows/Editor/MajorMud.Editor.exe",
+      "requiredForMilestoneOne": false
+    },
+    {
+      "applicationName": "Launcher",
+      "relativeExecutablePath": "Bin/Windows/Launcher/MajorMud.Launcher.exe",
+      "requiredForMilestoneOne": false
+    },
+    {
+      "applicationName": "Client",
+      "relativeExecutablePath": "Bin/Windows/Client/MajorMud.Client.exe",
+      "requiredForMilestoneOne": false
+    }
+  ]
+}

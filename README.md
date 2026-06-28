@@ -360,3 +360,10 @@ Current Code Update: **0016 - Repository-Backed Data Loaders**
 
 This update adds Core repository-backed loaders for the current canonical `Data/` JSON categories and a GitHub Actions workflow for cloud build verification. Normal runtime still does not require the .NET SDK on the user machine.
 
+
+
+## GitHub Actions Build Verification
+
+This repository includes `.github/workflows/dotnet-build.yml` so GitHub can restore and build the Core and application source projects in the cloud. This is the recommended verification path when the user does not want to install the .NET SDK locally. The repository may remain private. See `Docs/Architecture/GITHUB_ACTIONS_VERIFICATION.md`.
+
+`Bin/RuntimeArtifacts.json` documents the future runtime-ready executable locations. Normal users should launch compiled artifacts from `Bin/` and should not need the .NET SDK for normal runtime.
