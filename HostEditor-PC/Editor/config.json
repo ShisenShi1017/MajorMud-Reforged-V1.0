@@ -1,0 +1,8 @@
+{
+  "serverScriptPath": "..\\..\\Server.ps1",
+  "dataPath": "..\\..\\Data",
+  "rootPath": "..\\..",
+  "serverHost": "127.0.0.1",
+  "serverPort": 2323,
+  "notes": "Editor is installed under HostEditor-PC/Editor. Server.ps1 and Data live in the main project root."
+}

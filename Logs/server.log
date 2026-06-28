@@ -1,0 +1,737 @@
+2026-06-27 14:25:05 SERVER_READY port 2323
+2026-06-27 14:25:05 WAITING_FOR_CLIENT
+2026-06-27 14:25:08 CONNECT 127.0.0.1:59247
+2026-06-27 14:25:08 SEND: ==========================================
+2026-06-27 14:25:08 SEND:         MajorMUD Reforged v2.2
+2026-06-27 14:25:08 SEND: ==========================================
+2026-06-27 14:25:08 SEND: Enter your character name:
+2026-06-27 14:25:09 SEND: >
+2026-06-27 14:25:11 RECV name: shi
+2026-06-27 14:25:11 SEND: Choose your race by number:
+2026-06-27 14:25:11 SEND:   1) Human - Balanced and adaptable.
+2026-06-27 14:25:11 SEND:   2) Half-Ogre - Huge, strong, and hard to knock down.
+2026-06-27 14:25:11 SEND:   3) Kang - Scaled warrior race with strong body and stubborn will.
+2026-06-27 14:25:11 SEND:   4) Nekojin - Catlike, quick, alert, and agile.
+2026-06-27 14:25:11 SEND:   5) Gaunt One - Lean, strange, and magically inclined.
+2026-06-27 14:25:11 SEND:   6) Goblin - Small, crafty, quick, and hard to pin down.
+2026-06-27 14:25:11 SEND:   7) Dwarf - Stout and durable.
+2026-06-27 14:25:11 SEND:   8) Gnome - Small, clever, and magically curious.
+2026-06-27 14:25:11 SEND:   9) Halfling - Small, lucky, quick, and charming.
+2026-06-27 14:25:11 SEND:   10) Elf - Quick, sharp-eyed, and lightly built.
+2026-06-27 14:25:11 SEND:   11) Half-Elf - Versatile mix of human adaptability and elven grace.
+2026-06-27 14:25:11 SEND:   12) Dark-Elf - Cunning, sharp-minded, and dangerous in the dark.
+2026-06-27 14:25:11 SEND:   13) Half-Orc - Strong, tough, and rough around the edges.
+2026-06-27 14:25:11 SEND: >
+2026-06-27 14:25:14 RECV race: 2
+2026-06-27 14:25:14 SEND: Choose your class by number:
+2026-06-27 14:25:14 SEND:   1) Warrior - Weapon expert with high hit points and strong melee damage.
+2026-06-27 14:25:14 SEND:   2) Gypsy - Wandering trickster with charm, agility, and mixed talents.
+2026-06-27 14:25:14 SEND:   3) Warlock - Dark spell user with intellect and willpower.
+2026-06-27 14:25:14 SEND:   4) Mage - Fragile spell user with high intellect and future spell power.
+2026-06-27 14:25:14 SEND:   5) Druid - Nature priest with balanced will, wisdom, and survival.
+2026-06-27 14:25:14 SEND:   6) Bard - Support class with charm, wit, and flexible skills.
+2026-06-27 14:25:14 SEND:   7) Ranger - Wilderness fighter with agility, endurance, and weapon skill.
+2026-06-27 14:25:14 SEND:   8) Mystic - Mental and spiritual caster with will and insight.
+2026-06-27 14:25:14 SEND:   9) Witchunter - Hunter of magic with grit, weapons, and willpower.
+2026-06-27 14:25:14 SEND:   10) Paladin - Holy warrior with strength, willpower, and durability.
+2026-06-27 14:25:14 SEND:   11) Cleric - Durable holy fighter with willpower and healing potential.
+2026-06-27 14:25:14 SEND:   12) Priest - Dedicated healer and holy caster with strong will.
+2026-06-27 14:25:14 SEND:   13) Missionary - Faith-driven traveler with charm, will, and support ability.
+2026-06-27 14:25:14 SEND:   14) Ninja - Fast assassin with agility and burst damage.
+2026-06-27 14:25:14 SEND:   15) Thief - Quick and sneaky, better at searching and fast attacks.
+2026-06-27 14:25:14 SEND: >
+2026-06-27 14:25:24 RECV class: 4
+2026-06-27 14:25:24 SEND: Welcome, shi the Half-Ogre Mage! Type help for commands.
+2026-06-27 14:25:24 SEND: 
+2026-06-27 14:25:24 SEND: Town Square
+2026-06-27 14:25:24 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 14:25:24 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 14:25:24 SEND: You see a leather belt here.
+2026-06-27 14:25:24 SEND: HP: 30/30  LVL: 1  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:25:24 SEND: >
+2026-06-27 14:25:44 RECV shi: admin addlevel 10
+2026-06-27 14:25:44 SEND: ADMIN: level set to 11. Training Points recalculated to 51. Max HP is 60.
+2026-06-27 14:25:44 SEND: >
+2026-06-27 14:25:46 RECV shi: 
+2026-06-27 14:25:46 SEND: 
+2026-06-27 14:25:46 SEND: The area comes back into focus.
+2026-06-27 14:25:46 SEND: Town Square
+2026-06-27 14:25:46 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 14:25:46 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 14:25:46 SEND: You see a leather belt here.
+2026-06-27 14:25:46 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:25:46 SEND: >
+2026-06-27 14:25:49 RECV shi: w
+2026-06-27 14:25:49 SEND: 
+2026-06-27 14:25:49 SEND: Market
+2026-06-27 14:25:49 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 14:25:49 SEND: Exits: east
+2026-06-27 14:25:49 SEND: You see a leather cap here.
+2026-06-27 14:25:49 SEND: You see a healing potion here.
+2026-06-27 14:25:49 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:25:49 SEND: >
+2026-06-27 14:25:50 RECV shi: e
+2026-06-27 14:25:50 SEND: 
+2026-06-27 14:25:50 SEND: Town Square
+2026-06-27 14:25:50 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 14:25:50 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 14:25:50 SEND: You see a leather belt here.
+2026-06-27 14:25:50 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:25:50 SEND: >
+2026-06-27 14:25:51 RECV shi: e
+2026-06-27 14:25:51 SEND: 
+2026-06-27 14:25:51 SEND: Training Yard
+2026-06-27 14:25:51 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:25:51 SEND: Exits: west
+2026-06-27 14:25:51 SEND: You see a wooden shield here.
+2026-06-27 14:25:51 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:25:51 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:25:51 SEND: >
+2026-06-27 14:25:54 RECV shi: train
+2026-06-27 14:25:54 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:25:54 SEND: Level: 11 / 100   Available Points: 51
+2026-06-27 14:25:54 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:25:54 SEND: 
+2026-06-27 14:25:54 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:25:54 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:25:54 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:25:54 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:25:54 SEND: 5) CHA Charm           9  Next Cost: 1
+2026-06-27 14:25:54 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:25:54 SEND: 
+2026-06-27 14:25:54 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:25:54 SEND: >
+2026-06-27 14:26:12 RECV shi: 5
+2026-06-27 14:26:12 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:26:12 SEND: Level: 11 / 100   Available Points: 50
+2026-06-27 14:26:12 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:26:12 SEND: 
+2026-06-27 14:26:12 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:26:12 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:26:12 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:26:12 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:26:12 SEND: 5) CHA Charm          10  Next Cost: 1
+2026-06-27 14:26:12 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:26:12 SEND: 
+2026-06-27 14:26:12 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:26:12 SEND: >
+2026-06-27 14:26:14 RECV shi: 5
+2026-06-27 14:26:14 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:26:14 SEND: Level: 11 / 100   Available Points: 49
+2026-06-27 14:26:14 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:26:14 SEND: 
+2026-06-27 14:26:14 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:26:14 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:26:14 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:26:14 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:26:14 SEND: 5) CHA Charm          11  Next Cost: 1
+2026-06-27 14:26:14 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:26:14 SEND: 
+2026-06-27 14:26:15 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:26:15 SEND: >
+2026-06-27 14:26:15 RECV shi: 5
+2026-06-27 14:26:15 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:26:15 SEND: Level: 11 / 100   Available Points: 48
+2026-06-27 14:26:15 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:26:15 SEND: 
+2026-06-27 14:26:15 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:26:15 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:26:15 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:26:15 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:26:15 SEND: 5) CHA Charm          12  Next Cost: 1
+2026-06-27 14:26:15 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:26:15 SEND: 
+2026-06-27 14:26:15 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:26:15 SEND: >
+2026-06-27 14:26:16 RECV shi: 5
+2026-06-27 14:26:16 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:26:16 SEND: Level: 11 / 100   Available Points: 47
+2026-06-27 14:26:16 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:26:16 SEND: 
+2026-06-27 14:26:16 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:26:16 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:26:16 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:26:16 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:26:16 SEND: 5) CHA Charm          13  Next Cost: 1
+2026-06-27 14:26:16 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:26:16 SEND: 
+2026-06-27 14:26:16 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:26:16 SEND: >
+2026-06-27 14:26:17 RECV shi: 5
+2026-06-27 14:26:17 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:26:17 SEND: Level: 11 / 100   Available Points: 46
+2026-06-27 14:26:17 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:26:17 SEND: 
+2026-06-27 14:26:17 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:26:17 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:26:17 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:26:17 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:26:17 SEND: 5) CHA Charm          14  Next Cost: 1
+2026-06-27 14:26:17 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:26:17 SEND: 
+2026-06-27 14:26:17 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:26:17 SEND: >
+2026-06-27 14:26:17 RECV shi: 5
+2026-06-27 14:26:17 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:26:17 SEND: Level: 11 / 100   Available Points: 45
+2026-06-27 14:26:17 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:26:17 SEND: 
+2026-06-27 14:26:17 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:26:17 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:26:17 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:26:17 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:26:17 SEND: 5) CHA Charm          15  Next Cost: 1
+2026-06-27 14:26:17 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:26:17 SEND: 
+2026-06-27 14:26:17 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:26:17 SEND: >
+2026-06-27 14:26:47 IDLE_REFRESH 127.0.0.1:59247
+2026-06-27 14:26:47 SEND: 
+2026-06-27 14:26:47 SEND: The area comes back into focus.
+2026-06-27 14:26:47 SEND: Training Yard
+2026-06-27 14:26:47 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:26:47 SEND: Exits: west
+2026-06-27 14:26:47 SEND: You see a wooden shield here.
+2026-06-27 14:26:47 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:26:47 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:26:47 SEND: >
+2026-06-27 14:27:17 IDLE_REFRESH 127.0.0.1:59247
+2026-06-27 14:27:17 SEND: 
+2026-06-27 14:27:17 SEND: The area comes back into focus.
+2026-06-27 14:27:17 SEND: Training Yard
+2026-06-27 14:27:17 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:27:17 SEND: Exits: west
+2026-06-27 14:27:17 SEND: You see a wooden shield here.
+2026-06-27 14:27:17 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:27:17 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:27:17 SEND: >
+2026-06-27 14:27:47 IDLE_REFRESH 127.0.0.1:59247
+2026-06-27 14:27:47 SEND: 
+2026-06-27 14:27:47 SEND: The area comes back into focus.
+2026-06-27 14:27:47 SEND: Training Yard
+2026-06-27 14:27:47 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:27:47 SEND: Exits: west
+2026-06-27 14:27:47 SEND: You see a wooden shield here.
+2026-06-27 14:27:47 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:27:47 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:27:47 SEND: >
+2026-06-27 14:28:17 IDLE_REFRESH 127.0.0.1:59247
+2026-06-27 14:28:17 SEND: 
+2026-06-27 14:28:17 SEND: The area comes back into focus.
+2026-06-27 14:28:17 SEND: Training Yard
+2026-06-27 14:28:17 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:28:17 SEND: Exits: west
+2026-06-27 14:28:17 SEND: You see a wooden shield here.
+2026-06-27 14:28:17 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:28:17 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:28:17 SEND: >
+2026-06-27 14:28:47 IDLE_REFRESH 127.0.0.1:59247
+2026-06-27 14:28:47 SEND: 
+2026-06-27 14:28:48 SEND: The area comes back into focus.
+2026-06-27 14:28:48 SEND: Training Yard
+2026-06-27 14:28:48 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:28:48 SEND: Exits: west
+2026-06-27 14:28:48 SEND: You see a wooden shield here.
+2026-06-27 14:28:48 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:28:48 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:28:48 SEND: >
+2026-06-27 14:29:04 IDLE_REFRESH 127.0.0.1:59247
+2026-06-27 14:29:05 CLIENT_ERROR Exception calling "WriteLine" with "1" argument(s): "Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host."
+2026-06-27 14:29:05 WAITING_FOR_CLIENT
+2026-06-27 14:29:10 SERVER_READY port 2323
+2026-06-27 14:29:10 WAITING_FOR_CLIENT
+2026-06-27 14:29:14 CONNECT 127.0.0.1:59810
+2026-06-27 14:29:14 SEND: ==========================================
+2026-06-27 14:29:14 SEND:         MajorMUD Reforged v2.2
+2026-06-27 14:29:14 SEND: ==========================================
+2026-06-27 14:29:14 SEND: Enter your character name:
+2026-06-27 14:29:14 SEND: >
+2026-06-27 14:29:16 RECV name: shi
+2026-06-27 14:29:16 SEND: Welcome, shi the Half-Ogre Mage! Type help for commands.
+2026-06-27 14:29:16 SEND: 
+2026-06-27 14:29:16 SEND: Training Yard
+2026-06-27 14:29:16 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:29:16 SEND: Exits: west
+2026-06-27 14:29:16 SEND: You see a wooden shield here.
+2026-06-27 14:29:16 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:29:16 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:29:16 SEND: >
+2026-06-27 14:29:19 RECV shi: 
+2026-06-27 14:29:19 SEND: 
+2026-06-27 14:29:19 SEND: The area comes back into focus.
+2026-06-27 14:29:19 SEND: Training Yard
+2026-06-27 14:29:19 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:29:19 SEND: Exits: west
+2026-06-27 14:29:19 SEND: You see a wooden shield here.
+2026-06-27 14:29:19 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:29:19 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:29:19 SEND: >
+2026-06-27 14:29:22 RECV shi: train
+2026-06-27 14:29:22 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:29:22 SEND: Level: 11 / 100   Available Points: 51
+2026-06-27 14:29:22 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:29:22 SEND: 
+2026-06-27 14:29:22 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:29:22 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:29:22 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:29:22 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:29:22 SEND: 5) CHA Charm           9  Next Cost: 1
+2026-06-27 14:29:22 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:29:22 SEND: 
+2026-06-27 14:29:22 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:29:22 SEND: >
+2026-06-27 14:29:34 RECV shi: 5 +10
+2026-06-27 14:29:34 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:29:34 SEND: Level: 11 / 100   Available Points: 50
+2026-06-27 14:29:34 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:29:34 SEND: 
+2026-06-27 14:29:34 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:29:34 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:29:34 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:29:34 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:29:34 SEND: 5) CHA Charm          10  Next Cost: 1
+2026-06-27 14:29:34 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:29:34 SEND: 
+2026-06-27 14:29:34 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:29:34 SEND: >
+2026-06-27 14:29:45 RECV shi: 5 10
+2026-06-27 14:29:45 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:29:45 SEND: Level: 11 / 100   Available Points: 49
+2026-06-27 14:29:45 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:29:45 SEND: 
+2026-06-27 14:29:45 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:29:45 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:29:45 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:29:45 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:29:45 SEND: 5) CHA Charm          11  Next Cost: 1
+2026-06-27 14:29:45 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:29:45 SEND: 
+2026-06-27 14:29:45 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:29:45 SEND: >
+2026-06-27 14:29:55 RECV shi: 5 10
+2026-06-27 14:29:55 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:29:55 SEND: Level: 11 / 100   Available Points: 48
+2026-06-27 14:29:55 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:29:55 SEND: 
+2026-06-27 14:29:55 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:29:55 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:29:55 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:29:55 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:29:55 SEND: 5) CHA Charm          12  Next Cost: 1
+2026-06-27 14:29:55 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:29:55 SEND: 
+2026-06-27 14:29:55 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:29:55 SEND: >
+2026-06-27 14:30:00 IDLE_REFRESH 127.0.0.1:59810
+2026-06-27 14:30:00 CLIENT_ERROR Exception calling "WriteLine" with "1" argument(s): "Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host."
+2026-06-27 14:30:00 WAITING_FOR_CLIENT
+2026-06-27 14:30:41 SERVER_READY port 2323
+2026-06-27 14:30:41 WAITING_FOR_CLIENT
+2026-06-27 14:30:44 CONNECT 127.0.0.1:59920
+2026-06-27 14:30:44 SEND: ==========================================
+2026-06-27 14:30:44 SEND:         MajorMUD Reforged v2.2
+2026-06-27 14:30:44 SEND: ==========================================
+2026-06-27 14:30:44 SEND: Enter your character name:
+2026-06-27 14:30:44 SEND: >
+2026-06-27 14:30:46 RECV name: shi
+2026-06-27 14:30:46 SEND: Welcome, shi the Half-Ogre Mage! Type help for commands.
+2026-06-27 14:30:46 SEND: 
+2026-06-27 14:30:46 SEND: Training Yard
+2026-06-27 14:30:46 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:30:46 SEND: Exits: west
+2026-06-27 14:30:46 SEND: You see a wooden shield here.
+2026-06-27 14:30:46 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:30:46 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:30:46 SEND: >
+2026-06-27 14:30:49 RECV shi: train
+2026-06-27 14:30:49 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:30:49 SEND: Level: 11 / 100   Available Points: 51
+2026-06-27 14:30:49 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:30:49 SEND: 
+2026-06-27 14:30:49 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:30:49 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:30:49 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:30:49 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:30:49 SEND: 5) CHA Charm           9  Next Cost: 1
+2026-06-27 14:30:49 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:30:49 SEND: 
+2026-06-27 14:30:49 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:30:49 SEND: >
+2026-06-27 14:30:52 RECV shi: 5 10
+2026-06-27 14:30:52 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:30:52 SEND: Level: 11 / 100   Available Points: 50
+2026-06-27 14:30:52 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:30:52 SEND: 
+2026-06-27 14:30:52 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:30:52 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:30:52 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:30:52 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:30:52 SEND: 5) CHA Charm          10  Next Cost: 1
+2026-06-27 14:30:52 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:30:52 SEND: 
+2026-06-27 14:30:52 SEND: Examples: 2 raises AGI, -2 lowers AGI, save commits, cancel exits, reset starts over.
+2026-06-27 14:30:52 SEND: >
+2026-06-27 14:30:58 IDLE_REFRESH 127.0.0.1:59920
+2026-06-27 14:30:58 CLIENT_ERROR Exception calling "WriteLine" with "1" argument(s): "Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host."
+2026-06-27 14:30:58 WAITING_FOR_CLIENT
+2026-06-27 14:40:05 SERVER_READY port 2323
+2026-06-27 14:40:05 WAITING_FOR_CLIENT
+2026-06-27 14:40:08 CONNECT 127.0.0.1:60392
+2026-06-27 14:40:08 SEND: ==========================================
+2026-06-27 14:40:08 SEND:         MajorMUD Reforged v2.2
+2026-06-27 14:40:08 SEND: ==========================================
+2026-06-27 14:40:08 SEND: Enter your character name:
+2026-06-27 14:40:08 SEND: >
+2026-06-27 14:40:10 RECV name: shi
+2026-06-27 14:40:10 SEND: Welcome, shi the Half-Ogre Mage! Type help for commands.
+2026-06-27 14:40:10 SEND: 
+2026-06-27 14:40:10 SEND: Training Yard
+2026-06-27 14:40:10 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:40:10 SEND: Exits: west
+2026-06-27 14:40:10 SEND: You see a wooden shield here.
+2026-06-27 14:40:10 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:40:10 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:40:10 SEND: >
+2026-06-27 14:40:13 RECV shi: train
+2026-06-27 14:40:13 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:40:13 SEND: Level: 11 / 100   Available Points: 51
+2026-06-27 14:40:13 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:40:13 SEND: 
+2026-06-27 14:40:13 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:40:13 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:40:13 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:40:13 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:40:13 SEND: 5) CHA Charm           9  Next Cost: 1
+2026-06-27 14:40:13 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:40:13 SEND: 
+2026-06-27 14:40:13 SEND: Examples: 2 raises AGI once, 2 10 raises AGI ten times, cha 10, +10 cha, -3 cha, max cha, min cha, save, cancel, reset.
+2026-06-27 14:40:13 SEND: >
+2026-06-27 14:40:16 RECV shi: 5 10
+2026-06-27 14:40:16 SEND: Training draft: raised CHA 10 time(s). Points left: 41.
+2026-06-27 14:40:16 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:40:16 SEND: Level: 11 / 100   Available Points: 41
+2026-06-27 14:40:16 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:40:16 SEND: 
+2026-06-27 14:40:16 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:40:16 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:40:16 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:40:16 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:40:16 SEND: 5) CHA Charm          19  Next Cost: 1
+2026-06-27 14:40:16 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:40:16 SEND: 
+2026-06-27 14:40:16 SEND: Examples: 2 raises AGI once, 2 10 raises AGI ten times, cha 10, +10 cha, -3 cha, max cha, min cha, save, cancel, reset.
+2026-06-27 14:40:16 SEND: >
+2026-06-27 14:40:21 RECV shi: 5 10
+2026-06-27 14:40:21 SEND: Training draft: raised CHA 10 time(s). Points left: 23.
+2026-06-27 14:40:21 SEND: Guild Trainer - Allocation Mode
+2026-06-27 14:40:21 SEND: Level: 11 / 100   Available Points: 23
+2026-06-27 14:40:21 SEND: Use 1-6 to raise, -1 to -6 to lower, save to commit, cancel to exit.
+2026-06-27 14:40:21 SEND: 
+2026-06-27 14:40:21 SEND: 1) STR Strength       14  Next Cost: 1
+2026-06-27 14:40:21 SEND: 2) AGI Agility        11  Next Cost: 1
+2026-06-27 14:40:21 SEND: 3) INT Intellect      13  Next Cost: 1
+2026-06-27 14:40:21 SEND: 4) WIL Willpower      11  Next Cost: 1
+2026-06-27 14:40:21 SEND: 5) CHA Charm          29  Next Cost: 2
+2026-06-27 14:40:21 SEND: 6) CON Constitution   13  Next Cost: 1
+2026-06-27 14:40:21 SEND: 
+2026-06-27 14:40:21 SEND: Examples: 2 raises AGI once, 2 10 raises AGI ten times, cha 10, +10 cha, -3 cha, max cha, min cha, save, cancel, reset.
+2026-06-27 14:40:21 SEND: >
+2026-06-27 14:40:30 IDLE_REFRESH 127.0.0.1:60392
+2026-06-27 14:40:30 CLIENT_ERROR Exception calling "WriteLine" with "1" argument(s): "Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host."
+2026-06-27 14:40:30 WAITING_FOR_CLIENT
+2026-06-27 14:40:57 SERVER_READY port 2323
+2026-06-27 14:40:57 WAITING_FOR_CLIENT
+2026-06-27 14:41:01 CONNECT 127.0.0.1:60440
+2026-06-27 14:41:01 SEND: ==========================================
+2026-06-27 14:41:01 SEND:         MajorMUD Reforged v2.2
+2026-06-27 14:41:01 SEND: ==========================================
+2026-06-27 14:41:01 SEND: Enter your character name:
+2026-06-27 14:41:01 SEND: >
+2026-06-27 14:41:03 RECV name: shi
+2026-06-27 14:41:03 SEND: Welcome, shi the Half-Ogre Mage! Type help for commands.
+2026-06-27 14:41:03 SEND: 
+2026-06-27 14:41:03 SEND: Training Yard
+2026-06-27 14:41:03 SEND: Wooden dummies and practice blades are lined up here.
+2026-06-27 14:41:03 SEND: Exits: west
+2026-06-27 14:41:03 SEND: You see a wooden shield here.
+2026-06-27 14:41:03 SEND: A guild trainer stands here, watching for promising adventurers.
+2026-06-27 14:41:03 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:41:03 SEND: >
+2026-06-27 14:41:07 RECV shi: w
+2026-06-27 14:41:07 SEND: 
+2026-06-27 14:41:07 SEND: Town Square
+2026-06-27 14:41:07 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 14:41:07 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 14:41:07 SEND: You see a leather belt here.
+2026-06-27 14:41:07 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:41:07 SEND: >
+2026-06-27 14:41:08 RECV shi: n
+2026-06-27 14:41:08 SEND: 
+2026-06-27 14:41:08 SEND: North Road
+2026-06-27 14:41:08 SEND: A dusty road leads north toward the wilds. The town square is south.
+2026-06-27 14:41:08 SEND: Exits: south, north
+2026-06-27 14:41:08 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:41:08 SEND: >
+2026-06-27 14:41:09 RECV shi: ]n
+2026-06-27 14:41:09 SEND: Unknown command. Type help.
+2026-06-27 14:41:09 SEND: >
+2026-06-27 14:41:10 RECV shi: n
+2026-06-27 14:41:10 SEND: 
+2026-06-27 14:41:10 SEND: Goblin Path
+2026-06-27 14:41:10 SEND: A narrow path with claw marks in the dirt.
+2026-06-27 14:41:10 SEND: Exits: south
+2026-06-27 14:41:10 SEND: A small goblin watches you carefully.
+2026-06-27 14:41:10 SEND: HP: 30/60  LVL: 11  AC: 0  Gold: 20  XP: 0
+2026-06-27 14:41:10 SEND: The goblin lunges at you for 2 damage.
+2026-06-27 14:41:10 SEND: >
+2026-06-27 14:41:12 RECV shi: a g
+2026-06-27 14:41:12 SEND: You attack the goblin for 4 damage and defeat it.
+2026-06-27 14:41:12 SEND: The goblin hits you for 1 damage before falling.
+2026-06-27 14:41:12 SEND: You gain 5 XP and 3 gold.
+2026-06-27 14:41:12 SEND: >
+2026-06-27 14:41:14 RECV shi: s
+2026-06-27 14:41:14 SEND: 
+2026-06-27 14:41:14 SEND: North Road
+2026-06-27 14:41:14 SEND: A dusty road leads north toward the wilds. The town square is south.
+2026-06-27 14:41:14 SEND: Exits: south, north
+2026-06-27 14:41:14 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 14:41:14 SEND: >
+2026-06-27 14:41:15 RECV shi: s
+2026-06-27 14:41:15 SEND: 
+2026-06-27 14:41:15 SEND: Town Square
+2026-06-27 14:41:15 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 14:41:15 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 14:41:15 SEND: You see a leather belt here.
+2026-06-27 14:41:15 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 14:41:15 SEND: >
+2026-06-27 14:41:19 RECV shi: se
+2026-06-27 14:41:19 SEND: 
+2026-06-27 14:41:19 SEND: Guard Post
+2026-06-27 14:41:19 SEND: Town guards keep watch here. A rack of practice armor sits nearby.
+2026-06-27 14:41:19 SEND: Exits: northwest
+2026-06-27 14:41:19 SEND: You see a leather armor here.
+2026-06-27 14:41:19 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 14:41:19 SEND: >
+2026-06-27 14:41:30 RECV shi: nw
+2026-06-27 14:41:30 SEND: 
+2026-06-27 14:41:30 SEND: Town Square
+2026-06-27 14:41:30 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 14:41:30 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 14:41:30 SEND: You see a leather belt here.
+2026-06-27 14:41:30 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 14:41:30 SEND: >
+2026-06-27 14:41:31 RECV shi: w
+2026-06-27 14:41:31 SEND: 
+2026-06-27 14:41:31 SEND: Market
+2026-06-27 14:41:31 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 14:41:31 SEND: Exits: east
+2026-06-27 14:41:31 SEND: You see a leather cap here.
+2026-06-27 14:41:31 SEND: You see a healing potion here.
+2026-06-27 14:41:31 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 14:41:31 SEND: >
+2026-06-27 14:41:55 IDLE_REFRESH 127.0.0.1:60440
+2026-06-27 14:41:55 CLIENT_ERROR Exception calling "WriteLine" with "1" argument(s): "Unable to write data to the transport connection: An existing connection was forcibly closed by the remote host."
+2026-06-27 14:41:55 WAITING_FOR_CLIENT
+2026-06-27 15:15:18 SERVER_READY port 2323
+2026-06-27 15:15:18 WAITING_FOR_CLIENT
+2026-06-27 15:15:23 CONNECT 127.0.0.1:64809
+2026-06-27 15:15:23 SEND: ==========================================
+2026-06-27 15:15:23 SEND:         MajorMUD Reforged v2.2
+2026-06-27 15:15:23 SEND: ==========================================
+2026-06-27 15:15:23 SEND: Enter your character name:
+2026-06-27 15:15:23 SEND: >
+2026-06-27 15:15:25 RECV name: shi
+2026-06-27 15:15:25 SEND: Welcome, shi the  ! Type help for commands.
+2026-06-27 15:15:25 SEND: 
+2026-06-27 15:15:25 SEND: Market
+2026-06-27 15:15:25 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 15:15:25 SEND: Exits: east
+2026-06-27 15:15:25 CLIENT_ERROR Cannot index into a null array.
+2026-06-27 15:15:25 WAITING_FOR_CLIENT
+2026-06-27 15:15:44 CONNECT 127.0.0.1:64835
+2026-06-27 15:15:44 SEND: ==========================================
+2026-06-27 15:15:44 SEND:         MajorMUD Reforged v2.2
+2026-06-27 15:15:44 SEND: ==========================================
+2026-06-27 15:15:44 SEND: Enter your character name:
+2026-06-27 15:15:44 SEND: >
+2026-06-27 15:15:45 RECV name: shi
+2026-06-27 15:15:46 SEND: Welcome, shi the  ! Type help for commands.
+2026-06-27 15:15:46 SEND: 
+2026-06-27 15:15:46 SEND: Market
+2026-06-27 15:15:46 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 15:15:46 SEND: Exits: east
+2026-06-27 15:15:46 CLIENT_ERROR Cannot index into a null array.
+2026-06-27 15:15:46 WAITING_FOR_CLIENT
+2026-06-27 15:26:03 SERVER_READY port 2323
+2026-06-27 15:26:03 WAITING_FOR_CLIENT
+2026-06-27 15:26:07 CONNECT 127.0.0.1:53628
+2026-06-27 15:26:07 SEND: ==========================================
+2026-06-27 15:26:07 SEND:         MajorMUD Reforged v2.2
+2026-06-27 15:26:07 SEND: ==========================================
+2026-06-27 15:26:07 SEND: Enter your character name:
+2026-06-27 15:26:07 SEND: >
+2026-06-27 15:26:09 RECV name: shi
+2026-06-27 15:26:09 SEND: Welcome, shi the  ! Type help for commands.
+2026-06-27 15:26:09 SEND: 
+2026-06-27 15:26:09 SEND: Market
+2026-06-27 15:26:09 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 15:26:09 SEND: Exits: east
+2026-06-27 15:26:09 CLIENT_ERROR Cannot index into a null array.
+2026-06-27 15:26:09 WAITING_FOR_CLIENT
+2026-06-27 15:27:23 CONNECT 127.0.0.1:53670
+2026-06-27 15:27:23 SEND: ==========================================
+2026-06-27 15:27:23 SEND:         MajorMUD Reforged v2.2
+2026-06-27 15:27:23 SEND: ==========================================
+2026-06-27 15:27:23 SEND: Enter your character name:
+2026-06-27 15:27:23 SEND: >
+2026-06-27 15:27:25 RECV name: shi
+2026-06-27 15:27:25 SEND: Welcome, shi the  ! Type help for commands.
+2026-06-27 15:27:25 SEND: 
+2026-06-27 15:27:25 SEND: Market
+2026-06-27 15:27:25 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 15:27:25 SEND: Exits: east
+2026-06-27 15:27:25 CLIENT_ERROR Cannot index into a null array.
+2026-06-27 15:27:25 WAITING_FOR_CLIENT
+2026-06-27 15:33:38 SERVER_READY port 2323
+2026-06-27 15:33:39 WAITING_FOR_CLIENT
+2026-06-27 15:33:42 CONNECT 127.0.0.1:54711
+2026-06-27 15:33:42 SEND: ==========================================
+2026-06-27 15:33:42 SEND:         MajorMUD Reforged Server v3.3
+2026-06-27 15:33:42 SEND: ==========================================
+2026-06-27 15:33:42 SEND: Enter your character name:
+2026-06-27 15:33:42 SEND: >
+2026-06-27 15:33:44 RECV name: shi
+2026-06-27 15:33:44 SEND: Welcome, shi the Human Mage! Type help for commands.
+2026-06-27 15:33:44 SEND: 
+2026-06-27 15:33:44 SEND: Market
+2026-06-27 15:33:44 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 15:33:44 SEND: Exits: east
+2026-06-27 15:33:44 SEND: You see a leather cap here.
+2026-06-27 15:33:44 SEND: You see a healing potion here.
+2026-06-27 15:33:44 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 15:33:44 SEND: >
+2026-06-27 15:33:46 RECV shi: e
+2026-06-27 15:33:46 SEND: 
+2026-06-27 15:33:46 SEND: Town Square
+2026-06-27 15:33:46 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 15:33:46 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 15:33:46 SEND: You see a leather belt here.
+2026-06-27 15:33:46 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 15:33:46 SEND: >
+2026-06-27 15:33:48 RECV shi: w
+2026-06-27 15:33:48 SEND: 
+2026-06-27 15:33:48 SEND: Market
+2026-06-27 15:33:48 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 15:33:48 SEND: Exits: east
+2026-06-27 15:33:48 SEND: You see a leather cap here.
+2026-06-27 15:33:48 SEND: You see a healing potion here.
+2026-06-27 15:33:48 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 15:33:48 SEND: >
+2026-06-27 15:33:49 RECV shi: d
+2026-06-27 15:33:49 SEND: You cannot go that way.
+2026-06-27 15:33:49 SEND: >
+2026-06-27 15:33:51 RECV shi: s
+2026-06-27 15:33:51 SEND: You cannot go that way.
+2026-06-27 15:33:51 SEND: >
+2026-06-27 15:33:52 RECV shi: 
+2026-06-27 15:33:52 SEND: 
+2026-06-27 15:33:52 SEND: The area comes back into focus.
+2026-06-27 15:33:52 SEND: Market
+2026-06-27 15:33:52 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 15:33:52 SEND: Exits: east
+2026-06-27 15:33:52 SEND: You see a leather cap here.
+2026-06-27 15:33:52 SEND: You see a healing potion here.
+2026-06-27 15:33:52 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 15:33:52 SEND: >
+2026-06-27 15:33:59 RECV shi: quit
+2026-06-27 15:33:59 SEND: Goodbye.
+2026-06-27 15:33:59 CLIENT_CLOSED 127.0.0.1:54711
+2026-06-27 15:33:59 WAITING_FOR_CLIENT
+2026-06-27 15:35:13 CONNECT 127.0.0.1:54924
+2026-06-27 15:35:13 SEND: ==========================================
+2026-06-27 15:35:13 SEND:         MajorMUD Reforged Server v3.3
+2026-06-27 15:35:13 SEND: ==========================================
+2026-06-27 15:35:13 SEND: Enter your character name:
+2026-06-27 15:35:13 SEND: >
+2026-06-27 15:35:23 RECV name: shoishi
+2026-06-27 15:35:23 SEND: Choose your race by number:
+2026-06-27 15:35:23 SEND:   1) Human - Balanced and adaptable.
+2026-06-27 15:35:23 SEND:   2) Half-Ogre - Huge, strong, and hard to knock down.
+2026-06-27 15:35:23 SEND:   3) Kang - Scaled warrior race with strong body and stubborn will.
+2026-06-27 15:35:23 SEND:   4) Nekojin - Catlike, quick, alert, and agile.
+2026-06-27 15:35:23 SEND:   5) Gaunt One - Lean, strange, and magically inclined.
+2026-06-27 15:35:23 SEND:   6) Goblin - Small, crafty, quick, and hard to pin down.
+2026-06-27 15:35:23 SEND:   7) Dwarf - Stout and durable.
+2026-06-27 15:35:23 SEND:   8) Gnome - Small, clever, and magically curious.
+2026-06-27 15:35:23 SEND:   9) Halfling - Small, lucky, quick, and charming.
+2026-06-27 15:35:23 SEND:   10) Elf - Quick, sharp-eyed, and lightly built.
+2026-06-27 15:35:23 SEND:   11) Half-Elf - Versatile mix of human adaptability and elven grace.
+2026-06-27 15:35:23 SEND:   12) Dark-Elf - Cunning, sharp-minded, and dangerous in the dark.
+2026-06-27 15:35:23 SEND:   13) Half-Orc - Strong, tough, and rough around the edges.
+2026-06-27 15:35:23 SEND: >
+2026-06-27 15:35:28 RECV race: 
+2026-06-27 15:35:28 SEND: Invalid race. Starting as Human for now.
+2026-06-27 15:35:28 SEND: Choose your class by number:
+2026-06-27 15:35:28 SEND:   1) Warrior - Warrior class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   2) Gypsy - Gypsy class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   3) Warlock - Warlock class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   4) Mage - Mage class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   5) Druid - Druid class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   6) Bard - Bard class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   7) Ranger - Ranger class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   8) Mystic - Mystic class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   9) Witchunter - Witchunter class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   10) Paladin - Paladin class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   11) Cleric - Cleric class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   12) Priest - Priest class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   13) Missionary - Missionary class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   14) Ninja - Ninja class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND:   15) Thief - Thief class imported from database name list. Edit detailed rules in the editor.
+2026-06-27 15:35:28 SEND: >
+2026-06-27 15:35:32 RECV class: quiquit
+2026-06-27 15:35:32 SEND: Invalid class. Starting as Warrior for now.
+2026-06-27 15:35:32 SEND: Welcome, shoishi the Human Warrior! Type help for commands.
+2026-06-27 15:35:32 SEND: 
+2026-06-27 15:35:32 SEND: Town Square
+2026-06-27 15:35:32 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 15:35:32 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 15:35:32 SEND: You see a leather belt here.
+2026-06-27 15:35:32 SEND: HP: 20/20  LVL: 1  AC: 0  Gold: 20  XP: 0
+2026-06-27 15:35:32 SEND: >
+2026-06-27 15:35:35 RECV shoishi: 22
+2026-06-27 15:35:35 SEND: Unknown command. Type help.
+2026-06-27 15:35:35 SEND: >
+2026-06-27 15:35:45 RECV shoishi: quitquit
+2026-06-27 15:35:45 SEND: Unknown command. Type help.
+2026-06-27 15:35:45 SEND: >
+2026-06-27 15:35:49 RECV shoishi: 
+2026-06-27 15:35:49 SEND: 
+2026-06-27 15:35:49 SEND: The area comes back into focus.
+2026-06-27 15:35:49 SEND: Town Square
+2026-06-27 15:35:49 SEND: You are standing in the center of a small training town. A stone fountain bubbles here. Paths lead in every direction.
+2026-06-27 15:35:49 SEND: Exits: north, east, south, west, northeast, northwest, southeast, southwest
+2026-06-27 15:35:49 SEND: You see a leather belt here.
+2026-06-27 15:35:49 SEND: HP: 20/20  LVL: 1  AC: 0  Gold: 20  XP: 0
+2026-06-27 15:35:49 SEND: >
+2026-06-27 15:35:49 CLIENT_CLOSED 127.0.0.1:54924
+2026-06-27 15:35:49 CLIENT_CLOSED 127.0.0.1:54924
+2026-06-27 15:35:49 WAITING_FOR_CLIENT
+2026-06-27 15:35:54 CONNECT 127.0.0.1:54987
+2026-06-27 15:35:54 SEND: ==========================================
+2026-06-27 15:35:54 SEND:         MajorMUD Reforged Server v3.3
+2026-06-27 15:35:54 SEND: ==========================================
+2026-06-27 15:35:54 SEND: Enter your character name:
+2026-06-27 15:35:54 SEND: >
+2026-06-27 15:36:08 RECV name: shi
+2026-06-27 15:36:08 SEND: Welcome, shi the Human Mage! Type help for commands.
+2026-06-27 15:36:08 SEND: 
+2026-06-27 15:36:08 SEND: Market
+2026-06-27 15:36:08 SEND: Small stalls sell food, torches, and worn adventuring gear.
+2026-06-27 15:36:08 SEND: Exits: east
+2026-06-27 15:36:08 SEND: You see a leather cap here.
+2026-06-27 15:36:08 SEND: You see a healing potion here.
+2026-06-27 15:36:08 SEND: HP: 27/60  LVL: 11  AC: 0  Gold: 23  XP: 5
+2026-06-27 15:36:08 SEND: >
+2026-06-27 15:36:08 CLIENT_CLOSED 127.0.0.1:54987
+2026-06-27 15:36:08 CLIENT_CLOSED 127.0.0.1:54987
+2026-06-27 15:36:08 WAITING_FOR_CLIENT

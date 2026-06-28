@@ -1,0 +1,22 @@
+MajorMUD Reforged v2.9 EDITOR DATA PATCH
+
+Patch type: Data/Editor only
+Does NOT replace Server.ps1
+Does NOT replace Client.ps1
+Does NOT overwrite Saves
+
+Adds/updates:
+- Data/classes.json
+- Data/races.json
+- Data/items.json
+- Data/monsters.json
+- Data/skills.json
+- Data/spells.json
+- Data/messages.json
+- Data/world.json
+- Data/leveling.json
+- Data/progression.json
+- Data/derived_stats.json
+- ImportedDatabases folder with original uploaded/reference database files
+
+Use this after installing the editor app if your editor is missing databases.

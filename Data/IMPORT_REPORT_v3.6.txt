@@ -1,0 +1,18 @@
+MajorMUD Reforged v3.6 Database Import Patch
+Generated: 2026-06-27T22:43:20
+
+Goal: merge all available uploaded database sources into the shared main Data folder without duplicate editor entries.
+Sources included: TurboDB ITEMS.TXT, TurboDB SPELLS.TXT, MegaMMUD stock data/path files, data-v1.11n MDB archive, MMView archive.
+Note: MDB/MMView binaries are preserved in ImportedDatabases for later deep import; text sources already parsed are included in JSON.
+
+Items: 1958 source records -> 1767 unique editor records; merged duplicates: 191.
+Spells/messages: 1379 source records -> 1180 unique editor records; merged duplicates: 199.
+races.json: 13 source records -> 13 unique editor records; merged duplicates: 0.
+classes.json: 15 source records -> 15 unique editor records; merged duplicates: 0.
+monsters.json: 98 source records -> 98 unique editor records; merged duplicates: 0.
+World rooms: 793 unique room IDs retained.
+Skills: 46 source records -> 46 unique editor records; merged duplicates: 0.
+Messages database: included system/combat/monster/message text collections for editor review and later server hook-up.
+
+Patch behavior: backs up current Data to Backups/Data-before-v3.6-<timestamp>, then copies deduped Data JSON into main Data.
+Server.ps1, editor scripts, client scripts, Logs, and Saves are not touched.

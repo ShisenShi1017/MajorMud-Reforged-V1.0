@@ -1,0 +1,90 @@
+{
+  "startLevel": 1,
+  "pointsPerLevel": 5,
+  "statCosts": {
+    "str": 1,
+    "agi": 1,
+    "int": 1,
+    "wil": 1,
+    "cha": 1,
+    "con": 1
+  },
+  "statMenu": [
+    {
+      "number": 1,
+      "stat": "str",
+      "label": "Strength"
+    },
+    {
+      "number": 2,
+      "stat": "agi",
+      "label": "Agility"
+    },
+    {
+      "number": 3,
+      "stat": "int",
+      "label": "Intellect"
+    },
+    {
+      "number": 4,
+      "stat": "wil",
+      "label": "Willpower"
+    },
+    {
+      "number": 5,
+      "stat": "cha",
+      "label": "Charm"
+    },
+    {
+      "number": 6,
+      "stat": "con",
+      "label": "Constitution"
+    }
+  ],
+  "costCurves": [
+    {
+      "min": 1,
+      "max": 20,
+      "cost": 1
+    },
+    {
+      "min": 21,
+      "max": 35,
+      "cost": 2
+    },
+    {
+      "min": 36,
+      "max": 50,
+      "cost": 3
+    },
+    {
+      "min": 51,
+      "max": 70,
+      "cost": 4
+    },
+    {
+      "min": 71,
+      "max": 90,
+      "cost": 5
+    },
+    {
+      "min": 91,
+      "max": 999,
+      "cost": 6
+    }
+  ],
+  "notes": "v2.2: new characters start at level 1. Admin commands can edit character level, XP, training points, gold, HP, and stats for testing.",
+  "maxLevel": 100,
+  "pointsPerLevelBase": 5,
+  "pointsPerLevelBonusEvery": 10,
+  "pointsPerLevelBonusAmount": 1,
+  "version": "2.2",
+  "allocationMenu": true,
+  "allocationCommands": [
+    "1-6 raise stat",
+    "-1 through -6 lower draft stat",
+    "save commits",
+    "cancel exits",
+    "reset restarts draft"
+  ]
+}

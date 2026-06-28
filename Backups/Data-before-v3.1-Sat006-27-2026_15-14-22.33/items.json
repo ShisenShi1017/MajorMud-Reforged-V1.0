@@ -1,0 +1,52 @@
+[
+  {
+    "id": "leather_belt",
+    "name": "leather belt",
+    "slot": "waist",
+    "ac": 0,
+    "beltSlots": 2,
+    "message": "You pick up leather belt."
+  },
+  {
+    "id": "leather_cap",
+    "name": "leather cap",
+    "slot": "head",
+    "ac": 1
+  },
+  {
+    "id": "healing_potion",
+    "name": "healing potion",
+    "type": "consumable",
+    "heal": 20
+  },
+  {
+    "id": "rusty_dagger",
+    "name": "rusty dagger",
+    "slot": "main hand",
+    "damage": "1-4"
+  },
+  {
+    "id": "wooden_shield",
+    "name": "wooden shield",
+    "slot": "off hand",
+    "ac": 1
+  },
+  {
+    "id": "leather_armor",
+    "name": "leather armor",
+    "slot": "body",
+    "ac": 2
+  },
+  {
+    "id": "bronze_earring",
+    "name": "bronze earring",
+    "slot": "left ear",
+    "charm": 1
+  },
+  {
+    "id": "cloth_mask",
+    "name": "cloth mask",
+    "slot": "face",
+    "stealth": 1
+  }
+]

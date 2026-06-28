@@ -1,0 +1,73 @@
+{
+  "version": "1.9",
+  "spells": [
+    {
+      "id": "minor_heal",
+      "name": "Minor Heal",
+      "classes": [
+        "cleric",
+        "priest",
+        "paladin",
+        "missionary",
+        "druid"
+      ],
+      "mana": 5,
+      "description": "Restores a small amount of health."
+    },
+    {
+      "id": "bless",
+      "name": "Bless",
+      "classes": [
+        "cleric",
+        "priest",
+        "paladin",
+        "missionary"
+      ],
+      "mana": 8,
+      "description": "Improves combat luck and faith-based checks."
+    },
+    {
+      "id": "magic_missile",
+      "name": "Magic Missile",
+      "classes": [
+        "mage",
+        "warlock",
+        "mystic"
+      ],
+      "mana": 6,
+      "description": "A small bolt of arcane force."
+    },
+    {
+      "id": "detect_hidden",
+      "name": "Detect Hidden",
+      "classes": [
+        "mage",
+        "mystic",
+        "ranger",
+        "witchunter"
+      ],
+      "mana": 4,
+      "description": "Improves perception and search briefly."
+    },
+    {
+      "id": "nature_touch",
+      "name": "Nature Touch",
+      "classes": [
+        "druid",
+        "ranger"
+      ],
+      "mana": 6,
+      "description": "A nature-based healing cantrip."
+    },
+    {
+      "id": "song_of_courage",
+      "name": "Song of Courage",
+      "classes": [
+        "bard",
+        "gypsy"
+      ],
+      "mana": 4,
+      "description": "Raises morale and charm-based support."
+    }
+  ]
+}
