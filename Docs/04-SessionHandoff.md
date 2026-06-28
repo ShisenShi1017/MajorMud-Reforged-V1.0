@@ -1,23 +1,19 @@
-# Session Handoff
+# Session Handoff - After Database Version 0007
 
-## Current focus
-Native MajorMud `.DAT` decoding for standalone Reforged database conversion.
+## Current Focus
+Native MajorMud `.DAT` decoding for standalone Reforged `Data/` generation.
 
-## Latest database version
-Database Version 0006 - DAT Decode Correction and Continuation.
+## Completed This Version
+- Continued binary/string analysis for all native `.DAT` files.
+- Produced stricter reports separating verified facts from hypotheses.
+- Reaffirmed that numeric fields may be skills/references/flags/offsets and must not be named prematurely.
+- Added improved importer probe tooling.
 
-## Important correction
-Do not assume numbers inside `.DAT` records are counts. Many are skills, abilities, flags, lookup IDs, offsets, bitfields, or references.
+## Best Current Decode Targets
+1. `WCCSHOPS.DAT` - strongest 512-byte slot evidence.
+2. `WCCCLASS.DAT` - plausible 153-byte class slots.
+3. `WCCSPELS.DAT` - plausible 256-byte indexed slots.
+4. `WCCITEMS.DAT` - plausible 1024-byte indexed blocks.
 
-## Verified so far
-- Native `.DAT` files are cataloged.
-- CSV exports are available for cross-checking.
-- Several files show strong record-size patterns:
-  - `WCCSHOPS.DAT`: 512-byte shop-like slots.
-  - `WCCSPELS.DAT`: 256-byte spell-like slots.
-  - `WCCITEMS.DAT`: 1024-byte item-like blocks for at least the base item table.
-  - `WCCCLASS.DAT`: 153-byte class record pattern after header/padding.
-  - `WCCRACE.DAT`: 126-byte race record pattern after header/padding.
-
-## Next recommended task
-Fully decode `WCCCLASS.DAT` and `WCCRACE.DAT` first, because they are small and align clearly with CSV exports.
+## Next Recommended Task
+Build a shop-record overlay by comparing each 512-byte shop slot against the CSV shop columns.
