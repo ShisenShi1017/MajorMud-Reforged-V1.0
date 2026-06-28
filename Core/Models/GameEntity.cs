@@ -1,10 +1,10 @@
 namespace MajorMud.Reforged.Core.Models;
 
 /// <summary>
-/// Base identity contract for all editable MajorMud Reforged data records.
+/// Base identity record for all editable MajorMud Reforged data.
 /// LegacyId preserves original MajorMUD numbering while StableId gives Reforged a durable internal reference.
 /// </summary>
-public sealed class GameEntity
+public class GameEntity : IReforgedDataRecord
 {
     public string EntityType { get; set; } = string.Empty;
     public int? LegacyId { get; set; }
@@ -12,4 +12,7 @@ public sealed class GameEntity
     public string Name { get; set; } = string.Empty;
     public Dictionary<string, object?> UnknownFields { get; set; } = new();
     public List<string> SourceFiles { get; set; } = new();
+
+    IDictionary<string, object?> IReforgedDataRecord.UnknownFields => UnknownFields;
+    IReadOnlyCollection<string> IReforgedDataRecord.SourceFiles => SourceFiles;
 }

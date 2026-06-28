@@ -328,3 +328,9 @@ Every new ChatGPT session should:
 ## Current Development Position
 
 The project is currently in Milestone 1. Core Update 0008 adds project governance documents and continues Core framework work by adding shared configuration, serialization, event bus, service registry, manifest, health, utility, and versioning components.
+
+### CodeUpdate-0009 Continuation Notes
+
+Core Update 0009 adds the shared `IReforgedDataRecord` contract, extensible `GameEntity`, read-only repository contract, repository catalog contract, Core reference audit model, duplicate model audit model, and dependency-free Core test foundation. These items advance Milestone 1 but do not close it.
+
+Remaining Milestone 1 emphasis: every application must integrate with Core, duplicate application models must be removed or redirected to Core, and compiled `Bin/` runtime handoff must be validated without requiring the .NET SDK.

@@ -38,3 +38,9 @@ The goal is to finish the shared Core foundation used by Server, Importer, Edito
 The next Code Update after 0007 is Core Update 0008.
 
 Database conversions/imports are called Database Versions, not patches.
+
+## Current Continuation Point
+
+The next completed package after the uploaded 0008 baseline is CodeUpdate-0009. Continue Milestone 1 by finishing application integration with Core, enforcing duplicate-model removal, and validating compiled `Bin/` runtime handoff.
+
+Do not start Milestone 2 until Milestone 1 completion criteria are satisfied or the user explicitly approves overlap.

@@ -21,4 +21,14 @@
 - Added Core configuration provider, serializer contract/implementation, event bus, service registry, manifest reader, health checker, path safety helper, and version manager.
 - Updated project manifest with development status tracking.
 - Preserved no-SDK runtime policy and extracted-folder update execution rule.
+## CodeUpdate-0009 — Core Audit and Test Foundation
+
+- Continued Milestone 1 Core Framework work.
+- Added `IReforgedDataRecord` so applications can share one Core data-record identity contract.
+- Made `GameEntity` extensible instead of sealed to prevent future duplicate model definitions.
+- Added read-only repository and repository catalog contracts.
+- Added Core reference audit and duplicate model audit models for Milestone 1 completion tracking.
+- Added dependency-free Core testing helpers and `Tests/Core/README.md` without adding any normal-runtime SDK requirement.
+- Updated README, VERSION, ProjectManifest, documentation, release notes, and verification report.
+- Preserved no-SDK runtime policy, extracted-folder update execution, and protection of `Saves/` and `ImportedDatabases/`.
 

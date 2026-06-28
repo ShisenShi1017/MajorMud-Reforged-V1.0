@@ -3,7 +3,10 @@ using MajorMud.Reforged.Core.Validation;
 
 namespace MajorMud.Reforged.Core.Repositories;
 
-public interface IDataRepository<TRecord> where TRecord : GameEntity
+/// <summary>
+/// Core repository contract for any editable data collection under Data/.
+/// </summary>
+public interface IDataRepository<TRecord> where TRecord : IReforgedDataRecord
 {
     string EntityType { get; }
     IReadOnlyCollection<TRecord> GetAll();

@@ -302,3 +302,13 @@ Core Update 0008 continues Milestone 1 by adding project-governance documents an
 
 Permanent rules now include: runtime must not require the .NET SDK, update packages must run from their own extracted folder, and all approved suggestions become required implementation work unless explicitly deferred or rejected.
 
+## Current Development Status
+
+- Current Code Update: 0009
+- Current Milestone: Milestone 1 - Core Framework
+- Current focus: Core audit contracts, shared data record model, repository catalog, and dependency-free test foundation.
+- Runtime rule: normal project runtime must not require the .NET SDK.
+- Update rule: every Code Update must run from its own extracted folder and apply to the main project folder.
+- Suggestion rule: approved suggestions become implementation requirements unless explicitly deferred or rejected.
+
+Start new development sessions by reading `AI_CONTEXT.md`, then `Docs/Architecture/PROJECT_ROADMAP.md`.
