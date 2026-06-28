@@ -2,19 +2,25 @@
 
 ## Current focus
 
-Native data decoding with MegaMud `.mp` knowledge integration.
+Transitioning MajorMud Reforged from PowerShell prototype layout to a cleaner standalone app platform.
 
-## Last completed database version
+## Latest update
 
-Database Version 0008 - MegaMud MP Knowledge Integration.
+CodePatch 0002 - Clean Repository / App Platform Foundation
 
-## Current verified state
+## Important rules
 
-- CSV database import exists from earlier database versions.
-- Native `.DAT` files are cataloged but not fully decoded.
-- MegaMud `.mp` files are now parsed into Reforged evidence JSON.
-- Numeric MP route fields remain unknown until proven.
+- Updates run from their own extracted folder.
+- Root README.txt is updated every update.
+- Docs are updated every update.
+- Saves and ImportedDatabases are protected.
+- User should not need to install .NET SDK or developer tooling for official builds.
+- Future executables must live in their own folders under `Bin/Windows/<AppName>/`.
 
-## Recommended next task
+## Next recommended work
 
-Use `Data/MegaMudMaps/Index/roomReferenceIndex.json` and `rooms.TXT` to improve decoding of `WCCMP001.DAT` and `WCCUPDAT.DAT` world/map data.
+Start replacing script-based behavior with standalone app components, beginning with shared Core contracts and server data loading.
+
+## Caution
+
+Do not claim executable files exist until they are actually produced and placed in their own executable folder.

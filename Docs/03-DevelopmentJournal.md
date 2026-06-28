@@ -1,16 +1,25 @@
 # Development Journal
 
-## Database Version 0008
+## CodePatch 0002 - Clean Repository / App Platform Foundation
 
-Integrated MegaMud `.mp` files as a third evidence source for room/map/navigation decoding.
+### Completed
 
-Completed:
+- Added clean `Apps/` layout.
+- Added `Bin/Windows/<AppName>/` folders for future executables.
+- Added clean `Source/` layout for Core, Server, Editor, Importer, Launcher, and Client.
+- Added app platform documentation.
+- Added clean repository plan.
+- Updated chat/development rules.
+- Updated root README.txt.
+- Added compatibility apply script that runs from its own extracted folder.
+- Added migration behavior that moves old PowerShell prototype files into `Legacy/PowerShellPrototype/` instead of deleting them.
 
-- Parsed 1957 `.mp` files.
-- Created one JSON evidence record per source `.mp` file.
-- Cross-referenced MP room headers against `rooms.TXT`.
-- Generated room-reference, duplicate-reference, command, warning, and summary indexes.
-- Added repeatable importer tool under `Tools/Importer`.
-- Updated reverse-engineering docs and audit notes.
+### Not completed
 
-No server code, saves, or original native `.DAT` files are modified.
+- No compiled executable is included in this update.
+- No server gameplay is implemented in this update.
+- No save/database migration is performed.
+
+### Next recommended step
+
+Create the first real app foundation component without requiring the user to install developer SDKs. The likely next target is a prebuilt/importer-free server loader design or launcher shell once a build path is available.
