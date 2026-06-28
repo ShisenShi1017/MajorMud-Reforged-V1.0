@@ -1,23 +1,19 @@
 # Changelog
 
-## Code Update 0004 — Core Library Foundation
+## Code Update 0005 - Core Utilities and Validation Foundation
 
-- Started Milestone 1: Core Library.
-- Added initial shared Core source contracts.
-- Added validation, logging, versioning, path, data record, and import audit models.
-- Added source/provenance tracking model.
-- Added serialization and event bus contract notes.
-- Updated README, VERSION, ProjectManifest, docs, release notes, and health report.
+- Added Core configuration model files.
+- Added Core logging interfaces and simple file logger source.
+- Added Core validation result and issue model files.
+- Added Core version metadata model.
+- Added Core JSON document envelope model.
+- Added Core repository health model files.
+- Updated README, VERSION, ProjectManifest, release notes, patch history, and session handoff.
 
-## Code Update 0003 — Layout Freeze / Manifest Cleanup
+## Code Update 0004 - Core Library Foundation
 
-- Added project manifest and layout freeze docs.
-- Standardized executable folders.
+- Began Milestone 1 with Core contracts and documentation.
 
-## Code Update 0002 — Repository Deduplication
+## Code Update 0003 - Layout Freeze / Manifest Cleanup
 
-- Removed redundant prototype clutter while preserving protected project data.
-
-## Code Update 0001 — Repository Reorganization & Core Foundation
-
-- Reorganized the repository into the long-term layout.
+- Added ProjectManifest and froze the repository layout.

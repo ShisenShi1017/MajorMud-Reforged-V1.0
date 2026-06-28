@@ -1,48 +1,36 @@
 # MajorMud Reforged
 
-MajorMud Reforged is being built as a standalone MajorMud server with editable project data, a future real-time editor, and eventual client work inspired by MegaMud 2.0.
+MajorMud Reforged is being built as a standalone MajorMud server, editor, importer, launcher, and future MegaMud-inspired client.
 
-## Current Status
+## Current status
 
-- Project Version: 0.1.0
-- Latest Code Update: 0004 — Core Library Foundation
-- Latest Database Version: 0009 — Server-Ready Data Baseline
-- Current Milestone: Milestone 1 — Core Library
+- **Project Version:** 0.1.0
+- **Current Milestone:** Milestone 1 - Core Library
+- **Current Code Update:** 0005 - Core Utilities and Validation Foundation
+- **Current Database Version:** 0009 - Server-Ready Data Baseline
 
-## What Changed In This Update
+## What changed in Code Update 0005
 
-Code Update 0004 starts the Core library foundation.
+- Continued Milestone 1 by adding concrete Core source foundations.
+- Added shared configuration models.
+- Added shared logging contracts and a simple file logger source.
+- Added validation result/issue/severity models.
+- Added version metadata model.
+- Added JSON document envelope model.
+- Added repository health report models.
+- Updated project documentation and repository health notes.
 
-Added:
+## Current architecture
 
-- Shared Core source contracts under `Core/Source/MajorMud.Core/`
-- Project versioning model
-- Repository path/configuration contract
-- Logging model
-- Validation models
-- Base editable data record model
-- Source/provenance reference model
-- Import audit record
-- Serialization and event bus contract notes
-- Repository health report
-- Updated documentation and handoff notes
+```text
+Apps/       Application front ends: Launcher, Server, Editor, Importer, Client
+Core/       Shared models, validation, logging, configuration, serialization, versioning
+Data/       Reforged editable game database
+Docs/       Project documentation and history
+Tools/      Importer/decoder/build support tools
+Reports/    Audit and validation reports
+Updates/    Code Updates and Database Versions
+Bin/        Future executable output folders
+```
 
-## Important Runtime Rule
-
-The future server must load from `Data/`, not from original `.DAT`, `.MDB`, `.ACCDB`, CSV, or MegaMud `.mp` files. Original files remain reference/import sources only.
-
-## Executables
-
-No executable is included or claimed in this update.
-
-Future Windows executables must live in their own folders:
-
-- `Bin/Windows/Launcher/`
-- `Bin/Windows/Server/`
-- `Bin/Windows/Editor/`
-- `Bin/Windows/Importer/`
-- `Bin/Windows/Client/`
-
-## Next Recommended Step
-
-Build the Core data loader and validation service, then wire the server bootstrap to Core.
+No executable is claimed in this update. No .NET SDK is required to apply it.

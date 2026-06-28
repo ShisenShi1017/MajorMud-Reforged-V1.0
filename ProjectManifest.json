@@ -1,20 +1,14 @@
 {
-  "project": "MajorMud Reforged",
+  "projectName": "MajorMud Reforged",
   "projectVersion": "0.1.0",
-  "latestCodeUpdate": "0004",
-  "latestDatabaseVersion": "0009",
+  "codeUpdate": "0005",
+  "databaseVersion": "0009",
   "currentMilestone": "Milestone 1 - Core Library",
-  "updateName": "Code Update 0004 - Core Library Foundation",
-  "protectedFolders": [
-    "Data",
-    "ImportedDatabases",
-    "Saves",
-    ".git"
-  ],
-  "requiredRootFolders": [
+  "layoutFrozen": true,
+  "requiresDotNetSdkToApply": false,
+  "executablesClaimed": [],
+  "activeFolders": [
     "Apps",
-    "Backups",
-    "Bin",
     "Core",
     "Data",
     "Docs",
@@ -22,19 +16,16 @@
     "Reports",
     "Saves",
     "Tools",
-    "Updates"
+    "Updates",
+    "Bin",
+    "Backups"
   ],
-  "futureExecutableFolders": [
-    "Bin/Windows/Launcher",
-    "Bin/Windows/Server",
-    "Bin/Windows/Editor",
-    "Bin/Windows/Importer",
-    "Bin/Windows/Client",
-    "Bin/Android/Client"
+  "protectedFolders": [
+    "Data",
+    "ImportedDatabases",
+    "Saves",
+    ".git"
   ],
-  "notes": [
-    "No executable is included in this update.",
-    "No .NET SDK is required to apply this update.",
-    "Core contracts are source/scaffold for future compiled apps."
-  ]
+  "lastUpdated": "2026-06-27",
+  "notes": "Code Update 0005 continues Core source foundations without requiring SDK installation or claiming compiled executables."
 }

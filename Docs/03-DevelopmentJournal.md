@@ -1,20 +1,19 @@
 # Development Journal
 
-## Code Update 0004 — Core Library Foundation
+## 2026-06-27 - Code Update 0005
 
-Started Milestone 1 by adding Core source contracts and documentation.
+Continued Milestone 1 - Core Library.
 
 Completed:
+- Added shared configuration source models.
+- Added shared logging source contracts.
+- Added validation result/issue/severity source models.
+- Added project version metadata source model.
+- Added JSON document envelope source model.
+- Added repository health report source models.
+- Updated root README, CHANGELOG, VERSION, ProjectManifest, release notes, patch history, and handoff documentation.
 
-- Added shared project versioning model.
-- Added shared path/configuration contract.
-- Added logging and validation models.
-- Added editable data record base model.
-- Added source/provenance reference model.
-- Added import audit model.
-- Added serialization and event bus contract notes.
-- Updated root README, changelog, version, manifest, and health report.
-
-Next recommended step:
-
-Build the Core data loader/validator that reads the canonical `Data/` folder and produces validation reports for the server.
+Notes:
+- This is still source foundation work.
+- No executable is included or claimed.
+- No .NET SDK is required to apply the update.

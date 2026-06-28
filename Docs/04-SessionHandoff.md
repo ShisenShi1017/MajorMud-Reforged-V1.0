@@ -1,25 +1,24 @@
 # Session Handoff
 
-## Current Focus
-
-Milestone 1 — Core Library
-
-## Latest Update
-
-Code Update 0004 — Core Library Foundation
-
 ## Current State
 
-The repository layout is frozen. Core now has initial shared source contracts for versioning, paths, logging, validation, editable records, source references, and import auditing.
+- Repository layout is frozen.
+- Current milestone: Milestone 1 - Core Library.
+- Current code update: 0005.
+- Current database version: 0009.
 
-## Important Rules
+## Completed Most Recently
 
-- Database Versions apply from their own extracted folders.
-- Code Updates apply from their own extracted folders.
-- Every update replaces/updates the root README.
-- No update overwrites `Saves/` or `ImportedDatabases/`.
-- No executable may be claimed unless it actually exists.
+Code Update 0005 added shared Core source foundations for configuration, logging, validation, versioning, serialization, and repository health models.
 
 ## Next Recommended Step
 
-Create the Core data loading and validation services, then use them in the first real server bootstrap.
+Continue Core by adding actual data model definitions for rooms, items, monsters, spells, classes, races, shops, text blocks, and references. These models should match the server-ready `Data/` contract and preserve unknown/imported fields.
+
+## Important Rules
+
+- Updates must run from their own extracted folder.
+- Root README must be replaced/updated every update.
+- Docs must be updated every update.
+- Do not overwrite Saves or ImportedDatabases.
+- Do not claim an EXE exists unless one has actually been created.

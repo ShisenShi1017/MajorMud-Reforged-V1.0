@@ -1,54 +1,27 @@
 # Core Architecture
 
-## Goal
+Core is the shared library layer for MajorMud Reforged. Every application should use Core for shared contracts.
 
-`Core/` is the shared technical heart of MajorMud Reforged.
+## Code Update 0005 Additions
 
-The Server, Editor, Importer, Launcher, and future Client should not each define their own incompatible versions of rooms, items, monsters, spells, shops, races, classes, or database manifests.
+The following source foundations were added:
 
-## Core owns
+- `Core/Configuration/ProjectPaths.cs`
+- `Core/Configuration/RuntimeConfiguration.cs`
+- `Core/Logging/LogLevel.cs`
+- `Core/Logging/LogEvent.cs`
+- `Core/Logging/IReforgedLogger.cs`
+- `Core/Logging/FileReforgedLogger.cs`
+- `Core/Validation/ValidationSeverity.cs`
+- `Core/Validation/ValidationIssue.cs`
+- `Core/Validation/ValidationResult.cs`
+- `Core/Validation/IValidator.cs`
+- `Core/Versioning/ProjectVersionInfo.cs`
+- `Core/Serialization/JsonDocumentEnvelope.cs`
+- `Core/Health/RepositoryHealthIssue.cs`
+- `Core/Health/RepositoryHealthReport.cs`
+- `Core/Models/GameEntity.cs`
 
-- Data models
-- Data manifest structure
-- Validation rules
-- Serialization rules
-- Import contracts
-- Runtime world contracts
-- Logging contracts
-- Event contracts
-- Configuration contracts
+## Design Rule
 
-## Why this matters
-
-A real-time editor requires the same rules as the server. If the editor writes data differently than the server reads it, the project will become unstable.
-
-By making Core the shared foundation, every app uses the same definitions.
-
-## Initial folders
-
-```text
-Core/Models/
-Core/Validation/
-Core/Importing/
-Core/Runtime/
-Core/Serialization/
-Core/Logging/
-Core/Events/
-Core/Configuration/
-```
-
-## Next implementation step
-
-Code Update 0002 should begin the actual Core implementation by adding models for:
-
-- Database manifest
-- Room
-- Item
-- Monster
-- Spell
-- Shop
-- Race
-- Class
-- Text block/message
-
-Then the Server app can load those models from `Data/`.
+Applications must not duplicate models or validation logic. Server, Editor, Importer, Launcher, and Client should all consume the Core contracts.

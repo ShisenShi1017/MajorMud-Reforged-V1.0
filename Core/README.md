@@ -1,25 +1,15 @@
-# Core Library
+# Core
 
-The Core library is the shared foundation for MajorMud Reforged.
+Core is the shared foundation for MajorMud Reforged. Server, Editor, Importer, Launcher, and future Client code should all use Core models and services instead of creating duplicate logic.
 
-All applications must use Core for shared behavior instead of creating duplicate models or utility logic.
+This update adds SDK-free source foundations only. It does **not** require the .NET SDK and does **not** claim any executable exists.
 
-## Responsibilities
+## Current Core areas
 
-- Project and database version metadata
-- Configuration models
-- Logging contracts
-- Serialization contracts
-- Validation result models
-- Game data models
-- Import source provenance
-- Repository health reporting
-- Future event bus and service interfaces
-
-## Current State
-
-Code Update 0004 establishes the Core source layout and initial reusable contracts. It does not require the user to install the .NET SDK and does not claim that compiled executables exist yet.
-
-## Rule
-
-Server, Editor, Importer, Launcher, and Client should depend on Core concepts instead of defining independent versions of the same game data.
+- `Configuration/` - project path and runtime configuration models.
+- `Logging/` - structured log event contracts and simple file logger source.
+- `Validation/` - validation result and issue model used by database/server checks.
+- `Versioning/` - project/database/code update version metadata.
+- `Serialization/` - JSON helper contract for future app use.
+- `Health/` - repository health model and report contracts.
+- `Models/` - base game object contracts shared by server/editor/importer.
