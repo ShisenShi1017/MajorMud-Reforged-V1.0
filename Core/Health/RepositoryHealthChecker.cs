@@ -21,6 +21,19 @@ public sealed class RepositoryHealthChecker
         RequireFile(report, projectRoot, "CHANGELOG.md");
         RequireFile(report, projectRoot, "VERSION.md");
         RequireFile(report, projectRoot, "ProjectManifest.json");
+
+        var duplicateModelReport = new DuplicateModelEnforcer().Check(projectRoot);
+        foreach (var issue in duplicateModelReport.Issues)
+        {
+            report.Issues.Add(new RepositoryHealthIssue
+            {
+                Severity = issue.Severity,
+                Area = "DuplicateModels",
+                Path = issue.ApplicationLocation,
+                Message = issue.Message
+            });
+        }
+
         return report;
     }
 

@@ -6,17 +6,21 @@
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0012 — Data Validation and Service Completion`
+**Current Code Update:** `CodeUpdate-0013 — Duplicate Model Enforcement`
 
 **Current Database Version:** `DatabaseVersion-0009 — Server-Ready Data Baseline`
 
 **Active Milestone:** `Milestone 1 — Core Framework`
 
-**Current Priority:** Finish Milestone 1 Core runtime services, data validation, repository loading, and handoff accuracy before starting Milestone 2.
+**Current Priority:** Finish Milestone 1 by enforcing no duplicate app models, completing cross-reference validation, adding Data loaders, and producing final verification before starting Milestone 2.
 
 This README is the required starting point for every new ChatGPT session and every developer handoff.
 
 ---
+
+## CodeUpdate-0013 Summary
+
+Core Update 0013 adds automated duplicate model enforcement. Application projects must not redefine shared model-like types that already belong to Core. Repository health checks now include duplicate model findings so the Milestone 1 no-duplicated-models rule can be verified instead of tracked only by manual review.
 
 ## Project Vision
 

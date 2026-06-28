@@ -17,10 +17,10 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 ## Current Handoff State
 
 - Current Milestone: Milestone 1 - Core Framework
-- Current Code Update: 0012
+- Current Code Update: 0013
 - Current Database Version: 0009
-- Last Update Name: CodeUpdate-0012-Data-Validation-And-Service-Completion
-- Milestone Estimate: 78-84% complete
+- Last Update Name: CodeUpdate-0013-Duplicate-Model-Enforcement
+- Milestone Estimate: 82-87% complete
 - Next Work Mode: Continue Milestone 1 until every completion criterion is satisfied.
 
 ## Completed or Substantially Underway
@@ -46,7 +46,7 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 
 | Requirement | Status |
 |---|---:|
-| No duplicated models across applications | In progress |
+| No duplicated models across applications | Substantially underway |
 | Every application references Core | Substantially underway |
 | Core has no dependencies on application projects | Verified by structure |
 | Core configuration fully functional | Substantially underway |
@@ -84,6 +84,17 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 - Every update must update `README.md`, `CHANGELOG.md`, `VERSION.md`, `ProjectManifest.json`, and this `AI_CONTEXT.md`.
 - Never claim an update package exists unless it has actually been created and verified.
 
+## Code Update 0013 Handoff Notes
+
+Core Update 0013 adds automated duplicate model enforcement. It adds a dependency-free scanner that checks application source for model-like types that duplicate Core-owned types. This moves the Milestone 1 duplicate-model completion criterion from manual review toward automated repository health validation.
+
+Added Core areas:
+
+- `DuplicateModelEnforcer` for SDK-free duplicate model scans.
+- `DuplicateModelEnforcementIssue` and `DuplicateModelEnforcementReport` for health output.
+- Source-level `DuplicateModelEnforcementHealthCheck` under `Core/Source/MajorMud.Core/Health/`.
+- Repository health checker integration so duplicate model violations appear in repository health reports.
+
 ## Code Update 0012 Handoff Notes
 
 Core Update 0012 adds source-level runtime services and validation needed to close Milestone 1. It does not change the no-SDK runtime rule; these are source foundations for future compiled/runtime-ready artifacts.
@@ -101,8 +112,7 @@ Added Core areas:
 
 ## Next Recommended Work
 
-1. Finish duplicate model removal/enforcement checks.
-2. Expand Data JSON validation into cross-reference checks across rooms, items, monsters, shops, spells, quests, and world data.
-3. Add repository-backed loaders for every current `Data/` category.
-4. Prepare compiled/runtime-ready `Bin/` artifact expectations without requiring SDK use by normal users.
-5. Produce a final Milestone 1 verification report once all checklist items are satisfied.
+1. Expand Data JSON validation into cross-reference checks across rooms, items, monsters, shops, spells, quests, and world data.
+2. Add repository-backed loaders for every current `Data/` category.
+3. Prepare compiled/runtime-ready `Bin/` artifact expectations without requiring SDK use by normal users.
+4. Produce a final Milestone 1 verification report once all checklist items are satisfied.

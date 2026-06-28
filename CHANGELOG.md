@@ -1,5 +1,17 @@
 # Changelog
 
+## CodeUpdate-0013 - Duplicate Model Enforcement
+
+- Continued Milestone 1 Core Framework work.
+- Added dependency-free duplicate model enforcement for application source.
+- Added duplicate model enforcement issue/report models.
+- Integrated duplicate model enforcement into the repository health checker.
+- Added source-level duplicate model enforcement health check under `Core/Source/MajorMud.Core/Health/`.
+- Updated `AI_CONTEXT.md` with current handoff table, checklist, and next recommended work.
+- Updated `README.md`, `VERSION.md`, `ProjectManifest.json`, docs, and verification report.
+- Preserved no-SDK runtime policy, one-folder update ZIP policy, and protection of `Saves/` and `ImportedDatabases/`.
+
+
 ## CodeUpdate-0012 - Data Validation and Service Completion
 
 - Continued Milestone 1 Core Framework work.

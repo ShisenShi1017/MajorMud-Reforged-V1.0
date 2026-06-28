@@ -1,9 +1,9 @@
 {
   "project": "MajorMud Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0012",
+  "codeUpdate": "0013",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / Data Validation and Service Completion",
+  "milestone": "Milestone 1 - Core Framework / Duplicate Model Enforcement",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
   "updatePolicy": "Extract the update ZIP directly into the main project folder, open the single labeled update folder, and run Apply-*.bat from inside it.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0012",
+    "currentCodeUpdate": "0013",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -50,10 +50,11 @@
       "JSON data file loader and saver",
       "data-record validator",
       "Data JSON health check",
-      "application Core-reference health check"
+      "application Core-reference health check",
+      "duplicate model enforcement health check",
+      "repository health duplicate model integration"
     ],
     "milestone1RemainingComponents": [
-      "duplicate model removal enforcement",
       "compiled Bin runtime handoff validation artifacts",
       "expanded cross-reference validation rules for Data JSON",
       "repository-backed loaders for every current Data category",
@@ -77,10 +78,10 @@
     "Repository health checker": "Substantially underway",
     "Shared utility library": "In progress",
     "Unit-test framework": "Started",
-    "Applications using Core": "Substantially underway"
+    "Applications using Core": "Substantially underway",
+    "No duplicated models across applications": "Substantially underway"
   },
   "nextRecommendedWork": [
-    "Finish duplicate model removal enforcement.",
     "Expand Data JSON validation into cross-reference checks for rooms, items, monsters, shops, spells, quests, and world data.",
     "Add repository-backed loaders for each current Data category.",
     "Prepare compiled/runtime-ready Bin artifact expectations without requiring SDK use by normal users.",
