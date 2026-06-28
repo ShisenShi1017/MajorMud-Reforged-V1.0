@@ -1,25 +1,22 @@
 # Development Journal
 
-## CodePatch 0002 - Clean Repository / App Platform Foundation
+## Code Update 0001 — Repository Reorganization & Core Foundation
 
 ### Completed
 
-- Added clean `Apps/` layout.
-- Added `Bin/Windows/<AppName>/` folders for future executables.
-- Added clean `Source/` layout for Core, Server, Editor, Importer, Launcher, and Client.
-- Added app platform documentation.
-- Added clean repository plan.
-- Updated chat/development rules.
-- Updated root README.txt.
-- Added compatibility apply script that runs from its own extracted folder.
-- Added migration behavior that moves old PowerShell prototype files into `Legacy/PowerShellPrototype/` instead of deleting them.
+- Cleaned the repository into the approved long-term layout.
+- Added `Apps/` app-family folders.
+- Added `Core/` shared foundation folder.
+- Added `Bin/Windows/` executable destination folders.
+- Added `Updates/Code/` and `Updates/DatabaseVersions/`.
+- Added root `README.md`, `CHANGELOG.md`, and `VERSION.md`.
+- Added documentation for repository reorganization and Core architecture.
+- Preserved obsolete/prototype material under `Legacy/`.
 
-### Not completed
+### Design decision
 
-- No compiled executable is included in this update.
-- No server gameplay is implemented in this update.
-- No save/database migration is performed.
+The project is moving away from PowerShell as an implementation platform. PowerShell prototype material may remain archived for reference, but real server/editor/importer/launcher/client work should move toward compiled applications with each `.exe` in its own folder.
 
-### Next recommended step
+### Next work
 
-Create the first real app foundation component without requiring the user to install developer SDKs. The likely next target is a prebuilt/importer-free server loader design or launcher shell once a build path is available.
+Build the Core data loader and server bootstrap using the new structure.

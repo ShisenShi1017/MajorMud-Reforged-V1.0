@@ -1,0 +1,2004 @@
+{
+  "classes.TXT": [
+    {
+      "column": "MageryType",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "2",
+        "4",
+        "1",
+        "3",
+        "5"
+      ]
+    },
+    {
+      "column": "WeaponType",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8",
+        "7",
+        "4",
+        "9"
+      ]
+    },
+    {
+      "column": "ArmourType",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "9",
+        "8",
+        "1",
+        "6",
+        "2",
+        "7"
+      ]
+    },
+    {
+      "column": "Abil-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "31",
+        "103"
+      ]
+    },
+    {
+      "column": "AbilVal-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "51",
+        "37",
+        "103",
+        "39",
+        "40",
+        "59",
+        "38",
+        "34"
+      ]
+    },
+    {
+      "column": "AbilVal-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-99",
+        "10",
+        "74",
+        "25"
+      ]
+    },
+    {
+      "column": "Abil-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "142",
+        "40",
+        "39",
+        "103",
+        "29"
+      ]
+    },
+    {
+      "column": "AbilVal-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-99",
+        "10",
+        "1"
+      ]
+    },
+    {
+      "column": "Abil-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "31",
+        "37",
+        "40",
+        "30"
+      ]
+    },
+    {
+      "column": "AbilVal-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-99",
+        "5",
+        "1"
+      ]
+    },
+    {
+      "column": "Abil-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "38",
+        "37",
+        "31",
+        "35"
+      ]
+    },
+    {
+      "column": "AbilVal-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-99",
+        "1"
+      ]
+    },
+    {
+      "column": "Abil-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "34",
+        "142"
+      ]
+    },
+    {
+      "column": "AbilVal-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-99",
+        "25",
+        "5"
+      ]
+    },
+    {
+      "column": "Abil-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "58"
+      ]
+    },
+    {
+      "column": "AbilVal-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-99",
+        "10"
+      ]
+    },
+    {
+      "column": "Abil-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "31"
+      ]
+    },
+    {
+      "column": "AbilVal-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-99"
+      ]
+    },
+    {
+      "column": "Abil-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-99"
+      ]
+    }
+  ],
+  "races.TXT": [
+    {
+      "column": "Abil-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "36",
+        "102",
+        "13",
+        "69",
+        "21"
+      ]
+    },
+    {
+      "column": "AbilVal-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "10",
+        "5",
+        "50",
+        "80",
+        "65",
+        "15",
+        "100",
+        "200"
+      ]
+    },
+    {
+      "column": "Abil-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "13",
+        "34",
+        "102",
+        "7",
+        "77"
+      ]
+    },
+    {
+      "column": "AbilVal-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "75",
+        "65",
+        "10",
+        "25",
+        "20",
+        "50"
+      ]
+    },
+    {
+      "column": "Abil-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "96",
+        "37",
+        "69",
+        "58",
+        "2",
+        "38"
+      ]
+    },
+    {
+      "column": "AbilVal-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "20",
+        "10",
+        "1",
+        "100",
+        "5"
+      ]
+    },
+    {
+      "column": "Abil-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "106",
+        "5"
+      ]
+    },
+    {
+      "column": "AbilVal-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-20",
+        "10",
+        "3"
+      ]
+    },
+    {
+      "column": "Abil-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "3"
+      ]
+    },
+    {
+      "column": "AbilVal-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "2",
+        "-10"
+      ]
+    },
+    {
+      "column": "Abil-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    }
+  ],
+  "shops.TXT": [
+    {
+      "column": "ShopType",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "6",
+        "10",
+        "5",
+        "9",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "column": "ClassRest",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1",
+        "3",
+        "2",
+        "6",
+        "10",
+        "11",
+        "13",
+        "14",
+        "8",
+        "7",
+        "9",
+        "12",
+        "5",
+        "4",
+        "15"
+      ]
+    }
+  ],
+  "spells.TXT": [
+    {
+      "column": "TypeOfResists",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "2",
+        "1"
+      ]
+    },
+    {
+      "column": "Targets",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8",
+        "12",
+        "2",
+        "4"
+      ]
+    },
+    {
+      "column": "AttType",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "4",
+        "1",
+        "6"
+      ]
+    },
+    {
+      "column": "Magery",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "2",
+        "1",
+        "3"
+      ]
+    },
+    {
+      "column": "Abil-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "74",
+        "22",
+        "70",
+        "150",
+        "81",
+        "1",
+        "107",
+        "84",
+        "19"
+      ]
+    },
+    {
+      "column": "AbilVal-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "107",
+        "590",
+        "-5",
+        "8608",
+        "-1",
+        "100",
+        "1",
+        "4157",
+        "5",
+        "609",
+        "143",
+        "234",
+        "8224"
+      ]
+    },
+    {
+      "column": "Abil-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "52",
+        "122",
+        "76",
+        "115",
+        "164",
+        "2",
+        "144"
+      ]
+    },
+    {
+      "column": "AbilVal-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "62",
+        "1827",
+        "8224",
+        "20",
+        "-5",
+        "8575",
+        "8560",
+        "8561",
+        "108",
+        "590",
+        "8525"
+      ]
+    },
+    {
+      "column": "Abil-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "115",
+        "2",
+        "151",
+        "108",
+        "22",
+        "144",
+        "101",
+        "107",
+        "98"
+      ]
+    },
+    {
+      "column": "AbilVal-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8544",
+        "551",
+        "78",
+        "-300",
+        "8224",
+        "-5",
+        "1169",
+        "8540",
+        "-8",
+        "8489",
+        "1"
+      ]
+    },
+    {
+      "column": "Abil-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "52",
+        "120",
+        "115",
+        "122",
+        "108",
+        "144",
+        "12"
+      ]
+    },
+    {
+      "column": "AbilVal-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8224",
+        "621",
+        "72",
+        "8534",
+        "23",
+        "8521"
+      ]
+    },
+    {
+      "column": "Abil-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "115",
+        "120",
+        "122",
+        "12",
+        "144",
+        "96",
+        "52",
+        "22"
+      ]
+    },
+    {
+      "column": "AbilVal-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8224",
+        "8596",
+        "552",
+        "14",
+        "8534"
+      ]
+    },
+    {
+      "column": "Abil-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "7",
+        "22",
+        "108",
+        "12",
+        "122",
+        "145",
+        "5",
+        "115",
+        "4"
+      ]
+    },
+    {
+      "column": "AbilVal-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8224",
+        "-30",
+        "-10"
+      ]
+    },
+    {
+      "column": "Abil-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "22",
+        "2",
+        "122",
+        "70",
+        "108",
+        "115",
+        "144"
+      ]
+    },
+    {
+      "column": "AbilVal-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8224",
+        "-5"
+      ]
+    },
+    {
+      "column": "Abil-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "122",
+        "34",
+        "19",
+        "65"
+      ]
+    },
+    {
+      "column": "AbilVal-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8224"
+      ]
+    },
+    {
+      "column": "Abil-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "122",
+        "5",
+        "68",
+        "79",
+        "36",
+        "115",
+        "120"
+      ]
+    },
+    {
+      "column": "AbilVal-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8224"
+      ]
+    },
+    {
+      "column": "Abil-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "122",
+        "101",
+        "144",
+        "7",
+        "22",
+        "1",
+        "120",
+        "52",
+        "12"
+      ]
+    },
+    {
+      "column": "AbilVal-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "32"
+      ]
+    }
+  ],
+  "items.TXT": [
+    {
+      "column": "ItemType",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "9"
+      ]
+    },
+    {
+      "column": "WeaponType",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "2",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "column": "ArmourType",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "7",
+        "3",
+        "1",
+        "2",
+        "9"
+      ]
+    },
+    {
+      "column": "Worn",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "11",
+        "2",
+        "9",
+        "3",
+        "5",
+        "12"
+      ]
+    },
+    {
+      "column": "Accy",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "5",
+        "8",
+        "12",
+        "6",
+        "10",
+        "3"
+      ]
+    },
+    {
+      "column": "Abil-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "28"
+      ]
+    },
+    {
+      "column": "AbilVal-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1"
+      ]
+    },
+    {
+      "column": "Abil-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "42"
+      ]
+    },
+    {
+      "column": "AbilVal-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "64",
+        "107",
+        "108",
+        "87",
+        "75",
+        "35",
+        "71",
+        "95",
+        "49",
+        "96",
+        "97",
+        "98",
+        "99",
+        "100",
+        "102"
+      ]
+    },
+    {
+      "column": "Abil-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "135",
+        "34",
+        "9",
+        "116",
+        "36",
+        "43",
+        "70",
+        "59",
+        "58",
+        "114"
+      ]
+    },
+    {
+      "column": "AbilVal-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "50",
+        "-5",
+        "25",
+        "-10",
+        "5",
+        "114",
+        "778",
+        "780",
+        "15",
+        "10",
+        "2",
+        "13",
+        "1240",
+        "3"
+      ]
+    },
+    {
+      "column": "Abil-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "116",
+        "49",
+        "14",
+        "114",
+        "145",
+        "121",
+        "118",
+        "135",
+        "70",
+        "59",
+        "117",
+        "36"
+      ]
+    },
+    {
+      "column": "AbilVal-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "30",
+        "100",
+        "40",
+        "15",
+        "10",
+        "5",
+        "12",
+        "2"
+      ]
+    },
+    {
+      "column": "Abil-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "114",
+        "135",
+        "121",
+        "70",
+        "117",
+        "27",
+        "43",
+        "145",
+        "116"
+      ]
+    },
+    {
+      "column": "AbilVal-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "25",
+        "1000",
+        "5",
+        "10",
+        "2",
+        "109",
+        "15",
+        "20"
+      ]
+    },
+    {
+      "column": "Abil-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "43",
+        "119",
+        "70",
+        "145",
+        "135",
+        "114",
+        "83"
+      ]
+    },
+    {
+      "column": "AbilVal-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "408",
+        "201",
+        "353",
+        "170",
+        "3",
+        "10",
+        "15",
+        "1",
+        "779",
+        "20"
+      ]
+    },
+    {
+      "column": "Abil-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "58",
+        "149",
+        "135",
+        "179",
+        "43",
+        "70",
+        "116",
+        "14",
+        "42"
+      ]
+    },
+    {
+      "column": "AbilVal-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "5",
+        "10",
+        "849",
+        "776",
+        "1",
+        "-25",
+        "8224"
+      ]
+    },
+    {
+      "column": "Abil-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "82",
+        "116",
+        "180",
+        "135",
+        "145",
+        "42",
+        "43",
+        "117",
+        "70",
+        "28"
+      ]
+    },
+    {
+      "column": "AbilVal-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "999",
+        "10",
+        "5",
+        "8224"
+      ]
+    },
+    {
+      "column": "Abil-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "123",
+        "13",
+        "58",
+        "135",
+        "42",
+        "43",
+        "114",
+        "59",
+        "119"
+      ]
+    },
+    {
+      "column": "AbilVal-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-25",
+        "100",
+        "4",
+        "10",
+        "8224"
+      ]
+    },
+    {
+      "column": "Abil-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "43",
+        "59",
+        "135",
+        "58",
+        "116",
+        "97",
+        "100",
+        "117",
+        "123",
+        "88",
+        "112"
+      ]
+    },
+    {
+      "column": "AbilVal-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8224"
+      ]
+    },
+    {
+      "column": "Abil-10",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-10",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-11",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-11",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-12",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-12",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-13",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-13",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-14",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-14",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-15",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-15",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-16",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-16",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-17",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-17",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-18",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-18",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-19",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-19",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    }
+  ],
+  "monsters.TXT": [
+    {
+      "column": "Weapon",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "67",
+        "92",
+        "65",
+        "72",
+        "64",
+        "103",
+        "100",
+        "71",
+        "89"
+      ]
+    },
+    {
+      "column": "Type",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "2",
+        "1",
+        "3"
+      ]
+    },
+    {
+      "column": "AttName-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "bites you",
+        "darts forward and bites you",
+        "claws you with its pincers",
+        "rips you",
+        "whips you with its pseudopod",
+        "slashes you",
+        "stabs you",
+        "chomps you",
+        "smashes you",
+        "bludgeons you",
+        "chills you with its touch",
+        "claws you"
+      ]
+    },
+    {
+      "column": "AttType-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1"
+      ]
+    },
+    {
+      "column": "AttAcc-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "10",
+        "20",
+        "15",
+        "50",
+        "45",
+        "35",
+        "80",
+        "40",
+        "55"
+      ]
+    },
+    {
+      "column": "Att%-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "100",
+        "50",
+        "85",
+        "70",
+        "90",
+        "75"
+      ]
+    },
+    {
+      "column": "AttTrue%-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "100",
+        "50.7",
+        "84.3",
+        "69",
+        "90",
+        "75.1"
+      ]
+    },
+    {
+      "column": "AttMin-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "2",
+        "1",
+        "4",
+        "3",
+        "8"
+      ]
+    },
+    {
+      "column": "AttMax-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "10",
+        "6",
+        "9",
+        "11",
+        "8",
+        "16",
+        "14",
+        "30",
+        "15"
+      ]
+    },
+    {
+      "column": "AttEnergy-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1000",
+        "500",
+        "666"
+      ]
+    },
+    {
+      "column": "AttHitSpell-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "126",
+        "583",
+        "894",
+        "109",
+        "201",
+        "178",
+        "236",
+        "245",
+        "172"
+      ]
+    },
+    {
+      "column": "AttName-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "Unknown",
+        "impales you",
+        "all-out slashes you",
+        "chills you with its touch",
+        "claws you",
+        "slashes you",
+        "all-out smashes you"
+      ]
+    },
+    {
+      "column": "AttType-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "229",
+        "1"
+      ]
+    },
+    {
+      "column": "AttAcc-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "70",
+        "50",
+        "20",
+        "80",
+        "60",
+        "55",
+        "40",
+        "25",
+        "8",
+        "999",
+        "200"
+      ]
+    },
+    {
+      "column": "Att%-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "20",
+        "100",
+        "85",
+        "50"
+      ]
+    },
+    {
+      "column": "AttTrue%-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "49.3",
+        "15.7",
+        "15.2",
+        "10",
+        "24.9",
+        "50.5",
+        "17.2",
+        "24.6",
+        "20",
+        "33.9",
+        "19.2",
+        "19.4",
+        "19.6",
+        "20.2"
+      ]
+    },
+    {
+      "column": "AttMin-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "4",
+        "1",
+        "2",
+        "32",
+        "3",
+        "12",
+        "100",
+        "8"
+      ]
+    },
+    {
+      "column": "AttMax-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "20",
+        "5",
+        "11",
+        "120",
+        "15",
+        "9",
+        "10",
+        "18",
+        "19",
+        "36",
+        "50",
+        "45"
+      ]
+    },
+    {
+      "column": "AttEnergy-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1000",
+        "500",
+        "666",
+        "200"
+      ]
+    },
+    {
+      "column": "AttHitSpell-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "583",
+        "127",
+        "201",
+        "80",
+        "81",
+        "203",
+        "178",
+        "128"
+      ]
+    },
+    {
+      "column": "AttName-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "calls for aid",
+        "Unknown",
+        "frost jet",
+        "speaks in a booming voice",
+        "spiritual hammer",
+        "lightning bolt",
+        "smashes you with a huge fist",
+        "all-out cleaves you",
+        "slow",
+        "leaps into the air and kicks you",
+        "rips you"
+      ]
+    },
+    {
+      "column": "AttType-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "2",
+        "229",
+        "1"
+      ]
+    },
+    {
+      "column": "AttAcc-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1",
+        "888",
+        "5",
+        "85",
+        "16",
+        "8",
+        "115",
+        "90",
+        "59",
+        "300",
+        "35",
+        "65"
+      ]
+    },
+    {
+      "column": "Att%-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "30",
+        "100",
+        "90",
+        "80"
+      ]
+    },
+    {
+      "column": "AttTrue%-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "15.8",
+        "41.1",
+        "1.2",
+        "16.2",
+        "19.9",
+        "8.5",
+        "13.8",
+        "10.6",
+        "3.6",
+        "12.2",
+        "69.6",
+        "4.6",
+        "1.7",
+        "16.5"
+      ]
+    },
+    {
+      "column": "AttMin-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "50",
+        "100",
+        "65",
+        "70",
+        "60",
+        "10",
+        "24",
+        "85",
+        "6"
+      ]
+    },
+    {
+      "column": "AttMax-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "30",
+        "20",
+        "12",
+        "10",
+        "24",
+        "70",
+        "200",
+        "100"
+      ]
+    },
+    {
+      "column": "AttEnergy-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1000",
+        "666",
+        "200"
+      ]
+    },
+    {
+      "column": "AttHitSpell-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "318",
+        "361",
+        "245",
+        "128",
+        "938",
+        "321",
+        "323"
+      ]
+    },
+    {
+      "column": "AttName-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "Unknown",
+        "frost jet",
+        "kicks you with a huge foot",
+        "picks you up and slams you on the ground",
+        "slashes you",
+        "spits",
+        "slow",
+        "rain of blood",
+        "flame shower",
+        "dragonfire"
+      ]
+    },
+    {
+      "column": "AttType-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "229",
+        "2",
+        "1"
+      ]
+    },
+    {
+      "column": "AttAcc-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "5",
+        "94",
+        "142",
+        "95",
+        "66",
+        "72",
+        "59",
+        "238",
+        "125",
+        "259",
+        "261",
+        "263"
+      ]
+    },
+    {
+      "column": "Att%-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "10",
+        "100",
+        "90",
+        "99",
+        "85"
+      ]
+    },
+    {
+      "column": "AttTrue%-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "4.9",
+        "11.2",
+        "18.2",
+        "77.9",
+        "9",
+        "7",
+        "9.1",
+        "4.1",
+        "21.5",
+        "11.4",
+        "10.2",
+        "14.1",
+        "20.3",
+        "16.3"
+      ]
+    },
+    {
+      "column": "AttMin-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "100",
+        "15",
+        "25",
+        "3"
+      ]
+    },
+    {
+      "column": "AttMax-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "20",
+        "35",
+        "60",
+        "12",
+        "14",
+        "13",
+        "18",
+        "25",
+        "50",
+        "15",
+        "8"
+      ]
+    },
+    {
+      "column": "AttEnergy-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1000",
+        "500",
+        "750"
+      ]
+    },
+    {
+      "column": "AttHitSpell-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "60",
+        "318",
+        "1148",
+        "361",
+        "201"
+      ]
+    },
+    {
+      "column": "AttName-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "strikes you a glancing blow",
+        "chaos storm",
+        "all-out smashes you",
+        "vortex of pain",
+        "lashes you with its tail",
+        "dragonfire",
+        "a cloud of poison gas",
+        "death gaze",
+        "calls for aid",
+        "soul rip",
+        "all-out slashes you",
+        "volley of spikes",
+        "punches you in the head"
+      ]
+    },
+    {
+      "column": "AttType-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "column": "AttAcc-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "100",
+        "212",
+        "125",
+        "253",
+        "260",
+        "110",
+        "288",
+        "387",
+        "306",
+        "150",
+        "315",
+        "211",
+        "210",
+        "320",
+        "75"
+      ]
+    },
+    {
+      "column": "Att%-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "100"
+      ]
+    },
+    {
+      "column": "AttTrue%-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "10.1",
+        "36",
+        "1.1",
+        "2.3",
+        "18.5",
+        "9",
+        "20.5",
+        "2.1",
+        "16.7",
+        "5.2",
+        "4.1",
+        "32",
+        "13.7",
+        "19.2",
+        "17.8"
+      ]
+    },
+    {
+      "column": "AttMin-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "8",
+        "100",
+        "120",
+        "25",
+        "50",
+        "60",
+        "4"
+      ]
+    },
+    {
+      "column": "AttMax-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "20",
+        "500",
+        "30",
+        "35",
+        "100",
+        "40",
+        "50",
+        "120",
+        "14",
+        "200",
+        "12"
+      ]
+    },
+    {
+      "column": "AttEnergy-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1000",
+        "550",
+        "500",
+        "125"
+      ]
+    },
+    {
+      "column": "AttHitSpell-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "128",
+        "318",
+        "324",
+        "949"
+      ]
+    },
+    {
+      "column": "Abil-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "21",
+        "78",
+        "109",
+        "57",
+        "1",
+        "139"
+      ]
+    },
+    {
+      "column": "AbilVal-0",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1",
+        "20",
+        "50",
+        "999",
+        "10"
+      ]
+    },
+    {
+      "column": "Abil-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "78",
+        "13",
+        "3",
+        "21",
+        "109",
+        "28",
+        "139",
+        "34"
+      ]
+    },
+    {
+      "column": "AbilVal-1",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1",
+        "100",
+        "999",
+        "-50",
+        "15",
+        "30"
+      ]
+    },
+    {
+      "column": "Abil-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "78",
+        "3",
+        "5",
+        "109",
+        "81",
+        "21",
+        "139"
+      ]
+    },
+    {
+      "column": "AbilVal-2",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "100",
+        "-100",
+        "75",
+        "10",
+        "-50",
+        "-25"
+      ]
+    },
+    {
+      "column": "Abil-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "5",
+        "3",
+        "57",
+        "21",
+        "34",
+        "66",
+        "109"
+      ]
+    },
+    {
+      "column": "AbilVal-3",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "-100",
+        "100",
+        "150",
+        "75",
+        "50",
+        "-50",
+        "-75",
+        "20",
+        "3"
+      ]
+    },
+    {
+      "column": "Abil-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "3",
+        "66",
+        "51",
+        "139",
+        "5",
+        "21",
+        "109",
+        "57",
+        "28"
+      ]
+    },
+    {
+      "column": "AbilVal-4",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "100",
+        "75",
+        "-33",
+        "20",
+        "4",
+        "150",
+        "-100",
+        "40",
+        "35",
+        "3"
+      ]
+    },
+    {
+      "column": "Abil-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-5",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-6",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-7",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-8",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "Abil-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    },
+    {
+      "column": "AbilVal-9",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": []
+    }
+  ],
+  "rooms.TXT": [
+    {
+      "column": "Shop",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "111",
+        "112",
+        "147",
+        "148",
+        "94",
+        "93",
+        "76",
+        "88",
+        "89",
+        "26",
+        "25",
+        "153",
+        "161",
+        "177",
+        "176"
+      ]
+    },
+    {
+      "column": "NPC",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "206",
+        "789",
+        "126",
+        "617",
+        "127",
+        "616",
+        "269",
+        "723",
+        "619"
+      ]
+    },
+    {
+      "column": "CMD",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "997",
+        "9133",
+        "9135",
+        "701",
+        "2500",
+        "9115",
+        "305",
+        "2501",
+        "9228",
+        "5001"
+      ]
+    },
+    {
+      "column": "Spell",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "1040",
+        "753"
+      ]
+    },
+    {
+      "column": "Lair",
+      "interpretation": "lookup/flag/reference candidate; not a record count by itself",
+      "distinct_nonzero_sample": [
+        "(Max 2): 802,832,882,923,[29-13-13-2]",
+        "(Max 1): 781,190,[6-30-31-1]",
+        "(Max 1): 373,[24-1-1-1]",
+        "(Max 1): 53,54,55,56,58,123,124,125,752,753,754,[10-10-15-1]",
+        "(Max 3): 802,832,882,923,801,803,804,808,822,826,885,900,[29-13-14-3]",
+        "(Max 2): 107,[16-1-1-2]",
+        "(Max 3): 728,729,730,[32-5-7-3]",
+        "(Max 3): 264,[21-1-1-3]",
+        "(Max 1): 54,[10-11-11-1]",
+        "(Max 3): 614,615,[31-3-4-3]",
+        "(Max 2): 802,832,882,923,801,803,804,808,822,826,885,900,[29-13-14-2]",
+        "(Max 1): 14,[5-1-1-1]",
+        "(Max 2): 264,265,[21-1-2-2]"
+      ]
+    }
+  ],
+  "lairs.TXT": [],
+  "tbinfo.TXT": []
+}

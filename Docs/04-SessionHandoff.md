@@ -1,26 +1,40 @@
 # Session Handoff
 
-## Current focus
+## Current project state
 
-Transitioning MajorMud Reforged from PowerShell prototype layout to a cleaner standalone app platform.
+The project has moved from prototype scripting and import experimentation into the official application architecture phase.
 
-## Latest update
+## Latest completed update
 
-CodePatch 0002 - Clean Repository / App Platform Foundation
+**Code Update 0001 — Repository Reorganization & Core Foundation**
 
-## Important rules
+## What this update does
 
-- Updates run from their own extracted folder.
-- Root README.txt is updated every update.
-- Docs are updated every update.
-- Saves and ImportedDatabases are protected.
-- User should not need to install .NET SDK or developer tooling for official builds.
-- Future executables must live in their own folders under `Bin/Windows/<AppName>/`.
+- Creates the final streamlined top-level layout.
+- Moves obsolete prototype folders and old root scripts into `Legacy/`.
+- Establishes `Core/` as the shared foundation.
+- Creates app folders under `Apps/`.
+- Creates future executable folders under `Bin/Windows/`.
+- Replaces the root README with the current project status.
+- Adds `CHANGELOG.md` and `VERSION.md`.
 
-## Next recommended work
+## Current active source of truth
 
-Start replacing script-based behavior with standalone app components, beginning with shared Core contracts and server data loading.
+- Code source of truth: the current repository after this update is applied.
+- Data source of truth: `Data/`.
+- Imported data source/reference: `ImportedDatabases/`.
 
-## Caution
+## Next recommended step
 
-Do not claim executable files exist until they are actually produced and placed in their own executable folder.
+**Code Update 0002 — Core Data Loader & Server Bootstrap**
+
+Implement:
+- Core data manifest model.
+- Core JSON loading helpers.
+- Core validation result model.
+- Server bootstrap that loads `Data/` only.
+- Validation report output under `Reports/` or `Logs/`.
+
+## Important reminder
+
+Do not require the user to install the .NET SDK or developer tools for normal use. Until prebuilt executables exist, do not claim executables exist.
