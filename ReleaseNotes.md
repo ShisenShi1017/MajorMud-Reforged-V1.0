@@ -1,20 +1,22 @@
-# CodeUpdate-0020 - GitHub Actions Rebrand Path Repair
+# CodeUpdate-0023 - Fresh GitHub Actions Workflow with BAT Installer
 
-This repair update fixes the failed GitHub build after the source rebrand by making the workflow path validation explicit.
+This update repeats the fresh GitHub Actions workflow setup and adds the missing Windows batch installer.
 
-## Fixed
+## Added
 
-- Replaces the old workflow references to `Core/Source/MajorMud.Core/MajorMudCore.csproj` and `Apps/Source/MajorMud.*` projects.
-- Builds the rebranded project paths:
-  - `Core/Source/Reforged.Core/Reforged.Core.csproj`
-  - `Apps/Source/Reforged.Server/Reforged.Server.csproj`
-  - `Apps/Source/Reforged.Importer/Reforged.Importer.csproj`
-  - `Apps/Source/Reforged.Editor/Reforged.Editor.csproj`
-  - `Apps/Source/Reforged.Launcher/Reforged.Launcher.csproj`
-  - `Apps/Source/Reforged.Client/Reforged.Client.csproj`
-- Adds a workflow guard that fails early if an old `MajorMud.*` project path remains in `.github/workflows`.
-- Adds a visible manual-copy workflow at `GitHubActions/dotnet-build.yml` in case the hidden `.github` folder is missed during upload.
+- `.github/workflows/dotnet-build.yml`
+- `GitHubActions/dotnet-build.yml`
+- `Install-GitHub-Actions-Workflow.bat`
 
-## Note
+## How to use
 
-The GitHub Node.js 20 message is a GitHub-hosted runner/action warning, not the C# build failure. The failure shown by the old log came from the restore/build step using old project paths.
+1. Extract this update over your repository.
+2. Run `Install-GitHub-Actions-Workflow.bat` from the repository root.
+3. Commit and push to GitHub.
+4. Open the GitHub Actions tab and check `Reforged Cloud Build`.
+
+## Notes
+
+- The workflow uses only `Reforged.*` project paths.
+- The Node.js warning from GitHub-hosted actions is not treated as the project build failure.
+- No local .NET SDK is required for normal runtime use.

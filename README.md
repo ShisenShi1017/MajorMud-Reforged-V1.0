@@ -375,3 +375,13 @@ This repository includes `.github/workflows/dotnet-build.yml` so GitHub can rest
 ## CodeUpdate-0020 Summary
 
 CodeUpdate-0020 repairs GitHub Actions after the Reforged source rebrand. The workflow now restores and builds `Reforged.*` project paths and includes a guard that fails early if stale `MajorMud.*` project paths remain under `.github/workflows`.
+
+## GitHub Actions setup on Windows
+
+This repository includes a helper batch file for installing the cloud build workflow:
+
+```bat
+Install-GitHub-Actions-Workflow.bat
+```
+
+Run it from the repository root after extracting the update. It copies `GitHubActions\dotnet-build.yml` into `.github\workflows\dotnet-build.yml`. After committing and pushing, GitHub Actions will restore and build the `Reforged.*` source projects in the cloud.

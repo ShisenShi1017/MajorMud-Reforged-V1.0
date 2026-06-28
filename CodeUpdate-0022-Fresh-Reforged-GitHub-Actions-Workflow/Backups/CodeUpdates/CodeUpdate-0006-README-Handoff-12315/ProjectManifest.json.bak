@@ -1,0 +1,31 @@
+{
+  "projectName": "Reforged",
+  "projectVersion": "0.1.0",
+  "codeUpdate": "0005",
+  "databaseVersion": "0009",
+  "currentMilestone": "Milestone 1 - Core Library",
+  "layoutFrozen": true,
+  "requiresDotNetSdkToApply": false,
+  "executablesClaimed": [],
+  "activeFolders": [
+    "Apps",
+    "Core",
+    "Data",
+    "Docs",
+    "ImportedDatabases",
+    "Reports",
+    "Saves",
+    "Tools",
+    "Updates",
+    "Bin",
+    "Backups"
+  ],
+  "protectedFolders": [
+    "Data",
+    "ImportedDatabases",
+    "Saves",
+    ".git"
+  ],
+  "lastUpdated": "2026-06-27",
+  "notes": "Code Update 0005 continues Core source foundations without requiring SDK installation or claiming compiled executables."
+}

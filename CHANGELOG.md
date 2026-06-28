@@ -145,3 +145,11 @@
 - Added a workflow guard that detects stale `MajorMud.*` project paths under `.github/workflows`.
 - Added `GitHubActions/dotnet-build.yml` as a visible manual repair copy if the hidden `.github` folder is missed.
 - Preserved the no-SDK normal runtime policy and protected `Saves/` / `ImportedDatabases/`.
+
+## CodeUpdate-0023 - Fresh GitHub Actions Workflow with BAT Installer
+
+- Added `.github/workflows/dotnet-build.yml` for the rebranded `Reforged.*` project layout.
+- Added `GitHubActions/dotnet-build.yml` as a visible manual-copy source.
+- Added `Install-GitHub-Actions-Workflow.bat` to install the workflow into `.github\workflows` from Windows.
+- Kept build verification cloud-based through GitHub Actions; no local .NET SDK is required for normal runtime use.
+- Preserved protected runtime/user data folders from update packaging.

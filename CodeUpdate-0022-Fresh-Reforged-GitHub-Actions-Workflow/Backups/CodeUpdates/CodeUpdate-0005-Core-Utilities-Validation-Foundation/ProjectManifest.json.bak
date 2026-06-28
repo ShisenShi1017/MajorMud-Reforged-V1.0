@@ -1,0 +1,40 @@
+{
+  "project": "Reforged",
+  "projectVersion": "0.1.0",
+  "latestCodeUpdate": "0004",
+  "latestDatabaseVersion": "0009",
+  "currentMilestone": "Milestone 1 - Core Library",
+  "updateName": "Code Update 0004 - Core Library Foundation",
+  "protectedFolders": [
+    "Data",
+    "ImportedDatabases",
+    "Saves",
+    ".git"
+  ],
+  "requiredRootFolders": [
+    "Apps",
+    "Backups",
+    "Bin",
+    "Core",
+    "Data",
+    "Docs",
+    "ImportedDatabases",
+    "Reports",
+    "Saves",
+    "Tools",
+    "Updates"
+  ],
+  "futureExecutableFolders": [
+    "Bin/Windows/Launcher",
+    "Bin/Windows/Server",
+    "Bin/Windows/Editor",
+    "Bin/Windows/Importer",
+    "Bin/Windows/Client",
+    "Bin/Android/Client"
+  ],
+  "notes": [
+    "No executable is included in this update.",
+    "No .NET SDK is required to apply this update.",
+    "Core contracts are source/scaffold for future compiled apps."
+  ]
+}

@@ -168,3 +168,10 @@ If you are a new ChatGPT window, do not ask the user to restate project history.
 ## CodeUpdate-0020 Note
 
 GitHub Actions must use `.github/workflows/dotnet-build.yml` with `Reforged.*` project paths. If GitHub still displays `MajorMud.*` paths, replace the workflow file with `GitHubActions/dotnet-build.yml` and commit it.
+
+## CodeUpdate-0023 Handoff
+
+- Latest update adds a fresh GitHub Actions workflow for the current `Reforged.*` layout.
+- Includes `Install-GitHub-Actions-Workflow.bat` at repository root.
+- The batch file copies `GitHubActions/dotnet-build.yml` to `.github/workflows/dotnet-build.yml`.
+- Continue to exclude protected user/runtime data directories from update packages unless explicitly requested.

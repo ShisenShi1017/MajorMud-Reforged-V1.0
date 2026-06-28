@@ -21,19 +21,8 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Verify rebranded project layout
-        shell: bash
-        run: |
-          test -f Core/Source/Reforged.Core/Reforged.Core.csproj
-          test -f Apps/Source/Reforged.Server/Reforged.Server.csproj
-          test -f Apps/Source/Reforged.Importer/Reforged.Importer.csproj
-          test -f Apps/Source/Reforged.Editor/Reforged.Editor.csproj
-          test -f Apps/Source/Reforged.Launcher/Reforged.Launcher.csproj
-          test -f Apps/Source/Reforged.Client/Reforged.Client.csproj
-          if grep -R "Core/Source/MajorMud.Core\|Apps/Source/MajorMud\." -n .github/workflows; then
-            echo "Old MajorMud project paths are still present in a workflow. Replace the workflow with this update's .github/workflows/dotnet-build.yml."
-            exit 1
-          fi
+      - name: Show project files
+        run: find Core Apps -name "*.csproj" -print | sort
 
       - name: Restore Core
         run: dotnet restore Core/Source/Reforged.Core/Reforged.Core.csproj

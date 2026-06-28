@@ -1,0 +1,50 @@
+{
+  "project": "Reforged",
+  "currentCodeUpdate": "CodeUpdate-0006",
+  "currentCodeUpdateName": "README / New Chat Handoff",
+  "currentDatabaseVersion": "DatabaseVersion-0009",
+  "activeMilestone": "Milestone 1 \u2014 Core Framework",
+  "repositoryLayout": "Frozen",
+  "sourceOfTruth": "Latest uploaded/current repository snapshot until replaced by newer user-provided repository ZIP or verified GitHub baseline",
+  "runtimeDataSource": "Data/",
+  "referenceOnlySources": [
+    "ImportedDatabases/",
+    "original .DAT files",
+    "CSV exports",
+    "companion client .mp files"
+  ],
+  "protectedFolders": [
+    "Saves/",
+    "ImportedDatabases/",
+    ".git/"
+  ],
+  "requiredTopLevelFolders": [
+    "Apps/",
+    "Backups/",
+    "Bin/",
+    "Core/",
+    "Data/",
+    "Docs/",
+    "ImportedDatabases/",
+    "Reports/",
+    "Saves/",
+    "Tools/",
+    "Updates/"
+  ],
+  "executableFolders": [
+    "Bin/Windows/Launcher/",
+    "Bin/Windows/Server/",
+    "Bin/Windows/Editor/",
+    "Bin/Windows/Importer/",
+    "Bin/Windows/Client/",
+    "Bin/Android/Client/"
+  ],
+  "updateRules": [
+    "Every update runs from its own extracted folder",
+    "Every update includes an Apply-*.bat",
+    "Every update includes UpdateManifest.json or equivalent manifest",
+    "Every update updates README.md, CHANGELOG.md, VERSION.md, ProjectManifest.json, docs, and reports",
+    "Do not overwrite Saves or ImportedDatabases unless explicitly approved",
+    "Do not claim an update ZIP exists until it is generated and verified"
+  ]
+}

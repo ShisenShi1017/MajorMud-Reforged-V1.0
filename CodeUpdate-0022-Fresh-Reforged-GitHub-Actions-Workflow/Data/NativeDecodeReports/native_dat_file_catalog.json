@@ -1,0 +1,549 @@
+[
+  {
+    "file": "WCCACMSR.DAT",
+    "size": 6144,
+    "sha256": "ce9790c179034788f95366c659ca21931461acfc4c89462e2a3bba58dbb2de14",
+    "nonZeroBytes": 36,
+    "asciiStringCount": 0,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 48
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 24
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 12
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 6
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 3
+      }
+    ],
+    "sampleStrings": []
+  },
+  {
+    "file": "WCCACTS.DAT",
+    "size": 65536,
+    "sha256": "baf14617411fd3e464a424f3a744baa6f42651d0f3d2b5600657d77c58b1ae86",
+    "nonZeroBytes": 50342,
+    "asciiStringCount": 1309,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 512
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 256
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 128
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 64
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 32
+      },
+      {
+        "blockSize": 4096,
+        "blockCount": 16
+      }
+    ],
+    "sampleStrings": [
+      "nudge",
+      "pinch",
+      "pout",
+      "shake",
+      "shrug",
+      "sigh",
+      "slap",
+      "smack",
+      "smile",
+      "smirk"
+    ]
+  },
+  {
+    "file": "WCCBANKS.DAT",
+    "size": 1536,
+    "sha256": "58b3fa431854beb8bb5f921d47244c7008bbda46617da9895b2375cec6ab03ff",
+    "nonZeroBytes": 40,
+    "asciiStringCount": 0,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 12
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 6
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 3
+      }
+    ],
+    "sampleStrings": []
+  },
+  {
+    "file": "WCCCLASS.DAT",
+    "size": 6144,
+    "sha256": "8cc91e569b45c8b238b3ce820f00aef77aeb33bbdf7adfdc035fc732474d2fb4",
+    "nonZeroBytes": 924,
+    "asciiStringCount": 30,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 48
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 24
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 12
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 6
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 3
+      }
+    ],
+    "sampleStrings": [
+      "Warrior",
+      "Witchunter",
+      "Paladin",
+      "Cleric",
+      "Priest",
+      "Missionary",
+      "Ninja",
+      "Thief",
+      "Bard",
+      "Gypsy"
+    ]
+  },
+  {
+    "file": "WCCGANGS.DAT",
+    "size": 2048,
+    "sha256": "19ab7942a50ede6797bb3e263087f2f0bb5f205414103db977f65177b6b9c97f",
+    "nonZeroBytes": 50,
+    "asciiStringCount": 0,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 16
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 8
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 4
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 2
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 1
+      }
+    ],
+    "sampleStrings": []
+  },
+  {
+    "file": "WCCITEMS.DAT",
+    "size": 1404928,
+    "sha256": "22d54b7aab28e1db5fd5fca9da3aa7f5e9867f671239ee22a306f05e0c4f1e62",
+    "nonZeroBytes": 494853,
+    "asciiStringCount": 11627,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 10976
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 5488
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 2744
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 1372
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 686
+      },
+      {
+        "blockSize": 4096,
+        "blockCount": 343
+      }
+    ],
+    "sampleStrings": [
+      "hard leather helm",
+      "This is a rigid leather helm studded with iron rivets. It is",
+      "much heavier than a regular leather helm, but the iron studs",
+      "deflect blows.",
+      "S1N,",
+      "Exit",
+      "N,Fr",
+      "soft leather cap",
+      "This is a leather helm with ear and nose-guards. It is light",
+      "and flexible, and provides decent protection."
+    ]
+  },
+  {
+    "file": "WCCKNMSR.DAT",
+    "size": 561152,
+    "sha256": "b33f96d837052006a29e708511a8af8022e56c992b5df3483e02e5dcf3f3149c",
+    "nonZeroBytes": 284404,
+    "asciiStringCount": 5656,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 4384
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 2192
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 1096
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 548
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 274
+      },
+      {
+        "blockSize": 4096,
+        "blockCount": 137
+      }
+    ],
+    "sampleStrings": [
+      "giant rat",
+      "This appears to be a mutant rat, grown to dog's size by some unknown",
+      "force. Its beady red eyes peer at you along the length of its dirty",
+      "muzzle, and it flicks its hairless pink tail nervously. The giant rat",
+      "has sharp, yellow teeth that could inflict sizeable wounds.",
+      "lashworm",
+      "This is an ugly, mottled gray worm, about three feet in length. It",
+      "appears to be eyeless, and weaves its head about in the air as if",
+      "searching for something. This hideous beast has a mouth full of",
+      "extremely sharp teeth, and is known to strike with lightning speed."
+    ]
+  },
+  {
+    "file": "WCCMP001.DAT",
+    "size": 30973440,
+    "sha256": "17442fe74d608511b31cf22ca7f0924310acfbecdef49984a9e8cbd4209dc3c9",
+    "nonZeroBytes": 8590475,
+    "asciiStringCount": 169130,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 241980
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 120990
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 60495
+      }
+    ],
+    "sampleStrings": [
+      "Town Gates",
+      "You are before the massive town gates of Silvermere. They stand over",
+      "fifteen feet high, and are made of three foot thick, steel-banded",
+      "hardwood. Guard towers flank the gates on either side, and you can see",
+      "the town militia patrolling overtop on the walls. Estwall street runs",
+      "to the north and south, following the city wall. To the west, Silver",
+      "street runs to the heart of the city, ending at the town square.",
+      "WCCMAP01.ANS",
+      "Lucky Strike Casino",
+      "Decadance flows through the room like an over filled wine goblet. Fine"
+    ]
+  },
+  {
+    "file": "WCCMSG.DAT",
+    "size": 870912,
+    "sha256": "37546e9bdc91ffb006c761cdd557d3114f776c152e10b3ef53303b4826bc0f0c",
+    "nonZeroBytes": 720284,
+    "asciiStringCount": 16363,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 6804
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 3402
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 1701
+      }
+    ],
+    "sampleStrings": [
+      "You fire a %s at %s for %d damage!",
+      "%s fires a %s at you for %d damage!",
+      "%s fires a %s at %s for %s damage!",
+      "You cast %s!",
+      "%s casts %s!",
+      "You fire an %s at %s for %d damage!",
+      "%s throws an %s at you for %d damage!",
+      "%s throws an %s at %s!",
+      "You cast %s, and a shimmering field forms about you.",
+      "%s casts %s on %s!"
+    ]
+  },
+  {
+    "file": "WCCRACE.DAT",
+    "size": 3072,
+    "sha256": "1c227140da2fa8e6863ce81a90d061178aacc19bfa683e475728918ccbafed4e",
+    "nonZeroBytes": 800,
+    "asciiStringCount": 25,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 24
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 12
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 6
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 3
+      }
+    ],
+    "sampleStrings": [
+      "Half-Ogre",
+      "Human",
+      "Dwarf",
+      "Gnome",
+      "Halfling",
+      "Half-Elf",
+      "Dark-Elf",
+      "Half-Orc",
+      "Goblin",
+      "Kang"
+    ]
+  },
+  {
+    "file": "WCCSHOPS.DAT",
+    "size": 78336,
+    "sha256": "1d5d8bd676717b1ffb8e10adf41123cbb3001c1d6750ef297ebffc56b46ed012",
+    "nonZeroBytes": 35031,
+    "asciiStringCount": 762,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 612
+      },
+      {
+        "blockSize": 153,
+        "blockCount": 512
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 306
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 153
+      }
+    ],
+    "sampleStrings": [
+      "Tavern",
+      "dddddd",
+      "General Store",
+      "Temple",
+      "Sword Shop",
+      "dddd#<((((",
+      "Armour Shop, Torso/Legs",
+      "######",
+      "The Bank",
+      "Mage Spell Shop"
+    ]
+  },
+  {
+    "file": "WCCSPELS.DAT",
+    "size": 256512,
+    "sha256": "131d9221f12e4ff09a2be53c5456c504ecf24a15a526a12363efec4d0e21ebd7",
+    "nonZeroBytes": 151287,
+    "asciiStringCount": 5425,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 2004
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 1002
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 501
+      }
+    ],
+    "sampleStrings": [
+      "magic missile",
+      "This spell shoots a shimmering dart of pure mana",
+      "at the target, causing minor damage.",
+      "mmis",
+      "illuminate",
+      "Casting this spell surrounds you with a bright",
+      "glow, illuminating the area.",
+      "illu",
+      "ethereal shield",
+      "This spell creates a barrier around the target,"
+    ]
+  },
+  {
+    "file": "WCCTEXT.DAT",
+    "size": 1073152,
+    "sha256": "de1232049704ccbea60421ad48263b7f198de267feaafa8507f6d4e706bcd9cf",
+    "nonZeroBytes": 939199,
+    "asciiStringCount": 25721,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 8384
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 4192
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 2096
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 1048
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 524
+      },
+      {
+        "blockSize": 4096,
+        "blockCount": 262
+      }
+    ],
+    "sampleStrings": [
+      "NNN@*",
+      "N@@s",
+      "L@i@",
+      "N@@i@",
+      "@detailsL@",
+      "NNN*",
+      "@@@*",
+      "N@@m",
+      "N@@b",
+      "N@@t"
+    ]
+  },
+  {
+    "file": "WCCUPDAT.DAT",
+    "size": 58357760,
+    "sha256": "f7e4cf0a261ff38134dd7df40502ae8c46b55651056e859aaa3853583c43b235",
+    "nonZeroBytes": 14077128,
+    "asciiStringCount": 319563,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 455920
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 227960
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 113980
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 56990
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 28495
+      }
+    ],
+    "sampleStrings": [
+      "You fire a %s at %s for %d damage!",
+      "%s fires a %s at you for %d damage!",
+      "%s fires a %s at %s for %s damage!",
+      "You cast %s!",
+      "%s casts %s!",
+      "You fire an %s at %s for %d damage!",
+      "%s throws an %s at you for %d damage!",
+      "%s throws an %s at %s!",
+      "You cast %s, and a shimmering field forms about you.",
+      "%s casts %s on %s!"
+    ]
+  },
+  {
+    "file": "WCCUSERS.DAT",
+    "size": 10240,
+    "sha256": "88d6a7002a20ed1b228ec8ad8b6bbf0731a33c2ce6a76b5f2656971f33c7d73d",
+    "nonZeroBytes": 67,
+    "asciiStringCount": 0,
+    "candidateBlockSizes": [
+      {
+        "blockSize": 128,
+        "blockCount": 80
+      },
+      {
+        "blockSize": 256,
+        "blockCount": 40
+      },
+      {
+        "blockSize": 512,
+        "blockCount": 20
+      },
+      {
+        "blockSize": 1024,
+        "blockCount": 10
+      },
+      {
+        "blockSize": 2048,
+        "blockCount": 5
+      }
+    ],
+    "sampleStrings": []
+  }
+]
