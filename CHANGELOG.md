@@ -1,17 +1,14 @@
 # Changelog
 
-## CodeUpdate-0006 — README / New Chat Handoff
+## CodeUpdate-0007 - Core Contracts Foundation
 
-- Replaced the root `README.md` with a new authoritative handoff README for future ChatGPT sessions and developers.
-- Updated `VERSION.md` to identify the current milestone as Milestone 1 — Core Framework.
-- Updated `ProjectManifest.json` with the current project rules, protected folders, and update expectations.
-- Added release notes and handoff documentation for CodeUpdate-0006.
-- Reinforced that future update ZIPs must be physically generated and verified before they are announced.
-- Reinforced that `Data/` is the runtime source of truth and `ImportedDatabases/` is reference-only after conversion.
-- Reinforced that repository reorganization is complete and future work should focus on Core functionality.
-
-## Previous history
-
-Earlier Database Versions established editable `Data/`, CSV import baselines, native DAT cataloging, MegaMud MP knowledge integration, and a server-ready database baseline.
-
-Earlier Code Updates reorganized the repository, deduplicated redundant files, froze the layout, and prepared the project for Core and server development.
+- Rebuilt Core Update 0007 from scratch.
+- Added Core event contracts, publisher/subscriber interfaces, and data change event model.
+- Added service registry contracts.
+- Added validation pipeline interface and dependency-light implementation shell.
+- Added repository interfaces for editable data and world data access.
+- Added provenance tracking contracts.
+- Added runtime state model and server-ready world model interface.
+- Added runtime execution policy: normal project runtime must not require the .NET SDK.
+- Added update execution policy: update package must run from its own extracted folder and apply into the main project folder.
+- Preserves `Saves/` and `ImportedDatabases/`; neither folder is included in this package.

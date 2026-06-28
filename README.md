@@ -288,3 +288,11 @@ This is a professional software project with versioned Code Updates and Database
 Accuracy matters more than speed.
 
 Never overstate what has been implemented.
+
+## CodeUpdate-0007 - Core Contracts Foundation
+
+Milestone 1 continues with Core contracts for events, services, validation pipelines, repositories, provenance, runtime state, and world model interfaces.
+
+Runtime rule: MajorMud Reforged must not require the .NET SDK to run. Normal users must launch compiled executables or runtime-ready artifacts from `Bin/`; SDK launch/build commands are not valid runtime paths.
+
+Update rule: each Code Update must be executable from its own extracted folder and apply into the main project folder through its included `Apply-*.bat` script.
