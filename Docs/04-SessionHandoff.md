@@ -1,54 +1,22 @@
-# MajorMud Reforged Session Handoff
-
-Last Updated: 2026-06-27
+# Session Handoff
 
 ## Current Focus
 
-Project foundation before server development.
+MajorMud Reforged data independence and native runtime import foundation.
 
-## Current Project Direction
+## Completed in Database Version 0003
 
-MajorMud Reforged is a standalone MajorMud server project with editor tools and future client work similar to MegaMud 2.0.
+- Added native runtime `.DAT` files under `ImportedDatabases/NativeRuntime/`.
+- Added source file catalog with size, SHA-256, and first-byte signatures.
+- Added importer/catalog tooling under `Tools/Importer/`.
+- Updated database format documentation.
+- Updated chat/development rules.
+- Added database audit and release notes.
 
-## Current Patch
+## Important Status
 
-Patch 0001: Documentation Foundation.
+The `.DAT` files are archived and cataloged, but not yet fully decoded. Do not claim native decoding is complete until a future database version maps records/fields and verifies them.
 
-## Last Completed
+## Next Recommended Work
 
-- Created the project documentation system.
-- Established project vision, roadmap, coding standards, suggestions, decision log, and handoff files.
-
-## Next Recommended Task
-
-Inspect the existing server files and determine the first targeted server patch.
-
-Recommended starting files/areas to inspect:
-
-- `Server.ps1`
-- `Client.ps1`
-- `Source/`
-- `SharedData/`
-- `Data/`
-- Existing docs/changelogs under `Docs/`
-
-## Protected Areas
-
-Do not overwrite or migrate without explicit user approval:
-
-- `Saves/`
-- `ImportedDatabases/`
-- Save formats.
-- Imported database files.
-
-## Notes For Future ChatGPT Sessions
-
-Before implementing any feature:
-
-1. Inspect the current uploaded ZIP or repository.
-2. Read this handoff file.
-3. Read `00-ProjectVision.md`.
-4. Read `06-CodingStandards.md`.
-5. Make only a targeted patch.
-6. Include an `Apply-*.bat` that runs from the extracted patch folder.
-7. Update docs, release notes, and patch history.
+Create Database Version 0004 to start native decoding by file type, beginning with smaller structured files such as `WCCRACE.DAT`, `WCCCLASS.DAT`, `WCCBANKS.DAT`, or `WCCGANGS.DAT`, then compare decoded results against the CSV exports.
