@@ -1,6 +1,6 @@
-using MajorMud.Reforged.Core.Models;
+using Reforged.Core.Models;
 
-namespace MajorMud.Reforged.Core.World;
+namespace Reforged.Core.World;
 
 public interface IWorldModel
 {

@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Validation;
+namespace Reforged.Core.Validation;
 
 /// <summary>
 /// Reusable validator for required string properties.

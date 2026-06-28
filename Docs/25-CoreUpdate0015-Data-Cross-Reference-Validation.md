@@ -6,7 +6,7 @@ Continue Milestone 1 Core Framework work by expanding Data JSON validation from 
 
 ## Added
 
-- `Core/Source/MajorMud.Core/Health/DataCrossReferenceHealthCheck.cs`
+- `Core/Source/Reforged.Core/Health/DataCrossReferenceHealthCheck.cs`
   - Indexes current room, item, monster, class, race, shop, quest, loot-table, and world room records.
   - Validates world room exits against known room IDs.
   - Validates world room item and monster references against known item and monster IDs.

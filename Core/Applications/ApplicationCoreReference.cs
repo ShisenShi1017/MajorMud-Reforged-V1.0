@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Applications;
+namespace Reforged.Core.Applications;
 
 /// <summary>
 /// Machine-readable declaration that an application source project references the Core project.

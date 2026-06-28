@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Logging;
+namespace Reforged.Core.Logging;
 
 /// <summary>
 /// Simple dependency-free file logger source for future compiled apps.

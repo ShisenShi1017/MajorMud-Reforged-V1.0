@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Health;
+namespace Reforged.Core.Health;
 
 /// <summary>
 /// Performs lightweight repository checks shared by the Launcher, update scripts, editor, importer, and server startup validation.

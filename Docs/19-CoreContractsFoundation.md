@@ -14,7 +14,7 @@ This update continues Milestone 1 by adding server-ready Core contracts without 
 
 ## Runtime rule
 
-MajorMud Reforged must run from compiled executables or runtime-ready artifacts in `Bin/`. The normal runtime path must never depend on the .NET SDK, `SDK launch command`, or `SDK build command`.
+Reforged must run from compiled executables or runtime-ready artifacts in `Bin/`. The normal runtime path must never depend on the .NET SDK, `SDK launch command`, or `SDK build command`.
 
 ## Update execution rule
 

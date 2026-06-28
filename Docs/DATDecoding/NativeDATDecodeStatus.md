@@ -1,6 +1,6 @@
 # Native DAT Decode Status
 
-This document tracks the native MajorMud `.DAT` decoding effort.
+This document tracks the native Reforged `.DAT` decoding effort.
 
 ## Standing Rule
 

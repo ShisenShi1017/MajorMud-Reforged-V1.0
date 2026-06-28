@@ -1,4 +1,4 @@
-# MajorMud Reforged Decision Log
+# Reforged Decision Log
 
 This file records important design decisions and the reasoning behind them.
 

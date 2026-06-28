@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Repositories;
+namespace Reforged.Core.Repositories;
 
 /// <summary>
 /// Describes the repositories available to an application without tying Core to application projects.

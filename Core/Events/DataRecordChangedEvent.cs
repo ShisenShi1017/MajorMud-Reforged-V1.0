@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Events;
+namespace Reforged.Core.Events;
 
 public sealed class DataRecordChangedEvent : ReforgedEventBase
 {

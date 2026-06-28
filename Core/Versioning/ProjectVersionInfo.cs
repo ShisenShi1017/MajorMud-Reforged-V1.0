@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Versioning;
+namespace Reforged.Core.Versioning;
 
 public sealed class ProjectVersionInfo
 {

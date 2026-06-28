@@ -11,7 +11,7 @@ Milestone 1 requires that shared data models are not duplicated across applicati
 - `Core/Health/DuplicateModelEnforcer.cs`
 - `Core/Health/DuplicateModelEnforcementIssue.cs`
 - `Core/Health/DuplicateModelEnforcementReport.cs`
-- `Core/Source/MajorMud.Core/Health/DuplicateModelEnforcementHealthCheck.cs`
+- `Core/Source/Reforged.Core/Health/DuplicateModelEnforcementHealthCheck.cs`
 
 ## Enforcement Behavior
 

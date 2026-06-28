@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Configuration;
+namespace Reforged.Core.Configuration;
 
 /// <summary>
 /// Represents a single normalized configuration value and its origin.

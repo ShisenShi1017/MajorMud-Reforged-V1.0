@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Versioning;
+namespace Reforged.Core.Versioning;
 
 /// <summary>
 /// Centralized version policy helper. Applications read version state through Core instead of parsing files differently.
@@ -17,5 +17,5 @@ public sealed class VersionManager
         return int.TryParse(Current.CodeUpdate, out var current) && current >= requiredCodeUpdate;
     }
 
-    public string DisplayName => $"MajorMud Reforged {Current.ProjectVersion} / CodeUpdate-{Current.CodeUpdate} / DatabaseVersion-{Current.DatabaseVersion}";
+    public string DisplayName => $"Reforged {Current.ProjectVersion} / CodeUpdate-{Current.CodeUpdate} / DatabaseVersion-{Current.DatabaseVersion}";
 }

@@ -4,7 +4,7 @@
 
 `ImportedDatabases/` contains original/reference data. `Data/` contains Reforged's editable standalone data.
 
-Database Version 0003 adds `ImportedDatabases/NativeRuntime/`, which contains the native MajorMud runtime `.DAT` files exactly as supplied. These files are archived so the native format can be decoded and verified without Access/OLEDB.
+Database Version 0003 adds `ImportedDatabases/NativeRuntime/`, which contains the native legacy runtime `.DAT` files exactly as supplied. These files are archived so the native format can be decoded and verified without Access/OLEDB.
 
 ## Native Runtime Source Files
 

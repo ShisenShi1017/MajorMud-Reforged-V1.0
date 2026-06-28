@@ -1,11 +1,11 @@
-namespace MajorMud.Reforged.Core.Manifest;
+namespace Reforged.Core.Manifest;
 
 /// <summary>
 /// Machine-readable project state loaded from ProjectManifest.json.
 /// </summary>
 public sealed class ProjectManifest
 {
-    public string Project { get; set; } = "MajorMud Reforged";
+    public string Project { get; set; } = "Reforged";
     public string ProjectVersion { get; set; } = "0.1.0";
     public string CodeUpdate { get; set; } = "0008";
     public string DatabaseVersion { get; set; } = string.Empty;

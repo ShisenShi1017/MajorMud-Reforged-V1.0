@@ -12,7 +12,7 @@ Use GitHub Actions as the official build verification path:
 
 1. Push the repository to GitHub.
 2. Open the repository's **Actions** tab.
-3. Run or review **MajorMud Reforged Cloud Build**.
+3. Run or review **Reforged Cloud Build**.
 4. Treat the update as build-verified only after that workflow succeeds.
 
 This keeps the project private if your GitHub repository is private and avoids requiring a local .NET SDK on your computer.

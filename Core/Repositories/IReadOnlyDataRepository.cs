@@ -1,6 +1,6 @@
-using MajorMud.Reforged.Core.Models;
+using Reforged.Core.Models;
 
-namespace MajorMud.Reforged.Core.Repositories;
+namespace Reforged.Core.Repositories;
 
 /// <summary>
 /// Read-only repository view used by server startup, validation, editor previews, and import audits.

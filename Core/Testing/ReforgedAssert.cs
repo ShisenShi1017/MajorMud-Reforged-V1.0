@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Testing;
+namespace Reforged.Core.Testing;
 
 /// <summary>
 /// Minimal dependency-free assertion helpers for early Core tests.

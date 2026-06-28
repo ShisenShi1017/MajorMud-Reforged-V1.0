@@ -1,6 +1,6 @@
-# MajorMud Reforged Core
+# Reforged Core
 
-Core is the shared foundation for every MajorMud Reforged application.
+Core is the shared foundation for every Reforged application.
 
 Core owns cross-application contracts and helpers only. Server, Importer, Editor, Launcher, and Client may reference Core, but Core must never reference those applications.
 

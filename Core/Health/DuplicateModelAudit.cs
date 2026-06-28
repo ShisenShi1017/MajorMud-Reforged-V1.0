@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Health;
+namespace Reforged.Core.Health;
 
 /// <summary>
 /// Records duplicate model findings so they can be removed before Milestone 1 is closed.

@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Events;
+namespace Reforged.Core.Events;
 
 /// <summary>
 /// Marker contract for events raised by server, editor, importer, launcher, and validation systems.

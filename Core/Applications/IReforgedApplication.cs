@@ -1,7 +1,7 @@
-namespace MajorMud.Reforged.Core.Applications;
+namespace Reforged.Core.Applications;
 
 /// <summary>
-/// Common contract implemented by all top-level MajorMud Reforged applications.
+/// Common contract implemented by all top-level Reforged applications.
 /// This keeps application bootstrapping consistent without making Core depend on any app project.
 /// </summary>
 public interface IReforgedApplication

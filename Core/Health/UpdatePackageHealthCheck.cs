@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Health;
+namespace Reforged.Core.Health;
 
 /// <summary>
 /// Validates the required Code Update / Database Version package layout.

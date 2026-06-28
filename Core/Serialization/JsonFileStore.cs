@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Serialization;
+namespace Reforged.Core.Serialization;
 
 /// <summary>
 /// Shared JSON file helper so applications do not duplicate file serialization behavior.

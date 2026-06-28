@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Logging;
+namespace Reforged.Core.Logging;
 
 /// <summary>
 /// In-memory log sink useful for tests, startup diagnostics, editor display, and launcher health reports.

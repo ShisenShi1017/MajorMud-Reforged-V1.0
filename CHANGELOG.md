@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0019 - Reforged Source Rebrand
+
+- Continued Milestone 1 Core Framework work after GitHub verified CodeUpdate-0018.
+- Rebranded source namespaces from the old source namespace patterns to `Reforged.*`.
+- Renamed source project folders and project files to `Reforged.Core`, `Reforged.Server`, `Reforged.Importer`, `Reforged.Editor`, `Reforged.Launcher`, and `Reforged.Client`.
+- Updated assembly names and root namespaces to the new `Reforged.*` names.
+- Updated GitHub Actions cloud build paths to restore/build the renamed projects.
+- Preserved the CodeUpdate-0018 Core application contract compile fix.
+- Removed remaining old project-name text references from repository text content included in this update.
+- Preserved no-local-SDK runtime policy, one-folder update ZIP policy, and protection of `Saves/` and `ImportedDatabases/`.
+
 ## CodeUpdate-0017 - GitHub Actions Runtime Verification
 
 - Continued Milestone 1 Core Framework work.
@@ -46,7 +57,7 @@
 - Added dependency-free duplicate model enforcement for application source.
 - Added duplicate model enforcement issue/report models.
 - Integrated duplicate model enforcement into the repository health checker.
-- Added source-level duplicate model enforcement health check under `Core/Source/MajorMud.Core/Health/`.
+- Added source-level duplicate model enforcement health check under `Core/Source/Reforged.Core/Health/`.
 - Updated `AI_CONTEXT.md` with current handoff table, checklist, and next recommended work.
 - Updated `README.md`, `VERSION.md`, `ProjectManifest.json`, docs, and verification report.
 - Preserved no-SDK runtime policy, one-folder update ZIP policy, and protection of `Saves/` and `ImportedDatabases/`.
@@ -127,12 +138,10 @@
 - Reinforced the one-top-level-folder update ZIP rule in project documentation.
 - Preserved the no-.NET-SDK runtime requirement.
 
+## CodeUpdate-0020 - GitHub Actions Rebrand Path Repair
 
-## CodeUpdate-0018 - GitHub Actions Core Build Repair
-
-- Fixed the GitHub Actions build failure reported after CodeUpdate-0017.
-- Updated `Core/Source/MajorMud.Core/MajorMudCore.csproj` so the Core application identity/base-shell contracts under `Core/Applications/` are compiled into `MajorMud.Core`.
-- Preserved the existing app `ProjectReference` wiring from Server, Importer, Editor, Launcher, and Client into Core.
-- Added/retained `.github/workflows/dotnet-build.yml` as the cloud build verification path for private GitHub repositories.
-- Documented that the GitHub Node.js 20 warning is separate from the C# build failure and is not caused by MajorMud source code.
-- Preserved no-SDK normal runtime policy and protected `Saves/` / `ImportedDatabases/`.
+- Repaired the GitHub Actions workflow after the Reforged source rebrand.
+- Replaced old `MajorMud.*` restore/build paths with `Reforged.*` project paths.
+- Added a workflow guard that detects stale `MajorMud.*` project paths under `.github/workflows`.
+- Added `GitHubActions/dotnet-build.yml` as a visible manual repair copy if the hidden `.github` folder is missed.
+- Preserved the no-SDK normal runtime policy and protected `Saves/` / `ImportedDatabases/`.

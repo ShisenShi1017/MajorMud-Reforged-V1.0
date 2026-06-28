@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MajorMud Reforged DAT Deep Probe v0007
+Reforged DAT Deep Probe v0007
 Runs without Access/OLEDB. Produces catalogs and CSV-name offset reports.
 This is an analysis tool; it does not modify source .DAT files.
 """

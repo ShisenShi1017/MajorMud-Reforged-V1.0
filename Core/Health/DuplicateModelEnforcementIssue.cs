@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Health;
+namespace Reforged.Core.Health;
 
 /// <summary>
 /// Represents a concrete duplicate-model policy violation found outside Core.

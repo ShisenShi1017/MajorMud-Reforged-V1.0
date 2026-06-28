@@ -1,6 +1,6 @@
 # Runtime Execution Policy
 
-MajorMud Reforged must not require the .NET SDK to run.
+Reforged must not require the .NET SDK to run.
 
 Rules:
 

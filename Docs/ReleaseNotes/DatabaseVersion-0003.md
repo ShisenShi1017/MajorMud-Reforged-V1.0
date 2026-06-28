@@ -10,7 +10,7 @@ Database Version
 
 ## Summary
 
-Adds the uploaded native MajorMud runtime `.DAT` source set to the project as reference/import data and adds importer/catalog tooling and documentation.
+Adds the uploaded native legacy runtime `.DAT` source set to the project as reference/import data and adds importer/catalog tooling and documentation.
 
 ## Added
 

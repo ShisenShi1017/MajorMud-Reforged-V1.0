@@ -1,7 +1,7 @@
-using MajorMud.Reforged.Core.Models;
-using MajorMud.Reforged.Core.Validation;
+using Reforged.Core.Models;
+using Reforged.Core.Validation;
 
-namespace MajorMud.Reforged.Core.Repositories;
+namespace Reforged.Core.Repositories;
 
 /// <summary>
 /// Dependency-free repository useful for tests, importer staging, editor previews, and server bootstrapping.

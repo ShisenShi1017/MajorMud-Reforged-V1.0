@@ -10,4 +10,4 @@ Imported the provided CSV tables into editable Reforged data and verified zero d
 
 ## Database Version 0003
 
-Archived and cataloged the complete uploaded native MajorMud runtime `.DAT` set. Added permanent importer tooling and audit documentation. This version does not claim full `.DAT` decoding yet; it prepares the no-Access import foundation.
+Archived and cataloged the complete uploaded native legacy runtime `.DAT` set. Added permanent importer tooling and audit documentation. This version does not claim full `.DAT` decoding yet; it prepares the no-Access import foundation.

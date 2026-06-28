@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Validation;
+namespace Reforged.Core.Validation;
 
 public static class ValidationExtensions
 {

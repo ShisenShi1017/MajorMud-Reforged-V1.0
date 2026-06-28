@@ -6,7 +6,7 @@ Starts Milestone 1 by adding the first shared Core source contracts and document
 
 ## Added
 
-- `Core/Source/MajorMud.Core/`
+- `Core/Source/Reforged.Core/`
 - Project versioning contract
 - Path/configuration contract
 - Logging contract

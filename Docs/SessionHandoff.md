@@ -29,7 +29,7 @@ Continue implementing real Core source files and contracts. Do not restart repos
 
 ## Project vision summary
 
-MajorMud Reforged is a standalone MajorMud platform with:
+Reforged is a standalone Reforged platform with:
 
 - Server
 - Core library

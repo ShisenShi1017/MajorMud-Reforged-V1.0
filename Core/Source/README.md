@@ -1,6 +1,6 @@
 # Core Source
 
-This folder contains the first shared source files for the MajorMud Reforged Core library.
+This folder contains the first shared source files for the Reforged Core library.
 
 These files are intentionally lightweight and dependency-free. They define the contracts that future compiled apps will use.
 

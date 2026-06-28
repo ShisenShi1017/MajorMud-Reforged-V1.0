@@ -1,6 +1,6 @@
 # GitHub Actions Build Verification
 
-MajorMud Reforged uses GitHub Actions as the recommended build verification path so the user does not need to install the .NET SDK locally.
+Reforged uses GitHub Actions as the recommended build verification path so the user does not need to install the .NET SDK locally.
 
 ## Repository visibility
 
@@ -14,19 +14,19 @@ The workflow file is:
 
 It restores and builds:
 
-- `Core/Source/MajorMud.Core/MajorMudCore.csproj`
-- `Apps/Source/MajorMud.Server/MajorMud.Server.csproj`
-- `Apps/Source/MajorMud.Importer/MajorMud.Importer.csproj`
-- `Apps/Source/MajorMud.Editor/MajorMud.Editor.csproj`
-- `Apps/Source/MajorMud.Launcher/MajorMud.Launcher.csproj`
-- `Apps/Source/MajorMud.Client/MajorMud.Client.csproj`
+- `Core/Source/Reforged.Core/Reforged.Core.csproj`
+- `Apps/Source/Reforged.Server/Reforged.Server.csproj`
+- `Apps/Source/Reforged.Importer/Reforged.Importer.csproj`
+- `Apps/Source/Reforged.Editor/Reforged.Editor.csproj`
+- `Apps/Source/Reforged.Launcher/Reforged.Launcher.csproj`
+- `Apps/Source/Reforged.Client/Reforged.Client.csproj`
 
 ## How to verify an update
 
 1. Apply the Code Update locally or replace the repository contents with the updated package.
 2. Push the change to the private GitHub repository.
 3. Open **Actions** in GitHub.
-4. Select **MajorMud Reforged Cloud Build**.
+4. Select **Reforged Cloud Build**.
 5. Confirm the latest run is green.
 6. If it fails, copy the failed log output and use it as the next fix target.
 

@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Events;
+namespace Reforged.Core.Events;
 
 /// <summary>
 /// Dependency-free event publisher for development, validation, importer reports, editor actions, and server lifecycle events.

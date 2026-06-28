@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Start native MajorMud `.DAT` decoding for the standalone Reforged database effort.
+Start native Reforged `.DAT` decoding for the standalone Reforged database effort.
 
 ## What this version does
 

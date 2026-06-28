@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Logging;
+namespace Reforged.Core.Logging;
 
 /// <summary>
 /// Sink contract for structured log destinations.

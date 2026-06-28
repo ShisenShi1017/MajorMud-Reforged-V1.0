@@ -1,8 +1,8 @@
-namespace MajorMud.Reforged.Core.Configuration;
+namespace Reforged.Core.Configuration;
 
 public sealed class RuntimeConfiguration
 {
-    public string ProjectName { get; set; } = "MajorMud Reforged";
+    public string ProjectName { get; set; } = "Reforged";
     public string Mode { get; set; } = "Development";
     public bool AllowLiveEditing { get; set; } = false;
     public bool RequireValidationBeforeStart { get; set; } = true;

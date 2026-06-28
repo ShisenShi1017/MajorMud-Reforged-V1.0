@@ -1,4 +1,4 @@
-# MajorMud Reforged Architecture
+# Reforged Architecture
 
 ## Dependency Direction
 

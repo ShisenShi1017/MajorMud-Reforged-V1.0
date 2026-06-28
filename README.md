@@ -1,6 +1,10 @@
-# MajorMud Reforged
+# Reforged
 
-> A modern standalone reimplementation of MajorMud designed for long-term maintainability, live editing, and future cross-platform support.
+
+## CodeUpdate-0019 Rebrand Note
+
+The active source, assembly, and project naming pattern is now `Reforged.*`. GitHub Actions builds the renamed projects, and normal runtime still does not require the .NET SDK on the user machine.
+> A modern standalone reimplementation of Reforged designed for long-term maintainability, live editing, and future cross-platform support.
 
 ---
 
@@ -33,26 +37,26 @@ Core Update 0013 adds automated duplicate model enforcement. Application project
 
 ## Project Vision
 
-MajorMud Reforged is a completely standalone MajorMud platform.
+Reforged is a completely standalone Reforged platform.
 
 The project goal is to build:
 
-- A standalone MajorMud server.
+- A standalone Reforged server.
 - A shared Core framework used by every application.
-- A native importer that converts original MajorMud data into Reforged data.
+- A native importer that converts original legacy data into Reforged data.
 - A live editor that works through the server safely.
 - A launcher that eventually replaces update/apply batch workflows.
-- A future MegaMud-style Windows client.
+- A future companion client-style Windows client.
 - A future Android client.
 
-MajorMud Reforged must not depend on:
+Reforged must not depend on:
 
 - Microsoft Access.
 - OLEDB.
-- The original MajorMud executable.
+- The original legacy executable.
 - The original runtime files during normal server operation.
 
-Original MajorMud files are import/reference material only.
+Original legacy files are import/reference material only.
 
 ---
 
@@ -289,7 +293,7 @@ Every new ChatGPT session must:
 4. Build server data loading and validation.
 5. Build live Editor through server/admin API.
 6. Build Launcher and update manager.
-7. Build MegaMud-style Windows Client.
+7. Build companion client-style Windows Client.
 8. Build Android Client.
 
 ---
@@ -306,7 +310,7 @@ Never overstate what has been implemented.
 
 Milestone 1 continues with Core contracts for events, services, validation pipelines, repositories, provenance, runtime state, and world model interfaces.
 
-Runtime rule: MajorMud Reforged must not require the .NET SDK to run. Normal users must launch compiled executables or runtime-ready artifacts from `Bin/`; SDK launch/build commands are not valid runtime paths.
+Runtime rule: Reforged must not require the .NET SDK to run. Normal users must launch compiled executables or runtime-ready artifacts from `Bin/`; SDK launch/build commands are not valid runtime paths.
 
 Update rule: each Code Update must be executable from its own extracted folder and apply into the main project folder through its included `Apply-*.bat` script.
 ## Code Update 0008 — Governance and Core Services
@@ -368,9 +372,6 @@ This repository includes `.github/workflows/dotnet-build.yml` so GitHub can rest
 
 `Bin/RuntimeArtifacts.json` documents the future runtime-ready executable locations. Normal users should launch compiled artifacts from `Bin/` and should not need the .NET SDK for normal runtime.
 
+## CodeUpdate-0020 Summary
 
-## CodeUpdate-0018 GitHub Actions Build Repair
-
-CodeUpdate-0018 fixes the cloud build failure where application projects could not resolve `MajorMud.Reforged.Core.Applications` or `ReforgedApplicationBase`. The Core project file now explicitly compiles the shared application identity/base-shell contracts from `Core/Applications/`, while application projects continue to reference Core through their existing `ProjectReference` entries.
-
-The GitHub Actions Node.js 20 deprecation message is an Actions-runner/platform warning. It is separate from the C# compilation error fixed by this update.
+CodeUpdate-0020 repairs GitHub Actions after the Reforged source rebrand. The workflow now restores and builds `Reforged.*` project paths and includes a guard that fails early if stale `MajorMud.*` project paths remain under `.github/workflows`.

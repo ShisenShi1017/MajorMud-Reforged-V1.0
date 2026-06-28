@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Testing;
+namespace Reforged.Core.Testing;
 
 public sealed class TestCaseResult
 {

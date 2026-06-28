@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Archive/catalog the complete uploaded native MajorMud runtime `.DAT` file set and establish the no-Access import foundation.
+Archive/catalog the complete uploaded native legacy runtime `.DAT` file set and establish the no-Access import foundation.
 
 ## Source Files Cataloged
 

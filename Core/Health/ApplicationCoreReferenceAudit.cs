@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Health;
+namespace Reforged.Core.Health;
 
 /// <summary>
 /// Lightweight source-layout audit for Milestone 1: every application project must reference Core.
@@ -8,11 +8,11 @@ public sealed class ApplicationCoreReferenceAudit
 {
     private static readonly string[] RequiredApplications =
     {
-        "MajorMud.Server",
-        "MajorMud.Importer",
-        "MajorMud.Editor",
-        "MajorMud.Launcher",
-        "MajorMud.Client"
+        "Reforged.Server",
+        "Reforged.Importer",
+        "Reforged.Editor",
+        "Reforged.Launcher",
+        "Reforged.Client"
     };
 
     public IReadOnlyList<string> Inspect(string projectRoot)
@@ -30,7 +30,7 @@ public sealed class ApplicationCoreReferenceAudit
             }
 
             var text = File.ReadAllText(projectPath);
-            if (!text.Contains("MajorMudCore.csproj", StringComparison.OrdinalIgnoreCase))
+            if (!text.Contains("Reforged.Core.csproj", StringComparison.OrdinalIgnoreCase))
             {
                 issues.Add($"Application project does not reference Core: {projectPath}");
             }

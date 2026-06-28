@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Events;
+namespace Reforged.Core.Events;
 
 public abstract class ReforgedEventBase : IReforgedEvent
 {

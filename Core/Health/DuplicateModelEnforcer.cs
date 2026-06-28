@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace MajorMud.Reforged.Core.Health;
+namespace Reforged.Core.Health;
 
 /// <summary>
 /// Enforces the Milestone 1 rule that shared models live in Core and are not duplicated in applications.

@@ -1,9 +1,9 @@
 {
-  "project": "MajorMud Reforged",
+  "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0017",
+  "codeUpdate": "0020",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / Runtime Artifact Expectations and GitHub Verification",
+  "milestone": "Milestone 1 - Core Framework / GitHub Actions Rebrand Path Repair",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
   "updatePolicy": "Extract the update ZIP directly into the main project folder, open the single labeled update folder, and run Apply-*.bat from inside it.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0017",
+    "currentCodeUpdate": "0019",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -72,11 +72,15 @@
       "Bin runtime artifact expectation catalog",
       "SDK-free Bin runtime handoff catalog loader",
       "GitHub Actions verification documentation",
-      "private repository GitHub Actions recommendation"
+      "private repository GitHub Actions recommendation",
+      "Reforged source namespace rebrand",
+      "Reforged assembly and project-file rename",
+      "GitHub Actions paths updated for Reforged project names",
+      "old project-name textual branding cleanup"
     ],
     "milestone1RemainingComponents": [
-      "Core contract smoke tests packaged for development environments",
       "GitHub Actions build result review after user push",
+      "Fix any CI-reported rebrand fallout before final Milestone 1 closure",
       "final Milestone 1 verification report"
     ]
   },
@@ -100,10 +104,9 @@
     "No duplicated models across applications": "Substantially underway"
   },
   "nextRecommendedWork": [
-    "Package Core contract smoke tests for development environments.",
-    "Review GitHub Actions build results after the user pushes the update.",
-    "Fix any CI-reported build issues before final Milestone 1 closure.",
-    "Produce a final Milestone 1 verification report once all checklist items are satisfied."
+    "Push CodeUpdate-0020 and confirm GitHub Actions uses Reforged.* paths.",
+    "If GitHub still shows MajorMud.* paths, manually replace .github/workflows/dotnet-build.yml with GitHubActions/dotnet-build.yml.",
+    "Continue Core contract smoke tests after CI is green."
   ],
   "updateZipPolicy": "Each update ZIP contains exactly one named top-level update folder; the apply BAT lives inside that folder and runs from there.",
   "handoffStatus": {
@@ -112,7 +115,7 @@
     "containsMilestoneTable": true,
     "containsMilestoneChecklist": true
   },
-  "lastUpdateName": "CodeUpdate-0017-GitHub-Actions-Runtime-Verification",
-  "currentCodeUpdate": "0018",
-  "buildVerification": "GitHub Actions cloud build; CodeUpdate-0018 fixes Core application contract compilation wiring."
+  "lastUpdateName": "CodeUpdate-0020-GitHub-Actions-Rebrand-Path-Repair",
+  "currentCodeUpdate": "0020",
+  "buildVerification": "GitHub Actions cloud build using Reforged.* project paths."
 }

@@ -1,10 +1,10 @@
-# Database Version 0008 - MegaMud MP Knowledge Integration
+# Database Version 0008 - companion client MP Knowledge Integration
 
-This database version integrates the uploaded MegaMud 2.0 `.mp` map files as a new evidence source for MajorMud Reforged.
+This database version integrates the uploaded companion client 2.0 `.mp` map files as a new evidence source for Reforged.
 
 ## Verified inputs
 
-- MegaMud `.mp` files processed: **1957**
+- companion client `.mp` files processed: **1957**
 - CSV room records available for cross-reference: **26666**
 - MP room references found: **2919**
 - Unique MP map/room references: **648**
@@ -18,14 +18,14 @@ The `.mp` route-line numeric fields are **not** being treated as counts, IDs, sk
 
 ## What this adds
 
-- `ImportedDatabases/MegaMudMP/` original `.mp` reference archive.
-- `Data/MegaMudMaps/Records/` one JSON evidence file per `.mp` source file.
-- `Data/MegaMudMaps/Index/summary.json` conversion summary.
-- `Data/MegaMudMaps/Index/roomReferenceIndex.json` map/room to `.mp` file index.
-- `Data/MegaMudMaps/Index/duplicateRoomReferences.json` repeated room references across MP files.
-- `Data/MegaMudMaps/Index/humanCommands.json` extracted human-readable route commands.
+- `ImportedDatabases/companion clientMP/` original `.mp` reference archive.
+- `Data/companion clientMaps/Records/` one JSON evidence file per `.mp` source file.
+- `Data/companion clientMaps/Index/summary.json` conversion summary.
+- `Data/companion clientMaps/Index/roomReferenceIndex.json` map/room to `.mp` file index.
+- `Data/companion clientMaps/Index/duplicateRoomReferences.json` repeated room references across MP files.
+- `Data/companion clientMaps/Index/humanCommands.json` extracted human-readable route commands.
 - `Tools/Importer/parse_megamud_mp.py` repeatable parser.
 
 ## Standalone rule
 
-These files are evidence for building Reforged `Data/`. The future server should still load from Reforged `Data/`, not from MegaMud files directly.
+These files are evidence for building Reforged `Data/`. The future server should still load from Reforged `Data/`, not from companion client files directly.

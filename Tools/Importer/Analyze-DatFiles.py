@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MajorMud Reforged DAT analyzer.
+"""Reforged DAT analyzer.
 This is an investigative decoder, not a complete binary importer yet.
 It catalogs file sizes, printable strings, block candidates, and CSV name alignment.
 """

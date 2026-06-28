@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Validation;
+namespace Reforged.Core.Validation;
 
 public interface IValidationPipeline<in T>
 {

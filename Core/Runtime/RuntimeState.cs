@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Runtime;
+namespace Reforged.Core.Runtime;
 
 public sealed class RuntimeState
 {

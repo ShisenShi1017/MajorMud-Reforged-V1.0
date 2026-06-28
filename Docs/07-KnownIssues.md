@@ -1,4 +1,4 @@
-# MajorMud Reforged Known Issues
+# Reforged Known Issues
 
 Last Updated: 2026-06-27
 

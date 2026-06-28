@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MajorMud Reforged native DAT probe.
+"""Reforged native DAT probe.
 
 This tool is intentionally conservative. It catalogs record-size patterns,
 extracts safe printable strings, and cross-checks known CSV names against native

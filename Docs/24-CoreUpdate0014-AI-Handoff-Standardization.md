@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Core Update 0014 makes `AI_CONTEXT.md` the authoritative handoff document for MajorMud Reforged. The goal is to let a new ChatGPT window or developer immediately understand the project without depending on previous conversation memory.
+Core Update 0014 makes `AI_CONTEXT.md` the authoritative handoff document for Reforged. The goal is to let a new ChatGPT window or developer immediately understand the project without depending on previous conversation memory.
 
 ## What Changed
 

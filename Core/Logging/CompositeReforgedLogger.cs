@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Logging;
+namespace Reforged.Core.Logging;
 
 /// <summary>
 /// Logger that fans out to multiple sinks while preserving a single Core logging contract.

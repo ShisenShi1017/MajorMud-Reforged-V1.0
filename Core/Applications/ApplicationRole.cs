@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Applications;
+namespace Reforged.Core.Applications;
 
 /// <summary>
 /// Identifies the major executable roles that depend on Core.

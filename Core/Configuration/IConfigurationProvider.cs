@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Configuration;
+namespace Reforged.Core.Configuration;
 
 /// <summary>
 /// Shared read-only configuration contract used by all applications.

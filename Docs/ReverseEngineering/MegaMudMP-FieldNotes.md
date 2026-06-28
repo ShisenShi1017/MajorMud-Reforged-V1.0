@@ -1,4 +1,4 @@
-# MegaMud MP Field Notes
+# companion client MP Field Notes
 
 ## Observed structure
 
@@ -33,7 +33,7 @@ The first two fields often appear hexadecimal-like. Later fields may contain dir
 
 ## Evidence usage
 
-MegaMud MP data helps verify:
+companion client MP data helps verify:
 
 - room names
 - area names

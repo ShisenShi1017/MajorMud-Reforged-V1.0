@@ -4,7 +4,7 @@ Code Update 0004 starts Milestone 1: Core Library.
 
 ## Purpose
 
-Core becomes the shared foundation for every MajorMud Reforged application.
+Core becomes the shared foundation for every Reforged application.
 
 ## Added Concepts
 

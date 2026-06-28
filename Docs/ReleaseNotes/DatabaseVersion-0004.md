@@ -3,10 +3,10 @@
 ## Added
 
 - Native `.DAT` file catalog and hash report.
-- String catalogs for every uploaded MajorMud runtime `.DAT` file.
+- String catalogs for every uploaded legacy runtime `.DAT` file.
 - Binary block sample reports.
 - CSV-to-DAT name offset crosscheck report.
-- `Tools/Importer/MajorMudDatDecoder.py` inspection tool.
+- `Tools/Importer/ReforgedDatDecoder.py` inspection tool.
 - Documentation for current native `.DAT` decoding status.
 
 ## Safety

@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace MajorMud.Reforged.Core.Runtime;
+namespace Reforged.Core.Runtime;
 
 /// <summary>
 /// Loads the repository's declared Bin runtime artifact expectations.

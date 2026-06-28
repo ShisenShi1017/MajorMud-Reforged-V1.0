@@ -1,10 +1,10 @@
 # Database Version 0006 - DAT Decode Correction and Continuation
 
 ## Summary
-This database version continues native MajorMud `.DAT` decoding and corrects prior terminology around numeric fields.
+This database version continues native Reforged `.DAT` decoding and corrects prior terminology around numeric fields.
 
 ## Key correction
-Numeric values found inside records must not be treated as record counts unless proven by file headers or verified table structure. Many MajorMud values are skill IDs, ability references, flags, type codes, item references, room references, offsets, or bitfields.
+Numeric values found inside records must not be treated as record counts unless proven by file headers or verified table structure. Many Reforged values are skill IDs, ability references, flags, type codes, item references, room references, offsets, or bitfields.
 
 ## Added
 - `Docs/DatabaseAudit/DatabaseVersion-0006-DAT-Decode-Correction.md`

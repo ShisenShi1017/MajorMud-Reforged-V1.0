@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Reforged.Core</AssemblyName>
+    <RootNamespace>Reforged.Core</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../Applications/**/*.cs" Link="Applications/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

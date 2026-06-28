@@ -1,7 +1,7 @@
-using MajorMud.Reforged.Core.Models;
-using MajorMud.Reforged.Core.Validation;
+using Reforged.Core.Models;
+using Reforged.Core.Validation;
 
-namespace MajorMud.Reforged.Core.Repositories;
+namespace Reforged.Core.Repositories;
 
 /// <summary>
 /// Core repository contract for any editable data collection under Data/.

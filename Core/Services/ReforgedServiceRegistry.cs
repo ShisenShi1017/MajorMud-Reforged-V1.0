@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Services;
+namespace Reforged.Core.Services;
 
 /// <summary>
 /// Minimal service registry used until the Launcher and applications adopt a richer dependency injection host.

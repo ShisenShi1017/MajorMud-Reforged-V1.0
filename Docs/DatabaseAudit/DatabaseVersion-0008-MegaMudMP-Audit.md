@@ -2,14 +2,14 @@
 
 ## Scope
 
-Integrated MegaMud `.mp` files as human-readable map/navigation evidence.
+Integrated companion client `.mp` files as human-readable map/navigation evidence.
 
 ## Counts
 
 ```json
 {
   "databaseVersion": "0008",
-  "title": "MegaMud MP Knowledge Integration",
+  "title": "companion client MP Knowledge Integration",
   "generatedUtc": "2026-06-28T05:01:25.171491Z",
   "mpFiles": 1957,
   "roomsCsvRecords": 26666,
@@ -20,7 +20,7 @@ Integrated MegaMud `.mp` files as human-readable map/navigation evidence.
   "duplicateRoomReferencesAcrossMpFiles": 611,
   "uniqueHumanCommands": 430,
   "parseWarnings": 116,
-  "note": "MegaMud .mp files are used as evidence for map/room/navigation knowledge; numeric route fields remain unknown until decoded against DAT/runtime behavior."
+  "note": "companion client .mp files are used as evidence for map/room/navigation knowledge; numeric route fields remain unknown until decoded against DAT/runtime behavior."
 }
 ```
 
@@ -28,7 +28,7 @@ Integrated MegaMud `.mp` files as human-readable map/navigation evidence.
 
 No generated JSON record filenames are duplicated because each source `.mp` file becomes exactly one record named after its source file stem.
 
-Duplicate room references across multiple `.mp` files are not automatically errors. They are recorded in `Data/MegaMudMaps/Index/duplicateRoomReferences.json` for review because different routes may legitimately reference the same room.
+Duplicate room references across multiple `.mp` files are not automatically errors. They are recorded in `Data/companion clientMaps/Index/duplicateRoomReferences.json` for review because different routes may legitimately reference the same room.
 
 ## Unknown numeric field policy
 

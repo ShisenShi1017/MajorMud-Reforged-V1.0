@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Runtime;
+namespace Reforged.Core.Runtime;
 
 /// <summary>
 /// Performs file-layout validation for runtime-ready application handoff artifacts.

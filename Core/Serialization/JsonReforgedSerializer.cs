@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace MajorMud.Reforged.Core.Serialization;
+namespace Reforged.Core.Serialization;
 
 /// <summary>
 /// Default dependency-free JSON serializer. It centralizes formatting choices so applications do not drift.

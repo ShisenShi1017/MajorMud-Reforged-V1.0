@@ -2,7 +2,7 @@
 
 ## Summary
 
-This update performs the approved cleanup of the MajorMud Reforged repository and establishes the long-term app/core/bin layout.
+This update performs the approved cleanup of the Reforged repository and establishes the long-term app/core/bin layout.
 
 ## Apply behavior
 

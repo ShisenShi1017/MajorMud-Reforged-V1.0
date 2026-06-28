@@ -1,6 +1,6 @@
 # Application Core Reference Policy
 
-All MajorMud Reforged applications depend on `Core/` for shared contracts, configuration, logging, validation, serialization, repository access, events, versioning, manifest loading, health checks, and utilities.
+All Reforged applications depend on `Core/` for shared contracts, configuration, logging, validation, serialization, repository access, events, versioning, manifest loading, health checks, and utilities.
 
 Applications covered by this policy:
 

@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Models;
+namespace Reforged.Core.Models;
 
 /// <summary>
 /// Shared identity contract for every editable Reforged data record.

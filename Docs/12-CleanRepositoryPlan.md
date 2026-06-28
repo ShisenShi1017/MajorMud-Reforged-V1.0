@@ -2,7 +2,7 @@
 
 ## Goal
 
-Make MajorMud Reforged easy to navigate, easy to upload to GitHub, and ready for standalone app development.
+Make Reforged easy to navigate, easy to upload to GitHub, and ready for standalone app development.
 
 ## New top-level layout
 

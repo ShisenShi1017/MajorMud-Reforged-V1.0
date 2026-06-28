@@ -14,8 +14,8 @@ This update adds `.github/workflows/dotnet-build.yml`.
 When the repository is pushed to GitHub, GitHub Actions will install .NET 8 in the cloud and run:
 
 ```text
-dotnet restore Core/Source/MajorMud.Core/MajorMudCore.csproj
-dotnet build Core/Source/MajorMud.Core/MajorMudCore.csproj --configuration Release --no-restore
+dotnet restore Core/Source/Reforged.Core/Reforged.Core.csproj
+dotnet build Core/Source/Reforged.Core/Reforged.Core.csproj --configuration Release --no-restore
 ```
 
 This gives build verification without requiring the user to install the .NET SDK locally.

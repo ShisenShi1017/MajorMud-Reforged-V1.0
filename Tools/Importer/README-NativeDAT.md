@@ -1,11 +1,11 @@
-# MajorMud Native DAT Decoder
+# Reforged Native DAT Decoder
 
 This folder contains conservative native `.DAT` decoding/inspection tools.
 
 ## Run manually
 
 ```bat
-python Tools\Importer\MajorMudDatDecoder.py ImportedDatabases\NativeRuntime --out Data\NativeDecodeReports\ManualRun
+python Tools\Importer\ReforgedDatDecoder.py ImportedDatabases\NativeRuntime --out Data\NativeDecodeReports\ManualRun
 ```
 
 The tool does not modify source `.DAT` files.

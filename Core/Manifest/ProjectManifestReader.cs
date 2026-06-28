@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace MajorMud.Reforged.Core.Manifest;
+namespace Reforged.Core.Manifest;
 
 /// <summary>
 /// Shared manifest reader so applications do not duplicate project-state parsing.

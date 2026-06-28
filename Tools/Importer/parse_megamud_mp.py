@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MegaMud .mp parser for MajorMud Reforged.
+"""companion client .mp parser for Reforged.
 Runs without Access/OLEDB. It converts .mp files into JSON evidence records.
 Usage: python parse_megamud_mp.py <mp-folder> <rooms-csv> <output-folder>
 """

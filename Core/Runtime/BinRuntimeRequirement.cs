@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Runtime;
+namespace Reforged.Core.Runtime;
 
 /// <summary>
 /// Describes a required runtime-ready executable artifact under Bin.

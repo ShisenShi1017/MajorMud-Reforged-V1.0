@@ -5,27 +5,27 @@
   "requirements": [
     {
       "applicationName": "Server",
-      "relativeExecutablePath": "Bin/Windows/Server/MajorMud.Server.exe",
+      "relativeExecutablePath": "Bin/Windows/Server/Reforged.Server.exe",
       "requiredForMilestoneOne": false
     },
     {
       "applicationName": "Importer",
-      "relativeExecutablePath": "Bin/Windows/Importer/MajorMud.Importer.exe",
+      "relativeExecutablePath": "Bin/Windows/Importer/Reforged.Importer.exe",
       "requiredForMilestoneOne": false
     },
     {
       "applicationName": "Editor",
-      "relativeExecutablePath": "Bin/Windows/Editor/MajorMud.Editor.exe",
+      "relativeExecutablePath": "Bin/Windows/Editor/Reforged.Editor.exe",
       "requiredForMilestoneOne": false
     },
     {
       "applicationName": "Launcher",
-      "relativeExecutablePath": "Bin/Windows/Launcher/MajorMud.Launcher.exe",
+      "relativeExecutablePath": "Bin/Windows/Launcher/Reforged.Launcher.exe",
       "requiredForMilestoneOne": false
     },
     {
       "applicationName": "Client",
-      "relativeExecutablePath": "Bin/Windows/Client/MajorMud.Client.exe",
+      "relativeExecutablePath": "Bin/Windows/Client/Reforged.Client.exe",
       "requiredForMilestoneOne": false
     }
   ]

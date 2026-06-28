@@ -1,4 +1,4 @@
-# MajorMud Reforged Development Roadmap and Project Constitution
+# Reforged Development Roadmap and Project Constitution
 
 ## READ THIS FIRST
 
@@ -24,9 +24,9 @@ If you are an AI assistant, new ChatGPT window, or new developer joining this pr
 
 ## Project Vision
 
-MajorMud Reforged is not a runtime-dependent copy of the original MajorMUD. It is a clean, standalone game engine and toolset inspired by MajorMUD. Original MajorMUD data may be imported, decoded, compared, and audited, but after import the project must operate from its own simple, editable `Data/` files.
+Reforged is not a runtime-dependent copy of the original legacy MUD. It is a clean, standalone game engine and toolset inspired by legacy MUD. Original legacy MUD data may be imported, decoded, compared, and audited, but after import the project must operate from its own simple, editable `Data/` files.
 
-The long-term goal is a standalone server, native importer, live editor, launcher, Windows client, Android client, gameplay systems, and plugin framework that do not require the original MajorMUD runtime.
+The long-term goal is a standalone server, native importer, live editor, launcher, Windows client, Android client, gameplay systems, and plugin framework that do not require the original legacy MUD runtime.
 
 ## Milestone 1 — Core Framework (Current)
 
@@ -66,19 +66,19 @@ Completion Criteria:
 
 ## Milestone 2 — Native Importer
 
-Goal: Completely remove dependence on the original MajorMud runtime.
+Goal: Completely remove dependence on the original legacy runtime.
 
 Import Sources:
 
-- MajorMud `.DAT`
+- Reforged `.DAT`
 - CSV exports
-- MegaMud `.mp`
+- companion client `.mp`
 
 Features:
 
 - Native DAT decoder
 - CSV importer
-- MegaMud MP importer
+- companion client MP importer
 - Duplicate detection
 - Cross-reference validation
 - Unknown field preservation
@@ -165,7 +165,7 @@ Completion Criteria:
 
 ## Milestone 6 — Windows Client
 
-Goal: Build a modern MegaMud-inspired client.
+Goal: Build a modern companion-client-inspired client.
 
 Features:
 
@@ -285,7 +285,7 @@ Rules:
 
 ## Runtime Rules
 
-- MajorMud Reforged must run without the .NET SDK.
+- Reforged must run without the .NET SDK.
 - Distributed runtime uses compiled/runtime-ready artifacts from `Bin/`.
 - Development/build machines may use SDKs, but SDK commands are not the user launch path.
 - No update script may fall back to SDK runtime behavior.

@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Serialization;
+namespace Reforged.Core.Serialization;
 
 /// <summary>
 /// Shared serializer contract for Reforged data files, manifests, reports, and future network-safe DTOs.

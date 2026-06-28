@@ -1,6 +1,6 @@
-# MajorMud Native Runtime Importer Tools
+# Reforged Native Runtime Importer Tools
 
-This folder starts the permanent no-Access import tooling for MajorMud Reforged.
+This folder starts the permanent no-Access import tooling for Reforged.
 
 ## Current Tool
 

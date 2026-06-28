@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Services;
+namespace Reforged.Core.Services;
 
 public interface IReforgedService
 {

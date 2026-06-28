@@ -2,7 +2,7 @@
 
 ## Summary
 
-This update starts the long-term transition from a PowerShell prototype toward a cleaner standalone MajorMud Reforged application platform.
+This update starts the long-term transition from a PowerShell prototype toward a cleaner standalone Reforged application platform.
 
 ## Added
 

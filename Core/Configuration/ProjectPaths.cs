@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Configuration;
+namespace Reforged.Core.Configuration;
 
 /// <summary>
 /// Central project path contract. Applications should resolve paths once and pass this model around.

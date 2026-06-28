@@ -1,10 +1,10 @@
-# MajorMud Reforged Architecture
+# Reforged Architecture
 
 Last Updated: 2026-06-27
 
 ## Current Architectural Position
 
-This document records architecture decisions for MajorMud Reforged. It should be updated as the server, editor, shared data, and future clients evolve.
+This document records architecture decisions for Reforged. It should be updated as the server, editor, shared data, and future clients evolve.
 
 ## Current Repository Structure Observed
 

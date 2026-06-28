@@ -2,7 +2,7 @@
 
 ## Long-term goal
 
-MajorMud Reforged should become a standalone application suite:
+Reforged should become a standalone application suite:
 
 - Launcher
 - Server
@@ -26,7 +26,7 @@ The Launcher should eventually become the main app:
 
 ## Server
 
-The Server loads only from `Data/` and builds the game world in memory. It does not depend on original MajorMud files after import.
+The Server loads only from `Data/` and builds the game world in memory. It does not depend on original legacy files after import.
 
 ## Editor
 
@@ -38,4 +38,4 @@ The Importer converts source data into Reforged `Data/` and verifies data integr
 
 ## Client
 
-The future Client should be inspired by MegaMud 2.0, including mapping, triggers, aliases, macros, profiles, hotkeys, and modern UI.
+The future Client should be inspired by companion client 2.0, including mapping, triggers, aliases, macros, profiles, hotkeys, and modern UI.

@@ -1,9 +1,9 @@
 using System.Text.Json;
 
-namespace MajorMud.Reforged.Core.Configuration;
+namespace Reforged.Core.Configuration;
 
 /// <summary>
-/// Dependency-free configuration provider used by all MajorMud Reforged applications.
+/// Dependency-free configuration provider used by all Reforged applications.
 /// Applications may layer file, environment, or command-line values over these settings without duplicating models.
 /// </summary>
 public sealed class ConfigurationProvider : IConfigurationProvider

@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Provenance;
+namespace Reforged.Core.Provenance;
 
 public sealed class SourceProvenance
 {

@@ -1,7 +1,7 @@
-namespace MajorMud.Reforged.Core.Applications;
+namespace Reforged.Core.Applications;
 
 /// <summary>
-/// Describes a MajorMud Reforged application without depending on that application's project.
+/// Describes a Reforged application without depending on that application's project.
 /// </summary>
 public sealed class ApplicationIdentity
 {

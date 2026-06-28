@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Applications;
+namespace Reforged.Core.Applications;
 
 /// <summary>
 /// Minimal base class for application stubs and future compiled applications.

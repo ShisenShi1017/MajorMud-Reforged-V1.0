@@ -1,14 +1,14 @@
-# MajorMud Reforged Project Vision
+# Reforged Project Vision
 
-MajorMud Reforged is a standalone MajorMud server project with editor support first and MegaMud 2.0-style client work later.
+Reforged is a standalone Reforged server project with editor support first and companion-client-style client work later.
 
 ## Current Data Vision
 
-Original MajorMud files are import/reference sources only. The active game database belongs in `Data/` in simple, editable Reforged formats. After conversion, the server must not require Access, OLEDB, MDB, ACCDB, or native `.DAT` files to run.
+Original legacy files are import/reference sources only. The active game database belongs in `Data/` in simple, editable Reforged formats. After conversion, the server must not require Access, OLEDB, MDB, ACCDB, or native `.DAT` files to run.
 
 ## Runtime File Milestone
 
-Database Version 0003 archives the native MajorMud runtime `.DAT` set in `ImportedDatabases/NativeRuntime/` and creates the import/audit foundation for decoding those files into standalone editable data.
+Database Version 0003 archives the native legacy runtime `.DAT` set in `ImportedDatabases/NativeRuntime/` and creates the import/audit foundation for decoding those files into standalone editable data.
 
 ## Long-Term Direction
 

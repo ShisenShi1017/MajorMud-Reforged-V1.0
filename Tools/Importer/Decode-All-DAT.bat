@@ -9,5 +9,5 @@ if not exist "%SRC%" (
   pause
   exit /b 1
 )
-python "%ROOT%\Tools\Importer\MajorMudDatDecoder.py" "%SRC%" --out "%OUT%"
+python "%ROOT%\Tools\Importer\ReforgedDatDecoder.py" "%SRC%" --out "%OUT%"
 pause

@@ -17,4 +17,4 @@ Do not create app-local duplicate models for Core concepts. Compile-level Core r
 
 ## Core Update 0011
 
-A Milestone 1 source shell for this application now exists at `Apps/Source/MajorMud.Launcher/` and explicitly references Core. Runtime remains compiled-artifact based from `Bin/`.
+A Milestone 1 source shell for this application now exists at `Apps/Source/Reforged.Launcher/` and explicitly references Core. Runtime remains compiled-artifact based from `Bin/`.

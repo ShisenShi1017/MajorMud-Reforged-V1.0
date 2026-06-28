@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Utilities;
+namespace Reforged.Core.Utilities;
 
 /// <summary>
 /// Shared path-safety helpers used by update, import, editor, and server code.

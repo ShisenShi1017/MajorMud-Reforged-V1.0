@@ -1,6 +1,6 @@
 # Core Architecture
 
-Core is the shared library layer for MajorMud Reforged. Every application should use Core for shared contracts.
+Core is the shared library layer for Reforged. Every application should use Core for shared contracts.
 
 ## Code Update 0005 Additions
 

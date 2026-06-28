@@ -1,8 +1,8 @@
-namespace MajorMud.Reforged.Core.Models;
+namespace Reforged.Core.Models;
 
 /// <summary>
-/// Base identity record for all editable MajorMud Reforged data.
-/// LegacyId preserves original MajorMUD numbering while StableId gives Reforged a durable internal reference.
+/// Base identity record for all editable Reforged data.
+/// LegacyId preserves original legacy MUD numbering while StableId gives Reforged a durable internal reference.
 /// </summary>
 public class GameEntity : IReforgedDataRecord
 {

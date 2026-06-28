@@ -1,4 +1,4 @@
-namespace MajorMud.Reforged.Core.Serialization;
+namespace Reforged.Core.Serialization;
 
 /// <summary>
 /// Standard envelope for generated Reforged JSON files.

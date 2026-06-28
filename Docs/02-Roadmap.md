@@ -1,4 +1,4 @@
-# MajorMud Reforged Roadmap
+# Reforged Roadmap
 
 Last Updated: 2026-06-27
 
@@ -6,7 +6,7 @@ Last Updated: 2026-06-27
 
 ### Phase 1: Standalone Server
 
-Primary goal: stable standalone MajorMud server.
+Primary goal: stable standalone Reforged server.
 
 Planned focus areas:
 
@@ -41,7 +41,7 @@ Planned focus areas:
 
 ### Phase 3: Client Work
 
-Primary goal: modern client inspired by MegaMud 2.0.
+Primary goal: modern client inspired by companion client 2.0.
 
 Planned focus areas:
 

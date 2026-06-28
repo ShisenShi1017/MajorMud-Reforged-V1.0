@@ -1,10 +1,10 @@
-# AI Context for MajorMud Reforged
+# AI Context for Reforged
 
 ## READ THIS FIRST
 
 This is the authoritative handoff document for every new ChatGPT window and every development continuation. Read this file before modifying the repository.
 
-MajorMud Reforged is a standalone game engine and toolset inspired by the original MajorMUD. Original MajorMUD files are import/reference material only. After import, `Data/` is the live editable game database and `ImportedDatabases/` is archive/reference only.
+Reforged is a standalone game engine and toolset inspired by the original legacy MUD. Original legacy MUD files are import/reference material only. After import, `Data/` is the live editable game database and `ImportedDatabases/` is archive/reference only.
 
 ## Required Session Startup Order
 
@@ -21,15 +21,20 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 
 | Field | Value |
 |---|---|
-| Project | MajorMud Reforged |
+| Project | Reforged |
 | Current Milestone | Milestone 1 - Core Framework |
-| Current Code Update | 0017 |
+| Current Code Update | 0019 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0017-GitHub-Actions-Runtime-Verification |
+| Last Update Name | CodeUpdate-0019-Reforged-Source-Rebrand |
 | Milestone Estimate | 92-95% complete |
 | Source of Truth | Latest user-uploaded repository ZIP after each applied update |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Exactly one named top-level update folder per ZIP |
+
+
+## CodeUpdate-0019 Current Handoff Note
+
+CodeUpdate-0019 performs the controlled project rebrand requested by the user after CodeUpdate-0018 was verified in GitHub Actions. Treat `Reforged.*` as the active source namespace and project naming pattern. The GitHub Actions workflow now restores and builds the renamed `Reforged.*` projects. The CodeUpdate-0018 Core application contract compile fix must remain in `Core/Source/Reforged.Core/Reforged.Core.csproj`.
 
 ## Current Development Goal
 
@@ -113,7 +118,6 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
-| 0018 | Fixed GitHub Actions Core build wiring by compiling `Core/Applications/` contracts into `MajorMud.Core`. |
 | 0017 | Added GitHub Actions cloud verification documentation, Bin runtime artifact expectations, and SDK-free runtime handoff catalog validation. |
 | 0016 | Added repository-backed Core Data loaders, a Core Data catalog, loader health checks, and GitHub Actions cloud build verification. |
 | 0015 | Added source-level Data cross-reference validation for rooms, items, monsters, shops, quests, loot tables, races, classes, and world data. |
@@ -126,14 +130,6 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 | 0008 | Added governance documents and Core service foundations. |
 | 0007 | Added Core contracts foundation. |
 
-
-## Code Update 0018 Handoff Notes
-
-Core Update 0018 responds to the GitHub Actions failure reported after CodeUpdate-0017. The workflow itself was valid enough to reveal a real source project wiring issue: app projects referenced `MajorMud.Core`, but `MajorMudCore.csproj` did not compile the shared application contracts located under `Core/Applications/`.
-
-The Core project file now explicitly includes `Core/Applications/**/*.cs`, making `ApplicationIdentity`, `ApplicationRole`, `IReforgedApplication`, and `ReforgedApplicationBase` available to Server, Importer, Editor, Launcher, and Client through the existing `ProjectReference` entries.
-
-The GitHub Node.js 20 warning is a GitHub Actions platform/runtime warning, not the MajorMud C# build failure. The blocking error fixed here is the missing Core namespace/base-class compile issue.
 
 ## Code Update 0017 Handoff Notes
 
@@ -161,10 +157,14 @@ This update is intentionally documentation/governance focused. It supports Miles
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0018 to GitHub and confirm whether Actions passes.
-2. Core Update 0019: Package Core contract smoke tests for development environments.
+1. Core Update 0018: Package Core contract smoke tests for development environments.
+2. Core Update 0019: Review GitHub Actions build results after the user pushes this update and fix any CI-reported build issues.
 3. Core Update 0020: Produce a final Milestone 1 verification report once all checklist items are satisfied.
 
 ## New Window Instruction
 
 If you are a new ChatGPT window, do not ask the user to restate project history. Read this file and the required startup files, inspect the repository, then continue from the next recommended work unless the user gives a different instruction.
+
+## CodeUpdate-0020 Note
+
+GitHub Actions must use `.github/workflows/dotnet-build.yml` with `Reforged.*` project paths. If GitHub still displays `MajorMud.*` paths, replace the workflow file with `GitHubActions/dotnet-build.yml` and commit it.
