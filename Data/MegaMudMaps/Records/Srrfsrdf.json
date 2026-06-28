@@ -1,0 +1,353 @@
+{
+  "file": "Srrfsrdf.mp",
+  "sha256": "de4d9a17c9db1c365eb1507393991acd0c3225e1eda60b4a07f9a5d7c9a1126c",
+  "metadataLine": "[][Merlin]",
+  "roomHeaders": [
+    {
+      "code": "SRRF",
+      "area": "Northern Forests",
+      "label": "Silver River, River's Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SRRF:Northern Forests:Silver River, River's Fork]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SRDF",
+      "area": "Northern Forests",
+      "label": "Silver River, Dank Forest Opening",
+      "mapNumber": 1,
+      "roomNumber": 2400,
+      "raw": "[SRDF:Northern Forests:Silver River, Dank Forest Opening-1 2400]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2400,
+        "name": "The Silver River, Dank Forest Opening",
+        "exits": {
+          "N": "1/2585",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "1/2582",
+          "SW": "1/2601",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C604410:F7F05001:26:-1:0:::",
+      "parts": [
+        "2C604410",
+        "F7F05001",
+        "26",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "26",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2C604410:0000:sw",
+      "parts": [
+        "2C604410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39904100:0000:sw",
+      "parts": [
+        "39904100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39900104:0000:s",
+      "parts": [
+        "39900104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "39904001:0000:sw",
+      "parts": [
+        "39904001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39900140:0000:w",
+      "parts": [
+        "39900140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "39900050:0000:w",
+      "parts": [
+        "39900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "39900410:0000:nw",
+      "parts": [
+        "39900410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "39901040:0000:w",
+      "parts": [
+        "39901040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "39900410:0000:nw",
+      "parts": [
+        "39900410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "23005000:0000:sw",
+      "parts": [
+        "23005000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39900104:0000:s",
+      "parts": [
+        "39900104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "39904001:0000:sw",
+      "parts": [
+        "39904001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39904100:0000:sw",
+      "parts": [
+        "39904100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39900104:0000:s",
+      "parts": [
+        "39900104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "39904001:0000:sw",
+      "parts": [
+        "39904001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39904100:0000:sw",
+      "parts": [
+        "39904100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A6A00140:0000:w",
+      "parts": [
+        "A6A00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "39900410:0000:nw",
+      "parts": [
+        "39900410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "39901400:0000:nw",
+      "parts": [
+        "39901400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "39901400:0000:nw",
+      "parts": [
+        "39901400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "39901400:0000:nw",
+      "parts": [
+        "39901400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "39901040:0000:w",
+      "parts": [
+        "39901040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "39904010:0000:sw",
+      "parts": [
+        "39904010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39900140:0000:w",
+      "parts": [
+        "39900140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "39900410:0000:nw",
+      "parts": [
+        "39900410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "39901400:0000:nw",
+      "parts": [
+        "39901400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 30
+}

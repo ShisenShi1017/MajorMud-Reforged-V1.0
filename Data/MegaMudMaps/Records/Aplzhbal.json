@@ -1,0 +1,250 @@
+{
+  "file": "Aplzhbal.mp",
+  "sha256": "6f6b9296ae4233960dc7e9a632dc8c0f196f98f7e45bee52eeb9aad3d0863b30",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "APLZ",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Plaza",
+      "mapNumber": 3,
+      "roomNumber": 560,
+      "raw": "[APLZ:Ancient Ruin:Ancient Ruin Plaza-3 560]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 560,
+        "name": "Ancient Ruin, Plaza",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/559",
+          "W": "3/584",
+          "NE": "0",
+          "NW": "3/596",
+          "SE": "0",
+          "SW": "3/561",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "HBAL",
+      "area": "Ancient Ruin",
+      "label": "Huge Basilisk",
+      "mapNumber": 3,
+      "roomNumber": 574,
+      "raw": "[HBAL:Ancient Ruin:Huge Basilisk-3 574]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 574,
+        "name": "Mirrored Chamber",
+        "exits": {
+          "N": "0",
+          "S": "3/573 (Hidden/Searchable)",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "36604450:3A900000:15:-1:0:::",
+      "parts": [
+        "36604450",
+        "3A900000",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "36604450:0000:sw",
+      "parts": [
+        "36604450",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DC204100:0000:sw",
+      "parts": [
+        "DC204100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DC204140:0000:w",
+      "parts": [
+        "DC204140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "54C00010:0000:n[turn knob,pull lever,push switch,push button]",
+      "parts": [
+        "54C00010",
+        "0000",
+        "n[turn knob,pull lever,push switch,push button]"
+      ],
+      "commands": [
+        "n[turn knob,pull lever,push switch,push button]"
+      ]
+    },
+    {
+      "raw": "14C40000:0001:d",
+      "parts": [
+        "14C40000",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "09410040:0001:w",
+      "parts": [
+        "09410040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:w",
+      "parts": [
+        "19E00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:w",
+      "parts": [
+        "19E00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:e",
+      "parts": [
+        "19E00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:w",
+      "parts": [
+        "19E00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:e",
+      "parts": [
+        "19E00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:e",
+      "parts": [
+        "19E00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:w",
+      "parts": [
+        "19E00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "19E00050:0000:sea n",
+      "parts": [
+        "19E00050",
+        "0000",
+        "sea n"
+      ],
+      "commands": [
+        "sea n"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:n[search n]",
+      "parts": [
+        "19E00050",
+        "0001",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

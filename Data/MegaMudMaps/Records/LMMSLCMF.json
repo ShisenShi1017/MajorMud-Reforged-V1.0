@@ -1,0 +1,385 @@
+{
+  "file": "LMMSLCMF.mp",
+  "sha256": "5d12f323d7921aebc0556f3d4001d36659b7d01bd823f98af0854e50aa6c8236",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "LMMS",
+      "area": "Scorching Desert",
+      "label": "Manscorpain Shamans Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LMMS:Scorching Desert:Manscorpain Shamans Fork]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCMF",
+      "area": "Scorching Desert",
+      "label": "Manscorpion Fork",
+      "mapNumber": 12,
+      "roomNumber": 1573,
+      "raw": "[LCMF:Scorching Desert:Manscorpion Fork-12 1573]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 1573,
+        "name": "Limestone Caverns",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "12/1574",
+          "NW": "12/1767",
+          "SE": "0",
+          "SW": "12/1572",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "42A04410:C5804500:29:-1:0:::",
+      "parts": [
+        "42A04410",
+        "C5804500",
+        "29",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "29",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "42A04410:0000:sw",
+      "parts": [
+        "42A04410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "42A04100:0000:sw",
+      "parts": [
+        "42A04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "42A04100:0000:sw",
+      "parts": [
+        "42A04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "42A04100:0000:sw",
+      "parts": [
+        "42A04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "42A04100:0000:sw",
+      "parts": [
+        "42A04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "42A01500:0000:nw",
+      "parts": [
+        "42A01500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5805000:0000:sw",
+      "parts": [
+        "C5805000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5800500:0000:nw",
+      "parts": [
+        "C5800500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5805000:0000:sw",
+      "parts": [
+        "C5805000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5800140:0000:w",
+      "parts": [
+        "C5800140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C5800050:0000:w",
+      "parts": [
+        "C5800050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C5800410:0000:nw",
+      "parts": [
+        "C5800410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801500:0000:nw",
+      "parts": [
+        "C5801500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5805400:0000:sw",
+      "parts": [
+        "C5805400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5804100:0000:sw",
+      "parts": [
+        "C5804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5804100:0000:sw",
+      "parts": [
+        "C5804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5801500:0000:nw",
+      "parts": [
+        "C5801500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5805001:0000:sw",
+      "parts": [
+        "C5805001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5804100:0000:sw",
+      "parts": [
+        "C5804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5804100:0000:sw",
+      "parts": [
+        "C5804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5804100:0000:sw",
+      "parts": [
+        "C5804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5800140:0000:w",
+      "parts": [
+        "C5800140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C5804010:0000:sw",
+      "parts": [
+        "C5804010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 33
+}

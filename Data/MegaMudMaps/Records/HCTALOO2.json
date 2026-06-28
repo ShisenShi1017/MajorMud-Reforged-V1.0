@@ -1,0 +1,563 @@
+{
+  "file": "HCTALOO2.mp",
+  "sha256": "031d721a63b8b39c226ce4ab3b329aa13ef3b96f24bc7645b5a3cb254de31434",
+  "metadataLine": "[Orc Training Area (medium)-15 5][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "HCTA",
+      "area": "Goblin caves",
+      "label": "Huge Cavern, Training Area",
+      "mapNumber": 15,
+      "roomNumber": 5,
+      "raw": "[HCTA:Goblin caves:Huge Cavern, Training Area-15 5]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 5,
+        "name": "Huge Cavern, Training Area",
+        "exits": {
+          "N": "15/4",
+          "S": "15/49",
+          "E": "15/51",
+          "W": "15/6",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CCE00055:CCE00055:46:-1:0:::",
+      "parts": [
+        "CCE00055",
+        "CCE00055",
+        "46",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "46",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:w",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00054:0000:w",
+      "parts": [
+        "CCE00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00054:0000:s",
+      "parts": [
+        "CCE00054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:w",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:w",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00054:0000:w",
+      "parts": [
+        "CCE00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00014:0000:s",
+      "parts": [
+        "CCE00014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00015:0000:s",
+      "parts": [
+        "CCE00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00095:0000:s",
+      "parts": [
+        "CCE00095",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00015:0000:e",
+      "parts": [
+        "CCE00015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:s",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:w",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00015:0000:s",
+      "parts": [
+        "CCE00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00011:0000:e",
+      "parts": [
+        "CCE00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00059:0000:e",
+      "parts": [
+        "CCE00059",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00051:0000:e",
+      "parts": [
+        "CCE00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00051:0000:e",
+      "parts": [
+        "CCE00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:s",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00015:0000:s",
+      "parts": [
+        "CCE00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00015:0000:s",
+      "parts": [
+        "CCE00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCE00011:0000:e",
+      "parts": [
+        "CCE00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00051:0000:e",
+      "parts": [
+        "CCE00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00041:0000:n",
+      "parts": [
+        "CCE00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00045:0000:w",
+      "parts": [
+        "CCE00045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00045:0000:n",
+      "parts": [
+        "CCE00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:w",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00045:0000:n",
+      "parts": [
+        "CCE00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00065:0000:w",
+      "parts": [
+        "CCE00065",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:w",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:w",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00054:0000:w",
+      "parts": [
+        "CCE00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00054:0000:w",
+      "parts": [
+        "CCE00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CCE00054:0000:w",
+      "parts": [
+        "CCE00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 49
+}

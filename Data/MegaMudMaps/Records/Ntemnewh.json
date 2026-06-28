@@ -1,0 +1,67 @@
+{
+  "file": "Ntemnewh.mp",
+  "sha256": "4869864cf114bd1d4fc281d14c3a576229d4b6a53bee15689427a054006034a0",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "NTEM",
+      "area": "Newhaven",
+      "label": "Temple Healer",
+      "mapNumber": 1,
+      "roomNumber": 2190,
+      "raw": "[NTEM:Newhaven:Temple Healer-1 2190]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2190,
+        "name": "Newhaven, Healer",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/2146",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "17900010:38B40051:1:-1:0:::",
+      "parts": [
+        "17900010",
+        "38B40051",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "17900010:0000:e",
+      "parts": [
+        "17900010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 4
+}

@@ -1,0 +1,78 @@
+{
+  "file": "Gob5thrg.mp",
+  "sha256": "47b98cd6d75550b5810b897932fbde3ad27ee6f1b54bbfdcfe84f39af54a11af",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GOB5",
+      "area": "Goblin caves",
+      "label": "Goblin Caves (large iron key door)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GOB5:Goblin caves:Goblin Caves (large iron key door)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "THRG",
+      "area": "Goblin caves",
+      "label": "Thrag",
+      "mapNumber": 1,
+      "roomNumber": 1810,
+      "raw": "[THRG:Goblin caves:Thrag-1 1810]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1810,
+        "name": "Gigantic Cavern",
+        "exits": {
+          "N": "Action#1 [on the D exit of this room]: pull switch, move switch, pull swi",
+          "S": "0",
+          "E": "0",
+          "W": "1/1794 (Door [11 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/1797 (Hidden/Needs 1 Actions, any order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "13900060:DE700080:1:-1:0:large iron key::",
+      "parts": [
+        "13900060",
+        "DE700080",
+        "1",
+        "-1",
+        "0",
+        "large iron key",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0",
+        "large iron key"
+      ]
+    },
+    {
+      "raw": "13900060:0400:e[use large iron key e]",
+      "parts": [
+        "13900060",
+        "0400",
+        "e[use large iron key e]"
+      ],
+      "commands": [
+        "e[use large iron key e]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

@@ -1,0 +1,121 @@
+{
+  "file": "Gob1slim.mp",
+  "sha256": "75facfbada2b4542df812b20cb56796c35e47993da6563481213f5f96f1d790d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GOB1",
+      "area": "Goblin caves",
+      "label": "Goblin Caves (Slime Beast fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GOB1:Goblin caves:Goblin Caves (Slime Beast fork)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SLIM",
+      "area": "Goblin caves",
+      "label": "Slime Beast",
+      "mapNumber": 1,
+      "roomNumber": 1765,
+      "raw": "[SLIM:Goblin caves:Slime Beast-1 1765]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1765,
+        "name": "Huge Cave, Refuse Pit",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "1/1764",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "89505100:05E01000:5:-1:0:::",
+      "parts": [
+        "89505100",
+        "05E01000",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "89505100:0000:ne",
+      "parts": [
+        "89505100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "6FC04100:0001:ne",
+      "parts": [
+        "6FC04100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "6FC04400:0001:nw",
+      "parts": [
+        "6FC04400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "6FC01001:0001:n",
+      "parts": [
+        "6FC01001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "01100404:0001:nw",
+      "parts": [
+        "01100404",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

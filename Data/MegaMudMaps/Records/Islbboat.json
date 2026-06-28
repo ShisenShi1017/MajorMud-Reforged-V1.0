@@ -1,0 +1,119 @@
+{
+  "file": "Islbboat.mp",
+  "sha256": "5f3b470a5c322bc11712402a9d4e2d6c018c782780af13b7df9aef2af3d5dc3f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ISLB",
+      "area": "Island",
+      "label": "Island Beach Landing",
+      "mapNumber": 1,
+      "roomNumber": 1815,
+      "raw": "[ISLB:Island:Island Beach Landing-1 1815]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1815,
+        "name": "Island, Beach Landing",
+        "exits": {
+          "N": "0",
+          "S": "1/2342",
+          "E": "1/1820",
+          "W": "1/1816",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "BOAT",
+      "area": "Silvermere",
+      "label": "Pier (Boatman)",
+      "mapNumber": 1,
+      "roomNumber": 1813,
+      "raw": "[BOAT:Silvermere:Pier (Boatman)-1 1813]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1813,
+        "name": "Pier",
+        "exits": {
+          "N": "1/1814",
+          "S": "1/27",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "27400054:41900005:3:-1:0:::",
+      "parts": [
+        "27400054",
+        "41900005",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "27400054:0000:s",
+      "parts": [
+        "27400054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C5800055:0000:s",
+      "parts": [
+        "C5800055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "6B900005:0000:s",
+      "parts": [
+        "6B900005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

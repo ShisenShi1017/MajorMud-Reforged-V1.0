@@ -1,0 +1,187 @@
+{
+  "file": "Nhagmost.mp",
+  "sha256": "84704b223b24a9a4065e7c64587c5608751f24591e73eb133fe856778a330608",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "NHAG",
+      "area": "Mossy Tunnels",
+      "label": "Night Hag",
+      "mapNumber": 36,
+      "roomNumber": 37,
+      "raw": "[NHAG:Mossy Tunnels:Night Hag-36 37]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "MOST",
+      "area": "Mossy Tunnels",
+      "label": "Mossy Tunnel",
+      "mapNumber": 3,
+      "roomNumber": 1,
+      "raw": "[MOST:Mossy Tunnels:Mossy Tunnel-3 1]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 1,
+        "name": "Mossy Cave, Waterfall",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/2",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/2362"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B1B00080:5D840010:11:-1:0:::",
+      "parts": [
+        "B1B00080",
+        "5D840010",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B1B00080:0001:w",
+      "parts": [
+        "B1B00080",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "78B00004:0001:s",
+      "parts": [
+        "78B00004",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EF201041:0001:w",
+      "parts": [
+        "EF201041",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EF200054:0001:w",
+      "parts": [
+        "EF200054",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EF204410:0001:sw",
+      "parts": [
+        "EF204410",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "EF205100:0001:sw",
+      "parts": [
+        "EF205100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "EF200504:0001:s",
+      "parts": [
+        "EF200504",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EF200041:0001:w",
+      "parts": [
+        "EF200041",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EF200050:0001:w",
+      "parts": [
+        "EF200050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EF200414:0001:nw",
+      "parts": [
+        "EF200414",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "EF201140:0001:w",
+      "parts": [
+        "EF201140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

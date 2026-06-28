@@ -1,0 +1,96 @@
+{
+  "file": "Sbnksovn.mp",
+  "sha256": "8698635531dbba316c04770668c530d92b5d909050320f7d8231bd9b726f9b69",
+  "metadataLine": "[][Merlin]",
+  "roomHeaders": [
+    {
+      "code": "SBNK",
+      "area": "Silvermere",
+      "label": "Bank of Godfrey",
+      "mapNumber": 1,
+      "roomNumber": 297,
+      "raw": "[SBNK:Silvermere:Bank of Godfrey-1 297]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 297,
+        "name": "Bank of Godfrey",
+        "exits": {
+          "N": "1/301",
+          "S": "0",
+          "E": "1/225",
+          "W": "1/41 (Door [1000 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SOVN",
+      "area": "Silvermere",
+      "label": "Sovereign St Nth",
+      "mapNumber": 1,
+      "roomNumber": 225,
+      "raw": "[SOVN:Silvermere:Sovereign St Nth-1 225]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 225,
+        "name": "Sovereign Street, Northern End",
+        "exits": {
+          "N": "1/224",
+          "S": "1/226",
+          "E": "1/311",
+          "W": "1/297",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D4E00091:89C00055:1:-1:0:::",
+      "parts": [
+        "D4E00091",
+        "89C00055",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D4E00091:0000:e",
+      "parts": [
+        "D4E00091",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

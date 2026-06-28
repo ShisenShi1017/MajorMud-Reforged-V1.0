@@ -1,0 +1,119 @@
+{
+  "file": "ARLSARTA.mp",
+  "sha256": "d62b77e53c0de94261fa7263a18ab48754abbbb11e9dd959a67dd0450b4c3d60",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "ARLS",
+      "area": "Arlysia",
+      "label": "Lud's Smithy",
+      "mapNumber": 17,
+      "roomNumber": 2438,
+      "raw": "[ARLS:Arlysia:Lud's Smithy-17 2438]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2438,
+        "name": "Lud's Smithy",
+        "exits": {
+          "N": "0",
+          "S": "17/2293",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ARTA",
+      "area": "Arlysia",
+      "label": "Tavern",
+      "mapNumber": 17,
+      "roomNumber": 2441,
+      "raw": "[ARTA:Arlysia:Tavern-17 2441]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2441,
+        "name": "Tavern",
+        "exits": {
+          "N": "17/2442",
+          "S": "17/2294",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E0700004:8DA00005:3:-1:0:::",
+      "parts": [
+        "E0700004",
+        "8DA00005",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E0700004:0000:s",
+      "parts": [
+        "E0700004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:w",
+      "parts": [
+        "9C000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:n",
+      "parts": [
+        "9C000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

@@ -1,0 +1,265 @@
+{
+  "file": "Vxw6vxw4.mp",
+  "sha256": "253075d02706da7066d0e9d9aec3b19bb19b7fd0e09dcce66f83a90d42326b29",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXW6",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (Mossy Tunnels)+3 681",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[VXW6:Black Wastelands:Wastelands Vortex (Mossy Tunnels)+3 681]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "VXW4",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (Hazy Swamp)",
+      "mapNumber": 3,
+      "roomNumber": 782,
+      "raw": "[VXW4:Black Wastelands:Wastelands Vortex (Hazy Swamp)-3 782]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 782,
+        "name": "Hazy Swamp",
+        "exits": {
+          "N": "0",
+          "S": "7/618",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED100504:ED104001:18:-1:0:::",
+      "parts": [
+        "ED100504",
+        "ED104001",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED100504:0000:nw",
+      "parts": [
+        "ED100504",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "ED001040:0000:w",
+      "parts": [
+        "ED001040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ED000410:0000:nw",
+      "parts": [
+        "ED000410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "ED001040:0000:w",
+      "parts": [
+        "ED001040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ED000410:0000:nw",
+      "parts": [
+        "ED000410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "ED001140:0000:w",
+      "parts": [
+        "ED001140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ED000050:0000:w",
+      "parts": [
+        "ED000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ED004010:0000:sw",
+      "parts": [
+        "ED004010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "ED001100:0000:se",
+      "parts": [
+        "ED001100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED004400:0000:sw",
+      "parts": [
+        "ED004400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "ED000104:0000:s",
+      "parts": [
+        "ED000104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED000005:0000:s",
+      "parts": [
+        "ED000005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED000005:0000:s",
+      "parts": [
+        "ED000005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED000041:0000:w",
+      "parts": [
+        "ED000041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ED004014:0000:s",
+      "parts": [
+        "ED004014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED000005:0000:s",
+      "parts": [
+        "ED000005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED000005:0000:s",
+      "parts": [
+        "ED000005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED000005:0000:s",
+      "parts": [
+        "ED000005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

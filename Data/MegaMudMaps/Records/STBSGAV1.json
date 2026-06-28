@@ -1,0 +1,240 @@
+{
+  "file": "STBSGAV1.mp",
+  "sha256": "65c7e37f31a8f7982b197fa4f0be83105d59a8c8fe86c82ac936a437101eaf4e",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "STBS",
+      "area": "Sewers",
+      "label": "Sewer Tunnel, Brass Street",
+      "mapNumber": 1,
+      "roomNumber": 598,
+      "raw": "[STBS:Sewers:Sewer Tunnel, Brass Street-1 598]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 598,
+        "name": "Sewer Tunnel",
+        "exits": {
+          "N": "1/599",
+          "S": "1/597",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/383",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "GAV1",
+      "area": "Sewers",
+      "label": "Sewer Tunnel, Junction (below TS)",
+      "mapNumber": 1,
+      "roomNumber": 766,
+      "raw": "[GAV1:Sewers:Sewer Tunnel, Junction (below TS)-1 766]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 766,
+        "name": "Sewer Tunnel, Junction",
+        "exits": {
+          "N": "1/765",
+          "S": "1/793",
+          "E": "1/775",
+          "W": "1/767",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/224",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E9510005:FDA10055:14:-1:0:::",
+      "parts": [
+        "E9510005",
+        "FDA10055",
+        "14",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "14",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E9510005:0000:s",
+      "parts": [
+        "E9510005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9504001:0000:sw",
+      "parts": [
+        "E9504001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "E9504100:0000:sw",
+      "parts": [
+        "E9504100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "E9500104:0000:s",
+      "parts": [
+        "E9500104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9501001:0000:se",
+      "parts": [
+        "E9501001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "90A00444:0000:w",
+      "parts": [
+        "90A00444",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500058:0000:w",
+      "parts": [
+        "E9500058",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 18
+}

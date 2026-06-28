@@ -1,0 +1,130 @@
+{
+  "file": "KBNKKENT.mp",
+  "sha256": "c5aaada715128c6fe962ee0338a0184b57c48ee9bb64d7e394ed59c263bcad79",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "KBNK",
+      "area": "Khazarad",
+      "label": "Bank of Khazarad",
+      "mapNumber": 6,
+      "roomNumber": 1334,
+      "raw": "[KBNK:Khazarad:Bank of Khazarad-6 1334]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1334,
+        "name": "Bank of Khazarad",
+        "exits": {
+          "N": "0",
+          "S": "6/1252",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "KENT",
+      "area": "Khazarad",
+      "label": "Khazarad, Entry Arch",
+      "mapNumber": 6,
+      "roomNumber": 1249,
+      "raw": "[KENT:Khazarad:Khazarad, Entry Arch-6 1249]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1249,
+        "name": "Khazarad, Entry Arch",
+        "exits": {
+          "N": "6/1263",
+          "S": "6/1266",
+          "E": "6/1250",
+          "W": "6/1246",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2AC00004:A6E00055:4:-1:0:::",
+      "parts": [
+        "2AC00004",
+        "A6E00055",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2AC00004:0000:s",
+      "parts": [
+        "2AC00004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:w",
+      "parts": [
+        "3B900055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B900050:0000:w",
+      "parts": [
+        "3B900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:w",
+      "parts": [
+        "3B900055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

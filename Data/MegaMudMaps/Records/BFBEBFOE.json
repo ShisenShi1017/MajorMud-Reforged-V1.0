@@ -1,0 +1,165 @@
+{
+  "file": "BFBEBFOE.mp",
+  "sha256": "423f12de0ed6e11c15dd82c4e1d2eec276cd7af87af637d8b12a0126a1360052",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BFBE",
+      "area": "Blackwood Forest",
+      "label": "Bloody Executioner",
+      "mapNumber": 17,
+      "roomNumber": 591,
+      "raw": "[BFBE:Blackwood Forest:Bloody Executioner-17 591]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 591,
+        "name": "Blackwood Forest, Winding Trail",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "17/592",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/590",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BFOE",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest, Outside Enigma Lord",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BFOE:Blackwood Forest:Blackwood Forest, Outside Enigma Lord]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5A601040:57201400:9:-1:0:::",
+      "parts": [
+        "5A601040",
+        "57201400",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5A601040:0000:w",
+      "parts": [
+        "5A601040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5A600410:0000:nw",
+      "parts": [
+        "5A600410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5A601400:0000:nw",
+      "parts": [
+        "5A601400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5A601001:0000:n",
+      "parts": [
+        "5A601001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "5A600404:0000:nw",
+      "parts": [
+        "5A600404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5A601400:0000:nw",
+      "parts": [
+        "5A601400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5A601001:0000:n",
+      "parts": [
+        "5A601001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "5A601005:0000:se",
+      "parts": [
+        "5A601005",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "57201400:0000:sea n",
+      "parts": [
+        "57201400",
+        "0000",
+        "sea n"
+      ],
+      "commands": [
+        "sea n"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

@@ -1,0 +1,283 @@
+{
+  "file": "DBDESCSQ.mp",
+  "sha256": "8fbaf61b05935a18be7e2ce2a0d54a4482af74bbcb82db2dc4c1cad9cbb3cc4b",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DBDE",
+      "area": "Scorching Desert",
+      "label": "Blue Dragons Entrance",
+      "mapNumber": 12,
+      "roomNumber": 2303,
+      "raw": "[DBDE:Scorching Desert:Blue Dragons Entrance-12 2303]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2303,
+        "name": "Sandstone Cavern",
+        "exits": {
+          "N": "12/593",
+          "S": "12/2315",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "12/2304",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SCSQ",
+      "area": "Scorching Desert",
+      "label": "Sandstone Quarry",
+      "mapNumber": 12,
+      "roomNumber": 1086,
+      "raw": "[SCSQ:Scorching Desert:Sandstone Quarry-12 1086]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 1086,
+        "name": "Sandstone Quarry",
+        "exits": {
+          "N": "0",
+          "S": "12/1087",
+          "E": "0",
+          "W": "0",
+          "NE": "12/883",
+          "NW": "12/1088",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "4AB01005:68A00504:18:-1:0:::",
+      "parts": [
+        "4AB01005",
+        "68A00504",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "4AB01005:0000:n",
+      "parts": [
+        "4AB01005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "5D800054:0000:w",
+      "parts": [
+        "5D800054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D804010:0000:sw",
+      "parts": [
+        "5D804010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5D804100:0000:sw",
+      "parts": [
+        "5D804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5D800500:0000:nw",
+      "parts": [
+        "5D800500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5D805000:0000:sw",
+      "parts": [
+        "5D805000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5D804100:0000:sw",
+      "parts": [
+        "5D804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5D804100:0000:sw",
+      "parts": [
+        "5D804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5D800140:0000:w",
+      "parts": [
+        "5D800140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D800050:0000:w",
+      "parts": [
+        "5D800050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D800050:0000:w",
+      "parts": [
+        "5D800050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D804010:0000:sw",
+      "parts": [
+        "5D804010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5D800500:0000:nw",
+      "parts": [
+        "5D800500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5D801040:0000:w",
+      "parts": [
+        "5D801040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D800410:0000:nw",
+      "parts": [
+        "5D800410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5D801040:0000:w",
+      "parts": [
+        "5D801040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F0100050:0000:w",
+      "parts": [
+        "F0100050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "68A04011:0000:n",
+      "parts": [
+        "68A04011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

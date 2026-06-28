@@ -1,0 +1,194 @@
+{
+  "file": "Shnpshsc.mp",
+  "sha256": "0374f73fb0516dcaba3a933af7da077a8524d68884e04cb076937de4dc24a15d",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "SHNP",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Narrow Precipic",
+      "mapNumber": 12,
+      "roomNumber": 2123,
+      "raw": "[SHNP:Scorching Desert:Saracen Hideout, Narrow Precipic-12 2123]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2123,
+        "name": "Narrow Precipice",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "12/2122 (Hidden/Needs 1 Actions, any order)",
+          "NE": "12/2124",
+          "NW": "0",
+          "SE": "12/2128",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SHSC",
+      "area": "Scorching Desert",
+      "label": "Saracen Commander",
+      "mapNumber": 12,
+      "roomNumber": 2143,
+      "raw": "[SHSC:Scorching Desert:Saracen Commander-12 2143]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2143,
+        "name": "Plaster Hallway",
+        "exits": {
+          "N": "12/2144 (Door [21 picklocks/strength])",
+          "S": "12/2142",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "52F01100:33600008:10:-1:0:::",
+      "parts": [
+        "52F01100",
+        "33600008",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "52F01100:0000:ne",
+      "parts": [
+        "52F01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4D04011:0000:e",
+      "parts": [
+        "F4D04011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D01040:0000:n[search north]",
+      "parts": [
+        "F4D01040",
+        "0000",
+        "n[search north]"
+      ],
+      "commands": [
+        "n[search north]"
+      ]
+    },
+    {
+      "raw": "F4D10000:0000:u",
+      "parts": [
+        "F4D10000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F4D40008:0000:s",
+      "parts": [
+        "F4D40008",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00006:0000:s",
+      "parts": [
+        "F4D00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00005:0000:s",
+      "parts": [
+        "F4D00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00041:0000:w",
+      "parts": [
+        "F4D00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4D00011:0000:n",
+      "parts": [
+        "F4D00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00006:0000:n",
+      "parts": [
+        "F4D00006",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

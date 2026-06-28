@@ -1,0 +1,111 @@
+{
+  "file": "VXDTDTHH.mp",
+  "sha256": "38e616d1308db86432f514078ff36057c18845282217ae328d8cdf28d7f7bc16",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "VXDT",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills (Vortex)",
+      "mapNumber": 3,
+      "roomNumber": 783,
+      "raw": "[VXDT:Dragon's Teeth Hills:Dragon's Teeth Hills (Vortex)-3 783]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 783,
+        "name": "Dragon's Teeth Hills",
+        "exits": {
+          "N": "2/484",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "DTHH",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills (Hole)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DTHH:Dragon's Teeth Hills:Dragon's Teeth Hills (Hole)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C5000001:C4F00414:4:-1:0:::",
+      "parts": [
+        "C5000001",
+        "C4F00414",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C5000001:0000:n",
+      "parts": [
+        "C5000001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C4F00054:0000:w",
+      "parts": [
+        "C4F00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F00050:0000:w",
+      "parts": [
+        "C4F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F00050:0000:w",
+      "parts": [
+        "C4F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

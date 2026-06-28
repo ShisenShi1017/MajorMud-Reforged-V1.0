@@ -1,0 +1,163 @@
+{
+  "file": "Llgmjabt.mp",
+  "sha256": "48213470066a64fdfd2afcbb5b91fdeaeff633daa541443d80a98caed71dc058",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LLGM",
+      "area": "Jungle",
+      "label": "Large Mound",
+      "mapNumber": 16,
+      "roomNumber": 1405,
+      "raw": "[LLGM:Jungle:Large Mound-16 1405]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1405,
+        "name": "Shallow Jungle, Large Mound",
+        "exits": {
+          "N": "0",
+          "S": "16/1400",
+          "E": "16/1399",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "JABT",
+      "area": "Jungle",
+      "label": "Abandoned Temple",
+      "mapNumber": 16,
+      "roomNumber": 1412,
+      "raw": "[JABT:Jungle:Abandoned Temple-16 1412]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1412,
+        "name": "Deep Jungle, Abandoned Temple",
+        "exits": {
+          "N": "0",
+          "S": "16/1424",
+          "E": "16/1439",
+          "W": "16/1413",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1411"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "71E00014:F0240054:7:-1:0:::",
+      "parts": [
+        "71E00014",
+        "F0240054",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "71E00014:0000:go hole",
+      "parts": [
+        "71E00014",
+        "0000",
+        "go hole"
+      ],
+      "commands": [
+        "go hole"
+      ]
+    },
+    {
+      "raw": "7D700004:0040:s",
+      "parts": [
+        "7D700004",
+        "0040",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7D700005:0040:s",
+      "parts": [
+        "7D700005",
+        "0040",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7D700005:0040:s",
+      "parts": [
+        "7D700005",
+        "0040",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7D700005:0040:s",
+      "parts": [
+        "7D700005",
+        "0040",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7D700009:0040:s",
+      "parts": [
+        "7D700009",
+        "0040",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "0E910002:0000:u",
+      "parts": [
+        "0E910002",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

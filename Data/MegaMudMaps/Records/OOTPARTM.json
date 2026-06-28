@@ -1,0 +1,88 @@
+{
+  "file": "OOTPARTM.mp",
+  "sha256": "425efd605eb39141cdb8f91b371404a90ef779c93825865874eb3d3919e3f0eb",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "OOTP",
+      "area": "Arlysia",
+      "label": "Office of the Pastor (wooden box)17 2590",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[OOTP:Arlysia:Office of the Pastor (wooden box)17 2590]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "ARTM",
+      "area": "Arlysia",
+      "label": "Pastor Lander",
+      "mapNumber": 17,
+      "roomNumber": 2418,
+      "raw": "[ARTM:Arlysia:Pastor Lander-17 2418]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2418,
+        "name": "The Arlysian Temple, Altar",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "17/2413",
+          "W": "0",
+          "NE": "17/2409",
+          "NW": "0",
+          "SE": "17/2414",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DD900020:DB901110:2:-1:0:::",
+      "parts": [
+        "DD900020",
+        "DB901110",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DD900020:0000:e",
+      "parts": [
+        "DD900020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "87204095:0000:sw",
+      "parts": [
+        "87204095",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

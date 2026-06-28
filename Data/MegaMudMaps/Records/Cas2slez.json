@@ -1,0 +1,216 @@
+{
+  "file": "Cas2slez.mp",
+  "sha256": "91a5ddb144985fa299e51bc3d6ea98834dd1d238006db63805898a2acf3f9991",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CAS2",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Castle Level 2",
+      "mapNumber": 8,
+      "roomNumber": 584,
+      "raw": "[CAS2:Dark-Elf City:Dark-elf Castle Level 2-8 584]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 584,
+        "name": "Castle, Dark Hallway",
+        "exits": {
+          "N": "8/583",
+          "S": "8/572 (Door [41 picklocks/strength])",
+          "E": "8/596",
+          "W": "8/595",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SLEZ",
+      "area": "Dark-Elf City",
+      "label": "Sleazy Shopkeeper",
+      "mapNumber": 8,
+      "roomNumber": 486,
+      "raw": "[SLEZ:Dark-Elf City:Sleazy Shopkeeper-8 486]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 486,
+        "name": "Musty Store",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/481 (Door [16 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D2400059:A1400020:12:-1:0:::",
+      "parts": [
+        "D2400059",
+        "A1400020",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D2400059:0001:n",
+      "parts": [
+        "D2400059",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D2400005:0001:n",
+      "parts": [
+        "D2400005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D2400005:0001:n",
+      "parts": [
+        "D2400005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D2400055:0001:n",
+      "parts": [
+        "D2400055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D2400006:0001:n",
+      "parts": [
+        "D2400006",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "1770005A:0001:n[turn wheel]",
+      "parts": [
+        "1770005A",
+        "0001",
+        "n[turn wheel]"
+      ],
+      "commands": [
+        "n[turn wheel]"
+      ]
+    },
+    {
+      "raw": "3AA00009:0001:n",
+      "parts": [
+        "3AA00009",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3C200005:0001:n",
+      "parts": [
+        "3C200005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "78000055:0001:n",
+      "parts": [
+        "78000055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400085:0001:n",
+      "parts": [
+        "86400085",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "78000055:0001:n",
+      "parts": [
+        "78000055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400085:0001:w",
+      "parts": [
+        "86400085",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

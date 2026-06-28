@@ -1,0 +1,250 @@
+{
+  "file": "Dreafrte.mp",
+  "sha256": "6f5e7f28ccb108eec39824950cf65d53649a1758917be168f7517dbda5f41c0a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DREA",
+      "area": "Black Fort",
+      "label": "Dreary Village",
+      "mapNumber": 7,
+      "roomNumber": 1133,
+      "raw": "[DREA:Black Fort:Dreary Village-7 1133]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1133,
+        "name": "Dreary Village",
+        "exits": {
+          "N": "7/1136 (Door)",
+          "S": "3/785",
+          "E": "7/1121",
+          "W": "7/1130",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "FRTE",
+      "area": "Black Fort",
+      "label": "Fortress Secret Entrance",
+      "mapNumber": 7,
+      "roomNumber": 1222,
+      "raw": "[FRTE:Black Fort:Fortress Secret Entrance-7 1222]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1222,
+        "name": "Small Path, Dead End",
+        "exits": {
+          "N": "7/1194 (Hidden/Needs 1 Actions, any order)",
+          "S": "0",
+          "E": "Action [on the N exit of this room]: push brick, move brick",
+          "W": "7/1221",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "85500056:37900040:15:-1:0:::",
+      "parts": [
+        "85500056",
+        "37900040",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "85500056:0000:e",
+      "parts": [
+        "85500056",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "85500055:0000:e",
+      "parts": [
+        "85500055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "05D00050:0000:s",
+      "parts": [
+        "05D00050",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75800000:0000:s",
+      "parts": [
+        "75800000",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75800000:0000:s",
+      "parts": [
+        "75800000",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75800040:0000:e",
+      "parts": [
+        "75800040",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "75800000:0000:e",
+      "parts": [
+        "75800000",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "75800000:0000:e",
+      "parts": [
+        "75800000",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "75800000:0000:e",
+      "parts": [
+        "75800000",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7F100000:0000:se",
+      "parts": [
+        "7F100000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "43801000:0000:se",
+      "parts": [
+        "43801000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "43801400:0000:se",
+      "parts": [
+        "43801400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "43800410:0000:e",
+      "parts": [
+        "43800410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "43800050:0000:e",
+      "parts": [
+        "43800050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "43800050:0000:e",
+      "parts": [
+        "43800050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

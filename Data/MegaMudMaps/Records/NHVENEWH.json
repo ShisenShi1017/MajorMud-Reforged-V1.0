@@ -1,0 +1,107 @@
+{
+  "file": "NHVENEWH.mp",
+  "sha256": "91c4380e8aa44e283b16e23db73f80c029e10b75834bf02389aeac3e74b24801",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "NHVE",
+      "area": "Newhaven",
+      "label": "Newhaven, Village Entrance",
+      "mapNumber": 1,
+      "roomNumber": 2140,
+      "raw": "[NHVE:Newhaven:Newhaven, Village Entrance-1 2140]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2140,
+        "name": "Newhaven, Village Entrance",
+        "exits": {
+          "N": "1/2141",
+          "S": "1/2142",
+          "E": "0",
+          "W": "1/2143",
+          "NE": "0",
+          "NW": "0",
+          "SE": "1/2148",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "NEWH",
+      "area": "Newhaven",
+      "label": "Newhaven Town",
+      "mapNumber": 1,
+      "roomNumber": 2146,
+      "raw": "[NEWH:Newhaven:Newhaven Town-1 2146]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2146,
+        "name": "Newhaven, Narrow Road",
+        "exits": {
+          "N": "1/2147",
+          "S": "0",
+          "E": "1/2143",
+          "W": "1/2190 (Level: 1 to 3)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/2150"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2D601045:38B40051:2:-1:0:::",
+      "parts": [
+        "2D601045",
+        "38B40051",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2D601045:0000:w",
+      "parts": [
+        "2D601045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "42D00055:0000:w",
+      "parts": [
+        "42D00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

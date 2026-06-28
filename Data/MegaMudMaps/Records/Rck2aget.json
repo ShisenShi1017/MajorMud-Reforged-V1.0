@@ -1,0 +1,173 @@
+{
+  "file": "Rck2aget.mp",
+  "sha256": "a919d69c4c4f7bb0eb46aa563c004cd4187e392298f4bbc17a4a42011d240087",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RCK2",
+      "area": "Rocky Trail",
+      "label": "Rocky Trail (Titan Fork)",
+      "mapNumber": 10,
+      "roomNumber": 22,
+      "raw": "[RCK2:Rocky Trail:Rocky Trail (Titan Fork)-10 22]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 22,
+        "name": "Rocky Trail",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/21",
+          "NE": "10/23",
+          "NW": "0",
+          "SE": "10/265",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "AGET",
+      "area": "Trainers",
+      "label": "Aged Titan (21-50)",
+      "mapNumber": 10,
+      "roomNumber": 271,
+      "raw": "[AGET:Trainers:Aged Titan (21-50)-10 271]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 271,
+        "name": "Ancient Keep, Throne Room",
+        "exits": {
+          "N": "10/270",
+          "S": "0",
+          "E": "Action [on the W exit of this room]: say 'Temar Eldanti', say Temar Eldanti, speak Temar Eldanti",
+          "W": "10/272 (Hidden/Needs 1 Actions, any order)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "92501140:45700001:8:-1:0:::",
+      "parts": [
+        "92501140",
+        "45700001",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "92501140:0000:se",
+      "parts": [
+        "92501140",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "92500404:0000:s",
+      "parts": [
+        "92500404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92501001:0000:se",
+      "parts": [
+        "92501001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "92510400:0000:u",
+      "parts": [
+        "92510400",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "92540004:0000:s",
+      "parts": [
+        "92540004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "55C00005:0000:s",
+      "parts": [
+        "55C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "55C00005:0000:s",
+      "parts": [
+        "55C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C0600005:0000:s",
+      "parts": [
+        "C0600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

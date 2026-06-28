@@ -1,0 +1,232 @@
+{
+  "file": "DRKFGNGG.mp",
+  "sha256": "6d4442009a84afb999c7926d968c30a796a2928481a8c3ff4de130d910ca75a3",
+  "metadataLine": "[][Merlin]",
+  "roomHeaders": [
+    {
+      "code": "DRKF",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DRKF:Darkwood Forest:Darkwood Forest]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "GNGG",
+      "area": "Gang Houses",
+      "label": "Entrance Green House Room",
+      "mapNumber": 15,
+      "roomNumber": 923,
+      "raw": "[GNGG:Gang Houses:Entrance Green House Room-15 923]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 923,
+        "name": "",
+        "exits": {
+          "N": "15/924 (Key: 1028 [or 101 picklocks])",
+          "S": "0",
+          "E": "0",
+          "W": "15/926 (Key: 1028 [or 101 picklocks])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "1/1702",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F4E04410:66001082:15:-1:0:::",
+      "parts": [
+        "F4E04410",
+        "66001082",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F4E04410:0000:nw",
+      "parts": [
+        "F4E04410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:n",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00404:0000:nw",
+      "parts": [
+        "F4E00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01400:0000:nw",
+      "parts": [
+        "F4E01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:n",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:n",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:n",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00404:0000:nw",
+      "parts": [
+        "F4E00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01400:0000:nw",
+      "parts": [
+        "F4E01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E05000:0000:sw",
+      "parts": [
+        "F4E05000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E04500:0000:sw",
+      "parts": [
+        "F4E04500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E01401:0000:nw",
+      "parts": [
+        "F4E01401",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

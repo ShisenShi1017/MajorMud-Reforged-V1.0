@@ -1,0 +1,97 @@
+{
+  "file": "Bhttbhcd.mp",
+  "sha256": "2fd6f4f2a0be03acbd39d7e68932005ce229a11c17d796534cf92c35bf9f3bcc",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "BHTT",
+      "area": "Barren Hills",
+      "label": "Treetops",
+      "mapNumber": 16,
+      "roomNumber": 550,
+      "raw": "[BHTT:Barren Hills:Treetops-16 550]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 550,
+        "name": "Treetops",
+        "exits": {
+          "N": "16/551",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "16/553",
+          "NW": "16/549",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "BHCD",
+      "area": "Barren Hills",
+      "label": "Treetops, Closed Door",
+      "mapNumber": 16,
+      "roomNumber": 551,
+      "raw": "[BHCD:Barren Hills:Treetops, Closed Door-16 551]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 551,
+        "name": "Treetops",
+        "exits": {
+          "N": "16/552 (Hidden/Needs 1 Actions, any order)",
+          "S": "16/550",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F8100501:F8100004:1:-1:0:::",
+      "parts": [
+        "F8100501",
+        "F8100004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F8100501:0000:n",
+      "parts": [
+        "F8100501",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

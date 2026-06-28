@@ -1,0 +1,436 @@
+{
+  "file": "Blc3blco.mp",
+  "sha256": "01963cfe0571a82d3faad2e9038a62ee9b21f0fc899579f6aaeaf78d2f29b415",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BLC3",
+      "area": "Black Caves",
+      "label": "Black Caves Level 3",
+      "mapNumber": 8,
+      "roomNumber": 321,
+      "raw": "[BLC3:Black Caves:Black Caves Level 3-8 321]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 321,
+        "name": "Lower Caverns, Entrance",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "8/322",
+          "SW": "0",
+          "U": "8/271",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BLCO",
+      "area": "Black Caves",
+      "label": "Black Caves (Bloodstone Orb)",
+      "mapNumber": 8,
+      "roomNumber": 398,
+      "raw": "[BLCO:Black Caves:Black Caves (Bloodstone Orb)-8 398]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 398,
+        "name": "Lower Caverns, Underground Lake",
+        "exits": {
+          "N": "Action [on the S exit of this room]: rub bloodstone orb, hold bloodstone orb, rub orb (Item: 807)",
+          "S": "8/403 (Hidden/Needs 1 Actions, any order)",
+          "E": "8/397",
+          "W": "8/399",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "6AA11000:7D400050:32:-1:0:::",
+      "parts": [
+        "6AA11000",
+        "7D400050",
+        "32",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "32",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "6AA11000:0001:se",
+      "parts": [
+        "6AA11000",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "10301410:0001:e",
+      "parts": [
+        "10301410",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "10300050:0001:e",
+      "parts": [
+        "10300050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "10300050:0001:e",
+      "parts": [
+        "10300050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "10301154:0001:ne",
+      "parts": [
+        "10301154",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "10304040:0001:w",
+      "parts": [
+        "10304040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "10300051:0001:w",
+      "parts": [
+        "10300051",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "10300450:0001:w",
+      "parts": [
+        "10300450",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "10300050:0001:w",
+      "parts": [
+        "10300050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "10300011:0001:n",
+      "parts": [
+        "10300011",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "10300444:0001:w",
+      "parts": [
+        "10300444",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "10300050:0001:w",
+      "parts": [
+        "10300050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "10304011:0001:sw",
+      "parts": [
+        "10304011",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "10300104:0001:s",
+      "parts": [
+        "10300104",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "10301001:0001:se",
+      "parts": [
+        "10301001",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "10305411:0001:sw",
+      "parts": [
+        "10305411",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "10300104:0001:s",
+      "parts": [
+        "10300104",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "10300015:0001:e",
+      "parts": [
+        "10300015",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "10301040:0001:se",
+      "parts": [
+        "10301040",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "10300414:0001:s",
+      "parts": [
+        "10300414",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "10301001:0001:se",
+      "parts": [
+        "10301001",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "10300410:0001:e",
+      "parts": [
+        "10300410",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "10301040:0001:se",
+      "parts": [
+        "10301040",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "10300500:0001:ne",
+      "parts": [
+        "10300500",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "10304100:0001:ne",
+      "parts": [
+        "10304100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "10304100:0001:ne",
+      "parts": [
+        "10304100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "10304001:0001:n",
+      "parts": [
+        "10304001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7D401104:0001:se",
+      "parts": [
+        "7D401104",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "7D401400:0001:se",
+      "parts": [
+        "7D401400",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "7D400410:0001:e",
+      "parts": [
+        "7D400410",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7D400050:0001:e",
+      "parts": [
+        "7D400050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7D400050:0001:e",
+      "parts": [
+        "7D400050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 36
+}

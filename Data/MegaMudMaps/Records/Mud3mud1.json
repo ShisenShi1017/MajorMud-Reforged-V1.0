@@ -1,0 +1,152 @@
+{
+  "file": "Mud3mud1.mp",
+  "sha256": "41ff8bbc2c2670c533ea2f18f42999983c77496e145fc8a4c3d6fbac23957ec3",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "MUD3",
+      "area": "Jungle",
+      "label": "Shallow Jungle, Mud Pit 3",
+      "mapNumber": 16,
+      "roomNumber": 1264,
+      "raw": "[MUD3:Jungle:Shallow Jungle, Mud Pit 3-16 1264]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1264,
+        "name": "Shallow Jungle, Mud Pit",
+        "exits": {
+          "N": "0",
+          "S": "16/1265",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "16/1263",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MUD1",
+      "area": "Jungle",
+      "label": "Shallow Jungle, Mud Pit 1",
+      "mapNumber": 16,
+      "roomNumber": 1247,
+      "raw": "[MUD1:Jungle:Shallow Jungle, Mud Pit 1-16 1247]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1247,
+        "name": "Shallow Jungle, Mud Pit",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "16/1246",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E8201000:E8201004:6:-1:0:::",
+      "parts": [
+        "E8201000",
+        "E8201004",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E8201000:0000:se",
+      "parts": [
+        "E8201000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31804504:0000:ne",
+      "parts": [
+        "31804504",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31804400:0000:nw",
+      "parts": [
+        "31804400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31801001:0000:n",
+      "parts": [
+        "31801001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800015:0000:n",
+      "parts": [
+        "31800015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800005:0000:n",
+      "parts": [
+        "31800005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

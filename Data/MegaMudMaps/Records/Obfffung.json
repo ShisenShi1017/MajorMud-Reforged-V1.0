@@ -1,0 +1,243 @@
+{
+  "file": "Obfffung.mp",
+  "sha256": "788e66136b8518aeaf420e0690184772785bc5d9fe42e968ca8710ae2dba8def",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "OBFF",
+      "area": "Black House",
+      "label": "Fungus Forest (Obelisk)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[OBFF:Black House:Fungus Forest (Obelisk)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "FUNG",
+      "area": "Black House",
+      "label": "Fungus Forest",
+      "mapNumber": 7,
+      "roomNumber": 156,
+      "raw": "[FUNG:Black House:Fungus Forest-7 156]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 156,
+        "name": "Fungus Forest, Tunnel Opening",
+        "exits": {
+          "N": "7/155",
+          "S": "7/157",
+          "E": "7/281",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "41D00010:23600015:16:-1:0:::",
+      "parts": [
+        "41D00010",
+        "23600015",
+        "16",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "41D00010:0000:e",
+      "parts": [
+        "41D00010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "41B00044:0000:s",
+      "parts": [
+        "41B00044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B00005:0000:s",
+      "parts": [
+        "41B00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "27D00411:0000:nw",
+      "parts": [
+        "27D00411",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "27D01040:0000:w",
+      "parts": [
+        "27D01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "27D00050:0000:w",
+      "parts": [
+        "27D00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "27D00051:0000:w",
+      "parts": [
+        "27D00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "27D00410:0000:nw",
+      "parts": [
+        "27D00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "86605041:0000:n",
+      "parts": [
+        "86605041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "41B00045:0000:n",
+      "parts": [
+        "41B00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "41B00504:0000:ne",
+      "parts": [
+        "41B00504",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "41B04101:0000:n",
+      "parts": [
+        "41B04101",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "41B00005:0000:n",
+      "parts": [
+        "41B00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "41B00005:0000:n",
+      "parts": [
+        "41B00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "41B00144:0000:ne",
+      "parts": [
+        "41B00144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "41B04401:0000:n",
+      "parts": [
+        "41B04401",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

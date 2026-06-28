@@ -1,0 +1,144 @@
+{
+  "file": "Aicyatem.mp",
+  "sha256": "4ef658c779ba822aba0114b80bcb278cc8dfbb4efe5674bdcadbb4394ac76535",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "AICY",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Icy Building",
+      "mapNumber": 3,
+      "roomNumber": 619,
+      "raw": "[AICY:Ancient Ruin:Ancient Ruin Icy Building-3 619]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 619,
+        "name": "Icy Building",
+        "exits": {
+          "N": "3/616 (Key: 746 [or 51 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "3/620 (Door [16 picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "ATEM",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Unholy Temple",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[ATEM:Ancient Ruin:Ancient Ruin Unholy Temple]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E6D80002:367000A1:7:-1:0:::",
+      "parts": [
+        "E6D80002",
+        "367000A1",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E6D80002:0401:n",
+      "parts": [
+        "E6D80002",
+        "0401",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2E500019:0000:n",
+      "parts": [
+        "2E500019",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "DC200005:0000:n",
+      "parts": [
+        "DC200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "DC200005:0000:n",
+      "parts": [
+        "DC200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "69010005:0000:n",
+      "parts": [
+        "69010005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "DC200015:0000:n",
+      "parts": [
+        "DC200015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "DC200024:0000:e",
+      "parts": [
+        "DC200024",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

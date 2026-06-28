@@ -1,0 +1,107 @@
+{
+  "file": "GETCGNCH.mp",
+  "sha256": "58e0f73fc305338a089dfeb7552ccdf00d6c30559e559f49b4874fde6e386e7d",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GETC",
+      "area": "Dragon's Teeth Hills",
+      "label": "Gnoll Encampment, Trail Crossroad",
+      "mapNumber": 2,
+      "roomNumber": 1110,
+      "raw": "[GETC:Dragon's Teeth Hills:Gnoll Encampment, Trail Crossroad-2 1110]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 1110,
+        "name": "Gnoll Encampment, Trail Crossroads",
+        "exits": {
+          "N": "2/1107",
+          "S": "2/1111",
+          "E": "2/1112",
+          "W": "2/1109",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "GNCH",
+      "area": "Dragon's Teeth Hills",
+      "label": "Gnoll Chieftain",
+      "mapNumber": 2,
+      "roomNumber": 1122,
+      "raw": "[GNCH:Dragon's Teeth Hills:Gnoll Chieftain-2 1122]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 1122,
+        "name": "Massive Gnoll Tent",
+        "exits": {
+          "N": "2/1111",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C900055:F5600001:2:-1:0:::",
+      "parts": [
+        "2C900055",
+        "F5600001",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2C900055:0000:s",
+      "parts": [
+        "2C900055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "54300005:0000:s",
+      "parts": [
+        "54300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

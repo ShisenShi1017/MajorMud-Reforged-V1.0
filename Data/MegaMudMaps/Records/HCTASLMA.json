@@ -1,0 +1,162 @@
+{
+  "file": "HCTASLMA.mp",
+  "sha256": "09f34ff5dc31939c52d6e95c40442f7dcff6640acf4b881ffbe07b599290ffa0",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "HCTA",
+      "area": "Goblin caves",
+      "label": "Huge Cavern, Training Area",
+      "mapNumber": 15,
+      "roomNumber": 5,
+      "raw": "[HCTA:Goblin caves:Huge Cavern, Training Area-15 5]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 5,
+        "name": "Huge Cavern, Training Area",
+        "exits": {
+          "N": "15/4",
+          "S": "15/49",
+          "E": "15/51",
+          "W": "15/6",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SLMA",
+      "area": "Goblin caves",
+      "label": "Slave Master",
+      "mapNumber": 7,
+      "roomNumber": 11,
+      "raw": "[SLMA:Goblin caves:Slave Master-7 11]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 11,
+        "name": "Stone Chamber, Throne Room",
+        "exits": {
+          "N": "7/12",
+          "S": "7/13 (Door [16 picklocks/strength])",
+          "E": "0",
+          "W": "7/8",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CCE00055:E7600049:7:-1:0:::",
+      "parts": [
+        "CCE00055",
+        "E7600049",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "74400005:0000:n",
+      "parts": [
+        "74400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "74400005:0000:n",
+      "parts": [
+        "74400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "74400005:0000:n",
+      "parts": [
+        "74400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "74400005:0000:n",
+      "parts": [
+        "74400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "74400004:0000:n[pull lever]",
+      "parts": [
+        "74400004",
+        "0000",
+        "n[pull lever]"
+      ],
+      "commands": [
+        "n[pull lever]"
+      ]
+    },
+    {
+      "raw": "E6800002:0000:n",
+      "parts": [
+        "E6800002",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

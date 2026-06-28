@@ -1,0 +1,141 @@
+{
+  "file": "BFWFBFWL.mp",
+  "sha256": "5d6df93ccb8c5f7619dcceb7524243505e8b8289eef4cf066bcceaca65242fde",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BFWF",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest (webbed  fork)",
+      "mapNumber": 17,
+      "roomNumber": 2638,
+      "raw": "[BFWF:Blackwood Forest:Blackwood Forest (webbed  fork)-17 2638]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2638,
+        "name": "Blackwood Forest",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "17/2639",
+          "SE": "17/2637",
+          "SW": "17/2670",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "BFWL",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest, Webbed Lair",
+      "mapNumber": 17,
+      "roomNumber": 2674,
+      "raw": "[BFWL:Blackwood Forest:Blackwood Forest, Webbed Lair-17 2674]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2674,
+        "name": "Blackwood Forest, Webbed Lair",
+        "exits": {
+          "N": "17/2673",
+          "S": "17/2682",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/2680",
+          "SW": "17/2675",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "57205400:95905005:5:-1:0:::",
+      "parts": [
+        "57205400",
+        "95905005",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "57205400:0000:sw",
+      "parts": [
+        "57205400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "57200140:0000:w",
+      "parts": [
+        "57200140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "57204010:0000:sw",
+      "parts": [
+        "57204010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "57200104:0000:s",
+      "parts": [
+        "57200104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "57200005:0000:s",
+      "parts": [
+        "57200005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

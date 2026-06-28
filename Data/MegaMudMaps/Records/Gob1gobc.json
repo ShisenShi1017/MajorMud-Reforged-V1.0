@@ -1,0 +1,165 @@
+{
+  "file": "Gob1gobc.mp",
+  "sha256": "5f95d8818464e383c7a63929b90e95559b892541f0d1d4452f1ee7eeab179fec",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GOB1",
+      "area": "Goblin caves",
+      "label": "Goblin Caves (Slime Beast fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GOB1:Goblin caves:Goblin Caves (Slime Beast fork)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "GOBC",
+      "area": "Goblin caves",
+      "label": "Goblin Caves",
+      "mapNumber": 1,
+      "roomNumber": 1750,
+      "raw": "[GOBC:Goblin caves:Goblin Caves-1 1750]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1750,
+        "name": "Huge Cave, Entrance",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/1752",
+          "W": "1/1749",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "89505100:4D400050:9:-1:0:::",
+      "parts": [
+        "89505100",
+        "4D400050",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "89505100:0000:sw",
+      "parts": [
+        "89505100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "6FC00140:0001:w",
+      "parts": [
+        "6FC00140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FC00050:0001:w",
+      "parts": [
+        "6FC00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FC00050:0001:w",
+      "parts": [
+        "6FC00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FC00410:0001:nw",
+      "parts": [
+        "6FC00410",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "6FC01040:0001:w",
+      "parts": [
+        "6FC01040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FC00050:0001:w",
+      "parts": [
+        "6FC00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FC00410:0001:nw",
+      "parts": [
+        "6FC00410",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "6FC01040:0001:w",
+      "parts": [
+        "6FC01040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

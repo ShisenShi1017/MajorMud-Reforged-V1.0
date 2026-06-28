@@ -1,0 +1,95 @@
+{
+  "file": "Fmasfrt3.mp",
+  "sha256": "f823b8d6e19c6b94483727dc13fab865767c95f3fab887173122a34938b1471d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FMAS",
+      "area": "Black Fort",
+      "label": "Master Assassin",
+      "mapNumber": 7,
+      "roomNumber": 1283,
+      "raw": "[FMAS:Black Fort:Master Assassin-7 1283]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1283,
+        "name": "Dark Chamber",
+        "exits": {
+          "N": "0",
+          "S": "7/1262 (Door [16 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FRT3",
+      "area": "Black Fort",
+      "label": "Outside Master Assassin",
+      "mapNumber": 8,
+      "roomNumber": 1262,
+      "raw": "[FRT3:Black Fort:Outside Master Assassin-8 1262]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1262,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "8/1238",
+          "SE": "8/1207",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D7200008:A4F00056:1:-1:0:::",
+      "parts": [
+        "D7200008",
+        "A4F00056",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D7200008:0001:s",
+      "parts": [
+        "D7200008",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

@@ -1,0 +1,195 @@
+{
+  "file": "BICERTTB.mp",
+  "sha256": "58103a3d354e514c8dcfd583facaa1580f0c4cb0a47b1cfcec02706f50468baa",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BICE",
+      "area": "Rocky Trail",
+      "label": "Black Ice Cavern, Crystal",
+      "mapNumber": 15,
+      "roomNumber": 773,
+      "raw": "[BICE:Rocky Trail:Black Ice Cavern, Crystal-15 773]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 773,
+        "name": "Black Ice Cavern, Twisting Tunnel",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "15/774",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RTTB",
+      "area": "Rocky Trail",
+      "label": "Tower, Bedroom",
+      "mapNumber": 10,
+      "roomNumber": 235,
+      "raw": "[RTTB:Rocky Trail:Tower, Bedroom-10 235]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 235,
+        "name": "Tower, Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/234 (Door)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "04100040:78500080:10:-1:0:::",
+      "parts": [
+        "04100040",
+        "78500080",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "04100040:0001:@party touch crystal",
+      "parts": [
+        "04100040",
+        "0001",
+        "@party touch crystal"
+      ],
+      "commands": [
+        "@party touch crystal"
+      ]
+    },
+    {
+      "raw": "11F05000:0000:se",
+      "parts": [
+        "11F05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "11F00404:0000:s",
+      "parts": [
+        "11F00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "11F00005:0000:s",
+      "parts": [
+        "11F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "11F04001:0001:sw",
+      "parts": [
+        "11F04001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "11F00500:0001:nw",
+      "parts": [
+        "11F00500",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "11F01001:0001:n",
+      "parts": [
+        "11F01001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "11F00005:0000:n",
+      "parts": [
+        "11F00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "11F00104:0000:ne",
+      "parts": [
+        "11F00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "8B404000:0000:@party read book",
+      "parts": [
+        "8B404000",
+        "0000",
+        "@party read book"
+      ],
+      "commands": [
+        "@party read book"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

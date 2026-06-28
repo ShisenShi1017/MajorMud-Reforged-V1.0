@@ -1,0 +1,129 @@
+{
+  "file": "Vrdmvdtd.mp",
+  "sha256": "15703ad75ecaf4fcf5719100e929ba4d438b6690c609bf32ba9d4bcc3c256938",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "VRDM",
+      "area": "Volcano",
+      "label": "Red Demonling",
+      "mapNumber": 16,
+      "roomNumber": 2118,
+      "raw": "[VRDM:Volcano:Red Demonling-16 2118]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2118,
+        "name": "Volcano, Fiery Lair",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/2117 (Door [71 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VDTD",
+      "area": "Volcano",
+      "label": "Volcano, Darkened Tunnels",
+      "mapNumber": 16,
+      "roomNumber": 2011,
+      "raw": "[VDTD:Volcano:Volcano, Darkened Tunnels-16 2011]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2011,
+        "name": "Volcano, Darkened Tunnels",
+        "exits": {
+          "N": "0",
+          "S": "16/2010",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/2115"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "35200020:B1440004:4:-1:0:::",
+      "parts": [
+        "35200020",
+        "B1440004",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "35200020:0000:e",
+      "parts": [
+        "35200020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F9C00090:0000:e",
+      "parts": [
+        "F9C00090",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F9C00041:0000:n",
+      "parts": [
+        "F9C00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F9C10004:0000:u",
+      "parts": [
+        "F9C10004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

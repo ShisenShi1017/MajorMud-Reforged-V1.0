@@ -1,0 +1,107 @@
+{
+  "file": "BCCPNFBC.mp",
+  "sha256": "747f6ac2b0fd8c588bdb091ef03888e15a6311359f3878f4e65ae5b41dafbd9e",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BCCP",
+      "area": "Northern Forests",
+      "label": "Bloodbear cave, Cramped Passageway",
+      "mapNumber": 3,
+      "roomNumber": 348,
+      "raw": "[BCCP:Northern Forests:Bloodbear cave, Cramped Passageway-3 348]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 348,
+        "name": "Cramped Passageway",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "3/347",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/496 (Alignment: Outlaw to Fiend)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "NFBC",
+      "area": "Northern Forests",
+      "label": "Bloodbear cave, Evil Entry to silv",
+      "mapNumber": 3,
+      "roomNumber": 348,
+      "raw": "[NFBC:Northern Forests:Bloodbear cave, Evil Entry to silv-3 348]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 348,
+        "name": "Cramped Passageway",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "3/347",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/496 (Alignment: Outlaw to Fiend)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "41410400:81F00001:2:-1:0:::",
+      "parts": [
+        "41410400",
+        "81F00001",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "41410400:0080:nw",
+      "parts": [
+        "41410400",
+        "0080",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "41401000:0080:u[sea u]",
+      "parts": [
+        "41401000",
+        "0080",
+        "u[sea u]"
+      ],
+      "commands": [
+        "u[sea u]"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

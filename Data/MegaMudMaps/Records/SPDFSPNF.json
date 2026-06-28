@@ -1,0 +1,108 @@
+{
+  "file": "SPDFSPNF.mp",
+  "sha256": "d2aaefafc9dc7e8a6c40a6e987c2b07ed2bf180ec6c9ad31fd50c9dff3243b8a",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SPDF",
+      "area": "Misty Valley",
+      "label": "Swampside Path, Darkwood Fork",
+      "mapNumber": 6,
+      "roomNumber": 217,
+      "raw": "[SPDF:Misty Valley:Swampside Path, Darkwood Fork-6 217]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 217,
+        "name": "Swampside Path",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/216",
+          "W": "0",
+          "NE": "0",
+          "NW": "9/747",
+          "SE": "0",
+          "SW": "6/218",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "SPNF",
+      "area": "Misty Valley",
+      "label": "Swampside Path, Northern Fork",
+      "mapNumber": 6,
+      "roomNumber": 219,
+      "raw": "[SPNF:Misty Valley:Swampside Path, Northern Fork-6 219]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 219,
+        "name": "Swampside Path",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "6/218",
+          "NW": "0",
+          "SE": "6/347",
+          "SW": "6/220",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "75604410:75605100:2:-1:0:::",
+      "parts": [
+        "75604410",
+        "75605100",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "75604410:0000:sw",
+      "parts": [
+        "75604410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75604100:0000:sw",
+      "parts": [
+        "75604100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

@@ -1,0 +1,460 @@
+{
+  "file": "Catahaun.mp",
+  "sha256": "aa4151f03d48fa108407009edf3e7637e24ae1374cdb9b5f15bdf1766f7f34c9",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CATA",
+      "area": "Mossy Tunnels",
+      "label": "Catacombs",
+      "mapNumber": 9,
+      "roomNumber": 1032,
+      "raw": "[CATA:Mossy Tunnels:Catacombs-9 1032]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1032,
+        "name": "Catacombs, Broken Stairwell",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "9/1049 (Hidden/Needs 1 Actions, any order)",
+          "W": "9/1033",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "9/1031",
+          "D": "Action [on the E exit of this room]: use fork east, use titanium fork east, aim fork east (Item: 983)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "HAUN",
+      "area": "Mossy Tunnels",
+      "label": "Haunting Spirit",
+      "mapNumber": 9,
+      "roomNumber": 1177,
+      "raw": "[HAUN:Mossy Tunnels:Haunting Spirit-9 1177]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1177,
+        "name": "Catacombs, Shimmering Barrier",
+        "exits": {
+          "N": "9/1428 (Hidden/Needs 1 Actions, any order)",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "9/1176",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "Action [on the N exit of this room]: touch rod barrier, destroy barrier, touch rod to barrier (Item: 996)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "08610040:4CD00100:34:-1:0:titanium fork::",
+      "parts": [
+        "08610040",
+        "4CD00100",
+        "34",
+        "-1",
+        "0",
+        "titanium fork",
+        "",
+        ""
+      ],
+      "commands": [
+        "34",
+        "-1",
+        "0",
+        "titanium fork"
+      ]
+    },
+    {
+      "raw": "08610040:0000:e[aim fork east]",
+      "parts": [
+        "08610040",
+        "0000",
+        "e[aim fork east]"
+      ],
+      "commands": [
+        "e[aim fork east]"
+      ]
+    },
+    {
+      "raw": "28400004:0001:e[aim fork east]",
+      "parts": [
+        "28400004",
+        "0001",
+        "e[aim fork east]"
+      ],
+      "commands": [
+        "e[aim fork east]"
+      ]
+    },
+    {
+      "raw": "28400010:0001:e",
+      "parts": [
+        "28400010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "28400044:0001:s",
+      "parts": [
+        "28400044",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "28400011:0001:e",
+      "parts": [
+        "28400011",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "28400040:0001:se[aim fork southeast]",
+      "parts": [
+        "28400040",
+        "0001",
+        "se[aim fork southeast]"
+      ],
+      "commands": [
+        "se[aim fork southeast]"
+      ]
+    },
+    {
+      "raw": "6FD40004:0001:d",
+      "parts": [
+        "6FD40004",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "6FD10040:0001:w",
+      "parts": [
+        "6FD10040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "28400014:0001:w[aim fork west]",
+      "parts": [
+        "28400014",
+        "0001",
+        "w[aim fork west]"
+      ],
+      "commands": [
+        "w[aim fork west]"
+      ]
+    },
+    {
+      "raw": "28400040:0001:w",
+      "parts": [
+        "28400040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "28400011:0001:n",
+      "parts": [
+        "28400011",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "28400005:0001:w[aim fork west]",
+      "parts": [
+        "28400005",
+        "0001",
+        "w[aim fork west]"
+      ],
+      "commands": [
+        "w[aim fork west]"
+      ]
+    },
+    {
+      "raw": "28400040:0001:w",
+      "parts": [
+        "28400040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "28400055:0001:w",
+      "parts": [
+        "28400055",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "28400050:0001:s[aim fork south]",
+      "parts": [
+        "28400050",
+        "0001",
+        "s[aim fork south]"
+      ],
+      "commands": [
+        "s[aim fork south]"
+      ]
+    },
+    {
+      "raw": "28400044:0001:w",
+      "parts": [
+        "28400044",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "28400010:0001:w[aim fork west]",
+      "parts": [
+        "28400010",
+        "0001",
+        "w[aim fork west]"
+      ],
+      "commands": [
+        "w[aim fork west]"
+      ]
+    },
+    {
+      "raw": "28400041:0001:s[aim fork south]",
+      "parts": [
+        "28400041",
+        "0001",
+        "s[aim fork south]"
+      ],
+      "commands": [
+        "s[aim fork south]"
+      ]
+    },
+    {
+      "raw": "28400014:0001:e",
+      "parts": [
+        "28400014",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "6FD40044:0001:d",
+      "parts": [
+        "6FD40044",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "6FD10040:0001:w",
+      "parts": [
+        "6FD10040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "28400014:0001:nw[aim fork northwest]",
+      "parts": [
+        "28400014",
+        "0001",
+        "nw[aim fork northwest]"
+      ],
+      "commands": [
+        "nw[aim fork northwest]"
+      ]
+    },
+    {
+      "raw": "28404100:0001:ne",
+      "parts": [
+        "28404100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "28404000:0001:n[aim fork north]",
+      "parts": [
+        "28404000",
+        "0001",
+        "n[aim fork north]"
+      ],
+      "commands": [
+        "n[aim fork north]"
+      ]
+    },
+    {
+      "raw": "28400041:0001:e[aim fork east]",
+      "parts": [
+        "28400041",
+        "0001",
+        "e[aim fork east]"
+      ],
+      "commands": [
+        "e[aim fork east]"
+      ]
+    },
+    {
+      "raw": "28401001:0001:n",
+      "parts": [
+        "28401001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "28400104:0001:ne",
+      "parts": [
+        "28400104",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "28404010:0001:e",
+      "parts": [
+        "28404010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "28401040:0001:n[aim fork north]",
+      "parts": [
+        "28401040",
+        "0001",
+        "n[aim fork north]"
+      ],
+      "commands": [
+        "n[aim fork north]"
+      ]
+    },
+    {
+      "raw": "28400000:0001:nw[aim fork northwest]",
+      "parts": [
+        "28400000",
+        "0001",
+        "nw[aim fork northwest]"
+      ],
+      "commands": [
+        "nw[aim fork northwest]"
+      ]
+    },
+    {
+      "raw": "28400400:0001:nw",
+      "parts": [
+        "28400400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "28401000:0001:sw[aim fork southwest]",
+      "parts": [
+        "28401000",
+        "0001",
+        "sw[aim fork southwest]"
+      ],
+      "commands": [
+        "sw[aim fork southwest]"
+      ]
+    },
+    {
+      "raw": "28404000:0001:sw",
+      "parts": [
+        "28404000",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "28404100:0001:sw",
+      "parts": [
+        "28404100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 38
+}

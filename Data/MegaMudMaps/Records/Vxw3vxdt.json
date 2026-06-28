@@ -1,0 +1,96 @@
+{
+  "file": "Vxw3vxdt.mp",
+  "sha256": "d99fb5ce077b74ec14b2a9f834f6c8f8f79e822b40c1c378f3d31e4eff9790e6",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXW3",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (DTH)",
+      "mapNumber": 3,
+      "roomNumber": 762,
+      "raw": "[VXW3:Black Wastelands:Wastelands Vortex (DTH)-3 762]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 762,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "3/761",
+          "S": "3/763",
+          "E": "3/767",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VXDT",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills (Vortex)",
+      "mapNumber": 3,
+      "roomNumber": 783,
+      "raw": "[VXDT:Dragon's Teeth Hills:Dragon's Teeth Hills (Vortex)-3 783]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 783,
+        "name": "Dragon's Teeth Hills",
+        "exits": {
+          "N": "2/484",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED100015:C5000001:1:-1:0:::",
+      "parts": [
+        "ED100015",
+        "C5000001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED100015:0000:@party go vortex",
+      "parts": [
+        "ED100015",
+        "0000",
+        "@party go vortex"
+      ],
+      "commands": [
+        "@party go vortex"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

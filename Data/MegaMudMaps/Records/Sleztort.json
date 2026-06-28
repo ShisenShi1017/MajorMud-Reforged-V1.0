@@ -1,0 +1,183 @@
+{
+  "file": "Sleztort.mp",
+  "sha256": "edab7220c687e2bbf6520af565db06a13786aadf12fd419367f5c745a6e85238",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SLEZ",
+      "area": "Dark-Elf City",
+      "label": "Sleazy Shopkeeper",
+      "mapNumber": 8,
+      "roomNumber": 486,
+      "raw": "[SLEZ:Dark-Elf City:Sleazy Shopkeeper-8 486]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 486,
+        "name": "Musty Store",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/481 (Door [16 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "TORT",
+      "area": "Dark-Elf City",
+      "label": "Master Torturer",
+      "mapNumber": 8,
+      "roomNumber": 512,
+      "raw": "[TORT:Dark-Elf City:Master Torturer-8 512]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 512,
+        "name": "Torture Chamber",
+        "exits": {
+          "N": "8/503",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A1400020:DF000001:9:-1:0:::",
+      "parts": [
+        "A1400020",
+        "DF000001",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A1400020:0000:e",
+      "parts": [
+        "A1400020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "86400085:0000:s",
+      "parts": [
+        "86400085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "78000055:0000:s",
+      "parts": [
+        "78000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "86400085:0000:w",
+      "parts": [
+        "86400085",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ED740020:0000:d",
+      "parts": [
+        "ED740020",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "43915000:0000:sw",
+      "parts": [
+        "43915000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "43900184:0000:s",
+      "parts": [
+        "43900184",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "43900095:0000:e",
+      "parts": [
+        "43900095",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "43900054:0000:s",
+      "parts": [
+        "43900054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

@@ -1,0 +1,96 @@
+{
+  "file": "Elrdetre.mp",
+  "sha256": "b58c097afbf301ef4d45f07611a8fd0ee991091f38cedf9133aef37dcca0594b",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ELRD",
+      "area": "Northern Forests",
+      "label": "Woodelf Lord",
+      "mapNumber": 3,
+      "roomNumber": 543,
+      "raw": "[ELRD:Northern Forests:Woodelf Lord-3 543]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 543,
+        "name": "Meeting Hall",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "3/533"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ETRE",
+      "area": "Northern Forests",
+      "label": "Ancient Tree",
+      "mapNumber": 3,
+      "roomNumber": 533,
+      "raw": "[ETRE:Northern Forests:Ancient Tree-3 533]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 533,
+        "name": "Ancient Tree, Rope Bridge",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "3/538",
+          "NW": "3/534",
+          "SE": "3/536",
+          "SW": "3/532",
+          "U": "3/543",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C8E40000:1CB15500:1:-1:0:::",
+      "parts": [
+        "C8E40000",
+        "1CB15500",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C8E40000:0000:d",
+      "parts": [
+        "C8E40000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

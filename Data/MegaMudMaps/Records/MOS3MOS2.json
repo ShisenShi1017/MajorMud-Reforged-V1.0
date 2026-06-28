@@ -1,0 +1,195 @@
+{
+  "file": "MOS3MOS2.mp",
+  "sha256": "610980856f2c44bfe1dead5ae4fd6b5b7e055ff66095ff065041f8cfd0f089a8",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MOS3",
+      "area": "Blackwood Forest",
+      "label": "Mausoleum, Stone Hallway 2nd Flr",
+      "mapNumber": 17,
+      "roomNumber": 2126,
+      "raw": "[MOS3:Blackwood Forest:Mausoleum, Stone Hallway 2nd Flr-17 2126]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2126,
+        "name": "Mausoleum, Stone Hallway",
+        "exits": {
+          "N": "0",
+          "S": "17/2127",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "17/2205 (Hidden/Needs 2 Actions, specific order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MOS2",
+      "area": "Blackwood Forest",
+      "label": "Mausoleum, Second Floor",
+      "mapNumber": 17,
+      "roomNumber": 2097,
+      "raw": "[MOS2:Blackwood Forest:Mausoleum, Second Floor-17 2097]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2097,
+        "name": "Masoleum, Stone Hallway",
+        "exits": {
+          "N": "17/2098",
+          "S": "17/2120",
+          "E": "0",
+          "W": "Action [on the U exit of this room]: pull lever, push lever, move lever",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "17/2068 (Hidden/Needs 1 Actions, any order)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "0D900004:79E00005:10:-1:0:::",
+      "parts": [
+        "0D900004",
+        "79E00005",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "0D900004:0000:s",
+      "parts": [
+        "0D900004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "0D904005:0000:sw",
+      "parts": [
+        "0D904005",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "0D904102:0000:sw",
+      "parts": [
+        "0D904102",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "0D904102:0000:sw",
+      "parts": [
+        "0D904102",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "0D90550A:0000:nw",
+      "parts": [
+        "0D90550A",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "0D901402:0000:nw",
+      "parts": [
+        "0D901402",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "0D901402:0000:nw",
+      "parts": [
+        "0D901402",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "0D901005:0000:n",
+      "parts": [
+        "0D901005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0D900005:0000:n",
+      "parts": [
+        "0D900005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0D900105:0000:n",
+      "parts": [
+        "0D900105",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

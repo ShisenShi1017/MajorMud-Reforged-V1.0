@@ -1,0 +1,238 @@
+{
+  "file": "SRSTNEWH.mp",
+  "sha256": "a1f3f2c25d65d51351e7e0a86f3c3a5130768c63ebed83ee19f8c6fbe2ee3f7c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SRST",
+      "area": "Silvermere",
+      "label": "River St & Guild St",
+      "mapNumber": 1,
+      "roomNumber": 21,
+      "raw": "[SRST:Silvermere:River St & Guild St-1 21]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 21,
+        "name": "Intersection of Guild St. & River St.",
+        "exits": {
+          "N": "0",
+          "S": "1/390",
+          "E": "1/20",
+          "W": "1/22",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "NEWH",
+      "area": "Newhaven",
+      "label": "Newhaven Town",
+      "mapNumber": 1,
+      "roomNumber": 2146,
+      "raw": "[NEWH:Newhaven:Newhaven Town-1 2146]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2146,
+        "name": "Newhaven, Narrow Road",
+        "exits": {
+          "N": "1/2147",
+          "S": "0",
+          "E": "1/2143",
+          "W": "1/2190 (Level: 1 to 3)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/2150"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "01B00054:38B40051:14:-1:0:::",
+      "parts": [
+        "01B00054",
+        "38B40051",
+        "14",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "14",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "01B00054:0000:w",
+      "parts": [
+        "01B00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:w",
+      "parts": [
+        "EB400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "94200054:0000:w",
+      "parts": [
+        "94200054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:w",
+      "parts": [
+        "EB400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:w",
+      "parts": [
+        "EB400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EB400055:0000:w",
+      "parts": [
+        "EB400055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EB400051:0000:n",
+      "parts": [
+        "EB400051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "63600055:0000:n",
+      "parts": [
+        "63600055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "63600005:0000:n",
+      "parts": [
+        "63600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "45500005:0000:n",
+      "parts": [
+        "45500005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300001:0000:n",
+      "parts": [
+        "B8300001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3D300404:0000:nw",
+      "parts": [
+        "3D300404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "2D601045:0000:w",
+      "parts": [
+        "2D601045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "42D00055:0000:w",
+      "parts": [
+        "42D00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 18
+}

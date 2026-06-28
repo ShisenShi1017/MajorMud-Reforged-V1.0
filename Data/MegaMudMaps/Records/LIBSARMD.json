@@ -1,0 +1,218 @@
+{
+  "file": "LIBSARMD.mp",
+  "sha256": "8a33a5bb05f285a3781c7e3e54825e6b1308ffb1410c7011f97561d1247a0781",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "LIBS",
+      "area": "Arlysia",
+      "label": "Library Steps",
+      "mapNumber": 17,
+      "roomNumber": 1791,
+      "raw": "[LIBS:Arlysia:Library Steps-17 1791]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 1791,
+        "name": "Library Steps",
+        "exits": {
+          "N": "17/1792 (Key: 1536 [or 1000 picklocks/strength])",
+          "S": "17/1790",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ARMD",
+      "area": "Arlysia",
+      "label": "Rotting Beholder",
+      "mapNumber": 17,
+      "roomNumber": 2019,
+      "raw": "[ARMD:Arlysia:Rotting Beholder-17 2019]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2019,
+        "name": "Monstrous Den",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3CD00006:26B00000:12:-1:0:jagged bone key::",
+      "parts": [
+        "3CD00006",
+        "26B00000",
+        "12",
+        "-1",
+        "0",
+        "jagged bone key",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0",
+        "jagged bone key"
+      ]
+    },
+    {
+      "raw": "3CD00006:0000:n[use jagged bone key n]",
+      "parts": [
+        "3CD00006",
+        "0000",
+        "n[use jagged bone key n]"
+      ],
+      "commands": [
+        "n[use jagged bone key n]"
+      ]
+    },
+    {
+      "raw": "BEC00008:0000:w",
+      "parts": [
+        "BEC00008",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BEC00000:0000:s",
+      "parts": [
+        "BEC00000",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BEC00000:0000:e",
+      "parts": [
+        "BEC00000",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BEC00000:0000:d",
+      "parts": [
+        "BEC00000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "F2200002:0000:n",
+      "parts": [
+        "F2200002",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4070AAA8:0000:n",
+      "parts": [
+        "4070AAA8",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "40700001:0000:n",
+      "parts": [
+        "40700001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "40700054:0000:e",
+      "parts": [
+        "40700054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "40700041:0000:n",
+      "parts": [
+        "40700041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "40700005:0000:n",
+      "parts": [
+        "40700005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "40700044:0000:sw",
+      "parts": [
+        "40700044",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

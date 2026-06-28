@@ -1,0 +1,271 @@
+{
+  "file": "DBDEDBDB.mp",
+  "sha256": "6d0cff216deb7c485531cf4b205eae36b584e661fb60050be98065ac153d2e01",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DBDE",
+      "area": "Scorching Desert",
+      "label": "Blue Dragons Entrance",
+      "mapNumber": 12,
+      "roomNumber": 2303,
+      "raw": "[DBDE:Scorching Desert:Blue Dragons Entrance-12 2303]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2303,
+        "name": "Sandstone Cavern",
+        "exits": {
+          "N": "12/593",
+          "S": "12/2315",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "12/2304",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DBDB",
+      "area": "Scorching Desert",
+      "label": "Enormous Blue Dragon",
+      "mapNumber": 12,
+      "roomNumber": 2338,
+      "raw": "[DBDB:Scorching Desert:Enormous Blue Dragon-12 2338]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2338,
+        "name": "Massive Sandstone Cavern",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "12/2337",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "4AB01005:2E301000:17:-1:0:::",
+      "parts": [
+        "4AB01005",
+        "2E301000",
+        "17",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "17",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "4AB01005:0000:s",
+      "parts": [
+        "4AB01005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4AB00005:0000:s",
+      "parts": [
+        "4AB00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4AB01001:0000:se",
+      "parts": [
+        "4AB01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "4AB00404:0000:s",
+      "parts": [
+        "4AB00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4AB05001:0000:sw",
+      "parts": [
+        "4AB05001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "4AB04104:0000:s",
+      "parts": [
+        "4AB04104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4AB00015:0000:s",
+      "parts": [
+        "4AB00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4AB04001:0000:sw",
+      "parts": [
+        "4AB04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "4AB01100:0000:se",
+      "parts": [
+        "4AB01100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "4AB00450:0000:e",
+      "parts": [
+        "4AB00450",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4AB00051:0000:e",
+      "parts": [
+        "4AB00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4AB01140:0000:se",
+      "parts": [
+        "4AB01140",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "4AB04404:0000:s",
+      "parts": [
+        "4AB04404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4AB01001:0000:se",
+      "parts": [
+        "4AB01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "4AB05400:0000:se",
+      "parts": [
+        "4AB05400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "4AB01401:0000:n",
+      "parts": [
+        "4AB01401",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4AB00404:0000:nw",
+      "parts": [
+        "4AB00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 21
+}

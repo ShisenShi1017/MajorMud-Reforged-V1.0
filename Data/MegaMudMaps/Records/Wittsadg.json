@@ -1,0 +1,88 @@
+{
+  "file": "Wittsadg.mp",
+  "sha256": "4194e223a2c924359b22f002ff2fed6aa3a5ac3ce44fcb40bc781f126e720c20",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "WITT",
+      "area": "Trainers",
+      "label": "Witchunter Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 498,
+      "raw": "[WITT:Trainers:Witchunter Trainer (2-10)-1 498]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 498,
+        "name": "Witchunter Training Room",
+        "exits": {
+          "N": "1/494",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SADG",
+      "area": "Silvermere",
+      "label": "Adventurer's Guild",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SADG:Silvermere:Adventurer's Guild]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "23800001:D4200014:2:-1:0:::",
+      "parts": [
+        "23800001",
+        "D4200014",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "23800001:0000:n",
+      "parts": [
+        "23800001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

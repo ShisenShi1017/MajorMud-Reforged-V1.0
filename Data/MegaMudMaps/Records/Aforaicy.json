@@ -1,0 +1,173 @@
+{
+  "file": "Aforaicy.mp",
+  "sha256": "137322d9c3983a3a6cc7a0b9e067510e2f663f346e2b64ee31366285fe334c69",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "AFOR",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Ice Forge",
+      "mapNumber": 3,
+      "roomNumber": 632,
+      "raw": "[AFOR:Ancient Ruin:Ancient Ruin Ice Forge-3 632]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 632,
+        "name": "The Iceforge",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "3/631",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "AICY",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Icy Building",
+      "mapNumber": 3,
+      "roomNumber": 619,
+      "raw": "[AICY:Ancient Ruin:Ancient Ruin Icy Building-3 619]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 619,
+        "name": "Icy Building",
+        "exits": {
+          "N": "3/616 (Key: 746 [or 51 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "3/620 (Door [16 picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E0900040:E6D80002:8:-1:0:::",
+      "parts": [
+        "E0900040",
+        "E6D80002",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E0900040:0001:w",
+      "parts": [
+        "E0900040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2AE00011:0001:n",
+      "parts": [
+        "2AE00011",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FF500144:0001:ne",
+      "parts": [
+        "FF500144",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "59305000:0001:se",
+      "parts": [
+        "59305000",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "59300404:0001:s",
+      "parts": [
+        "59300404",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "59300005:0001:s",
+      "parts": [
+        "59300005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "59304001:0001:sw",
+      "parts": [
+        "59304001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F2A20100:0001:u",
+      "parts": [
+        "F2A20100",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

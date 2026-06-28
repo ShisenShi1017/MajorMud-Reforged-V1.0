@@ -1,0 +1,207 @@
+{
+  "file": "Rck2frzn.mp",
+  "sha256": "005c63e5e734f808f31269784d9c652962d4a84c1a1f8ccac6f231a42e537d00",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RCK2",
+      "area": "Rocky Trail",
+      "label": "Rocky Trail (Titan Fork)",
+      "mapNumber": 10,
+      "roomNumber": 22,
+      "raw": "[RCK2:Rocky Trail:Rocky Trail (Titan Fork)-10 22]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 22,
+        "name": "Rocky Trail",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/21",
+          "NE": "10/23",
+          "NW": "0",
+          "SE": "10/265",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "FRZN",
+      "area": "Rocky Trail",
+      "label": "Frozen Cavern",
+      "mapNumber": 10,
+      "roomNumber": 35,
+      "raw": "[FRZN:Rocky Trail:Frozen Cavern-10 35]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 35,
+        "name": "Frozen Cavern",
+        "exits": {
+          "N": "0",
+          "S": "10/217",
+          "E": "10/186",
+          "W": "10/34",
+          "NE": "10/160",
+          "NW": "0",
+          "SE": "10/210",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "92501140:32E01154:11:-1:0:::",
+      "parts": [
+        "92501140",
+        "32E01154",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "92501140:0000:ne",
+      "parts": [
+        "92501140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "92514000:0000:u",
+      "parts": [
+        "92514000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "92540100:0000:ne",
+      "parts": [
+        "92540100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "92504001:0000:n",
+      "parts": [
+        "92504001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "92500404:0000:nw",
+      "parts": [
+        "92500404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "92501140:0000:ne",
+      "parts": [
+        "92501140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "92504100:0000:ne",
+      "parts": [
+        "92504100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "92504100:0000:ne",
+      "parts": [
+        "92504100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "92504010:0000:e",
+      "parts": [
+        "92504010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "92500050:0000:e",
+      "parts": [
+        "92500050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "92500050:0000:e",
+      "parts": [
+        "92500050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

@@ -1,0 +1,38 @@
+{
+  "file": "Newhntem.mp",
+  "sha256": "a6c30fd7f4cd52a16625863488e69d5f3be90fb8cbdcf7a66aacb63c63eaba7f",
+  "metadataLine": "[][]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "38B40051:17900010:1:-1:0:::",
+      "parts": [
+        "38B40051",
+        "17900010",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "38B40051:0000:w",
+      "parts": [
+        "38B40051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 3
+}

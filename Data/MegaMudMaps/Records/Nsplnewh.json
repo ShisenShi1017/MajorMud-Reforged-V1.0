@@ -1,0 +1,78 @@
+{
+  "file": "Nsplnewh.mp",
+  "sha256": "1bbc59bd442d0f973365b51af117c59f63dc3e16de330fe07aea3982c0da20f5",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "NSPL",
+      "area": "Newhaven",
+      "label": "Spell Shop (Rayth)",
+      "mapNumber": 1,
+      "roomNumber": 2144,
+      "raw": "[NSPL:Newhaven:Spell Shop (Rayth)-1 2144]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2144,
+        "name": "Newhaven, Spell Shop",
+        "exits": {
+          "N": "0",
+          "S": "1/2143",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BC300004:38B40051:2:-1:0:::",
+      "parts": [
+        "BC300004",
+        "38B40051",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BC300004:0000:s",
+      "parts": [
+        "BC300004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "42D00055:0000:w",
+      "parts": [
+        "42D00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

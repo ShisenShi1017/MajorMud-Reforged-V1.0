@@ -1,0 +1,209 @@
+{
+  "file": "Gspimrd3.mp",
+  "sha256": "d6930c2017d23eca59d6ea23f0d0680542d11244ecef2d966b297dac9670b11d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GSPI",
+      "area": "Darkwood Forest",
+      "label": "Giant Spider",
+      "mapNumber": 1,
+      "roomNumber": 1678,
+      "raw": "[GSPI:Darkwood Forest:Giant Spider-1 1678]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1678,
+        "name": "Darkwood Forest, Webbed Clearing",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/1677",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "MRD3",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Spider Fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRD3:Darkwood Forest:Main Road (Spider Fork)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "05700010:A2C01400:13:-1:0:::",
+      "parts": [
+        "05700010",
+        "A2C01400",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "05700010:0000:e",
+      "parts": [
+        "05700010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F6D00041:0000:n",
+      "parts": [
+        "F6D00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F6D00014:0000:e",
+      "parts": [
+        "F6D00014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F6D00050:0000:e",
+      "parts": [
+        "F6D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F6D00041:0000:n",
+      "parts": [
+        "F6D00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F6D00104:0000:ne",
+      "parts": [
+        "F6D00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F6D04001:0000:n",
+      "parts": [
+        "F6D04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F6D00005:0000:n",
+      "parts": [
+        "F6D00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F6D00104:0000:ne",
+      "parts": [
+        "F6D00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:n",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00144:0000:ne",
+      "parts": [
+        "F4E00144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04100:0000:ne",
+      "parts": [
+        "F4E04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04000:0000:go path",
+      "parts": [
+        "F4E04000",
+        "0000",
+        "go path"
+      ],
+      "commands": [
+        "go path"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

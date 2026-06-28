@@ -1,0 +1,359 @@
+{
+  "file": "ARCHSLEZ.mp",
+  "sha256": "c2cf85c1f98d64f6ae621596fc0dc2ccefae05077eb063479cf2a74edc75e930",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ARCH",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Archmage",
+      "mapNumber": 8,
+      "roomNumber": 558,
+      "raw": "[ARCH:Dark-Elf City:Dark-elf Archmage-8 558]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 558,
+        "name": "Ritual Chamber",
+        "exits": {
+          "N": "8/557 (Door [51 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SLEZ",
+      "area": "Dark-Elf City",
+      "label": "Sleazy Shopkeeper",
+      "mapNumber": 8,
+      "roomNumber": 486,
+      "raw": "[SLEZ:Dark-Elf City:Sleazy Shopkeeper-8 486]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 486,
+        "name": "Musty Store",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/481 (Door [16 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7CF00002:A1400020:25:-1:0:::",
+      "parts": [
+        "7CF00002",
+        "A1400020",
+        "25",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "25",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7CF00002:0000:get dark blue orb",
+      "parts": [
+        "7CF00002",
+        "0000",
+        "get dark blue orb"
+      ],
+      "commands": [
+        "get dark blue orb"
+      ]
+    },
+    {
+      "raw": "7CF00002:0000:n",
+      "parts": [
+        "7CF00002",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "04440008:0000:d",
+      "parts": [
+        "04440008",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "04410004:0000:s",
+      "parts": [
+        "04410004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3F700061:0000:w",
+      "parts": [
+        "3F700061",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3F701010:0000:se",
+      "parts": [
+        "3F701010",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "04440400:0000:d",
+      "parts": [
+        "04440400",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "04410100:0000:ne",
+      "parts": [
+        "04410100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "04444040:0000:d",
+      "parts": [
+        "04444040",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "04410400:0000:nw",
+      "parts": [
+        "04410400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "04441004:0000:d",
+      "parts": [
+        "04441004",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "04414000:0000:sw",
+      "parts": [
+        "04414000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "04440110:0000:d",
+      "parts": [
+        "04440110",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "04411000:0000:se",
+      "parts": [
+        "04411000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C0600420:0000:e",
+      "parts": [
+        "C0600420",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DA104081:0000:n",
+      "parts": [
+        "DA104081",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "78000015:0000:e",
+      "parts": [
+        "78000015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "86400050:0000:e",
+      "parts": [
+        "86400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "86400050:0000:e",
+      "parts": [
+        "86400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "78000055:0000:n",
+      "parts": [
+        "78000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400085:0000:n",
+      "parts": [
+        "86400085",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "78000055:0000:n",
+      "parts": [
+        "78000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400085:0000:w",
+      "parts": [
+        "86400085",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A1400020:0000:ask sleazy orb",
+      "parts": [
+        "A1400020",
+        "0000",
+        "ask sleazy orb"
+      ],
+      "commands": [
+        "ask sleazy orb"
+      ]
+    },
+    {
+      "raw": "A1400020:0000:i",
+      "parts": [
+        "A1400020",
+        "0000",
+        "i"
+      ],
+      "commands": [
+        "i"
+      ]
+    }
+  ],
+  "rawLineCount": 29
+}

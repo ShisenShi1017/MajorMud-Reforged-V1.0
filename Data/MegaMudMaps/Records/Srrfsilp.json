@@ -1,0 +1,166 @@
+{
+  "file": "Srrfsilp.mp",
+  "sha256": "55110a4de626a48011ab6ed5fabca4068800dbe22b224a97b972b38fd23ad521",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "SRRF",
+      "area": "Northern Forests",
+      "label": "Silver River, River's Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SRRF:Northern Forests:Silver River, River's Fork]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SILP",
+      "area": "Northern Forests",
+      "label": "Silvery Pool",
+      "mapNumber": 1,
+      "roomNumber": 2411,
+      "raw": "[SILP:Northern Forests:Silvery Pool-1 2411]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2411,
+        "name": "Silvery Pool",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "3/85",
+          "NE": "3/38",
+          "NW": "3/53",
+          "SE": "1/2410",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C604410:E3001540:9:-1:0:::",
+      "parts": [
+        "2C604410",
+        "E3001540",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2C604410:0000:nw",
+      "parts": [
+        "2C604410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "4A201040:0000:w",
+      "parts": [
+        "4A201040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4A200410:0000:nw",
+      "parts": [
+        "4A200410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "4A201400:0000:nw",
+      "parts": [
+        "4A201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "4A201400:0000:nw",
+      "parts": [
+        "4A201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "4A201400:0000:nw",
+      "parts": [
+        "4A201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "4A201001:0000:n",
+      "parts": [
+        "4A201001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4A200005:0000:n",
+      "parts": [
+        "4A200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4A200404:0000:nw",
+      "parts": [
+        "4A200404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

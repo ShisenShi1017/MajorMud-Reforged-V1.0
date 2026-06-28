@@ -1,0 +1,59 @@
+{
+  "file": "Blu2blu3.mp",
+  "sha256": "dcb4efc9247ca52ec1a50231dd4d39fe2340a7253e9c883212effed26e26d4c0",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BLU2",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Armour (leather)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BLU2:Darkwood Forest:Blue Tower, Armour (leather)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "BLU3",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Weapons (blunt)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BLU3:Darkwood Forest:Blue Tower, Weapons (blunt)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C8254400:36F54400:1:-1:0:::",
+      "parts": [
+        "C8254400",
+        "36F54400",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C8254400:0000:u",
+      "parts": [
+        "C8254400",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

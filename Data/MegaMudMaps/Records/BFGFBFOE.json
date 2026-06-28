@@ -1,0 +1,132 @@
+{
+  "file": "BFGFBFOE.mp",
+  "sha256": "53677871c8e106e01cb4b5030acec36a5329a4f95ee27e4429d8ce1f606854c5",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BFGF",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest, Garden Fork",
+      "mapNumber": 17,
+      "roomNumber": 602,
+      "raw": "[BFGF:Blackwood Forest:Blackwood Forest, Garden Fork-17 602]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 602,
+        "name": "Blackwood Forest, Winding Trail",
+        "exits": {
+          "N": "0",
+          "S": "17/601",
+          "E": "0",
+          "W": "0",
+          "NE": "17/603",
+          "NW": "17/703",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BFOE",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest, Outside Enigma Lord",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BFOE:Blackwood Forest:Blackwood Forest, Outside Enigma Lord]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5A600504:57201400:6:-1:0:::",
+      "parts": [
+        "5A600504",
+        "57201400",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5A600504:0000:s",
+      "parts": [
+        "5A600504",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5A600005:0000:s",
+      "parts": [
+        "5A600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5A604011:0000:sw",
+      "parts": [
+        "5A604011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5A600104:0000:s",
+      "parts": [
+        "5A600104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5A601005:0000:se",
+      "parts": [
+        "5A601005",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "57201400:0000:sea n",
+      "parts": [
+        "57201400",
+        "0000",
+        "sea n"
+      ],
+      "commands": [
+        "sea n"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

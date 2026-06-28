@@ -1,0 +1,415 @@
+{
+  "file": "Dreaserp.mp",
+  "sha256": "c4f192730b902549821e7dec95cffe249410c1f1d93690c8c375d7d66f37ebdf",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DREA",
+      "area": "Black Fort",
+      "label": "Dreary Village",
+      "mapNumber": 7,
+      "roomNumber": 1133,
+      "raw": "[DREA:Black Fort:Dreary Village-7 1133]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1133,
+        "name": "Dreary Village",
+        "exits": {
+          "N": "7/1136 (Door)",
+          "S": "3/785",
+          "E": "7/1121",
+          "W": "7/1130",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SERP",
+      "area": "Black House",
+      "label": "Serpentkin Village",
+      "mapNumber": 7,
+      "roomNumber": 1027,
+      "raw": "[SERP:Black House:Serpentkin Village-7 1027]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1027,
+        "name": "Village Centre",
+        "exits": {
+          "N": "7/1028",
+          "S": "7/1029",
+          "E": "7/1030",
+          "W": "7/1026",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "85500056:7F500055:30:-1:0:::",
+      "parts": [
+        "85500056",
+        "7F500055",
+        "30",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "30",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "85500056:0000:w",
+      "parts": [
+        "85500056",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "65700055:0000:w",
+      "parts": [
+        "65700055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "8550005A:0000:w",
+      "parts": [
+        "8550005A",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "85500095:0000:w",
+      "parts": [
+        "85500095",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "78900060:0000:w",
+      "parts": [
+        "78900060",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9A410010:0000:u",
+      "parts": [
+        "9A410010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "9A440040:0000:w",
+      "parts": [
+        "9A440040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9A400050:0000:w",
+      "parts": [
+        "9A400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9A410010:0000:u",
+      "parts": [
+        "9A410010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "9A440400:0000:nw",
+      "parts": [
+        "9A440400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "9A401400:0000:nw",
+      "parts": [
+        "9A401400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "9A401040:0000:w",
+      "parts": [
+        "9A401040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "95F00050:0000:w",
+      "parts": [
+        "95F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "95F00011:0000:n",
+      "parts": [
+        "95F00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "95F10004:0000:u",
+      "parts": [
+        "95F10004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "95F40040:0000:w",
+      "parts": [
+        "95F40040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "95F40010:0000:d",
+      "parts": [
+        "95F40010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "95F10004:0000:s",
+      "parts": [
+        "95F10004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "95F10005:0000:s",
+      "parts": [
+        "95F10005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "95F40040:0000:w",
+      "parts": [
+        "95F40040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "95F40051:0000:w",
+      "parts": [
+        "95F40051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "95F50004:0000:d",
+      "parts": [
+        "95F50004",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "95F00050:0000:w",
+      "parts": [
+        "95F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EA700410:0000:nw",
+      "parts": [
+        "EA700410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "EA701400:0000:nw",
+      "parts": [
+        "EA701400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "24D01040:0000:w",
+      "parts": [
+        "24D01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "24D00410:0000:nw",
+      "parts": [
+        "24D00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "24D01040:0000:w",
+      "parts": [
+        "24D01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BF700414:0000:nw",
+      "parts": [
+        "BF700414",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BF701140:0000:w",
+      "parts": [
+        "BF701140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 34
+}

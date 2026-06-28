@@ -1,0 +1,327 @@
+{
+  "file": "Orcmslmw.mp",
+  "sha256": "484581cf7ef68b1c1060233120b02f1487290379442ceb1363b4e383af9920d3",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ORCM",
+      "area": "Slums",
+      "label": "Orc Mansion",
+      "mapNumber": 2,
+      "roomNumber": 29,
+      "raw": "[ORCM:Slums:Orc Mansion-2 29]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 29,
+        "name": "Overgrown Garden, Iron Grate",
+        "exits": {
+          "N": "0",
+          "S": "1/1325",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/1012"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SLMW",
+      "area": "Slums",
+      "label": "Western Door",
+      "mapNumber": 1,
+      "roomNumber": 1098,
+      "raw": "[SLMW:Slums:Western Door-1 1098]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1098,
+        "name": "Slum Street, Western Door",
+        "exits": {
+          "N": "1/1097",
+          "S": "1/1099",
+          "E": "1/1167",
+          "W": "1/2339 (Key: 569 [or 61 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "04040004:76B00095:22:-1:0:::",
+      "parts": [
+        "04040004",
+        "76B00095",
+        "22",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "22",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "04040004:0000:d",
+      "parts": [
+        "04040004",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "B3D10010:0000:e",
+      "parts": [
+        "B3D10010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "84400041:0000:n",
+      "parts": [
+        "84400041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "34900004:0000:e[search e]",
+      "parts": [
+        "34900004",
+        "0000",
+        "e[search e]"
+      ],
+      "commands": [
+        "e[search e]"
+      ]
+    },
+    {
+      "raw": "E9500005:0001:n",
+      "parts": [
+        "E9500005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "90A00015:0001:e",
+      "parts": [
+        "90A00015",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E9500050:0001:e",
+      "parts": [
+        "E9500050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E9510050:0001:u",
+      "parts": [
+        "E9510050",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "A0700050:0000:w",
+      "parts": [
+        "A0700050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A0700050:0000:w",
+      "parts": [
+        "A0700050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F3900015:0000:n",
+      "parts": [
+        "F3900015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:n",
+      "parts": [
+        "A0700005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A0700054:0000:w",
+      "parts": [
+        "A0700054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A0700050:0000:w",
+      "parts": [
+        "A0700050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A0700050:0000:w",
+      "parts": [
+        "A0700050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A0700015:0000:s",
+      "parts": [
+        "A0700015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:s",
+      "parts": [
+        "A0700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:s",
+      "parts": [
+        "A0700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700045:0000:w",
+      "parts": [
+        "A0700045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4C900050:0001:w",
+      "parts": [
+        "4C900050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4C900050:0001:w",
+      "parts": [
+        "4C900050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4C900050:0001:w",
+      "parts": [
+        "4C900050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 26
+}

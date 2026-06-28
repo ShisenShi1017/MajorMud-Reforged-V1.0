@@ -1,0 +1,251 @@
+{
+  "file": "LCPRNPPV.mp",
+  "sha256": "4b817b6d3da48f23389b91cbe13486ed5aba9b0c0de4a5284d90fc565d26c815",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "LCPR",
+      "area": "Scorching Desert",
+      "label": "Limestone Caverns NPP Portal",
+      "mapNumber": 1,
+      "roomNumber": 2684,
+      "raw": "[LCPR:Scorching Desert:Limestone Caverns NPP Portal-1 2684]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2684,
+        "name": "Limestone Caverns",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "12/1432",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "NPPV",
+      "area": "Negative Power Plane",
+      "label": "Negative Power Plane Vortex",
+      "mapNumber": 8,
+      "roomNumber": 978,
+      "raw": "[NPPV:Negative Power Plane:Negative Power Plane Vortex-8 978]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 978,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "8/977",
+          "NW": "8/979",
+          "SE": "8/1005",
+          "SW": "8/1006",
+          "U": "8/1126",
+          "D": "8/1332"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C5800010:DD055500:15:-1:0:::",
+      "parts": [
+        "C5800010",
+        "DD055500",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C5800010:0000:@party go portal",
+      "parts": [
+        "C5800010",
+        "0000",
+        "@party go portal"
+      ],
+      "commands": [
+        "@party go portal"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:u",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:d",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

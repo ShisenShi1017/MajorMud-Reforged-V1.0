@@ -1,0 +1,195 @@
+{
+  "file": "TGHDLCBA.mp",
+  "sha256": "a0facea13a610a6998367e92c8dfa468bf842704d282b2a2379b64e598d1d04f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "TGHD",
+      "area": "Lost City",
+      "label": "Training Grounds, Halls/ the Dead",
+      "mapNumber": 16,
+      "roomNumber": 542,
+      "raw": "[TGHD:Lost City:Training Grounds, Halls/ the Dead-16 542]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 542,
+        "name": "Training Grounds, Halls of the Dead",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/499"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "LCBA",
+      "area": "Lost City",
+      "label": "Bank of the Lost City",
+      "mapNumber": 16,
+      "roomNumber": 320,
+      "raw": "[LCBA:Lost City:Bank of the Lost City-16 320]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 320,
+        "name": "Bank",
+        "exits": {
+          "N": "16/319",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "83B40000:3FA00001:10:-1:0:::",
+      "parts": [
+        "83B40000",
+        "3FA00001",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "83B40000:0000:d",
+      "parts": [
+        "83B40000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "5D640010:0000:d",
+      "parts": [
+        "5D640010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "5D610051:0000:w",
+      "parts": [
+        "5D610051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D600050:0000:w",
+      "parts": [
+        "5D600050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D600015:0000:w[sea w]",
+      "parts": [
+        "5D600015",
+        "0000",
+        "w[sea w]"
+      ],
+      "commands": [
+        "w[sea w]"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:s",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:s",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00009:0000:s",
+      "parts": [
+        "EDE00009",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3B901016:0000:se",
+      "parts": [
+        "3B901016",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "3B900555:0000:s",
+      "parts": [
+        "3B900555",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

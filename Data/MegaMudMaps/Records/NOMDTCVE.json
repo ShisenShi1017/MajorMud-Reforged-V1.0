@@ -1,0 +1,261 @@
+{
+  "file": "NOMDTCVE.mp",
+  "sha256": "a6cf6f7478e4255e17507ab62b46776446c50d3bd5a2d869daaa6ed5d3c92f0f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "NOMD",
+      "area": "Rocky Trail",
+      "label": "Nomadic Chieftain",
+      "mapNumber": 10,
+      "roomNumber": 109,
+      "raw": "[NOMD:Rocky Trail:Nomadic Chieftain-10 109]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 109,
+        "name": "Torchlit Cave, Pool",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/108",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "TCVE",
+      "area": "Rocky Trail",
+      "label": "Torchlit Caverns",
+      "mapNumber": 10,
+      "roomNumber": 36,
+      "raw": "[TCVE:Rocky Trail:Torchlit Caverns-10 36]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 36,
+        "name": "Torchlit Cavern",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "10/28",
+          "W": "10/37",
+          "NE": "10/38",
+          "NW": "10/44",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "22E00040:E6300550:16:-1:0:::",
+      "parts": [
+        "22E00040",
+        "E6300550",
+        "16",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "22E00040:0000:w",
+      "parts": [
+        "22E00040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E6300011:0000:n",
+      "parts": [
+        "E6300011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E6300014:0000:e",
+      "parts": [
+        "E6300014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E6300050:0000:e",
+      "parts": [
+        "E6300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E6300140:0000:ne",
+      "parts": [
+        "E6300140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "E6304450:0000:e",
+      "parts": [
+        "E6304450",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E6300050:0000:e",
+      "parts": [
+        "E6300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E6300041:0000:n",
+      "parts": [
+        "E6300041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E6300044:0000:w",
+      "parts": [
+        "E6300044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E6300050:0000:w",
+      "parts": [
+        "E6300050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E6300110:0000:ne",
+      "parts": [
+        "E6300110",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "E6304010:0000:e",
+      "parts": [
+        "E6304010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F1A01450:0000:nw",
+      "parts": [
+        "F1A01450",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "E6301050:0000:w",
+      "parts": [
+        "E6301050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E6300110:0000:ne",
+      "parts": [
+        "E6300110",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "E6304010:0000:e",
+      "parts": [
+        "E6304010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

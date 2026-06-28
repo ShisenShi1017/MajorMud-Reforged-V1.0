@@ -1,0 +1,96 @@
+{
+  "file": "AFJ1AFGC.mp",
+  "sha256": "fb9827f926db985d83fd9492945d89a07c0b727a31cf64b50c9c24018fb650c8",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "AFJ1",
+      "area": "Ancient Fortress",
+      "label": "Ancient Fortress, Jail Cell",
+      "mapNumber": 17,
+      "roomNumber": 2854,
+      "raw": "[AFJ1:Ancient Fortress:Ancient Fortress, Jail Cell-17 2854]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2854,
+        "name": "Ancient Fortress, Jail Cell",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "17/2853 (Door)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "AFGC",
+      "area": "Trainers",
+      "label": "EasyTrainer, Key Shop (76+)",
+      "mapNumber": 17,
+      "roomNumber": 3247,
+      "raw": "[AFGC:Trainers:EasyTrainer, Key Shop (76+)-17 3247]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 3247,
+        "name": "Grand Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "12/221",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "48600080:23610000:1:-1:0:::",
+      "parts": [
+        "48600080",
+        "23610000",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "48600080:0000:shakabuku",
+      "parts": [
+        "48600080",
+        "0000",
+        "shakabuku"
+      ],
+      "commands": [
+        "shakabuku"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

@@ -1,0 +1,370 @@
+{
+  "file": "Dmirdmco.mp",
+  "sha256": "a5df3ede249a4cf6c6a2f921acd6f1e5fdc4aa0709d4b0acba08459d35c9cb05",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DMIR",
+      "area": "Dwarven Mines",
+      "label": "Iron Mine (Level 1)",
+      "mapNumber": 6,
+      "roomNumber": 1569,
+      "raw": "[DMIR:Dwarven Mines:Iron Mine (Level 1)-6 1569]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1569,
+        "name": "Iron Mine, Cart Track",
+        "exits": {
+          "N": "0",
+          "S": "6/1570",
+          "E": "6/1585",
+          "W": "6/1568",
+          "NE": "6/1576",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DMCO",
+      "area": "Dwarven Mines",
+      "label": "Copper Mine (Level 2)",
+      "mapNumber": 6,
+      "roomNumber": 1626,
+      "raw": "[DMCO:Dwarven Mines:Copper Mine (Level 2)-6 1626]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1626,
+        "name": "Copper Mine, Cart Ramp",
+        "exits": {
+          "N": "6/1627",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/1625",
+          "D": "6/1890"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "FFB00154:6CA50001:26:-1:0:::",
+      "parts": [
+        "FFB00154",
+        "6CA50001",
+        "26",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "26",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "FFB00154:0000:e",
+      "parts": [
+        "FFB00154",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FFB00050:0000:e",
+      "parts": [
+        "FFB00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FFB00140:0000:ne",
+      "parts": [
+        "FFB00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FFB05000:0000:se",
+      "parts": [
+        "FFB05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FFB01400:0000:se",
+      "parts": [
+        "FFB01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FFB00404:0000:s",
+      "parts": [
+        "FFB00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FFB00005:0000:s",
+      "parts": [
+        "FFB00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FFB00005:0000:s",
+      "parts": [
+        "FFB00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FFB04011:0000:sw",
+      "parts": [
+        "FFB04011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FFB00104:0000:s",
+      "parts": [
+        "FFB00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FFB00005:0000:s",
+      "parts": [
+        "FFB00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FFB04001:0000:sw",
+      "parts": [
+        "FFB04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FFB04140:0000:sw",
+      "parts": [
+        "FFB04140",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FFB04110:0000:sw",
+      "parts": [
+        "FFB04110",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FFB00140:0000:w",
+      "parts": [
+        "FFB00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FFB00050:0000:w",
+      "parts": [
+        "FFB00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FFB00050:0000:w",
+      "parts": [
+        "FFB00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7C840010:0000:d",
+      "parts": [
+        "7C840010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "57550000:0000:d",
+      "parts": [
+        "57550000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "57550000:0000:d",
+      "parts": [
+        "57550000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "57550000:0000:d",
+      "parts": [
+        "57550000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "57550000:0000:d",
+      "parts": [
+        "57550000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "57550000:0000:d",
+      "parts": [
+        "57550000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "57550000:0000:d",
+      "parts": [
+        "57550000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "57550000:0000:d",
+      "parts": [
+        "57550000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "57550000:0000:d",
+      "parts": [
+        "57550000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 31
+}

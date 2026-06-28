@@ -1,0 +1,140 @@
+{
+  "file": "Frt3frtc.mp",
+  "sha256": "bc4fde170b2236adb0da4b99bc375bf87f07964fba013948c33764424a1cce2d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FRT3",
+      "area": "Black Fort",
+      "label": "Outside Master Assassin",
+      "mapNumber": 8,
+      "roomNumber": 1262,
+      "raw": "[FRT3:Black Fort:Outside Master Assassin-8 1262]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1262,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "8/1238",
+          "SE": "8/1207",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FRTC",
+      "area": "Black Fort",
+      "label": "Room Of Change",
+      "mapNumber": 7,
+      "roomNumber": 1281,
+      "raw": "[FRTC:Black Fort:Room Of Change-7 1281]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1281,
+        "name": "Room Of Change",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "7/1266 (Hidden/Searchable)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A4F00056:4F400000:5:-1:0:::",
+      "parts": [
+        "A4F00056",
+        "4F400000",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A4F00056:0000:w",
+      "parts": [
+        "A4F00056",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A4F04010:0000:sw",
+      "parts": [
+        "A4F04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A4F00104:0000:sw[search sw]",
+      "parts": [
+        "A4F00104",
+        "0000",
+        "sw[search sw]"
+      ],
+      "commands": [
+        "sw[search sw]"
+      ]
+    },
+    {
+      "raw": "4F400000:0000:put keys in device",
+      "parts": [
+        "4F400000",
+        "0000",
+        "put keys in device"
+      ],
+      "commands": [
+        "put keys in device"
+      ]
+    },
+    {
+      "raw": "4F400000:0000:i",
+      "parts": [
+        "4F400000",
+        "0000",
+        "i"
+      ],
+      "commands": [
+        "i"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

@@ -1,0 +1,184 @@
+{
+  "file": "SSCIRNPP.mp",
+  "sha256": "7b6542afb37c21b4c0623b3e42983b329758a29c07a2b10c8b98742bc18f0bef",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SSCI",
+      "area": "Khazarad",
+      "label": "Spiral Stairwell, Cave-In",
+      "mapNumber": 6,
+      "roomNumber": 1406,
+      "raw": "[SSCI:Khazarad:Spiral Stairwell, Cave-In-6 1406]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1406,
+        "name": "Spiral Stairwell, Cave-In",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "6/1407",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "6/1405"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "RNPP",
+      "area": "Khazarad",
+      "label": "Redstone Tunnel, NPP Portal",
+      "mapNumber": 1,
+      "roomNumber": 2681,
+      "raw": "[RNPP:Khazarad:Redstone Tunnel, NPP Portal-1 2681]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2681,
+        "name": "Redstone Tunnel, Dead-End",
+        "exits": {
+          "N": "6/1447",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "02F40040:E3700001:9:-1:0:::",
+      "parts": [
+        "02F40040",
+        "E3700001",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "02F40040:0000:w",
+      "parts": [
+        "02F40040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F2300050:0000:w",
+      "parts": [
+        "F2300050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "1AE00411:0000:nw",
+      "parts": [
+        "1AE00411",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F2301001:0000:n",
+      "parts": [
+        "F2301001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "1AE00405:0000:n",
+      "parts": [
+        "1AE00405",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F2300005:0000:n",
+      "parts": [
+        "F2300005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F2300005:0000:n",
+      "parts": [
+        "F2300005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F2300044:0000:w",
+      "parts": [
+        "F2300044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F2300014:0000:s",
+      "parts": [
+        "F2300014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

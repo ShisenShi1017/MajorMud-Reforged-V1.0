@@ -1,0 +1,101 @@
+{
+  "file": "NARNLOO3.mp",
+  "sha256": "8bb4d6abbc54a44dcade83a825b2e4fd11630ae9e2f3d9a94d410c668bed468c",
+  "metadataLine": "[Newhaven Arena (Including Cave Bear)-1 2150][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "NARN",
+      "area": "Newhaven",
+      "label": "Newhaven Arena",
+      "mapNumber": 1,
+      "roomNumber": 2150,
+      "raw": "[NARN:Newhaven:Newhaven Arena-1 2150]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2150,
+        "name": "Newhaven, Arena",
+        "exits": {
+          "N": "1/2152 (Door [any picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/2146",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ABC10002:ABC10002:4:-1:0:::",
+      "parts": [
+        "ABC10002",
+        "ABC10002",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ABC10002:0400:n",
+      "parts": [
+        "ABC10002",
+        "0400",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "97400005:0000:n",
+      "parts": [
+        "97400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "DDF00004:0000:s",
+      "parts": [
+        "DDF00004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "97400005:0000:s",
+      "parts": [
+        "97400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

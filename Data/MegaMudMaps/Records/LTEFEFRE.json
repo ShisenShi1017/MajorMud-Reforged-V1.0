@@ -1,0 +1,118 @@
+{
+  "file": "LTEFEFRE.mp",
+  "sha256": "96c5c3868e2d3727c8e7869fc37e6fe2c3cb6995e14ea1369eb217a9584f0a9b",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "LTEF",
+      "area": "Lava Fields",
+      "label": "Lava Tube, Efreeti Fork",
+      "mapNumber": 6,
+      "roomNumber": 1237,
+      "raw": "[LTEF:Lava Fields:Lava Tube, Efreeti Fork-6 1237]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1237,
+        "name": "Lava Tube",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "6/1241",
+          "SE": "6/1238",
+          "SW": "6/1236",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "EFRE",
+      "area": "Lava Fields",
+      "label": "Efreeti",
+      "mapNumber": 6,
+      "roomNumber": 1243,
+      "raw": "[EFRE:Lava Fields:Efreeti-6 1243]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1243,
+        "name": "Blazing Cavern",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "6/1242",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "05C05400:85804000:3:-1:0:::",
+      "parts": [
+        "05C05400",
+        "85804000",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "05C05400:0000:nw",
+      "parts": [
+        "05C05400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "05C01001:0000:n",
+      "parts": [
+        "05C01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "05C00104:0000:ne",
+      "parts": [
+        "05C00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

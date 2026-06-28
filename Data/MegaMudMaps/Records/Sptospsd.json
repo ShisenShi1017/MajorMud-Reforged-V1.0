@@ -1,0 +1,38 @@
+{
+  "file": "Sptospsd.mp",
+  "sha256": "fee777df539e19454c7c84069dcca0ecbf1a0a841ebb3e7650524835893eccb7",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "3F200005:D4100004:1:-1:0:::",
+      "parts": [
+        "3F200005",
+        "D4100004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3F200005:0000:n",
+      "parts": [
+        "3F200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 3
+}

@@ -1,0 +1,206 @@
+{
+  "file": "CTLFWDFE.mp",
+  "sha256": "fa55d6013324341860fd6db906e3b5905c25218476a652c93b3e34122ccad991",
+  "metadataLine": "[][Winbterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CTLF",
+      "area": "Blackwood Forest",
+      "label": "Covered Tent, Lord Feyr",
+      "mapNumber": 17,
+      "roomNumber": 2718,
+      "raw": "[CTLF:Blackwood Forest:Covered Tent, Lord Feyr-17 2718]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2718,
+        "name": "Covered Tent",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "17/2728",
+          "W": "17/2799",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "WDFE",
+      "area": "Blackwood Forest",
+      "label": "Dying Fields, West Side",
+      "mapNumber": 17,
+      "roomNumber": 2632,
+      "raw": "[WDFE:Blackwood Forest:Dying Fields, West Side-17 2632]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2632,
+        "name": "Blackwood Forest",
+        "exits": {
+          "N": "17/2719",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/2625",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D7B00050:57201001:11:-1:0:::",
+      "parts": [
+        "D7B00050",
+        "57201001",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D7B00050:0000:e",
+      "parts": [
+        "D7B00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D9300054:0000:s",
+      "parts": [
+        "D9300054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D9300055:0000:s",
+      "parts": [
+        "D9300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

@@ -1,0 +1,231 @@
+{
+  "file": "Gvilswpc.mp",
+  "sha256": "9c45b282e1cd88943cc7761811b1a62b38176c17cb5dfd0197dd0d819653128e",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GVIL",
+      "area": "Gnome Village",
+      "label": "Gnome Village- 6 552",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GVIL:Gnome Village:Gnome Village- 6 552]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SWPC",
+      "area": "Misty Valley",
+      "label": "Swamp Ridge Path Crossroads",
+      "mapNumber": 6,
+      "roomNumber": 133,
+      "raw": "[SWPC:Misty Valley:Swamp Ridge Path Crossroads-6 133]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 133,
+        "name": "Valley Path, Crossroads",
+        "exits": {
+          "N": "6/237",
+          "S": "0",
+          "E": "6/238",
+          "W": "6/122",
+          "NE": "0",
+          "NW": "0",
+          "SE": "6/134",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2A300145:77904410:15:-1:0:::",
+      "parts": [
+        "2A300145",
+        "77904410",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2A300145:0000:w",
+      "parts": [
+        "2A300145",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2A30005A:0000:w",
+      "parts": [
+        "2A30005A",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2A300050:0000:w",
+      "parts": [
+        "2A300050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "55604010:0000:sw",
+      "parts": [
+        "55604010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "11900140:0000:w",
+      "parts": [
+        "11900140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11900050:0000:w",
+      "parts": [
+        "11900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11900050:0000:w",
+      "parts": [
+        "11900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11940010:0000:d",
+      "parts": [
+        "11940010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "11910040:0000:w",
+      "parts": [
+        "11910040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11900050:0000:w",
+      "parts": [
+        "11900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11900050:0000:w",
+      "parts": [
+        "11900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11940010:0000:d",
+      "parts": [
+        "11940010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "11910040:0000:w",
+      "parts": [
+        "11910040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11900050:0000:w",
+      "parts": [
+        "11900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11900050:0000:w",
+      "parts": [
+        "11900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

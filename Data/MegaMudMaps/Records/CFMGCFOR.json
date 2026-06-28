@@ -1,0 +1,96 @@
+{
+  "file": "CFMGCFOR.mp",
+  "sha256": "b820e9b1a180b304d6e50dedf3938984026d6f9bb5d309fba073ac49f3a5b95d",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CFMG",
+      "area": "Lava Fields",
+      "label": "Crimson Fortress, Main Gate",
+      "mapNumber": 15,
+      "roomNumber": 1054,
+      "raw": "[CFMG:Lava Fields:Crimson Fortress, Main Gate-15 1054]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1054,
+        "name": "Fortress of the Crimson Flame, Main Gate",
+        "exits": {
+          "N": "15/1053 (Key: 1076)",
+          "S": "0",
+          "E": "15/1073",
+          "W": "15/1055",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "CFOR",
+      "area": "Lava Fields",
+      "label": "Crimson Fortress, Entrance",
+      "mapNumber": 15,
+      "roomNumber": 1053,
+      "raw": "[CFOR:Lava Fields:Crimson Fortress, Entrance-15 1053]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1053,
+        "name": "Crimson Fortress, Entrance",
+        "exits": {
+          "N": "15/1052",
+          "S": "15/1054 (Key: 1076 [or 91 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "93F00052:47700009:1:-1:0:::",
+      "parts": [
+        "93F00052",
+        "47700009",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "93F00052:0000:n",
+      "parts": [
+        "93F00052",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

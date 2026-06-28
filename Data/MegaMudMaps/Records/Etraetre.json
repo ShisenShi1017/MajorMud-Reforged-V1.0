@@ -1,0 +1,118 @@
+{
+  "file": "Etraetre.mp",
+  "sha256": "b8496284ebe2d91eed007bcfc9a78ebb3b6b9eb3fda9f5267f7392c36133e65e",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ETRA",
+      "area": "Trainers",
+      "label": "Elven Trainer (21-50)",
+      "mapNumber": 3,
+      "roomNumber": 542,
+      "raw": "[ETRA:Trainers:Elven Trainer (21-50)-3 542]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 542,
+        "name": "Training Area",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "3/537"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ETRE",
+      "area": "Northern Forests",
+      "label": "Ancient Tree",
+      "mapNumber": 3,
+      "roomNumber": 533,
+      "raw": "[ETRE:Northern Forests:Ancient Tree-3 533]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 533,
+        "name": "Ancient Tree, Rope Bridge",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "3/538",
+          "NW": "3/534",
+          "SE": "3/536",
+          "SW": "3/532",
+          "U": "3/543",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "10E40000:1CB15500:3:-1:0:::",
+      "parts": [
+        "10E40000",
+        "1CB15500",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "10E40000:0000:d",
+      "parts": [
+        "10E40000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "1CB10040:0000:w",
+      "parts": [
+        "1CB10040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "88700410:0000:nw",
+      "parts": [
+        "88700410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

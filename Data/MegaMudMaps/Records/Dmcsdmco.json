@@ -1,0 +1,183 @@
+{
+  "file": "Dmcsdmco.mp",
+  "sha256": "11c2e79eb46d1b6ce8d25d420c5291113a4975fc6ea7a03e7f4f790ab16daae4",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DMCS",
+      "area": "Dwarven Mines",
+      "label": "Copper/Silver Mine (Level 3)",
+      "mapNumber": 6,
+      "roomNumber": 1898,
+      "raw": "[DMCS:Dwarven Mines:Copper/Silver Mine (Level 3)-6 1898]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1898,
+        "name": "Copper Mine, Cart Ramp",
+        "exits": {
+          "N": "0",
+          "S": "6/1899",
+          "E": "0",
+          "W": "0",
+          "NE": "6/1945",
+          "NW": "6/2339",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/1897",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DMCO",
+      "area": "Dwarven Mines",
+      "label": "Copper Mine (Level 2)",
+      "mapNumber": 6,
+      "roomNumber": 1626,
+      "raw": "[DMCO:Dwarven Mines:Copper Mine (Level 2)-6 1626]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1626,
+        "name": "Copper Mine, Cart Ramp",
+        "exits": {
+          "N": "6/1627",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/1625",
+          "D": "6/1890"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "6CA10504:6CA50001:9:-1:0:::",
+      "parts": [
+        "6CA10504",
+        "6CA50001",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "6CA10504:0000:u",
+      "parts": [
+        "6CA10504",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

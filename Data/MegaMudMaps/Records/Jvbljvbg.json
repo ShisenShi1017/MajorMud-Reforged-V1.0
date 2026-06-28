@@ -1,0 +1,174 @@
+{
+  "file": "Jvbljvbg.mp",
+  "sha256": "9be1f73f5dc7b85b42dc0e4b7dc9f3032ea02de6e7ce5f568d52d24a206a9c4d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "JVBL",
+      "area": "Jungle",
+      "label": "Vine Bridge, Life Tree",
+      "mapNumber": 16,
+      "roomNumber": 1209,
+      "raw": "[JVBL:Jungle:Vine Bridge, Life Tree-16 1209]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1209,
+        "name": "Vine Bridge, Life Tree",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "16/1208",
+          "NE": "16/1210",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "JVBG",
+      "area": "Jungle",
+      "label": "Vine Bridge, Wooden Gateway",
+      "mapNumber": 16,
+      "roomNumber": 1201,
+      "raw": "[JVBG:Jungle:Vine Bridge, Wooden Gateway-16 1201]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1201,
+        "name": "Vine Bridge, Wooden Gateway",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/1202",
+          "W": "16/1200",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5E800140:B0D00050:8:-1:0:::",
+      "parts": [
+        "5E800140",
+        "B0D00050",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5E800140:0000:w",
+      "parts": [
+        "5E800140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D8000050:0000:w",
+      "parts": [
+        "D8000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D8000050:0000:w",
+      "parts": [
+        "D8000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D8000050:0000:w",
+      "parts": [
+        "D8000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D8000050:0000:w",
+      "parts": [
+        "D8000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "94900050:0000:w",
+      "parts": [
+        "94900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D8000050:0000:w",
+      "parts": [
+        "D8000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D8000050:0000:w",
+      "parts": [
+        "D8000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

@@ -1,0 +1,38 @@
+{
+  "file": "Sfupgpes.mp",
+  "sha256": "12249375c8c59c5d61a72e0b122bb385ea1f0245a9cad16e31c86779aeff016d",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "E6710044:35540014:1:-1:0:::",
+      "parts": [
+        "E6710044",
+        "35540014",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E6710044:0000:u",
+      "parts": [
+        "E6710044",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 3
+}

@@ -1,0 +1,360 @@
+{
+  "file": "RBHTBWFG.mp",
+  "sha256": "72dcb157102be068a9507b54737e9b8dc302d5396265f7847e2e7f48a0bcaa58",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "RBHT",
+      "area": "Blackwood Forest",
+      "label": "HangingTree",
+      "mapNumber": 17,
+      "roomNumber": 728,
+      "raw": "[RBHT:Blackwood Forest:HangingTree-17 728]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 728,
+        "name": "Blackwood Forest, Dark Grove",
+        "exits": {
+          "N": "0",
+          "S": "17/727",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BWFG",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest, Garden",
+      "mapNumber": 17,
+      "roomNumber": 703,
+      "raw": "[BWFG:Blackwood Forest:Blackwood Forest, Garden-17 703]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 703,
+        "name": "Blackwood Forest, Garden",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "17/704",
+          "SE": "17/602",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "13800004:CCC01400:25:-1:0:::",
+      "parts": [
+        "13800004",
+        "CCC01400",
+        "25",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "25",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "13800004:0000:s",
+      "parts": [
+        "13800004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCC01001:0000:se",
+      "parts": [
+        "CCC01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CCC01400:0000:se",
+      "parts": [
+        "CCC01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CCC00404:0000:s",
+      "parts": [
+        "CCC00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCC04001:0000:sw",
+      "parts": [
+        "CCC04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CCC04100:0000:sw",
+      "parts": [
+        "CCC04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CCC01100:0000:se",
+      "parts": [
+        "CCC01100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CCC00404:0000:s",
+      "parts": [
+        "CCC00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCC00005:0000:s",
+      "parts": [
+        "CCC00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCC04001:0000:sw",
+      "parts": [
+        "CCC04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CCC00504:0000:nw",
+      "parts": [
+        "CCC00504",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CCC01001:0000:n",
+      "parts": [
+        "CCC01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCC00104:0000:ne",
+      "parts": [
+        "CCC00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CCC04400:0000:nw",
+      "parts": [
+        "CCC04400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CCC01400:0000:nw",
+      "parts": [
+        "CCC01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CCC01010:0000:e",
+      "parts": [
+        "CCC01010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCC00140:0000:ne",
+      "parts": [
+        "CCC00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CCC04400:0000:nw",
+      "parts": [
+        "CCC04400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CCC01100:0000:ne",
+      "parts": [
+        "CCC01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CCC04400:0000:nw",
+      "parts": [
+        "CCC04400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CCC01001:0000:n",
+      "parts": [
+        "CCC01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCC00104:0000:ne",
+      "parts": [
+        "CCC00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CCC05000:0000:se",
+      "parts": [
+        "CCC05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CCC00404:0000:s",
+      "parts": [
+        "CCC00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCC01001:0000:se",
+      "parts": [
+        "CCC01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 29
+}

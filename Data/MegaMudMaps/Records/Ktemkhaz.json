@@ -1,0 +1,151 @@
+{
+  "file": "Ktemkhaz.mp",
+  "sha256": "1bbc9648817c702ab1465b9e4e13a59fdbad1a5508737ffe5402a7808ce82d50",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KTEM",
+      "area": "Khazarad",
+      "label": "Dwarven Temple Healer",
+      "mapNumber": 6,
+      "roomNumber": 1347,
+      "raw": "[KTEM:Khazarad:Dwarven Temple Healer-6 1347]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1347,
+        "name": "Dwarven Temple",
+        "exits": {
+          "N": "0",
+          "S": "6/1306",
+          "E": "6/1348",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8A200014:19800051:6:-1:0:::",
+      "parts": [
+        "8A200014",
+        "19800051",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "8A200014:0000:s",
+      "parts": [
+        "8A200014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:w",
+      "parts": [
+        "D1600055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:w",
+      "parts": [
+        "D1600055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:w",
+      "parts": [
+        "D1600054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7DB00055:0000:n",
+      "parts": [
+        "7DB00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "19800044:0000:w",
+      "parts": [
+        "19800044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

@@ -1,0 +1,97 @@
+{
+  "file": "DCTGDCNA.mp",
+  "sha256": "8ffb55b2220bac8bc8125d6ea771999184ebfc5a7b5f1544c594365b4164f53c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DCTG",
+      "area": "Dark-Elf City",
+      "label": "Training Grounds",
+      "mapNumber": 8,
+      "roomNumber": 1724,
+      "raw": "[DCTG:Dark-Elf City:Training Grounds-8 1724]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1724,
+        "name": "Training Grounds",
+        "exits": {
+          "N": "8/1697 (Hidden/Searchable)",
+          "S": "8/1735",
+          "E": "8/1739",
+          "W": "8/1725",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "DCNA",
+      "area": "Dark-Elf City",
+      "label": "Narrow Alley",
+      "mapNumber": 8,
+      "roomNumber": 1697,
+      "raw": "[DCNA:Dark-Elf City:Narrow Alley-8 1697]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1697,
+        "name": "Narrow Alley",
+        "exits": {
+          "N": "8/1723 (Hidden/Searchable)",
+          "S": "8/1724 (Hidden/Searchable)",
+          "E": "0",
+          "W": "8/1696",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5D600054:E1200040:1:-1:0:::",
+      "parts": [
+        "5D600054",
+        "E1200040",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5D600054:0000:n[sea n]",
+      "parts": [
+        "5D600054",
+        "0000",
+        "n[sea n]"
+      ],
+      "commands": [
+        "n[sea n]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

@@ -1,0 +1,254 @@
+{
+  "file": "VLEFLOOP.mp",
+  "sha256": "37a577d6c1a5f06070a1469c7ad5cc1fcc15b7fe27cee586dabdfd2599e3a7bc",
+  "metadataLine": "[Giant Efreetis-16 2145][]",
+  "roomHeaders": [
+    {
+      "code": "VLEF",
+      "area": "Volcano",
+      "label": "Giant Efreetis",
+      "mapNumber": 16,
+      "roomNumber": 2145,
+      "raw": "[VLEF:Volcano:Giant Efreetis-16 2145]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2145,
+        "name": "Volcano, Near the Heart",
+        "exits": {
+          "N": "0",
+          "S": "16/2146",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/2114 (Hidden/Searchable)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "12900004:12900004:18:-1:0:::",
+      "parts": [
+        "12900004",
+        "12900004",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "12900004:0000:s",
+      "parts": [
+        "12900004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B8600051:0000:e",
+      "parts": [
+        "B8600051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B8600140:0000:ne",
+      "parts": [
+        "B8600140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "B8604001:0000:n",
+      "parts": [
+        "B8604001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8600005:0000:n",
+      "parts": [
+        "B8600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8600404:0000:nw",
+      "parts": [
+        "B8600404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B8601040:0000:w",
+      "parts": [
+        "B8601040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B8600050:0000:w",
+      "parts": [
+        "B8600050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B8604010:0000:se[search se]",
+      "parts": [
+        "B8604010",
+        "0000",
+        "se[search se]"
+      ],
+      "commands": [
+        "se[search se]"
+      ]
+    },
+    {
+      "raw": "12900004:0000:s",
+      "parts": [
+        "12900004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B8600021:0000:n",
+      "parts": [
+        "B8600021",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "12900004:0000:nw[search nw]",
+      "parts": [
+        "12900004",
+        "0000",
+        "nw[search nw]"
+      ],
+      "commands": [
+        "nw[search nw]"
+      ]
+    },
+    {
+      "raw": "B8604010:0000:sw",
+      "parts": [
+        "B8604010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "B8600104:0000:s",
+      "parts": [
+        "B8600104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B8600005:0000:s",
+      "parts": [
+        "B8600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B8601001:0000:se",
+      "parts": [
+        "B8601001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "B8600410:0000:e",
+      "parts": [
+        "B8600410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B8600051:0000:n",
+      "parts": [
+        "B8600051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 21
+}

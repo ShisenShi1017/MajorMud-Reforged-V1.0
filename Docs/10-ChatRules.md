@@ -1,8 +1,11 @@
-# Chat Rules Update - Database Version 0007
+# Chat and Development Rules
 
-- Database/data import work is called a **Database Version**.
-- Code/server/editor/client work is called a **Patch**.
-- Every Database Version and Patch must run from its own extracted folder using `Apply-*.bat`.
-- Every Database Version and Patch must update documentation.
-- Never claim full `.DAT` decoding until every field and record has been verified.
-- Numeric binary fields must remain unknown until cross-referenced; they must not be guessed as counts or IDs.
+- Code patches and database versions must apply from their own extracted folder.
+- Use `Apply-*.bat` from the extracted package folder.
+- Do not require the user to type the project path.
+- Do not overwrite `Saves/` or original imported databases.
+- Every patch/database version updates documentation.
+- Database Versions are for data/import changes.
+- Patches are for code/server/editor/client changes.
+- Numeric fields from reverse engineering remain unknown until proven by evidence.
+- Never claim full decoding unless every byte/field/record is verified.

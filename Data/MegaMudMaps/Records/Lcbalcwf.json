@@ -1,0 +1,152 @@
+{
+  "file": "Lcbalcwf.mp",
+  "sha256": "6bcd65c2bd1ccd9e65a14c0d128bcbf753f2ae071341968f06b87754cc2ed1f4",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCBA",
+      "area": "Lost City",
+      "label": "Bank of the Lost City",
+      "mapNumber": 16,
+      "roomNumber": 320,
+      "raw": "[LCBA:Lost City:Bank of the Lost City-16 320]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 320,
+        "name": "Bank",
+        "exits": {
+          "N": "16/319",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "LCWF",
+      "area": "Lost City",
+      "label": "Weapons Shop, Front Room",
+      "mapNumber": 16,
+      "roomNumber": 330,
+      "raw": "[LCWF:Lost City:Weapons Shop, Front Room-16 330]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 330,
+        "name": "Weapons Shop, Front Room",
+        "exits": {
+          "N": "16/331",
+          "S": "0",
+          "E": "0",
+          "W": "16/324",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3FA00001:BCA00041:6:-1:0:::",
+      "parts": [
+        "3FA00001",
+        "BCA00041",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3FA00001:0000:n",
+      "parts": [
+        "3FA00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3B900555:0000:w",
+      "parts": [
+        "3B900555",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B900151:0000:w",
+      "parts": [
+        "3B900151",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A8C00014:0000:s",
+      "parts": [
+        "A8C00014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "61900005:0000:s",
+      "parts": [
+        "61900005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "61900015:0000:e",
+      "parts": [
+        "61900015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

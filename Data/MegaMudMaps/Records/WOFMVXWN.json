@@ -1,0 +1,118 @@
+{
+  "file": "WOFMVXWN.mp",
+  "sha256": "9ac985fb6587ef3098eaabf68128a87114f90aabef9794c2e08b06c31fef5a16",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "WOFM",
+      "area": "Black Wastelands",
+      "label": "Black Wasteland, West of Magus",
+      "mapNumber": 3,
+      "roomNumber": 675,
+      "raw": "[WOFM:Black Wastelands:Black Wasteland, West of Magus-3 675]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 675,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "3/676",
+          "S": "3/674",
+          "E": "3/787",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "VXWN",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (NPP)",
+      "mapNumber": 3,
+      "roomNumber": 731,
+      "raw": "[VXWN:Black Wastelands:Wastelands Vortex (NPP)-3 731]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 731,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "0",
+          "S": "3/730",
+          "E": "0",
+          "W": "0",
+          "NE": "3/732",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED000015:ED100104:3:-1:0:::",
+      "parts": [
+        "ED000015",
+        "ED100104",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED000015:0000:s",
+      "parts": [
+        "ED000015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED000045:0000:w",
+      "parts": [
+        "ED000045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ED004010:0000:sw",
+      "parts": [
+        "ED004010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

@@ -1,0 +1,210 @@
+{
+  "file": "DCJPLLGM.mp",
+  "sha256": "9914a0d967036d838496cd523ff856fead53699b64ba1b15c9e063d4605b561a",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DCJP",
+      "area": "Jungle",
+      "label": "Jungle NPP Portal-1-2685",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DCJP:Jungle:Jungle NPP Portal-1-2685]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LLGM",
+      "area": "Jungle",
+      "label": "Large Mound",
+      "mapNumber": 16,
+      "roomNumber": 1405,
+      "raw": "[LLGM:Jungle:Large Mound-16 1405]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1405,
+        "name": "Shallow Jungle, Large Mound",
+        "exits": {
+          "N": "0",
+          "S": "16/1400",
+          "E": "16/1399",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "01E00004:71E00014:13:-1:0:::",
+      "parts": [
+        "01E00004",
+        "71E00014",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "01E00004:0000:s",
+      "parts": [
+        "01E00004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "01E00101:0000:ne",
+      "parts": [
+        "01E00101",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31804400:0000:nw",
+      "parts": [
+        "31804400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31805110:0000:e",
+      "parts": [
+        "31805110",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800140:0000:ne",
+      "parts": [
+        "31800140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31805001:0000:se",
+      "parts": [
+        "31805001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31805404:0000:se",
+      "parts": [
+        "31805404",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31800500:0000:ne",
+      "parts": [
+        "31800500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31805001:0000:se",
+      "parts": [
+        "31805001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31804414:0000:e",
+      "parts": [
+        "31804414",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31801045:0000:se",
+      "parts": [
+        "31801045",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31800444:0000:s",
+      "parts": [
+        "31800444",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31804041:0000:w",
+      "parts": [
+        "31804041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

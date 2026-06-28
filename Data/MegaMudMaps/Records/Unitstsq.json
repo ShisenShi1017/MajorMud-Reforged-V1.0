@@ -1,0 +1,151 @@
+{
+  "file": "Unitstsq.mp",
+  "sha256": "3acbd7f5a334d9a130e18dc18c0c4432b5f1d8590124923d0b1512c17e22ef53",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "UNIT",
+      "area": "Trainers",
+      "label": "Universal Trainer  (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 1376,
+      "raw": "[UNIT:Trainers:Universal Trainer  (2-10)-1 1376]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1376,
+        "name": "Adventurer's Guild, Universal Trainer",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "1/349",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "STSQ",
+      "area": "Silvermere",
+      "label": "Town Square",
+      "mapNumber": 1,
+      "roomNumber": 224,
+      "raw": "[STSQ:Silvermere:Town Square-1 224]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 224,
+        "name": "Town Square",
+        "exits": {
+          "N": "1/223",
+          "S": "1/225",
+          "E": "1/254",
+          "W": "1/301",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/766 (Text: go manhole, go man, enter manhole)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "74400040:9D400055:6:-1:0:::",
+      "parts": [
+        "74400040",
+        "9D400055",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "74400040:0000:w",
+      "parts": [
+        "74400040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7A300055:0000:w",
+      "parts": [
+        "7A300055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "45800050:0000:w",
+      "parts": [
+        "45800050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E7000055:0000:s",
+      "parts": [
+        "E7000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E7000045:0000:s",
+      "parts": [
+        "E7000045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ECE00055:0000:s",
+      "parts": [
+        "ECE00055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

@@ -1,0 +1,114 @@
+{
+  "file": "Mrd1drkf.mp",
+  "sha256": "a9bceb1d3e5cadda11292a81b9beb74afad6d855d1d2dc6b38cb3dab6e87f31d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MRD1",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Nth Fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRD1:Darkwood Forest:Main Road (Nth Fork)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "DRKF",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DRKF:Darkwood Forest:Darkwood Forest]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A2C00404:F4E04410:6:-1:0:::",
+      "parts": [
+        "A2C00404",
+        "F4E04410",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A2C00404:0000:go path",
+      "parts": [
+        "A2C00404",
+        "0000",
+        "go path"
+      ],
+      "commands": [
+        "go path"
+      ]
+    },
+    {
+      "raw": "F4E00100:0000:ne",
+      "parts": [
+        "F4E00100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:n",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:n",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:ne",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04100:0000:ne",
+      "parts": [
+        "F4E04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

@@ -1,0 +1,371 @@
+{
+  "file": "Ghknapuz.mp",
+  "sha256": "242cacdab6890118f164ef9f816ecb7749835a5a52508d6fdc44059cc710d93a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GHKN",
+      "area": "Black Caves",
+      "label": "Ghost Knight",
+      "mapNumber": 8,
+      "roomNumber": 925,
+      "raw": "[GHKN:Black Caves:Ghost Knight-8 925]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 925,
+        "name": "Ancient Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/924 (Door [26 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "APUZ",
+      "area": "Black Caves",
+      "label": "Ancient Stronghold (Puzzle Door)",
+      "mapNumber": 8,
+      "roomNumber": 951,
+      "raw": "[APUZ:Black Caves:Ancient Stronghold (Puzzle Door)-8 951]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 951,
+        "name": "Ancient Stronghold, Puzzle Door",
+        "exits": {
+          "N": "0",
+          "S": "8/954 (Door [51 picklocks/strength])",
+          "E": "8/950",
+          "W": "8/955 (Door [1000 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EA300020:86D00098:26:-1:0:::",
+      "parts": [
+        "EA300020",
+        "86D00098",
+        "26",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "26",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EA300020:0000:e",
+      "parts": [
+        "EA300020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "096000A0:0000:e",
+      "parts": [
+        "096000A0",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4A4000A5:0000:s",
+      "parts": [
+        "4A4000A5",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4A400005:0000:s",
+      "parts": [
+        "4A400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "95B00005:0000:s",
+      "parts": [
+        "95B00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "95B00011:0000:e",
+      "parts": [
+        "95B00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "95B00041:0000:n",
+      "parts": [
+        "95B00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "95B10004:0000:u",
+      "parts": [
+        "95B10004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "95B40080:0000:w",
+      "parts": [
+        "95B40080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4A4000A1:0000:n",
+      "parts": [
+        "4A4000A1",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4A400025:0000:n",
+      "parts": [
+        "4A400025",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4A400014:0000:e",
+      "parts": [
+        "4A400014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4A400060:0000:e",
+      "parts": [
+        "4A400060",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EF800080:0001:n[turn torch]",
+      "parts": [
+        "EF800080",
+        "0001",
+        "n[turn torch]"
+      ],
+      "commands": [
+        "n[turn torch]"
+      ]
+    },
+    {
+      "raw": "02500040:0001:w",
+      "parts": [
+        "02500040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "02500050:0001:w",
+      "parts": [
+        "02500050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "02500050:0001:w",
+      "parts": [
+        "02500050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "02500014:0001:s",
+      "parts": [
+        "02500014",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "02500005:0001:s",
+      "parts": [
+        "02500005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "02840001:0001:d",
+      "parts": [
+        "02840001",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "02810004:0001:s",
+      "parts": [
+        "02810004",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "29240001:0001:d",
+      "parts": [
+        "29240001",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "29210090:0001:e",
+      "parts": [
+        "29210090",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "AE500050:0001:e",
+      "parts": [
+        "AE500050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "AE500040:0001:s[search s]",
+      "parts": [
+        "AE500040",
+        "0001",
+        "s[search s]"
+      ],
+      "commands": [
+        "s[search s]"
+      ]
+    },
+    {
+      "raw": "AE500068:0001:w",
+      "parts": [
+        "AE500068",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 30
+}

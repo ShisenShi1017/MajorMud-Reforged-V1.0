@@ -1,0 +1,107 @@
+{
+  "file": "Aruiaplz.mp",
+  "sha256": "82cfafdcc793f4262220a0c1992d328264b66c6d048f97bbc45359adef99112a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ARUI",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Doors",
+      "mapNumber": 3,
+      "roomNumber": 557,
+      "raw": "[ARUI:Ancient Ruin:Ancient Ruin Doors-3 557]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 557,
+        "name": "Ancient Ruin, Demolished Doors",
+        "exits": {
+          "N": "3/556",
+          "S": "3/558",
+          "E": "3/552",
+          "W": "3/559 (Trap, 80 damage)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "APLZ",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Plaza",
+      "mapNumber": 3,
+      "roomNumber": 560,
+      "raw": "[APLZ:Ancient Ruin:Ancient Ruin Plaza-3 560]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 560,
+        "name": "Ancient Ruin, Plaza",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/559",
+          "W": "3/584",
+          "NE": "0",
+          "NW": "3/596",
+          "SE": "0",
+          "SW": "3/561",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C6400055:36604450:2:-1:0:::",
+      "parts": [
+        "C6400055",
+        "36604450",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C6400055:0202:w",
+      "parts": [
+        "C6400055",
+        "0202",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "11E00050:0000:w",
+      "parts": [
+        "11E00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

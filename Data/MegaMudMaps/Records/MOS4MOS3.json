@@ -1,0 +1,96 @@
+{
+  "file": "MOS4MOS3.mp",
+  "sha256": "965694c1a5450f1e890e1cf7ee38f6bfa980447ac27d921223e76a586ab22d57",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MOS4",
+      "area": "Blackwood Forest",
+      "label": "Mausoleum, Third Floor",
+      "mapNumber": 17,
+      "roomNumber": 2205,
+      "raw": "[MOS4:Blackwood Forest:Mausoleum, Third Floor-17 2205]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2205,
+        "name": "Mausoleum Labyrinth",
+        "exits": {
+          "N": "17/2193",
+          "S": "17/2206",
+          "E": "0",
+          "W": "Action [on the U exit of this room]: pull lever, push lever, move lever",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "17/2126 (Hidden/Needs 1 Actions, any order)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "MOS3",
+      "area": "Blackwood Forest",
+      "label": "Mausoleum, Stone Hallway 2nd Flr",
+      "mapNumber": 17,
+      "roomNumber": 2126,
+      "raw": "[MOS3:Blackwood Forest:Mausoleum, Stone Hallway 2nd Flr-17 2126]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2126,
+        "name": "Mausoleum, Stone Hallway",
+        "exits": {
+          "N": "0",
+          "S": "17/2127",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "17/2205 (Hidden/Needs 2 Actions, specific order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C4100005:0D900004:1:-1:0:::",
+      "parts": [
+        "C4100005",
+        "0D900004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C4100005:0000:u[pull lever]",
+      "parts": [
+        "C4100005",
+        "0000",
+        "u[pull lever]"
+      ],
+      "commands": [
+        "u[pull lever]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

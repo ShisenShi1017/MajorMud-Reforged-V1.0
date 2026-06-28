@@ -1,0 +1,132 @@
+{
+  "file": "Lcghlsf1.mp",
+  "sha256": "42f46575fda09a299461c097b9648ed986b35b4e23cc29173842622325059142",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCGH",
+      "area": "Lost City",
+      "label": "Deranged Priest",
+      "mapNumber": 16,
+      "roomNumber": 356,
+      "raw": "[LCGH:Lost City:Deranged Priest-16 356]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 356,
+        "name": "Guarded Hut",
+        "exits": {
+          "N": "16/355",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "LSF1",
+      "area": "Lost City",
+      "label": "Forest Street, Intersection",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LSF1:Lost City:Forest Street, Intersection]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "84000001:3B400451:6:-1:0:::",
+      "parts": [
+        "84000001",
+        "3B400451",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "84000001:0000:n",
+      "parts": [
+        "84000001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "84000014:0000:e",
+      "parts": [
+        "84000014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "84000044:0000:s",
+      "parts": [
+        "84000044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "84000009:0000:s",
+      "parts": [
+        "84000009",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D4705056:0000:s",
+      "parts": [
+        "D4705056",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3FC00551:0000:e",
+      "parts": [
+        "3FC00551",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

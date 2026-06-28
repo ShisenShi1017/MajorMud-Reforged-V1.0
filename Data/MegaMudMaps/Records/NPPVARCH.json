@@ -1,0 +1,206 @@
+{
+  "file": "NPPVARCH.mp",
+  "sha256": "437da811ad00ce0bd5ff0e0d52655cacbcf89341b64b157c2802c7a03a78fe90",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "NPPV",
+      "area": "Negative Power Plane",
+      "label": "Negative Power Plane Vortex",
+      "mapNumber": 8,
+      "roomNumber": 978,
+      "raw": "[NPPV:Negative Power Plane:Negative Power Plane Vortex-8 978]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 978,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "8/977",
+          "NW": "8/979",
+          "SE": "8/1005",
+          "SW": "8/1006",
+          "U": "8/1126",
+          "D": "8/1332"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "ARCH",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Archmage",
+      "mapNumber": 8,
+      "roomNumber": 558,
+      "raw": "[ARCH:Dark-Elf City:Dark-elf Archmage-8 558]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 558,
+        "name": "Ritual Chamber",
+        "exits": {
+          "N": "8/557 (Door [51 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DD055500:7CF00002:11:-1:0:::",
+      "parts": [
+        "DD055500",
+        "7CF00002",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DD055500:0000:se",
+      "parts": [
+        "DD055500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:se",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:sw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:sw",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:sw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:sw",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:sw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:sw",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:sw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:sw",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:@party go portal",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "@party go portal"
+      ],
+      "commands": [
+        "@party go portal"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

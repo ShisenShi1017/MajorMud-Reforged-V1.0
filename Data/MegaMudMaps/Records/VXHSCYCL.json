@@ -1,0 +1,184 @@
+{
+  "file": "VXHSCYCL.mp",
+  "sha256": "02c30a7ea99051bce806aab1fdf2fb9825eeff9da414c0aacf860f94884bcd14",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXHS",
+      "area": "Black House",
+      "label": "Hazy Swamp Vortex",
+      "mapNumber": 3,
+      "roomNumber": 782,
+      "raw": "[VXHS:Black House:Hazy Swamp Vortex-3 782]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 782,
+        "name": "Hazy Swamp",
+        "exits": {
+          "N": "0",
+          "S": "7/618",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "CYCL",
+      "area": "Black House",
+      "label": "Cyclops",
+      "mapNumber": 7,
+      "roomNumber": 730,
+      "raw": "[CYCL:Black House:Cyclops-7 730]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 730,
+        "name": "Stony Island, Cave",
+        "exits": {
+          "N": "7/729",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "56D00004:ADD00001:9:-1:0:::",
+      "parts": [
+        "56D00004",
+        "ADD00001",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "56D00004:0000:s",
+      "parts": [
+        "56D00004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "56C00011:0000:e",
+      "parts": [
+        "56C00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "56C00140:0000:ne",
+      "parts": [
+        "56C00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "56C04005:0000:n",
+      "parts": [
+        "56C04005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "56C00414:0000:e",
+      "parts": [
+        "56C00414",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "56C00050:0000:e",
+      "parts": [
+        "56C00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "56C00051:0000:e",
+      "parts": [
+        "56C00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "56C00054:0000:s",
+      "parts": [
+        "56C00054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DF400005:0000:s",
+      "parts": [
+        "DF400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

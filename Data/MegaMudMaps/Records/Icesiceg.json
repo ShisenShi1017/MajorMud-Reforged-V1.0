@@ -1,0 +1,128 @@
+{
+  "file": "Icesiceg.mp",
+  "sha256": "a5994d570272518401323065d772771727b356d4337447ab50e456b1abcfb131",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ICES",
+      "area": "Rocky Trail",
+      "label": "Ice Tower (Ice Sorceress)",
+      "mapNumber": 10,
+      "roomNumber": 245,
+      "raw": "[ICES:Rocky Trail:Ice Tower (Ice Sorceress)-10 245]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 245,
+        "name": "Tower, Open Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/244",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ICEG",
+      "area": "Rocky Trail",
+      "label": "Ice Tower (Ice Golem)",
+      "mapNumber": 10,
+      "roomNumber": 241,
+      "raw": "[ICEG:Rocky Trail:Ice Tower (Ice Golem)-10 241]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 241,
+        "name": "Tower, Stairwell",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/240",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "10/242 (Key: 520 [or 51 picklocks/strength])",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "48900040:54320040:4:-1:0:::",
+      "parts": [
+        "48900040",
+        "54320040",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "48900040:0000:w",
+      "parts": [
+        "48900040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "58000014:0000:s",
+      "parts": [
+        "58000014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "58000011:0000:e",
+      "parts": [
+        "58000011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "54380040:0000:d",
+      "parts": [
+        "54380040",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

@@ -1,0 +1,283 @@
+{
+  "file": "Flesshad.mp",
+  "sha256": "eaf526d1c2d6c0fda769fd66c4ceaade6dd7f05550254149beef8cc88fef1749",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FLES",
+      "area": "Rhudaur",
+      "label": "Flesh Golem",
+      "mapNumber": 9,
+      "roomNumber": 1007,
+      "raw": "[FLES:Rhudaur:Flesh Golem-9 1007]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1007,
+        "name": "Shadow Fist Temple, Carved Doorway",
+        "exits": {
+          "N": "9/1008 (Key: 1002 [or 1000 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "9/1006 (Door [16 picklocks/strength])",
+          "SW": "9/1005 (Door [16 picklocks/strength])",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SHAD",
+      "area": "Rhudaur",
+      "label": "Shadow Fist Temple",
+      "mapNumber": 9,
+      "roomNumber": 913,
+      "raw": "[SHAD:Rhudaur:Shadow Fist Temple-9 913]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 913,
+        "name": "Shadow Fist Temple, Ladder Down",
+        "exits": {
+          "N": "0",
+          "S": "9/914",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "9/912"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A8B0A002:EC340004:18:-1:0:::",
+      "parts": [
+        "A8B0A002",
+        "EC340004",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A8B0A002:0000:se",
+      "parts": [
+        "A8B0A002",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FF908800:0000:sw",
+      "parts": [
+        "FF908800",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "28A40A00:0000:d",
+      "parts": [
+        "28A40A00",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "93F10000:0000:n[search n]",
+      "parts": [
+        "93F10000",
+        "0000",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    },
+    {
+      "raw": "D3600051:0000:n",
+      "parts": [
+        "D3600051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "13300055:0000:n",
+      "parts": [
+        "13300055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "6EC00005:0000:n",
+      "parts": [
+        "6EC00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3ED00054:0000:w",
+      "parts": [
+        "3ED00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00050:0000:w",
+      "parts": [
+        "3ED00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00050:0000:w",
+      "parts": [
+        "3ED00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4E200055:0000:w",
+      "parts": [
+        "4E200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00050:0000:w",
+      "parts": [
+        "3ED00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00050:0000:w",
+      "parts": [
+        "3ED00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00054:0000:s",
+      "parts": [
+        "3ED00054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "6EC00025:0000:s",
+      "parts": [
+        "6EC00025",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DAB00085:0000:s",
+      "parts": [
+        "DAB00085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DAB00025:0000:e",
+      "parts": [
+        "DAB00025",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FF900081:0000:n",
+      "parts": [
+        "FF900081",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

@@ -1,0 +1,89 @@
+{
+  "file": "Lct2lcgf.mp",
+  "sha256": "7d3b90298ae273533fbab821efbcd3bd6d33694a3b839760732db673060039e8",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCT2",
+      "area": "Lost City",
+      "label": "Market Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT2:Lost City:Market Street]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCGF",
+      "area": "Lost City",
+      "label": "General Store, Front Room",
+      "mapNumber": 16,
+      "roomNumber": 435,
+      "raw": "[LCGF:Lost City:General Store, Front Room-16 435]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 435,
+        "name": "General Store, Front Room",
+        "exits": {
+          "N": "16/418",
+          "S": "16/436",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3B904046:50800005:2:-1:0:::",
+      "parts": [
+        "3B904046",
+        "50800005",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3B904046:0000:s",
+      "parts": [
+        "3B904046",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3B900455:0000:s",
+      "parts": [
+        "3B900455",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

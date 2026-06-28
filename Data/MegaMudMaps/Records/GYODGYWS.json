@@ -1,0 +1,163 @@
+{
+  "file": "GYODGYWS.mp",
+  "sha256": "098693feb52a965b9e1e98112d966be31db46d88ba2f704b917d699761339042",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GYOD",
+      "area": "Blackwood Forest",
+      "label": "Graveyard, Outside Drakas Tomb",
+      "mapNumber": 17,
+      "roomNumber": 358,
+      "raw": "[GYOD:Blackwood Forest:Graveyard, Outside Drakas Tomb-17 358]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 358,
+        "name": "Graveyard",
+        "exits": {
+          "N": "17/359 (Key: 1560 [or 1000 picklocks/strength])",
+          "S": "17/357",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "GYWS",
+      "area": "Blackwood Forest",
+      "label": "Graveyard, Warrior Statue",
+      "mapNumber": 17,
+      "roomNumber": 248,
+      "raw": "[GYWS:Blackwood Forest:Graveyard, Warrior Statue-17 248]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 248,
+        "name": "Graveyard",
+        "exits": {
+          "N": "17/249",
+          "S": "17/247 (Hidden/Needs 1 Actions, any order)",
+          "E": "17/257",
+          "W": "17/308",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "Action#1 [on the S exit of this room]: push button, push button, push button",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2B000006:2B000051:7:-1:0:::",
+      "parts": [
+        "2B000006",
+        "2B000051",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2B000006:0000:s",
+      "parts": [
+        "2B000006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2B000005:0000:s",
+      "parts": [
+        "2B000005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2B000015:0000:e",
+      "parts": [
+        "2B000015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:e",
+      "parts": [
+        "2B000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:e",
+      "parts": [
+        "2B000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:e",
+      "parts": [
+        "2B000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:e",
+      "parts": [
+        "2B000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

@@ -1,0 +1,266 @@
+{
+  "file": "DNESLOOP.mp",
+  "sha256": "00796db4d655c0d3a3b4b9528fa1eebf44ccbc850a8de8945aebebe6eacb34d5",
+  "metadataLine": "[Red Dragon Hatchlings-7 1367][Viper]",
+  "roomHeaders": [
+    {
+      "code": "DNES",
+      "area": "Lava Fields",
+      "label": "Magma River, Dragon Nest",
+      "mapNumber": 7,
+      "roomNumber": 1367,
+      "raw": "[DNES:Lava Fields:Magma River, Dragon Nest-7 1367]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1367,
+        "name": "Magma River, Dragon Nest",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "7/1368",
+          "NE": "7/1377",
+          "NW": "0",
+          "SE": "0",
+          "SW": "7/1366",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ADF04140:ADF04140:19:-1:0:::",
+      "parts": [
+        "ADF04140",
+        "ADF04140",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ADF04140:0000:ne",
+      "parts": [
+        "ADF04140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "ADF04440:0000:nw",
+      "parts": [
+        "ADF04440",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "ADF01040:0000:w",
+      "parts": [
+        "ADF01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ADF01414:0000:se",
+      "parts": [
+        "ADF01414",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ADF00410:0000:nw",
+      "parts": [
+        "ADF00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "ADF01414:0000:s",
+      "parts": [
+        "ADF01414",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ADF00005:0000:s",
+      "parts": [
+        "ADF00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ADF00411:0000:nw",
+      "parts": [
+        "ADF00411",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "ADF05001:0000:n",
+      "parts": [
+        "ADF05001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ADF00005:0000:n",
+      "parts": [
+        "ADF00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ADF05005:0000:sw",
+      "parts": [
+        "ADF05005",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "ADF00104:0000:s",
+      "parts": [
+        "ADF00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ADF00041:0000:w",
+      "parts": [
+        "ADF00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ADF01010:0000:se",
+      "parts": [
+        "ADF01010",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ADF00504:0000:s",
+      "parts": [
+        "ADF00504",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3A700001:0000:n",
+      "parts": [
+        "3A700001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ADF00504:0000:ne",
+      "parts": [
+        "ADF00504",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "ADF05001:0000:se",
+      "parts": [
+        "ADF05001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ADF00411:0000:e",
+      "parts": [
+        "ADF00411",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

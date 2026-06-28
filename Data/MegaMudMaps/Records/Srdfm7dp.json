@@ -1,0 +1,130 @@
+{
+  "file": "Srdfm7dp.mp",
+  "sha256": "6c5e4e4b50cf16dd232630de794640f84e56d17b378cd9bdbbf156a7cc393a9f",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "SRDF",
+      "area": "Northern Forests",
+      "label": "Silver River, Dank Forest Opening",
+      "mapNumber": 1,
+      "roomNumber": 2400,
+      "raw": "[SRDF:Northern Forests:Silver River, Dank Forest Opening-1 2400]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2400,
+        "name": "The Silver River, Dank Forest Opening",
+        "exits": {
+          "N": "1/2585",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "1/2582",
+          "SW": "1/2601",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "M7DP",
+      "area": "Ocean",
+      "label": "River Landing, Dirt Path",
+      "mapNumber": 16,
+      "roomNumber": 2161,
+      "raw": "[M7DP:Ocean:River Landing, Dirt Path-16 2161]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2161,
+        "name": "River Landing, Dirt Path",
+        "exits": {
+          "N": "0",
+          "S": "1/2406",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/2162"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F7F05001:88F40004:4:-1:0:::",
+      "parts": [
+        "F7F05001",
+        "88F40004",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F7F05001:0000:sw",
+      "parts": [
+        "F7F05001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BD700500:0000:nw",
+      "parts": [
+        "BD700500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C6901400:0000:nw",
+      "parts": [
+        "C6901400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B9901001:0000:n",
+      "parts": [
+        "B9901001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

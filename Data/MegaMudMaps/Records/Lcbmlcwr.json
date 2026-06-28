@@ -1,0 +1,88 @@
+{
+  "file": "Lcbmlcwr.mp",
+  "sha256": "ac93179ec2726eb169feaaee430aa5bc8b0c7a490de78278a89b6880476975f8",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCBM",
+      "area": "Trainers",
+      "label": "Amazon Battle Master (31-52)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCBM:Trainers:Amazon Battle Master (31-52)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCWR",
+      "area": "Lost City",
+      "label": "Elders' Council Chambers, Wait/Rm",
+      "mapNumber": 1,
+      "roomNumber": 380,
+      "raw": "[LCWR:Lost City:Elders' Council Chambers, Wait/Rm -1 380]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 380,
+        "name": "Darkwood Forest",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "1/388",
+          "NW": "0",
+          "SE": "1/369",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "6E900001:BE600026:2:-1:0:::",
+      "parts": [
+        "6E900001",
+        "BE600026",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "6E900001:0000:n",
+      "parts": [
+        "6E900001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "6E900084:0000:w",
+      "parts": [
+        "6E900084",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

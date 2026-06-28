@@ -1,0 +1,510 @@
+{
+  "file": "Obd1wrdf.mp",
+  "sha256": "d9743f5aea83c457bcccdd93c6f8e0f3191372fe0d25ab5296c5d98258e2b961",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "OBD1",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills (Obelisk 1)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[OBD1:Dragon's Teeth Hills:Dragon's Teeth Hills (Obelisk 1)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "WRDF",
+      "area": "Dragon's Teeth Hills",
+      "label": "Western Road Fork- 2 61",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[WRDF:Dragon's Teeth Hills:Western Road Fork- 2 61]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C5100005:B2204041:42:-1:0:::",
+      "parts": [
+        "C5100005",
+        "B2204041",
+        "42",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "42",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C5100005:0000:n",
+      "parts": [
+        "C5100005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:n",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C4F00414:0000:e",
+      "parts": [
+        "C4F00414",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C4F00050:0000:e",
+      "parts": [
+        "C4F00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C4F00140:0000:ne",
+      "parts": [
+        "C4F00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "C4F04001:0000:n",
+      "parts": [
+        "C4F04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:n",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:n",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C4F00404:0000:nw",
+      "parts": [
+        "C4F00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C4F01140:0000:ne",
+      "parts": [
+        "C4F01140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "C4F04100:0000:ne",
+      "parts": [
+        "C4F04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "AF201001:0000:n",
+      "parts": [
+        "AF201001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200005:0000:n",
+      "parts": [
+        "AF200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200404:0000:nw",
+      "parts": [
+        "AF200404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "AF201001:0000:n",
+      "parts": [
+        "AF201001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200404:0000:nw",
+      "parts": [
+        "AF200404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "AF201400:0000:nw",
+      "parts": [
+        "AF201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "AF201400:0000:nw",
+      "parts": [
+        "AF201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "AF201400:0000:nw",
+      "parts": [
+        "AF201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "AF201001:0000:n",
+      "parts": [
+        "AF201001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200404:0000:nw",
+      "parts": [
+        "AF200404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "AF201001:0000:n",
+      "parts": [
+        "AF201001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200404:0000:nw",
+      "parts": [
+        "AF200404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "AF201001:0000:n",
+      "parts": [
+        "AF201001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200005:0000:n",
+      "parts": [
+        "AF200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200005:0000:n",
+      "parts": [
+        "AF200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200404:0000:nw",
+      "parts": [
+        "AF200404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "AF201001:0000:n",
+      "parts": [
+        "AF201001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200005:0000:n",
+      "parts": [
+        "AF200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200005:0000:n",
+      "parts": [
+        "AF200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200005:0000:n",
+      "parts": [
+        "AF200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200104:0000:ne",
+      "parts": [
+        "AF200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "AF204001:0000:n",
+      "parts": [
+        "AF204001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200005:0000:n",
+      "parts": [
+        "AF200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200104:0000:ne",
+      "parts": [
+        "AF200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "AF204001:0000:n",
+      "parts": [
+        "AF204001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200104:0000:ne",
+      "parts": [
+        "AF200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "AF204001:0000:n",
+      "parts": [
+        "AF204001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200104:0000:ne",
+      "parts": [
+        "AF200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "AF204001:0000:n",
+      "parts": [
+        "AF204001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AF200104:0000:ne",
+      "parts": [
+        "AF200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "AF204100:0000:ne",
+      "parts": [
+        "AF204100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 46
+}

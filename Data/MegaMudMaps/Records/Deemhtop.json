@@ -1,0 +1,139 @@
+{
+  "file": "Deemhtop.mp",
+  "sha256": "ec999d09972e109607a87ad240ca6a34d0712175f01d90ac41e0ec52364fd9ee",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DEEM",
+      "area": "Black Caves",
+      "label": "Dark-elf Emissary",
+      "mapNumber": 8,
+      "roomNumber": 880,
+      "raw": "[DEEM:Black Caves:Dark-elf Emissary-8 880]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 880,
+        "name": "Lavish Bedroom",
+        "exits": {
+          "N": "8/876 (Door [21 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "HTOP",
+      "area": "Black Caves",
+      "label": "Hilltop Fortress",
+      "mapNumber": 8,
+      "roomNumber": 872,
+      "raw": "[HTOP:Black Caves:Hilltop Fortress-8 872]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 872,
+        "name": "Central Keep, Foyer",
+        "exits": {
+          "N": "0",
+          "S": "8/881",
+          "E": "8/873",
+          "W": "8/849 (Door [26 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8DB00002:36600094:5:-1:0:::",
+      "parts": [
+        "8DB00002",
+        "36600094",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "8DB00002:0000:n",
+      "parts": [
+        "8DB00002",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4250001A:0000:e",
+      "parts": [
+        "4250001A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4254004A:0000:d",
+      "parts": [
+        "4254004A",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "10D10001:0000:n",
+      "parts": [
+        "10D10001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "10D00044:0000:w",
+      "parts": [
+        "10D00044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

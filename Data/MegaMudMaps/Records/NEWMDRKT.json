@@ -1,0 +1,151 @@
+{
+  "file": "NEWMDRKT.mp",
+  "sha256": "d90bcaa52b528da6a1a52d7880fc7df8a3d97ecc8e6a96037f723a78a731c79a",
+  "metadataLine": "[][Dios]",
+  "roomHeaders": [
+    {
+      "code": "NEWM",
+      "area": "Black Fort",
+      "label": "New Master Assassin",
+      "mapNumber": 15,
+      "roomNumber": 416,
+      "raw": "[NEWM:Black Fort:New Master Assassin-15 416]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 416,
+        "name": "Darkened Tunnels, Throne Room",
+        "exits": {
+          "N": "0",
+          "S": "15/407",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DRKT",
+      "area": "Black Fort",
+      "label": "Darkened Tunnels",
+      "mapNumber": 15,
+      "roomNumber": 477,
+      "raw": "[DRKT:Black Fort:Darkened Tunnels-15 477]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 477,
+        "name": "Darkened Tunnels",
+        "exits": {
+          "N": "15/478 (Hidden/Needs 2 Actions, any order)",
+          "S": "0",
+          "E": "0",
+          "W": "15/476 (Trap, 100 damage)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F1B00004:5AF00040:6:-1:0:::",
+      "parts": [
+        "F1B00004",
+        "5AF00040",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F1B00004:0000:s",
+      "parts": [
+        "F1B00004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "53000055:0000:s",
+      "parts": [
+        "53000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5AF00059:0000:s",
+      "parts": [
+        "5AF00059",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5AF00006:0000:s",
+      "parts": [
+        "5AF00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5AF00005:0000:s",
+      "parts": [
+        "5AF00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5AF00005:0000:s",
+      "parts": [
+        "5AF00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

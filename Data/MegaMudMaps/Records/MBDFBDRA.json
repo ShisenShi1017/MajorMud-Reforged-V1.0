@@ -1,0 +1,217 @@
+{
+  "file": "MBDFBDRA.mp",
+  "sha256": "2dda3193bb6c99585f8770efaf95beccf3bfeae7fd399b8df31cf8fb32f76e33",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MBDF",
+      "area": "Misty Valley",
+      "label": "Misty Bog, Black Dragon Fork",
+      "mapNumber": 6,
+      "roomNumber": 414,
+      "raw": "[MBDF:Misty Valley:Misty Bog, Black Dragon Fork-6 414]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 414,
+        "name": "Misty Bog",
+        "exits": {
+          "N": "0",
+          "S": "6/427",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "6/413",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/415",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "BDRA",
+      "area": "Misty Valley",
+      "label": "Huge Black Dragon",
+      "mapNumber": 6,
+      "roomNumber": 426,
+      "raw": "[BDRA:Misty Valley:Huge Black Dragon-6 426]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 426,
+        "name": "Rank Cavern",
+        "exits": {
+          "N": "6/425",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "04A10404:94E00001:12:-1:0:::",
+      "parts": [
+        "04A10404",
+        "94E00001",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "04A10404:0000:u",
+      "parts": [
+        "04A10404",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "20740100:0000:ne",
+      "parts": [
+        "20740100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "E3304010:0000:e",
+      "parts": [
+        "E3304010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "14300050:0000:e",
+      "parts": [
+        "14300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "14300140:0000:ne",
+      "parts": [
+        "14300140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "14304100:0000:ne",
+      "parts": [
+        "14304100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "14304001:0000:n",
+      "parts": [
+        "14304001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "14300404:0000:nw",
+      "parts": [
+        "14300404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "14301040:0000:w",
+      "parts": [
+        "14301040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "14300014:0000:s",
+      "parts": [
+        "14300014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "14304001:0000:sw",
+      "parts": [
+        "14304001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "14300104:0000:s",
+      "parts": [
+        "14300104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

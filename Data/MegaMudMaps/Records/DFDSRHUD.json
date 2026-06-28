@@ -1,0 +1,471 @@
+{
+  "file": "DFDSRHUD.mp",
+  "sha256": "f3690ba03722d9c77317fce997a4590d13dff263a133e6f440cb35af57e30146",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DFDS",
+      "area": "Darkwood Forest",
+      "label": "Horner The Hide",
+      "mapNumber": 1,
+      "roomNumber": 239,
+      "raw": "[DFDS:Darkwood Forest:Horner The Hide-1 239]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 239,
+        "name": "Dusty Shack",
+        "exits": {
+          "N": "0",
+          "S": "1/2941",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RHUD",
+      "area": "Rhudaur",
+      "label": "Rhudaur",
+      "mapNumber": 2,
+      "roomNumber": 2519,
+      "raw": "[RHUD:Rhudaur:Rhudaur-2 2519]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2519,
+        "name": "Rhudaur, Massive Doors",
+        "exits": {
+          "N": "2/176 (Key: 593 [or 31 picklocks])",
+          "S": "2/2520",
+          "E": "2/2540 (Text: go alley, go alleyway, enter alley)",
+          "W": "2/2530 (Text: go alley, go alleyway, enter alley)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8D900004:EBF00006:35:-1:0:black serpent key::",
+      "parts": [
+        "8D900004",
+        "EBF00006",
+        "35",
+        "-1",
+        "0",
+        "black serpent key",
+        "",
+        ""
+      ],
+      "commands": [
+        "35",
+        "-1",
+        "0",
+        "black serpent key"
+      ]
+    },
+    {
+      "raw": "8D900004:0000:s",
+      "parts": [
+        "8D900004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04011:0000:sw",
+      "parts": [
+        "F4E04011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C4F00140:0000:w",
+      "parts": [
+        "C4F00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F05011:0000:sw",
+      "parts": [
+        "C4F05011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C4F00144:0000:w",
+      "parts": [
+        "C4F00144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F00050:0000:w",
+      "parts": [
+        "C4F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F00050:0000:w",
+      "parts": [
+        "C4F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F00051:0000:w",
+      "parts": [
+        "C4F00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "75C00404:0000:s",
+      "parts": [
+        "75C00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C04001:0000:sw",
+      "parts": [
+        "75C04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75C00104:0000:s",
+      "parts": [
+        "75C00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C04001:0000:sw",
+      "parts": [
+        "75C04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75C00104:0000:s",
+      "parts": [
+        "75C00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00041:0000:w",
+      "parts": [
+        "75C00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "75C00014:0000:s",
+      "parts": [
+        "75C00014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C01001:0000:se",
+      "parts": [
+        "75C01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "75C04400:0000:sw",
+      "parts": [
+        "75C04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75C04100:0000:sw",
+      "parts": [
+        "75C04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75C00104:0000:s",
+      "parts": [
+        "75C00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C04001:0000:sw",
+      "parts": [
+        "75C04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75C04100:0000:sw",
+      "parts": [
+        "75C04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75C04100:0000:sw",
+      "parts": [
+        "75C04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75C00104:0000:s",
+      "parts": [
+        "75C00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75C00005:0000:s",
+      "parts": [
+        "75C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BEF00009:0000:s[use black serpent key s]",
+      "parts": [
+        "BEF00009",
+        "0000",
+        "s[use black serpent key s]"
+      ],
+      "commands": [
+        "s[use black serpent key s]"
+      ]
+    }
+  ],
+  "rawLineCount": 39
+}

@@ -1,0 +1,169 @@
+{
+  "file": "Snobsoak.mp",
+  "sha256": "39aff3bc0854c6cb63b7cee13f786f1a1ed7846b8b990e6c0422db53473789fa",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SNOB",
+      "area": "Silvermere",
+      "label": "Noble St (Slum Gates)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SNOB:Silvermere:Noble St (Slum Gates)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SOAK",
+      "area": "Silvermere",
+      "label": "Oak St & Sovereign St",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SOAK:Silvermere:Oak St & Sovereign St]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B1700054:72300055:11:-1:0:::",
+      "parts": [
+        "B1700054",
+        "72300055",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B1700054:0000:e",
+      "parts": [
+        "B1700054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5B00050:0000:e",
+      "parts": [
+        "E5B00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E8B00051:0000:n",
+      "parts": [
+        "E8B00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E9900005:0000:n",
+      "parts": [
+        "E9900005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E9900005:0000:n",
+      "parts": [
+        "E9900005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E9900015:0000:n",
+      "parts": [
+        "E9900015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "16C00055:0000:e",
+      "parts": [
+        "16C00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

@@ -1,0 +1,110 @@
+{
+  "file": "Soaksovn.mp",
+  "sha256": "dd4606fbed75ad92994d2c93b63b841fb08a09789ee9cfeab9d1ef0f565463a6",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SOAK",
+      "area": "Silvermere",
+      "label": "Oak St & Sovereign St",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SOAK:Silvermere:Oak St & Sovereign St]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SOVN",
+      "area": "Silvermere",
+      "label": "Sovereign St Nth",
+      "mapNumber": 1,
+      "roomNumber": 225,
+      "raw": "[SOVN:Silvermere:Sovereign St Nth-1 225]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 225,
+        "name": "Sovereign Street, Northern End",
+        "exits": {
+          "N": "1/224",
+          "S": "1/226",
+          "E": "1/311",
+          "W": "1/297",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "72300055:89C00055:4:-1:0:::",
+      "parts": [
+        "72300055",
+        "89C00055",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "72300055:0000:n",
+      "parts": [
+        "72300055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57000015:0000:n",
+      "parts": [
+        "57000015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57000055:0000:n",
+      "parts": [
+        "57000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57000005:0000:n",
+      "parts": [
+        "57000005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

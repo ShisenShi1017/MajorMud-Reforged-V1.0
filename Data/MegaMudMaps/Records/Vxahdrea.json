@@ -1,0 +1,96 @@
+{
+  "file": "Vxahdrea.mp",
+  "sha256": "dc99fcd1ba385602041556f9566467fed00b0db20b553026b7b04d4e356a7709",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXAH",
+      "area": "Black Fort",
+      "label": "Dreary Vortex",
+      "mapNumber": 3,
+      "roomNumber": 785,
+      "raw": "[VXAH:Black Fort:Dreary Vortex-3 785]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 785,
+        "name": "Abandoned House",
+        "exits": {
+          "N": "7/1133",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DREA",
+      "area": "Black Fort",
+      "label": "Dreary Village",
+      "mapNumber": 7,
+      "roomNumber": 1133,
+      "raw": "[DREA:Black Fort:Dreary Village-7 1133]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1133,
+        "name": "Dreary Village",
+        "exits": {
+          "N": "7/1136 (Door)",
+          "S": "3/785",
+          "E": "7/1121",
+          "W": "7/1130",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DCF00001:85500056:1:-1:0:::",
+      "parts": [
+        "DCF00001",
+        "85500056",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DCF00001:0000:n",
+      "parts": [
+        "DCF00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

@@ -1,0 +1,129 @@
+{
+  "file": "Aplzaaly.mp",
+  "sha256": "ea8335db858ae1e903d0ac63e94c32d4cacedc0a690ca73e751111fff3cfd889",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "APLZ",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Plaza",
+      "mapNumber": 3,
+      "roomNumber": 560,
+      "raw": "[APLZ:Ancient Ruin:Ancient Ruin Plaza-3 560]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 560,
+        "name": "Ancient Ruin, Plaza",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/559",
+          "W": "3/584",
+          "NE": "0",
+          "NW": "3/596",
+          "SE": "0",
+          "SW": "3/561",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "AALY",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Dark Alley",
+      "mapNumber": 3,
+      "roomNumber": 606,
+      "raw": "[AALY:Ancient Ruin:Ancient Ruin Dark Alley-3 606]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 606,
+        "name": "Dark Alleyway, Dead End",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "3/607 (Key: 757 [or 81 picklocks])",
+          "NE": "3/599",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "36604450:CAB00180:4:-1:0:::",
+      "parts": [
+        "36604450",
+        "CAB00180",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "36604450:0000:nw",
+      "parts": [
+        "36604450",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DC201400:0000:nw",
+      "parts": [
+        "DC201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DC201440:0202:nw",
+      "parts": [
+        "DC201440",
+        "0202",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DC201400:0000:go alley",
+      "parts": [
+        "DC201400",
+        "0000",
+        "go alley"
+      ],
+      "commands": [
+        "go alley"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

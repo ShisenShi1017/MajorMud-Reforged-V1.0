@@ -1,0 +1,125 @@
+{
+  "file": "Lct1lct2.mp",
+  "sha256": "3b6541c3d88a2f28a64d20bc9e5369ff9abbeb22b22d1141c2f7fe44a7643217",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCT1",
+      "area": "Lost City",
+      "label": "Temple Stairs",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT1:Lost City:Temple Stairs]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCT2",
+      "area": "Lost City",
+      "label": "Market Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT2:Lost City:Market Street]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3A700155:3B904046:7:-1:0:::",
+      "parts": [
+        "3A700155",
+        "3B904046",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3A700155:0000:e",
+      "parts": [
+        "3A700155",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3A700455:0000:e",
+      "parts": [
+        "3A700455",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B901054:0000:e",
+      "parts": [
+        "3B901054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:e",
+      "parts": [
+        "3B905054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:e",
+      "parts": [
+        "3B905054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:e",
+      "parts": [
+        "3B905054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:e",
+      "parts": [
+        "3B905054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

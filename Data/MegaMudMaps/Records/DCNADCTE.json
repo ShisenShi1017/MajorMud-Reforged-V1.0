@@ -1,0 +1,218 @@
+{
+  "file": "DCNADCTE.mp",
+  "sha256": "347bc6edbfb4c86310c9bbade0470153559c27eb2c47424f9998e996c6a77dd6",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DCNA",
+      "area": "Dark-Elf City",
+      "label": "Narrow Alley",
+      "mapNumber": 8,
+      "roomNumber": 1697,
+      "raw": "[DCNA:Dark-Elf City:Narrow Alley-8 1697]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1697,
+        "name": "Narrow Alley",
+        "exits": {
+          "N": "8/1723 (Hidden/Searchable)",
+          "S": "8/1724 (Hidden/Searchable)",
+          "E": "0",
+          "W": "8/1696",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "DCTE",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Temple, Entrance",
+      "mapNumber": 8,
+      "roomNumber": 1749,
+      "raw": "[DCTE:Dark-Elf City:Dark-elf Temple, Entrance-8 1749]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1749,
+        "name": "Temple, Entrance",
+        "exits": {
+          "N": "8/1686",
+          "S": "8/1750 (Door [51 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E1200040:2EE00009:12:-1:0:::",
+      "parts": [
+        "E1200040",
+        "2EE00009",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E1200040:0000:w",
+      "parts": [
+        "E1200040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E1200050:0000:w",
+      "parts": [
+        "E1200050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E1200050:0000:w",
+      "parts": [
+        "E1200050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E1200014:0000:s",
+      "parts": [
+        "E1200014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "86400005:0000:s",
+      "parts": [
+        "86400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "86400005:0000:s",
+      "parts": [
+        "86400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "86404001:0000:sw",
+      "parts": [
+        "86404001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "86404100:0000:sw",
+      "parts": [
+        "86404100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "86400140:0000:w",
+      "parts": [
+        "86400140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "86400050:0000:w",
+      "parts": [
+        "86400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "86400050:0000:w",
+      "parts": [
+        "86400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "86400054:0000:s",
+      "parts": [
+        "86400054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

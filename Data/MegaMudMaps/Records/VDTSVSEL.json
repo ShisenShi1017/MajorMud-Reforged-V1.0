@@ -1,0 +1,151 @@
+{
+  "file": "VDTSVSEL.mp",
+  "sha256": "801b6c01bc322a7ea7413c04079913aea9b22341652f0240895627a6befb0a41",
+  "metadataLine": "[][zarbo]",
+  "roomHeaders": [
+    {
+      "code": "VDTS",
+      "area": "Volcano",
+      "label": "Volcano, Darkened Tunnels Start",
+      "mapNumber": 16,
+      "roomNumber": 1992,
+      "raw": "[VDTS:Volcano:Volcano, Darkened Tunnels Start-16 1992]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1992,
+        "name": "Volcano, Darkened Tunnels",
+        "exits": {
+          "N": "16/1990",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1878"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "VSEL",
+      "area": "Volcano",
+      "label": "Volcano, start of east side loop",
+      "mapNumber": 16,
+      "roomNumber": 1995,
+      "raw": "[VSEL:Volcano:Volcano, start of east side loop-16 1995]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1995,
+        "name": "Volcano, Darkened Tunnels",
+        "exits": {
+          "N": "16/1996",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "16/1994 (Key: 1264 [or 101 picklocks/strength])",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B1440001:B1408001:6:-1:0:::",
+      "parts": [
+        "B1440001",
+        "B1408001",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B1440001:0000:n",
+      "parts": [
+        "B1440001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B1400144:0000:w",
+      "parts": [
+        "B1400144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400011:0000:n",
+      "parts": [
+        "B1400011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B1400015:0000:e",
+      "parts": [
+        "B1400015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B1400041:0000:n",
+      "parts": [
+        "B1400041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B1400204:0000:ne",
+      "parts": [
+        "B1400204",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

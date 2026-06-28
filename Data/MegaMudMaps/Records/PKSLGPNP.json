@@ -1,0 +1,117 @@
+{
+  "file": "PKSLGPNP.mp",
+  "sha256": "c0aac863ba7ff23f17e42297154dc14dc302a2411db223c4d4fa8cc671f04d0b",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "PKSL",
+      "area": "Scorching Desert",
+      "label": "Golden Palace, Secret Library",
+      "mapNumber": 12,
+      "roomNumber": 2248,
+      "raw": "[PKSL:Scorching Desert:Golden Palace, Secret Library-12 2248]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2248,
+        "name": "Golden Spire, Secret Library",
+        "exits": {
+          "N": "0",
+          "S": "12/2247 (Door)",
+          "E": "Action [on the D exit of this room]: move rug, pull rug",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "12/2255 (Hidden/Unknown)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "GPNP",
+      "area": "Scorching Desert",
+      "label": "Golden Palace, NPP Portal",
+      "mapNumber": 1,
+      "roomNumber": 2683,
+      "raw": "[GPNP:Scorching Desert:Golden Palace, NPP Portal-1 2683]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2683,
+        "name": "Earthen Room",
+        "exits": {
+          "N": "12/2255",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5FE00008:DAE00001:3:-1:0:::",
+      "parts": [
+        "5FE00008",
+        "DAE00001",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5FE00008:0000:move rug",
+      "parts": [
+        "5FE00008",
+        "0000",
+        "move rug"
+      ],
+      "commands": [
+        "move rug"
+      ]
+    },
+    {
+      "raw": "5FE00008:0000:d",
+      "parts": [
+        "5FE00008",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "F3800004:0000:s",
+      "parts": [
+        "F3800004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

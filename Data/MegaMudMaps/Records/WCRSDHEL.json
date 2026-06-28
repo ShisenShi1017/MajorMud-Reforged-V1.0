@@ -1,0 +1,96 @@
+{
+  "file": "WCRSDHEL.mp",
+  "sha256": "e48658f51bf348bd6dc986b0e21d8c22d3bc33816d7be9ea6ce68bd37755f75d",
+  "metadataLine": "[][Dios]",
+  "roomHeaders": [
+    {
+      "code": "WCCR",
+      "area": "Black House",
+      "label": "White Corridor, Crystal",
+      "mapNumber": 7,
+      "roomNumber": 1530,
+      "raw": "[WCCR:Black House:White Corridor, Crystal-7 1530]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1530,
+        "name": "White Corridor",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "15/278",
+          "SE": "0",
+          "SW": "15/228",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "DHEL",
+      "area": "Black House",
+      "label": "Dhelvanen",
+      "mapNumber": 7,
+      "roomNumber": 1008,
+      "raw": "[DHEL:Black House:Dhelvanen-7 1008]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1008,
+        "name": "Luxurious Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "7/1007",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "9C004400:97100100:1:-1:0:::",
+      "parts": [
+        "9C004400",
+        "97100100",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "9C004400:0000:@party touch crystal",
+      "parts": [
+        "9C004400",
+        "0000",
+        "@party touch crystal"
+      ],
+      "commands": [
+        "@party touch crystal"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

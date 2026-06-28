@@ -1,0 +1,77 @@
+{
+  "file": "Atemidol.mp",
+  "sha256": "7a4b56254e27918512949dcb165f085bb6f26768e3ad2329980cd283d817f08f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ATEM",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Unholy Temple",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[ATEM:Ancient Ruin:Ancient Ruin Unholy Temple]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "IDOL",
+      "area": "Ancient Ruin",
+      "label": "Unholy Idol",
+      "mapNumber": 3,
+      "roomNumber": 608,
+      "raw": "[IDOL:Ancient Ruin:Unholy Idol-3 608]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 608,
+        "name": "Unholy Altar",
+        "exits": {
+          "N": "0",
+          "S": "3/607",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "367000A1:DD600004:1:-1:0:::",
+      "parts": [
+        "367000A1",
+        "DD600004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "367000A1:0001:n",
+      "parts": [
+        "367000A1",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

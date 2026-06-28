@@ -1,0 +1,251 @@
+{
+  "file": "Bhmpbhse.mp",
+  "sha256": "9e5a8a6fbb4cd1bd2c464b03d5ba15e07a5d0147f8b0c8caa899e3131cab6bfe",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BHMP",
+      "area": "Barren Hills",
+      "label": "Mountain Plateau",
+      "mapNumber": 16,
+      "roomNumber": 1068,
+      "raw": "[BHMP:Barren Hills:Mountain Plateau-16 1068]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1068,
+        "name": "Mountain Plateau",
+        "exits": {
+          "N": "16/1069",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1067"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "BHSE",
+      "area": "Barren Hills",
+      "label": "Stone Encampment, Entrance",
+      "mapNumber": 16,
+      "roomNumber": 1083,
+      "raw": "[BHSE:Barren Hills:Stone Encampment, Entrance-16 1083]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1083,
+        "name": "Stone Encampment, Entrance",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/1084",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "16/1082",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "4F440001:36804010:15:-1:0:::",
+      "parts": [
+        "4F440001",
+        "36804010",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "4F440001:0000:n",
+      "parts": [
+        "4F440001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4F400015:0000:n",
+      "parts": [
+        "4F400015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4F401404:0000:nw",
+      "parts": [
+        "4F401404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "8D811000:0000:u",
+      "parts": [
+        "8D811000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "8D840400:0000:nw",
+      "parts": [
+        "8D840400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "8D811000:0000:u",
+      "parts": [
+        "8D811000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "8D840100:0000:ne",
+      "parts": [
+        "8D840100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "8D804010:0000:e",
+      "parts": [
+        "8D804010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8D801140:0000:ne",
+      "parts": [
+        "8D801140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "8D815040:0000:u",
+      "parts": [
+        "8D815040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "8D840101:0000:n",
+      "parts": [
+        "8D840101",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8D800404:0000:nw",
+      "parts": [
+        "8D800404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "8D801504:0000:nw",
+      "parts": [
+        "8D801504",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "8D801041:0000:n",
+      "parts": [
+        "8D801041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8D804144:0000:ne",
+      "parts": [
+        "8D804144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

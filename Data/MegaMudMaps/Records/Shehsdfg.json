@@ -1,0 +1,97 @@
+{
+  "file": "Shehsdfg.mp",
+  "sha256": "f858c948a9acfa99cbf480956c30d0f06fe6c265dcdeeaa4656500a6b715ab62",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "SHEH",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Entrance Hall",
+      "mapNumber": 12,
+      "roomNumber": 2099,
+      "raw": "[SHEH:Scorching Desert:Saracen Hideout, Entrance Hall-12 2099]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2099,
+        "name": "Entrance Hall",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "12/1041 (Door [251 picklocks/strength])",
+          "NE": "12/2096",
+          "NW": "0",
+          "SE": "12/2098",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "SDFG",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Fortress Gates",
+      "mapNumber": 12,
+      "roomNumber": 1041,
+      "raw": "[SDFG:Scorching Desert:Saracen Hideout, Fortress Gates-12 1041]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 1041,
+        "name": "Fortress Gates",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "12/2099 (Door [251 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "12/1040",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "14201180:88B00420:1:-1:0:::",
+      "parts": [
+        "14201180",
+        "88B00420",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "14201180:0000:w[pull winch]",
+      "parts": [
+        "14201180",
+        "0000",
+        "w[pull winch]"
+      ],
+      "commands": [
+        "w[pull winch]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

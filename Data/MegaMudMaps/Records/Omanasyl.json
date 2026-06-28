@@ -1,0 +1,95 @@
+{
+  "file": "Omanasyl.mp",
+  "sha256": "763865df8e2cf32e33743e222891a688242c7008359ed4f26caa3c3464d55664",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "OMAN",
+      "area": "Rhudaur",
+      "label": "Old Man",
+      "mapNumber": 9,
+      "roomNumber": 1259,
+      "raw": "[OMAN:Rhudaur:Old Man-9 1259]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1259,
+        "name": "Padded Cell",
+        "exits": {
+          "N": "9/1198",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ASYL",
+      "area": "Rhudaur",
+      "label": "Warped Asylum",
+      "mapNumber": 9,
+      "roomNumber": 1182,
+      "raw": "[ASYL:Rhudaur:Warped Asylum-9 1182]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1182,
+        "name": "Asylum Ward",
+        "exits": {
+          "N": "9/1181 (Door)",
+          "S": "0",
+          "E": "0",
+          "W": "9/1183 (Cast: pre-0, post-596)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "78000001:8DA00042:1:-1:0:::",
+      "parts": [
+        "78000001",
+        "8DA00042",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "78000001:0000:n",
+      "parts": [
+        "78000001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

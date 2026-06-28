@@ -1,0 +1,79 @@
+{
+  "file": "DCCWLOOP.mp",
+  "sha256": "7fe16b7e6da92a186a34afabcdae721d594f839fd9582655c756516885bce3bd",
+  "metadataLine": "[CaveWorm-1 866][]",
+  "roomHeaders": [
+    {
+      "code": "DCCW",
+      "area": "Sewers",
+      "label": "Dark Cave (instant cave worm)",
+      "mapNumber": 1,
+      "roomNumber": 866,
+      "raw": "[DCCW:Sewers:Dark Cave (instant cave worm)-1 866]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 866,
+        "name": "Dark Cave",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/865",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "01E00010:01E00010:2:-1:0:::",
+      "parts": [
+        "01E00010",
+        "01E00010",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "01E00010:0000:e",
+      "parts": [
+        "01E00010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "01E01040:0004:w",
+      "parts": [
+        "01E01040",
+        "0004",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

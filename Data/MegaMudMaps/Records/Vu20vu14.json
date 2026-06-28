@@ -1,0 +1,452 @@
+{
+  "file": "Vu20vu14.mp",
+  "sha256": "82cd8b910d010b3ae69ea1ed529975144e6f3f3e21446ec2d8d184b03930a606",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "VU20",
+      "area": "Volcano",
+      "label": "Undermountain Caverns, Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[VU20:Volcano:Undermountain Caverns, Fork]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "VU14",
+      "area": "Volcano",
+      "label": "Undermountain Caverns, Level 14",
+      "mapNumber": 16,
+      "roomNumber": 1678,
+      "raw": "[VU14:Volcano:Undermountain Caverns, Level 14-16 1678]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1678,
+        "name": "Undermountain Caverns",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "16/1677",
+          "SE": "16/1679",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BA714044:BA701400:35:-1:0:::",
+      "parts": [
+        "BA714044",
+        "BA701400",
+        "35",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "35",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BA714044:0000:u",
+      "parts": [
+        "BA714044",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "BA740010:0000:e",
+      "parts": [
+        "BA740010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BA701040:0000:se",
+      "parts": [
+        "BA701040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA701400:0000:se",
+      "parts": [
+        "BA701400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA700500:0000:ne",
+      "parts": [
+        "BA700500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704400:0000:nw",
+      "parts": [
+        "BA704400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:n",
+      "parts": [
+        "BA701001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA710004:0000:u",
+      "parts": [
+        "BA710004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "BA740400:0000:nw",
+      "parts": [
+        "BA740400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA705000:0000:sw",
+      "parts": [
+        "BA705000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA700104:0000:s",
+      "parts": [
+        "BA700104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BA710001:0000:u",
+      "parts": [
+        "BA710001",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "BA740100:0000:ne",
+      "parts": [
+        "BA740100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA714000:0000:u",
+      "parts": [
+        "BA714000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "BA740400:0000:nw",
+      "parts": [
+        "BA740400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA705000:0000:sw",
+      "parts": [
+        "BA705000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA704100:0000:sw",
+      "parts": [
+        "BA704100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA710100:0000:u",
+      "parts": [
+        "BA710100",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "BA750000:0000:u",
+      "parts": [
+        "BA750000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "BA744000:0000:sw",
+      "parts": [
+        "BA744000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA700104:0000:s",
+      "parts": [
+        "BA700104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BA700401:0000:nw",
+      "parts": [
+        "BA700401",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA705041:0000:n",
+      "parts": [
+        "BA705041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700145:0000:ne",
+      "parts": [
+        "BA700145",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704400:0000:nw",
+      "parts": [
+        "BA704400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:n",
+      "parts": [
+        "BA701001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700104:0000:ne",
+      "parts": [
+        "BA700104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA705000:0000:se",
+      "parts": [
+        "BA705000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA700504:0000:ne",
+      "parts": [
+        "BA700504",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704404:0000:nw",
+      "parts": [
+        "BA704404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701040:0000:w",
+      "parts": [
+        "BA701040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BA704010:0000:sw",
+      "parts": [
+        "BA704010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA704100:0000:sw",
+      "parts": [
+        "BA704100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA700140:0000:w",
+      "parts": [
+        "BA700140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BA700410:0000:nw",
+      "parts": [
+        "BA700410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 39
+}

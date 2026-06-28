@@ -1,0 +1,121 @@
+{
+  "file": "Slmcsnob.mp",
+  "sha256": "9a9c0c934ca9b061b4c38b63c8a81fd80c6c9e1e6e2660f42a911794bdb2655f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SLMC",
+      "area": "Slums",
+      "label": "Slum Crossroads",
+      "mapNumber": 1,
+      "roomNumber": 1076,
+      "raw": "[SLMC:Slums:Slum Crossroads-1 1076]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1076,
+        "name": "Slum Street, Crossroads",
+        "exits": {
+          "N": "1/1075",
+          "S": "1/1210",
+          "E": "1/1120",
+          "W": "1/1077",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SNOB",
+      "area": "Silvermere",
+      "label": "Noble St (Slum Gates)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SNOB:Silvermere:Noble St (Slum Gates)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ABC00055:B1700054:5:-1:0:::",
+      "parts": [
+        "ABC00055",
+        "B1700054",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ABC00055:0000:n",
+      "parts": [
+        "ABC00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A0700045:0000:n",
+      "parts": [
+        "A0700045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:n",
+      "parts": [
+        "A0700005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:n",
+      "parts": [
+        "A0700005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "36900005:0000:n",
+      "parts": [
+        "36900005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

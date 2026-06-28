@@ -1,0 +1,295 @@
+{
+  "file": "Jsabjsbe.mp",
+  "sha256": "1072e0fe83b02e0850449385a2add3d0457e53ca6f2fdcce459d1d08d6b595f3",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "JSAB",
+      "area": "Ocean",
+      "label": "Sandy Beach",
+      "mapNumber": 16,
+      "roomNumber": 2531,
+      "raw": "[JSAB:Ocean:Sandy Beach-16 2531]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2531,
+        "name": "Sandy Beach",
+        "exits": {
+          "N": "0",
+          "S": "16/2530",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/2532",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "JSBE",
+      "area": "Ocean",
+      "label": "Sandy Beach, Entrance",
+      "mapNumber": 16,
+      "roomNumber": 2489,
+      "raw": "[JSBE:Ocean:Sandy Beach, Entrance-16 2489]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2489,
+        "name": "Sandy Beach",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "16/2490",
+          "NW": "0",
+          "SE": "16/2658 (Text: go reef, go lagoon)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7C110004:7C100100:19:-1:0:::",
+      "parts": [
+        "7C110004",
+        "7C100100",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7C110004:0000:s",
+      "parts": [
+        "7C110004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7C100401:0000:nw",
+      "parts": [
+        "7C100401",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "7C101400:0000:nw",
+      "parts": [
+        "7C101400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "7C105000:0000:sw",
+      "parts": [
+        "7C105000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "7C100140:0000:w",
+      "parts": [
+        "7C100140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7C100050:0000:w",
+      "parts": [
+        "7C100050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7C104010:0000:sw",
+      "parts": [
+        "7C104010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "7C100540:0000:w",
+      "parts": [
+        "7C100540",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7C100410:0000:nw",
+      "parts": [
+        "7C100410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "7C101400:0000:nw",
+      "parts": [
+        "7C101400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "7C101400:0000:nw",
+      "parts": [
+        "7C101400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "7C101041:0000:n",
+      "parts": [
+        "7C101041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7C100044:0000:w",
+      "parts": [
+        "7C100044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7C100051:0000:w",
+      "parts": [
+        "7C100051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7C104010:0000:sw",
+      "parts": [
+        "7C104010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "7C104100:0000:sw",
+      "parts": [
+        "7C104100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "7C104100:0000:sw",
+      "parts": [
+        "7C104100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "7C104101:0000:sw",
+      "parts": [
+        "7C104101",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "7C104100:0000:sw",
+      "parts": [
+        "7C104100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

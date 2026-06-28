@@ -1,0 +1,371 @@
+{
+  "file": "Grvbtomb.mp",
+  "sha256": "b4ce742d26d1b0822833fd1198d4057daf529d77df5e8a49b9f6037c038a4a9f",
+  "metadataLine": "[][Merlin]",
+  "roomHeaders": [
+    {
+      "code": "GRVB",
+      "area": "Graveyard",
+      "label": "Graveyard Bridge",
+      "mapNumber": 1,
+      "roomNumber": 180,
+      "raw": "[GRVB:Graveyard:Graveyard Bridge-1 180]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 180,
+        "name": "Bridge",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "1/816",
+          "NW": "0",
+          "SE": "0",
+          "SW": "1/179",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "TOMB",
+      "area": "Graveyard",
+      "label": "Tomb Vault, Stairwell",
+      "mapNumber": 6,
+      "roomNumber": 861,
+      "raw": "[TOMB:Graveyard:Tomb Vault, Stairwell-6 861]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 861,
+        "name": "Tomb Vaults, Stairwell",
+        "exits": {
+          "N": "6/862",
+          "S": "6/904",
+          "E": "6/890",
+          "W": "6/876",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/860",
+          "D": "6/922 (Hidden/Needs 4 Actions, specific order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "85204100:12910055:26:-1:0:::",
+      "parts": [
+        "85204100",
+        "12910055",
+        "26",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "26",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "85204100:0000:ne",
+      "parts": [
+        "85204100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "33004091:0000:n",
+      "parts": [
+        "33004091",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:n",
+      "parts": [
+        "2B000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CF800054:0000:e",
+      "parts": [
+        "CF800054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CF800054:0000:e",
+      "parts": [
+        "CF800054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "11700055:0000:n",
+      "parts": [
+        "11700055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "55500006:0000:n",
+      "parts": [
+        "55500006",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "03300058:0000:e",
+      "parts": [
+        "03300058",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "03300050:0000:e",
+      "parts": [
+        "03300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "03300041:0000:n",
+      "parts": [
+        "03300041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "03300085:0000:w",
+      "parts": [
+        "03300085",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7B800021:0000:n",
+      "parts": [
+        "7B800021",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7B800004:0000:w[push coffin]",
+      "parts": [
+        "7B800004",
+        "0000",
+        "w[push coffin]"
+      ],
+      "commands": [
+        "w[push coffin]"
+      ]
+    },
+    {
+      "raw": "67940000:0000:d",
+      "parts": [
+        "67940000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 30
+}

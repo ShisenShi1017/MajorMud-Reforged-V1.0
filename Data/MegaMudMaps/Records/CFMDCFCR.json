@@ -1,0 +1,140 @@
+{
+  "file": "CFMDCFCR.mp",
+  "sha256": "286f0e2ffc2e249cefa145b65b69bbbda94896f1f09c25e96ddabac6cfbddaf2",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CFMD",
+      "area": "Lava Fields",
+      "label": "Crimson Fortress, Massive Door",
+      "mapNumber": 15,
+      "roomNumber": 1111,
+      "raw": "[CFMD:Lava Fields:Crimson Fortress, Massive Door-15 1111]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1111,
+        "name": "Crimson Fortress, Massive Door",
+        "exits": {
+          "N": "0",
+          "S": "15/1110",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "15/1126 (Key: 1077 [or 1000 picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "CFCR",
+      "area": "Lava Fields",
+      "label": "Crazed Inquisitor",
+      "mapNumber": 15,
+      "roomNumber": 1099,
+      "raw": "[CFCR:Lava Fields:Crazed Inquisitor-15 1099]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1099,
+        "name": "Crimson Fortress, Command Room",
+        "exits": {
+          "N": "15/1100 (Door [51 picklocks/strength])",
+          "S": "15/1098 (Door [51 picklocks/strength])",
+          "E": "15/1106 (Door [51 picklocks/strength])",
+          "W": "15/1105 (Door [51 picklocks/strength])",
+          "NE": "Action [on the SE exit of this room]: pull left lever, move left lever, use left lever",
+          "NW": "Action [on the SW exit of this room]: pull right lever, move right lever, use right lever",
+          "SE": "15/1102 (Hidden/Needs 1 Actions, any order)",
+          "SW": "15/1104 (Hidden/Needs 1 Actions, any order)",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BF380004:A9E000AA:5:-1:0:::",
+      "parts": [
+        "BF380004",
+        "A9E000AA",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BF380004:0000:s",
+      "parts": [
+        "BF380004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EA500005:0000:s",
+      "parts": [
+        "EA500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EA500051:0000:w",
+      "parts": [
+        "EA500051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3F410010:0000:u",
+      "parts": [
+        "3F410010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "3F440000:0000:ne[sea ne]",
+      "parts": [
+        "3F440000",
+        "0000",
+        "ne[sea ne]"
+      ],
+      "commands": [
+        "ne[sea ne]"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

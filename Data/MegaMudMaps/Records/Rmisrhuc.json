@@ -1,0 +1,118 @@
+{
+  "file": "Rmisrhuc.mp",
+  "sha256": "c21ad828ec8c55a3072c8dd1f1ce8d97adba988fba3d3890f99716f62e759da5",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RMIS",
+      "area": "Rhudaur",
+      "label": "Rhudaur Missile Weapon Shop",
+      "mapNumber": 2,
+      "roomNumber": 2563,
+      "raw": "[RMIS:Rhudaur:Rhudaur Missile Weapon Shop-2 2563]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2563,
+        "name": "Missile Weapon Shop",
+        "exits": {
+          "N": "0",
+          "S": "2/2525",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "6C500004:7AD00055:3:-1:0:::",
+      "parts": [
+        "6C500004",
+        "7AD00055",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "6C500004:0000:s",
+      "parts": [
+        "6C500004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D8200015:0000:e",
+      "parts": [
+        "D8200015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C1E00051:0000:e",
+      "parts": [
+        "C1E00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

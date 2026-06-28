@@ -1,0 +1,350 @@
+{
+  "file": "Vu13vu14.mp",
+  "sha256": "8aae9fb192677ed56ff4cc07052cd9570c9704bd26630fb31765292801bd49e4",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "VU13",
+      "area": "Volcano",
+      "label": "Undermountain Caverns, Level 13",
+      "mapNumber": 16,
+      "roomNumber": 1624,
+      "raw": "[VU13:Volcano:Undermountain Caverns, Level 13-16 1624]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1624,
+        "name": "Undermountain Caverns",
+        "exits": {
+          "N": "16/1625",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/1623",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "VU14",
+      "area": "Volcano",
+      "label": "Undermountain Caverns, Level 14",
+      "mapNumber": 16,
+      "roomNumber": 1678,
+      "raw": "[VU14:Volcano:Undermountain Caverns, Level 14-16 1678]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1678,
+        "name": "Undermountain Caverns",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "16/1677",
+          "SE": "16/1679",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BA710001:BA701400:24:-1:0:::",
+      "parts": [
+        "BA710001",
+        "BA701400",
+        "24",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "24",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BA710001:0000:n",
+      "parts": [
+        "BA710001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700404:0000:nw",
+      "parts": [
+        "BA700404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA705401:0000:sw",
+      "parts": [
+        "BA705401",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA700504:0000:s",
+      "parts": [
+        "BA700504",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BA705001:0000:sw",
+      "parts": [
+        "BA705001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA701500:0000:nw",
+      "parts": [
+        "BA701500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:se",
+      "parts": [
+        "BA701001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA701500:0000:se",
+      "parts": [
+        "BA701500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA704400:0000:sw",
+      "parts": [
+        "BA704400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA704100:0000:sw",
+      "parts": [
+        "BA704100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA700104:0000:s",
+      "parts": [
+        "BA700104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BA704001:0000:sw",
+      "parts": [
+        "BA704001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA700540:0000:nw",
+      "parts": [
+        "BA700540",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA705500:0000:ne",
+      "parts": [
+        "BA705500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704500:0000:ne",
+      "parts": [
+        "BA704500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704400:0000:nw",
+      "parts": [
+        "BA704400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701400:0000:nw",
+      "parts": [
+        "BA701400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:n",
+      "parts": [
+        "BA701001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700104:0000:ne",
+      "parts": [
+        "BA700104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704001:0000:n",
+      "parts": [
+        "BA704001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700104:0000:ne",
+      "parts": [
+        "BA700104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704400:0000:nw",
+      "parts": [
+        "BA704400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA741000:0000:d",
+      "parts": [
+        "BA741000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "BA711000:0000:se",
+      "parts": [
+        "BA711000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 28
+}

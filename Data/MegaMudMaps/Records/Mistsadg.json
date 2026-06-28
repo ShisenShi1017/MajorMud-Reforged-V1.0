@@ -1,0 +1,99 @@
+{
+  "file": "Mistsadg.mp",
+  "sha256": "9216700626ac131d9eddac16d3a87c5f64a23f7e641426a38b2f92246ef1b378",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MIST",
+      "area": "Trainers",
+      "label": "Missionary Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 500,
+      "raw": "[MIST:Trainers:Missionary Trainer (2-10)-1 500]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 500,
+        "name": "Missionary Training Room",
+        "exits": {
+          "N": "1/495",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SADG",
+      "area": "Silvermere",
+      "label": "Adventurer's Guild",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SADG:Silvermere:Adventurer's Guild]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "26F00001:D4200014:3:-1:0:::",
+      "parts": [
+        "26F00001",
+        "D4200014",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "26F00001:0000:n",
+      "parts": [
+        "26F00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

@@ -1,0 +1,107 @@
+{
+  "file": "Bhshbhsk.mp",
+  "sha256": "a8171543a016630bfdbc85bfaf6427a43be49d6dda83715d40dea9948381fef9",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "BHSH",
+      "area": "Barren Hills",
+      "label": "Storm Fortress, Hallway",
+      "mapNumber": 16,
+      "roomNumber": 1182,
+      "raw": "[BHSH:Barren Hills:Storm Fortress, Hallway-16 1182]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1182,
+        "name": "Storm Fortress, Hallway",
+        "exits": {
+          "N": "16/1183 (Door [61 picklocks/strength])",
+          "S": "16/1181",
+          "E": "16/1185 (Door [61 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "BHSK",
+      "area": "Barren Hills",
+      "label": "Storm Giant King",
+      "mapNumber": 16,
+      "roomNumber": 1184,
+      "raw": "[BHSK:Barren Hills:Storm Giant King-16 1184]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1184,
+        "name": "Throne Room of Lightning",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/1183",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "87A00026:10200010:2:-1:0:::",
+      "parts": [
+        "87A00026",
+        "10200010",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "87A00026:0000:n",
+      "parts": [
+        "87A00026",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "62300048:0000:w",
+      "parts": [
+        "62300048",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

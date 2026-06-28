@@ -1,0 +1,261 @@
+{
+  "file": "Vaedbhcf.mp",
+  "sha256": "6dea407b89f91052775ebf226e785426df869a4c03468c75a687f7bda414dc82",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "VAED",
+      "area": "Volcano",
+      "label": "Aged Earth Dragon Entrance",
+      "mapNumber": 16,
+      "roomNumber": 1765,
+      "raw": "[VAED:Volcano:Aged Earth Dragon Entrance-16 1765]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1765,
+        "name": "Undermountain Caverns",
+        "exits": {
+          "N": "0",
+          "S": "16/1764",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1858"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BHCF",
+      "area": "Volcano",
+      "label": "Undermountain Caverns, Fork",
+      "mapNumber": 16,
+      "roomNumber": 1743,
+      "raw": "[BHCF:Volcano:Undermountain Caverns, Fork-16 1743]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1743,
+        "name": "Undermountain Caverns",
+        "exits": {
+          "N": "0",
+          "S": "16/1528",
+          "E": "0",
+          "W": "16/1744",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "16/1766",
+          "U": "16/1742",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BA740004:BA714044:16:-1:0:::",
+      "parts": [
+        "BA740004",
+        "BA714044",
+        "16",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BA740004:0000:s",
+      "parts": [
+        "BA740004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BA700101:0000:ne",
+      "parts": [
+        "BA700101",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704100:0000:ne",
+      "parts": [
+        "BA704100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA705400:0000:se",
+      "parts": [
+        "BA705400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA704410:0000:e",
+      "parts": [
+        "BA704410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BA700144:0000:ne",
+      "parts": [
+        "BA700144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA705000:0000:se",
+      "parts": [
+        "BA705000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA700410:0000:e",
+      "parts": [
+        "BA700410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BA701040:0000:se",
+      "parts": [
+        "BA701040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA700500:0000:ne",
+      "parts": [
+        "BA700500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704001:0000:n",
+      "parts": [
+        "BA704001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700404:0000:nw",
+      "parts": [
+        "BA700404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701544:0000:ne",
+      "parts": [
+        "BA701544",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704100:0000:ne",
+      "parts": [
+        "BA704100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704100:0000:ne",
+      "parts": [
+        "BA704100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704100:0000:ne",
+      "parts": [
+        "BA704100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

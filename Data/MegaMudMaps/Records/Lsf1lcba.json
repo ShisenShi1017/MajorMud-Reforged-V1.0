@@ -1,0 +1,188 @@
+{
+  "file": "Lsf1lcba.mp",
+  "sha256": "dbb2c29e34be66a3e8394dde858651137a3405be3a18f73ce58c17ecc0230011",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LSF1",
+      "area": "Lost City",
+      "label": "Forest Street, Intersection",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LSF1:Lost City:Forest Street, Intersection]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCBA",
+      "area": "Lost City",
+      "label": "Bank of the Lost City",
+      "mapNumber": 16,
+      "roomNumber": 320,
+      "raw": "[LCBA:Lost City:Bank of the Lost City-16 320]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 320,
+        "name": "Bank",
+        "exits": {
+          "N": "16/319",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3B400451:3FA00001:11:-1:0:::",
+      "parts": [
+        "3B400451",
+        "3FA00001",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3B400451:0000:w",
+      "parts": [
+        "3B400451",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3FC00551:0000:w",
+      "parts": [
+        "3FC00551",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3FC00119:0000:s",
+      "parts": [
+        "3FC00119",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00006:0000:s",
+      "parts": [
+        "EDE00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:s",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:s",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:s",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00009:0000:s",
+      "parts": [
+        "EDE00009",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3B901016:0000:e",
+      "parts": [
+        "3B901016",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:s",
+      "parts": [
+        "3B905054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3B900555:0000:s",
+      "parts": [
+        "3B900555",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

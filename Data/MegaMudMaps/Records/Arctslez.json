@@ -1,0 +1,194 @@
+{
+  "file": "Arctslez.mp",
+  "sha256": "ef2caa03df6ea20306e672cad5b04347a541d18f6361e02f37c692aff713547c",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ARCT",
+      "area": "Dark-Elf City",
+      "label": "Outside Archmage Tower",
+      "mapNumber": 8,
+      "roomNumber": 531,
+      "raw": "[ARCT:Dark-Elf City:Outside Archmage Tower-8 531]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 531,
+        "name": "Dark Tower, Entrance",
+        "exits": {
+          "N": "8/475",
+          "S": "0",
+          "E": "0",
+          "W": "8/532 (Key: 808 [or 1000 picklocks])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "8/1674",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SLEZ",
+      "area": "Dark-Elf City",
+      "label": "Sleazy Shopkeeper",
+      "mapNumber": 8,
+      "roomNumber": 486,
+      "raw": "[SLEZ:Dark-Elf City:Sleazy Shopkeeper-8 486]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 486,
+        "name": "Musty Store",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/481 (Door [16 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DA104081:A1400020:10:-1:0:::",
+      "parts": [
+        "DA104081",
+        "A1400020",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DA104081:0001:n",
+      "parts": [
+        "DA104081",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "78000015:0001:n",
+      "parts": [
+        "78000015",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400005:0001:n",
+      "parts": [
+        "86400005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "78000015:0001:e",
+      "parts": [
+        "78000015",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E1200050:0001:e",
+      "parts": [
+        "E1200050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FFA00050:0001:e",
+      "parts": [
+        "FFA00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "78000055:0001:n",
+      "parts": [
+        "78000055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400085:0001:w",
+      "parts": [
+        "86400085",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A1400020:0000:ask sleazy orb",
+      "parts": [
+        "A1400020",
+        "0000",
+        "ask sleazy orb"
+      ],
+      "commands": [
+        "ask sleazy orb"
+      ]
+    },
+    {
+      "raw": "A1400020:0000:i",
+      "parts": [
+        "A1400020",
+        "0000",
+        "i"
+      ],
+      "commands": [
+        "i"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

@@ -1,19 +1,20 @@
-# Session Handoff - After Database Version 0007
+# Session Handoff
 
-## Current Focus
-Native MajorMud `.DAT` decoding for standalone Reforged `Data/` generation.
+## Current focus
 
-## Completed This Version
-- Continued binary/string analysis for all native `.DAT` files.
-- Produced stricter reports separating verified facts from hypotheses.
-- Reaffirmed that numeric fields may be skills/references/flags/offsets and must not be named prematurely.
-- Added improved importer probe tooling.
+Native data decoding with MegaMud `.mp` knowledge integration.
 
-## Best Current Decode Targets
-1. `WCCSHOPS.DAT` - strongest 512-byte slot evidence.
-2. `WCCCLASS.DAT` - plausible 153-byte class slots.
-3. `WCCSPELS.DAT` - plausible 256-byte indexed slots.
-4. `WCCITEMS.DAT` - plausible 1024-byte indexed blocks.
+## Last completed database version
 
-## Next Recommended Task
-Build a shop-record overlay by comparing each 512-byte shop slot against the CSV shop columns.
+Database Version 0008 - MegaMud MP Knowledge Integration.
+
+## Current verified state
+
+- CSV database import exists from earlier database versions.
+- Native `.DAT` files are cataloged but not fully decoded.
+- MegaMud `.mp` files are now parsed into Reforged evidence JSON.
+- Numeric MP route fields remain unknown until proven.
+
+## Recommended next task
+
+Use `Data/MegaMudMaps/Index/roomReferenceIndex.json` and `rooms.TXT` to improve decoding of `WCCMP001.DAT` and `WCCUPDAT.DAT` world/map data.

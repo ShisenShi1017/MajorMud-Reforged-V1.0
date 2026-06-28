@@ -1,0 +1,117 @@
+{
+  "file": "Narmnewh.mp",
+  "sha256": "4f64abf1f7fde01451f52bbe0c674c03962075744f7dbc1f6cc5830efab3589c",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "NARM",
+      "area": "Newhaven",
+      "label": "Armour Shop (Betram)",
+      "mapNumber": 1,
+      "roomNumber": 2142,
+      "raw": "[NARM:Newhaven:Armour Shop (Betram)-1 2142]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2142,
+        "name": "Newhaven, Armour Shop",
+        "exits": {
+          "N": "1/2140",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "NEWH",
+      "area": "Newhaven",
+      "label": "Newhaven Town",
+      "mapNumber": 1,
+      "roomNumber": 2146,
+      "raw": "[NEWH:Newhaven:Newhaven Town-1 2146]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2146,
+        "name": "Newhaven, Narrow Road",
+        "exits": {
+          "N": "1/2147",
+          "S": "0",
+          "E": "1/2143",
+          "W": "1/2190 (Level: 1 to 3)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/2150"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "50800001:38B40051:3:-1:0:::",
+      "parts": [
+        "50800001",
+        "38B40051",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "50800001:0000:n",
+      "parts": [
+        "50800001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2D601045:0000:w",
+      "parts": [
+        "2D601045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "42D00055:0000:w",
+      "parts": [
+        "42D00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

@@ -1,0 +1,151 @@
+{
+  "file": "Cas4dequ.mp",
+  "sha256": "ae1486a56bf462243f4d60126d6ac2d549987676c4b2e134a358fbec1d9f1544",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CAS4",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Castle Level 4",
+      "mapNumber": 8,
+      "roomNumber": 697,
+      "raw": "[CAS4:Dark-Elf City:Dark-elf Castle Level 4-8 697]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 697,
+        "name": "Winding Stair",
+        "exits": {
+          "N": "0",
+          "S": "8/698",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "8/696"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DEQU",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Queen",
+      "mapNumber": 8,
+      "roomNumber": 705,
+      "raw": "[DEQU:Dark-Elf City:Dark-elf Queen-8 705]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 705,
+        "name": "Royal Throne Room",
+        "exits": {
+          "N": "0",
+          "S": "8/702 (Door [51 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "8/706 (Door [1000 picklocks/strength])",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C940004:91F20008:6:-1:0:adamantite key::",
+      "parts": [
+        "2C940004",
+        "91F20008",
+        "6",
+        "-1",
+        "0",
+        "adamantite key",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0",
+        "adamantite key"
+      ]
+    },
+    {
+      "raw": "2C940004:0001:s",
+      "parts": [
+        "2C940004",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19300005:0001:s",
+      "parts": [
+        "19300005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19305001:0001:se",
+      "parts": [
+        "19305001",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "19300404:0001:s",
+      "parts": [
+        "19300404",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19300041:0001:w",
+      "parts": [
+        "19300041",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "02D00052:0401:n[use adamantite key n]",
+      "parts": [
+        "02D00052",
+        "0401",
+        "n[use adamantite key n]"
+      ],
+      "commands": [
+        "n[use adamantite key n]"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

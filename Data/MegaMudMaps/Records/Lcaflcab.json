@@ -1,0 +1,97 @@
+{
+  "file": "Lcaflcab.mp",
+  "sha256": "8307fa5445d67ebe10fa226f92416559ee2443f1b439ff31a26c73964e844766",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCAF",
+      "area": "Lost City",
+      "label": "Armour Shop, Front Room",
+      "mapNumber": 16,
+      "roomNumber": 317,
+      "raw": "[LCAF:Lost City:Armour Shop, Front Room-16 317]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 317,
+        "name": "Armour Shop, Front Room",
+        "exits": {
+          "N": "16/316",
+          "S": "16/318",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LCAB",
+      "area": "Lost City",
+      "label": "Armour Shop, Back Room",
+      "mapNumber": 16,
+      "roomNumber": 318,
+      "raw": "[LCAB:Lost City:Armour Shop, Back Room-16 318]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 318,
+        "name": "Armour Shop, Back Room",
+        "exits": {
+          "N": "16/317",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "33300005:72400001:1:-1:0:::",
+      "parts": [
+        "33300005",
+        "72400001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "33300005:0000:s",
+      "parts": [
+        "33300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

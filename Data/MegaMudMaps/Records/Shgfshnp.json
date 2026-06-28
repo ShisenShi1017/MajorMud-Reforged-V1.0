@@ -1,0 +1,118 @@
+{
+  "file": "Shgfshnp.mp",
+  "sha256": "a5773beeecb50ab35be00315e7390718f7df378abbdc04bbaade426c54e0f25d",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "SHGF",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Guardroom Fork",
+      "mapNumber": 12,
+      "roomNumber": 2109,
+      "raw": "[SHGF:Scorching Desert:Saracen Hideout, Guardroom Fork-12 2109]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2109,
+        "name": "Plaster Hallway",
+        "exits": {
+          "N": "12/2110 (Door [11 picklocks/strength])",
+          "S": "12/2113 (Door [11 picklocks/strength])",
+          "E": "12/2121",
+          "W": "12/2108",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SHNP",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Narrow Precipic",
+      "mapNumber": 12,
+      "roomNumber": 2123,
+      "raw": "[SHNP:Scorching Desert:Saracen Hideout, Narrow Precipic-12 2123]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2123,
+        "name": "Narrow Precipice",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "12/2122 (Hidden/Needs 1 Actions, any order)",
+          "NE": "12/2124",
+          "NW": "0",
+          "SE": "12/2128",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F4D0005A:52F01100:3:-1:0::NPNDSHGD.MP:",
+      "parts": [
+        "F4D0005A",
+        "52F01100",
+        "3",
+        "-1",
+        "0",
+        "",
+        "NPNDSHGD.MP",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0",
+        "NPNDSHGD.MP"
+      ]
+    },
+    {
+      "raw": "F4D0005A:0000:e",
+      "parts": [
+        "F4D0005A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D00060:0000:e",
+      "parts": [
+        "F4D00060",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "52F00080:0000:e[]",
+      "parts": [
+        "52F00080",
+        "0000",
+        "e[]"
+      ],
+      "commands": [
+        "e[]"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

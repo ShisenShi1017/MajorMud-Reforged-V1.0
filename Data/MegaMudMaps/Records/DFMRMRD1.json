@@ -1,0 +1,199 @@
+{
+  "file": "DFMRMRD1.mp",
+  "sha256": "48b119ac897e01aabf0566dd60ce7b84b14a3ddb54e683d37e706d7b3c2d5c85",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "DFMR",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest, Main Road (Sign)",
+      "mapNumber": 1,
+      "roomNumber": 1391,
+      "raw": "[DFMR:Darkwood Forest:Darkwood Forest, Main Road (Sign)-1 1391]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1391,
+        "name": "Main Road",
+        "exits": {
+          "N": "1/2513",
+          "S": "1/2512",
+          "E": "1/1392",
+          "W": "1/1390",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MRD1",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Nth Fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRD1:Darkwood Forest:Main Road (Nth Fork)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "02300055:A2C00404:12:-1:0:::",
+      "parts": [
+        "02300055",
+        "A2C00404",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02301040:0000:se",
+      "parts": [
+        "02301040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "02300410:0000:e",
+      "parts": [
+        "02300410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300050:0000:e",
+      "parts": [
+        "02300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02301040:0000:se",
+      "parts": [
+        "02301040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "55701400:0000:se",
+      "parts": [
+        "55701400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C00410:0000:e",
+      "parts": [
+        "A2C00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A2C01040:0000:se",
+      "parts": [
+        "A2C01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C01400:0000:se",
+      "parts": [
+        "A2C01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C00410:0000:e",
+      "parts": [
+        "A2C00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A2C01040:0000:se",
+      "parts": [
+        "A2C01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C01400:0000:se",
+      "parts": [
+        "A2C01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

@@ -1,0 +1,88 @@
+{
+  "file": "Lcwrlcf2.mp",
+  "sha256": "b7ebbc5145ee49b20b9df788fc1b6198f85bc1aa5cc33d59f4aa76b935a2c722",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCWR",
+      "area": "Lost City",
+      "label": "Elders' Council Chambers, Wait/Rm",
+      "mapNumber": 1,
+      "roomNumber": 380,
+      "raw": "[LCWR:Lost City:Elders' Council Chambers, Wait/Rm -1 380]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 380,
+        "name": "Darkwood Forest",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "1/388",
+          "NW": "0",
+          "SE": "1/369",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "LCF2",
+      "area": "Lost City",
+      "label": "Forest Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCF2:Lost City:Forest Street]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BE600026:3FC01056:2:-1:0:::",
+      "parts": [
+        "BE600026",
+        "3FC01056",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BE600026:0000:s",
+      "parts": [
+        "BE600026",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "00B00009:0000:s",
+      "parts": [
+        "00B00009",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

@@ -1,0 +1,78 @@
+{
+  "file": "BFGWGECF.mp",
+  "sha256": "fa4dfea541f099650d47f367bf1fdf6b5ec1ac345f91e1db9aac06745842e2cd",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "BFGW",
+      "area": "Blackwood Forest",
+      "label": "Gypsy Wagon - Ancient Gypsy Woman",
+      "mapNumber": 17,
+      "roomNumber": 776,
+      "raw": "[BFGW:Blackwood Forest:Gypsy Wagon - Ancient Gypsy Woman-17 776]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 776,
+        "name": "Gypsy Wagon",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "17/774 (Door [101 picklocks/strength])",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "GECF",
+      "area": "Blackwood Forest",
+      "label": "Gypsy Encampment, Outside Ancient Gypsy",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GECF:Blackwood Forest:Gypsy Encampment, Outside Ancient Gypsy]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "98A08000:36A04205:1:-1:0:::",
+      "parts": [
+        "98A08000",
+        "36A04205",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "98A08000:0400:sw",
+      "parts": [
+        "98A08000",
+        "0400",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

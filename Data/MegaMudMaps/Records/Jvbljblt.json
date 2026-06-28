@@ -1,0 +1,371 @@
+{
+  "file": "Jvbljblt.mp",
+  "sha256": "70d4b4f057077ff13309795d8b4ff6166665d012712614ebc48882812a7e0c80",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "JVBL",
+      "area": "Jungle",
+      "label": "Vine Bridge, Life Tree",
+      "mapNumber": 16,
+      "roomNumber": 1209,
+      "raw": "[JVBL:Jungle:Vine Bridge, Life Tree-16 1209]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1209,
+        "name": "Vine Bridge, Life Tree",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "16/1208",
+          "NE": "16/1210",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "JBLT",
+      "area": "Jungle",
+      "label": "Bottom of the Life Tree",
+      "mapNumber": 16,
+      "roomNumber": 1235,
+      "raw": "[JBLT:Jungle:Bottom of the Life Tree-16 1235]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1235,
+        "name": "Life Tree, Stair End",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/1236",
+          "W": "0",
+          "NE": "0",
+          "NW": "16/1234",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5E800140:6B800410:26:-1:0:::",
+      "parts": [
+        "5E800140",
+        "6B800410",
+        "26",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "26",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5E800140:0000:ne",
+      "parts": [
+        "5E800140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "A4E05000:0000:se",
+      "parts": [
+        "A4E05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A4E04400:0000:sw",
+      "parts": [
+        "A4E04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A4E00500:0000:nw",
+      "parts": [
+        "A4E00500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4E01100:0000:ne",
+      "parts": [
+        "A4E01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "A4E05000:0000:se",
+      "parts": [
+        "A4E05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A4E04400:0000:sw",
+      "parts": [
+        "A4E04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A4E00500:0000:nw",
+      "parts": [
+        "A4E00500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4E01100:0000:ne",
+      "parts": [
+        "A4E01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "A4E05000:0000:se",
+      "parts": [
+        "A4E05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A4E04400:0000:sw",
+      "parts": [
+        "A4E04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A4E00500:0000:nw",
+      "parts": [
+        "A4E00500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4E01100:0000:ne",
+      "parts": [
+        "A4E01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "A4E05000:0000:se",
+      "parts": [
+        "A4E05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A4E04400:0000:sw",
+      "parts": [
+        "A4E04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A4E00500:0000:nw",
+      "parts": [
+        "A4E00500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4E01100:0000:ne",
+      "parts": [
+        "A4E01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "A4E05000:0000:se",
+      "parts": [
+        "A4E05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A4E04400:0000:sw",
+      "parts": [
+        "A4E04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A4E00500:0000:nw",
+      "parts": [
+        "A4E00500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4E01100:0000:ne",
+      "parts": [
+        "A4E01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "A4E05000:0000:se",
+      "parts": [
+        "A4E05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A4E04400:0000:sw",
+      "parts": [
+        "A4E04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A4E00500:0000:nw",
+      "parts": [
+        "A4E00500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4E01100:0000:ne",
+      "parts": [
+        "A4E01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "A4E05000:0000:se",
+      "parts": [
+        "A4E05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 30
+}

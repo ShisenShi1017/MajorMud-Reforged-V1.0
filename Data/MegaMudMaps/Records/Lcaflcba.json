@@ -1,0 +1,119 @@
+{
+  "file": "Lcaflcba.mp",
+  "sha256": "7bb75a27d8a334cb416de7965a3ac9f3dfbc956d8c0280927ffa6eced1d5541f",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCAF",
+      "area": "Lost City",
+      "label": "Armour Shop, Front Room",
+      "mapNumber": 16,
+      "roomNumber": 317,
+      "raw": "[LCAF:Lost City:Armour Shop, Front Room-16 317]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 317,
+        "name": "Armour Shop, Front Room",
+        "exits": {
+          "N": "16/316",
+          "S": "16/318",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LCBA",
+      "area": "Lost City",
+      "label": "Bank of the Lost City",
+      "mapNumber": 16,
+      "roomNumber": 320,
+      "raw": "[LCBA:Lost City:Bank of the Lost City-16 320]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 320,
+        "name": "Bank",
+        "exits": {
+          "N": "16/319",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "33300005:3FA00001:3:-1:0:::",
+      "parts": [
+        "33300005",
+        "3FA00001",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "33300005:0000:n",
+      "parts": [
+        "33300005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3B900555:0000:w",
+      "parts": [
+        "3B900555",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B900555:0000:s",
+      "parts": [
+        "3B900555",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

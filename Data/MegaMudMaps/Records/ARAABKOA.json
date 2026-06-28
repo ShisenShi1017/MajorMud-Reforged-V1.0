@@ -1,0 +1,163 @@
+{
+  "file": "ARAABKOA.mp",
+  "sha256": "ca01296297b9d58630426787807bc7ddb374b29b15e206695cc54224f489f95c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ARAA",
+      "area": "Arlysia",
+      "label": "Aeriana's Apothecary",
+      "mapNumber": 17,
+      "roomNumber": 2433,
+      "raw": "[ARAA:Arlysia:Aeriana's Apothecary-17 2433]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2433,
+        "name": "Aeriana's Apothecary",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "17/2271",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "BKOA",
+      "area": "Arlysia",
+      "label": "Bank of Arlysia",
+      "mapNumber": 17,
+      "roomNumber": 2435,
+      "raw": "[BKOA:Arlysia:Bank of Arlysia-17 2435]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2435,
+        "name": "Bank of Arlysia",
+        "exits": {
+          "N": "17/2289",
+          "S": "0",
+          "E": "0",
+          "W": "17/2393",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "16500010:D4F00041:7:-1:0:::",
+      "parts": [
+        "16500010",
+        "D4F00041",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "16500010:0000:e",
+      "parts": [
+        "16500010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9CB00045:0000:s",
+      "parts": [
+        "9CB00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9CB00015:0000:s",
+      "parts": [
+        "9CB00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9D400055:0000:w",
+      "parts": [
+        "9D400055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000050:0000:w",
+      "parts": [
+        "9C000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000050:0000:w",
+      "parts": [
+        "9C000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:s",
+      "parts": [
+        "9C000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

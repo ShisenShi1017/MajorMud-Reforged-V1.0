@@ -1,0 +1,118 @@
+{
+  "file": "Frtefrt1.mp",
+  "sha256": "62212b3ca635921c1c0273adee4a62fc989433659f9a1dd6ab9786a16a78c1a7",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FRTE",
+      "area": "Black Fort",
+      "label": "Fortress Secret Entrance",
+      "mapNumber": 7,
+      "roomNumber": 1222,
+      "raw": "[FRTE:Black Fort:Fortress Secret Entrance-7 1222]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1222,
+        "name": "Small Path, Dead End",
+        "exits": {
+          "N": "7/1194 (Hidden/Needs 1 Actions, any order)",
+          "S": "0",
+          "E": "Action [on the N exit of this room]: push brick, move brick",
+          "W": "7/1221",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FRT1",
+      "area": "Black Fort",
+      "label": "Black Fortress",
+      "mapNumber": 7,
+      "roomNumber": 1182,
+      "raw": "[FRT1:Black Fort:Black Fortress-7 1182]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1182,
+        "name": "Black Fortress",
+        "exits": {
+          "N": "7/1203",
+          "S": "7/1193",
+          "E": "7/1183",
+          "W": "7/1181",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "37900040:A4F00055:3:-1:0:::",
+      "parts": [
+        "37900040",
+        "A4F00055",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "37900040:0000:n[push brick]",
+      "parts": [
+        "37900040",
+        "0000",
+        "n[push brick]"
+      ],
+      "commands": [
+        "n[push brick]"
+      ]
+    },
+    {
+      "raw": "554000A1:0000:n",
+      "parts": [
+        "554000A1",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A4F00005:0000:n",
+      "parts": [
+        "A4F00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

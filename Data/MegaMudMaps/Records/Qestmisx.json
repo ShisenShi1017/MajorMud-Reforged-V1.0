@@ -1,0 +1,275 @@
+{
+  "file": "Qestmisx.mp",
+  "sha256": "d3c15f81e6fdb3d8de526db79e667b7d482342da50a73dd21006909c227f6aa6",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "QEST",
+      "area": "Trainers",
+      "label": "Quest Hall",
+      "mapNumber": 1,
+      "roomNumber": 1377,
+      "raw": "[QEST:Trainers:Quest Hall-1 1377]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1377,
+        "name": "Crypt, Shadowed Hall",
+        "exits": {
+          "N": "1/1419",
+          "S": "0",
+          "E": "1/1436 (Class: 13 OK, 0 NO)",
+          "W": "1/1425 (Class: 1 OK, 0 NO)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "MISX",
+      "area": "Trainers",
+      "label": "Missionary Spirit (11)- 2262",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MISX:Trainers:Missionary Spirit (11)- 2262]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B8300059:7EC04100:19:-1:0:::",
+      "parts": [
+        "B8300059",
+        "7EC04100",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B8300059:0001:n",
+      "parts": [
+        "B8300059",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300055:0001:n",
+      "parts": [
+        "B8300055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300055:0001:n",
+      "parts": [
+        "B8300055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300055:0001:n",
+      "parts": [
+        "B8300055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300055:0001:e",
+      "parts": [
+        "B8300055",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EC00041:0001:n",
+      "parts": [
+        "7EC00041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EC00400:0001:nw",
+      "parts": [
+        "7EC00400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "7EC01001:0001:n",
+      "parts": [
+        "7EC01001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EC00104:0001:ne",
+      "parts": [
+        "7EC00104",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "7EC04001:0001:n",
+      "parts": [
+        "7EC04001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EC00005:0001:n",
+      "parts": [
+        "7EC00005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EC00005:0001:n",
+      "parts": [
+        "7EC00005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "77500054:0001:w",
+      "parts": [
+        "77500054",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7F600400:0001:nw",
+      "parts": [
+        "7F600400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "77501000:0001:turn right candle left",
+      "parts": [
+        "77501000",
+        "0001",
+        "turn right candle left"
+      ],
+      "commands": [
+        "turn right candle left"
+      ]
+    },
+    {
+      "raw": "77505500:0000:ne",
+      "parts": [
+        "77505500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "7EC04100:0001:ne",
+      "parts": [
+        "7EC04100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FFFFFFFF:0080:ne",
+      "parts": [
+        "FFFFFFFF",
+        "0080",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FFFFFFFF:0080:sw",
+      "parts": [
+        "FFFFFFFF",
+        "0080",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

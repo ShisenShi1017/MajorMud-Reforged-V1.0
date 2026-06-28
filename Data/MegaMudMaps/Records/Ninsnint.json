@@ -1,0 +1,95 @@
+{
+  "file": "Ninsnint.mp",
+  "sha256": "573bdfd1638a886d394428607640d6cccf272f4db874adf87205a60ee6e675f6",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "NINS",
+      "area": "Silvermere",
+      "label": "Ninja Supply Shop",
+      "mapNumber": 1,
+      "roomNumber": 2308,
+      "raw": "[NINS:Silvermere:Ninja Supply Shop-1 2308]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2308,
+        "name": "Curtained Alcove",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/200"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "NINT",
+      "area": "Trainers",
+      "label": "Ninja Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 200,
+      "raw": "[NINT:Trainers:Ninja Trainer (2-10)-1 200]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 200,
+        "name": "Ninja Training Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/199",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/2308",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3CA40000:73810010:1:-1:0:::",
+      "parts": [
+        "3CA40000",
+        "73810010",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3CA40000:0000:d",
+      "parts": [
+        "3CA40000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

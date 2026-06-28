@@ -1,0 +1,228 @@
+{
+  "file": "AFJCAFJ1.mp",
+  "sha256": "8eeeb39adeadb8a9ef11403d9182884f112786b9591d1a0024900e5baa38bb4c",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "AFJC",
+      "area": "Ancient Fortress",
+      "label": "Ancient Fortress, Jail Entrance",
+      "mapNumber": 12,
+      "roomNumber": 2368,
+      "raw": "[AFJC:Ancient Fortress:Ancient Fortress, Jail Entrance-12 2368]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2368,
+        "name": "Ancient Fortress, Jail Cell",
+        "exits": {
+          "N": "12/2369 (Door)",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "12/221 (Item: 191)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "AFJ1",
+      "area": "Ancient Fortress",
+      "label": "Ancient Fortress, Jail Cell",
+      "mapNumber": 17,
+      "roomNumber": 2854,
+      "raw": "[AFJ1:Ancient Fortress:Ancient Fortress, Jail Cell-17 2854]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2854,
+        "name": "Ancient Fortress, Jail Cell",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "17/2853 (Door)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "48610002:48600080:13:-1:0:::",
+      "parts": [
+        "48610002",
+        "48600080",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "48610002:0400:n",
+      "parts": [
+        "48610002",
+        "0400",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E8E0001A:0000:e",
+      "parts": [
+        "E8E0001A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E8E0005A:0000:e",
+      "parts": [
+        "E8E0005A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "70200065:0000:n[search n]",
+      "parts": [
+        "70200065",
+        "0000",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    },
+    {
+      "raw": "70200025:0000:n",
+      "parts": [
+        "70200025",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E8E000A6:0400:n",
+      "parts": [
+        "E8E000A6",
+        "0400",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "42C00058:0000:w",
+      "parts": [
+        "42C00058",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "42C04010:0000:sw",
+      "parts": [
+        "42C04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "42C04100:0000:sw",
+      "parts": [
+        "42C04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "42C00104:0000:s",
+      "parts": [
+        "42C00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "42C00005:0000:s",
+      "parts": [
+        "42C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "42C01001:0000:se",
+      "parts": [
+        "42C01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "42C00420:0400:e",
+      "parts": [
+        "42C00420",
+        "0400",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

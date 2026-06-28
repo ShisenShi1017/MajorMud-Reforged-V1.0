@@ -1,0 +1,227 @@
+{
+  "file": "Leoqhkep.mp",
+  "sha256": "bf5789a182b85ae99e2dc929e50482169e20112810d6c83595637186309c601f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "LEOQ",
+      "area": "Darkwood Forest",
+      "label": "Leo The Quick",
+      "mapNumber": 9,
+      "roomNumber": 870,
+      "raw": "[LEOQ:Darkwood Forest:Leo The Quick-9 870]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 870,
+        "name": "Elaborate Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "9/869 (Door [11 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "HKEP",
+      "area": "Darkwood Forest",
+      "label": "Hidden Keep (Entrance)",
+      "mapNumber": 9,
+      "roomNumber": 803,
+      "raw": "[HKEP:Darkwood Forest:Hidden Keep (Entrance)-9 803]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 803,
+        "name": "Inner Keep Entrance",
+        "exits": {
+          "N": "9/804",
+          "S": "9/802",
+          "E": "9/806 (Door [11 picklocks/strength])",
+          "W": "9/798",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B4300020:72A00065:13:-1:0:::",
+      "parts": [
+        "B4300020",
+        "72A00065",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B4300020:0000:e",
+      "parts": [
+        "B4300020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BE600081:0000:n",
+      "parts": [
+        "BE600081",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BE600084:0000:w",
+      "parts": [
+        "BE600084",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7B140020:0000:d",
+      "parts": [
+        "7B140020",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "4FE10010:0000:e",
+      "parts": [
+        "4FE10010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BE600050:0000:e",
+      "parts": [
+        "BE600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BE600040:0000:e[search e]",
+      "parts": [
+        "BE600040",
+        "0000",
+        "e[search e]"
+      ],
+      "commands": [
+        "e[search e]"
+      ]
+    },
+    {
+      "raw": "8E500028:0000:s",
+      "parts": [
+        "8E500028",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BE60004A:0000:w",
+      "parts": [
+        "BE60004A",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE600090:0000:w",
+      "parts": [
+        "BE600090",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE6000A0:0000:w",
+      "parts": [
+        "BE6000A0",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE600024:0000:s",
+      "parts": [
+        "BE600024",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D1200085:0000:w",
+      "parts": [
+        "D1200085",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

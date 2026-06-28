@@ -1,0 +1,130 @@
+{
+  "file": "ARJMBKOA.mp",
+  "sha256": "a01c4c83ed4dfca28235972accc535206e29f654dcf5d51ffe8f38adee317e09",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ARJM",
+      "area": "Arlysia",
+      "label": "Jandar's Missile Weapons",
+      "mapNumber": 17,
+      "roomNumber": 2436,
+      "raw": "[ARJM:Arlysia:Jandar's Missile Weapons-17 2436]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2436,
+        "name": "Jandar's Missile Weapons",
+        "exits": {
+          "N": "17/2291",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "BKOA",
+      "area": "Arlysia",
+      "label": "Bank of Arlysia",
+      "mapNumber": 17,
+      "roomNumber": 2435,
+      "raw": "[BKOA:Arlysia:Bank of Arlysia-17 2435]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2435,
+        "name": "Bank of Arlysia",
+        "exits": {
+          "N": "17/2289",
+          "S": "0",
+          "E": "0",
+          "W": "17/2393",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "21700001:D4F00041:4:-1:0:::",
+      "parts": [
+        "21700001",
+        "D4F00041",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "21700001:0000:n",
+      "parts": [
+        "21700001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "9C000054:0000:e",
+      "parts": [
+        "9C000054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E0500054:0000:e",
+      "parts": [
+        "E0500054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:s",
+      "parts": [
+        "9C000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

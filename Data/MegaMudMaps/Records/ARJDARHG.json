@@ -1,0 +1,129 @@
+{
+  "file": "ARJDARHG.mp",
+  "sha256": "15f4439072d585fd7c6e87e21ff21bda06812161d6edcda050cebef50ab04975",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ARJD",
+      "area": "Arlysia",
+      "label": "Ghost of Justice Darkbane",
+      "mapNumber": 17,
+      "roomNumber": 1746,
+      "raw": "[ARJD:Arlysia:Ghost of Justice Darkbane-17 1746]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 1746,
+        "name": "Pristine Shrine",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "17/1745",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ARHG",
+      "area": "Arlysia",
+      "label": "Hap's General Store",
+      "mapNumber": 17,
+      "roomNumber": 2439,
+      "raw": "[ARHG:Arlysia:Hap's General Store-17 2439]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2439,
+        "name": "Hap's General Store",
+        "exits": {
+          "N": "17/2294",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E9100010:68B00001:4:-1:0:::",
+      "parts": [
+        "E9100010",
+        "68B00001",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E9100010:0000:@party ask darkbane arlysia",
+      "parts": [
+        "E9100010",
+        "0000",
+        "@party ask darkbane arlysia"
+      ],
+      "commands": [
+        "@party ask darkbane arlysia"
+      ]
+    },
+    {
+      "raw": "47000055:0000:e",
+      "parts": [
+        "47000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DDA00055:0000:e",
+      "parts": [
+        "DDA00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:s",
+      "parts": [
+        "9C000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

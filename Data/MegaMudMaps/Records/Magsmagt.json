@@ -1,0 +1,68 @@
+{
+  "file": "Magsmagt.mp",
+  "sha256": "a20ad5ea8b5bcbc3e510ad83cc79922ebf8c67b17e988ceff4a1ace7b9be576a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MAGS",
+      "area": "Silvermere",
+      "label": "Magic Shoppe (Aiken)",
+      "mapNumber": 1,
+      "roomNumber": 398,
+      "raw": "[MAGS:Silvermere:Magic Shoppe (Aiken)-1 398]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 398,
+        "name": "Magic Shoppe",
+        "exits": {
+          "N": "1/396",
+          "S": "0",
+          "E": "1/399",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DEF00011:F2A00040:1:-1:0:::",
+      "parts": [
+        "DEF00011",
+        "F2A00040",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DEF00011:0000:e",
+      "parts": [
+        "DEF00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 4
+}

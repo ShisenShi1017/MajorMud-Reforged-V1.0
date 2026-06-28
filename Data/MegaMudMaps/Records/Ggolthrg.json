@@ -1,0 +1,95 @@
+{
+  "file": "Ggolthrg.mp",
+  "sha256": "7874a7fd578b265692566cee4f8c8978344f296df32c4eb177c8b13e03dd1889",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GGOL",
+      "area": "Goblin caves",
+      "label": "Guardian Golem",
+      "mapNumber": 1,
+      "roomNumber": 1797,
+      "raw": "[GGOL:Goblin caves:Guardian Golem-1 1797]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1797,
+        "name": "Small Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/1810 (Hidden/Searchable)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "THRG",
+      "area": "Goblin caves",
+      "label": "Thrag",
+      "mapNumber": 1,
+      "roomNumber": 1810,
+      "raw": "[THRG:Goblin caves:Thrag-1 1810]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1810,
+        "name": "Gigantic Cavern",
+        "exits": {
+          "N": "Action#1 [on the D exit of this room]: pull switch, move switch, pull swi",
+          "S": "0",
+          "E": "0",
+          "W": "1/1794 (Door [11 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/1797 (Hidden/Needs 1 Actions, any order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "4BB00000:DE700080:1:-1:0:::",
+      "parts": [
+        "4BB00000",
+        "DE700080",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "4BB00000:0001:u[search u]",
+      "parts": [
+        "4BB00000",
+        "0001",
+        "u[search u]"
+      ],
+      "commands": [
+        "u[search u]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

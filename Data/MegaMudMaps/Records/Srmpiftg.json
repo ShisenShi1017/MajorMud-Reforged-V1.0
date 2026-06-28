@@ -1,0 +1,119 @@
+{
+  "file": "Srmpiftg.mp",
+  "sha256": "a7829c6f9137c25b57f0bdea9be1948413ae4e3373b4783d3b706006292b5b94",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SRMP",
+      "area": "Northern Forests",
+      "label": "Silver River, Murky Pool",
+      "mapNumber": 1,
+      "roomNumber": 2415,
+      "raw": "[SRMP:Northern Forests:Silver River, Murky Pool-1 2415]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2415,
+        "name": "The Silver River, Murky Pool",
+        "exits": {
+          "N": "0",
+          "S": "1/2414",
+          "E": "0",
+          "W": "0",
+          "NE": "3/197",
+          "NW": "3/204",
+          "SE": "3/178",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "IFTG",
+      "area": "Northern Forests",
+      "label": "Ironwood Forest, Twisted Growth",
+      "mapNumber": 3,
+      "roomNumber": 105,
+      "raw": "[IFTG:Northern Forests:Ironwood Forest, Twisted Growth-3 105]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 105,
+        "name": "Ironwood Forest, Twisted Growth",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/104",
+          "W": "0",
+          "NE": "0",
+          "NW": "3/106",
+          "SE": "0",
+          "SW": "3/198",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2A601504:B4E04410:3:-1:0:::",
+      "parts": [
+        "2A601504",
+        "B4E04410",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2A601504:0000:ne",
+      "parts": [
+        "2A601504",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "94704011:0000:n",
+      "parts": [
+        "94704011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "94700144:0000:ne",
+      "parts": [
+        "94700144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

@@ -1,0 +1,119 @@
+{
+  "file": "ARGSARTA.mp",
+  "sha256": "a049680602a534fc379e2f8428217a97db1993f9f009c1f1177345360116c4b5",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "ARGS",
+      "area": "Arlysia",
+      "label": "The Goode Seamstress",
+      "mapNumber": 17,
+      "roomNumber": 2440,
+      "raw": "[ARGS:Arlysia:The Goode Seamstress-17 2440]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2440,
+        "name": "The Goode Seamstress",
+        "exits": {
+          "N": "17/2293",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ARTA",
+      "area": "Arlysia",
+      "label": "Tavern",
+      "mapNumber": 17,
+      "roomNumber": 2441,
+      "raw": "[ARTA:Arlysia:Tavern-17 2441]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2441,
+        "name": "Tavern",
+        "exits": {
+          "N": "17/2442",
+          "S": "17/2294",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "32400001:8DA00005:3:-1:0:::",
+      "parts": [
+        "32400001",
+        "8DA00005",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "32400001:0000:n",
+      "parts": [
+        "32400001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:w",
+      "parts": [
+        "9C000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:n",
+      "parts": [
+        "9C000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

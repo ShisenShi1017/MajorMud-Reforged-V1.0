@@ -1,0 +1,151 @@
+{
+  "file": "Jtlsjtlt.mp",
+  "sha256": "cd908b19f49a02019fb4ebae2e4765c6fa304767d606fe265b220ec692a885d9",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "JTLS",
+      "area": "Jungle",
+      "label": "Tasloi Shaman",
+      "mapNumber": 16,
+      "roomNumber": 38,
+      "raw": "[JTLS:Jungle:Tasloi Shaman-16 38]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 38,
+        "name": "Tasloi Village, Treetops",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "16/30",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "JTLT",
+      "area": "Jungle",
+      "label": "Tasloi Village, Large Tree",
+      "mapNumber": 16,
+      "roomNumber": 20,
+      "raw": "[JTLT:Jungle:Tasloi Village, Large Tree-16 20]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 20,
+        "name": "Tasloi Village, Large Tree",
+        "exits": {
+          "N": "16/19",
+          "S": "0",
+          "E": "16/21",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/26 (Text: climb tree)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "19F00400:A8200011:6:-1:0:::",
+      "parts": [
+        "19F00400",
+        "A8200011",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "19F00400:0000:nw",
+      "parts": [
+        "19F00400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "19F01014:0000:s",
+      "parts": [
+        "19F01014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19F00045:0000:s",
+      "parts": [
+        "19F00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19F00015:0000:s",
+      "parts": [
+        "19F00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19F00045:0000:s",
+      "parts": [
+        "19F00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19F01001:0000:climb tree",
+      "parts": [
+        "19F01001",
+        "0000",
+        "climb tree"
+      ],
+      "commands": [
+        "climb tree"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

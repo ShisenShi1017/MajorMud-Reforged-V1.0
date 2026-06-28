@@ -1,0 +1,96 @@
+{
+  "file": "AFJCSDAJ.mp",
+  "sha256": "47e4feeba18327d50199246cb591c56c6a318dee1531144537e300ac342d1ded",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "AFJC",
+      "area": "Ancient Fortress",
+      "label": "Ancient Fortress, Jail Entrance",
+      "mapNumber": 12,
+      "roomNumber": 2368,
+      "raw": "[AFJC:Ancient Fortress:Ancient Fortress, Jail Entrance-12 2368]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2368,
+        "name": "Ancient Fortress, Jail Cell",
+        "exits": {
+          "N": "12/2369 (Door)",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "12/221 (Item: 191)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SDAJ",
+      "area": "Scorching Desert",
+      "label": "Scorching Desert, Ancient Jail",
+      "mapNumber": 12,
+      "roomNumber": 221,
+      "raw": "[SDAJ:Scorching Desert:Scorching Desert, Ancient Jail-12 221]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 221,
+        "name": "Scorching Desert",
+        "exits": {
+          "N": "0",
+          "S": "17/2845",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "12/2368 (Item: 191)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "48610002:4AE40004:1:-1:0:::",
+      "parts": [
+        "48610002",
+        "4AE40004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "48610002:0000:u",
+      "parts": [
+        "48610002",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

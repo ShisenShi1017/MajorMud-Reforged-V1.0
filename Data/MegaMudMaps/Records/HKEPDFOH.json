@@ -1,0 +1,106 @@
+{
+  "file": "HKEPDFOH.mp",
+  "sha256": "9211325767d74c66812d861af91ae416e4df70e0f37db80efafe73dbd7e7331f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "HKEP",
+      "area": "Darkwood Forest",
+      "label": "Hidden Keep (Entrance)",
+      "mapNumber": 9,
+      "roomNumber": 803,
+      "raw": "[HKEP:Darkwood Forest:Hidden Keep (Entrance)-9 803]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 803,
+        "name": "Inner Keep Entrance",
+        "exits": {
+          "N": "9/804",
+          "S": "9/802",
+          "E": "9/806 (Door [11 picklocks/strength])",
+          "W": "9/798",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DFOH",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest, Outside Hidden Kp",
+      "mapNumber": 9,
+      "roomNumber": 724,
+      "raw": "[DFOH:Darkwood Forest:Darkwood Forest, Outside Hidden Kp-9 724]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 724,
+        "name": "Darkwood Forest, Hidden Keep",
+        "exits": {
+          "N": "9/725 (Hidden/Searchable)",
+          "S": "0",
+          "E": "9/798 (Door [251 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "9/723",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "72A00065:F1904020:2:-1:0:::",
+      "parts": [
+        "72A00065",
+        "F1904020",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "72A00065:0000:w",
+      "parts": [
+        "72A00065",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E2700095:0000:w[turn crank]",
+      "parts": [
+        "E2700095",
+        "0000",
+        "w[turn crank]"
+      ],
+      "commands": [
+        "w[turn crank]"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

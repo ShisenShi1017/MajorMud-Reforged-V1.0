@@ -1,0 +1,96 @@
+{
+  "file": "VXWNNPPV.mp",
+  "sha256": "1ff585f20195d9c1231159529678de089faec6a9af167f1c946e209560bc3216",
+  "metadataLine": "[][Wnterhawk]",
+  "roomHeaders": [
+    {
+      "code": "VXWN",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (NPP)",
+      "mapNumber": 3,
+      "roomNumber": 731,
+      "raw": "[VXWN:Black Wastelands:Wastelands Vortex (NPP)-3 731]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 731,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "0",
+          "S": "3/730",
+          "E": "0",
+          "W": "0",
+          "NE": "3/732",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "NPPV",
+      "area": "Negative Power Plane",
+      "label": "Negative Power Plane Vortex",
+      "mapNumber": 8,
+      "roomNumber": 978,
+      "raw": "[NPPV:Negative Power Plane:Negative Power Plane Vortex-8 978]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 978,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "8/977",
+          "NW": "8/979",
+          "SE": "8/1005",
+          "SW": "8/1006",
+          "U": "8/1126",
+          "D": "8/1332"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED100104:DD055500:1:-1:0:::",
+      "parts": [
+        "ED100104",
+        "DD055500",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED100104:0000:@party go vortex",
+      "parts": [
+        "ED100104",
+        "0000",
+        "@party go vortex"
+      ],
+      "commands": [
+        "@party go vortex"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

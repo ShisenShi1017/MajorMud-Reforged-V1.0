@@ -1,0 +1,152 @@
+{
+  "file": "Dvvsdvea.mp",
+  "sha256": "a5d444145e90191bcd0380adba10704402576d345b427904e8c3b41f246cdcbe",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "DVVS",
+      "area": "Scorching Desert",
+      "label": "Dusty Village, Village Store",
+      "mapNumber": 12,
+      "roomNumber": 49,
+      "raw": "[DVVS:Scorching Desert:Dusty Village, Village Store-12 49]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 49,
+        "name": "Village Store",
+        "exits": {
+          "N": "12/50",
+          "S": "12/4",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "DVEA",
+      "area": "Scorching Desert",
+      "label": "Dusty Village, Eastern Entrance",
+      "mapNumber": 12,
+      "roomNumber": 1047,
+      "raw": "[DVEA:Scorching Desert:Dusty Village, Eastern Entrance-12 1047]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 1047,
+        "name": "Scorching Desert, Outside Village",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "12/8",
+          "NE": "12/714",
+          "NW": "0",
+          "SE": "12/861",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2DF00005:F4301140:6:-1:0:waterskin::",
+      "parts": [
+        "2DF00005",
+        "F4301140",
+        "6",
+        "-1",
+        "0",
+        "waterskin",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0",
+        "waterskin"
+      ]
+    },
+    {
+      "raw": "2DF00005:0000:s",
+      "parts": [
+        "2DF00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "33A00051:0000:e",
+      "parts": [
+        "33A00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "33A00059:0000:e",
+      "parts": [
+        "33A00059",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "33A00054:0000:e",
+      "parts": [
+        "33A00054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "33A00051:0000:e",
+      "parts": [
+        "33A00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "33A00054:0000:e",
+      "parts": [
+        "33A00054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

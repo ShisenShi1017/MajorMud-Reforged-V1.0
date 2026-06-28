@@ -1,0 +1,173 @@
+{
+  "file": "Mostvxmt.mp",
+  "sha256": "5854d54e7920113ac3744c27e4d320eb565d4b654b3052bfc3c6d3e9888c3c9a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MOST",
+      "area": "Mossy Tunnels",
+      "label": "Mossy Tunnel",
+      "mapNumber": 3,
+      "roomNumber": 1,
+      "raw": "[MOST:Mossy Tunnels:Mossy Tunnel-3 1]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 1,
+        "name": "Mossy Cave, Waterfall",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/2",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/2362"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VXMT",
+      "area": "Mossy Tunnels",
+      "label": "Mossy Tunnel (Vortex)",
+      "mapNumber": 3,
+      "roomNumber": 25,
+      "raw": "[VXMT:Mossy Tunnels:Mossy Tunnel (Vortex)-3 25]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 25,
+        "name": "Mossy Tunnel",
+        "exits": {
+          "N": "3/24",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "3/21",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5D840010:EF304001:8:-1:0:::",
+      "parts": [
+        "5D840010",
+        "EF304001",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5D840010:0001:e",
+      "parts": [
+        "5D840010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EF201140:0001:se",
+      "parts": [
+        "EF201140",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EF200414:0001:e",
+      "parts": [
+        "EF200414",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EF200050:0001:e",
+      "parts": [
+        "EF200050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EF200041:0001:n",
+      "parts": [
+        "EF200041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EF200504:0001:ne",
+      "parts": [
+        "EF200504",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EF205100:0001:se",
+      "parts": [
+        "EF205100",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EF200504:0001:ne",
+      "parts": [
+        "EF200504",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

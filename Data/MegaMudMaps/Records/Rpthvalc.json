@@ -1,0 +1,244 @@
+{
+  "file": "Rpthvalc.mp",
+  "sha256": "56283301cfbdb2574066089b812f3a83cbf73be38727e4178ea3bbc603887a53",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RPTH",
+      "area": "Misty Valley",
+      "label": "Rocky Path (Aurumvora fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[RPTH:Misty Valley:Rocky Path (Aurumvora fork)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "VALC",
+      "area": "Misty Valley",
+      "label": "Valley Path Crossroads",
+      "mapNumber": 6,
+      "roomNumber": 133,
+      "raw": "[VALC:Misty Valley:Valley Path Crossroads-6 133]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 133,
+        "name": "Valley Path, Crossroads",
+        "exits": {
+          "N": "6/237",
+          "S": "0",
+          "E": "6/238",
+          "W": "6/122",
+          "NE": "0",
+          "NW": "0",
+          "SE": "6/134",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "47E00110:95901051:16:-1:0:rope and grapple::",
+      "parts": [
+        "47E00110",
+        "95901051",
+        "16",
+        "-1",
+        "0",
+        "rope and grapple",
+        "",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0",
+        "rope and grapple"
+      ]
+    },
+    {
+      "raw": "47E00110:0000:e",
+      "parts": [
+        "47E00110",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "47E01040:0000:se",
+      "parts": [
+        "47E01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "AE940400:0000:d",
+      "parts": [
+        "AE940400",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "CC011000:0000:se",
+      "parts": [
+        "CC011000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "8A400404:0000:s",
+      "parts": [
+        "8A400404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "8A401001:0000:se",
+      "parts": [
+        "8A401001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "8A400404:0000:s",
+      "parts": [
+        "8A400404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "8A404001:0000:sw",
+      "parts": [
+        "8A404001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "8A400104:0000:s",
+      "parts": [
+        "8A400104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "8A400011:0000:e",
+      "parts": [
+        "8A400011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8A401040:0000:se",
+      "parts": [
+        "8A401040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "8A400404:0000:s",
+      "parts": [
+        "8A400404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "8A401001:0000:se",
+      "parts": [
+        "8A401001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "D6E00410:0000:e",
+      "parts": [
+        "D6E00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A2E00050:0000:e",
+      "parts": [
+        "A2E00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A2E00055:0000:e",
+      "parts": [
+        "A2E00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

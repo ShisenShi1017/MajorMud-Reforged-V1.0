@@ -1,0 +1,97 @@
+{
+  "file": "LIBSLSOH.mp",
+  "sha256": "d3de54dd869a4afd117cc24ff21b4fc4153217987f87808818ca35020bc2cc6e",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "LIBS",
+      "area": "Arlysia",
+      "label": "Library Steps",
+      "mapNumber": 17,
+      "roomNumber": 1791,
+      "raw": "[LIBS:Arlysia:Library Steps-17 1791]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 1791,
+        "name": "Library Steps",
+        "exits": {
+          "N": "17/1792 (Key: 1536 [or 1000 picklocks/strength])",
+          "S": "17/1790",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LSOH",
+      "area": "Arlysia",
+      "label": "Library Steps - Old Hermit",
+      "mapNumber": 17,
+      "roomNumber": 1790,
+      "raw": "[LSOH:Arlysia:Library Steps - Old Hermit-17 1790]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 1790,
+        "name": "Library Steps",
+        "exits": {
+          "N": "17/1791",
+          "S": "17/1789",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3CD00006:3CD00005:1:-1:0:::",
+      "parts": [
+        "3CD00006",
+        "3CD00005",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3CD00006:0000:s",
+      "parts": [
+        "3CD00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

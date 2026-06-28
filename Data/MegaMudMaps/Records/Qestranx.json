@@ -1,0 +1,195 @@
+{
+  "file": "Qestranx.mp",
+  "sha256": "e1055e1b44c03028a5d10bacda952611cbd8fa5271e0f9db8c2435b7e1921a27",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "QEST",
+      "area": "Trainers",
+      "label": "Quest Hall",
+      "mapNumber": 1,
+      "roomNumber": 1377,
+      "raw": "[QEST:Trainers:Quest Hall-1 1377]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1377,
+        "name": "Crypt, Shadowed Hall",
+        "exits": {
+          "N": "1/1419",
+          "S": "0",
+          "E": "1/1436 (Class: 13 OK, 0 NO)",
+          "W": "1/1425 (Class: 1 OK, 0 NO)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RANX",
+      "area": "Trainers",
+      "label": "Ranger Spirit (11)",
+      "mapNumber": 1,
+      "roomNumber": 2241,
+      "raw": "[RANX:Trainers:Ranger Spirit (11)-1 2241]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2241,
+        "name": "Large Tomb",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/834 (Text: go portal, enter portal, walk portal)",
+          "W": "1/2230",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B8300059:42600040:10:-1:0:iron key::",
+      "parts": [
+        "B8300059",
+        "42600040",
+        "10",
+        "-1",
+        "0",
+        "iron key",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0",
+        "iron key"
+      ]
+    },
+    {
+      "raw": "B8300059:0001:w",
+      "parts": [
+        "B8300059",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7EC00040:0001:w",
+      "parts": [
+        "7EC00040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7EC00050:0001:w",
+      "parts": [
+        "7EC00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "8C300055:0001:n",
+      "parts": [
+        "8C300055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EC00104:0001:ne",
+      "parts": [
+        "7EC00104",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "2F104000:0001:push button",
+      "parts": [
+        "2F104000",
+        "0001",
+        "push button"
+      ],
+      "commands": [
+        "push button"
+      ]
+    },
+    {
+      "raw": "23500008:0401:s[use stone key s]",
+      "parts": [
+        "23500008",
+        "0401",
+        "s[use stone key s]"
+      ],
+      "commands": [
+        "s[use stone key s]"
+      ]
+    },
+    {
+      "raw": "7EC00006:0001:s",
+      "parts": [
+        "7EC00006",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "77500055:0000:e",
+      "parts": [
+        "77500055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EC00050:0001:e",
+      "parts": [
+        "7EC00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

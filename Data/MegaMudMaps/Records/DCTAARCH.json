@@ -1,0 +1,228 @@
+{
+  "file": "DCTAARCH.mp",
+  "sha256": "6e395b7ffd78878a3a59f6923aa5601828c14a98a3aa9bcd4b2bf05345b04892",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DCTA",
+      "area": "Dark-Elf City",
+      "label": "Tower Antechamber",
+      "mapNumber": 8,
+      "roomNumber": 532,
+      "raw": "[DCTA:Dark-Elf City:Tower Antechamber-8 532]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 532,
+        "name": "Tower Antechamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/531 (Door [41 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "8/533",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ARCH",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Archmage",
+      "mapNumber": 8,
+      "roomNumber": 558,
+      "raw": "[ARCH:Dark-Elf City:Dark-elf Archmage-8 558]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 558,
+        "name": "Ritual Chamber",
+        "exits": {
+          "N": "8/557 (Door [51 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C0600420:7CF00002:13:-1:0:::",
+      "parts": [
+        "C0600420",
+        "7CF00002",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C0600420:0000:nw",
+      "parts": [
+        "C0600420",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "04411000:0000:u",
+      "parts": [
+        "04411000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "04440110:0000:ne",
+      "parts": [
+        "04440110",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "04414000:0000:u",
+      "parts": [
+        "04414000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "04441004:0000:se",
+      "parts": [
+        "04441004",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "04410400:0000:u",
+      "parts": [
+        "04410400",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "04444040:0000:sw",
+      "parts": [
+        "04444040",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "04410100:0000:u",
+      "parts": [
+        "04410100",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "04440400:0000:nw",
+      "parts": [
+        "04440400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "3F701010:0000:e",
+      "parts": [
+        "3F701010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3F700061:0000:n",
+      "parts": [
+        "3F700061",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "04410004:0000:u",
+      "parts": [
+        "04410004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "04440008:0000:s",
+      "parts": [
+        "04440008",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

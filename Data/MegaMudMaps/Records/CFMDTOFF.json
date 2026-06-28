@@ -1,0 +1,178 @@
+{
+  "file": "CFMDTOFF.mp",
+  "sha256": "a1ecc257cc8c24a40ff1e8c5a2ea8d21cf86abab74b5f4eb20d692dc1e69763e",
+  "metadataLine": "[][Spork SZpoon]",
+  "roomHeaders": [
+    {
+      "code": "CFMD",
+      "area": "Lava Fields",
+      "label": "Crimson Fortress, Massive Door",
+      "mapNumber": 15,
+      "roomNumber": 1111,
+      "raw": "[CFMD:Lava Fields:Crimson Fortress, Massive Door-15 1111]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1111,
+        "name": "Crimson Fortress, Massive Door",
+        "exits": {
+          "N": "0",
+          "S": "15/1110",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "15/1126 (Key: 1077 [or 1000 picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "TOFF",
+      "area": "Lava Fields",
+      "label": "Temple of Fire (outside high priest)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[TOFF:Lava Fields:Temple of Fire (outside high priest)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BF380004:04C00005:10:-1:0:ancient obsidian key::",
+      "parts": [
+        "BF380004",
+        "04C00005",
+        "10",
+        "-1",
+        "0",
+        "ancient obsidian key",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0",
+        "ancient obsidian key"
+      ]
+    },
+    {
+      "raw": "BF380004:0000:@party eq phoenix feather",
+      "parts": [
+        "BF380004",
+        "0000",
+        "@party eq phoenix feather"
+      ],
+      "commands": [
+        "@party eq phoenix feather"
+      ]
+    },
+    {
+      "raw": "BF380004:0000:d[use ancient obsidian key d]",
+      "parts": [
+        "BF380004",
+        "0000",
+        "d[use ancient obsidian key d]"
+      ],
+      "commands": [
+        "d[use ancient obsidian key d]"
+      ]
+    },
+    {
+      "raw": "FFE20001:0000:n",
+      "parts": [
+        "FFE20001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2A500054:0000:w",
+      "parts": [
+        "2A500054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2A504010:0000:sw",
+      "parts": [
+        "2A504010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "2A500104:0000:s",
+      "parts": [
+        "2A500104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A500015:0000:s",
+      "parts": [
+        "2A500015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A501001:0000:se",
+      "parts": [
+        "2A501001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "2A500410:0000:e",
+      "parts": [
+        "2A500410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A500051:0000:n",
+      "parts": [
+        "2A500051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

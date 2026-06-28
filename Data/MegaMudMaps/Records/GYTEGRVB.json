@@ -1,0 +1,130 @@
+{
+  "file": "GYTEGRVB.mp",
+  "sha256": "4535a6497b786f9476642231dae4a1635b34044b20e0b0f5616cb2c57c8d4ca2",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GYTE",
+      "area": "Graveyard",
+      "label": "Graveyard, Tomb Entrance",
+      "mapNumber": 1,
+      "roomNumber": 834,
+      "raw": "[GYTE:Graveyard:Graveyard, Tomb Entrance-1 834]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 834,
+        "name": "Graveyard, Tomb Entrance",
+        "exits": {
+          "N": "1/835 (Door)",
+          "S": "1/818",
+          "E": "1/836",
+          "W": "1/833",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "GRVB",
+      "area": "Graveyard",
+      "label": "Graveyard Bridge",
+      "mapNumber": 1,
+      "roomNumber": 180,
+      "raw": "[GRVB:Graveyard:Graveyard Bridge-1 180]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 180,
+        "name": "Bridge",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "1/816",
+          "NW": "0",
+          "SE": "0",
+          "SW": "1/179",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EAA00056:85204100:4:-1:0:::",
+      "parts": [
+        "EAA00056",
+        "85204100",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EAA00056:0080:s",
+      "parts": [
+        "EAA00056",
+        "0080",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D5E00051:0080:w",
+      "parts": [
+        "D5E00051",
+        "0080",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D5E00051:0080:w",
+      "parts": [
+        "D5E00051",
+        "0080",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "33004091:0080:sw",
+      "parts": [
+        "33004091",
+        "0080",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

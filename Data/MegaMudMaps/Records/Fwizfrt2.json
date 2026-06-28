@@ -1,0 +1,95 @@
+{
+  "file": "Fwizfrt2.mp",
+  "sha256": "f5dc6d71979f624bb2ba94d2e06195b2116c13745e70a0c2da3f3412b9c65194",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FWIZ",
+      "area": "Black Fort",
+      "label": "Dark Wizard",
+      "mapNumber": 7,
+      "roomNumber": 1258,
+      "raw": "[FWIZ:Black Fort:Dark Wizard-7 1258]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1258,
+        "name": "Spartan Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "7/1259",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "7/1254 (Door [16 picklocks/strength])",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FRT2",
+      "area": "Black Fort",
+      "label": "Outside Dark Wizard",
+      "mapNumber": 7,
+      "roomNumber": 1254,
+      "raw": "[FRT2:Black Fort:Outside Dark Wizard-7 1254]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1254,
+        "name": "Black Fortress, Dungeon",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "7/1258 (Door [16 picklocks/strength])",
+          "NW": "7/1255",
+          "SE": "7/1230",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EAA08040:78C01600:1:-1:0:::",
+      "parts": [
+        "EAA08040",
+        "78C01600",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EAA08040:0000:sw",
+      "parts": [
+        "EAA08040",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

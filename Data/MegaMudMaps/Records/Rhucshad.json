@@ -1,0 +1,284 @@
+{
+  "file": "Rhucshad.mp",
+  "sha256": "b6f9e036f0acc433037060b10b2d1727846227e22b9bb78e4832308e6b71211a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SHAD",
+      "area": "Rhudaur",
+      "label": "Shadow Fist Temple",
+      "mapNumber": 9,
+      "roomNumber": 913,
+      "raw": "[SHAD:Rhudaur:Shadow Fist Temple-9 913]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 913,
+        "name": "Shadow Fist Temple, Ladder Down",
+        "exits": {
+          "N": "0",
+          "S": "9/914",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "9/912"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7AD00055:EC340004:18:-1:0:skeleton key::",
+      "parts": [
+        "7AD00055",
+        "EC340004",
+        "18",
+        "-1",
+        "0",
+        "skeleton key",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0",
+        "skeleton key"
+      ]
+    },
+    {
+      "raw": "7AD00055:0000:w",
+      "parts": [
+        "7AD00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C1E00051:0000:w",
+      "parts": [
+        "C1E00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D8200015:0000:go alley",
+      "parts": [
+        "D8200015",
+        "0000",
+        "go alley"
+      ],
+      "commands": [
+        "go alley"
+      ]
+    },
+    {
+      "raw": "4C900055:0001:s",
+      "parts": [
+        "4C900055",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4C900005:0001:s",
+      "parts": [
+        "4C900005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4C900015:0001:s",
+      "parts": [
+        "4C900015",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92D00001:0001:go manhole",
+      "parts": [
+        "92D00001",
+        "0001",
+        "go manhole"
+      ],
+      "commands": [
+        "go manhole"
+      ]
+    },
+    {
+      "raw": "8AF10005:0001:s",
+      "parts": [
+        "8AF10005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DA900051:0001:w",
+      "parts": [
+        "DA900051",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DA900050:0001:w",
+      "parts": [
+        "DA900050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DA900050:0001:w",
+      "parts": [
+        "DA900050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DA900015:0001:s",
+      "parts": [
+        "DA900015",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DA900005:0001:s",
+      "parts": [
+        "DA900005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DA900025:0401:e[use skeleton key e]",
+      "parts": [
+        "DA900025",
+        "0401",
+        "e[use skeleton key e]"
+      ],
+      "commands": [
+        "e[use skeleton key e]"
+      ]
+    },
+    {
+      "raw": "DA900090:0001:e",
+      "parts": [
+        "DA900090",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DA900050:0001:e",
+      "parts": [
+        "DA900050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DA900060:0001:e",
+      "parts": [
+        "DA900060",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E3A10080:0001:u",
+      "parts": [
+        "E3A10080",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

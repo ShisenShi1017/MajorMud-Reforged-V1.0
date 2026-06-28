@@ -1,0 +1,403 @@
+{
+  "file": "SHPHSHHP.mp",
+  "sha256": "967c6bc2b27e76fb9c9371b8c91bc0e783d76284ad7a370c926b6e8264a4b5c3",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SHPH",
+      "area": "Scorching Desert",
+      "label": "Saracens, Plaster Hall Iron Door",
+      "mapNumber": 12,
+      "roomNumber": 2145,
+      "raw": "[SHPH:Scorching Desert:Saracens, Plaster Hall Iron Door-12 2145]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2145,
+        "name": "Plaster Hallway, Iron Door",
+        "exits": {
+          "N": "12/2146",
+          "S": "12/2162",
+          "E": "0",
+          "W": "12/2126 (Door [31 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SHHP",
+      "area": "Scorching Desert",
+      "label": "Saracen High Priest",
+      "mapNumber": 12,
+      "roomNumber": 2193,
+      "raw": "[SHHP:Scorching Desert:Saracen High Priest-12 2193]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2193,
+        "name": "Fundamentalist Temple",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "12/2192"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D2600085:AD540000:29:-1:0:::",
+      "parts": [
+        "D2600085",
+        "AD540000",
+        "29",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "29",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D2600085:0000:s",
+      "parts": [
+        "D2600085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D01001:0000:se",
+      "parts": [
+        "F4D01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4D01400:0000:ne",
+      "parts": [
+        "F4D01400",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4D01400:0000:se",
+      "parts": [
+        "F4D01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4D00410:0000:e",
+      "parts": [
+        "F4D00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D00140:0000:ne",
+      "parts": [
+        "F4D00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4D04100:0000:n[sea n]",
+      "parts": [
+        "F4D04100",
+        "0000",
+        "n[sea n]"
+      ],
+      "commands": [
+        "n[sea n]"
+      ]
+    },
+    {
+      "raw": "F4D00000:0000:push button",
+      "parts": [
+        "F4D00000",
+        "0000",
+        "push button"
+      ],
+      "commands": [
+        "push button"
+      ]
+    },
+    {
+      "raw": "F4D00000:0000:s[sea s]",
+      "parts": [
+        "F4D00000",
+        "0000",
+        "s[sea s]"
+      ],
+      "commands": [
+        "s[sea s]"
+      ]
+    },
+    {
+      "raw": "F4D04100:0000:sw",
+      "parts": [
+        "F4D04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4D00140:0000:n",
+      "parts": [
+        "F4D00140",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00001:0000:n",
+      "parts": [
+        "F4D00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00005:0000:n",
+      "parts": [
+        "F4D00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00044:0000:w",
+      "parts": [
+        "F4D00044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4D00014:0000:s",
+      "parts": [
+        "F4D00014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00005:0000:s",
+      "parts": [
+        "F4D00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D10001:0000:u",
+      "parts": [
+        "F4D10001",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F4D40400:0000:nw",
+      "parts": [
+        "F4D40400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4D01100:0000:ne",
+      "parts": [
+        "F4D01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4D04010:0000:e",
+      "parts": [
+        "F4D04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D01040:0000:se",
+      "parts": [
+        "F4D01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4D04400:0000:sw",
+      "parts": [
+        "F4D04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4D10100:0000:u",
+      "parts": [
+        "F4D10100",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F4D40400:0000:nw",
+      "parts": [
+        "F4D40400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4D01010:0000:e",
+      "parts": [
+        "F4D01010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D00041:0000:n",
+      "parts": [
+        "F4D00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D10004:0000:u",
+      "parts": [
+        "F4D10004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F4D40004:0000:s",
+      "parts": [
+        "F4D40004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D10001:0000:u",
+      "parts": [
+        "F4D10001",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 33
+}

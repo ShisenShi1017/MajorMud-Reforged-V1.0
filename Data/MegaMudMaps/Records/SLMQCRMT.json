@@ -1,0 +1,338 @@
+{
+  "file": "SLMQCRMT.mp",
+  "sha256": "638e49c6308b367cfb30b6d38f64ed1bdca20f6df55244cda7bede2f982e3751",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "SLMQ",
+      "area": "Slums",
+      "label": "Slum Square",
+      "mapNumber": 1,
+      "roomNumber": 1089,
+      "raw": "[SLMQ:Slums:Slum Square-1 1089]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1089,
+        "name": "Slum Street, Square",
+        "exits": {
+          "N": "1/1088",
+          "S": "1/1161",
+          "E": "1/1171",
+          "W": "1/1090",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "CRMT",
+      "area": "Sewers",
+      "label": "Crumbling Tunnels",
+      "mapNumber": 9,
+      "roomNumber": 501,
+      "raw": "[CRMT:Sewers:Crumbling Tunnels-9 501]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 501,
+        "name": "Crumbling Tunnel",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/896",
+          "W": "9/438",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "62400055:53700050:23:-1:0:::",
+      "parts": [
+        "62400055",
+        "53700050",
+        "23",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "23",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "62400055:0000:n",
+      "parts": [
+        "62400055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:n",
+      "parts": [
+        "A0700005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:n",
+      "parts": [
+        "A0700005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F3900015:0000:n",
+      "parts": [
+        "F3900015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:n",
+      "parts": [
+        "A0700005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4C200014:0000:go man",
+      "parts": [
+        "4C200014",
+        "0000",
+        "go man"
+      ],
+      "commands": [
+        "go man"
+      ]
+    },
+    {
+      "raw": "B1510014:0000:s",
+      "parts": [
+        "B1510014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:s",
+      "parts": [
+        "E9500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "90A00015:0000:s",
+      "parts": [
+        "90A00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:s",
+      "parts": [
+        "E9500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:s",
+      "parts": [
+        "E9500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "90A00045:0000:w",
+      "parts": [
+        "90A00045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1500014:0000:s",
+      "parts": [
+        "B1500014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:s",
+      "parts": [
+        "E9500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:s",
+      "parts": [
+        "E9500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B1500041:0000:w",
+      "parts": [
+        "B1500041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1500014:0000:s",
+      "parts": [
+        "B1500014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:s",
+      "parts": [
+        "E9500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "90A00015:0000:s",
+      "parts": [
+        "90A00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:s",
+      "parts": [
+        "E9500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E9500045:0000:w",
+      "parts": [
+        "E9500045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 27
+}

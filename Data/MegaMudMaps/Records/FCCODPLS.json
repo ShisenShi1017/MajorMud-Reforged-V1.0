@@ -1,0 +1,317 @@
+{
+  "file": "FCCODPLS.mp",
+  "sha256": "4bd8561532c47a8fe6cc0ddc24cb6405e0917944693cea559106aa0b849eaa26",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FCCO",
+      "area": "Blackwood Forest",
+      "label": "Frozen Cavern, Cave Opening",
+      "mapNumber": 10,
+      "roomNumber": 297,
+      "raw": "[FCCO:Blackwood Forest:Frozen Cavern, Cave Opening-10 297]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 297,
+        "name": "Frozen Cavern, Cave Opening",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/2693",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "10/296",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "DPLS",
+      "area": "Blackwood Forest",
+      "label": "Dirt Path Large Sign",
+      "mapNumber": 17,
+      "roomNumber": 41,
+      "raw": "[DPLS:Blackwood Forest:Dirt Path Large Sign-17 41]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 41,
+        "name": "Dirt Path",
+        "exits": {
+          "N": "17/70",
+          "S": "17/42",
+          "E": "0",
+          "W": "17/40",
+          "NE": "17/43",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "82A10010:0AB00145:21:-1:0:::",
+      "parts": [
+        "82A10010",
+        "0AB00145",
+        "21",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "21",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "82A10010:0000:e",
+      "parts": [
+        "82A10010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "0AA00050:0000:e",
+      "parts": [
+        "0AA00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "0AB00041:0000:n",
+      "parts": [
+        "0AB00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0AB00005:0000:n",
+      "parts": [
+        "0AB00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0AB00404:0000:nw",
+      "parts": [
+        "0AB00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "0AB01500:0000:nw",
+      "parts": [
+        "0AB01500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "0AB01040:0000:w",
+      "parts": [
+        "0AB01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "0AB04410:0000:nw",
+      "parts": [
+        "0AB04410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "0AB05400:0000:nw",
+      "parts": [
+        "0AB05400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "0AB01001:0000:n",
+      "parts": [
+        "0AB01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0AB00104:0000:ne",
+      "parts": [
+        "0AB00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "0AB05001:0000:se",
+      "parts": [
+        "0AB05001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "0AB01400:0000:se",
+      "parts": [
+        "0AB01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "0AB00501:0000:n",
+      "parts": [
+        "0AB00501",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0AB00005:0000:n",
+      "parts": [
+        "0AB00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0AB00404:0000:nw",
+      "parts": [
+        "0AB00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "0AB01100:0000:ne",
+      "parts": [
+        "0AB01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "0AB04001:0000:n",
+      "parts": [
+        "0AB04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0AB00014:0000:e",
+      "parts": [
+        "0AB00014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "0AB00140:0000:ne",
+      "parts": [
+        "0AB00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "0AB04010:0000:e",
+      "parts": [
+        "0AB04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 25
+}

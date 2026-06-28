@@ -1,0 +1,129 @@
+{
+  "file": "Aalyaplz.mp",
+  "sha256": "ed675f2bb6cca5df6f0ba526beb1893e6aff0ca3712f9efada0c84819bd5c062",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "AALY",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Dark Alley",
+      "mapNumber": 3,
+      "roomNumber": 606,
+      "raw": "[AALY:Ancient Ruin:Ancient Ruin Dark Alley-3 606]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 606,
+        "name": "Dark Alleyway, Dead End",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "3/607 (Key: 757 [or 81 picklocks])",
+          "NE": "3/599",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "APLZ",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Plaza",
+      "mapNumber": 3,
+      "roomNumber": 560,
+      "raw": "[APLZ:Ancient Ruin:Ancient Ruin Plaza-3 560]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 560,
+        "name": "Ancient Ruin, Plaza",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/559",
+          "W": "3/584",
+          "NE": "0",
+          "NW": "3/596",
+          "SE": "0",
+          "SW": "3/561",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CAB00180:36604450:4:-1:0:::",
+      "parts": [
+        "CAB00180",
+        "36604450",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CAB00180:0001:ne",
+      "parts": [
+        "CAB00180",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DC201400:0202:se",
+      "parts": [
+        "DC201400",
+        "0202",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DC201440:0000:se",
+      "parts": [
+        "DC201440",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DC201400:0000:se",
+      "parts": [
+        "DC201400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

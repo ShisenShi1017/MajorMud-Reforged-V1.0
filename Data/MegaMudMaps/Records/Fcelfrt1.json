@@ -1,0 +1,229 @@
+{
+  "file": "Fcelfrt1.mp",
+  "sha256": "39b0004941fe6d10d94a440a3b88b5fbd2cee73b6f1243d0a3635a02f7bec356",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FCEL",
+      "area": "Black Fort",
+      "label": "Dark Cell",
+      "mapNumber": 7,
+      "roomNumber": 1251,
+      "raw": "[FCEL:Black Fort:Dark Cell-7 1251]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1251,
+        "name": "Dark Cell",
+        "exits": {
+          "N": "7/1249 (Door [11 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "FRT1",
+      "area": "Black Fort",
+      "label": "Black Fortress",
+      "mapNumber": 7,
+      "roomNumber": 1182,
+      "raw": "[FRT1:Black Fort:Black Fortress-7 1182]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1182,
+        "name": "Black Fortress",
+        "exits": {
+          "N": "7/1203",
+          "S": "7/1193",
+          "E": "7/1183",
+          "W": "7/1181",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "02900020:A4F00055:13:-1:0:::",
+      "parts": [
+        "02900020",
+        "A4F00055",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "02900020:0000:e",
+      "parts": [
+        "02900020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B1900098:0000:e",
+      "parts": [
+        "B1900098",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B1900058:0000:e",
+      "parts": [
+        "B1900058",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B1902048:0000:se",
+      "parts": [
+        "B1902048",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "78C01800:0000:se",
+      "parts": [
+        "78C01800",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "78C00404:0000:s",
+      "parts": [
+        "78C00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "78C00045:0000:s",
+      "parts": [
+        "78C00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "78C04001:0000:sw",
+      "parts": [
+        "78C04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "78C04100:0000:sw",
+      "parts": [
+        "78C04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "78C00140:0000:w",
+      "parts": [
+        "78C00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "78C00051:0000:n",
+      "parts": [
+        "78C00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D4810004:0000:u",
+      "parts": [
+        "D4810004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "D4840004:0000:s",
+      "parts": [
+        "D4840004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 18
+}

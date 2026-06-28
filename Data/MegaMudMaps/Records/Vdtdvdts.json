@@ -1,0 +1,328 @@
+{
+  "file": "Vdtdvdts.mp",
+  "sha256": "570c224048527a7a1469923356cf6f11049850dca08bce116cf0b8b7d465b05a",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "VDTD",
+      "area": "Volcano",
+      "label": "Volcano, Darkened Tunnels",
+      "mapNumber": 16,
+      "roomNumber": 2011,
+      "raw": "[VDTD:Volcano:Volcano, Darkened Tunnels-16 2011]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2011,
+        "name": "Volcano, Darkened Tunnels",
+        "exits": {
+          "N": "0",
+          "S": "16/2010",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/2115"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "VDTS",
+      "area": "Volcano",
+      "label": "Volcano, Darkened Tunnels Start",
+      "mapNumber": 16,
+      "roomNumber": 1992,
+      "raw": "[VDTS:Volcano:Volcano, Darkened Tunnels Start-16 1992]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1992,
+        "name": "Volcano, Darkened Tunnels",
+        "exits": {
+          "N": "16/1990",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1878"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B1440004:B1440001:22:-1:0:::",
+      "parts": [
+        "B1440004",
+        "B1440001",
+        "22",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "22",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B1440004:0000:s",
+      "parts": [
+        "B1440004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B1400001:0000:se[sea se]",
+      "parts": [
+        "B1400001",
+        "0000",
+        "se[sea se]"
+      ],
+      "commands": [
+        "se[sea se]"
+      ]
+    },
+    {
+      "raw": "B1400010:0000:e",
+      "parts": [
+        "B1400010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B1400044:0000:s",
+      "parts": [
+        "B1400044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B1400045:0000:w",
+      "parts": [
+        "B1400045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400050:0000:w",
+      "parts": [
+        "B1400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400410:0000:nw",
+      "parts": [
+        "B1400410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B1401040:0000:w",
+      "parts": [
+        "B1401040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400014:0000:s",
+      "parts": [
+        "B1400014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B1400005:0000:s",
+      "parts": [
+        "B1400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B1400041:0000:w",
+      "parts": [
+        "B1400041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400410:0000:nw",
+      "parts": [
+        "B1400410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B1401001:0000:n",
+      "parts": [
+        "B1401001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B1400404:0000:nw",
+      "parts": [
+        "B1400404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B1401040:0000:w",
+      "parts": [
+        "B1401040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400014:0000:s",
+      "parts": [
+        "B1400014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B1408001:0400:sw",
+      "parts": [
+        "B1408001",
+        "0400",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "B1400204:0000:s",
+      "parts": [
+        "B1400204",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B1400041:0000:w",
+      "parts": [
+        "B1400041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400015:0000:s",
+      "parts": [
+        "B1400015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B1400011:0000:e",
+      "parts": [
+        "B1400011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B1400144:0000:s",
+      "parts": [
+        "B1400144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 26
+}

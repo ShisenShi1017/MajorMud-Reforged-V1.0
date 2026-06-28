@@ -1,0 +1,95 @@
+{
+  "file": "Mlevmchp.mp",
+  "sha256": "28d66bf1c215eaf10433020705a5fc09315fbb65b6d09ba552a5a8156834a075",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MLEV",
+      "area": "Island",
+      "label": "Outside minotaur champion (lever)",
+      "mapNumber": 1,
+      "roomNumber": 2122,
+      "raw": "[MLEV:Island:Outside minotaur champion (lever)-1 2122]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2122,
+        "name": "Crystal-Studded Cavern, Northern End",
+        "exits": {
+          "N": "0",
+          "S": "1/2124",
+          "E": "1/2123 (Key: 259)",
+          "W": "1/2121",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/2125 (Text: pull lever, push lever, move lever)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "MCHP",
+      "area": "Island",
+      "label": "Minotaur Champion",
+      "mapNumber": 1,
+      "roomNumber": 2124,
+      "raw": "[MCHP:Island:Minotaur Champion-1 2124]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2124,
+        "name": "Crystal-Studded Cavern, Southern End",
+        "exits": {
+          "N": "1/2122",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "FBB00064:08900001:1:-1:0:::",
+      "parts": [
+        "FBB00064",
+        "08900001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "FBB00064:0000:s",
+      "parts": [
+        "FBB00064",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

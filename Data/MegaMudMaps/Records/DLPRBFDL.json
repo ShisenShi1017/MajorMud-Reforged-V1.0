@@ -1,0 +1,95 @@
+{
+  "file": "DLPRBFDL.mp",
+  "sha256": "1d4a263e143bf117811da30eebbc51ea1225eac2f2ab2ac5cf255aeab64e547d",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DLPR",
+      "area": "Blackwood Forest",
+      "label": "Outside Darken Beast Lord",
+      "mapNumber": 17,
+      "roomNumber": 2812,
+      "raw": "[DLPR:Blackwood Forest:Outside Darken Beast Lord-17 2812]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2812,
+        "name": "Dark Den",
+        "exits": {
+          "N": "17/831",
+          "S": "17/2813",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BFDL",
+      "area": "Blackwood Forest",
+      "label": "Darken Beast Lord",
+      "mapNumber": 17,
+      "roomNumber": 831,
+      "raw": "[BFDL:Blackwood Forest:Darken Beast Lord-17 831]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 831,
+        "name": "Blackwood Forest",
+        "exits": {
+          "N": "0",
+          "S": "17/2812",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/832",
+          "SW": "17/830",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "57205004:C7300005:1:-1:0:::",
+      "parts": [
+        "57205004",
+        "C7300005",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "57205004:0000:s",
+      "parts": [
+        "57205004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

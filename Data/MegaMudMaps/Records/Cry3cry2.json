@@ -1,0 +1,198 @@
+{
+  "file": "Cry3cry2.mp",
+  "sha256": "8d7072547f185fcfd20bb9d256abe727e3ed149c00e800b4c3567d38165d5213",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CRY3",
+      "area": "Graveyard",
+      "label": "Crypt Level 3",
+      "mapNumber": 1,
+      "roomNumber": 1276,
+      "raw": "[CRY3:Graveyard:Crypt Level 3-1 1276]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1276,
+        "name": "Crypt, Stone Hallway",
+        "exits": {
+          "N": "1/1277",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/1263",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "CRY2",
+      "area": "Graveyard",
+      "label": "Crypt Level 2- 1 1237",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[CRY2:Graveyard:Crypt Level 2- 1 1237]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F2610001:F2605000:12:-1:0:::",
+      "parts": [
+        "F2610001",
+        "F2605000",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F2610001:0001:u",
+      "parts": [
+        "F2610001",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F2640001:0001:n",
+      "parts": [
+        "F2640001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F2600005:0001:n",
+      "parts": [
+        "F2600005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F2605004:0001:n[search n]",
+      "parts": [
+        "F2605004",
+        "0001",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    },
+    {
+      "raw": "F2600500:0001:ne",
+      "parts": [
+        "F2600500",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F2604500:0001:ne",
+      "parts": [
+        "F2604500",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F2604100:0001:ne",
+      "parts": [
+        "F2604100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F2604500:0001:nw",
+      "parts": [
+        "F2604500",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F2601500:0001:nw",
+      "parts": [
+        "F2601500",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F2601400:0001:nw",
+      "parts": [
+        "F2601400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F2605500:0001:ne",
+      "parts": [
+        "F2605500",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F2604400:0001:nw",
+      "parts": [
+        "F2604400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

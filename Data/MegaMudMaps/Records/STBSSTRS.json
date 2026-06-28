@@ -1,0 +1,185 @@
+{
+  "file": "STBSSTRS.mp",
+  "sha256": "7a28c9ecadfbd18fc0aded65a1bd2c41e615bec0b5cc3d9840b9b92710b35f8c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "STBS",
+      "area": "Sewers",
+      "label": "Sewer Tunnel, Brass Street",
+      "mapNumber": 1,
+      "roomNumber": 598,
+      "raw": "[STBS:Sewers:Sewer Tunnel, Brass Street-1 598]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 598,
+        "name": "Sewer Tunnel",
+        "exits": {
+          "N": "1/599",
+          "S": "1/597",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/383",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "STRS",
+      "area": "Sewers",
+      "label": "Sewer Tunnel, River Street",
+      "mapNumber": 1,
+      "roomNumber": 607,
+      "raw": "[STRS:Sewers:Sewer Tunnel, River Street-1 607]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 607,
+        "name": "Sewer Tunnel",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/606",
+          "W": "1/608",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/17",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E9510005:E9510050:9:-1:0:::",
+      "parts": [
+        "E9510005",
+        "E9510050",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E9510005:0000:n",
+      "parts": [
+        "E9510005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:n",
+      "parts": [
+        "E9500005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E9500005:0000:n",
+      "parts": [
+        "E9500005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E9500404:0000:nw",
+      "parts": [
+        "E9500404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "E9501400:0000:nw",
+      "parts": [
+        "E9501400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "E9501040:0000:w",
+      "parts": [
+        "E9501040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E9500050:0000:w",
+      "parts": [
+        "E9500050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

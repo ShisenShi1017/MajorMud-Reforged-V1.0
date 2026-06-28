@@ -1,0 +1,95 @@
+{
+  "file": "Arn2arna.mp",
+  "sha256": "fa4e15843890bda6837c08200e2c2e19c51b15c729f692151fdbe9a8f5d6be8e",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ARN2",
+      "area": "Silvermere",
+      "label": "Arena (Tough Practice Dummy)",
+      "mapNumber": 1,
+      "roomNumber": 2519,
+      "raw": "[ARN2:Silvermere:Arena (Tough Practice Dummy)-1 2519]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2519,
+        "name": "Arena Practice Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/206"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ARNA",
+      "area": "Silvermere",
+      "label": "Arena (Practice Dummy)",
+      "mapNumber": 1,
+      "roomNumber": 206,
+      "raw": "[ARNA:Silvermere:Arena (Practice Dummy)-1 206]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 206,
+        "name": "Arena Practice Room",
+        "exits": {
+          "N": "1/205",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/2519",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "67140000:67110001:1:-1:0:::",
+      "parts": [
+        "67140000",
+        "67110001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "67140000:0000:d",
+      "parts": [
+        "67140000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

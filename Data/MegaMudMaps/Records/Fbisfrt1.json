@@ -1,0 +1,129 @@
+{
+  "file": "Fbisfrt1.mp",
+  "sha256": "1aa7f7c06d50187c84fee0e07b7cd5a4463fd7d2858468deadd2629aa44052c3",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FBIS",
+      "area": "Black Fort",
+      "label": "Dark Bishop",
+      "mapNumber": 7,
+      "roomNumber": 1227,
+      "raw": "[FBIS:Black Fort:Dark Bishop-7 1227]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1227,
+        "name": "Elaborate Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "7/1226",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FRT1",
+      "area": "Black Fort",
+      "label": "Black Fortress",
+      "mapNumber": 7,
+      "roomNumber": 1182,
+      "raw": "[FRT1:Black Fort:Black Fortress-7 1182]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1182,
+        "name": "Black Fortress",
+        "exits": {
+          "N": "7/1203",
+          "S": "7/1193",
+          "E": "7/1183",
+          "W": "7/1181",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "9F700100:A4F00055:4:-1:0:::",
+      "parts": [
+        "9F700100",
+        "A4F00055",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "9F700100:0000:ne",
+      "parts": [
+        "9F700100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "67E04800:0000:nw",
+      "parts": [
+        "67E04800",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4F06900:0000:sw",
+      "parts": [
+        "A4F06900",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A4F00140:0000:w",
+      "parts": [
+        "A4F00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

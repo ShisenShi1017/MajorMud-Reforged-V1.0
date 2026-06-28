@@ -1,0 +1,144 @@
+{
+  "file": "Obbwvxwn.mp",
+  "sha256": "4a6d105f329e2741a12bece1abc74dfab00bf7854b39100a1853ed1fc31ea57b",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "OBBW",
+      "area": "Black Wastelands",
+      "label": "Wastelands Obelisk",
+      "mapNumber": 1,
+      "roomNumber": 2426,
+      "raw": "[OBBW:Black Wastelands:Wastelands Obelisk-1 2426]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2426,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "3/780",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "3/741",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED201001:ED100104:8:-1:0:::",
+      "parts": [
+        "ED201001",
+        "ED100104",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED201001:0000:se",
+      "parts": [
+        "ED201001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED004410:0000:e",
+      "parts": [
+        "ED004410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000144:0000:ne",
+      "parts": [
+        "ED000144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "ED004001:0000:n",
+      "parts": [
+        "ED004001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ED000014:0000:e",
+      "parts": [
+        "ED000014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000050:0000:e",
+      "parts": [
+        "ED000050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000051:0000:n",
+      "parts": [
+        "ED000051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ED000005:0000:n",
+      "parts": [
+        "ED000005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

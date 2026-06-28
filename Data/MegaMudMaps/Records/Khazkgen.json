@@ -1,0 +1,151 @@
+{
+  "file": "Khazkgen.mp",
+  "sha256": "6c303d7125d7dc21448c9d90bcaf94bc3f92d113fc6e64cd4c370f89a83f21b5",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "KGEN",
+      "area": "Khazarad",
+      "label": "Dwarven General Store",
+      "mapNumber": 6,
+      "roomNumber": 1335,
+      "raw": "[KGEN:Khazarad:Dwarven General Store-6 1335]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1335,
+        "name": "General Store",
+        "exits": {
+          "N": "6/1252",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "19800051:31400001:6:-1:0:::",
+      "parts": [
+        "19800051",
+        "31400001",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "19800051:0000:w",
+      "parts": [
+        "19800051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "19800014:0000:s",
+      "parts": [
+        "19800014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19800045:0000:w",
+      "parts": [
+        "19800045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B900052:0000:w",
+      "parts": [
+        "3B900052",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:w",
+      "parts": [
+        "3B900055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:s",
+      "parts": [
+        "3B900055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

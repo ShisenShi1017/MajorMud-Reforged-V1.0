@@ -1,0 +1,371 @@
+{
+  "file": "Hktrhkep.mp",
+  "sha256": "98ee47e3bbfc0873830478613e88415c55fa7ee9ce58bb2f12911beaf00a6252",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "HKTR",
+      "area": "Darkwood Forest",
+      "label": "Hidden Keep (Treasure Room)",
+      "mapNumber": 9,
+      "roomNumber": 863,
+      "raw": "[HKTR:Darkwood Forest:Hidden Keep (Treasure Room)-9 863]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 863,
+        "name": "Treasure Room",
+        "exits": {
+          "N": "9/862 (Door)",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "HKEP",
+      "area": "Darkwood Forest",
+      "label": "Hidden Keep (Entrance)",
+      "mapNumber": 9,
+      "roomNumber": 803,
+      "raw": "[HKEP:Darkwood Forest:Hidden Keep (Entrance)-9 803]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 803,
+        "name": "Inner Keep Entrance",
+        "exits": {
+          "N": "9/804",
+          "S": "9/802",
+          "E": "9/806 (Door [11 picklocks/strength])",
+          "W": "9/798",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "30400002:72A00065:26:-1:0:::",
+      "parts": [
+        "30400002",
+        "72A00065",
+        "26",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "26",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "30400002:0001:n",
+      "parts": [
+        "30400002",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31200008:0000:n[search n]",
+      "parts": [
+        "31200008",
+        "0000",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    },
+    {
+      "raw": "BE600081:0000:n",
+      "parts": [
+        "BE600081",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BE600006:0000:n",
+      "parts": [
+        "BE600006",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BE600048:0000:w",
+      "parts": [
+        "BE600048",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE600090:0000:w",
+      "parts": [
+        "BE600090",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE600024:0000:s",
+      "parts": [
+        "BE600024",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BE600005:0000:s",
+      "parts": [
+        "BE600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BE600041:0000:w",
+      "parts": [
+        "BE600041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE600014:0000:s",
+      "parts": [
+        "BE600014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BE6000A1:0000:e",
+      "parts": [
+        "BE6000A1",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BE600088:0000:s",
+      "parts": [
+        "BE600088",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E4300042:0000:w",
+      "parts": [
+        "E4300042",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E4300010:0000:w[search w]",
+      "parts": [
+        "E4300010",
+        "0000",
+        "w[search w]"
+      ],
+      "commands": [
+        "w[search w]"
+      ]
+    },
+    {
+      "raw": "7B140000:0000:d",
+      "parts": [
+        "7B140000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "4FE10010:0000:e",
+      "parts": [
+        "4FE10010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BE600040:0000:e[search e]",
+      "parts": [
+        "BE600040",
+        "0000",
+        "e[search e]"
+      ],
+      "commands": [
+        "e[search e]"
+      ]
+    },
+    {
+      "raw": "BE600012:0000:n",
+      "parts": [
+        "BE600012",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BE600018:0000:e",
+      "parts": [
+        "BE600018",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BE600062:0000:n",
+      "parts": [
+        "BE600062",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7FC0001A:0000:n",
+      "parts": [
+        "7FC0001A",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BE60004A:0000:w",
+      "parts": [
+        "BE60004A",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE600090:0000:w",
+      "parts": [
+        "BE600090",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE6000A0:0000:w",
+      "parts": [
+        "BE6000A0",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BE600024:0000:s",
+      "parts": [
+        "BE600024",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D1200085:0000:w",
+      "parts": [
+        "D1200085",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 30
+}

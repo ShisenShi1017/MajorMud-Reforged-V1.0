@@ -1,0 +1,108 @@
+{
+  "file": "SPNFSPDF.mp",
+  "sha256": "13bd3eb7ae72d768c6f677a0976bf8624f2b8ce5e3ec0171143ee232e87ed0b0",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SPNF",
+      "area": "Misty Valley",
+      "label": "Swampside Path, Northern Fork",
+      "mapNumber": 6,
+      "roomNumber": 219,
+      "raw": "[SPNF:Misty Valley:Swampside Path, Northern Fork-6 219]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 219,
+        "name": "Swampside Path",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "6/218",
+          "NW": "0",
+          "SE": "6/347",
+          "SW": "6/220",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "SPDF",
+      "area": "Misty Valley",
+      "label": "Swampside Path, Darkwood Fork",
+      "mapNumber": 6,
+      "roomNumber": 217,
+      "raw": "[SPDF:Misty Valley:Swampside Path, Darkwood Fork-6 217]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 217,
+        "name": "Swampside Path",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/216",
+          "W": "0",
+          "NE": "0",
+          "NW": "9/747",
+          "SE": "0",
+          "SW": "6/218",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "75605100:75604410:2:-1:0:::",
+      "parts": [
+        "75605100",
+        "75604410",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "75605100:0000:ne",
+      "parts": [
+        "75605100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "75604100:0000:ne",
+      "parts": [
+        "75604100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

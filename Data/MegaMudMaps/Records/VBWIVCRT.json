@@ -1,0 +1,316 @@
+{
+  "file": "VBWIVCRT.mp",
+  "sha256": "91d6fee81c95ac2fc4c77c63260b82b53ebd0caa397d73b1d18aea78db5120fe",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "VBWI",
+      "area": "Volcano",
+      "label": "Volcano, Burnt Witchunter",
+      "mapNumber": 16,
+      "roomNumber": 2709,
+      "raw": "[VBWI:Volcano:Volcano, Burnt Witchunter-16 2709]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2709,
+        "name": "Volcano, Cramped Tunnels",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "16/2708",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/2710"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VCRT",
+      "area": "Volcano",
+      "label": "Volcano, Cramped Tunnels",
+      "mapNumber": 16,
+      "roomNumber": 2127,
+      "raw": "[VCRT:Volcano:Volcano, Cramped Tunnels-16 2127]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2127,
+        "name": "Volcano, Cramped Tunnels",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "16/2128",
+          "SW": "16/2132",
+          "U": "16/2071",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "16940040:16915000:21:-1:0:::",
+      "parts": [
+        "16940040",
+        "16915000",
+        "21",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "21",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "16940040:0000:w",
+      "parts": [
+        "16940040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16910010:0000:u",
+      "parts": [
+        "16910010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "16940040:0000:w",
+      "parts": [
+        "16940040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16910010:0000:u",
+      "parts": [
+        "16910010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "16940040:0000:w",
+      "parts": [
+        "16940040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16900050:0000:w",
+      "parts": [
+        "16900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16910010:0000:u",
+      "parts": [
+        "16910010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "16940004:0000:s",
+      "parts": [
+        "16940004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "16900401:0000:nw",
+      "parts": [
+        "16900401",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "16901104:0000:ne",
+      "parts": [
+        "16901104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 25
+}

@@ -1,0 +1,196 @@
+{
+  "file": "NPPVMBNP.mp",
+  "sha256": "37a4f2867af4f777eedf7e33fb173c2d63d555381af90811723e391c6e9e98c3",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "NPPV",
+      "area": "Negative Power Plane",
+      "label": "Negative Power Plane Vortex",
+      "mapNumber": 8,
+      "roomNumber": 978,
+      "raw": "[NPPV:Negative Power Plane:Negative Power Plane Vortex-8 978]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 978,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "8/977",
+          "NW": "8/979",
+          "SE": "8/1005",
+          "SW": "8/1006",
+          "U": "8/1126",
+          "D": "8/1332"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MBNP",
+      "area": "Misty Valley",
+      "label": "Misty Bog NPP Portal",
+      "mapNumber": 1,
+      "roomNumber": 2682,
+      "raw": "[MBNP:Misty Valley:Misty Bog NPP Portal-1 2682]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2682,
+        "name": "Misty Bog",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/390",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DD055500:04A00010:10:-1:0:::",
+      "parts": [
+        "DD055500",
+        "04A00010",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DD055500:0000:u",
+      "parts": [
+        "DD055500",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:se",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:se",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:se",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:se",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:se",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:se",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:se",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:se",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:@party go portal",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "@party go portal"
+      ],
+      "commands": [
+        "@party go portal"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

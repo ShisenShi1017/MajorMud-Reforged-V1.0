@@ -1,0 +1,430 @@
+{
+  "file": "EROIERFK.mp",
+  "sha256": "ec2e8434a150911b84c751372a9483ae892ca43bab7eeb30556d9045acc7f667",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "EROI",
+      "area": "Blackwood Forest",
+      "label": "Eastern Road, Outside Inn",
+      "mapNumber": 17,
+      "roomNumber": 472,
+      "raw": "[EROI:Blackwood Forest:Eastern Road, Outside Inn-17 472]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 472,
+        "name": "Eastern Road",
+        "exits": {
+          "N": "17/474",
+          "S": "0",
+          "E": "0",
+          "W": "17/2800",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/471",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "ERFK",
+      "area": "Blackwood Forest",
+      "label": "Eastern Road Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[ERFK:Blackwood Forest:Eastern Road Fork]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CEA01041:CEA01140:33:-1:0:::",
+      "parts": [
+        "CEA01041",
+        "CEA01140",
+        "33",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "33",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CEA01041:0000:se",
+      "parts": [
+        "CEA01041",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA00404:0000:s",
+      "parts": [
+        "CEA00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA01001:0000:se",
+      "parts": [
+        "CEA01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA00404:0000:s",
+      "parts": [
+        "CEA00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA01001:0000:se",
+      "parts": [
+        "CEA01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA01400:0000:se",
+      "parts": [
+        "CEA01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA00404:0000:s",
+      "parts": [
+        "CEA00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA04001:0000:sw",
+      "parts": [
+        "CEA04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA04100:0000:sw",
+      "parts": [
+        "CEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA00104:0000:s",
+      "parts": [
+        "CEA00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA04001:0000:sw",
+      "parts": [
+        "CEA04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA00104:0000:s",
+      "parts": [
+        "CEA00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA04001:0000:sw",
+      "parts": [
+        "CEA04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA00104:0000:s",
+      "parts": [
+        "CEA00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA04001:0000:sw",
+      "parts": [
+        "CEA04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA04100:0000:sw",
+      "parts": [
+        "CEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA04100:0000:sw",
+      "parts": [
+        "CEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA05100:0000:sw",
+      "parts": [
+        "CEA05100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA04100:0000:sw",
+      "parts": [
+        "CEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA04100:0000:sw",
+      "parts": [
+        "CEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA00140:0000:w",
+      "parts": [
+        "CEA00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CEA04010:0000:sw",
+      "parts": [
+        "CEA04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA01500:0000:nw",
+      "parts": [
+        "CEA01500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CEA01040:0000:w",
+      "parts": [
+        "CEA01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CEA00410:0000:nw",
+      "parts": [
+        "CEA00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CEA01400:0000:nw",
+      "parts": [
+        "CEA01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CEA01400:0000:nw",
+      "parts": [
+        "CEA01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CEA01040:0000:w",
+      "parts": [
+        "CEA01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CEA00050:0000:w",
+      "parts": [
+        "CEA00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CEA00050:0000:w",
+      "parts": [
+        "CEA00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CEA04010:0000:sw",
+      "parts": [
+        "CEA04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA04100:0000:sw",
+      "parts": [
+        "CEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA04100:0000:sw",
+      "parts": [
+        "CEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 37
+}

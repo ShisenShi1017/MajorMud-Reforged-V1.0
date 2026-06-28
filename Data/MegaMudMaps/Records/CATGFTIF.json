@@ -1,0 +1,228 @@
+{
+  "file": "CATGFTIF.mp",
+  "sha256": "a83ce4aad7205cfa07cbb69f6f7d4c132ea25cdc9d7773ed0420a2aebbe79cd8",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CATG",
+      "area": "Arlysia",
+      "label": "City of Arlysia, Town Gates",
+      "mapNumber": 17,
+      "roomNumber": 473,
+      "raw": "[CATG:Arlysia:City of Arlysia, Town Gates-17 473]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 473,
+        "name": "City of Arlysia, Town Gates",
+        "exits": {
+          "N": "17/2259 (Door [31 picklocks/strength])",
+          "S": "17/495",
+          "E": "17/573",
+          "W": "17/496",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "FTIF",
+      "area": "Blackwood Forest",
+      "label": "Fork, Town/Inn/Fields",
+      "mapNumber": 17,
+      "roomNumber": 483,
+      "raw": "[FTIF:Blackwood Forest:Fork, Town/Inn/Fields-17 483]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 483,
+        "name": "Eastern Road",
+        "exits": {
+          "N": "0",
+          "S": "17/2706",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "17/484",
+          "SE": "17/482",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "6F100056:CEA01404:13:-1:0:::",
+      "parts": [
+        "6F100056",
+        "CEA01404",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "6F100056:0000:s",
+      "parts": [
+        "6F100056",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA01001:0000:se",
+      "parts": [
+        "CEA01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA01440:0000:se",
+      "parts": [
+        "CEA01440",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA01400:0000:se",
+      "parts": [
+        "CEA01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA00404:0000:s",
+      "parts": [
+        "CEA00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA01001:0000:se",
+      "parts": [
+        "CEA01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA01400:0000:se",
+      "parts": [
+        "CEA01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

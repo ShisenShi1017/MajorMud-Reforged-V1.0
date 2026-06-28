@@ -1,0 +1,207 @@
+{
+  "file": "CRITLVF4.mp",
+  "sha256": "f56fdf90200e324d66e6c770315808f8d1744e94d1485d490faace143f74c88b",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CRIT",
+      "area": "Lava Fields",
+      "label": "Crimson Tunnel",
+      "mapNumber": 15,
+      "roomNumber": 1046,
+      "raw": "[CRIT:Lava Fields:Crimson Tunnel-15 1046]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1046,
+        "name": "Crimson Tunnel",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "15/1047",
+          "NE": "15/1034 (Hidden/Searchable)",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LVF4",
+      "area": "Lava Fields",
+      "label": "Lava Cavern, Obsidian Cliffs",
+      "mapNumber": 15,
+      "roomNumber": 1017,
+      "raw": "[LVF4:Lava Fields:Lava Cavern, Obsidian Cliffs-15 1017]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1017,
+        "name": "Lava Cavern, Obsidian Cliffs",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "15/1018",
+          "NE": "0",
+          "NW": "15/1016",
+          "SE": "15/1043",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "96200040:36601440:11:-1:0:::",
+      "parts": [
+        "96200040",
+        "36601440",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "96200040:0000:ne[sea ne]",
+      "parts": [
+        "96200040",
+        "0000",
+        "ne[sea ne]"
+      ],
+      "commands": [
+        "ne[sea ne]"
+      ]
+    },
+    {
+      "raw": "36600410:0000:e",
+      "parts": [
+        "36600410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "36600140:0000:ne",
+      "parts": [
+        "36600140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "36604100:0000:ne",
+      "parts": [
+        "36604100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "36604001:0000:n",
+      "parts": [
+        "36604001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "36600404:0000:nw",
+      "parts": [
+        "36600404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "36601400:0000:nw",
+      "parts": [
+        "36601400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "36601040:0000:w",
+      "parts": [
+        "36601040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "36604010:0000:sw",
+      "parts": [
+        "36604010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "36600140:0000:w",
+      "parts": [
+        "36600140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "36600410:0000:nw",
+      "parts": [
+        "36600410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

@@ -1,0 +1,271 @@
+{
+  "file": "WRAIGORU.mp",
+  "sha256": "723dfa202ee1fcc60520bc78e3cacbfcf2ca8d02804b82cc79bf626140878243",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "WRAI",
+      "area": "Ancient Ruin",
+      "label": "Wraithlord",
+      "mapNumber": 3,
+      "roomNumber": 650,
+      "raw": "[WRAI:Ancient Ruin:Wraithlord-3 650]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 650,
+        "name": "Torture Chamber",
+        "exits": {
+          "N": "Action [on the S exit of this room]: say darkness, say night, say shadow",
+          "S": "3/651 (Hidden/Needs 1 Actions, any order)",
+          "E": "3/649",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "GORU",
+      "area": "Ancient Ruin",
+      "label": "Goru-Nezar",
+      "mapNumber": 3,
+      "roomNumber": 668,
+      "raw": "[GORU:Ancient Ruin:Goru-Nezar-3 668]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 668,
+        "name": "Royal Palace, Kitchen",
+        "exits": {
+          "N": "0",
+          "S": "3/667 (Door [11 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DF000010:30400008:17:-1:0:::",
+      "parts": [
+        "DF000010",
+        "30400008",
+        "17",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "17",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DF000010:0001:s[say darkness]",
+      "parts": [
+        "DF000010",
+        "0001",
+        "s[say darkness]"
+      ],
+      "commands": [
+        "s[say darkness]"
+      ]
+    },
+    {
+      "raw": "DC200054:0202:w",
+      "parts": [
+        "DC200054",
+        "0202",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E7F00050:0203:w",
+      "parts": [
+        "E7F00050",
+        "0203",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "83700110:0000:ne",
+      "parts": [
+        "83700110",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DC204100:0000:ne",
+      "parts": [
+        "DC204100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DC204110:0000:ne",
+      "parts": [
+        "DC204110",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "B9504100:0000:push diamond",
+      "parts": [
+        "B9504100",
+        "0000",
+        "push diamond"
+      ],
+      "commands": [
+        "push diamond"
+      ]
+    },
+    {
+      "raw": "B9504100:0000:push amethyst",
+      "parts": [
+        "B9504100",
+        "0000",
+        "push amethyst"
+      ],
+      "commands": [
+        "push amethyst"
+      ]
+    },
+    {
+      "raw": "B9504100:0000:push sapphire",
+      "parts": [
+        "B9504100",
+        "0000",
+        "push sapphire"
+      ],
+      "commands": [
+        "push sapphire"
+      ]
+    },
+    {
+      "raw": "B9504100:0000:push emerald",
+      "parts": [
+        "B9504100",
+        "0000",
+        "push emerald"
+      ],
+      "commands": [
+        "push emerald"
+      ]
+    },
+    {
+      "raw": "B9504100:0000:push topaz",
+      "parts": [
+        "B9504100",
+        "0000",
+        "push topaz"
+      ],
+      "commands": [
+        "push topaz"
+      ]
+    },
+    {
+      "raw": "B9504100:0000:push onyx",
+      "parts": [
+        "B9504100",
+        "0000",
+        "push onyx"
+      ],
+      "commands": [
+        "push onyx"
+      ]
+    },
+    {
+      "raw": "B9504100:0000:push ruby",
+      "parts": [
+        "B9504100",
+        "0000",
+        "push ruby"
+      ],
+      "commands": [
+        "push ruby"
+      ]
+    },
+    {
+      "raw": "B9506100:0000:se",
+      "parts": [
+        "B9506100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "36500004:0000:s",
+      "parts": [
+        "36500004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D0F00011:0000:e",
+      "parts": [
+        "D0F00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2E600042:0002:n",
+      "parts": [
+        "2E600042",
+        "0002",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 21
+}

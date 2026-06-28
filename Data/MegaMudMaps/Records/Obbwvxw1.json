@@ -1,0 +1,165 @@
+{
+  "file": "Obbwvxw1.mp",
+  "sha256": "632caf2b50d73a749d19ee600b2c7954ff903cfac074091dc6800c63d70ef717",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "OBBW",
+      "area": "Black Wastelands",
+      "label": "Wastelands Obelisk",
+      "mapNumber": 1,
+      "roomNumber": 2426,
+      "raw": "[OBBW:Black Wastelands:Wastelands Obelisk-1 2426]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2426,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "3/780",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "3/741",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VXW1",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (Pillaged Museum)3 669",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[VXW1:Black Wastelands:Wastelands Vortex (Pillaged Museum)3 669]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED201001:ED101445:9:-1:0:::",
+      "parts": [
+        "ED201001",
+        "ED101445",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED201001:0000:se",
+      "parts": [
+        "ED201001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED004410:0000:e",
+      "parts": [
+        "ED004410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000144:0000:ne",
+      "parts": [
+        "ED000144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "ED004001:0000:n",
+      "parts": [
+        "ED004001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ED000014:0000:e",
+      "parts": [
+        "ED000014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000050:0000:e",
+      "parts": [
+        "ED000050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000051:0000:e",
+      "parts": [
+        "ED000051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED001040:0000:se",
+      "parts": [
+        "ED001040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED001400:0000:se",
+      "parts": [
+        "ED001400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

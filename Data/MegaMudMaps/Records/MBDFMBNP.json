@@ -1,0 +1,262 @@
+{
+  "file": "MBDFMBNP.mp",
+  "sha256": "adab9dd44b88a1d318caf3630276b01c23976bfd0c44929e9ed3fb6c13b626b8",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MBDF",
+      "area": "Misty Valley",
+      "label": "Misty Bog, Black Dragon Fork",
+      "mapNumber": 6,
+      "roomNumber": 414,
+      "raw": "[MBDF:Misty Valley:Misty Bog, Black Dragon Fork-6 414]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 414,
+        "name": "Misty Bog",
+        "exits": {
+          "N": "0",
+          "S": "6/427",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "6/413",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/415",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MBNP",
+      "area": "Misty Valley",
+      "label": "Misty Bog NPP Portal",
+      "mapNumber": 1,
+      "roomNumber": 2682,
+      "raw": "[MBNP:Misty Valley:Misty Bog NPP Portal-1 2682]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2682,
+        "name": "Misty Bog",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/390",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "04A10404:04A00010:16:-1:0:::",
+      "parts": [
+        "04A10404",
+        "04A00010",
+        "16",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "04A10404:0000:nw",
+      "parts": [
+        "04A10404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "04A01040:0000:w",
+      "parts": [
+        "04A01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "04A00050:0000:w",
+      "parts": [
+        "04A00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "04A00410:0000:nw",
+      "parts": [
+        "04A00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "04A01500:0000:ne",
+      "parts": [
+        "04A01500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "04A04100:0000:ne",
+      "parts": [
+        "04A04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "04A04410:0000:e",
+      "parts": [
+        "04A04410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "04A10040:0000:u",
+      "parts": [
+        "04A10040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "04A40100:0000:ne",
+      "parts": [
+        "04A40100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "04A04001:0000:n",
+      "parts": [
+        "04A04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "04A00104:0000:ne",
+      "parts": [
+        "04A00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "04A04400:0000:nw",
+      "parts": [
+        "04A04400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "04A01040:0000:w",
+      "parts": [
+        "04A01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "04A00050:0000:w",
+      "parts": [
+        "04A00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "04A04010:0000:sw",
+      "parts": [
+        "04A04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "04A00145:0000:w",
+      "parts": [
+        "04A00145",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

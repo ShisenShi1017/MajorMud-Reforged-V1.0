@@ -1,0 +1,107 @@
+{
+  "file": "Dmirkmin.mp",
+  "sha256": "5c113a948128eb4b0fa36b89403ddb2831f6d7e45ca2928cb12ddffdb0d7f42e",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DMIR",
+      "area": "Dwarven Mines",
+      "label": "Iron Mine (Level 1)",
+      "mapNumber": 6,
+      "roomNumber": 1569,
+      "raw": "[DMIR:Dwarven Mines:Iron Mine (Level 1)-6 1569]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1569,
+        "name": "Iron Mine, Cart Track",
+        "exits": {
+          "N": "0",
+          "S": "6/1570",
+          "E": "6/1585",
+          "W": "6/1568",
+          "NE": "6/1576",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "KMIN",
+      "area": "Khazarad",
+      "label": "Miner's Guild",
+      "mapNumber": 6,
+      "roomNumber": 1567,
+      "raw": "[KMIN:Khazarad:Miner's Guild-6 1567]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1567,
+        "name": "Miner's Guild",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/1568 (Item: 942)",
+          "W": "6/1288",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "FFB00154:0FE00050:2:-1:0:::",
+      "parts": [
+        "FFB00154",
+        "0FE00050",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "FFB00154:0000:w",
+      "parts": [
+        "FFB00154",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "03700050:0000:w",
+      "parts": [
+        "03700050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

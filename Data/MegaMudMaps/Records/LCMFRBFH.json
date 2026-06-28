@@ -1,0 +1,205 @@
+{
+  "file": "LCMFRBFH.mp",
+  "sha256": "4f40ab2137b580c0104724f98fc204fd5026f9bb2306d30999503e5dd070a923",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "LCMF",
+      "area": "Scorching Desert",
+      "label": "Manscorpion Fork",
+      "mapNumber": 12,
+      "roomNumber": 1573,
+      "raw": "[LCMF:Scorching Desert:Manscorpion Fork-12 1573]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 1573,
+        "name": "Limestone Caverns",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "12/1574",
+          "NW": "12/1767",
+          "SE": "0",
+          "SW": "12/1572",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RBFH",
+      "area": "Scorching Desert",
+      "label": "Limetone caverns, Hydra Door",
+      "mapNumber": 12,
+      "roomNumber": 1797,
+      "raw": "[RBFH:Scorching Desert:Limetone caverns, Hydra Door-12 1797]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 1797,
+        "name": "Limestone Caverns",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "12/1798 (Key: 1171 [or 301 picklocks/strength])",
+          "NW": "0",
+          "SE": "0",
+          "SW": "12/1796",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C5804500:C5804200:11:-1:0:::",
+      "parts": [
+        "C5804500",
+        "C5804200",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C5804500:0000:nw",
+      "parts": [
+        "C5804500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801500:0000:nw",
+      "parts": [
+        "C5801500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5805400:0000:nw",
+      "parts": [
+        "C5805400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801401:0000:n",
+      "parts": [
+        "C5801401",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C5800104:0000:ne",
+      "parts": [
+        "C5800104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "C5804500:0000:nw",
+      "parts": [
+        "C5804500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801400:0000:nw",
+      "parts": [
+        "C5801400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C5801100:0000:ne",
+      "parts": [
+        "C5801100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

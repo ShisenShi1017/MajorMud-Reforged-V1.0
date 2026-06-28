@@ -1,0 +1,194 @@
+{
+  "file": "Smthkhaz.mp",
+  "sha256": "817283d2c838923b8eb8122208738b30d2d87224f023f79a2f98163d215d422a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SMTH",
+      "area": "Khazarad",
+      "label": "Master Smith Martok",
+      "mapNumber": 6,
+      "roomNumber": 1357,
+      "raw": "[SMTH:Khazarad:Master Smith Martok-6 1357]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1357,
+        "name": "Forge of Khazarad",
+        "exits": {
+          "N": "6/1356",
+          "S": "6/1360",
+          "E": "6/1359",
+          "W": "6/1358",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8FC00055:19800051:10:-1:0:::",
+      "parts": [
+        "8FC00055",
+        "19800051",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "8FC00055:0000:n",
+      "parts": [
+        "8FC00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8FC10004:0000:u",
+      "parts": [
+        "8FC10004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "88A40001:0000:n",
+      "parts": [
+        "88A40001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D1D00054:0000:w",
+      "parts": [
+        "D1D00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1D00050:0000:w",
+      "parts": [
+        "D1D00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1D00058:0000:w",
+      "parts": [
+        "D1D00058",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1D00058:0000:w",
+      "parts": [
+        "D1D00058",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1D00050:0000:w",
+      "parts": [
+        "D1D00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B2800054:0000:s",
+      "parts": [
+        "B2800054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3D000005:0000:s",
+      "parts": [
+        "3D000005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

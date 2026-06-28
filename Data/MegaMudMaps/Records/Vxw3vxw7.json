@@ -1,0 +1,194 @@
+{
+  "file": "Vxw3vxw7.mp",
+  "sha256": "0891e92901d1a3a412f18b754122adb2b5aae5be2242d81761a50e0a20f961d5",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXW3",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (DTH)",
+      "mapNumber": 3,
+      "roomNumber": 762,
+      "raw": "[VXW3:Black Wastelands:Wastelands Vortex (DTH)-3 762]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 762,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "3/761",
+          "S": "3/763",
+          "E": "3/767",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VXW7",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (Dreary Village)",
+      "mapNumber": 3,
+      "roomNumber": 776,
+      "raw": "[VXW7:Black Wastelands:Wastelands Vortex (Dreary Village)-3 776]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 776,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "3/775",
+          "SE": "0",
+          "SW": "3/777",
+          "U": "0",
+          "D": "3/785 (Text: go vortex, enter vortex, go swirling vortex)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED100015:ED104400:10:-1:0:::",
+      "parts": [
+        "ED100015",
+        "ED104400",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED100015:0000:e",
+      "parts": [
+        "ED100015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000050:0000:e",
+      "parts": [
+        "ED000050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED001040:0000:se",
+      "parts": [
+        "ED001040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED000404:0000:s",
+      "parts": [
+        "ED000404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED004001:0000:sw",
+      "parts": [
+        "ED004001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "ED001100:0000:se",
+      "parts": [
+        "ED001100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED000410:0000:e",
+      "parts": [
+        "ED000410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000044:0000:s",
+      "parts": [
+        "ED000044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED001001:0000:se",
+      "parts": [
+        "ED001001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED001400:0000:se",
+      "parts": [
+        "ED001400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

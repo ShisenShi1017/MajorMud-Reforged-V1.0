@@ -1,0 +1,151 @@
+{
+  "file": "ARPOWRAI.mp",
+  "sha256": "baa64418773df1e484fc1cd4e0c9f3824795290edb6eb5f6bb17fae2533d0a87",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ARPO",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin, Palace Gates(open)",
+      "mapNumber": 3,
+      "roomNumber": 661,
+      "raw": "[ARPO:Ancient Ruin:Ancient Ruin, Palace Gates(open)-3 661]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 661,
+        "name": "Ancient Ruin, Palace Gates",
+        "exits": {
+          "N": "Action#1 [on the SE exit of this room]: push diamond, move diamond",
+          "S": "Action#2 [on the SE exit of this room]: push amethyst, move amethyst",
+          "E": "Action#3 [on the SE exit of this room]: push sapphire, move sapphire",
+          "W": "Action#4 [on the SE exit of this room]: push emerald, move emerald",
+          "NE": "3/662",
+          "NW": "Action#5 [on the SE exit of this room]: push topaz, move topaz",
+          "SE": "3/665 (Hidden/Needs 7 Actions, specific order)",
+          "SW": "3/659",
+          "U": "Action#6 [on the SE exit of this room]: push onyx, move onyx",
+          "D": "Action#7 [on the SE exit of this room]: push ruby, move ruby"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "WRAI",
+      "area": "Ancient Ruin",
+      "label": "Wraithlord",
+      "mapNumber": 3,
+      "roomNumber": 650,
+      "raw": "[WRAI:Ancient Ruin:Wraithlord-3 650]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 650,
+        "name": "Torture Chamber",
+        "exits": {
+          "N": "Action [on the S exit of this room]: say darkness, say night, say shadow",
+          "S": "3/651 (Hidden/Needs 1 Actions, any order)",
+          "E": "3/649",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B9506100:DF000010:6:-1:0:::",
+      "parts": [
+        "B9506100",
+        "DF000010",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B9506100:0000:sw",
+      "parts": [
+        "B9506100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DC204110:0000:sw",
+      "parts": [
+        "DC204110",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DC204100:0000:sw",
+      "parts": [
+        "DC204100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "83700110:0200:e",
+      "parts": [
+        "83700110",
+        "0200",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E7F00050:0200:e",
+      "parts": [
+        "E7F00050",
+        "0200",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DC200054:0000:n[sea n]",
+      "parts": [
+        "DC200054",
+        "0000",
+        "n[sea n]"
+      ],
+      "commands": [
+        "n[sea n]"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

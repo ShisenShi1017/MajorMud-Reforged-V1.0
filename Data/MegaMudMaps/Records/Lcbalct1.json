@@ -1,0 +1,144 @@
+{
+  "file": "Lcbalct1.mp",
+  "sha256": "7b403cbed0a85ada45ba57fd42f558a915e8d3aa8ef98b1d53d930e3dcacca15",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCBA",
+      "area": "Lost City",
+      "label": "Bank of the Lost City",
+      "mapNumber": 16,
+      "roomNumber": 320,
+      "raw": "[LCBA:Lost City:Bank of the Lost City-16 320]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 320,
+        "name": "Bank",
+        "exits": {
+          "N": "16/319",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "LCT1",
+      "area": "Lost City",
+      "label": "Temple Stairs",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT1:Lost City:Temple Stairs]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3FA00001:3A700155:7:-1:0:::",
+      "parts": [
+        "3FA00001",
+        "3A700155",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3FA00001:0000:n",
+      "parts": [
+        "3FA00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3B900555:0000:n",
+      "parts": [
+        "3B900555",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:e",
+      "parts": [
+        "3B905054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:e",
+      "parts": [
+        "3B905054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:e",
+      "parts": [
+        "3B905054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:e",
+      "parts": [
+        "3B905054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B904054:0000:e",
+      "parts": [
+        "3B904054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

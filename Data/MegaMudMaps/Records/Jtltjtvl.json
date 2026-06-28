@@ -1,0 +1,141 @@
+{
+  "file": "Jtltjtvl.mp",
+  "sha256": "02afd80f3659ca3e3d0bd15e5e1ef696b01505bd1edd25a37c50174b45a407ac",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "JTLT",
+      "area": "Jungle",
+      "label": "Tasloi Village, Large Tree",
+      "mapNumber": 16,
+      "roomNumber": 20,
+      "raw": "[JTLT:Jungle:Tasloi Village, Large Tree-16 20]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 20,
+        "name": "Tasloi Village, Large Tree",
+        "exits": {
+          "N": "16/19",
+          "S": "0",
+          "E": "16/21",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/26 (Text: climb tree)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "JTVL",
+      "area": "Jungle",
+      "label": "Tasloi Village",
+      "mapNumber": 16,
+      "roomNumber": 8,
+      "raw": "[JTVL:Jungle:Tasloi Village-16 8]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 8,
+        "name": "Tasloi Village",
+        "exits": {
+          "N": "0",
+          "S": "16/13",
+          "E": "16/4",
+          "W": "16/9",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A8200011:82A00054:5:-1:0:::",
+      "parts": [
+        "A8200011",
+        "82A00054",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A8200011:0000:n",
+      "parts": [
+        "A8200011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "82A00044:0000:w",
+      "parts": [
+        "82A00044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "82A00110:0000:ne",
+      "parts": [
+        "82A00110",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "82A04011:0000:n",
+      "parts": [
+        "82A04011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "82A00005:0000:n",
+      "parts": [
+        "82A00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

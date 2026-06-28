@@ -1,0 +1,141 @@
+{
+  "file": "LCWFLCHS.mp",
+  "sha256": "820903be6c6c216aa23d5123e25dac2a5e9239a76243cf89add3ec756b566070",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "LCWF",
+      "area": "Lost City",
+      "label": "Weapons Shop, Front Room",
+      "mapNumber": 16,
+      "roomNumber": 330,
+      "raw": "[LCWF:Lost City:Weapons Shop, Front Room-16 330]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 330,
+        "name": "Weapons Shop, Front Room",
+        "exits": {
+          "N": "16/331",
+          "S": "0",
+          "E": "0",
+          "W": "16/324",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LCHS",
+      "area": "Lost City",
+      "label": "Hides Shop",
+      "mapNumber": 16,
+      "roomNumber": 329,
+      "raw": "[LCHS:Lost City:Hides Shop-16 329]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 329,
+        "name": "Hides Shop",
+        "exits": {
+          "N": "0",
+          "S": "16/327",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BCA00041:4A500004:5:-1:0:::",
+      "parts": [
+        "BCA00041",
+        "4A500004",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BCA00041:0000:w",
+      "parts": [
+        "BCA00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "61900015:0000:s",
+      "parts": [
+        "61900015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A1100011:0000:e",
+      "parts": [
+        "A1100011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "61900050:0000:e",
+      "parts": [
+        "61900050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "61900051:0000:n",
+      "parts": [
+        "61900051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

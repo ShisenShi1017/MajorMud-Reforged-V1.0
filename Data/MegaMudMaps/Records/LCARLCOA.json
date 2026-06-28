@@ -1,0 +1,78 @@
+{
+  "file": "LCARLCOA.mp",
+  "sha256": "f28950b3fc0333419ef3c3651b4ebc0a513b09d6398659c94d81123a3a6d13b7",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "LCAR",
+      "area": "Scorching Desert",
+      "label": "Limestone Caverns, Argak the Grey15 1000",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCAR:Scorching Desert:Limestone Caverns, Argak the Grey15 1000]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCOA",
+      "area": "Scorching Desert",
+      "label": "Limestone Caverns, Outside Argak",
+      "mapNumber": 15,
+      "roomNumber": 1169,
+      "raw": "[LCOA:Scorching Desert:Limestone Caverns, Outside Argak-15 1169]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1169,
+        "name": "Limestone Caverns",
+        "exits": {
+          "N": "15/1000 (Class: 13 OK, 0 NO)",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "12/1298",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "79700004:C5801001:1:-1:0:::",
+      "parts": [
+        "79700004",
+        "C5801001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "79700004:0000:s",
+      "parts": [
+        "79700004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

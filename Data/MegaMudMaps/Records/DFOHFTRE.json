@@ -1,0 +1,205 @@
+{
+  "file": "DFOHFTRE.mp",
+  "sha256": "1a123d60ec806dba23732eba37b31298b226ef1c82116d0fcd67b108b5bfd89f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DFOH",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest, Outside Hidden Kp",
+      "mapNumber": 9,
+      "roomNumber": 724,
+      "raw": "[DFOH:Darkwood Forest:Darkwood Forest, Outside Hidden Kp-9 724]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 724,
+        "name": "Darkwood Forest, Hidden Keep",
+        "exits": {
+          "N": "9/725 (Hidden/Searchable)",
+          "S": "0",
+          "E": "9/798 (Door [251 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "9/723",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FTRE",
+      "area": "Trainers",
+      "label": "Tree House (Aldreth) (12-20)",
+      "mapNumber": 1,
+      "roomNumber": 2305,
+      "raw": "[FTRE:Trainers:Tree House (Aldreth) (12-20)-1 2305]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2305,
+        "name": "Darkwood Tree, Small House",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/2304 (Door [6 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F1904020:D8200020:11:-1:0:::",
+      "parts": [
+        "F1904020",
+        "D8200020",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F1904020:0000:sw",
+      "parts": [
+        "F1904020",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E04100:0000:sw",
+      "parts": [
+        "F4E04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00140:0000:w",
+      "parts": [
+        "F4E00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4E00050:0000:w",
+      "parts": [
+        "F4E00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4E00410:0000:nw",
+      "parts": [
+        "F4E00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:n",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00404:0000:nw",
+      "parts": [
+        "F4E00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E05400:0000:nw",
+      "parts": [
+        "F4E05400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01040:0000:w",
+      "parts": [
+        "F4E01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4E00051:0000:w",
+      "parts": [
+        "F4E00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "85B00090:0000:w",
+      "parts": [
+        "85B00090",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

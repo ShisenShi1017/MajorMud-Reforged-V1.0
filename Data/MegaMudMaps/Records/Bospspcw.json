@@ -1,0 +1,217 @@
+{
+  "file": "Bospspcw.mp",
+  "sha256": "471ef17e816f6ef6270119d6481482c680d06d845b5272a028c10549e31c079c",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "BOSP",
+      "area": "Scorching Desert",
+      "label": "Bountiful Oasis, Shimmering Pool",
+      "mapNumber": 12,
+      "roomNumber": 73,
+      "raw": "[BOSP:Scorching Desert:Bountiful Oasis, Shimmering Pool-12 73]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 73,
+        "name": "Bountiful Oasis, Shimmering Pool",
+        "exits": {
+          "N": "12/76",
+          "S": "12/72",
+          "E": "12/75",
+          "W": "12/74",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SPCW",
+      "area": "Scorching Desert",
+      "label": "Golden Palace Courtyard, Well",
+      "mapNumber": 12,
+      "roomNumber": 118,
+      "raw": "[SPCW:Scorching Desert:Golden Palace Courtyard, Well-12 118]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 118,
+        "name": "Fortress Courtyard, Well",
+        "exits": {
+          "N": "12/120 (Door [16 picklocks/strength])",
+          "S": "12/109",
+          "E": "12/117",
+          "W": "12/119",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "43300055:EEA00056:12:-1:0:::",
+      "parts": [
+        "43300055",
+        "EEA00056",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "43300055:0000:dive pool",
+      "parts": [
+        "43300055",
+        "0000",
+        "dive pool"
+      ],
+      "commands": [
+        "dive pool"
+      ]
+    },
+    {
+      "raw": "38050000:0004:d",
+      "parts": [
+        "38050000",
+        "0004",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "38050000:0004:d",
+      "parts": [
+        "38050000",
+        "0004",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "38010001:0004:n",
+      "parts": [
+        "38010001",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "38000005:0004:n",
+      "parts": [
+        "38000005",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "38000005:0004:n",
+      "parts": [
+        "38000005",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "38000005:0004:n",
+      "parts": [
+        "38000005",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "38000005:0004:n",
+      "parts": [
+        "38000005",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "38000005:0004:n",
+      "parts": [
+        "38000005",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "38010004:0004:u",
+      "parts": [
+        "38010004",
+        "0004",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "38050000:0004:u",
+      "parts": [
+        "38050000",
+        "0004",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "38050000:0004:u",
+      "parts": [
+        "38050000",
+        "0004",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

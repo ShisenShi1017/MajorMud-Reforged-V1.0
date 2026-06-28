@@ -1,0 +1,185 @@
+{
+  "file": "Lcjslcde.mp",
+  "sha256": "43f774f4c038ad4041f1115a9082c4923af88c010524185ae8de84059eaeec52",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCJS",
+      "area": "Lost City",
+      "label": "Jewelry Shop",
+      "mapNumber": 16,
+      "roomNumber": 434,
+      "raw": "[LCJS:Lost City:Jewelry Shop-16 434]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 434,
+        "name": "Jewelry Shop",
+        "exits": {
+          "N": "16/427",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LCDE",
+      "area": "Lost City",
+      "label": "Well Lit Alley, Dead End",
+      "mapNumber": 16,
+      "roomNumber": 425,
+      "raw": "[LCDE:Lost City:Well Lit Alley, Dead End-16 425]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 425,
+        "name": "Well Lit Alley, Dead End",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/424",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E2400001:11E00004:9:-1:0:::",
+      "parts": [
+        "E2400001",
+        "11E00004",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E2400001:0000:n",
+      "parts": [
+        "E2400001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3B900555:0000:e",
+      "parts": [
+        "3B900555",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B900455:0000:e",
+      "parts": [
+        "3B900455",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A8C00044:0000:s",
+      "parts": [
+        "A8C00044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "61900005:0000:s",
+      "parts": [
+        "61900005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "61900005:0000:s",
+      "parts": [
+        "61900005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A1100041:0000:w",
+      "parts": [
+        "A1100041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "61900050:0000:w",
+      "parts": [
+        "61900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "61900051:0000:n",
+      "parts": [
+        "61900051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

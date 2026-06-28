@@ -1,0 +1,169 @@
+{
+  "file": "Gob3gob2.mp",
+  "sha256": "151ad4155ff14c6e0aa35ed61042e713ba17812308f3ecd9f1866e5b7bb8e3a4",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GOB3",
+      "area": "Goblin caves",
+      "label": "Goblin Caves (Werewolf fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GOB3:Goblin caves:Goblin Caves (Werewolf fork)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "GOB2",
+      "area": "Goblin caves",
+      "label": "Goblin Caves (Slavemaster fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GOB2:Goblin caves:Goblin Caves (Slavemaster fork)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "01104410:01180050:11:-1:0:::",
+      "parts": [
+        "01104410",
+        "01180050",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "01104410:0001:nw",
+      "parts": [
+        "01104410",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "01101040:0001:w",
+      "parts": [
+        "01101040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "01104010:0001:sw",
+      "parts": [
+        "01104010",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "01100140:0001:w",
+      "parts": [
+        "01100140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "01100050:0001:w",
+      "parts": [
+        "01100050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "01104010:0001:sw",
+      "parts": [
+        "01104010",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "01100140:0001:w",
+      "parts": [
+        "01100140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "01100410:0001:nw",
+      "parts": [
+        "01100410",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "01101040:0001:w",
+      "parts": [
+        "01101040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "0110041A:0001:nw",
+      "parts": [
+        "0110041A",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "01101040:0001:w",
+      "parts": [
+        "01101040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

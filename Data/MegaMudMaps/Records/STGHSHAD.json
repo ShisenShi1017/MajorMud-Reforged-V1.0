@@ -1,0 +1,210 @@
+{
+  "file": "STGHSHAD.mp",
+  "sha256": "f1615c61d5550208c10ea68224c9808ae3892863bea5e9fa296772805b6687c7",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "STGH",
+      "area": "Rhudaur",
+      "label": "Shadow Fist Temple, Great Hall",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[STGH:Rhudaur:Shadow Fist Temple, Great Hall]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SHAD",
+      "area": "Rhudaur",
+      "label": "Shadow Fist Temple",
+      "mapNumber": 9,
+      "roomNumber": 913,
+      "raw": "[SHAD:Rhudaur:Shadow Fist Temple-9 913]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 913,
+        "name": "Shadow Fist Temple, Ladder Down",
+        "exits": {
+          "N": "0",
+          "S": "9/914",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "9/912"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "13300055:EC340004:13:-1:0:::",
+      "parts": [
+        "13300055",
+        "EC340004",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "13300055:0000:n",
+      "parts": [
+        "13300055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "6EC00005:0000:n",
+      "parts": [
+        "6EC00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3ED00054:0000:w",
+      "parts": [
+        "3ED00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00050:0000:w",
+      "parts": [
+        "3ED00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00050:0000:w",
+      "parts": [
+        "3ED00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4E200055:0000:w",
+      "parts": [
+        "4E200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00050:0000:w",
+      "parts": [
+        "3ED00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00050:0000:w",
+      "parts": [
+        "3ED00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3ED00054:0000:s",
+      "parts": [
+        "3ED00054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "6EC00025:0000:s",
+      "parts": [
+        "6EC00025",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DAB00085:0000:s",
+      "parts": [
+        "DAB00085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DAB00025:0000:e",
+      "parts": [
+        "DAB00025",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FF900081:0000:n",
+      "parts": [
+        "FF900081",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

@@ -1,0 +1,110 @@
+{
+  "file": "Drutsadg.mp",
+  "sha256": "51c24f66ace5beb8fd01939c8417b44ddfdb7bbdd79fb02bf29d0a9b25d92472",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DRUT",
+      "area": "Trainers",
+      "label": "Druid Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 501,
+      "raw": "[DRUT:Trainers:Druid Trainer (2-10)-1 501]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 501,
+        "name": "Druid Training Room",
+        "exits": {
+          "N": "0",
+          "S": "1/496",
+          "E": "1/1314",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SADG",
+      "area": "Silvermere",
+      "label": "Adventurer's Guild",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SADG:Silvermere:Adventurer's Guild]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "76000014:D4200014:4:-1:0:::",
+      "parts": [
+        "76000014",
+        "D4200014",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "76000014:0000:s",
+      "parts": [
+        "76000014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

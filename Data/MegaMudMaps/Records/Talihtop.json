@@ -1,0 +1,177 @@
+{
+  "file": "Talihtop.mp",
+  "sha256": "96aa14ba7742b3711c4795371bff50e25ca7bad7781c950dd18054ed26d4c82b",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "TALI",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills (Talisman)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[TALI:Dragon's Teeth Hills:Dragon's Teeth Hills (Talisman)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "HTOP",
+      "area": "Black Caves",
+      "label": "Hilltop Fortress",
+      "mapNumber": 8,
+      "roomNumber": 872,
+      "raw": "[HTOP:Black Caves:Hilltop Fortress-8 872]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 872,
+        "name": "Central Keep, Foyer",
+        "exits": {
+          "N": "0",
+          "S": "8/881",
+          "E": "8/873",
+          "W": "8/849 (Door [26 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C4F04050:36600094:10:-1:0:amber talisman::",
+      "parts": [
+        "C4F04050",
+        "36600094",
+        "10",
+        "-1",
+        "0",
+        "amber talisman",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0",
+        "amber talisman"
+      ]
+    },
+    {
+      "raw": "C4F04050:0000:n[hold up talisman]",
+      "parts": [
+        "C4F04050",
+        "0000",
+        "n[hold up talisman]"
+      ],
+      "commands": [
+        "n[hold up talisman]"
+      ]
+    },
+    {
+      "raw": "84400040:0000:w",
+      "parts": [
+        "84400040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "84420010:0000:u",
+      "parts": [
+        "84420010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "FB480011:0000:n",
+      "parts": [
+        "FB480011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A4A00055:0000:n",
+      "parts": [
+        "A4A00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2EE00054:0000:w",
+      "parts": [
+        "2EE00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2EE00011:0000:n",
+      "parts": [
+        "2EE00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2EE00045:0000:n",
+      "parts": [
+        "2EE00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2EE00045:0000:n",
+      "parts": [
+        "2EE00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2EE00065:0000:e",
+      "parts": [
+        "2EE00065",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

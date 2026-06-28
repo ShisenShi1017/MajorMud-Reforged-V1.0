@@ -1,0 +1,129 @@
+{
+  "file": "Kclokhaz.mp",
+  "sha256": "0e13d5c125d15c4366aa94aa6ed6df72afd55d678e1d9f10860255e760ebf1b9",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KCLO",
+      "area": "Khazarad",
+      "label": "Harkul's Haberdashery",
+      "mapNumber": 6,
+      "roomNumber": 1342,
+      "raw": "[KCLO:Khazarad:Harkul's Haberdashery-6 1342]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1342,
+        "name": "Harkul's Haberdashery",
+        "exits": {
+          "N": "6/1304",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "AC900001:19800051:4:-1:0:::",
+      "parts": [
+        "AC900001",
+        "19800051",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "AC900001:0000:n",
+      "parts": [
+        "AC900001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:w",
+      "parts": [
+        "D1600054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7DB00055:0000:n",
+      "parts": [
+        "7DB00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "19800044:0000:w",
+      "parts": [
+        "19800044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

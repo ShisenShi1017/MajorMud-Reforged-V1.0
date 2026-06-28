@@ -1,0 +1,162 @@
+{
+  "file": "Boatsrst.mp",
+  "sha256": "a0c23fae145cf3f0ffe7dbd882df6031b12508d234e38181a27d8de1bbfb767b",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BOAT",
+      "area": "Silvermere",
+      "label": "Pier (Boatman)",
+      "mapNumber": 1,
+      "roomNumber": 1813,
+      "raw": "[BOAT:Silvermere:Pier (Boatman)-1 1813]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1813,
+        "name": "Pier",
+        "exits": {
+          "N": "1/1814",
+          "S": "1/27",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "SRST",
+      "area": "Silvermere",
+      "label": "River St & Guild St",
+      "mapNumber": 1,
+      "roomNumber": 21,
+      "raw": "[SRST:Silvermere:River St & Guild St-1 21]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 21,
+        "name": "Intersection of Guild St. & River St.",
+        "exits": {
+          "N": "0",
+          "S": "1/390",
+          "E": "1/20",
+          "W": "1/22",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "41900005:01B00054:7:-1:0:::",
+      "parts": [
+        "41900005",
+        "01B00054",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "41900005:0000:s",
+      "parts": [
+        "41900005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "63600055:0000:s",
+      "parts": [
+        "63600055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EB400055:0000:e",
+      "parts": [
+        "EB400055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:e",
+      "parts": [
+        "EB400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:e",
+      "parts": [
+        "EB400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "94200054:0000:e",
+      "parts": [
+        "94200054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:e",
+      "parts": [
+        "EB400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

@@ -1,0 +1,328 @@
+{
+  "file": "Silpsrmp.mp",
+  "sha256": "f17d24f36da36b399fe505963e0fb0706753cd3b5b25616bc0b709b6af326fce",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SILP",
+      "area": "Northern Forests",
+      "label": "Silvery Pool",
+      "mapNumber": 1,
+      "roomNumber": 2411,
+      "raw": "[SILP:Northern Forests:Silvery Pool-1 2411]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2411,
+        "name": "Silvery Pool",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "3/85",
+          "NE": "3/38",
+          "NW": "3/53",
+          "SE": "1/2410",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SRMP",
+      "area": "Northern Forests",
+      "label": "Silver River, Murky Pool",
+      "mapNumber": 1,
+      "roomNumber": 2415,
+      "raw": "[SRMP:Northern Forests:Silver River, Murky Pool-1 2415]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2415,
+        "name": "The Silver River, Murky Pool",
+        "exits": {
+          "N": "0",
+          "S": "1/2414",
+          "E": "0",
+          "W": "0",
+          "NE": "3/197",
+          "NW": "3/204",
+          "SE": "3/178",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E3001540:2A601504:22:-1:0:::",
+      "parts": [
+        "E3001540",
+        "2A601504",
+        "22",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "22",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E3001540:0000:nw",
+      "parts": [
+        "E3001540",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BBC01400:0000:nw",
+      "parts": [
+        "BBC01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BBC01140:0000:w",
+      "parts": [
+        "BBC01140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BBC00410:0000:nw",
+      "parts": [
+        "BBC00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BBC01040:0000:w",
+      "parts": [
+        "BBC01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BBC04011:0000:n",
+      "parts": [
+        "BBC04011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BBC00144:0000:ne",
+      "parts": [
+        "BBC00144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BBC04400:0000:nw",
+      "parts": [
+        "BBC04400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BBC01040:0000:w",
+      "parts": [
+        "BBC01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BBC04010:0000:sw",
+      "parts": [
+        "BBC04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BBC04100:0000:sw",
+      "parts": [
+        "BBC04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BBC04104:0000:s",
+      "parts": [
+        "BBC04104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F7800005:0000:s",
+      "parts": [
+        "F7800005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F7804005:0000:s",
+      "parts": [
+        "F7804005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F7800005:0000:s",
+      "parts": [
+        "F7800005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5E804011:0000:sw",
+      "parts": [
+        "5E804011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F7800140:0000:w",
+      "parts": [
+        "F7800140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16104410:0000:sw",
+      "parts": [
+        "16104410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "16101100:0000:se",
+      "parts": [
+        "16101100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "B4E04410:0000:sw",
+      "parts": [
+        "B4E04410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "94700144:0000:s",
+      "parts": [
+        "94700144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "94704011:0000:sw",
+      "parts": [
+        "94704011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 26
+}

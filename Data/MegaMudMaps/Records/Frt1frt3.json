@@ -1,0 +1,195 @@
+{
+  "file": "Frt1frt3.mp",
+  "sha256": "86f12ff5f642c8658af2bda1c423f4899ed9a1499d503ee43f5d8d554fd1c8ac",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FRT1",
+      "area": "Black Fort",
+      "label": "Black Fortress",
+      "mapNumber": 7,
+      "roomNumber": 1182,
+      "raw": "[FRT1:Black Fort:Black Fortress-7 1182]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1182,
+        "name": "Black Fortress",
+        "exits": {
+          "N": "7/1203",
+          "S": "7/1193",
+          "E": "7/1183",
+          "W": "7/1181",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "FRT3",
+      "area": "Black Fort",
+      "label": "Outside Master Assassin",
+      "mapNumber": 8,
+      "roomNumber": 1262,
+      "raw": "[FRT3:Black Fort:Outside Master Assassin-8 1262]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1262,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "8/1238",
+          "SE": "8/1207",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A4F00055:A4F00056:10:-1:0:::",
+      "parts": [
+        "A4F00055",
+        "A4F00056",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A4F00055:0000:w",
+      "parts": [
+        "A4F00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A4F00410:0000:nw",
+      "parts": [
+        "A4F00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4F09600:0000:nw",
+      "parts": [
+        "A4F09600",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A4F01081:0000:n",
+      "parts": [
+        "A4F01081",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A4F00055:0000:e",
+      "parts": [
+        "A4F00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A4F00050:0000:e",
+      "parts": [
+        "A4F00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A4F00050:0000:e",
+      "parts": [
+        "A4F00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "39810040:0000:u",
+      "parts": [
+        "39810040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "39840005:0000:n",
+      "parts": [
+        "39840005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A4F00085:0000:n",
+      "parts": [
+        "A4F00085",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

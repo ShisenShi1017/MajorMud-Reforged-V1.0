@@ -1,0 +1,77 @@
+{
+  "file": "GRSKBICO.mp",
+  "sha256": "0c018cd8046d2018c60da26331a9bafbb3826fc14ecf2ffebaef66f1eee40f4d",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GRSK",
+      "area": "Rocky Trail",
+      "label": "Sharh'Kur (druid only)",
+      "mapNumber": 15,
+      "roomNumber": 1001,
+      "raw": "[GRSK:Rocky Trail:Sharh'Kur (druid only)-15 1001]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1001,
+        "name": "Glacial Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "15/1166",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BICO",
+      "area": "Rocky Trail",
+      "label": "Black Ice Cavern, Outside Sharh' Kur",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BICO:Rocky Trail:Black Ice Cavern, Outside Sharh' Kur]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D2E01000:DD500410:1:-1:0:::",
+      "parts": [
+        "D2E01000",
+        "DD500410",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D2E01000:0000:se",
+      "parts": [
+        "D2E01000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

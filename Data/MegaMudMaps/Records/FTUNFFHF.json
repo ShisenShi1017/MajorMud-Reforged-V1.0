@@ -1,0 +1,97 @@
+{
+  "file": "FTUNFFHF.mp",
+  "sha256": "53d44c709b649454753a36e7906b670b665157eef34a63aa9de1787d7300b350",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "FTUN",
+      "area": "Black House",
+      "label": "Fungus Tunnel",
+      "mapNumber": 7,
+      "roomNumber": 1405,
+      "raw": "[FTUN:Black House:Fungus Tunnel-7 1405]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1405,
+        "name": "Fungus Tunnel",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "2/2960",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "7/246 (Text: climb roots, climb root)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "FFHF",
+      "area": "Black House",
+      "label": "Fungus Forest, Hole to Tunnels",
+      "mapNumber": 7,
+      "roomNumber": 246,
+      "raw": "[FFHF:Black House:Fungus Forest, Hole to Tunnels-7 246]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 246,
+        "name": "Fungus Forest",
+        "exits": {
+          "N": "7/245",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "7/1405 (Text: go hole, enter hole, climb hole)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3EC00040:41B00001:1:-1:0:::",
+      "parts": [
+        "3EC00040",
+        "41B00001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3EC00040:0000:climb root",
+      "parts": [
+        "3EC00040",
+        "0000",
+        "climb root"
+      ],
+      "commands": [
+        "climb root"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

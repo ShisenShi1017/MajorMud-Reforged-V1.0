@@ -1,0 +1,118 @@
+{
+  "file": "EPISSFAT.mp",
+  "sha256": "491f1cdb4ea64232b47242279071d5f6919eee0fd8072a3aec15c741f5840676",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "EPIS",
+      "area": "Northern Forests",
+      "label": "Evil Passage, Inside Silverwood",
+      "mapNumber": 3,
+      "roomNumber": 497,
+      "raw": "[EPIS:Northern Forests:Evil Passage, Inside Silverwood -3 497]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 497,
+        "name": "Silverwood Forest, Ancient Tree",
+        "exits": {
+          "N": "3/498",
+          "S": "3/520",
+          "E": "0",
+          "W": "3/494",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/525",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SFAT",
+      "area": "Northern Forests",
+      "label": "Silverwood Forest, Ancient Tree",
+      "mapNumber": 3,
+      "roomNumber": 497,
+      "raw": "[SFAT:Northern Forests:Silverwood Forest, Ancient Tree-3 497]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 497,
+        "name": "Silverwood Forest, Ancient Tree",
+        "exits": {
+          "N": "3/498",
+          "S": "3/520",
+          "E": "0",
+          "W": "3/494",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/525",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CC400004:3D010045:3:-1:0:::",
+      "parts": [
+        "CC400004",
+        "3D010045",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CC400004:0000:s",
+      "parts": [
+        "CC400004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CC401001:0000:se",
+      "parts": [
+        "CC401001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CC404410:0000:e",
+      "parts": [
+        "CC404410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

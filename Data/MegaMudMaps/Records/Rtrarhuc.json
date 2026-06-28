@@ -1,0 +1,99 @@
+{
+  "file": "Rtrarhuc.mp",
+  "sha256": "136a81082493b6d583cc32a20aee4ec15c6d4473e6dabc095f0912278d59e239",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RTRA",
+      "area": "Trainers",
+      "label": "Rhudaur Grizzled Trainer (12-30)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[RTRA:Trainers:Rhudaur Grizzled Trainer (12-30)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "17C00040:7AD00055:3:-1:0:::",
+      "parts": [
+        "17C00040",
+        "7AD00055",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "17C00040:0000:w",
+      "parts": [
+        "17C00040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "8CF00059:0000:n",
+      "parts": [
+        "8CF00059",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "84900055:0000:n",
+      "parts": [
+        "84900055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

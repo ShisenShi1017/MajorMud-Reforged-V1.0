@@ -1,0 +1,82 @@
+{
+  "file": "Baltrhuc.mp",
+  "sha256": "12810fcf01fca7fffa520b4506b05ee1b27861e598452e4c511fa6b5ec012efe",
+  "metadataLine": "[][]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "66E00022:7AD00055:5:-1:0:::",
+      "parts": [
+        "66E00022",
+        "7AD00055",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "66E00022:0000:w[search w]",
+      "parts": [
+        "66E00022",
+        "0000",
+        "w[search w]"
+      ],
+      "commands": [
+        "w[search w]"
+      ]
+    },
+    {
+      "raw": "C9100040:0000:w",
+      "parts": [
+        "C9100040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "94A00052:0000:n",
+      "parts": [
+        "94A00052",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8CF00059:0000:n",
+      "parts": [
+        "8CF00059",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "84900055:0000:n",
+      "parts": [
+        "84900055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

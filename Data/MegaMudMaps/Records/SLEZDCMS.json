@@ -1,0 +1,151 @@
+{
+  "file": "SLEZDCMS.mp",
+  "sha256": "18f618fbe25a42cfeedd0b5ef4bc77b044297d4cba0491cf2301697f81d08c3b",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SLEZ",
+      "area": "Dark-Elf City",
+      "label": "Sleazy Shopkeeper",
+      "mapNumber": 8,
+      "roomNumber": 486,
+      "raw": "[SLEZ:Dark-Elf City:Sleazy Shopkeeper-8 486]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 486,
+        "name": "Musty Store",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/481 (Door [16 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DCMS",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf City, Moatside",
+      "mapNumber": 8,
+      "roomNumber": 559,
+      "raw": "[DCMS:Dark-Elf City:Dark-elf City, Moatside-8 559]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 559,
+        "name": "Dark-Elf City, Moatside",
+        "exits": {
+          "N": "8/491",
+          "S": "8/560 (Door [1000 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "8/646 (Text: go moat, dive moat, jump moat)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A1400020:3AA00009:6:-1:0:::",
+      "parts": [
+        "A1400020",
+        "3AA00009",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A1400020:0000:e",
+      "parts": [
+        "A1400020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "86400085:0000:s",
+      "parts": [
+        "86400085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "78000055:0000:s",
+      "parts": [
+        "78000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "86400085:0000:s",
+      "parts": [
+        "86400085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "78000055:0000:s",
+      "parts": [
+        "78000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3C200005:0000:s",
+      "parts": [
+        "3C200005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

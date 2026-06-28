@@ -1,0 +1,249 @@
+{
+  "file": "M7WSGIRT.mp",
+  "sha256": "f866d460236e71078cb80fca43c14774abd36ecfd1ab3a6e8a5924f58e3e7787",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "M7WS",
+      "area": "Ocean",
+      "label": "Wounded Sailor",
+      "mapNumber": 16,
+      "roomNumber": 2665,
+      "raw": "[M7WS:Ocean:Wounded Sailor-16 2665]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2665,
+        "name": "Dark Cave, Ending",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "Action#1 [on the D exit of this room]: push stone, move stone, push rock",
+          "W": "16/2585",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/111 (Hidden/Needs 1 Actions, any order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "GIRT",
+      "area": "Ocean",
+      "label": "Giant River Turtle",
+      "mapNumber": 16,
+      "roomNumber": 663,
+      "raw": "[GIRT:Ocean:Giant River Turtle-16 663]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 663,
+        "name": "Underground Cave",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/128",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "55E00040:34F10000:15:-1:0:::",
+      "parts": [
+        "55E00040",
+        "34F10000",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "55E00040:0000:d[move stone]",
+      "parts": [
+        "55E00040",
+        "0000",
+        "d[move stone]"
+      ],
+      "commands": [
+        "d[move stone]"
+      ]
+    },
+    {
+      "raw": "C1411000:0000:se",
+      "parts": [
+        "C1411000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C1400410:0000:e",
+      "parts": [
+        "C1400410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C1400140:0000:ne",
+      "parts": [
+        "C1400140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "C1405000:0000:se",
+      "parts": [
+        "C1405000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C1400510:0000:e",
+      "parts": [
+        "C1400510",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C1405040:0000:se",
+      "parts": [
+        "C1405040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C1400410:0000:e",
+      "parts": [
+        "C1400410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C1400050:0000:e",
+      "parts": [
+        "C1400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C1400050:0000:e",
+      "parts": [
+        "C1400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C1400140:0000:ne",
+      "parts": [
+        "C1400140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "C1404004:0000:s",
+      "parts": [
+        "C1404004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C1404004:0000:se",
+      "parts": [
+        "C1404004",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C1404410:0000:sw",
+      "parts": [
+        "C1404410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C1400500:0000:dig sand",
+      "parts": [
+        "C1400500",
+        "0000",
+        "dig sand"
+      ],
+      "commands": [
+        "dig sand"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

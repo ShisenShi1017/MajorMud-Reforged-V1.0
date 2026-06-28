@@ -1,0 +1,96 @@
+{
+  "file": "BFGFBWFG.mp",
+  "sha256": "dcd05e8e77c648d0ba06e348716f35471bce4da9eec2ef752a7f34298ed2a884",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BFGF",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest, Garden Fork",
+      "mapNumber": 17,
+      "roomNumber": 602,
+      "raw": "[BFGF:Blackwood Forest:Blackwood Forest, Garden Fork-17 602]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 602,
+        "name": "Blackwood Forest, Winding Trail",
+        "exits": {
+          "N": "0",
+          "S": "17/601",
+          "E": "0",
+          "W": "0",
+          "NE": "17/603",
+          "NW": "17/703",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BWFG",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest, Garden",
+      "mapNumber": 17,
+      "roomNumber": 703,
+      "raw": "[BWFG:Blackwood Forest:Blackwood Forest, Garden-17 703]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 703,
+        "name": "Blackwood Forest, Garden",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "17/704",
+          "SE": "17/602",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5A600504:CCC01400:1:-1:0:::",
+      "parts": [
+        "5A600504",
+        "CCC01400",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5A600504:0000:nw",
+      "parts": [
+        "5A600504",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

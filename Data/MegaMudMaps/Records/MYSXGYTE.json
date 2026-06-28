@@ -1,0 +1,96 @@
+{
+  "file": "MYSXGYTE.mp",
+  "sha256": "9c8b845598391613d43f697ea7095f6f473f40198083a5a68fd0d38ee45bbf40",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MYSX",
+      "area": "Trainers",
+      "label": "Mystic Spirit (11)",
+      "mapNumber": 1,
+      "roomNumber": 2240,
+      "raw": "[MYSX:Trainers:Mystic Spirit (11)-1 2240]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2240,
+        "name": "Large Tomb",
+        "exits": {
+          "N": "1/2229",
+          "S": "1/834 (Text: go portal, enter portal, walk portal)",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "GYTE",
+      "area": "Graveyard",
+      "label": "Graveyard, Tomb Entrance",
+      "mapNumber": 1,
+      "roomNumber": 834,
+      "raw": "[GYTE:Graveyard:Graveyard, Tomb Entrance-1 834]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 834,
+        "name": "Graveyard, Tomb Entrance",
+        "exits": {
+          "N": "1/835 (Door)",
+          "S": "1/818",
+          "E": "1/836",
+          "W": "1/833",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "42600001:EAA00056:1:-1:0:::",
+      "parts": [
+        "42600001",
+        "EAA00056",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "42600001:0000:go portal",
+      "parts": [
+        "42600001",
+        "0000",
+        "go portal"
+      ],
+      "commands": [
+        "go portal"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

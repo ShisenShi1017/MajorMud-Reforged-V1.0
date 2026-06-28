@@ -1,0 +1,38 @@
+{
+  "file": "Vxdfvxw2.mp",
+  "sha256": "9ea376917cb2446e3df95104d4a031c2f879ebe3f876ba728b15ea59a42088c4",
+  "metadataLine": "[][]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "F4F00404:ED101001:1:-1:0:::",
+      "parts": [
+        "F4F00404",
+        "ED101001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F4F00404:0000:@party go vortex",
+      "parts": [
+        "F4F00404",
+        "0000",
+        "@party go vortex"
+      ],
+      "commands": [
+        "@party go vortex"
+      ]
+    }
+  ],
+  "rawLineCount": 3
+}

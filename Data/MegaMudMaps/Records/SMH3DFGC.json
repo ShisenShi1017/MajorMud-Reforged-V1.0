@@ -1,0 +1,97 @@
+{
+  "file": "SMH3DFGC.mp",
+  "sha256": "e832fcd3f3847186e570ac3bf00248515d2f4fecdae90d282c0193c8ccdb98ff",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SMH3",
+      "area": "Darkwood Forest",
+      "label": "Small Hill",
+      "mapNumber": 1,
+      "roomNumber": 153,
+      "raw": "[SMH3:Darkwood Forest:Small Hill-1 153]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 153,
+        "name": "Small Hill",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "1/149",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "DFGC",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest, Grassy Clearing",
+      "mapNumber": 1,
+      "roomNumber": 149,
+      "raw": "[DFGC:Darkwood Forest:Darkwood Forest, Grassy Clearing-1 149]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 149,
+        "name": "Grassy Clearing",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/153",
+          "W": "1/148",
+          "NE": "1/150",
+          "NW": "0",
+          "SE": "1/152",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "42000040:ECA01150:1:-1:0:::",
+      "parts": [
+        "42000040",
+        "ECA01150",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "42000040:0000:w",
+      "parts": [
+        "42000040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

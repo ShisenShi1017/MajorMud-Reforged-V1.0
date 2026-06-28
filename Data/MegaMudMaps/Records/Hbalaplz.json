@@ -1,0 +1,184 @@
+{
+  "file": "Hbalaplz.mp",
+  "sha256": "bd8e977542d9c689cbc51bda7283352e88f774e8b2315a269ceb81a9b67ca11a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "HBAL",
+      "area": "Ancient Ruin",
+      "label": "Huge Basilisk",
+      "mapNumber": 3,
+      "roomNumber": 574,
+      "raw": "[HBAL:Ancient Ruin:Huge Basilisk-3 574]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 574,
+        "name": "Mirrored Chamber",
+        "exits": {
+          "N": "0",
+          "S": "3/573 (Hidden/Searchable)",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "APLZ",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Plaza",
+      "mapNumber": 3,
+      "roomNumber": 560,
+      "raw": "[APLZ:Ancient Ruin:Ancient Ruin Plaza-3 560]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 560,
+        "name": "Ancient Ruin, Plaza",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/559",
+          "W": "3/584",
+          "NE": "0",
+          "NW": "3/596",
+          "SE": "0",
+          "SW": "3/561",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3A900000:36604450:9:-1:0:::",
+      "parts": [
+        "3A900000",
+        "36604450",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3A900000:0001:s[search s]",
+      "parts": [
+        "3A900000",
+        "0001",
+        "s[search s]"
+      ],
+      "commands": [
+        "s[search s]"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:w",
+      "parts": [
+        "19E00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:e",
+      "parts": [
+        "19E00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "19E00050:0001:e",
+      "parts": [
+        "19E00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "09410040:0001:u",
+      "parts": [
+        "09410040",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "14C40000:0001:s[search s]",
+      "parts": [
+        "14C40000",
+        "0001",
+        "s[search s]"
+      ],
+      "commands": [
+        "s[search s]"
+      ]
+    },
+    {
+      "raw": "54C00010:0000:e",
+      "parts": [
+        "54C00010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DC204140:0000:ne",
+      "parts": [
+        "DC204140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DC204100:0000:ne",
+      "parts": [
+        "DC204100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

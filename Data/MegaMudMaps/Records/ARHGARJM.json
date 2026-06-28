@@ -1,0 +1,141 @@
+{
+  "file": "ARHGARJM.mp",
+  "sha256": "a72dd3fcc3488090223acc9b9992c3ed8f49f27589ca96278389fcda6e0b6709",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "ARHG",
+      "area": "Arlysia",
+      "label": "Hap's General Store",
+      "mapNumber": 17,
+      "roomNumber": 2439,
+      "raw": "[ARHG:Arlysia:Hap's General Store-17 2439]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2439,
+        "name": "Hap's General Store",
+        "exits": {
+          "N": "17/2294",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ARJM",
+      "area": "Arlysia",
+      "label": "Jandar's Missile Weapons",
+      "mapNumber": 17,
+      "roomNumber": 2436,
+      "raw": "[ARJM:Arlysia:Jandar's Missile Weapons-17 2436]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2436,
+        "name": "Jandar's Missile Weapons",
+        "exits": {
+          "N": "17/2291",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "68B00001:21700001:5:-1:0:::",
+      "parts": [
+        "68B00001",
+        "21700001",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "68B00001:0000:n",
+      "parts": [
+        "68B00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:e",
+      "parts": [
+        "9C000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:e",
+      "parts": [
+        "9C000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000058:0000:e",
+      "parts": [
+        "9C000058",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000054:0000:s",
+      "parts": [
+        "9C000054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

@@ -1,0 +1,130 @@
+{
+  "file": "KRDCKGEM.mp",
+  "sha256": "a9a5d33b95e2bd5bc76a96cf3bca101628f4fa4c2c806a224fa50b51f32cfef6",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "KRDC",
+      "area": "Khazarad",
+      "label": "Rubbish Disposal Chamber",
+      "mapNumber": 6,
+      "roomNumber": 1353,
+      "raw": "[KRDC:Khazarad:Rubbish Disposal Chamber-6 1353]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1353,
+        "name": "Rubbish Disposal Chamber",
+        "exits": {
+          "N": "6/1308",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "KGEM",
+      "area": "Khazarad",
+      "label": "Gorthun's Gemstones",
+      "mapNumber": 6,
+      "roomNumber": 1346,
+      "raw": "[KGEM:Khazarad:Gorthun's Gemstones-6 1346]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1346,
+        "name": "Gorthun's Gemstones",
+        "exits": {
+          "N": "6/1306",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "0CE00001:ADF00001:4:-1:0:::",
+      "parts": [
+        "0CE00001",
+        "ADF00001",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "0CE00001:0000:n",
+      "parts": [
+        "0CE00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:w",
+      "parts": [
+        "D1600054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:w",
+      "parts": [
+        "D1600054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:s",
+      "parts": [
+        "D1600055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

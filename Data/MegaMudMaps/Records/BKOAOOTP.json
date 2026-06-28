@@ -1,0 +1,177 @@
+{
+  "file": "BKOAOOTP.mp",
+  "sha256": "888e07119d038f612670a59d53dc32eca81c83d66e28abd747e98fdf5a1719aa",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BKOA",
+      "area": "Arlysia",
+      "label": "Bank of Arlysia",
+      "mapNumber": 17,
+      "roomNumber": 2435,
+      "raw": "[BKOA:Arlysia:Bank of Arlysia-17 2435]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2435,
+        "name": "Bank of Arlysia",
+        "exits": {
+          "N": "17/2289",
+          "S": "0",
+          "E": "0",
+          "W": "17/2393",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "OOTP",
+      "area": "Arlysia",
+      "label": "Office of the Pastor (wooden box)17 2590",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[OOTP:Arlysia:Office of the Pastor (wooden box)17 2590]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D4F00041:DD900020:10:-1:0:::",
+      "parts": [
+        "D4F00041",
+        "DD900020",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D4F00041:0000:w",
+      "parts": [
+        "D4F00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E8600015:0000:s",
+      "parts": [
+        "E8600015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600005:0000:s",
+      "parts": [
+        "E8600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600005:0000:s",
+      "parts": [
+        "E8600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600045:0000:w",
+      "parts": [
+        "E8600045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7E900050:0000:w",
+      "parts": [
+        "7E900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7E900050:0000:w",
+      "parts": [
+        "7E900050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7E900056:0000:s",
+      "parts": [
+        "7E900056",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "87200015:0000:s",
+      "parts": [
+        "87200015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "87204095:0000:w",
+      "parts": [
+        "87204095",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

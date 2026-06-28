@@ -1,0 +1,188 @@
+{
+  "file": "DRP2DTHG.mp",
+  "sha256": "303851a3ea19a5fb0ceaadaf5f84523839f470207f1021298ff8668c059f2397",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DRP2",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills, Rocky Passag",
+      "mapNumber": 2,
+      "roomNumber": 404,
+      "raw": "[DRP2:Dragon's Teeth Hills:Dragon's Teeth Hills, Rocky Passag-2 404]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 404,
+        "name": "Dragon's Teeth Hills, Rocky Passage",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "2/405",
+          "NE": "1/2398",
+          "NW": "0",
+          "SE": "2/403",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "DTHG",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills, Gnoll Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DTHG:Dragon's Teeth Hills:Dragon's Teeth Hills, Gnoll Fork]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "1F601140:C4F05100:11:-1:0:::",
+      "parts": [
+        "1F601140",
+        "C4F05100",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "1F601140:0000:w",
+      "parts": [
+        "1F601140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F00050:0000:w",
+      "parts": [
+        "C4F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F00050:0000:w",
+      "parts": [
+        "C4F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F04010:0000:sw",
+      "parts": [
+        "C4F04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C4F00104:0000:s",
+      "parts": [
+        "C4F00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00045:0000:w",
+      "parts": [
+        "C4F00045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C4F00414:0000:s",
+      "parts": [
+        "C4F00414",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F04001:0000:sw",
+      "parts": [
+        "C4F04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

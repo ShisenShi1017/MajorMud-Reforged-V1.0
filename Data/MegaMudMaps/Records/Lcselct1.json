@@ -1,0 +1,111 @@
+{
+  "file": "Lcselct1.mp",
+  "sha256": "395fe9cb0fe5d04da4104384cea9b5a2925777646e7f696790545febcbaf8705",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCSE",
+      "area": "Lost City",
+      "label": "Temple Stairs",
+      "mapNumber": 16,
+      "roomNumber": 311,
+      "raw": "[LCSE:Lost City:Temple Stairs-16 311]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 311,
+        "name": "Temple Stairs",
+        "exits": {
+          "N": "16/477",
+          "S": "0",
+          "E": "16/1521 (Hidden/Searchable)",
+          "W": "16/312",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LCT1",
+      "area": "Lost City",
+      "label": "Temple Stairs",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT1:Lost City:Temple Stairs]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3A700041:3A700155:4:-1:0:::",
+      "parts": [
+        "3A700041",
+        "3A700155",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3A700041:0000:n",
+      "parts": [
+        "3A700041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3A700054:0000:e",
+      "parts": [
+        "3A700054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3A700055:0000:n",
+      "parts": [
+        "3A700055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3A700015:0000:n",
+      "parts": [
+        "3A700015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

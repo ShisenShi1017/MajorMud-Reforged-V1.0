@@ -1,0 +1,71 @@
+{
+  "file": "Bospsdoe.mp",
+  "sha256": "a5888ead159dc4e74e89f15a9d1edfa06e52c56f47d2acd5011ac1aff1bda265",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "43300055:66001140:4:-1:0:::",
+      "parts": [
+        "43300055",
+        "66001140",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "43300055:0000:e",
+      "parts": [
+        "43300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB201140:0000:ne",
+      "parts": [
+        "EB201140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EB205400:0000:se",
+      "parts": [
+        "EB205400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EB204410:0000:e",
+      "parts": [
+        "EB204410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

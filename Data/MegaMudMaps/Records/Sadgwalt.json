@@ -1,0 +1,82 @@
+{
+  "file": "Sadgwalt.mp",
+  "sha256": "9eb288afa454620c744479f30f748536d5be632893cb7b711982d97d93a29dec",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SADG",
+      "area": "Silvermere",
+      "label": "Adventurer's Guild",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SADG:Silvermere:Adventurer's Guild]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D4200014:6FC00041:4:-1:0:::",
+      "parts": [
+        "D4200014",
+        "6FC00041",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D4200014:0000:e",
+      "parts": [
+        "D4200014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:e",
+      "parts": [
+        "D4200055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:e",
+      "parts": [
+        "D4200055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:e",
+      "parts": [
+        "D4200055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

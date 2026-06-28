@@ -1,0 +1,97 @@
+{
+  "file": "Larejsbe.mp",
+  "sha256": "5eed9726bf50504fdcf3fd2b37247b61e30910d9e37b244bf45920fb06bfd56b",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LARE",
+      "area": "Ocean",
+      "label": "Lagoon, Reef",
+      "mapNumber": 16,
+      "roomNumber": 2658,
+      "raw": "[LARE:Ocean:Lagoon, Reef-16 2658]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2658,
+        "name": "Lagoon, Reef",
+        "exits": {
+          "N": "0",
+          "S": "16/2657",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "16/2489 (Text: go beach)",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "JSBE",
+      "area": "Ocean",
+      "label": "Sandy Beach, Entrance",
+      "mapNumber": 16,
+      "roomNumber": 2489,
+      "raw": "[JSBE:Ocean:Sandy Beach, Entrance-16 2489]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2489,
+        "name": "Sandy Beach",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "16/2490",
+          "NW": "0",
+          "SE": "16/2658 (Text: go reef, go lagoon)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "AE500004:7C100100:1:-1:0:::",
+      "parts": [
+        "AE500004",
+        "7C100100",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "AE500004:0000:go beach",
+      "parts": [
+        "AE500004",
+        "0000",
+        "go beach"
+      ],
+      "commands": [
+        "go beach"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

@@ -1,0 +1,162 @@
+{
+  "file": "SSMESMST.mp",
+  "sha256": "f0006fe8cc439303ded4763b800b4294fda9da91e2b9c97478f13b95b95869df",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SSME",
+      "area": "Slums",
+      "label": "Strange Mansion, Entrance",
+      "mapNumber": 1,
+      "roomNumber": 65,
+      "raw": "[SSME:Slums:Strange Mansion, Entrance-1 65]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 65,
+        "name": "Strange Mansion, Entrance",
+        "exits": {
+          "N": "1/64",
+          "S": "1/1182 (Door [21 picklocks/strength])",
+          "E": "0",
+          "W": "1/129",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SMST",
+      "area": "Slums",
+      "label": "Spectral Mage",
+      "mapNumber": 1,
+      "roomNumber": 382,
+      "raw": "[SMST:Slums:Spectral Mage-1 382]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 382,
+        "name": "Strange Mansion, Spectral Throne",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "1/463",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "88900049:51B00040:7:-1:0:::",
+      "parts": [
+        "88900049",
+        "51B00040",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "88900049:0000:n",
+      "parts": [
+        "88900049",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F9600045:0000:n",
+      "parts": [
+        "F9600045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F9600086:0000:w",
+      "parts": [
+        "F9600086",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9FB00020:0000:move bookcase",
+      "parts": [
+        "9FB00020",
+        "0000",
+        "move bookcase"
+      ],
+      "commands": [
+        "move bookcase"
+      ]
+    },
+    {
+      "raw": "F4800020:0000:e",
+      "parts": [
+        "F4800020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F9600092:0000:n",
+      "parts": [
+        "F9600092",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "74700018:0000:e",
+      "parts": [
+        "74700018",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

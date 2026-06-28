@@ -1,0 +1,70 @@
+{
+  "file": "Lcf3lcf4.mp",
+  "sha256": "8bd0120da6990408b46b3d86ff6170bcef1d07e42903b9bc3964dca808d00e2f",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCF3",
+      "area": "Lost City",
+      "label": "Forest Street, Intersection",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCF3:Lost City:Forest Street, Intersection]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCF4",
+      "area": "Lost City",
+      "label": "Forest Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCF4:Lost City:Forest Street]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3B400151:3FC00449:2:-1:0:::",
+      "parts": [
+        "3B400151",
+        "3FC00449",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3B400151:0000:e",
+      "parts": [
+        "3B400151",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3FC00550:0000:e",
+      "parts": [
+        "3FC00550",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

@@ -1,0 +1,128 @@
+{
+  "file": "Rhucrtem.mp",
+  "sha256": "238bcdf193adc358cc9eb5130c623861f29534e3440388287d0939b19e8232ba",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RTEM",
+      "area": "Rhudaur",
+      "label": "Rhudaur Temple Healer",
+      "mapNumber": 2,
+      "roomNumber": 2572,
+      "raw": "[RTEM:Rhudaur:Rhudaur Temple Healer-2 2572]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2572,
+        "name": "Dark Temple, Healing Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "2/2571",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7AD00055:45B00010:4:-1:0:::",
+      "parts": [
+        "7AD00055",
+        "45B00010",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7AD00055:0000:s",
+      "parts": [
+        "7AD00055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "84900055:0000:s",
+      "parts": [
+        "84900055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "8CF00059:0000:s",
+      "parts": [
+        "8CF00059",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "94A00052:0000:w",
+      "parts": [
+        "94A00052",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

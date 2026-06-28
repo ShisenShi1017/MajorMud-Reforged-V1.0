@@ -1,0 +1,981 @@
+{
+  "file": "NPPVLOOP.mp",
+  "sha256": "0a233707feee6b880e60ad53039055fc1ecb485e2a76ad16793f23a5ed8ee62f",
+  "metadataLine": "[Necromancers-8 978][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "NPPV",
+      "area": "Negative Power Plane",
+      "label": "Negative Power Plane Vortex",
+      "mapNumber": 8,
+      "roomNumber": 978,
+      "raw": "[NPPV:Negative Power Plane:Negative Power Plane Vortex-8 978]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 978,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "8/977",
+          "NW": "8/979",
+          "SE": "8/1005",
+          "SW": "8/1006",
+          "U": "8/1126",
+          "D": "8/1332"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DD055500:DD055500:84:-1:0:::",
+      "parts": [
+        "DD055500",
+        "DD055500",
+        "84",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "84",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DD055500:0000:nw",
+      "parts": [
+        "DD055500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:se",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0001:se",
+      "parts": [
+        "DCF01400",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DD055500:0100:ne",
+      "parts": [
+        "DD055500",
+        "0100",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DD055500:0100:ne",
+      "parts": [
+        "DD055500",
+        "0100",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:se",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:se",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:sw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:sw",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0100:sw",
+      "parts": [
+        "DCF55500",
+        "0100",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:sw",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0101:sw",
+      "parts": [
+        "DCF55500",
+        "0101",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:sw",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:se",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:se",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:se",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0001:se",
+      "parts": [
+        "DCF01400",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DD055500:0101:sw",
+      "parts": [
+        "DD055500",
+        "0101",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DD055500:0101:sw",
+      "parts": [
+        "DD055500",
+        "0101",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:se",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF01400:0001:se",
+      "parts": [
+        "DCF01400",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:ne",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:ne",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0100:ne",
+      "parts": [
+        "DCF55500",
+        "0100",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF55500:0100:nw",
+      "parts": [
+        "DCF55500",
+        "0100",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0100:nw",
+      "parts": [
+        "DCF55500",
+        "0100",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0001:sw",
+      "parts": [
+        "DCF55500",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DCF04100:0001:sw",
+      "parts": [
+        "DCF04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DD055500:0001:se",
+      "parts": [
+        "DD055500",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "DD055500:0001:se",
+      "parts": [
+        "DD055500",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 87
+}

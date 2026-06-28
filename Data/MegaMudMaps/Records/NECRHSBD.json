@@ -1,0 +1,128 @@
+{
+  "file": "NECRHSBD.mp",
+  "sha256": "d58e57e6e42109bb6daf7997cc3ee2338a1b9bc1b4cf85acddd0144c369455a5",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "NECR",
+      "area": "Mossy Tunnels",
+      "label": "Necromancer",
+      "mapNumber": 9,
+      "roomNumber": 1431,
+      "raw": "[NECR:Mossy Tunnels:Necromancer-9 1431]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1431,
+        "name": "Amethyst Cave",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "9/1430",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "HSBD",
+      "area": "Mossy Tunnels",
+      "label": "Hauntng Spirit, barrier down",
+      "mapNumber": 9,
+      "roomNumber": 1177,
+      "raw": "[HSBD:Mossy Tunnels:Hauntng Spirit, barrier down-9 1177]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1177,
+        "name": "Catacombs, Shimmering Barrier",
+        "exits": {
+          "N": "9/1428 (Hidden/Needs 1 Actions, any order)",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "9/1176",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "Action [on the N exit of this room]: touch rod barrier, destroy barrier, touch rod to barrier (Item: 996)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "24F00040:4CD00101:4:-1:0:::",
+      "parts": [
+        "24F00040",
+        "4CD00101",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "24F00040:0000:w",
+      "parts": [
+        "24F00040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "28400014:0000:s",
+      "parts": [
+        "28400014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "28400005:0000:s",
+      "parts": [
+        "28400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "28400005:0000:s",
+      "parts": [
+        "28400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

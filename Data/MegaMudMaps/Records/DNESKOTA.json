@@ -1,0 +1,217 @@
+{
+  "file": "DNESKOTA.mp",
+  "sha256": "34782d0ea643d2082c5c6060fe11ea49ccfdf284b069c2830f456c06ecfea9cd",
+  "metadataLine": "[][Viper]",
+  "roomHeaders": [
+    {
+      "code": "DNES",
+      "area": "Lava Fields",
+      "label": "Magma River, Dragon Nest",
+      "mapNumber": 7,
+      "roomNumber": 1367,
+      "raw": "[DNES:Lava Fields:Magma River, Dragon Nest-7 1367]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1367,
+        "name": "Magma River, Dragon Nest",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "7/1368",
+          "NE": "7/1377",
+          "NW": "0",
+          "SE": "0",
+          "SW": "7/1366",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "KOTA",
+      "area": "Lava Fields",
+      "label": "Kotar Bloodthorn",
+      "mapNumber": 7,
+      "roomNumber": 1402,
+      "raw": "[KOTA:Lava Fields:Kotar Bloodthorn-7 1402]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1402,
+        "name": "Large Blue Tent, Back Room",
+        "exits": {
+          "N": "0",
+          "S": "7/1397",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ADF04140:6E000004:12:-1:0:::",
+      "parts": [
+        "ADF04140",
+        "6E000004",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ADF04140:0000:w",
+      "parts": [
+        "ADF04140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "ADF00411:0000:nw",
+      "parts": [
+        "ADF00411",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "ADF05001:0000:n",
+      "parts": [
+        "ADF05001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ADF00005:0000:n",
+      "parts": [
+        "ADF00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ADF05005:0044:n",
+      "parts": [
+        "ADF05005",
+        "0044",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E1A00005:0044:n",
+      "parts": [
+        "E1A00005",
+        "0044",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E1A00404:0044:nw",
+      "parts": [
+        "E1A00404",
+        "0044",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "E1A01001:0044:n",
+      "parts": [
+        "E1A01001",
+        "0044",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E1A00005:0044:n",
+      "parts": [
+        "E1A00005",
+        "0044",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E1A00005:0040:n",
+      "parts": [
+        "E1A00005",
+        "0040",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "23600055:0040:n",
+      "parts": [
+        "23600055",
+        "0040",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57F04055:0040:n",
+      "parts": [
+        "57F04055",
+        "0040",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

@@ -1,0 +1,337 @@
+{
+  "file": "DABLDLPR.mp",
+  "sha256": "3a89bf4f87badf87c700cd073d7bbd6b4453086d60a02d77c970eca61ebf2eae",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DABL",
+      "area": "Blackwood Forest",
+      "label": "Outside Dreadlord of Blood",
+      "mapNumber": 17,
+      "roomNumber": 875,
+      "raw": "[DABL:Blackwood Forest:Outside Dreadlord of Blood-17 875]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 875,
+        "name": "Blackwood Forest",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "17/979 (Hidden/Searchable)",
+          "NW": "0",
+          "SE": "17/874",
+          "SW": "17/876",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DLPR",
+      "area": "Blackwood Forest",
+      "label": "Outside Darken Beast Lord",
+      "mapNumber": 17,
+      "roomNumber": 2812,
+      "raw": "[DLPR:Blackwood Forest:Outside Darken Beast Lord-17 2812]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2812,
+        "name": "Dark Den",
+        "exits": {
+          "N": "17/831",
+          "S": "17/2813",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "57205000:57205004:23:-1:0:::",
+      "parts": [
+        "57205000",
+        "57205004",
+        "23",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "23",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "57205000:0000:sw",
+      "parts": [
+        "57205000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "57204100:0000:sw",
+      "parts": [
+        "57204100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "57200104:0000:s",
+      "parts": [
+        "57200104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "57204001:0000:sw",
+      "parts": [
+        "57204001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "57200140:0000:w",
+      "parts": [
+        "57200140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "57204010:0000:sw",
+      "parts": [
+        "57204010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "57200500:0000:nw",
+      "parts": [
+        "57200500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "57201100:0000:ne",
+      "parts": [
+        "57201100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57204001:0000:n",
+      "parts": [
+        "57204001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57200104:0000:ne",
+      "parts": [
+        "57200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57204100:0000:ne",
+      "parts": [
+        "57204100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57204100:0000:ne",
+      "parts": [
+        "57204100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57205000:0000:se",
+      "parts": [
+        "57205000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "57200401:0000:n",
+      "parts": [
+        "57200401",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57200104:0000:ne",
+      "parts": [
+        "57200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57204400:0000:nw",
+      "parts": [
+        "57204400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "57201400:0000:nw",
+      "parts": [
+        "57201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "57205000:0000:sw",
+      "parts": [
+        "57205000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "57201500:0000:nw",
+      "parts": [
+        "57201500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "57205001:0000:n",
+      "parts": [
+        "57205001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57200005:0000:n",
+      "parts": [
+        "57200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57200104:0000:ne",
+      "parts": [
+        "57200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57204100:0000:ne",
+      "parts": [
+        "57204100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 27
+}

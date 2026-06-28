@@ -1,0 +1,235 @@
+{
+  "file": "Mrdgmrd1.mp",
+  "sha256": "744b9ef275ed0c0bafb71b9b5b1813b01bfb4d42c29bab2f31a29101ceaee49c",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MRDG",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Silvermere Gates)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRDG:Darkwood Forest:Main Road (Silvermere Gates)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "MRD1",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Nth Fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRD1:Darkwood Forest:Main Road (Nth Fork)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B7200055:A2C00404:17:-1:0:::",
+      "parts": [
+        "B7200055",
+        "A2C00404",
+        "17",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "17",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B7200055:0000:e",
+      "parts": [
+        "B7200055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02301040:0000:se",
+      "parts": [
+        "02301040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "02300410:0000:e",
+      "parts": [
+        "02300410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300050:0000:e",
+      "parts": [
+        "02300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02301040:0000:se",
+      "parts": [
+        "02301040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "55701400:0000:se",
+      "parts": [
+        "55701400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C00410:0000:e",
+      "parts": [
+        "A2C00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A2C01040:0000:se",
+      "parts": [
+        "A2C01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C01400:0000:se",
+      "parts": [
+        "A2C01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C00410:0000:e",
+      "parts": [
+        "A2C00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A2C01040:0000:se",
+      "parts": [
+        "A2C01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C01400:0000:se",
+      "parts": [
+        "A2C01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 21
+}

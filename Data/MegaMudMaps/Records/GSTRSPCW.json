@@ -1,0 +1,227 @@
+{
+  "file": "GSTRSPCW.mp",
+  "sha256": "660239d3fc45099c9dcecc5075b246d390f3ff67dfd9902d50c30a0ee6842900",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GSTR",
+      "area": "Scorching Desert",
+      "label": "Golden Palace,Rakshasha Rajah",
+      "mapNumber": 12,
+      "roomNumber": 2247,
+      "raw": "[GSTR:Scorching Desert:Golden Palace,Rakshasha Rajah-12 2247]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2247,
+        "name": "Golden Spire, Library",
+        "exits": {
+          "N": "12/2248 (Door [1000 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "12/120",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SPCW",
+      "area": "Scorching Desert",
+      "label": "Golden Palace Courtyard, Well",
+      "mapNumber": 12,
+      "roomNumber": 118,
+      "raw": "[SPCW:Scorching Desert:Golden Palace Courtyard, Well-12 118]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 118,
+        "name": "Fortress Courtyard, Well",
+        "exits": {
+          "N": "12/120 (Door [16 picklocks/strength])",
+          "S": "12/109",
+          "E": "12/117",
+          "W": "12/119",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "53200001:EEA00056:13:-1:0:::",
+      "parts": [
+        "53200001",
+        "EEA00056",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "53200001:0000:n",
+      "parts": [
+        "53200001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "50800044:0000:w",
+      "parts": [
+        "50800044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "50840010:0000:d",
+      "parts": [
+        "50840010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "FB310004:0000:s",
+      "parts": [
+        "FB310004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "50800011:0000:e",
+      "parts": [
+        "50800011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "50800050:0000:e",
+      "parts": [
+        "50800050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "50800041:0000:n",
+      "parts": [
+        "50800041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "50800044:0000:w",
+      "parts": [
+        "50800044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "50840010:0000:d",
+      "parts": [
+        "50840010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "FB310040:0000:w",
+      "parts": [
+        "FB310040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "50800014:0000:s",
+      "parts": [
+        "50800014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "50800011:0000:e",
+      "parts": [
+        "50800011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CE100058:0000:s",
+      "parts": [
+        "CE100058",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

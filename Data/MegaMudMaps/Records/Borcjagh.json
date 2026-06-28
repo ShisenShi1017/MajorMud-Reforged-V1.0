@@ -1,0 +1,337 @@
+{
+  "file": "Borcjagh.mp",
+  "sha256": "0cd8df1958dff253aa6ae859ec7d2f3694d49242206fb0f9cb9d802ad7aa863c",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BORC",
+      "area": "Dragon's Teeth Hills",
+      "label": "Black Orc Boss",
+      "mapNumber": 9,
+      "roomNumber": 497,
+      "raw": "[BORC:Dragon's Teeth Hills:Black Orc Boss-9 497]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 497,
+        "name": "Damp Cave",
+        "exits": {
+          "N": "9/498",
+          "S": "9/475 (Door [16 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "JAGH",
+      "area": "Dragon's Teeth Hills",
+      "label": "Jagged Hills Path",
+      "mapNumber": 9,
+      "roomNumber": 244,
+      "raw": "[JAGH:Dragon's Teeth Hills:Jagged Hills Path-9 244]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 244,
+        "name": "Jagged Hill Path",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "9/243",
+          "NE": "0",
+          "NW": "0",
+          "SE": "9/245",
+          "SW": "0",
+          "U": "0",
+          "D": "9/263"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "02300009:00541040:23:-1:0:::",
+      "parts": [
+        "02300009",
+        "00541040",
+        "23",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "23",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "02300009:0000:s",
+      "parts": [
+        "02300009",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "5FC00052:0000:e",
+      "parts": [
+        "5FC00052",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "65A00050:0000:e",
+      "parts": [
+        "65A00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "65A00044:0000:s",
+      "parts": [
+        "65A00044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "65A00005:0000:s",
+      "parts": [
+        "65A00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "65A00005:0000:s",
+      "parts": [
+        "65A00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "65A00051:0000:w",
+      "parts": [
+        "65A00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "65A00051:0000:w",
+      "parts": [
+        "65A00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "65A00051:0002:w",
+      "parts": [
+        "65A00051",
+        "0002",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "65A00015:0000:s",
+      "parts": [
+        "65A00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "65A00015:0000:s",
+      "parts": [
+        "65A00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "65A00051:0002:w",
+      "parts": [
+        "65A00051",
+        "0002",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "65A00051:0000:w",
+      "parts": [
+        "65A00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7CB00058:0000:s",
+      "parts": [
+        "7CB00058",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "85E00006:0000:s",
+      "parts": [
+        "85E00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "1B500005:0000:s",
+      "parts": [
+        "1B500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "1B500005:0000:s",
+      "parts": [
+        "1B500005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "33200051:0000:e",
+      "parts": [
+        "33200051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "00501040:0000:se",
+      "parts": [
+        "00501040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "00501400:0000:se",
+      "parts": [
+        "00501400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "00500444:0000:s",
+      "parts": [
+        "00500444",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "00501001:0000:se",
+      "parts": [
+        "00501001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "00500410:0000:e",
+      "parts": [
+        "00500410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 27
+}

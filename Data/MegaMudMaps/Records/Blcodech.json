@@ -1,0 +1,262 @@
+{
+  "file": "Blcodech.mp",
+  "sha256": "dcc699c8b944f70180969f95e2fdd864f0e16eb4add4e6a85596f8c09b48a706",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BLCO",
+      "area": "Black Caves",
+      "label": "Black Caves (Bloodstone Orb)",
+      "mapNumber": 8,
+      "roomNumber": 398,
+      "raw": "[BLCO:Black Caves:Black Caves (Bloodstone Orb)-8 398]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 398,
+        "name": "Lower Caverns, Underground Lake",
+        "exits": {
+          "N": "Action [on the S exit of this room]: rub bloodstone orb, hold bloodstone orb, rub orb (Item: 807)",
+          "S": "8/403 (Hidden/Needs 1 Actions, any order)",
+          "E": "8/397",
+          "W": "8/399",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DECH",
+      "area": "Dark-Elf City",
+      "label": "Dark-elff City (Hole up)",
+      "mapNumber": 8,
+      "roomNumber": 460,
+      "raw": "[DECH:Dark-Elf City:Dark-elff City (Hole up)-8 460]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 460,
+        "name": "Large Hole",
+        "exits": {
+          "N": "0",
+          "S": "8/461",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "8/409 (Item: 191)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7D400050:3E710004:16:-1:0:bloodstone orb:BLCOGNCM.mp:",
+      "parts": [
+        "7D400050",
+        "3E710004",
+        "16",
+        "-1",
+        "0",
+        "bloodstone orb",
+        "BLCOGNCM.mp",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0",
+        "bloodstone orb",
+        "BLCOGNCM.mp"
+      ]
+    },
+    {
+      "raw": "7D400050:0001:rub bloodstone orb",
+      "parts": [
+        "7D400050",
+        "0001",
+        "rub bloodstone orb"
+      ],
+      "commands": [
+        "rub bloodstone orb"
+      ]
+    },
+    {
+      "raw": "7D400050:0000:s[]",
+      "parts": [
+        "7D400050",
+        "0000",
+        "s[]"
+      ],
+      "commands": [
+        "s[]"
+      ]
+    },
+    {
+      "raw": "15A04000:0001:sw",
+      "parts": [
+        "15A04000",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "15A40100:0000:d",
+      "parts": [
+        "15A40100",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "15A14000:0001:sw",
+      "parts": [
+        "15A14000",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "15A00140:0001:w",
+      "parts": [
+        "15A00140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "15A40010:0000:d",
+      "parts": [
+        "15A40010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "15A10400:0001:nw",
+      "parts": [
+        "15A10400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "15A41000:0000:d",
+      "parts": [
+        "15A41000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "15A10100:0001:ne",
+      "parts": [
+        "15A10100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "15A44000:0000:d",
+      "parts": [
+        "15A44000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "15A10010:0001:e",
+      "parts": [
+        "15A10010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "15A01040:0000:se",
+      "parts": [
+        "15A01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "15A40400:0001:d",
+      "parts": [
+        "15A40400",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "15A14000:0000:sw",
+      "parts": [
+        "15A14000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "39140100:0000:d",
+      "parts": [
+        "39140100",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

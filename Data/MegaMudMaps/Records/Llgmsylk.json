@@ -1,0 +1,294 @@
+{
+  "file": "Llgmsylk.mp",
+  "sha256": "0915140b83861cb4437166c0dd5a378ab51b529b5585944e7859c02ff849b4ef",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LLGM",
+      "area": "Jungle",
+      "label": "Large Mound",
+      "mapNumber": 16,
+      "roomNumber": 1405,
+      "raw": "[LLGM:Jungle:Large Mound-16 1405]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1405,
+        "name": "Shallow Jungle, Large Mound",
+        "exits": {
+          "N": "0",
+          "S": "16/1400",
+          "E": "16/1399",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "SYLK",
+      "area": "Jungle",
+      "label": "Sylk",
+      "mapNumber": 16,
+      "roomNumber": 1382,
+      "raw": "[SYLK:Jungle:Sylk-16 1382]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1382,
+        "name": "Shallow Jungle, Small Hut",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/1381 (Text: go path)",
+          "W": "16/1383 (Door)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "71E00014:26D00080:19:-1:0:::",
+      "parts": [
+        "71E00014",
+        "26D00080",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "71E00014:0000:e",
+      "parts": [
+        "71E00014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31804041:0000:n",
+      "parts": [
+        "31804041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800444:0000:nw",
+      "parts": [
+        "31800444",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31801045:0000:n",
+      "parts": [
+        "31801045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800404:0000:nw",
+      "parts": [
+        "31800404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31801001:0000:n",
+      "parts": [
+        "31801001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800005:0000:n",
+      "parts": [
+        "31800005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800014:0000:e",
+      "parts": [
+        "31800014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800440:0000:nw",
+      "parts": [
+        "31800440",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31801040:0000:w",
+      "parts": [
+        "31801040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "31800011:0000:n",
+      "parts": [
+        "31800011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800104:0000:ne",
+      "parts": [
+        "31800104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31804400:0000:nw",
+      "parts": [
+        "31804400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31805410:0000:e",
+      "parts": [
+        "31805410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800041:0000:n",
+      "parts": [
+        "31800041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800005:0000:n",
+      "parts": [
+        "31800005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31804004:0000:sw",
+      "parts": [
+        "31804004",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31800500:0000:nw",
+      "parts": [
+        "31800500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31805000:0000:go path",
+      "parts": [
+        "31805000",
+        "0000",
+        "go path"
+      ],
+      "commands": [
+        "go path"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

@@ -1,0 +1,371 @@
+{
+  "file": "Shedlavt.mp",
+  "sha256": "c9e0e67d64ed330c4ff677ff3775b210722939d5a73b2afa59a317c7c4ad35cc",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SHED",
+      "area": "Lava Fields",
+      "label": "Adult She-Dragon",
+      "mapNumber": 7,
+      "roomNumber": 1358,
+      "raw": "[SHED:Lava Fields:Adult She-Dragon-7 1358]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1358,
+        "name": "Volcanic Chamber",
+        "exits": {
+          "N": "0",
+          "S": "7/1357",
+          "E": "0",
+          "W": "0",
+          "NE": "7/1364 (Text: go crack, enter crack)",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "LAVT",
+      "area": "Lava Fields",
+      "label": "Lava Tube (Red Dragons)",
+      "mapNumber": 7,
+      "roomNumber": 1288,
+      "raw": "[LAVT:Lava Fields:Lava Tube (Red Dragons)-7 1288]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1288,
+        "name": "Lava Tube",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "7/1289",
+          "W": "7/1287",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "32600004:05C00050:26:-1:0:::",
+      "parts": [
+        "32600004",
+        "05C00050",
+        "26",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "26",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "32600004:0001:s",
+      "parts": [
+        "32600004",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3DE04001:0001:sw",
+      "parts": [
+        "3DE04001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "3DE00104:0001:s",
+      "parts": [
+        "3DE00104",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3DE00005:0001:s",
+      "parts": [
+        "3DE00005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3DE04001:0001:sw",
+      "parts": [
+        "3DE04001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "35F01140:0001:w",
+      "parts": [
+        "35F01140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3DE00410:0001:nw",
+      "parts": [
+        "3DE00410",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "3DE01001:0001:n",
+      "parts": [
+        "3DE01001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3DE00104:0001:ne",
+      "parts": [
+        "3DE00104",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "35F05001:0001:n",
+      "parts": [
+        "35F05001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3DE00104:0001:ne",
+      "parts": [
+        "3DE00104",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "3DE04001:0001:n",
+      "parts": [
+        "3DE04001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "35F00504:0001:nw",
+      "parts": [
+        "35F00504",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "3DE01040:0001:w",
+      "parts": [
+        "3DE01040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "35F00414:0001:s",
+      "parts": [
+        "35F00414",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3DE04001:0001:sw",
+      "parts": [
+        "3DE04001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "3DE00500:0001:nw",
+      "parts": [
+        "3DE00500",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "35F05005:0001:n",
+      "parts": [
+        "35F05005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3DE00044:0001:w",
+      "parts": [
+        "3DE00044",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3DE00011:0001:n",
+      "parts": [
+        "3DE00011",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "35F04404:0001:sw",
+      "parts": [
+        "35F04404",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "3DE00104:0001:s",
+      "parts": [
+        "3DE00104",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3DE04001:0001:sw",
+      "parts": [
+        "3DE04001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "3DE00140:0001:w",
+      "parts": [
+        "3DE00140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "35F04011:0001:sw",
+      "parts": [
+        "35F04011",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "3DE00144:0001:w",
+      "parts": [
+        "3DE00144",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 30
+}

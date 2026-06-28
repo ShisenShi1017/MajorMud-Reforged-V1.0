@@ -1,0 +1,154 @@
+{
+  "file": "Slmagob2.mp",
+  "sha256": "3e68e6a51a5461b493bbf758279dd00c3395ab9da8d484f0e010c96c694185a7",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SLMA",
+      "area": "Goblin caves",
+      "label": "Slave Master",
+      "mapNumber": 7,
+      "roomNumber": 11,
+      "raw": "[SLMA:Goblin caves:Slave Master-7 11]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 11,
+        "name": "Stone Chamber, Throne Room",
+        "exits": {
+          "N": "7/12",
+          "S": "7/13 (Door [16 picklocks/strength])",
+          "E": "0",
+          "W": "7/8",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "GOB2",
+      "area": "Goblin caves",
+      "label": "Goblin Caves (Slavemaster fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GOB2:Goblin caves:Goblin Caves (Slavemaster fork)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E7600049:01180050:8:-1:0:::",
+      "parts": [
+        "E7600049",
+        "01180050",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E7600049:0000:w",
+      "parts": [
+        "E7600049",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2750005A:0000:w",
+      "parts": [
+        "2750005A",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5280401A:0000:sw",
+      "parts": [
+        "5280401A",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "2DA00140:0001:w",
+      "parts": [
+        "2DA00140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2DA00410:0001:nw",
+      "parts": [
+        "2DA00410",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "2DA01001:0001:n",
+      "parts": [
+        "2DA01001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2DA00104:0001:ne",
+      "parts": [
+        "2DA00104",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "1D024000:0001:u",
+      "parts": [
+        "1D024000",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

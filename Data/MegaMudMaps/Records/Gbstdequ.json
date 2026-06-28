@@ -1,0 +1,95 @@
+{
+  "file": "Gbstdequ.mp",
+  "sha256": "d5019da46790efdcddfeb7330b18038594a095bad6b40fea79ec52a0e98fdc01",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GBST",
+      "area": "Dark-Elf City",
+      "label": "Guardian Beast",
+      "mapNumber": 8,
+      "roomNumber": 706,
+      "raw": "[GBST:Dark-Elf City:Guardian Beast-8 706]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 706,
+        "name": "Vault Antechamber",
+        "exits": {
+          "N": "8/707 (Key: 813 [or 1000 picklocks])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "8/705 (Door [any picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DEQU",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Queen",
+      "mapNumber": 8,
+      "roomNumber": 705,
+      "raw": "[DEQU:Dark-Elf City:Dark-elf Queen-8 705]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 705,
+        "name": "Royal Throne Room",
+        "exits": {
+          "N": "0",
+          "S": "8/702 (Door [51 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "8/706 (Door [1000 picklocks/strength])",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C0C80002:91F20008:1:-1:0:::",
+      "parts": [
+        "C0C80002",
+        "91F20008",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C0C80002:0001:d",
+      "parts": [
+        "C0C80002",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

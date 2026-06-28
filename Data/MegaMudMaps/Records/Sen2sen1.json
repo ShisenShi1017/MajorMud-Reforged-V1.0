@@ -1,0 +1,77 @@
+{
+  "file": "Sen2sen1.mp",
+  "sha256": "337029f21fc8e7e1f850d34b97c1d47e7769b8e135bdb1715cf0b1f767ab8f52",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SEN2",
+      "area": "Silvermere",
+      "label": "Sentara's Clothing (Torso/Legs/Hands)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SEN2:Silvermere:Sentara's Clothing (Torso/Legs/Hands)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SEN1",
+      "area": "Silvermere",
+      "label": "Sentara's Clothing (Robes)",
+      "mapNumber": 1,
+      "roomNumber": 309,
+      "raw": "[SEN1:Silvermere:Sentara's Clothing (Robes)-1 309]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 309,
+        "name": "Sentara's Clothing, Front Room",
+        "exits": {
+          "N": "0",
+          "S": "1/254",
+          "E": "1/310",
+          "W": "1/223",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "72940040:76000054:1:-1:0:::",
+      "parts": [
+        "72940040",
+        "76000054",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "72940040:0000:w",
+      "parts": [
+        "72940040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

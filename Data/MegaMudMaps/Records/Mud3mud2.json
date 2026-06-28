@@ -1,0 +1,218 @@
+{
+  "file": "Mud3mud2.mp",
+  "sha256": "7f081920ce77801bf68c68bdf6623d9efac71273678773bd9ee49e82166c4f4c",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "MUD3",
+      "area": "Jungle",
+      "label": "Shallow Jungle, Mud Pit 3",
+      "mapNumber": 16,
+      "roomNumber": 1264,
+      "raw": "[MUD3:Jungle:Shallow Jungle, Mud Pit 3-16 1264]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1264,
+        "name": "Shallow Jungle, Mud Pit",
+        "exits": {
+          "N": "0",
+          "S": "16/1265",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "16/1263",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MUD2",
+      "area": "Jungle",
+      "label": "Shallow Jungle, Mud Pit 2",
+      "mapNumber": 16,
+      "roomNumber": 1248,
+      "raw": "[MUD2:Jungle:Shallow Jungle, Mud Pit 2-16 1248]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1248,
+        "name": "Shallow Jungle, Mud Pit",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/1249",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E8201000:E8200100:12:-1:0:::",
+      "parts": [
+        "E8201000",
+        "E8200100",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E8201000:0000:se",
+      "parts": [
+        "E8201000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31804504:0000:sw",
+      "parts": [
+        "31804504",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31800104:0000:s",
+      "parts": [
+        "31800104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31800005:0000:s",
+      "parts": [
+        "31800005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31804011:0000:sw",
+      "parts": [
+        "31804011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "E8200110:0000:e",
+      "parts": [
+        "E8200110",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800050:0000:e",
+      "parts": [
+        "31800050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800044:0000:s",
+      "parts": [
+        "31800044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31804011:0000:sw",
+      "parts": [
+        "31804011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31800104:0000:s",
+      "parts": [
+        "31800104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31801001:0000:se",
+      "parts": [
+        "31801001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31804411:0000:sw",
+      "parts": [
+        "31804411",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

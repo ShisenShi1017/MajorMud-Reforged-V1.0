@@ -1,0 +1,96 @@
+{
+  "file": "DCSBRTTB.mp",
+  "sha256": "d886e87069c2f414d977271720527062589fd1a80564806dd0d8c1f252c629d4",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DCSB",
+      "area": "Rocky Trail",
+      "label": "Glacial Cavern, Staircase Bottom",
+      "mapNumber": 15,
+      "roomNumber": 720,
+      "raw": "[DCSB:Rocky Trail:Glacial Cavern, Staircase Bottom-15 720]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 720,
+        "name": "Darkened Tunnels",
+        "exits": {
+          "N": "15/721",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "15/719",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RTTB",
+      "area": "Rocky Trail",
+      "label": "Tower, Bedroom",
+      "mapNumber": 10,
+      "roomNumber": 235,
+      "raw": "[RTTB:Rocky Trail:Tower, Bedroom-10 235]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 235,
+        "name": "Tower, Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/234 (Door)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8B404000:78500080:1:-1:0:::",
+      "parts": [
+        "8B404000",
+        "78500080",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "8B404000:0080:@party read book",
+      "parts": [
+        "8B404000",
+        "0080",
+        "@party read book"
+      ],
+      "commands": [
+        "@party read book"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

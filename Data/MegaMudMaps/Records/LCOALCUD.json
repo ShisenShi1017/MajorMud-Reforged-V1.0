@@ -1,0 +1,174 @@
+{
+  "file": "LCOALCUD.mp",
+  "sha256": "10773cbd5448db6ddb0899daca2298bece878ebdb67cdac4bb9e2880b913b080",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "LCOA",
+      "area": "Scorching Desert",
+      "label": "Limestone Caverns, Outside Argak",
+      "mapNumber": 15,
+      "roomNumber": 1169,
+      "raw": "[LCOA:Scorching Desert:Limestone Caverns, Outside Argak-15 1169]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1169,
+        "name": "Limestone Caverns",
+        "exits": {
+          "N": "15/1000 (Class: 13 OK, 0 NO)",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "12/1298",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "LCUD",
+      "area": "Scorching Desert",
+      "label": "Limestone Caverns ,Up To Desert",
+      "mapNumber": 12,
+      "roomNumber": 1305,
+      "raw": "[LCUD:Scorching Desert:Limestone Caverns ,Up To Desert-12 1305]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 1305,
+        "name": "Limestone Caverns",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "12/1302",
+          "NW": "0",
+          "SE": "0",
+          "SW": "12/1306",
+          "U": "12/988",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C5801001:C5814100:8:-1:0:::",
+      "parts": [
+        "C5801001",
+        "C5814100",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C5801001:0000:se",
+      "parts": [
+        "C5801001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C5800404:0000:s",
+      "parts": [
+        "C5800404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C5804001:0000:sw",
+      "parts": [
+        "C5804001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5805100:0000:sw",
+      "parts": [
+        "C5805100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5804100:0000:sw",
+      "parts": [
+        "C5804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5804500:0000:sw",
+      "parts": [
+        "C5804500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5804100:0000:sw",
+      "parts": [
+        "C5804100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C5805100:0000:sw",
+      "parts": [
+        "C5805100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

@@ -1,0 +1,172 @@
+{
+  "file": "Rhucasyl.mp",
+  "sha256": "31efa599657878172548a9187c13ac8d1fc319c5e152813204a353a21e6aff56",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ASYL",
+      "area": "Rhudaur",
+      "label": "Warped Asylum",
+      "mapNumber": 9,
+      "roomNumber": 1182,
+      "raw": "[ASYL:Rhudaur:Warped Asylum-9 1182]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1182,
+        "name": "Asylum Ward",
+        "exits": {
+          "N": "9/1181 (Door)",
+          "S": "0",
+          "E": "0",
+          "W": "9/1183 (Cast: pre-0, post-596)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7AD00055:8DA00042:8:-1:0:::",
+      "parts": [
+        "7AD00055",
+        "8DA00042",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7AD00055:0000:n",
+      "parts": [
+        "7AD00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8FB00015:0000:n",
+      "parts": [
+        "8FB00015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3C200015:0000:e",
+      "parts": [
+        "3C200015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "08200050:0001:e",
+      "parts": [
+        "08200050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "08200050:0001:e",
+      "parts": [
+        "08200050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4C900055:0001:e",
+      "parts": [
+        "4C900055",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "54300060:0001:e",
+      "parts": [
+        "54300060",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5430008A:0001:s",
+      "parts": [
+        "5430008A",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

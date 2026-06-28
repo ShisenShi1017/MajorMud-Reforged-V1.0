@@ -1,0 +1,216 @@
+{
+  "file": "Slmcslmb.mp",
+  "sha256": "a96f8b7222fd640cff9572aa37228bc5298dec0e6e40da8c43a38ec7e93e788e",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SLMC",
+      "area": "Slums",
+      "label": "Slum Crossroads",
+      "mapNumber": 1,
+      "roomNumber": 1076,
+      "raw": "[SLMC:Slums:Slum Crossroads-1 1076]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1076,
+        "name": "Slum Street, Crossroads",
+        "exits": {
+          "N": "1/1075",
+          "S": "1/1210",
+          "E": "1/1120",
+          "W": "1/1077",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SLMB",
+      "area": "Slums",
+      "label": "Outside Black House",
+      "mapNumber": 1,
+      "roomNumber": 1224,
+      "raw": "[SLMB:Slums:Outside Black House-1 1224]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1224,
+        "name": "Slum Street",
+        "exits": {
+          "N": "1/1223",
+          "S": "1/1225",
+          "E": "1/1313 (Key: 172 [or 100 picklocks])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ABC00055:A0700025:12:-1:0:::",
+      "parts": [
+        "ABC00055",
+        "A0700025",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ABC00055:0000:s",
+      "parts": [
+        "ABC00055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:s",
+      "parts": [
+        "A0700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F3900015:0000:s",
+      "parts": [
+        "F3900015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:s",
+      "parts": [
+        "A0700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F3900015:0000:e",
+      "parts": [
+        "F3900015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A0700050:0000:e",
+      "parts": [
+        "A0700050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A0700051:0000:e",
+      "parts": [
+        "A0700051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F3900054:0000:e",
+      "parts": [
+        "F3900054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F3900051:0000:e",
+      "parts": [
+        "F3900051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4C200044:0000:s",
+      "parts": [
+        "4C200044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700015:0000:s",
+      "parts": [
+        "A0700015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:s",
+      "parts": [
+        "A0700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}

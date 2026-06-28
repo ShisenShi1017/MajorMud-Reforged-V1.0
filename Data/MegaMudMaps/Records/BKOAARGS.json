@@ -1,0 +1,152 @@
+{
+  "file": "BKOAARGS.mp",
+  "sha256": "c14ed1aac9f8faf5bbd19736ce62fc2e8ca1c18dd620cb467aea923722904b02",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BKOA",
+      "area": "Arlysia",
+      "label": "Bank of Arlysia",
+      "mapNumber": 17,
+      "roomNumber": 2435,
+      "raw": "[BKOA:Arlysia:Bank of Arlysia-17 2435]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2435,
+        "name": "Bank of Arlysia",
+        "exits": {
+          "N": "17/2289",
+          "S": "0",
+          "E": "0",
+          "W": "17/2393",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ARGS",
+      "area": "Arlysia",
+      "label": "The Goode Seamstress",
+      "mapNumber": 17,
+      "roomNumber": 2440,
+      "raw": "[ARGS:Arlysia:The Goode Seamstress-17 2440]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2440,
+        "name": "The Goode Seamstress",
+        "exits": {
+          "N": "17/2293",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D4F00041:32400001:6:-1:0:::",
+      "parts": [
+        "D4F00041",
+        "32400001",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D4F00041:0000:n",
+      "parts": [
+        "D4F00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:w",
+      "parts": [
+        "9C000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E0500054:0000:w",
+      "parts": [
+        "E0500054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000054:0000:w",
+      "parts": [
+        "9C000054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000058:0000:w",
+      "parts": [
+        "9C000058",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:s",
+      "parts": [
+        "9C000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

@@ -1,0 +1,152 @@
+{
+  "file": "GEMRGYWS.mp",
+  "sha256": "8fde094f8cc934099892a3a1c8eac4a7ac97bee37a79152d6cec0e3054f1942c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GEMR",
+      "area": "Blackwood Forest",
+      "label": "Graveyard Entrance, Main Road",
+      "mapNumber": 17,
+      "roomNumber": 81,
+      "raw": "[GEMR:Blackwood Forest:Graveyard Entrance, Main Road-17 81]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 81,
+        "name": "Graveyard Entrance, Main Road",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "17/80",
+          "W": "17/295",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "GYWS",
+      "area": "Blackwood Forest",
+      "label": "Graveyard, Warrior Statue",
+      "mapNumber": 17,
+      "roomNumber": 248,
+      "raw": "[GYWS:Blackwood Forest:Graveyard, Warrior Statue-17 248]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 248,
+        "name": "Graveyard",
+        "exits": {
+          "N": "17/249",
+          "S": "17/247 (Hidden/Needs 1 Actions, any order)",
+          "E": "17/257",
+          "W": "17/308",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "Action#1 [on the S exit of this room]: push button, push button, push button",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7AE00050:2B000051:6:-1:0:::",
+      "parts": [
+        "7AE00050",
+        "2B000051",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7AE00050:0000:w",
+      "parts": [
+        "7AE00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:w",
+      "parts": [
+        "2B000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:w",
+      "parts": [
+        "2B000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2B000054:0004:w",
+      "parts": [
+        "2B000054",
+        "0004",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2B000015:0000:n",
+      "parts": [
+        "2B000015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:w",
+      "parts": [
+        "2B000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

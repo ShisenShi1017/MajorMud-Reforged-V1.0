@@ -1,0 +1,118 @@
+{
+  "file": "Gst3gst2.mp",
+  "sha256": "90945208637c09eee4694e7de4450886baac382bce40b557df4447066bbc8d26",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GST3",
+      "area": "Black House",
+      "label": "Grand Stair (Gate)",
+      "mapNumber": 7,
+      "roomNumber": 150,
+      "raw": "[GST3:Black House:Grand Stair (Gate)-7 150]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 150,
+        "name": "Grand Stair",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "7/151 (Door [251 picklocks/strength])",
+          "SW": "7/149",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "GST2",
+      "area": "Black House",
+      "label": "Grand Stair (Guardroom)",
+      "mapNumber": 7,
+      "roomNumber": 152,
+      "raw": "[GST2:Black House:Grand Stair (Guardroom)-7 152]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 152,
+        "name": "Guard Room",
+        "exits": {
+          "N": "7/148 (Hidden/Searchable)",
+          "S": "0",
+          "E": "Action [on the SE exit of room 7/150]: pull lever, push lever, move lever",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "90806000:4AF00000:3:-1:0:::",
+      "parts": [
+        "90806000",
+        "4AF00000",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "90806000:0000:sw",
+      "parts": [
+        "90806000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "90801100:0000:se",
+      "parts": [
+        "90801100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "90800500:0000:s[search s]",
+      "parts": [
+        "90800500",
+        "0000",
+        "s[search s]"
+      ],
+      "commands": [
+        "s[search s]"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

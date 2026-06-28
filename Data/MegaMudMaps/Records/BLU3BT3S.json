@@ -1,0 +1,59 @@
+{
+  "file": "BLU3BT3S.mp",
+  "sha256": "dddffb8f28c32088c3a86b1166ba9e81009723a517bf33cab4514e1d11a2e527",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BLU3",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Weapons (blunt)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BLU3:Darkwood Forest:Blue Tower, Weapons (blunt)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "BT3S",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Weapons (large)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BT3S:Darkwood Forest:Blue Tower, Weapons (large)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "36F54400:36F00100:1:-1:0:::",
+      "parts": [
+        "36F54400",
+        "36F00100",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "36F54400:0000:sw",
+      "parts": [
+        "36F54400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

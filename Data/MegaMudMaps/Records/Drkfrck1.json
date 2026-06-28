@@ -1,0 +1,342 @@
+{
+  "file": "Drkfrck1.mp",
+  "sha256": "b6fd7c51b4a9f8f6f874e9451270cbd1ea4c9e2005fae80fd266dbf4b2a7b981",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DRKF",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DRKF:Darkwood Forest:Darkwood Forest]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "RCK1",
+      "area": "Rocky Trail",
+      "label": "Rocky Trail (Base of Mountain)",
+      "mapNumber": 10,
+      "roomNumber": 16,
+      "raw": "[RCK1:Rocky Trail:Rocky Trail (Base of Mountain)-10 16]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 16,
+        "name": "Rocky Trail",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/303",
+          "NE": "10/17",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "2/1",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F4E04410:92510140:25:-1:0:::",
+      "parts": [
+        "F4E04410",
+        "92510140",
+        "25",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "25",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F4E04410:0000:nw",
+      "parts": [
+        "F4E04410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:n",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00404:0000:nw",
+      "parts": [
+        "F4E00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01400:0000:nw",
+      "parts": [
+        "F4E01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:n",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:n",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:n",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00404:0000:nw",
+      "parts": [
+        "F4E00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01400:0000:nw",
+      "parts": [
+        "F4E01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E05000:0000:go hole",
+      "parts": [
+        "F4E05000",
+        "0000",
+        "go hole"
+      ],
+      "commands": [
+        "go hole"
+      ]
+    },
+    {
+      "raw": "F5800010:0001:e",
+      "parts": [
+        "F5800010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F5800050:0000:e",
+      "parts": [
+        "F5800050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F5800050:0000:e",
+      "parts": [
+        "F5800050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "1BD00040:0000:n[say faith]",
+      "parts": [
+        "1BD00040",
+        "0000",
+        "n[say faith]"
+      ],
+      "commands": [
+        "n[say faith]"
+      ]
+    },
+    {
+      "raw": "25810000:0000:u",
+      "parts": [
+        "25810000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "92440005:0000:s",
+      "parts": [
+        "92440005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92400005:0000:s",
+      "parts": [
+        "92400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92400005:0000:s",
+      "parts": [
+        "92400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92401001:0000:se",
+      "parts": [
+        "92401001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "92500404:0000:s",
+      "parts": [
+        "92500404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92510001:0000:u",
+      "parts": [
+        "92510001",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "92540004:0000:s",
+      "parts": [
+        "92540004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92500011:0000:e",
+      "parts": [
+        "92500011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "92510040:0000:u",
+      "parts": [
+        "92510040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "92540010:0000:e",
+      "parts": [
+        "92540010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 29
+}

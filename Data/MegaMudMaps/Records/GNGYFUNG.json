@@ -1,0 +1,152 @@
+{
+  "file": "GNGYFUNG.mp",
+  "sha256": "a54b07e24811c6e8f73a2a3890a21d776594403747a22b6ccf5fd9558a4d0754",
+  "metadataLine": "[][Merlin]",
+  "roomHeaders": [
+    {
+      "code": "GNGY",
+      "area": "Gang Houses",
+      "label": "Entrance Yellow House Room",
+      "mapNumber": 15,
+      "roomNumber": 882,
+      "raw": "[GNGY:Gang Houses:Entrance Yellow House Room-15 882]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 882,
+        "name": "",
+        "exits": {
+          "N": "0",
+          "S": "7/289",
+          "E": "0",
+          "W": "0",
+          "NE": "15/883 (Key: 1024 [or 61 picklocks])",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "FUNG",
+      "area": "Black House",
+      "label": "Fungus Forest",
+      "mapNumber": 7,
+      "roomNumber": 156,
+      "raw": "[FUNG:Black House:Fungus Forest-7 156]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 156,
+        "name": "Fungus Forest, Tunnel Opening",
+        "exits": {
+          "N": "7/155",
+          "S": "7/157",
+          "E": "7/281",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "21C00204:23600015:6:-1:0:::",
+      "parts": [
+        "21C00204",
+        "23600015",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "21C00204:0000:s",
+      "parts": [
+        "21C00204",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B00055:0000:w",
+      "parts": [
+        "41B00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B00410:0000:nw",
+      "parts": [
+        "41B00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "41B05001:0000:sw",
+      "parts": [
+        "41B05001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "41B00140:0000:w",
+      "parts": [
+        "41B00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B00054:0000:w",
+      "parts": [
+        "41B00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

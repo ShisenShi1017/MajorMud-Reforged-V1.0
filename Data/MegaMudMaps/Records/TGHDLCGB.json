@@ -1,0 +1,283 @@
+{
+  "file": "TGHDLCGB.mp",
+  "sha256": "02b333d2ccabec35408b6d47c1890ae67acb102d4a88e5f2437fdd0b7c1c8c70",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "TGHD",
+      "area": "Lost City",
+      "label": "Training Grounds, Halls/ the Dead",
+      "mapNumber": 16,
+      "roomNumber": 542,
+      "raw": "[TGHD:Lost City:Training Grounds, Halls/ the Dead-16 542]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 542,
+        "name": "Training Grounds, Halls of the Dead",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/499"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "LCGB",
+      "area": "Lost City",
+      "label": "General Store, Back Room",
+      "mapNumber": 16,
+      "roomNumber": 436,
+      "raw": "[LCGB:Lost City:General Store, Back Room-16 436]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 436,
+        "name": "General Store, Back Room",
+        "exits": {
+          "N": "16/435",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "83B40000:7C900001:18:-1:0:::",
+      "parts": [
+        "83B40000",
+        "7C900001",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "83B40000:0000:d",
+      "parts": [
+        "83B40000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "5D640010:0000:e",
+      "parts": [
+        "5D640010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600055:0000:e",
+      "parts": [
+        "5D600055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600050:0000:e",
+      "parts": [
+        "5D600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600050:0000:e",
+      "parts": [
+        "5D600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600050:0000:e",
+      "parts": [
+        "5D600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600050:0000:e",
+      "parts": [
+        "5D600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600055:0000:e",
+      "parts": [
+        "5D600055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D650040:0000:d",
+      "parts": [
+        "5D650040",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "5D610054:0000:e",
+      "parts": [
+        "5D610054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600050:0000:e",
+      "parts": [
+        "5D600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600045:0000:e[sea e]",
+      "parts": [
+        "5D600045",
+        "0000",
+        "e[sea e]"
+      ],
+      "commands": [
+        "e[sea e]"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:s",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:s",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EDE00009:0000:s",
+      "parts": [
+        "EDE00009",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3B904046:0000:s",
+      "parts": [
+        "3B904046",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3B900455:0000:s",
+      "parts": [
+        "3B900455",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "50800005:0000:s",
+      "parts": [
+        "50800005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

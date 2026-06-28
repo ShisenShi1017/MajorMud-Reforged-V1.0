@@ -1,0 +1,140 @@
+{
+  "file": "Kwepkhaz.mp",
+  "sha256": "df7186df6662c2441d99fce48ee9126feb80cd9f418863f477c4a4e46c304665",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KWEP",
+      "area": "Khazarad",
+      "label": "Drotha's Deadly Weaponry",
+      "mapNumber": 6,
+      "roomNumber": 1344,
+      "raw": "[KWEP:Khazarad:Drotha's Deadly Weaponry-6 1344]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1344,
+        "name": "Drotha's Deadly Weaponry",
+        "exits": {
+          "N": "0",
+          "S": "6/1305",
+          "E": "0",
+          "W": "6/1345",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2F300044:19800051:5:-1:0:::",
+      "parts": [
+        "2F300044",
+        "19800051",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2F300044:0000:s",
+      "parts": [
+        "2F300044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:w",
+      "parts": [
+        "D1600055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:w",
+      "parts": [
+        "D1600054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7DB00055:0000:n",
+      "parts": [
+        "7DB00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "19800044:0000:w",
+      "parts": [
+        "19800044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

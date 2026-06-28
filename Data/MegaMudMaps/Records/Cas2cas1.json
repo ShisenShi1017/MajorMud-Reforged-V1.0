@@ -1,0 +1,150 @@
+{
+  "file": "Cas2cas1.mp",
+  "sha256": "4a0640d03262eadabcc5b480c130e17efa10d22c7baaf06b05bde5facf5ca9db",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CAS2",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Castle Level 2",
+      "mapNumber": 8,
+      "roomNumber": 584,
+      "raw": "[CAS2:Dark-Elf City:Dark-elf Castle Level 2-8 584]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 584,
+        "name": "Castle, Dark Hallway",
+        "exits": {
+          "N": "8/583",
+          "S": "8/572 (Door [41 picklocks/strength])",
+          "E": "8/596",
+          "W": "8/595",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "CAS1",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Castle Level 1",
+      "mapNumber": 8,
+      "roomNumber": 604,
+      "raw": "[CAS1:Dark-Elf City:Dark-elf Castle Level 1-8 604]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 604,
+        "name": "Basement Stairwell",
+        "exits": {
+          "N": "8/605",
+          "S": "0",
+          "E": "8/617",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "8/603",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D2400059:49610011:6:-1:0:::",
+      "parts": [
+        "D2400059",
+        "49610011",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D2400059:0001:w",
+      "parts": [
+        "D2400059",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D2400090:0001:w",
+      "parts": [
+        "D2400090",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2C900120:0001:ne",
+      "parts": [
+        "2C900120",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "2C904400:0001:nw",
+      "parts": [
+        "2C904400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "2C901004:0001:s",
+      "parts": [
+        "2C901004",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2C940001:0001:d",
+      "parts": [
+        "2C940001",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

@@ -1,0 +1,151 @@
+{
+  "file": "FALANPPV.mp",
+  "sha256": "5bf919b0b4e95b7214d355891885e11a168a9425f5653b21654f78476719e34c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "FALA",
+      "area": "Negative Power Plane",
+      "label": "Fallen Angel",
+      "mapNumber": 8,
+      "roomNumber": 1040,
+      "raw": "[FALA:Negative Power Plane:Fallen Angel-8 1040]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1040,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "8/1067 (Door [51 picklocks/strength])",
+          "S": "8/1069 (Door [51 picklocks/strength])",
+          "E": "8/1066 (Door [51 picklocks/strength])",
+          "W": "8/1068 (Door [51 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "8/1041 (Key: 952 [or 101 picklocks])",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "NPPV",
+      "area": "Negative Power Plane",
+      "label": "Negative Power Plane Vortex",
+      "mapNumber": 8,
+      "roomNumber": 978,
+      "raw": "[NPPV:Negative Power Plane:Negative Power Plane Vortex-8 978]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 978,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "8/977",
+          "NW": "8/979",
+          "SE": "8/1005",
+          "SW": "8/1006",
+          "U": "8/1126",
+          "D": "8/1332"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DCF200AA:DD055500:6:-1:0:::",
+      "parts": [
+        "DCF200AA",
+        "DD055500",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DCF200AA:0000:n",
+      "parts": [
+        "DCF200AA",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "DCF00008:0000:n",
+      "parts": [
+        "DCF00008",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:ne",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "DCF04100:0000:ne",
+      "parts": [
+        "DCF04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

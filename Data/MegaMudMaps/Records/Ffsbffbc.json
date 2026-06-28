@@ -1,0 +1,265 @@
+{
+  "file": "Ffsbffbc.mp",
+  "sha256": "3e938f11aab6cfcdc81a3b49607489091ad1c00b900eb562b3e9f56290b42c56",
+  "metadataLine": "[][Kitty & Wulfman]",
+  "roomHeaders": [
+    {
+      "code": "FFSB",
+      "area": "Black House",
+      "label": "Fungus Forest (Stone Bridge)",
+      "mapNumber": 7,
+      "roomNumber": 199,
+      "raw": "[FFSB:Black House:Fungus Forest (Stone Bridge)-7 199]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 199,
+        "name": "Fungus Forest, Stone Bridge",
+        "exits": {
+          "N": "7/272",
+          "S": "0",
+          "E": "0",
+          "W": "7/198",
+          "NE": "0",
+          "NW": "0",
+          "SE": "7/200",
+          "SW": "7/201",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "FFBC",
+      "area": "Black House",
+      "label": "Fungus Forest (Black Chasm)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[FFBC:Black House:Fungus Forest (Black Chasm)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "86605041:B5500051:18:-1:0:::",
+      "parts": [
+        "86605041",
+        "B5500051",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "86605041:0000:se",
+      "parts": [
+        "86605041",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "27D00410:0000:e",
+      "parts": [
+        "27D00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00051:0000:e",
+      "parts": [
+        "27D00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00050:0000:e",
+      "parts": [
+        "27D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D01040:0000:se",
+      "parts": [
+        "27D01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "27D00411:0000:e",
+      "parts": [
+        "27D00411",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00050:0000:e",
+      "parts": [
+        "27D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00050:0000:e",
+      "parts": [
+        "27D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00450:0000:e",
+      "parts": [
+        "27D00450",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D01041:0000:se",
+      "parts": [
+        "27D01041",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "27D00410:0000:e",
+      "parts": [
+        "27D00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00050:0000:e",
+      "parts": [
+        "27D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00050:0000:e",
+      "parts": [
+        "27D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00051:0000:e",
+      "parts": [
+        "27D00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00050:0000:e",
+      "parts": [
+        "27D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "27D00050:0000:e",
+      "parts": [
+        "27D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B5500051:0000:e",
+      "parts": [
+        "B5500051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7C300050:0000:w",
+      "parts": [
+        "7C300050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

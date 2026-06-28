@@ -1,0 +1,162 @@
+{
+  "file": "Shneshgf.mp",
+  "sha256": "f62f42e397497721b34342a044c0792d3c312ceaa1c15e836484459699e49a00",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "SHNE",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Northern End",
+      "mapNumber": 12,
+      "roomNumber": 2089,
+      "raw": "[SHNE:Scorching Desert:Saracen Hideout, Northern End-12 2089]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2089,
+        "name": "Plaster Hallway",
+        "exits": {
+          "N": "12/2091 (Door [11 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "12/2088 (Hidden/Searchable)",
+          "NE": "12/2092 (Door [11 picklocks/strength])",
+          "NW": "12/2090 (Door [11 picklocks/strength])",
+          "SE": "12/2093",
+          "SW": "12/2095",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SHGF",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Guardroom Fork",
+      "mapNumber": 12,
+      "roomNumber": 2109,
+      "raw": "[SHGF:Scorching Desert:Saracen Hideout, Guardroom Fork-12 2109]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2109,
+        "name": "Plaster Hallway",
+        "exits": {
+          "N": "12/2110 (Door [11 picklocks/strength])",
+          "S": "12/2113 (Door [11 picklocks/strength])",
+          "E": "12/2121",
+          "W": "12/2108",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F4D05A02:F4D0005A:7:-1:0:::SHGFSHGD.MP",
+      "parts": [
+        "F4D05A02",
+        "F4D0005A",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        "SHGFSHGD.MP"
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0",
+        "SHGFSHGD.MP"
+      ]
+    },
+    {
+      "raw": "F4D05A02:0000:se",
+      "parts": [
+        "F4D05A02",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4D04400:0000:sw",
+      "parts": [
+        "F4D04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4D04500:0000:sw",
+      "parts": [
+        "F4D04500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4D05100:0000:se",
+      "parts": [
+        "F4D05100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4D04410:0000:e",
+      "parts": [
+        "F4D04410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D00050:0000:e",
+      "parts": [
+        "F4D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D00050:0000:e",
+      "parts": [
+        "F4D00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

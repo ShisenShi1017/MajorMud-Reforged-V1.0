@@ -1,0 +1,174 @@
+{
+  "file": "Jtvejabt.mp",
+  "sha256": "9d3e26c0ce3ff31194b82435db3d58a05ee2bb8dbc75b11642090a6aca670ef6",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "JTVE",
+      "area": "Jungle",
+      "label": "Tasloi Village, Entrance",
+      "mapNumber": 16,
+      "roomNumber": 1,
+      "raw": "[JTVE:Jungle:Tasloi Village, Entrance-16 1]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1,
+        "name": "Tasloi Village, Entrance",
+        "exits": {
+          "N": "16/1438",
+          "S": "0",
+          "E": "16/2",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "JABT",
+      "area": "Jungle",
+      "label": "Abandoned Temple",
+      "mapNumber": 16,
+      "roomNumber": 1412,
+      "raw": "[JABT:Jungle:Abandoned Temple-16 1412]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1412,
+        "name": "Deep Jungle, Abandoned Temple",
+        "exits": {
+          "N": "0",
+          "S": "16/1424",
+          "E": "16/1439",
+          "W": "16/1413",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1411"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E5900011:F0240054:8:-1:0:::",
+      "parts": [
+        "E5900011",
+        "F0240054",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E5900011:0000:n",
+      "parts": [
+        "E5900011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC100005:0000:n",
+      "parts": [
+        "CC100005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC100504:0000:ne",
+      "parts": [
+        "CC100504",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CC104055:0000:n",
+      "parts": [
+        "CC104055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC100045:0000:n",
+      "parts": [
+        "CC100045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC100045:0000:n",
+      "parts": [
+        "CC100045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC100544:0000:nw",
+      "parts": [
+        "CC100544",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CC105001:0000:n",
+      "parts": [
+        "CC105001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

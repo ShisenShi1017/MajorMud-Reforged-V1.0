@@ -1,0 +1,97 @@
+{
+  "file": "Gbstrvau.mp",
+  "sha256": "b0271bbe2c71eba555b0e20ac15396eceede741db5007baf7b5f1b5a920ec8fd",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GBST",
+      "area": "Dark-Elf City",
+      "label": "Guardian Beast",
+      "mapNumber": 8,
+      "roomNumber": 706,
+      "raw": "[GBST:Dark-Elf City:Guardian Beast-8 706]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 706,
+        "name": "Vault Antechamber",
+        "exits": {
+          "N": "8/707 (Key: 813 [or 1000 picklocks])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "8/705 (Door [any picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RVAU",
+      "area": "Dark-Elf City",
+      "label": "Royal Treasure Vault",
+      "mapNumber": 8,
+      "roomNumber": 707,
+      "raw": "[RVAU:Dark-Elf City:Royal Treasure Vault-8 707]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 707,
+        "name": "Royal Treasure Vault",
+        "exits": {
+          "N": "0",
+          "S": "8/706 (Door [51 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C0C80002:0EA00008:1:-1:0:golden key::",
+      "parts": [
+        "C0C80002",
+        "0EA00008",
+        "1",
+        "-1",
+        "0",
+        "golden key",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0",
+        "golden key"
+      ]
+    },
+    {
+      "raw": "C0C80002:0001:n[use golden key n]",
+      "parts": [
+        "C0C80002",
+        "0001",
+        "n[use golden key n]"
+      ],
+      "commands": [
+        "n[use golden key n]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

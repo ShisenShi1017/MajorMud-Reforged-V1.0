@@ -1,0 +1,150 @@
+{
+  "file": "Sovnbart.mp",
+  "sha256": "5745b62203a68402bd723b5f3ebcbbdd0b181bea35d6b037004a336d635921a8",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SOVN",
+      "area": "Silvermere",
+      "label": "Sovereign St Nth",
+      "mapNumber": 1,
+      "roomNumber": 225,
+      "raw": "[SOVN:Silvermere:Sovereign St Nth-1 225]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 225,
+        "name": "Sovereign Street, Northern End",
+        "exits": {
+          "N": "1/224",
+          "S": "1/226",
+          "E": "1/311",
+          "W": "1/297",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BART",
+      "area": "Trainers",
+      "label": "Bard Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 852,
+      "raw": "[BART:Trainers:Bard Trainer (2-10)-1 852]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 852,
+        "name": "Bard's Room",
+        "exits": {
+          "N": "0",
+          "S": "1/851",
+          "E": "0",
+          "W": "1/848 (Door [any picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "89C00055:7BB00084:6:-1:7:::",
+      "parts": [
+        "89C00055",
+        "7BB00084",
+        "6",
+        "-1",
+        "7",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "7"
+      ]
+    },
+    {
+      "raw": "89C00055:0000:e",
+      "parts": [
+        "89C00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "70400055:0000:buy room ticket",
+      "parts": [
+        "70400055",
+        "0000",
+        "buy room ticket"
+      ],
+      "commands": [
+        "buy room ticket"
+      ]
+    },
+    {
+      "raw": "70400055:0000:s",
+      "parts": [
+        "70400055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "88510001:0000:u",
+      "parts": [
+        "88510001",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "DB550009:0000:n",
+      "parts": [
+        "DB550009",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B600024:0000:e",
+      "parts": [
+        "2B600024",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

@@ -1,0 +1,111 @@
+{
+  "file": "Rhucbalt.mp",
+  "sha256": "99cd84217ddd078b58f9a994847533e84402c6512987fdafaa0be6310db1e3b6",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7AD00055:66E00022:5:-1:0:::",
+      "parts": [
+        "7AD00055",
+        "66E00022",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7AD00055:0000:s",
+      "parts": [
+        "7AD00055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "84900055:0000:s",
+      "parts": [
+        "84900055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "8CF00059:0000:s",
+      "parts": [
+        "8CF00059",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "94A00052:0000:e",
+      "parts": [
+        "94A00052",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C9100040:0000:e[search e]",
+      "parts": [
+        "C9100040",
+        "0000",
+        "e[search e]"
+      ],
+      "commands": [
+        "e[search e]"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

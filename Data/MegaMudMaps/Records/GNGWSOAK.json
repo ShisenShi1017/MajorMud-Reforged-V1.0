@@ -1,0 +1,166 @@
+{
+  "file": "GNGWSOAK.mp",
+  "sha256": "17ad229a0d50208f70a10ec70cdad5edbeb14ac6d8072c5cfcccde899d0c6baa",
+  "metadataLine": "[][Merlin]",
+  "roomHeaders": [
+    {
+      "code": "GNGW",
+      "area": "Gang Houses",
+      "label": "Entrance White House Room",
+      "mapNumber": 15,
+      "roomNumber": 850,
+      "raw": "[GNGW:Gang Houses:Entrance White House Room-15 850]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 850,
+        "name": "",
+        "exits": {
+          "N": "1/347",
+          "S": "15/851 (Key: 1052 [or 161 picklocks])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "SOAK",
+      "area": "Silvermere",
+      "label": "Oak St & Sovereign St",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SOAK:Silvermere:Oak St & Sovereign St]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "70700009:72300055:9:-1:0:::",
+      "parts": [
+        "70700009",
+        "72300055",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "70700009:0000:n",
+      "parts": [
+        "70700009",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "58400054:0000:e",
+      "parts": [
+        "58400054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400054:0000:e",
+      "parts": [
+        "58400054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "16C00055:0000:e",
+      "parts": [
+        "16C00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "58400050:0000:e",
+      "parts": [
+        "58400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

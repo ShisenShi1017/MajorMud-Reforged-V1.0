@@ -1,0 +1,152 @@
+{
+  "file": "GNGKDREA.mp",
+  "sha256": "6df770019326ac5a139fe997ac67e340ca7f6afc149aee5c7cd37829903aa07c",
+  "metadataLine": "[][Merlin]",
+  "roomHeaders": [
+    {
+      "code": "GNGK",
+      "area": "Gang Houses",
+      "label": "Entrance Black House Room",
+      "mapNumber": 15,
+      "roomNumber": 933,
+      "raw": "[GNGK:Gang Houses:Entrance Black House Room-15 933]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 933,
+        "name": "",
+        "exits": {
+          "N": "0",
+          "S": "7/1153",
+          "E": "15/946",
+          "W": "0",
+          "NE": "0",
+          "NW": "15/934 (Key: 1040 [or 131 picklocks])",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "DREA",
+      "area": "Black Fort",
+      "label": "Dreary Village",
+      "mapNumber": 7,
+      "roomNumber": 1133,
+      "raw": "[DREA:Black Fort:Dreary Village-7 1133]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1133,
+        "name": "Dreary Village",
+        "exits": {
+          "N": "7/1136 (Door)",
+          "S": "3/785",
+          "E": "7/1121",
+          "W": "7/1130",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "57800814:85500056:6:-1:0:::",
+      "parts": [
+        "57800814",
+        "85500056",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "57800814:0000:s",
+      "parts": [
+        "57800814",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75800001:0000:s",
+      "parts": [
+        "75800001",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75800000:0000:s",
+      "parts": [
+        "75800000",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "05D00050:0000:w",
+      "parts": [
+        "05D00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "05D00050:0000:w",
+      "parts": [
+        "05D00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "85500055:0000:w",
+      "parts": [
+        "85500055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

@@ -1,0 +1,97 @@
+{
+  "file": "Uglesand.mp",
+  "sha256": "dd58a8448963645ca468656406aeca1fff24190a735bb73bcea3721e2c800c7c",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "UGLE",
+      "area": "Ocean",
+      "label": "Underground Lake End",
+      "mapNumber": 16,
+      "roomNumber": 271,
+      "raw": "[UGLE:Ocean:Underground Lake End-16 271]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 271,
+        "name": "Underground Lake",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "16/270",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/272",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "SAND",
+      "area": "Ocean",
+      "label": "Sandbar",
+      "mapNumber": 16,
+      "roomNumber": 272,
+      "raw": "[SAND:Ocean:Sandbar-16 272]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 272,
+        "name": "Sandbar",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "16/273",
+          "NW": "0",
+          "SE": "16/291",
+          "SW": "0",
+          "U": "0",
+          "D": "16/271"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "31F10400:B3D41100:1:-1:0:::",
+      "parts": [
+        "31F10400",
+        "B3D41100",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "31F10400:0000:u",
+      "parts": [
+        "31F10400",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

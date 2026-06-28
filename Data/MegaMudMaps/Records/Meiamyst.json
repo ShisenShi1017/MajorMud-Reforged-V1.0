@@ -1,0 +1,96 @@
+{
+  "file": "Meiamyst.mp",
+  "sha256": "e16cb7ec6d62bc2273857686ff50c04b5dbc616ac63d96f4966c949ea2f4074f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MEIA",
+      "area": "Silvermere",
+      "label": "Curio Shop (Meia)",
+      "mapNumber": 1,
+      "roomNumber": 332,
+      "raw": "[MEIA:Silvermere:Curio Shop (Meia)-1 332]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 332,
+        "name": "Curio Shop",
+        "exits": {
+          "N": "1/333",
+          "S": "1/107",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MYST",
+      "area": "Trainers",
+      "label": "Mystic Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 333,
+      "raw": "[MYST:Trainers:Mystic Trainer (2-10)-1 333]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 333,
+        "name": "Back Room, Mystic Trainer",
+        "exits": {
+          "N": "0",
+          "S": "1/332",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "4DE00005:8A800004:1:-1:0:::",
+      "parts": [
+        "4DE00005",
+        "8A800004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "4DE00005:0000:n",
+      "parts": [
+        "4DE00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

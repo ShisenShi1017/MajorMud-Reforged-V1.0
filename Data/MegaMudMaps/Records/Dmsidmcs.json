@@ -1,0 +1,260 @@
+{
+  "file": "Dmsidmcs.mp",
+  "sha256": "4161cb957c708075b543f660e0f74bb6b89566e776a2bc2723af624142369130",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DMSI",
+      "area": "Dwarven Mines",
+      "label": "Silver Mine (Level 4)",
+      "mapNumber": 6,
+      "roomNumber": 2354,
+      "raw": "[DMSI:Dwarven Mines:Silver Mine (Level 4)-6 2354]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 2354,
+        "name": "Silver Mine, Cart Ramp",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/2355",
+          "W": "6/2356",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/2353",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DMCS",
+      "area": "Dwarven Mines",
+      "label": "Copper/Silver Mine (Level 3)",
+      "mapNumber": 6,
+      "roomNumber": 1898,
+      "raw": "[DMCS:Dwarven Mines:Copper/Silver Mine (Level 3)-6 1898]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1898,
+        "name": "Copper Mine, Cart Ramp",
+        "exits": {
+          "N": "0",
+          "S": "6/1899",
+          "E": "0",
+          "W": "0",
+          "NE": "6/1945",
+          "NW": "6/2339",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/1897",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "6DA10050:6CA10504:16:-1:0:::",
+      "parts": [
+        "6DA10050",
+        "6CA10504",
+        "16",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "6DA10050:0000:u",
+      "parts": [
+        "6DA10050",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "6DA40001:0000:n",
+      "parts": [
+        "6DA40001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FD700005:0000:n",
+      "parts": [
+        "FD700005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FD700104:0000:ne",
+      "parts": [
+        "FD700104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FD704010:0000:e",
+      "parts": [
+        "FD704010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FD700050:0000:e",
+      "parts": [
+        "FD700050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FD701040:0000:se",
+      "parts": [
+        "FD701040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FD701400:0000:se",
+      "parts": [
+        "FD701400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 21
+}

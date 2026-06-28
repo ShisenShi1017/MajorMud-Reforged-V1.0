@@ -1,0 +1,174 @@
+{
+  "file": "Fungffsb.mp",
+  "sha256": "5d7fc1812c881cb594f561ffa42625a1e165488de6a68aaf9f3bec58b2a7859c",
+  "metadataLine": "[][Kitty & Wulfman]",
+  "roomHeaders": [
+    {
+      "code": "FUNG",
+      "area": "Black House",
+      "label": "Fungus Forest",
+      "mapNumber": 7,
+      "roomNumber": 156,
+      "raw": "[FUNG:Black House:Fungus Forest-7 156]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 156,
+        "name": "Fungus Forest, Tunnel Opening",
+        "exits": {
+          "N": "7/155",
+          "S": "7/157",
+          "E": "7/281",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "FFSB",
+      "area": "Black House",
+      "label": "Fungus Forest (Stone Bridge)",
+      "mapNumber": 7,
+      "roomNumber": 199,
+      "raw": "[FFSB:Black House:Fungus Forest (Stone Bridge)-7 199]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 199,
+        "name": "Fungus Forest, Stone Bridge",
+        "exits": {
+          "N": "7/272",
+          "S": "0",
+          "E": "0",
+          "W": "7/198",
+          "NE": "0",
+          "NW": "0",
+          "SE": "7/200",
+          "SW": "7/201",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "23600015:86605041:8:-1:0:::",
+      "parts": [
+        "23600015",
+        "86605041",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "23600015:0000:s",
+      "parts": [
+        "23600015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B04401:0000:sw",
+      "parts": [
+        "41B04401",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "41B00144:0000:s",
+      "parts": [
+        "41B00144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B00144:0000:s",
+      "parts": [
+        "41B00144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B00005:0000:s",
+      "parts": [
+        "41B00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B04101:0000:sw",
+      "parts": [
+        "41B04101",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "41B00504:0000:s",
+      "parts": [
+        "41B00504",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B00045:0000:s",
+      "parts": [
+        "41B00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

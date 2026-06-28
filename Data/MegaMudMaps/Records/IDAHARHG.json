@@ -1,0 +1,122 @@
+{
+  "file": "IDAHARHG.mp",
+  "sha256": "0adb33feb0e2fad6552c10a300157fd9d6c83a71711fe4b710dd2b79061409b1",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "IDAH",
+      "area": "Arlysia",
+      "label": "Intersection of Dock Street & Haven Stre",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[IDAH:Arlysia:Intersection of Dock Street & Haven Stre]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "ARHG",
+      "area": "Arlysia",
+      "label": "Hap's General Store",
+      "mapNumber": 17,
+      "roomNumber": 2439,
+      "raw": "[ARHG:Arlysia:Hap's General Store-17 2439]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2439,
+        "name": "Hap's General Store",
+        "exits": {
+          "N": "17/2294",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E0500054:68B00001:5:-1:0:::",
+      "parts": [
+        "E0500054",
+        "68B00001",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E0500054:0000:w",
+      "parts": [
+        "E0500054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000054:0000:w",
+      "parts": [
+        "9C000054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000058:0000:w",
+      "parts": [
+        "9C000058",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:w",
+      "parts": [
+        "9C000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:s",
+      "parts": [
+        "9C000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

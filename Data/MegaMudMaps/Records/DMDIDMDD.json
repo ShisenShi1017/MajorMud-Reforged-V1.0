@@ -1,0 +1,166 @@
+{
+  "file": "DMDIDMDD.mp",
+  "sha256": "90732f918dfce099b781a4116ae93484d3eb4ef8e78c57a8c3e415fd68fa48a7",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DMDI",
+      "area": "Dwarven Mines",
+      "label": "Diamond Mine Tunnel, Cart Ramp",
+      "mapNumber": 15,
+      "roomNumber": 1683,
+      "raw": "[DMDI:Dwarven Mines:Diamond Mine Tunnel, Cart Ramp-15 1683]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1683,
+        "name": "Diamond Mine Tunnel, Cart Ramp",
+        "exits": {
+          "N": "0",
+          "S": "15/1682",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/3169",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "DMDD",
+      "area": "Dwarven Mines",
+      "label": "Mithril Mine, Down to Diamond mines",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DMDD:Dwarven Mines:Mithril Mine, Down to Diamond mines]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "19410004:84440004:9:-1:0:::",
+      "parts": [
+        "19410004",
+        "84440004",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "19410004:0000:u",
+      "parts": [
+        "19410004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "57550000:0000:u",
+      "parts": [
+        "57550000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

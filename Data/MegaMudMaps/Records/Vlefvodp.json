@@ -1,0 +1,172 @@
+{
+  "file": "Vlefvodp.mp",
+  "sha256": "7a93905a1d249a55229771bcc8fb55a60a3bec1ca87db0c025bfbbf309fc4673",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "VLEF",
+      "area": "Volcano",
+      "label": "Giant Efreetis",
+      "mapNumber": 16,
+      "roomNumber": 2145,
+      "raw": "[VLEF:Volcano:Giant Efreetis-16 2145]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2145,
+        "name": "Volcano, Near the Heart",
+        "exits": {
+          "N": "0",
+          "S": "16/2146",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/2114 (Hidden/Searchable)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VODP",
+      "area": "Volcano",
+      "label": "Outside Dark Phoenix",
+      "mapNumber": 16,
+      "roomNumber": 2159,
+      "raw": "[VODP:Volcano:Outside Dark Phoenix-16 2159]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2159,
+        "name": "Volcano, Near the Heart",
+        "exits": {
+          "N": "16/2158",
+          "S": "0",
+          "E": "16/2160 (Key: 1263 [or 301 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "12900004:12900021:8:-1:0:::",
+      "parts": [
+        "12900004",
+        "12900021",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "12900004:0000:s",
+      "parts": [
+        "12900004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "12900051:0000:w",
+      "parts": [
+        "12900051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "12900410:0000:nw",
+      "parts": [
+        "12900410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "12901001:0000:n",
+      "parts": [
+        "12901001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "12900005:0000:n",
+      "parts": [
+        "12900005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "12900104:0000:ne",
+      "parts": [
+        "12900104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "12904010:0000:se[sea se]",
+      "parts": [
+        "12904010",
+        "0000",
+        "se[sea se]"
+      ],
+      "commands": [
+        "se[sea se]"
+      ]
+    },
+    {
+      "raw": "12900004:0000:s",
+      "parts": [
+        "12900004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

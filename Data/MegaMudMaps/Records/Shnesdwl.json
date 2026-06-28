@@ -1,0 +1,106 @@
+{
+  "file": "Shnesdwl.mp",
+  "sha256": "7913fa71fbb9634a147ebb8d03a34e33db252f534bc9cae5e2925ccbc43fd6eb",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "SHNE",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Northern End",
+      "mapNumber": 12,
+      "roomNumber": 2089,
+      "raw": "[SHNE:Scorching Desert:Saracen Hideout, Northern End-12 2089]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2089,
+        "name": "Plaster Hallway",
+        "exits": {
+          "N": "12/2091 (Door [11 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "12/2088 (Hidden/Searchable)",
+          "NE": "12/2092 (Door [11 picklocks/strength])",
+          "NW": "12/2090 (Door [11 picklocks/strength])",
+          "SE": "12/2093",
+          "SW": "12/2095",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SDWL",
+      "area": "Scorching Desert",
+      "label": "Limestone Caverns, Wooden Ladder",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SDWL:Scorching Desert:Limestone Caverns, Wooden Ladder]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2087,
+        "name": "Limestone Caverns, Wooden Ladder",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "12/2086",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "12/2088",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT unique name match only"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F4D05A02:FDA10040:2:-1:0:::",
+      "parts": [
+        "F4D05A02",
+        "FDA10040",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F4D05A02:0000:w[search w]",
+      "parts": [
+        "F4D05A02",
+        "0000",
+        "w[search w]"
+      ],
+      "commands": [
+        "w[search w]"
+      ]
+    },
+    {
+      "raw": "DF040020:0000:d",
+      "parts": [
+        "DF040020",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

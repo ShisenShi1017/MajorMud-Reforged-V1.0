@@ -1,0 +1,130 @@
+{
+  "file": "KFMTKBNK.mp",
+  "sha256": "5a924536e3a0c8adb4a1d830c121eb7d0d17d13333b7f21f46e2beb37e71b35e",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "KFMT",
+      "area": "Khazarad",
+      "label": "Frothing Mug Tavern (dwarven ale)",
+      "mapNumber": 6,
+      "roomNumber": 1332,
+      "raw": "[KFMT:Khazarad:Frothing Mug Tavern (dwarven ale)-6 1332]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1332,
+        "name": "Frothing Mug Tavern",
+        "exits": {
+          "N": "6/1250",
+          "S": "0",
+          "E": "6/1333",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "KBNK",
+      "area": "Khazarad",
+      "label": "Bank of Khazarad",
+      "mapNumber": 6,
+      "roomNumber": 1334,
+      "raw": "[KBNK:Khazarad:Bank of Khazarad-6 1334]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1334,
+        "name": "Bank of Khazarad",
+        "exits": {
+          "N": "0",
+          "S": "6/1252",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "72600011:2AC00004:4:-1:0:::",
+      "parts": [
+        "72600011",
+        "2AC00004",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "72600011:0000:n",
+      "parts": [
+        "72600011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:e",
+      "parts": [
+        "3B900055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B900050:0000:e",
+      "parts": [
+        "3B900050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:n",
+      "parts": [
+        "3B900055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

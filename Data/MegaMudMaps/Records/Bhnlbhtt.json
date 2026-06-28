@@ -1,0 +1,118 @@
+{
+  "file": "Bhnlbhtt.mp",
+  "sha256": "4b919bb2ba7e15324b8fd7866b68e94a3651ee96c250c79e7e3b4b14ee5189fc",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "BHNL",
+      "area": "Barren Hills",
+      "label": "Narrow Ledge",
+      "mapNumber": 15,
+      "roomNumber": 640,
+      "raw": "[BHNL:Barren Hills:Narrow Ledge-15 640]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 640,
+        "name": "Darkened Tunnels",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "15/641",
+          "NE": "0",
+          "NW": "0",
+          "SE": "15/639 (Trap, 110 damage)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BHTT",
+      "area": "Barren Hills",
+      "label": "Treetops",
+      "mapNumber": 16,
+      "roomNumber": 550,
+      "raw": "[BHTT:Barren Hills:Treetops-16 550]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 550,
+        "name": "Treetops",
+        "exits": {
+          "N": "16/551",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "16/553",
+          "NW": "16/549",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D0100100:F8100501:3:-1:0:::",
+      "parts": [
+        "D0100100",
+        "F8100501",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D0100100:0000:climb vine",
+      "parts": [
+        "D0100100",
+        "0000",
+        "climb vine"
+      ],
+      "commands": [
+        "climb vine"
+      ]
+    },
+    {
+      "raw": "F8100004:0000:s",
+      "parts": [
+        "F8100004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F8100004:0000:s",
+      "parts": [
+        "F8100004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

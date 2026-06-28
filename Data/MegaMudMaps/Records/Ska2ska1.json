@@ -1,0 +1,95 @@
+{
+  "file": "Ska2ska1.mp",
+  "sha256": "13d84dd040575e357834cbd1eb118f69441fdb858ff99b765b339f9db2537ba5",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SKA2",
+      "area": "Silvermere",
+      "label": "Skali's Show Room (Armour)",
+      "mapNumber": 1,
+      "roomNumber": 306,
+      "raw": "[SKA2:Silvermere:Skali's Show Room (Armour)-1 306]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 306,
+        "name": "Skali's Fine Armour, Showroom",
+        "exits": {
+          "N": "1/2153",
+          "S": "0",
+          "E": "1/305",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SKA1",
+      "area": "Silvermere",
+      "label": "Skali's Front Room (Accessories)",
+      "mapNumber": 1,
+      "roomNumber": 305,
+      "raw": "[SKA1:Silvermere:Skali's Front Room (Accessories)-1 305]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 305,
+        "name": "Skali's Fine Armour, Front Room",
+        "exits": {
+          "N": "0",
+          "S": "1/301",
+          "E": "1/223",
+          "W": "1/306",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "23000011:03900054:1:-1:0:::",
+      "parts": [
+        "23000011",
+        "03900054",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "23000011:0000:e",
+      "parts": [
+        "23000011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

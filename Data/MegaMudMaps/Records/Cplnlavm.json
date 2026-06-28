@@ -1,0 +1,229 @@
+{
+  "file": "Cplnlavm.mp",
+  "sha256": "4d1115b01ce5805a20a2800303d62cc50d8f86f75db1011ee5c484e506dd02af",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CPLN",
+      "area": "Cracked Plains",
+      "label": "Cracked Plain",
+      "mapNumber": 7,
+      "roomNumber": 732,
+      "raw": "[CPLN:Cracked Plains:Cracked Plain-7 732]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 732,
+        "name": "Cracked Plain, Black Chasm",
+        "exits": {
+          "N": "7/733",
+          "S": "7/793",
+          "E": "0",
+          "W": "7/731",
+          "NE": "0",
+          "NW": "0",
+          "SE": "7/808",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "LAVM",
+      "area": "Lava Fields",
+      "label": "Tunnel Mouth",
+      "mapNumber": 7,
+      "roomNumber": 884,
+      "raw": "[LAVM:Lava Fields:Tunnel Mouth-7 884]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 884,
+        "name": "Lava Fields, Tunnel Mouth",
+        "exits": {
+          "N": "0",
+          "S": "7/885",
+          "E": "7/940",
+          "W": "7/883",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8F601045:73900054:13:-1:0:::",
+      "parts": [
+        "8F601045",
+        "73900054",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "8F601045:0000:se",
+      "parts": [
+        "8F601045",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "1BC00411:0000:e",
+      "parts": [
+        "1BC00411",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "1BC01040:0000:se",
+      "parts": [
+        "1BC01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "1BC00414:0000:e",
+      "parts": [
+        "1BC00414",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "1BC01040:0000:se",
+      "parts": [
+        "1BC01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "1BC01410:0000:se",
+      "parts": [
+        "1BC01410",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "1BC01400:0000:se",
+      "parts": [
+        "1BC01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "1BC01440:0000:se",
+      "parts": [
+        "1BC01440",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "1BC01410:0000:se",
+      "parts": [
+        "1BC01410",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "1BC01400:0000:se",
+      "parts": [
+        "1BC01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "B6F01414:0000:se",
+      "parts": [
+        "B6F01414",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "59B01400:0000:se",
+      "parts": [
+        "59B01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "59B00410:0000:e",
+      "parts": [
+        "59B00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 18
+}

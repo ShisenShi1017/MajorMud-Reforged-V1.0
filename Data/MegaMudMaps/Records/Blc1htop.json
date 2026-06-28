@@ -1,0 +1,183 @@
+{
+  "file": "Blc1htop.mp",
+  "sha256": "da3641bc213a808f89c1059d108c49ff04fecfd5bebeef349b8834a5fb7c997a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BLC1",
+      "area": "Black Caves",
+      "label": "Black Caves Level 1",
+      "mapNumber": 8,
+      "roomNumber": 900,
+      "raw": "[BLC1:Black Caves:Black Caves Level 1-8 900]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 900,
+        "name": "Black Cave, Entrance",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/1",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "8/899 (Hidden/Searchable)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "HTOP",
+      "area": "Black Caves",
+      "label": "Hilltop Fortress",
+      "mapNumber": 8,
+      "roomNumber": 872,
+      "raw": "[HTOP:Black Caves:Hilltop Fortress-8 872]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 872,
+        "name": "Central Keep, Foyer",
+        "exits": {
+          "N": "0",
+          "S": "8/881",
+          "E": "8/873",
+          "W": "8/849 (Door [26 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BD400010:36600094:9:-1:0:::",
+      "parts": [
+        "BD400010",
+        "36600094",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BD400010:0000:u[search u]",
+      "parts": [
+        "BD400010",
+        "0000",
+        "u[search u]"
+      ],
+      "commands": [
+        "u[search u]"
+      ]
+    },
+    {
+      "raw": "CAA00008:0001:s",
+      "parts": [
+        "CAA00008",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F1F0001A:0000:e",
+      "parts": [
+        "F1F0001A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F1F0005A:0000:e",
+      "parts": [
+        "F1F0005A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F1F20069:0000:u",
+      "parts": [
+        "F1F20069",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "33F80080:0000:w",
+      "parts": [
+        "33F80080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "34B00080:0000:w",
+      "parts": [
+        "34B00080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B6D00021:0000:n",
+      "parts": [
+        "B6D00021",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3BE00005:0000:n",
+      "parts": [
+        "3BE00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

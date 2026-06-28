@@ -1,0 +1,249 @@
+{
+  "file": "Moruspst.mp",
+  "sha256": "8a4cae9112747ef04be8cdbaefe64fea8dc0d75f864847fa3dce74cb5b94e68f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MORU",
+      "area": "Darkwood Forest",
+      "label": "Morukai",
+      "mapNumber": 9,
+      "roomNumber": 1425,
+      "raw": "[MORU:Darkwood Forest:Morukai-9 1425]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1425,
+        "name": "Mystical Chambers",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "9/1423 (Door)",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SPST",
+      "area": "Darkwood Forest",
+      "label": "Ancient Tree Spiral Stairs",
+      "mapNumber": 9,
+      "roomNumber": 1341,
+      "raw": "[SPST:Darkwood Forest:Ancient Tree Spiral Stairs-9 1341]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1341,
+        "name": "Ancient Darkwood Tree, Spiral Staircase",
+        "exits": {
+          "N": "9/1342",
+          "S": "9/1340",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B2300020:FE840001:15:-1:0:::",
+      "parts": [
+        "B2300020",
+        "FE840001",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B2300020:0000:e",
+      "parts": [
+        "B2300020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "64400098:0000:s",
+      "parts": [
+        "64400098",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "54440002:0000:d",
+      "parts": [
+        "54440002",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:d",
+      "parts": [
+        "54450000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:d",
+      "parts": [
+        "54450000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:d",
+      "parts": [
+        "54450000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:d",
+      "parts": [
+        "54450000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:d",
+      "parts": [
+        "54450000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:d",
+      "parts": [
+        "54450000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:d",
+      "parts": [
+        "54450000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:d",
+      "parts": [
+        "54450000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "54450000:0000:n[search n]",
+      "parts": [
+        "54450000",
+        "0000",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    },
+    {
+      "raw": "FE800050:0000:w",
+      "parts": [
+        "FE800050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FE800014:0000:s",
+      "parts": [
+        "FE800014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FE800005:0000:s",
+      "parts": [
+        "FE800005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

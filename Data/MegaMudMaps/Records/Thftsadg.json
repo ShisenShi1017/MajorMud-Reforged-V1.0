@@ -1,0 +1,187 @@
+{
+  "file": "Thftsadg.mp",
+  "sha256": "c4487e8d1301a6c9123717b2d0f489c1219dd92e537e4b3e52f64fc838c32bcd",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "THFT",
+      "area": "Trainers",
+      "label": "Thief Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 201,
+      "raw": "[THFT:Trainers:Thief Trainer (2-10)-1 201]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 201,
+        "name": "Thief Training Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/202",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SADG",
+      "area": "Silvermere",
+      "label": "Adventurer's Guild",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SADG:Silvermere:Adventurer's Guild]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "73200010:D4200014:11:-1:0:::",
+      "parts": [
+        "73200010",
+        "D4200014",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "73200010:0000:e",
+      "parts": [
+        "73200010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5C980044:0009:d",
+      "parts": [
+        "5C980044",
+        "0009",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "84420001:0009:n",
+      "parts": [
+        "84420001",
+        "0009",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "84400025:0009:n",
+      "parts": [
+        "84400025",
+        "0009",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "84400404:0001:nw",
+      "parts": [
+        "84400404",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "84401040:0001:w",
+      "parts": [
+        "84401040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "84400050:0001:w",
+      "parts": [
+        "84400050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "84404010:0001:sw",
+      "parts": [
+        "84404010",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "84404100:0001:sw",
+      "parts": [
+        "84404100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "84400104:0001:s",
+      "parts": [
+        "84400104",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "84400001:0001:s[push button]",
+      "parts": [
+        "84400001",
+        "0001",
+        "s[push button]"
+      ],
+      "commands": [
+        "s[push button]"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

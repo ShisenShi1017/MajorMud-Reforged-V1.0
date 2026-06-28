@@ -1,0 +1,382 @@
+{
+  "file": "Silpawil.mp",
+  "sha256": "6a1bf1bd47182c61c8bddf898d6d5ed5ea60c9ce0c90363c7fe599153ce44058",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SILP",
+      "area": "Northern Forests",
+      "label": "Silvery Pool",
+      "mapNumber": 1,
+      "roomNumber": 2411,
+      "raw": "[SILP:Northern Forests:Silvery Pool-1 2411]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2411,
+        "name": "Silvery Pool",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "3/85",
+          "NE": "3/38",
+          "NW": "3/53",
+          "SE": "1/2410",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "AWIL",
+      "area": "Northern Forests",
+      "label": "Ancient Willow",
+      "mapNumber": 3,
+      "roomNumber": 214,
+      "raw": "[AWIL:Northern Forests:Ancient Willow-3 214]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 214,
+        "name": "Inside The Broken Willow",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/213",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E3001540:1B100040:27:-1:0:::",
+      "parts": [
+        "E3001540",
+        "1B100040",
+        "27",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "27",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E3001540:0000:w",
+      "parts": [
+        "E3001540",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F7800050:0000:w",
+      "parts": [
+        "F7800050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F7804010:0000:sw",
+      "parts": [
+        "F7804010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5E800144:0000:s",
+      "parts": [
+        "5E800144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F7800011:0000:e",
+      "parts": [
+        "F7800011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F7801040:0000:se",
+      "parts": [
+        "F7801040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "16101400:0000:se",
+      "parts": [
+        "16101400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "16105400:0000:sw",
+      "parts": [
+        "16105400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "16100140:0000:w",
+      "parts": [
+        "16100140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16104010:0000:sw",
+      "parts": [
+        "16104010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "16100140:0000:w",
+      "parts": [
+        "16100140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16100410:0000:nw",
+      "parts": [
+        "16100410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "16101101:0000:n",
+      "parts": [
+        "16101101",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "16100005:0000:n",
+      "parts": [
+        "16100005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "16100404:0000:nw",
+      "parts": [
+        "16100404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "16101040:0000:w",
+      "parts": [
+        "16101040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16104010:0000:sw",
+      "parts": [
+        "16104010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "16100144:0000:w",
+      "parts": [
+        "16100144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "16100050:0000:w",
+      "parts": [
+        "16100050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B4E04410:0000:sw",
+      "parts": [
+        "B4E04410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "94700144:0000:s",
+      "parts": [
+        "94700144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "94704011:0000:sw",
+      "parts": [
+        "94704011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "2A601504:0000:nw",
+      "parts": [
+        "2A601504",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "94705400:0000:sw",
+      "parts": [
+        "94705400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "94700144:0000:w",
+      "parts": [
+        "94700144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "94700410:0000:nw",
+      "parts": [
+        "94700410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "94701011:0000:e",
+      "parts": [
+        "94701011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 31
+}

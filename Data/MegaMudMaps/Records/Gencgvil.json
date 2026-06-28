@@ -1,0 +1,143 @@
+{
+  "file": "Gencgvil.mp",
+  "sha256": "618b06b70282d114822cbd15fd18c65382d7fd1ee791003f192b62a795607507",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GENC",
+      "area": "Gnome Village",
+      "label": "Gnome Enchantress",
+      "mapNumber": 6,
+      "roomNumber": 577,
+      "raw": "[GENC:Gnome Village:Gnome Enchantress-6 577]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 577,
+        "name": "Home of the Enchantress",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/576 (Door [2 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "GVIL",
+      "area": "Gnome Village",
+      "label": "Gnome Village- 6 552",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GVIL:Gnome Village:Gnome Village- 6 552]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B0300020:2A300145:7:-1:0:::",
+      "parts": [
+        "B0300020",
+        "2A300145",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B0300020:0000:e",
+      "parts": [
+        "B0300020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300090:0000:e",
+      "parts": [
+        "2A300090",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300050:0000:e",
+      "parts": [
+        "2A300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300056:0000:s",
+      "parts": [
+        "2A300056",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300005:0000:s",
+      "parts": [
+        "2A300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300005:0000:s",
+      "parts": [
+        "2A300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300005:0000:s",
+      "parts": [
+        "2A300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

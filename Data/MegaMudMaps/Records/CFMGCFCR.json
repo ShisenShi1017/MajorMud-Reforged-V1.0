@@ -1,0 +1,326 @@
+{
+  "file": "CFMGCFCR.mp",
+  "sha256": "99bb3a4a64b1250e8ce61eef997c105eee01927749769f84f2eff18fe8b514ab",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CFMG",
+      "area": "Lava Fields",
+      "label": "Crimson Fortress, Main Gate",
+      "mapNumber": 15,
+      "roomNumber": 1054,
+      "raw": "[CFMG:Lava Fields:Crimson Fortress, Main Gate-15 1054]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1054,
+        "name": "Fortress of the Crimson Flame, Main Gate",
+        "exits": {
+          "N": "15/1053 (Key: 1076)",
+          "S": "0",
+          "E": "15/1073",
+          "W": "15/1055",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "CFCR",
+      "area": "Lava Fields",
+      "label": "Crazed Inquisitor",
+      "mapNumber": 15,
+      "roomNumber": 1099,
+      "raw": "[CFCR:Lava Fields:Crazed Inquisitor-15 1099]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1099,
+        "name": "Crimson Fortress, Command Room",
+        "exits": {
+          "N": "15/1100 (Door [51 picklocks/strength])",
+          "S": "15/1098 (Door [51 picklocks/strength])",
+          "E": "15/1106 (Door [51 picklocks/strength])",
+          "W": "15/1105 (Door [51 picklocks/strength])",
+          "NE": "Action [on the SE exit of this room]: pull left lever, move left lever, use left lever",
+          "NW": "Action [on the SW exit of this room]: pull right lever, move right lever, use right lever",
+          "SE": "15/1102 (Hidden/Needs 1 Actions, any order)",
+          "SW": "15/1104 (Hidden/Needs 1 Actions, any order)",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "93F00052:A9E000AA:22:-1:0:::",
+      "parts": [
+        "93F00052",
+        "A9E000AA",
+        "22",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "22",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "93F00052:0000:w",
+      "parts": [
+        "93F00052",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B2600050:0000:w",
+      "parts": [
+        "B2600050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B2600014:0000:s",
+      "parts": [
+        "B2600014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B2600005:0000:s",
+      "parts": [
+        "B2600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B2600005:0000:e[sea e]",
+      "parts": [
+        "B2600005",
+        "0000",
+        "e[sea e]"
+      ],
+      "commands": [
+        "e[sea e]"
+      ]
+    },
+    {
+      "raw": "3F400001:0000:n",
+      "parts": [
+        "3F400001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3F400004:0000:pull lever",
+      "parts": [
+        "3F400004",
+        "0000",
+        "pull lever"
+      ],
+      "commands": [
+        "pull lever"
+      ]
+    },
+    {
+      "raw": "3F400004:0000:s",
+      "parts": [
+        "3F400004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3F400001:0000:w[sea w]",
+      "parts": [
+        "3F400001",
+        "0000",
+        "w[sea w]"
+      ],
+      "commands": [
+        "w[sea w]"
+      ]
+    },
+    {
+      "raw": "B2600005:0000:s",
+      "parts": [
+        "B2600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B2600005:0000:s",
+      "parts": [
+        "B2600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B2608011:0000:e",
+      "parts": [
+        "B2608011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B2600050:0000:e",
+      "parts": [
+        "B2600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B2600050:0000:e",
+      "parts": [
+        "B2600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B2600050:0000:e",
+      "parts": [
+        "B2600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B2600041:0000:se",
+      "parts": [
+        "B2600041",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "7D910000:0000:u",
+      "parts": [
+        "7D910000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "7D940400:0000:nw",
+      "parts": [
+        "7D940400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B2601041:0000:n",
+      "parts": [
+        "B2601041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B2600005:0000:n",
+      "parts": [
+        "B2600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B2600045:0000:w",
+      "parts": [
+        "B2600045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B2600090:0000:w",
+      "parts": [
+        "B2600090",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 26
+}

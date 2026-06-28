@@ -1,0 +1,131 @@
+{
+  "file": "Gst3fung.mp",
+  "sha256": "ce9b29527c37647b8658fc629436335a97c93af86f3c71c5dae94f5755172816",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GST3",
+      "area": "Black House",
+      "label": "Grand Stair (Gate)",
+      "mapNumber": 7,
+      "roomNumber": 150,
+      "raw": "[GST3:Black House:Grand Stair (Gate)-7 150]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 150,
+        "name": "Grand Stair",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "7/151 (Door [251 picklocks/strength])",
+          "SW": "7/149",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "FUNG",
+      "area": "Black House",
+      "label": "Fungus Forest",
+      "mapNumber": 7,
+      "roomNumber": 156,
+      "raw": "[FUNG:Black House:Fungus Forest-7 156]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 156,
+        "name": "Fungus Forest, Tunnel Opening",
+        "exits": {
+          "N": "7/155",
+          "S": "7/157",
+          "E": "7/281",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "90806000:23600015:4:-1:0::GST2GST3.MP:",
+      "parts": [
+        "90806000",
+        "23600015",
+        "4",
+        "-1",
+        "0",
+        "",
+        "GST2GST3.MP",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0",
+        "GST2GST3.MP"
+      ]
+    },
+    {
+      "raw": "90806000:0000:se[]",
+      "parts": [
+        "90806000",
+        "0000",
+        "se[]"
+      ],
+      "commands": [
+        "se[]"
+      ]
+    },
+    {
+      "raw": "90804800:0000:sw",
+      "parts": [
+        "90804800",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BAB00104:0000:s",
+      "parts": [
+        "BAB00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E7E00005:0000:s",
+      "parts": [
+        "E7E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

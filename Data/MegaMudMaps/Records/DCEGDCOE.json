@@ -1,0 +1,95 @@
+{
+  "file": "DCEGDCOE.mp",
+  "sha256": "1a4c9c17825718d83a3166fb1cadf71f7b2dcd5069c45c3efc600ee7847bc312",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DCEG",
+      "area": "Dark-Elf City",
+      "label": "Guild of the Ebon Blade, Dark Psg",
+      "mapNumber": 8,
+      "roomNumber": 1797,
+      "raw": "[DCEG:Dark-Elf City:Guild of the Ebon Blade, Dark Psg-8 1797]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1797,
+        "name": "Guild of the Ebon Blade, Dark Passage",
+        "exits": {
+          "N": "8/1798 (Trap, 200 damage)",
+          "S": "8/1807 (Trap, 200 damage)",
+          "E": "8/1678 (Hidden/Passable)",
+          "W": "8/1806 (Cast: pre-0, post-1257)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DCOE",
+      "area": "Dark-Elf City",
+      "label": "Outside Ebon Guild",
+      "mapNumber": 8,
+      "roomNumber": 1678,
+      "raw": "[DCOE:Dark-Elf City:Outside Ebon Guild-8 1678]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1678,
+        "name": "City, Main Street",
+        "exits": {
+          "N": "8/1677",
+          "S": "8/1679",
+          "E": "Action [on the W exit of this room]: place adamantite ring, place adamantite ring on wall, place adamantite ring on R (Item: 1856)",
+          "W": "8/1797 (Hidden/Needs 1 Actions, any order)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "17800045:86400005:1:-1:0:::",
+      "parts": [
+        "17800045",
+        "86400005",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "17800045:0000:e",
+      "parts": [
+        "17800045",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

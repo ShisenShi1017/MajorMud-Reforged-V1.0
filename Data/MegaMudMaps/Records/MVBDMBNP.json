@@ -1,0 +1,130 @@
+{
+  "file": "MVBDMBNP.mp",
+  "sha256": "0bb215631c5993a8db0f7bde28ce21d901e96d9087186ade36556a9676fdb8e9",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MVBD",
+      "area": "Misty Valley",
+      "label": "Misty Bog (Black Dragons Area)",
+      "mapNumber": 6,
+      "roomNumber": 387,
+      "raw": "[MVBD:Misty Valley:Misty Bog (Black Dragons Area)-6 387]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 387,
+        "name": "Misty Bog",
+        "exits": {
+          "N": "6/394",
+          "S": "0",
+          "E": "6/388",
+          "W": "6/386",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MBNP",
+      "area": "Misty Valley",
+      "label": "Misty Bog NPP Portal",
+      "mapNumber": 1,
+      "roomNumber": 2682,
+      "raw": "[MBNP:Misty Valley:Misty Bog NPP Portal-1 2682]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2682,
+        "name": "Misty Bog",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/390",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "04A00051:04A00010:4:-1:0:::",
+      "parts": [
+        "04A00051",
+        "04A00010",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "04A00051:0000:e",
+      "parts": [
+        "04A00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "04A00050:0000:e",
+      "parts": [
+        "04A00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "04A00041:0000:n",
+      "parts": [
+        "04A00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "04A00145:0000:w",
+      "parts": [
+        "04A00145",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

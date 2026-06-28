@@ -1,0 +1,59 @@
+{
+  "file": "BLU2BT2N.mp",
+  "sha256": "426ab1810f432f42d0534ea9674eff6057df12f84447612872db7abdd5bd0861",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BLU2",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Armour (leather)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BLU2:Darkwood Forest:Blue Tower, Armour (leather)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "BT2N",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Armour (plate/scale)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BT2N:Darkwood Forest:Blue Tower, Armour (plate/scale)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C8254400:C8201000:1:-1:0:::",
+      "parts": [
+        "C8254400",
+        "C8201000",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C8254400:0000:nw",
+      "parts": [
+        "C8254400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

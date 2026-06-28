@@ -1,0 +1,228 @@
+{
+  "file": "BFWLWDFE.mp",
+  "sha256": "c8325de4deecc230d66ec3316ce80c92ffa695978198344f1421b20368958981",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BFWL",
+      "area": "Blackwood Forest",
+      "label": "Blackwood Forest, Webbed Lair",
+      "mapNumber": 17,
+      "roomNumber": 2674,
+      "raw": "[BFWL:Blackwood Forest:Blackwood Forest, Webbed Lair-17 2674]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2674,
+        "name": "Blackwood Forest, Webbed Lair",
+        "exits": {
+          "N": "17/2673",
+          "S": "17/2682",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/2680",
+          "SW": "17/2675",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "WDFE",
+      "area": "Blackwood Forest",
+      "label": "Dying Fields, West Side",
+      "mapNumber": 17,
+      "roomNumber": 2632,
+      "raw": "[WDFE:Blackwood Forest:Dying Fields, West Side-17 2632]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2632,
+        "name": "Blackwood Forest",
+        "exits": {
+          "N": "17/2719",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/2625",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "95905005:57201001:13:-1:0:::",
+      "parts": [
+        "95905005",
+        "57201001",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "95905005:0000:n",
+      "parts": [
+        "95905005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57200005:0000:n",
+      "parts": [
+        "57200005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57200104:0000:ne",
+      "parts": [
+        "57200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57204010:0000:e",
+      "parts": [
+        "57204010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "57200140:0000:ne",
+      "parts": [
+        "57200140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57205400:0000:se",
+      "parts": [
+        "57205400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "57200500:0000:ne",
+      "parts": [
+        "57200500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57205001:0000:n",
+      "parts": [
+        "57205001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57200054:0000:e",
+      "parts": [
+        "57200054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "57200445:0000:n",
+      "parts": [
+        "57200445",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "57200414:0000:nw",
+      "parts": [
+        "57200414",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "57201500:0000:ne",
+      "parts": [
+        "57201500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "57204410:0000:nw",
+      "parts": [
+        "57204410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

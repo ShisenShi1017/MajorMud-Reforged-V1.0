@@ -1,0 +1,195 @@
+{
+  "file": "FTIFEROI.mp",
+  "sha256": "3b07019f971c75b8f2bfe554655b5c9019e6b4064e5bf3a95f4cd827b0191407",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "FTIF",
+      "area": "Blackwood Forest",
+      "label": "Fork, Town/Inn/Fields",
+      "mapNumber": 17,
+      "roomNumber": 483,
+      "raw": "[FTIF:Blackwood Forest:Fork, Town/Inn/Fields-17 483]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 483,
+        "name": "Eastern Road",
+        "exits": {
+          "N": "0",
+          "S": "17/2706",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "17/484",
+          "SE": "17/482",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "EROI",
+      "area": "Blackwood Forest",
+      "label": "Eastern Road, Outside Inn",
+      "mapNumber": 17,
+      "roomNumber": 472,
+      "raw": "[EROI:Blackwood Forest:Eastern Road, Outside Inn-17 472]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 472,
+        "name": "Eastern Road",
+        "exits": {
+          "N": "17/474",
+          "S": "0",
+          "E": "0",
+          "W": "17/2800",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/471",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CEA01404:CEA01041:10:-1:0:::",
+      "parts": [
+        "CEA01404",
+        "CEA01041",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CEA01404:0000:se",
+      "parts": [
+        "CEA01404",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CEA00404:0000:s",
+      "parts": [
+        "CEA00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA04001:0000:sw",
+      "parts": [
+        "CEA04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA00104:0000:s",
+      "parts": [
+        "CEA00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA04001:0000:sw",
+      "parts": [
+        "CEA04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA04100:0000:sw",
+      "parts": [
+        "CEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CEA00104:0000:s",
+      "parts": [
+        "CEA00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CEA00005:0000:s",
+      "parts": [
+        "CEA00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

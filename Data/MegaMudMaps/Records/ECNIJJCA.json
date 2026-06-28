@@ -1,0 +1,284 @@
+{
+  "file": "ECNIJJCA.mp",
+  "sha256": "e243e279e22e069a1dd674eef3f3957035c5db1887e93c274d6d36f77d0b4908",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ECNI",
+      "area": "Jungle",
+      "label": "Earthen Catacombs (no idol)",
+      "mapNumber": 16,
+      "roomNumber": 2228,
+      "raw": "[ECNI:Jungle:Earthen Catacombs (no idol)-16 2228]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2228,
+        "name": "Earthen Catacombs",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "16/2227",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "JJCA",
+      "area": "Jungle",
+      "label": "Jungle Cave",
+      "mapNumber": 16,
+      "roomNumber": 1510,
+      "raw": "[JJCA:Jungle:Jungle Cave-16 1510]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1510,
+        "name": "Jungle Cave",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/1511 (Door)",
+          "W": "16/1509 (Text: go jungle)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B8100040:7E800090:18:-1:0:::",
+      "parts": [
+        "B8100040",
+        "7E800090",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B8100040:0000:w",
+      "parts": [
+        "B8100040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B8100011:0000:n",
+      "parts": [
+        "B8100011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8104014:0000:sw",
+      "parts": [
+        "B8104014",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "B8100140:0000:w",
+      "parts": [
+        "B8100140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B8101050:0000:se",
+      "parts": [
+        "B8101050",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "B8101400:0000:se",
+      "parts": [
+        "B8101400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "B8100414:0000:s",
+      "parts": [
+        "B8100414",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B8104005:0000:sw",
+      "parts": [
+        "B8104005",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "B8104100:0000:sw",
+      "parts": [
+        "B8104100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "B8104100:0000:sw",
+      "parts": [
+        "B8104100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "B8100500:0000:nw",
+      "parts": [
+        "B8100500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B8101001:0000:n",
+      "parts": [
+        "B8101001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8100005:0000:n",
+      "parts": [
+        "B8100005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8100005:0000:n",
+      "parts": [
+        "B8100005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8100045:0000:w",
+      "parts": [
+        "B8100045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B8100050:0000:w",
+      "parts": [
+        "B8100050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B8100090:0000:w",
+      "parts": [
+        "B8100090",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7E800060:0000:w",
+      "parts": [
+        "7E800060",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

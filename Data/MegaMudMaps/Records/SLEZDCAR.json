@@ -1,0 +1,118 @@
+{
+  "file": "SLEZDCAR.mp",
+  "sha256": "3628469891fc8592d2a2213795c3f6bdba072e2f381112203336aebcbd482d6c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SLEZ",
+      "area": "Dark-Elf City",
+      "label": "Sleazy Shopkeeper",
+      "mapNumber": 8,
+      "roomNumber": 486,
+      "raw": "[SLEZ:Dark-Elf City:Sleazy Shopkeeper-8 486]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 486,
+        "name": "Musty Store",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/481 (Door [16 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DCAR",
+      "area": "Dark-Elf City",
+      "label": "Town Gates, Archway",
+      "mapNumber": 8,
+      "roomNumber": 462,
+      "raw": "[DCAR:Dark-Elf City:Town Gates, Archway-8 462]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 462,
+        "name": "Town Gates, Archway",
+        "exits": {
+          "N": "8/461 (Key: 1 [or 31 picklocks/strength])",
+          "S": "8/463",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A1400020:5D900006:3:-1:0:::",
+      "parts": [
+        "A1400020",
+        "5D900006",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A1400020:0000:e",
+      "parts": [
+        "A1400020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "86400085:0000:n",
+      "parts": [
+        "86400085",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "78000055:0000:n",
+      "parts": [
+        "78000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

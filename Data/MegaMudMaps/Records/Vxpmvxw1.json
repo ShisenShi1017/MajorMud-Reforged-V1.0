@@ -1,0 +1,78 @@
+{
+  "file": "Vxpmvxw1.mp",
+  "sha256": "d4950b1ef6a6ccb39d975faa15eb1aab04758b1c958f948be0e3623ecdc7b884",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXPM",
+      "area": "Ancient Ruin",
+      "label": "Pillaged Museum Vortex",
+      "mapNumber": 3,
+      "roomNumber": 613,
+      "raw": "[VXPM:Ancient Ruin:Pillaged Museum Vortex-3 613]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 613,
+        "name": "Pillaged Museum",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "3/612"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "VXW1",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (Pillaged Museum)3 669",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[VXW1:Black Wastelands:Wastelands Vortex (Pillaged Museum)3 669]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EC040000:ED101445:1:-1:0:::",
+      "parts": [
+        "EC040000",
+        "ED101445",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EC040000:0001:@party go vortex",
+      "parts": [
+        "EC040000",
+        "0001",
+        "@party go vortex"
+      ],
+      "commands": [
+        "@party go vortex"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

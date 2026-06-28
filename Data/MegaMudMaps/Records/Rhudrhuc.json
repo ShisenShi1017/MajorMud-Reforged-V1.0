@@ -1,0 +1,129 @@
+{
+  "file": "Rhudrhuc.mp",
+  "sha256": "570c5cad622aefd3a07648f55048c87db30bfef7aa0243a2dad4462a5feb6d56",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RHUD",
+      "area": "Rhudaur",
+      "label": "Rhudaur",
+      "mapNumber": 2,
+      "roomNumber": 2519,
+      "raw": "[RHUD:Rhudaur:Rhudaur-2 2519]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2519,
+        "name": "Rhudaur, Massive Doors",
+        "exits": {
+          "N": "2/176 (Key: 593 [or 31 picklocks])",
+          "S": "2/2520",
+          "E": "2/2540 (Text: go alley, go alleyway, enter alley)",
+          "W": "2/2530 (Text: go alley, go alleyway, enter alley)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EBF00006:7AD00055:4:-1:0:::",
+      "parts": [
+        "EBF00006",
+        "7AD00055",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EBF00006:0000:s",
+      "parts": [
+        "EBF00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "87500085:0000:s",
+      "parts": [
+        "87500085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3C200015:0000:s",
+      "parts": [
+        "3C200015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "8FB00015:0000:s",
+      "parts": [
+        "8FB00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

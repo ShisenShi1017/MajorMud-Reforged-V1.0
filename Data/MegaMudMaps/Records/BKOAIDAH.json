@@ -1,0 +1,89 @@
+{
+  "file": "BKOAIDAH.mp",
+  "sha256": "b0021f2b3865ada3532b748af3cbf02b3cbbd01c75256ad3c383d4d5f79aefb4",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "BKOA",
+      "area": "Arlysia",
+      "label": "Bank of Arlysia",
+      "mapNumber": 17,
+      "roomNumber": 2435,
+      "raw": "[BKOA:Arlysia:Bank of Arlysia-17 2435]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2435,
+        "name": "Bank of Arlysia",
+        "exits": {
+          "N": "17/2289",
+          "S": "0",
+          "E": "0",
+          "W": "17/2393",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "IDAH",
+      "area": "Arlysia",
+      "label": "Intersection of Dock Street & Haven Stre",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[IDAH:Arlysia:Intersection of Dock Street & Haven Stre]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D4F00041:E0500054:2:-1:0:::",
+      "parts": [
+        "D4F00041",
+        "E0500054",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D4F00041:0000:w",
+      "parts": [
+        "D4F00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E8600015:0000:n",
+      "parts": [
+        "E8600015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

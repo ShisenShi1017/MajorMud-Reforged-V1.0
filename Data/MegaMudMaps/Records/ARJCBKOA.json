@@ -1,0 +1,196 @@
+{
+  "file": "ARJCBKOA.mp",
+  "sha256": "57bece0acd256eb1db0438a8e32d04080817821b7bb64d03f8b19faad13b4cbb",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "ARJC",
+      "area": "Arlysia",
+      "label": "Jail Cell",
+      "mapNumber": 17,
+      "roomNumber": 2548,
+      "raw": "[ARJC:Arlysia:Jail Cell-17 2548]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2548,
+        "name": "Jail Cell",
+        "exits": {
+          "N": "0",
+          "S": "17/2547 (Door [51 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "BKOA",
+      "area": "Arlysia",
+      "label": "Bank of Arlysia",
+      "mapNumber": 17,
+      "roomNumber": 2435,
+      "raw": "[BKOA:Arlysia:Bank of Arlysia-17 2435]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2435,
+        "name": "Bank of Arlysia",
+        "exits": {
+          "N": "17/2289",
+          "S": "0",
+          "E": "0",
+          "W": "17/2393",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "01800008:D4F00041:10:-1:0:::",
+      "parts": [
+        "01800008",
+        "D4F00041",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "01800008:0400:s",
+      "parts": [
+        "01800008",
+        "0400",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "10E00006:0000:s",
+      "parts": [
+        "10E00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "0D200051:0000:w",
+      "parts": [
+        "0D200051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "0D900054:0000:w",
+      "parts": [
+        "0D900054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "0D200050:0000:w",
+      "parts": [
+        "0D200050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "0D200051:0000:w",
+      "parts": [
+        "0D200051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9D400055:0000:w",
+      "parts": [
+        "9D400055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000050:0000:w",
+      "parts": [
+        "9C000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000050:0000:w",
+      "parts": [
+        "9C000050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:s",
+      "parts": [
+        "9C000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

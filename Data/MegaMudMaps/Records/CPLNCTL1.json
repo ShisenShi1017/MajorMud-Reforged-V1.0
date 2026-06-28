@@ -1,0 +1,240 @@
+{
+  "file": "CPLNCTL1.mp",
+  "sha256": "99f4516ed0222ea7f4540788c966d65deea283da5ff9a61d69783ea3df673be6",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CPLN",
+      "area": "Cracked Plains",
+      "label": "Cracked Plain",
+      "mapNumber": 7,
+      "roomNumber": 732,
+      "raw": "[CPLN:Cracked Plains:Cracked Plain-7 732]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 732,
+        "name": "Cracked Plain, Black Chasm",
+        "exits": {
+          "N": "7/733",
+          "S": "7/793",
+          "E": "0",
+          "W": "7/731",
+          "NE": "0",
+          "NW": "0",
+          "SE": "7/808",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "CTL1",
+      "area": "Cracked Plains",
+      "label": "Cracked Tunnel",
+      "mapNumber": 7,
+      "roomNumber": 1406,
+      "raw": "[CTL1:Cracked Plains:Cracked Tunnel-7 1406]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1406,
+        "name": "Cracked Tunnel",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "7/1407",
+          "NW": "0",
+          "SE": "0",
+          "SW": "7/745 (Text: go crack, enter crack)",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8F601045:87800100:14:-1:0:::",
+      "parts": [
+        "8F601045",
+        "87800100",
+        "14",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "14",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "8F601045:0000:n",
+      "parts": [
+        "8F601045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600015:0000:n",
+      "parts": [
+        "8F600015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F600005:0000:n",
+      "parts": [
+        "8F600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8F601004:0000:se",
+      "parts": [
+        "8F601004",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "B8B01400:0000:se",
+      "parts": [
+        "B8B01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "B8B01400:0000:go crack",
+      "parts": [
+        "B8B01400",
+        "0000",
+        "go crack"
+      ],
+      "commands": [
+        "go crack"
+      ]
+    }
+  ],
+  "rawLineCount": 18
+}

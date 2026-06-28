@@ -1,0 +1,154 @@
+{
+  "file": "Lct2lcpd.mp",
+  "sha256": "40c097ff4571d36559261cb448dc9c0d00c59491b72863dab7b8dfbe48d36b2a",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCT2",
+      "area": "Lost City",
+      "label": "Market Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT2:Lost City:Market Street]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCPD",
+      "area": "Lost City",
+      "label": "Practice Dummy",
+      "mapNumber": 16,
+      "roomNumber": 541,
+      "raw": "[LCPD:Lost City:Practice Dummy-16 541]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 541,
+        "name": "Training Grounds",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/520"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3B904046:5D640000:8:-1:0:::",
+      "parts": [
+        "3B904046",
+        "5D640000",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3B904046:0000:n",
+      "parts": [
+        "3B904046",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00009:0000:n",
+      "parts": [
+        "EDE00009",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:n",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:w[sea w]",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "w[sea w]"
+      ],
+      "commands": [
+        "w[sea w]"
+      ]
+    },
+    {
+      "raw": "5D600045:0000:w",
+      "parts": [
+        "5D600045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D600050:0000:w",
+      "parts": [
+        "5D600050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5D610054:0000:u",
+      "parts": [
+        "5D610054",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "5D650040:0000:u",
+      "parts": [
+        "5D650040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

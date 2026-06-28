@@ -1,0 +1,294 @@
+{
+  "file": "Yetiiceg.mp",
+  "sha256": "71956a9d3f986f79e8514adb25428947f6b5ca154fbd3ae18d21745dc023052d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "YETI",
+      "area": "Rocky Trail",
+      "label": "Frozen Cavern (Large Yeti)",
+      "mapNumber": 10,
+      "roomNumber": 218,
+      "raw": "[YETI:Rocky Trail:Frozen Cavern (Large Yeti)-10 218]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 218,
+        "name": "Frozen Cavern",
+        "exits": {
+          "N": "10/178",
+          "S": "10/219 (Key: 520 [or 61 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "ICEG",
+      "area": "Rocky Trail",
+      "label": "Ice Tower (Ice Golem)",
+      "mapNumber": 10,
+      "roomNumber": 241,
+      "raw": "[ICEG:Rocky Trail:Ice Tower (Ice Golem)-10 241]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 241,
+        "name": "Tower, Stairwell",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/240",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "10/242 (Key: 520 [or 51 picklocks/strength])",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "32E00009:54320040:19:-1:0:::",
+      "parts": [
+        "32E00009",
+        "54320040",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "32E00009:0001:s",
+      "parts": [
+        "32E00009",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCD00046:0001:s",
+      "parts": [
+        "CCD00046",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7F100005:0000:s",
+      "parts": [
+        "7F100005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7F100005:0000:s",
+      "parts": [
+        "7F100005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7F100081:0000:w",
+      "parts": [
+        "7F100081",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "50700020:0000:nw[twist crystal ball]",
+      "parts": [
+        "50700020",
+        "0000",
+        "nw[twist crystal ball]"
+      ],
+      "commands": [
+        "nw[twist crystal ball]"
+      ]
+    },
+    {
+      "raw": "84400010:0000:e",
+      "parts": [
+        "84400010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "54310040:0000:u",
+      "parts": [
+        "54310040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "54340040:0000:w",
+      "parts": [
+        "54340040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7F100011:0000:n",
+      "parts": [
+        "7F100011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7F100044:0000:w",
+      "parts": [
+        "7F100044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B7600114:0000:ne",
+      "parts": [
+        "B7600114",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "B7604010:0000:e",
+      "parts": [
+        "B7604010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B7601040:0000:se",
+      "parts": [
+        "B7601040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "80C00404:0000:w[pull switch]",
+      "parts": [
+        "80C00404",
+        "0000",
+        "w[pull switch]"
+      ],
+      "commands": [
+        "w[pull switch]"
+      ]
+    },
+    {
+      "raw": "59700000:0000:u[pull rope]",
+      "parts": [
+        "59700000",
+        "0000",
+        "u[pull rope]"
+      ],
+      "commands": [
+        "u[pull rope]"
+      ]
+    },
+    {
+      "raw": "59780040:0000:w",
+      "parts": [
+        "59780040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6CA00014:0000:s",
+      "parts": [
+        "6CA00014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "6CA00011:0000:e",
+      "parts": [
+        "6CA00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

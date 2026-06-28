@@ -1,0 +1,96 @@
+{
+  "file": "FLESSTAL.mp",
+  "sha256": "a204739b63ed4eccb8d714946a28d5da18596867a399c7a50565f6a92c19cf60",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "FLES",
+      "area": "Rhudaur",
+      "label": "Flesh Golem",
+      "mapNumber": 9,
+      "roomNumber": 1007,
+      "raw": "[FLES:Rhudaur:Flesh Golem-9 1007]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1007,
+        "name": "Shadow Fist Temple, Carved Doorway",
+        "exits": {
+          "N": "9/1008 (Key: 1002 [or 1000 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "9/1006 (Door [16 picklocks/strength])",
+          "SW": "9/1005 (Door [16 picklocks/strength])",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "STAL",
+      "area": "Rhudaur",
+      "label": "Shadowfist Temple, Ancient Librry",
+      "mapNumber": 9,
+      "roomNumber": 1008,
+      "raw": "[STAL:Rhudaur:Shadowfist Temple, Ancient Librry-9 1008]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1008,
+        "name": "Ancient Library",
+        "exits": {
+          "N": "0",
+          "S": "9/1007 (Door)",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A8B0A002:F3700008:1:-1:0:wire key::",
+      "parts": [
+        "A8B0A002",
+        "F3700008",
+        "1",
+        "-1",
+        "0",
+        "wire key",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0",
+        "wire key"
+      ]
+    },
+    {
+      "raw": "A8B0A002:0000:n[use wire key n]",
+      "parts": [
+        "A8B0A002",
+        "0000",
+        "n[use wire key n]"
+      ],
+      "commands": [
+        "n[use wire key n]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

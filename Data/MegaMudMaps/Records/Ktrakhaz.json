@@ -1,0 +1,183 @@
+{
+  "file": "Ktrakhaz.mp",
+  "sha256": "8d61da8c42ab91c88cd59ad3f7e1d744bf985004114f2fa358239fbe99aa9536",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KTRA",
+      "area": "Trainers",
+      "label": "Dwarven Trainer (12-30)",
+      "mapNumber": 6,
+      "roomNumber": 1352,
+      "raw": "[KTRA:Trainers:Dwarven Trainer (12-30)-6 1352]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1352,
+        "name": "Training Area",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "6/1350",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "10E00040:19800051:9:-1:0:::",
+      "parts": [
+        "10E00040",
+        "19800051",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "10E00040:0000:w",
+      "parts": [
+        "10E00040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F5940011:0000:n",
+      "parts": [
+        "F5940011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "48C00005:0000:n",
+      "parts": [
+        "48C00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:w",
+      "parts": [
+        "D1600054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:w",
+      "parts": [
+        "D1600055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:w",
+      "parts": [
+        "D1600055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:w",
+      "parts": [
+        "D1600054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7DB00055:0000:n",
+      "parts": [
+        "7DB00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "19800044:0000:w",
+      "parts": [
+        "19800044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

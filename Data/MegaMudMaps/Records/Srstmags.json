@@ -1,0 +1,151 @@
+{
+  "file": "Srstmags.mp",
+  "sha256": "8871b48025c0adca5d729528372cf2e1a5afdc677b4c5cb5b078cca0e33512d8",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SRST",
+      "area": "Silvermere",
+      "label": "River St & Guild St",
+      "mapNumber": 1,
+      "roomNumber": 21,
+      "raw": "[SRST:Silvermere:River St & Guild St-1 21]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 21,
+        "name": "Intersection of Guild St. & River St.",
+        "exits": {
+          "N": "0",
+          "S": "1/390",
+          "E": "1/20",
+          "W": "1/22",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "MAGS",
+      "area": "Silvermere",
+      "label": "Magic Shoppe (Aiken)",
+      "mapNumber": 1,
+      "roomNumber": 398,
+      "raw": "[MAGS:Silvermere:Magic Shoppe (Aiken)-1 398]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 398,
+        "name": "Magic Shoppe",
+        "exits": {
+          "N": "1/396",
+          "S": "0",
+          "E": "1/399",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "01B00054:DEF00011:6:-1:0:::",
+      "parts": [
+        "01B00054",
+        "DEF00011",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "01B00054:0000:w",
+      "parts": [
+        "01B00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:w",
+      "parts": [
+        "EB400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "94200054:0000:s",
+      "parts": [
+        "94200054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DB600005:0000:s",
+      "parts": [
+        "DB600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DB600041:0000:w",
+      "parts": [
+        "DB600041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DB600014:0000:s",
+      "parts": [
+        "DB600014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

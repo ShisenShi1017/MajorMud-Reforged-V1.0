@@ -1,0 +1,320 @@
+{
+  "file": "OBCQLOO2.mp",
+  "sha256": "370b83bcb5e204136b2e6bd867f9d77250f3cc0af64ad946327f96e3c7c2b024",
+  "metadataLine": "[Orc Warlord Area (small)][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "OBCQ",
+      "area": "Goblin caves",
+      "label": "Orc Warlord",
+      "mapNumber": 15,
+      "roomNumber": 183,
+      "raw": "[OBCQ:Goblin caves:Orc Warlord-15 183]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 183,
+        "name": "Orc Barracks, Commanders Quarters",
+        "exits": {
+          "N": "0",
+          "S": "15/180",
+          "E": "15/182",
+          "W": "15/184",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7EE00054:7EE00054:24:-1:0:::",
+      "parts": [
+        "7EE00054",
+        "7EE00054",
+        "24",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "24",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7EE00054:0000:w",
+      "parts": [
+        "7EE00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7EE00014:0000:s",
+      "parts": [
+        "7EE00014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7EE00011:0000:e",
+      "parts": [
+        "7EE00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EE00059:0000:s",
+      "parts": [
+        "7EE00059",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E5E00052:0000:w",
+      "parts": [
+        "E5E00052",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E5E00050:0000:w",
+      "parts": [
+        "E5E00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E5E00051:0000:n",
+      "parts": [
+        "E5E00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E5E00044:0000:w",
+      "parts": [
+        "E5E00044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E5E00054:0000:s",
+      "parts": [
+        "E5E00054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E5E00051:0000:e",
+      "parts": [
+        "E5E00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5E00051:0000:e",
+      "parts": [
+        "E5E00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5E00050:0000:e",
+      "parts": [
+        "E5E00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5E00052:0000:e",
+      "parts": [
+        "E5E00052",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5E00050:0000:e",
+      "parts": [
+        "E5E00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5E00051:0000:n",
+      "parts": [
+        "E5E00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E5E00014:0000:e",
+      "parts": [
+        "E5E00014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5E00054:0000:s",
+      "parts": [
+        "E5E00054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E5E00051:0000:w",
+      "parts": [
+        "E5E00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E5E00051:0000:w",
+      "parts": [
+        "E5E00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E5E00050:0000:w",
+      "parts": [
+        "E5E00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E5E00052:0000:n",
+      "parts": [
+        "E5E00052",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EE00059:0000:e",
+      "parts": [
+        "7EE00059",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EE00041:0000:n",
+      "parts": [
+        "7EE00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EE00044:0000:w",
+      "parts": [
+        "7EE00044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 27
+}

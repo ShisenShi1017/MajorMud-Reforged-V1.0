@@ -1,0 +1,151 @@
+{
+  "file": "CAS1DCTD.mp",
+  "sha256": "78b4631e76b5f7fb69adb751f0c0cd5508f037e366b21a228692c133464320cc",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CAS1",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Castle Level 1",
+      "mapNumber": 8,
+      "roomNumber": 604,
+      "raw": "[CAS1:Dark-Elf City:Dark-elf Castle Level 1-8 604]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 604,
+        "name": "Basement Stairwell",
+        "exits": {
+          "N": "8/605",
+          "S": "0",
+          "E": "8/617",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "8/603",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DCTD",
+      "area": "Dark-Elf City",
+      "label": "Black Moat, Trap Door",
+      "mapNumber": 8,
+      "roomNumber": 633,
+      "raw": "[DCTD:Dark-Elf City:Black Moat, Trap Door-8 633]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 633,
+        "name": "Black Moat",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/634",
+          "W": "8/656",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "8/632 (Key: 820 [or 251 picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "49610011:42480050:6:-1:0:::",
+      "parts": [
+        "49610011",
+        "42480050",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "49610011:0000:e",
+      "parts": [
+        "49610011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "57A0005A:0000:s",
+      "parts": [
+        "57A0005A",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D7B00002:0000:s[sea s]",
+      "parts": [
+        "D7B00002",
+        "0000",
+        "s[sea s]"
+      ],
+      "commands": [
+        "s[sea s]"
+      ]
+    },
+    {
+      "raw": "55C40000:0000:d",
+      "parts": [
+        "55C40000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "CA410004:0000:s",
+      "parts": [
+        "CA410004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CA420001:0000:u",
+      "parts": [
+        "CA420001",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

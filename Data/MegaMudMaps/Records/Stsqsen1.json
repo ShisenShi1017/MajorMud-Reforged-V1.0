@@ -1,0 +1,107 @@
+{
+  "file": "Stsqsen1.mp",
+  "sha256": "3bb5c5fce1a5aed83350c5c7cdf31c790a938d5ac179abf682f6dbf9f02cd36f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "STSQ",
+      "area": "Silvermere",
+      "label": "Town Square",
+      "mapNumber": 1,
+      "roomNumber": 224,
+      "raw": "[STSQ:Silvermere:Town Square-1 224]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 224,
+        "name": "Town Square",
+        "exits": {
+          "N": "1/223",
+          "S": "1/225",
+          "E": "1/254",
+          "W": "1/301",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/766 (Text: go manhole, go man, enter manhole)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SEN1",
+      "area": "Silvermere",
+      "label": "Sentara's Clothing (Robes)",
+      "mapNumber": 1,
+      "roomNumber": 309,
+      "raw": "[SEN1:Silvermere:Sentara's Clothing (Robes)-1 309]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 309,
+        "name": "Sentara's Clothing, Front Room",
+        "exits": {
+          "N": "0",
+          "S": "1/254",
+          "E": "1/310",
+          "W": "1/223",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "9D400055:76000054:2:-1:0:::",
+      "parts": [
+        "9D400055",
+        "76000054",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "9D400055:0000:n",
+      "parts": [
+        "9D400055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "ECE00055:0000:e",
+      "parts": [
+        "ECE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

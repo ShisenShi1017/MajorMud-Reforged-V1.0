@@ -1,0 +1,97 @@
+{
+  "file": "ARWFARFL.mp",
+  "sha256": "fdc56e9cf07168ab5b0721de543607d74dd19f00c5e4734dc733d80f593871b3",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ARWF",
+      "area": "Arlysia",
+      "label": "White Forest",
+      "mapNumber": 17,
+      "roomNumber": 1642,
+      "raw": "[ARWF:Arlysia:White Forest-17 1642]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 1642,
+        "name": "White Forest",
+        "exits": {
+          "N": "0",
+          "S": "17/1641",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "17/1643",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ARFL",
+      "area": "Arlysia",
+      "label": "White Forest, Landing",
+      "mapNumber": 17,
+      "roomNumber": 1641,
+      "raw": "[ARFL:Arlysia:White Forest, Landing-17 1641]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 1641,
+        "name": "White Forest, Landing",
+        "exits": {
+          "N": "0",
+          "S": "17/1062",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EA200404:44E00004:1:-1:0:::",
+      "parts": [
+        "EA200404",
+        "44E00004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EA200404:0000:s",
+      "parts": [
+        "EA200404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

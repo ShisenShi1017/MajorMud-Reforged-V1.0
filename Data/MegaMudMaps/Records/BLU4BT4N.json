@@ -1,0 +1,59 @@
+{
+  "file": "BLU4BT4N.mp",
+  "sha256": "f8abb5b5a867a5bd6efe9aa0e57dbbbe778b54e725afb9b39ef537f3ee8289c0",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BLU4",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Misc (ropes, potions, rings)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BLU4:Darkwood Forest:Blue Tower, Misc (ropes, potions, rings)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "BT4N",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Misc (bracers,rings)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BT4N:Darkwood Forest:Blue Tower, Misc (bracers,rings)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E5154400:E5101000:1:-1:0:::",
+      "parts": [
+        "E5154400",
+        "E5101000",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E5154400:0000:nw",
+      "parts": [
+        "E5154400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

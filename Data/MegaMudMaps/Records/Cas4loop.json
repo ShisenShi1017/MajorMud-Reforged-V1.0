@@ -1,0 +1,188 @@
+{
+  "file": "Cas4loop.mp",
+  "sha256": "44eb97f1d1e9bb54b5e8d0b446474f6dfaaf161431b1d8a47a71ec49e0cd84e8",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CAS4",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Castle Level 4",
+      "mapNumber": 8,
+      "roomNumber": 697,
+      "raw": "[CAS4:Dark-Elf City:Dark-elf Castle Level 4-8 697]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 697,
+        "name": "Winding Stair",
+        "exits": {
+          "N": "0",
+          "S": "8/698",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "8/696"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C940004:2C940004:12:-1:0:::",
+      "parts": [
+        "2C940004",
+        "2C940004",
+        "12",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "12",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2C940004:0000:s",
+      "parts": [
+        "2C940004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19300005:0000:s",
+      "parts": [
+        "19300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19305001:0000:se",
+      "parts": [
+        "19305001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "19300404:0000:s",
+      "parts": [
+        "19300404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "19300041:0000:w",
+      "parts": [
+        "19300041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "02D00052:0000:w",
+      "parts": [
+        "02D00052",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "19300011:0000:n",
+      "parts": [
+        "19300011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "19300104:0000:ne",
+      "parts": [
+        "19300104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "19305001:0000:n",
+      "parts": [
+        "19305001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "19300005:0000:n",
+      "parts": [
+        "19300005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2C940004:0000:d",
+      "parts": [
+        "2C940004",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "2C910004:0000:u",
+      "parts": [
+        "2C910004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

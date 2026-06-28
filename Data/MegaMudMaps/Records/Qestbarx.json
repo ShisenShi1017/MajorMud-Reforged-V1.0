@@ -1,0 +1,271 @@
+{
+  "file": "Qestbarx.mp",
+  "sha256": "0b485768373f3dfa929905606f11a1292038228fb17d82e96aed7ebb2d40d930",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "QEST",
+      "area": "Trainers",
+      "label": "Quest Hall",
+      "mapNumber": 1,
+      "roomNumber": 1377,
+      "raw": "[QEST:Trainers:Quest Hall-1 1377]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1377,
+        "name": "Crypt, Shadowed Hall",
+        "exits": {
+          "N": "1/1419",
+          "S": "0",
+          "E": "1/1436 (Class: 13 OK, 0 NO)",
+          "W": "1/1425 (Class: 1 OK, 0 NO)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BARX",
+      "area": "Trainers",
+      "label": "Bard Spirit (11)",
+      "mapNumber": 1,
+      "roomNumber": 2278,
+      "raw": "[BARX:Trainers:Bard Spirit (11)-1 2278]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2278,
+        "name": "Large Tomb",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "1/2277",
+          "SE": "1/834 (Text: go portal, enter portal, walk portal)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B8300059:42600400:17:-1:0:::",
+      "parts": [
+        "B8300059",
+        "42600400",
+        "17",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "17",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B8300059:0001:n",
+      "parts": [
+        "B8300059",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300055:0001:n",
+      "parts": [
+        "B8300055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300055:0001:n",
+      "parts": [
+        "B8300055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300055:0001:n",
+      "parts": [
+        "B8300055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B8300055:0001:w",
+      "parts": [
+        "B8300055",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7EC00040:0001:w",
+      "parts": [
+        "7EC00040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7EC00050:0001:w",
+      "parts": [
+        "7EC00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7EC04010:0001:sw",
+      "parts": [
+        "7EC04010",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "7EC00140:0001:w",
+      "parts": [
+        "7EC00140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2F100090:0001:w",
+      "parts": [
+        "2F100090",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2F100021:0001:n",
+      "parts": [
+        "2F100021",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EC00005:0001:n",
+      "parts": [
+        "7EC00005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7EC00044:0001:w",
+      "parts": [
+        "7EC00044",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7EC00050:0001:w",
+      "parts": [
+        "7EC00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "77500090:0401:w[use copper key w]",
+      "parts": [
+        "77500090",
+        "0401",
+        "w[use copper key w]"
+      ],
+      "commands": [
+        "w[use copper key w]"
+      ]
+    },
+    {
+      "raw": "77501110:0000:se",
+      "parts": [
+        "77501110",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "7EC01400:0001:se",
+      "parts": [
+        "7EC01400",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 21
+}

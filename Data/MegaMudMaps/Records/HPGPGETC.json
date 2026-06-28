@@ -1,0 +1,107 @@
+{
+  "file": "HPGPGETC.mp",
+  "sha256": "2b76af67b597f9ef9328ab4a88dd9e225fcf37e0381fa24faa3d879551f37473",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "HPGP",
+      "area": "Dragon's Teeth Hills",
+      "label": "Gnoll Encampment",
+      "mapNumber": 2,
+      "roomNumber": 1106,
+      "raw": "[HPGP:Dragon's Teeth Hills:Gnoll Encampment-2 1106]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 1106,
+        "name": "Hillside Path, Guard Post",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "2/1105 (Trap, 36 damage)",
+          "SE": "2/1107",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "GETC",
+      "area": "Dragon's Teeth Hills",
+      "label": "Gnoll Encampment, Trail Crossroad",
+      "mapNumber": 2,
+      "roomNumber": 1110,
+      "raw": "[GETC:Dragon's Teeth Hills:Gnoll Encampment, Trail Crossroad-2 1110]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 1110,
+        "name": "Gnoll Encampment, Trail Crossroads",
+        "exits": {
+          "N": "2/1107",
+          "S": "2/1111",
+          "E": "2/1112",
+          "W": "2/1109",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2F401400:2C900055:2:-1:0:::",
+      "parts": [
+        "2F401400",
+        "2C900055",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2F401400:0000:se",
+      "parts": [
+        "2F401400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "64400554:0000:s",
+      "parts": [
+        "64400554",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

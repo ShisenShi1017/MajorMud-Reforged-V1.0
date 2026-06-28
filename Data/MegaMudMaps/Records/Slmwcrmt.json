@@ -1,0 +1,196 @@
+{
+  "file": "Slmwcrmt.mp",
+  "sha256": "abdeb3f8cb6b60cac1f6a72e327981f660ee5a66bfec8b2e8bbe8d8c0944fc49",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SLMW",
+      "area": "Slums",
+      "label": "Western Door",
+      "mapNumber": 1,
+      "roomNumber": 1098,
+      "raw": "[SLMW:Slums:Western Door-1 1098]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1098,
+        "name": "Slum Street, Western Door",
+        "exits": {
+          "N": "1/1097",
+          "S": "1/1099",
+          "E": "1/1167",
+          "W": "1/2339 (Key: 569 [or 61 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "CRMT",
+      "area": "Sewers",
+      "label": "Crumbling Tunnels",
+      "mapNumber": 9,
+      "roomNumber": 501,
+      "raw": "[CRMT:Sewers:Crumbling Tunnels-9 501]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 501,
+        "name": "Crumbling Tunnel",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/896",
+          "W": "9/438",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "76B00095:53700050:10:-1:0:::",
+      "parts": [
+        "76B00095",
+        "53700050",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "76B00095:0000:s",
+      "parts": [
+        "76B00095",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:s",
+      "parts": [
+        "A0700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:s",
+      "parts": [
+        "A0700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "A0700005:0000:s",
+      "parts": [
+        "A0700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4C200011:0000:e",
+      "parts": [
+        "4C200011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A0700050:0000:go manhole",
+      "parts": [
+        "A0700050",
+        "0000",
+        "go manhole"
+      ],
+      "commands": [
+        "go manhole"
+      ]
+    },
+    {
+      "raw": "E9510050:0001:w",
+      "parts": [
+        "E9510050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1500011:0001:n",
+      "parts": [
+        "B1500011",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E9500005:0001:n",
+      "parts": [
+        "E9500005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E9500045:0001:w",
+      "parts": [
+        "E9500045",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

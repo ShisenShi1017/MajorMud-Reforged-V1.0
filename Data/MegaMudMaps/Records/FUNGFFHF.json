@@ -1,0 +1,207 @@
+{
+  "file": "FUNGFFHF.mp",
+  "sha256": "28e79d39d6d8d8dc61b56747febf4ad568f8ca07b22aac898c470bf903ac2b79",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "FUNG",
+      "area": "Black House",
+      "label": "Fungus Forest",
+      "mapNumber": 7,
+      "roomNumber": 156,
+      "raw": "[FUNG:Black House:Fungus Forest-7 156]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 156,
+        "name": "Fungus Forest, Tunnel Opening",
+        "exits": {
+          "N": "7/155",
+          "S": "7/157",
+          "E": "7/281",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "FFHF",
+      "area": "Black House",
+      "label": "Fungus Forest, Hole to Tunnels",
+      "mapNumber": 7,
+      "roomNumber": 246,
+      "raw": "[FFHF:Black House:Fungus Forest, Hole to Tunnels-7 246]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 246,
+        "name": "Fungus Forest",
+        "exits": {
+          "N": "7/245",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "7/1405 (Text: go hole, enter hole, climb hole)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "23600015:41B00001:11:-1:0:::",
+      "parts": [
+        "23600015",
+        "41B00001",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "23600015:0000:s",
+      "parts": [
+        "23600015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B04401:0000:nw",
+      "parts": [
+        "41B04401",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "41B01400:0000:nw",
+      "parts": [
+        "41B01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "41B01040:0000:w",
+      "parts": [
+        "41B01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B00054:0000:w",
+      "parts": [
+        "41B00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B00011:0000:n",
+      "parts": [
+        "41B00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "DEA00045:0000:w",
+      "parts": [
+        "DEA00045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DEA00045:0000:w",
+      "parts": [
+        "DEA00045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DEA00050:0000:w",
+      "parts": [
+        "DEA00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DEA05010:0000:se",
+      "parts": [
+        "DEA05010",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "41B00404:0000:s",
+      "parts": [
+        "41B00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

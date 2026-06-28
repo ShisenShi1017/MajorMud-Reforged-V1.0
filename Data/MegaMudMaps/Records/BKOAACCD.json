@@ -1,0 +1,251 @@
+{
+  "file": "BKOAACCD.mp",
+  "sha256": "5c30761125025b08cd5cd013365d5c4686cabdf7f46311ab498d71105e16df77",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BKOA",
+      "area": "Arlysia",
+      "label": "Bank of Arlysia",
+      "mapNumber": 17,
+      "roomNumber": 2435,
+      "raw": "[BKOA:Arlysia:Bank of Arlysia-17 2435]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2435,
+        "name": "Bank of Arlysia",
+        "exits": {
+          "N": "17/2289",
+          "S": "0",
+          "E": "0",
+          "W": "17/2393",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ACCD",
+      "area": "Arlysia",
+      "label": "Arlysia, City Docks",
+      "mapNumber": 17,
+      "roomNumber": 580,
+      "raw": "[ACCD:Arlysia:Arlysia, City Docks-17 580]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 580,
+        "name": "Arlysia, City Docks",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "17/1124",
+          "NE": "17/579",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D4F00041:42D00140:15:-1:0:::",
+      "parts": [
+        "D4F00041",
+        "42D00140",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D4F00041:0000:n",
+      "parts": [
+        "D4F00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:w",
+      "parts": [
+        "9C000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E0500054:0000:w",
+      "parts": [
+        "E0500054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000054:0000:w",
+      "parts": [
+        "9C000054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000058:0000:w",
+      "parts": [
+        "9C000058",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:w",
+      "parts": [
+        "9C000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:w",
+      "parts": [
+        "9C000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DDA00055:0000:w",
+      "parts": [
+        "DDA00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "47000055:0000:w",
+      "parts": [
+        "47000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "42D00410:0000:nw",
+      "parts": [
+        "42D00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "42D05000:0000:sw",
+      "parts": [
+        "42D05000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "42D00104:0000:s",
+      "parts": [
+        "42D00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "42D00005:0000:s",
+      "parts": [
+        "42D00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "42D00005:0000:s",
+      "parts": [
+        "42D00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "42D04001:0000:sw",
+      "parts": [
+        "42D04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

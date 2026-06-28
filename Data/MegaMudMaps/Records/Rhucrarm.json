@@ -1,0 +1,107 @@
+{
+  "file": "Rhucrarm.mp",
+  "sha256": "e45509cefd15fb96160614067cdeb875cce078d7601e36a48ae5c21be9676169",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RARM",
+      "area": "Rhudaur",
+      "label": "Rhudaur Armour Shop",
+      "mapNumber": 2,
+      "roomNumber": 2567,
+      "raw": "[RARM:Rhudaur:Rhudaur Armour Shop-2 2567]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2567,
+        "name": "Armour Shop",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "2/2528",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7AD00055:96300010:2:-1:0:::",
+      "parts": [
+        "7AD00055",
+        "96300010",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7AD00055:0000:s",
+      "parts": [
+        "7AD00055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "84900055:0000:w",
+      "parts": [
+        "84900055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

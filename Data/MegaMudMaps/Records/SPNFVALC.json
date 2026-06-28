@@ -1,0 +1,295 @@
+{
+  "file": "SPNFVALC.mp",
+  "sha256": "de13438bbf1524ec143a319a24b8d60adf011f580780fe67371612459ca83175",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SPNF",
+      "area": "Misty Valley",
+      "label": "Swampside Path, Northern Fork",
+      "mapNumber": 6,
+      "roomNumber": 219,
+      "raw": "[SPNF:Misty Valley:Swampside Path, Northern Fork-6 219]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 219,
+        "name": "Swampside Path",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "6/218",
+          "NW": "0",
+          "SE": "6/347",
+          "SW": "6/220",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "VALC",
+      "area": "Misty Valley",
+      "label": "Valley Path Crossroads",
+      "mapNumber": 6,
+      "roomNumber": 133,
+      "raw": "[VALC:Misty Valley:Valley Path Crossroads-6 133]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 133,
+        "name": "Valley Path, Crossroads",
+        "exits": {
+          "N": "6/237",
+          "S": "0",
+          "E": "6/238",
+          "W": "6/122",
+          "NE": "0",
+          "NW": "0",
+          "SE": "6/134",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "75605100:95901051:19:-1:0:::",
+      "parts": [
+        "75605100",
+        "95901051",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "75605100:0000:sw",
+      "parts": [
+        "75605100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75604100:0000:sw",
+      "parts": [
+        "75604100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75600104:0000:s",
+      "parts": [
+        "75600104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75604001:0000:sw",
+      "parts": [
+        "75604001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75600104:0000:s",
+      "parts": [
+        "75600104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75604001:0000:sw",
+      "parts": [
+        "75604001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "75600104:0000:s",
+      "parts": [
+        "75600104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75601001:0000:se",
+      "parts": [
+        "75601001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "75600404:0000:s",
+      "parts": [
+        "75600404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "75600005:0000:s",
+      "parts": [
+        "75600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

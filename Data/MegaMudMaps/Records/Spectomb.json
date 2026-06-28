@@ -1,0 +1,535 @@
+{
+  "file": "Spectomb.mp",
+  "sha256": "6662b2ef88889c76df86aa4ecfc4fd4603ea6aac2c1f0b738dbfce5cd418ff83",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SPEC",
+      "area": "Graveyard",
+      "label": "Spectral Knight",
+      "mapNumber": 6,
+      "roomNumber": 994,
+      "raw": "[SPEC:Graveyard:Spectral Knight-6 994]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 994,
+        "name": "Ornate Tomb",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/993 (Door [1000 picklocks/strength])",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "TOMB",
+      "area": "Graveyard",
+      "label": "Tomb Vault, Stairwell",
+      "mapNumber": 6,
+      "roomNumber": 861,
+      "raw": "[TOMB:Graveyard:Tomb Vault, Stairwell-6 861]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 861,
+        "name": "Tomb Vaults, Stairwell",
+        "exits": {
+          "N": "6/862",
+          "S": "6/904",
+          "E": "6/890",
+          "W": "6/876",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "6/860",
+          "D": "6/922 (Hidden/Needs 4 Actions, specific order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "88220000:12910055:41:-1:0:::",
+      "parts": [
+        "88220000",
+        "12910055",
+        "41",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "41",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "88220000:0001:u[sit throne]",
+      "parts": [
+        "88220000",
+        "0001",
+        "u[sit throne]"
+      ],
+      "commands": [
+        "u[sit throne]"
+      ]
+    },
+    {
+      "raw": "45F00000:0000:w[search w]",
+      "parts": [
+        "45F00000",
+        "0000",
+        "w[search w]"
+      ],
+      "commands": [
+        "w[search w]"
+      ]
+    },
+    {
+      "raw": "25800000:0001:s[search s]",
+      "parts": [
+        "25800000",
+        "0001",
+        "s[search s]"
+      ],
+      "commands": [
+        "s[search s]"
+      ]
+    },
+    {
+      "raw": "25800000:0001:e[search e]",
+      "parts": [
+        "25800000",
+        "0001",
+        "e[search e]"
+      ],
+      "commands": [
+        "e[search e]"
+      ]
+    },
+    {
+      "raw": "25800000:0001:n[search n]",
+      "parts": [
+        "25800000",
+        "0001",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    },
+    {
+      "raw": "25800000:0001:n[search n]",
+      "parts": [
+        "25800000",
+        "0001",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    },
+    {
+      "raw": "89500050:0001:e",
+      "parts": [
+        "89500050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "89500044:0001:s",
+      "parts": [
+        "89500044",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "89500011:0001:e",
+      "parts": [
+        "89500011",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "89500044:0001:s",
+      "parts": [
+        "89500044",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "89500011:0001:e",
+      "parts": [
+        "89500011",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "89500044:0001:s",
+      "parts": [
+        "89500044",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "89500011:0001:e",
+      "parts": [
+        "89500011",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "89500041:0001:n",
+      "parts": [
+        "89500041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500005:0001:n",
+      "parts": [
+        "89500005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500044:0001:w",
+      "parts": [
+        "89500044",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "89500011:0001:n",
+      "parts": [
+        "89500011",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500044:0001:w",
+      "parts": [
+        "89500044",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "89500011:0001:n",
+      "parts": [
+        "89500011",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500044:0001:w",
+      "parts": [
+        "89500044",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "89500011:0001:n",
+      "parts": [
+        "89500011",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500005:0001:n",
+      "parts": [
+        "89500005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500014:0001:e",
+      "parts": [
+        "89500014",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "89500041:0001:n",
+      "parts": [
+        "89500041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500014:0001:e",
+      "parts": [
+        "89500014",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "89500041:0001:n",
+      "parts": [
+        "89500041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500014:0001:e",
+      "parts": [
+        "89500014",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "89500041:0001:n",
+      "parts": [
+        "89500041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "89500044:0001:w",
+      "parts": [
+        "89500044",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "89500050:0001:w",
+      "parts": [
+        "89500050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "89500014:0001:s",
+      "parts": [
+        "89500014",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "89500041:0001:w",
+      "parts": [
+        "89500041",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "89500014:0001:s",
+      "parts": [
+        "89500014",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "89500041:0001:w",
+      "parts": [
+        "89500041",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "89500014:0001:s",
+      "parts": [
+        "89500014",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "89500005:0001:s",
+      "parts": [
+        "89500005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "89500005:0001:s",
+      "parts": [
+        "89500005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "63D40001:0001:d",
+      "parts": [
+        "63D40001",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "63D50000:0001:d",
+      "parts": [
+        "63D50000",
+        "0001",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "63D50000:0001:u",
+      "parts": [
+        "63D50000",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "63D40000:0001:u[search u]",
+      "parts": [
+        "63D40000",
+        "0001",
+        "u[search u]"
+      ],
+      "commands": [
+        "u[search u]"
+      ]
+    }
+  ],
+  "rawLineCount": 45
+}

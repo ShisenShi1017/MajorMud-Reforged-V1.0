@@ -1,0 +1,119 @@
+{
+  "file": "ELSAHDRU.mp",
+  "sha256": "1be1e2ce161fe7f40ac5820b80e54c98a159e959fa2f06e88b880be0bf906820",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ELSA",
+      "area": "Darkwood Forest",
+      "label": "Elder Darkwood Grove, Stone Arch",
+      "mapNumber": 7,
+      "roomNumber": 87,
+      "raw": "[ELSA:Darkwood Forest:Elder Darkwood Grove, Stone Arch-7 87]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 87,
+        "name": "Elder Darkwood Grove, Stone Arch",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "7/88",
+          "W": "0",
+          "NE": "0",
+          "NW": "7/86",
+          "SE": "7/140 (Item: 474)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "HDRU",
+      "area": "Darkwood Forest",
+      "label": "High Druid",
+      "mapNumber": 7,
+      "roomNumber": 142,
+      "raw": "[HDRU:Darkwood Forest:High Druid-7 142]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 142,
+        "name": "Large Clearing, Stone Altar",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A3E01410:79700000:3:-1:0:darkwood ring::",
+      "parts": [
+        "A3E01410",
+        "79700000",
+        "3",
+        "-1",
+        "0",
+        "darkwood ring",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0",
+        "darkwood ring"
+      ]
+    },
+    {
+      "raw": "A3E01410:0000:se",
+      "parts": [
+        "A3E01410",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "E2900404:0000:s",
+      "parts": [
+        "E2900404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "36400001:0000:go arch",
+      "parts": [
+        "36400001",
+        "0000",
+        "go arch"
+      ],
+      "commands": [
+        "go arch"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

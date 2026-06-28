@@ -1,0 +1,349 @@
+{
+  "file": "BHMPBHSF.mp",
+  "sha256": "23889733619a304588fb0b5b1615c98e34ec2dd06ce951358a99df7ae7fdfb9e",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BHMP",
+      "area": "Barren Hills",
+      "label": "Mountain Plateau",
+      "mapNumber": 16,
+      "roomNumber": 1068,
+      "raw": "[BHMP:Barren Hills:Mountain Plateau-16 1068]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1068,
+        "name": "Mountain Plateau",
+        "exits": {
+          "N": "16/1069",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1067"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SGFG",
+      "area": "Barren Hills",
+      "label": "Storm Fortress (outside gate)",
+      "mapNumber": 16,
+      "roomNumber": 1159,
+      "raw": "[SGFG:Barren Hills:Storm Fortress (outside gate)-16 1159]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1159,
+        "name": "Mountain Plateau, Flat Ledge",
+        "exits": {
+          "N": "16/1160 (Door [51 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "16/1158",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "4F440001:D9D04002:24:-1:0:::",
+      "parts": [
+        "4F440001",
+        "D9D04002",
+        "24",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "24",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "4F440001:0000:n",
+      "parts": [
+        "4F440001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4F400015:0000:e",
+      "parts": [
+        "4F400015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4F401440:0000:se",
+      "parts": [
+        "4F401440",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "4F400500:0000:ne",
+      "parts": [
+        "4F400500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "4F404010:0000:e",
+      "parts": [
+        "4F404010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4F400050:0000:e",
+      "parts": [
+        "4F400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4F400140:0000:ne",
+      "parts": [
+        "4F400140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "4F404100:0000:ne",
+      "parts": [
+        "4F404100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "4F414000:0000:u",
+      "parts": [
+        "4F414000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "4F440400:0000:nw",
+      "parts": [
+        "4F440400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "4F401100:0000:ne",
+      "parts": [
+        "4F401100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "4F404010:0000:e",
+      "parts": [
+        "4F404010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4F400140:0000:ne",
+      "parts": [
+        "4F400140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "4F404001:0000:n",
+      "parts": [
+        "4F404001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4F400104:0000:ne",
+      "parts": [
+        "4F400104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "4F404400:0000:nw",
+      "parts": [
+        "4F404400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "4F411000:0000:u",
+      "parts": [
+        "4F411000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "4F440100:0000:ne",
+      "parts": [
+        "4F440100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "D9D04010:0000:e",
+      "parts": [
+        "D9D04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D9D10040:0000:u",
+      "parts": [
+        "D9D10040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "D9D41000:0000:se",
+      "parts": [
+        "D9D41000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "D9D10400:0000:u",
+      "parts": [
+        "D9D10400",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "D9D50000:0000:u",
+      "parts": [
+        "D9D50000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "D9D40100:0000:ne",
+      "parts": [
+        "D9D40100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 28
+}

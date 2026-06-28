@@ -1,0 +1,95 @@
+{
+  "file": "Cocomerq.mp",
+  "sha256": "68efe1dad3b39082adbe076421729aba0c0dc13c33f36ce7c9a2cdffdf582709",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "COCO",
+      "area": "Dragon's Teeth Hills",
+      "label": "Giant Pulsating Cocoon",
+      "mapNumber": 2,
+      "roomNumber": 2367,
+      "raw": "[COCO:Dragon's Teeth Hills:Giant Pulsating Cocoon-2 2367]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2367,
+        "name": "Spherical Breeding Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "MERQ",
+      "area": "Dragon's Teeth Hills",
+      "label": "Mermex Queen",
+      "mapNumber": 2,
+      "roomNumber": 2366,
+      "raw": "[MERQ:Dragon's Teeth Hills:Mermex Queen-2 2366]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2366,
+        "name": "Huge Violet Organic Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "2/2365",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "22B00000:B4900100:1:-1:0:::",
+      "parts": [
+        "22B00000",
+        "B4900100",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "22B00000:0001:go hole",
+      "parts": [
+        "22B00000",
+        "0001",
+        "go hole"
+      ],
+      "commands": [
+        "go hole"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

@@ -1,0 +1,107 @@
+{
+  "file": "TRATRDSH.mp",
+  "sha256": "bd83b0e9c5ea24b31fb2235497a70fd653ae7f406a483a6a0598b2790560c971",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "TRAT",
+      "area": "Silvermere",
+      "label": "Trina's Exotic Armours",
+      "mapNumber": 1,
+      "roomNumber": 2437,
+      "raw": "[TRAT:Silvermere:Trina's Exotic Armours-1 2437]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2437,
+        "name": "Bloodied Booth",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/219",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RDSH",
+      "area": "Silvermere",
+      "label": "Realm Deeds Shop",
+      "mapNumber": 15,
+      "roomNumber": 732,
+      "raw": "[RDSH:Silvermere:Realm Deeds Shop-15 732]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 732,
+        "name": "Realm Deeds Shop",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "1/219",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7B100010:12200040:2:-1:0:::",
+      "parts": [
+        "7B100010",
+        "12200040",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7B100010:0000:e",
+      "parts": [
+        "7B100010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E7000055:0000:e",
+      "parts": [
+        "E7000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

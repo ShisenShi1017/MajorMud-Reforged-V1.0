@@ -1,0 +1,177 @@
+{
+  "file": "GNAJNPPV.mp",
+  "sha256": "fd30918d2d03b0bc571756e97c8d61ca1dc1f877d1aba479b7603f8fc4c0986b",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GNAJ",
+      "area": "Black Wastelands",
+      "label": "Gnaj the Creator",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GNAJ:Black Wastelands:Gnaj the Creator]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "NPPV",
+      "area": "Negative Power Plane",
+      "label": "Negative Power Plane Vortex",
+      "mapNumber": 8,
+      "roomNumber": 978,
+      "raw": "[NPPV:Negative Power Plane:Negative Power Plane Vortex-8 978]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 978,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "8/977",
+          "NW": "8/979",
+          "SE": "8/1005",
+          "SW": "8/1006",
+          "U": "8/1126",
+          "D": "8/1332"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "91D00040:DD055500:10:-1:0:::",
+      "parts": [
+        "91D00040",
+        "DD055500",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "91D00040:0000:@party go portal",
+      "parts": [
+        "91D00040",
+        "0000",
+        "@party go portal"
+      ],
+      "commands": [
+        "@party go portal"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:nw",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF01400:0000:nw",
+      "parts": [
+        "DCF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:d",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:d",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "DCF55500:0000:d",
+      "parts": [
+        "DCF55500",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

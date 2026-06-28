@@ -1,0 +1,403 @@
+{
+  "file": "Bhgevaed.mp",
+  "sha256": "8391f9062a7cef9151bd54979c88042233ebd89e1ed65fd05127883a66d18f00",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "BHGE",
+      "area": "Volcano",
+      "label": "Gaunt One Elder",
+      "mapNumber": 16,
+      "roomNumber": 1839,
+      "raw": "[BHGE:Volcano:Gaunt One Elder-16 1839]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1839,
+        "name": "Glowing Cavern",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/1838",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VAED",
+      "area": "Volcano",
+      "label": "Aged Earth Dragon Entrance",
+      "mapNumber": 16,
+      "roomNumber": 1765,
+      "raw": "[VAED:Volcano:Aged Earth Dragon Entrance-16 1765]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1765,
+        "name": "Undermountain Caverns",
+        "exits": {
+          "N": "0",
+          "S": "16/1764",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1858"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "87B10000:BA740004:29:-1:0:::",
+      "parts": [
+        "87B10000",
+        "BA740004",
+        "29",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "29",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "87B10000:0000:u",
+      "parts": [
+        "87B10000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "BA744000:0000:sw",
+      "parts": [
+        "BA744000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA700104:0000:s",
+      "parts": [
+        "BA700104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BA700401:0000:nw",
+      "parts": [
+        "BA700401",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:n",
+      "parts": [
+        "BA701001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700404:0000:nw",
+      "parts": [
+        "BA700404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701400:0000:nw",
+      "parts": [
+        "BA701400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701500:0000:ne",
+      "parts": [
+        "BA701500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704101:0000:ne",
+      "parts": [
+        "BA704101",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA705141:0000:n",
+      "parts": [
+        "BA705141",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700414:0000:nw",
+      "parts": [
+        "BA700414",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:n",
+      "parts": [
+        "BA701001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700505:0000:ne",
+      "parts": [
+        "BA700505",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704540:0000:ne",
+      "parts": [
+        "BA704540",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BA704010:0000:e",
+      "parts": [
+        "BA704010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BA701040:0000:se",
+      "parts": [
+        "BA701040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BA700410:0000:e",
+      "parts": [
+        "BA700410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BA700440:0000:nw",
+      "parts": [
+        "BA700440",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701400:0000:nw",
+      "parts": [
+        "BA701400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:n",
+      "parts": [
+        "BA701001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700404:0000:nw",
+      "parts": [
+        "BA700404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:n",
+      "parts": [
+        "BA701001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA705404:0000:nw",
+      "parts": [
+        "BA705404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA701001:0000:n",
+      "parts": [
+        "BA701001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BA700144:0000:w",
+      "parts": [
+        "BA700144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "BA704410:0000:nw",
+      "parts": [
+        "BA704410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BA705400:0000:sw",
+      "parts": [
+        "BA705400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA704100:0000:sw",
+      "parts": [
+        "BA704100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BA700101:0000:n",
+      "parts": [
+        "BA700101",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 33
+}

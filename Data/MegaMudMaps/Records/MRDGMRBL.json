@@ -1,0 +1,122 @@
+{
+  "file": "MRDGMRBL.mp",
+  "sha256": "6b1cb07c12b26c4bf7f00b06148d61e78ca70ad83f3f2edb94a8852c02e855ae",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MRDG",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Silvermere Gates)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRDG:Darkwood Forest:Main Road (Silvermere Gates)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "MRBL",
+      "area": "Gang Houses",
+      "label": "Main Road Shop, Blue House",
+      "mapNumber": 15,
+      "roomNumber": 978,
+      "raw": "[MRBL:Gang Houses:Main Road Shop, Blue House-15 978]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 978,
+        "name": "",
+        "exits": {
+          "N": "0",
+          "S": "1/1390",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B7200055:C3800004:5:-1:0:::",
+      "parts": [
+        "B7200055",
+        "C3800004",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B7200055:0000:e",
+      "parts": [
+        "B7200055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:e",
+      "parts": [
+        "02300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02300055:0000:n",
+      "parts": [
+        "02300055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

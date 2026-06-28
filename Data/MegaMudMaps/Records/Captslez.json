@@ -1,0 +1,260 @@
+{
+  "file": "Captslez.mp",
+  "sha256": "10e7644d844d2ff03e94b2828fb6fb31aaaedb24f97131007b4c0ff15c420f72",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CAPT",
+      "area": "Dark-Elf City",
+      "label": "Captain of the Guard",
+      "mapNumber": 8,
+      "roomNumber": 530,
+      "raw": "[CAPT:Dark-Elf City:Captain of the Guard-8 530]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 530,
+        "name": "Officer's Quarters",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "8/524 (Door [51 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SLEZ",
+      "area": "Dark-Elf City",
+      "label": "Sleazy Shopkeeper",
+      "mapNumber": 8,
+      "roomNumber": 486,
+      "raw": "[SLEZ:Dark-Elf City:Sleazy Shopkeeper-8 486]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 486,
+        "name": "Musty Store",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/481 (Door [16 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C300080:A1400020:16:-1:0:::",
+      "parts": [
+        "2C300080",
+        "A1400020",
+        "16",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2C300080:0001:w",
+      "parts": [
+        "2C300080",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3A200021:0001:n",
+      "parts": [
+        "3A200021",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3A200005:0001:n",
+      "parts": [
+        "3A200005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3A200015:0001:n",
+      "parts": [
+        "3A200015",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3A200025:0001:n",
+      "parts": [
+        "3A200025",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3A2000A4:0001:w",
+      "parts": [
+        "3A2000A4",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "57D00021:0001:n",
+      "parts": [
+        "57D00021",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400045:0001:n",
+      "parts": [
+        "86400045",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400005:0001:n",
+      "parts": [
+        "86400005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "78000045:0001:w",
+      "parts": [
+        "78000045",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E1200050:0001:w",
+      "parts": [
+        "E1200050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FFA00050:0001:w",
+      "parts": [
+        "FFA00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "78000055:0001:n",
+      "parts": [
+        "78000055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "86400085:0001:w",
+      "parts": [
+        "86400085",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A1400020:0001:ask shopkeeper brooch",
+      "parts": [
+        "A1400020",
+        "0001",
+        "ask shopkeeper brooch"
+      ],
+      "commands": [
+        "ask shopkeeper brooch"
+      ]
+    },
+    {
+      "raw": "A1400020:0000:i",
+      "parts": [
+        "A1400020",
+        "0000",
+        "i"
+      ],
+      "commands": [
+        "i"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

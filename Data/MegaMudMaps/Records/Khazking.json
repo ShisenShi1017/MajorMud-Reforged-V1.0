@@ -1,0 +1,282 @@
+{
+  "file": "Khazking.mp",
+  "sha256": "af5bbd3bac9d88224aaacb53153b4e66e83a9c1a6d2f8e38b06b7a7802815c25",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "KING",
+      "area": "Khazarad",
+      "label": "King Kulgar",
+      "mapNumber": 6,
+      "roomNumber": 1387,
+      "raw": "[KING:Khazarad:King Kulgar-6 1387]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1387,
+        "name": "King's Hall, Throne Room",
+        "exits": {
+          "N": "6/1388 (Door [1000 picklocks/strength])",
+          "S": "6/1392 (Door [1000 picklocks/strength])",
+          "E": "6/1386",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "19800051:9EC0001A:18:-1:0:::",
+      "parts": [
+        "19800051",
+        "9EC0001A",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "19800051:0000:e",
+      "parts": [
+        "19800051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "19800044:0000:s",
+      "parts": [
+        "19800044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7DB00055:0000:e",
+      "parts": [
+        "7DB00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:e",
+      "parts": [
+        "D1600054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:e",
+      "parts": [
+        "D1600055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:e",
+      "parts": [
+        "D1600055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:e",
+      "parts": [
+        "D1600054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:e",
+      "parts": [
+        "D1600054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ADA00045:0000:n",
+      "parts": [
+        "ADA00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "45000045:0000:w",
+      "parts": [
+        "45000045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D3A00011:0000:n",
+      "parts": [
+        "D3A00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C3C10004:0000:u",
+      "parts": [
+        "C3C10004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "C3C40084:0000:s",
+      "parts": [
+        "C3C40084",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D3A00005:0000:s",
+      "parts": [
+        "D3A00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "63F00085:0000:w",
+      "parts": [
+        "63F00085",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "63F00060:0000:w",
+      "parts": [
+        "63F00060",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C3C10010:0000:u",
+      "parts": [
+        "C3C10010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "6DE40040:0000:w",
+      "parts": [
+        "6DE40040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

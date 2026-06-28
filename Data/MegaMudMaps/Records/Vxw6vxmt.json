@@ -1,0 +1,78 @@
+{
+  "file": "Vxw6vxmt.mp",
+  "sha256": "f6233aa45e1e115c9e2de68efe9a1ddf41507434a04005819f8abd1003e632b1",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXW6",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (Mossy Tunnels)+3 681",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[VXW6:Black Wastelands:Wastelands Vortex (Mossy Tunnels)+3 681]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "VXMT",
+      "area": "Mossy Tunnels",
+      "label": "Mossy Tunnel (Vortex)",
+      "mapNumber": 3,
+      "roomNumber": 25,
+      "raw": "[VXMT:Mossy Tunnels:Mossy Tunnel (Vortex)-3 25]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 25,
+        "name": "Mossy Tunnel",
+        "exits": {
+          "N": "3/24",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "3/21",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED100504:EF304001:1:-1:0:::",
+      "parts": [
+        "ED100504",
+        "EF304001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED100504:0000:@party go vortex",
+      "parts": [
+        "ED100504",
+        "0000",
+        "@party go vortex"
+      ],
+      "commands": [
+        "@party go vortex"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

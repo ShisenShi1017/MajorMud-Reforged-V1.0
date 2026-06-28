@@ -1,0 +1,140 @@
+{
+  "file": "Frt3fcob.mp",
+  "sha256": "3e6fdd1736eb2ef1a593eea3364cc1fc967a8824dc3a820fe2f0910567bafc27",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FRT3",
+      "area": "Black Fort",
+      "label": "Outside Master Assassin",
+      "mapNumber": 8,
+      "roomNumber": 1262,
+      "raw": "[FRT3:Black Fort:Outside Master Assassin-8 1262]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1262,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "8/1238",
+          "SE": "8/1207",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FCOB",
+      "area": "Black Fort",
+      "label": "Champion of Blood",
+      "mapNumber": 7,
+      "roomNumber": 1285,
+      "raw": "[FCOB:Black Fort:Champion of Blood-7 1285]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1285,
+        "name": "Dark Temple, Altar of Blood",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "7/1284",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A4F00056:37200040:5:-1:0:dark temple key::",
+      "parts": [
+        "A4F00056",
+        "37200040",
+        "5",
+        "-1",
+        "0",
+        "dark temple key",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0",
+        "dark temple key"
+      ]
+    },
+    {
+      "raw": "A4F00056:0000:e",
+      "parts": [
+        "A4F00056",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "A4F01040:0000:se",
+      "parts": [
+        "A4F01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A4F00484:0000:s",
+      "parts": [
+        "A4F00484",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "4EF00025:0000:e[use dark temple key e]",
+      "parts": [
+        "4EF00025",
+        "0000",
+        "e[use dark temple key e]"
+      ],
+      "commands": [
+        "e[use dark temple key e]"
+      ]
+    },
+    {
+      "raw": "94A00010:0000:e",
+      "parts": [
+        "94A00010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

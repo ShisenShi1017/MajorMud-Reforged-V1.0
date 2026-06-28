@@ -1,0 +1,97 @@
+{
+  "file": "MCOPMOIG.mp",
+  "sha256": "090dd21293c58058ac314974ab39f424a715ae50947bb753789949e7f60885f6",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MCOP",
+      "area": "Rocky Trail",
+      "label": "Monastery, Courtyard",
+      "mapNumber": 1,
+      "roomNumber": 1375,
+      "raw": "[MCOP:Rocky Trail:Monastery, Courtyard-1 1375]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1375,
+        "name": "Courtyard",
+        "exits": {
+          "N": "0",
+          "S": "1/1331 (Door [201 picklocks/strength])",
+          "E": "0",
+          "W": "Action [on the S exit of this room]: pull lever, push lever, move lever",
+          "NE": "1/1373",
+          "NW": "1/1374",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MOIG",
+      "area": "Rocky Trail",
+      "label": "Monastery, Inner Gate",
+      "mapNumber": 1,
+      "roomNumber": 1331,
+      "raw": "[MOIG:Rocky Trail:Monastery, Inner Gate-1 1331]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1331,
+        "name": "Inner Gate",
+        "exits": {
+          "N": "1/1375 (Door [301 picklocks/strength])",
+          "S": "1/1322",
+          "E": "1/1339",
+          "W": "1/1345",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "31D00508:3FC00056:1:-1:0:::",
+      "parts": [
+        "31D00508",
+        "3FC00056",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "31D00508:0000:s[pull lever]",
+      "parts": [
+        "31D00508",
+        "0000",
+        "s[pull lever]"
+      ],
+      "commands": [
+        "s[pull lever]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

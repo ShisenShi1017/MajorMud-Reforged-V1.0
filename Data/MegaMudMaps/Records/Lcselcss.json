@@ -1,0 +1,97 @@
+{
+  "file": "Lcselcss.mp",
+  "sha256": "bc420f19eea8051928e12906a03857d1b746cb2f97f2a8de3e9b45d63a6a36bd",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCSE",
+      "area": "Lost City",
+      "label": "Temple Stairs",
+      "mapNumber": 16,
+      "roomNumber": 311,
+      "raw": "[LCSE:Lost City:Temple Stairs-16 311]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 311,
+        "name": "Temple Stairs",
+        "exits": {
+          "N": "16/477",
+          "S": "0",
+          "E": "16/1521 (Hidden/Searchable)",
+          "W": "16/312",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LCSS",
+      "area": "Lost City",
+      "label": "Spiral Staircase",
+      "mapNumber": 16,
+      "roomNumber": 1521,
+      "raw": "[LCSS:Lost City:Spiral Staircase-16 1521]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1521,
+        "name": "Earthen Catacombs, Spiral Staircase",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "16/311 (Hidden/Searchable)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/1520"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3A700041:B4D40000:1:-1:0:::",
+      "parts": [
+        "3A700041",
+        "B4D40000",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3A700041:0000:e[sea e]",
+      "parts": [
+        "3A700041",
+        "0000",
+        "e[sea e]"
+      ],
+      "commands": [
+        "e[sea e]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

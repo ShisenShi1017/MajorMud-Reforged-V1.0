@@ -1,0 +1,315 @@
+{
+  "file": "Khazlore.mp",
+  "sha256": "bda315ca39f028af3e15cb3e0f916bbe54900600c20489fdf7c2a2b28ae0610f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "LORE",
+      "area": "Khazarad",
+      "label": "Loremaster Thulgraf",
+      "mapNumber": 6,
+      "roomNumber": 1382,
+      "raw": "[LORE:Khazarad:Loremaster Thulgraf-6 1382]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1382,
+        "name": "Ancient Library",
+        "exits": {
+          "N": "0",
+          "S": "6/1379 (Door [any picklocks/strength])",
+          "E": "6/1383",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "19800051:F3700018:21:-1:0:::",
+      "parts": [
+        "19800051",
+        "F3700018",
+        "21",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "21",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "19800051:0000:e",
+      "parts": [
+        "19800051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "19800044:0000:s",
+      "parts": [
+        "19800044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7DB00055:0000:e",
+      "parts": [
+        "7DB00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:e",
+      "parts": [
+        "D1600054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:e",
+      "parts": [
+        "D1600055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600055:0000:e",
+      "parts": [
+        "D1600055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:e",
+      "parts": [
+        "D1600054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D1600054:0000:e",
+      "parts": [
+        "D1600054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ADA00045:0000:n",
+      "parts": [
+        "ADA00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "45000045:0000:w",
+      "parts": [
+        "45000045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D3A00011:0000:n",
+      "parts": [
+        "D3A00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C3C10004:0000:u",
+      "parts": [
+        "C3C10004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "C3C40084:0000:s",
+      "parts": [
+        "C3C40084",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D3A00005:0000:s",
+      "parts": [
+        "D3A00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "63F00085:0000:s",
+      "parts": [
+        "63F00085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D3A00005:0000:s",
+      "parts": [
+        "D3A00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C3C10081:0000:w",
+      "parts": [
+        "C3C10081",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D3A00060:0000:w",
+      "parts": [
+        "D3A00060",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D3A00052:0000:w",
+      "parts": [
+        "D3A00052",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D3A00050:0000:w",
+      "parts": [
+        "D3A00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2C300012:0000:n",
+      "parts": [
+        "2C300012",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 25
+}

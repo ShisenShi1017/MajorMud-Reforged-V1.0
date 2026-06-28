@@ -1,0 +1,518 @@
+{
+  "file": "SHNPLOO2.mp",
+  "sha256": "8f0a96566275afee7da85ef33cd9251a5af17ae971a7d24e93b8e6d71d48aeec",
+  "metadataLine": "[Saracen Leaders  with Commander-12 2123][]",
+  "roomHeaders": [
+    {
+      "code": "SHNP",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Narrow Precipic",
+      "mapNumber": 12,
+      "roomNumber": 2123,
+      "raw": "[SHNP:Scorching Desert:Saracen Hideout, Narrow Precipic-12 2123]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2123,
+        "name": "Narrow Precipice",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "12/2122 (Hidden/Needs 1 Actions, any order)",
+          "NE": "12/2124",
+          "NW": "0",
+          "SE": "12/2128",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "52F01100:52F01100:42:-1:0:::",
+      "parts": [
+        "52F01100",
+        "52F01100",
+        "42",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "42",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "52F01100:0000:ne",
+      "parts": [
+        "52F01100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4D04011:0000:n",
+      "parts": [
+        "F4D04011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00005:0004:n",
+      "parts": [
+        "F4D00005",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00026:0004:n",
+      "parts": [
+        "F4D00026",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "07300008:0004:s",
+      "parts": [
+        "07300008",
+        "0004",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00026:0000:s",
+      "parts": [
+        "F4D00026",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00005:0004:n",
+      "parts": [
+        "F4D00005",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00026:0004:e",
+      "parts": [
+        "F4D00026",
+        "0004",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "07300080:0004:w",
+      "parts": [
+        "07300080",
+        "0004",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4D00026:0000:s",
+      "parts": [
+        "F4D00026",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00005:0000:s",
+      "parts": [
+        "F4D00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D04011:0000:e",
+      "parts": [
+        "F4D04011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D01040:0000:n[sea n]",
+      "parts": [
+        "F4D01040",
+        "0000",
+        "n[sea n]"
+      ],
+      "commands": [
+        "n[sea n]"
+      ]
+    },
+    {
+      "raw": "F4D10000:0000:u",
+      "parts": [
+        "F4D10000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F4D40008:0000:s",
+      "parts": [
+        "F4D40008",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00006:0000:s",
+      "parts": [
+        "F4D00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00005:0000:s",
+      "parts": [
+        "F4D00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00041:0000:w",
+      "parts": [
+        "F4D00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4D00011:0004:n",
+      "parts": [
+        "F4D00011",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00006:0000:n",
+      "parts": [
+        "F4D00006",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "33600008:0000:s",
+      "parts": [
+        "33600008",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00006:0000:s",
+      "parts": [
+        "F4D00006",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00011:0000:e",
+      "parts": [
+        "F4D00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D00041:0000:n",
+      "parts": [
+        "F4D00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00005:0000:n",
+      "parts": [
+        "F4D00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00006:0000:n",
+      "parts": [
+        "F4D00006",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D40008:0000:d",
+      "parts": [
+        "F4D40008",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "F4D10000:0000:s[sea s]",
+      "parts": [
+        "F4D10000",
+        "0000",
+        "s[sea s]"
+      ],
+      "commands": [
+        "s[sea s]"
+      ]
+    },
+    {
+      "raw": "F4D01040:0000:se",
+      "parts": [
+        "F4D01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "D2604420:0000:sw",
+      "parts": [
+        "D2604420",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4D00144:0000:s",
+      "parts": [
+        "F4D00144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00005:0004:s",
+      "parts": [
+        "F4D00005",
+        "0004",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00089:0004:s",
+      "parts": [
+        "F4D00089",
+        "0004",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "07300002:0004:n",
+      "parts": [
+        "07300002",
+        "0004",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00089:0000:n",
+      "parts": [
+        "F4D00089",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00005:0004:s",
+      "parts": [
+        "F4D00005",
+        "0004",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00089:0004:w",
+      "parts": [
+        "F4D00089",
+        "0004",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "07300020:0004:e",
+      "parts": [
+        "07300020",
+        "0004",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D00089:0000:n",
+      "parts": [
+        "F4D00089",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00005:0000:n",
+      "parts": [
+        "F4D00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4D00144:0000:w",
+      "parts": [
+        "F4D00144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4D00410:0000:nw",
+      "parts": [
+        "F4D00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 45
+}

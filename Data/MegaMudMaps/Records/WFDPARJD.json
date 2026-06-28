@@ -1,0 +1,228 @@
+{
+  "file": "WFDPARJD.mp",
+  "sha256": "a32cfa005980bda81564ddb6e8ecb743d163d766200e78b5531f0979ce5792f7",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "WFDP",
+      "area": "Arlysia",
+      "label": "White Forest, Diamond",
+      "mapNumber": 17,
+      "roomNumber": 1733,
+      "raw": "[WFDP:Arlysia:White Forest, Diamond-17 1733]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 1733,
+        "name": "White Forest",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "17/1722",
+          "NW": "0",
+          "SE": "0",
+          "SW": "17/1732",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "ARJD",
+      "area": "Arlysia",
+      "label": "Ghost of Justice Darkbane",
+      "mapNumber": 17,
+      "roomNumber": 1746,
+      "raw": "[ARJD:Arlysia:Ghost of Justice Darkbane-17 1746]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 1746,
+        "name": "Pristine Shrine",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "17/1745",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EA204100:E9100010:13:-1:0:::",
+      "parts": [
+        "EA204100",
+        "E9100010",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EA204100:0000:@party say time",
+      "parts": [
+        "EA204100",
+        "0000",
+        "@party say time"
+      ],
+      "commands": [
+        "@party say time"
+      ]
+    },
+    {
+      "raw": "EA200400:0000:nw",
+      "parts": [
+        "EA200400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "EA201400:0000:nw",
+      "parts": [
+        "EA201400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "EA201100:0000:ne",
+      "parts": [
+        "EA201100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EA204100:0000:ne",
+      "parts": [
+        "EA204100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EA205000:0000:se",
+      "parts": [
+        "EA205000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EA201400:0000:se",
+      "parts": [
+        "EA201400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EA204400:0000:sw",
+      "parts": [
+        "EA204400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "EA200140:0000:w",
+      "parts": [
+        "EA200140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EA200010:0000:@party say love",
+      "parts": [
+        "EA200010",
+        "0000",
+        "@party say love"
+      ],
+      "commands": [
+        "@party say love"
+      ]
+    },
+    {
+      "raw": "EA200100:0000:ne",
+      "parts": [
+        "EA200100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EA204000:0000:@party say courage",
+      "parts": [
+        "EA204000",
+        "0000",
+        "@party say courage"
+      ],
+      "commands": [
+        "@party say courage"
+      ]
+    },
+    {
+      "raw": "12800040:0000:w",
+      "parts": [
+        "12800040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

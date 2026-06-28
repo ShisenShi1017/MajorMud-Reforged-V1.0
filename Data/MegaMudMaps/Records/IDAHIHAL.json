@@ -1,0 +1,114 @@
+{
+  "file": "IDAHIHAL.mp",
+  "sha256": "e1fe9dd9cb559a69f23609b7fcf08f4761ae5f3472bf8ab8c925a75533820d94",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "IDAH",
+      "area": "Arlysia",
+      "label": "Intersection of Dock Street & Haven Stre",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[IDAH:Arlysia:Intersection of Dock Street & Haven Stre]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "IHAL",
+      "area": "Arlysia",
+      "label": "Intersection of Haven Street & Long Stre",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[IHAL:Arlysia:Intersection of Haven Street & Long Stre]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E0500054:E3F00015:6:-1:0:::",
+      "parts": [
+        "E0500054",
+        "E3F00015",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E0500054:0000:s",
+      "parts": [
+        "E0500054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600015:0000:s",
+      "parts": [
+        "E8600015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600005:0000:s",
+      "parts": [
+        "E8600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600005:0000:s",
+      "parts": [
+        "E8600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600045:0000:s",
+      "parts": [
+        "E8600045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600005:0000:s",
+      "parts": [
+        "E8600005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

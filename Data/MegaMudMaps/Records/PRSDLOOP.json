@@ -1,0 +1,122 @@
+{
+  "file": "PRSDLOOP.mp",
+  "sha256": "c19cc0f825fe54bb4738ee99c3d9a08c99abd3b2e0ad54952856fe417a4cb92b",
+  "metadataLine": "[Dragon fang collecting loop-3 595][]",
+  "roomHeaders": [
+    {
+      "code": "PRSD",
+      "area": "Ancient Ruin",
+      "label": "Prismatic Dragon",
+      "mapNumber": 3,
+      "roomNumber": 595,
+      "raw": "[PRSD:Ancient Ruin:Prismatic Dragon-3 595]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 595,
+        "name": "Ancient Coliseum, Arena",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/594",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/592 (Door [201 picklocks/strength])",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "34720010:34720010:6:-1:0:::",
+      "parts": [
+        "34720010",
+        "34720010",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "34720010:0000:e",
+      "parts": [
+        "34720010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8E410040:0000:u",
+      "parts": [
+        "8E410040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "DA640080:0000:w",
+      "parts": [
+        "DA640080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "50D80024:0000:e",
+      "parts": [
+        "50D80024",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DA640080:0000:d",
+      "parts": [
+        "DA640080",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "8E410040:0000:w",
+      "parts": [
+        "8E410040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

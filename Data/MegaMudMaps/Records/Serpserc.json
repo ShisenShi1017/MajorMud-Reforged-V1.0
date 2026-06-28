@@ -1,0 +1,106 @@
+{
+  "file": "Serpserc.mp",
+  "sha256": "b6d8ea429f9f4e6df4cce27f21c95e791bc4fe8e2b8d43ef31ca7922ad0b0215",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SERP",
+      "area": "Black House",
+      "label": "Serpentkin Village",
+      "mapNumber": 7,
+      "roomNumber": 1027,
+      "raw": "[SERP:Black House:Serpentkin Village-7 1027]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1027,
+        "name": "Village Centre",
+        "exits": {
+          "N": "7/1028",
+          "S": "7/1029",
+          "E": "7/1030",
+          "W": "7/1026",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SERC",
+      "area": "Black House",
+      "label": "Serpentkin Chieftain",
+      "mapNumber": 7,
+      "roomNumber": 1040,
+      "raw": "[SERC:Black House:Serpentkin Chieftain-7 1040]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1040,
+        "name": "Chieftain's Dwelling",
+        "exits": {
+          "N": "0",
+          "S": "7/1028",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7F500055:FC100004:2:-1:0:::",
+      "parts": [
+        "7F500055",
+        "FC100004",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7F500055:0000:n",
+      "parts": [
+        "7F500055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AE800005:0000:n",
+      "parts": [
+        "AE800005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

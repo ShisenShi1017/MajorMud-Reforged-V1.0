@@ -1,0 +1,92 @@
+{
+  "file": "Rantsadg.mp",
+  "sha256": "56f511bb952a625496edec5cb0d4c0f4909e019725b73641b718a9ab5403baac",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RANT",
+      "area": "Trainers",
+      "label": "Ranger Trainer (2-10)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[RANT:Trainers:Ranger Trainer (2-10)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SADG",
+      "area": "Silvermere",
+      "label": "Adventurer's Guild",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SADG:Silvermere:Adventurer's Guild]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EF900001:D4200014:4:-1:0:::",
+      "parts": [
+        "EF900001",
+        "D4200014",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EF900001:0000:n",
+      "parts": [
+        "EF900001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:w",
+      "parts": [
+        "D4200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

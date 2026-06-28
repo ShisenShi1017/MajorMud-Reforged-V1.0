@@ -1,0 +1,517 @@
+{
+  "file": "MRD2GDDF.mp",
+  "sha256": "8d8ea6571c28eb8a176f5dd50abe83c7fb00d9d8d849ad8da040c55083c98ef5",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MRD2",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Jorah Fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRD2:Darkwood Forest:Main Road (Jorah Fork)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "GDDF",
+      "area": "Darkwood Forest",
+      "label": "Green Dragons",
+      "mapNumber": 1,
+      "roomNumber": 1358,
+      "raw": "[GDDF:Darkwood Forest:Green Dragons-1 1358]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1358,
+        "name": "Darkwood Forest",
+        "exits": {
+          "N": "0",
+          "S": "1/2803",
+          "E": "0",
+          "W": "0",
+          "NE": "1/2843",
+          "NW": "1/116",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "30605001:F4E00504:41:-1:0:::",
+      "parts": [
+        "30605001",
+        "F4E00504",
+        "41",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "41",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "30605001:0000:se",
+      "parts": [
+        "30605001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C01400:0000:se",
+      "parts": [
+        "A2C01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C01400:0000:se",
+      "parts": [
+        "A2C01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A2C01400:0000:go path",
+      "parts": [
+        "A2C01400",
+        "0000",
+        "go path"
+      ],
+      "commands": [
+        "go path"
+      ]
+    },
+    {
+      "raw": "F4E04000:0000:sw",
+      "parts": [
+        "F4E04000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E04100:0000:sw",
+      "parts": [
+        "F4E04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E04100:0000:sw",
+      "parts": [
+        "F4E04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00140:0000:w",
+      "parts": [
+        "F4E00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4E00050:0000:w",
+      "parts": [
+        "F4E00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4E04010:0000:sw",
+      "parts": [
+        "F4E04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E04100:0000:sw",
+      "parts": [
+        "F4E04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E04104:0000:s",
+      "parts": [
+        "F4E04104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:se",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4E00404:0000:s",
+      "parts": [
+        "F4E00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E04100:0000:sw",
+      "parts": [
+        "F4E04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:sw",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:s",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:se",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 45
+}

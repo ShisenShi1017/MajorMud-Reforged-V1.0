@@ -1,0 +1,96 @@
+{
+  "file": "Dresdrea.mp",
+  "sha256": "3fdd4da2402e99fb76cd15b1db17e9ec5164b4a1f36694842421c2766bc56168",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DRES",
+      "area": "Black Fort",
+      "label": "Dreary Shop",
+      "mapNumber": 7,
+      "roomNumber": 1136,
+      "raw": "[DRES:Black Fort:Dreary Shop-7 1136]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1136,
+        "name": "Small Store",
+        "exits": {
+          "N": "0",
+          "S": "7/1133 (Door)",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DREA",
+      "area": "Black Fort",
+      "label": "Dreary Village",
+      "mapNumber": 7,
+      "roomNumber": 1133,
+      "raw": "[DREA:Black Fort:Dreary Village-7 1133]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1133,
+        "name": "Dreary Village",
+        "exits": {
+          "N": "7/1136 (Door)",
+          "S": "3/785",
+          "E": "7/1121",
+          "W": "7/1130",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "97300008:85500056:1:-1:0:::",
+      "parts": [
+        "97300008",
+        "85500056",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "97300008:0000:s",
+      "parts": [
+        "97300008",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

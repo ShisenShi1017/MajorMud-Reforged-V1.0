@@ -1,0 +1,161 @@
+{
+  "file": "Shgfshgd.mp",
+  "sha256": "c3541521d3ba07c5e0c5b472f644e22ddbea8ced877bb0a0d49f1e3fc8be771f",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "SHGF",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Guardroom Fork",
+      "mapNumber": 12,
+      "roomNumber": 2109,
+      "raw": "[SHGF:Scorching Desert:Saracen Hideout, Guardroom Fork-12 2109]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2109,
+        "name": "Plaster Hallway",
+        "exits": {
+          "N": "12/2110 (Door [11 picklocks/strength])",
+          "S": "12/2113 (Door [11 picklocks/strength])",
+          "E": "12/2121",
+          "W": "12/2108",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SHGD",
+      "area": "Scorching Desert",
+      "label": "Saracen Hideout, Guardroom",
+      "mapNumber": 12,
+      "roomNumber": 2118,
+      "raw": "[SHGD:Scorching Desert:Saracen Hideout, Guardroom-12 2118]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2118,
+        "name": "Plaster Hallway, Guardroom",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "12/2117 (Door [11 picklocks/strength])",
+          "SE": "0",
+          "SW": "12/2119 (Door [11 picklocks/strength])",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F4D0005A:5EF08800:7:-1:0:::",
+      "parts": [
+        "F4D0005A",
+        "5EF08800",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F4D0005A:0000:s",
+      "parts": [
+        "F4D0005A",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D00012:0000:e",
+      "parts": [
+        "F4D00012",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4D00048:0000:s",
+      "parts": [
+        "F4D00048",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4D10002:0000:u",
+      "parts": [
+        "F4D10002",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F4D40400:0000:nw",
+      "parts": [
+        "F4D40400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4D01200:0002:ne",
+      "parts": [
+        "F4D01200",
+        "0002",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "5EF08800:0000:pull winch",
+      "parts": [
+        "5EF08800",
+        "0000",
+        "pull winch"
+      ],
+      "commands": [
+        "pull winch"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

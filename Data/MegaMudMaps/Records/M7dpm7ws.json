@@ -1,0 +1,140 @@
+{
+  "file": "M7dpm7ws.mp",
+  "sha256": "1dfa01ecd4ade624cd57b608e054f245ddeb52a4b17f828ffd686d97943b5027",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "M7DP",
+      "area": "Ocean",
+      "label": "River Landing, Dirt Path",
+      "mapNumber": 16,
+      "roomNumber": 2161,
+      "raw": "[M7DP:Ocean:River Landing, Dirt Path-16 2161]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2161,
+        "name": "River Landing, Dirt Path",
+        "exits": {
+          "N": "0",
+          "S": "1/2406",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/2162"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "M7WS",
+      "area": "Ocean",
+      "label": "Wounded Sailor",
+      "mapNumber": 16,
+      "roomNumber": 2665,
+      "raw": "[M7WS:Ocean:Wounded Sailor-16 2665]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2665,
+        "name": "Dark Cave, Ending",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "Action#1 [on the D exit of this room]: push stone, move stone, push rock",
+          "W": "16/2585",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/111 (Hidden/Needs 1 Actions, any order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "88F40004:55E00040:5:-1:0:::",
+      "parts": [
+        "88F40004",
+        "55E00040",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "88F40004:0000:d",
+      "parts": [
+        "88F40004",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "59650000:0000:d",
+      "parts": [
+        "59650000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "5EF10004:0000:s",
+      "parts": [
+        "5EF10004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "0D300011:0000:e",
+      "parts": [
+        "0D300011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "77700050:0000:e",
+      "parts": [
+        "77700050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

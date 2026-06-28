@@ -1,0 +1,144 @@
+{
+  "file": "HCWSHCTA.mp",
+  "sha256": "26191f15a656092bab44bb327ae498ece992fbaf8dc59fe21953b8dcbc450ac1",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "HCWS",
+      "area": "Goblin caves",
+      "label": "Huge Cavern, Training Area, West side",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[HCWS:Goblin caves:Huge Cavern, Training Area, West side]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "HCTA",
+      "area": "Goblin caves",
+      "label": "Huge Cavern, Training Area",
+      "mapNumber": 15,
+      "roomNumber": 5,
+      "raw": "[HCTA:Goblin caves:Huge Cavern, Training Area-15 5]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 5,
+        "name": "Huge Cavern, Training Area",
+        "exits": {
+          "N": "15/4",
+          "S": "15/49",
+          "E": "15/51",
+          "W": "15/6",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CCE00095:CCE00055:7:-1:0:::",
+      "parts": [
+        "CCE00095",
+        "CCE00055",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CCE00095:0000:e",
+      "parts": [
+        "CCE00095",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:e",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CCE00055:0000:n",
+      "parts": [
+        "CCE00055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

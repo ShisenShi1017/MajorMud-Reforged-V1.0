@@ -1,0 +1,195 @@
+{
+  "file": "Arnastsq.mp",
+  "sha256": "67b3fc67077e0d7d366a3cc44c8cf2f3a19694a502228ea247d27afc9eed046e",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ARNA",
+      "area": "Silvermere",
+      "label": "Arena (Practice Dummy)",
+      "mapNumber": 1,
+      "roomNumber": 206,
+      "raw": "[ARNA:Silvermere:Arena (Practice Dummy)-1 206]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 206,
+        "name": "Arena Practice Room",
+        "exits": {
+          "N": "1/205",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/2519",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "STSQ",
+      "area": "Silvermere",
+      "label": "Town Square",
+      "mapNumber": 1,
+      "roomNumber": 224,
+      "raw": "[STSQ:Silvermere:Town Square-1 224]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 224,
+        "name": "Town Square",
+        "exits": {
+          "N": "1/223",
+          "S": "1/225",
+          "E": "1/254",
+          "W": "1/301",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/766 (Text: go manhole, go man, enter manhole)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "67110001:9D400055:10:-1:0:::",
+      "parts": [
+        "67110001",
+        "9D400055",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "67110001:0000:n",
+      "parts": [
+        "67110001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EFF00014:0000:e",
+      "parts": [
+        "EFF00014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DFB40044:0000:s",
+      "parts": [
+        "DFB40044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "86C00005:0000:s",
+      "parts": [
+        "86C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E6200055:0000:w",
+      "parts": [
+        "E6200055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3DD00050:0000:w",
+      "parts": [
+        "3DD00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E1000051:0000:w",
+      "parts": [
+        "E1000051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3DD00055:0000:w",
+      "parts": [
+        "3DD00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3DD00050:0000:w",
+      "parts": [
+        "3DD00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DEC00055:0000:w",
+      "parts": [
+        "DEC00055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

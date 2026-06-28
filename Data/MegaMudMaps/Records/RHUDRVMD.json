@@ -1,0 +1,98 @@
+{
+  "file": "RHUDRVMD.mp",
+  "sha256": "2681c4b9294684f4c7ad37d85f1d03a20b26785729cd76382b4fd78bbd6b810b",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "RHUD",
+      "area": "Rhudaur",
+      "label": "Rhudaur",
+      "mapNumber": 2,
+      "roomNumber": 2519,
+      "raw": "[RHUD:Rhudaur:Rhudaur-2 2519]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2519,
+        "name": "Rhudaur, Massive Doors",
+        "exits": {
+          "N": "2/176 (Key: 593 [or 31 picklocks])",
+          "S": "2/2520",
+          "E": "2/2540 (Text: go alley, go alleyway, enter alley)",
+          "W": "2/2530 (Text: go alley, go alleyway, enter alley)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "RVMD",
+      "area": "Dragon's Teeth Hills",
+      "label": "Rocky Valley, Massive Doors",
+      "mapNumber": 2,
+      "roomNumber": 176,
+      "raw": "[RVMD:Dragon's Teeth Hills:Rocky Valley, Massive Doors-2 176]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 176,
+        "name": "Rocky Valley, Massive Doors",
+        "exits": {
+          "N": "2/175",
+          "S": "2/2519 (Key: 593 [or 81 picklocks])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EBF00006:BEF00009:1:-1:0:black serpent key::",
+      "parts": [
+        "EBF00006",
+        "BEF00009",
+        "1",
+        "-1",
+        "0",
+        "black serpent key",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0",
+        "black serpent key"
+      ]
+    },
+    {
+      "raw": "EBF00006:0080:n[use black serpent key n]",
+      "parts": [
+        "EBF00006",
+        "0080",
+        "n[use black serpent key n]"
+      ],
+      "commands": [
+        "n[use black serpent key n]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

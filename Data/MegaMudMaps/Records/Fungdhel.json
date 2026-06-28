@@ -1,0 +1,283 @@
+{
+  "file": "Fungdhel.mp",
+  "sha256": "a1a3d411825c8c9242700c51ae75e92b1e73041c55b1657368d42f3030d3d103",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FUNG",
+      "area": "Black House",
+      "label": "Fungus Forest",
+      "mapNumber": 7,
+      "roomNumber": 156,
+      "raw": "[FUNG:Black House:Fungus Forest-7 156]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 156,
+        "name": "Fungus Forest, Tunnel Opening",
+        "exits": {
+          "N": "7/155",
+          "S": "7/157",
+          "E": "7/281",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "DHEL",
+      "area": "Black House",
+      "label": "Dhelvanen",
+      "mapNumber": 7,
+      "roomNumber": 1008,
+      "raw": "[DHEL:Black House:Dhelvanen-7 1008]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1008,
+        "name": "Luxurious Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "7/1007",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "23600015:97100100:18:-1:0:::",
+      "parts": [
+        "23600015",
+        "97100100",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "23600015:0000:s",
+      "parts": [
+        "23600015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B04401:0000:nw",
+      "parts": [
+        "41B04401",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "41B01400:0000:nw",
+      "parts": [
+        "41B01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "41B01040:0000:w",
+      "parts": [
+        "41B01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B00054:0000:s",
+      "parts": [
+        "41B00054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "41B00041:0000:w",
+      "parts": [
+        "41B00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B04014:0000:sw",
+      "parts": [
+        "41B04014",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "41B00140:0000:w",
+      "parts": [
+        "41B00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B00050:0000:w",
+      "parts": [
+        "41B00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B00051:0000:w",
+      "parts": [
+        "41B00051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "41B00054:0000:w",
+      "parts": [
+        "41B00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DEA04011:0000:sw",
+      "parts": [
+        "DEA04011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DEA04100:0000:sw",
+      "parts": [
+        "DEA04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DEA04110:0000:sw",
+      "parts": [
+        "DEA04110",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "DEA00104:0000:s",
+      "parts": [
+        "DEA00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "15B01001:0000:go waterfall",
+      "parts": [
+        "15B01001",
+        "0000",
+        "go waterfall"
+      ],
+      "commands": [
+        "go waterfall"
+      ]
+    },
+    {
+      "raw": "4F301100:0000:w[search w]",
+      "parts": [
+        "4F301100",
+        "0000",
+        "w[search w]"
+      ],
+      "commands": [
+        "w[search w]"
+      ]
+    },
+    {
+      "raw": "3FE04020:0000:sw",
+      "parts": [
+        "3FE04020",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

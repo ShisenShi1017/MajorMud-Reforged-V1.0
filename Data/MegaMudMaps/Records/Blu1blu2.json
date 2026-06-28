@@ -1,0 +1,77 @@
+{
+  "file": "Blu1blu2.mp",
+  "sha256": "6380a233e0d6fb436069414a3201e2f01aa37adc360f4cd7778d06025489edc4",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BLU1",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower (Jorah)",
+      "mapNumber": 1,
+      "roomNumber": 2327,
+      "raw": "[BLU1:Darkwood Forest:Blue Tower (Jorah)-1 2327]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2327,
+        "name": "Blue Tower, Bottom Floor",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/2326",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/2328",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "BLU2",
+      "area": "Darkwood Forest",
+      "label": "Blue Tower, Armour (leather)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[BLU2:Darkwood Forest:Blue Tower, Armour (leather)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E3310010:C8254400:1:-1:0:::",
+      "parts": [
+        "E3310010",
+        "C8254400",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E3310010:0000:u",
+      "parts": [
+        "E3310010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

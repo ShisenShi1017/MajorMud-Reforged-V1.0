@@ -1,0 +1,251 @@
+{
+  "file": "YETIRTTB.mp",
+  "sha256": "71605a39195afedb95fa781c96702366c13a407f1c0f1c97ba0b197ff1082195",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "YETI",
+      "area": "Rocky Trail",
+      "label": "Frozen Cavern (Large Yeti)",
+      "mapNumber": 10,
+      "roomNumber": 218,
+      "raw": "[YETI:Rocky Trail:Frozen Cavern (Large Yeti)-10 218]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 218,
+        "name": "Frozen Cavern",
+        "exits": {
+          "N": "10/178",
+          "S": "10/219 (Key: 520 [or 61 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "RTTB",
+      "area": "Rocky Trail",
+      "label": "Tower, Bedroom",
+      "mapNumber": 10,
+      "roomNumber": 235,
+      "raw": "[RTTB:Rocky Trail:Tower, Bedroom-10 235]",
+      "csvMatch": {
+        "mapNumber": 10,
+        "roomNumber": 235,
+        "name": "Tower, Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "10/234 (Door)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "32E00009:78500080:15:-1:0:::",
+      "parts": [
+        "32E00009",
+        "78500080",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "32E00009:0000:s",
+      "parts": [
+        "32E00009",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CCD00046:0000:s",
+      "parts": [
+        "CCD00046",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7F100005:0000:s",
+      "parts": [
+        "7F100005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7F100005:0000:s",
+      "parts": [
+        "7F100005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7F100081:0000:w",
+      "parts": [
+        "7F100081",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "50700020:0000:turn crystal",
+      "parts": [
+        "50700020",
+        "0000",
+        "turn crystal"
+      ],
+      "commands": [
+        "turn crystal"
+      ]
+    },
+    {
+      "raw": "50700020:0000:nw",
+      "parts": [
+        "50700020",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "84400010:0000:e",
+      "parts": [
+        "84400010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "54310040:0000:u",
+      "parts": [
+        "54310040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "54340040:0000:w",
+      "parts": [
+        "54340040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "7F100011:0000:n",
+      "parts": [
+        "7F100011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "7F100044:0000:w",
+      "parts": [
+        "7F100044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B7600114:0000:s",
+      "parts": [
+        "B7600114",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "7F102001:0000:se",
+      "parts": [
+        "7F102001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "78500820:0000:e",
+      "parts": [
+        "78500820",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

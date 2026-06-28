@@ -1,0 +1,349 @@
+{
+  "file": "SPDFDFOH.mp",
+  "sha256": "9469e09789754f5da0f0890bb2aba355d2925a32f4e0709e2121c8aa2378fd86",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SPDF",
+      "area": "Misty Valley",
+      "label": "Swampside Path, Darkwood Fork",
+      "mapNumber": 6,
+      "roomNumber": 217,
+      "raw": "[SPDF:Misty Valley:Swampside Path, Darkwood Fork-6 217]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 217,
+        "name": "Swampside Path",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/216",
+          "W": "0",
+          "NE": "0",
+          "NW": "9/747",
+          "SE": "0",
+          "SW": "6/218",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "DFOH",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest, Outside Hidden Kp",
+      "mapNumber": 9,
+      "roomNumber": 724,
+      "raw": "[DFOH:Darkwood Forest:Darkwood Forest, Outside Hidden Kp-9 724]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 724,
+        "name": "Darkwood Forest, Hidden Keep",
+        "exits": {
+          "N": "9/725 (Hidden/Searchable)",
+          "S": "0",
+          "E": "9/798 (Door [251 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "9/723",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "75604410:F1904020:24:-1:0:::",
+      "parts": [
+        "75604410",
+        "F1904020",
+        "24",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "24",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "75604410:0000:nw",
+      "parts": [
+        "75604410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "2ED01040:0000:w",
+      "parts": [
+        "2ED01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2ED00410:0000:nw",
+      "parts": [
+        "2ED00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "2ED01400:0000:nw",
+      "parts": [
+        "2ED01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "2ED01400:0000:nw",
+      "parts": [
+        "2ED01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B3401001:0000:n",
+      "parts": [
+        "B3401001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B3400005:0000:n",
+      "parts": [
+        "B3400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B3400005:0000:n",
+      "parts": [
+        "B3400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B3400005:0000:n",
+      "parts": [
+        "B3400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B3400005:0000:n",
+      "parts": [
+        "B3400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B3400005:0000:n",
+      "parts": [
+        "B3400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B3400044:0000:w",
+      "parts": [
+        "B3400044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400050:0000:w",
+      "parts": [
+        "B3400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400050:0000:w",
+      "parts": [
+        "B3400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400050:0000:w",
+      "parts": [
+        "B3400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400050:0000:w",
+      "parts": [
+        "B3400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400050:0000:w",
+      "parts": [
+        "B3400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400050:0000:w",
+      "parts": [
+        "B3400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400050:0000:w",
+      "parts": [
+        "B3400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400050:0000:w",
+      "parts": [
+        "B3400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B3400014:0000:s",
+      "parts": [
+        "B3400014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B3400005:0000:s",
+      "parts": [
+        "B3400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B3400005:0000:s",
+      "parts": [
+        "B3400005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B3400001:0000:s[sea s]",
+      "parts": [
+        "B3400001",
+        "0000",
+        "s[sea s]"
+      ],
+      "commands": [
+        "s[sea s]"
+      ]
+    }
+  ],
+  "rawLineCount": 28
+}

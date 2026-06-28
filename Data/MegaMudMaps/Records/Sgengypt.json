@@ -1,0 +1,96 @@
+{
+  "file": "Sgengypt.mp",
+  "sha256": "d0fb81a571233a0a0b08a191c5f3cbfb08f1cde6d3216f429d280f8fe09dd50d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SGEN",
+      "area": "Silvermere",
+      "label": "General Store (Giovanni)",
+      "mapNumber": 1,
+      "roomNumber": 334,
+      "raw": "[SGEN:Silvermere:General Store (Giovanni)-1 334]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 334,
+        "name": "General Store",
+        "exits": {
+          "N": "1/107",
+          "S": "0",
+          "E": "1/384",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "GYPT",
+      "area": "Trainers",
+      "label": "Gypsy Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 384,
+      "raw": "[GYPT:Trainers:Gypsy Trainer (2-10)-1 384]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 384,
+        "name": "Back Room, Gypsy Trainer",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "1/334",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "31400011:F9F00040:1:-1:0:::",
+      "parts": [
+        "31400011",
+        "F9F00040",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "31400011:0000:e",
+      "parts": [
+        "31400011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

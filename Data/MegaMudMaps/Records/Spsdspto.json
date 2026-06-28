@@ -1,0 +1,38 @@
+{
+  "file": "Spsdspto.mp",
+  "sha256": "14a9bbf2d559712efbb336718d4d26a229f79c7cde7410c110c3261a88160d04",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "D4100004:3F200005:1:-1:0:::",
+      "parts": [
+        "D4100004",
+        "3F200005",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D4100004:0000:s",
+      "parts": [
+        "D4100004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 3
+}

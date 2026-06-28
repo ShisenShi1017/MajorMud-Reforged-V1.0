@@ -1,0 +1,277 @@
+{
+  "file": "AICRLOO2.mp",
+  "sha256": "63e999a7a711c9f3a917c303d95d61ea4454c7103603554363c28de954d57102",
+  "metadataLine": "[Abandoned Inn (Gremilins) full-17 2800][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "AICR",
+      "area": "Blackwood Forest",
+      "label": "Abandoned Inn, Common Room",
+      "mapNumber": 17,
+      "roomNumber": 2800,
+      "raw": "[AICR:Blackwood Forest:Abandoned Inn, Common Room-17 2800]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2800,
+        "name": "Abandoned Inn, Common Room",
+        "exits": {
+          "N": "17/2801",
+          "S": "0",
+          "E": "17/472",
+          "W": "17/2810",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CF600051:CF600051:20:-1:0:::",
+      "parts": [
+        "CF600051",
+        "CF600051",
+        "20",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "20",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CF600051:0000:w",
+      "parts": [
+        "CF600051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A8C00011:0000:n",
+      "parts": [
+        "A8C00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "81A00014:0000:e",
+      "parts": [
+        "81A00014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BB900045:0000:n",
+      "parts": [
+        "BB900045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BB900044:0000:w",
+      "parts": [
+        "BB900044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6E610010:0000:u",
+      "parts": [
+        "6E610010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "51440024:0000:e",
+      "parts": [
+        "51440024",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "AFD00080:0000:w",
+      "parts": [
+        "AFD00080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "51440024:0000:s",
+      "parts": [
+        "51440024",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "51400025:0000:e",
+      "parts": [
+        "51400025",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "AFD00080:0000:w",
+      "parts": [
+        "AFD00080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "51400025:0000:s",
+      "parts": [
+        "51400025",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "51400021:0000:e",
+      "parts": [
+        "51400021",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "AFD00080:0000:w",
+      "parts": [
+        "AFD00080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "51400021:0000:n",
+      "parts": [
+        "51400021",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "51400025:0000:n",
+      "parts": [
+        "51400025",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "51440024:0000:d",
+      "parts": [
+        "51440024",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "6E610010:0000:e",
+      "parts": [
+        "6E610010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BB900044:0000:s",
+      "parts": [
+        "BB900044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BB900045:0000:s",
+      "parts": [
+        "BB900045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

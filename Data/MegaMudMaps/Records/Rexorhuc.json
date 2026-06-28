@@ -1,0 +1,117 @@
+{
+  "file": "Rexorhuc.mp",
+  "sha256": "8e10599dc66b9544f43f1b1dc9cb1d073cfb15654bcebbe16b212fdcde63a85c",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "REXO",
+      "area": "Rhudaur",
+      "label": "Rhudaur Exotic Weapons",
+      "mapNumber": 2,
+      "roomNumber": 2566,
+      "raw": "[REXO:Rhudaur:Rhudaur Exotic Weapons-2 2566]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2566,
+        "name": "Exotic Weapons Shop",
+        "exits": {
+          "N": "2/2525",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RHUC",
+      "area": "Rhudaur",
+      "label": "Rhudaur Center",
+      "mapNumber": 2,
+      "roomNumber": 2523,
+      "raw": "[RHUC:Rhudaur:Rhudaur Center-2 2523]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2523,
+        "name": "Rhudaur Town Centre",
+        "exits": {
+          "N": "2/2522",
+          "S": "2/2528",
+          "E": "2/2526",
+          "W": "2/2524",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "79A00001:7AD00055:3:-1:0:::",
+      "parts": [
+        "79A00001",
+        "7AD00055",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "79A00001:0000:n",
+      "parts": [
+        "79A00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D8200015:0000:e",
+      "parts": [
+        "D8200015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C1E00051:0000:e",
+      "parts": [
+        "C1E00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

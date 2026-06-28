@@ -1,0 +1,221 @@
+{
+  "file": "GVILKENT.mp",
+  "sha256": "057855115c9f179850d51c6cc26b90dcbb39a74691bb31c80819f2bfda9b69db",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GVIL",
+      "area": "Gnome Village",
+      "label": "Gnome Village- 6 552",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GVIL:Gnome Village:Gnome Village- 6 552]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "KENT",
+      "area": "Khazarad",
+      "label": "Khazarad, Entry Arch",
+      "mapNumber": 6,
+      "roomNumber": 1249,
+      "raw": "[KENT:Khazarad:Khazarad, Entry Arch-6 1249]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1249,
+        "name": "Khazarad, Entry Arch",
+        "exits": {
+          "N": "6/1263",
+          "S": "6/1266",
+          "E": "6/1250",
+          "W": "6/1246",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2A300145:A6E00055:14:-1:0:::",
+      "parts": [
+        "2A300145",
+        "A6E00055",
+        "14",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "14",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2A300145:0000:ne",
+      "parts": [
+        "2A300145",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "2A304014:0000:e",
+      "parts": [
+        "2A304014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300051:0000:e",
+      "parts": [
+        "2A300051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300055:0000:e",
+      "parts": [
+        "2A300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300050:0000:e",
+      "parts": [
+        "2A300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300144:0000:ne",
+      "parts": [
+        "2A300144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "2A304011:0000:e",
+      "parts": [
+        "2A304011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300050:0000:e",
+      "parts": [
+        "2A300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300052:0000:e",
+      "parts": [
+        "2A300052",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300058:0000:e",
+      "parts": [
+        "2A300058",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "06300050:0000:e",
+      "parts": [
+        "06300050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "06310040:0000:u",
+      "parts": [
+        "06310040",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "92540010:0000:e",
+      "parts": [
+        "92540010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ECE0005A:0000:e",
+      "parts": [
+        "ECE0005A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 18
+}

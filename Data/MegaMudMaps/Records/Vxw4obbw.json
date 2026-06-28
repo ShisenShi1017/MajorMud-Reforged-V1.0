@@ -1,0 +1,206 @@
+{
+  "file": "Vxw4obbw.mp",
+  "sha256": "5495ab4531d31507a5c484da8d479dd7afd3c7e423d7248578f808911c307f15",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXW4",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (Hazy Swamp)",
+      "mapNumber": 3,
+      "roomNumber": 782,
+      "raw": "[VXW4:Black Wastelands:Wastelands Vortex (Hazy Swamp)-3 782]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 782,
+        "name": "Hazy Swamp",
+        "exits": {
+          "N": "0",
+          "S": "7/618",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "OBBW",
+      "area": "Black Wastelands",
+      "label": "Wastelands Obelisk",
+      "mapNumber": 1,
+      "roomNumber": 2426,
+      "raw": "[OBBW:Black Wastelands:Wastelands Obelisk-1 2426]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2426,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "3/780",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "3/741",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ED104001:ED201001:11:-1:0:::",
+      "parts": [
+        "ED104001",
+        "ED201001",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ED104001:0000:sw",
+      "parts": [
+        "ED104001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "ED000104:0000:s",
+      "parts": [
+        "ED000104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "ED005001:0000:se",
+      "parts": [
+        "ED005001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED000410:0000:e",
+      "parts": [
+        "ED000410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000140:0000:ne",
+      "parts": [
+        "ED000140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "ED004100:0000:ne",
+      "parts": [
+        "ED004100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "ED004010:0000:e",
+      "parts": [
+        "ED004010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED001040:0000:se",
+      "parts": [
+        "ED001040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "ED000410:0000:e",
+      "parts": [
+        "ED000410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "ED000140:0000:ne",
+      "parts": [
+        "ED000140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "ED004410:0000:nw",
+      "parts": [
+        "ED004410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

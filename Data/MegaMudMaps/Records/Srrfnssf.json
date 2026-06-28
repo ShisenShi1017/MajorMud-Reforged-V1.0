@@ -1,0 +1,177 @@
+{
+  "file": "Srrfnssf.mp",
+  "sha256": "8f9682f10bf66cadb24ccd0a10c91fefe1f8f6bd19aedef63d8e10b086a4704a",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "SRRF",
+      "area": "Northern Forests",
+      "label": "Silver River, River's Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SRRF:Northern Forests:Silver River, River's Fork]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "NSSF",
+      "area": "Northern Forests",
+      "label": "Silver River, Small Fork",
+      "mapNumber": 1,
+      "roomNumber": 2393,
+      "raw": "[NSSF:Northern Forests:Silver River, Small Fork-1 2393]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2393,
+        "name": "The Silver River, Small Fork",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "1/2539",
+          "NW": "1/2551",
+          "SE": "0",
+          "SW": "1/2394",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C604410:F3904500:10:-1:0:::",
+      "parts": [
+        "2C604410",
+        "F3904500",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2C604410:0000:e",
+      "parts": [
+        "2C604410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "39900140:0000:ne",
+      "parts": [
+        "39900140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "39904100:0000:ne",
+      "parts": [
+        "39904100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "39904100:0000:ne",
+      "parts": [
+        "39904100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "39904010:0000:e",
+      "parts": [
+        "39904010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "39900044:0000:s",
+      "parts": [
+        "39900044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "39901001:0000:se",
+      "parts": [
+        "39901001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "39900404:0000:s",
+      "parts": [
+        "39900404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "39901001:0000:se",
+      "parts": [
+        "39901001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "39901400:0000:se",
+      "parts": [
+        "39901400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

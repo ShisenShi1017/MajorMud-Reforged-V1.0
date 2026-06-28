@@ -1,0 +1,107 @@
+{
+  "file": "TOFCFPDI.mp",
+  "sha256": "9e92d24f99a541df76c29a98c8cb4663f90c93e97b54a1f713e687bf65275477",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "TOFC",
+      "area": "Lava Fields",
+      "label": "Crimson High Priest",
+      "mapNumber": 15,
+      "roomNumber": 1112,
+      "raw": "[TOFC:Lava Fields:Crimson High Priest-15 1112]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1112,
+        "name": "Temple of Fire, Grand Altar",
+        "exits": {
+          "N": "0",
+          "S": "15/1113",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FPDI",
+      "area": "Lava Fields",
+      "label": "Flame Pit (Demoness Irikani)",
+      "mapNumber": 15,
+      "roomNumber": 1127,
+      "raw": "[FPDI:Lava Fields:Flame Pit (Demoness Irikani)-15 1127]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1127,
+        "name": "Flame Pit",
+        "exits": {
+          "N": "15/1130",
+          "S": "15/1134",
+          "E": "15/1132",
+          "W": "15/1128",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "24400004:03A00055:2:-1:0:::",
+      "parts": [
+        "24400004",
+        "03A00055",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "24400004:0000:@party touch ruby",
+      "parts": [
+        "24400004",
+        "0000",
+        "@party touch ruby"
+      ],
+      "commands": [
+        "@party touch ruby"
+      ]
+    },
+    {
+      "raw": "FFFFFFFF:0000:par",
+      "parts": [
+        "FFFFFFFF",
+        "0000",
+        "par"
+      ],
+      "commands": [
+        "par"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

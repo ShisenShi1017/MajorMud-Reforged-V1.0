@@ -1,0 +1,96 @@
+{
+  "file": "Apuzaapp.mp",
+  "sha256": "1cb85784a7fa98e61f09ede31d8e55dc9f0116c17f433f0697dd9eebd22eec93",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "APUZ",
+      "area": "Black Caves",
+      "label": "Ancient Stronghold (Puzzle Door)",
+      "mapNumber": 8,
+      "roomNumber": 951,
+      "raw": "[APUZ:Black Caves:Ancient Stronghold (Puzzle Door)-8 951]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 951,
+        "name": "Ancient Stronghold, Puzzle Door",
+        "exits": {
+          "N": "0",
+          "S": "8/954 (Door [51 picklocks/strength])",
+          "E": "8/950",
+          "W": "8/955 (Door [1000 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "AAPP",
+      "area": "Black Caves",
+      "label": "Ancient Stronghold (Apparatus)",
+      "mapNumber": 8,
+      "roomNumber": 955,
+      "raw": "[AAPP:Black Caves:Ancient Stronghold (Apparatus)-8 955]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 955,
+        "name": "Arcane Laboratory",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/951 (Door [any picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "86D00098:DDF00020:1:-1:0:::",
+      "parts": [
+        "86D00098",
+        "DDF00020",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "86D00098:0001:w",
+      "parts": [
+        "86D00098",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

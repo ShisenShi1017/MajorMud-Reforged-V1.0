@@ -1,0 +1,106 @@
+{
+  "file": "Serwserp.mp",
+  "sha256": "d5a2288a35fdbbba24b3b8bc209a0c3342b772fc101dfc5930c5fd67dcbe5e9d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SERW",
+      "area": "Black House",
+      "label": "Serpentkin Witchdoctor",
+      "mapNumber": 7,
+      "roomNumber": 1041,
+      "raw": "[SERW:Black House:Serpentkin Witchdoctor-7 1041]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1041,
+        "name": "Stone Dwelling",
+        "exits": {
+          "N": "7/1029",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SERP",
+      "area": "Black House",
+      "label": "Serpentkin Village",
+      "mapNumber": 7,
+      "roomNumber": 1027,
+      "raw": "[SERP:Black House:Serpentkin Village-7 1027]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1027,
+        "name": "Village Centre",
+        "exits": {
+          "N": "7/1028",
+          "S": "7/1029",
+          "E": "7/1030",
+          "W": "7/1026",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "91A00001:7F500055:2:-1:0:::",
+      "parts": [
+        "91A00001",
+        "7F500055",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "91A00001:0000:n",
+      "parts": [
+        "91A00001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "AE800005:0000:n",
+      "parts": [
+        "AE800005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

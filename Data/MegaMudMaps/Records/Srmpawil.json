@@ -1,0 +1,140 @@
+{
+  "file": "Srmpawil.mp",
+  "sha256": "225e5c94edf3677e7dea0e921b523fec06bc3a0eb75b5c9be9e8581511a88e12",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SRMP",
+      "area": "Northern Forests",
+      "label": "Silver River, Murky Pool",
+      "mapNumber": 1,
+      "roomNumber": 2415,
+      "raw": "[SRMP:Northern Forests:Silver River, Murky Pool-1 2415]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2415,
+        "name": "The Silver River, Murky Pool",
+        "exits": {
+          "N": "0",
+          "S": "1/2414",
+          "E": "0",
+          "W": "0",
+          "NE": "3/197",
+          "NW": "3/204",
+          "SE": "3/178",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "AWIL",
+      "area": "Northern Forests",
+      "label": "Ancient Willow",
+      "mapNumber": 3,
+      "roomNumber": 214,
+      "raw": "[AWIL:Northern Forests:Ancient Willow-3 214]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 214,
+        "name": "Inside The Broken Willow",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/213",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2A601504:1B100040:5:-1:0:::",
+      "parts": [
+        "2A601504",
+        "1B100040",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2A601504:0000:nw",
+      "parts": [
+        "2A601504",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "94705400:0000:sw",
+      "parts": [
+        "94705400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "94700144:0000:w",
+      "parts": [
+        "94700144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "94700410:0000:nw",
+      "parts": [
+        "94700410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "94701011:0000:e",
+      "parts": [
+        "94701011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

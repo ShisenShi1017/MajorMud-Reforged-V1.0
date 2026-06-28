@@ -1,0 +1,261 @@
+{
+  "file": "ELSAELGR.mp",
+  "sha256": "af52becea12cd35773995c558b7e8a7d20043eec8a754416036d405c5f379357",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ELSA",
+      "area": "Darkwood Forest",
+      "label": "Elder Darkwood Grove, Stone Arch",
+      "mapNumber": 7,
+      "roomNumber": 87,
+      "raw": "[ELSA:Darkwood Forest:Elder Darkwood Grove, Stone Arch-7 87]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 87,
+        "name": "Elder Darkwood Grove, Stone Arch",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "7/88",
+          "W": "0",
+          "NE": "0",
+          "NW": "7/86",
+          "SE": "7/140 (Item: 474)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "ELGR",
+      "area": "Darkwood Forest",
+      "label": "Elder Grove",
+      "mapNumber": 7,
+      "roomNumber": 21,
+      "raw": "[ELGR:Darkwood Forest:Elder Grove-7 21]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 21,
+        "name": "Elder Darkwood Grove, Fork",
+        "exits": {
+          "N": "0",
+          "S": "7/33",
+          "E": "Action#1 [on the NE exit of this room]: twist knot, turn knot",
+          "W": "Action#2 [on the NE exit of this room]: push knot",
+          "NE": "7/20 (Hidden/Needs 2 Actions, specific order)",
+          "NW": "0",
+          "SE": "0",
+          "SW": "7/22",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A3E01410:CBB04004:16:-1:0:::",
+      "parts": [
+        "A3E01410",
+        "CBB04004",
+        "16",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "16",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A3E01410:0000:nw",
+      "parts": [
+        "A3E01410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:w",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:w",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:w",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD04010:0000:sw",
+      "parts": [
+        "FAD04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CBB04104:0000:sw",
+      "parts": [
+        "CBB04104",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00140:0000:w",
+      "parts": [
+        "FAD00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CBB04011:0000:n",
+      "parts": [
+        "CBB04011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00044:0000:w",
+      "parts": [
+        "FAD00044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00011:0000:n",
+      "parts": [
+        "FAD00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CBB00144:0000:ne",
+      "parts": [
+        "CBB00144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CBB04011:0000:n",
+      "parts": [
+        "CBB04011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00104:0000:ne",
+      "parts": [
+        "FAD00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CBB04500:0000:ne",
+      "parts": [
+        "CBB04500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FAD04100:0000:ne",
+      "parts": [
+        "FAD04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 20
+}

@@ -1,0 +1,172 @@
+{
+  "file": "Slezarct.mp",
+  "sha256": "cdf2fc92e5b79bb583ad3391566aa9be9a8622b68de12051cd99530a738d4adb",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SLEZ",
+      "area": "Dark-Elf City",
+      "label": "Sleazy Shopkeeper",
+      "mapNumber": 8,
+      "roomNumber": 486,
+      "raw": "[SLEZ:Dark-Elf City:Sleazy Shopkeeper-8 486]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 486,
+        "name": "Musty Store",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/481 (Door [16 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ARCT",
+      "area": "Dark-Elf City",
+      "label": "Outside Archmage Tower",
+      "mapNumber": 8,
+      "roomNumber": 531,
+      "raw": "[ARCT:Dark-Elf City:Outside Archmage Tower-8 531]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 531,
+        "name": "Dark Tower, Entrance",
+        "exits": {
+          "N": "8/475",
+          "S": "0",
+          "E": "0",
+          "W": "8/532 (Key: 808 [or 1000 picklocks])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "8/1674",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A1400020:DA104081:8:-1:0:::",
+      "parts": [
+        "A1400020",
+        "DA104081",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A1400020:0041:e",
+      "parts": [
+        "A1400020",
+        "0041",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "86400085:0041:s",
+      "parts": [
+        "86400085",
+        "0041",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "78000055:0041:s",
+      "parts": [
+        "78000055",
+        "0041",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "86400085:0041:s",
+      "parts": [
+        "86400085",
+        "0041",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "78000055:0041:w",
+      "parts": [
+        "78000055",
+        "0041",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "86400050:0041:w",
+      "parts": [
+        "86400050",
+        "0041",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "86400050:0041:w",
+      "parts": [
+        "86400050",
+        "0041",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "78000015:0041:s",
+      "parts": [
+        "78000015",
+        "0041",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

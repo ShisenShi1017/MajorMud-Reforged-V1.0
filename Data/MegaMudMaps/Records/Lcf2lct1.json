@@ -1,0 +1,114 @@
+{
+  "file": "Lcf2lct1.mp",
+  "sha256": "0a03ba06a5890d7688c71fc6530c942b4b18d8392c412049aa2e18c4e48ce291",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCF2",
+      "area": "Lost City",
+      "label": "Forest Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCF2:Lost City:Forest Street]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCT1",
+      "area": "Lost City",
+      "label": "Temple Stairs",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT1:Lost City:Temple Stairs]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3FC01056:3A700155:6:-1:0:::",
+      "parts": [
+        "3FC01056",
+        "3A700155",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3FC01056:0000:s",
+      "parts": [
+        "3FC01056",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92901115:0000:s",
+      "parts": [
+        "92901115",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92901115:0000:s",
+      "parts": [
+        "92901115",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92901115:0000:s",
+      "parts": [
+        "92901115",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92901115:0000:s",
+      "parts": [
+        "92901115",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "92901115:0000:s",
+      "parts": [
+        "92901115",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

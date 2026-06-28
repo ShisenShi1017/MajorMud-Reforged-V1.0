@@ -1,0 +1,343 @@
+{
+  "file": "DCTELOOP.mp",
+  "sha256": "dd59223d4086a42e7ecd62972a6cef8200c47595fd923cc775cb991173e4ee24",
+  "metadataLine": "[Dark-elf Temple (small loop)-8 1749][]",
+  "roomHeaders": [
+    {
+      "code": "DCTE",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Temple, Entrance",
+      "mapNumber": 8,
+      "roomNumber": 1749,
+      "raw": "[DCTE:Dark-Elf City:Dark-elf Temple, Entrance-8 1749]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1749,
+        "name": "Temple, Entrance",
+        "exits": {
+          "N": "8/1686",
+          "S": "8/1750 (Door [51 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2EE00009:2EE00009:26:-1:0:::",
+      "parts": [
+        "2EE00009",
+        "2EE00009",
+        "26",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "26",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2EE00009:0000:s",
+      "parts": [
+        "2EE00009",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D4905002:0000:sw",
+      "parts": [
+        "D4905002",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "D4900140:0000:w",
+      "parts": [
+        "D4900140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D4901010:0000:se",
+      "parts": [
+        "D4901010",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "D4904400:0000:sw",
+      "parts": [
+        "D4904400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "D4904500:0000:sw",
+      "parts": [
+        "D4904500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "D4905500:0000:se",
+      "parts": [
+        "D4905500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "D4905402:0000:n",
+      "parts": [
+        "D4905402",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "69200108:0001:ne",
+      "parts": [
+        "69200108",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "69205000:0001:sw",
+      "parts": [
+        "69205000",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "69200108:0000:s",
+      "parts": [
+        "69200108",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D4905402:0000:se",
+      "parts": [
+        "D4905402",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "D4900410:0000:e",
+      "parts": [
+        "D4900410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D4900052:0000:e",
+      "parts": [
+        "D4900052",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D4900140:0000:ne",
+      "parts": [
+        "D4900140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "D4905102:0000:n",
+      "parts": [
+        "D4905102",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "69200408:0000:nw",
+      "parts": [
+        "69200408",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "69205000:0000:se",
+      "parts": [
+        "69205000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "69200408:0000:s",
+      "parts": [
+        "69200408",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D4905102:0000:ne",
+      "parts": [
+        "D4905102",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "D4905500:0000:nw",
+      "parts": [
+        "D4905500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "D4901500:0000:nw",
+      "parts": [
+        "D4901500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "D4901100:0000:ne",
+      "parts": [
+        "D4901100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "D4904040:0000:w",
+      "parts": [
+        "D4904040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D4900410:0000:nw",
+      "parts": [
+        "D4900410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "D4905002:0000:n",
+      "parts": [
+        "D4905002",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 29
+}

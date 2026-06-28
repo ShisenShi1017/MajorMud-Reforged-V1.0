@@ -1,0 +1,128 @@
+{
+  "file": "Cas3wems.mp",
+  "sha256": "3027fd9621a5e89f19ef23fb56506bfe9def0a3223954df42e18592e6ed33209",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CAS3",
+      "area": "Dark-Elf City",
+      "label": "Dark-elf Castle Level 3",
+      "mapNumber": 8,
+      "roomNumber": 658,
+      "raw": "[CAS3:Dark-Elf City:Dark-elf Castle Level 3-8 658]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 658,
+        "name": "Winding Stair",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "8/659",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "8/657"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "WEMS",
+      "area": "Dark-Elf City",
+      "label": "Wererat Emissary",
+      "mapNumber": 8,
+      "roomNumber": 689,
+      "raw": "[WEMS:Dark-Elf City:Wererat Emissary-8 689]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 689,
+        "name": "Guest Quarters",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/663 (Door [26 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C940040:AB800020:4:-1:0:::",
+      "parts": [
+        "2C940040",
+        "AB800020",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2C940040:0001:w",
+      "parts": [
+        "2C940040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D2400050:0001:w",
+      "parts": [
+        "D2400050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D2400055:0001:n",
+      "parts": [
+        "D2400055",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D24000A5:0001:w",
+      "parts": [
+        "D24000A5",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

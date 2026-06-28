@@ -1,0 +1,96 @@
+{
+  "file": "Rvaugbst.mp",
+  "sha256": "84ad57daef6934de5dd1997119e47003e81e6b6c2bfeadd10b9d0f3bf26868b9",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RVAU",
+      "area": "Dark-Elf City",
+      "label": "Royal Treasure Vault",
+      "mapNumber": 8,
+      "roomNumber": 707,
+      "raw": "[RVAU:Dark-Elf City:Royal Treasure Vault-8 707]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 707,
+        "name": "Royal Treasure Vault",
+        "exits": {
+          "N": "0",
+          "S": "8/706 (Door [51 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "GBST",
+      "area": "Dark-Elf City",
+      "label": "Guardian Beast",
+      "mapNumber": 8,
+      "roomNumber": 706,
+      "raw": "[GBST:Dark-Elf City:Guardian Beast-8 706]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 706,
+        "name": "Vault Antechamber",
+        "exits": {
+          "N": "8/707 (Key: 813 [or 1000 picklocks])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "8/705 (Door [any picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "0EA00008:C0C80002:1:-1:0:::",
+      "parts": [
+        "0EA00008",
+        "C0C80002",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "0EA00008:0001:s",
+      "parts": [
+        "0EA00008",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

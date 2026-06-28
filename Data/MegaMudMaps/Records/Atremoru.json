@@ -1,0 +1,95 @@
+{
+  "file": "Atremoru.mp",
+  "sha256": "1a826bfee9ccef5332b8ef3eec99ab8f730bc0e574809f7c4cb8d3afe25c3469",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ATRE",
+      "area": "Darkwood Forest",
+      "label": "Ancient Tree (Morukai)",
+      "mapNumber": 9,
+      "roomNumber": 1423,
+      "raw": "[ATRE:Darkwood Forest:Ancient Tree (Morukai)-9 1423]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1423,
+        "name": "Ancient Darkwood Tree",
+        "exits": {
+          "N": "0",
+          "S": "9/1422 (Door)",
+          "E": "9/1424",
+          "W": "9/1425 (Door [1000 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "MORU",
+      "area": "Darkwood Forest",
+      "label": "Morukai",
+      "mapNumber": 9,
+      "roomNumber": 1425,
+      "raw": "[MORU:Darkwood Forest:Morukai-9 1425]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 1425,
+        "name": "Mystical Chambers",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "9/1423 (Door)",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "64400098:B2300020:1:-1:0:::",
+      "parts": [
+        "64400098",
+        "B2300020",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "64400098:0000:w[ask guard orfeo]",
+      "parts": [
+        "64400098",
+        "0000",
+        "w[ask guard orfeo]"
+      ],
+      "commands": [
+        "w[ask guard orfeo]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

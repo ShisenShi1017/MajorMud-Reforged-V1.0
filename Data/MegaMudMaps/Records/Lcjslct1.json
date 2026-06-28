@@ -1,0 +1,155 @@
+{
+  "file": "Lcjslct1.mp",
+  "sha256": "1125a6778d11494e4fa59643169b63909b3a746a03c90738ece4966f227f1a7d",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCJS",
+      "area": "Lost City",
+      "label": "Jewelry Shop",
+      "mapNumber": 16,
+      "roomNumber": 434,
+      "raw": "[LCJS:Lost City:Jewelry Shop-16 434]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 434,
+        "name": "Jewelry Shop",
+        "exits": {
+          "N": "16/427",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "LCT1",
+      "area": "Lost City",
+      "label": "Temple Stairs",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT1:Lost City:Temple Stairs]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E2400001:3A700155:8:-1:0:::",
+      "parts": [
+        "E2400001",
+        "3A700155",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E2400001:0000:n",
+      "parts": [
+        "E2400001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3B900555:0000:n",
+      "parts": [
+        "3B900555",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:w",
+      "parts": [
+        "3B905054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:w",
+      "parts": [
+        "3B905054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:w",
+      "parts": [
+        "3B905054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B905054:0000:w",
+      "parts": [
+        "3B905054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3B901054:0000:w",
+      "parts": [
+        "3B901054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "3A700455:0000:w",
+      "parts": [
+        "3A700455",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

@@ -1,0 +1,108 @@
+{
+  "file": "KINNKENT.mp",
+  "sha256": "45d90ee1f424d69ee54772980df0376ee4c65be043a2fb072e3e31b7dd8815ad",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "KINN",
+      "area": "Khazarad",
+      "label": "Khazarad Inn",
+      "mapNumber": 6,
+      "roomNumber": 1328,
+      "raw": "[KINN:Khazarad:Khazarad Inn-6 1328]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1328,
+        "name": "Khazarad Inn",
+        "exits": {
+          "N": "0",
+          "S": "6/1250",
+          "E": "6/1329",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "KENT",
+      "area": "Khazarad",
+      "label": "Khazarad, Entry Arch",
+      "mapNumber": 6,
+      "roomNumber": 1249,
+      "raw": "[KENT:Khazarad:Khazarad, Entry Arch-6 1249]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1249,
+        "name": "Khazarad, Entry Arch",
+        "exits": {
+          "N": "6/1263",
+          "S": "6/1266",
+          "E": "6/1250",
+          "W": "6/1246",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C5A00014:A6E00055:2:-1:0:::",
+      "parts": [
+        "C5A00014",
+        "A6E00055",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C5A00014:0000:s",
+      "parts": [
+        "C5A00014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:w",
+      "parts": [
+        "3B900055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

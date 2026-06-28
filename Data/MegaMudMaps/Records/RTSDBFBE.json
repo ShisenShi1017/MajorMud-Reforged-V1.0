@@ -1,0 +1,184 @@
+{
+  "file": "RTSDBFBE.mp",
+  "sha256": "9c5d1d39516fa97d91148bbfb64dabfe62ec62d4f3b9d0d4d68f5a11dcba69eb",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "RTSD",
+      "area": "Blackwood Forest",
+      "label": "Road to the Southern Dock",
+      "mapNumber": 17,
+      "roomNumber": 162,
+      "raw": "[RTSD:Blackwood Forest:Road to the Southern Dock-17 162]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 162,
+        "name": "Road to the Southern Dock",
+        "exits": {
+          "N": "17/163",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "17/155",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "BFBE",
+      "area": "Blackwood Forest",
+      "label": "Bloody Executioner",
+      "mapNumber": 17,
+      "roomNumber": 591,
+      "raw": "[BFBE:Blackwood Forest:Bloody Executioner-17 591]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 591,
+        "name": "Blackwood Forest, Winding Trail",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "17/592",
+          "NE": "0",
+          "NW": "0",
+          "SE": "17/590",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "6DF04001:5A601040:9:-1:0:::",
+      "parts": [
+        "6DF04001",
+        "5A601040",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "6DF04001:0000:sw",
+      "parts": [
+        "6DF04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "1FF01500:0000:nw",
+      "parts": [
+        "1FF01500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "1FF01400:0000:nw",
+      "parts": [
+        "1FF01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "1FF01040:0000:w",
+      "parts": [
+        "1FF01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "1FF00410:0000:nw",
+      "parts": [
+        "1FF00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "1FF01001:0000:n",
+      "parts": [
+        "1FF01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "1FF00404:0000:nw",
+      "parts": [
+        "1FF00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "1FF01440:0000:nw",
+      "parts": [
+        "1FF01440",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5A601400:0000:nw",
+      "parts": [
+        "5A601400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

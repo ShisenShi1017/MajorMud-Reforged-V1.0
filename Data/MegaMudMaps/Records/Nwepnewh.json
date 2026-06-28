@@ -1,0 +1,117 @@
+{
+  "file": "Nwepnewh.mp",
+  "sha256": "9f60010d28820763d40d531decd353665163963c94bffb24e5a0fe1319ba5ed7",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "NWEP",
+      "area": "Newhaven",
+      "label": "Weapons Shop (Nathaniel)",
+      "mapNumber": 1,
+      "roomNumber": 2141,
+      "raw": "[NWEP:Newhaven:Weapons Shop (Nathaniel)-1 2141]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2141,
+        "name": "Newhaven, Weapons Shop",
+        "exits": {
+          "N": "0",
+          "S": "1/2140",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "NEWH",
+      "area": "Newhaven",
+      "label": "Newhaven Town",
+      "mapNumber": 1,
+      "roomNumber": 2146,
+      "raw": "[NEWH:Newhaven:Newhaven Town-1 2146]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2146,
+        "name": "Newhaven, Narrow Road",
+        "exits": {
+          "N": "1/2147",
+          "S": "0",
+          "E": "1/2143",
+          "W": "1/2190 (Level: 1 to 3)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/2150"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D9300004:38B40051:3:-1:0:::",
+      "parts": [
+        "D9300004",
+        "38B40051",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D9300004:0080:s",
+      "parts": [
+        "D9300004",
+        "0080",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2D600045:0080:w",
+      "parts": [
+        "2D600045",
+        "0080",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "42D00055:0080:w",
+      "parts": [
+        "42D00055",
+        "0080",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

@@ -1,0 +1,183 @@
+{
+  "file": "Orcworcm.mp",
+  "sha256": "a00d87a6068845803d645205517d30327170dae29d706cfd3a6a0ef0f833d2e9",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ORCW",
+      "area": "Slums",
+      "label": "Orc Warleader",
+      "mapNumber": 2,
+      "roomNumber": 40,
+      "raw": "[ORCW:Slums:Orc Warleader-2 40]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 40,
+        "name": "Master Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "2/39",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ORCM",
+      "area": "Slums",
+      "label": "Orc Mansion",
+      "mapNumber": 2,
+      "roomNumber": 29,
+      "raw": "[ORCM:Slums:Orc Mansion-2 29]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 29,
+        "name": "Overgrown Garden, Iron Grate",
+        "exits": {
+          "N": "0",
+          "S": "1/1325",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/1012"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8F500004:04040004:9:-1:0:::",
+      "parts": [
+        "8F500004",
+        "04040004",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "8F500004:0000:s",
+      "parts": [
+        "8F500004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "D6000011:0000:e",
+      "parts": [
+        "D6000011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "62B00041:0000:n",
+      "parts": [
+        "62B00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D7B40004:0000:d",
+      "parts": [
+        "D7B40004",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "D7B10004:0000:s",
+      "parts": [
+        "D7B10004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "62B00041:0000:w",
+      "parts": [
+        "62B00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "66E00051:0000:n",
+      "parts": [
+        "66E00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "35300045:0000:w",
+      "parts": [
+        "35300045",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "D1500011:0000:n",
+      "parts": [
+        "D1500011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

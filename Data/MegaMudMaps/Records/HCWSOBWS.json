@@ -1,0 +1,78 @@
+{
+  "file": "HCWSOBWS.mp",
+  "sha256": "5d5b71016c475febf88e2b5f284279af8d91db8e23f1b8119ce17136921e016f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "HCWS",
+      "area": "Goblin caves",
+      "label": "Huge Cavern, Training Area, West side",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[HCWS:Goblin caves:Huge Cavern, Training Area, West side]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "OBWS",
+      "area": "Goblin caves",
+      "label": "Orc Barracks, West Side",
+      "mapNumber": 15,
+      "roomNumber": 105,
+      "raw": "[OBWS:Goblin caves:Orc Barracks, West Side-15 105]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 105,
+        "name": "Orc Barracks",
+        "exits": {
+          "N": "15/106",
+          "S": "15/116",
+          "E": "15/12 (Door)",
+          "W": "15/114",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CCE00095:E5E00065:1:-1:0:::",
+      "parts": [
+        "CCE00095",
+        "E5E00065",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CCE00095:0000:w",
+      "parts": [
+        "CCE00095",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

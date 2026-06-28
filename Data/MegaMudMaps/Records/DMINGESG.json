@@ -1,0 +1,195 @@
+{
+  "file": "DMINGESG.mp",
+  "sha256": "eead10282ddeb2aa210cc87b4b9fb8e697f6798c9816a51826249733fb45e3de",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DMIN",
+      "area": "Blackwood Forest",
+      "label": "Death Minion",
+      "mapNumber": 17,
+      "roomNumber": 314,
+      "raw": "[DMIN:Blackwood Forest:Death Minion-17 314]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 314,
+        "name": "Graveyard",
+        "exits": {
+          "N": "17/313",
+          "S": "17/315",
+          "E": "0",
+          "W": "17/335",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "GESG",
+      "area": "Blackwood Forest",
+      "label": "Graveyard Entrance, Southern Gate",
+      "mapNumber": 17,
+      "roomNumber": 64,
+      "raw": "[GESG:Blackwood Forest:Graveyard Entrance, Southern Gate-17 64]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 64,
+        "name": "Graveyard Entrance, Southern Gate",
+        "exits": {
+          "N": "17/241",
+          "S": "17/63",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "40100008:D9900005:10:-1:0:::",
+      "parts": [
+        "40100008",
+        "D9900005",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "40100008:0000:s",
+      "parts": [
+        "40100008",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2B000012:0000:e",
+      "parts": [
+        "2B000012",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2B000041:0000:n",
+      "parts": [
+        "2B000041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000005:0000:n",
+      "parts": [
+        "2B000005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:e",
+      "parts": [
+        "2B000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:s",
+      "parts": [
+        "2B000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2B000015:0000:s",
+      "parts": [
+        "2B000015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2B000011:0000:e",
+      "parts": [
+        "2B000011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2B000051:0000:e",
+      "parts": [
+        "2B000051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2B000055:0000:s",
+      "parts": [
+        "2B000055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

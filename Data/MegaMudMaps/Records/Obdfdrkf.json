@@ -1,0 +1,265 @@
+{
+  "file": "Obdfdrkf.mp",
+  "sha256": "af679a5beb1eadd6bb70c06210d454a3bf2a988bf9873adeb599ff2c8af513a4",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "OBDF",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest Obelisk",
+      "mapNumber": 1,
+      "roomNumber": 2425,
+      "raw": "[OBDF:Darkwood Forest:Darkwood Forest Obelisk-1 2425]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2425,
+        "name": "Darkwood Forest",
+        "exits": {
+          "N": "1/1707",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "DRKF",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DRKF:Darkwood Forest:Darkwood Forest]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F5000001:F4E04410:18:-1:0:::",
+      "parts": [
+        "F5000001",
+        "F4E04410",
+        "18",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "18",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F5000001:0000:n",
+      "parts": [
+        "F5000001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:ne",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E05400:0000:nw",
+      "parts": [
+        "F4E05400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01400:0000:nw",
+      "parts": [
+        "F4E01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:n",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:ne",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:n",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:ne",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04500:0000:ne",
+      "parts": [
+        "F4E04500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E05000:0000:se",
+      "parts": [
+        "F4E05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4E01400:0000:se",
+      "parts": [
+        "F4E01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4E00404:0000:s",
+      "parts": [
+        "F4E00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E00005:0000:s",
+      "parts": [
+        "F4E00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:se",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4E01400:0000:se",
+      "parts": [
+        "F4E01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "F4E00404:0000:s",
+      "parts": [
+        "F4E00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F4E01001:0000:se",
+      "parts": [
+        "F4E01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 22
+}

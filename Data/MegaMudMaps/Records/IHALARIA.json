@@ -1,0 +1,88 @@
+{
+  "file": "IHALARIA.mp",
+  "sha256": "f15c93d898614e68bfcc1351faabe326f07b51fe5abdbf20b88faed419ccaea6",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "IHAL",
+      "area": "Arlysia",
+      "label": "Intersection of Haven Street & Long Stre",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[IHAL:Arlysia:Intersection of Haven Street & Long Stre]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "ARIA",
+      "area": "Arlysia",
+      "label": "Inquisitor Armandriel",
+      "mapNumber": 17,
+      "roomNumber": 2423,
+      "raw": "[ARIA:Arlysia:Inquisitor Armandriel-17 2423]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2423,
+        "name": "Guild House",
+        "exits": {
+          "N": "0",
+          "S": "17/2424",
+          "E": "0",
+          "W": "17/2387",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E3F00015:93200044:2:-1:0:::",
+      "parts": [
+        "E3F00015",
+        "93200044",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E3F00015:0000:s",
+      "parts": [
+        "E3F00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E8600055:0000:e",
+      "parts": [
+        "E8600055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

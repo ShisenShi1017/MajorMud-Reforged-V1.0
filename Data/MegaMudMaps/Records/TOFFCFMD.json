@@ -1,0 +1,166 @@
+{
+  "file": "TOFFCFMD.mp",
+  "sha256": "06bfd4a211cf95239f0a105f8c8d5ac68b48599b6a54e0798a94ef0e040fd4db",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "TOFF",
+      "area": "Lava Fields",
+      "label": "Temple of Fire (outside high priest)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[TOFF:Lava Fields:Temple of Fire (outside high priest)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "CFMD",
+      "area": "Lava Fields",
+      "label": "Crimson Fortress, Massive Door",
+      "mapNumber": 15,
+      "roomNumber": 1111,
+      "raw": "[CFMD:Lava Fields:Crimson Fortress, Massive Door-15 1111]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1111,
+        "name": "Crimson Fortress, Massive Door",
+        "exits": {
+          "N": "0",
+          "S": "15/1110",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "15/1126 (Key: 1077 [or 1000 picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "04C00005:BF380004:9:-1:0:::",
+      "parts": [
+        "04C00005",
+        "BF380004",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "04C00005:0000:s",
+      "parts": [
+        "04C00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A500051:0000:w",
+      "parts": [
+        "2A500051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2A500410:0000:nw",
+      "parts": [
+        "2A500410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "2A501001:0000:n",
+      "parts": [
+        "2A501001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2A500015:0000:n",
+      "parts": [
+        "2A500015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "2A500104:0000:ne",
+      "parts": [
+        "2A500104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "2A504010:0000:e",
+      "parts": [
+        "2A504010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A500054:0000:s",
+      "parts": [
+        "2A500054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FFE20001:0000:u",
+      "parts": [
+        "FFE20001",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

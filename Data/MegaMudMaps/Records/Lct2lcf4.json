@@ -1,0 +1,114 @@
+{
+  "file": "Lct2lcf4.mp",
+  "sha256": "a3b0e16a90da87912058621c3f0a4a5d4a6f7bd8ceb12bc8225015d3ad4ff353",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCT2",
+      "area": "Lost City",
+      "label": "Market Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCT2:Lost City:Market Street]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "LCF4",
+      "area": "Lost City",
+      "label": "Forest Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCF4:Lost City:Forest Street]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3B904046:3FC00449:6:-1:0:::",
+      "parts": [
+        "3B904046",
+        "3FC00449",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3B904046:0000:n",
+      "parts": [
+        "3B904046",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00009:0000:n",
+      "parts": [
+        "EDE00009",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:n",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:n",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:n",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00006:0000:n",
+      "parts": [
+        "EDE00006",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

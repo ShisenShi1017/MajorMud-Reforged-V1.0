@@ -1,0 +1,122 @@
+{
+  "file": "IMALCATG.mp",
+  "sha256": "b156e8f47f2582ba849989c334eda8fcfb4387ee099d7b9971285030773a7522",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "IMAL",
+      "area": "Arlysia",
+      "label": "Intersection of Main Street and Long Str",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[IMAL:Arlysia:Intersection of Main Street and Long Str]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "CATG",
+      "area": "Arlysia",
+      "label": "City of Arlysia, Town Gates",
+      "mapNumber": 17,
+      "roomNumber": 473,
+      "raw": "[CATG:Arlysia:City of Arlysia, Town Gates-17 473]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 473,
+        "name": "City of Arlysia, Town Gates",
+        "exits": {
+          "N": "17/2259 (Door [31 picklocks/strength])",
+          "S": "17/495",
+          "E": "17/573",
+          "W": "17/496",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "66400055:6F100056:5:-1:0:::",
+      "parts": [
+        "66400055",
+        "6F100056",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "66400055:0000:s",
+      "parts": [
+        "66400055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9CB00015:0000:s",
+      "parts": [
+        "9CB00015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9CB00025:0000:s",
+      "parts": [
+        "9CB00025",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9CB00045:0000:s",
+      "parts": [
+        "9CB00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DDA00059:0400:s",
+      "parts": [
+        "DDA00059",
+        "0400",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

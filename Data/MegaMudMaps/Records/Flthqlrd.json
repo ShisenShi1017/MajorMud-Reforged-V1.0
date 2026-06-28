@@ -1,0 +1,294 @@
+{
+  "file": "Flthqlrd.mp",
+  "sha256": "91d760c824661cd3f55d3110e34fd99cb8b26137fb5e3feb6ce52428f84cda39",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FLTH",
+      "area": "Northern Forests",
+      "label": "Filthy Encampment",
+      "mapNumber": 3,
+      "roomNumber": 544,
+      "raw": "[FLTH:Northern Forests:Filthy Encampment-3 544]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 544,
+        "name": "Filthy Encampment",
+        "exits": {
+          "N": "3/545",
+          "S": "0",
+          "E": "0",
+          "W": "3/550",
+          "NE": "0",
+          "NW": "0",
+          "SE": "3/74",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "QLRD",
+      "area": "Northern Forests",
+      "label": "Quickling Lord",
+      "mapNumber": 3,
+      "roomNumber": 254,
+      "raw": "[QLRD:Northern Forests:Quickling Lord-3 254]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 254,
+        "name": "Quickling Lair",
+        "exits": {
+          "N": "0",
+          "S": "3/251 (Door [11 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D3A01041:73000008:19:-1:0:::",
+      "parts": [
+        "D3A01041",
+        "73000008",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D3A01041:0000:n",
+      "parts": [
+        "D3A01041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D3A00045:0000:n",
+      "parts": [
+        "D3A00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D3A00144:0000:ne",
+      "parts": [
+        "D3A00144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CC904100:0000:ne",
+      "parts": [
+        "CC904100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "E4D05001:0000:n",
+      "parts": [
+        "E4D05001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC900005:0000:n",
+      "parts": [
+        "CC900005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC900045:0000:n",
+      "parts": [
+        "CC900045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC900005:0000:n",
+      "parts": [
+        "CC900005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CC900104:0000:ne",
+      "parts": [
+        "CC900104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CC904410:0000:e",
+      "parts": [
+        "CC904410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CC900050:0000:go path",
+      "parts": [
+        "CC900050",
+        "0000",
+        "go path"
+      ],
+      "commands": [
+        "go path"
+      ]
+    },
+    {
+      "raw": "BCB00104:0000:ne",
+      "parts": [
+        "BCB00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BCB04010:0000:e",
+      "parts": [
+        "BCB04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BCB00140:0000:ne",
+      "parts": [
+        "BCB00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BCB04010:0000:n[search n]",
+      "parts": [
+        "BCB04010",
+        "0000",
+        "n[search n]"
+      ],
+      "commands": [
+        "n[search n]"
+      ]
+    },
+    {
+      "raw": "20900009:0000:n",
+      "parts": [
+        "20900009",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "20500504:0000:nw",
+      "parts": [
+        "20500504",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "20501100:0000:ne",
+      "parts": [
+        "20501100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "30C04012:0000:n",
+      "parts": [
+        "30C04012",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

@@ -1,0 +1,173 @@
+{
+  "file": "Kentkhaz.mp",
+  "sha256": "4431dd4747142af70114c4189c72ec2ab433d2d34ca52196dad2877798f2333f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KENT",
+      "area": "Khazarad",
+      "label": "Khazarad, Entry Arch",
+      "mapNumber": 6,
+      "roomNumber": 1249,
+      "raw": "[KENT:Khazarad:Khazarad, Entry Arch-6 1249]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1249,
+        "name": "Khazarad, Entry Arch",
+        "exits": {
+          "N": "6/1263",
+          "S": "6/1266",
+          "E": "6/1250",
+          "W": "6/1246",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "KHAZ",
+      "area": "Khazarad",
+      "label": "Khazarad Center",
+      "mapNumber": 6,
+      "roomNumber": 1257,
+      "raw": "[KHAZ:Khazarad:Khazarad Center-6 1257]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1257,
+        "name": "Khazarad, Garden Walk",
+        "exits": {
+          "N": "6/1302",
+          "S": "0",
+          "E": "6/1258",
+          "W": "6/1256",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A6E00055:19800051:8:-1:0:::",
+      "parts": [
+        "A6E00055",
+        "19800051",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A6E00055:0000:e",
+      "parts": [
+        "A6E00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:e",
+      "parts": [
+        "3B900055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B900050:0000:e",
+      "parts": [
+        "3B900050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:e",
+      "parts": [
+        "3B900055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B900055:0000:e",
+      "parts": [
+        "3B900055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3B900052:0000:e",
+      "parts": [
+        "3B900052",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "19800045:0000:n",
+      "parts": [
+        "19800045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "19800014:0000:e",
+      "parts": [
+        "19800014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

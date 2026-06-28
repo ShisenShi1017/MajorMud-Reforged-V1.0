@@ -1,0 +1,151 @@
+{
+  "file": "Ghknastr.mp",
+  "sha256": "7bf77e59e3d5f78597425156e2a356328bbb940d31aa28b94b45aa6a371afe87",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GHKN",
+      "area": "Black Caves",
+      "label": "Ghost Knight",
+      "mapNumber": 8,
+      "roomNumber": 925,
+      "raw": "[GHKN:Black Caves:Ghost Knight-8 925]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 925,
+        "name": "Ancient Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "8/924 (Door [26 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "ASTR",
+      "area": "Black Caves",
+      "label": "Ancient Stronghold",
+      "mapNumber": 8,
+      "roomNumber": 910,
+      "raw": "[ASTR:Black Caves:Ancient Stronghold-8 910]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 910,
+        "name": "Ancient Stronghold, Entrance",
+        "exits": {
+          "N": "8/911",
+          "S": "0",
+          "E": "8/909 (Door [1000 picklocks/strength])",
+          "W": "8/912",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "EA300020:8C300061:6:-1:0:::",
+      "parts": [
+        "EA300020",
+        "8C300061",
+        "6",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "6",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "EA300020:0000:e",
+      "parts": [
+        "EA300020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "096000A0:0000:e",
+      "parts": [
+        "096000A0",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4A4000A5:0000:n",
+      "parts": [
+        "4A4000A5",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "98500025:0000:e",
+      "parts": [
+        "98500025",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4A400090:0000:e",
+      "parts": [
+        "4A400090",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "84900055:0000:e",
+      "parts": [
+        "84900055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

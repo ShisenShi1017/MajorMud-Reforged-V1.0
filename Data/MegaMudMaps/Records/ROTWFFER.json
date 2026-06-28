@@ -1,0 +1,195 @@
+{
+  "file": "ROTWFFER.mp",
+  "sha256": "12ebdbb5393726b7baf8cf33fd90ba6bdf6413a5c446bfc174e1a0cabf9df296",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ROTW",
+      "area": "Blackwood Forest",
+      "label": "Mammoth Rotworm",
+      "mapNumber": 17,
+      "roomNumber": 377,
+      "raw": "[ROTW:Blackwood Forest:Mammoth Rotworm-17 377]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 377,
+        "name": "Farmstead, Cellar",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "17/376",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FFER",
+      "area": "Blackwood Forest",
+      "label": "Farmstead",
+      "mapNumber": 17,
+      "roomNumber": 366,
+      "raw": "[FFER:Blackwood Forest:Farmstead-17 366]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 366,
+        "name": "Farmstead",
+        "exits": {
+          "N": "17/365",
+          "S": "17/367",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "79310000:25800005:10:-1:0:::",
+      "parts": [
+        "79310000",
+        "25800005",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "79310000:0000:u",
+      "parts": [
+        "79310000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F5F40001:0000:n",
+      "parts": [
+        "F5F40001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F5F00006:0000:n",
+      "parts": [
+        "F5F00006",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "05C00018:0000:e",
+      "parts": [
+        "05C00018",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B5200054:0000:e",
+      "parts": [
+        "B5200054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C2200044:0000:s",
+      "parts": [
+        "C2200044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C2200045:0000:s",
+      "parts": [
+        "C2200045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2D800051:0000:e",
+      "parts": [
+        "2D800051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "30C00051:0000:n",
+      "parts": [
+        "30C00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "25800005:0000:n",
+      "parts": [
+        "25800005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

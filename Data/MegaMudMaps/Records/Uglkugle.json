@@ -1,0 +1,437 @@
+{
+  "file": "Uglkugle.mp",
+  "sha256": "cf4f1805421c2a9ab4358ca9b4d4b18d6b82b342d7f148fe544a8a0001b6768d",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "UGLK",
+      "area": "Ocean",
+      "label": "Underground Lake",
+      "mapNumber": 16,
+      "roomNumber": 190,
+      "raw": "[UGLK:Ocean:Underground Lake-16 190]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 190,
+        "name": "Underground River",
+        "exits": {
+          "N": "0",
+          "S": "16/192",
+          "E": "0",
+          "W": "0",
+          "NE": "16/189 (Text: move rocks)",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "UGLE",
+      "area": "Ocean",
+      "label": "Underground Lake End",
+      "mapNumber": 16,
+      "roomNumber": 271,
+      "raw": "[UGLE:Ocean:Underground Lake End-16 271]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 271,
+        "name": "Underground Lake",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "16/270",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/272",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C1400004:31F10400:32:-1:0:::",
+      "parts": [
+        "C1400004",
+        "31F10400",
+        "32",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "32",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C1400004:0000:s",
+      "parts": [
+        "C1400004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31F05051:0000:w",
+      "parts": [
+        "31F05051",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "31F04010:0000:sw",
+      "parts": [
+        "31F04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31F00144:0000:w",
+      "parts": [
+        "31F00144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "31F00050:0000:w",
+      "parts": [
+        "31F00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "31F05010:0000:sw",
+      "parts": [
+        "31F05010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31F01100:0000:se",
+      "parts": [
+        "31F01100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31F00540:0000:w",
+      "parts": [
+        "31F00540",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "31F01050:0000:w",
+      "parts": [
+        "31F01050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "31F04010:0000:sw",
+      "parts": [
+        "31F04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31F01100:0000:se",
+      "parts": [
+        "31F01100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31F00404:0000:s",
+      "parts": [
+        "31F00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31F04005:0000:s",
+      "parts": [
+        "31F04005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31F00045:0000:s",
+      "parts": [
+        "31F00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31F05001:0000:se",
+      "parts": [
+        "31F05001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31F00410:0000:e",
+      "parts": [
+        "31F00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31F00140:0000:ne",
+      "parts": [
+        "31F00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31F05000:0000:se",
+      "parts": [
+        "31F05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31F00410:0000:e",
+      "parts": [
+        "31F00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31F00050:0000:e",
+      "parts": [
+        "31F00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31F00044:0000:s",
+      "parts": [
+        "31F00044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31F01001:0000:se",
+      "parts": [
+        "31F01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31F00410:0000:e",
+      "parts": [
+        "31F00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31F00140:0000:ne",
+      "parts": [
+        "31F00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31F04001:0000:n",
+      "parts": [
+        "31F04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31F00104:0000:ne",
+      "parts": [
+        "31F00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31F04001:0000:n",
+      "parts": [
+        "31F04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31F00014:0000:e",
+      "parts": [
+        "31F00014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31F00044:0000:s",
+      "parts": [
+        "31F00044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31F01011:0000:e",
+      "parts": [
+        "31F01011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31F00140:0000:ne",
+      "parts": [
+        "31F00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31F05000:0000:se",
+      "parts": [
+        "31F05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 36
+}

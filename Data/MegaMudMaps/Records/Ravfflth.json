@@ -1,0 +1,144 @@
+{
+  "file": "Ravfflth.mp",
+  "sha256": "43b51e664a2594b083825ec77a679135fef4aba66f440e4f0263af60c6bc5c43",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "RAVF",
+      "area": "Northern Forests",
+      "label": "Ravaged Path Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[RAVF:Northern Forests:Ravaged Path Fork]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "FLTH",
+      "area": "Northern Forests",
+      "label": "Filthy Encampment",
+      "mapNumber": 3,
+      "roomNumber": 544,
+      "raw": "[FLTH:Northern Forests:Filthy Encampment-3 544]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 544,
+        "name": "Filthy Encampment",
+        "exits": {
+          "N": "3/545",
+          "S": "0",
+          "E": "0",
+          "W": "3/550",
+          "NE": "0",
+          "NW": "0",
+          "SE": "3/74",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BBC01410:D3A01041:7:-1:0:::",
+      "parts": [
+        "BBC01410",
+        "D3A01041",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BBC01410:0000:nw",
+      "parts": [
+        "BBC01410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BBC01001:0000:n",
+      "parts": [
+        "BBC01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BBC00005:0000:n",
+      "parts": [
+        "BBC00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BBC00404:0000:nw",
+      "parts": [
+        "BBC00404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "BBC05004:0000:sw",
+      "parts": [
+        "BBC05004",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BBC04100:0000:sw",
+      "parts": [
+        "BBC04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BBC00504:0000:nw",
+      "parts": [
+        "BBC00504",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

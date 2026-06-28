@@ -1,0 +1,286 @@
+{
+  "file": "Gvilginv.mp",
+  "sha256": "8b8d85928edd0f76cd31d49c16b59cfa90aa88b4cdf6becee8cebf34718c5050",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GVIL",
+      "area": "Gnome Village",
+      "label": "Gnome Village- 6 552",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GVIL:Gnome Village:Gnome Village- 6 552]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "GINV",
+      "area": "Gnome Village",
+      "label": "Gnome Inventor",
+      "mapNumber": 6,
+      "roomNumber": 644,
+      "raw": "[GINV:Gnome Village:Gnome Inventor-6 644]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 644,
+        "name": "Cluttered Workshop",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "6/643 (Door [2 picklocks/strength])",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2A300145:50700800:20:-1:0:::",
+      "parts": [
+        "2A300145",
+        "50700800",
+        "20",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "20",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2A300145:0000:s",
+      "parts": [
+        "2A300145",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300005:0000:s",
+      "parts": [
+        "2A300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300015:0000:s",
+      "parts": [
+        "2A300015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300065:0000:s",
+      "parts": [
+        "2A300065",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300085:0000:s",
+      "parts": [
+        "2A300085",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300005:0000:s",
+      "parts": [
+        "2A300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "24900055:0000:s",
+      "parts": [
+        "24900055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "24900055:0000:s",
+      "parts": [
+        "24900055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "24900055:0000:e",
+      "parts": [
+        "24900055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "24900055:0000:e",
+      "parts": [
+        "24900055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "24900054:0000:e",
+      "parts": [
+        "24900054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "24900054:0000:e",
+      "parts": [
+        "24900054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "24900054:0000:e",
+      "parts": [
+        "24900054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A300055:0000:s",
+      "parts": [
+        "2A300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300005:0000:s",
+      "parts": [
+        "2A300005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2A300011:0000:e",
+      "parts": [
+        "2A300011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "2A301040:0000:se",
+      "parts": [
+        "2A301040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "2A301400:0000:se",
+      "parts": [
+        "2A301400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "2A300404:0000:s",
+      "parts": [
+        "2A300404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "69902001:0000:se",
+      "parts": [
+        "69902001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 24
+}

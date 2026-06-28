@@ -1,0 +1,257 @@
+{
+  "file": "DTHGDTHH.mp",
+  "sha256": "1e771de77ee8d1fbe6d803059096847a99ce441e3e31c1e78bf97825df2d977f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DTHG",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills, Gnoll Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DTHG:Dragon's Teeth Hills:Dragon's Teeth Hills, Gnoll Fork]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "DTHH",
+      "area": "Dragon's Teeth Hills",
+      "label": "Dragon's Teeth Hills (Hole)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DTHH:Dragon's Teeth Hills:Dragon's Teeth Hills (Hole)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C4F05100:C4F00414:19:-1:0:::",
+      "parts": [
+        "C4F05100",
+        "C4F00414",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C4F05100:0000:sw",
+      "parts": [
+        "C4F05100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C4F00144:0000:s",
+      "parts": [
+        "C4F00144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00045:0000:s",
+      "parts": [
+        "C4F00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F01001:0000:se",
+      "parts": [
+        "C4F01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C4F01400:0000:se",
+      "parts": [
+        "C4F01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C4F01400:0000:se",
+      "parts": [
+        "C4F01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C4F00404:0000:s",
+      "parts": [
+        "C4F00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F04101:0000:sw",
+      "parts": [
+        "C4F04101",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C4F00104:0000:s",
+      "parts": [
+        "C4F00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F04001:0000:sw",
+      "parts": [
+        "C4F04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C4F00144:0000:s",
+      "parts": [
+        "C4F00144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F00005:0000:s",
+      "parts": [
+        "C4F00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C4F01001:0000:se",
+      "parts": [
+        "C4F01001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

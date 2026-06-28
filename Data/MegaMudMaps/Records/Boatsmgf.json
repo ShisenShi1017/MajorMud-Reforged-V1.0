@@ -1,0 +1,206 @@
+{
+  "file": "Boatsmgf.mp",
+  "sha256": "dad9657b4ec5e8e5fb144ddf77755348d30c74c8ed9d480d357ac5343f3674d5",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "BOAT",
+      "area": "Silvermere",
+      "label": "Pier (Boatman)",
+      "mapNumber": 1,
+      "roomNumber": 1813,
+      "raw": "[BOAT:Silvermere:Pier (Boatman)-1 1813]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1813,
+        "name": "Pier",
+        "exits": {
+          "N": "1/1814",
+          "S": "1/27",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "SMGF",
+      "area": "Sewers",
+      "label": "Smuggler's Hideout (Fork)",
+      "mapNumber": 9,
+      "roomNumber": 151,
+      "raw": "[SMGF:Sewers:Smuggler's Hideout (Fork)-9 151]",
+      "csvMatch": {
+        "mapNumber": 9,
+        "roomNumber": 151,
+        "name": "Straw-Floored Passage, Doorway",
+        "exits": {
+          "N": "9/150",
+          "S": "9/152",
+          "E": "0",
+          "W": "9/161 (Door [11 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "41900005:CCE00085:11:-1:0:::",
+      "parts": [
+        "41900005",
+        "CCE00085",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "41900005:0000:s",
+      "parts": [
+        "41900005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "63600055:0000:w",
+      "parts": [
+        "63600055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "63600055:0000:w",
+      "parts": [
+        "63600055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "63600054:0000:w",
+      "parts": [
+        "63600054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "63600014:0000:d[search d]",
+      "parts": [
+        "63600014",
+        "0000",
+        "d[search d]"
+      ],
+      "commands": [
+        "d[search d]"
+      ]
+    },
+    {
+      "raw": "A2C20040:0000:w",
+      "parts": [
+        "A2C20040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A2C00050:0000:w",
+      "parts": [
+        "A2C00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A2C00050:0000:w",
+      "parts": [
+        "A2C00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FE140010:0000:d",
+      "parts": [
+        "FE140010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "59550000:0002:d",
+      "parts": [
+        "59550000",
+        "0002",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "77410004:0000:s",
+      "parts": [
+        "77410004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

@@ -1,0 +1,328 @@
+{
+  "file": "LAVMLVF4.mp",
+  "sha256": "c86d022bff05c4d699e6498d1f13af9d0925936b5c7ee178ae1967a5101718f8",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "LAVM",
+      "area": "Lava Fields",
+      "label": "Tunnel Mouth",
+      "mapNumber": 7,
+      "roomNumber": 884,
+      "raw": "[LAVM:Lava Fields:Tunnel Mouth-7 884]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 884,
+        "name": "Lava Fields, Tunnel Mouth",
+        "exits": {
+          "N": "0",
+          "S": "7/885",
+          "E": "7/940",
+          "W": "7/883",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "LVF4",
+      "area": "Lava Fields",
+      "label": "Lava Cavern, Obsidian Cliffs",
+      "mapNumber": 15,
+      "roomNumber": 1017,
+      "raw": "[LVF4:Lava Fields:Lava Cavern, Obsidian Cliffs-15 1017]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1017,
+        "name": "Lava Cavern, Obsidian Cliffs",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "15/1018",
+          "NE": "0",
+          "NW": "15/1016",
+          "SE": "15/1043",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "73900054:36601440:22:-1:0:::",
+      "parts": [
+        "73900054",
+        "36601440",
+        "22",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "22",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "73900054:0000:s",
+      "parts": [
+        "73900054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9FD04001:0000:sw",
+      "parts": [
+        "9FD04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "9FD00104:0000:s",
+      "parts": [
+        "9FD00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9FD00005:0000:s",
+      "parts": [
+        "9FD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9FD00005:0000:s",
+      "parts": [
+        "9FD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9FD01011:0000:se",
+      "parts": [
+        "9FD01011",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9FD01400:0000:se",
+      "parts": [
+        "9FD01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9FD00410:0000:e",
+      "parts": [
+        "9FD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD00050:0000:e",
+      "parts": [
+        "9FD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD01540:0000:se",
+      "parts": [
+        "9FD01540",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9FD00410:0000:e",
+      "parts": [
+        "9FD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD00051:0000:e",
+      "parts": [
+        "9FD00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD00050:0000:e",
+      "parts": [
+        "9FD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD00050:0000:e",
+      "parts": [
+        "9FD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD00450:0000:e",
+      "parts": [
+        "9FD00450",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD00140:0000:ne",
+      "parts": [
+        "9FD00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "9FD05400:0000:se",
+      "parts": [
+        "9FD05400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9FD01501:0000:se",
+      "parts": [
+        "9FD01501",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9FD00404:0000:go fog",
+      "parts": [
+        "9FD00404",
+        "0000",
+        "go fog"
+      ],
+      "commands": [
+        "go fog"
+      ]
+    },
+    {
+      "raw": "E6104000:0000:sw",
+      "parts": [
+        "E6104000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "E6104100:0000:sw",
+      "parts": [
+        "E6104100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "E6101100:0000:se",
+      "parts": [
+        "E6101100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 26
+}

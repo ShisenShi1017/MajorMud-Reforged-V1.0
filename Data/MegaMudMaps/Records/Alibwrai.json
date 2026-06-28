@@ -1,0 +1,161 @@
+{
+  "file": "Alibwrai.mp",
+  "sha256": "4ab81e748a89050be131b06068da143cbe9e1f625f8eb099a1f884761519e534",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ALIB",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Library",
+      "mapNumber": 3,
+      "roomNumber": 637,
+      "raw": "[ALIB:Ancient Ruin:Ancient Ruin Library-3 637]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 637,
+        "name": "Ancient Ruin, Outside Library",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "3/638 (Trap, 100 damage)",
+          "NW": "3/642",
+          "SE": "3/636",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "WRAI",
+      "area": "Ancient Ruin",
+      "label": "Wraithlord",
+      "mapNumber": 3,
+      "roomNumber": 650,
+      "raw": "[WRAI:Ancient Ruin:Wraithlord-3 650]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 650,
+        "name": "Torture Chamber",
+        "exits": {
+          "N": "Action [on the S exit of this room]: say darkness, say night, say shadow",
+          "S": "3/651 (Hidden/Needs 1 Actions, any order)",
+          "E": "3/649",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "25701500:DF000010:7:-1:0:::",
+      "parts": [
+        "25701500",
+        "DF000010",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "25701500:0000:nw",
+      "parts": [
+        "25701500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "DC201500:0000:ne",
+      "parts": [
+        "DC201500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "1D414004:0001:u",
+      "parts": [
+        "1D414004",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "C5440001:0000:n",
+      "parts": [
+        "C5440001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D4B00005:0000:n",
+      "parts": [
+        "D4B00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C5440004:0000:d",
+      "parts": [
+        "C5440004",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "1D410040:0001:w",
+      "parts": [
+        "1D410040",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

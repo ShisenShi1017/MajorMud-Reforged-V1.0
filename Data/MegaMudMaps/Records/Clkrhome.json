@@ -1,0 +1,96 @@
+{
+  "file": "Clkrhome.mp",
+  "sha256": "b6ffd6a3fe8d50e3de692f73ee3905edf4b32fef670b5d2d67def79afbc093dc",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "CLKR",
+      "area": "Silvermere",
+      "label": "Cloakroom",
+      "mapNumber": 1,
+      "roomNumber": 312,
+      "raw": "[CLKR:Silvermere:Cloakroom-1 312]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 312,
+        "name": "Cloakroom",
+        "exits": {
+          "N": "1/315",
+          "S": "1/293 (Door [any picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "HOME",
+      "area": "Silvermere",
+      "label": "Homely Hearth (Hooded Traveller)",
+      "mapNumber": 1,
+      "roomNumber": 315,
+      "raw": "[HOME:Silvermere:Homely Hearth (Hooded Traveller)-1 315]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 315,
+        "name": "The Homely Hearth, Common Room",
+        "exits": {
+          "N": "0",
+          "S": "1/312",
+          "E": "0",
+          "W": "1/311",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "30500009:70400044:1:-1:0:::",
+      "parts": [
+        "30500009",
+        "70400044",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "30500009:0000:n",
+      "parts": [
+        "30500009",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

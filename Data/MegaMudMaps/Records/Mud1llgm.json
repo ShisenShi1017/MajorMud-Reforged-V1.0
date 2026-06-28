@@ -1,0 +1,328 @@
+{
+  "file": "Mud1llgm.mp",
+  "sha256": "353283d6aa85aef6a682ce3a4d525d4e94888a7bafc99705b6541b44fa70af8e",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "MUD1",
+      "area": "Jungle",
+      "label": "Shallow Jungle, Mud Pit 1",
+      "mapNumber": 16,
+      "roomNumber": 1247,
+      "raw": "[MUD1:Jungle:Shallow Jungle, Mud Pit 1-16 1247]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1247,
+        "name": "Shallow Jungle, Mud Pit",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "16/1246",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "LLGM",
+      "area": "Jungle",
+      "label": "Large Mound",
+      "mapNumber": 16,
+      "roomNumber": 1405,
+      "raw": "[LLGM:Jungle:Large Mound-16 1405]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1405,
+        "name": "Shallow Jungle, Large Mound",
+        "exits": {
+          "N": "0",
+          "S": "16/1400",
+          "E": "16/1399",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E8201004:71E00014:22:-1:0:::",
+      "parts": [
+        "E8201004",
+        "71E00014",
+        "22",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "22",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E8201004:0000:se",
+      "parts": [
+        "E8201004",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31801400:0000:se",
+      "parts": [
+        "31801400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31800404:0000:s",
+      "parts": [
+        "31800404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31800405:0000:s",
+      "parts": [
+        "31800405",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31800415:0000:e",
+      "parts": [
+        "31800415",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800140:0000:ne",
+      "parts": [
+        "31800140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31804100:0000:ne",
+      "parts": [
+        "31804100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31804001:0000:n",
+      "parts": [
+        "31804001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31800414:0000:e",
+      "parts": [
+        "31800414",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800444:0000:s",
+      "parts": [
+        "31800444",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31804001:0000:sw",
+      "parts": [
+        "31804001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31805110:0000:e",
+      "parts": [
+        "31805110",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800140:0000:ne",
+      "parts": [
+        "31800140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31805001:0000:se",
+      "parts": [
+        "31805001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31805404:0000:se",
+      "parts": [
+        "31805404",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31800500:0000:ne",
+      "parts": [
+        "31800500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "31805001:0000:se",
+      "parts": [
+        "31805001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31804414:0000:e",
+      "parts": [
+        "31804414",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31801045:0000:s",
+      "parts": [
+        "31801045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "71E00011:0000:e",
+      "parts": [
+        "71E00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "31800444:0000:s",
+      "parts": [
+        "31800444",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "31804041:0000:w",
+      "parts": [
+        "31804041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 26
+}

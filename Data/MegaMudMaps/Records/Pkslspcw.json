@@ -1,0 +1,117 @@
+{
+  "file": "Pkslspcw.mp",
+  "sha256": "d0133f15a77e49410de1b36470af5665a1aaf7749681e59b2f92413aa25b2c2e",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [
+    {
+      "code": "PKSL",
+      "area": "Scorching Desert",
+      "label": "Golden Palace, Secret Library",
+      "mapNumber": 12,
+      "roomNumber": 2248,
+      "raw": "[PKSL:Scorching Desert:Golden Palace, Secret Library-12 2248]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 2248,
+        "name": "Golden Spire, Secret Library",
+        "exits": {
+          "N": "0",
+          "S": "12/2247 (Door)",
+          "E": "Action [on the D exit of this room]: move rug, pull rug",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "12/2255 (Hidden/Unknown)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SPCW",
+      "area": "Scorching Desert",
+      "label": "Golden Palace Courtyard, Well",
+      "mapNumber": 12,
+      "roomNumber": 118,
+      "raw": "[SPCW:Scorching Desert:Golden Palace Courtyard, Well-12 118]",
+      "csvMatch": {
+        "mapNumber": 12,
+        "roomNumber": 118,
+        "name": "Fortress Courtyard, Well",
+        "exits": {
+          "N": "12/120 (Door [16 picklocks/strength])",
+          "S": "12/109",
+          "E": "12/117",
+          "W": "12/119",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5FE00008:EEA00056:3:-1:0:::",
+      "parts": [
+        "5FE00008",
+        "EEA00056",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5FE00008:0000:s",
+      "parts": [
+        "5FE00008",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "53800042:0000:w",
+      "parts": [
+        "53800042",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CE100058:0000:s",
+      "parts": [
+        "CE100058",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

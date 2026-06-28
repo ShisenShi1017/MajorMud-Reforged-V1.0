@@ -1,0 +1,59 @@
+{
+  "file": "Mrd1mrd2.mp",
+  "sha256": "b46c4691e5576d1277c309fb883dcd35cac1ee2e4f2d3c0a2d936da515b2fddd",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MRD1",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Nth Fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRD1:Darkwood Forest:Main Road (Nth Fork)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "MRD2",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Jorah Fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRD2:Darkwood Forest:Main Road (Jorah Fork)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A2C00404:30605001:1:-1:0:::",
+      "parts": [
+        "A2C00404",
+        "30605001",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A2C00404:0000:s",
+      "parts": [
+        "A2C00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

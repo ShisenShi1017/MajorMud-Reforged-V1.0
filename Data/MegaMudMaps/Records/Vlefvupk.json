@@ -1,0 +1,161 @@
+{
+  "file": "Vlefvupk.mp",
+  "sha256": "4982f7d5abbbd3d8552161697272b8cb7b51179f3ad797abcafe667537d79cb7",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "VLEF",
+      "area": "Volcano",
+      "label": "Giant Efreetis",
+      "mapNumber": 16,
+      "roomNumber": 2145,
+      "raw": "[VLEF:Volcano:Giant Efreetis-16 2145]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2145,
+        "name": "Volcano, Near the Heart",
+        "exits": {
+          "N": "0",
+          "S": "16/2146",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "16/2114 (Hidden/Searchable)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VUPK",
+      "area": "Volcano",
+      "label": "Use polished key",
+      "mapNumber": 16,
+      "roomNumber": 2105,
+      "raw": "[VUPK:Volcano:Use polished key-16 2105]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2105,
+        "name": "Volcano, Smoldering Tunnel",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "16/2106 (Key: 1266 [or 301 picklocks/strength])",
+          "NW": "16/2104",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "12900004:5F900600:7:-1:0:::",
+      "parts": [
+        "12900004",
+        "5F900600",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "12900004:0000:u[sea u]",
+      "parts": [
+        "12900004",
+        "0000",
+        "u[sea u]"
+      ],
+      "commands": [
+        "u[sea u]"
+      ]
+    },
+    {
+      "raw": "5F900040:0000:w",
+      "parts": [
+        "5F900040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5F900010:0000:sw[sea sw]",
+      "parts": [
+        "5F900010",
+        "0000",
+        "sw[sea sw]"
+      ],
+      "commands": [
+        "sw[sea sw]"
+      ]
+    },
+    {
+      "raw": "5F904001:0000:sw",
+      "parts": [
+        "5F904001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "5F900101:0000:n",
+      "parts": [
+        "5F900101",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "5F900044:0000:w",
+      "parts": [
+        "5F900044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "5F908010:0000:sw",
+      "parts": [
+        "5F908010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 11
+}

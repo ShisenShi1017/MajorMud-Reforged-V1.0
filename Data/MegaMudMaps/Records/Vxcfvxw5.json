@@ -1,0 +1,95 @@
+{
+  "file": "Vxcfvxw5.mp",
+  "sha256": "67db076243c9f1f18c7abb643b3c007dd82a007e4d8e69c84944417ec1fc27a0",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "VXCF",
+      "area": "Northern Forests",
+      "label": "Copperwood Vortex",
+      "mapNumber": 3,
+      "roomNumber": 393,
+      "raw": "[VXCF:Northern Forests:Copperwood Vortex-3 393]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 393,
+        "name": "Copperwood Forest",
+        "exits": {
+          "N": "3/392",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VXW5",
+      "area": "Black Wastelands",
+      "label": "Wastelands Vortex (Copperwood)",
+      "mapNumber": 3,
+      "roomNumber": 699,
+      "raw": "[VXW5:Black Wastelands:Wastelands Vortex (Copperwood)-3 699]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 699,
+        "name": "Black Wasteland",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/698",
+          "W": "0",
+          "NE": "0",
+          "NW": "3/700",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "3/393 (Text: go vortex, enter vortex, go swirling vortex)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CB500001:ED100410:1:-1:0:::",
+      "parts": [
+        "CB500001",
+        "ED100410",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CB500001:0000:@party go vortex",
+      "parts": [
+        "CB500001",
+        "0000",
+        "@party go vortex"
+      ],
+      "commands": [
+        "@party go vortex"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

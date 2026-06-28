@@ -1,0 +1,67 @@
+{
+  "file": "Vdphvodp.mp",
+  "sha256": "8d7cf79d0c0affd6c2a3d48228bf36b433e96d4c88c27b9c89144d3eb5fab3d8",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "VDPH",
+      "area": "Volcano",
+      "label": "Dark Phoenix",
+      "mapNumber": 16,
+      "roomNumber": 2160,
+      "raw": "[VDPH:Volcano:Dark Phoenix-16 2160]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2160,
+        "name": "Volcano, Above the Heart",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "16/2159 (Door [46 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A5D00080:12900021:1:-1:0:::",
+      "parts": [
+        "A5D00080",
+        "12900021",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A5D00080:0000:w",
+      "parts": [
+        "A5D00080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 4
+}

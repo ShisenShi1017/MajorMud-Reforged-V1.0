@@ -1,0 +1,38 @@
+{
+  "file": "WARXGYTE.mp",
+  "sha256": "8094836a262722e49dcfb3675db418069f5415db9101577fa9be8ec179b1a8f4",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "7EC00090:EAA00056:1:-1:0:::",
+      "parts": [
+        "7EC00090",
+        "EAA00056",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7EC00090:0000:go portal",
+      "parts": [
+        "7EC00090",
+        "0000",
+        "go portal"
+      ],
+      "commands": [
+        "go portal"
+      ]
+    }
+  ],
+  "rawLineCount": 3
+}

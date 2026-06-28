@@ -1,0 +1,169 @@
+{
+  "file": "DFFVMRD3.mp",
+  "sha256": "e31ea18f0b64913e51f6acc4593b03b5403462a6c6194328e1571d4b55e7b34f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "DFFV",
+      "area": "Darkwood Forest",
+      "label": "Darkwood Forest, fork near vortex",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DFFV:Darkwood Forest:Darkwood Forest, fork near vortex]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "MRD3",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Spider Fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRD3:Darkwood Forest:Main Road (Spider Fork)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "F4E01140:A2C01400:11:-1:0:::",
+      "parts": [
+        "F4E01140",
+        "A2C01400",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F4E01140:0000:ne",
+      "parts": [
+        "F4E01140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04010:0000:e",
+      "parts": [
+        "F4E04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4E00050:0000:e",
+      "parts": [
+        "F4E00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4E00140:0000:ne",
+      "parts": [
+        "F4E00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04001:0000:n",
+      "parts": [
+        "F4E04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F4E00104:0000:ne",
+      "parts": [
+        "F4E00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04500:0000:ne",
+      "parts": [
+        "F4E04500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04010:0000:e",
+      "parts": [
+        "F4E04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F4E00144:0000:ne",
+      "parts": [
+        "F4E00144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04100:0000:ne",
+      "parts": [
+        "F4E04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4E04000:0000:go path",
+      "parts": [
+        "F4E04000",
+        "0000",
+        "go path"
+      ],
+      "commands": [
+        "go path"
+      ]
+    }
+  ],
+  "rawLineCount": 15
+}

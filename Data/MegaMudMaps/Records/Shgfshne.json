@@ -1,0 +1,104 @@
+{
+  "file": "Shgfshne.mp",
+  "sha256": "2b97ca3223db521088345844f57b4cecd90abff8de919a491f4ec4a1e17d6edc",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "F4D0005A:F4D05A02:7:-1:0:::",
+      "parts": [
+        "F4D0005A",
+        "F4D05A02",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "F4D0005A:0000:w",
+      "parts": [
+        "F4D0005A",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4D00050:0000:w",
+      "parts": [
+        "F4D00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4D00050:0000:w",
+      "parts": [
+        "F4D00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F4D04410:0000:nw",
+      "parts": [
+        "F4D04410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "F4D05100:0000:ne",
+      "parts": [
+        "F4D05100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4D04500:0000:ne",
+      "parts": [
+        "F4D04500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "F4D04400:0000:nw",
+      "parts": [
+        "F4D04400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

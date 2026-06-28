@@ -1,0 +1,228 @@
+{
+  "file": "WCRSLDRK.mp",
+  "sha256": "ef1a5208fa1e374f621058745270695a1d8f3cdc07a2cee8a541ca0c6afd9c4c",
+  "metadataLine": "[][Dios]",
+  "roomHeaders": [
+    {
+      "code": "WCCR",
+      "area": "Black House",
+      "label": "White Corridor, Crystal",
+      "mapNumber": 7,
+      "roomNumber": 1530,
+      "raw": "[WCCR:Black House:White Corridor, Crystal-7 1530]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1530,
+        "name": "White Corridor",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "15/278",
+          "SE": "0",
+          "SW": "15/228",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "LDRK",
+      "area": "Black House",
+      "label": "Lady of the Dark",
+      "mapNumber": 15,
+      "roomNumber": 290,
+      "raw": "[LDRK:Black House:Lady of the Dark-15 290]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 290,
+        "name": "White Corridor",
+        "exits": {
+          "N": "0",
+          "S": "15/294",
+          "E": "15/291",
+          "W": "0",
+          "NE": "15/283",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "9C004400:9C000114:13:-1:0:::",
+      "parts": [
+        "9C004400",
+        "9C000114",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "9C004400:0000:sw",
+      "parts": [
+        "9C004400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "9C001140:0000:se",
+      "parts": [
+        "9C001140",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9C000410:0000:e",
+      "parts": [
+        "9C000410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:e",
+      "parts": [
+        "9C000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:e",
+      "parts": [
+        "9C000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000044:0000:s",
+      "parts": [
+        "9C000044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9C000051:0000:e",
+      "parts": [
+        "9C000051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000140:0000:ne",
+      "parts": [
+        "9C000140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "9C005100:0001:se",
+      "parts": [
+        "9C005100",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9C000404:0001:s",
+      "parts": [
+        "9C000404",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9C000005:0001:s",
+      "parts": [
+        "9C000005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9C000005:0001:s",
+      "parts": [
+        "9C000005",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9C004011:0001:sw",
+      "parts": [
+        "9C004011",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

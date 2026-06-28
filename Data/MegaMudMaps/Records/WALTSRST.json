@@ -1,0 +1,183 @@
+{
+  "file": "WALTSRST.mp",
+  "sha256": "82f03ede08ed11848d119db98c52ee4fac1bf9829625d04ec68c3f8b60c0655c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "WALT",
+      "area": "Trainers",
+      "label": "Warlock Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 274,
+      "raw": "[WALT:Trainers:Warlock Trainer (2-10)-1 274]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 274,
+        "name": "Warlock Training Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "1/496",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SRST",
+      "area": "Silvermere",
+      "label": "River St & Guild St",
+      "mapNumber": 1,
+      "roomNumber": 21,
+      "raw": "[SRST:Silvermere:River St & Guild St-1 21]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 21,
+        "name": "Intersection of Guild St. & River St.",
+        "exits": {
+          "N": "0",
+          "S": "1/390",
+          "E": "1/20",
+          "W": "1/22",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "6FC00041:01B00054:9:-1:0:::",
+      "parts": [
+        "6FC00041",
+        "01B00054",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "6FC00041:0000:n",
+      "parts": [
+        "6FC00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EB400051:0000:e",
+      "parts": [
+        "EB400051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400051:0000:e",
+      "parts": [
+        "EB400051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400051:0000:e",
+      "parts": [
+        "EB400051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400055:0000:e",
+      "parts": [
+        "EB400055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:e",
+      "parts": [
+        "EB400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:e",
+      "parts": [
+        "EB400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "94200054:0000:e",
+      "parts": [
+        "94200054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EB400050:0000:e",
+      "parts": [
+        "EB400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

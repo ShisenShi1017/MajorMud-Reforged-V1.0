@@ -1,0 +1,78 @@
+{
+  "file": "HCESOBES.mp",
+  "sha256": "2a98eb33e8dca2670bb24b643361f62c8f37369691cacf251b582b17b9584928",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "HCES",
+      "area": "Goblin caves",
+      "label": "Huge Cavern, Training Area, East Side",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[HCES:Goblin caves:Huge Cavern, Training Area, East Side]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "OBES",
+      "area": "Goblin caves",
+      "label": "Orc Barracks, East Side",
+      "mapNumber": 15,
+      "roomNumber": 171,
+      "raw": "[OBES:Goblin caves:Orc Barracks, East Side-15 171]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 171,
+        "name": "Orc Barracks",
+        "exits": {
+          "N": "15/170",
+          "S": "15/172",
+          "E": "15/162",
+          "W": "15/79 (Door)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CCE00065:E5E00095:1:-1:0:::",
+      "parts": [
+        "CCE00065",
+        "E5E00095",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CCE00065:0000:e",
+      "parts": [
+        "CCE00065",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

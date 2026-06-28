@@ -1,16 +1,16 @@
 # Development Journal
 
-## Database Version 0005 - Native DAT Decode Continuation
+## Database Version 0008
 
-Continued native `.DAT` decoding for the standalone database effort.
+Integrated MegaMud `.mp` files as a third evidence source for room/map/navigation decoding.
 
 Completed:
 
-- Added conservative native DAT probe tool.
-- Generated string catalogs for all uploaded native DAT files.
-- Generated record catalogs for fixed-block candidates.
-- Crosschecked class, race, shop, spell, and item CSV names against native DAT files.
-- Documented current decode confidence and next decode order.
+- Parsed 1957 `.mp` files.
+- Created one JSON evidence record per source `.mp` file.
+- Cross-referenced MP room headers against `rooms.TXT`.
+- Generated room-reference, duplicate-reference, command, warning, and summary indexes.
+- Added repeatable importer tool under `Tools/Importer`.
+- Updated reverse-engineering docs and audit notes.
 
-No saves or imported source files are modified by this database version.
-
+No server code, saves, or original native `.DAT` files are modified.

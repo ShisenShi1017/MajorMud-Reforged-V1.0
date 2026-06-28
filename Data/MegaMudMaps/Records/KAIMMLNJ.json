@@ -1,0 +1,327 @@
+{
+  "file": "KAIMMLNJ.mp",
+  "sha256": "2cfa6f3d13807cb6435fa6e5ff7ae45ec1d3f7294d931b1cf576b7b7c357eebb",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "KAIM",
+      "area": "Khazarad",
+      "label": "Kai Master",
+      "mapNumber": 6,
+      "roomNumber": 1566,
+      "raw": "[KAIM:Khazarad:Kai Master-6 1566]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1566,
+        "name": "Silvery Shrine",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "6/1565",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "MLNJ",
+      "area": "Khazarad",
+      "label": "Mountain Ledge, Nekojin Vil. Fork",
+      "mapNumber": 6,
+      "roomNumber": 1544,
+      "raw": "[MLNJ:Khazarad:Mountain Ledge, Nekojin Vil. Fork-6 1544]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1544,
+        "name": "Mountain Ledge",
+        "exits": {
+          "N": "0",
+          "S": "6/1543",
+          "E": "6/1545",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "6/3114"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "91E00040:6FB40014:22:-1:0:::",
+      "parts": [
+        "91E00040",
+        "6FB40014",
+        "22",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "22",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "91E00040:0000:w",
+      "parts": [
+        "91E00040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9B600050:0000:w",
+      "parts": [
+        "9B600050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "37700050:0000:w",
+      "parts": [
+        "37700050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB00050:0000:w",
+      "parts": [
+        "6FB00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB40010:0000:d",
+      "parts": [
+        "6FB40010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "6FB10004:0000:s",
+      "parts": [
+        "6FB10004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "6FB04001:0000:sw",
+      "parts": [
+        "6FB04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "6FB40100:0000:d",
+      "parts": [
+        "6FB40100",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "6FB14000:0000:sw",
+      "parts": [
+        "6FB14000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "6FB00140:0000:w",
+      "parts": [
+        "6FB00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB00050:0000:w",
+      "parts": [
+        "6FB00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB00050:0000:w",
+      "parts": [
+        "6FB00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB40010:0000:d",
+      "parts": [
+        "6FB40010",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "6FB10040:0000:w",
+      "parts": [
+        "6FB10040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB00050:0000:w",
+      "parts": [
+        "6FB00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB00410:0000:nw",
+      "parts": [
+        "6FB00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "6FB41000:0000:d",
+      "parts": [
+        "6FB41000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "6FB10040:0000:w",
+      "parts": [
+        "6FB10040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB00410:0000:nw",
+      "parts": [
+        "6FB00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "6FB01040:0000:w",
+      "parts": [
+        "6FB01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB00050:0000:w",
+      "parts": [
+        "6FB00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6FB00050:0000:w",
+      "parts": [
+        "6FB00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 26
+}

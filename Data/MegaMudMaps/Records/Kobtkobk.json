@@ -1,0 +1,293 @@
+{
+  "file": "Kobtkobk.mp",
+  "sha256": "7d2a7fc2b23c9386e13b9f18e21b6c44d1d58ec00cd4b88f241408285401520a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "KOBT",
+      "area": "Misty Valley",
+      "label": "Kobold Tunnels",
+      "mapNumber": 6,
+      "roomNumber": 754,
+      "raw": "[KOBT:Misty Valley:Kobold Tunnels-6 754]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 754,
+        "name": "Cramped Tunnel, Intersection",
+        "exits": {
+          "N": "6/755",
+          "S": "0",
+          "E": "0",
+          "W": "6/753",
+          "NE": "0",
+          "NW": "0",
+          "SE": "6/782",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "KOBK",
+      "area": "Misty Valley",
+      "label": "Kobold King",
+      "mapNumber": 6,
+      "roomNumber": 834,
+      "raw": "[KOBK:Misty Valley:Kobold King-6 834]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 834,
+        "name": "Fancy Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "6/833 (Door [16 picklocks/strength])",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DB401041:27700200:19:-1:0:::",
+      "parts": [
+        "DB401041",
+        "27700200",
+        "19",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "19",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DB401041:0001:n",
+      "parts": [
+        "DB401041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "8B900104:0001:ne",
+      "parts": [
+        "8B900104",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "8B904012:0001:e",
+      "parts": [
+        "8B904012",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8B900050:0001:e",
+      "parts": [
+        "8B900050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8B901040:0001:se",
+      "parts": [
+        "8B901040",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "8B900412:0001:e",
+      "parts": [
+        "8B900412",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02500140:0001:ne",
+      "parts": [
+        "02500140",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "02504010:0001:e",
+      "parts": [
+        "02504010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E2200054:0001:e",
+      "parts": [
+        "E2200054",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02500051:0001:e",
+      "parts": [
+        "02500051",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "02501040:0001:se",
+      "parts": [
+        "02501040",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "02500414:0001:e",
+      "parts": [
+        "02500414",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8B900050:0001:e",
+      "parts": [
+        "8B900050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8B900052:0001:e",
+      "parts": [
+        "8B900052",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8B901040:0001:se",
+      "parts": [
+        "8B901040",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "8B900404:0001:s",
+      "parts": [
+        "8B900404",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "8B904001:0001:sw",
+      "parts": [
+        "8B904001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "8B900180:0001:w",
+      "parts": [
+        "8B900180",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "31208020:0001:sw",
+      "parts": [
+        "31208020",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 23
+}

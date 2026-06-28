@@ -1,0 +1,172 @@
+{
+  "file": "Sllam7ws.mp",
+  "sha256": "ad7d5dc9f201a0088ec59e4bb1338e3ba921e06b9f0a5ade6bbbd51f843edffb",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "SLLA",
+      "area": "Ocean",
+      "label": "Slimeworm Lair",
+      "mapNumber": 16,
+      "roomNumber": 120,
+      "raw": "[SLLA:Ocean:Slimeworm Lair-16 120]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 120,
+        "name": "Underground River",
+        "exits": {
+          "N": "0",
+          "S": "16/119 (Text: go hole)",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "M7WS",
+      "area": "Ocean",
+      "label": "Wounded Sailor",
+      "mapNumber": 16,
+      "roomNumber": 2665,
+      "raw": "[M7WS:Ocean:Wounded Sailor-16 2665]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2665,
+        "name": "Dark Cave, Ending",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "Action#1 [on the D exit of this room]: push stone, move stone, push rock",
+          "W": "16/2585",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/111 (Hidden/Needs 1 Actions, any order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C1400000:55E00040:8:-1:0:::",
+      "parts": [
+        "C1400000",
+        "55E00040",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C1400000:0000:go hole",
+      "parts": [
+        "C1400000",
+        "0000",
+        "go hole"
+      ],
+      "commands": [
+        "go hole"
+      ]
+    },
+    {
+      "raw": "C1400050:0000:w",
+      "parts": [
+        "C1400050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C1400410:0000:nw",
+      "parts": [
+        "C1400410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C1405040:0000:w",
+      "parts": [
+        "C1405040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C1400510:0000:nw",
+      "parts": [
+        "C1400510",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C1400140:0000:w",
+      "parts": [
+        "C1400140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C1400410:0000:nw",
+      "parts": [
+        "C1400410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C1411000:0000:u",
+      "parts": [
+        "C1411000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

@@ -1,0 +1,111 @@
+{
+  "file": "SNOBSJNK.mp",
+  "sha256": "099bdc82cded1daa6ec79dd5b4254ff884774cbb7891a69c461fdabd3ec4534d",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SNOB",
+      "area": "Silvermere",
+      "label": "Noble St (Slum Gates)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SNOB:Silvermere:Noble St (Slum Gates)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "SJNK",
+      "area": "Silvermere",
+      "label": "Junkyard, Entrance",
+      "mapNumber": 1,
+      "roomNumber": 168,
+      "raw": "[SJNK:Silvermere:Junkyard, Entrance-1 168]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 168,
+        "name": "Junkyard, Entrance",
+        "exits": {
+          "N": "1/39",
+          "S": "1/72",
+          "E": "1/169",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B1700054:05200015:4:-1:0:::",
+      "parts": [
+        "B1700054",
+        "05200015",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B1700054:0000:e",
+      "parts": [
+        "B1700054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5B00050:0000:e",
+      "parts": [
+        "E5B00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E8B00051:0000:e",
+      "parts": [
+        "E8B00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "E5B00051:0000:n",
+      "parts": [
+        "E5B00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

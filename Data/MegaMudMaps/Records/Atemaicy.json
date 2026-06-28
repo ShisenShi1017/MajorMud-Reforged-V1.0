@@ -1,0 +1,155 @@
+{
+  "file": "Atemaicy.mp",
+  "sha256": "7f05c1563966bcfba0eec8a1c71567945e7565844c8cdc78a4be72608df40322",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ATEM",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Unholy Temple",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[ATEM:Ancient Ruin:Ancient Ruin Unholy Temple]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "AICY",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Icy Building",
+      "mapNumber": 3,
+      "roomNumber": 619,
+      "raw": "[AICY:Ancient Ruin:Ancient Ruin Icy Building-3 619]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 619,
+        "name": "Icy Building",
+        "exits": {
+          "N": "3/616 (Key: 746 [or 51 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "3/620 (Door [16 picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "367000A1:E6D80002:8:-1:0:::",
+      "parts": [
+        "367000A1",
+        "E6D80002",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "367000A1:0001:w",
+      "parts": [
+        "367000A1",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DC200024:0000:s",
+      "parts": [
+        "DC200024",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DC200015:0000:s",
+      "parts": [
+        "DC200015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "69010005:0000:s",
+      "parts": [
+        "69010005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DC200005:0000:s",
+      "parts": [
+        "DC200005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DC200005:0000:s",
+      "parts": [
+        "DC200005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "2E500019:0000:use chrome key s",
+      "parts": [
+        "2E500019",
+        "0000",
+        "use chrome key s"
+      ],
+      "commands": [
+        "use chrome key s"
+      ]
+    },
+    {
+      "raw": "2E500019:0400:s",
+      "parts": [
+        "2E500019",
+        "0400",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

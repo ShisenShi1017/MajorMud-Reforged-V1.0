@@ -1,0 +1,108 @@
+{
+  "file": "ELTPELSA.mp",
+  "sha256": "c4e4d3336e87b3d3f80acbf871a0cb3e845dfcbb5326b4bc4be3160a2f0950e2",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ELTP",
+      "area": "Darkwood Forest",
+      "label": "Elder Grove, Thornwalled Path",
+      "mapNumber": 7,
+      "roomNumber": 141,
+      "raw": "[ELTP:Darkwood Forest:Elder Grove, Thornwalled Path-7 141]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 141,
+        "name": "Thornwalled Path",
+        "exits": {
+          "N": "7/140",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "ELSA",
+      "area": "Darkwood Forest",
+      "label": "Elder Darkwood Grove, Stone Arch",
+      "mapNumber": 7,
+      "roomNumber": 87,
+      "raw": "[ELSA:Darkwood Forest:Elder Darkwood Grove, Stone Arch-7 87]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 87,
+        "name": "Elder Darkwood Grove, Stone Arch",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "7/88",
+          "W": "0",
+          "NE": "0",
+          "NW": "7/86",
+          "SE": "7/140 (Item: 474)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "36400001:A3E01410:2:-1:0:::",
+      "parts": [
+        "36400001",
+        "A3E01410",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "36400001:0000:n",
+      "parts": [
+        "36400001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E2900404:0000:nw",
+      "parts": [
+        "E2900404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

@@ -1,0 +1,288 @@
+{
+  "file": "GETCLOOP.mp",
+  "sha256": "d248ec9eca3a956171bcf8b5a98eea7c1448a3d44e3a670a89526551be146474",
+  "metadataLine": "[Gnoll Encampment (easy)-2 1110][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "GETC",
+      "area": "Dragon's Teeth Hills",
+      "label": "Gnoll Encampment, Trail Crossroad",
+      "mapNumber": 2,
+      "roomNumber": 1110,
+      "raw": "[GETC:Dragon's Teeth Hills:Gnoll Encampment, Trail Crossroad-2 1110]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 1110,
+        "name": "Gnoll Encampment, Trail Crossroads",
+        "exits": {
+          "N": "2/1107",
+          "S": "2/1111",
+          "E": "2/1112",
+          "W": "2/1109",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "2C900055:2C900055:21:-1:0:::",
+      "parts": [
+        "2C900055",
+        "2C900055",
+        "21",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "21",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "2C900055:0000:n",
+      "parts": [
+        "2C900055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "64400554:0000:ne",
+      "parts": [
+        "64400554",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "54304015:0000:n",
+      "parts": [
+        "54304015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4D600004:0000:s",
+      "parts": [
+        "4D600004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "54304015:0000:e",
+      "parts": [
+        "54304015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4D600040:0000:w",
+      "parts": [
+        "4D600040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "54304015:0000:s",
+      "parts": [
+        "54304015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "54300055:0000:e",
+      "parts": [
+        "54300055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "4D600040:0000:w",
+      "parts": [
+        "4D600040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "54300055:0000:s",
+      "parts": [
+        "54300055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "54301041:0000:se",
+      "parts": [
+        "54301041",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "4D600400:0000:nw",
+      "parts": [
+        "4D600400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "54301041:0000:w",
+      "parts": [
+        "54301041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "2C900055:0000:w",
+      "parts": [
+        "2C900055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "54300055:0000:w",
+      "parts": [
+        "54300055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4D600010:0000:e",
+      "parts": [
+        "4D600010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "54300055:0000:n",
+      "parts": [
+        "54300055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "54300054:0000:w",
+      "parts": [
+        "54300054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4D600010:0000:e",
+      "parts": [
+        "4D600010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "54300054:0000:e",
+      "parts": [
+        "54300054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "64400554:0000:s",
+      "parts": [
+        "64400554",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 24
+}

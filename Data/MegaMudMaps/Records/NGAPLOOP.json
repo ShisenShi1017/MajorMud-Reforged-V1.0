@@ -1,0 +1,112 @@
+{
+  "file": "NGAPLOOP.mp",
+  "sha256": "31506173bf5d0233e33b18da96ae541b311c3ac6ac67653eb2bd6ea7e43995c1",
+  "metadataLine": "[Animal Pen (wardogs)-16 795][]",
+  "roomHeaders": [
+    {
+      "code": "NGAP",
+      "area": "Barren Hills",
+      "label": "Giant Fortress, Animal Pen",
+      "mapNumber": 16,
+      "roomNumber": 795,
+      "raw": "[NGAP:Barren Hills:Giant Fortress, Animal Pen-16 795]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 795,
+        "name": "Giant Fortress, Animal Pen",
+        "exits": {
+          "N": "0",
+          "S": "16/666",
+          "E": "16/665",
+          "W": "16/792 (Door)",
+          "NE": "16/664",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C3D00194:C3D00194:5:-1:0:::",
+      "parts": [
+        "C3D00194",
+        "C3D00194",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C3D00194:0000:e",
+      "parts": [
+        "C3D00194",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C3D04041:0000:n",
+      "parts": [
+        "C3D04041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C3D04004:0000:s",
+      "parts": [
+        "C3D04004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C3D04041:0000:sw",
+      "parts": [
+        "C3D04041",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C3D00101:0000:n",
+      "parts": [
+        "C3D00101",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

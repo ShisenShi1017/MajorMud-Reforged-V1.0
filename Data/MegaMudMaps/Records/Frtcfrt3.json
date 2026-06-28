@@ -1,0 +1,140 @@
+{
+  "file": "Frtcfrt3.mp",
+  "sha256": "8f92de9058fa3d28f7554ab282e614e3935c204603ab801f09746f5b978f234c",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FRTC",
+      "area": "Black Fort",
+      "label": "Room Of Change",
+      "mapNumber": 7,
+      "roomNumber": 1281,
+      "raw": "[FRTC:Black Fort:Room Of Change-7 1281]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1281,
+        "name": "Room Of Change",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "7/1266 (Hidden/Searchable)",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "FRT3",
+      "area": "Black Fort",
+      "label": "Outside Master Assassin",
+      "mapNumber": 8,
+      "roomNumber": 1262,
+      "raw": "[FRT3:Black Fort:Outside Master Assassin-8 1262]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 1262,
+        "name": "Negative Power Plane",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "8/1238",
+          "SE": "8/1207",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "4F400000:A4F00056:5:-1:0:::",
+      "parts": [
+        "4F400000",
+        "A4F00056",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "4F400000:0000:se[search se]",
+      "parts": [
+        "4F400000",
+        "0000",
+        "se[search se]"
+      ],
+      "commands": [
+        "se[search se]"
+      ]
+    },
+    {
+      "raw": "A4F01001:0000:n",
+      "parts": [
+        "A4F01001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A4F00025:0000:n",
+      "parts": [
+        "A4F00025",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A4F00104:0000:ne",
+      "parts": [
+        "A4F00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "A4F04010:0000:e",
+      "parts": [
+        "A4F04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 10
+}

@@ -1,0 +1,108 @@
+{
+  "file": "MAUEGYWS.mp",
+  "sha256": "25e63a30bb425cb86122a974b808c0f4be2c386ea7d12c4966411cd91b8eade8",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MAUE",
+      "area": "Blackwood Forest",
+      "label": "Mausoleum, Entrance",
+      "mapNumber": 17,
+      "roomNumber": 246,
+      "raw": "[MAUE:Blackwood Forest:Mausoleum, Entrance-17 246]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 246,
+        "name": "Mausoleum, Entrance",
+        "exits": {
+          "N": "17/2023",
+          "S": "0",
+          "E": "17/2028 (Hidden/Needs 2 Actions, specific order)",
+          "W": "17/2038 (Door [71 picklocks/strength])",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "17/247",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "GYWS",
+      "area": "Blackwood Forest",
+      "label": "Graveyard, Warrior Statue",
+      "mapNumber": 17,
+      "roomNumber": 248,
+      "raw": "[GYWS:Blackwood Forest:Graveyard, Warrior Statue-17 248]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 248,
+        "name": "Graveyard",
+        "exits": {
+          "N": "17/249",
+          "S": "17/247 (Hidden/Needs 1 Actions, any order)",
+          "E": "17/257",
+          "W": "17/308",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "Action#1 [on the S exit of this room]: push button, push button, push button",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "7F010081:2B000051:2:-1:0:::",
+      "parts": [
+        "7F010081",
+        "2B000051",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "7F010081:0000:u",
+      "parts": [
+        "7F010081",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "35340002:0000:n",
+      "parts": [
+        "35340002",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

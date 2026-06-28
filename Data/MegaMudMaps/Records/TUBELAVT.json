@@ -1,0 +1,316 @@
+{
+  "file": "TUBELAVT.mp",
+  "sha256": "948a651a46cd74fa2a0be6185d76c8db43d455ca69b275b5984a51261e3f1cd0",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "TUBE",
+      "area": "Lava Fields",
+      "label": "Salamander Tubes",
+      "mapNumber": 6,
+      "roomNumber": 1210,
+      "raw": "[TUBE:Lava Fields:Salamander Tubes-6 1210]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1210,
+        "name": "Lava Tube",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "6/1211",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "7/997",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "LAVT",
+      "area": "Lava Fields",
+      "label": "Lava Tube (Red Dragons)",
+      "mapNumber": 7,
+      "roomNumber": 1288,
+      "raw": "[LAVT:Lava Fields:Lava Tube (Red Dragons)-7 1288]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1288,
+        "name": "Lava Tube",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "7/1289",
+          "W": "7/1287",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "05C10100:05C00050:21:-1:0:::",
+      "parts": [
+        "05C10100",
+        "05C00050",
+        "21",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "21",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "05C10100:0000:u",
+      "parts": [
+        "05C10100",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "0C140004:0000:s",
+      "parts": [
+        "0C140004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "0C104001:0000:sw",
+      "parts": [
+        "0C104001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "8E400150:0000:e",
+      "parts": [
+        "8E400150",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8E404050:0000:e",
+      "parts": [
+        "8E404050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8E400140:0000:ne",
+      "parts": [
+        "8E400140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "8E404011:0000:e",
+      "parts": [
+        "8E404011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "8E401040:0000:se",
+      "parts": [
+        "8E401040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "8E404500:0000:sw",
+      "parts": [
+        "8E404500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "0C100104:0000:s",
+      "parts": [
+        "0C100104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "B2D00005:0000:move boulder",
+      "parts": [
+        "B2D00005",
+        "0000",
+        "move boulder"
+      ],
+      "commands": [
+        "move boulder"
+      ]
+    },
+    {
+      "raw": "B2D00005:0000:n",
+      "parts": [
+        "B2D00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "0C100104:0000:ne",
+      "parts": [
+        "0C100104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "8E404500:0000:ne",
+      "parts": [
+        "8E404500",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "9FD04410:0000:e",
+      "parts": [
+        "9FD04410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD01044:0000:se",
+      "parts": [
+        "9FD01044",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9FD00410:0000:e",
+      "parts": [
+        "9FD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9FD01040:0000:se",
+      "parts": [
+        "9FD01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "9FD00444:0000:s",
+      "parts": [
+        "9FD00444",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "9FD00005:0000:e",
+      "parts": [
+        "9FD00005",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CAC00010:0000:e",
+      "parts": [
+        "CAC00010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 25
+}

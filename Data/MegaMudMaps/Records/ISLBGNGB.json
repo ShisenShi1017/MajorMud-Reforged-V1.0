@@ -1,0 +1,141 @@
+{
+  "file": "ISLBGNGB.mp",
+  "sha256": "01e8603c9cf04d55c63d6041a9fe8c4b23c71163433befd8969408880b047585",
+  "metadataLine": "[][Merlin]",
+  "roomHeaders": [
+    {
+      "code": "ISLB",
+      "area": "Island",
+      "label": "Island Beach Landing",
+      "mapNumber": 1,
+      "roomNumber": 1815,
+      "raw": "[ISLB:Island:Island Beach Landing-1 1815]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1815,
+        "name": "Island, Beach Landing",
+        "exits": {
+          "N": "0",
+          "S": "1/2342",
+          "E": "1/1820",
+          "W": "1/1816",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "GNGB",
+      "area": "Gang Houses",
+      "label": "Entrance Blue House Room",
+      "mapNumber": 15,
+      "roomNumber": 947,
+      "raw": "[GNGB:Gang Houses:Entrance Blue House Room-15 947]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 947,
+        "name": "",
+        "exits": {
+          "N": "15/948",
+          "S": "0",
+          "E": "1/1819",
+          "W": "0",
+          "NE": "0",
+          "NW": "15/949 (Key: 1032 [or 111 picklocks])",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "27400054:CC700811:5:-1:0:::",
+      "parts": [
+        "27400054",
+        "CC700811",
+        "5",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "27400054:0000:w",
+      "parts": [
+        "27400054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6B100410:0000:nw",
+      "parts": [
+        "6B100410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "6B101040:0000:w",
+      "parts": [
+        "6B101040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "6B100410:0000:nw",
+      "parts": [
+        "6B100410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "5D701040:0000:w",
+      "parts": [
+        "5D701040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

@@ -1,0 +1,183 @@
+{
+  "file": "CFCRCFMG.mp",
+  "sha256": "51766af411539e6a2312ab67d0808f8c9f4098b94f775c74f3c5f510615af5b7",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "CFCR",
+      "area": "Lava Fields",
+      "label": "Crazed Inquisitor",
+      "mapNumber": 15,
+      "roomNumber": 1099,
+      "raw": "[CFCR:Lava Fields:Crazed Inquisitor-15 1099]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1099,
+        "name": "Crimson Fortress, Command Room",
+        "exits": {
+          "N": "15/1100 (Door [51 picklocks/strength])",
+          "S": "15/1098 (Door [51 picklocks/strength])",
+          "E": "15/1106 (Door [51 picklocks/strength])",
+          "W": "15/1105 (Door [51 picklocks/strength])",
+          "NE": "Action [on the SE exit of this room]: pull left lever, move left lever, use left lever",
+          "NW": "Action [on the SW exit of this room]: pull right lever, move right lever, use right lever",
+          "SE": "15/1102 (Hidden/Needs 1 Actions, any order)",
+          "SW": "15/1104 (Hidden/Needs 1 Actions, any order)",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "CFMG",
+      "area": "Lava Fields",
+      "label": "Crimson Fortress, Main Gate",
+      "mapNumber": 15,
+      "roomNumber": 1054,
+      "raw": "[CFMG:Lava Fields:Crimson Fortress, Main Gate-15 1054]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1054,
+        "name": "Fortress of the Crimson Flame, Main Gate",
+        "exits": {
+          "N": "15/1053 (Key: 1076)",
+          "S": "0",
+          "E": "15/1073",
+          "W": "15/1055",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A9E000AA:93F00052:9:-1:0:::",
+      "parts": [
+        "A9E000AA",
+        "93F00052",
+        "9",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "9",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A9E000AA:0000:w",
+      "parts": [
+        "A9E000AA",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B2600060:0000:w",
+      "parts": [
+        "B2600060",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B2600015:0000:n",
+      "parts": [
+        "B2600015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B2600005:0000:n",
+      "parts": [
+        "B2600005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B2600414:0000:nw",
+      "parts": [
+        "B2600414",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "7D941000:0000:d",
+      "parts": [
+        "7D941000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "7D910000:0000:se[sea se]",
+      "parts": [
+        "7D910000",
+        "0000",
+        "se[sea se]"
+      ],
+      "commands": [
+        "se[sea se]"
+      ]
+    },
+    {
+      "raw": "B2600014:0000:e",
+      "parts": [
+        "B2600014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B2600050:0000:e",
+      "parts": [
+        "B2600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 13
+}

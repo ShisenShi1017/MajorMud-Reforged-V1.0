@@ -1,0 +1,78 @@
+{
+  "file": "MRDGMRSW.mp",
+  "sha256": "9ad41224ed10ce979b924f060129bac29e728b7537ad641bb6aab46a54e5c28c",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MRDG",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Silvermere Gates)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRDG:Darkwood Forest:Main Road (Silvermere Gates)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "MRSW",
+      "area": "Gang Houses",
+      "label": "Main Road Shop, White House",
+      "mapNumber": 15,
+      "roomNumber": 982,
+      "raw": "[MRSW:Gang Houses:Main Road Shop, White House-15 982]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 982,
+        "name": "",
+        "exits": {
+          "N": "0",
+          "S": "1/1382",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B7200055:49400004:1:-1:0:::",
+      "parts": [
+        "B7200055",
+        "49400004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B7200055:0000:n",
+      "parts": [
+        "B7200055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

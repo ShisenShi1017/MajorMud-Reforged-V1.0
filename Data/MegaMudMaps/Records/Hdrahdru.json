@@ -1,0 +1,106 @@
+{
+  "file": "Hdrahdru.mp",
+  "sha256": "f8b0c1f24bce181506be618b9605af9f3cde5fb1ad644310ed6627a5d4fa053c",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "HDRA",
+      "area": "Darkwood Forest",
+      "label": "High Druid Arch",
+      "mapNumber": 7,
+      "roomNumber": 140,
+      "raw": "[HDRA:Darkwood Forest:High Druid Arch-7 140]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 140,
+        "name": "Thornwalled Path, Stone Arch",
+        "exits": {
+          "N": "0",
+          "S": "7/141",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "7/87 (Item: 474)",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "HDRU",
+      "area": "Darkwood Forest",
+      "label": "High Druid",
+      "mapNumber": 7,
+      "roomNumber": 142,
+      "raw": "[HDRU:Darkwood Forest:High Druid-7 142]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 142,
+        "name": "Large Clearing, Stone Altar",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E2900404:79700000:2:-1:0:::",
+      "parts": [
+        "E2900404",
+        "79700000",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E2900404:0000:s",
+      "parts": [
+        "E2900404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "36400001:0000:go arch",
+      "parts": [
+        "36400001",
+        "0000",
+        "go arch"
+      ],
+      "commands": [
+        "go arch"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

@@ -1,0 +1,638 @@
+{
+  "file": "Merqstt1.mp",
+  "sha256": "68358f30eef19f463d2fd3464ff76ee9b98cee66b1e4217c8dd72a3cb62fdf1d",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "MERQ",
+      "area": "Dragon's Teeth Hills",
+      "label": "Mermex Queen",
+      "mapNumber": 2,
+      "roomNumber": 2366,
+      "raw": "[MERQ:Dragon's Teeth Hills:Mermex Queen-2 2366]",
+      "csvMatch": {
+        "mapNumber": 2,
+        "roomNumber": 2366,
+        "name": "Huge Violet Organic Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "2/2365",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "STT1",
+      "area": "Dragon's Teeth Hills",
+      "label": "Stone Tunnel",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[STT1:Dragon's Teeth Hills:Stone Tunnel]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B4900100:E7E04410:52:-1:0:::",
+      "parts": [
+        "B4900100",
+        "E7E04410",
+        "52",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "52",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B4900100:0001:ne",
+      "parts": [
+        "B4900100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "C9805000:0001:se",
+      "parts": [
+        "C9805000",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EED00410:0001:e",
+      "parts": [
+        "EED00410",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00050:0001:e",
+      "parts": [
+        "EED00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED01145:0001:se",
+      "parts": [
+        "EED01145",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EED00404:0001:s",
+      "parts": [
+        "EED00404",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EED01001:0001:se",
+      "parts": [
+        "EED01001",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EED00500:0001:ne",
+      "parts": [
+        "EED00500",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EED04010:0001:e",
+      "parts": [
+        "EED04010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00440:0001:nw",
+      "parts": [
+        "EED00440",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "EED01001:0001:n",
+      "parts": [
+        "EED01001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EED00014:0001:e",
+      "parts": [
+        "EED00014",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00041:0001:n",
+      "parts": [
+        "EED00041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EED00404:0001:nw",
+      "parts": [
+        "EED00404",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "EED01100:0001:ne",
+      "parts": [
+        "EED01100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EED04010:0001:e",
+      "parts": [
+        "EED04010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00144:0001:s",
+      "parts": [
+        "EED00144",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EED01001:0001:se",
+      "parts": [
+        "EED01001",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EED00404:0001:s",
+      "parts": [
+        "EED00404",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EED04001:0001:sw",
+      "parts": [
+        "EED04001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "EED00104:0001:s",
+      "parts": [
+        "EED00104",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EED01001:0001:se",
+      "parts": [
+        "EED01001",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EED00410:0001:e",
+      "parts": [
+        "EED00410",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00050:0001:e",
+      "parts": [
+        "EED00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00041:0001:n",
+      "parts": [
+        "EED00041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EED00005:0001:n",
+      "parts": [
+        "EED00005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EED00005:0001:n",
+      "parts": [
+        "EED00005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EED00005:0001:n",
+      "parts": [
+        "EED00005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EED00504:0001:ne",
+      "parts": [
+        "EED00504",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EED04010:0001:e",
+      "parts": [
+        "EED04010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00054:0001:e",
+      "parts": [
+        "EED00054",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED01041:0001:n",
+      "parts": [
+        "EED01041",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EED00005:0001:n",
+      "parts": [
+        "EED00005",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EED00014:0001:e",
+      "parts": [
+        "EED00014",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED01040:0001:se",
+      "parts": [
+        "EED01040",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EED00410:0001:e",
+      "parts": [
+        "EED00410",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00144:0001:ne",
+      "parts": [
+        "EED00144",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "EED04010:0001:e",
+      "parts": [
+        "EED04010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED01040:0001:se",
+      "parts": [
+        "EED01040",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "EED10404:0001:u",
+      "parts": [
+        "EED10404",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "EED40010:0001:e",
+      "parts": [
+        "EED40010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "EED00444:0001:s",
+      "parts": [
+        "EED00444",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "EED05001:0001:sw",
+      "parts": [
+        "EED05001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "EED00540:0001:w",
+      "parts": [
+        "EED00540",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EED01050:0001:w",
+      "parts": [
+        "EED01050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EED00554:0001:w",
+      "parts": [
+        "EED00554",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EED04011:0001:sw",
+      "parts": [
+        "EED04011",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "EED04100:0001:sw",
+      "parts": [
+        "EED04100",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "EED01140:0001:w",
+      "parts": [
+        "EED01140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "EED14011:0001:u",
+      "parts": [
+        "EED14011",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F1144001:0001:sw",
+      "parts": [
+        "F1144001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "E7E01100:0001:se",
+      "parts": [
+        "E7E01100",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 56
+}

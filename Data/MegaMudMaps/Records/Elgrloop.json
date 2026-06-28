@@ -1,0 +1,1926 @@
+{
+  "file": "Elgrloop.mp",
+  "sha256": "fdad10154b4fc2ba2eb589d85543279be226aae326f7febb3f68aff49aa08a8c",
+  "metadataLine": "[Elder Grove Loop-7 21][]",
+  "roomHeaders": [
+    {
+      "code": "ELGR",
+      "area": "Darkwood Forest",
+      "label": "Elder Grove",
+      "mapNumber": 7,
+      "roomNumber": 21,
+      "raw": "[ELGR:Darkwood Forest:Elder Grove-7 21]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 21,
+        "name": "Elder Darkwood Grove, Fork",
+        "exits": {
+          "N": "0",
+          "S": "7/33",
+          "E": "Action#1 [on the NE exit of this room]: twist knot, turn knot",
+          "W": "Action#2 [on the NE exit of this room]: push knot",
+          "NE": "7/20 (Hidden/Needs 2 Actions, specific order)",
+          "NW": "0",
+          "SE": "0",
+          "SW": "7/22",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "CBB04004:CBB04004:170:-1:0:::",
+      "parts": [
+        "CBB04004",
+        "CBB04004",
+        "170",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "170",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "CBB04004:0000:sw",
+      "parts": [
+        "CBB04004",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD04100:0000:sw",
+      "parts": [
+        "FAD04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CBB04500:0000:nw",
+      "parts": [
+        "CBB04500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:w",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C5800010:0000:e",
+      "parts": [
+        "C5800010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:se",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CBB04500:0000:sw",
+      "parts": [
+        "CBB04500",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00104:0000:s",
+      "parts": [
+        "FAD00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CBB04011:0000:sw",
+      "parts": [
+        "CBB04011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CBB00144:0000:w",
+      "parts": [
+        "CBB00144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD04010:0000:sw",
+      "parts": [
+        "FAD04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CBB04101:0000:n",
+      "parts": [
+        "CBB04101",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00044:0000:w",
+      "parts": [
+        "FAD00044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:w",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "C5800010:0000:e",
+      "parts": [
+        "C5800010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00044:0000:s",
+      "parts": [
+        "FAD00044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CBB04101:0000:sw",
+      "parts": [
+        "CBB04101",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00104:0000:s",
+      "parts": [
+        "FAD00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CBB05001:0000:sw",
+      "parts": [
+        "CBB05001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00104:0000:s",
+      "parts": [
+        "FAD00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:s",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CBB05001:0000:sw",
+      "parts": [
+        "CBB05001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00104:0000:s",
+      "parts": [
+        "FAD00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:s",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C5800001:0000:n",
+      "parts": [
+        "C5800001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00104:0000:ne",
+      "parts": [
+        "FAD00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CBB05001:0000:se",
+      "parts": [
+        "CBB05001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:e",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CBB01041:0000:se",
+      "parts": [
+        "CBB01041",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD01400:0000:se",
+      "parts": [
+        "FAD01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CBB05400:0000:sw",
+      "parts": [
+        "CBB05400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "58300180:0000:ne",
+      "parts": [
+        "58300180",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CBB05400:0000:se",
+      "parts": [
+        "CBB05400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:e",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:se",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:e",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CBB00051:0000:n",
+      "parts": [
+        "CBB00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "A3E00114:0000:e",
+      "parts": [
+        "A3E00114",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C5800040:0000:w",
+      "parts": [
+        "C5800040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A3E00114:0000:s",
+      "parts": [
+        "A3E00114",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:s",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:s",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:s",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CBB00051:0000:e",
+      "parts": [
+        "CBB00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:se",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:e",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CBB00051:0000:n",
+      "parts": [
+        "CBB00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C5800004:0000:s",
+      "parts": [
+        "C5800004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CBB00051:0000:e",
+      "parts": [
+        "CBB00051",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00140:0000:ne",
+      "parts": [
+        "FAD00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FAD04001:0000:n",
+      "parts": [
+        "FAD04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CBB00144:0000:w",
+      "parts": [
+        "CBB00144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:nw",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01400:0000:nw",
+      "parts": [
+        "FAD01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "A3E01400:0000:se",
+      "parts": [
+        "A3E01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD01400:0000:se",
+      "parts": [
+        "FAD01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:e",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CBB00144:0000:ne",
+      "parts": [
+        "CBB00144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CBB05100:0000:se",
+      "parts": [
+        "CBB05100",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:e",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C5A00040:0000:w",
+      "parts": [
+        "C5A00040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:nw",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CBB05100:0000:ne",
+      "parts": [
+        "CBB05100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FAD04100:0000:ne",
+      "parts": [
+        "FAD04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CBB04041:0000:n",
+      "parts": [
+        "CBB04041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "84900514:0000:e",
+      "parts": [
+        "84900514",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "C5800040:0000:w",
+      "parts": [
+        "C5800040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "84900514:0000:ne",
+      "parts": [
+        "84900514",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "C5804000:0000:sw",
+      "parts": [
+        "C5804000",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "84900514:0000:nw",
+      "parts": [
+        "84900514",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01400:0000:nw",
+      "parts": [
+        "FAD01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CBB01404:0000:s",
+      "parts": [
+        "CBB01404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD04001:0000:sw",
+      "parts": [
+        "FAD04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00104:0000:s",
+      "parts": [
+        "FAD00104",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD04001:0000:sw",
+      "parts": [
+        "FAD04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "A3E01140:0000:se",
+      "parts": [
+        "A3E01140",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "FAD00404:0000:s",
+      "parts": [
+        "FAD00404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00011:0000:e",
+      "parts": [
+        "FAD00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CBB04041:0000:n",
+      "parts": [
+        "CBB04041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "84900514:0000:nw",
+      "parts": [
+        "84900514",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01400:0000:nw",
+      "parts": [
+        "FAD01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CBB01404:0000:nw",
+      "parts": [
+        "CBB01404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01400:0000:nw",
+      "parts": [
+        "FAD01400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:w",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:nw",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:w",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:nw",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:w",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CBB00054:0000:s",
+      "parts": [
+        "CBB00054",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:s",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C5800001:0000:n",
+      "parts": [
+        "C5800001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CBB00054:0000:w",
+      "parts": [
+        "CBB00054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00410:0000:nw",
+      "parts": [
+        "FAD00410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CBB01044:0000:s",
+      "parts": [
+        "CBB01044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD04001:0000:sw",
+      "parts": [
+        "FAD04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD04100:0000:sw",
+      "parts": [
+        "FAD04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00140:0000:w",
+      "parts": [
+        "FAD00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:w",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CBB04011:0000:sw",
+      "parts": [
+        "CBB04011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CBB00144:0000:s",
+      "parts": [
+        "CBB00144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00011:0000:e",
+      "parts": [
+        "FAD00011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00044:0000:s",
+      "parts": [
+        "FAD00044",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:s",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CBB04011:0000:sw",
+      "parts": [
+        "CBB04011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD04100:0000:sw",
+      "parts": [
+        "FAD04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "84900514:0000:nw",
+      "parts": [
+        "84900514",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01400:0000:se",
+      "parts": [
+        "FAD01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "84900514:0000:s",
+      "parts": [
+        "84900514",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "84900514:0000:ne",
+      "parts": [
+        "84900514",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FAD04100:0000:sw",
+      "parts": [
+        "FAD04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "84900514:0000:e",
+      "parts": [
+        "84900514",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CBB00045:0000:s",
+      "parts": [
+        "CBB00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "C5800001:0000:n",
+      "parts": [
+        "C5800001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CBB00045:0000:n",
+      "parts": [
+        "CBB00045",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CBB04104:0000:ne",
+      "parts": [
+        "CBB04104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FAD04010:0000:e",
+      "parts": [
+        "FAD04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:se",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "A3E01410:0000:e",
+      "parts": [
+        "A3E01410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00140:0000:ne",
+      "parts": [
+        "FAD00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CBB05001:0000:se",
+      "parts": [
+        "CBB05001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C5800400:0000:nw",
+      "parts": [
+        "C5800400",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CBB05001:0000:n",
+      "parts": [
+        "CBB05001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "C5800004:0000:s",
+      "parts": [
+        "C5800004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CBB05001:0000:sw",
+      "parts": [
+        "CBB05001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00140:0000:w",
+      "parts": [
+        "FAD00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "A3E01410:0000:nw",
+      "parts": [
+        "A3E01410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "FAD01040:0000:w",
+      "parts": [
+        "FAD01040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:w",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:w",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD04010:0000:sw",
+      "parts": [
+        "FAD04010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "CBB04104:0000:sw",
+      "parts": [
+        "CBB04104",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "FAD00140:0000:w",
+      "parts": [
+        "FAD00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "CBB04011:0000:n",
+      "parts": [
+        "CBB04011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00005:0000:n",
+      "parts": [
+        "FAD00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "FAD00044:0000:w",
+      "parts": [
+        "FAD00044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00011:0000:n",
+      "parts": [
+        "FAD00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CBB00144:0000:ne",
+      "parts": [
+        "CBB00144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CBB04011:0000:e",
+      "parts": [
+        "CBB04011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00050:0000:e",
+      "parts": [
+        "FAD00050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "FAD00140:0000:ne",
+      "parts": [
+        "FAD00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FAD04100:0000:ne",
+      "parts": [
+        "FAD04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "FAD04001:0000:n",
+      "parts": [
+        "FAD04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CBB01044:0000:w",
+      "parts": [
+        "CBB01044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "FAD00011:0000:n",
+      "parts": [
+        "FAD00011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 173
+}

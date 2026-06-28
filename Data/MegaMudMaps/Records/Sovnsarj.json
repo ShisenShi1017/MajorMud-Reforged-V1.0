@@ -1,0 +1,118 @@
+{
+  "file": "Sovnsarj.mp",
+  "sha256": "fff442896aabc329ada7b76dd359d5428c2ec7a47bd3a72e33f2f39799fc67ce",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SOVN",
+      "area": "Silvermere",
+      "label": "Sovereign St Nth",
+      "mapNumber": 1,
+      "roomNumber": 225,
+      "raw": "[SOVN:Silvermere:Sovereign St Nth-1 225]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 225,
+        "name": "Sovereign Street, Northern End",
+        "exits": {
+          "N": "1/224",
+          "S": "1/226",
+          "E": "1/311",
+          "W": "1/297",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SARJ",
+      "area": "Silvermere",
+      "label": "Sarkhee's Jewellery",
+      "mapNumber": 1,
+      "roomNumber": 290,
+      "raw": "[SARJ:Silvermere:Sarkhee's Jewellery-1 290]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 290,
+        "name": "Sarkhee's Jewellery",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/227",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "89C00055:A0600010:3:-1:0:::",
+      "parts": [
+        "89C00055",
+        "A0600010",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "89C00055:0000:s",
+      "parts": [
+        "89C00055",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "57000005:0000:s",
+      "parts": [
+        "57000005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "57000055:0000:w",
+      "parts": [
+        "57000055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

@@ -1,0 +1,97 @@
+{
+  "file": "FPDICFMD.mp",
+  "sha256": "5a64d7fff01a90edf14fb1ae1ef975af7f8bc6560dc36f9f936c3c7f81fe326f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "FPDI",
+      "area": "Lava Fields",
+      "label": "Flame Pit (Demoness Irikani)",
+      "mapNumber": 15,
+      "roomNumber": 1127,
+      "raw": "[FPDI:Lava Fields:Flame Pit (Demoness Irikani)-15 1127]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1127,
+        "name": "Flame Pit",
+        "exits": {
+          "N": "15/1130",
+          "S": "15/1134",
+          "E": "15/1132",
+          "W": "15/1128",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "CFMD",
+      "area": "Lava Fields",
+      "label": "Crimson Fortress, Massive Door",
+      "mapNumber": 15,
+      "roomNumber": 1111,
+      "raw": "[CFMD:Lava Fields:Crimson Fortress, Massive Door-15 1111]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 1111,
+        "name": "Crimson Fortress, Massive Door",
+        "exits": {
+          "N": "0",
+          "S": "15/1110",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "15/1126 (Key: 1077 [or 1000 picklocks/strength])"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "03A00055:BF380004:1:-1:0:::",
+      "parts": [
+        "03A00055",
+        "BF380004",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "03A00055:0000:@party go portal",
+      "parts": [
+        "03A00055",
+        "0000",
+        "@party go portal"
+      ],
+      "commands": [
+        "@party go portal"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

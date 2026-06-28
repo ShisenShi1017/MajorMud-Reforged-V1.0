@@ -1,0 +1,339 @@
+{
+  "file": "SFATFAER.mp",
+  "sha256": "25081cd6a8f0a63b8c38bbe34423a612f08c2be34b0bd1a733be8ec828eabe63",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "SFAT",
+      "area": "Northern Forests",
+      "label": "Silverwood Forest, Ancient Tree",
+      "mapNumber": 3,
+      "roomNumber": 497,
+      "raw": "[SFAT:Northern Forests:Silverwood Forest, Ancient Tree-3 497]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 497,
+        "name": "Silverwood Forest, Ancient Tree",
+        "exits": {
+          "N": "3/498",
+          "S": "3/520",
+          "E": "0",
+          "W": "3/494",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/525",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "FAER",
+      "area": "Northern Forests",
+      "label": "Faerie Ring",
+      "mapNumber": 3,
+      "roomNumber": 420,
+      "raw": "[FAER:Northern Forests:Faerie Ring-3 420]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 420,
+        "name": "Faerie Ring",
+        "exits": {
+          "N": "0",
+          "S": "3/419",
+          "E": "0",
+          "W": "3/441",
+          "NE": "3/421",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "3D010045:84400144:23:-1:0:::",
+      "parts": [
+        "3D010045",
+        "84400144",
+        "23",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "23",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "3D010045:0000:s",
+      "parts": [
+        "3D010045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CC400011:0000:e",
+      "parts": [
+        "CC400011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CC400050:0000:e",
+      "parts": [
+        "CC400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "3D000154:0000:e",
+      "parts": [
+        "3D000154",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CC401040:0000:se",
+      "parts": [
+        "CC401040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "3D001500:0000:se",
+      "parts": [
+        "3D001500",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CC400404:0000:s",
+      "parts": [
+        "CC400404",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "CC401041:0000:se",
+      "parts": [
+        "CC401041",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "4FB00400:0000:se[sea se]",
+      "parts": [
+        "4FB00400",
+        "0000",
+        "se[sea se]"
+      ],
+      "commands": [
+        "se[sea se]"
+      ]
+    },
+    {
+      "raw": "B5200104:0000:ne",
+      "parts": [
+        "B5200104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "B5204010:0000:e",
+      "parts": [
+        "B5204010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "B5200051:0000:n",
+      "parts": [
+        "B5200051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CB400005:0000:n",
+      "parts": [
+        "CB400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CB400005:0000:n",
+      "parts": [
+        "CB400005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "CB404104:0000:ne",
+      "parts": [
+        "CB404104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CB404101:0000:ne",
+      "parts": [
+        "CB404101",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CB404100:0000:ne",
+      "parts": [
+        "CB404100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CB404404:0000:nw",
+      "parts": [
+        "CB404404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "CB401100:0000:ne",
+      "parts": [
+        "CB401100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "CB405001:0000:se",
+      "parts": [
+        "CB405001",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "CB400410:0000:e",
+      "parts": [
+        "CB400410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CB400050:0000:e",
+      "parts": [
+        "CB400050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "CB404050:0000:e",
+      "parts": [
+        "CB404050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 27
+}

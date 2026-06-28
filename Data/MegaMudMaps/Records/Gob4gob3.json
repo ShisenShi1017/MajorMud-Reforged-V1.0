@@ -1,0 +1,81 @@
+{
+  "file": "Gob4gob3.mp",
+  "sha256": "5706662649e4f7b1e6e2488ac89dbdd02c344707dfb4bd1197d542dfcbada0b5",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "GOB4",
+      "area": "Goblin caves",
+      "label": "Goblin Caves (green metal key door)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GOB4:Goblin caves:Goblin Caves (green metal key door)]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "GOB3",
+      "area": "Goblin caves",
+      "label": "Goblin Caves (Werewolf fork)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[GOB3:Goblin caves:Goblin Caves (Werewolf fork)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ECB00060:01104410:3:-1:0:::",
+      "parts": [
+        "ECB00060",
+        "01104410",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ECB00060:0001:w",
+      "parts": [
+        "ECB00060",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "01100050:0001:w",
+      "parts": [
+        "01100050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "01100055:0001:w",
+      "parts": [
+        "01100055",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

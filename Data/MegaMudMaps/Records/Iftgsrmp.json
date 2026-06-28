@@ -1,0 +1,119 @@
+{
+  "file": "Iftgsrmp.mp",
+  "sha256": "02654286795fc8922a08862c0ea839646f9f81ae0f1b54cf2452c7870c3dab95",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "IFTG",
+      "area": "Northern Forests",
+      "label": "Ironwood Forest, Twisted Growth",
+      "mapNumber": 3,
+      "roomNumber": 105,
+      "raw": "[IFTG:Northern Forests:Ironwood Forest, Twisted Growth-3 105]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 105,
+        "name": "Ironwood Forest, Twisted Growth",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "3/104",
+          "W": "0",
+          "NE": "0",
+          "NW": "3/106",
+          "SE": "0",
+          "SW": "3/198",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SRMP",
+      "area": "Northern Forests",
+      "label": "Silver River, Murky Pool",
+      "mapNumber": 1,
+      "roomNumber": 2415,
+      "raw": "[SRMP:Northern Forests:Silver River, Murky Pool-1 2415]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2415,
+        "name": "The Silver River, Murky Pool",
+        "exits": {
+          "N": "0",
+          "S": "1/2414",
+          "E": "0",
+          "W": "0",
+          "NE": "3/197",
+          "NW": "3/204",
+          "SE": "3/178",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B4E04410:2A601504:3:-1:0:::",
+      "parts": [
+        "B4E04410",
+        "2A601504",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B4E04410:0000:sw",
+      "parts": [
+        "B4E04410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "94700144:0000:s",
+      "parts": [
+        "94700144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "94704011:0000:sw",
+      "parts": [
+        "94704011",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

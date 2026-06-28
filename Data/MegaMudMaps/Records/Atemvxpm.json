@@ -1,0 +1,111 @@
+{
+  "file": "Atemvxpm.mp",
+  "sha256": "80450523eba84d39aab540c5ef3f401a1b1647be8dec15881f24babb0e71ed40",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "ATEM",
+      "area": "Ancient Ruin",
+      "label": "Ancient Ruin Unholy Temple",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[ATEM:Ancient Ruin:Ancient Ruin Unholy Temple]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "VXPM",
+      "area": "Ancient Ruin",
+      "label": "Pillaged Museum Vortex",
+      "mapNumber": 3,
+      "roomNumber": 613,
+      "raw": "[VXPM:Ancient Ruin:Pillaged Museum Vortex-3 613]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 613,
+        "name": "Pillaged Museum",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "3/612"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "367000A1:EC040000:4:-1:0:::",
+      "parts": [
+        "367000A1",
+        "EC040000",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "367000A1:0001:w",
+      "parts": [
+        "367000A1",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "DC200024:0000:s",
+      "parts": [
+        "DC200024",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "DC200015:0000:s",
+      "parts": [
+        "DC200015",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "69010005:0000:u",
+      "parts": [
+        "69010005",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

@@ -1,0 +1,154 @@
+{
+  "file": "Lcpdlcf4.mp",
+  "sha256": "10b26b405eb1f83f75580be7b15050c4276a5f76abfd81ba87e06453c45562fe",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "LCPD",
+      "area": "Lost City",
+      "label": "Practice Dummy",
+      "mapNumber": 16,
+      "roomNumber": 541,
+      "raw": "[LCPD:Lost City:Practice Dummy-16 541]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 541,
+        "name": "Training Grounds",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/520"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "LCF4",
+      "area": "Lost City",
+      "label": "Forest Street",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[LCF4:Lost City:Forest Street]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5D640000:3FC00449:8:-1:0:::",
+      "parts": [
+        "5D640000",
+        "3FC00449",
+        "8",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "8",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5D640000:0000:d",
+      "parts": [
+        "5D640000",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "5D650040:0000:d",
+      "parts": [
+        "5D650040",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "5D610054:0000:e",
+      "parts": [
+        "5D610054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600050:0000:e",
+      "parts": [
+        "5D600050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "5D600045:0000:e[sea e]",
+      "parts": [
+        "5D600045",
+        "0000",
+        "e[sea e]"
+      ],
+      "commands": [
+        "e[sea e]"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:n",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00005:0000:n",
+      "parts": [
+        "EDE00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "EDE00006:0000:n",
+      "parts": [
+        "EDE00006",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

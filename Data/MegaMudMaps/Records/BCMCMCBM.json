@@ -1,0 +1,273 @@
+{
+  "file": "BCMCMCBM.mp",
+  "sha256": "242d39c681a0975f3ff583f79401e9f1b5c3397145dbb4f7e0a7cc381173f73f",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "BCMC",
+      "area": "Black Caves",
+      "label": "Black Caves, Mushroom Cave",
+      "mapNumber": 6,
+      "roomNumber": 996,
+      "raw": "[BCMC:Black Caves:Black Caves, Mushroom Cave-6 996]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 996,
+        "name": "Mushroom Cave",
+        "exits": {
+          "N": "0",
+          "S": "6/1065",
+          "E": "0",
+          "W": "6/995",
+          "NE": "6/997",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MCBM",
+      "area": "Black Caves",
+      "label": "Mushroom Cave, Black mushrooms",
+      "mapNumber": 6,
+      "roomNumber": 1102,
+      "raw": "[MCBM:Black Caves:Mushroom Cave, Black mushrooms-6 1102]",
+      "csvMatch": {
+        "mapNumber": 6,
+        "roomNumber": 1102,
+        "name": "Mushroom Cave",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "6/1103",
+          "W": "0",
+          "NE": "0",
+          "NW": "6/1099",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "20700144:20700410:17:-1:0:::",
+      "parts": [
+        "20700144",
+        "20700410",
+        "17",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "17",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "20700144:0000:s",
+      "parts": [
+        "20700144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "20700005:0000:s",
+      "parts": [
+        "20700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "20700005:0000:s",
+      "parts": [
+        "20700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "20704011:0000:e",
+      "parts": [
+        "20704011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "20701040:0000:se",
+      "parts": [
+        "20701040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "20700504:0000:s",
+      "parts": [
+        "20700504",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "20700005:0000:s",
+      "parts": [
+        "20700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "20704011:0000:e",
+      "parts": [
+        "20704011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "20700050:0000:e",
+      "parts": [
+        "20700050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "20701140:0000:se",
+      "parts": [
+        "20701140",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "20700504:0000:s",
+      "parts": [
+        "20700504",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "20700005:0000:s",
+      "parts": [
+        "20700005",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "20701041:0000:se",
+      "parts": [
+        "20701041",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "20700504:0000:s",
+      "parts": [
+        "20700504",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "20700015:0000:e",
+      "parts": [
+        "20700015",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "20700050:0000:e",
+      "parts": [
+        "20700050",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "20701140:0000:se",
+      "parts": [
+        "20701140",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 21
+}

@@ -1,0 +1,249 @@
+{
+  "file": "Obcwcavw.mp",
+  "sha256": "dda4d5cdaa0273d94d0c464d35e8046475f0d539d2e7f88be3371ee7f81af97a",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "OBCW",
+      "area": "Black House",
+      "label": "Cave Worm Obelisk",
+      "mapNumber": 1,
+      "roomNumber": 2428,
+      "raw": "[OBCW:Black House:Cave Worm Obelisk-1 2428]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2428,
+        "name": "Stone Tunnel, Cave-In",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "1/1580",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "CAVW",
+      "area": "Black House",
+      "label": "Cave Worm Area",
+      "mapNumber": 1,
+      "roomNumber": 1541,
+      "raw": "[CAVW:Black House:Cave Worm Area-1 1541]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1541,
+        "name": "Stone Tunnel, Waterfall",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/1542",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "1/1543",
+          "U": "1/1490 (Item: 191)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D7A01000:7D014010:15:-1:0:::",
+      "parts": [
+        "D7A01000",
+        "7D014010",
+        "15",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "15",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D7A01000:0001:se",
+      "parts": [
+        "D7A01000",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "E7E04400:0001:sw",
+      "parts": [
+        "E7E04400",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "C9C01140:0001:w",
+      "parts": [
+        "C9C01140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E7E00050:0001:w",
+      "parts": [
+        "E7E00050",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E7E04010:0001:sw",
+      "parts": [
+        "E7E04010",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "E7E00104:0001:s",
+      "parts": [
+        "E7E00104",
+        "0001",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "E7E04001:0001:sw",
+      "parts": [
+        "E7E04001",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "E7E00140:0001:w",
+      "parts": [
+        "E7E00140",
+        "0001",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "E7E00410:0001:nw",
+      "parts": [
+        "E7E00410",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "C9C05400:0001:nw",
+      "parts": [
+        "C9C05400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "E7E01001:0001:n",
+      "parts": [
+        "E7E01001",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "E7E00104:0001:ne",
+      "parts": [
+        "E7E00104",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "E7E04400:0001:nw",
+      "parts": [
+        "E7E04400",
+        "0001",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "E7E01100:0001:ne",
+      "parts": [
+        "E7E01100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "E7E04100:0001:ne",
+      "parts": [
+        "E7E04100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    }
+  ],
+  "rawLineCount": 19
+}

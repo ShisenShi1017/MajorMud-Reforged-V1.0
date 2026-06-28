@@ -1,0 +1,79 @@
+{
+  "file": "Narnloop.mp",
+  "sha256": "3c62b3d9266d840aaad76b438f7e32b1d1352c09be1e58599c12a09572caba93",
+  "metadataLine": "[NewHaven Arena Loop-1 2150][]",
+  "roomHeaders": [
+    {
+      "code": "NARN",
+      "area": "Newhaven",
+      "label": "Newhaven Arena",
+      "mapNumber": 1,
+      "roomNumber": 2150,
+      "raw": "[NARN:Newhaven:Newhaven Arena-1 2150]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2150,
+        "name": "Newhaven, Arena",
+        "exits": {
+          "N": "1/2152 (Door [any picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "1/2146",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "ABC10002:ABC10002:2:-1:0:::",
+      "parts": [
+        "ABC10002",
+        "ABC10002",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "ABC10002:0000:u",
+      "parts": [
+        "ABC10002",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "38B40051:0000:d",
+      "parts": [
+        "38B40051",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

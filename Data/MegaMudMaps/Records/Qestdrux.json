@@ -1,0 +1,239 @@
+{
+  "file": "Qestdrux.mp",
+  "sha256": "37d042555ed2c201de559eceba968bfff3732e3dac5aba0ad56d86df8c3de4b4",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "QEST",
+      "area": "Trainers",
+      "label": "Quest Hall",
+      "mapNumber": 1,
+      "roomNumber": 1377,
+      "raw": "[QEST:Trainers:Quest Hall-1 1377]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 1377,
+        "name": "Crypt, Shadowed Hall",
+        "exits": {
+          "N": "1/1419",
+          "S": "0",
+          "E": "1/1436 (Class: 13 OK, 0 NO)",
+          "W": "1/1425 (Class: 1 OK, 0 NO)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "DRUX",
+      "area": "Trainers",
+      "label": "Druid Spirit (11)",
+      "mapNumber": 1,
+      "roomNumber": 2303,
+      "raw": "[DRUX:Trainers:Druid Spirit (11)-1 2303]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2303,
+        "name": "Large Tomb",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "1/834 (Text: go portal, enter portal, walk portal)",
+          "W": "1/2299",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B8300059:7EC00050:14:-1:0:brass key::",
+      "parts": [
+        "B8300059",
+        "7EC00050",
+        "14",
+        "-1",
+        "0",
+        "brass key",
+        "",
+        ""
+      ],
+      "commands": [
+        "14",
+        "-1",
+        "0",
+        "brass key"
+      ]
+    },
+    {
+      "raw": "B8300059:0001:e",
+      "parts": [
+        "B8300059",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EC00010:0001:e",
+      "parts": [
+        "7EC00010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EC00050:0001:e",
+      "parts": [
+        "7EC00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EC01140:0001:ne",
+      "parts": [
+        "7EC01140",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "7EC04100:0001:ne",
+      "parts": [
+        "7EC04100",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "7EC04010:0001:e",
+      "parts": [
+        "7EC04010",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EC01040:0001:se",
+      "parts": [
+        "7EC01040",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "7EC00500:0001:ne",
+      "parts": [
+        "7EC00500",
+        "0001",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "7EC05000:0001:se",
+      "parts": [
+        "7EC05000",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "7EC01400:0001:se",
+      "parts": [
+        "7EC01400",
+        "0001",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "7EC04410:0001:e",
+      "parts": [
+        "7EC04410",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "77500060:0401:e[use brass key e]",
+      "parts": [
+        "77500060",
+        "0401",
+        "e[use brass key e]"
+      ],
+      "commands": [
+        "e[use brass key e]"
+      ]
+    },
+    {
+      "raw": "77500055:0000:e",
+      "parts": [
+        "77500055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "7EC00050:0001:e",
+      "parts": [
+        "7EC00050",
+        "0001",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 18
+}

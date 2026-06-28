@@ -1,0 +1,106 @@
+{
+  "file": "Deemslrd.mp",
+  "sha256": "6935c147bfd00719e370faec0a4560783d52772b8a1ef17b07deb3235b976980",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "DEEM",
+      "area": "Black Caves",
+      "label": "Dark-elf Emissary",
+      "mapNumber": 8,
+      "roomNumber": 880,
+      "raw": "[DEEM:Black Caves:Dark-elf Emissary-8 880]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 880,
+        "name": "Lavish Bedroom",
+        "exits": {
+          "N": "8/876 (Door [21 picklocks/strength])",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "SLRD",
+      "area": "Black Caves",
+      "label": "Slave Lord",
+      "mapNumber": 8,
+      "roomNumber": 879,
+      "raw": "[SLRD:Black Caves:Slave Lord-8 879]",
+      "csvMatch": {
+        "mapNumber": 8,
+        "roomNumber": 879,
+        "name": "Lavish Bedroom",
+        "exits": {
+          "N": "0",
+          "S": "8/876 (Door [21 picklocks/strength])",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "8DB00002:8DB00008:2:-1:0:::",
+      "parts": [
+        "8DB00002",
+        "8DB00008",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "8DB00002:0000:n",
+      "parts": [
+        "8DB00002",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "4250001A:0000:n",
+      "parts": [
+        "4250001A",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

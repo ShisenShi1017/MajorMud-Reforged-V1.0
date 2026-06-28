@@ -1,0 +1,141 @@
+{
+  "file": "Vdtdvrdm.mp",
+  "sha256": "ddc34e14e1bba1a977cc2347795d1be51a0652a84baef2fb076d5701919eac5e",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "VDTD",
+      "area": "Volcano",
+      "label": "Volcano, Darkened Tunnels",
+      "mapNumber": 16,
+      "roomNumber": 2011,
+      "raw": "[VDTD:Volcano:Volcano, Darkened Tunnels-16 2011]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2011,
+        "name": "Volcano, Darkened Tunnels",
+        "exits": {
+          "N": "0",
+          "S": "16/2010",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/2115"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "VRDM",
+      "area": "Volcano",
+      "label": "Red Demonling",
+      "mapNumber": 16,
+      "roomNumber": 2118,
+      "raw": "[VRDM:Volcano:Red Demonling-16 2118]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2118,
+        "name": "Volcano, Fiery Lair",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/2117 (Door [71 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B1440004:35200020:5:-1:0:red rock key::",
+      "parts": [
+        "B1440004",
+        "35200020",
+        "5",
+        "-1",
+        "0",
+        "red rock key",
+        "",
+        ""
+      ],
+      "commands": [
+        "5",
+        "-1",
+        "0",
+        "red rock key"
+      ]
+    },
+    {
+      "raw": "B1440004:0000:@party eq phoenix feather",
+      "parts": [
+        "B1440004",
+        "0000",
+        "@party eq phoenix feather"
+      ],
+      "commands": [
+        "@party eq phoenix feather"
+      ]
+    },
+    {
+      "raw": "B1440004:0000:d",
+      "parts": [
+        "B1440004",
+        "0000",
+        "d"
+      ],
+      "commands": [
+        "d"
+      ]
+    },
+    {
+      "raw": "F9C10004:0000:s",
+      "parts": [
+        "F9C10004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F9C00041:0000:w",
+      "parts": [
+        "F9C00041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F9C00090:0000:w[use red rock key w]",
+      "parts": [
+        "F9C00090",
+        "0000",
+        "w[use red rock key w]"
+      ],
+      "commands": [
+        "w[use red rock key w]"
+      ]
+    }
+  ],
+  "rawLineCount": 9
+}

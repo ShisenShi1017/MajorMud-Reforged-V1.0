@@ -1,0 +1,89 @@
+{
+  "file": "MRSGMRDG.mp",
+  "sha256": "5d44e4093d449833168ed56a75d52afacd18f1cc8580f4d29f70e2b2ccb384c2",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "MRSG",
+      "area": "Gang Houses",
+      "label": "Main Road Shop, Gold House",
+      "mapNumber": 15,
+      "roomNumber": 981,
+      "raw": "[MRSG:Gang Houses:Main Road Shop, Gold House-15 981]",
+      "csvMatch": {
+        "mapNumber": 15,
+        "roomNumber": 981,
+        "name": "",
+        "exits": {
+          "N": "0",
+          "S": "1/1383",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MRDG",
+      "area": "Darkwood Forest",
+      "label": "Main Road (Silvermere Gates)",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[MRDG:Darkwood Forest:Main Road (Silvermere Gates)]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "C1A00004:B7200055:2:-1:0:::",
+      "parts": [
+        "C1A00004",
+        "B7200055",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C1A00004:0000:s",
+      "parts": [
+        "C1A00004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "02300055:0000:w",
+      "parts": [
+        "02300055",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

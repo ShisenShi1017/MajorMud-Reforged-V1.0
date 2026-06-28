@@ -1,0 +1,96 @@
+{
+  "file": "Stmhstmp.mp",
+  "sha256": "ac8ef02504539dd59d508674cc607b2da7f2b6867478bfe3c2e99f7ad0473b95",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "STMH",
+      "area": "Silvermere",
+      "label": "Temple Healer (Wounded Messenger)",
+      "mapNumber": 1,
+      "roomNumber": 527,
+      "raw": "[STMH:Silvermere:Temple Healer (Wounded Messenger)-1 527]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 527,
+        "name": "Temple Healer",
+        "exits": {
+          "N": "0",
+          "S": "1/520",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "1/2189"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "STMP",
+      "area": "Silvermere",
+      "label": "Temple Entrance",
+      "mapNumber": 1,
+      "roomNumber": 520,
+      "raw": "[STMP:Silvermere:Temple Entrance-1 520]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 520,
+        "name": "Temple Hall",
+        "exits": {
+          "N": "1/527",
+          "S": "1/522 (Alignment: Saint to Seedy)",
+          "E": "1/2316",
+          "W": "1/521 (Alignment: Saint to Seedy)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "24040004:80400055:1:-1:0:::",
+      "parts": [
+        "24040004",
+        "80400055",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "24040004:0000:s",
+      "parts": [
+        "24040004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

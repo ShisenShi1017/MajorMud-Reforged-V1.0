@@ -1,0 +1,210 @@
+{
+  "file": "ACCDIDAH.mp",
+  "sha256": "696b9b529f3db981ebae10d0ff8e2f6a8b1383cf5334e0f00f06ddaaeb937080",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "ACCD",
+      "area": "Arlysia",
+      "label": "Arlysia, City Docks",
+      "mapNumber": 17,
+      "roomNumber": 580,
+      "raw": "[ACCD:Arlysia:Arlysia, City Docks-17 580]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 580,
+        "name": "Arlysia, City Docks",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "17/1124",
+          "NE": "17/579",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "IDAH",
+      "area": "Arlysia",
+      "label": "Intersection of Dock Street & Haven Stre",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[IDAH:Arlysia:Intersection of Dock Street & Haven Stre]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "42D00140:E0500054:13:-1:0:::",
+      "parts": [
+        "42D00140",
+        "E0500054",
+        "13",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "13",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "42D00140:0000:ne",
+      "parts": [
+        "42D00140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "42D04001:0000:n",
+      "parts": [
+        "42D04001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "42D00005:0000:n",
+      "parts": [
+        "42D00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "42D00005:0000:n",
+      "parts": [
+        "42D00005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "42D00104:0000:ne",
+      "parts": [
+        "42D00104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "42D05000:0000:se",
+      "parts": [
+        "42D05000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "42D00410:0000:e",
+      "parts": [
+        "42D00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "47000055:0000:e",
+      "parts": [
+        "47000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "DDA00055:0000:e",
+      "parts": [
+        "DDA00055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:e",
+      "parts": [
+        "9C000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:e",
+      "parts": [
+        "9C000055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000058:0000:e",
+      "parts": [
+        "9C000058",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "9C000054:0000:e",
+      "parts": [
+        "9C000054",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 17
+}

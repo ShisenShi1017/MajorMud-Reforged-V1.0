@@ -1,0 +1,143 @@
+{
+  "file": "Frutravf.mp",
+  "sha256": "11093c9866055733b2b36e30336977ea1ba296502f30186108c8dbf7a7a9f641",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FRUT",
+      "area": "Northern Forests",
+      "label": "Green Fruit Tree",
+      "mapNumber": 3,
+      "roomNumber": 148,
+      "raw": "[FRUT:Northern Forests:Green Fruit Tree-3 148]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 148,
+        "name": "Small Earthen Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "3/147",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "RAVF",
+      "area": "Northern Forests",
+      "label": "Ravaged Path Fork",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[RAVF:Northern Forests:Ravaged Path Fork]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "5E710000:BBC01410:7:-1:0:::",
+      "parts": [
+        "5E710000",
+        "BBC01410",
+        "7",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "7",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "5E710000:0001:u",
+      "parts": [
+        "5E710000",
+        "0001",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "F7800140:0000:w",
+      "parts": [
+        "F7800140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F7800014:0000:s",
+      "parts": [
+        "F7800014",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "F7800041:0000:w",
+      "parts": [
+        "F7800041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "4D704410:0000:sw",
+      "parts": [
+        "4D704410",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "F7800140:0000:w",
+      "parts": [
+        "F7800140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "F7800050:0000:w",
+      "parts": [
+        "F7800050",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 12
+}

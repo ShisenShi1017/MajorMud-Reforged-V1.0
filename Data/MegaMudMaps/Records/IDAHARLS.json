@@ -1,0 +1,111 @@
+{
+  "file": "IDAHARLS.mp",
+  "sha256": "fbd2e54c43093f0848f6be98c760936a0383f42773514c75112b4e9c69b037fb",
+  "metadataLine": "[][Spork ZSpoon]",
+  "roomHeaders": [
+    {
+      "code": "IDAH",
+      "area": "Arlysia",
+      "label": "Intersection of Dock Street & Haven Stre",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[IDAH:Arlysia:Intersection of Dock Street & Haven Stre]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "ARLS",
+      "area": "Arlysia",
+      "label": "Lud's Smithy",
+      "mapNumber": 17,
+      "roomNumber": 2438,
+      "raw": "[ARLS:Arlysia:Lud's Smithy-17 2438]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2438,
+        "name": "Lud's Smithy",
+        "exits": {
+          "N": "0",
+          "S": "17/2293",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "E0500054:E0700004:4:-1:0:::",
+      "parts": [
+        "E0500054",
+        "E0700004",
+        "4",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "4",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "E0500054:0000:w",
+      "parts": [
+        "E0500054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000054:0000:w",
+      "parts": [
+        "9C000054",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000058:0000:w",
+      "parts": [
+        "9C000058",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "9C000055:0000:n",
+      "parts": [
+        "9C000055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 8
+}

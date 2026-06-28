@@ -1,0 +1,306 @@
+{
+  "file": "Dygrsilp.mp",
+  "sha256": "41940418ddf9a09759754f2a71e494a5c24e1e843974902c842609f1e30d290f",
+  "metadataLine": "[][Dumak]",
+  "roomHeaders": [
+    {
+      "code": "DYGR",
+      "area": "Northern Forests",
+      "label": "Dying Grove",
+      "mapNumber": 3,
+      "roomNumber": 198,
+      "raw": "[DYGR:Northern Forests:Dying Grove-3 198]",
+      "csvMatch": {
+        "mapNumber": 3,
+        "roomNumber": 198,
+        "name": "Dying Grove",
+        "exits": {
+          "N": "0",
+          "S": "3/197",
+          "E": "0",
+          "W": "3/199",
+          "NE": "3/105",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SILP",
+      "area": "Northern Forests",
+      "label": "Silvery Pool",
+      "mapNumber": 1,
+      "roomNumber": 2411,
+      "raw": "[SILP:Northern Forests:Silvery Pool-1 2411]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 2411,
+        "name": "Silvery Pool",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "3/85",
+          "NE": "3/38",
+          "NW": "3/53",
+          "SE": "1/2410",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "94700144:E3001540:20:-1:0:::",
+      "parts": [
+        "94700144",
+        "E3001540",
+        "20",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "20",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "94700144:0000:ne",
+      "parts": [
+        "94700144",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "B4E04410:0000:nw",
+      "parts": [
+        "B4E04410",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "16101100:0000:ne",
+      "parts": [
+        "16101100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "16104410:0000:e",
+      "parts": [
+        "16104410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "F7800140:0000:ne",
+      "parts": [
+        "F7800140",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "5E804011:0000:n",
+      "parts": [
+        "5E804011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F7800005:0000:n",
+      "parts": [
+        "F7800005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F7804005:0000:n",
+      "parts": [
+        "F7804005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "F7800005:0000:n",
+      "parts": [
+        "F7800005",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "BBC04104:0000:ne",
+      "parts": [
+        "BBC04104",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BBC04100:0000:ne",
+      "parts": [
+        "BBC04100",
+        "0000",
+        "ne"
+      ],
+      "commands": [
+        "ne"
+      ]
+    },
+    {
+      "raw": "BBC04010:0000:e",
+      "parts": [
+        "BBC04010",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BBC01040:0000:se",
+      "parts": [
+        "BBC01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BBC04400:0000:sw",
+      "parts": [
+        "BBC04400",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "BBC00144:0000:s",
+      "parts": [
+        "BBC00144",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "BBC04011:0000:e",
+      "parts": [
+        "BBC04011",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BBC01040:0000:se",
+      "parts": [
+        "BBC01040",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BBC00410:0000:e",
+      "parts": [
+        "BBC00410",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "BBC01140:0000:se",
+      "parts": [
+        "BBC01140",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "BBC01400:0000:se",
+      "parts": [
+        "BBC01400",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    }
+  ],
+  "rawLineCount": 24
+}

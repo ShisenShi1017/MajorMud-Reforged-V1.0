@@ -1,0 +1,271 @@
+{
+  "file": "VENTVSWL.mp",
+  "sha256": "53f376a47e94654f2e3db75f1bc1e09ab422d461b6e7d71cc44f46187957e260",
+  "metadataLine": "[][zarbo]",
+  "roomHeaders": [
+    {
+      "code": "VENT",
+      "area": "Volcano",
+      "label": "Volcano Entrance",
+      "mapNumber": 16,
+      "roomNumber": 1874,
+      "raw": "[VENT:Volcano:Volcano Entrance-16 1874]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1874,
+        "name": "Undermountain Caverns",
+        "exits": {
+          "N": "Action#1 [on the U exit of this room]: say tharamon dur slamen, say tharamon dur slamen, say tharamon dur slamen",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "16/1873",
+          "SW": "0",
+          "U": "16/1875 (Hidden/Needs 1 Actions, any order)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "VSWL",
+      "area": "Volcano",
+      "label": "Volcano, start of west side loop",
+      "mapNumber": 16,
+      "roomNumber": 1980,
+      "raw": "[VSWL:Volcano:Volcano, start of west side loop-16 1980]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 1980,
+        "name": "Volcano, Darkened Tunnels",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "16/1981",
+          "SW": "16/1971",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "BA701000:B1405000:17:-1:0:::",
+      "parts": [
+        "BA701000",
+        "B1405000",
+        "17",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "17",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "BA701000:0000:say tharamon dur slamen",
+      "parts": [
+        "BA701000",
+        "0000",
+        "say tharamon dur slamen"
+      ],
+      "commands": [
+        "say tharamon dur slamen"
+      ]
+    },
+    {
+      "raw": "BA701000:0000:u",
+      "parts": [
+        "BA701000",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "69F40040:0000:w",
+      "parts": [
+        "69F40040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "69F10010:0000:u",
+      "parts": [
+        "69F10010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "69F40040:0000:w",
+      "parts": [
+        "69F40040",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "69F10010:0000:u",
+      "parts": [
+        "69F10010",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "B1440001:0000:n",
+      "parts": [
+        "B1440001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B1400144:0000:w",
+      "parts": [
+        "B1400144",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400011:0000:n",
+      "parts": [
+        "B1400011",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B1400015:0000:n",
+      "parts": [
+        "B1400015",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "B1400044:0000:w",
+      "parts": [
+        "B1400044",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1404010:0000:sw",
+      "parts": [
+        "B1404010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "B1400140:0000:w",
+      "parts": [
+        "B1400140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1404010:0000:sw",
+      "parts": [
+        "B1404010",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "B1400500:0000:nw",
+      "parts": [
+        "B1400500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "B1401080:0000:w",
+      "parts": [
+        "B1401080",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "B1400420:0000:nw",
+      "parts": [
+        "B1400420",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    }
+  ],
+  "rawLineCount": 21
+}

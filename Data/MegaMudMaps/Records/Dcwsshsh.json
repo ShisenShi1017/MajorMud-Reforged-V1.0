@@ -1,0 +1,96 @@
+{
+  "file": "Dcwsshsh.mp",
+  "sha256": "59dee89eedbb97724863235c97ec35e40637856b5f16755d2ac543ccb459d020",
+  "metadataLine": "[][Fizban the Fabulous]",
+  "roomHeaders": [
+    {
+      "code": "DCWS",
+      "area": "Ocean",
+      "label": "Damp Cavern, Wellspring",
+      "mapNumber": 16,
+      "roomNumber": 637,
+      "raw": "[DCWS:Ocean:Damp Cavern, Wellspring-16 637]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 637,
+        "name": "Damp Cavern, Wellspring",
+        "exits": {
+          "N": "0",
+          "S": "16/2666 (Text: go wellspring)",
+          "E": "0",
+          "W": "0",
+          "NE": "16/638",
+          "NW": "16/636",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "16/2666 (Text: go fountain)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    },
+    {
+      "code": "SHSH",
+      "area": "Ocean",
+      "label": "Seher'Sahham",
+      "mapNumber": 16,
+      "roomNumber": 2666,
+      "raw": "[SHSH:Ocean:Seher'Sahham-16 2666]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2666,
+        "name": "Sandstone Room",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/2141",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "A3A00500:87F00010:1:-1:0:::",
+      "parts": [
+        "A3A00500",
+        "87F00010",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "A3A00500:0000:go fountain",
+      "parts": [
+        "A3A00500",
+        "0000",
+        "go fountain"
+      ],
+      "commands": [
+        "go fountain"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

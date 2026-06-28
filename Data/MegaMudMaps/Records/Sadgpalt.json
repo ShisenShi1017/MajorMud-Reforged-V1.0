@@ -1,0 +1,99 @@
+{
+  "file": "Sadgpalt.mp",
+  "sha256": "842100679513679361e8d1ff5238f3d39ecb62874f0c15e3b7ebe75b4b9f557c",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SADG",
+      "area": "Silvermere",
+      "label": "Adventurer's Guild",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SADG:Silvermere:Adventurer's Guild]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "PALT",
+      "area": "Trainers",
+      "label": "Paladin Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 499,
+      "raw": "[PALT:Trainers:Paladin Trainer (2-10)-1 499]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 499,
+        "name": "Paladin Training Room",
+        "exits": {
+          "N": "0",
+          "S": "1/495",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "D4200014:6B900004:3:-1:0:::",
+      "parts": [
+        "D4200014",
+        "6B900004",
+        "3",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "3",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "D4200014:0000:e",
+      "parts": [
+        "D4200014",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:e",
+      "parts": [
+        "D4200055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D4200055:0000:n",
+      "parts": [
+        "D4200055",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 7
+}

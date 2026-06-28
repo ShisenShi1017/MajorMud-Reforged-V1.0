@@ -1,0 +1,158 @@
+{
+  "file": "SJLMDCJP.mp",
+  "sha256": "2762fbb7c7a6a36785f4999cdb9d47441c6d87daa9bc3349c14b5e88cb15a98f",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "SJLM",
+      "area": "Jungle",
+      "label": "Shallow Jungle, Large Mound",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[SJLM:Jungle:Shallow Jungle, Large Mound]",
+      "csvMatch": null,
+      "evidence": []
+    },
+    {
+      "code": "DCJP",
+      "area": "Jungle",
+      "label": "Jungle NPP Portal-1-2685",
+      "mapNumber": null,
+      "roomNumber": null,
+      "raw": "[DCJP:Jungle:Jungle NPP Portal-1-2685]",
+      "csvMatch": null,
+      "evidence": []
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "71E00041:01E00004:10:-1:0:::",
+      "parts": [
+        "71E00041",
+        "01E00004",
+        "10",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "10",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "71E00041:0000:n",
+      "parts": [
+        "71E00041",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "31804414:0000:nw",
+      "parts": [
+        "31804414",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31805001:0000:sw",
+      "parts": [
+        "31805001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31800500:0000:nw",
+      "parts": [
+        "31800500",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31805404:0000:nw",
+      "parts": [
+        "31805404",
+        "0000",
+        "nw"
+      ],
+      "commands": [
+        "nw"
+      ]
+    },
+    {
+      "raw": "31805001:0000:sw",
+      "parts": [
+        "31805001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "31800140:0000:w",
+      "parts": [
+        "31800140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "31805110:0000:se",
+      "parts": [
+        "31805110",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "31804400:0001:sw",
+      "parts": [
+        "31804400",
+        "0001",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "01E00101:0001:n",
+      "parts": [
+        "01E00101",
+        "0001",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    }
+  ],
+  "rawLineCount": 14
+}

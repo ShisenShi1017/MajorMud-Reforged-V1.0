@@ -1,0 +1,106 @@
+{
+  "file": "Pritstmp.mp",
+  "sha256": "8aafa169b6bd8443ccab8a446e4317750a23e4064f6c0cb8bb46412d0a60a9ec",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "PRIT",
+      "area": "Trainers",
+      "label": "Priest Trainer (2-10)",
+      "mapNumber": 1,
+      "roomNumber": 526,
+      "raw": "[PRIT:Trainers:Priest Trainer (2-10)-1 526]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 526,
+        "name": "Priestly Training Room",
+        "exits": {
+          "N": "1/521",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "STMP",
+      "area": "Silvermere",
+      "label": "Temple Entrance",
+      "mapNumber": 1,
+      "roomNumber": 520,
+      "raw": "[STMP:Silvermere:Temple Entrance-1 520]",
+      "csvMatch": {
+        "mapNumber": 1,
+        "roomNumber": 520,
+        "name": "Temple Hall",
+        "exits": {
+          "N": "1/527",
+          "S": "1/522 (Alignment: Saint to Seedy)",
+          "E": "1/2316",
+          "W": "1/521 (Alignment: Saint to Seedy)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "04200001:80400055:2:-1:0:::",
+      "parts": [
+        "04200001",
+        "80400055",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "04200001:0000:n",
+      "parts": [
+        "04200001",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "80400055:0000:e",
+      "parts": [
+        "80400055",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 6
+}

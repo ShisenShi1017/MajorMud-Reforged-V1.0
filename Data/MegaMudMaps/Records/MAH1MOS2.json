@@ -1,0 +1,97 @@
+{
+  "file": "MAH1MOS2.mp",
+  "sha256": "abb784095f7bf01b3ca8ca8f047a0ff477011dd3b954414579aa96cee88523c0",
+  "metadataLine": "[][Darkwing]",
+  "roomHeaders": [
+    {
+      "code": "MAH1",
+      "area": "Blackwood Forest",
+      "label": "Mausoleum, Stone Hallway !st Flr",
+      "mapNumber": 17,
+      "roomNumber": 2068,
+      "raw": "[MAH1:Blackwood Forest:Mausoleum, Stone Hallway !st Flr-17 2068]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2068,
+        "name": "Mausoleum, Stone Hallway",
+        "exits": {
+          "N": "17/2067",
+          "S": "0",
+          "E": "0",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "17/2097 (Hidden/Needs 2 Actions, specific order)"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "MOS2",
+      "area": "Blackwood Forest",
+      "label": "Mausoleum, Second Floor",
+      "mapNumber": 17,
+      "roomNumber": 2097,
+      "raw": "[MOS2:Blackwood Forest:Mausoleum, Second Floor-17 2097]",
+      "csvMatch": {
+        "mapNumber": 17,
+        "roomNumber": 2097,
+        "name": "Masoleum, Stone Hallway",
+        "exits": {
+          "N": "17/2098",
+          "S": "17/2120",
+          "E": "0",
+          "W": "Action [on the U exit of this room]: pull lever, push lever, move lever",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "17/2068 (Hidden/Needs 1 Actions, any order)",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "0D900001:79E00005:1:-1:0::MAUEMAH1.mp:",
+      "parts": [
+        "0D900001",
+        "79E00005",
+        "1",
+        "-1",
+        "0",
+        "",
+        "MAUEMAH1.mp",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0",
+        "MAUEMAH1.mp"
+      ]
+    },
+    {
+      "raw": "0D900001:0000:d[]",
+      "parts": [
+        "0D900001",
+        "0000",
+        "d[]"
+      ],
+      "commands": [
+        "d[]"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

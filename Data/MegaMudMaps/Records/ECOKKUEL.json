@@ -1,0 +1,96 @@
+{
+  "file": "ECOKKUEL.mp",
+  "sha256": "6c7c5160d9ffe0090941962b8c6218190564f2f0249538ea7b829715a29a7c74",
+  "metadataLine": "[][Winterhawk]",
+  "roomHeaders": [
+    {
+      "code": "ECOK",
+      "area": "Jungle",
+      "label": "Earthen Catacombs, Outside Kuel",
+      "mapNumber": 16,
+      "roomNumber": 2268,
+      "raw": "[ECOK:Jungle:Earthen Catacombs, Outside Kuel-16  2268]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2268,
+        "name": "Earthen Catacombs",
+        "exits": {
+          "N": "16/2267",
+          "S": "0",
+          "E": "0",
+          "W": "16/2667 (Class: 15 OK, 0 NO)",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT partial normalized name match"
+      ]
+    },
+    {
+      "code": "KUEL",
+      "area": "Jungle",
+      "label": "Kuel",
+      "mapNumber": 16,
+      "roomNumber": 2667,
+      "raw": "[KUEL:Jungle:Kuel-16 2667]",
+      "csvMatch": {
+        "mapNumber": 16,
+        "roomNumber": 2667,
+        "name": "Earthen Catacombs, Meditation Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "16/2268 (Class: 15 OK, 0 NO)",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "B8100041:50700010:1:-1:0:::",
+      "parts": [
+        "B8100041",
+        "50700010",
+        "1",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "1",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "B8100041:0000:w",
+      "parts": [
+        "B8100041",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    }
+  ],
+  "rawLineCount": 5
+}

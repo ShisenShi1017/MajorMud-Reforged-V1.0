@@ -1,0 +1,49 @@
+{
+  "file": "Sdsgsdwl.mp",
+  "sha256": "0bd7b7bd2d1da9e2122145d4a43f46011f91b68ad80f1a7869aec61a73e945fd",
+  "metadataLine": "[][Olorin]",
+  "roomHeaders": [],
+  "routeLines": [
+    {
+      "raw": "C5806000:FDA10040:2:-1:0:::",
+      "parts": [
+        "C5806000",
+        "FDA10040",
+        "2",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "2",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "C5806000:0000:se",
+      "parts": [
+        "C5806000",
+        "0000",
+        "se"
+      ],
+      "commands": [
+        "se"
+      ]
+    },
+    {
+      "raw": "C5800810:0000:e",
+      "parts": [
+        "C5800810",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    }
+  ],
+  "rawLineCount": 4
+}

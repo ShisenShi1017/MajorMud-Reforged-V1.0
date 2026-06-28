@@ -1,0 +1,206 @@
+{
+  "file": "Falcfrt1.mp",
+  "sha256": "a8927cf0bd7aa5606d55b69eb2cea304b682550f2a3ae650a2d3eb11ac50fc7e",
+  "metadataLine": "[][]",
+  "roomHeaders": [
+    {
+      "code": "FALC",
+      "area": "Black Fort",
+      "label": "Alchemist",
+      "mapNumber": 7,
+      "roomNumber": 1245,
+      "raw": "[FALC:Black Fort:Alchemist-7 1245]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1245,
+        "name": "Large Dank Chamber",
+        "exits": {
+          "N": "0",
+          "S": "0",
+          "E": "7/1238 (Door [11 picklocks/strength])",
+          "W": "0",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match"
+      ]
+    },
+    {
+      "code": "FRT1",
+      "area": "Black Fort",
+      "label": "Black Fortress",
+      "mapNumber": 7,
+      "roomNumber": 1182,
+      "raw": "[FRT1:Black Fort:Black Fortress-7 1182]",
+      "csvMatch": {
+        "mapNumber": 7,
+        "roomNumber": 1182,
+        "name": "Black Fortress",
+        "exits": {
+          "N": "7/1203",
+          "S": "7/1193",
+          "E": "7/1183",
+          "W": "7/1181",
+          "NE": "0",
+          "NW": "0",
+          "SE": "0",
+          "SW": "0",
+          "U": "0",
+          "D": "0"
+        }
+      },
+      "evidence": [
+        "rooms.TXT map/room match",
+        "rooms.TXT exact normalized name match"
+      ]
+    }
+  ],
+  "routeLines": [
+    {
+      "raw": "DFF00020:A4F00055:11:-1:0:::",
+      "parts": [
+        "DFF00020",
+        "A4F00055",
+        "11",
+        "-1",
+        "0",
+        "",
+        "",
+        ""
+      ],
+      "commands": [
+        "11",
+        "-1",
+        "0"
+      ]
+    },
+    {
+      "raw": "DFF00020:0000:e",
+      "parts": [
+        "DFF00020",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D660009A:0000:e",
+      "parts": [
+        "D660009A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D660005A:0000:e",
+      "parts": [
+        "D660005A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "D660005A:0000:e",
+      "parts": [
+        "D660005A",
+        "0000",
+        "e"
+      ],
+      "commands": [
+        "e"
+      ]
+    },
+    {
+      "raw": "78C00045:0000:s",
+      "parts": [
+        "78C00045",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    },
+    {
+      "raw": "78C04001:0000:sw",
+      "parts": [
+        "78C04001",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "78C04100:0000:sw",
+      "parts": [
+        "78C04100",
+        "0000",
+        "sw"
+      ],
+      "commands": [
+        "sw"
+      ]
+    },
+    {
+      "raw": "78C00140:0000:w",
+      "parts": [
+        "78C00140",
+        "0000",
+        "w"
+      ],
+      "commands": [
+        "w"
+      ]
+    },
+    {
+      "raw": "78C00051:0000:n",
+      "parts": [
+        "78C00051",
+        "0000",
+        "n"
+      ],
+      "commands": [
+        "n"
+      ]
+    },
+    {
+      "raw": "D4810004:0000:u",
+      "parts": [
+        "D4810004",
+        "0000",
+        "u"
+      ],
+      "commands": [
+        "u"
+      ]
+    },
+    {
+      "raw": "D4840004:0000:s",
+      "parts": [
+        "D4840004",
+        "0000",
+        "s"
+      ],
+      "commands": [
+        "s"
+      ]
+    }
+  ],
+  "rawLineCount": 16
+}
