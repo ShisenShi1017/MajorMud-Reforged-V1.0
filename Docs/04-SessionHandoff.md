@@ -1,25 +1,23 @@
 # Session Handoff
 
-## Current Focus
+## Current focus
+Native MajorMud `.DAT` decoding for standalone Reforged database conversion.
 
-Native `.DAT` decoding for the standalone MajorMud Reforged database.
+## Latest database version
+Database Version 0006 - DAT Decode Correction and Continuation.
 
-## Last Completed
+## Important correction
+Do not assume numbers inside `.DAT` records are counts. Many are skills, abilities, flags, lookup IDs, offsets, bitfields, or references.
 
-Database Version 0005 adds a native DAT probe tool and decode reports.
+## Verified so far
+- Native `.DAT` files are cataloged.
+- CSV exports are available for cross-checking.
+- Several files show strong record-size patterns:
+  - `WCCSHOPS.DAT`: 512-byte shop-like slots.
+  - `WCCSPELS.DAT`: 256-byte spell-like slots.
+  - `WCCITEMS.DAT`: 1024-byte item-like blocks for at least the base item table.
+  - `WCCCLASS.DAT`: 153-byte class record pattern after header/padding.
+  - `WCCRACE.DAT`: 126-byte race record pattern after header/padding.
 
-## Key Findings
-
-- Shops are the strongest next full decode target: 512-byte blocks, ID at `+6`, name at `+10`.
-- Classes and races have complete CSV name matches but need final stride/field mapping.
-- Spells and items are partially matched; missing CSV records likely involve update files or spelling/format differences.
-- Large files `WCCMP001.DAT` and `WCCUPDAT.DAT` remain cataloged but not fully decoded.
-
-## Next Recommended Task
-
-Implement a focused `WCCSHOPS.DAT` structural decoder that maps each shop block to editable JSON and verifies against `shops.TXT` by shop number.
-
-## Rules Reminder
-
-All future code patches and database versions must apply from their own extracted folder using an `Apply-*.bat` file.
-
+## Next recommended task
+Fully decode `WCCCLASS.DAT` and `WCCRACE.DAT` first, because they are small and align clearly with CSV exports.

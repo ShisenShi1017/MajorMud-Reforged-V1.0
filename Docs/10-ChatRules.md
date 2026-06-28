@@ -1,14 +1,14 @@
 # Chat and Development Rules
 
-- The project is MajorMud Reforged.
-- Code changes are patches.
-- Converted/imported game-data releases are database versions.
-- Every patch or database version must run from its own extracted folder using an `Apply-*.bat` file.
-- The apply script must auto-locate the project folder when possible and must not require manual path entry.
+- Treat the uploaded GitHub ZIP/project as the code source of truth.
+- Treat user-provided summaries as the architecture/design authority when the original PDF is unavailable.
+- Database versions are for converted/imported game data.
+- Code patches are for server/editor/client code changes.
+- Every database version and patch must update documentation.
+- Every official update must run from its own extracted folder.
+- Every official update must include an `Apply-*.bat` file.
+- Do not require the user to type the project path when avoidable; the apply script should locate the project root.
 - Never overwrite `Saves/`.
-- Never overwrite original `ImportedDatabases/` source files.
-- The Reforged server must eventually run from editable `Data/` only.
-- Imported/original MajorMud files are reference/fallback after conversion.
-- Every patch/database version must update documentation.
-- Never claim full DAT decoding until verified.
-
+- Never overwrite `ImportedDatabases/`.
+- Never claim full import/decoding is complete unless every table/file/field/record is verified.
+- Numeric fields in `.DAT` files must be labeled carefully: counts, IDs, flags, skills, offsets, references, and unknowns are different things.
