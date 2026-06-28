@@ -1,14 +1,23 @@
 # Changelog
 
-## CodeUpdate-0003 — Layout Freeze, Manifest, and Redundancy Cleanup
+## Code Update 0004 — Core Library Foundation
 
-- Added root `ProjectManifest.json`.
-- Froze the repository layout for Core/Server development.
-- Removed redundant duplicate README text files where Markdown equivalents exist.
-- Removed obsolete generated apply reports from active repository tracking.
-- Added manifest-driven update rules.
-- Updated project docs and session handoff.
+- Started Milestone 1: Core Library.
+- Added initial shared Core source contracts.
+- Added validation, logging, versioning, path, data record, and import audit models.
+- Added source/provenance tracking model.
+- Added serialization and event bus contract notes.
+- Updated README, VERSION, ProjectManifest, docs, release notes, and health report.
 
-## Previous history
+## Code Update 0003 — Layout Freeze / Manifest Cleanup
 
-Earlier Database Versions established editable `Data/`, CSV import baselines, native DAT cataloging, MegaMud MP knowledge integration, and a server-ready database baseline. Earlier Code Updates reorganized the repository and deduplicated prototype files.
+- Added project manifest and layout freeze docs.
+- Standardized executable folders.
+
+## Code Update 0002 — Repository Deduplication
+
+- Removed redundant prototype clutter while preserving protected project data.
+
+## Code Update 0001 — Repository Reorganization & Core Foundation
+
+- Reorganized the repository into the long-term layout.

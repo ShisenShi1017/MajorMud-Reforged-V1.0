@@ -1,11 +1,9 @@
-# MajorMud Reforged Importer
+# Importer
 
-This folder is reserved for the Importer application source and app-specific assets.
+This application will use the shared `Core` contracts introduced in Code Update 0004.
 
-Status after Code Update 0001:
-- Folder created as part of the approved streamlined layout.
-- No executable is claimed in this folder.
-- Future compiled output belongs under `Bin/Windows/Importer/`.
+Current state: scaffold/documentation only. No compiled executable is claimed by this update.
 
-Long-term rule:
-- Shared models, validation, serialization, logging, and import logic belong in `Core/`, not duplicated here.
+Future executable location:
+
+`Bin/Windows/Importer/`

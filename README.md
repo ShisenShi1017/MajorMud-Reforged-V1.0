@@ -1,49 +1,48 @@
 # MajorMud Reforged
 
-**Current status:** Repository layout frozen for Core and Server development.
+MajorMud Reforged is being built as a standalone MajorMud server with editable project data, a future real-time editor, and eventual client work inspired by MegaMud 2.0.
 
-## Current Versions
+## Current Status
 
-- Current Code Update: **CodeUpdate-0003 — Layout Freeze, Manifest, and Redundancy Cleanup**
-- Current Database Version: **DatabaseVersion-0009 — Server-Ready Data Baseline**
-- Current milestone: **Core + Standalone Server Bootstrap**
+- Project Version: 0.1.0
+- Latest Code Update: 0004 — Core Library Foundation
+- Latest Database Version: 0009 — Server-Ready Data Baseline
+- Current Milestone: Milestone 1 — Core Library
 
-## What changed in this update
+## What Changed In This Update
 
-- Added root `ProjectManifest.json` as the machine-readable project status file.
-- Standardized the active repository layout.
-- Removed redundant duplicate `README.txt` files where matching `README.md` files already exist.
-- Removed old generated apply reports that are no longer required as active repository files.
-- Kept all required database, save, source, docs, tools, and update folders.
-- Confirmed executable outputs belong in their own folders under `Bin/Windows/`.
+Code Update 0004 starts the Core library foundation.
 
-## Active layout
+Added:
 
-```text
-Apps/             Application source folders: Launcher, Server, Editor, Importer, Client
-Backups/          Project backups created by update/apply tools
-Bin/              Future built executables, each in its own folder
-Core/             Shared models, validation, serialization, logging, configuration
-Data/             Reforged editable standalone game database
-Docs/             Project history, architecture, rules, handoff, and design notes
-ImportedDatabases/ Original/reference-only imports; never overwritten
-Logs/             Runtime and validation logs
-Reports/          Audit and validation reports
-Saves/            Player/server saves; never overwritten
-Tools/            Importer, updater, validation, and developer tools
-Updates/          Code Updates and Database Versions
-```
+- Shared Core source contracts under `Core/Source/MajorMud.Core/`
+- Project versioning model
+- Repository path/configuration contract
+- Logging model
+- Validation models
+- Base editable data record model
+- Source/provenance reference model
+- Import audit record
+- Serialization and event bus contract notes
+- Repository health report
+- Updated documentation and handoff notes
 
-## Important rules
+## Important Runtime Rule
 
-- The server must load from `Data/`, not from `.DAT`, `.mdb`, `.accdb`, or CSV files.
-- `ImportedDatabases/` is reference-only after conversion.
-- `Saves/` and `ImportedDatabases/` must not be overwritten by updates.
-- Every Code Update and Database Version must run from its own extracted folder.
-- Every update must update this README and the docs.
-- Executables must live in their own folders under `Bin/Windows/`.
-- No executable is claimed unless it has actually been created.
+The future server must load from `Data/`, not from original `.DAT`, `.MDB`, `.ACCDB`, CSV, or MegaMud `.mp` files. Original files remain reference/import sources only.
 
-## Next development step
+## Executables
 
-Begin **Core Foundation** implementation, then build the standalone server around Core.
+No executable is included or claimed in this update.
+
+Future Windows executables must live in their own folders:
+
+- `Bin/Windows/Launcher/`
+- `Bin/Windows/Server/`
+- `Bin/Windows/Editor/`
+- `Bin/Windows/Importer/`
+- `Bin/Windows/Client/`
+
+## Next Recommended Step
+
+Build the Core data loader and validation service, then wire the server bootstrap to Core.

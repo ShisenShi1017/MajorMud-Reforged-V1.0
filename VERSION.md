@@ -1,10 +1,7 @@
-# MajorMud Reforged Version Status
+# Version
 
-- Code Update: CodeUpdate-0003
-- Database Version: DatabaseVersion-0009
-- Repository Layout: Frozen
-- Current Phase: Core Foundation and Standalone Server Bootstrap
-- Data Source for Runtime: Data/
-- ImportedDatabases Status: Reference-only
-- Saves Status: Protected
-- Executable Policy: Each executable gets its own folder under Bin/Windows/
+Project Version: 0.1.0
+Latest Code Update: 0004
+Latest Database Version: 0009
+Current Milestone: Milestone 1 — Core Library
+Status: Core foundation started; no compiled executables claimed.
