@@ -1,0 +1,859 @@
+{
+  "found": [
+    {
+      "number": "3",
+      "name": "General Store",
+      "offset": 1546
+    },
+    {
+      "number": "4",
+      "name": "Temple",
+      "offset": 2058
+    },
+    {
+      "number": "5",
+      "name": "Sword Shop",
+      "offset": 2570
+    },
+    {
+      "number": "6",
+      "name": "Armour Shop, Torso/Legs",
+      "offset": 3082
+    },
+    {
+      "number": "7",
+      "name": "Inn",
+      "offset": 3594
+    },
+    {
+      "number": "9",
+      "name": "Mage Spell Shop",
+      "offset": 4618
+    },
+    {
+      "number": "10",
+      "name": "Axes",
+      "offset": 5130
+    },
+    {
+      "number": "12",
+      "name": "Leatherworks, Torso/Legs/Hands",
+      "offset": 5642
+    },
+    {
+      "number": "13",
+      "name": "Concession Stand",
+      "offset": 6154
+    },
+    {
+      "number": "14",
+      "name": "Warrior Training Room",
+      "offset": 6666
+    },
+    {
+      "number": "15",
+      "name": "Paladin Training Room",
+      "offset": 7178
+    },
+    {
+      "number": "16",
+      "name": "Leatherworks, Head/Feet",
+      "offset": 7690
+    },
+    {
+      "number": "18",
+      "name": "Blunt Weapons",
+      "offset": 8714
+    },
+    {
+      "number": "19",
+      "name": "Witchunter Training Room",
+      "offset": 9226
+    },
+    {
+      "number": "20",
+      "name": "Missionary Training Room",
+      "offset": 9738
+    },
+    {
+      "number": "21",
+      "name": "Gypsy Training Room",
+      "offset": 10250
+    },
+    {
+      "number": "22",
+      "name": "Warlock Training Room",
+      "offset": 10762
+    },
+    {
+      "number": "23",
+      "name": "Druid Training Room",
+      "offset": 11274
+    },
+    {
+      "number": "24",
+      "name": "Ranger Training Room",
+      "offset": 11786
+    },
+    {
+      "number": "25",
+      "name": "Thief Training Room",
+      "offset": 12298
+    },
+    {
+      "number": "26",
+      "name": "Ninja Training Room",
+      "offset": 12810
+    },
+    {
+      "number": "27",
+      "name": "Bard Training Room",
+      "offset": 13322
+    },
+    {
+      "number": "28",
+      "name": "Mage Training Room",
+      "offset": 13834
+    },
+    {
+      "number": "29",
+      "name": "Priest Training Room",
+      "offset": 14346
+    },
+    {
+      "number": "30",
+      "name": "Cleric Training Room",
+      "offset": 14858
+    },
+    {
+      "number": "31",
+      "name": "Mystic Training Room",
+      "offset": 15370
+    },
+    {
+      "number": "32",
+      "name": "Holy Spell Shop",
+      "offset": 15882
+    },
+    {
+      "number": "33",
+      "name": "Jewellry Shop",
+      "offset": 16394
+    },
+    {
+      "number": "35",
+      "name": "Cloakroom",
+      "offset": 16906
+    },
+    {
+      "number": "36",
+      "name": "Druid Spell Shop",
+      "offset": 17418
+    },
+    {
+      "number": "37",
+      "name": "Bard Song Store",
+      "offset": 17930
+    },
+    {
+      "number": "38",
+      "name": "Training Room",
+      "offset": 6674
+    },
+    {
+      "number": "39",
+      "name": "Sysop Trainer",
+      "offset": 18954
+    },
+    {
+      "number": "40",
+      "name": "Robes Shop",
+      "offset": 19466
+    },
+    {
+      "number": "41",
+      "name": "Shield Shop",
+      "offset": 19978
+    },
+    {
+      "number": "42",
+      "name": "Curio Store",
+      "offset": 20490
+    },
+    {
+      "number": "43",
+      "name": "Armour Shop, Head/Hands/Feet",
+      "offset": 8202
+    },
+    {
+      "number": "44",
+      "name": "Unholy Spells",
+      "offset": 21002
+    },
+    {
+      "number": "45",
+      "name": "Newhaven Weapon Shop",
+      "offset": 21514
+    },
+    {
+      "number": "46",
+      "name": "Newhaven Armour Shop",
+      "offset": 22026
+    },
+    {
+      "number": "47",
+      "name": "Newhaven General Store",
+      "offset": 23562
+    },
+    {
+      "number": "48",
+      "name": "Newhaven Spell Shop",
+      "offset": 24074
+    },
+    {
+      "number": "49",
+      "name": "Super Warrior Trainer",
+      "offset": 24586
+    },
+    {
+      "number": "50",
+      "name": "Super Witchunter Trainer",
+      "offset": 25098
+    },
+    {
+      "number": "51",
+      "name": "Super Mystic Trainer",
+      "offset": 25610
+    },
+    {
+      "number": "52",
+      "name": "Super Ranger Trainer",
+      "offset": 26122
+    },
+    {
+      "number": "53",
+      "name": "Super Priest Trainer",
+      "offset": 26634
+    },
+    {
+      "number": "54",
+      "name": "Super Cleric Trainer",
+      "offset": 27146
+    },
+    {
+      "number": "55",
+      "name": "Super Paladin Trainer",
+      "offset": 27658
+    },
+    {
+      "number": "56",
+      "name": "Super Missionary Traniner",
+      "offset": 28170
+    },
+    {
+      "number": "57",
+      "name": "Super Rogue Trainer",
+      "offset": 28682
+    },
+    {
+      "number": "58",
+      "name": "Super Thief Trainer",
+      "offset": 29194
+    },
+    {
+      "number": "59",
+      "name": "Super Bard Trainer",
+      "offset": 29706
+    },
+    {
+      "number": "60",
+      "name": "Super Gypsy Trainer",
+      "offset": 30218
+    },
+    {
+      "number": "61",
+      "name": "Super Warlock Trainer",
+      "offset": 30730
+    },
+    {
+      "number": "62",
+      "name": "Super Mage Trainer",
+      "offset": 31242
+    },
+    {
+      "number": "63",
+      "name": "Super Druid Trainer",
+      "offset": 31754
+    },
+    {
+      "number": "64",
+      "name": "High Level Trainer",
+      "offset": 32266
+    },
+    {
+      "number": "65",
+      "name": "Aldreth's Spells",
+      "offset": 32778
+    },
+    {
+      "number": "66",
+      "name": "Ninja supply shop",
+      "offset": 33290
+    },
+    {
+      "number": "67",
+      "name": "Slum Store",
+      "offset": 33802
+    },
+    {
+      "number": "68",
+      "name": "Holy Item Shop",
+      "offset": 34314
+    },
+    {
+      "number": "71",
+      "name": "Jorah's Tower, Misc.",
+      "offset": 36362
+    },
+    {
+      "number": "75",
+      "name": "Very Powerful Spells",
+      "offset": 38410
+    },
+    {
+      "number": "76",
+      "name": "Jael's Missile Weapons",
+      "offset": 38922
+    },
+    {
+      "number": "77",
+      "name": "Rhudaur Weapon Shop",
+      "offset": 39434
+    },
+    {
+      "number": "78",
+      "name": "Rhudaur Armour Shop",
+      "offset": 39946
+    },
+    {
+      "number": "79",
+      "name": "Rhudaur Exotic Items Shop",
+      "offset": 40458
+    },
+    {
+      "number": "80",
+      "name": "Rhudaur Magic Goods",
+      "offset": 40970
+    },
+    {
+      "number": "81",
+      "name": "Rhudaur Missile Weapons",
+      "offset": 41482
+    },
+    {
+      "number": "82",
+      "name": "Rhudaur Thieve's Guild",
+      "offset": 41994
+    },
+    {
+      "number": "83",
+      "name": "Rhudaur Bank",
+      "offset": 42506
+    },
+    {
+      "number": "84",
+      "name": "Rhudaur Trainer",
+      "offset": 43018
+    },
+    {
+      "number": "85",
+      "name": "Sysop Support Shop",
+      "offset": 43530
+    },
+    {
+      "number": "86",
+      "name": "Boat Launch",
+      "offset": 44042
+    },
+    {
+      "number": "87",
+      "name": "Elven Shop",
+      "offset": 44554
+    },
+    {
+      "number": "88",
+      "name": "Recycler Shop",
+      "offset": 45066
+    },
+    {
+      "number": "89",
+      "name": "Recycler Shop 2",
+      "offset": 45578
+    },
+    {
+      "number": "90",
+      "name": "Etheral Trainer",
+      "offset": 46090
+    },
+    {
+      "number": "91",
+      "name": "sleazy dark-elf shop",
+      "offset": 47114
+    },
+    {
+      "number": "92",
+      "name": "Key Shop",
+      "offset": 47626
+    },
+    {
+      "number": "93",
+      "name": "Orfeo's Stuff",
+      "offset": 48138
+    },
+    {
+      "number": "94",
+      "name": "Gypsy Man",
+      "offset": 48650
+    },
+    {
+      "number": "95",
+      "name": "Gnome Alchemist",
+      "offset": 49162
+    },
+    {
+      "number": "96",
+      "name": "Gnome Jeweler",
+      "offset": 49674
+    },
+    {
+      "number": "97",
+      "name": "Gnomish Supplies",
+      "offset": 50186
+    },
+    {
+      "number": "98",
+      "name": "Dwarven General Store",
+      "offset": 50698
+    },
+    {
+      "number": "99",
+      "name": "Dwarven Armoury",
+      "offset": 51210
+    },
+    {
+      "number": "100",
+      "name": "Dwarven Axe Store",
+      "offset": 51722
+    },
+    {
+      "number": "101",
+      "name": "Dwarven Weapon Store",
+      "offset": 52234
+    },
+    {
+      "number": "102",
+      "name": "Dwarven Clothing",
+      "offset": 52746
+    },
+    {
+      "number": "103",
+      "name": "Dwarven Leatherworks",
+      "offset": 53258
+    },
+    {
+      "number": "104",
+      "name": "Dwarven Jeweler",
+      "offset": 53770
+    },
+    {
+      "number": "105",
+      "name": "Dwarven Inn",
+      "offset": 54282
+    },
+    {
+      "number": "106",
+      "name": "Dwarven Tavern",
+      "offset": 54794
+    },
+    {
+      "number": "107",
+      "name": "Dwarven Trainer",
+      "offset": 55306
+    },
+    {
+      "number": "109",
+      "name": "Trap Shop",
+      "offset": 56330
+    },
+    {
+      "number": "110",
+      "name": "Furniture Shop",
+      "offset": 56842
+    },
+    {
+      "number": "111",
+      "name": "Nekojin Village Store",
+      "offset": 57354
+    },
+    {
+      "number": "112",
+      "name": "Nekojin Village Inn",
+      "offset": 57866
+    },
+    {
+      "number": "113",
+      "name": "Hydra Trainer",
+      "offset": 58890
+    },
+    {
+      "number": "114",
+      "name": "Lost City Armour, Front Room",
+      "offset": 59402
+    },
+    {
+      "number": "115",
+      "name": "Lost City Armour, Back Room",
+      "offset": 59914
+    },
+    {
+      "number": "116",
+      "name": "Lost City Bank",
+      "offset": 60426
+    },
+    {
+      "number": "117",
+      "name": "Lost City Weapons, Front Room",
+      "offset": 60938
+    },
+    {
+      "number": "118",
+      "name": "Lost City Weapons, Back Room",
+      "offset": 61450
+    },
+    {
+      "number": "119",
+      "name": "Lost City Hides Shop",
+      "offset": 61962
+    },
+    {
+      "number": "120",
+      "name": "Lost City Jewlery Shop",
+      "offset": 62474
+    },
+    {
+      "number": "121",
+      "name": "Lost City General Store",
+      "offset": 62986
+    },
+    {
+      "number": "122",
+      "name": "Floating Platform Store",
+      "offset": 63498
+    },
+    {
+      "number": "123",
+      "name": "Gang Shop",
+      "offset": 64010
+    },
+    {
+      "number": "124",
+      "name": "Realm Deed Shop",
+      "offset": 64522
+    },
+    {
+      "number": "125",
+      "name": "Gang Shop #125",
+      "offset": 65034
+    },
+    {
+      "number": "126",
+      "name": "Gang Shop #126",
+      "offset": 65546
+    },
+    {
+      "number": "127",
+      "name": "Gang Shop #127",
+      "offset": 66058
+    },
+    {
+      "number": "128",
+      "name": "Gang Shop #128",
+      "offset": 66570
+    },
+    {
+      "number": "129",
+      "name": "Gang Shop #129",
+      "offset": 67082
+    },
+    {
+      "number": "130",
+      "name": "Gang Shop #130",
+      "offset": 67594
+    },
+    {
+      "number": "131",
+      "name": "Gang Shop #131",
+      "offset": 68106
+    },
+    {
+      "number": "132",
+      "name": "Gang Shop #132",
+      "offset": 68618
+    },
+    {
+      "number": "133",
+      "name": "Gang Shop #133",
+      "offset": 69130
+    },
+    {
+      "number": "134",
+      "name": "Gang Shop #134",
+      "offset": 69642
+    },
+    {
+      "number": "135",
+      "name": "Amazon trainer",
+      "offset": 70666
+    },
+    {
+      "number": "136",
+      "name": "Gang Shop #136",
+      "offset": 71178
+    },
+    {
+      "number": "137",
+      "name": "Gang Shop #137",
+      "offset": 71690
+    },
+    {
+      "number": "138",
+      "name": "Gang Shop #138",
+      "offset": 72202
+    },
+    {
+      "number": "139",
+      "name": "Gang Shop #139",
+      "offset": 72714
+    },
+    {
+      "number": "140",
+      "name": "Gang Shop #140",
+      "offset": 73226
+    },
+    {
+      "number": "141",
+      "name": "Gang Shop #141",
+      "offset": 73738
+    },
+    {
+      "number": "142",
+      "name": "Gang Shop #142",
+      "offset": 74250
+    },
+    {
+      "number": "143",
+      "name": "Gang Shop #143",
+      "offset": 74762
+    },
+    {
+      "number": "144",
+      "name": "Gang Shop #144",
+      "offset": 75274
+    },
+    {
+      "number": "145",
+      "name": "Gang Shop #145",
+      "offset": 75786
+    },
+    {
+      "number": "146",
+      "name": "Recycler 3",
+      "offset": 76298
+    },
+    {
+      "number": "147",
+      "name": "Recycler 4",
+      "offset": 76810
+    },
+    {
+      "number": "148",
+      "name": "Recycler 5",
+      "offset": 77322
+    },
+    {
+      "number": "149",
+      "name": "Dwarven Armory 2",
+      "offset": 77834
+    },
+    {
+      "number": "161",
+      "name": "Hides",
+      "offset": 61972
+    },
+    {
+      "number": "163",
+      "name": "Dwarven Miner's Guild",
+      "offset": 55818
+    },
+    {
+      "number": "164",
+      "name": "Tavern",
+      "offset": 1034
+    }
+  ],
+  "missing": [
+    {
+      "number": "2",
+      "name": "Leave this blank"
+    },
+    {
+      "number": "8",
+      "name": "Bank of Godfrey"
+    },
+    {
+      "number": "69",
+      "name": "Dreary Shop"
+    },
+    {
+      "number": "70",
+      "name": "Jorah's Tower, Leather/Chain"
+    },
+    {
+      "number": "72",
+      "name": "Jorah's Tower, 1h Blunt Weapons"
+    },
+    {
+      "number": "73",
+      "name": "Jorah's Tower, Druid Spells"
+    },
+    {
+      "number": "74",
+      "name": "Titan Trainer"
+    },
+    {
+      "number": "108",
+      "name": "Leave this blank"
+    },
+    {
+      "number": "150",
+      "name": "Arlysia Weapons"
+    },
+    {
+      "number": "151",
+      "name": "Arlysia Seamstress"
+    },
+    {
+      "number": "152",
+      "name": "Arlysia General store"
+    },
+    {
+      "number": "153",
+      "name": "arena store"
+    },
+    {
+      "number": "154",
+      "name": "Arlyisia Apothecary"
+    },
+    {
+      "number": "155",
+      "name": "Arlysia Missile Weapons"
+    },
+    {
+      "number": "156",
+      "name": "Arlysia Bank"
+    },
+    {
+      "number": "157",
+      "name": "Arlysia Inn"
+    },
+    {
+      "number": "158",
+      "name": "Arlysia Tavern"
+    },
+    {
+      "number": "159",
+      "name": "old lady shawl shop"
+    },
+    {
+      "number": "160",
+      "name": "Uber Super Big Jumbo Trainer"
+    },
+    {
+      "number": "162",
+      "name": "SixtySix"
+    },
+    {
+      "number": "165",
+      "name": "Sixty Seven"
+    },
+    {
+      "number": "166",
+      "name": "Sixty Eight"
+    },
+    {
+      "number": "167",
+      "name": "Jorah's 1H Sharp"
+    },
+    {
+      "number": "168",
+      "name": "Jorah's 2H"
+    },
+    {
+      "number": "169",
+      "name": "Jorah's Robes"
+    },
+    {
+      "number": "170",
+      "name": "Jorah's Plate/Scale"
+    },
+    {
+      "number": "171",
+      "name": "Jorah Bracers\\Arms\\Rings"
+    },
+    {
+      "number": "172",
+      "name": "Jorah's Cloak/Neck/Waist"
+    },
+    {
+      "number": "173",
+      "name": "Jorah's Priest Spells"
+    },
+    {
+      "number": "174",
+      "name": "Jorah's Mage Spells"
+    },
+    {
+      "number": "175",
+      "name": "Recycler 6"
+    },
+    {
+      "number": "176",
+      "name": "Recycler 7"
+    },
+    {
+      "number": "177",
+      "name": "Recycler 8"
+    },
+    {
+      "number": "178",
+      "name": "Recycler 9"
+    },
+    {
+      "number": "179",
+      "name": "Recycler 10"
+    },
+    {
+      "number": "180",
+      "name": "Recycler 11"
+    },
+    {
+      "number": "181",
+      "name": "Solo Trainer"
+    },
+    {
+      "number": "182",
+      "name": "Training Keys"
+    }
+  ],
+  "duplicate_name_offsets": {}
+}

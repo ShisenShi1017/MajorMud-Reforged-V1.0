@@ -1,14 +1,16 @@
 # Development Journal
 
-## 2026-06-27 - Database Version 0004
+## Database Version 0005 - Native DAT Decode Continuation
 
-Started native MajorMud `.DAT` decoding.
+Continued native `.DAT` decoding for the standalone database effort.
 
 Completed:
-- Cataloged all uploaded runtime `.DAT` files.
-- Generated string catalogs and block samples.
-- Cross-checked CSV names against native `.DAT` offsets.
-- Added repeatable decoder tooling.
-- Updated database audit, release notes, decode status, and handoff docs.
 
-No server code was changed. No saves or imported files were overwritten.
+- Added conservative native DAT probe tool.
+- Generated string catalogs for all uploaded native DAT files.
+- Generated record catalogs for fixed-block candidates.
+- Crosschecked class, race, shop, spell, and item CSV names against native DAT files.
+- Documented current decode confidence and next decode order.
+
+No saves or imported source files are modified by this database version.
+

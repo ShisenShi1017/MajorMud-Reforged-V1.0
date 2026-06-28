@@ -1,0 +1,2002 @@
+[
+  {
+    "index": 2,
+    "offset": 1024,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 6,
+        "text": "Tavern"
+      },
+      {
+        "offset": 461,
+        "length": 6,
+        "text": "dddddd"
+      }
+    ],
+    "u16_at_id_offset": 2
+  },
+  {
+    "index": 3,
+    "offset": 1536,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "General Store"
+      },
+      {
+        "offset": 461,
+        "length": 6,
+        "text": "dddddd"
+      }
+    ],
+    "u16_at_id_offset": 3
+  },
+  {
+    "index": 4,
+    "offset": 2048,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 6,
+        "text": "Temple"
+      }
+    ],
+    "u16_at_id_offset": 4
+  },
+  {
+    "index": 5,
+    "offset": 2560,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 10,
+        "text": "Sword Shop"
+      },
+      {
+        "offset": 461,
+        "length": 10,
+        "text": "dddd#<(((("
+      }
+    ],
+    "u16_at_id_offset": 5
+  },
+  {
+    "index": 6,
+    "offset": 3072,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 23,
+        "text": "Armour Shop, Torso/Legs"
+      },
+      {
+        "offset": 461,
+        "length": 6,
+        "text": "######"
+      }
+    ],
+    "u16_at_id_offset": 6
+  },
+  {
+    "index": 7,
+    "offset": 3584,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 3,
+        "text": "Inn"
+      }
+    ],
+    "u16_at_id_offset": 7
+  },
+  {
+    "index": 8,
+    "offset": 4096,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 8,
+        "text": "The Bank"
+      }
+    ],
+    "u16_at_id_offset": 8
+  },
+  {
+    "index": 9,
+    "offset": 4608,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Mage Spell Shop"
+      },
+      {
+        "offset": 461,
+        "length": 20,
+        "text": "ddddddddddd2dddddd22"
+      }
+    ],
+    "u16_at_id_offset": 9
+  },
+  {
+    "index": 10,
+    "offset": 5120,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 4,
+        "text": "Axes"
+      },
+      {
+        "offset": 461,
+        "length": 9,
+        "text": "dd((((((2"
+      }
+    ],
+    "u16_at_id_offset": 10
+  },
+  {
+    "index": 11,
+    "offset": 5632,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 30,
+        "text": "Leatherworks, Torso/Legs/Hands"
+      },
+      {
+        "offset": 461,
+        "length": 11,
+        "text": "ddddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 12
+  },
+  {
+    "index": 12,
+    "offset": 6144,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 16,
+        "text": "Concession Stand"
+      }
+    ],
+    "u16_at_id_offset": 13
+  },
+  {
+    "index": 13,
+    "offset": 6656,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Warrior Training Room"
+      }
+    ],
+    "u16_at_id_offset": 14
+  },
+  {
+    "index": 14,
+    "offset": 7168,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Paladin Training Room"
+      }
+    ],
+    "u16_at_id_offset": 15
+  },
+  {
+    "index": 15,
+    "offset": 7680,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 23,
+        "text": "Leatherworks, Head/Feet"
+      },
+      {
+        "offset": 461,
+        "length": 8,
+        "text": "dddddddd"
+      }
+    ],
+    "u16_at_id_offset": 16
+  },
+  {
+    "index": 16,
+    "offset": 8192,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 28,
+        "text": "Armour Shop, Head/Hands/Feet"
+      },
+      {
+        "offset": 461,
+        "length": 3,
+        "text": "dd2"
+      }
+    ],
+    "u16_at_id_offset": 43
+  },
+  {
+    "index": 17,
+    "offset": 8704,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Blunt Weapons"
+      },
+      {
+        "offset": 461,
+        "length": 9,
+        "text": "dddd(((dd"
+      }
+    ],
+    "u16_at_id_offset": 18
+  },
+  {
+    "index": 18,
+    "offset": 9216,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 24,
+        "text": "Witchunter Training Room"
+      }
+    ],
+    "u16_at_id_offset": 19
+  },
+  {
+    "index": 19,
+    "offset": 9728,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 24,
+        "text": "Missionary Training Room"
+      }
+    ],
+    "u16_at_id_offset": 20
+  },
+  {
+    "index": 20,
+    "offset": 10240,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Gypsy Training Room"
+      }
+    ],
+    "u16_at_id_offset": 21
+  },
+  {
+    "index": 21,
+    "offset": 10752,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Warlock Training Room"
+      }
+    ],
+    "u16_at_id_offset": 22
+  },
+  {
+    "index": 22,
+    "offset": 11264,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Druid Training Room"
+      }
+    ],
+    "u16_at_id_offset": 23
+  },
+  {
+    "index": 23,
+    "offset": 11776,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Ranger Training Room"
+      }
+    ],
+    "u16_at_id_offset": 24
+  },
+  {
+    "index": 24,
+    "offset": 12288,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Thief Training Room"
+      }
+    ],
+    "u16_at_id_offset": 25
+  },
+  {
+    "index": 25,
+    "offset": 12800,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Ninja Training Room"
+      }
+    ],
+    "u16_at_id_offset": 26
+  },
+  {
+    "index": 26,
+    "offset": 13312,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 18,
+        "text": "Bard Training Room"
+      },
+      {
+        "offset": 461,
+        "length": 4,
+        "text": "2-(#"
+      }
+    ],
+    "u16_at_id_offset": 27
+  },
+  {
+    "index": 27,
+    "offset": 13824,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 18,
+        "text": "Mage Training Room"
+      }
+    ],
+    "u16_at_id_offset": 28
+  },
+  {
+    "index": 28,
+    "offset": 14336,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Priest Training Room"
+      }
+    ],
+    "u16_at_id_offset": 29
+  },
+  {
+    "index": 29,
+    "offset": 14848,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Cleric Training Room"
+      }
+    ],
+    "u16_at_id_offset": 30
+  },
+  {
+    "index": 30,
+    "offset": 15360,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Mystic Training Room"
+      }
+    ],
+    "u16_at_id_offset": 31
+  },
+  {
+    "index": 31,
+    "offset": 15872,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Holy Spell Shop"
+      },
+      {
+        "offset": 461,
+        "length": 13,
+        "text": "ddddddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 32
+  },
+  {
+    "index": 32,
+    "offset": 16384,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Jewellry Shop"
+      },
+      {
+        "offset": 461,
+        "length": 3,
+        "text": "ddd"
+      }
+    ],
+    "u16_at_id_offset": 33
+  },
+  {
+    "index": 33,
+    "offset": 16896,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 9,
+        "text": "Cloakroom"
+      }
+    ],
+    "u16_at_id_offset": 35
+  },
+  {
+    "index": 34,
+    "offset": 17408,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 16,
+        "text": "Druid Spell Shop"
+      },
+      {
+        "offset": 461,
+        "length": 20,
+        "text": "dddddddddddd2ddP2222"
+      }
+    ],
+    "u16_at_id_offset": 36
+  },
+  {
+    "index": 35,
+    "offset": 17920,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Bard Song Store"
+      },
+      {
+        "offset": 461,
+        "length": 15,
+        "text": "dddddddddddddd2"
+      }
+    ],
+    "u16_at_id_offset": 37
+  },
+  {
+    "index": 36,
+    "offset": 18432,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Training Room"
+      }
+    ],
+    "u16_at_id_offset": 38
+  },
+  {
+    "index": 37,
+    "offset": 18944,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Sysop Trainer"
+      }
+    ],
+    "u16_at_id_offset": 39
+  },
+  {
+    "index": 38,
+    "offset": 19456,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 10,
+        "text": "Robes Shop"
+      },
+      {
+        "offset": 461,
+        "length": 9,
+        "text": "ddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 40
+  },
+  {
+    "index": 39,
+    "offset": 19968,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 11,
+        "text": "Shield Shop"
+      },
+      {
+        "offset": 461,
+        "length": 4,
+        "text": "####"
+      }
+    ],
+    "u16_at_id_offset": 41
+  },
+  {
+    "index": 40,
+    "offset": 20480,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 11,
+        "text": "Curio Store"
+      }
+    ],
+    "u16_at_id_offset": 42
+  },
+  {
+    "index": 41,
+    "offset": 20992,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Unholy Spells"
+      },
+      {
+        "offset": 461,
+        "length": 8,
+        "text": "dddddd22"
+      }
+    ],
+    "u16_at_id_offset": 44
+  },
+  {
+    "index": 42,
+    "offset": 21504,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Newhaven Weapon Shop"
+      },
+      {
+        "offset": 461,
+        "length": 7,
+        "text": "ddddddd"
+      }
+    ],
+    "u16_at_id_offset": 45
+  },
+  {
+    "index": 43,
+    "offset": 22016,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Newhaven Armour Shop"
+      },
+      {
+        "offset": 461,
+        "length": 4,
+        "text": "dddd"
+      }
+    ],
+    "u16_at_id_offset": 46
+  },
+  {
+    "index": 46,
+    "offset": 23552,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 22,
+        "text": "Newhaven General Store"
+      }
+    ],
+    "u16_at_id_offset": 47
+  },
+  {
+    "index": 47,
+    "offset": 24064,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Newhaven Spell Shop"
+      },
+      {
+        "offset": 461,
+        "length": 13,
+        "text": "ddddddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 48
+  },
+  {
+    "index": 48,
+    "offset": 24576,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Super Warrior Trainer"
+      }
+    ],
+    "u16_at_id_offset": 49
+  },
+  {
+    "index": 49,
+    "offset": 25088,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 24,
+        "text": "Super Witchunter Trainer"
+      }
+    ],
+    "u16_at_id_offset": 50
+  },
+  {
+    "index": 50,
+    "offset": 25600,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Super Mystic Trainer"
+      }
+    ],
+    "u16_at_id_offset": 51
+  },
+  {
+    "index": 51,
+    "offset": 26112,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Super Ranger Trainer"
+      }
+    ],
+    "u16_at_id_offset": 52
+  },
+  {
+    "index": 52,
+    "offset": 26624,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Super Priest Trainer"
+      }
+    ],
+    "u16_at_id_offset": 53
+  },
+  {
+    "index": 53,
+    "offset": 27136,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Super Cleric Trainer"
+      }
+    ],
+    "u16_at_id_offset": 54
+  },
+  {
+    "index": 54,
+    "offset": 27648,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Super Paladin Trainer"
+      }
+    ],
+    "u16_at_id_offset": 55
+  },
+  {
+    "index": 55,
+    "offset": 28160,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 25,
+        "text": "Super Missionary Traniner"
+      }
+    ],
+    "u16_at_id_offset": 56
+  },
+  {
+    "index": 56,
+    "offset": 28672,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Super Rogue Trainer"
+      }
+    ],
+    "u16_at_id_offset": 57
+  },
+  {
+    "index": 57,
+    "offset": 29184,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Super Thief Trainer"
+      }
+    ],
+    "u16_at_id_offset": 58
+  },
+  {
+    "index": 58,
+    "offset": 29696,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 18,
+        "text": "Super Bard Trainer"
+      }
+    ],
+    "u16_at_id_offset": 59
+  },
+  {
+    "index": 59,
+    "offset": 30208,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Super Gypsy Trainer"
+      }
+    ],
+    "u16_at_id_offset": 60
+  },
+  {
+    "index": 60,
+    "offset": 30720,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Super Warlock Trainer"
+      }
+    ],
+    "u16_at_id_offset": 61
+  },
+  {
+    "index": 61,
+    "offset": 31232,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 18,
+        "text": "Super Mage Trainer"
+      }
+    ],
+    "u16_at_id_offset": 62
+  },
+  {
+    "index": 62,
+    "offset": 31744,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Super Druid Trainer"
+      }
+    ],
+    "u16_at_id_offset": 63
+  },
+  {
+    "index": 63,
+    "offset": 32256,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 18,
+        "text": "High Level Trainer"
+      }
+    ],
+    "u16_at_id_offset": 64
+  },
+  {
+    "index": 64,
+    "offset": 32768,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 16,
+        "text": "Aldreth's Spells"
+      }
+    ],
+    "u16_at_id_offset": 65
+  },
+  {
+    "index": 65,
+    "offset": 33280,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 17,
+        "text": "Ninja supply shop"
+      }
+    ],
+    "u16_at_id_offset": 66
+  },
+  {
+    "index": 66,
+    "offset": 33792,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 10,
+        "text": "Slum Store"
+      }
+    ],
+    "u16_at_id_offset": 67
+  },
+  {
+    "index": 67,
+    "offset": 34304,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Holy Item Shop"
+      }
+    ],
+    "u16_at_id_offset": 68
+  },
+  {
+    "index": 69,
+    "offset": 35328,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 7,
+        "text": "DC Shop"
+      }
+    ],
+    "u16_at_id_offset": 69
+  },
+  {
+    "index": 70,
+    "offset": 35840,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Jorah's Tower, Armour"
+      }
+    ],
+    "u16_at_id_offset": 70
+  },
+  {
+    "index": 71,
+    "offset": 36352,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Jorah's Tower, Misc."
+      }
+    ],
+    "u16_at_id_offset": 71
+  },
+  {
+    "index": 72,
+    "offset": 36864,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 22,
+        "text": "Jorah's Tower, Weapons"
+      }
+    ],
+    "u16_at_id_offset": 72
+  },
+  {
+    "index": 73,
+    "offset": 37376,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Jorah's Tower, Spells"
+      }
+    ],
+    "u16_at_id_offset": 73
+  },
+  {
+    "index": 74,
+    "offset": 37888,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Maximum-Level Trainer"
+      }
+    ],
+    "u16_at_id_offset": 74
+  },
+  {
+    "index": 75,
+    "offset": 38400,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Very Powerful Spells"
+      }
+    ],
+    "u16_at_id_offset": 75
+  },
+  {
+    "index": 76,
+    "offset": 38912,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 22,
+        "text": "Jael's Missile Weapons"
+      },
+      {
+        "offset": 461,
+        "length": 3,
+        "text": "dK2"
+      }
+    ],
+    "u16_at_id_offset": 76
+  },
+  {
+    "index": 77,
+    "offset": 39424,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Rhudaur Weapon Shop"
+      },
+      {
+        "offset": 461,
+        "length": 5,
+        "text": "ddd2d"
+      },
+      {
+        "offset": 467,
+        "length": 6,
+        "text": "dd2dd2"
+      },
+      {
+        "offset": 474,
+        "length": 3,
+        "text": "ddd"
+      }
+    ],
+    "u16_at_id_offset": 77
+  },
+  {
+    "index": 78,
+    "offset": 39936,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Rhudaur Armour Shop"
+      },
+      {
+        "offset": 461,
+        "length": 16,
+        "text": "dddddddddd222ddd"
+      }
+    ],
+    "u16_at_id_offset": 78
+  },
+  {
+    "index": 79,
+    "offset": 40448,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 25,
+        "text": "Rhudaur Exotic Items Shop"
+      },
+      {
+        "offset": 461,
+        "length": 3,
+        "text": "ddd"
+      },
+      {
+        "offset": 465,
+        "length": 4,
+        "text": "2222"
+      }
+    ],
+    "u16_at_id_offset": 79
+  },
+  {
+    "index": 80,
+    "offset": 40960,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Rhudaur Magic Goods"
+      },
+      {
+        "offset": 461,
+        "length": 5,
+        "text": "ddddd"
+      },
+      {
+        "offset": 477,
+        "length": 4,
+        "text": "dd2d"
+      }
+    ],
+    "u16_at_id_offset": 80
+  },
+  {
+    "index": 81,
+    "offset": 41472,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 23,
+        "text": "Rhudaur Missile Weapons"
+      }
+    ],
+    "u16_at_id_offset": 81
+  },
+  {
+    "index": 82,
+    "offset": 41984,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 22,
+        "text": "Rhudaur Thieve's Guild"
+      },
+      {
+        "offset": 462,
+        "length": 3,
+        "text": "222"
+      },
+      {
+        "offset": 469,
+        "length": 4,
+        "text": "d2dd"
+      }
+    ],
+    "u16_at_id_offset": 82
+  },
+  {
+    "index": 83,
+    "offset": 42496,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 12,
+        "text": "Rhudaur Bank"
+      }
+    ],
+    "u16_at_id_offset": 83
+  },
+  {
+    "index": 84,
+    "offset": 43008,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Rhudaur Trainer"
+      }
+    ],
+    "u16_at_id_offset": 84
+  },
+  {
+    "index": 85,
+    "offset": 43520,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 18,
+        "text": "Sysop Support Shop"
+      }
+    ],
+    "u16_at_id_offset": 85
+  },
+  {
+    "index": 86,
+    "offset": 44032,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 11,
+        "text": "Boat Launch"
+      },
+      {
+        "offset": 461,
+        "length": 3,
+        "text": "ddd"
+      }
+    ],
+    "u16_at_id_offset": 86
+  },
+  {
+    "index": 87,
+    "offset": 44544,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 10,
+        "text": "Elven Shop"
+      },
+      {
+        "offset": 461,
+        "length": 4,
+        "text": "dddd"
+      }
+    ],
+    "u16_at_id_offset": 87
+  },
+  {
+    "index": 88,
+    "offset": 45056,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Recycler Shop"
+      }
+    ],
+    "u16_at_id_offset": 88
+  },
+  {
+    "index": 89,
+    "offset": 45568,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Recycler Shop 2"
+      }
+    ],
+    "u16_at_id_offset": 89
+  },
+  {
+    "index": 90,
+    "offset": 46080,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Etheral Trainer"
+      }
+    ],
+    "u16_at_id_offset": 90
+  },
+  {
+    "index": 92,
+    "offset": 47104,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "sleazy dark-elf shop"
+      }
+    ],
+    "u16_at_id_offset": 91
+  },
+  {
+    "index": 93,
+    "offset": 47616,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 8,
+        "text": "Key Shop"
+      }
+    ],
+    "u16_at_id_offset": 92
+  },
+  {
+    "index": 94,
+    "offset": 48128,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Orfeo's Stuff"
+      },
+      {
+        "offset": 461,
+        "length": 9,
+        "text": "ddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 93
+  },
+  {
+    "index": 95,
+    "offset": 48640,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 9,
+        "text": "Gypsy Man"
+      },
+      {
+        "offset": 461,
+        "length": 3,
+        "text": "ddd"
+      }
+    ],
+    "u16_at_id_offset": 94
+  },
+  {
+    "index": 96,
+    "offset": 49152,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Gnome Alchemist"
+      }
+    ],
+    "u16_at_id_offset": 95
+  },
+  {
+    "index": 97,
+    "offset": 49664,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Gnome Jeweler"
+      },
+      {
+        "offset": 461,
+        "length": 14,
+        "text": "ddddddddddd222"
+      }
+    ],
+    "u16_at_id_offset": 96
+  },
+  {
+    "index": 98,
+    "offset": 50176,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 16,
+        "text": "Gnomish Supplies"
+      },
+      {
+        "offset": 461,
+        "length": 6,
+        "text": "dddddd"
+      }
+    ],
+    "u16_at_id_offset": 97
+  },
+  {
+    "index": 99,
+    "offset": 50688,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Dwarven General Store"
+      },
+      {
+        "offset": 461,
+        "length": 8,
+        "text": "dddddddd"
+      }
+    ],
+    "u16_at_id_offset": 98
+  },
+  {
+    "index": 100,
+    "offset": 51200,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Dwarven Armoury"
+      },
+      {
+        "offset": 461,
+        "length": 14,
+        "text": "dddddddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 99
+  },
+  {
+    "index": 101,
+    "offset": 51712,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 17,
+        "text": "Dwarven Axe Store"
+      },
+      {
+        "offset": 461,
+        "length": 4,
+        "text": "dddd"
+      }
+    ],
+    "u16_at_id_offset": 100
+  },
+  {
+    "index": 102,
+    "offset": 52224,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Dwarven Weapon Store"
+      },
+      {
+        "offset": 461,
+        "length": 7,
+        "text": "ddddddd"
+      }
+    ],
+    "u16_at_id_offset": 101
+  },
+  {
+    "index": 103,
+    "offset": 52736,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 16,
+        "text": "Dwarven Clothing"
+      },
+      {
+        "offset": 461,
+        "length": 10,
+        "text": "dddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 102
+  },
+  {
+    "index": 104,
+    "offset": 53248,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Dwarven Leatherworks"
+      },
+      {
+        "offset": 461,
+        "length": 8,
+        "text": "dddddddd"
+      }
+    ],
+    "u16_at_id_offset": 103
+  },
+  {
+    "index": 105,
+    "offset": 53760,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Dwarven Jeweler"
+      },
+      {
+        "offset": 461,
+        "length": 10,
+        "text": "dddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 104
+  },
+  {
+    "index": 106,
+    "offset": 54272,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 11,
+        "text": "Dwarven Inn"
+      }
+    ],
+    "u16_at_id_offset": 105
+  },
+  {
+    "index": 107,
+    "offset": 54784,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Dwarven Tavern"
+      },
+      {
+        "offset": 461,
+        "length": 6,
+        "text": "dddddd"
+      }
+    ],
+    "u16_at_id_offset": 106
+  },
+  {
+    "index": 108,
+    "offset": 55296,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Dwarven Trainer"
+      }
+    ],
+    "u16_at_id_offset": 107
+  },
+  {
+    "index": 109,
+    "offset": 55808,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Dwarven Miner's Guild"
+      }
+    ],
+    "u16_at_id_offset": 108
+  },
+  {
+    "index": 110,
+    "offset": 56320,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 9,
+        "text": "Trap Shop"
+      },
+      {
+        "offset": 461,
+        "length": 10,
+        "text": "dddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 109
+  },
+  {
+    "index": 111,
+    "offset": 56832,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Furniture Shop"
+      }
+    ],
+    "u16_at_id_offset": 110
+  },
+  {
+    "index": 112,
+    "offset": 57344,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 21,
+        "text": "Nekojin Village Store"
+      },
+      {
+        "offset": 461,
+        "length": 8,
+        "text": "dddddddd"
+      }
+    ],
+    "u16_at_id_offset": 111
+  },
+  {
+    "index": 113,
+    "offset": 57856,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 19,
+        "text": "Nekojin Village Inn"
+      },
+      {
+        "offset": 461,
+        "length": 5,
+        "text": "ddddd"
+      }
+    ],
+    "u16_at_id_offset": 112
+  },
+  {
+    "index": 115,
+    "offset": 58880,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 13,
+        "text": "Hydra Trainer"
+      }
+    ],
+    "u16_at_id_offset": 113
+  },
+  {
+    "index": 116,
+    "offset": 59392,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 28,
+        "text": "Lost City Armour, Front Room"
+      }
+    ],
+    "u16_at_id_offset": 114
+  },
+  {
+    "index": 117,
+    "offset": 59904,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 27,
+        "text": "Lost City Armour, Back Room"
+      }
+    ],
+    "u16_at_id_offset": 115
+  },
+  {
+    "index": 118,
+    "offset": 60416,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Lost City Bank"
+      }
+    ],
+    "u16_at_id_offset": 116
+  },
+  {
+    "index": 119,
+    "offset": 60928,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 29,
+        "text": "Lost City Weapons, Front Room"
+      }
+    ],
+    "u16_at_id_offset": 117
+  },
+  {
+    "index": 120,
+    "offset": 61440,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 28,
+        "text": "Lost City Weapons, Back Room"
+      }
+    ],
+    "u16_at_id_offset": 118
+  },
+  {
+    "index": 121,
+    "offset": 61952,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 20,
+        "text": "Lost City Hides Shop"
+      }
+    ],
+    "u16_at_id_offset": 119
+  },
+  {
+    "index": 122,
+    "offset": 62464,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 22,
+        "text": "Lost City Jewlery Shop"
+      }
+    ],
+    "u16_at_id_offset": 120
+  },
+  {
+    "index": 123,
+    "offset": 62976,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 23,
+        "text": "Lost City General Store"
+      },
+      {
+        "offset": 461,
+        "length": 4,
+        "text": "dddd"
+      }
+    ],
+    "u16_at_id_offset": 121
+  },
+  {
+    "index": 124,
+    "offset": 63488,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 23,
+        "text": "Floating Platform Store"
+      },
+      {
+        "offset": 461,
+        "length": 9,
+        "text": "ddddddddd"
+      }
+    ],
+    "u16_at_id_offset": 122
+  },
+  {
+    "index": 125,
+    "offset": 64000,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 9,
+        "text": "Gang Shop"
+      }
+    ],
+    "u16_at_id_offset": 123
+  },
+  {
+    "index": 126,
+    "offset": 64512,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 15,
+        "text": "Realm Deed Shop"
+      }
+    ],
+    "u16_at_id_offset": 124
+  },
+  {
+    "index": 127,
+    "offset": 65024,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #125"
+      },
+      {
+        "offset": 301,
+        "length": 5,
+        "text": "Sysop"
+      }
+    ],
+    "u16_at_id_offset": 125
+  },
+  {
+    "index": 128,
+    "offset": 65536,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #126"
+      }
+    ],
+    "u16_at_id_offset": 126
+  },
+  {
+    "index": 129,
+    "offset": 66048,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #127"
+      }
+    ],
+    "u16_at_id_offset": 127
+  },
+  {
+    "index": 130,
+    "offset": 66560,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #128"
+      }
+    ],
+    "u16_at_id_offset": 128
+  },
+  {
+    "index": 131,
+    "offset": 67072,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #129"
+      }
+    ],
+    "u16_at_id_offset": 129
+  },
+  {
+    "index": 132,
+    "offset": 67584,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #130"
+      }
+    ],
+    "u16_at_id_offset": 130
+  },
+  {
+    "index": 133,
+    "offset": 68096,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #131"
+      }
+    ],
+    "u16_at_id_offset": 131
+  },
+  {
+    "index": 134,
+    "offset": 68608,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #132"
+      }
+    ],
+    "u16_at_id_offset": 132
+  },
+  {
+    "index": 135,
+    "offset": 69120,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #133"
+      }
+    ],
+    "u16_at_id_offset": 133
+  },
+  {
+    "index": 136,
+    "offset": 69632,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #134"
+      }
+    ],
+    "u16_at_id_offset": 134
+  },
+  {
+    "index": 138,
+    "offset": 70656,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Amazon trainer"
+      }
+    ],
+    "u16_at_id_offset": 135
+  },
+  {
+    "index": 139,
+    "offset": 71168,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #136"
+      }
+    ],
+    "u16_at_id_offset": 136
+  },
+  {
+    "index": 140,
+    "offset": 71680,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #137"
+      }
+    ],
+    "u16_at_id_offset": 137
+  },
+  {
+    "index": 141,
+    "offset": 72192,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #138"
+      }
+    ],
+    "u16_at_id_offset": 138
+  },
+  {
+    "index": 142,
+    "offset": 72704,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #139"
+      }
+    ],
+    "u16_at_id_offset": 139
+  },
+  {
+    "index": 143,
+    "offset": 73216,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #140"
+      }
+    ],
+    "u16_at_id_offset": 140
+  },
+  {
+    "index": 144,
+    "offset": 73728,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #141"
+      }
+    ],
+    "u16_at_id_offset": 141
+  },
+  {
+    "index": 145,
+    "offset": 74240,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #142"
+      }
+    ],
+    "u16_at_id_offset": 142
+  },
+  {
+    "index": 146,
+    "offset": 74752,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #143"
+      }
+    ],
+    "u16_at_id_offset": 143
+  },
+  {
+    "index": 147,
+    "offset": 75264,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #144"
+      }
+    ],
+    "u16_at_id_offset": 144
+  },
+  {
+    "index": 148,
+    "offset": 75776,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 14,
+        "text": "Gang Shop #145"
+      }
+    ],
+    "u16_at_id_offset": 145
+  },
+  {
+    "index": 149,
+    "offset": 76288,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 10,
+        "text": "Recycler 3"
+      }
+    ],
+    "u16_at_id_offset": 146
+  },
+  {
+    "index": 150,
+    "offset": 76800,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 10,
+        "text": "Recycler 4"
+      }
+    ],
+    "u16_at_id_offset": 147
+  },
+  {
+    "index": 151,
+    "offset": 77312,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 10,
+        "text": "Recycler 5"
+      }
+    ],
+    "u16_at_id_offset": 148
+  },
+  {
+    "index": 152,
+    "offset": 77824,
+    "strings": [
+      {
+        "offset": 10,
+        "length": 16,
+        "text": "Dwarven Armory 2"
+      }
+    ],
+    "u16_at_id_offset": 149
+  }
+]
