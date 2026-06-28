@@ -296,3 +296,9 @@ Milestone 1 continues with Core contracts for events, services, validation pipel
 Runtime rule: MajorMud Reforged must not require the .NET SDK to run. Normal users must launch compiled executables or runtime-ready artifacts from `Bin/`; SDK launch/build commands are not valid runtime paths.
 
 Update rule: each Code Update must be executable from its own extracted folder and apply into the main project folder through its included `Apply-*.bat` script.
+## Code Update 0008 — Governance and Core Services
+
+Core Update 0008 continues Milestone 1 by adding project-governance documents and additional Core services. New sessions should begin with `AI_CONTEXT.md`, then `Docs/Architecture/PROJECT_ROADMAP.md`.
+
+Permanent rules now include: runtime must not require the .NET SDK, update packages must run from their own extracted folder, and all approved suggestions become required implementation work unless explicitly deferred or rejected.
+

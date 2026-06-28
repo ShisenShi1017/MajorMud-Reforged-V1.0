@@ -1,13 +1,41 @@
 {
   "project": "MajorMud Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0007",
+  "codeUpdate": "0008",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Library / Core Contracts Foundation",
+  "milestone": "Milestone 1 - Core Framework / Governance and Core Services",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
-  "updatePolicy": "Run Apply-*.bat from extracted update folder to apply to main project folder.",
+  "updatePolicy": "Run Apply-*.bat from extracted update folder to apply to the main project folder.",
+  "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements for the next applicable Code Update or Database Version unless explicitly deferred or rejected.",
   "preserve": [
     "Saves",
     "ImportedDatabases"
-  ]
+  ],
+  "developmentStatus": {
+    "currentMilestone": "Milestone 1 - Core Framework",
+    "currentCodeUpdate": "0008",
+    "currentDatabaseVersion": "0009",
+    "completedMilestones": [],
+    "milestone1CompletedComponents": [
+      "configuration provider",
+      "logging contracts",
+      "validation pipeline",
+      "serialization contracts",
+      "repository interfaces",
+      "shared models",
+      "event contracts and event bus",
+      "service registry",
+      "version manager",
+      "project manifest reader",
+      "repository health checker",
+      "path safety utility",
+      "governance documents"
+    ],
+    "milestone1RemainingComponents": [
+      "application Core references audit",
+      "duplicate model removal audit",
+      "unit-test foundation expansion",
+      "compiled Bin runtime handoff validation"
+    ]
+  }
 }
