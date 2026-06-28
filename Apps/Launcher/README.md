@@ -13,3 +13,8 @@ Future executable location:
 This application must use `Core/` for shared models, configuration, logging, validation, serialization, repositories, events, manifest access, versioning, health checks, and utilities.
 
 Do not create app-local duplicate models for Core concepts. Compile-level Core references will be added when this application is promoted from placeholder/documented app folder to a buildable application project.
+
+
+## Core Update 0011
+
+A Milestone 1 source shell for this application now exists at `Apps/Source/MajorMud.Launcher/` and explicitly references Core. Runtime remains compiled-artifact based from `Bin/`.

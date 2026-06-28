@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>MajorMud.Editor</AssemblyName>
+    <RootNamespace>MajorMud.Reforged.Editor</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../Core/Source/MajorMud.Core/MajorMudCore.csproj" />
+  </ItemGroup>
+</Project>

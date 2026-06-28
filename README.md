@@ -330,3 +330,8 @@ Highlights:
 - Core serialization now includes a shared JSON file store.
 - Core repository work now includes an in-memory data repository for staging/testing.
 - Repository health work now includes update package layout validation.
+
+
+## Core Update 0011
+
+Core Update 0011 continues Milestone 1 by wiring all application source shells to Core while preserving the no-SDK runtime rule. The Server, Importer, Editor, Launcher, and Client now have source-level project shells under `Apps/Source/` with explicit Core project references. Core also gains application identity contracts, an application Core-reference audit, and runtime artifact validation models for future `Bin/` handoff checks.

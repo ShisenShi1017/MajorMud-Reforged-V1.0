@@ -1,9 +1,9 @@
 {
   "project": "MajorMud Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0010",
+  "codeUpdate": "0011",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / Core Services and Handoff",
+  "milestone": "Milestone 1 - Core Framework / App Core Wiring and Runtime Audit",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
   "updatePolicy": "Extract the update ZIP directly into the main project folder, open the single labeled update folder, and run Apply-*.bat from inside it.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0009",
+    "currentCodeUpdate": "0011",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -35,12 +35,18 @@
       "repository catalog contract",
       "application Core reference audit model",
       "duplicate model audit model",
-      "dependency-free Core test foundation"
+      "dependency-free Core test foundation",
+      "application identity contracts",
+      "application source shells",
+      "application Core project references",
+      "application Core reference audit",
+      "Bin runtime handoff validator"
     ],
     "milestone1RemainingComponents": [
-      "application executable integration with Core",
       "duplicate model removal enforcement",
-      "compiled Bin runtime handoff validation",
+      "compiled Bin runtime handoff validation artifacts",
+      "expanded Data JSON validation rules",
+      "repository-backed loaders for current Data categories",
       "Core contract smoke tests packaged for development environments"
     ]
   },
@@ -67,5 +73,12 @@
     "Finish Core logging and configuration runtime behavior.",
     "Expand repository health checks for duplicate models and Core references.",
     "Expand validation rules for game data before Milestone 2."
-  ]
+  ],
+  "updateZipPolicy": "Each update ZIP contains exactly one named top-level update folder; the apply BAT lives inside that folder and runs from there.",
+  "handoffStatus": {
+    "handoffDocument": "AI_CONTEXT.md",
+    "mustUpdateEveryCodeUpdate": true,
+    "containsMilestoneTable": true,
+    "containsMilestoneChecklist": true
+  }
 }

@@ -50,3 +50,18 @@ Added in CodeUpdate-0010:
 - The apply script must automatically locate the project root before copying payload files.
 - Approved suggestions are implementation requirements unless explicitly deferred or rejected.
 
+
+
+## Code Update 0011 Packaging Clarification
+
+Every update archive must contain exactly one top-level folder named after the update, for example:
+
+```text
+CodeUpdate-0011-App-Core-Wiring-And-Runtime-Audit/
+    Apply-CodeUpdate-0011-App-Core-Wiring-And-Runtime-Audit.bat
+    UpdateManifest.json
+    Payload/
+    Reports/
+```
+
+The archive must not require the user to create that folder manually. The apply BAT must be run from inside that extracted update folder and must automatically locate the project root.

@@ -47,3 +47,15 @@
 - Updated README, VERSION, ProjectManifest, documentation, release notes, and verification report.
 - Preserved no-SDK runtime policy, extracted-folder update execution, and protection of `Saves/` and `ImportedDatabases/`.
 
+
+
+## CodeUpdate-0011 - App Core Wiring and Runtime Audit
+
+- Added Core application identity and common application contracts.
+- Added source-level application shells for Server, Importer, Editor, Launcher, and Client.
+- Wired every application source shell to reference Core.
+- Added SDK-free application Core-reference audit support.
+- Added runtime `Bin/` handoff requirement and validator models.
+- Updated `AI_CONTEXT.md` with the living Milestone 1 handoff table and completion checklist.
+- Reinforced the one-top-level-folder update ZIP rule in project documentation.
+- Preserved the no-.NET-SDK runtime requirement.

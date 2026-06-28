@@ -1,10 +1,10 @@
 # MajorMud Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0010
+- Current Code Update: 0011
 - Current Database Version: 0009
-- Milestone: Milestone 1 - Core Framework / Core Services and Handoff
+- Milestone: Milestone 1 - Core Framework / App Core Wiring and Runtime Audit
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
-- Update Requirement: Every update ZIP contains exactly one labeled top-level folder. Extract it into the main project folder, open the extracted update folder, and run its `Apply-*.bat` from there.
+- Update Requirement: Code Updates run from their own extracted update folder and apply to the main project folder.
+- Update ZIP Requirement: Every update ZIP contains exactly one named top-level update folder.
 - Suggestion Policy: Approved suggestions become implementation requirements unless explicitly deferred or rejected.
-- Handoff Policy: `AI_CONTEXT.md` is updated every Code Update with current milestone status, completion checklist, and next work.

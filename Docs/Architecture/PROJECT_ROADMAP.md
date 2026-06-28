@@ -19,6 +19,8 @@ If you are an AI assistant, new ChatGPT window, or new developer joining this pr
 13. Every Code Update must update `README.md`, `CHANGELOG.md`, `VERSION.md`, `ProjectManifest.json`, and relevant documentation.
 14. Never claim an update package exists until the ZIP has actually been created and verified.
 15. All approved architectural or project suggestions become implementation requirements for the next applicable Code Update unless the user explicitly defers or rejects them.
+16. Every update ZIP must contain exactly one named top-level update folder.
+17. The user must be able to extract the ZIP directly into the project folder, open the update folder, and run the apply BAT from there.
 
 ## Project Vision
 
@@ -60,6 +62,7 @@ Completion Criteria:
 - Every application references Core.
 - Core has no dependencies on application projects.
 - Runtime does not require the .NET SDK.
+- Handoff documents accurately track Milestone 1 progress after every update.
 
 ## Milestone 2 — Native Importer
 

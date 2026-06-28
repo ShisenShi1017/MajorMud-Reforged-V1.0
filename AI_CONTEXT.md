@@ -17,10 +17,10 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 ## Current Handoff State
 
 - Current Milestone: Milestone 1 - Core Framework
-- Current Code Update: 0010
+- Current Code Update: 0011
 - Current Database Version: 0009
-- Last Update Name: CodeUpdate-0010-Core-Services-And-Handoff
-- Milestone Estimate: 65-70% complete
+- Last Update Name: CodeUpdate-0011-App-Core-Wiring-And-Runtime-Audit
+- Milestone Estimate: 72-78% complete
 - Next Work Mode: Continue Milestone 1 until completion criteria are satisfied.
 
 ## Completed or Substantially Underway
@@ -40,15 +40,15 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 | Repository health checker | In progress | Repository health report, issue model, checker, audits, and update package layout check exist. |
 | Shared utility library | In progress | Path-safety utility exists; more utilities are expected as features require them. |
 | Unit-test framework | Started | Dependency-free assertion and test result foundation exists. |
-| Applications using Core | Not complete | App folders exist as placeholders; compile-level app projects/references still need to be created or wired. |
+| Applications using Core | Substantially underway | Source-level application shells now exist for Server, Importer, Editor, Launcher, and Client; each references Core. Runtime still requires future compiled `Bin/` artifacts. |
 
 ## Milestone 1 Completion Checklist
 
 | Requirement | Status |
 |---|---:|
 | No duplicated models across applications | In progress |
-| Every application references Core | Not complete |
-| Core has no dependencies on application projects | In progress |
+| Every application references Core | Substantially underway |
+| Core has no dependencies on application projects | Verified by structure |
 | Core configuration fully functional | In progress |
 | Core logging complete | In progress |
 | Validation framework complete | In progress |
@@ -89,6 +89,25 @@ MajorMud Reforged is a standalone game engine and toolset inspired by the origin
 1. Finish Core configuration defaults and application-specific configuration overlays.
 2. Finish logging levels, formatting, and startup log routing.
 3. Add stronger repository health checks for duplicate models and application Core references.
-4. Create or wire application project stubs so Server, Importer, Editor, Launcher, and Client explicitly reference Core.
+4. Produce compiled/runtime-ready `Bin/` application artifacts once application shells are ready for runtime packaging.
 5. Expand validation to include common game-data rules before Milestone 2 import work.
 6. Continue updating this file after every Code Update.
+
+
+## Code Update 0011 Handoff Notes
+
+Core Update 0011 established source-level application wiring for all five major applications. This closes the largest Milestone 1 structural gap without changing the user runtime rule: normal users still launch compiled/runtime-ready artifacts from `Bin/`, not source projects or SDK commands.
+
+Added Core areas:
+
+- `Core/Applications/` application identity and common application contracts.
+- `Core/Health/ApplicationCoreReferenceAudit.cs` for SDK-free source-layout auditing.
+- `Core/Runtime/BinRuntimeRequirement.cs` and `BinRuntimeHandoffValidator.cs` for future runtime artifact validation.
+- `Apps/Source/MajorMud.Server`, `MajorMud.Importer`, `MajorMud.Editor`, `MajorMud.Launcher`, and `MajorMud.Client` source shells, each referencing Core.
+
+Next recommended Milestone 1 work:
+
+1. Strengthen duplicate-model audits by scanning application source folders once models appear.
+2. Expand validation rules for current `Data/` JSON files before Milestone 2 importer work.
+3. Add repository-backed loaders for current core data categories.
+4. Prepare runtime artifact expectations under `Bin/` without requiring SDK use by normal users.
