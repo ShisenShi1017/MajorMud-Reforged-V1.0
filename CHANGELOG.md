@@ -1,5 +1,20 @@
 # Changelog
 
+## CodeUpdate-0012 - Data Validation and Service Completion
+
+- Continued Milestone 1 Core Framework work.
+- Added source-level runtime configuration provider with defaults, JSON loading, environment overlays, and typed access.
+- Added source-level Core logger contract, in-memory logger, and composite logger.
+- Added dependency-free service registry for application bootstrap wiring.
+- Added source-level data repository contracts and in-memory repository implementation.
+- Added shared JSON data file loader/saver for Core data records.
+- Added data-record validator for StableId, LegacyId, duplicate, and name checks.
+- Added Data JSON health check for parse errors, invalid roots, and duplicate IDs.
+- Added SDK-free application Core-reference health check.
+- Updated `AI_CONTEXT.md` with current Milestone 1 status, handoff table, and completion checklist.
+- Updated `README.md`, `VERSION.md`, `ProjectManifest.json`, and docs.
+- Preserved no-SDK runtime policy, one-folder update ZIP policy, and protection of `Saves/` and `ImportedDatabases/`.
+
 ## CodeUpdate-0010 - Core Services and Handoff
 
 - Continued Milestone 1 Core Framework work.

@@ -6,13 +6,13 @@
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0010 — Core Services and Handoff`
+**Current Code Update:** `CodeUpdate-0012 — Data Validation and Service Completion`
 
 **Current Database Version:** `DatabaseVersion-0009 — Server-Ready Data Baseline`
 
 **Active Milestone:** `Milestone 1 — Core Framework`
 
-**Current Priority:** Continue building real Core code before starting gameplay/server feature work.
+**Current Priority:** Finish Milestone 1 Core runtime services, data validation, repository loading, and handoff accuracy before starting Milestone 2.
 
 This README is the required starting point for every new ChatGPT session and every developer handoff.
 
@@ -335,3 +335,8 @@ Highlights:
 ## Core Update 0011
 
 Core Update 0011 continues Milestone 1 by wiring all application source shells to Core while preserving the no-SDK runtime rule. The Server, Importer, Editor, Launcher, and Client now have source-level project shells under `Apps/Source/` with explicit Core project references. Core also gains application identity contracts, an application Core-reference audit, and runtime artifact validation models for future `Bin/` handoff checks.
+
+
+## Code Update 0012 Notes
+
+Code Update 0012 continues Milestone 1 by adding shared source-level Core services for runtime configuration, logging, service registration, repository staging, JSON data file loading, data-record validation, Data JSON health checks, and application Core-reference health checks. These additions move the project closer to closing the Core Framework milestone while preserving the rule that normal runtime must not require the .NET SDK.
