@@ -1,0 +1,25 @@
+{
+  "updateType": "CodeUpdate",
+  "updateNumber": "0006",
+  "name": "README / New Chat Handoff",
+  "milestone": "Milestone 1 \u2014 Core Framework",
+  "databaseVersion": "DatabaseVersion-0009",
+  "runsFromOwnExtractedFolder": true,
+  "requiresManualPath": false,
+  "protectedFoldersNotIncluded": [
+    "Saves/",
+    "ImportedDatabases/",
+    "Data/"
+  ],
+  "filesUpdated": [
+    "README.md",
+    "VERSION.md",
+    "ProjectManifest.json",
+    "CHANGELOG.md",
+    "Docs/ChatGPT-Handoff.md",
+    "Docs/SessionHandoff.md",
+    "Docs/ReleaseNotes/CodeUpdate-0006-README-Handoff.md",
+    "Docs/CodeUpdates/CodeUpdate-0006-README-Handoff.md",
+    "Reports/RepositoryHealth-CodeUpdate-0006.md"
+  ]
+}

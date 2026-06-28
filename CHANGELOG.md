@@ -1,19 +1,17 @@
 # Changelog
 
-## Code Update 0005 - Core Utilities and Validation Foundation
+## CodeUpdate-0006 — README / New Chat Handoff
 
-- Added Core configuration model files.
-- Added Core logging interfaces and simple file logger source.
-- Added Core validation result and issue model files.
-- Added Core version metadata model.
-- Added Core JSON document envelope model.
-- Added Core repository health model files.
-- Updated README, VERSION, ProjectManifest, release notes, patch history, and session handoff.
+- Replaced the root `README.md` with a new authoritative handoff README for future ChatGPT sessions and developers.
+- Updated `VERSION.md` to identify the current milestone as Milestone 1 — Core Framework.
+- Updated `ProjectManifest.json` with the current project rules, protected folders, and update expectations.
+- Added release notes and handoff documentation for CodeUpdate-0006.
+- Reinforced that future update ZIPs must be physically generated and verified before they are announced.
+- Reinforced that `Data/` is the runtime source of truth and `ImportedDatabases/` is reference-only after conversion.
+- Reinforced that repository reorganization is complete and future work should focus on Core functionality.
 
-## Code Update 0004 - Core Library Foundation
+## Previous history
 
-- Began Milestone 1 with Core contracts and documentation.
+Earlier Database Versions established editable `Data/`, CSV import baselines, native DAT cataloging, MegaMud MP knowledge integration, and a server-ready database baseline.
 
-## Code Update 0003 - Layout Freeze / Manifest Cleanup
-
-- Added ProjectManifest and froze the repository layout.
+Earlier Code Updates reorganized the repository, deduplicated redundant files, froze the layout, and prepared the project for Core and server development.

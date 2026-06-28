@@ -1,11 +1,23 @@
-# Version
+# MajorMud Reforged Version Status
 
-- Project Version: 0.1.0
-- Code Update: 0005
-- Database Version: 0009
-- Current Milestone: Milestone 1 - Core Library
-- Last Updated: 2026-06-27
+- Project Status: Active development
+- Active Milestone: Milestone 1 — Core Framework
+- Current Code Update: CodeUpdate-0006 — README / New Chat Handoff
+- Current Database Version: DatabaseVersion-0009 — Server-Ready Data Baseline
+- Repository Layout: Frozen
+- Runtime Data Source: Data/
+- ImportedDatabases Status: Reference-only after conversion
+- Saves Status: Protected
+- Product Direction: Standalone compiled applications; batch files are temporary apply compatibility only
+- Executable Policy: Every executable gets its own folder under Bin/Windows/ or Bin/Android/
 
-## Status
+## Next Planned Work
 
-Core source foundations are being added. The project is not yet a compiled application and no executable is claimed by this update.
+Continue Milestone 1 with real Core code and contracts:
+
+- Event system contracts
+- Service framework contracts
+- Validation pipeline
+- Repository interfaces
+- Source/provenance tracking
+- Server-ready model interfaces
