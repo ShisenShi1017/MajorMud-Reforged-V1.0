@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 2097
+  },
+  "displayName": "Plaster Hallway",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 2097,
+    "Name": "Plaster Hallway",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 569,[20-12-12-3]",
+    "Delay": 3,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "12/2107",
+    "W": 0,
+    "NE": 0,
+    "NW": "12/2096",
+    "SE": 0,
+    "SW": "12/2098",
+    "U": 0,
+    "D": 0
+  }
+}

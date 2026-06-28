@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 662
+  },
+  "displayName": "Small Room",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 662,
+    "Name": "Small Room",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "1/661 (Door)",
+    "W": "1/859 (Text: go hole, go hol, enter hole)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

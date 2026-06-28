@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1246
+  },
+  "displayName": "Black Fortress, Dungeon",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1246,
+    "Name": "Black Fortress, Dungeon",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "7/1247 (Door [11 picklocks/strength])",
+    "SE": "7/1235",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

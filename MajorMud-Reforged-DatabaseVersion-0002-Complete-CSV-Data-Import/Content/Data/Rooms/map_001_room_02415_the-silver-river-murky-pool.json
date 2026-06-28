@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2415
+  },
+  "displayName": "The Silver River, Murky Pool",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2415,
+    "Name": "The Silver River, Murky Pool",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "1/2414",
+    "E": 0,
+    "W": 0,
+    "NE": "3/197",
+    "NW": "3/204",
+    "SE": "3/178",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

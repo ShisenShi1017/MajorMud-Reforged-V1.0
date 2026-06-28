@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 918
+  },
+  "displayName": "Small Alcove",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 918,
+    "Name": "Small Alcove",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "6/892 (Hidden/Searchable)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "Action#4 [on the D exit of room 6/861]: pull lever, push lever, move lever"
+  }
+}

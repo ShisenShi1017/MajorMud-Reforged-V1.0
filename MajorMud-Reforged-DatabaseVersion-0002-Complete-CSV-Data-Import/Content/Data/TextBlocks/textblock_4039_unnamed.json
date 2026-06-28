@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4039,
+  "displayName": "",
+  "fields": {
+    "Number": 4039,
+    "LinkTo": 0,
+    "Action": "pray altar:nomonsters 1093:roomitem 1132 1093:evilaligned 40:message 3127:message 3128:cast 759\npray altar:nomonsters 1093:roomitem 1132 1093:goodaligned 39:message 3127:message 3128:cast 758\nkneel altar:nomonsters 1093:roomitem 1132 1093:evilaligned 40:message 3127:message 3128:cast 759\nkneel altar:nomonsters 1093:roomitem 1132 1093:goodaligned 39:message 3127:message 3128:cast 758\nworship altar:nomonsters 1093:roomitem 1132 1093:evilaligned 40:message 3127:message 3128:cast 759\nworship altar:nomonsters 1093:roomitem 1132 1093:goodaligned 39:message 3127:message 3128:cast 758\n\n",
+    "Called From": "Room 15/1117, Room 15/1167, Room 15/1168"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 630
+  },
+  "displayName": "Musty Room",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 630,
+    "Name": "Musty Room",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/629 (Hidden/Needs 1 Actions, any order)",
+    "S": 0,
+    "E": 0,
+    "W": "Action [on the N exit of this room]: push button, push button, push button",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "8/631"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 10,
+    "Room Number": 280
+  },
+  "displayName": "Frozen Cavern, Dark Hole",
+  "fields": {
+    "Map Number": 10,
+    "Room Number": 280,
+    "Name": "Frozen Cavern, Dark Hole",
+    "Light": -375,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1144,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "10/279",
+    "D": "10/281"
+  }
+}

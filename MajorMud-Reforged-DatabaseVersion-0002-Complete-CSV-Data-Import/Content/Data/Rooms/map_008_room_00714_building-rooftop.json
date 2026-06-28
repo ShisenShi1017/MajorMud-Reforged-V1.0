@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 714
+  },
+  "displayName": "Building Rooftop",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 714,
+    "Name": "Building Rooftop",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/715",
+    "S": 0,
+    "E": 0,
+    "W": "8/719",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "8/713 (Door [21 picklocks/strength])"
+  }
+}

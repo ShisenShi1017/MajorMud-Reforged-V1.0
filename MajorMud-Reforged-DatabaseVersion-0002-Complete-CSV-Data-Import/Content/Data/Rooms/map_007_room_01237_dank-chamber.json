@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1237
+  },
+  "displayName": "Dank Chamber",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1237,
+    "Name": "Dank Chamber",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "7/1241 (Door)",
+    "S": "7/1242 (Door)",
+    "E": "7/1236",
+    "W": "7/1238",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

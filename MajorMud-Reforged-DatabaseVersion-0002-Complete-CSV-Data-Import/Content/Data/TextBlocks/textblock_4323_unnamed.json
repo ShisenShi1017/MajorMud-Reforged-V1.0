@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4323,
+  "displayName": "",
+  "fields": {
+    "Number": 4323,
+    "LinkTo": 0,
+    "Action": "10:nomonsters:summon 1077:summon 1077\n20:nomonsters:summon 1078:summon 1077\n30:nomonsters:summon 1078:summon 1079\n40:nomonsters:summon 1077:summon 1077:summon 1079\n70:nomonsters:summon 1077\n100:addevil 0\n\n",
+    "Called From": "Textblock(rndm) #4270(10%), Textblock(rndm) #4270(20%)"
+  }
+}

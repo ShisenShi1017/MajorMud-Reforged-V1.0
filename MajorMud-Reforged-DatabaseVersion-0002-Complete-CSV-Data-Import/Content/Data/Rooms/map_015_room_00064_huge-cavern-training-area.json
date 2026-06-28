@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 64
+  },
+  "displayName": "Huge Cavern, Training Area",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 64,
+    "Name": "Huge Cavern, Training Area",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 728,729,730,[32-5-7-2]",
+    "Delay": 1,
+    "Placed": "",
+    "N": "15/63",
+    "S": "15/65",
+    "E": "15/75",
+    "W": "15/61",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

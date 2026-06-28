@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 37
+  },
+  "displayName": "Witch's Cave",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 37,
+    "Name": "Witch's Cave",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 269,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 265,[21-2-2-3]",
+    "Delay": 20,
+    "Placed": "702,",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "3/36 (Door [any picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

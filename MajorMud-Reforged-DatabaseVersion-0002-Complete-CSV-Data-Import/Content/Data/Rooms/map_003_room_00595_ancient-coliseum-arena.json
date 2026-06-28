@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 595
+  },
+  "displayName": "Ancient Coliseum, Arena",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 595,
+    "Name": "Ancient Coliseum, Arena",
+    "Light": -75,
+    "Shop": 0,
+    "NPC": 315,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 298,299,300,301,302,[21-30-34-2]",
+    "Delay": 1,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "3/594",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "3/592 (Door [201 picklocks/strength])",
+    "D": 0
+  }
+}

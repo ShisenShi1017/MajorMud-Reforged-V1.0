@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 146
+  },
+  "displayName": "Strange Mansion, Hallway",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 146,
+    "Name": "Strange Mansion, Hallway",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 1,
+    "Placed": "",
+    "N": "1/463 (Door [21 picklocks/strength])",
+    "S": 0,
+    "E": "1/111",
+    "W": "1/461 (Door [21 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

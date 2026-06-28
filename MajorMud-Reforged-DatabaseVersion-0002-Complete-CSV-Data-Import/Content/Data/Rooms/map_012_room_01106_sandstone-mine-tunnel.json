@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 1106
+  },
+  "displayName": "Sandstone Mine Tunnel",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 1106,
+    "Name": "Sandstone Mine Tunnel",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "12/1105",
+    "NE": 0,
+    "NW": 0,
+    "SE": "12/1107",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

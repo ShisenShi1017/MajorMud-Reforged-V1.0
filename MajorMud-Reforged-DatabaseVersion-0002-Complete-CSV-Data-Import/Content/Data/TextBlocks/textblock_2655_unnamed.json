@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2655,
+  "displayName": "",
+  "fields": {
+    "Number": 2655,
+    "LinkTo": 0,
+    "Action": "87:addexp 0\n91:message 2018\n92:message 2019\n93:message 2020\n94:message 2021\n95:message 2022\n99:message 2023\n100:random 2700\n\n",
+    "Called From": "Textblock(rndm) #2653, Textblock(rndm) #2654"
+  }
+}

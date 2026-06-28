@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 882,
+  "displayName": "",
+  "fields": {
+    "Number": 882,
+    "LinkTo": 0,
+    "Action": "6:message 1429:giveitem 223\n9:message 1429:giveitem 269\n10:message 1429:giveitem 464\n11:message 1429:giveitem 467\n12:message 1429:giveitem 471\n17:message 1429:giveitem 469\n20:message 1429:giveitem 465\n22:message 1429:giveitem 878\n27:message 1430:giveitem 407\n29:message 1430:giveitem 433\n30:message 1430:giveitem 611\n31:message 1430:giveitem 406\n32:message 1430:giveitem 408\n33:message 1430:giveitem 424\n37:message 1433:giveitem 46\n40:message 1433:giveitem 404\n41:message 1433:giveitem 402\n42:message 1433:giveitem 420\n43:message 1433:giveitem 422\n44:message 1433:giveitem 445\n48:message 1437:giveitem 410\n51:message 1437:giveitem 414\n54:message 1437:giveitem 846\n57:message 1437:giveitem 521\n59:message 1437:giveitem 411\n61:message 1437:giveitem 847\n63:message 1437:giveitem 362\n64:message 1437:giveitem 418\n65:message 1433:giveitem 848\n69:message 1434:giveitem 295\n73:message 1434:giveitem 864\n76:message 1434:giveitem 361\n79:message 1434:giveitem 116\n81:message 1434:giveitem 868\n83:message 1434:giveitem 869\n87:message 1438:giveitem 863\n91:message 1438:giveitem 459\n93:message 1438:giveitem 865\n95:message 1438:giveitem 866\n97:message 1438:giveitem 867\n98:message 1438:giveitem 461\n99:message 1438:giveitem 870\n100:message 1438:giveitem 871\n\n",
+    "Called From": "Textblock(rndm) #9381(10%)"
+  }
+}

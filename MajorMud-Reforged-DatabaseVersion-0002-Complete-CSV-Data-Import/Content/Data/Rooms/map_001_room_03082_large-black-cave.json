@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 3082
+  },
+  "displayName": "Large Black Cave",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 3082,
+    "Name": "Large Black Cave",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 990,993,991,992,[14-10-12-2]",
+    "Delay": 3,
+    "Placed": "",
+    "N": 0,
+    "S": "1/3083",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "1/3081",
+    "SE": 0,
+    "SW": "1/3099",
+    "U": 0,
+    "D": 0
+  }
+}

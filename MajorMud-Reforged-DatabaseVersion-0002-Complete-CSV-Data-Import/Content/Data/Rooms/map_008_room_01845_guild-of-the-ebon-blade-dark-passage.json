@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 1845
+  },
+  "displayName": "Guild of the Ebon Blade, Dark Passage",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 1845,
+    "Name": "Guild of the Ebon Blade, Dark Passage",
+    "Light": -275,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/1844",
+    "S": "8/1819 (Cast: pre-0, post-1257)",
+    "E": "8/1846 (Trap, 400 damage)",
+    "W": "8/1836 (Cast: pre-0, post-1257)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

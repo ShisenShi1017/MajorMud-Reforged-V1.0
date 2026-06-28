@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 217
+  },
+  "displayName": "Dark Cave, Passageway",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 217,
+    "Name": "Dark Cave, Passageway",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "8/216",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "8/218",
+    "U": 0,
+    "D": 0
+  }
+}

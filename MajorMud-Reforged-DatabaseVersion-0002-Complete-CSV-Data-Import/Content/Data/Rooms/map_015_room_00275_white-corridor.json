@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 275
+  },
+  "displayName": "White Corridor",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 275,
+    "Name": "White Corridor",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 731,732,733,734,735,736,[32-11-16-2]",
+    "Delay": 1,
+    "Placed": "",
+    "N": 0,
+    "S": "15/276",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "15/274",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

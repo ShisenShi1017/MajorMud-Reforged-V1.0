@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 2506
+  },
+  "displayName": "Sandy Beach",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 2506,
+    "Name": "Sandy Beach",
+    "Light": 175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 686,687,689,[31-100-102-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "16/2508",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "16/2507",
+    "SE": "16/2505",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

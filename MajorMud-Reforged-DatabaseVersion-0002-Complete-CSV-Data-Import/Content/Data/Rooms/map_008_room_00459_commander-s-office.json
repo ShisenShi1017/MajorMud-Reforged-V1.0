@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 459
+  },
+  "displayName": "Commander's Office",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 459,
+    "Name": "Commander's Office",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 332,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 330,331,[22-11-12-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "8/445 (Door [31 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 410
+  },
+  "displayName": "Misty Bog",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 410,
+    "Name": "Misty Bog",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 485,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "6/403",
+    "NW": 0,
+    "SE": 0,
+    "SW": "6/409",
+    "U": 0,
+    "D": 0
+  }
+}

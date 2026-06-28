@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4286,
+  "displayName": "",
+  "fields": {
+    "Number": 4286,
+    "LinkTo": 0,
+    "Action": "nomonsters:failability 152:roomitem 1954:teleport 2381 12:message 1625:message 837\nnomonsters:checkability 152 1:testability 152 1:roomitem 1954:teleport 221 12:message 1625:message 837\nnomonsters:failability 152:minlevel 67:teleport 2381 12:message 1625:message 837\n\n",
+    "Called From": "Spell #1354, Spell #1365"
+  }
+}

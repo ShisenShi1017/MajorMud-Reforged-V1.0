@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1180
+  },
+  "displayName": "Black Fortress",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1180,
+    "Name": "Black Fortress",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "7/1212 (Door [11 picklocks/strength])",
+    "NW": "7/1177",
+    "SE": "7/1181",
+    "SW": "7/1213 (Door [11 picklocks/strength])",
+    "U": 0,
+    "D": 0
+  }
+}

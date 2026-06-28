@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2049
+  },
+  "displayName": "Mausoleum, Stone Hallway",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2049,
+    "Name": "Mausoleum, Stone Hallway",
+    "Light": -300,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/2090 (Door [71 picklocks/strength])",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "17/2050",
+    "NW": 0,
+    "SE": 0,
+    "SW": "17/2048",
+    "U": 0,
+    "D": 0
+  }
+}

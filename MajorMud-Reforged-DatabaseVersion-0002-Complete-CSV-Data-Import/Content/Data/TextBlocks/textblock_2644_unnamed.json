@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2644,
+  "displayName": "",
+  "fields": {
+    "Number": 2644,
+    "LinkTo": 0,
+    "Action": "jump pit:message 1973:teleport 2029 12:message 2011:teleport 1927 12:message 2011:teleport 1901 12:message 2011:teleport 1255 12:message 1963:cast 709:cast 688\njump shaft:message 1973:teleport 2029 12:message 2011:teleport 1927 12:message 2011:teleport 1901 12:message 2011:teleport 1255 12:message 1963:cast 709:cast 688\nenter pit:message 1973:teleport 2029 12:message 2011:teleport 1927 12:message 2011:teleport 1901 12:message 2011:teleport 1255 12:message 1963:cast 709:cast 688\nenter shaft:message 1973:teleport 2029 12:message 2011:teleport 1927 12:message 2011:teleport 1901 12:message 2011:teleport 1255 12:message 1963:cast 709:cast 688\ngo pit:message 1973:teleport 2029 12:message 2011:teleport 1927 12:message 2011:teleport 1901 12:message 2011:teleport 1255 12:message 1963:cast 709:cast 688\ngo shaft:message 1973:teleport 2029 12:message 2011:teleport 1927 12:message 2011:teleport 1901 12:message 2011:teleport 1255 12:message 1963:cast 709:cast 688\n",
+    "Called From": "Room 12/2075"
+  }
+}

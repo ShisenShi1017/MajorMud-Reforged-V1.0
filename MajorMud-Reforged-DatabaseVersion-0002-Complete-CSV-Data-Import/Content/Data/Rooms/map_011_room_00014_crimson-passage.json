@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 11,
+    "Room Number": 14
+  },
+  "displayName": "Crimson Passage",
+  "fields": {
+    "Map Number": 11,
+    "Room Number": 14,
+    "Name": "Crimson Passage",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "11/15",
+    "NE": 0,
+    "NW": 0,
+    "SE": "11/13",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 254
+  },
+  "displayName": "Graveyard",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 254,
+    "Name": "Graveyard",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1126,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "1785,",
+    "N": "17/253",
+    "S": "17/255",
+    "E": "17/275",
+    "W": "17/251",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

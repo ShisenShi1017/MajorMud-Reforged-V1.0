@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 2130
+  },
+  "displayName": "Plaster Hallway",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 2130,
+    "Name": "Plaster Hallway",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "12/2131 (Door [11 picklocks/strength])",
+    "S": "12/2129",
+    "E": "12/2132 (Door [11 picklocks/strength])",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

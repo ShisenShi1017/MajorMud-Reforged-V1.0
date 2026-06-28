@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2377
+  },
+  "displayName": "Library Street",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2377,
+    "Name": "Library Street",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "17/2376",
+    "W": "17/2394 (Door [31 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "17/2378",
+    "U": 0,
+    "D": 0
+  }
+}

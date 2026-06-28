@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 919
+  },
+  "displayName": "Shadow Fist Temple",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 919,
+    "Name": "Shadow Fist Temple",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "9/920 (Door)",
+    "S": "9/922 (Door)",
+    "E": "9/916 (Door [11 picklocks/strength])",
+    "W": "9/921 (Door)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

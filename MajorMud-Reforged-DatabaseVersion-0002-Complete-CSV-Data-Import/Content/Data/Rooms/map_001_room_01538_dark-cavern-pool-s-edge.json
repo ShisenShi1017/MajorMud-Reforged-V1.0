@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1538
+  },
+  "displayName": "Dark Cavern, Pool's Edge",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1538,
+    "Name": "Dark Cavern, Pool's Edge",
+    "Light": -150,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "1/1537",
+    "NE": "1/1531",
+    "NW": 0,
+    "SE": "1/1539",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

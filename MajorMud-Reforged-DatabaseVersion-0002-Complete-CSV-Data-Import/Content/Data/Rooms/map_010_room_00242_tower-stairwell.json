@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 10,
+    "Room Number": 242
+  },
+  "displayName": "Tower, Stairwell",
+  "fields": {
+    "Map Number": 10,
+    "Room Number": 242,
+    "Name": "Tower, Stairwell",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 211,[17-5-5-2]",
+    "Delay": 4,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "10/243",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "10/241 (Key: 520 [or 51 picklocks/strength])"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 309
+  },
+  "displayName": "Oyster Bed",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 309,
+    "Name": "Oyster Bed",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 627,[31-25-25-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "16/308",
+    "NE": 0,
+    "NW": 0,
+    "SE": "16/310",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

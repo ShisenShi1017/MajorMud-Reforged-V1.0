@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 14,
+    "Room Number": 13
+  },
+  "displayName": "The Silver River",
+  "fields": {
+    "Map Number": 14,
+    "Room Number": 13,
+    "Name": "The Silver River",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 753,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "14/12",
+    "NW": 0,
+    "SE": 0,
+    "SW": "14/14",
+    "U": 0,
+    "D": 0
+  }
+}

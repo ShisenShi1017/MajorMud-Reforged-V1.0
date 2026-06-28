@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 1107
+  },
+  "displayName": "Gnoll Encampment",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 1107,
+    "Name": "Gnoll Encampment",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 224,225,[9-6-7-1]",
+    "Delay": 5,
+    "Placed": "600,",
+    "N": 0,
+    "S": "2/1110",
+    "E": "2/1113",
+    "W": "2/1108",
+    "NE": "2/1114",
+    "NW": "2/1106",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

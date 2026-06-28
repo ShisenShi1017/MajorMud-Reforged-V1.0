@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 140
+  },
+  "displayName": "Fountain",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 140,
+    "Name": "Fountain",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 14,[5-1-1-1]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/139",
+    "S": "1/134",
+    "E": "1/135",
+    "W": "1/132",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "1/167 (Hidden/Passable)",
+    "D": "1/547 (Text: go manhole, go man, enter manhole)"
+  }
+}

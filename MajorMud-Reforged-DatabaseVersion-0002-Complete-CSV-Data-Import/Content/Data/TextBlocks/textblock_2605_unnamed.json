@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2605,
+  "displayName": "",
+  "fields": {
+    "Number": 2605,
+    "LinkTo": 0,
+    "Action": "peruse red book:checkability 134 6:adddelay 10:testskill intellect 30 2607:giveability 134 7:text 2609\nperuse red book:testability 134 5:adddelay 10:message 2004\nperuse red book:adddelay 10:failability 134 2004\nperuse blue book:checkability 134 5:giveability 134 6:text 2606\nperuse blue book:testability 134 4:message 2003\nperuse blue book:failability 134 2003\n",
+    "Called From": "Room 12/2248"
+  }
+}

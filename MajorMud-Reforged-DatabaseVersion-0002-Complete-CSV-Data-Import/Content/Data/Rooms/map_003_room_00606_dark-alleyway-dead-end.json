@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 606
+  },
+  "displayName": "Dark Alleyway, Dead End",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 606,
+    "Name": "Dark Alleyway, Dead End",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 475,
+    "Spell": 0,
+    "Lair": "(Max 3): 298,299,300,301,302,[21-30-34-3]",
+    "Delay": 2,
+    "Placed": "762,",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "3/607 (Key: 757 [or 81 picklocks])",
+    "NE": "3/599",
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

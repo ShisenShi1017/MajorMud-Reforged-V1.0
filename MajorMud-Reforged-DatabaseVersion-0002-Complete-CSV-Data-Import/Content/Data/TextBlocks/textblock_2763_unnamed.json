@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2763,
+  "displayName": "",
+  "fields": {
+    "Number": 2763,
+    "LinkTo": 0,
+    "Action": "25:summon 1089\n50:summon 1090\n75:summon 1091\n100:summon 1092",
+    "Called From": "Textblock(rndm) #2762"
+  }
+}

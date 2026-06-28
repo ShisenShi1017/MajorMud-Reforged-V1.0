@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 650
+  },
+  "displayName": "Torture Chamber",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 650,
+    "Name": "Torture Chamber",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 317,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 310,[21-39-39-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action [on the S exit of this room]: say darkness, say night, say shadow",
+    "S": "3/651 (Hidden/Needs 1 Actions, any order)",
+    "E": "3/649",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

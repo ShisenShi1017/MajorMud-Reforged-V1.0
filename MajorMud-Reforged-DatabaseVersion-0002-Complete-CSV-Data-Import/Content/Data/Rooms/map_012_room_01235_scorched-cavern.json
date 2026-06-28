@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 1235
+  },
+  "displayName": "Scorched Cavern",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 1235,
+    "Name": "Scorched Cavern",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "12/1236",
+    "SE": "12/1234",
+    "SW": "12/1279 (Text: go hole, enter hole, go passage)",
+    "U": 0,
+    "D": 0
+  }
+}

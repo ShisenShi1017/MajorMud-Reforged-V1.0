@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2122
+  },
+  "displayName": "Crystal-Studded Cavern, Northern End",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2122,
+    "Name": "Crystal-Studded Cavern, Northern End",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "1/2124",
+    "E": "1/2123 (Key: 259)",
+    "W": "1/2121",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "1/2125 (Text: pull lever, push lever, move lever)"
+  }
+}

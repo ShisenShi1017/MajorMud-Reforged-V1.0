@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 1996
+  },
+  "displayName": "Library",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 1996,
+    "Name": "Library",
+    "Light": 100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 9398,
+    "Spell": 0,
+    "Lair": "(Max 1): 897,899,903,868,869,870,886,[29-30-32-1]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/1997 (Hidden/Passable)",
+    "S": "17/1989 (Hidden/Passable)",
+    "E": "17/1995 (Hidden/Passable)",
+    "W": "17/1969 (Hidden/Passable)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

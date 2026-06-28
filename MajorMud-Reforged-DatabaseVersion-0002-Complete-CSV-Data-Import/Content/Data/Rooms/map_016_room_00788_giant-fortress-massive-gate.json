@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 788
+  },
+  "displayName": "Giant Fortress, Massive Gate",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 788,
+    "Name": "Giant Fortress, Massive Gate",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 646,645,634,[31-41-43-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "16/661",
+    "W": "16/786 (Door)",
+    "NE": "16/791",
+    "NW": 0,
+    "SE": "16/789",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

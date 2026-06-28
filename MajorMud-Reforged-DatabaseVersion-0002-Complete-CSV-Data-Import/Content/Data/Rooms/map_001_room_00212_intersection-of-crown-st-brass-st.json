@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 212
+  },
+  "displayName": "Intersection of Crown St. & Brass St.",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 212,
+    "Name": "Intersection of Crown St. & Brass St.",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/213",
+    "S": "1/211",
+    "E": "1/378",
+    "W": "1/214",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

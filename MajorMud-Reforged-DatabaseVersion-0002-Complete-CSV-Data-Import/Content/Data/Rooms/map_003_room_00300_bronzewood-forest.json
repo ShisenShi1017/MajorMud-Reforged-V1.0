@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 300
+  },
+  "displayName": "Bronzewood Forest",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 300,
+    "Name": "Bronzewood Forest",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 274,275,276,277,[21-12-15-2]",
+    "Delay": 20,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "3/298",
+    "W": "3/301",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "3/327",
+    "U": 0,
+    "D": 0
+  }
+}

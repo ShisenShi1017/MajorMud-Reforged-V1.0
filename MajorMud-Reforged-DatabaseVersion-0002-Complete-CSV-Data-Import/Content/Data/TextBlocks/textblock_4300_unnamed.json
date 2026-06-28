@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4300,
+  "displayName": "",
+  "fields": {
+    "Number": 4300,
+    "LinkTo": 0,
+    "Action": "class 5:message 3361:roomitem 1956 1114:checkitem 1955 1114:message 3392:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:testskill wisdom 40 4304:failroomitem 1893 1114:message 3363:message 3364:giveitem 1893\nclass 11:message 3361:roomitem 1956 1114:checkitem 1955 1114:message 3392:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:testskill intellect 50 4304:failroomitem 1893 1114:message 3363:message 3364:giveitem 1893\nclass 12:message 3361:roomitem 1956 1114:checkitem 1955 1114:message 3392:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:testskill intellect 50 4304:failroomitem 1893 1114:message 3363:message 3364:giveitem 1893\nclass 13:message 3361:roomitem 1956 1114:checkitem 1955 1114:message 3392:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:takeitem 1955 1114:testskill intellect 40 4304:testskill intellect 40 4304:failroomitem 1893 1114:message 3363:message 3364:giveitem 1893\n\n",
+    "Called From": "Spell #1358"
+  }
+}

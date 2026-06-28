@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4250,
+  "displayName": "",
+  "fields": {
+    "Number": 4250,
+    "LinkTo": 0,
+    "Action": "steal from figure:needmonster 1057 1373:testskill thievery 100 4251:message 3314:giveitem 1924\nsteal from cloaked:needmonster 1057 1373:testskill thievery 100 4251:message 3314:giveitem 1924\nsteal from cloaked figure:needmonster 1057 1373:testskill thievery 100 4251:message 3314:giveitem 1924\n\n",
+    "Called From": "Room 17/3040"
+  }
+}

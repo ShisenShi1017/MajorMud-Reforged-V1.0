@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 465
+  },
+  "displayName": "Eastern Road",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 465,
+    "Name": "Eastern Road",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1040,
+    "Lair": "",
+    "Delay": 3,
+    "Placed": "",
+    "N": "17/466",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "17/464",
+    "U": 0,
+    "D": 0
+  }
+}

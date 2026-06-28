@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 389,
+  "displayName": "",
+  "fields": {
+    "Number": 389,
+    "LinkTo": 390,
+    "Action": "minor healing:price 100:cast 219\nmajor healing:price 250:cast 220\ngreater healing:price 400:cast 221\ncure poison:price 1000:cast 222\ncure disease:price 2000:cast 223\nremove curse:price 10000:cast 224\n",
+    "Called From": "Monster #255"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 9029,
+  "displayName": "",
+  "fields": {
+    "Number": 9029,
+    "LinkTo": 0,
+    "Action": "check class:class 6:failability 186:minlevel 25:giveability 186 0:text 9013\ncheck class:class 7:failability 186:minlevel 20:giveability 186 0:text 9013\ncheck class:class 8:failability 186:minlevel 20:giveability 186 0:text 9013\ncheck class:class 9:failability 186:minlevel 25:giveability 186 0:text 9013\ncheck class:class 10:failability 186:minlevel 25:giveability 186 0:text 9013\ncheck class:class 14:failability 186:minlevel 20:giveability 186 0:text 9013\ncheck class:class 15:failability 186:minlevel 27:giveability 186 0:text 9013\n",
+    "Called From": "Textblock #9012"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 1851
+  },
+  "displayName": "Guild of the Ebon Blade, Dark Passage",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 1851,
+    "Name": "Guild of the Ebon Blade, Dark Passage",
+    "Light": -275,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 4): 989,[22-27-27-4]",
+    "Delay": 3,
+    "Placed": "",
+    "N": "8/1850",
+    "S": "8/1815 (Cast: pre-0, post-1257)",
+    "E": "8/1806 (Cast: pre-0, post-1257)",
+    "W": "8/1852 (Hidden/Needs 7 Actions, any order)",
+    "NE": "Action#1 [on the W exit of this room]: pull lever, push lever, move lever",
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

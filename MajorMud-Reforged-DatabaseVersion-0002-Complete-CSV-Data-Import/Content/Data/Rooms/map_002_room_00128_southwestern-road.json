@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 128
+  },
+  "displayName": "Southwestern Road",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 128,
+    "Name": "Southwestern Road",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "2/127",
+    "S": "2/129",
+    "E": "2/985 (Text: go path, follow trail, go trail)",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2873
+  },
+  "displayName": "Hedge Maze",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2873,
+    "Name": "Hedge Maze",
+    "Light": 100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1305,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "17/2874 (Trap, 400 damage)",
+    "NE": 0,
+    "NW": "17/2872 (Trap, 400 damage)",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

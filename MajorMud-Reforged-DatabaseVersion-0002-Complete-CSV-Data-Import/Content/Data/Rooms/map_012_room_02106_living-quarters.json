@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 2106
+  },
+  "displayName": "Living Quarters",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 2106,
+    "Name": "Living Quarters",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 4): 569,[20-12-12-4]",
+    "Delay": 4,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "12/2102 (Door [11 picklocks/strength])",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

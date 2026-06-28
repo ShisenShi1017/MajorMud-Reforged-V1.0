@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 115
+  },
+  "displayName": "Slimy Sewer Tunnel",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 115,
+    "Name": "Slimy Sewer Tunnel",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "9/6 (Door [1000 picklocks/strength])",
+    "S": "9/116",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "Action [on the N exit of this room]: pull lever, push lever, move lever",
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 832
+  },
+  "displayName": "Dingy Dungeon",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 832,
+    "Name": "Dingy Dungeon",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 378,[24-5-5-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "9/831",
+    "E": "9/834 (Door [51 picklocks/strength])",
+    "W": "9/833 (Door [51 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

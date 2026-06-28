@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 444
+  },
+  "displayName": "Guardpost",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 444,
+    "Name": "Guardpost",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/446 (Door [31 picklocks/strength])",
+    "S": "8/448 (Door [31 picklocks/strength])",
+    "E": "8/445 (Door [31 picklocks/strength])",
+    "W": "8/443 (Door [31 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

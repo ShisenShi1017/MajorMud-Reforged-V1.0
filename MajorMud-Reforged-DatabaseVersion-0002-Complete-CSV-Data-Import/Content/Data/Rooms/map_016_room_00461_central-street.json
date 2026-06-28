@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 461
+  },
+  "displayName": "Central Street",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 461,
+    "Name": "Central Street",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "16/460",
+    "S": "16/462",
+    "E": 0,
+    "W": "16/454",
+    "NE": 0,
+    "NW": "16/455",
+    "SE": 0,
+    "SW": "16/453",
+    "U": 0,
+    "D": 0
+  }
+}

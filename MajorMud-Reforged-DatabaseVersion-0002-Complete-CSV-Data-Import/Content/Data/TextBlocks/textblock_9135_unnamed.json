@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 9135,
+  "displayName": "",
+  "fields": {
+    "Number": 9135,
+    "LinkTo": 0,
+    "Action": "roll dice:price 1000 1560:random 9136:adddelay 5\nplay dice:price 1000 1560:random 9136:adddelay 5\nplay dragon's dice:price 1000 1560:random 9136:adddelay 5\nplay slots:price 100 1560:random 9137:adddelay 5\nplay slot:price 100 1560:random 9137:adddelay 5\nplay crowns and skulls:price 1000 1560:random 9137:adddelay 5\npull lever:price 100 1560:random 9137:adddelay 5\n\n",
+    "Called From": "Room 1/11"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4265,
+  "displayName": "",
+  "fields": {
+    "Number": 4265,
+    "LinkTo": 0,
+    "Action": "grab crystal:nomonsters 289:roomitem 1925 1373:testskill traps 100 4264:message 3326:message 3327:giveitem 1928\nget crystal:nomonsters 289:roomitem 1925 1373:testskill traps 100 4264:message 3326:message 3327:giveitem 1928\nsteal crystal:nomonsters 289:roomitem 1925 1373:testskill traps 100 4264:message 3326:message 3327:giveitem 1928\ntake crystal:nomonsters 289:roomitem 1925 1373:testskill traps 100 4264:message 3326:message 3327:giveitem 1928\n\n",
+    "Called From": "Room 17/3045"
+  }
+}

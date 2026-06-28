@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 99
+  },
+  "displayName": "Tasloi Village, Massive Web",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 99,
+    "Name": "Tasloi Village, Massive Web",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "16/102",
+    "NW": "16/98",
+    "SE": "16/100",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

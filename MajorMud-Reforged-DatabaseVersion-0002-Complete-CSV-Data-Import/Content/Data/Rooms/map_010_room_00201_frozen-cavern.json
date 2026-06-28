@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 10,
+    "Room Number": 201
+  },
+  "displayName": "Frozen Cavern",
+  "fields": {
+    "Map Number": 10,
+    "Room Number": 201,
+    "Name": "Frozen Cavern",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 922,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action#1 [on the S exit of this room]: say travel, say journey, say explore",
+    "S": "10/275 (Hidden/Needs 1 Actions, any order)",
+    "E": 0,
+    "W": "10/200",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

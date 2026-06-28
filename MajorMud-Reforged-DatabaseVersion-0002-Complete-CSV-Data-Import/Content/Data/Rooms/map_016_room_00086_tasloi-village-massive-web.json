@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 86
+  },
+  "displayName": "Tasloi Village, Massive Web",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 86,
+    "Name": "Tasloi Village, Massive Web",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "16/87",
+    "NW": "16/107",
+    "SE": 0,
+    "SW": "16/60",
+    "U": "16/2144 (Text: climb strand, go strand, climb strands)",
+    "D": 0
+  }
+}

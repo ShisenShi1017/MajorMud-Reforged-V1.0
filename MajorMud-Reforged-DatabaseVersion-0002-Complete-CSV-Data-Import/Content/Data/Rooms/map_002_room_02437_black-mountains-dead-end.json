@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 2437
+  },
+  "displayName": "Black Mountains, Dead End",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 2437,
+    "Name": "Black Mountains, Dead End",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "2/2436",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "2/2438 (Text: climb vines, climb up, climb cliff)",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

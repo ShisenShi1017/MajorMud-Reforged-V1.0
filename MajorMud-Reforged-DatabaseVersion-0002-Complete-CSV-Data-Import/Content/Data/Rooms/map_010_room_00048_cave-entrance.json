@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 10,
+    "Room Number": 48
+  },
+  "displayName": "Cave Entrance",
+  "fields": {
+    "Map Number": 10,
+    "Room Number": 48,
+    "Name": "Cave Entrance",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "10/47",
+    "S": "10/55",
+    "E": "10/49",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

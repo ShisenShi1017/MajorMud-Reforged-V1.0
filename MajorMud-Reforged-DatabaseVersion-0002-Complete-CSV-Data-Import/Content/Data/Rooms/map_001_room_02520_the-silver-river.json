@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2520
+  },
+  "displayName": "The Silver River",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2520,
+    "Name": "The Silver River",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 753,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "1/2521",
+    "SE": "1/2403",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

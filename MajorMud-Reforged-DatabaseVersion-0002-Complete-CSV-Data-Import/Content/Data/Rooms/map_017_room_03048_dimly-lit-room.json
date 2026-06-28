@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 3048
+  },
+  "displayName": "Dimly Lit Room",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 3048,
+    "Name": "Dimly Lit Room",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 1063,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "17/3049 (Trap, 700 damage)",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "17/3052 (Trap, 700 damage)",
+    "U": 0,
+    "D": 0
+  }
+}

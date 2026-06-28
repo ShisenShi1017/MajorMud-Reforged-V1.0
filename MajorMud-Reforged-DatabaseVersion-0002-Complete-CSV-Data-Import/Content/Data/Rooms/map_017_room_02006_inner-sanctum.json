@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2006
+  },
+  "displayName": "Inner Sanctum",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2006,
+    "Name": "Inner Sanctum",
+    "Light": 100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 5): 902,[29-33-33-5]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/2012 (Hidden/Passable)",
+    "S": "17/2005 (Door [91 picklocks/strength])",
+    "E": "17/2010 (Door [41 picklocks/strength])",
+    "W": "17/2009 (Door [41 picklocks/strength])",
+    "NE": "17/2013 (Door [41 picklocks/strength])",
+    "NW": "17/2011 (Door [41 picklocks/strength])",
+    "SE": "17/2007 (Door [41 picklocks/strength])",
+    "SW": "17/2008 (Door [41 picklocks/strength])",
+    "U": 0,
+    "D": 0
+  }
+}

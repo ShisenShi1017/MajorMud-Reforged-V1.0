@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2619,
+  "displayName": "",
+  "fields": {
+    "Number": 2619,
+    "LinkTo": 0,
+    "Action": "checkability 134 8:takeitem 1161 2006:giveability 134 9:text 2620\ntestability 134 7:takeitem 1161 2006:message 2007\nfailability 134:takeitem 1161 2006:message 2007\n",
+    "Called From": "Textblock #2618"
+  }
+}

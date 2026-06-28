@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2926,
+  "displayName": "",
+  "fields": {
+    "Number": 2926,
+    "LinkTo": 0,
+    "Action": "1:message 2580:teleport 215 6:summon 379:summon 379\n5:message 2580:teleport 144 6:summon 379\n9:message 2579:teleport 244 6\n13:message 2579:teleport 276 6\n100:message 2581:teleport 1249 6\n",
+    "Called From": "Textblock(rndm) #2923, Textblock(rndm) #2937"
+  }
+}

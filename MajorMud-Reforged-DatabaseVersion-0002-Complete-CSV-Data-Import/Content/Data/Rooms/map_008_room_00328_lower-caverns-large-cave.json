@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 328
+  },
+  "displayName": "Lower Caverns, Large Cave",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 328,
+    "Name": "Lower Caverns, Large Cave",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "8/331",
+    "E": "8/332",
+    "W": "8/327",
+    "NE": "8/344",
+    "NW": 0,
+    "SE": "8/329",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

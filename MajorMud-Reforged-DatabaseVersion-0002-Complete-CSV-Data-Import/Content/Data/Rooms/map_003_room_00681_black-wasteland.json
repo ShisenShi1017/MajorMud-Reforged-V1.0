@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 681
+  },
+  "displayName": "Black Wasteland",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 681,
+    "Name": "Black Wasteland",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "799,",
+    "N": 0,
+    "S": "3/680",
+    "E": 0,
+    "W": 0,
+    "NE": "3/682",
+    "NW": "3/717",
+    "SE": 0,
+    "SW": 0,
+    "U": "3/25 (Text: go vortex, enter vortex, go swirling vortex)",
+    "D": 0
+  }
+}

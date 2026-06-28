@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2820,
+  "displayName": "",
+  "fields": {
+    "Number": 2820,
+    "LinkTo": 0,
+    "Action": "buy smite:monsters:price 5000 318:cast 873:adddelay 5\nbuy speed:monsters:price 15000 318:cast 874:adddelay 5\nbuy magic armour:monsters:price 10000 318:cast 875:adddelay 5\nbuy rapid healing:monsters:price 20000 318:cast 876:adddelay 5\n",
+    "Called From": "Room 16/396"
+  }
+}

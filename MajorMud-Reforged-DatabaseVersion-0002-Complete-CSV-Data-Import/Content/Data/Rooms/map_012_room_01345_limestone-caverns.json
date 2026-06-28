@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 1345
+  },
+  "displayName": "Limestone Caverns",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 1345,
+    "Name": "Limestone Caverns",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 574,575,[20-8-10-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "12/1348",
+    "NE": "12/1346",
+    "NW": 0,
+    "SE": "12/1344",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

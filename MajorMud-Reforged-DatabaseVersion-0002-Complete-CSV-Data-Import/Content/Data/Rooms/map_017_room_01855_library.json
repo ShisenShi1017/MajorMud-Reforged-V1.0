@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 1855
+  },
+  "displayName": "Library",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 1855,
+    "Name": "Library",
+    "Light": 100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 9398,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/1860 (Hidden/Passable)",
+    "S": "17/1850 (Hidden/Passable)",
+    "E": "17/1854 (Hidden/Passable)",
+    "W": "17/1856 (Hidden/Passable)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2772,
+  "displayName": "",
+  "fields": {
+    "Number": 2772,
+    "LinkTo": 0,
+    "Action": "give black cauldron to Seher'Sahham:takeitem 702 2448:message 2449:giveitem 1291:message 2450:text 2773\ngive cauldron to Seher'Sahham:takeitem 702 2448:message 2449:giveitem 1291:message 2450:text 2773\ngive Seher'Sahham black cauldron:takeitem 702 2448:message 2449:giveitem 1291:message 2450:text 2773\ngive Seher'Sahham cauldron:takeitem 702 2448:message 2449:giveitem 1291:message 2450:text 2773\n",
+    "Called From": "Room 16/2666"
+  }
+}

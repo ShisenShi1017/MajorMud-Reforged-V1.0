@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4327,
+  "displayName": "",
+  "fields": {
+    "Number": 4327,
+    "LinkTo": 0,
+    "Action": "class 1:takeitem 1975:teleport 3250 17:message 837\nclass 2:takeitem 1975:teleport 3250 17:message 837\nclass 3:takeitem 1975:teleport 3250 17:message 837\nclass 4:takeitem 1975:teleport 3250 17:message 837\nclass 5:takeitem 1975:teleport 3325 17:message 837\nclass 6:takeitem 1975:teleport 3304 17:message 837\nclass 7:takeitem 1975:teleport 3304 17:message 837\nclass 8:takeitem 1975:teleport 3304 17:message 837\nclass 9:takeitem 1975:teleport 3304 17:message 837\nclass 10:takeitem 1975:teleport 3304 17:message 837\nclass 11:takeitem 1975:teleport 3325 17:message 837\nclass 12:takeitem 1975:teleport 3325 17:message 837\nclass 13:takeitem 1975:teleport 3325 17:message 837\nclass 14:takeitem 1975:teleport 3250 17:message 837\nclass 15:takeitem 1975:teleport 3250 17:message 837\n\n",
+    "Called From": "Spell #1375"
+  }
+}

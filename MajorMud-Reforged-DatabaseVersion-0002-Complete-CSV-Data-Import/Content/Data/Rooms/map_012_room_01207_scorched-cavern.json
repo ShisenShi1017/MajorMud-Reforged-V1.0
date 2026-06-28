@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 1207
+  },
+  "displayName": "Scorched Cavern",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 1207,
+    "Name": "Scorched Cavern",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "12/1205 (Hidden/Needs 1 Actions, any order)",
+    "S": "12/1209 (Door [21 picklocks/strength])",
+    "E": "12/1210 (Door [21 picklocks/strength])",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "Action [on the N exit of this room]: pull lever, push lever, move lever",
+    "D": 0
+  }
+}

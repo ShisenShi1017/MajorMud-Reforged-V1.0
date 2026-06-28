@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4194,
+  "displayName": "",
+  "fields": {
+    "Number": 4194,
+    "LinkTo": 0,
+    "Action": "takeitem 1921:random 4195\ntakeitem 1922:random 4195\ntakeitem 1923:random 4195\ntakeitem 1924:random 4195\ntakeitem 1933:random 4195\ntakeitem 1934:random 4195\ntakeitem 1935:random 4195\ntakeitem 1936:random 4195\ntakeitem 1937:random 4195\ntakeitem 1939:random 4195\ntakeitem 1947:random 4195\ntakeitem 1948:random 4195\ntakeitem 1949:random 4195\ntakeitem 1950:random 4195\ntakeitem 1947:random 4195\ntakeitem 1955:random 4195\ntakeitem 1975:random 4195\ntakeitem 1976:random 4195\ntakeitem 1977:random 4195\nfailitem 185:random 4195\n\n",
+    "Called From": "Spell #1306"
+  }
+}

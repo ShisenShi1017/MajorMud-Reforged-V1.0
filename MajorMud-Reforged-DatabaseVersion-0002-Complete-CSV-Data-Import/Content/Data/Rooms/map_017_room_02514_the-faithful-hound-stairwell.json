@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2514
+  },
+  "displayName": "The Faithful Hound, Stairwell",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2514,
+    "Name": "The Faithful Hound, Stairwell",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/2515 (Door [31 picklocks/strength])",
+    "S": "17/2516 (Door [31 picklocks/strength])",
+    "E": "17/2518 (Door [31 picklocks/strength])",
+    "W": "17/2517 (Door [31 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "17/2513"
+  }
+}

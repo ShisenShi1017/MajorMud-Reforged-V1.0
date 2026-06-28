@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 713
+  },
+  "displayName": "Warehouse Office",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 713,
+    "Name": "Warehouse Office",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 352,[22-40-40-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action [on the U exit of this room]: pull switch, push switch, move switch",
+    "S": 0,
+    "E": 0,
+    "W": "8/712 (Door [31 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "8/714 (Door [1000 picklocks/strength])",
+    "D": 0
+  }
+}

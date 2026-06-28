@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 615
+  },
+  "displayName": "Basement Hallway",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 615,
+    "Name": "Basement Hallway",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/624 (Door [101 picklocks/strength])",
+    "S": "8/625 (Door [101 picklocks/strength])",
+    "E": "8/614",
+    "W": "8/616",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

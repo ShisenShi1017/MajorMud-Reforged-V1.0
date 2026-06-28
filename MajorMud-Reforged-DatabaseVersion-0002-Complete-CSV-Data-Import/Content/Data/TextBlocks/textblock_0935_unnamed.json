@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 935,
+  "displayName": "",
+  "fields": {
+    "Number": 935,
+    "LinkTo": 0,
+    "Action": "7:checkspell 490 4331:cast 490:text 936\n15:checkspell 491 4331:cast 491:text 937\n23:cast 492:text 938\n30:cast 493:text 939\n38:cast 494:text 940\n46:cast 495:text 941\n53:cast 496:text 942\n61:cast 497:text 943\n69:cast 498:text 944\n76:cast 499:text 945\n84:cast 500:text 946\n92:cast 501:text 947\n100:cast 502:text 948\n",
+    "Called From": "Textblock(rndm) #934"
+  }
+}

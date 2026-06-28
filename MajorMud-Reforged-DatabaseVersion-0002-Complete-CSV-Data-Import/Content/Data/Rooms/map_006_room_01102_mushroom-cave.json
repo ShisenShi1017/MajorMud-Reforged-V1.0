@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 1102
+  },
+  "displayName": "Mushroom Cave",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 1102,
+    "Name": "Mushroom Cave",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 1304,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "934,",
+    "N": 0,
+    "S": 0,
+    "E": "6/1103",
+    "W": 0,
+    "NE": 0,
+    "NW": "6/1099",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

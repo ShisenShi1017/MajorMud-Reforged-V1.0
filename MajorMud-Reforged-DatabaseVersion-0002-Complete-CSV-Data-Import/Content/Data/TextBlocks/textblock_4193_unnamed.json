@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4193,
+  "displayName": "",
+  "fields": {
+    "Number": 4193,
+    "LinkTo": 0,
+    "Action": "85:addevil 0\n100:random 4321\n\n",
+    "Called From": "Textblock(rndm) #4192"
+  }
+}

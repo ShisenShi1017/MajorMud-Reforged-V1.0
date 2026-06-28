@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4270,
+  "displayName": "",
+  "fields": {
+    "Number": 4270,
+    "LinkTo": 0,
+    "Action": "10:checkitem 1947:cast 1343:nomonsters:random 4323\n20:checkitem 1948:cast 1344:nomonsters:random 4323\n30:checkitem 1949:cast 1345:nomonsters:random 4323\n40:checkitem 1950:cast 1346:nomonsters:random 4323\n60:nomonsters:random 4323\n100:price 0\n\n",
+    "Called From": "Textblock(rndm) #4269"
+  }
+}

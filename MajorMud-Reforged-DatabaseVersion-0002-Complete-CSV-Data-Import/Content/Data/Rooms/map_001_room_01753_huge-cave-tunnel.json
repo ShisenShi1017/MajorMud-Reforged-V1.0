@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1753
+  },
+  "displayName": "Huge Cave, Tunnel",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1753,
+    "Name": "Huge Cave, Tunnel",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 4): 53,54,55,56,58,123,124,125,752,753,754,[10-10-15-4]",
+    "Delay": 1,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "1/1754",
+    "W": 0,
+    "NE": 0,
+    "NW": "1/1752",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

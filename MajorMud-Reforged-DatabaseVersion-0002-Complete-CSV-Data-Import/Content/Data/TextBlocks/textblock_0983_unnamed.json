@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 983,
+  "displayName": "",
+  "fields": {
+    "Number": 983,
+    "LinkTo": 0,
+    "Action": "push sarcophagus:message 1525\nopen sarcophagus:message 1525\nmove sarcophagus:message 1525\npush coffin:message 1525\nopen coffin:message 1525\nmove coffin:message 1525\npush lid:message 1525\nopen lid:message 1525\nlift lid:message 1525\n",
+    "Called From": "Room 6/852, Room 6/853, Room 6/854, Room 6/855, Room 6/856, Room 6/857, Room 6/858"
+  }
+}

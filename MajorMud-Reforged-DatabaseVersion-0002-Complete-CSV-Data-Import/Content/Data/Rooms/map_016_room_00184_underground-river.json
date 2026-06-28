@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 184
+  },
+  "displayName": "Underground River",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 184,
+    "Name": "Underground River",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 626,625,628,629,[31-15-19-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "16/185",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "16/183",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

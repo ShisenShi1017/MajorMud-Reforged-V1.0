@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 1219
+  },
+  "displayName": "Negative Power Plane",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 1219,
+    "Name": "Negative Power Plane",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 773,[22-85-85-1]",
+    "Delay": 6,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "8/1287",
+    "NW": "8/1220",
+    "SE": "8/1218",
+    "SW": "8/1276",
+    "U": "8/1329",
+    "D": "8/1075"
+  }
+}

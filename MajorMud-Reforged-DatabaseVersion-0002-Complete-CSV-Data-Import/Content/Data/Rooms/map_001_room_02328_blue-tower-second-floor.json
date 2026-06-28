@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2328
+  },
+  "displayName": "Blue Tower, Second Floor",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2328,
+    "Name": "Blue Tower, Second Floor",
+    "Light": 0,
+    "Shop": 70,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "1/3302",
+    "SE": 0,
+    "SW": "1/3303",
+    "U": "1/2329",
+    "D": "1/2327"
+  }
+}

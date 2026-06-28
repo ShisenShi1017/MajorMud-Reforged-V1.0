@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2467
+  },
+  "displayName": "City Park",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2467,
+    "Name": "City Park",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "17/2453",
+    "E": "17/2466",
+    "W": "17/2468",
+    "NE": 0,
+    "NW": "17/2469",
+    "SE": "17/2452",
+    "SW": "17/2454",
+    "U": 0,
+    "D": 0
+  }
+}

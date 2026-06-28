@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 2905
+  },
+  "displayName": "Fungus Tunnel",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 2905,
+    "Name": "Fungus Tunnel",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1205,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "2/2906",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "2/2904",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1943
+  },
+  "displayName": "Ancient Crypt",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1943,
+    "Name": "Ancient Crypt",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 65,66,[11-1-1-2]",
+    "Delay": 3,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "1/1941 (Door [21 picklocks/strength])",
+    "W": "1/1944",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

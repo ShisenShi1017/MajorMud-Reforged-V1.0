@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2360
+  },
+  "displayName": "Seaside Way",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2360,
+    "Name": "Seaside Way",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/2359",
+    "S": "17/2361 (Door [41 picklocks/strength])",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": "17/2362",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

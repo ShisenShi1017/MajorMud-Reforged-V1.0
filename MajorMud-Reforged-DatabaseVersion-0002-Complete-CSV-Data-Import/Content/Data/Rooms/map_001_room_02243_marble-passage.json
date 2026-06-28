@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2243
+  },
+  "displayName": "Marble Passage",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2243,
+    "Name": "Marble Passage",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 11,12,192,15,16,17,[7-2-4-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "1/2242",
+    "E": 0,
+    "W": 0,
+    "NE": "1/2244",
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

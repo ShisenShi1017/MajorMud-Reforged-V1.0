@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 707
+  },
+  "displayName": "Royal Treasure Vault",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 707,
+    "Name": "Royal Treasure Vault",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 6): 350,[22-25-25-6]",
+    "Delay": 10,
+    "Placed": "1727,910,909,1834,",
+    "N": 0,
+    "S": "8/706 (Door [51 picklocks/strength])",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

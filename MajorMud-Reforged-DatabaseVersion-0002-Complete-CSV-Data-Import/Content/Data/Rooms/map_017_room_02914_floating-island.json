@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2914
+  },
+  "displayName": "Floating Island",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2914,
+    "Name": "Floating Island",
+    "Light": 1000,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1306,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "1900,",
+    "N": "17/2921",
+    "S": "17/2937 (Item: 185)",
+    "E": "17/2915",
+    "W": "17/2913",
+    "NE": "Action#2 [on the W exit of room 17/2935]: say H, speak H",
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

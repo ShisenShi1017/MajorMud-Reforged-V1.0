@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4240,
+  "displayName": "",
+  "fields": {
+    "Number": 4240,
+    "LinkTo": 0,
+    "Action": "move boulder:delay 5:testskill strength 60 4235:remoteaction 2971 3306 0 0\npush boulder:delay 5:testskill strength 60 4235:remoteaction 2971 3306 0 0\n\n",
+    "Called From": "Room 17/2971"
+  }
+}

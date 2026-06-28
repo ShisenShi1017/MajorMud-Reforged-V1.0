@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1134
+  },
+  "displayName": "Stone Barracks",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1134,
+    "Name": "Stone Barracks",
+    "Light": -75,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 145,146,147,148,149,[26-13-17-3]",
+    "Delay": 8,
+    "Placed": "",
+    "N": 0,
+    "S": "7/1132 (Door [26 picklocks/strength])",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

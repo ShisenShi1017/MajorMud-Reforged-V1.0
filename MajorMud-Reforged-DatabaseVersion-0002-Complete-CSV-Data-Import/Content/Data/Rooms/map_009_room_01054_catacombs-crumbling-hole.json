@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 1054
+  },
+  "displayName": "Catacombs, Crumbling Hole",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 1054,
+    "Name": "Catacombs, Crumbling Hole",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "9/1055",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "9/1053 (Hidden/Needs 1 Actions, any order)",
+    "SE": 0,
+    "SW": 0,
+    "U": "Action [on the NW exit of this room]: use fork northwest, use titanium fork northwest, aim fork northwest (Item: 983)",
+    "D": "9/1086"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 248
+  },
+  "displayName": "Graveyard",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 248,
+    "Name": "Graveyard",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1126,
+    "Lair": "(Max 4): 801,803,804,808,822,826,885,900,[29-14-14-4]",
+    "Delay": 2,
+    "Placed": "1786,",
+    "N": "17/249",
+    "S": "17/247 (Hidden/Needs 1 Actions, any order)",
+    "E": "17/257",
+    "W": "17/308",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "Action#1 [on the S exit of this room]: push button, push button, push button",
+    "U": 0,
+    "D": 0
+  }
+}

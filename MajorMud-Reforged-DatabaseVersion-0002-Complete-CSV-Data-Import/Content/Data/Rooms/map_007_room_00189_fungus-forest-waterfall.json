@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 189
+  },
+  "displayName": "Fungus Forest, Waterfall",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 189,
+    "Name": "Fungus Forest, Waterfall",
+    "Light": -150,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "7/188",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": "7/190",
+    "SW": "7/1006 (Text: go waterfall, enter waterfall, pass waterfall)",
+    "U": 0,
+    "D": 0
+  }
+}

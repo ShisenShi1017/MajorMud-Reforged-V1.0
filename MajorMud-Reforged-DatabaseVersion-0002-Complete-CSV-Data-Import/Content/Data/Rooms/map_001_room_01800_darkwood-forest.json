@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1800
+  },
+  "displayName": "Darkwood Forest",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1800,
+    "Name": "Darkwood Forest",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "3/784",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "1/419 (Text: go path, follow path, enter path)",
+    "U": 0,
+    "D": 0
+  }
+}

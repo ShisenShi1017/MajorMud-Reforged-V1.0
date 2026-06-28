@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 20
+  },
+  "displayName": "Darkwood Forest, Small Clearing",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 20,
+    "Name": "Darkwood Forest, Small Clearing",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 121,[25-7-7-1]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "Action#1 [on the SW exit of this room]: twist knot, turn knot",
+    "W": "Action#2 [on the SW exit of this room]: push knot",
+    "NE": "1/1411",
+    "NW": 0,
+    "SE": 0,
+    "SW": "7/21 (Hidden/Needs 2 Actions, specific order)",
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 883
+  },
+  "displayName": "Storeroom",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 883,
+    "Name": "Storeroom",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action [on the E exit of this room]: turn tap, move tap, twist tap",
+    "S": 0,
+    "E": "8/884 (Hidden/Needs 1 Actions, any order)",
+    "W": "8/882 (Door [any picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

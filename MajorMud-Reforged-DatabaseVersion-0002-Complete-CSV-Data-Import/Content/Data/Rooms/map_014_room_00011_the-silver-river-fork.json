@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 14,
+    "Room Number": 11
+  },
+  "displayName": "The Silver River, Fork",
+  "fields": {
+    "Map Number": 14,
+    "Room Number": 11,
+    "Name": "The Silver River, Fork",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 753,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "14/12",
+    "E": 0,
+    "W": 0,
+    "NE": "14/10",
+    "NW": "14/28",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

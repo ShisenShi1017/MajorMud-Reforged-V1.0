@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 11,
+    "Room Number": 41
+  },
+  "displayName": "Blood-Soaked Tunnel",
+  "fields": {
+    "Map Number": 11,
+    "Room Number": 41,
+    "Name": "Blood-Soaked Tunnel",
+    "Light": -300,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "11/42",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "11/16 (Hidden/Searchable)",
+    "D": 0
+  }
+}

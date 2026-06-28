@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2549,
+  "displayName": "",
+  "fields": {
+    "Number": 2549,
+    "LinkTo": 0,
+    "Action": "pull winch:nomonsters 1981:adddelay 3:testskill strength 20 2550:remoteaction 2099 1982 0 3\nturn winch:nomonsters 1981:adddelay 3:testskill strength 20 2550:remoteaction 2099 1982 0 3\nmove winch:nomonsters 1981:adddelay 3:testskill strength 20 2550:remoteaction 2099 1982 0 3\npush winch:nomonsters 1981:adddelay 3:testskill strength 20 2550:remoteaction 2099 1982 0 3\n",
+    "Called From": "Room 12/2099"
+  }
+}

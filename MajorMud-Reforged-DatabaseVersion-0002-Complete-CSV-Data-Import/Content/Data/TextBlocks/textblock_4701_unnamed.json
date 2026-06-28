@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4701,
+  "displayName": "",
+  "fields": {
+    "Number": 4701,
+    "LinkTo": 0,
+    "Action": "failability 130:takeitem 499 510:message 511:message 512:message 513:giveitem 406:message 514:giveitem 431:minlevel 15:giveability 130 2:addexp 750000:message 3385:failability 22:addability 22 3\ncheckability 130 1:testability 130 1:takeitem 499 510:message 511:message 512:message 513:giveitem 406:message 514:giveitem 431:minlevel 15:giveability 130 2:addexp 750000:message 3385:failability 22:addability 22 3\ntakeitem 499:message 511:message 512:message 513:giveitem 406:message 514:giveitem 431:minlevel 15:checkability 130 2:testability 130 2:addexp 1000:message 3386\n\n",
+    "Called From": "Textblock #220"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2275
+  },
+  "displayName": "Large Tomb",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2275,
+    "Name": "Large Tomb",
+    "Light": -175,
+    "Shop": 58,
+    "NPC": 97,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "350,",
+    "N": 0,
+    "S": 0,
+    "E": "1/834 (Text: go portal, enter portal, walk portal)",
+    "W": "1/2274",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

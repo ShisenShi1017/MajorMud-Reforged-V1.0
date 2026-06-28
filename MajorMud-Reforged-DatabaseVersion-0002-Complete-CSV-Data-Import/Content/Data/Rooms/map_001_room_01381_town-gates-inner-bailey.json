@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1381
+  },
+  "displayName": "Town Gates, Inner Bailey",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1381,
+    "Name": "Town Gates, Inner Bailey",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 915,
+    "Lair": "(Max 2): 14,[5-1-1-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "1/1382 (Toll: 5)",
+    "W": "1/1 (Door)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

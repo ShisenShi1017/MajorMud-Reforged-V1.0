@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2510
+  },
+  "displayName": "The Faithful Hound",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2510,
+    "Name": "The Faithful Hound",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/2509 (Door [11 picklocks/strength])",
+    "S": "17/2511",
+    "E": "17/2513",
+    "W": "17/2261 (Door [11 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

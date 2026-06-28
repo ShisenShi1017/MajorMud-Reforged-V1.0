@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 774
+  },
+  "displayName": "Gypsy Encampment, Campfire",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 774,
+    "Name": "Gypsy Encampment, Campfire",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 484,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/773",
+    "S": "17/775",
+    "E": 0,
+    "W": 0,
+    "NE": "17/776 (Door [101 picklocks/strength])",
+    "NW": 0,
+    "SE": 0,
+    "SW": "17/770",
+    "U": 0,
+    "D": 0
+  }
+}

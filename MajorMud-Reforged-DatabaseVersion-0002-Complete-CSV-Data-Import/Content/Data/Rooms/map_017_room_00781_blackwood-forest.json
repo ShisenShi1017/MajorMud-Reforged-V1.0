@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 781
+  },
+  "displayName": "Blackwood Forest",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 781,
+    "Name": "Blackwood Forest",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1040,
+    "Lair": "(Max 4): 801,803,804,808,822,826,885,900,806,810,821,823,825,828,830,924,838,894,807,820,829,879,883,884,895,815,[29-14-20-4]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/782",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "17/780",
+    "U": 0,
+    "D": 0
+  }
+}

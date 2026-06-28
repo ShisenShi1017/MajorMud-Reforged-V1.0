@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 2371
+  },
+  "displayName": "Ancient Fortress, Jailer Room",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 2371,
+    "Name": "Ancient Fortress, Jailer Room",
+    "Light": -300,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "12/2372 (Door)",
+    "S": "12/2373 (Door)",
+    "E": "12/2374",
+    "W": "12/2369",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

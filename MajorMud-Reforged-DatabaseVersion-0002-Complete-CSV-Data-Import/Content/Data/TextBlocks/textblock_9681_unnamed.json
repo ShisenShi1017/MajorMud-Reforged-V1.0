@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 9681,
+  "displayName": "",
+  "fields": {
+    "Number": 9681,
+    "LinkTo": 0,
+    "Action": "class 1:minlevel 50 3020:goodaligned -51 3020:checkitem 1655 3020:takeitem 1655:giveitem 1448:message 3039:giveitem 1449:checkitem 1448:takeitem 1448\nclass 2:message 3020\nclass 3:minlevel 50 3020:goodaligned -51 3020:checkitem 1655 3020:takeitem 1655:giveitem 1448:message 3039:giveitem 1449:checkitem 1448:takeitem 1448\nclass 4:minlevel 50 3020:goodaligned -51 3020:checkitem 1655 3020:takeitem 1655:giveitem 1448:message 3039\nclass 5:message 3020\nclass 6:minlevel 50 3020:goodaligned -51 3020:checkitem 1655 3020:takeitem 1655:giveitem 1656:message 3039:giveitem 1448:message 3040:giveitem 1449:checkitem 1448:takeitem 1448\nclass 7:message 3020\nclass 8:message 3020\nclass 9:message 3020\nclass 10:message 3020\nclass 11:message 3020\nclass 12:message 3020\nclass 13:message 3020\nclass 14:message 3020\nclass 15:message 3020\n\n",
+    "Called From": "Textblock #9615"
+  }
+}

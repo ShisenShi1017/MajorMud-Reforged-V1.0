@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 1677
+  },
+  "displayName": "White Forest",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 1677,
+    "Name": "White Forest",
+    "Light": 100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1079,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "17/1678",
+    "E": "17/1701 (Text: go path, follow trail, go trail)",
+    "W": 0,
+    "NE": 0,
+    "NW": "17/1676",
+    "SE": "17/1681",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

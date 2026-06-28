@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 396,
+  "displayName": "",
+  "fields": {
+    "Number": 396,
+    "LinkTo": 0,
+    "Action": "class 2:failability 50 850:text 397\nclass 2:checkability 50 1:testability 50 1:addability 50 1:giveitem 1076:giveitem 1466:text 4027\nclass 2:checkability 50 2:giveitem 1076:giveitem 1466:text 9692\nclass 1:message 3129\nclass 3:message 3129\nclass 4:message 3129\nclass 5:message 3129\nclass 6:message 3129\nclass 7:message 3129\nclass 8:message 3129\nclass 9:message 3129\nclass 10:message 3129\nclass 11:message 3129\nclass 12:message 3129\nclass 13:message 3129\nclass 14:message 3129\nclass 15:message 3129",
+    "Called From": "Textblock #395"
+  }
+}

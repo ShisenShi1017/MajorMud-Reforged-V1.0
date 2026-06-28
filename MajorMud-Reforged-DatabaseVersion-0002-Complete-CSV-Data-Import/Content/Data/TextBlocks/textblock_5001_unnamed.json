@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 5001,
+  "displayName": "",
+  "fields": {
+    "Number": 5001,
+    "LinkTo": 0,
+    "Action": "go arch:message 287:cast 213:teleport 142 7:message 288\nenter arch:message 287:cast 213:teleport 142 7:message 288\ngo field:message 287:cast 213:teleport 142 7:message 288\nenter field:message 287:cast 213:teleport 142 7:message 288\n",
+    "Called From": "Room 7/135, Room 7/137, Room 7/139, Room 7/141"
+  }
+}

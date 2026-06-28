@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 2586
+  },
+  "displayName": "Dark Alley",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 2586,
+    "Name": "Dark Alley",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 258,260,261,[19-5-7-2]",
+    "Delay": 2,
+    "Placed": "",
+    "N": "2/2585",
+    "S": "2/2589",
+    "E": "2/2525",
+    "W": "2/2587",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 1261,
+  "displayName": "",
+  "fields": {
+    "Number": 1261,
+    "LinkTo": 0,
+    "Action": "pray:minlevel 30 1674:evilaligned -50 1674:goodaligned 29 1674:testability 127 9:checkability 127 8:giveability 127 9:text 1262\npray shrine:minlevel 30 1674:evilaligned -50 1674:goodaligned 29 1674:testability 127 9:checkability 127 8:giveability 127 9:text 1262\npray at shrine:minlevel 30 1674:evilaligned -50 1674:goodaligned 29 1674:testability 127 9:checkability 127 8:giveability 127 9:text 1262\npray to shrine:minlevel 30 1674:evilaligned -50 1674:goodaligned 29 1674:testability 127 9:checkability 127 8:giveability 127 9:text 1262\nsummon avatar:minlevel 30 1674:evilaligned -50 1674:goodaligned 29 1674:testability 127 9:checkability 127 9:checkitem 959 1675:checkitem 935 1676:checkitem 949 1677:checkitem 941 1678:takeitem 959:takeitem 935:takeitem 949:takeitem 941:giveability 127 10:text 1283\n",
+    "Called From": "Room 6/3109"
+  }
+}

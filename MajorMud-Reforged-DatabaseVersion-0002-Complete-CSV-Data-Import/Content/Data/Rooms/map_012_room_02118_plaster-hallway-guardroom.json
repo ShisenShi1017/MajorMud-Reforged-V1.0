@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 2118
+  },
+  "displayName": "Plaster Hallway, Guardroom",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 2118,
+    "Name": "Plaster Hallway, Guardroom",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 2551,
+    "Spell": 0,
+    "Lair": "(Max 6): 569,[20-12-12-6]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "12/2117 (Door [11 picklocks/strength])",
+    "SE": 0,
+    "SW": "12/2119 (Door [11 picklocks/strength])",
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 211
+  },
+  "displayName": "Wooden Passage, Double Doors",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 211,
+    "Name": "Wooden Passage, Double Doors",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "9/206",
+    "S": "9/214",
+    "E": 0,
+    "W": "9/212 (Door [21 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

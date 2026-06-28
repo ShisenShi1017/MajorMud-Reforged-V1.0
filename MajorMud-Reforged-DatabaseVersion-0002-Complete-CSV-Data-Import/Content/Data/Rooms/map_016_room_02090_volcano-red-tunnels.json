@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 2090
+  },
+  "displayName": "Volcano, Red Tunnels",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 2090,
+    "Name": "Volcano, Red Tunnels",
+    "Light": 175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "16/2089",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "16/2091 (Hidden/Searchable)",
+    "U": 0,
+    "D": 0
+  }
+}

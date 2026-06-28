@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2152
+  },
+  "displayName": "Dungeon, Entrance",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2152,
+    "Name": "Dungeon, Entrance",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 1,2,3,4,5,7,109,[6-1-3-3]",
+    "Delay": 1,
+    "Placed": "",
+    "N": "1/2156",
+    "S": "1/2150",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

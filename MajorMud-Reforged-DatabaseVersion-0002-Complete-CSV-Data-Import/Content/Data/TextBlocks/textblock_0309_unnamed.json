@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 309,
+  "displayName": "",
+  "fields": {
+    "Number": 309,
+    "LinkTo": 0,
+    "Action": "drink pool:cast 337\ndrink water:cast 337\ndrink liquid:cast 337\nfill flask:takeitem 607 772:message 773:giveitem 608\nget water:takeitem 607 772:message 773:giveitem 608\nget liquid:takeitem 607 772:message 773:giveitem 608\n",
+    "Called From": "Room 2/1482"
+  }
+}

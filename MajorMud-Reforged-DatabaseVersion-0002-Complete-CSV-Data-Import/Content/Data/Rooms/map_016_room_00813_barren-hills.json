@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 813
+  },
+  "displayName": "Barren Hills",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 813,
+    "Name": "Barren Hills",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "16/812",
+    "NE": 0,
+    "NW": 0,
+    "SE": "16/814",
+    "SW": 0,
+    "U": "16/830",
+    "D": 0
+  }
+}

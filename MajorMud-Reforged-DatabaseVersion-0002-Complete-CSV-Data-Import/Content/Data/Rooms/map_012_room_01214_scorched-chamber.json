@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 1214
+  },
+  "displayName": "Scorched Chamber",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 1214,
+    "Name": "Scorched Chamber",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 591,593,592,[20-23-25-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "12/1213 (Door [21 picklocks/strength])",
+    "S": "12/1217 (Door [21 picklocks/strength])",
+    "E": "12/1216 (Door [21 picklocks/strength])",
+    "W": "12/1215 (Door [21 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 1080
+  },
+  "displayName": "Crystal Lake",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 1080,
+    "Name": "Crystal Lake",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1076,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/1022",
+    "S": "17/1094",
+    "E": "17/1081",
+    "W": "17/1079",
+    "NE": "17/1023",
+    "NW": "17/1021",
+    "SE": "17/1093",
+    "SW": "17/1095",
+    "U": 0,
+    "D": 0
+  }
+}

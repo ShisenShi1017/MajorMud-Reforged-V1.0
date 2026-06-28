@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 10,
+    "Room Number": 42
+  },
+  "displayName": "Cavern, Dead End",
+  "fields": {
+    "Map Number": 10,
+    "Room Number": 42,
+    "Name": "Cavern, Dead End",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action [on the W exit of this room]: push stone, push opal, twist opal",
+    "S": 0,
+    "E": "10/43",
+    "W": "10/110 (Hidden/Needs 1 Actions, any order)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

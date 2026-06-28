@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 13
+  },
+  "displayName": "Gouged Tunnel, Junction",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 13,
+    "Name": "Gouged Tunnel, Junction",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "6/22",
+    "W": 0,
+    "NE": 0,
+    "NW": "6/14",
+    "SE": "6/21",
+    "SW": "6/16",
+    "U": "6/12",
+    "D": 0
+  }
+}

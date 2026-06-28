@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1405
+  },
+  "displayName": "Darkwood Forest, Main Road",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1405,
+    "Name": "Darkwood Forest, Main Road",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "1/1646 (Text: go path, enter path, walk path)",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "1/1404",
+    "SE": "1/1406",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

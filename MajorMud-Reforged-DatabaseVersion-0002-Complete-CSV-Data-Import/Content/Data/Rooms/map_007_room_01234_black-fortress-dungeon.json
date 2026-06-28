@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1234
+  },
+  "displayName": "Black Fortress, Dungeon",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1234,
+    "Name": "Black Fortress, Dungeon",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 142,143,144,145,146,147,148,149,150,151,[26-10-19-2]",
+    "Delay": 8,
+    "Placed": "",
+    "N": "7/1235",
+    "S": "7/1233",
+    "E": 0,
+    "W": "7/1236",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

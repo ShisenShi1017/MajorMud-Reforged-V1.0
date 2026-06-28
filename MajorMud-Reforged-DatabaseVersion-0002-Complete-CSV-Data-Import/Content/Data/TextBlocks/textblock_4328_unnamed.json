@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4328,
+  "displayName": "",
+  "fields": {
+    "Number": 4328,
+    "LinkTo": 0,
+    "Action": "shakabuku:minlevel 65 3154:checkability 152 1:testability 152 1:message 3397:message 3398:teleport 3247 17:message 837\nshakabuku:minlevel 65:failability 152:message 3397:message 3398:message 3399:giveability 152 1:teleport 3247 17:message 837\n\n",
+    "Called From": "Room 17/2854"
+  }
+}

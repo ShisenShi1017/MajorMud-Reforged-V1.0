@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 1462,
+  "displayName": "",
+  "fields": {
+    "Number": 1462,
+    "LinkTo": 0,
+    "Action": "go portal:checkability 133 5:cast 620\nenter portal:checkability 133 5:cast 620\ngo portal:testability 133 4:cast 621\nenter portal:testability 133 4:cast 621\ngo portal:failability 133:cast 621\nenter portal:failability 133:cast 621 \n",
+    "Called From": "Room 9/1291"
+  }
+}

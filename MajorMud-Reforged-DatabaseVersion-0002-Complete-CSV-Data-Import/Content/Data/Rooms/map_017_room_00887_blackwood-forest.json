@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 887
+  },
+  "displayName": "Blackwood Forest",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 887,
+    "Name": "Blackwood Forest",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1040,
+    "Lair": "",
+    "Delay": 3,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": "17/888",
+    "SW": "17/886",
+    "U": 0,
+    "D": 0
+  }
+}

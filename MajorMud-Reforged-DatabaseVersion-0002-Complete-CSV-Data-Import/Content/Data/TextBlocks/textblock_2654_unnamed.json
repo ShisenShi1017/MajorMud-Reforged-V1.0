@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2654,
+  "displayName": "",
+  "fields": {
+    "Number": 2654,
+    "LinkTo": 0,
+    "Action": "failitem 1180:cast 712:random 2655\ncheckitem 1180:random 2655\n\n",
+    "Called From": "Textblock #2653"
+  }
+}

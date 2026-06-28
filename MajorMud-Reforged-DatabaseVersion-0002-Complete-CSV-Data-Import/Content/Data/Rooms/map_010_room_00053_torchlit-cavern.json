@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 10,
+    "Room Number": 53
+  },
+  "displayName": "Torchlit Cavern",
+  "fields": {
+    "Map Number": 10,
+    "Room Number": 53,
+    "Name": "Torchlit Cavern",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "10/54",
+    "W": 0,
+    "NE": 0,
+    "NW": "10/52",
+    "SE": 0,
+    "SW": "10/56",
+    "U": 0,
+    "D": 0
+  }
+}

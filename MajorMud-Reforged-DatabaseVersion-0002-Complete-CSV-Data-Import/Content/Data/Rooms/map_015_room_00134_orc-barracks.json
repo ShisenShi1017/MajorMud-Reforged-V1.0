@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 134
+  },
+  "displayName": "Orc Barracks",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 134,
+    "Name": "Orc Barracks",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 727,728,729,730,[32-4-7-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "15/133",
+    "E": "15/135",
+    "W": "15/129",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

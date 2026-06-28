@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1182
+  },
+  "displayName": "Slum Street",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1182,
+    "Name": "Slum Street",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 4087,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "1694,",
+    "N": "1/65 (Door [801 picklocks/strength])",
+    "S": 0,
+    "E": "1/1183",
+    "W": "1/1181",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

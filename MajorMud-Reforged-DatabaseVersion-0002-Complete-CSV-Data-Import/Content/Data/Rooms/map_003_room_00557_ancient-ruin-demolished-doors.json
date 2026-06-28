@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 557
+  },
+  "displayName": "Ancient Ruin, Demolished Doors",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 557,
+    "Name": "Ancient Ruin, Demolished Doors",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 293,294,295,296,297,[21-25-29-2]",
+    "Delay": 10,
+    "Placed": "",
+    "N": "3/556",
+    "S": "3/558",
+    "E": "3/552",
+    "W": "3/559 (Trap, 80 damage)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

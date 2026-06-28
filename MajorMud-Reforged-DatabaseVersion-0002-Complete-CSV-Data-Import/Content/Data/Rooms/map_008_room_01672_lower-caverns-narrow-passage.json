@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 1672
+  },
+  "displayName": "Lower Caverns, Narrow Passage",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 1672,
+    "Name": "Lower Caverns, Narrow Passage",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "8/1671",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "8/1673"
+  }
+}

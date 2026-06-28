@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 918
+  },
+  "displayName": "Ancient Stronghold, Main Hall",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 918,
+    "Name": "Ancient Stronghold, Main Hall",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 358,359,360,[22-50-52-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/919",
+    "S": "8/921",
+    "E": "8/917 (Door [11 picklocks/strength])",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

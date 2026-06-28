@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2295
+  },
+  "displayName": "Marble Chamber",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2295,
+    "Name": "Marble Chamber",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/2296 (Class: 10 OK, 0 NO)",
+    "S": "1/2298 (Class: 12 OK, 0 NO)",
+    "E": "1/2299 (Class: 13 OK, 0 NO)",
+    "W": "1/2297 (Class: 11 OK, 0 NO)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

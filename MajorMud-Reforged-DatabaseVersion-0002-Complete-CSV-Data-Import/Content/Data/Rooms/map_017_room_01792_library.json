@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 1792
+  },
+  "displayName": "Library",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 1792,
+    "Name": "Library",
+    "Light": 100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 9398,
+    "Spell": 0,
+    "Lair": "(Max 5): 897,899,903,868,869,870,886,[29-30-32-5]",
+    "Delay": 3,
+    "Placed": "1562,",
+    "N": "17/1873 (Hidden/Passable)",
+    "S": "17/1791 (Key: 1536 [or 51 picklocks/strength])",
+    "E": "17/1793 (Hidden/Passable)",
+    "W": "17/1798 (Hidden/Passable)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

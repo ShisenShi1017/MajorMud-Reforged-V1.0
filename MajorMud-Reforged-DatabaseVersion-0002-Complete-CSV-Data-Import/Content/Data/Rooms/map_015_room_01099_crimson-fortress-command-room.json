@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 1099
+  },
+  "displayName": "Crimson Fortress, Command Room",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 1099,
+    "Name": "Crimson Fortress, Command Room",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 530,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "15/1100 (Door [51 picklocks/strength])",
+    "S": "15/1098 (Door [51 picklocks/strength])",
+    "E": "15/1106 (Door [51 picklocks/strength])",
+    "W": "15/1105 (Door [51 picklocks/strength])",
+    "NE": "Action [on the SE exit of this room]: pull left lever, move left lever, use left lever",
+    "NW": "Action [on the SW exit of this room]: pull right lever, move right lever, use right lever",
+    "SE": "15/1102 (Hidden/Needs 1 Actions, any order)",
+    "SW": "15/1104 (Hidden/Needs 1 Actions, any order)",
+    "U": 0,
+    "D": 0
+  }
+}

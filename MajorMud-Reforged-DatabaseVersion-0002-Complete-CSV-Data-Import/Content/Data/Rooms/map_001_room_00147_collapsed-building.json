@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 147
+  },
+  "displayName": "Collapsed Building",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 147,
+    "Name": "Collapsed Building",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 960,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "1/1173 (Text: go hole, go hol, enter hole)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

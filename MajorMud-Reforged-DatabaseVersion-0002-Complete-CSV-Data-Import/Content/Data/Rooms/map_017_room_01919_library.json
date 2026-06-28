@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 1919
+  },
+  "displayName": "Library",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 1919,
+    "Name": "Library",
+    "Light": 100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 9398,
+    "Spell": 0,
+    "Lair": "(Max 4): 897,899,903,868,869,870,886,[29-30-32-4]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/1928 (Hidden/Passable)",
+    "S": "17/1906 (Hidden/Passable)",
+    "E": "17/1920 (Hidden/Passable)",
+    "W": "17/1918 (Hidden/Passable)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

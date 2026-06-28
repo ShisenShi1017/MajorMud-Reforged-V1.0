@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4703,
+  "displayName": "",
+  "fields": {
+    "Number": 4703,
+    "LinkTo": 0,
+    "Action": "touch gem:nomonsters 289:message 290:cast 214:teleport 20 7:message 291:minlevel 15:failability 129:addability 70 1:giveability 129 2:addexp 750000:message 3388\ntouch black gem:nomonsters 289:message 290:cast 214:teleport 20 7:message 291:minlevel 15:failability 129:addability 70 1:giveability 129 2:addexp 750000:message 3388\nmove gem:nomonsters 289:message 290:cast 214:teleport 20 7:message 291:minlevel 15:failability 129:addability 70 1:giveability 129 2:addexp 750000:message 3388\nmove black gem:nomonsters 289:message 290:cast 214:teleport 20 7:message 291:minlevel 15:failability 129:addability 70 1:giveability 129 2:addexp 750000:message 3388\ntouch gem:minlevel 15:checkability 129 1:testability 129 1:giveability 129 2:addexp 750000:message 3388\ntouch black gem:minlevel 15:checkability 129 1:testability 129 1:giveability 129 2:addexp 750000:message 3388\nmove gem:minlevel 15:checkability 129 1:testability 129 1:giveability 129 2:addexp 750000:message 3388\nmove black gem:minlevel 15:checkability 129 1:testability 129 1:giveability 129 2:addexp 750000:message 3388\n\n",
+    "Called From": "Room 7/142"
+  }
+}

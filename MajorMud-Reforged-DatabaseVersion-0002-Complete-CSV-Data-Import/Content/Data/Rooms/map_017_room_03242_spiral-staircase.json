@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 3242
+  },
+  "displayName": "Spiral Staircase",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 3242,
+    "Name": "Spiral Staircase",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1306,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": "17/3243",
+    "SW": 0,
+    "U": "17/2901",
+    "D": 0
+  }
+}

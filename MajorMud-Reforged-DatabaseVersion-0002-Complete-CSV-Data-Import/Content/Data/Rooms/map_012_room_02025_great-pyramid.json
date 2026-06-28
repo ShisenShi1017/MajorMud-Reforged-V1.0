@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 2025
+  },
+  "displayName": "Great Pyramid",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 2025,
+    "Name": "Great Pyramid",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 700,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "12/2021 (Door [1000 picklocks/strength])",
+    "S": "12/2026 (Door [1000 picklocks/strength])",
+    "E": "12/2252 (Door [1000 picklocks/strength])",
+    "W": "12/2024 (Door)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

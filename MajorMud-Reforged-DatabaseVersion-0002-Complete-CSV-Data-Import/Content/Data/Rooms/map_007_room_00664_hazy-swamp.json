@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 664
+  },
+  "displayName": "Hazy Swamp",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 664,
+    "Name": "Hazy Swamp",
+    "Light": -150,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 133,134,135,136,137,138,[26-1-6-1]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "7/663",
+    "E": 0,
+    "W": 0,
+    "NE": "7/556",
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

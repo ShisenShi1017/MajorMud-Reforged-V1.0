@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 1081,
+  "displayName": "",
+  "fields": {
+    "Number": 1081,
+    "LinkTo": 0,
+    "Action": "mine gems:checkitem 936 1608:adddelay 5:testskill strength 0 1062:random 1082\n",
+    "Called From": "Room 6/3015, Room 6/3040, Room 6/3052"
+  }
+}

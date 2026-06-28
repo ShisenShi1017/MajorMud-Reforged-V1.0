@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 963
+  },
+  "displayName": "Blackwood Forest",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 963,
+    "Name": "Blackwood Forest",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 816,
+    "CMD": 0,
+    "Spell": 1040,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "17/964",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "17/962 (Trap, 200 damage)",
+    "SE": 0,
+    "SW": "17/966 (Trap, 250 damage)",
+    "U": 0,
+    "D": 0
+  }
+}

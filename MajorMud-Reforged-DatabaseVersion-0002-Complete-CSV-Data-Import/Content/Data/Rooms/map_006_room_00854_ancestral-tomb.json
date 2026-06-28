@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 854
+  },
+  "displayName": "Ancestral Tomb",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 854,
+    "Name": "Ancestral Tomb",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 983,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "6/855",
+    "E": 0,
+    "W": "6/841 (Door [26 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

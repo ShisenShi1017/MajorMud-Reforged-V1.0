@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 416
+  },
+  "displayName": "Fungus Forest",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 416,
+    "Name": "Fungus Forest",
+    "Light": -150,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "7/415",
+    "SE": "7/417",
+    "SW": "7/514",
+    "U": 0,
+    "D": 0
+  }
+}

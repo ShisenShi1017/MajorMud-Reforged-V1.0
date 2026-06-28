@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 441
+  },
+  "displayName": "Market Street",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 441,
+    "Name": "Market Street",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "16/440",
+    "S": 0,
+    "E": "16/429",
+    "W": "16/442",
+    "NE": "16/439",
+    "NW": "16/443",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

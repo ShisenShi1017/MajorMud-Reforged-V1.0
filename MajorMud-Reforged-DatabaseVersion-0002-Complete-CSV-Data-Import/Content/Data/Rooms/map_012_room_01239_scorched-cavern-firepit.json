@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 1239
+  },
+  "displayName": "Scorched Cavern, Firepit",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 1239,
+    "Name": "Scorched Cavern, Firepit",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "12/1238",
+    "E": 0,
+    "W": "12/1240",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "12/1800 (Cast: pre-685, post-0)",
+    "D": 0
+  }
+}

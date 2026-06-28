@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 61
+  },
+  "displayName": "Gouged Tunnel",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 61,
+    "Name": "Gouged Tunnel",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 373,[24-1-1-1]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "6/62",
+    "W": 0,
+    "NE": 0,
+    "NW": "6/60",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

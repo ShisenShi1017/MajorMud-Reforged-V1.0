@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4149,
+  "displayName": "",
+  "fields": {
+    "Number": 4149,
+    "LinkTo": 0,
+    "Action": "10:giveitem 832:message 1433\n30:giveitem 833:message 1433\n40:giveitem 834:message 1433\n70:giveitem 835:message 1433\n100:random 2922\n\n",
+    "Called From": "Textblock(rndm) #4148"
+  }
+}

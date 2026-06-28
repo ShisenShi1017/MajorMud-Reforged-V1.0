@@ -1,0 +1,121 @@
+# Shops Data Dictionary
+
+Source file: `shops.TXT`
+
+Records: **178**
+
+Columns: **109**
+
+Primary key: `Number`
+
+## Columns
+
+- `Number`
+- `Name`
+- `ShopType`
+- `MinLVL`
+- `MaxLVL`
+- `Markup%`
+- `ClassRest`
+- `Item-0`
+- `Max-0`
+- `Time-0`
+- `Amount-0`
+- `%-0`
+- `Item-1`
+- `Max-1`
+- `Time-1`
+- `Amount-1`
+- `%-1`
+- `Item-2`
+- `Max-2`
+- `Time-2`
+- `Amount-2`
+- `%-2`
+- `Item-3`
+- `Max-3`
+- `Time-3`
+- `Amount-3`
+- `%-3`
+- `Item-4`
+- `Max-4`
+- `Time-4`
+- `Amount-4`
+- `%-4`
+- `Item-5`
+- `Max-5`
+- `Time-5`
+- `Amount-5`
+- `%-5`
+- `Item-6`
+- `Max-6`
+- `Time-6`
+- `Amount-6`
+- `%-6`
+- `Item-7`
+- `Max-7`
+- `Time-7`
+- `Amount-7`
+- `%-7`
+- `Item-8`
+- `Max-8`
+- `Time-8`
+- `Amount-8`
+- `%-8`
+- `Item-9`
+- `Max-9`
+- `Time-9`
+- `Amount-9`
+- `%-9`
+- `Item-10`
+- `Max-10`
+- `Time-10`
+- `Amount-10`
+- `%-10`
+- `Item-11`
+- `Max-11`
+- `Time-11`
+- `Amount-11`
+- `%-11`
+- `Item-12`
+- `Max-12`
+- `Time-12`
+- `Amount-12`
+- `%-12`
+- `Item-13`
+- `Max-13`
+- `Time-13`
+- `Amount-13`
+- `%-13`
+- `Item-14`
+- `Max-14`
+- `Time-14`
+- `Amount-14`
+- `%-14`
+- `Item-15`
+- `Max-15`
+- `Time-15`
+- `Amount-15`
+- `%-15`
+- `Item-16`
+- `Max-16`
+- `Time-16`
+- `Amount-16`
+- `%-16`
+- `Item-17`
+- `Max-17`
+- `Time-17`
+- `Amount-17`
+- `%-17`
+- `Item-18`
+- `Max-18`
+- `Time-18`
+- `Amount-18`
+- `%-18`
+- `Item-19`
+- `Max-19`
+- `Time-19`
+- `Amount-19`
+- `%-19`
+- `In Game`
+- `Assigned To`

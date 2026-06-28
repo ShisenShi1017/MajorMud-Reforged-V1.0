@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1283
+  },
+  "displayName": "Dark Chamber",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1283,
+    "Name": "Dark Chamber",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 178,
+    "CMD": 2939,
+    "Spell": 0,
+    "Lair": "(Max 2): 148,[26-16-16-2]",
+    "Delay": 8,
+    "Placed": "",
+    "N": 0,
+    "S": "7/1262 (Door [16 picklocks/strength])",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

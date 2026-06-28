@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 1604
+  },
+  "displayName": "Stone Tunnel",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 1604,
+    "Name": "Stone Tunnel",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "2/1603",
+    "E": 0,
+    "W": 0,
+    "NE": "2/1605",
+    "NW": "2/1608",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

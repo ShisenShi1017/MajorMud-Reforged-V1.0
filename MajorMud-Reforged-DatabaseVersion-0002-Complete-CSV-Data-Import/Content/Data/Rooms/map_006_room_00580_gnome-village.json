@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 580
+  },
+  "displayName": "Gnome Village",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 580,
+    "Name": "Gnome Village",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "6/581 (Door [2 picklocks/strength])",
+    "S": "6/582",
+    "E": "6/584",
+    "W": "6/579",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

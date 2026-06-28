@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 1524
+  },
+  "displayName": "Sandy Mountain Cave",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 1524,
+    "Name": "Sandy Mountain Cave",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 435,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "6/1523",
+    "U": 0,
+    "D": "6/1525 (Trap, 10 damage)"
+  }
+}

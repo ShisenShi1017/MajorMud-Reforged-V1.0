@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4271,
+  "displayName": "",
+  "fields": {
+    "Number": 4271,
+    "LinkTo": 0,
+    "Action": "summon shard:class 5:adddelay 2:message 3337:testskill wisdom 40 4275:failitem 1947:giveitem 1947:message 3341\nsummon shard:class 11:adddelay 2:message 3338:testskill intellect 40 4275:failitem 1947:giveitem 1947:message 3341\nsummon shard:class 12:adddelay 2:message 3338:testskill intellect 40 4275:failitem 1947:giveitem 1947:message 3341\nsummon shard:class 13:adddelay 2:message 3339:testskill intellect 20 4275:testskill wisdom 20 4275:failitem 1947:giveitem 1947:message 3341\n\n",
+    "Called From": "Room 17/3149"
+  }
+}

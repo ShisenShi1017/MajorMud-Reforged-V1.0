@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 9566,
+  "displayName": "",
+  "fields": {
+    "Number": 9566,
+    "LinkTo": 0,
+    "Action": "failability 126:failability 127:evilaligned 120:testability 128 20:checkability 128 20:giveability 128 21:text 9569\nfailability 126:failability 128:evilaligned -50 839:goodaligned 29 839:testability 127 18:checkability 127 18:giveability 127 19:text 9568\nfailability 127:failability 128:goodaligned -51:testability 126 24:checkability 126 24:giveability 126 25:text 9567\n\n",
+    "Called From": "Textblock #9562"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 431,
+  "displayName": "",
+  "fields": {
+    "Number": 431,
+    "LinkTo": 0,
+    "Action": "testability 128 30:checkability 128 30:evilaligned 210 865:failability 126 866:failability 127 866:text 1327\ntestability 128 14:checkability 128 14:evilaligned 120 865:failability 126 866:failability 127 866:minlevel 50 3244:text 9487\ntestability 128 12:checkability 128 12:evilaligned 60 865:failability 126 866:failability 127 866:minlevel 40 3244:text 2848\ntestability 128 4:checkability 128 4:evilaligned 60 865:failability 126 866:failability 127 866:minlevel 30 3244:text 1287\ntestability 128 3:checkability 128 3:evilaligned 60 865:failability 126 866:failability 127 866:minlevel 20 3244:text 439\ntestability 128 1:checkability 128 1:evilaligned 30 865:failability 126 866:failability 127 866:minlevel 10 3244:text 432\n\n",
+    "Called From": "Textblock #430"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 1750
+  },
+  "displayName": "Temple, Hallway",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 1750,
+    "Name": "Temple, Hallway",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 969,972,340,[22-23-24-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/1749 (Door [51 picklocks/strength])",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": "8/1784",
+    "SW": "8/1751",
+    "U": 0,
+    "D": 0
+  }
+}

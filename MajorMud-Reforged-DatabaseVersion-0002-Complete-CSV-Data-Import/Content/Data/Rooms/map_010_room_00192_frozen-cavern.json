@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 10,
+    "Room Number": 192
+  },
+  "displayName": "Frozen Cavern",
+  "fields": {
+    "Map Number": 10,
+    "Room Number": 192,
+    "Name": "Frozen Cavern",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 203,204,[17-2-3-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "10/191",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": "10/193",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

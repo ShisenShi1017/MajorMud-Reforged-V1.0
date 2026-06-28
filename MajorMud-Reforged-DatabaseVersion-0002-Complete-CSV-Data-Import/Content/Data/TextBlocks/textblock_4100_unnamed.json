@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4100,
+  "displayName": "",
+  "fields": {
+    "Number": 4100,
+    "LinkTo": 0,
+    "Action": "turn wheel:message 1400:message 3211:remoteaction 560 0 0 0\npush bar:message 1400:message 3211:remoteaction 560 0 0 0\nmove wheel:message 1400:message 3211:remoteaction 560 0 0 0\n\n",
+    "Called From": "Room 8/560"
+  }
+}

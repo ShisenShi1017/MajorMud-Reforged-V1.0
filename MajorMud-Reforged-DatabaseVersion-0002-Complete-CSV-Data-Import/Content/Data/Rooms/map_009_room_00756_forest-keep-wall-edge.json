@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 756
+  },
+  "displayName": "Forest Keep, Wall Edge",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 756,
+    "Name": "Forest Keep, Wall Edge",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 378,[24-5-5-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "9/755",
+    "S": 0,
+    "E": 0,
+    "W": "9/757",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "9/781 (Door [6 picklocks/strength])"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 183
+  },
+  "displayName": "Orc Barracks, Commanders Quarters",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 183,
+    "Name": "Orc Barracks, Commanders Quarters",
+    "Light": -25,
+    "Shop": 0,
+    "NPC": 724,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 7): 725,726,727,728,729,[32-2-6-7]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "15/180",
+    "E": "15/182",
+    "W": "15/184",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

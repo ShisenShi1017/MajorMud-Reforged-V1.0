@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4301,
+  "displayName": "",
+  "fields": {
+    "Number": 4301,
+    "LinkTo": 0,
+    "Action": "enter portal:nomonsters 1093:roomitem 1893 1373:minlevel 65:message 3258:teleport 2940 17:message 837\nenter nexus:nomonsters 1093:roomitem 1893 1373:minlevel 65:message 3258:teleport 2940 17:message 837\nenter nexus portal:nomonsters 1093:roomitem 1893 1373:minlevel 65:message 3258:teleport 2940 17:message 837\ngo portal:nomonsters 1093:roomitem 1893 1373:minlevel 65:message 3258:teleport 2940 17:message 837\ngo nexus:nomonsters 1093:roomitem 1893 1373:minlevel 65:message 3258:teleport 2940 17:message 837\ngo nexus portal:nomonsters 1093:roomitem 1893 1373:minlevel 65:message 3258:teleport 2940 17:message 837\n\n",
+    "Called From": "Room 17/3236"
+  }
+}

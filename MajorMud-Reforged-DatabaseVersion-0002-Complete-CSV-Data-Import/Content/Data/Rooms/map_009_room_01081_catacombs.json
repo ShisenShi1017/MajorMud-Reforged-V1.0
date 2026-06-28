@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 1081
+  },
+  "displayName": "Catacombs",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 1081,
+    "Name": "Catacombs",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "9/1079",
+    "S": "9/1035 (Hidden/Needs 1 Actions, any order)",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "Action [on the S exit of this room]: use fork south, use titanium fork south, aim fork south (Item: 983)",
+    "D": 0
+  }
+}

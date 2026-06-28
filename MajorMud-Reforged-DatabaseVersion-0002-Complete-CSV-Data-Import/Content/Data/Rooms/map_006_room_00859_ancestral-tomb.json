@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 859
+  },
+  "displayName": "Ancestral Tomb",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 859,
+    "Name": "Ancestral Tomb",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 984,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action [on the W exit of this room]: push sarcophagus, move sarcophagus, push coffin",
+    "S": "6/858",
+    "E": 0,
+    "W": "6/860 (Hidden/Needs 1 Actions, any order)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

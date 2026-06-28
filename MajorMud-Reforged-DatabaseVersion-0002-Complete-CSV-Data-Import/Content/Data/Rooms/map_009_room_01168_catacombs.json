@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 1168
+  },
+  "displayName": "Catacombs",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 1168,
+    "Name": "Catacombs",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action [on the NW exit of this room]: use fork northwest, use titanium fork northwest, aim fork northwest (Item: 983)",
+    "S": "9/1152 (Hidden/Needs 1 Actions, any order)",
+    "E": "9/1169 (Hidden/Needs 1 Actions, any order)",
+    "W": 0,
+    "NE": 0,
+    "NW": "9/1173 (Hidden/Needs 1 Actions, any order)",
+    "SE": 0,
+    "SW": 0,
+    "U": "Action [on the S exit of this room]: use fork south, use titanium fork south, aim fork south (Item: 983)",
+    "D": "Action [on the E exit of this room]: use fork east, use titanium fork east, aim fork east (Item: 983)"
+  }
+}

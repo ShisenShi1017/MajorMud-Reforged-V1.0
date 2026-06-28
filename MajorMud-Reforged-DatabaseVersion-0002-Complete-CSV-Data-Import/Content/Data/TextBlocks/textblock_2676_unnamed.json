@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2676,
+  "displayName": "",
+  "fields": {
+    "Number": 2676,
+    "LinkTo": 0,
+    "Action": "climb out:nomonsters 289:message 2063:teleport 1798 12:message 2064\nclimb pit:nomonsters 289:message 2063:teleport 1798 12:message 2064\nclimb wall:nomonsters 289:message 2063:teleport 1798 12:message 2064\ngo tunnel:nomonsters 289:message 2065:teleport 2249 12:message 2066\nenter tunnel:nomonsters 289:message 2065:teleport 2249 12:message 2066",
+    "Called From": "Room 12/1799"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 1636,
+  "displayName": "",
+  "fields": {
+    "Number": 1636,
+    "LinkTo": 0,
+    "Action": "pull lever:checkitem 1011:message 505:clearitem 0:message 1571\npull lever:checkitem 2024:message 505:clearitem 0:message 1571\n\n",
+    "Called From": "Room 15/990"
+  }
+}

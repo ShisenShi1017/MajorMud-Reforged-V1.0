@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 102
+  },
+  "displayName": "Rocky Path, Cave Opening",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 102,
+    "Name": "Rocky Path, Cave Opening",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "6/101",
+    "S": 0,
+    "E": "6/103",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "6/105",
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 9523,
+  "displayName": "",
+  "fields": {
+    "Number": 9523,
+    "LinkTo": 0,
+    "Action": "class 1:goodaligned -51 2954:minlevel 50 2955:giveitem 1561:text 9524\nclass 2:text 9525\nclass 3:goodaligned -51 2954:minlevel 50 2955:giveitem 1561:text 9524\nclass 4:goodaligned -51 2954:minlevel 50 2955:giveitem 1561:text 9524\nclass 5:text 9525\nclass 6:goodaligned -51 2954:minlevel 50 2955:giveitem 1561:text 9524\nclass 7:text 9525\nclass 8:text 9525\nclass 9:text 9525\nclass 10:text 9525\nclass 11:text 9525\nclass 12:text 9525\nclass 13:text 9525\nclass 14:text 9525\nclass 15:text 9525\n\n",
+    "Called From": "Textblock #9322"
+  }
+}

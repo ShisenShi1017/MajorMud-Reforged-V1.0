@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 830
+  },
+  "displayName": "Dragon's Teeth Hills",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 830,
+    "Name": "Dragon's Teeth Hills",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "2/831",
+    "W": 0,
+    "NE": 0,
+    "NW": "2/826",
+    "SE": 0,
+    "SW": "2/839",
+    "U": 0,
+    "D": 0
+  }
+}

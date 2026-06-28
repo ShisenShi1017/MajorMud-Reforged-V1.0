@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 49
+  },
+  "displayName": "Western Road",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 49,
+    "Name": "Western Road",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "2/48",
+    "NW": 0,
+    "SE": "2/816 (Text: go path, follow trail, go trail)",
+    "SW": "2/50",
+    "U": 0,
+    "D": 0
+  }
+}

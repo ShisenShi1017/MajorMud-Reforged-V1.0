@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 339
+  },
+  "displayName": "Graveyard",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 339,
+    "Name": "Graveyard",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1126,
+    "Lair": "(Max 3): 806,810,821,823,825,828,830,924,[29-15-15-3]",
+    "Delay": 1,
+    "Placed": "",
+    "N": "17/338 (Door [41 picklocks/strength])",
+    "S": "17/340",
+    "E": "17/334",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

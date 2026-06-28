@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2197
+  },
+  "displayName": "Mausoleum Labyrinth",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2197,
+    "Name": "Mausoleum Labyrinth",
+    "Light": -300,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 835,[29-39-39-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "17/2250",
+    "NE": "17/2248 (Trap, 300 damage)",
+    "NW": "17/2191",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

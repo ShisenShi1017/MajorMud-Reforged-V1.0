@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2934,
+  "displayName": "",
+  "fields": {
+    "Number": 2934,
+    "LinkTo": 0,
+    "Action": "go hole:nomonsters 289:message 2336:teleport 1406 16:message 3407\ngo mound:nomonsters 289:message 2336:teleport 1406 16:message 3407",
+    "Called From": "Room 16/1402, Room 16/1403, Room 16/1404, Room 16/1405"
+  }
+}

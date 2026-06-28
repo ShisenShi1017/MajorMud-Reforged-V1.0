@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 25
+  },
+  "displayName": "Dirt Path",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 25,
+    "Name": "Dirt Path",
+    "Light": -75,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 1040,
+    "Lair": "(Max 4): 802,832,882,923,801,803,804,808,822,826,885,900,[29-13-14-4]",
+    "Delay": 1,
+    "Placed": "",
+    "N": "17/26",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "17/34",
+    "NW": "17/24",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 9290,
+  "displayName": "",
+  "fields": {
+    "Number": 9290,
+    "LinkTo": 0,
+    "Action": "check class:class 1:text 9453\ncheck class:class 2:testability 50 3:text 9676\ncheck class:class 2:checkability 50 4:minlevel 50:text 9455\ncheck class:class 3:text 9454\ncheck class:class 4:text 9454\ncheck class:class 5:text 9454\ncheck class:class 6:text 9454\ncheck class:class 7:text 9453\ncheck class:class 8:text 9453\ncheck class:class 9:text 9454\ncheck class:class 10:text 9454\ncheck class:class 11:text 9454\ncheck class:class 12:text 9454\ncheck class:class 13:text 9454\ncheck class:class 14:text 9454\ncheck class:class 15:text 9454\n\n",
+    "Called From": "Textblock #9288"
+  }
+}

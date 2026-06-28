@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 1614,
+  "displayName": "",
+  "fields": {
+    "Number": 1614,
+    "LinkTo": 0,
+    "Action": "summon guard:checkitem 1010:price 150000 318:summon 516\nmake emblem:checkitem 1010:giveitem 1026:message 1889\n\n",
+    "Called From": "Room 15/883, Room 15/884, Room 15/886, Room 15/888"
+  }
+}

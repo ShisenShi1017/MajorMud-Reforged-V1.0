@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2670,
+  "displayName": "",
+  "fields": {
+    "Number": 2670,
+    "LinkTo": 0,
+    "Action": "examine mummified miner:failitem 1131 2048:failroomitem 1131 2048:message 2047:giveitem 1131\nexamine miner:failitem 1131 2048:failroomitem 1131 2048:message 2047:giveitem 1131\nsearch pouch:failitem 1131 2048:failroomitem 1131 2048:message 2047:giveitem 1131\nexamine pouch:failitem 1131 2048:failroomitem 1131 2048:message 2047:giveitem 1131\nopen pouch:failitem 1131 2048:failroomitem 1131 2048:message 2047:giveitem 1131\n",
+    "Called From": "Room 12/1120"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 3323
+  },
+  "displayName": "Golden Passage",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 3323,
+    "Name": "Golden Passage",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "17/3322 (Door [81 picklocks/strength])",
+    "NW": "17/3324 (Door [111 picklocks/strength])",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

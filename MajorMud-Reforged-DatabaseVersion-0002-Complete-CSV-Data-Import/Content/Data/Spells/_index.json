@@ -1,0 +1,7298 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "spells.TXT",
+  "recordCount": 1458,
+  "primaryKey": "Number",
+  "records": [
+    {
+      "primaryKey": 66,
+      "displayName": "hold person",
+      "file": "spell_0066_hold-person.json"
+    },
+    {
+      "primaryKey": 67,
+      "displayName": "divine disfavour",
+      "file": "spell_0067_divine-disfavour.json"
+    },
+    {
+      "primaryKey": 68,
+      "displayName": "mute",
+      "file": "spell_0068_mute.json"
+    },
+    {
+      "primaryKey": 69,
+      "displayName": "magebind",
+      "file": "spell_0069_magebind.json"
+    },
+    {
+      "primaryKey": 70,
+      "displayName": "freedom",
+      "file": "spell_0070_freedom.json"
+    },
+    {
+      "primaryKey": 71,
+      "displayName": "burning aura",
+      "file": "spell_0071_burning-aura.json"
+    },
+    {
+      "primaryKey": 72,
+      "displayName": "spear",
+      "file": "spell_0072_spear.json"
+    },
+    {
+      "primaryKey": 73,
+      "displayName": "black wind",
+      "file": "spell_0073_black-wind.json"
+    },
+    {
+      "primaryKey": 74,
+      "displayName": "remove curse",
+      "file": "spell_0074_remove-curse.json"
+    },
+    {
+      "primaryKey": 75,
+      "displayName": "blight",
+      "file": "spell_0075_blight.json"
+    },
+    {
+      "primaryKey": 77,
+      "displayName": "blind",
+      "file": "spell_0077_blind.json"
+    },
+    {
+      "primaryKey": 78,
+      "displayName": "breathes flame",
+      "file": "spell_0078_breathes-flame.json"
+    },
+    {
+      "primaryKey": 79,
+      "displayName": "spits a stream of venom",
+      "file": "spell_0079_spits-a-stream-of-venom.json"
+    },
+    {
+      "primaryKey": 80,
+      "displayName": "bites",
+      "file": "spell_0080_bites.json"
+    },
+    {
+      "primaryKey": 81,
+      "displayName": "savagely bites",
+      "file": "spell_0081_savagely-bites.json"
+    },
+    {
+      "primaryKey": 82,
+      "displayName": "draws the breath",
+      "file": "spell_0082_draws-the-breath.json"
+    },
+    {
+      "primaryKey": 83,
+      "displayName": "high-pitched scream",
+      "file": "spell_0083_high-pitched-scream.json"
+    },
+    {
+      "primaryKey": 84,
+      "displayName": "breathes",
+      "file": "spell_0084_breathes.json"
+    },
+    {
+      "primaryKey": 85,
+      "displayName": "speaks in a booming voice",
+      "file": "spell_0085_speaks-in-a-booming-voice.json"
+    },
+    {
+      "primaryKey": 86,
+      "displayName": "dissolves",
+      "file": "spell_0086_dissolves.json"
+    },
+    {
+      "primaryKey": 87,
+      "displayName": "cure blindness",
+      "file": "spell_0087_cure-blindness.json"
+    },
+    {
+      "primaryKey": 88,
+      "displayName": "control undead",
+      "file": "spell_0088_control-undead.json"
+    },
+    {
+      "primaryKey": 89,
+      "displayName": "greater healing",
+      "file": "spell_0089_greater-healing.json"
+    },
+    {
+      "primaryKey": 90,
+      "displayName": "hydra head create",
+      "file": "spell_0090_hydra-head-create.json"
+    },
+    {
+      "primaryKey": 91,
+      "displayName": "alertness",
+      "file": "spell_0091_alertness.json"
+    },
+    {
+      "primaryKey": 92,
+      "displayName": "charm animal",
+      "file": "spell_0092_charm-animal.json"
+    },
+    {
+      "primaryKey": 93,
+      "displayName": "entangle",
+      "file": "spell_0093_entangle.json"
+    },
+    {
+      "primaryKey": 94,
+      "displayName": "stonestrike",
+      "file": "spell_0094_stonestrike.json"
+    },
+    {
+      "primaryKey": 95,
+      "displayName": "acid jet",
+      "file": "spell_0095_acid-jet.json"
+    },
+    {
+      "primaryKey": 96,
+      "displayName": "song of foolishness",
+      "file": "spell_0096_song-of-foolishness.json"
+    },
+    {
+      "primaryKey": 97,
+      "displayName": "song of stupidity",
+      "file": "spell_0097_song-of-stupidity.json"
+    },
+    {
+      "primaryKey": 98,
+      "displayName": "song of weakness",
+      "file": "spell_0098_song-of-weakness.json"
+    },
+    {
+      "primaryKey": 99,
+      "displayName": "song of clumsiness",
+      "file": "spell_0099_song-of-clumsiness.json"
+    },
+    {
+      "primaryKey": 100,
+      "displayName": "song of traveling",
+      "file": "spell_0100_song-of-traveling.json"
+    },
+    {
+      "primaryKey": 101,
+      "displayName": "song of draining",
+      "file": "spell_0101_song-of-draining.json"
+    },
+    {
+      "primaryKey": 102,
+      "displayName": "song of blasting",
+      "file": "spell_0102_song-of-blasting.json"
+    },
+    {
+      "primaryKey": 103,
+      "displayName": "way of the boar",
+      "file": "spell_0103_way-of-the-boar.json"
+    },
+    {
+      "primaryKey": 104,
+      "displayName": "way of the dragon",
+      "file": "spell_0104_way-of-the-dragon.json"
+    },
+    {
+      "primaryKey": 105,
+      "displayName": "way of the monkey",
+      "file": "spell_0105_way-of-the-monkey.json"
+    },
+    {
+      "primaryKey": 106,
+      "displayName": "way of the mantis",
+      "file": "spell_0106_way-of-the-mantis.json"
+    },
+    {
+      "primaryKey": 107,
+      "displayName": "protection from evil",
+      "file": "spell_0107_protection-from-evil.json"
+    },
+    {
+      "primaryKey": 108,
+      "displayName": "protection from good",
+      "file": "spell_0108_protection-from-good.json"
+    },
+    {
+      "primaryKey": 109,
+      "displayName": "flame hits",
+      "file": "spell_0109_flame-hits.json"
+    },
+    {
+      "primaryKey": 110,
+      "displayName": "holy force",
+      "file": "spell_0110_holy-force.json"
+    },
+    {
+      "primaryKey": 111,
+      "displayName": "unholy force",
+      "file": "spell_0111_unholy-force.json"
+    },
+    {
+      "primaryKey": 112,
+      "displayName": "violet potion",
+      "file": "spell_0112_violet-potion.json"
+    },
+    {
+      "primaryKey": 113,
+      "displayName": "breathes a jet of fire",
+      "file": "spell_0113_breathes-a-jet-of-fire.json"
+    },
+    {
+      "primaryKey": 114,
+      "displayName": "sword major bless",
+      "file": "spell_0114_sword-major-bless.json"
+    },
+    {
+      "primaryKey": 115,
+      "displayName": "magma drip",
+      "file": "spell_0115_magma-drip.json"
+    },
+    {
+      "primaryKey": 116,
+      "displayName": "envelops",
+      "file": "spell_0116_envelops.json"
+    },
+    {
+      "primaryKey": 117,
+      "displayName": "breathes a jet of frost",
+      "file": "spell_0117_breathes-a-jet-of-frost.json"
+    },
+    {
+      "primaryKey": 118,
+      "displayName": "incense",
+      "file": "spell_0118_incense.json"
+    },
+    {
+      "primaryKey": 119,
+      "displayName": "alcohol",
+      "file": "spell_0119_alcohol.json"
+    },
+    {
+      "primaryKey": 120,
+      "displayName": "fireball",
+      "file": "spell_0120_fireball.json"
+    },
+    {
+      "primaryKey": 121,
+      "displayName": "godheal",
+      "file": "spell_0121_godheal.json"
+    },
+    {
+      "primaryKey": 122,
+      "displayName": "god's wrath",
+      "file": "spell_0122_god-s-wrath.json"
+    },
+    {
+      "primaryKey": 123,
+      "displayName": "greater healing rain",
+      "file": "spell_0123_greater-healing-rain.json"
+    },
+    {
+      "primaryKey": 124,
+      "displayName": "dark force",
+      "file": "spell_0124_dark-force.json"
+    },
+    {
+      "primaryKey": 125,
+      "displayName": "paralyze",
+      "file": "spell_0125_paralyze.json"
+    },
+    {
+      "primaryKey": 126,
+      "displayName": "acid hits",
+      "file": "spell_0126_acid-hits.json"
+    },
+    {
+      "primaryKey": 127,
+      "displayName": "weakness touch",
+      "file": "spell_0127_weakness-touch.json"
+    },
+    {
+      "primaryKey": 128,
+      "displayName": "stunned",
+      "file": "spell_0128_stunned.json"
+    },
+    {
+      "primaryKey": 129,
+      "displayName": "blur",
+      "file": "spell_0129_blur.json"
+    },
+    {
+      "primaryKey": 130,
+      "displayName": "shadowform",
+      "file": "spell_0130_shadowform.json"
+    },
+    {
+      "primaryKey": 131,
+      "displayName": "stinking cloud",
+      "file": "spell_0131_stinking-cloud.json"
+    },
+    {
+      "primaryKey": 132,
+      "displayName": "mageshield",
+      "file": "spell_0132_mageshield.json"
+    },
+    {
+      "primaryKey": 133,
+      "displayName": "dancing blades",
+      "file": "spell_0133_dancing-blades.json"
+    },
+    {
+      "primaryKey": 134,
+      "displayName": "vulnerability",
+      "file": "spell_0134_vulnerability.json"
+    },
+    {
+      "primaryKey": 135,
+      "displayName": "ice storm",
+      "file": "spell_0135_ice-storm.json"
+    },
+    {
+      "primaryKey": 136,
+      "displayName": "eldritch bolt",
+      "file": "spell_0136_eldritch-bolt.json"
+    },
+    {
+      "primaryKey": 137,
+      "displayName": "senselessness",
+      "file": "spell_0137_senselessness.json"
+    },
+    {
+      "primaryKey": 138,
+      "displayName": "rapid healing",
+      "file": "spell_0138_rapid-healing.json"
+    },
+    {
+      "primaryKey": 139,
+      "displayName": "acid rain",
+      "file": "spell_0139_acid-rain.json"
+    },
+    {
+      "primaryKey": 140,
+      "displayName": "chaos storm",
+      "file": "spell_0140_chaos-storm.json"
+    },
+    {
+      "primaryKey": 141,
+      "displayName": "partial petrification",
+      "file": "spell_0141_partial-petrification.json"
+    },
+    {
+      "primaryKey": 142,
+      "displayName": "poison cloud",
+      "file": "spell_0142_poison-cloud.json"
+    },
+    {
+      "primaryKey": 143,
+      "displayName": "rotting flesh",
+      "file": "spell_0143_rotting-flesh.json"
+    },
+    {
+      "primaryKey": 144,
+      "displayName": "iron faith",
+      "file": "spell_0144_iron-faith.json"
+    },
+    {
+      "primaryKey": 145,
+      "displayName": "healing rain",
+      "file": "spell_0145_healing-rain.json"
+    },
+    {
+      "primaryKey": 146,
+      "displayName": "greater bless",
+      "file": "spell_0146_greater-bless.json"
+    },
+    {
+      "primaryKey": 147,
+      "displayName": "glitterdust",
+      "file": "spell_0147_glitterdust.json"
+    },
+    {
+      "primaryKey": 148,
+      "displayName": "holy armour",
+      "file": "spell_0148_holy-armour.json"
+    },
+    {
+      "primaryKey": 149,
+      "displayName": "unholy armour",
+      "file": "spell_0149_unholy-armour.json"
+    },
+    {
+      "primaryKey": 150,
+      "displayName": "cure disease",
+      "file": "spell_0150_cure-disease.json"
+    },
+    {
+      "primaryKey": 151,
+      "displayName": "disrupt",
+      "file": "spell_0151_disrupt.json"
+    },
+    {
+      "primaryKey": 152,
+      "displayName": "major healing rain",
+      "file": "spell_0152_major-healing-rain.json"
+    },
+    {
+      "primaryKey": 153,
+      "displayName": "godstrike",
+      "file": "spell_0153_godstrike.json"
+    },
+    {
+      "primaryKey": 154,
+      "displayName": "mental blast",
+      "file": "spell_0154_mental-blast.json"
+    },
+    {
+      "primaryKey": 155,
+      "displayName": "eagle helm",
+      "file": "spell_0155_eagle-helm.json"
+    },
+    {
+      "primaryKey": 156,
+      "displayName": "jade amulet",
+      "file": "spell_0156_jade-amulet.json"
+    },
+    {
+      "primaryKey": 157,
+      "displayName": "amethyst pendant",
+      "file": "spell_0157_amethyst-pendant.json"
+    },
+    {
+      "primaryKey": 158,
+      "displayName": "shadow cloak",
+      "file": "spell_0158_shadow-cloak.json"
+    },
+    {
+      "primaryKey": 159,
+      "displayName": "blazing inferno",
+      "file": "spell_0159_blazing-inferno.json"
+    },
+    {
+      "primaryKey": 160,
+      "displayName": "cure paralysis",
+      "file": "spell_0160_cure-paralysis.json"
+    },
+    {
+      "primaryKey": 161,
+      "displayName": "white satin gloves",
+      "file": "spell_0161_white-satin-gloves.json"
+    },
+    {
+      "primaryKey": 162,
+      "displayName": "dark touch",
+      "file": "spell_0162_dark-touch.json"
+    },
+    {
+      "primaryKey": 163,
+      "displayName": "opal ring",
+      "file": "spell_0163_opal-ring.json"
+    },
+    {
+      "primaryKey": 164,
+      "displayName": "free",
+      "file": "spell_0164_free.json"
+    },
+    {
+      "primaryKey": 165,
+      "displayName": "multicoloured sash",
+      "file": "spell_0165_multicoloured-sash.json"
+    },
+    {
+      "primaryKey": 168,
+      "displayName": "winged sandals",
+      "file": "spell_0168_winged-sandals.json"
+    },
+    {
+      "primaryKey": 169,
+      "displayName": "mirrored shield",
+      "file": "spell_0169_mirrored-shield.json"
+    },
+    {
+      "primaryKey": 170,
+      "displayName": "silvery mace",
+      "file": "spell_0170_silvery-mace.json"
+    },
+    {
+      "primaryKey": 171,
+      "displayName": "ebony greataxe",
+      "file": "spell_0171_ebony-greataxe.json"
+    },
+    {
+      "primaryKey": 172,
+      "displayName": "dark fire",
+      "file": "spell_0172_dark-fire.json"
+    },
+    {
+      "primaryKey": 173,
+      "displayName": "thunderstaff-lbol",
+      "file": "spell_0173_thunderstaff-lbol.json"
+    },
+    {
+      "primaryKey": 174,
+      "displayName": "thunderstaff-hits",
+      "file": "spell_0174_thunderstaff-hits.json"
+    },
+    {
+      "primaryKey": 175,
+      "displayName": "frost sceptre-fjet",
+      "file": "spell_0175_frost-sceptre-fjet.json"
+    },
+    {
+      "primaryKey": 176,
+      "displayName": "frost sceptre-chill touch",
+      "file": "spell_0176_frost-sceptre-chill-touch.json"
+    },
+    {
+      "primaryKey": 177,
+      "displayName": "flay",
+      "file": "spell_0177_flay.json"
+    },
+    {
+      "primaryKey": 178,
+      "displayName": "serpent scourge-hits",
+      "file": "spell_0178_serpent-scourge-hits.json"
+    },
+    {
+      "primaryKey": 179,
+      "displayName": "heavy black rod",
+      "file": "spell_0179_heavy-black-rod.json"
+    },
+    {
+      "primaryKey": 180,
+      "displayName": "moonsword",
+      "file": "spell_0180_moonsword.json"
+    },
+    {
+      "primaryKey": 181,
+      "displayName": "blue potion",
+      "file": "spell_0181_blue-potion.json"
+    },
+    {
+      "primaryKey": 182,
+      "displayName": "turquoise potion",
+      "file": "spell_0182_turquoise-potion.json"
+    },
+    {
+      "primaryKey": 183,
+      "displayName": "green potion",
+      "file": "spell_0183_green-potion.json"
+    },
+    {
+      "primaryKey": 184,
+      "displayName": "yellow potion",
+      "file": "spell_0184_yellow-potion.json"
+    },
+    {
+      "primaryKey": 185,
+      "displayName": "frothing pink potion",
+      "file": "spell_0185_frothing-pink-potion.json"
+    },
+    {
+      "primaryKey": 186,
+      "displayName": "silvery potion",
+      "file": "spell_0186_silvery-potion.json"
+    },
+    {
+      "primaryKey": 187,
+      "displayName": "orange potion",
+      "file": "spell_0187_orange-potion.json"
+    },
+    {
+      "primaryKey": 188,
+      "displayName": "white potion",
+      "file": "spell_0188_white-potion.json"
+    },
+    {
+      "primaryKey": 189,
+      "displayName": "black orb",
+      "file": "spell_0189_black-orb.json"
+    },
+    {
+      "primaryKey": 190,
+      "displayName": "iron tube",
+      "file": "spell_0190_iron-tube.json"
+    },
+    {
+      "primaryKey": 191,
+      "displayName": "shriek",
+      "file": "spell_0191_shriek.json"
+    },
+    {
+      "primaryKey": 192,
+      "displayName": "quake",
+      "file": "spell_0192_quake.json"
+    },
+    {
+      "primaryKey": 193,
+      "displayName": "roar",
+      "file": "spell_0193_roar.json"
+    },
+    {
+      "primaryKey": 194,
+      "displayName": "freeze",
+      "file": "spell_0194_freeze.json"
+    },
+    {
+      "primaryKey": 195,
+      "displayName": "ice blast",
+      "file": "spell_0195_ice-blast.json"
+    },
+    {
+      "primaryKey": 196,
+      "displayName": "black curse",
+      "file": "spell_0196_black-curse.json"
+    },
+    {
+      "primaryKey": 197,
+      "displayName": "ice breath",
+      "file": "spell_0197_ice-breath.json"
+    },
+    {
+      "primaryKey": 198,
+      "displayName": "raptor summon",
+      "file": "spell_0198_raptor-summon.json"
+    },
+    {
+      "primaryKey": 199,
+      "displayName": "rose book confuse",
+      "file": "spell_0199_rose-book-confuse.json"
+    },
+    {
+      "primaryKey": 200,
+      "displayName": "blind book",
+      "file": "spell_0200_blind-book.json"
+    },
+    {
+      "primaryKey": 201,
+      "displayName": "rip",
+      "file": "spell_0201_rip.json"
+    },
+    {
+      "primaryKey": 202,
+      "displayName": "banshee's wail",
+      "file": "spell_0202_banshee-s-wail.json"
+    },
+    {
+      "primaryKey": 203,
+      "displayName": "vampire rosebush",
+      "file": "spell_0203_vampire-rosebush.json"
+    },
+    {
+      "primaryKey": 204,
+      "displayName": "sprays",
+      "file": "spell_0204_sprays.json"
+    },
+    {
+      "primaryKey": 205,
+      "displayName": "belches acid",
+      "file": "spell_0205_belches-acid.json"
+    },
+    {
+      "primaryKey": 206,
+      "displayName": "sharp stones",
+      "file": "spell_0206_sharp-stones.json"
+    },
+    {
+      "primaryKey": 207,
+      "displayName": "ember",
+      "file": "spell_0207_ember.json"
+    },
+    {
+      "primaryKey": 208,
+      "displayName": "swarm",
+      "file": "spell_0208_swarm.json"
+    },
+    {
+      "primaryKey": 209,
+      "displayName": "tower of flame",
+      "file": "spell_0209_tower-of-flame.json"
+    },
+    {
+      "primaryKey": 210,
+      "displayName": "ember",
+      "file": "spell_0210_ember.json"
+    },
+    {
+      "primaryKey": 211,
+      "displayName": "soul rip",
+      "file": "spell_0211_soul-rip.json"
+    },
+    {
+      "primaryKey": 212,
+      "displayName": "chaos storm",
+      "file": "spell_0212_chaos-storm.json"
+    },
+    {
+      "primaryKey": 213,
+      "displayName": "opaque field",
+      "file": "spell_0213_opaque-field.json"
+    },
+    {
+      "primaryKey": 214,
+      "displayName": "black gem",
+      "file": "spell_0214_black-gem.json"
+    },
+    {
+      "primaryKey": 215,
+      "displayName": "argak summon",
+      "file": "spell_0215_argak-summon.json"
+    },
+    {
+      "primaryKey": 216,
+      "displayName": "sphere of implosion",
+      "file": "spell_0216_sphere-of-implosion.json"
+    },
+    {
+      "primaryKey": 217,
+      "displayName": "choira summon",
+      "file": "spell_0217_choira-summon.json"
+    },
+    {
+      "primaryKey": 218,
+      "displayName": "temple of fire fire",
+      "file": "spell_0218_temple-of-fire-fire.json"
+    },
+    {
+      "primaryKey": 219,
+      "displayName": "minor healing",
+      "file": "spell_0219_minor-healing.json"
+    },
+    {
+      "primaryKey": 220,
+      "displayName": "major healing",
+      "file": "spell_0220_major-healing.json"
+    },
+    {
+      "primaryKey": 221,
+      "displayName": "greater healing",
+      "file": "spell_0221_greater-healing.json"
+    },
+    {
+      "primaryKey": 222,
+      "displayName": "cure poison",
+      "file": "spell_0222_cure-poison.json"
+    },
+    {
+      "primaryKey": 223,
+      "displayName": "cure disease",
+      "file": "spell_0223_cure-disease.json"
+    },
+    {
+      "primaryKey": 224,
+      "displayName": "remove curse",
+      "file": "spell_0224_remove-curse.json"
+    },
+    {
+      "primaryKey": 225,
+      "displayName": "dark force",
+      "file": "spell_0225_dark-force.json"
+    },
+    {
+      "primaryKey": 226,
+      "displayName": "lallim summon",
+      "file": "spell_0226_lallim-summon.json"
+    },
+    {
+      "primaryKey": 227,
+      "displayName": "sharah'kur summon",
+      "file": "spell_0227_sharah-kur-summon.json"
+    },
+    {
+      "primaryKey": 228,
+      "displayName": "catlobepas eye",
+      "file": "spell_0228_catlobepas-eye.json"
+    },
+    {
+      "primaryKey": 229,
+      "displayName": "flask",
+      "file": "spell_0229_flask.json"
+    },
+    {
+      "primaryKey": 230,
+      "displayName": "gout of flame",
+      "file": "spell_0230_gout-of-flame.json"
+    },
+    {
+      "primaryKey": 231,
+      "displayName": "eye beam",
+      "file": "spell_0231_eye-beam.json"
+    },
+    {
+      "primaryKey": 232,
+      "displayName": "spray of spores",
+      "file": "spell_0232_spray-of-spores.json"
+    },
+    {
+      "primaryKey": 233,
+      "displayName": "spore explosion",
+      "file": "spell_0233_spore-explosion.json"
+    },
+    {
+      "primaryKey": 234,
+      "displayName": "engulfs",
+      "file": "spell_0234_engulfs.json"
+    },
+    {
+      "primaryKey": 235,
+      "displayName": "remove engulfs",
+      "file": "spell_0235_remove-engulfs.json"
+    },
+    {
+      "primaryKey": 236,
+      "displayName": "acid hits",
+      "file": "spell_0236_acid-hits.json"
+    },
+    {
+      "primaryKey": 237,
+      "displayName": "thick webbing",
+      "file": "spell_0237_thick-webbing.json"
+    },
+    {
+      "primaryKey": 238,
+      "displayName": "spits",
+      "file": "spell_0238_spits.json"
+    },
+    {
+      "primaryKey": 239,
+      "displayName": "summon fire elemental",
+      "file": "spell_0239_summon-fire-elemental.json"
+    },
+    {
+      "primaryKey": 240,
+      "displayName": "summon ice elemental",
+      "file": "spell_0240_summon-ice-elemental.json"
+    },
+    {
+      "primaryKey": 241,
+      "displayName": "summon lightning elemental",
+      "file": "spell_0241_summon-lightning-elemental.json"
+    },
+    {
+      "primaryKey": 242,
+      "displayName": "summon stone elemental",
+      "file": "spell_0242_summon-stone-elemental.json"
+    },
+    {
+      "primaryKey": 243,
+      "displayName": "fireball",
+      "file": "spell_0243_fireball.json"
+    },
+    {
+      "primaryKey": 244,
+      "displayName": "explode",
+      "file": "spell_0244_explode.json"
+    },
+    {
+      "primaryKey": 245,
+      "displayName": "flame hits",
+      "file": "spell_0245_flame-hits.json"
+    },
+    {
+      "primaryKey": 246,
+      "displayName": "ball of magma",
+      "file": "spell_0246_ball-of-magma.json"
+    },
+    {
+      "primaryKey": 247,
+      "displayName": "breathes fire",
+      "file": "spell_0247_breathes-fire.json"
+    },
+    {
+      "primaryKey": 248,
+      "displayName": "yellow fungus",
+      "file": "spell_0248_yellow-fungus.json"
+    },
+    {
+      "primaryKey": 249,
+      "displayName": "yellow fungus",
+      "file": "spell_0249_yellow-fungus.json"
+    },
+    {
+      "primaryKey": 1,
+      "displayName": "magic missile",
+      "file": "spell_0001_magic-missile.json"
+    },
+    {
+      "primaryKey": 2,
+      "displayName": "illuminate",
+      "file": "spell_0002_illuminate.json"
+    },
+    {
+      "primaryKey": 4,
+      "displayName": "ethereal shield",
+      "file": "spell_0004_ethereal-shield.json"
+    },
+    {
+      "primaryKey": 5,
+      "displayName": "frost jet",
+      "file": "spell_0005_frost-jet.json"
+    },
+    {
+      "primaryKey": 6,
+      "displayName": "resist cold",
+      "file": "spell_0006_resist-cold.json"
+    },
+    {
+      "primaryKey": 7,
+      "displayName": "smite",
+      "file": "spell_0007_smite.json"
+    },
+    {
+      "primaryKey": 8,
+      "displayName": "lightning bolt",
+      "file": "spell_0008_lightning-bolt.json"
+    },
+    {
+      "primaryKey": 9,
+      "displayName": "resist fire",
+      "file": "spell_0009_resist-fire.json"
+    },
+    {
+      "primaryKey": 12,
+      "displayName": "harm",
+      "file": "spell_0012_harm.json"
+    },
+    {
+      "primaryKey": 13,
+      "displayName": "minor healing",
+      "file": "spell_0013_minor-healing.json"
+    },
+    {
+      "primaryKey": 14,
+      "displayName": "bless",
+      "file": "spell_0014_bless.json"
+    },
+    {
+      "primaryKey": 15,
+      "displayName": "curse",
+      "file": "spell_0015_curse.json"
+    },
+    {
+      "primaryKey": 16,
+      "displayName": "spiritual hammer",
+      "file": "spell_0016_spiritual-hammer.json"
+    },
+    {
+      "primaryKey": 17,
+      "displayName": "major healing",
+      "file": "spell_0017_major-healing.json"
+    },
+    {
+      "primaryKey": 18,
+      "displayName": "turn undead",
+      "file": "spell_0018_turn-undead.json"
+    },
+    {
+      "primaryKey": 19,
+      "displayName": "cure poison",
+      "file": "spell_0019_cure-poison.json"
+    },
+    {
+      "primaryKey": 20,
+      "displayName": "holy aura",
+      "file": "spell_0020_holy-aura.json"
+    },
+    {
+      "primaryKey": 21,
+      "displayName": "unholy aura",
+      "file": "spell_0021_unholy-aura.json"
+    },
+    {
+      "primaryKey": 22,
+      "displayName": "agony",
+      "file": "spell_0022_agony.json"
+    },
+    {
+      "primaryKey": 23,
+      "displayName": "chant",
+      "file": "spell_0023_chant.json"
+    },
+    {
+      "primaryKey": 24,
+      "displayName": "detect magic",
+      "file": "spell_0024_detect-magic.json"
+    },
+    {
+      "primaryKey": 25,
+      "displayName": "vine strike",
+      "file": "spell_0025_vine-strike.json"
+    },
+    {
+      "primaryKey": 26,
+      "displayName": "starlight",
+      "file": "spell_0026_starlight.json"
+    },
+    {
+      "primaryKey": 27,
+      "displayName": "mend",
+      "file": "spell_0027_mend.json"
+    },
+    {
+      "primaryKey": 28,
+      "displayName": "resist fire",
+      "file": "spell_0028_resist-fire.json"
+    },
+    {
+      "primaryKey": 29,
+      "displayName": "resist cold",
+      "file": "spell_0029_resist-cold.json"
+    },
+    {
+      "primaryKey": 30,
+      "displayName": "elemental chaos",
+      "file": "spell_0030_elemental-chaos.json"
+    },
+    {
+      "primaryKey": 31,
+      "displayName": "antidote",
+      "file": "spell_0031_antidote.json"
+    },
+    {
+      "primaryKey": 32,
+      "displayName": "resist lightning",
+      "file": "spell_0032_resist-lightning.json"
+    },
+    {
+      "primaryKey": 33,
+      "displayName": "swarm",
+      "file": "spell_0033_swarm.json"
+    },
+    {
+      "primaryKey": 34,
+      "displayName": "barkskin",
+      "file": "spell_0034_barkskin.json"
+    },
+    {
+      "primaryKey": 35,
+      "displayName": "poison bolt",
+      "file": "spell_0035_poison-bolt.json"
+    },
+    {
+      "primaryKey": 36,
+      "displayName": "way of the swan",
+      "file": "spell_0036_way-of-the-swan.json"
+    },
+    {
+      "primaryKey": 37,
+      "displayName": "way of the owl",
+      "file": "spell_0037_way-of-the-owl.json"
+    },
+    {
+      "primaryKey": 38,
+      "displayName": "way of the tiger",
+      "file": "spell_0038_way-of-the-tiger.json"
+    },
+    {
+      "primaryKey": 39,
+      "displayName": "way of the cat",
+      "file": "spell_0039_way-of-the-cat.json"
+    },
+    {
+      "primaryKey": 40,
+      "displayName": "way of the rat",
+      "file": "spell_0040_way-of-the-rat.json"
+    },
+    {
+      "primaryKey": 41,
+      "displayName": "song of lore",
+      "file": "spell_0041_song-of-lore.json"
+    },
+    {
+      "primaryKey": 42,
+      "displayName": "song of valour",
+      "file": "spell_0042_song-of-valour.json"
+    },
+    {
+      "primaryKey": 43,
+      "displayName": "song of misfortune",
+      "file": "spell_0043_song-of-misfortune.json"
+    },
+    {
+      "primaryKey": 44,
+      "displayName": "song of discord",
+      "file": "spell_0044_song-of-discord.json"
+    },
+    {
+      "primaryKey": 45,
+      "displayName": "song of brilliance",
+      "file": "spell_0045_song-of-brilliance.json"
+    },
+    {
+      "primaryKey": 46,
+      "displayName": "song of wisdom",
+      "file": "spell_0046_song-of-wisdom.json"
+    },
+    {
+      "primaryKey": 47,
+      "displayName": "song of might",
+      "file": "spell_0047_song-of-might.json"
+    },
+    {
+      "primaryKey": 48,
+      "displayName": "song of agility",
+      "file": "spell_0048_song-of-agility.json"
+    },
+    {
+      "primaryKey": 49,
+      "displayName": "song of charming",
+      "file": "spell_0049_song-of-charming.json"
+    },
+    {
+      "primaryKey": 50,
+      "displayName": "red potion",
+      "file": "spell_0050_red-potion.json"
+    },
+    {
+      "primaryKey": 51,
+      "displayName": "flash",
+      "file": "spell_0051_flash.json"
+    },
+    {
+      "primaryKey": 52,
+      "displayName": "magic armour",
+      "file": "spell_0052_magic-armour.json"
+    },
+    {
+      "primaryKey": 53,
+      "displayName": "song of dazzling",
+      "file": "spell_0053_song-of-dazzling.json"
+    },
+    {
+      "primaryKey": 54,
+      "displayName": "vampiric touch",
+      "file": "spell_0054_vampiric-touch.json"
+    },
+    {
+      "primaryKey": 55,
+      "displayName": "enslave",
+      "file": "spell_0055_enslave.json"
+    },
+    {
+      "primaryKey": 56,
+      "displayName": "sunbolt",
+      "file": "spell_0056_sunbolt.json"
+    },
+    {
+      "primaryKey": 57,
+      "displayName": "speed",
+      "file": "spell_0057_speed.json"
+    },
+    {
+      "primaryKey": 58,
+      "displayName": "deathtouch",
+      "file": "spell_0058_deathtouch.json"
+    },
+    {
+      "primaryKey": 59,
+      "displayName": "slow",
+      "file": "spell_0059_slow.json"
+    },
+    {
+      "primaryKey": 60,
+      "displayName": "fear",
+      "file": "spell_0060_fear.json"
+    },
+    {
+      "primaryKey": 61,
+      "displayName": "greater curse",
+      "file": "spell_0061_greater-curse.json"
+    },
+    {
+      "primaryKey": 62,
+      "displayName": "divine favour",
+      "file": "spell_0062_divine-favour.json"
+    },
+    {
+      "primaryKey": 63,
+      "displayName": "confusion",
+      "file": "spell_0063_confusion.json"
+    },
+    {
+      "primaryKey": 64,
+      "displayName": "shockshield",
+      "file": "spell_0064_shockshield.json"
+    },
+    {
+      "primaryKey": 65,
+      "displayName": "dispel magic",
+      "file": "spell_0065_dispel-magic.json"
+    },
+    {
+      "primaryKey": 250,
+      "displayName": "red fungus",
+      "file": "spell_0250_red-fungus.json"
+    },
+    {
+      "primaryKey": 251,
+      "displayName": "paralyze",
+      "file": "spell_0251_paralyze.json"
+    },
+    {
+      "primaryKey": 252,
+      "displayName": "unholy wrath",
+      "file": "spell_0252_unholy-wrath.json"
+    },
+    {
+      "primaryKey": 253,
+      "displayName": "black wind",
+      "file": "spell_0253_black-wind.json"
+    },
+    {
+      "primaryKey": 254,
+      "displayName": "colour spray",
+      "file": "spell_0254_colour-spray.json"
+    },
+    {
+      "primaryKey": 255,
+      "displayName": "corrosion",
+      "file": "spell_0255_corrosion.json"
+    },
+    {
+      "primaryKey": 256,
+      "displayName": "solid fog",
+      "file": "spell_0256_solid-fog.json"
+    },
+    {
+      "primaryKey": 257,
+      "displayName": "mana storm",
+      "file": "spell_0257_mana-storm.json"
+    },
+    {
+      "primaryKey": 258,
+      "displayName": "transform",
+      "file": "spell_0258_transform.json"
+    },
+    {
+      "primaryKey": 259,
+      "displayName": "rain of blood",
+      "file": "spell_0259_rain-of-blood.json"
+    },
+    {
+      "primaryKey": 260,
+      "displayName": "vortex of pain",
+      "file": "spell_0260_vortex-of-pain.json"
+    },
+    {
+      "primaryKey": 261,
+      "displayName": "flame shower",
+      "file": "spell_0261_flame-shower.json"
+    },
+    {
+      "primaryKey": 262,
+      "displayName": "engulf in flame",
+      "file": "spell_0262_engulf-in-flame.json"
+    },
+    {
+      "primaryKey": 263,
+      "displayName": "dragonfire",
+      "file": "spell_0263_dragonfire.json"
+    },
+    {
+      "primaryKey": 264,
+      "displayName": "mystic mist",
+      "file": "spell_0264_mystic-mist.json"
+    },
+    {
+      "primaryKey": 265,
+      "displayName": "dragonfire",
+      "file": "spell_0265_dragonfire.json"
+    },
+    {
+      "primaryKey": 266,
+      "displayName": "dragonfire",
+      "file": "spell_0266_dragonfire.json"
+    },
+    {
+      "primaryKey": 267,
+      "displayName": "divine fury",
+      "file": "spell_0267_divine-fury.json"
+    },
+    {
+      "primaryKey": 268,
+      "displayName": "divine mercy",
+      "file": "spell_0268_divine-mercy.json"
+    },
+    {
+      "primaryKey": 269,
+      "displayName": "song of life",
+      "file": "spell_0269_song-of-life.json"
+    },
+    {
+      "primaryKey": 270,
+      "displayName": "song of silence",
+      "file": "spell_0270_song-of-silence.json"
+    },
+    {
+      "primaryKey": 271,
+      "displayName": "song of lethargy",
+      "file": "spell_0271_song-of-lethargy.json"
+    },
+    {
+      "primaryKey": 272,
+      "displayName": "song of quickness",
+      "file": "spell_0272_song-of-quickness.json"
+    },
+    {
+      "primaryKey": 273,
+      "displayName": "song of pain",
+      "file": "spell_0273_song-of-pain.json"
+    },
+    {
+      "primaryKey": 274,
+      "displayName": "song of stunning",
+      "file": "spell_0274_song-of-stunning.json"
+    },
+    {
+      "primaryKey": 275,
+      "displayName": "song of shockwave",
+      "file": "spell_0275_song-of-shockwave.json"
+    },
+    {
+      "primaryKey": 276,
+      "displayName": "song of heroism",
+      "file": "spell_0276_song-of-heroism.json"
+    },
+    {
+      "primaryKey": 277,
+      "displayName": "song of sonic blast",
+      "file": "spell_0277_song-of-sonic-blast.json"
+    },
+    {
+      "primaryKey": 278,
+      "displayName": "song of evasion",
+      "file": "spell_0278_song-of-evasion.json"
+    },
+    {
+      "primaryKey": 279,
+      "displayName": "note of destruction",
+      "file": "spell_0279_note-of-destruction.json"
+    },
+    {
+      "primaryKey": 280,
+      "displayName": "summon twins",
+      "file": "spell_0280_summon-twins.json"
+    },
+    {
+      "primaryKey": 281,
+      "displayName": "mana storm",
+      "file": "spell_0281_mana-storm.json"
+    },
+    {
+      "primaryKey": 282,
+      "displayName": "solid fog",
+      "file": "spell_0282_solid-fog.json"
+    },
+    {
+      "primaryKey": 283,
+      "displayName": "wind of haste",
+      "file": "spell_0283_wind-of-haste.json"
+    },
+    {
+      "primaryKey": 284,
+      "displayName": "corrosion",
+      "file": "spell_0284_corrosion.json"
+    },
+    {
+      "primaryKey": 285,
+      "displayName": "meteor swarm",
+      "file": "spell_0285_meteor-swarm.json"
+    },
+    {
+      "primaryKey": 286,
+      "displayName": "mystic mist",
+      "file": "spell_0286_mystic-mist.json"
+    },
+    {
+      "primaryKey": 287,
+      "displayName": "spirit horde",
+      "file": "spell_0287_spirit-horde.json"
+    },
+    {
+      "primaryKey": 288,
+      "displayName": "dragonfire",
+      "file": "spell_0288_dragonfire.json"
+    },
+    {
+      "primaryKey": 289,
+      "displayName": "stoneskin",
+      "file": "spell_0289_stoneskin.json"
+    },
+    {
+      "primaryKey": 290,
+      "displayName": "blaze",
+      "file": "spell_0290_blaze.json"
+    },
+    {
+      "primaryKey": 291,
+      "displayName": "creeping doom",
+      "file": "spell_0291_creeping-doom.json"
+    },
+    {
+      "primaryKey": 292,
+      "displayName": "maelstrom",
+      "file": "spell_0292_maelstrom.json"
+    },
+    {
+      "primaryKey": 293,
+      "displayName": "plasma bolt",
+      "file": "spell_0293_plasma-bolt.json"
+    },
+    {
+      "primaryKey": 294,
+      "displayName": "plague",
+      "file": "spell_0294_plague.json"
+    },
+    {
+      "primaryKey": 295,
+      "displayName": "earthquake",
+      "file": "spell_0295_earthquake.json"
+    },
+    {
+      "primaryKey": 296,
+      "displayName": "earthfist",
+      "file": "spell_0296_earthfist.json"
+    },
+    {
+      "primaryKey": 297,
+      "displayName": "way of the tortoise",
+      "file": "spell_0297_way-of-the-tortoise.json"
+    },
+    {
+      "primaryKey": 298,
+      "displayName": "way of the bear",
+      "file": "spell_0298_way-of-the-bear.json"
+    },
+    {
+      "primaryKey": 299,
+      "displayName": "way of the cobra",
+      "file": "spell_0299_way-of-the-cobra.json"
+    },
+    {
+      "primaryKey": 300,
+      "displayName": "hypnotic hands",
+      "file": "spell_0300_hypnotic-hands.json"
+    },
+    {
+      "primaryKey": 301,
+      "displayName": "way of the exploding fist",
+      "file": "spell_0301_way-of-the-exploding-fist.json"
+    },
+    {
+      "primaryKey": 302,
+      "displayName": "pressure points",
+      "file": "spell_0302_pressure-points.json"
+    },
+    {
+      "primaryKey": 303,
+      "displayName": "hand of death",
+      "file": "spell_0303_hand-of-death.json"
+    },
+    {
+      "primaryKey": 304,
+      "displayName": "zeal",
+      "file": "spell_0304_zeal.json"
+    },
+    {
+      "primaryKey": 305,
+      "displayName": "smoke bomb",
+      "file": "spell_0305_smoke-bomb.json"
+    },
+    {
+      "primaryKey": 306,
+      "displayName": "death gaze",
+      "file": "spell_0306_death-gaze.json"
+    },
+    {
+      "primaryKey": 307,
+      "displayName": "globe of invulnerability",
+      "file": "spell_0307_globe-of-invulnerability.json"
+    },
+    {
+      "primaryKey": 308,
+      "displayName": "sphere of isolation",
+      "file": "spell_0308_sphere-of-isolation.json"
+    },
+    {
+      "primaryKey": 309,
+      "displayName": "ethereal chains",
+      "file": "spell_0309_ethereal-chains.json"
+    },
+    {
+      "primaryKey": 310,
+      "displayName": "negate magic",
+      "file": "spell_0310_negate-magic.json"
+    },
+    {
+      "primaryKey": 311,
+      "displayName": "judgement of doom",
+      "file": "spell_0311_judgement-of-doom.json"
+    },
+    {
+      "primaryKey": 312,
+      "displayName": "Eye of Magnus",
+      "file": "spell_0312_eye-of-magnus.json"
+    },
+    {
+      "primaryKey": 313,
+      "displayName": "bigheal",
+      "file": "spell_0313_bigheal.json"
+    },
+    {
+      "primaryKey": 314,
+      "displayName": "combat fury",
+      "file": "spell_0314_combat-fury.json"
+    },
+    {
+      "primaryKey": 315,
+      "displayName": "calls for aid",
+      "file": "spell_0315_calls-for-aid.json"
+    },
+    {
+      "primaryKey": 316,
+      "displayName": "food",
+      "file": "spell_0316_food.json"
+    },
+    {
+      "primaryKey": 317,
+      "displayName": "drink",
+      "file": "spell_0317_drink.json"
+    },
+    {
+      "primaryKey": 318,
+      "displayName": "knockdown",
+      "file": "spell_0318_knockdown.json"
+    },
+    {
+      "primaryKey": 319,
+      "displayName": "firebomb",
+      "file": "spell_0319_firebomb.json"
+    },
+    {
+      "primaryKey": 320,
+      "displayName": "volley of spikes",
+      "file": "spell_0320_volley-of-spikes.json"
+    },
+    {
+      "primaryKey": 321,
+      "displayName": "drops",
+      "file": "spell_0321_drops.json"
+    },
+    {
+      "primaryKey": 322,
+      "displayName": "breathes a greenish cloud",
+      "file": "spell_0322_breathes-a-greenish-cloud.json"
+    },
+    {
+      "primaryKey": 323,
+      "displayName": "diseased",
+      "file": "spell_0323_diseased.json"
+    },
+    {
+      "primaryKey": 324,
+      "displayName": "power punch",
+      "file": "spell_0324_power-punch.json"
+    },
+    {
+      "primaryKey": 325,
+      "displayName": "spits acid",
+      "file": "spell_0325_spits-acid.json"
+    },
+    {
+      "primaryKey": 326,
+      "displayName": "cloud of reddish vapour",
+      "file": "spell_0326_cloud-of-reddish-vapour.json"
+    },
+    {
+      "primaryKey": 327,
+      "displayName": "paralyzed",
+      "file": "spell_0327_paralyzed.json"
+    },
+    {
+      "primaryKey": 328,
+      "displayName": "gazes",
+      "file": "spell_0328_gazes.json"
+    },
+    {
+      "primaryKey": 329,
+      "displayName": "thin tendrils",
+      "file": "spell_0329_thin-tendrils.json"
+    },
+    {
+      "primaryKey": 330,
+      "displayName": "violet fluid",
+      "file": "spell_0330_violet-fluid.json"
+    },
+    {
+      "primaryKey": 331,
+      "displayName": "mermex poison",
+      "file": "spell_0331_mermex-poison.json"
+    },
+    {
+      "primaryKey": 332,
+      "displayName": "sunbolt wand",
+      "file": "spell_0332_sunbolt-wand.json"
+    },
+    {
+      "primaryKey": 333,
+      "displayName": "skull wand",
+      "file": "spell_0333_skull-wand.json"
+    },
+    {
+      "primaryKey": 334,
+      "displayName": "vacuum",
+      "file": "spell_0334_vacuum.json"
+    },
+    {
+      "primaryKey": 335,
+      "displayName": "fall",
+      "file": "spell_0335_fall.json"
+    },
+    {
+      "primaryKey": 336,
+      "displayName": "fall",
+      "file": "spell_0336_fall.json"
+    },
+    {
+      "primaryKey": 337,
+      "displayName": "pool",
+      "file": "spell_0337_pool.json"
+    },
+    {
+      "primaryKey": 338,
+      "displayName": "fall",
+      "file": "spell_0338_fall.json"
+    },
+    {
+      "primaryKey": 339,
+      "displayName": "violet fluid mist",
+      "file": "spell_0339_violet-fluid-mist.json"
+    },
+    {
+      "primaryKey": 340,
+      "displayName": "area entrap",
+      "file": "spell_0340_area-entrap.json"
+    },
+    {
+      "primaryKey": 341,
+      "displayName": "green beam",
+      "file": "spell_0341_green-beam.json"
+    },
+    {
+      "primaryKey": 342,
+      "displayName": "vampiric hits",
+      "file": "spell_0342_vampiric-hits.json"
+    },
+    {
+      "primaryKey": 343,
+      "displayName": "tentacles",
+      "file": "spell_0343_tentacles.json"
+    },
+    {
+      "primaryKey": 344,
+      "displayName": "tentacles",
+      "file": "spell_0344_tentacles.json"
+    },
+    {
+      "primaryKey": 345,
+      "displayName": "frenzy",
+      "file": "spell_0345_frenzy.json"
+    },
+    {
+      "primaryKey": 346,
+      "displayName": "mass frenzy",
+      "file": "spell_0346_mass-frenzy.json"
+    },
+    {
+      "primaryKey": 347,
+      "displayName": "righteousness",
+      "file": "spell_0347_righteousness.json"
+    },
+    {
+      "primaryKey": 348,
+      "displayName": "blood ritual",
+      "file": "spell_0348_blood-ritual.json"
+    },
+    {
+      "primaryKey": 349,
+      "displayName": "regeneration",
+      "file": "spell_0349_regeneration.json"
+    },
+    {
+      "primaryKey": 350,
+      "displayName": "way of the troll",
+      "file": "spell_0350_way-of-the-troll.json"
+    },
+    {
+      "primaryKey": 351,
+      "displayName": "whip entangle",
+      "file": "spell_0351_whip-entangle.json"
+    },
+    {
+      "primaryKey": 352,
+      "displayName": "beat up",
+      "file": "spell_0352_beat-up.json"
+    },
+    {
+      "primaryKey": 353,
+      "displayName": "sharp blade",
+      "file": "spell_0353_sharp-blade.json"
+    },
+    {
+      "primaryKey": 354,
+      "displayName": "poison blade",
+      "file": "spell_0354_poison-blade.json"
+    },
+    {
+      "primaryKey": 355,
+      "displayName": "pale green lichen",
+      "file": "spell_0355_pale-green-lichen.json"
+    },
+    {
+      "primaryKey": 356,
+      "displayName": "black cauldron",
+      "file": "spell_0356_black-cauldron.json"
+    },
+    {
+      "primaryKey": 357,
+      "displayName": "fiery spark",
+      "file": "spell_0357_fiery-spark.json"
+    },
+    {
+      "primaryKey": 358,
+      "displayName": "vampiric bite",
+      "file": "spell_0358_vampiric-bite.json"
+    },
+    {
+      "primaryKey": 359,
+      "displayName": "breathes burning steam",
+      "file": "spell_0359_breathes-burning-steam.json"
+    },
+    {
+      "primaryKey": 360,
+      "displayName": "freezes",
+      "file": "spell_0360_freezes.json"
+    },
+    {
+      "primaryKey": 361,
+      "displayName": "drain life",
+      "file": "spell_0361_drain-life.json"
+    },
+    {
+      "primaryKey": 362,
+      "displayName": "leprosy",
+      "file": "spell_0362_leprosy.json"
+    },
+    {
+      "primaryKey": 363,
+      "displayName": "summon silver skull",
+      "file": "spell_0363_summon-silver-skull.json"
+    },
+    {
+      "primaryKey": 364,
+      "displayName": "flame dart",
+      "file": "spell_0364_flame-dart.json"
+    },
+    {
+      "primaryKey": 365,
+      "displayName": "bee poison",
+      "file": "spell_0365_bee-poison.json"
+    },
+    {
+      "primaryKey": 366,
+      "displayName": "roots",
+      "file": "spell_0366_roots.json"
+    },
+    {
+      "primaryKey": 367,
+      "displayName": "magic bolt",
+      "file": "spell_0367_magic-bolt.json"
+    },
+    {
+      "primaryKey": 368,
+      "displayName": "gold dust",
+      "file": "spell_0368_gold-dust.json"
+    },
+    {
+      "primaryKey": 369,
+      "displayName": "bee honey",
+      "file": "spell_0369_bee-honey.json"
+    },
+    {
+      "primaryKey": 370,
+      "displayName": "green fruit",
+      "file": "spell_0370_green-fruit.json"
+    },
+    {
+      "primaryKey": 371,
+      "displayName": "summon huorn",
+      "file": "spell_0371_summon-huorn.json"
+    },
+    {
+      "primaryKey": 372,
+      "displayName": "sleep",
+      "file": "spell_0372_sleep.json"
+    },
+    {
+      "primaryKey": 373,
+      "displayName": "mushroom poison",
+      "file": "spell_0373_mushroom-poison.json"
+    },
+    {
+      "primaryKey": 374,
+      "displayName": "mass entangle",
+      "file": "spell_0374_mass-entangle.json"
+    },
+    {
+      "primaryKey": 375,
+      "displayName": "cone of frost",
+      "file": "spell_0375_cone-of-frost.json"
+    },
+    {
+      "primaryKey": 376,
+      "displayName": "spray of acid",
+      "file": "spell_0376_spray-of-acid.json"
+    },
+    {
+      "primaryKey": 377,
+      "displayName": "cloud of poison",
+      "file": "spell_0377_cloud-of-poison.json"
+    },
+    {
+      "primaryKey": 378,
+      "displayName": "bolt of lightning",
+      "file": "spell_0378_bolt-of-lightning.json"
+    },
+    {
+      "primaryKey": 379,
+      "displayName": "blast of flame",
+      "file": "spell_0379_blast-of-flame.json"
+    },
+    {
+      "primaryKey": 380,
+      "displayName": "creature illusion",
+      "file": "spell_0380_creature-illusion.json"
+    },
+    {
+      "primaryKey": 381,
+      "displayName": "gibbers",
+      "file": "spell_0381_gibbers.json"
+    },
+    {
+      "primaryKey": 382,
+      "displayName": "medium divides",
+      "file": "spell_0382_medium-divides.json"
+    },
+    {
+      "primaryKey": 383,
+      "displayName": "large divides",
+      "file": "spell_0383_large-divides.json"
+    },
+    {
+      "primaryKey": 384,
+      "displayName": "divine intervention",
+      "file": "spell_0384_divine-intervention.json"
+    },
+    {
+      "primaryKey": 385,
+      "displayName": "chain lightning",
+      "file": "spell_0385_chain-lightning.json"
+    },
+    {
+      "primaryKey": 387,
+      "displayName": "a cloud of poison gas",
+      "file": "spell_0387_a-cloud-of-poison-gas.json"
+    },
+    {
+      "primaryKey": 388,
+      "displayName": "envelops",
+      "file": "spell_0388_envelops.json"
+    },
+    {
+      "primaryKey": 389,
+      "displayName": "drains",
+      "file": "spell_0389_drains.json"
+    },
+    {
+      "primaryKey": 390,
+      "displayName": "powerless",
+      "file": "spell_0390_powerless.json"
+    },
+    {
+      "primaryKey": 391,
+      "displayName": "necromantic beam",
+      "file": "spell_0391_necromantic-beam.json"
+    },
+    {
+      "primaryKey": 392,
+      "displayName": "petrification",
+      "file": "spell_0392_petrification.json"
+    },
+    {
+      "primaryKey": 393,
+      "displayName": "stone to flesh",
+      "file": "spell_0393_stone-to-flesh.json"
+    },
+    {
+      "primaryKey": 394,
+      "displayName": "cone of fire",
+      "file": "spell_0394_cone-of-fire.json"
+    },
+    {
+      "primaryKey": 395,
+      "displayName": "hold person",
+      "file": "spell_0395_hold-person.json"
+    },
+    {
+      "primaryKey": 396,
+      "displayName": "slow",
+      "file": "spell_0396_slow.json"
+    },
+    {
+      "primaryKey": 397,
+      "displayName": "fear",
+      "file": "spell_0397_fear.json"
+    },
+    {
+      "primaryKey": 398,
+      "displayName": "death ray",
+      "file": "spell_0398_death-ray.json"
+    },
+    {
+      "primaryKey": 399,
+      "displayName": "rainbow beam",
+      "file": "spell_0399_rainbow-beam.json"
+    },
+    {
+      "primaryKey": 400,
+      "displayName": "frost hits",
+      "file": "spell_0400_frost-hits.json"
+    },
+    {
+      "primaryKey": 401,
+      "displayName": "jet of frost",
+      "file": "spell_0401_jet-of-frost.json"
+    },
+    {
+      "primaryKey": 402,
+      "displayName": "bleeding",
+      "file": "spell_0402_bleeding.json"
+    },
+    {
+      "primaryKey": 403,
+      "displayName": "blast of flame",
+      "file": "spell_0403_blast-of-flame.json"
+    },
+    {
+      "primaryKey": 404,
+      "displayName": "sacrifice",
+      "file": "spell_0404_sacrifice.json"
+    },
+    {
+      "primaryKey": 405,
+      "displayName": "chaos shield",
+      "file": "spell_0405_chaos-shield.json"
+    },
+    {
+      "primaryKey": 406,
+      "displayName": "mana flux",
+      "file": "spell_0406_mana-flux.json"
+    },
+    {
+      "primaryKey": 407,
+      "displayName": "eye of the beholder",
+      "file": "spell_0407_eye-of-the-beholder.json"
+    },
+    {
+      "primaryKey": 408,
+      "displayName": "sunsword",
+      "file": "spell_0408_sunsword.json"
+    },
+    {
+      "primaryKey": 409,
+      "displayName": "constriction",
+      "file": "spell_0409_constriction.json"
+    },
+    {
+      "primaryKey": 410,
+      "displayName": "envelops",
+      "file": "spell_0410_envelops.json"
+    },
+    {
+      "primaryKey": 411,
+      "displayName": "lightning hits",
+      "file": "spell_0411_lightning-hits.json"
+    },
+    {
+      "primaryKey": 412,
+      "displayName": "mana rgen drain",
+      "file": "spell_0412_mana-rgen-drain.json"
+    },
+    {
+      "primaryKey": 413,
+      "displayName": "firestorm",
+      "file": "spell_0413_firestorm.json"
+    },
+    {
+      "primaryKey": 414,
+      "displayName": "burning",
+      "file": "spell_0414_burning.json"
+    },
+    {
+      "primaryKey": 415,
+      "displayName": "elemental fusion",
+      "file": "spell_0415_elemental-fusion.json"
+    },
+    {
+      "primaryKey": 416,
+      "displayName": "elemental earthquake",
+      "file": "spell_0416_elemental-earthquake.json"
+    },
+    {
+      "primaryKey": 417,
+      "displayName": "elemental lightning",
+      "file": "spell_0417_elemental-lightning.json"
+    },
+    {
+      "primaryKey": 418,
+      "displayName": "elemental fire",
+      "file": "spell_0418_elemental-fire.json"
+    },
+    {
+      "primaryKey": 419,
+      "displayName": "elemental ice",
+      "file": "spell_0419_elemental-ice.json"
+    },
+    {
+      "primaryKey": 420,
+      "displayName": "blazing comet",
+      "file": "spell_0420_blazing-comet.json"
+    },
+    {
+      "primaryKey": 421,
+      "displayName": "cosmos spell",
+      "file": "spell_0421_cosmos-spell.json"
+    },
+    {
+      "primaryKey": 422,
+      "displayName": "barkskin",
+      "file": "spell_0422_barkskin.json"
+    },
+    {
+      "primaryKey": 423,
+      "displayName": "feeblemind",
+      "file": "spell_0423_feeblemind.json"
+    },
+    {
+      "primaryKey": 424,
+      "displayName": "weakness",
+      "file": "spell_0424_weakness.json"
+    },
+    {
+      "primaryKey": 425,
+      "displayName": "blasts",
+      "file": "spell_0425_blasts.json"
+    },
+    {
+      "primaryKey": 426,
+      "displayName": "cone of flame",
+      "file": "spell_0426_cone-of-flame.json"
+    },
+    {
+      "primaryKey": 427,
+      "displayName": "venom explosion",
+      "file": "spell_0427_venom-explosion.json"
+    },
+    {
+      "primaryKey": 428,
+      "displayName": "chakram",
+      "file": "spell_0428_chakram.json"
+    },
+    {
+      "primaryKey": 429,
+      "displayName": "energy arc",
+      "file": "spell_0429_energy-arc.json"
+    },
+    {
+      "primaryKey": 430,
+      "displayName": "terror",
+      "file": "spell_0430_terror.json"
+    },
+    {
+      "primaryKey": 431,
+      "displayName": "energy hits",
+      "file": "spell_0431_energy-hits.json"
+    },
+    {
+      "primaryKey": 432,
+      "displayName": "energy drain",
+      "file": "spell_0432_energy-drain.json"
+    },
+    {
+      "primaryKey": 433,
+      "displayName": "energy vortex",
+      "file": "spell_0433_energy-vortex.json"
+    },
+    {
+      "primaryKey": 434,
+      "displayName": "obsidian talisman teleport",
+      "file": "spell_0434_obsidian-talisman-teleport.json"
+    },
+    {
+      "primaryKey": 435,
+      "displayName": "banish",
+      "file": "spell_0435_banish.json"
+    },
+    {
+      "primaryKey": 436,
+      "displayName": "fall",
+      "file": "spell_0436_fall.json"
+    },
+    {
+      "primaryKey": 437,
+      "displayName": "crash through roof",
+      "file": "spell_0437_crash-through-roof.json"
+    },
+    {
+      "primaryKey": 438,
+      "displayName": "sdf",
+      "file": "spell_0438_sdf.json"
+    },
+    {
+      "primaryKey": 439,
+      "displayName": "time distortion",
+      "file": "spell_0439_time-distortion.json"
+    },
+    {
+      "primaryKey": 440,
+      "displayName": "globe of darkness",
+      "file": "spell_0440_globe-of-darkness.json"
+    },
+    {
+      "primaryKey": 441,
+      "displayName": "shadowstrike",
+      "file": "spell_0441_shadowstrike.json"
+    },
+    {
+      "primaryKey": 443,
+      "displayName": "darkness hits",
+      "file": "spell_0443_darkness-hits.json"
+    },
+    {
+      "primaryKey": 444,
+      "displayName": "summon slaver leader",
+      "file": "spell_0444_summon-slaver-leader.json"
+    },
+    {
+      "primaryKey": 445,
+      "displayName": "disease",
+      "file": "spell_0445_disease.json"
+    },
+    {
+      "primaryKey": 446,
+      "displayName": "plague",
+      "file": "spell_0446_plague.json"
+    },
+    {
+      "primaryKey": 447,
+      "displayName": "remove bonds",
+      "file": "spell_0447_remove-bonds.json"
+    },
+    {
+      "primaryKey": 448,
+      "displayName": "cross of vengeance",
+      "file": "spell_0448_cross-of-vengeance.json"
+    },
+    {
+      "primaryKey": 449,
+      "displayName": "arcane tome incantation",
+      "file": "spell_0449_arcane-tome-incantation.json"
+    },
+    {
+      "primaryKey": 450,
+      "displayName": "nuke spell",
+      "file": "spell_0450_nuke-spell.json"
+    },
+    {
+      "primaryKey": 451,
+      "displayName": "strain",
+      "file": "spell_0451_strain.json"
+    },
+    {
+      "primaryKey": 452,
+      "displayName": "trap lightning",
+      "file": "spell_0452_trap-lightning.json"
+    },
+    {
+      "primaryKey": 453,
+      "displayName": "black water",
+      "file": "spell_0453_black-water.json"
+    },
+    {
+      "primaryKey": 454,
+      "displayName": "portal teleport",
+      "file": "spell_0454_portal-teleport.json"
+    },
+    {
+      "primaryKey": 455,
+      "displayName": "wounded",
+      "file": "spell_0455_wounded.json"
+    },
+    {
+      "primaryKey": 456,
+      "displayName": "summon weaponmaster",
+      "file": "spell_0456_summon-weaponmaster.json"
+    },
+    {
+      "primaryKey": 457,
+      "displayName": "shimmering vial",
+      "file": "spell_0457_shimmering-vial.json"
+    },
+    {
+      "primaryKey": 458,
+      "displayName": "black potion",
+      "file": "spell_0458_black-potion.json"
+    },
+    {
+      "primaryKey": 459,
+      "displayName": "golden vial",
+      "file": "spell_0459_golden-vial.json"
+    },
+    {
+      "primaryKey": 460,
+      "displayName": "wooden box",
+      "file": "spell_0460_wooden-box.json"
+    },
+    {
+      "primaryKey": 461,
+      "displayName": "wooden box gems",
+      "file": "spell_0461_wooden-box-gems.json"
+    },
+    {
+      "primaryKey": 462,
+      "displayName": "wooden box items",
+      "file": "spell_0462_wooden-box-items.json"
+    },
+    {
+      "primaryKey": 463,
+      "displayName": "oak chest",
+      "file": "spell_0463_oak-chest.json"
+    },
+    {
+      "primaryKey": 464,
+      "displayName": "oak chest items",
+      "file": "spell_0464_oak-chest-items.json"
+    },
+    {
+      "primaryKey": 465,
+      "displayName": "massive wooden chest items",
+      "file": "spell_0465_massive-wooden-chest-items.json"
+    },
+    {
+      "primaryKey": 466,
+      "displayName": "massive wooden chest",
+      "file": "spell_0466_massive-wooden-chest.json"
+    },
+    {
+      "primaryKey": 467,
+      "displayName": "silver box",
+      "file": "spell_0467_silver-box.json"
+    },
+    {
+      "primaryKey": 468,
+      "displayName": "silver box gems",
+      "file": "spell_0468_silver-box-gems.json"
+    },
+    {
+      "primaryKey": 469,
+      "displayName": "silver box items",
+      "file": "spell_0469_silver-box-items.json"
+    },
+    {
+      "primaryKey": 470,
+      "displayName": "iron-banded chest",
+      "file": "spell_0470_iron-banded-chest.json"
+    },
+    {
+      "primaryKey": 471,
+      "displayName": "darkwood chest",
+      "file": "spell_0471_darkwood-chest.json"
+    },
+    {
+      "primaryKey": 472,
+      "displayName": "golden box",
+      "file": "spell_0472_golden-box.json"
+    },
+    {
+      "primaryKey": 473,
+      "displayName": "golden box gems",
+      "file": "spell_0473_golden-box-gems.json"
+    },
+    {
+      "primaryKey": 474,
+      "displayName": "golden box items",
+      "file": "spell_0474_golden-box-items.json"
+    },
+    {
+      "primaryKey": 475,
+      "displayName": "steel chest",
+      "file": "spell_0475_steel-chest.json"
+    },
+    {
+      "primaryKey": 476,
+      "displayName": "silverwood chest",
+      "file": "spell_0476_silverwood-chest.json"
+    },
+    {
+      "primaryKey": 477,
+      "displayName": "shock hit",
+      "file": "spell_0477_shock-hit.json"
+    },
+    {
+      "primaryKey": 478,
+      "displayName": "blast of lightning",
+      "file": "spell_0478_blast-of-lightning.json"
+    },
+    {
+      "primaryKey": 479,
+      "displayName": "zaps",
+      "file": "spell_0479_zaps.json"
+    },
+    {
+      "primaryKey": 480,
+      "displayName": "wild dog pack",
+      "file": "spell_0480_wild-dog-pack.json"
+    },
+    {
+      "primaryKey": 481,
+      "displayName": "warlock bandit summon",
+      "file": "spell_0481_warlock-bandit-summon.json"
+    },
+    {
+      "primaryKey": 482,
+      "displayName": "bandit leader summon",
+      "file": "spell_0482_bandit-leader-summon.json"
+    },
+    {
+      "primaryKey": 483,
+      "displayName": "bodyguard",
+      "file": "spell_0483_bodyguard.json"
+    },
+    {
+      "primaryKey": 484,
+      "displayName": "inn rest",
+      "file": "spell_0484_inn-rest.json"
+    },
+    {
+      "primaryKey": 485,
+      "displayName": "swamp poison",
+      "file": "spell_0485_swamp-poison.json"
+    },
+    {
+      "primaryKey": 486,
+      "displayName": "horrible curse",
+      "file": "spell_0486_horrible-curse.json"
+    },
+    {
+      "primaryKey": 487,
+      "displayName": "gypsy withering",
+      "file": "spell_0487_gypsy-withering.json"
+    },
+    {
+      "primaryKey": 488,
+      "displayName": "death curse",
+      "file": "spell_0488_death-curse.json"
+    },
+    {
+      "primaryKey": 489,
+      "displayName": "summon gypsy",
+      "file": "spell_0489_summon-gypsy.json"
+    },
+    {
+      "primaryKey": 490,
+      "displayName": "card-wizard",
+      "file": "spell_0490_card-wizard.json"
+    },
+    {
+      "primaryKey": 491,
+      "displayName": "card-priest",
+      "file": "spell_0491_card-priest.json"
+    },
+    {
+      "primaryKey": 492,
+      "displayName": "card-knight",
+      "file": "spell_0492_card-knight.json"
+    },
+    {
+      "primaryKey": 493,
+      "displayName": "card-chariot",
+      "file": "spell_0493_card-chariot.json"
+    },
+    {
+      "primaryKey": 494,
+      "displayName": "card-grail",
+      "file": "spell_0494_card-grail.json"
+    },
+    {
+      "primaryKey": 495,
+      "displayName": "card-sun",
+      "file": "spell_0495_card-sun.json"
+    },
+    {
+      "primaryKey": 496,
+      "displayName": "card-wheel of fortune",
+      "file": "spell_0496_card-wheel-of-fortune.json"
+    },
+    {
+      "primaryKey": 497,
+      "displayName": "card-angel",
+      "file": "spell_0497_card-angel.json"
+    },
+    {
+      "primaryKey": 498,
+      "displayName": "card-death",
+      "file": "spell_0498_card-death.json"
+    },
+    {
+      "primaryKey": 499,
+      "displayName": "card-fool",
+      "file": "spell_0499_card-fool.json"
+    },
+    {
+      "primaryKey": 500,
+      "displayName": "card-swamp",
+      "file": "spell_0500_card-swamp.json"
+    },
+    {
+      "primaryKey": 501,
+      "displayName": "card-demon",
+      "file": "spell_0501_card-demon.json"
+    },
+    {
+      "primaryKey": 502,
+      "displayName": "card-void",
+      "file": "spell_0502_card-void.json"
+    },
+    {
+      "primaryKey": 503,
+      "displayName": "rinaldo",
+      "file": "spell_0503_rinaldo.json"
+    },
+    {
+      "primaryKey": 504,
+      "displayName": "gazes",
+      "file": "spell_0504_gazes.json"
+    },
+    {
+      "primaryKey": 505,
+      "displayName": "blood drain",
+      "file": "spell_0505_blood-drain.json"
+    },
+    {
+      "primaryKey": 506,
+      "displayName": "troll regeneration",
+      "file": "spell_0506_troll-regeneration.json"
+    },
+    {
+      "primaryKey": 507,
+      "displayName": "troll death",
+      "file": "spell_0507_troll-death.json"
+    },
+    {
+      "primaryKey": 508,
+      "displayName": "giant troll death",
+      "file": "spell_0508_giant-troll-death.json"
+    },
+    {
+      "primaryKey": 509,
+      "displayName": "blast of acid",
+      "file": "spell_0509_blast-of-acid.json"
+    },
+    {
+      "primaryKey": 510,
+      "displayName": "summon dwarven guard",
+      "file": "spell_0510_summon-dwarven-guard.json"
+    },
+    {
+      "primaryKey": 511,
+      "displayName": "freezing water",
+      "file": "spell_0511_freezing-water.json"
+    },
+    {
+      "primaryKey": 512,
+      "displayName": "holding breath",
+      "file": "spell_0512_holding-breath.json"
+    },
+    {
+      "primaryKey": 513,
+      "displayName": "drowning",
+      "file": "spell_0513_drowning.json"
+    },
+    {
+      "primaryKey": 514,
+      "displayName": "drowned to death",
+      "file": "spell_0514_drowned-to-death.json"
+    },
+    {
+      "primaryKey": 515,
+      "displayName": "stop drowning",
+      "file": "spell_0515_stop-drowning.json"
+    },
+    {
+      "primaryKey": 516,
+      "displayName": "exit water",
+      "file": "spell_0516_exit-water.json"
+    },
+    {
+      "primaryKey": 517,
+      "displayName": "summon kobold",
+      "file": "spell_0517_summon-kobold.json"
+    },
+    {
+      "primaryKey": 518,
+      "displayName": "life energy",
+      "file": "spell_0518_life-energy.json"
+    },
+    {
+      "primaryKey": 519,
+      "displayName": "bolt of energy",
+      "file": "spell_0519_bolt-of-energy.json"
+    },
+    {
+      "primaryKey": 520,
+      "displayName": "sucks the life",
+      "file": "spell_0520_sucks-the-life.json"
+    },
+    {
+      "primaryKey": 521,
+      "displayName": "cloud of spores",
+      "file": "spell_0521_cloud-of-spores.json"
+    },
+    {
+      "primaryKey": 522,
+      "displayName": "deadly spores",
+      "file": "spell_0522_deadly-spores.json"
+    },
+    {
+      "primaryKey": 523,
+      "displayName": "spore zombie curse",
+      "file": "spell_0523_spore-zombie-curse.json"
+    },
+    {
+      "primaryKey": 524,
+      "displayName": "zombie death",
+      "file": "spell_0524_zombie-death.json"
+    },
+    {
+      "primaryKey": 525,
+      "displayName": "remove mask",
+      "file": "spell_0525_remove-mask.json"
+    },
+    {
+      "primaryKey": 526,
+      "displayName": "magma heat",
+      "file": "spell_0526_magma-heat.json"
+    },
+    {
+      "primaryKey": 527,
+      "displayName": "whirlwind of fire",
+      "file": "spell_0527_whirlwind-of-fire.json"
+    },
+    {
+      "primaryKey": 528,
+      "displayName": "summon royal guard",
+      "file": "spell_0528_summon-royal-guard.json"
+    },
+    {
+      "primaryKey": 530,
+      "displayName": "king's summons",
+      "file": "spell_0530_king-s-summons.json"
+    },
+    {
+      "primaryKey": 531,
+      "displayName": "dragonfear",
+      "file": "spell_0531_dragonfear.json"
+    },
+    {
+      "primaryKey": 532,
+      "displayName": "dragon fear effect",
+      "file": "spell_0532_dragon-fear-effect.json"
+    },
+    {
+      "primaryKey": 533,
+      "displayName": "vile oil",
+      "file": "spell_0533_vile-oil.json"
+    },
+    {
+      "primaryKey": 534,
+      "displayName": "summon troglodytes",
+      "file": "spell_0534_summon-troglodytes.json"
+    },
+    {
+      "primaryKey": 535,
+      "displayName": "spits acid",
+      "file": "spell_0535_spits-acid.json"
+    },
+    {
+      "primaryKey": 536,
+      "displayName": "sweeps trigger",
+      "file": "spell_0536_sweeps-trigger.json"
+    },
+    {
+      "primaryKey": 537,
+      "displayName": "sweeps",
+      "file": "spell_0537_sweeps.json"
+    },
+    {
+      "primaryKey": 538,
+      "displayName": "sand breath",
+      "file": "spell_0538_sand-breath.json"
+    },
+    {
+      "primaryKey": 539,
+      "displayName": "sand blind",
+      "file": "spell_0539_sand-blind.json"
+    },
+    {
+      "primaryKey": 540,
+      "displayName": "summon kai master",
+      "file": "spell_0540_summon-kai-master.json"
+    },
+    {
+      "primaryKey": 541,
+      "displayName": "kai master temp",
+      "file": "spell_0541_kai-master-temp.json"
+    },
+    {
+      "primaryKey": 542,
+      "displayName": "telekinesis",
+      "file": "spell_0542_telekinesis.json"
+    },
+    {
+      "primaryKey": 543,
+      "displayName": "molecular agitation",
+      "file": "spell_0543_molecular-agitation.json"
+    },
+    {
+      "primaryKey": 544,
+      "displayName": "cell adjustment",
+      "file": "spell_0544_cell-adjustment.json"
+    },
+    {
+      "primaryKey": 545,
+      "displayName": "obsidian shards",
+      "file": "spell_0545_obsidian-shards.json"
+    },
+    {
+      "primaryKey": 546,
+      "displayName": "obsidian talisman",
+      "file": "spell_0546_obsidian-talisman.json"
+    },
+    {
+      "primaryKey": 547,
+      "displayName": "obsidian talisman explosion",
+      "file": "spell_0547_obsidian-talisman-explosion.json"
+    },
+    {
+      "primaryKey": 548,
+      "displayName": "spray of gems",
+      "file": "spell_0548_spray-of-gems.json"
+    },
+    {
+      "primaryKey": 549,
+      "displayName": "squeezes",
+      "file": "spell_0549_squeezes.json"
+    },
+    {
+      "primaryKey": 550,
+      "displayName": "summon brain eater",
+      "file": "spell_0550_summon-brain-eater.json"
+    },
+    {
+      "primaryKey": 551,
+      "displayName": "summon shapeshifter",
+      "file": "spell_0551_summon-shapeshifter.json"
+    },
+    {
+      "primaryKey": 552,
+      "displayName": "icy beam",
+      "file": "spell_0552_icy-beam.json"
+    },
+    {
+      "primaryKey": 553,
+      "displayName": "explosion",
+      "file": "spell_0553_explosion.json"
+    },
+    {
+      "primaryKey": 554,
+      "displayName": "red mist",
+      "file": "spell_0554_red-mist.json"
+    },
+    {
+      "primaryKey": 555,
+      "displayName": "blue mist",
+      "file": "spell_0555_blue-mist.json"
+    },
+    {
+      "primaryKey": 556,
+      "displayName": "belches",
+      "file": "spell_0556_belches.json"
+    },
+    {
+      "primaryKey": 557,
+      "displayName": "rot",
+      "file": "spell_0557_rot.json"
+    },
+    {
+      "primaryKey": 558,
+      "displayName": "spectral temp",
+      "file": "spell_0558_spectral-temp.json"
+    },
+    {
+      "primaryKey": 559,
+      "displayName": "spectral text",
+      "file": "spell_0559_spectral-text.json"
+    },
+    {
+      "primaryKey": 560,
+      "displayName": "gulguthra death",
+      "file": "spell_0560_gulguthra-death.json"
+    },
+    {
+      "primaryKey": 561,
+      "displayName": "gulguthra portal",
+      "file": "spell_0561_gulguthra-portal.json"
+    },
+    {
+      "primaryKey": 562,
+      "displayName": "flesh-eater",
+      "file": "spell_0562_flesh-eater.json"
+    },
+    {
+      "primaryKey": 563,
+      "displayName": "area flesh-eater",
+      "file": "spell_0563_area-flesh-eater.json"
+    },
+    {
+      "primaryKey": 564,
+      "displayName": "golden chest",
+      "file": "spell_0564_golden-chest.json"
+    },
+    {
+      "primaryKey": 565,
+      "displayName": "adamantite chest",
+      "file": "spell_0565_adamantite-chest.json"
+    },
+    {
+      "primaryKey": 566,
+      "displayName": "black iron chest",
+      "file": "spell_0566_black-iron-chest.json"
+    },
+    {
+      "primaryKey": 567,
+      "displayName": "sdfsdfsdfsdfsdf",
+      "file": "spell_0567_sdfsdfsdfsdfsdf.json"
+    },
+    {
+      "primaryKey": 568,
+      "displayName": "efreeti temp",
+      "file": "spell_0568_efreeti-temp.json"
+    },
+    {
+      "primaryKey": 569,
+      "displayName": "efreeti text",
+      "file": "spell_0569_efreeti-text.json"
+    },
+    {
+      "primaryKey": 570,
+      "displayName": "gemstone temp",
+      "file": "spell_0570_gemstone-temp.json"
+    },
+    {
+      "primaryKey": 571,
+      "displayName": "gemstone text",
+      "file": "spell_0571_gemstone-text.json"
+    },
+    {
+      "primaryKey": 572,
+      "displayName": "kai master text",
+      "file": "spell_0572_kai-master-text.json"
+    },
+    {
+      "primaryKey": 573,
+      "displayName": "small cloth pouch",
+      "file": "spell_0573_small-cloth-pouch.json"
+    },
+    {
+      "primaryKey": 574,
+      "displayName": "kobold death",
+      "file": "spell_0574_kobold-death.json"
+    },
+    {
+      "primaryKey": 575,
+      "displayName": "kobold text",
+      "file": "spell_0575_kobold-text.json"
+    },
+    {
+      "primaryKey": 576,
+      "displayName": "giant troll temp",
+      "file": "spell_0576_giant-troll-temp.json"
+    },
+    {
+      "primaryKey": 577,
+      "displayName": "giant troll text",
+      "file": "spell_0577_giant-troll-text.json"
+    },
+    {
+      "primaryKey": 578,
+      "displayName": "obsidian golem temp",
+      "file": "spell_0578_obsidian-golem-temp.json"
+    },
+    {
+      "primaryKey": 579,
+      "displayName": "obsidian golem text",
+      "file": "spell_0579_obsidian-golem-text.json"
+    },
+    {
+      "primaryKey": 580,
+      "displayName": "obsidian talisman drain",
+      "file": "spell_0580_obsidian-talisman-drain.json"
+    },
+    {
+      "primaryKey": 581,
+      "displayName": "cloud of spores",
+      "file": "spell_0581_cloud-of-spores.json"
+    },
+    {
+      "primaryKey": 582,
+      "displayName": "duergar teleport",
+      "file": "spell_0582_duergar-teleport.json"
+    },
+    {
+      "primaryKey": 583,
+      "displayName": "jail",
+      "file": "spell_0583_jail.json"
+    },
+    {
+      "primaryKey": 584,
+      "displayName": "jail teleport",
+      "file": "spell_0584_jail-teleport.json"
+    },
+    {
+      "primaryKey": 585,
+      "displayName": "exit jail",
+      "file": "spell_0585_exit-jail.json"
+    },
+    {
+      "primaryKey": 586,
+      "displayName": "fiend jail time",
+      "file": "spell_0586_fiend-jail-time.json"
+    },
+    {
+      "primaryKey": 587,
+      "displayName": "cold hits",
+      "file": "spell_0587_cold-hits.json"
+    },
+    {
+      "primaryKey": 588,
+      "displayName": "poison hits",
+      "file": "spell_0588_poison-hits.json"
+    },
+    {
+      "primaryKey": 589,
+      "displayName": "burn hits",
+      "file": "spell_0589_burn-hits.json"
+    },
+    {
+      "primaryKey": 590,
+      "displayName": "lightning hits",
+      "file": "spell_0590_lightning-hits.json"
+    },
+    {
+      "primaryKey": 591,
+      "displayName": "darkbolt",
+      "file": "spell_0591_darkbolt.json"
+    },
+    {
+      "primaryKey": 592,
+      "displayName": "summon zombie cat",
+      "file": "spell_0592_summon-zombie-cat.json"
+    },
+    {
+      "primaryKey": 593,
+      "displayName": "summon orc warrior",
+      "file": "spell_0593_summon-orc-warrior.json"
+    },
+    {
+      "primaryKey": 594,
+      "displayName": "globule",
+      "file": "spell_0594_globule.json"
+    },
+    {
+      "primaryKey": 595,
+      "displayName": "globule",
+      "file": "spell_0595_globule.json"
+    },
+    {
+      "primaryKey": 596,
+      "displayName": "asylum",
+      "file": "spell_0596_asylum.json"
+    },
+    {
+      "primaryKey": 597,
+      "displayName": "cell north",
+      "file": "spell_0597_cell-north.json"
+    },
+    {
+      "primaryKey": 598,
+      "displayName": "cell south",
+      "file": "spell_0598_cell-south.json"
+    },
+    {
+      "primaryKey": 599,
+      "displayName": "cell east",
+      "file": "spell_0599_cell-east.json"
+    },
+    {
+      "primaryKey": 600,
+      "displayName": "cell west",
+      "file": "spell_0600_cell-west.json"
+    },
+    {
+      "primaryKey": 601,
+      "displayName": "glob of slime",
+      "file": "spell_0601_glob-of-slime.json"
+    },
+    {
+      "primaryKey": 602,
+      "displayName": "laughs",
+      "file": "spell_0602_laughs.json"
+    },
+    {
+      "primaryKey": 603,
+      "displayName": "dread mystic temp",
+      "file": "spell_0603_dread-mystic-temp.json"
+    },
+    {
+      "primaryKey": 604,
+      "displayName": "dread mystic text",
+      "file": "spell_0604_dread-mystic-text.json"
+    },
+    {
+      "primaryKey": 605,
+      "displayName": "smuggler temp",
+      "file": "spell_0605_smuggler-temp.json"
+    },
+    {
+      "primaryKey": 606,
+      "displayName": "smuggler text",
+      "file": "spell_0606_smuggler-text.json"
+    },
+    {
+      "primaryKey": 607,
+      "displayName": "potion of levitation",
+      "file": "spell_0607_potion-of-levitation.json"
+    },
+    {
+      "primaryKey": 608,
+      "displayName": "white jelly temp",
+      "file": "spell_0608_white-jelly-temp.json"
+    },
+    {
+      "primaryKey": 609,
+      "displayName": "white jelly text",
+      "file": "spell_0609_white-jelly-text.json"
+    },
+    {
+      "primaryKey": 610,
+      "displayName": "ant queen temp",
+      "file": "spell_0610_ant-queen-temp.json"
+    },
+    {
+      "primaryKey": 611,
+      "displayName": "ant queen text",
+      "file": "spell_0611_ant-queen-text.json"
+    },
+    {
+      "primaryKey": 612,
+      "displayName": "brigand lord temp",
+      "file": "spell_0612_brigand-lord-temp.json"
+    },
+    {
+      "primaryKey": 613,
+      "displayName": "brigand lord text",
+      "file": "spell_0613_brigand-lord-text.json"
+    },
+    {
+      "primaryKey": 614,
+      "displayName": "morukai temp",
+      "file": "spell_0614_morukai-temp.json"
+    },
+    {
+      "primaryKey": 615,
+      "displayName": "necromancer temp",
+      "file": "spell_0615_necromancer-temp.json"
+    },
+    {
+      "primaryKey": 616,
+      "displayName": "necromancer text",
+      "file": "spell_0616_necromancer-text.json"
+    },
+    {
+      "primaryKey": 617,
+      "displayName": "flesh golem temp",
+      "file": "spell_0617_flesh-golem-temp.json"
+    },
+    {
+      "primaryKey": 618,
+      "displayName": "flesh golem text",
+      "file": "spell_0618_flesh-golem-text.json"
+    },
+    {
+      "primaryKey": 619,
+      "displayName": "upper portal",
+      "file": "spell_0619_upper-portal.json"
+    },
+    {
+      "primaryKey": 620,
+      "displayName": "lower portal (invited)",
+      "file": "spell_0620_lower-portal-invited.json"
+    },
+    {
+      "primaryKey": 621,
+      "displayName": "lower portal (uninvited)",
+      "file": "spell_0621_lower-portal-uninvited.json"
+    },
+    {
+      "primaryKey": 622,
+      "displayName": "summon duergar",
+      "file": "spell_0622_summon-duergar.json"
+    },
+    {
+      "primaryKey": 623,
+      "displayName": "arrow trap",
+      "file": "spell_0623_arrow-trap.json"
+    },
+    {
+      "primaryKey": 624,
+      "displayName": "blade trap",
+      "file": "spell_0624_blade-trap.json"
+    },
+    {
+      "primaryKey": 625,
+      "displayName": "spear trap",
+      "file": "spell_0625_spear-trap.json"
+    },
+    {
+      "primaryKey": 626,
+      "displayName": "sawblade trap",
+      "file": "spell_0626_sawblade-trap.json"
+    },
+    {
+      "primaryKey": 627,
+      "displayName": "redberry poison trigger",
+      "file": "spell_0627_redberry-poison-trigger.json"
+    },
+    {
+      "primaryKey": 628,
+      "displayName": "redberry poison trap",
+      "file": "spell_0628_redberry-poison-trap.json"
+    },
+    {
+      "primaryKey": 629,
+      "displayName": "venom trigger",
+      "file": "spell_0629_venom-trigger.json"
+    },
+    {
+      "primaryKey": 630,
+      "displayName": "venom trap",
+      "file": "spell_0630_venom-trap.json"
+    },
+    {
+      "primaryKey": 631,
+      "displayName": "venom save",
+      "file": "spell_0631_venom-save.json"
+    },
+    {
+      "primaryKey": 632,
+      "displayName": "mistweed trigger",
+      "file": "spell_0632_mistweed-trigger.json"
+    },
+    {
+      "primaryKey": 633,
+      "displayName": "mistweed trap",
+      "file": "spell_0633_mistweed-trap.json"
+    },
+    {
+      "primaryKey": 634,
+      "displayName": "mistweed save",
+      "file": "spell_0634_mistweed-save.json"
+    },
+    {
+      "primaryKey": 635,
+      "displayName": "nightshade poison trigger",
+      "file": "spell_0635_nightshade-poison-trigger.json"
+    },
+    {
+      "primaryKey": 636,
+      "displayName": "nightshade trap",
+      "file": "spell_0636_nightshade-trap.json"
+    },
+    {
+      "primaryKey": 637,
+      "displayName": "nightshade poison save",
+      "file": "spell_0637_nightshade-poison-save.json"
+    },
+    {
+      "primaryKey": 638,
+      "displayName": "fire trap",
+      "file": "spell_0638_fire-trap.json"
+    },
+    {
+      "primaryKey": 639,
+      "displayName": "lightning trap",
+      "file": "spell_0639_lightning-trap.json"
+    },
+    {
+      "primaryKey": 640,
+      "displayName": "house trap trigger",
+      "file": "spell_0640_house-trap-trigger.json"
+    },
+    {
+      "primaryKey": 641,
+      "displayName": "villain jail time",
+      "file": "spell_0641_villain-jail-time.json"
+    },
+    {
+      "primaryKey": 642,
+      "displayName": "criminal jail time",
+      "file": "spell_0642_criminal-jail-time.json"
+    },
+    {
+      "primaryKey": 643,
+      "displayName": "outlaw jail time",
+      "file": "spell_0643_outlaw-jail-time.json"
+    },
+    {
+      "primaryKey": 644,
+      "displayName": "seedy+ jail time",
+      "file": "spell_0644_seedy-jail-time.json"
+    },
+    {
+      "primaryKey": 645,
+      "displayName": "portal dispel",
+      "file": "spell_0645_portal-dispel.json"
+    },
+    {
+      "primaryKey": 646,
+      "displayName": "flaming spawn",
+      "file": "spell_0646_flaming-spawn.json"
+    },
+    {
+      "primaryKey": 647,
+      "displayName": "sil_tel",
+      "file": "spell_0647_sil-tel.json"
+    },
+    {
+      "primaryKey": 648,
+      "displayName": "sil_tel",
+      "file": "spell_0648_sil-tel.json"
+    },
+    {
+      "primaryKey": 649,
+      "displayName": "sil_tel",
+      "file": "spell_0649_sil-tel.json"
+    },
+    {
+      "primaryKey": 650,
+      "displayName": "sil_tel",
+      "file": "spell_0650_sil-tel.json"
+    },
+    {
+      "primaryKey": 651,
+      "displayName": "sil_tel",
+      "file": "spell_0651_sil-tel.json"
+    },
+    {
+      "primaryKey": 652,
+      "displayName": "sil_tel",
+      "file": "spell_0652_sil-tel.json"
+    },
+    {
+      "primaryKey": 653,
+      "displayName": "sil_tel",
+      "file": "spell_0653_sil-tel.json"
+    },
+    {
+      "primaryKey": 654,
+      "displayName": "sil_tel",
+      "file": "spell_0654_sil-tel.json"
+    },
+    {
+      "primaryKey": 655,
+      "displayName": "sil_tel",
+      "file": "spell_0655_sil-tel.json"
+    },
+    {
+      "primaryKey": 656,
+      "displayName": "sil_tel",
+      "file": "spell_0656_sil-tel.json"
+    },
+    {
+      "primaryKey": 657,
+      "displayName": "sil_tel",
+      "file": "spell_0657_sil-tel.json"
+    },
+    {
+      "primaryKey": 658,
+      "displayName": "sil_tel",
+      "file": "spell_0658_sil-tel.json"
+    },
+    {
+      "primaryKey": 659,
+      "displayName": "sil_tel",
+      "file": "spell_0659_sil-tel.json"
+    },
+    {
+      "primaryKey": 660,
+      "displayName": "sil_tel",
+      "file": "spell_0660_sil-tel.json"
+    },
+    {
+      "primaryKey": 661,
+      "displayName": "sil_tel",
+      "file": "spell_0661_sil-tel.json"
+    },
+    {
+      "primaryKey": 662,
+      "displayName": "sil_tel",
+      "file": "spell_0662_sil-tel.json"
+    },
+    {
+      "primaryKey": 663,
+      "displayName": "sil_tel",
+      "file": "spell_0663_sil-tel.json"
+    },
+    {
+      "primaryKey": 664,
+      "displayName": "glass orb",
+      "file": "spell_0664_glass-orb.json"
+    },
+    {
+      "primaryKey": 665,
+      "displayName": "crystal orb",
+      "file": "spell_0665_crystal-orb.json"
+    },
+    {
+      "primaryKey": 666,
+      "displayName": "granite orb",
+      "file": "spell_0666_granite-orb.json"
+    },
+    {
+      "primaryKey": 667,
+      "displayName": "marble orb",
+      "file": "spell_0667_marble-orb.json"
+    },
+    {
+      "primaryKey": 668,
+      "displayName": "ashwood wand",
+      "file": "spell_0668_ashwood-wand.json"
+    },
+    {
+      "primaryKey": 669,
+      "displayName": "teak wand",
+      "file": "spell_0669_teak-wand.json"
+    },
+    {
+      "primaryKey": 670,
+      "displayName": "mahogany wand",
+      "file": "spell_0670_mahogany-wand.json"
+    },
+    {
+      "primaryKey": 671,
+      "displayName": "pine wand",
+      "file": "spell_0671_pine-wand.json"
+    },
+    {
+      "primaryKey": 672,
+      "displayName": "darkwood rod",
+      "file": "spell_0672_darkwood-rod.json"
+    },
+    {
+      "primaryKey": 673,
+      "displayName": "silverwood rod",
+      "file": "spell_0673_silverwood-rod.json"
+    },
+    {
+      "primaryKey": 674,
+      "displayName": "rosewood rod",
+      "file": "spell_0674_rosewood-rod.json"
+    },
+    {
+      "primaryKey": 675,
+      "displayName": "birch rod",
+      "file": "spell_0675_birch-rod.json"
+    },
+    {
+      "primaryKey": 676,
+      "displayName": "cedar rod",
+      "file": "spell_0676_cedar-rod.json"
+    },
+    {
+      "primaryKey": 677,
+      "displayName": "jail heal",
+      "file": "spell_0677_jail-heal.json"
+    },
+    {
+      "primaryKey": 678,
+      "displayName": "darkwood_tel",
+      "file": "spell_0678_darkwood-tel.json"
+    },
+    {
+      "primaryKey": 679,
+      "displayName": "darkwood_tel",
+      "file": "spell_0679_darkwood-tel.json"
+    },
+    {
+      "primaryKey": 681,
+      "displayName": "exit muddy water",
+      "file": "spell_0681_exit-muddy-water.json"
+    },
+    {
+      "primaryKey": 682,
+      "displayName": "stop mud drown",
+      "file": "spell_0682_stop-mud-drown.json"
+    },
+    {
+      "primaryKey": 683,
+      "displayName": "desert spell",
+      "file": "spell_0683_desert-spell.json"
+    },
+    {
+      "primaryKey": 684,
+      "displayName": "desert spell 2",
+      "file": "spell_0684_desert-spell-2.json"
+    },
+    {
+      "primaryKey": 685,
+      "displayName": "timer",
+      "file": "spell_0685_timer.json"
+    },
+    {
+      "primaryKey": 686,
+      "displayName": "pyramid 1 teleport",
+      "file": "spell_0686_pyramid-1-teleport.json"
+    },
+    {
+      "primaryKey": 687,
+      "displayName": "pyramid 1 exit",
+      "file": "spell_0687_pyramid-1-exit.json"
+    },
+    {
+      "primaryKey": 688,
+      "displayName": "fire pit damage",
+      "file": "spell_0688_fire-pit-damage.json"
+    },
+    {
+      "primaryKey": 689,
+      "displayName": "level 1 fall",
+      "file": "spell_0689_level-1-fall.json"
+    },
+    {
+      "primaryKey": 690,
+      "displayName": "pyramid 2 random",
+      "file": "spell_0690_pyramid-2-random.json"
+    },
+    {
+      "primaryKey": 691,
+      "displayName": "cleanup",
+      "file": "spell_0691_cleanup.json"
+    },
+    {
+      "primaryKey": 692,
+      "displayName": "cleanup 2",
+      "file": "spell_0692_cleanup-2.json"
+    },
+    {
+      "primaryKey": 693,
+      "displayName": "darts",
+      "file": "spell_0693_darts.json"
+    },
+    {
+      "primaryKey": 694,
+      "displayName": "dart poison",
+      "file": "spell_0694_dart-poison.json"
+    },
+    {
+      "primaryKey": 695,
+      "displayName": "crossbow bolts",
+      "file": "spell_0695_crossbow-bolts.json"
+    },
+    {
+      "primaryKey": 696,
+      "displayName": "scything blade",
+      "file": "spell_0696_scything-blade.json"
+    },
+    {
+      "primaryKey": 697,
+      "displayName": "flame blast",
+      "file": "spell_0697_flame-blast.json"
+    },
+    {
+      "primaryKey": 698,
+      "displayName": "crushing blocks",
+      "file": "spell_0698_crushing-blocks.json"
+    },
+    {
+      "primaryKey": 699,
+      "displayName": "pyramid 3 random",
+      "file": "spell_0699_pyramid-3-random.json"
+    },
+    {
+      "primaryKey": 700,
+      "displayName": "cleanup 3",
+      "file": "spell_0700_cleanup-3.json"
+    },
+    {
+      "primaryKey": 701,
+      "displayName": "pyramid 4 arch pass",
+      "file": "spell_0701_pyramid-4-arch-pass.json"
+    },
+    {
+      "primaryKey": 702,
+      "displayName": "pyramid 4 arch fail",
+      "file": "spell_0702_pyramid-4-arch-fail.json"
+    },
+    {
+      "primaryKey": 703,
+      "displayName": "fruit",
+      "file": "spell_0703_fruit.json"
+    },
+    {
+      "primaryKey": 704,
+      "displayName": "poison",
+      "file": "spell_0704_poison.json"
+    },
+    {
+      "primaryKey": 705,
+      "displayName": "rakshasha",
+      "file": "spell_0705_rakshasha.json"
+    },
+    {
+      "primaryKey": 706,
+      "displayName": "forked lightning",
+      "file": "spell_0706_forked-lightning.json"
+    },
+    {
+      "primaryKey": 707,
+      "displayName": "level 2 fall",
+      "file": "spell_0707_level-2-fall.json"
+    },
+    {
+      "primaryKey": 708,
+      "displayName": "level 3 fall",
+      "file": "spell_0708_level-3-fall.json"
+    },
+    {
+      "primaryKey": 709,
+      "displayName": "level 4 fall",
+      "file": "spell_0709_level-4-fall.json"
+    },
+    {
+      "primaryKey": 710,
+      "displayName": "level 5 fall",
+      "file": "spell_0710_level-5-fall.json"
+    },
+    {
+      "primaryKey": 711,
+      "displayName": "waterskin",
+      "file": "spell_0711_waterskin.json"
+    },
+    {
+      "primaryKey": 712,
+      "displayName": "desert damage",
+      "file": "spell_0712_desert-damage.json"
+    },
+    {
+      "primaryKey": 713,
+      "displayName": "desert sandstorm",
+      "file": "spell_0713_desert-sandstorm.json"
+    },
+    {
+      "primaryKey": 714,
+      "displayName": "sinkhole",
+      "file": "spell_0714_sinkhole.json"
+    },
+    {
+      "primaryKey": 715,
+      "displayName": "whirlwind",
+      "file": "spell_0715_whirlwind.json"
+    },
+    {
+      "primaryKey": 716,
+      "displayName": "elemental fury",
+      "file": "spell_0716_elemental-fury.json"
+    },
+    {
+      "primaryKey": 718,
+      "displayName": "elemental lightning",
+      "file": "spell_0718_elemental-lightning.json"
+    },
+    {
+      "primaryKey": 719,
+      "displayName": "elemental fire",
+      "file": "spell_0719_elemental-fire.json"
+    },
+    {
+      "primaryKey": 720,
+      "displayName": "elemental ice",
+      "file": "spell_0720_elemental-ice.json"
+    },
+    {
+      "primaryKey": 721,
+      "displayName": "soulstrike",
+      "file": "spell_0721_soulstrike.json"
+    },
+    {
+      "primaryKey": 722,
+      "displayName": "spits a stream of acid",
+      "file": "spell_0722_spits-a-stream-of-acid.json"
+    },
+    {
+      "primaryKey": 723,
+      "displayName": "devour",
+      "file": "spell_0723_devour.json"
+    },
+    {
+      "primaryKey": 724,
+      "displayName": "stomach bile",
+      "file": "spell_0724_stomach-bile.json"
+    },
+    {
+      "primaryKey": 725,
+      "displayName": "spit out temp",
+      "file": "spell_0725_spit-out-temp.json"
+    },
+    {
+      "primaryKey": 726,
+      "displayName": "hydra head",
+      "file": "spell_0726_hydra-head.json"
+    },
+    {
+      "primaryKey": 727,
+      "displayName": "pharaoh death temp",
+      "file": "spell_0727_pharaoh-death-temp.json"
+    },
+    {
+      "primaryKey": 728,
+      "displayName": "pharaoh death",
+      "file": "spell_0728_pharaoh-death.json"
+    },
+    {
+      "primaryKey": 729,
+      "displayName": "pharaoh aging",
+      "file": "spell_0729_pharaoh-aging.json"
+    },
+    {
+      "primaryKey": 730,
+      "displayName": "portal creation spell",
+      "file": "spell_0730_portal-creation-spell.json"
+    },
+    {
+      "primaryKey": 731,
+      "displayName": "spit up",
+      "file": "spell_0731_spit-up.json"
+    },
+    {
+      "primaryKey": 732,
+      "displayName": "pyramid 1 exit temp",
+      "file": "spell_0732_pyramid-1-exit-temp.json"
+    },
+    {
+      "primaryKey": 733,
+      "displayName": "out archway check",
+      "file": "spell_0733_out-archway-check.json"
+    },
+    {
+      "primaryKey": 734,
+      "displayName": "out archway temp",
+      "file": "spell_0734_out-archway-temp.json"
+    },
+    {
+      "primaryKey": 735,
+      "displayName": "in archway check",
+      "file": "spell_0735_in-archway-check.json"
+    },
+    {
+      "primaryKey": 736,
+      "displayName": "remove archway temp",
+      "file": "spell_0736_remove-archway-temp.json"
+    },
+    {
+      "primaryKey": 738,
+      "displayName": "crescent moon staff",
+      "file": "spell_0738_crescent-moon-staff.json"
+    },
+    {
+      "primaryKey": 739,
+      "displayName": "rainbow stone",
+      "file": "spell_0739_rainbow-stone.json"
+    },
+    {
+      "primaryKey": 740,
+      "displayName": "dao death temp",
+      "file": "spell_0740_dao-death-temp.json"
+    },
+    {
+      "primaryKey": 741,
+      "displayName": "dao death",
+      "file": "spell_0741_dao-death.json"
+    },
+    {
+      "primaryKey": 742,
+      "displayName": "dao scatter",
+      "file": "spell_0742_dao-scatter.json"
+    },
+    {
+      "primaryKey": 743,
+      "displayName": "desert sandstorm temp",
+      "file": "spell_0743_desert-sandstorm-temp.json"
+    },
+    {
+      "primaryKey": 744,
+      "displayName": "annointed hands",
+      "file": "spell_0744_annointed-hands.json"
+    },
+    {
+      "primaryKey": 745,
+      "displayName": "sunstone bracelet",
+      "file": "spell_0745_sunstone-bracelet.json"
+    },
+    {
+      "primaryKey": 746,
+      "displayName": "increase HP",
+      "file": "spell_0746_increase-hp.json"
+    },
+    {
+      "primaryKey": 747,
+      "displayName": "allow healing",
+      "file": "spell_0747_allow-healing.json"
+    },
+    {
+      "primaryKey": 748,
+      "displayName": "chaos surge",
+      "file": "spell_0748_chaos-surge.json"
+    },
+    {
+      "primaryKey": 749,
+      "displayName": "eldritch fury",
+      "file": "spell_0749_eldritch-fury.json"
+    },
+    {
+      "primaryKey": 750,
+      "displayName": "wizard knock",
+      "file": "spell_0750_wizard-knock.json"
+    },
+    {
+      "primaryKey": 751,
+      "displayName": "demon explosion",
+      "file": "spell_0751_demon-explosion.json"
+    },
+    {
+      "primaryKey": 752,
+      "displayName": "explosion",
+      "file": "spell_0752_explosion.json"
+    },
+    {
+      "primaryKey": 753,
+      "displayName": "silver river",
+      "file": "spell_0753_silver-river.json"
+    },
+    {
+      "primaryKey": 754,
+      "displayName": "battered",
+      "file": "spell_0754_battered.json"
+    },
+    {
+      "primaryKey": 755,
+      "displayName": "island landing",
+      "file": "spell_0755_island-landing.json"
+    },
+    {
+      "primaryKey": 756,
+      "displayName": "pastor box",
+      "file": "spell_0756_pastor-box.json"
+    },
+    {
+      "primaryKey": 757,
+      "displayName": "break",
+      "file": "spell_0757_break.json"
+    },
+    {
+      "primaryKey": 758,
+      "displayName": "flame altar",
+      "file": "spell_0758_flame-altar.json"
+    },
+    {
+      "primaryKey": 759,
+      "displayName": "dark blessing",
+      "file": "spell_0759_dark-blessing.json"
+    },
+    {
+      "primaryKey": 760,
+      "displayName": "wasp poison",
+      "file": "spell_0760_wasp-poison.json"
+    },
+    {
+      "primaryKey": 761,
+      "displayName": "spider poison",
+      "file": "spell_0761_spider-poison.json"
+    },
+    {
+      "primaryKey": 762,
+      "displayName": "net",
+      "file": "spell_0762_net.json"
+    },
+    {
+      "primaryKey": 763,
+      "displayName": "voodoo stab",
+      "file": "spell_0763_voodoo-stab.json"
+    },
+    {
+      "primaryKey": 764,
+      "displayName": "splinterstorm",
+      "file": "spell_0764_splinterstorm.json"
+    },
+    {
+      "primaryKey": 765,
+      "displayName": "massive boulder",
+      "file": "spell_0765_massive-boulder.json"
+    },
+    {
+      "primaryKey": 766,
+      "displayName": "flesh-eating gas",
+      "file": "spell_0766_flesh-eating-gas.json"
+    },
+    {
+      "primaryKey": 767,
+      "displayName": "grabs and smashes",
+      "file": "spell_0767_grabs-and-smashes.json"
+    },
+    {
+      "primaryKey": 768,
+      "displayName": "burning maw",
+      "file": "spell_0768_burning-maw.json"
+    },
+    {
+      "primaryKey": 769,
+      "displayName": "petrification",
+      "file": "spell_0769_petrification.json"
+    },
+    {
+      "primaryKey": 770,
+      "displayName": "giant skeleton shriek",
+      "file": "spell_0770_giant-skeleton-shriek.json"
+    },
+    {
+      "primaryKey": 771,
+      "displayName": "blizzard",
+      "file": "spell_0771_blizzard.json"
+    },
+    {
+      "primaryKey": 772,
+      "displayName": "hail of stones",
+      "file": "spell_0772_hail-of-stones.json"
+    },
+    {
+      "primaryKey": 773,
+      "displayName": "stormcrown",
+      "file": "spell_0773_stormcrown.json"
+    },
+    {
+      "primaryKey": 774,
+      "displayName": "thunderstun",
+      "file": "spell_0774_thunderstun.json"
+    },
+    {
+      "primaryKey": 775,
+      "displayName": "thunderclap",
+      "file": "spell_0775_thunderclap.json"
+    },
+    {
+      "primaryKey": 776,
+      "displayName": "silver rapier",
+      "file": "spell_0776_silver-rapier.json"
+    },
+    {
+      "primaryKey": 777,
+      "displayName": "voodoo stun",
+      "file": "spell_0777_voodoo-stun.json"
+    },
+    {
+      "primaryKey": 778,
+      "displayName": "platinum mace",
+      "file": "spell_0778_platinum-mace.json"
+    },
+    {
+      "primaryKey": 779,
+      "displayName": "witchwood spear",
+      "file": "spell_0779_witchwood-spear.json"
+    },
+    {
+      "primaryKey": 780,
+      "displayName": "black flail",
+      "file": "spell_0780_black-flail.json"
+    },
+    {
+      "primaryKey": 781,
+      "displayName": "shock",
+      "file": "spell_0781_shock.json"
+    },
+    {
+      "primaryKey": 783,
+      "displayName": "burning maw",
+      "file": "spell_0783_burning-maw.json"
+    },
+    {
+      "primaryKey": 784,
+      "displayName": "summon storm giant",
+      "file": "spell_0784_summon-storm-giant.json"
+    },
+    {
+      "primaryKey": 785,
+      "displayName": "summon stone giant",
+      "file": "spell_0785_summon-stone-giant.json"
+    },
+    {
+      "primaryKey": 786,
+      "displayName": "stormcrown thunderstun",
+      "file": "spell_0786_stormcrown-thunderstun.json"
+    },
+    {
+      "primaryKey": 787,
+      "displayName": "sucks the life",
+      "file": "spell_0787_sucks-the-life.json"
+    },
+    {
+      "primaryKey": 788,
+      "displayName": "skull-beam",
+      "file": "spell_0788_skull-beam.json"
+    },
+    {
+      "primaryKey": 789,
+      "displayName": "lightning shot",
+      "file": "spell_0789_lightning-shot.json"
+    },
+    {
+      "primaryKey": 790,
+      "displayName": "combust",
+      "file": "spell_0790_combust.json"
+    },
+    {
+      "primaryKey": 791,
+      "displayName": "tonfa spell",
+      "file": "spell_0791_tonfa-spell.json"
+    },
+    {
+      "primaryKey": 792,
+      "displayName": "song of the elements",
+      "file": "spell_0792_song-of-the-elements.json"
+    },
+    {
+      "primaryKey": 794,
+      "displayName": "dae asp poison 3",
+      "file": "spell_0794_dae-asp-poison-3.json"
+    },
+    {
+      "primaryKey": 795,
+      "displayName": "constriction",
+      "file": "spell_0795_constriction.json"
+    },
+    {
+      "primaryKey": 796,
+      "displayName": "constrictor off",
+      "file": "spell_0796_constrictor-off.json"
+    },
+    {
+      "primaryKey": 797,
+      "displayName": "dae asp poison 1",
+      "file": "spell_0797_dae-asp-poison-1.json"
+    },
+    {
+      "primaryKey": 798,
+      "displayName": "dae asp poison 2",
+      "file": "spell_0798_dae-asp-poison-2.json"
+    },
+    {
+      "primaryKey": 799,
+      "displayName": "wing cut",
+      "file": "spell_0799_wing-cut.json"
+    },
+    {
+      "primaryKey": 800,
+      "displayName": "gorilla summon",
+      "file": "spell_0800_gorilla-summon.json"
+    },
+    {
+      "primaryKey": 801,
+      "displayName": "song of battle",
+      "file": "spell_0801_song-of-battle.json"
+    },
+    {
+      "primaryKey": 802,
+      "displayName": "magma blast",
+      "file": "spell_0802_magma-blast.json"
+    },
+    {
+      "primaryKey": 803,
+      "displayName": "song of soothing",
+      "file": "spell_0803_song-of-soothing.json"
+    },
+    {
+      "primaryKey": 804,
+      "displayName": "merciful grace",
+      "file": "spell_0804_merciful-grace.json"
+    },
+    {
+      "primaryKey": 805,
+      "displayName": "acid tempest",
+      "file": "spell_0805_acid-tempest.json"
+    },
+    {
+      "primaryKey": 807,
+      "displayName": "grall bite",
+      "file": "spell_0807_grall-bite.json"
+    },
+    {
+      "primaryKey": 808,
+      "displayName": "grall claw",
+      "file": "spell_0808_grall-claw.json"
+    },
+    {
+      "primaryKey": 809,
+      "displayName": "jeweled viper death",
+      "file": "spell_0809_jeweled-viper-death.json"
+    },
+    {
+      "primaryKey": 810,
+      "displayName": "jeweled viper bite",
+      "file": "spell_0810_jeweled-viper-bite.json"
+    },
+    {
+      "primaryKey": 811,
+      "displayName": "web entangle",
+      "file": "spell_0811_web-entangle.json"
+    },
+    {
+      "primaryKey": 812,
+      "displayName": "web slow",
+      "file": "spell_0812_web-slow.json"
+    },
+    {
+      "primaryKey": 813,
+      "displayName": "misc",
+      "file": "spell_0813_misc.json"
+    },
+    {
+      "primaryKey": 814,
+      "displayName": "mind flayer summon",
+      "file": "spell_0814_mind-flayer-summon.json"
+    },
+    {
+      "primaryKey": 816,
+      "displayName": "divine courage",
+      "file": "spell_0816_divine-courage.json"
+    },
+    {
+      "primaryKey": 818,
+      "displayName": "mamba fear effect",
+      "file": "spell_0818_mamba-fear-effect.json"
+    },
+    {
+      "primaryKey": 819,
+      "displayName": "mamba fear spell",
+      "file": "spell_0819_mamba-fear-spell.json"
+    },
+    {
+      "primaryKey": 820,
+      "displayName": "mamba poison",
+      "file": "spell_0820_mamba-poison.json"
+    },
+    {
+      "primaryKey": 821,
+      "displayName": "AG Wail",
+      "file": "spell_0821_ag-wail.json"
+    },
+    {
+      "primaryKey": 822,
+      "displayName": "terror",
+      "file": "spell_0822_terror.json"
+    },
+    {
+      "primaryKey": 823,
+      "displayName": "resist cold",
+      "file": "spell_0823_resist-cold.json"
+    },
+    {
+      "primaryKey": 824,
+      "displayName": "resist fire",
+      "file": "spell_0824_resist-fire.json"
+    },
+    {
+      "primaryKey": 825,
+      "displayName": "chant",
+      "file": "spell_0825_chant.json"
+    },
+    {
+      "primaryKey": 826,
+      "displayName": "resist lightning",
+      "file": "spell_0826_resist-lightning.json"
+    },
+    {
+      "primaryKey": 827,
+      "displayName": "speed",
+      "file": "spell_0827_speed.json"
+    },
+    {
+      "primaryKey": 828,
+      "displayName": "slow",
+      "file": "spell_0828_slow.json"
+    },
+    {
+      "primaryKey": 829,
+      "displayName": "confusion",
+      "file": "spell_0829_confusion.json"
+    },
+    {
+      "primaryKey": 830,
+      "displayName": "envelops",
+      "file": "spell_0830_envelops.json"
+    },
+    {
+      "primaryKey": 831,
+      "displayName": "rapid healing",
+      "file": "spell_0831_rapid-healing.json"
+    },
+    {
+      "primaryKey": 832,
+      "displayName": "frenzy",
+      "file": "spell_0832_frenzy.json"
+    },
+    {
+      "primaryKey": 833,
+      "displayName": "bone necklace",
+      "file": "spell_0833_bone-necklace.json"
+    },
+    {
+      "primaryKey": 834,
+      "displayName": "fire portal",
+      "file": "spell_0834_fire-portal.json"
+    },
+    {
+      "primaryKey": 835,
+      "displayName": "salt spray",
+      "file": "spell_0835_salt-spray.json"
+    },
+    {
+      "primaryKey": 836,
+      "displayName": "fear",
+      "file": "spell_0836_fear.json"
+    },
+    {
+      "primaryKey": 837,
+      "displayName": "entangle",
+      "file": "spell_0837_entangle.json"
+    },
+    {
+      "primaryKey": 838,
+      "displayName": "form of the crane",
+      "file": "spell_0838_form-of-the-crane.json"
+    },
+    {
+      "primaryKey": 839,
+      "displayName": "form of the dragon",
+      "file": "spell_0839_form-of-the-dragon.json"
+    },
+    {
+      "primaryKey": 840,
+      "displayName": "form of the gorilla",
+      "file": "spell_0840_form-of-the-gorilla.json"
+    },
+    {
+      "primaryKey": 841,
+      "displayName": "form of the monkey",
+      "file": "spell_0841_form-of-the-monkey.json"
+    },
+    {
+      "primaryKey": 842,
+      "displayName": "form of the viper",
+      "file": "spell_0842_form-of-the-viper.json"
+    },
+    {
+      "primaryKey": 843,
+      "displayName": "snake summon",
+      "file": "spell_0843_snake-summon.json"
+    },
+    {
+      "primaryKey": 844,
+      "displayName": "salca dart",
+      "file": "spell_0844_salca-dart.json"
+    },
+    {
+      "primaryKey": 845,
+      "displayName": "fangblade poison",
+      "file": "spell_0845_fangblade-poison.json"
+    },
+    {
+      "primaryKey": 846,
+      "displayName": "bane dart",
+      "file": "spell_0846_bane-dart.json"
+    },
+    {
+      "primaryKey": 847,
+      "displayName": "net",
+      "file": "spell_0847_net.json"
+    },
+    {
+      "primaryKey": 848,
+      "displayName": "chain",
+      "file": "spell_0848_chain.json"
+    },
+    {
+      "primaryKey": 849,
+      "displayName": "darkwood staff",
+      "file": "spell_0849_darkwood-staff.json"
+    },
+    {
+      "primaryKey": 850,
+      "displayName": "fall from bridge",
+      "file": "spell_0850_fall-from-bridge.json"
+    },
+    {
+      "primaryKey": 851,
+      "displayName": "bridge trigger spell",
+      "file": "spell_0851_bridge-trigger-spell.json"
+    },
+    {
+      "primaryKey": 852,
+      "displayName": "web spell",
+      "file": "spell_0852_web-spell.json"
+    },
+    {
+      "primaryKey": 853,
+      "displayName": "wrathful curse",
+      "file": "spell_0853_wrathful-curse.json"
+    },
+    {
+      "primaryKey": 854,
+      "displayName": "nature tap",
+      "file": "spell_0854_nature-tap.json"
+    },
+    {
+      "primaryKey": 855,
+      "displayName": "cure for takata leaf",
+      "file": "spell_0855_cure-for-takata-leaf.json"
+    },
+    {
+      "primaryKey": 856,
+      "displayName": "chain lightning",
+      "file": "spell_0856_chain-lightning.json"
+    },
+    {
+      "primaryKey": 857,
+      "displayName": "golden idol teleport",
+      "file": "spell_0857_golden-idol-teleport.json"
+    },
+    {
+      "primaryKey": 858,
+      "displayName": "form of the dragon",
+      "file": "spell_0858_form-of-the-dragon.json"
+    },
+    {
+      "primaryKey": 859,
+      "displayName": "heros tabard",
+      "file": "spell_0859_heros-tabard.json"
+    },
+    {
+      "primaryKey": 860,
+      "displayName": "inquisitors cloak",
+      "file": "spell_0860_inquisitors-cloak.json"
+    },
+    {
+      "primaryKey": 861,
+      "displayName": "firebrand cape",
+      "file": "spell_0861_firebrand-cape.json"
+    },
+    {
+      "primaryKey": 862,
+      "displayName": "folds of worship",
+      "file": "spell_0862_folds-of-worship.json"
+    },
+    {
+      "primaryKey": 863,
+      "displayName": "faithkeeper",
+      "file": "spell_0863_faithkeeper.json"
+    },
+    {
+      "primaryKey": 864,
+      "displayName": "death's shadow",
+      "file": "spell_0864_death-s-shadow.json"
+    },
+    {
+      "primaryKey": 865,
+      "displayName": "shawl of fortune",
+      "file": "spell_0865_shawl-of-fortune.json"
+    },
+    {
+      "primaryKey": 866,
+      "displayName": "tails of battle",
+      "file": "spell_0866_tails-of-battle.json"
+    },
+    {
+      "primaryKey": 867,
+      "displayName": "runed cape",
+      "file": "spell_0867_runed-cape.json"
+    },
+    {
+      "primaryKey": 868,
+      "displayName": "leafwoven cloak",
+      "file": "spell_0868_leafwoven-cloak.json"
+    },
+    {
+      "primaryKey": 869,
+      "displayName": "mantle of the woodsman",
+      "file": "spell_0869_mantle-of-the-woodsman.json"
+    },
+    {
+      "primaryKey": 870,
+      "displayName": "peasant cloak",
+      "file": "spell_0870_peasant-cloak.json"
+    },
+    {
+      "primaryKey": 871,
+      "displayName": "dark phoenix death",
+      "file": "spell_0871_dark-phoenix-death.json"
+    },
+    {
+      "primaryKey": 872,
+      "displayName": "cloak of faith",
+      "file": "spell_0872_cloak-of-faith.json"
+    },
+    {
+      "primaryKey": 873,
+      "displayName": "smite",
+      "file": "spell_0873_smite.json"
+    },
+    {
+      "primaryKey": 874,
+      "displayName": "speed",
+      "file": "spell_0874_speed.json"
+    },
+    {
+      "primaryKey": 875,
+      "displayName": "magic armour",
+      "file": "spell_0875_magic-armour.json"
+    },
+    {
+      "primaryKey": 876,
+      "displayName": "rapid healing",
+      "file": "spell_0876_rapid-healing.json"
+    },
+    {
+      "primaryKey": 877,
+      "displayName": "dark phoenix temp",
+      "file": "spell_0877_dark-phoenix-temp.json"
+    },
+    {
+      "primaryKey": 878,
+      "displayName": "remove forms",
+      "file": "spell_0878_remove-forms.json"
+    },
+    {
+      "primaryKey": 879,
+      "displayName": "form of the crane",
+      "file": "spell_0879_form-of-the-crane.json"
+    },
+    {
+      "primaryKey": 880,
+      "displayName": "form of the gorilla",
+      "file": "spell_0880_form-of-the-gorilla.json"
+    },
+    {
+      "primaryKey": 881,
+      "displayName": "form of the monkey",
+      "file": "spell_0881_form-of-the-monkey.json"
+    },
+    {
+      "primaryKey": 882,
+      "displayName": "form of the viper",
+      "file": "spell_0882_form-of-the-viper.json"
+    },
+    {
+      "primaryKey": 883,
+      "displayName": "bite",
+      "file": "spell_0883_bite.json"
+    },
+    {
+      "primaryKey": 884,
+      "displayName": "envelops",
+      "file": "spell_0884_envelops.json"
+    },
+    {
+      "primaryKey": 885,
+      "displayName": "alder chest open",
+      "file": "spell_0885_alder-chest-open.json"
+    },
+    {
+      "primaryKey": 886,
+      "displayName": "orc warlord summon",
+      "file": "spell_0886_orc-warlord-summon.json"
+    },
+    {
+      "primaryKey": 887,
+      "displayName": "orc captain summon",
+      "file": "spell_0887_orc-captain-summon.json"
+    },
+    {
+      "primaryKey": 888,
+      "displayName": "calls for aid",
+      "file": "spell_0888_calls-for-aid.json"
+    },
+    {
+      "primaryKey": 889,
+      "displayName": "deed give",
+      "file": "spell_0889_deed-give.json"
+    },
+    {
+      "primaryKey": 890,
+      "displayName": "deed give",
+      "file": "spell_0890_deed-give.json"
+    },
+    {
+      "primaryKey": 891,
+      "displayName": "nanati dispel",
+      "file": "spell_0891_nanati-dispel.json"
+    },
+    {
+      "primaryKey": 892,
+      "displayName": "portal teleport",
+      "file": "spell_0892_portal-teleport.json"
+    },
+    {
+      "primaryKey": 893,
+      "displayName": "stealth trap",
+      "file": "spell_0893_stealth-trap.json"
+    },
+    {
+      "primaryKey": 894,
+      "displayName": "drain life",
+      "file": "spell_0894_drain-life.json"
+    },
+    {
+      "primaryKey": 895,
+      "displayName": "icy breath",
+      "file": "spell_0895_icy-breath.json"
+    },
+    {
+      "primaryKey": 896,
+      "displayName": "drain spell",
+      "file": "spell_0896_drain-spell.json"
+    },
+    {
+      "primaryKey": 897,
+      "displayName": "globe of the elements",
+      "file": "spell_0897_globe-of-the-elements.json"
+    },
+    {
+      "primaryKey": 898,
+      "displayName": "storm mountain",
+      "file": "spell_0898_storm-mountain.json"
+    },
+    {
+      "primaryKey": 899,
+      "displayName": "necromantic storm",
+      "file": "spell_0899_necromantic-storm.json"
+    },
+    {
+      "primaryKey": 900,
+      "displayName": "frigid blast of wind",
+      "file": "spell_0900_frigid-blast-of-wind.json"
+    },
+    {
+      "primaryKey": 901,
+      "displayName": "freeze spell",
+      "file": "spell_0901_freeze-spell.json"
+    },
+    {
+      "primaryKey": 902,
+      "displayName": "dying assassin",
+      "file": "spell_0902_dying-assassin.json"
+    },
+    {
+      "primaryKey": 903,
+      "displayName": "ice chest open",
+      "file": "spell_0903_ice-chest-open.json"
+    },
+    {
+      "primaryKey": 904,
+      "displayName": "lady dark death",
+      "file": "spell_0904_lady-dark-death.json"
+    },
+    {
+      "primaryKey": 905,
+      "displayName": "poison darts",
+      "file": "spell_0905_poison-darts.json"
+    },
+    {
+      "primaryKey": 906,
+      "displayName": "deed give",
+      "file": "spell_0906_deed-give.json"
+    },
+    {
+      "primaryKey": 907,
+      "displayName": "deed give",
+      "file": "spell_0907_deed-give.json"
+    },
+    {
+      "primaryKey": 908,
+      "displayName": "deed give",
+      "file": "spell_0908_deed-give.json"
+    },
+    {
+      "primaryKey": 909,
+      "displayName": "deed give",
+      "file": "spell_0909_deed-give.json"
+    },
+    {
+      "primaryKey": 910,
+      "displayName": "deed give",
+      "file": "spell_0910_deed-give.json"
+    },
+    {
+      "primaryKey": 911,
+      "displayName": "deed give",
+      "file": "spell_0911_deed-give.json"
+    },
+    {
+      "primaryKey": 912,
+      "displayName": "deed give",
+      "file": "spell_0912_deed-give.json"
+    },
+    {
+      "primaryKey": 913,
+      "displayName": "deed give",
+      "file": "spell_0913_deed-give.json"
+    },
+    {
+      "primaryKey": 914,
+      "displayName": "deed give",
+      "file": "spell_0914_deed-give.json"
+    },
+    {
+      "primaryKey": 915,
+      "displayName": "darkwood forest spell",
+      "file": "spell_0915_darkwood-forest-spell.json"
+    },
+    {
+      "primaryKey": 916,
+      "displayName": "lady dark temp",
+      "file": "spell_0916_lady-dark-temp.json"
+    },
+    {
+      "primaryKey": 917,
+      "displayName": "carved ivory mask",
+      "file": "spell_0917_carved-ivory-mask.json"
+    },
+    {
+      "primaryKey": 918,
+      "displayName": "silvermere spell",
+      "file": "spell_0918_silvermere-spell.json"
+    },
+    {
+      "primaryKey": 919,
+      "displayName": "smoking blackwood chest open",
+      "file": "spell_0919_smoking-blackwood-chest-open.json"
+    },
+    {
+      "primaryKey": 920,
+      "displayName": "stone chest open",
+      "file": "spell_0920_stone-chest-open.json"
+    },
+    {
+      "primaryKey": 921,
+      "displayName": "frozen death",
+      "file": "spell_0921_frozen-death.json"
+    },
+    {
+      "primaryKey": 922,
+      "displayName": "necro summon",
+      "file": "spell_0922_necro-summon.json"
+    },
+    {
+      "primaryKey": 923,
+      "displayName": "bridge jump",
+      "file": "spell_0923_bridge-jump.json"
+    },
+    {
+      "primaryKey": 924,
+      "displayName": "glowing tunnel rgen",
+      "file": "spell_0924_glowing-tunnel-rgen.json"
+    },
+    {
+      "primaryKey": 925,
+      "displayName": "temple noise",
+      "file": "spell_0925_temple-noise.json"
+    },
+    {
+      "primaryKey": 926,
+      "displayName": "necro summon",
+      "file": "spell_0926_necro-summon.json"
+    },
+    {
+      "primaryKey": 927,
+      "displayName": "earthquake hold",
+      "file": "spell_0927_earthquake-hold.json"
+    },
+    {
+      "primaryKey": 928,
+      "displayName": "black curse",
+      "file": "spell_0928_black-curse.json"
+    },
+    {
+      "primaryKey": 929,
+      "displayName": "exit jail",
+      "file": "spell_0929_exit-jail.json"
+    },
+    {
+      "primaryKey": 930,
+      "displayName": "phoenix terror",
+      "file": "spell_0930_phoenix-terror.json"
+    },
+    {
+      "primaryKey": 931,
+      "displayName": "phoenixfire",
+      "file": "spell_0931_phoenixfire.json"
+    },
+    {
+      "primaryKey": 932,
+      "displayName": "planewalker wail",
+      "file": "spell_0932_planewalker-wail.json"
+    },
+    {
+      "primaryKey": 933,
+      "displayName": "darkness",
+      "file": "spell_0933_darkness.json"
+    },
+    {
+      "primaryKey": 934,
+      "displayName": "drenched in acid",
+      "file": "spell_0934_drenched-in-acid.json"
+    },
+    {
+      "primaryKey": 935,
+      "displayName": "sysop jail time",
+      "file": "spell_0935_sysop-jail-time.json"
+    },
+    {
+      "primaryKey": 936,
+      "displayName": "sysop jail tele",
+      "file": "spell_0936_sysop-jail-tele.json"
+    },
+    {
+      "primaryKey": 937,
+      "displayName": "gruesome curse",
+      "file": "spell_0937_gruesome-curse.json"
+    },
+    {
+      "primaryKey": 938,
+      "displayName": "wretched boils",
+      "file": "spell_0938_wretched-boils.json"
+    },
+    {
+      "primaryKey": 939,
+      "displayName": "paralysis",
+      "file": "spell_0939_paralysis.json"
+    },
+    {
+      "primaryKey": 940,
+      "displayName": "fear",
+      "file": "spell_0940_fear.json"
+    },
+    {
+      "primaryKey": 941,
+      "displayName": "calls for aid",
+      "file": "spell_0941_calls-for-aid.json"
+    },
+    {
+      "primaryKey": 942,
+      "displayName": "surprise pounds",
+      "file": "spell_0942_surprise-pounds.json"
+    },
+    {
+      "primaryKey": 943,
+      "displayName": "sys j",
+      "file": "spell_0943_sys-j.json"
+    },
+    {
+      "primaryKey": 944,
+      "displayName": "magma explosion",
+      "file": "spell_0944_magma-explosion.json"
+    },
+    {
+      "primaryKey": 945,
+      "displayName": "acid burns",
+      "file": "spell_0945_acid-burns.json"
+    },
+    {
+      "primaryKey": 946,
+      "displayName": "burrows",
+      "file": "spell_0946_burrows.json"
+    },
+    {
+      "primaryKey": 947,
+      "displayName": "burrows deeper",
+      "file": "spell_0947_burrows-deeper.json"
+    },
+    {
+      "primaryKey": 948,
+      "displayName": "death's door",
+      "file": "spell_0948_death-s-door.json"
+    },
+    {
+      "primaryKey": 949,
+      "displayName": "frail",
+      "file": "spell_0949_frail.json"
+    },
+    {
+      "primaryKey": 950,
+      "displayName": "absorb",
+      "file": "spell_0950_absorb.json"
+    },
+    {
+      "primaryKey": 951,
+      "displayName": "convulsions",
+      "file": "spell_0951_convulsions.json"
+    },
+    {
+      "primaryKey": 952,
+      "displayName": "disease",
+      "file": "spell_0952_disease.json"
+    },
+    {
+      "primaryKey": 953,
+      "displayName": "lacerate",
+      "file": "spell_0953_lacerate.json"
+    },
+    {
+      "primaryKey": 954,
+      "displayName": "death ray",
+      "file": "spell_0954_death-ray.json"
+    },
+    {
+      "primaryKey": 955,
+      "displayName": "necromantic beam",
+      "file": "spell_0955_necromantic-beam.json"
+    },
+    {
+      "primaryKey": 956,
+      "displayName": "frail",
+      "file": "spell_0956_frail.json"
+    },
+    {
+      "primaryKey": 957,
+      "displayName": "fear",
+      "file": "spell_0957_fear.json"
+    },
+    {
+      "primaryKey": 958,
+      "displayName": "necro drain",
+      "file": "spell_0958_necro-drain.json"
+    },
+    {
+      "primaryKey": 959,
+      "displayName": "rosebush drain",
+      "file": "spell_0959_rosebush-drain.json"
+    },
+    {
+      "primaryKey": 960,
+      "displayName": "entangles",
+      "file": "spell_0960_entangles.json"
+    },
+    {
+      "primaryKey": 961,
+      "displayName": "rosebush sleep",
+      "file": "spell_0961_rosebush-sleep.json"
+    },
+    {
+      "primaryKey": 962,
+      "displayName": "rosebush death",
+      "file": "spell_0962_rosebush-death.json"
+    },
+    {
+      "primaryKey": 963,
+      "displayName": "necro drain",
+      "file": "spell_0963_necro-drain.json"
+    },
+    {
+      "primaryKey": 964,
+      "displayName": "random dmg",
+      "file": "spell_0964_random-dmg.json"
+    },
+    {
+      "primaryKey": 965,
+      "displayName": "card-wizard",
+      "file": "spell_0965_card-wizard.json"
+    },
+    {
+      "primaryKey": 966,
+      "displayName": "card-priest",
+      "file": "spell_0966_card-priest.json"
+    },
+    {
+      "primaryKey": 967,
+      "displayName": "card-knight",
+      "file": "spell_0967_card-knight.json"
+    },
+    {
+      "primaryKey": 968,
+      "displayName": "card-chariot",
+      "file": "spell_0968_card-chariot.json"
+    },
+    {
+      "primaryKey": 969,
+      "displayName": "card-grail",
+      "file": "spell_0969_card-grail.json"
+    },
+    {
+      "primaryKey": 970,
+      "displayName": "card-sun",
+      "file": "spell_0970_card-sun.json"
+    },
+    {
+      "primaryKey": 971,
+      "displayName": "card-wheel of fortune",
+      "file": "spell_0971_card-wheel-of-fortune.json"
+    },
+    {
+      "primaryKey": 972,
+      "displayName": "card-angel",
+      "file": "spell_0972_card-angel.json"
+    },
+    {
+      "primaryKey": 973,
+      "displayName": "card-death",
+      "file": "spell_0973_card-death.json"
+    },
+    {
+      "primaryKey": 974,
+      "displayName": "card-fool",
+      "file": "spell_0974_card-fool.json"
+    },
+    {
+      "primaryKey": 975,
+      "displayName": "card-swamp",
+      "file": "spell_0975_card-swamp.json"
+    },
+    {
+      "primaryKey": 976,
+      "displayName": "card-void",
+      "file": "spell_0976_card-void.json"
+    },
+    {
+      "primaryKey": 977,
+      "displayName": "rocks shred",
+      "file": "spell_0977_rocks-shred.json"
+    },
+    {
+      "primaryKey": 978,
+      "displayName": "ice freezes",
+      "file": "spell_0978_ice-freezes.json"
+    },
+    {
+      "primaryKey": 979,
+      "displayName": "fire burns",
+      "file": "spell_0979_fire-burns.json"
+    },
+    {
+      "primaryKey": 980,
+      "displayName": "acid sears",
+      "file": "spell_0980_acid-sears.json"
+    },
+    {
+      "primaryKey": 981,
+      "displayName": "lightning shocks",
+      "file": "spell_0981_lightning-shocks.json"
+    },
+    {
+      "primaryKey": 982,
+      "displayName": "purified",
+      "file": "spell_0982_purified.json"
+    },
+    {
+      "primaryKey": 983,
+      "displayName": "card-demon",
+      "file": "spell_0983_card-demon.json"
+    },
+    {
+      "primaryKey": 984,
+      "displayName": "drain life",
+      "file": "spell_0984_drain-life.json"
+    },
+    {
+      "primaryKey": 985,
+      "displayName": "lacerate",
+      "file": "spell_0985_lacerate.json"
+    },
+    {
+      "primaryKey": 986,
+      "displayName": "sdfsdfsdfsdfs",
+      "file": "spell_0986_sdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 987,
+      "displayName": "hellfire burns",
+      "file": "spell_0987_hellfire-burns.json"
+    },
+    {
+      "primaryKey": 988,
+      "displayName": "evil random",
+      "file": "spell_0988_evil-random.json"
+    },
+    {
+      "primaryKey": 989,
+      "displayName": "vampire mist",
+      "file": "spell_0989_vampire-mist.json"
+    },
+    {
+      "primaryKey": 990,
+      "displayName": "lord mist",
+      "file": "spell_0990_lord-mist.json"
+    },
+    {
+      "primaryKey": 991,
+      "displayName": "deeply bite",
+      "file": "spell_0991_deeply-bite.json"
+    },
+    {
+      "primaryKey": 992,
+      "displayName": "plague",
+      "file": "spell_0992_plague.json"
+    },
+    {
+      "primaryKey": 993,
+      "displayName": "vampire kill",
+      "file": "spell_0993_vampire-kill.json"
+    },
+    {
+      "primaryKey": 994,
+      "displayName": "vampire summon",
+      "file": "spell_0994_vampire-summon.json"
+    },
+    {
+      "primaryKey": 995,
+      "displayName": "wolfman summon",
+      "file": "spell_0995_wolfman-summon.json"
+    },
+    {
+      "primaryKey": 996,
+      "displayName": "crow",
+      "file": "spell_0996_crow.json"
+    },
+    {
+      "primaryKey": 997,
+      "displayName": "blackwood chest open",
+      "file": "spell_0997_blackwood-chest-open.json"
+    },
+    {
+      "primaryKey": 998,
+      "displayName": "howl",
+      "file": "spell_0998_howl.json"
+    },
+    {
+      "primaryKey": 999,
+      "displayName": "dark temp",
+      "file": "spell_0999_dark-temp.json"
+    },
+    {
+      "primaryKey": 1000,
+      "displayName": "purify",
+      "file": "spell_1000_purify.json"
+    },
+    {
+      "primaryKey": 1001,
+      "displayName": "bolt of lightning",
+      "file": "spell_1001_bolt-of-lightning.json"
+    },
+    {
+      "primaryKey": 1002,
+      "displayName": "sunlight",
+      "file": "spell_1002_sunlight.json"
+    },
+    {
+      "primaryKey": 1003,
+      "displayName": "frozen spike",
+      "file": "spell_1003_frozen-spike.json"
+    },
+    {
+      "primaryKey": 1004,
+      "displayName": "manashield",
+      "file": "spell_1004_manashield.json"
+    },
+    {
+      "primaryKey": 1005,
+      "displayName": "exalted word",
+      "file": "spell_1005_exalted-word.json"
+    },
+    {
+      "primaryKey": 1006,
+      "displayName": "gaunts",
+      "file": "spell_1006_gaunts.json"
+    },
+    {
+      "primaryKey": 1007,
+      "displayName": "exalted word",
+      "file": "spell_1007_exalted-word.json"
+    },
+    {
+      "primaryKey": 1008,
+      "displayName": "necromantic bolt",
+      "file": "spell_1008_necromantic-bolt.json"
+    },
+    {
+      "primaryKey": 1009,
+      "displayName": "sunburst",
+      "file": "spell_1009_sunburst.json"
+    },
+    {
+      "primaryKey": 1010,
+      "displayName": "unholy light",
+      "file": "spell_1010_unholy-light.json"
+    },
+    {
+      "primaryKey": 1011,
+      "displayName": "shadow breath",
+      "file": "spell_1011_shadow-breath.json"
+    },
+    {
+      "primaryKey": 1012,
+      "displayName": "rejuvinating field",
+      "file": "spell_1012_rejuvinating-field.json"
+    },
+    {
+      "primaryKey": 1013,
+      "displayName": "resist lightning",
+      "file": "spell_1013_resist-lightning.json"
+    },
+    {
+      "primaryKey": 1014,
+      "displayName": "song of enlightenment",
+      "file": "spell_1014_song-of-enlightenment.json"
+    },
+    {
+      "primaryKey": 1015,
+      "displayName": "freezing",
+      "file": "spell_1015_freezing.json"
+    },
+    {
+      "primaryKey": 1016,
+      "displayName": "natural prowess",
+      "file": "spell_1016_natural-prowess.json"
+    },
+    {
+      "primaryKey": 1017,
+      "displayName": "blank",
+      "file": "spell_1017_blank.json"
+    },
+    {
+      "primaryKey": 1018,
+      "displayName": "chain lightning",
+      "file": "spell_1018_chain-lightning.json"
+    },
+    {
+      "primaryKey": 1019,
+      "displayName": "chain lightning",
+      "file": "spell_1019_chain-lightning.json"
+    },
+    {
+      "primaryKey": 1020,
+      "displayName": "magma fire",
+      "file": "spell_1020_magma-fire.json"
+    },
+    {
+      "primaryKey": 1021,
+      "displayName": "sdfsdfsdfsdfsdfsdfs",
+      "file": "spell_1021_sdfsdfsdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1022,
+      "displayName": "sdfsdfsdfsdfsdfsdfdsf",
+      "file": "spell_1022_sdfsdfsdfsdfsdfsdfdsf.json"
+    },
+    {
+      "primaryKey": 1023,
+      "displayName": "freedom",
+      "file": "spell_1023_freedom.json"
+    },
+    {
+      "primaryKey": 1024,
+      "displayName": "plague",
+      "file": "spell_1024_plague.json"
+    },
+    {
+      "primaryKey": 1025,
+      "displayName": "damnation",
+      "file": "spell_1025_damnation.json"
+    },
+    {
+      "primaryKey": 1026,
+      "displayName": "spore cloud",
+      "file": "spell_1026_spore-cloud.json"
+    },
+    {
+      "primaryKey": 1027,
+      "displayName": "fear",
+      "file": "spell_1027_fear.json"
+    },
+    {
+      "primaryKey": 1028,
+      "displayName": "free",
+      "file": "spell_1028_free.json"
+    },
+    {
+      "primaryKey": 1029,
+      "displayName": "cone of fire",
+      "file": "spell_1029_cone-of-fire.json"
+    },
+    {
+      "primaryKey": 1030,
+      "displayName": "cone of ice",
+      "file": "spell_1030_cone-of-ice.json"
+    },
+    {
+      "primaryKey": 1031,
+      "displayName": "cone of lightning",
+      "file": "spell_1031_cone-of-lightning.json"
+    },
+    {
+      "primaryKey": 1032,
+      "displayName": "zombie summon",
+      "file": "spell_1032_zombie-summon.json"
+    },
+    {
+      "primaryKey": 1033,
+      "displayName": "blind globe",
+      "file": "spell_1033_blind-globe.json"
+    },
+    {
+      "primaryKey": 1034,
+      "displayName": "zombie summon",
+      "file": "spell_1034_zombie-summon.json"
+    },
+    {
+      "primaryKey": 1035,
+      "displayName": "stinky cloud",
+      "file": "spell_1035_stinky-cloud.json"
+    },
+    {
+      "primaryKey": 1036,
+      "displayName": "zombie summon",
+      "file": "spell_1036_zombie-summon.json"
+    },
+    {
+      "primaryKey": 1037,
+      "displayName": "plant summon",
+      "file": "spell_1037_plant-summon.json"
+    },
+    {
+      "primaryKey": 1038,
+      "displayName": "prismatic beam",
+      "file": "spell_1038_prismatic-beam.json"
+    },
+    {
+      "primaryKey": 1039,
+      "displayName": "restoration",
+      "file": "spell_1039_restoration.json"
+    },
+    {
+      "primaryKey": 1040,
+      "displayName": "blackwood forest",
+      "file": "spell_1040_blackwood-forest.json"
+    },
+    {
+      "primaryKey": 1041,
+      "displayName": "bladed sphere",
+      "file": "spell_1041_bladed-sphere.json"
+    },
+    {
+      "primaryKey": 1042,
+      "displayName": "glacial mist",
+      "file": "spell_1042_glacial-mist.json"
+    },
+    {
+      "primaryKey": 1043,
+      "displayName": "close wounds",
+      "file": "spell_1043_close-wounds.json"
+    },
+    {
+      "primaryKey": 1045,
+      "displayName": "pit",
+      "file": "spell_1045_pit.json"
+    },
+    {
+      "primaryKey": 1046,
+      "displayName": "protective shell",
+      "file": "spell_1046_protective-shell.json"
+    },
+    {
+      "primaryKey": 1047,
+      "displayName": "boulder",
+      "file": "spell_1047_boulder.json"
+    },
+    {
+      "primaryKey": 1048,
+      "displayName": "inferno",
+      "file": "spell_1048_inferno.json"
+    },
+    {
+      "primaryKey": 1049,
+      "displayName": "blank",
+      "file": "spell_1049_blank.json"
+    },
+    {
+      "primaryKey": 1050,
+      "displayName": "gremlin summon",
+      "file": "spell_1050_gremlin-summon.json"
+    },
+    {
+      "primaryKey": 1051,
+      "displayName": "armageddon",
+      "file": "spell_1051_armageddon.json"
+    },
+    {
+      "primaryKey": 1052,
+      "displayName": "pris effect",
+      "file": "spell_1052_pris-effect.json"
+    },
+    {
+      "primaryKey": 1053,
+      "displayName": "neutral2",
+      "file": "spell_1053_neutral2.json"
+    },
+    {
+      "primaryKey": 1054,
+      "displayName": "neutral3",
+      "file": "spell_1054_neutral3.json"
+    },
+    {
+      "primaryKey": 1055,
+      "displayName": "neutral4",
+      "file": "spell_1055_neutral4.json"
+    },
+    {
+      "primaryKey": 1056,
+      "displayName": "dark plague",
+      "file": "spell_1056_dark-plague.json"
+    },
+    {
+      "primaryKey": 1057,
+      "displayName": "hellstorm",
+      "file": "spell_1057_hellstorm.json"
+    },
+    {
+      "primaryKey": 1058,
+      "displayName": "eldritch storm",
+      "file": "spell_1058_eldritch-storm.json"
+    },
+    {
+      "primaryKey": 1059,
+      "displayName": "divine healing",
+      "file": "spell_1059_divine-healing.json"
+    },
+    {
+      "primaryKey": 1060,
+      "displayName": "priestly benediction",
+      "file": "spell_1060_priestly-benediction.json"
+    },
+    {
+      "primaryKey": 1061,
+      "displayName": "dark transfusion",
+      "file": "spell_1061_dark-transfusion.json"
+    },
+    {
+      "primaryKey": 1062,
+      "displayName": "barbskin",
+      "file": "spell_1062_barbskin.json"
+    },
+    {
+      "primaryKey": 1063,
+      "displayName": "comet",
+      "file": "spell_1063_comet.json"
+    },
+    {
+      "primaryKey": 1064,
+      "displayName": "yellow beam",
+      "file": "spell_1064_yellow-beam.json"
+    },
+    {
+      "primaryKey": 1065,
+      "displayName": "violet beam",
+      "file": "spell_1065_violet-beam.json"
+    },
+    {
+      "primaryKey": 1066,
+      "displayName": "black beam",
+      "file": "spell_1066_black-beam.json"
+    },
+    {
+      "primaryKey": 1067,
+      "displayName": "red beam",
+      "file": "spell_1067_red-beam.json"
+    },
+    {
+      "primaryKey": 1068,
+      "displayName": "green beam",
+      "file": "spell_1068_green-beam.json"
+    },
+    {
+      "primaryKey": 1069,
+      "displayName": "yellow wave",
+      "file": "spell_1069_yellow-wave.json"
+    },
+    {
+      "primaryKey": 1070,
+      "displayName": "violet wave",
+      "file": "spell_1070_violet-wave.json"
+    },
+    {
+      "primaryKey": 1071,
+      "displayName": "black wave",
+      "file": "spell_1071_black-wave.json"
+    },
+    {
+      "primaryKey": 1072,
+      "displayName": "red wave",
+      "file": "spell_1072_red-wave.json"
+    },
+    {
+      "primaryKey": 1073,
+      "displayName": "green wave",
+      "file": "spell_1073_green-wave.json"
+    },
+    {
+      "primaryKey": 1074,
+      "displayName": "prismatic blast",
+      "file": "spell_1074_prismatic-blast.json"
+    },
+    {
+      "primaryKey": 1075,
+      "displayName": "pris effect",
+      "file": "spell_1075_pris-effect.json"
+    },
+    {
+      "primaryKey": 1076,
+      "displayName": "sea 1",
+      "file": "spell_1076_sea-1.json"
+    },
+    {
+      "primaryKey": 1077,
+      "displayName": "sea 2",
+      "file": "spell_1077_sea-2.json"
+    },
+    {
+      "primaryKey": 1078,
+      "displayName": "sea 3",
+      "file": "spell_1078_sea-3.json"
+    },
+    {
+      "primaryKey": 1079,
+      "displayName": "white forest noise",
+      "file": "spell_1079_white-forest-noise.json"
+    },
+    {
+      "primaryKey": 1080,
+      "displayName": "tainted word",
+      "file": "spell_1080_tainted-word.json"
+    },
+    {
+      "primaryKey": 1081,
+      "displayName": "tainted word",
+      "file": "spell_1081_tainted-word.json"
+    },
+    {
+      "primaryKey": 1082,
+      "displayName": "animated summon",
+      "file": "spell_1082_animated-summon.json"
+    },
+    {
+      "primaryKey": 1083,
+      "displayName": "library summon",
+      "file": "spell_1083_library-summon.json"
+    },
+    {
+      "primaryKey": 1084,
+      "displayName": "locust summon",
+      "file": "spell_1084_locust-summon.json"
+    },
+    {
+      "primaryKey": 1085,
+      "displayName": "sea trigger",
+      "file": "spell_1085_sea-trigger.json"
+    },
+    {
+      "primaryKey": 1086,
+      "displayName": "sea trigger 2",
+      "file": "spell_1086_sea-trigger-2.json"
+    },
+    {
+      "primaryKey": 1087,
+      "displayName": "sea trigger 3",
+      "file": "spell_1087_sea-trigger-3.json"
+    },
+    {
+      "primaryKey": 1088,
+      "displayName": "sea teleport",
+      "file": "spell_1088_sea-teleport.json"
+    },
+    {
+      "primaryKey": 1089,
+      "displayName": "ship teleport",
+      "file": "spell_1089_ship-teleport.json"
+    },
+    {
+      "primaryKey": 1090,
+      "displayName": "sea tele 1",
+      "file": "spell_1090_sea-tele-1.json"
+    },
+    {
+      "primaryKey": 1091,
+      "displayName": "sea tele 2",
+      "file": "spell_1091_sea-tele-2.json"
+    },
+    {
+      "primaryKey": 1092,
+      "displayName": "sea tele 3",
+      "file": "spell_1092_sea-tele-3.json"
+    },
+    {
+      "primaryKey": 1093,
+      "displayName": "sea fear",
+      "file": "spell_1093_sea-fear.json"
+    },
+    {
+      "primaryKey": 1094,
+      "displayName": "blackwood chest open",
+      "file": "spell_1094_blackwood-chest-open.json"
+    },
+    {
+      "primaryKey": 1095,
+      "displayName": "rotten eye",
+      "file": "spell_1095_rotten-eye.json"
+    },
+    {
+      "primaryKey": 1096,
+      "displayName": "balanced word",
+      "file": "spell_1096_balanced-word.json"
+    },
+    {
+      "primaryKey": 1097,
+      "displayName": "balanced word",
+      "file": "spell_1097_balanced-word.json"
+    },
+    {
+      "primaryKey": 1098,
+      "displayName": "angelic halo",
+      "file": "spell_1098_angelic-halo.json"
+    },
+    {
+      "primaryKey": 1099,
+      "displayName": "balanced sight",
+      "file": "spell_1099_balanced-sight.json"
+    },
+    {
+      "primaryKey": 1100,
+      "displayName": "gypsy combo",
+      "file": "spell_1100_gypsy-combo.json"
+    },
+    {
+      "primaryKey": 1101,
+      "displayName": "dragon summon tapestry",
+      "file": "spell_1101_dragon-summon-tapestry.json"
+    },
+    {
+      "primaryKey": 1102,
+      "displayName": "infernal darkness",
+      "file": "spell_1102_infernal-darkness.json"
+    },
+    {
+      "primaryKey": 1103,
+      "displayName": "song of knowledge",
+      "file": "spell_1103_song-of-knowledge.json"
+    },
+    {
+      "primaryKey": 1104,
+      "displayName": "song of sageness",
+      "file": "spell_1104_song-of-sageness.json"
+    },
+    {
+      "primaryKey": 1105,
+      "displayName": "summon steed",
+      "file": "spell_1105_summon-steed.json"
+    },
+    {
+      "primaryKey": 1106,
+      "displayName": "song of force",
+      "file": "spell_1106_song-of-force.json"
+    },
+    {
+      "primaryKey": 1107,
+      "displayName": "cure paralysis",
+      "file": "spell_1107_cure-paralysis.json"
+    },
+    {
+      "primaryKey": 1108,
+      "displayName": "song of swiftness",
+      "file": "spell_1108_song-of-swiftness.json"
+    },
+    {
+      "primaryKey": 1109,
+      "displayName": "strut",
+      "file": "spell_1109_strut.json"
+    },
+    {
+      "primaryKey": 1110,
+      "displayName": "sleep",
+      "file": "spell_1110_sleep.json"
+    },
+    {
+      "primaryKey": 1111,
+      "displayName": "beholder death",
+      "file": "spell_1111_beholder-death.json"
+    },
+    {
+      "primaryKey": 1112,
+      "displayName": "earthbind",
+      "file": "spell_1112_earthbind.json"
+    },
+    {
+      "primaryKey": 1113,
+      "displayName": "monster dark plague",
+      "file": "spell_1113_monster-dark-plague.json"
+    },
+    {
+      "primaryKey": 1114,
+      "displayName": "sabre",
+      "file": "spell_1114_sabre.json"
+    },
+    {
+      "primaryKey": 1115,
+      "displayName": "draka tomb",
+      "file": "spell_1115_draka-tomb.json"
+    },
+    {
+      "primaryKey": 1116,
+      "displayName": "too far",
+      "file": "spell_1116_too-far.json"
+    },
+    {
+      "primaryKey": 1117,
+      "displayName": "dragonfire",
+      "file": "spell_1117_dragonfire.json"
+    },
+    {
+      "primaryKey": 1118,
+      "displayName": "lunar beam",
+      "file": "spell_1118_lunar-beam.json"
+    },
+    {
+      "primaryKey": 1119,
+      "displayName": "darken howl",
+      "file": "spell_1119_darken-howl.json"
+    },
+    {
+      "primaryKey": 1120,
+      "displayName": "gypsy",
+      "file": "spell_1120_gypsy.json"
+    },
+    {
+      "primaryKey": 1121,
+      "displayName": "chain",
+      "file": "spell_1121_chain.json"
+    },
+    {
+      "primaryKey": 1122,
+      "displayName": "tree",
+      "file": "spell_1122_tree.json"
+    },
+    {
+      "primaryKey": 1123,
+      "displayName": "heart",
+      "file": "spell_1123_heart.json"
+    },
+    {
+      "primaryKey": 1124,
+      "displayName": "vamp",
+      "file": "spell_1124_vamp.json"
+    },
+    {
+      "primaryKey": 1125,
+      "displayName": "gem",
+      "file": "spell_1125_gem.json"
+    },
+    {
+      "primaryKey": 1126,
+      "displayName": "graveyard",
+      "file": "spell_1126_graveyard.json"
+    },
+    {
+      "primaryKey": 1127,
+      "displayName": "yellow potion",
+      "file": "spell_1127_yellow-potion.json"
+    },
+    {
+      "primaryKey": 1128,
+      "displayName": "crimson potion",
+      "file": "spell_1128_crimson-potion.json"
+    },
+    {
+      "primaryKey": 1129,
+      "displayName": "bubbling blue potion",
+      "file": "spell_1129_bubbling-blue-potion.json"
+    },
+    {
+      "primaryKey": 1130,
+      "displayName": "oily potion",
+      "file": "spell_1130_oily-potion.json"
+    },
+    {
+      "primaryKey": 1131,
+      "displayName": "sickly green potion",
+      "file": "spell_1131_sickly-green-potion.json"
+    },
+    {
+      "primaryKey": 1132,
+      "displayName": "black potion acid",
+      "file": "spell_1132_black-potion-acid.json"
+    },
+    {
+      "primaryKey": 1133,
+      "displayName": "frothing brown potion",
+      "file": "spell_1133_frothing-brown-potion.json"
+    },
+    {
+      "primaryKey": 1134,
+      "displayName": "leprosy",
+      "file": "spell_1134_leprosy.json"
+    },
+    {
+      "primaryKey": 1135,
+      "displayName": "ray of fire from the heavens",
+      "file": "spell_1135_ray-of-fire-from-the-heavens.json"
+    },
+    {
+      "primaryKey": 1136,
+      "displayName": "dark mage temp",
+      "file": "spell_1136_dark-mage-temp.json"
+    },
+    {
+      "primaryKey": 1137,
+      "displayName": "dark mage text",
+      "file": "spell_1137_dark-mage-text.json"
+    },
+    {
+      "primaryKey": 1138,
+      "displayName": "mana dead",
+      "file": "spell_1138_mana-dead.json"
+    },
+    {
+      "primaryKey": 1139,
+      "displayName": "card-draw",
+      "file": "spell_1139_card-draw.json"
+    },
+    {
+      "primaryKey": 1140,
+      "displayName": "summon mayor",
+      "file": "spell_1140_summon-mayor.json"
+    },
+    {
+      "primaryKey": 1141,
+      "displayName": "web",
+      "file": "spell_1141_web.json"
+    },
+    {
+      "primaryKey": 1142,
+      "displayName": "ice fall",
+      "file": "spell_1142_ice-fall.json"
+    },
+    {
+      "primaryKey": 1143,
+      "displayName": "black explosion",
+      "file": "spell_1143_black-explosion.json"
+    },
+    {
+      "primaryKey": 1144,
+      "displayName": "ice cavern level 1",
+      "file": "spell_1144_ice-cavern-level-1.json"
+    },
+    {
+      "primaryKey": 1145,
+      "displayName": "ice cavern level 2",
+      "file": "spell_1145_ice-cavern-level-2.json"
+    },
+    {
+      "primaryKey": 1146,
+      "displayName": "godheal",
+      "file": "spell_1146_godheal.json"
+    },
+    {
+      "primaryKey": 1147,
+      "displayName": "church check",
+      "file": "spell_1147_church-check.json"
+    },
+    {
+      "primaryKey": 1148,
+      "displayName": "mind flayer slay",
+      "file": "spell_1148_mind-flayer-slay.json"
+    },
+    {
+      "primaryKey": 1149,
+      "displayName": "mind flayer kill",
+      "file": "spell_1149_mind-flayer-kill.json"
+    },
+    {
+      "primaryKey": 1151,
+      "displayName": "steak",
+      "file": "spell_1151_steak.json"
+    },
+    {
+      "primaryKey": 1152,
+      "displayName": "bone dock",
+      "file": "spell_1152_bone-dock.json"
+    },
+    {
+      "primaryKey": 1153,
+      "displayName": "bloodwood chest open",
+      "file": "spell_1153_bloodwood-chest-open.json"
+    },
+    {
+      "primaryKey": 1154,
+      "displayName": "burnt iron chest open",
+      "file": "spell_1154_burnt-iron-chest-open.json"
+    },
+    {
+      "primaryKey": 1155,
+      "displayName": "jagged lightning bolt",
+      "file": "spell_1155_jagged-lightning-bolt.json"
+    },
+    {
+      "primaryKey": 1156,
+      "displayName": "ruby staff",
+      "file": "spell_1156_ruby-staff.json"
+    },
+    {
+      "primaryKey": 1157,
+      "displayName": "bone chest open",
+      "file": "spell_1157_bone-chest-open.json"
+    },
+    {
+      "primaryKey": 1158,
+      "displayName": "frost giant summon",
+      "file": "spell_1158_frost-giant-summon.json"
+    },
+    {
+      "primaryKey": 1159,
+      "displayName": "fist of death",
+      "file": "spell_1159_fist-of-death.json"
+    },
+    {
+      "primaryKey": 1160,
+      "displayName": "lifeforce",
+      "file": "spell_1160_lifeforce.json"
+    },
+    {
+      "primaryKey": 1161,
+      "displayName": "rainbow potion",
+      "file": "spell_1161_rainbow-potion.json"
+    },
+    {
+      "primaryKey": 1162,
+      "displayName": "rainbow1",
+      "file": "spell_1162_rainbow1.json"
+    },
+    {
+      "primaryKey": 1163,
+      "displayName": "rainbow2",
+      "file": "spell_1163_rainbow2.json"
+    },
+    {
+      "primaryKey": 1164,
+      "displayName": "rainbow3",
+      "file": "spell_1164_rainbow3.json"
+    },
+    {
+      "primaryKey": 1165,
+      "displayName": "rain of blood",
+      "file": "spell_1165_rain-of-blood.json"
+    },
+    {
+      "primaryKey": 1166,
+      "displayName": "enigma tele",
+      "file": "spell_1166_enigma-tele.json"
+    },
+    {
+      "primaryKey": 1167,
+      "displayName": "enigma temp",
+      "file": "spell_1167_enigma-temp.json"
+    },
+    {
+      "primaryKey": 1168,
+      "displayName": "enigma text",
+      "file": "spell_1168_enigma-text.json"
+    },
+    {
+      "primaryKey": 1169,
+      "displayName": "spear slam knockdown",
+      "file": "spell_1169_spear-slam-knockdown.json"
+    },
+    {
+      "primaryKey": 1170,
+      "displayName": "parrot",
+      "file": "spell_1170_parrot.json"
+    },
+    {
+      "primaryKey": 1171,
+      "displayName": "vomit",
+      "file": "spell_1171_vomit.json"
+    },
+    {
+      "primaryKey": 1172,
+      "displayName": "cloud of poison gas",
+      "file": "spell_1172_cloud-of-poison-gas.json"
+    },
+    {
+      "primaryKey": 1173,
+      "displayName": "destructo smash",
+      "file": "spell_1173_destructo-smash.json"
+    },
+    {
+      "primaryKey": 1174,
+      "displayName": "bloodstone bracers",
+      "file": "spell_1174_bloodstone-bracers.json"
+    },
+    {
+      "primaryKey": 1175,
+      "displayName": "wrong letter",
+      "file": "spell_1175_wrong-letter.json"
+    },
+    {
+      "primaryKey": 1176,
+      "displayName": "mass entangle",
+      "file": "spell_1176_mass-entangle.json"
+    },
+    {
+      "primaryKey": 1177,
+      "displayName": "fear trigger",
+      "file": "spell_1177_fear-trigger.json"
+    },
+    {
+      "primaryKey": 1178,
+      "displayName": "fear1",
+      "file": "spell_1178_fear1.json"
+    },
+    {
+      "primaryKey": 1179,
+      "displayName": "fear2",
+      "file": "spell_1179_fear2.json"
+    },
+    {
+      "primaryKey": 1180,
+      "displayName": "fear3",
+      "file": "spell_1180_fear3.json"
+    },
+    {
+      "primaryKey": 1181,
+      "displayName": "fear random",
+      "file": "spell_1181_fear-random.json"
+    },
+    {
+      "primaryKey": 1182,
+      "displayName": "burning summon",
+      "file": "spell_1182_burning-summon.json"
+    },
+    {
+      "primaryKey": 1183,
+      "displayName": "fire explosion",
+      "file": "spell_1183_fire-explosion.json"
+    },
+    {
+      "primaryKey": 1184,
+      "displayName": "fire explosion",
+      "file": "spell_1184_fire-explosion.json"
+    },
+    {
+      "primaryKey": 1185,
+      "displayName": "blur",
+      "file": "spell_1185_blur.json"
+    },
+    {
+      "primaryKey": 1186,
+      "displayName": "smite",
+      "file": "spell_1186_smite.json"
+    },
+    {
+      "primaryKey": 1187,
+      "displayName": "pris weapon effect",
+      "file": "spell_1187_pris-weapon-effect.json"
+    },
+    {
+      "primaryKey": 1188,
+      "displayName": "yellow beam",
+      "file": "spell_1188_yellow-beam.json"
+    },
+    {
+      "primaryKey": 1189,
+      "displayName": "violet beam",
+      "file": "spell_1189_violet-beam.json"
+    },
+    {
+      "primaryKey": 1190,
+      "displayName": "black beam",
+      "file": "spell_1190_black-beam.json"
+    },
+    {
+      "primaryKey": 1191,
+      "displayName": "red beam",
+      "file": "spell_1191_red-beam.json"
+    },
+    {
+      "primaryKey": 1192,
+      "displayName": "green beam",
+      "file": "spell_1192_green-beam.json"
+    },
+    {
+      "primaryKey": 1193,
+      "displayName": "green beam",
+      "file": "spell_1193_green-beam.json"
+    },
+    {
+      "primaryKey": 1194,
+      "displayName": "stoneskin",
+      "file": "spell_1194_stoneskin.json"
+    },
+    {
+      "primaryKey": 1195,
+      "displayName": "fist death",
+      "file": "spell_1195_fist-death.json"
+    },
+    {
+      "primaryKey": 1196,
+      "displayName": "dark mage exp",
+      "file": "spell_1196_dark-mage-exp.json"
+    },
+    {
+      "primaryKey": 1197,
+      "displayName": "spirit horde",
+      "file": "spell_1197_spirit-horde.json"
+    },
+    {
+      "primaryKey": 1198,
+      "displayName": "demon summon",
+      "file": "spell_1198_demon-summon.json"
+    },
+    {
+      "primaryKey": 1199,
+      "displayName": "lich temp",
+      "file": "spell_1199_lich-temp.json"
+    },
+    {
+      "primaryKey": 1200,
+      "displayName": "lich text",
+      "file": "spell_1200_lich-text.json"
+    },
+    {
+      "primaryKey": 1201,
+      "displayName": "cudgel random",
+      "file": "spell_1201_cudgel-random.json"
+    },
+    {
+      "primaryKey": 1202,
+      "displayName": "clean",
+      "file": "spell_1202_clean.json"
+    },
+    {
+      "primaryKey": 1203,
+      "displayName": "tail quake",
+      "file": "spell_1203_tail-quake.json"
+    },
+    {
+      "primaryKey": 1204,
+      "displayName": "spray of spores",
+      "file": "spell_1204_spray-of-spores.json"
+    },
+    {
+      "primaryKey": 1205,
+      "displayName": "fungus spell",
+      "file": "spell_1205_fungus-spell.json"
+    },
+    {
+      "primaryKey": 1206,
+      "displayName": "fungus cloud",
+      "file": "spell_1206_fungus-cloud.json"
+    },
+    {
+      "primaryKey": 1207,
+      "displayName": "fall",
+      "file": "spell_1207_fall.json"
+    },
+    {
+      "primaryKey": 1208,
+      "displayName": "shreaded tapestry summon",
+      "file": "spell_1208_shreaded-tapestry-summon.json"
+    },
+    {
+      "primaryKey": 1209,
+      "displayName": "gnaj bolt",
+      "file": "spell_1209_gnaj-bolt.json"
+    },
+    {
+      "primaryKey": 1210,
+      "displayName": "blast of energy",
+      "file": "spell_1210_blast-of-energy.json"
+    },
+    {
+      "primaryKey": 1211,
+      "displayName": "tapestry summon",
+      "file": "spell_1211_tapestry-summon.json"
+    },
+    {
+      "primaryKey": 1212,
+      "displayName": "gnaj explosion",
+      "file": "spell_1212_gnaj-explosion.json"
+    },
+    {
+      "primaryKey": 1213,
+      "displayName": "cracked pit",
+      "file": "spell_1213_cracked-pit.json"
+    },
+    {
+      "primaryKey": 1214,
+      "displayName": "hellfire",
+      "file": "spell_1214_hellfire.json"
+    },
+    {
+      "primaryKey": 1215,
+      "displayName": "eldritch storm",
+      "file": "spell_1215_eldritch-storm.json"
+    },
+    {
+      "primaryKey": 1216,
+      "displayName": "summon demonling",
+      "file": "spell_1216_summon-demonling.json"
+    },
+    {
+      "primaryKey": 1217,
+      "displayName": "summon astral shade",
+      "file": "spell_1217_summon-astral-shade.json"
+    },
+    {
+      "primaryKey": 1218,
+      "displayName": "exp test",
+      "file": "spell_1218_exp-test.json"
+    },
+    {
+      "primaryKey": 1219,
+      "displayName": "summon bugbear",
+      "file": "spell_1219_summon-bugbear.json"
+    },
+    {
+      "primaryKey": 1220,
+      "displayName": "blacknight",
+      "file": "spell_1220_blacknight.json"
+    },
+    {
+      "primaryKey": 1221,
+      "displayName": "vanishing jumpkick",
+      "file": "spell_1221_vanishing-jumpkick.json"
+    },
+    {
+      "primaryKey": 1222,
+      "displayName": "ether death",
+      "file": "spell_1222_ether-death.json"
+    },
+    {
+      "primaryKey": 1223,
+      "displayName": "enigma tele self",
+      "file": "spell_1223_enigma-tele-self.json"
+    },
+    {
+      "primaryKey": 1224,
+      "displayName": "portal",
+      "file": "spell_1224_portal.json"
+    },
+    {
+      "primaryKey": 1225,
+      "displayName": "blink",
+      "file": "spell_1225_blink.json"
+    },
+    {
+      "primaryKey": 1226,
+      "displayName": "enigma summon",
+      "file": "spell_1226_enigma-summon.json"
+    },
+    {
+      "primaryKey": 1227,
+      "displayName": "tapestry check",
+      "file": "spell_1227_tapestry-check.json"
+    },
+    {
+      "primaryKey": 1228,
+      "displayName": "tapestry fail",
+      "file": "spell_1228_tapestry-fail.json"
+    },
+    {
+      "primaryKey": 1229,
+      "displayName": "tapestry room",
+      "file": "spell_1229_tapestry-room.json"
+    },
+    {
+      "primaryKey": 1230,
+      "displayName": "fear",
+      "file": "spell_1230_fear.json"
+    },
+    {
+      "primaryKey": 1231,
+      "displayName": "island spell",
+      "file": "spell_1231_island-spell.json"
+    },
+    {
+      "primaryKey": 1232,
+      "displayName": "noose",
+      "file": "spell_1232_noose.json"
+    },
+    {
+      "primaryKey": 1233,
+      "displayName": "summon enigma lord",
+      "file": "spell_1233_summon-enigma-lord.json"
+    },
+    {
+      "primaryKey": 1234,
+      "displayName": "kill enigma",
+      "file": "spell_1234_kill-enigma.json"
+    },
+    {
+      "primaryKey": 1235,
+      "displayName": "face rgen",
+      "file": "spell_1235_face-rgen.json"
+    },
+    {
+      "primaryKey": 1236,
+      "displayName": "encumbrance",
+      "file": "spell_1236_encumbrance.json"
+    },
+    {
+      "primaryKey": 1237,
+      "displayName": "wretched boils",
+      "file": "spell_1237_wretched-boils.json"
+    },
+    {
+      "primaryKey": 1238,
+      "displayName": "gruesome curse",
+      "file": "spell_1238_gruesome-curse.json"
+    },
+    {
+      "primaryKey": 1239,
+      "displayName": "destroy magic",
+      "file": "spell_1239_destroy-magic.json"
+    },
+    {
+      "primaryKey": 1240,
+      "displayName": "burning death",
+      "file": "spell_1240_burning-death.json"
+    },
+    {
+      "primaryKey": 1241,
+      "displayName": "starbeam",
+      "file": "spell_1241_starbeam.json"
+    },
+    {
+      "primaryKey": 1242,
+      "displayName": "sdfsdfsdffsdfsd",
+      "file": "spell_1242_sdfsdfsdffsdfsd.json"
+    },
+    {
+      "primaryKey": 1243,
+      "displayName": "zombie bomb",
+      "file": "spell_1243_zombie-bomb.json"
+    },
+    {
+      "primaryKey": 1244,
+      "displayName": "stun",
+      "file": "spell_1244_stun.json"
+    },
+    {
+      "primaryKey": 1245,
+      "displayName": "knockdown",
+      "file": "spell_1245_knockdown.json"
+    },
+    {
+      "primaryKey": 1246,
+      "displayName": "nebo secondary",
+      "file": "spell_1246_nebo-secondary.json"
+    },
+    {
+      "primaryKey": 1247,
+      "displayName": "hellstorm",
+      "file": "spell_1247_hellstorm.json"
+    },
+    {
+      "primaryKey": 1248,
+      "displayName": "bloodstone bracers",
+      "file": "spell_1248_bloodstone-bracers.json"
+    },
+    {
+      "primaryKey": 1249,
+      "displayName": "bone necklace",
+      "file": "spell_1249_bone-necklace.json"
+    },
+    {
+      "primaryKey": 1250,
+      "displayName": "roar",
+      "file": "spell_1250_roar.json"
+    },
+    {
+      "primaryKey": 1251,
+      "displayName": "area undead",
+      "file": "spell_1251_area-undead.json"
+    },
+    {
+      "primaryKey": 1252,
+      "displayName": "dead heal",
+      "file": "spell_1252_dead-heal.json"
+    },
+    {
+      "primaryKey": 1253,
+      "displayName": "rat missile",
+      "file": "spell_1253_rat-missile.json"
+    },
+    {
+      "primaryKey": 1254,
+      "displayName": "bolt of lightning",
+      "file": "spell_1254_bolt-of-lightning.json"
+    },
+    {
+      "primaryKey": 1255,
+      "displayName": "gust of wind",
+      "file": "spell_1255_gust-of-wind.json"
+    },
+    {
+      "primaryKey": 1256,
+      "displayName": "magma rock chest",
+      "file": "spell_1256_magma-rock-chest.json"
+    },
+    {
+      "primaryKey": 1257,
+      "displayName": "gloomy teleport",
+      "file": "spell_1257_gloomy-teleport.json"
+    },
+    {
+      "primaryKey": 1258,
+      "displayName": "large chest",
+      "file": "spell_1258_large-chest.json"
+    },
+    {
+      "primaryKey": 1259,
+      "displayName": "unholy fury",
+      "file": "spell_1259_unholy-fury.json"
+    },
+    {
+      "primaryKey": 1260,
+      "displayName": "massive chest",
+      "file": "spell_1260_massive-chest.json"
+    },
+    {
+      "primaryKey": 1261,
+      "displayName": "dirty pool",
+      "file": "spell_1261_dirty-pool.json"
+    },
+    {
+      "primaryKey": 1262,
+      "displayName": "bolt of light",
+      "file": "spell_1262_bolt-of-light.json"
+    },
+    {
+      "primaryKey": 1263,
+      "displayName": "silver casket",
+      "file": "spell_1263_silver-casket.json"
+    },
+    {
+      "primaryKey": 1264,
+      "displayName": "sandstone chest open",
+      "file": "spell_1264_sandstone-chest-open.json"
+    },
+    {
+      "primaryKey": 1265,
+      "displayName": "ruby-encrusted fire",
+      "file": "spell_1265_ruby-encrusted-fire.json"
+    },
+    {
+      "primaryKey": 1266,
+      "displayName": "bloodstone bracers",
+      "file": "spell_1266_bloodstone-bracers.json"
+    },
+    {
+      "primaryKey": 1267,
+      "displayName": "fortress trigger",
+      "file": "spell_1267_fortress-trigger.json"
+    },
+    {
+      "primaryKey": 1268,
+      "displayName": "purify",
+      "file": "spell_1268_purify.json"
+    },
+    {
+      "primaryKey": 1269,
+      "displayName": "ice shield",
+      "file": "spell_1269_ice-shield.json"
+    },
+    {
+      "primaryKey": 1270,
+      "displayName": "fire shield",
+      "file": "spell_1270_fire-shield.json"
+    },
+    {
+      "primaryKey": 1271,
+      "displayName": "lightning shield",
+      "file": "spell_1271_lightning-shield.json"
+    },
+    {
+      "primaryKey": 1272,
+      "displayName": "1",
+      "file": "spell_1272_1.json"
+    },
+    {
+      "primaryKey": 1273,
+      "displayName": "12",
+      "file": "spell_1273_12.json"
+    },
+    {
+      "primaryKey": 1274,
+      "displayName": "123",
+      "file": "spell_1274_123.json"
+    },
+    {
+      "primaryKey": 1275,
+      "displayName": "1234",
+      "file": "spell_1275_1234.json"
+    },
+    {
+      "primaryKey": 1276,
+      "displayName": "12345",
+      "file": "spell_1276_12345.json"
+    },
+    {
+      "primaryKey": 1277,
+      "displayName": "123456",
+      "file": "spell_1277_123456.json"
+    },
+    {
+      "primaryKey": 1278,
+      "displayName": "1234567",
+      "file": "spell_1278_1234567.json"
+    },
+    {
+      "primaryKey": 1279,
+      "displayName": "12345678",
+      "file": "spell_1279_12345678.json"
+    },
+    {
+      "primaryKey": 1280,
+      "displayName": "123456789",
+      "file": "spell_1280_123456789.json"
+    },
+    {
+      "primaryKey": 1281,
+      "displayName": "1234567890",
+      "file": "spell_1281_1234567890.json"
+    },
+    {
+      "primaryKey": 1282,
+      "displayName": "12345678901",
+      "file": "spell_1282_12345678901.json"
+    },
+    {
+      "primaryKey": 1283,
+      "displayName": "123456789012",
+      "file": "spell_1283_123456789012.json"
+    },
+    {
+      "primaryKey": 1284,
+      "displayName": "1234567890123",
+      "file": "spell_1284_1234567890123.json"
+    },
+    {
+      "primaryKey": 1285,
+      "displayName": "12345678901234",
+      "file": "spell_1285_12345678901234.json"
+    },
+    {
+      "primaryKey": 1286,
+      "displayName": "123456789012345",
+      "file": "spell_1286_123456789012345.json"
+    },
+    {
+      "primaryKey": 1287,
+      "displayName": "1234567890123456",
+      "file": "spell_1287_1234567890123456.json"
+    },
+    {
+      "primaryKey": 1288,
+      "displayName": "12345678901234567",
+      "file": "spell_1288_12345678901234567.json"
+    },
+    {
+      "primaryKey": 1289,
+      "displayName": "123456789012345678",
+      "file": "spell_1289_123456789012345678.json"
+    },
+    {
+      "primaryKey": 1290,
+      "displayName": "1234567890123456789",
+      "file": "spell_1290_1234567890123456789.json"
+    },
+    {
+      "primaryKey": 1291,
+      "displayName": "12345678901234567890",
+      "file": "spell_1291_12345678901234567890.json"
+    },
+    {
+      "primaryKey": 1292,
+      "displayName": "123456789012345678901",
+      "file": "spell_1292_123456789012345678901.json"
+    },
+    {
+      "primaryKey": 1293,
+      "displayName": "1234567890123456789012",
+      "file": "spell_1293_1234567890123456789012.json"
+    },
+    {
+      "primaryKey": 1294,
+      "displayName": "12345678901234567890123",
+      "file": "spell_1294_12345678901234567890123.json"
+    },
+    {
+      "primaryKey": 1295,
+      "displayName": "123456789012345678901234",
+      "file": "spell_1295_123456789012345678901234.json"
+    },
+    {
+      "primaryKey": 1296,
+      "displayName": "1234567890123456789012345",
+      "file": "spell_1296_1234567890123456789012345.json"
+    },
+    {
+      "primaryKey": 1297,
+      "displayName": "12345678901234567890123456",
+      "file": "spell_1297_12345678901234567890123456.json"
+    },
+    {
+      "primaryKey": 1298,
+      "displayName": "123456789012345678901234567",
+      "file": "spell_1298_123456789012345678901234567.json"
+    },
+    {
+      "primaryKey": 1299,
+      "displayName": "1234567890123456789012345678",
+      "file": "spell_1299_1234567890123456789012345678.json"
+    },
+    {
+      "primaryKey": 1300,
+      "displayName": "12345678901234567890123456789",
+      "file": "spell_1300_12345678901234567890123456789.json"
+    },
+    {
+      "primaryKey": 1301,
+      "displayName": "barbed tentacles",
+      "file": "spell_1301_barbed-tentacles.json"
+    },
+    {
+      "primaryKey": 1302,
+      "displayName": "energy vortex",
+      "file": "spell_1302_energy-vortex.json"
+    },
+    {
+      "primaryKey": 1303,
+      "displayName": "tele out of pit",
+      "file": "spell_1303_tele-out-of-pit.json"
+    },
+    {
+      "primaryKey": 1304,
+      "displayName": "a cloud of poison gas",
+      "file": "spell_1304_a-cloud-of-poison-gas.json"
+    },
+    {
+      "primaryKey": 1305,
+      "displayName": "meadow trigger",
+      "file": "spell_1305_meadow-trigger.json"
+    },
+    {
+      "primaryKey": 1306,
+      "displayName": "cloud trigger",
+      "file": "spell_1306_cloud-trigger.json"
+    },
+    {
+      "primaryKey": 1307,
+      "displayName": "fire trigger",
+      "file": "spell_1307_fire-trigger.json"
+    },
+    {
+      "primaryKey": 1308,
+      "displayName": "branch check",
+      "file": "spell_1308_branch-check.json"
+    },
+    {
+      "primaryKey": 1309,
+      "displayName": "great hydra head summon",
+      "file": "spell_1309_great-hydra-head-summon.json"
+    },
+    {
+      "primaryKey": 1310,
+      "displayName": "sandstorm",
+      "file": "spell_1310_sandstorm.json"
+    },
+    {
+      "primaryKey": 1311,
+      "displayName": "glacial blades",
+      "file": "spell_1311_glacial-blades.json"
+    },
+    {
+      "primaryKey": 1312,
+      "displayName": "",
+      "file": "spell_1312_unnamed.json"
+    },
+    {
+      "primaryKey": 1313,
+      "displayName": "voodoo doll",
+      "file": "spell_1313_voodoo-doll.json"
+    },
+    {
+      "primaryKey": 1314,
+      "displayName": "camouflage",
+      "file": "spell_1314_camouflage.json"
+    },
+    {
+      "primaryKey": 1315,
+      "displayName": "unholy fanaticism",
+      "file": "spell_1315_unholy-fanaticism.json"
+    },
+    {
+      "primaryKey": 1316,
+      "displayName": "blessed vision",
+      "file": "spell_1316_blessed-vision.json"
+    },
+    {
+      "primaryKey": 1317,
+      "displayName": "curing wind",
+      "file": "spell_1317_curing-wind.json"
+    },
+    {
+      "primaryKey": 1318,
+      "displayName": "foot quake",
+      "file": "spell_1318_foot-quake.json"
+    },
+    {
+      "primaryKey": 1319,
+      "displayName": "spike spin",
+      "file": "spell_1319_spike-spin.json"
+    },
+    {
+      "primaryKey": 1320,
+      "displayName": "nuke spell",
+      "file": "spell_1320_nuke-spell.json"
+    },
+    {
+      "primaryKey": 1321,
+      "displayName": "transform",
+      "file": "spell_1321_transform.json"
+    },
+    {
+      "primaryKey": 1322,
+      "displayName": "hold immune",
+      "file": "spell_1322_hold-immune.json"
+    },
+    {
+      "primaryKey": 1323,
+      "displayName": "fear immune",
+      "file": "spell_1323_fear-immune.json"
+    },
+    {
+      "primaryKey": 1324,
+      "displayName": "seared by the flames",
+      "file": "spell_1324_seared-by-the-flames.json"
+    },
+    {
+      "primaryKey": 1325,
+      "displayName": "thief  filter",
+      "file": "spell_1325_thief-filter.json"
+    },
+    {
+      "primaryKey": 1326,
+      "displayName": "battle  filter",
+      "file": "spell_1326_battle-filter.json"
+    },
+    {
+      "primaryKey": 1327,
+      "displayName": "magic filter",
+      "file": "spell_1327_magic-filter.json"
+    },
+    {
+      "primaryKey": 1328,
+      "displayName": "sdfsdfsdfsdfsdfsdfdsfsd",
+      "file": "spell_1328_sdfsdfsdfsdfsdfsdfdsfsd.json"
+    },
+    {
+      "primaryKey": 1329,
+      "displayName": "summon diamond cloak",
+      "file": "spell_1329_summon-diamond-cloak.json"
+    },
+    {
+      "primaryKey": 1330,
+      "displayName": "summon pearl cloak",
+      "file": "spell_1330_summon-pearl-cloak.json"
+    },
+    {
+      "primaryKey": 1331,
+      "displayName": "summon moonstone cloak",
+      "file": "spell_1331_summon-moonstone-cloak.json"
+    },
+    {
+      "primaryKey": 1332,
+      "displayName": "summon marble cloak",
+      "file": "spell_1332_summon-marble-cloak.json"
+    },
+    {
+      "primaryKey": 1333,
+      "displayName": "thievry teleport",
+      "file": "spell_1333_thievry-teleport.json"
+    },
+    {
+      "primaryKey": 1334,
+      "displayName": "greatsword",
+      "file": "spell_1334_greatsword.json"
+    },
+    {
+      "primaryKey": 1335,
+      "displayName": "hallway teleport",
+      "file": "spell_1335_hallway-teleport.json"
+    },
+    {
+      "primaryKey": 1336,
+      "displayName": "galacial mist",
+      "file": "spell_1336_galacial-mist.json"
+    },
+    {
+      "primaryKey": 1337,
+      "displayName": "spellcaster filter",
+      "file": "spell_1337_spellcaster-filter.json"
+    },
+    {
+      "primaryKey": 1338,
+      "displayName": "fire chamber heat",
+      "file": "spell_1338_fire-chamber-heat.json"
+    },
+    {
+      "primaryKey": 1339,
+      "displayName": "lightning chamber",
+      "file": "spell_1339_lightning-chamber.json"
+    },
+    {
+      "primaryKey": 1340,
+      "displayName": "ice chamber",
+      "file": "spell_1340_ice-chamber.json"
+    },
+    {
+      "primaryKey": 1341,
+      "displayName": "stone chamber",
+      "file": "spell_1341_stone-chamber.json"
+    },
+    {
+      "primaryKey": 1342,
+      "displayName": "sdfsdfsdfsdfsdfsd",
+      "file": "spell_1342_sdfsdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1343,
+      "displayName": "crimson shard",
+      "file": "spell_1343_crimson-shard.json"
+    },
+    {
+      "primaryKey": 1344,
+      "displayName": "amber shard",
+      "file": "spell_1344_amber-shard.json"
+    },
+    {
+      "primaryKey": 1345,
+      "displayName": "sapphire shard",
+      "file": "spell_1345_sapphire-shard.json"
+    },
+    {
+      "primaryKey": 1346,
+      "displayName": "quartz shard",
+      "file": "spell_1346_quartz-shard.json"
+    },
+    {
+      "primaryKey": 1347,
+      "displayName": "all ball summon",
+      "file": "spell_1347_all-ball-summon.json"
+    },
+    {
+      "primaryKey": 1348,
+      "displayName": "red ball summon",
+      "file": "spell_1348_red-ball-summon.json"
+    },
+    {
+      "primaryKey": 1349,
+      "displayName": "blue ball summon",
+      "file": "spell_1349_blue-ball-summon.json"
+    },
+    {
+      "primaryKey": 1350,
+      "displayName": "green ball summon",
+      "file": "spell_1350_green-ball-summon.json"
+    },
+    {
+      "primaryKey": 1351,
+      "displayName": "yellow ball summon",
+      "file": "spell_1351_yellow-ball-summon.json"
+    },
+    {
+      "primaryKey": 1352,
+      "displayName": "blood bath",
+      "file": "spell_1352_blood-bath.json"
+    },
+    {
+      "primaryKey": 1353,
+      "displayName": "chain lightning",
+      "file": "spell_1353_chain-lightning.json"
+    },
+    {
+      "primaryKey": 1354,
+      "displayName": "tele out of pit",
+      "file": "spell_1354_tele-out-of-pit.json"
+    },
+    {
+      "primaryKey": 1355,
+      "displayName": "wretched boils",
+      "file": "spell_1355_wretched-boils.json"
+    },
+    {
+      "primaryKey": 1356,
+      "displayName": "final nahr summon",
+      "file": "spell_1356_final-nahr-summon.json"
+    },
+    {
+      "primaryKey": 1357,
+      "displayName": "rock check",
+      "file": "spell_1357_rock-check.json"
+    },
+    {
+      "primaryKey": 1358,
+      "displayName": "invoke staff",
+      "file": "spell_1358_invoke-staff.json"
+    },
+    {
+      "primaryKey": 1359,
+      "displayName": "gather ore",
+      "file": "spell_1359_gather-ore.json"
+    },
+    {
+      "primaryKey": 1360,
+      "displayName": "phoenix boss check",
+      "file": "spell_1360_phoenix-boss-check.json"
+    },
+    {
+      "primaryKey": 1361,
+      "displayName": "hydra boss check",
+      "file": "spell_1361_hydra-boss-check.json"
+    },
+    {
+      "primaryKey": 1362,
+      "displayName": "partial petrification",
+      "file": "spell_1362_partial-petrification.json"
+    },
+    {
+      "primaryKey": 1363,
+      "displayName": "ice storm",
+      "file": "spell_1363_ice-storm.json"
+    },
+    {
+      "primaryKey": 1364,
+      "displayName": "petrification",
+      "file": "spell_1364_petrification.json"
+    },
+    {
+      "primaryKey": 1365,
+      "displayName": "tele out of pit",
+      "file": "spell_1365_tele-out-of-pit.json"
+    },
+    {
+      "primaryKey": 1366,
+      "displayName": "poison bite",
+      "file": "spell_1366_poison-bite.json"
+    },
+    {
+      "primaryKey": 1367,
+      "displayName": "excorcism",
+      "file": "spell_1367_excorcism.json"
+    },
+    {
+      "primaryKey": 1368,
+      "displayName": "roar cancel",
+      "file": "spell_1368_roar-cancel.json"
+    },
+    {
+      "primaryKey": 1369,
+      "displayName": "earthquake",
+      "file": "spell_1369_earthquake.json"
+    },
+    {
+      "primaryKey": 1370,
+      "displayName": "demon lord boss check",
+      "file": "spell_1370_demon-lord-boss-check.json"
+    },
+    {
+      "primaryKey": 1371,
+      "displayName": "majestic boss check",
+      "file": "spell_1371_majestic-boss-check.json"
+    },
+    {
+      "primaryKey": 1372,
+      "displayName": "chess pieces",
+      "file": "spell_1372_chess-pieces.json"
+    },
+    {
+      "primaryKey": 1373,
+      "displayName": "ray of petrification",
+      "file": "spell_1373_ray-of-petrification.json"
+    },
+    {
+      "primaryKey": 1374,
+      "displayName": "maelstrom",
+      "file": "spell_1374_maelstrom.json"
+    },
+    {
+      "primaryKey": 1375,
+      "displayName": "solo trainer key check",
+      "file": "spell_1375_solo-trainer-key-check.json"
+    },
+    {
+      "primaryKey": 1376,
+      "displayName": "solo mage scatter",
+      "file": "spell_1376_solo-mage-scatter.json"
+    },
+    {
+      "primaryKey": 1377,
+      "displayName": "serenity",
+      "file": "spell_1377_serenity.json"
+    },
+    {
+      "primaryKey": 1378,
+      "displayName": "profane link",
+      "file": "spell_1378_profane-link.json"
+    },
+    {
+      "primaryKey": 1379,
+      "displayName": "ice shield",
+      "file": "spell_1379_ice-shield.json"
+    },
+    {
+      "primaryKey": 1380,
+      "displayName": "fire shield",
+      "file": "spell_1380_fire-shield.json"
+    },
+    {
+      "primaryKey": 1381,
+      "displayName": "glacial skin",
+      "file": "spell_1381_glacial-skin.json"
+    },
+    {
+      "primaryKey": 1382,
+      "displayName": "shimmering mirage",
+      "file": "spell_1382_shimmering-mirage.json"
+    },
+    {
+      "primaryKey": 1383,
+      "displayName": "sacred bastion",
+      "file": "spell_1383_sacred-bastion.json"
+    },
+    {
+      "primaryKey": 1384,
+      "displayName": "hellfire shield",
+      "file": "spell_1384_hellfire-shield.json"
+    },
+    {
+      "primaryKey": 1385,
+      "displayName": "vial of holy water",
+      "file": "spell_1385_vial-of-holy-water.json"
+    },
+    {
+      "primaryKey": 1386,
+      "displayName": "duergar",
+      "file": "spell_1386_duergar.json"
+    },
+    {
+      "primaryKey": 1387,
+      "displayName": "sandstorm",
+      "file": "spell_1387_sandstorm.json"
+    },
+    {
+      "primaryKey": 1388,
+      "displayName": "song of beauty",
+      "file": "spell_1388_song-of-beauty.json"
+    },
+    {
+      "primaryKey": 1389,
+      "displayName": "song of ugliness",
+      "file": "spell_1389_song-of-ugliness.json"
+    },
+    {
+      "primaryKey": 1390,
+      "displayName": "keyring summoner",
+      "file": "spell_1390_keyring-summoner.json"
+    },
+    {
+      "primaryKey": 1391,
+      "displayName": "mesmerize",
+      "file": "spell_1391_mesmerize.json"
+    },
+    {
+      "primaryKey": 1392,
+      "displayName": "Dancing fire",
+      "file": "spell_1392_dancing-fire.json"
+    },
+    {
+      "primaryKey": 1393,
+      "displayName": "magma wave",
+      "file": "spell_1393_magma-wave.json"
+    },
+    {
+      "primaryKey": 1394,
+      "displayName": "incinerate",
+      "file": "spell_1394_incinerate.json"
+    },
+    {
+      "primaryKey": 1395,
+      "displayName": "kiss of Vasili",
+      "file": "spell_1395_kiss-of-vasili.json"
+    },
+    {
+      "primaryKey": 1396,
+      "displayName": "magma bubbles",
+      "file": "spell_1396_magma-bubbles.json"
+    },
+    {
+      "primaryKey": 1397,
+      "displayName": "dancing fire",
+      "file": "spell_1397_dancing-fire.json"
+    },
+    {
+      "primaryKey": 1398,
+      "displayName": "sdfsdfsd",
+      "file": "spell_1398_sdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1399,
+      "displayName": "sdfsdfs",
+      "file": "spell_1399_sdfsdfs.json"
+    },
+    {
+      "primaryKey": 1400,
+      "displayName": "sdfsdfs",
+      "file": "spell_1400_sdfsdfs.json"
+    },
+    {
+      "primaryKey": 1401,
+      "displayName": "sdfsdfds",
+      "file": "spell_1401_sdfsdfds.json"
+    },
+    {
+      "primaryKey": 1402,
+      "displayName": "sdfsdf",
+      "file": "spell_1402_sdfsdf.json"
+    },
+    {
+      "primaryKey": 1403,
+      "displayName": "sdfsdfs",
+      "file": "spell_1403_sdfsdfs.json"
+    },
+    {
+      "primaryKey": 1404,
+      "displayName": "sdfsdfsdf",
+      "file": "spell_1404_sdfsdfsdf.json"
+    },
+    {
+      "primaryKey": 1405,
+      "displayName": "sdfsdfsd",
+      "file": "spell_1405_sdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1406,
+      "displayName": "sdfsdfsdfsd",
+      "file": "spell_1406_sdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1407,
+      "displayName": "sdfsdfsd",
+      "file": "spell_1407_sdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1408,
+      "displayName": "sdfsdfsdf",
+      "file": "spell_1408_sdfsdfsdf.json"
+    },
+    {
+      "primaryKey": 1409,
+      "displayName": "sdfsdfsdfsdfsd",
+      "file": "spell_1409_sdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1410,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1410_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1411,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1411_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1412,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1412_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1413,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1413_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1414,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1414_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1415,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1415_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1416,
+      "displayName": "ssdfsfsdfsdfsd",
+      "file": "spell_1416_ssdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1417,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1417_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1418,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1418_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1419,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1419_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1420,
+      "displayName": "",
+      "file": "spell_1420_unnamed.json"
+    },
+    {
+      "primaryKey": 1421,
+      "displayName": "sdfsfdsfsdfsdfs",
+      "file": "spell_1421_sdfsfdsfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1422,
+      "displayName": "sdfsfsdfsfsfsdfsdfs",
+      "file": "spell_1422_sdfsfsdfsfsfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1423,
+      "displayName": "sdfsdfsdfsdfs",
+      "file": "spell_1423_sdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1424,
+      "displayName": "sdfsdfsfsdfs",
+      "file": "spell_1424_sdfsdfsfsdfs.json"
+    },
+    {
+      "primaryKey": 1425,
+      "displayName": "sdfsdfsdfsdfds",
+      "file": "spell_1425_sdfsdfsdfsdfds.json"
+    },
+    {
+      "primaryKey": 1426,
+      "displayName": "sdfsdfsfsdfs",
+      "file": "spell_1426_sdfsdfsfsdfs.json"
+    },
+    {
+      "primaryKey": 1427,
+      "displayName": "sdfsfdsfsfsd",
+      "file": "spell_1427_sdfsfdsfsfsd.json"
+    },
+    {
+      "primaryKey": 1428,
+      "displayName": "sdfsdfsdfsdfds",
+      "file": "spell_1428_sdfsdfsdfsdfds.json"
+    },
+    {
+      "primaryKey": 1429,
+      "displayName": "sdfsdfsdfsdfds",
+      "file": "spell_1429_sdfsdfsdfsdfds.json"
+    },
+    {
+      "primaryKey": 1430,
+      "displayName": "sdfsfsdfsfs",
+      "file": "spell_1430_sdfsfsdfsfs.json"
+    },
+    {
+      "primaryKey": 1431,
+      "displayName": "sdfsdfsdfdfs",
+      "file": "spell_1431_sdfsdfsdfdfs.json"
+    },
+    {
+      "primaryKey": 1432,
+      "displayName": "sdfsdfsdfsfs",
+      "file": "spell_1432_sdfsdfsdfsfs.json"
+    },
+    {
+      "primaryKey": 1433,
+      "displayName": "sdfsdfsfsdfs",
+      "file": "spell_1433_sdfsdfsfsdfs.json"
+    },
+    {
+      "primaryKey": 1434,
+      "displayName": "sdfsfdsdfsdfs",
+      "file": "spell_1434_sdfsfdsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1435,
+      "displayName": "sdfsdfsdfsfds",
+      "file": "spell_1435_sdfsdfsdfsfds.json"
+    },
+    {
+      "primaryKey": 1436,
+      "displayName": "sdfsdfsdfsdfsd",
+      "file": "spell_1436_sdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1437,
+      "displayName": "sdfsdfsfsdfds",
+      "file": "spell_1437_sdfsdfsfsdfds.json"
+    },
+    {
+      "primaryKey": 1438,
+      "displayName": "sdfsdfsfsfsd",
+      "file": "spell_1438_sdfsdfsfsfsd.json"
+    },
+    {
+      "primaryKey": 1439,
+      "displayName": "sdfsdfsdfsdfs",
+      "file": "spell_1439_sdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1440,
+      "displayName": "sdfsdfsdfsdfsd",
+      "file": "spell_1440_sdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1441,
+      "displayName": "sdfsdfsdfsdfsdfs",
+      "file": "spell_1441_sdfsdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1442,
+      "displayName": "sdfsfsdfsdfsd",
+      "file": "spell_1442_sdfsfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1443,
+      "displayName": "sdfsdfsdfsdfs",
+      "file": "spell_1443_sdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1444,
+      "displayName": "sdfsdfsdfsdfs",
+      "file": "spell_1444_sdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1445,
+      "displayName": "sdfsdfsdfdsf",
+      "file": "spell_1445_sdfsdfsdfdsf.json"
+    },
+    {
+      "primaryKey": 1446,
+      "displayName": "sdfsdfsdfsdfs",
+      "file": "spell_1446_sdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1447,
+      "displayName": "sdfsdfsdfsdfs",
+      "file": "spell_1447_sdfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1448,
+      "displayName": "sdfsdfsdfsdfds",
+      "file": "spell_1448_sdfsdfsdfsdfds.json"
+    },
+    {
+      "primaryKey": 1449,
+      "displayName": "sdfsdfsdfds",
+      "file": "spell_1449_sdfsdfsdfds.json"
+    },
+    {
+      "primaryKey": 1450,
+      "displayName": "sdfsdfsdfdsfds",
+      "file": "spell_1450_sdfsdfsdfdsfds.json"
+    },
+    {
+      "primaryKey": 1451,
+      "displayName": "sdfsdfsdfds",
+      "file": "spell_1451_sdfsdfsdfds.json"
+    },
+    {
+      "primaryKey": 1452,
+      "displayName": "sdfsdfsdfsd",
+      "file": "spell_1452_sdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1453,
+      "displayName": "sdfsdfsdfsd",
+      "file": "spell_1453_sdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1454,
+      "displayName": "sdfsdfsdfsd",
+      "file": "spell_1454_sdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1455,
+      "displayName": "sdfsdfsdfdsfs",
+      "file": "spell_1455_sdfsdfsdfdsfs.json"
+    },
+    {
+      "primaryKey": 1456,
+      "displayName": "sdfsfdsdfdfs",
+      "file": "spell_1456_sdfsfdsdfdfs.json"
+    },
+    {
+      "primaryKey": 1457,
+      "displayName": "sdfsfsdfsdfds",
+      "file": "spell_1457_sdfsfsdfsdfds.json"
+    },
+    {
+      "primaryKey": 1458,
+      "displayName": "sdfsdfdsfsd",
+      "file": "spell_1458_sdfsdfdsfsd.json"
+    },
+    {
+      "primaryKey": 1459,
+      "displayName": "sdfsdfsdfdf",
+      "file": "spell_1459_sdfsdfsdfdf.json"
+    },
+    {
+      "primaryKey": 1460,
+      "displayName": "sdfsdfsfsdfs",
+      "file": "spell_1460_sdfsdfsfsdfs.json"
+    },
+    {
+      "primaryKey": 1461,
+      "displayName": "sdfsdfsdfd",
+      "file": "spell_1461_sdfsdfsdfd.json"
+    },
+    {
+      "primaryKey": 1462,
+      "displayName": "sdfsdfsd",
+      "file": "spell_1462_sdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1463,
+      "displayName": "sdfsdfdsfds",
+      "file": "spell_1463_sdfsdfdsfds.json"
+    },
+    {
+      "primaryKey": 1464,
+      "displayName": "sdfdsfsdfsd",
+      "file": "spell_1464_sdfdsfsdfsd.json"
+    },
+    {
+      "primaryKey": 1465,
+      "displayName": "sdfsdfsdfsd",
+      "file": "spell_1465_sdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1466,
+      "displayName": "sdfsdfsdfds",
+      "file": "spell_1466_sdfsdfsdfds.json"
+    },
+    {
+      "primaryKey": 1467,
+      "displayName": "sdfsfsdfsddfs",
+      "file": "spell_1467_sdfsfsdfsddfs.json"
+    },
+    {
+      "primaryKey": 1468,
+      "displayName": "sdfsdfsdfsd",
+      "file": "spell_1468_sdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1469,
+      "displayName": "sfsdfdsfsdfs",
+      "file": "spell_1469_sfsdfdsfsdfs.json"
+    },
+    {
+      "primaryKey": 1470,
+      "displayName": "sdfsdfsdfs",
+      "file": "spell_1470_sdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 1471,
+      "displayName": "sdsdfdsfs",
+      "file": "spell_1471_sdsdfdsfs.json"
+    },
+    {
+      "primaryKey": 1472,
+      "displayName": "sdfsdfsdfsd",
+      "file": "spell_1472_sdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 1473,
+      "displayName": "sdfsfsdfsd",
+      "file": "spell_1473_sdfsfsdfsd.json"
+    },
+    {
+      "primaryKey": 1474,
+      "displayName": "sdfsfsdfsd",
+      "file": "spell_1474_sdfsfsdfsd.json"
+    },
+    {
+      "primaryKey": 1475,
+      "displayName": "sdfsfsdfs",
+      "file": "spell_1475_sdfsfsdfs.json"
+    },
+    {
+      "primaryKey": 1476,
+      "displayName": "sdfsfsdfds",
+      "file": "spell_1476_sdfsfsdfds.json"
+    },
+    {
+      "primaryKey": 1477,
+      "displayName": "sdfsdfsdfsdf",
+      "file": "spell_1477_sdfsdfsdfsdf.json"
+    }
+  ]
+}

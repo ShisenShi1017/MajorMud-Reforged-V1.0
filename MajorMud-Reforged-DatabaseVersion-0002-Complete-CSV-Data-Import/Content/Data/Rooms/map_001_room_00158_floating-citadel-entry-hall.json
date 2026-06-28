@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 158
+  },
+  "displayName": "Floating Citadel, Entry Hall",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 158,
+    "Name": "Floating Citadel, Entry Hall",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/160",
+    "S": "1/156 (Door [any picklocks/strength])",
+    "E": "1/158 (Door [1000 picklocks/strength])",
+    "W": "1/158 (Door [1000 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

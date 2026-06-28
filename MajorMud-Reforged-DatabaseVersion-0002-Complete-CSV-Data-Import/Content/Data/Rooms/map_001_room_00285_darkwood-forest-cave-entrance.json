@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 285
+  },
+  "displayName": "Darkwood Forest, Cave Entrance",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 285,
+    "Name": "Darkwood Forest, Cave Entrance",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 963,[11-12-12-1]",
+    "Delay": 3,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "1/279",
+    "NE": "1/286 (Text: go path, follow path, enter path)",
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

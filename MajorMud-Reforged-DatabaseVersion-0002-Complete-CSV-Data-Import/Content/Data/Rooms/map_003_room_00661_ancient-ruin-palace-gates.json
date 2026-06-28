@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 661
+  },
+  "displayName": "Ancient Ruin, Palace Gates",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 661,
+    "Name": "Ancient Ruin, Palace Gates",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action#1 [on the SE exit of this room]: push diamond, move diamond",
+    "S": "Action#2 [on the SE exit of this room]: push amethyst, move amethyst",
+    "E": "Action#3 [on the SE exit of this room]: push sapphire, move sapphire",
+    "W": "Action#4 [on the SE exit of this room]: push emerald, move emerald",
+    "NE": "3/662",
+    "NW": "Action#5 [on the SE exit of this room]: push topaz, move topaz",
+    "SE": "3/665 (Hidden/Needs 7 Actions, specific order)",
+    "SW": "3/659",
+    "U": "Action#6 [on the SE exit of this room]: push onyx, move onyx",
+    "D": "Action#7 [on the SE exit of this room]: push ruby, move ruby"
+  }
+}

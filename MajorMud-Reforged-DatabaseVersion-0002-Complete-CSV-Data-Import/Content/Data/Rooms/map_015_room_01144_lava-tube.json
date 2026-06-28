@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 1144
+  },
+  "displayName": "Lava Tube",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 1144,
+    "Name": "Lava Tube",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 526,
+    "Lair": "(Max 2): 415,[24-26-26-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "15/1145",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "15/1143",
+    "D": 0
+  }
+}

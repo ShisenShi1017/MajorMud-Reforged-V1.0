@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1173
+  },
+  "displayName": "Black Fortress, Gatehouse",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1173,
+    "Name": "Black Fortress, Gatehouse",
+    "Light": -75,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "7/1175 (Hidden/Searchable)",
+    "E": "7/1174 (Door [271 picklocks/strength])",
+    "W": "7/1141",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

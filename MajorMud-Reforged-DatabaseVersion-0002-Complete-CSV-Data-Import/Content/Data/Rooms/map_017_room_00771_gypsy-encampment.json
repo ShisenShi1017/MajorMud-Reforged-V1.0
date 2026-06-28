@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 771
+  },
+  "displayName": "Gypsy Encampment",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 771,
+    "Name": "Gypsy Encampment",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 484,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/772",
+    "S": "17/770",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "17/778 (Door [51 picklocks/strength])",
+    "U": 0,
+    "D": 0
+  }
+}

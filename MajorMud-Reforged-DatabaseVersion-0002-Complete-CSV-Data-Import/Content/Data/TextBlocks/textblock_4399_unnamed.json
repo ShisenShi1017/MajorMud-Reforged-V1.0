@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4399,
+  "displayName": "",
+  "fields": {
+    "Number": 4399,
+    "LinkTo": 0,
+    "Action": "failability 50:message 3464\nminlevel 35 3464:checkability 50 0:text 4400\n\n",
+    "Called From": "Textblock #4398"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 9126,
+  "displayName": "",
+  "fields": {
+    "Number": 9126,
+    "LinkTo": 0,
+    "Action": "9:message 1434:giveitem 116\n12:message 1433:giveitem 20\n13:message 1433:giveitem 416\n14:message 1433:giveitem 403\n15:message 1437:giveitem 332\n16:message 1433:giveitem 170\n19:message 1434:giveitem 458\n20:message 1434:giveitem 361\n24:message 1434:giveitem 623\n25:message 1434:giveitem 458\n29:message 1433:giveitem 180\n33:message 1433:giveitem 334\n37:message 1434:giveitem 514\n40:message 1437:giveitem 274\n45:message 1433:giveitem 29\n50:message 1433:giveitem 367\n55:message 1433:giveitem 46\n70:summon 12:summon 12:summon 11:adddelay 4\n99:message 1431\n100:random 9126:random 9126:adddelay 5\n",
+    "Called From": "Textblock(rndm) #9121(20%), Textblock(rndm) #9122(1%), Textblock(rndm) #9123(1%), Textblock(rndm) #9125(1%), Textblock(rndm) #9126(1%)"
+  }
+}

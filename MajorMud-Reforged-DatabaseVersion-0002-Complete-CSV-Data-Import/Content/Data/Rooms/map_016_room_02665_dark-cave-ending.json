@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 2665
+  },
+  "displayName": "Dark Cave, Ending",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 2665,
+    "Name": "Dark Cave, Ending",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 699,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "Action#1 [on the D exit of this room]: push stone, move stone, push rock",
+    "W": "16/2585",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "16/111 (Hidden/Needs 1 Actions, any order)"
+  }
+}

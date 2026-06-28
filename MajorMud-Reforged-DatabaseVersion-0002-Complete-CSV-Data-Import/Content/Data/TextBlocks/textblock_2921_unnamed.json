@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 2921,
+  "displayName": "",
+  "fields": {
+    "Number": 2921,
+    "LinkTo": 0,
+    "Action": "25:random 2922:random 2922:random 2922\n50:random 2922:random 2922:random 2922:random 2922\n75:random 2922:random 2922:random 2922:random 2922:random 2922\n100:random 2922:random 2922:random 2922:random 895:random 895:random 2922:random 2922:",
+    "Called From": "Textblock(rndm) #2920"
+  }
+}

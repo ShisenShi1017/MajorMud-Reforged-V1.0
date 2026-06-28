@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 476,
+  "displayName": "",
+  "fields": {
+    "Number": 476,
+    "LinkTo": 0,
+    "Action": "touch hammer:roomitem 767 1114:clearitem 767:summon 316\ntouch anvil:roomitem 767 1114:clearitem 767:summon 316\ntouch hydra:roomitem 767 1114:clearitem 767:summon 316\ntouch iceforge:roomitem 767 1114:clearitem 767:summon 316\ntouch giant:roomitem 768 1114:clearitem 768:summon 756\nget anvil:roomitem 767 1114:clearitem 767:summon 316\nget iceforge:roomitem 767 1114:clearitem 767:summon 316\nget hydra:roomitem 767 1114:clearitem 767:summon 316\nget giant:roomitem 768 1114:clearitem 768:summon 756\nmove hammer:roomitem 767 1114:clearitem 767:summon 316\nmove anvil:roomitem 767 1114:clearitem 767:summon 316\nmove hydra:roomitem 767 1114:clearitem 767:summon 316\nmove iceforge:roomitem 767 1114:clearitem 767:summon 316\nmove giant:roomitem 768 1114:clearitem 768:summon 756\n\n",
+    "Called From": "Room 3/632"
+  }
+}

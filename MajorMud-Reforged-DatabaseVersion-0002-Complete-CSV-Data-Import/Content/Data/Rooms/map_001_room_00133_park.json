@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 133
+  },
+  "displayName": "Park",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 133,
+    "Name": "Park",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "1404,1417,",
+    "N": "1/132",
+    "S": "1/117",
+    "E": "1/134",
+    "W": "1/115",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

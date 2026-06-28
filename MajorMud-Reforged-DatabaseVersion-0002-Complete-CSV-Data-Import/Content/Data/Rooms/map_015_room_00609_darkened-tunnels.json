@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 609
+  },
+  "displayName": "Darkened Tunnels",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 609,
+    "Name": "Darkened Tunnels",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "15/610",
+    "NW": 0,
+    "SE": 0,
+    "SW": "15/608",
+    "U": 0,
+    "D": 0
+  }
+}

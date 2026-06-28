@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 1182
+  },
+  "displayName": "Asylum Ward",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 1182,
+    "Name": "Asylum Ward",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "9/1181 (Door)",
+    "S": 0,
+    "E": 0,
+    "W": "9/1183 (Cast: pre-0, post-596)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

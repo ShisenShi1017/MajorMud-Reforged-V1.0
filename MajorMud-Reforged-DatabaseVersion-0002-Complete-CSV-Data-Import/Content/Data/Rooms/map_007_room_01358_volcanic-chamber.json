@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1358
+  },
+  "displayName": "Volcanic Chamber",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1358,
+    "Name": "Volcanic Chamber",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 185,
+    "CMD": 4702,
+    "Spell": 526,
+    "Lair": "",
+    "Delay": 10,
+    "Placed": "",
+    "N": 0,
+    "S": "7/1357",
+    "E": 0,
+    "W": 0,
+    "NE": "7/1364 (Text: go crack, enter crack)",
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

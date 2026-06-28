@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2225
+  },
+  "displayName": "Mausoleum Labyrinth",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2225,
+    "Name": "Mausoleum Labyrinth",
+    "Light": -300,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 9350,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 2,
+    "Placed": "",
+    "N": "17/2224 (Door [91 picklocks/strength])",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "17/2218",
+    "NW": "17/2217",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

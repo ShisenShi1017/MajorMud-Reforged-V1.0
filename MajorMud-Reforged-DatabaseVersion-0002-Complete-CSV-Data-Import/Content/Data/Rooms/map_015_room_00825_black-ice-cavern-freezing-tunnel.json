@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 825
+  },
+  "displayName": "Black Ice Cavern, Freezing Tunnel",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 825,
+    "Name": "Black Ice Cavern, Freezing Tunnel",
+    "Light": -400,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 742,743,[32-32-33-2]",
+    "Delay": 1,
+    "Placed": "",
+    "N": 0,
+    "S": "15/826",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "15/824",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

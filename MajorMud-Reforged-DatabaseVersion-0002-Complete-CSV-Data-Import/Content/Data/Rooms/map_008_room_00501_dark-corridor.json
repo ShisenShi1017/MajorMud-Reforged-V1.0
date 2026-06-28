@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 501
+  },
+  "displayName": "Dark Corridor",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 501,
+    "Name": "Dark Corridor",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/502",
+    "S": "8/500",
+    "E": "8/509 (Door [51 picklocks/strength])",
+    "W": "8/503",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

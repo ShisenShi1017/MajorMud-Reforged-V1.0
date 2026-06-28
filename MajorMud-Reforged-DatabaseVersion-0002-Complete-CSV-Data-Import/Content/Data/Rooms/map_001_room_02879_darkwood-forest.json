@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2879
+  },
+  "displayName": "Darkwood Forest",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2879,
+    "Name": "Darkwood Forest",
+    "Light": -150,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 2,
+    "Placed": "",
+    "N": 0,
+    "S": "1/2878",
+    "E": 0,
+    "W": 0,
+    "NE": "1/2880",
+    "NW": "1/2890",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

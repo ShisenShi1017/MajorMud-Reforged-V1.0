@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 9469,
+  "displayName": "",
+  "fields": {
+    "Number": 9469,
+    "LinkTo": 0,
+    "Action": "5:message 1433:giveitem 1880\n9:message 2622:giveitem 1879\n16:message 1433:giveitem 1468\n20:message 1433:giveitem 1470\n25:message 1433:giveitem 1472\n30:message 1433:giveitem 1482\n40:message 1433:giveitem 1645\n45:message 1433:giveitem 1650\n50:message 1433:giveitem 1516\n55:message 1433:giveitem 1450\n56:message 1433:giveitem 1451\n57:message 1430:giveitem 1516\n59:message 1433:giveitem 1517\n60:message 1433:giveitem 1518\n71:message 1433:giveitem 1520\n82:message 1430:giveitem 1521\n90:message 1433:giveitem 1522\n96:message 1433:giveitem 1523\n100:message 1433:giveitem 1524\n\n",
+    "Called From": "Textblock(rndm) #9385(10%), Textblock(rndm) #9387(20%), Textblock(rndm) #9481"
+  }
+}

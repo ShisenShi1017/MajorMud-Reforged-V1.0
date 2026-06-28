@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2561
+  },
+  "displayName": "Large Manor",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2561,
+    "Name": "Large Manor",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "17/2318 (Door [31 picklocks/strength])",
+    "W": 0,
+    "NE": 0,
+    "NW": "17/2562",
+    "SE": 0,
+    "SW": "17/2566",
+    "U": 0,
+    "D": 0
+  }
+}

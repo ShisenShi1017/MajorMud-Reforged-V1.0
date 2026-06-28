@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 800
+  },
+  "displayName": "Black Ice Cavern, Glowing Tunnel",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 800,
+    "Name": "Black Ice Cavern, Glowing Tunnel",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 924,
+    "Lair": "(Max 2): 742,743,[32-32-33-2]",
+    "Delay": 1,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "15/801",
+    "NE": 0,
+    "NW": 0,
+    "SE": "15/799",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

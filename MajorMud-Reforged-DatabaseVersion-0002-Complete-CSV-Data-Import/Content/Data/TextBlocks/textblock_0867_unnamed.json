@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 867,
+  "displayName": "",
+  "fields": {
+    "Number": 867,
+    "LinkTo": 0,
+    "Action": "go vortex:adddelay 5:minlevel 40 1220:message 1205:teleport 731 3:message 1221\nenter vortex:adddelay 5:minlevel 40 1220:message 1205:teleport 731 3:message 1221\ngo swirling vortex:adddelay 5:minlevel 40 1220:message 1205:teleport 731 3:message 1221\n",
+    "Called From": "Room 8/958, Room 8/968, Room 8/978, Room 8/988"
+  }
+}

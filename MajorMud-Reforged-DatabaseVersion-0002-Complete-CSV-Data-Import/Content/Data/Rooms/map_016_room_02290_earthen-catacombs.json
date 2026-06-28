@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 2290
+  },
+  "displayName": "Earthen Catacombs",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 2290,
+    "Name": "Earthen Catacombs",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "16/2291",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "16/2287",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

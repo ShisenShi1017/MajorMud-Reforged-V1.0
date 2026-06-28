@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 528
+  },
+  "displayName": "Temple Hall",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 528,
+    "Name": "Temple Hall",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/530",
+    "S": "1/527",
+    "E": "1/534 (Door)",
+    "W": "1/533 (Door)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

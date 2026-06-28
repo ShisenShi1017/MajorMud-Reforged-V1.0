@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 3,
+    "Room Number": 642
+  },
+  "displayName": "Ancient Ruin",
+  "fields": {
+    "Map Number": 3,
+    "Room Number": 642,
+    "Name": "Ancient Ruin",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "3/644",
+    "NW": "3/643",
+    "SE": "3/637",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 58,
+  "displayName": "",
+  "fields": {
+    "Number": 58,
+    "LinkTo": 59,
+    "Action": "healing:152\nminor healing:153\nmajor healing:154\ngreater healing:155\ncure poison:156\ncure disease:157\nremove curse:158\n",
+    "Called From": "Monster #47, Monster #73"
+  }
+}

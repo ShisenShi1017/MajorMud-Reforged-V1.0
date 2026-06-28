@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 1423
+  },
+  "displayName": "Ancient Darkwood Tree",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 1423,
+    "Name": "Ancient Darkwood Tree",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 503,[30-24-24-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "9/1422 (Door)",
+    "E": "9/1424",
+    "W": "9/1425 (Door [1000 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

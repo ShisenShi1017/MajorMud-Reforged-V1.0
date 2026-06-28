@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4702,
+  "displayName": "",
+  "fields": {
+    "Number": 4702,
+    "LinkTo": 0,
+    "Action": "touch ruby:nomonsters 503:minlevel 35 541:failability 131:giveability 131 3:checkability 131 3:testability 131 3:addexp 35000000:message 541:message 542:message 543:message 3387:addability 58 1:addability 70 2\nmove ruby:nomonsters 503:minlevel 35 541:failability 131:giveability 131 1:checkability 131 3:testability 131 3:addexp 35000000:message 541:message 542:message 543:message 3387:addability 58 1:addability 70 2\nget ruby:nomonsters 503:failability 131:minlevel 35 541:giveability 131 1:checkability 131 3:testability 131 3:addexp 35000000:message 541:message 542:message 543:message 3387:addability 58 1:addability 70 2\ntouch ruby:nomonsters 503:checkability 131 1:testability 131 1:minlevel 35 541:giveability 131 3:addexp 35000000:message 541:message 542:message 543:message 3387\nmove ruby:nomonsters 503:checkability 131 1:testability 131 1:minlevel 35 541:giveability 131 3:addexp 35000000:message 541:message 542:message 543:message 3387\nget ruby:nomonsters 503:checkability 131 1:testability 131 1:minlevel 35 541:giveability 131 3:addexp 35000000:message 541:message 542:message 543:message 3387\n\n",
+    "Called From": "Room 7/1358"
+  }
+}

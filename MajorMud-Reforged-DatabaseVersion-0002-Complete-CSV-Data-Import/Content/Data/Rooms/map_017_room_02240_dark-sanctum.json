@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 2240
+  },
+  "displayName": "Dark Sanctum",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 2240,
+    "Name": "Dark Sanctum",
+    "Light": -300,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 9661,
+    "Spell": 0,
+    "Lair": "(Max 3): 835,[29-39-39-3]",
+    "Delay": 2,
+    "Placed": "",
+    "N": "Action#1 [on the SE exit of this room]: press l, push l",
+    "S": "Action#2 [on the SE exit of this room]: press i, push i",
+    "E": "Action#3 [on the SE exit of this room]: press g, push g",
+    "W": "Action#4 [on the SE exit of this room]: press h, push h",
+    "NE": "Action#5 [on the SE exit of this room]: press t, push t",
+    "NW": 0,
+    "SE": "17/2237 (Hidden/Needs 5 Actions, specific order)",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

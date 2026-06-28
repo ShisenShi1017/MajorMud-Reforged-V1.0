@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 960,
+  "displayName": "",
+  "fields": {
+    "Number": 960,
+    "LinkTo": 0,
+    "Action": "25:summon 392\n100:addexp 0\n",
+    "Called From": "Textblock(rndm) #959"
+  }
+}

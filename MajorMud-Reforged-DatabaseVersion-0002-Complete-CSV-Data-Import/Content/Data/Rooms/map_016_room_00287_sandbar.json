@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 287
+  },
+  "displayName": "Sandbar",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 287,
+    "Name": "Sandbar",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 691,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 5): 628,[31-18-18-5]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "16/286",
+    "E": "Action#1 [on the D exit of this room]: dig sand, move sand, dig claw (Item: 1289)",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "16/2141 (Hidden/Needs 1 Actions, any order)"
+  }
+}

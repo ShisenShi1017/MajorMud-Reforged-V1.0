@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 1087,
+  "displayName": "",
+  "fields": {
+    "Number": 1087,
+    "LinkTo": 0,
+    "Action": "50:text 1063\n100:giveitem 947:text 1088\n",
+    "Called From": "Textblock(rndm) #1086"
+  }
+}

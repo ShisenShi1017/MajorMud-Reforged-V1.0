@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 1182
+  },
+  "displayName": "Storm Fortress, Hallway",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 1182,
+    "Name": "Storm Fortress, Hallway",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 4): 638,[5-35-35-4]",
+    "Delay": 6,
+    "Placed": "",
+    "N": "16/1183 (Door [61 picklocks/strength])",
+    "S": "16/1181",
+    "E": "16/1185 (Door [61 picklocks/strength])",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

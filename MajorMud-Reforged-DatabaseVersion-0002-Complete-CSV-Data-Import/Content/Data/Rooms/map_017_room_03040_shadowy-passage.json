@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 3040
+  },
+  "displayName": "Shadowy Passage",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 3040,
+    "Name": "Shadowy Passage",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 1057,
+    "CMD": 4250,
+    "Spell": 1325,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "17/3041 (Door [101 picklocks/strength])",
+    "S": 0,
+    "E": 0,
+    "W": "17/3038 (Door [101 picklocks/strength])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

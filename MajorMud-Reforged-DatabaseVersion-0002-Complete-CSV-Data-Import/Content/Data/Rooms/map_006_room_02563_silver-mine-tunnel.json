@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 2563
+  },
+  "displayName": "Silver Mine Tunnel",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 2563,
+    "Name": "Silver Mine Tunnel",
+    "Light": -100,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "6/2569 (Hidden/Needs 1 Actions, any order)",
+    "NE": "6/2562",
+    "NW": 0,
+    "SE": "6/2564",
+    "SW": 0,
+    "U": 0,
+    "D": "Action [on the W exit of this room]: say midnight reveals secret knowledge, speak midnight reveals secret knowledge, say 'midnight reveals secret knowledge'"
+  }
+}

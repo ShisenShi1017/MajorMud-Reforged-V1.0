@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 10,
+    "Room Number": 127
+  },
+  "displayName": "Narrow Plateau",
+  "fields": {
+    "Map Number": 10,
+    "Room Number": 127,
+    "Name": "Narrow Plateau",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 201,[16-2-2-1]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "10/126",
+    "S": 0,
+    "E": 0,
+    "W": "10/128",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

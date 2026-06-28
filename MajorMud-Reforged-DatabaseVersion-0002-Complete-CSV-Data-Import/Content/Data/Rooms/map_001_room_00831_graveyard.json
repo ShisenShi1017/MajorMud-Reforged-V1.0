@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 831
+  },
+  "displayName": "Graveyard",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 831,
+    "Name": "Graveyard",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 9120,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "1381,",
+    "N": "1/830",
+    "S": "1/832",
+    "E": "1/842",
+    "W": "1/2607",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

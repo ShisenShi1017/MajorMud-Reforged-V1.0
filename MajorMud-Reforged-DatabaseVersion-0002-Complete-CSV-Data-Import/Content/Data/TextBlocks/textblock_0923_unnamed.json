@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 923,
+  "displayName": "",
+  "fields": {
+    "Number": 923,
+    "LinkTo": 0,
+    "Action": "adddelay 5:price 3000 318:cast 221\n",
+    "Called From": "Textblock #922"
+  }
+}

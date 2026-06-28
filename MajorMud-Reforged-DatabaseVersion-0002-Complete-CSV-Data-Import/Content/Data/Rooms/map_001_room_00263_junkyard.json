@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 263
+  },
+  "displayName": "Junkyard",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 263,
+    "Name": "Junkyard",
+    "Light": 0,
+    "Shop": 177,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/537 (Level: 10 to 999)",
+    "S": "1/271 (Level: 10 to 999)",
+    "E": "1/530 (Level: 10 to 999)",
+    "W": "1/536 (Level: 10 to 999)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "1/686 (Text: go manhole, go man, enter manhole)"
+  }
+}

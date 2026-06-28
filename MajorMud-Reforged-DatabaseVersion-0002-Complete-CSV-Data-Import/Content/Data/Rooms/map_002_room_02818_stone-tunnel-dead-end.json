@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 2818
+  },
+  "displayName": "Stone Tunnel, Dead End",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 2818,
+    "Name": "Stone Tunnel, Dead End",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action#1 [on the SW exit of this room]: move boulder, turn boulder, push boulder",
+    "S": 0,
+    "E": 0,
+    "W": "2/2817",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "2/2819 (Hidden/Needs 1 Actions, specific order)",
+    "U": 0,
+    "D": 0
+  }
+}

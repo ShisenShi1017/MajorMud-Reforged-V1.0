@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 2058
+  },
+  "displayName": "Great Pyramid",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 2058,
+    "Name": "Great Pyramid",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 691,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "12/2059",
+    "S": "12/2057",
+    "E": 0,
+    "W": "12/2073 (Cast: pre-0, post-735)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

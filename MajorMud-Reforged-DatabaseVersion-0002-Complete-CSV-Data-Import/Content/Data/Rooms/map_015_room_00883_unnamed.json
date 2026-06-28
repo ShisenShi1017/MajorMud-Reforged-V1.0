@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 883
+  },
+  "displayName": "",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 883,
+    "Name": "",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 1614,
+    "Spell": 0,
+    "Lair": "(Max 2): 516,[32-102-102-2]",
+    "Delay": 1,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "15/884",
+    "NW": "15/888",
+    "SE": "15/890",
+    "SW": "15/882 (Key: 1024 [or 61 picklocks])",
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1313
+  },
+  "displayName": "Black House, Foyer",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1313,
+    "Name": "Black House, Foyer",
+    "Light": -75,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 29,[8-2-2-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/1441",
+    "S": 0,
+    "E": "1/1440",
+    "W": "1/1224 (Key: 172 [or 100 picklocks])",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 16,
+    "Room Number": 1111
+  },
+  "displayName": "Stone Encampment",
+  "fields": {
+    "Map Number": 16,
+    "Room Number": 1111,
+    "Name": "Stone Encampment",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 640,641,[31-39-40-3]",
+    "Delay": 1,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "16/1110",
+    "U": 0,
+    "D": 0
+  }
+}

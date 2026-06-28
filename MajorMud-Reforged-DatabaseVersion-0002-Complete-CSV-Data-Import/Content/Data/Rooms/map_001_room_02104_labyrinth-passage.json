@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2104
+  },
+  "displayName": "Labyrinth Passage",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2104,
+    "Name": "Labyrinth Passage",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 65,66,110,64,111,63,67,72,[11-1-5-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "1/2106 (Hidden/Needs 4 Actions, specific order)",
+    "E": "1/2103",
+    "W": "1/1843",
+    "NE": "Action#1 [on the S exit of this room]: pull right horn, move right horn",
+    "NW": "Action#2 [on the S exit of this room]: push right eye",
+    "SE": 0,
+    "SW": "Action#3 [on the S exit of this room]: pull left horn, move left horn",
+    "U": "Action#4 [on the S exit of this room]: pull ring, pull nose ring, pull nose-ring",
+    "D": "1/2125 (Text: push left eye)"
+  }
+}

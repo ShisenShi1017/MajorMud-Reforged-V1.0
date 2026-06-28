@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 1043
+  },
+  "displayName": "Rocky Tunnel",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 1043,
+    "Name": "Rocky Tunnel",
+    "Light": -75,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": "7/1044",
+    "W": 0,
+    "NE": 0,
+    "NW": "7/1042",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 955
+  },
+  "displayName": "Arcane Laboratory",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 955,
+    "Name": "Arcane Laboratory",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 858,
+    "Spell": 0,
+    "Lair": "(Max 4): 361,[22-53-53-4]",
+    "Delay": 5,
+    "Placed": "819,",
+    "N": 0,
+    "S": 0,
+    "E": "8/951 (Door [any picklocks/strength])",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

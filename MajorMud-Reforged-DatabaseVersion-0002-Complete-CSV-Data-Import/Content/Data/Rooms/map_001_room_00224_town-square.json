@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 224
+  },
+  "displayName": "Town Square",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 224,
+    "Name": "Town Square",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 784,
+    "CMD": 0,
+    "Spell": 918,
+    "Lair": "(Max 3): 14,40,757,214,[5-1-5-3]",
+    "Delay": 5,
+    "Placed": "796,",
+    "N": "1/223",
+    "S": "1/225",
+    "E": "1/254",
+    "W": "1/301",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": "1/766 (Text: go manhole, go man, enter manhole)"
+  }
+}

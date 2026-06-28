@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 6,
+    "Room Number": 822
+  },
+  "displayName": "Main Hall",
+  "fields": {
+    "Map Number": 6,
+    "Room Number": 822,
+    "Name": "Main Hall",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "6/812",
+    "E": "6/781",
+    "W": 0,
+    "NE": 0,
+    "NW": "6/823",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 2025
+  },
+  "displayName": "Labyrinth Passage, Dead End",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 2025,
+    "Name": "Labyrinth Passage, Dead End",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 65,66,110,64,111,63,67,72,[11-1-5-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/2024",
+    "S": "Action#1 [on the N exit of room 1/2022]: turn sun right, turn sun symbol right, twist sun right",
+    "E": "Action#2 [on the N exit of room 1/2022]: push moon",
+    "W": "Action#3 [on the N exit of room 1/2022]: push star",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

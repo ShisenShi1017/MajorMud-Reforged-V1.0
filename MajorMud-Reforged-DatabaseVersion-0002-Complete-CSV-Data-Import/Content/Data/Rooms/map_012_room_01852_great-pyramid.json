@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 12,
+    "Room Number": 1852
+  },
+  "displayName": "Great Pyramid",
+  "fields": {
+    "Map Number": 12,
+    "Room Number": 1852,
+    "Name": "Great Pyramid",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 691,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "12/1851 (Hidden/Needs 1 Actions, any order)",
+    "E": "12/1858",
+    "W": "12/1857",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4391,
+  "displayName": "",
+  "fields": {
+    "Number": 4391,
+    "LinkTo": 0,
+    "Action": "checkitem 2021:giveitem 844:message 3444\ncheckitem 2022:giveitem 1020:message 3444\ncheckitem 2023:giveitem 1024:message 3444\ncheckitem 2024:giveitem 1028:message 3444\ncheckitem 2025:giveitem 1032:message 3444\ncheckitem 2026:giveitem 1036:message 3444\ncheckitem 2027:giveitem 1040:message 3444\ncheckitem 2028:giveitem 1044:message 3444\ncheckitem 2029:giveitem 1048:message 3444\ncheckitem 2030:giveitem 1052:message 3444\n\n",
+    "Called From": "Spell #1390"
+  }
+}

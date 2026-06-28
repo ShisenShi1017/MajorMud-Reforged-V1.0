@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 17,
+    "Room Number": 636
+  },
+  "displayName": "Blackwood Forest, Winding Trail",
+  "fields": {
+    "Map Number": 17,
+    "Room Number": 636,
+    "Name": "Blackwood Forest, Winding Trail",
+    "Light": -150,
+    "Shop": 0,
+    "NPC": 817,
+    "CMD": 0,
+    "Spell": 1040,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "17/635 (Trap, 200 damage)",
+    "NW": 0,
+    "SE": "17/637 (Trap, 200 damage)",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

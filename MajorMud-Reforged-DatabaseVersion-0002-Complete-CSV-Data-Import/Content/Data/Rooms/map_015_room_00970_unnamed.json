@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 970
+  },
+  "displayName": "",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 970,
+    "Name": "",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 1620,
+    "Spell": 0,
+    "Lair": "(Max 3): 534,[32-108-108-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "15/969",
+    "S": 0,
+    "E": 0,
+    "W": 0,
+    "NE": "15/971 (Key: 1049 [or 331 picklocks])",
+    "NW": "15/972 (Key: 1049 [or 331 picklocks])",
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

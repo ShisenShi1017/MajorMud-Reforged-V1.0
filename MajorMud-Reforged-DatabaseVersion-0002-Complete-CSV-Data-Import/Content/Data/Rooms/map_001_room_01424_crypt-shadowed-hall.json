@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1424
+  },
+  "displayName": "Crypt, Shadowed Hall",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1424,
+    "Name": "Crypt, Shadowed Hall",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 310,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/1432 (Class: 5 OK, 0 NO)",
+    "S": "1/1423",
+    "E": "1/1433 (Class: 4 OK, 0 NO)",
+    "W": "1/1429 (Class: 9 OK, 0 NO)",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

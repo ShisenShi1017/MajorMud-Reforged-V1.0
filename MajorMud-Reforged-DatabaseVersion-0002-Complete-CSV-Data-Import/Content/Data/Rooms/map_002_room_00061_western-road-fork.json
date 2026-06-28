@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 2,
+    "Room Number": 61
+  },
+  "displayName": "Western Road, Fork",
+  "fields": {
+    "Map Number": 2,
+    "Room Number": 61,
+    "Name": "Western Road, Fork",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 223,224,225,226,227,228,229,[9-5-11-3]",
+    "Delay": 10,
+    "Placed": "",
+    "N": "2/60",
+    "S": 0,
+    "E": 0,
+    "W": "2/62",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": "2/116",
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 1245
+  },
+  "displayName": "Crypt, Stone Hallway",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 1245,
+    "Name": "Crypt, Stone Hallway",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": 0,
+    "E": 0,
+    "W": "1/1246 (Door [41 picklocks/strength])",
+    "NE": "1/1243",
+    "NW": 0,
+    "SE": "1/1247",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

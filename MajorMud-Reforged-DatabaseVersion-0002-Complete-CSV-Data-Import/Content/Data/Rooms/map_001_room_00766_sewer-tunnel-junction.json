@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 1,
+    "Room Number": 766
+  },
+  "displayName": "Sewer Tunnel, Junction",
+  "fields": {
+    "Map Number": 1,
+    "Room Number": 766,
+    "Name": "Sewer Tunnel, Junction",
+    "Light": -125,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 1117,1,2,3,4,5,7,109,6,10,[6-0-5-1]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "1/765",
+    "S": "1/793",
+    "E": "1/775",
+    "W": "1/767",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "1/224",
+    "D": 0
+  }
+}

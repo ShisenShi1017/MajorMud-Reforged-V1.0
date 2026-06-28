@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 9,
+    "Room Number": 795
+  },
+  "displayName": "Guard Tower",
+  "fields": {
+    "Map Number": 9,
+    "Room Number": 795,
+    "Name": "Guard Tower",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 1): 378,[24-5-5-1]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "9/796 (Door [6 picklocks/strength])",
+    "E": "9/794 (Door [6 picklocks/strength])",
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": "9/769 (Door)",
+    "D": 0
+  }
+}

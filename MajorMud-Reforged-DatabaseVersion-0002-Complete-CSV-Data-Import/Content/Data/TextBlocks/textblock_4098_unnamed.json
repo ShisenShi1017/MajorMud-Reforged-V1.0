@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 4098,
+  "displayName": "",
+  "fields": {
+    "Number": 4098,
+    "LinkTo": 0,
+    "Action": "checkspell 512 4099:cast 515\ncheckspell 513 4099:cast 515\n\n",
+    "Called From": "Spell #515"
+  }
+}

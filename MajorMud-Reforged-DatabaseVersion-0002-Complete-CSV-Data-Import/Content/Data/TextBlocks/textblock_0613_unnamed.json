@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 613,
+  "displayName": "",
+  "fields": {
+    "Number": 613,
+    "LinkTo": 0,
+    "Action": "jump east:message 1234:testskill agility -10 612:teleport 730 8:message 1235\nleap east:message 1234:testskill agility -10 612:teleport 730 8:message 1235\n",
+    "Called From": "Room 8/761"
+  }
+}

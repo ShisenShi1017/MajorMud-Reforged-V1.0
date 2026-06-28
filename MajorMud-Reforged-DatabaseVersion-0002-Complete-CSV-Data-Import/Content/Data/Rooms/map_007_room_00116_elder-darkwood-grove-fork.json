@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 7,
+    "Room Number": 116
+  },
+  "displayName": "Elder Darkwood Grove, Fork",
+  "fields": {
+    "Map Number": 7,
+    "Room Number": 116,
+    "Name": "Elder Darkwood Grove, Fork",
+    "Light": -50,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 2): 115,116,117,118,119,120,121,[25-1-7-2]",
+    "Delay": 5,
+    "Placed": "",
+    "N": 0,
+    "S": "7/117",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": "7/79",
+    "SE": "7/115",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

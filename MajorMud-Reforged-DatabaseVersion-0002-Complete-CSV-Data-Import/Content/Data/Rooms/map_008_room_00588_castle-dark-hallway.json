@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 588
+  },
+  "displayName": "Castle, Dark Hallway",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 588,
+    "Name": "Castle, Dark Hallway",
+    "Light": -200,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 5,
+    "Placed": "",
+    "N": "8/589 (Door [21 picklocks/strength])",
+    "S": 0,
+    "E": "8/566 (Door [21 picklocks/strength])",
+    "W": "8/587",
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

@@ -1,0 +1,5638 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "monsters.TXT",
+  "recordCount": 1126,
+  "primaryKey": "Number",
+  "records": [
+    {
+      "primaryKey": 1,
+      "displayName": "giant rat",
+      "file": "monster_0001_giant-rat.json"
+    },
+    {
+      "primaryKey": 2,
+      "displayName": "lashworm",
+      "file": "monster_0002_lashworm.json"
+    },
+    {
+      "primaryKey": 3,
+      "displayName": "filthbug",
+      "file": "monster_0003_filthbug.json"
+    },
+    {
+      "primaryKey": 4,
+      "displayName": "carrion beast",
+      "file": "monster_0004_carrion-beast.json"
+    },
+    {
+      "primaryKey": 5,
+      "displayName": "acid slime",
+      "file": "monster_0005_acid-slime.json"
+    },
+    {
+      "primaryKey": 6,
+      "displayName": "orc rogue",
+      "file": "monster_0006_orc-rogue.json"
+    },
+    {
+      "primaryKey": 7,
+      "displayName": "kobold thief",
+      "file": "monster_0007_kobold-thief.json"
+    },
+    {
+      "primaryKey": 8,
+      "displayName": "cave worm",
+      "file": "monster_0008_cave-worm.json"
+    },
+    {
+      "primaryKey": 10,
+      "displayName": "thug",
+      "file": "monster_0010_thug.json"
+    },
+    {
+      "primaryKey": 11,
+      "displayName": "skeleton",
+      "file": "monster_0011_skeleton.json"
+    },
+    {
+      "primaryKey": 12,
+      "displayName": "zombie",
+      "file": "monster_0012_zombie.json"
+    },
+    {
+      "primaryKey": 13,
+      "displayName": "guardsman",
+      "file": "monster_0013_guardsman.json"
+    },
+    {
+      "primaryKey": 14,
+      "displayName": "guardsman",
+      "file": "monster_0014_guardsman.json"
+    },
+    {
+      "primaryKey": 15,
+      "displayName": "shade",
+      "file": "monster_0015_shade.json"
+    },
+    {
+      "primaryKey": 16,
+      "displayName": "ghoul",
+      "file": "monster_0016_ghoul.json"
+    },
+    {
+      "primaryKey": 17,
+      "displayName": "wight",
+      "file": "monster_0017_wight.json"
+    },
+    {
+      "primaryKey": 18,
+      "displayName": "orc sentry",
+      "file": "monster_0018_orc-sentry.json"
+    },
+    {
+      "primaryKey": 19,
+      "displayName": "orc lieutenant",
+      "file": "monster_0019_orc-lieutenant.json"
+    },
+    {
+      "primaryKey": 20,
+      "displayName": "mercenary",
+      "file": "monster_0020_mercenary.json"
+    },
+    {
+      "primaryKey": 21,
+      "displayName": "half-ogre bodyguard",
+      "file": "monster_0021_half-ogre-bodyguard.json"
+    },
+    {
+      "primaryKey": 22,
+      "displayName": "Aiken",
+      "file": "monster_0022_aiken.json"
+    },
+    {
+      "primaryKey": 23,
+      "displayName": "Thuluk",
+      "file": "monster_0023_thuluk.json"
+    },
+    {
+      "primaryKey": 24,
+      "displayName": "Helfgrim",
+      "file": "monster_0024_helfgrim.json"
+    },
+    {
+      "primaryKey": 25,
+      "displayName": "Colin",
+      "file": "monster_0025_colin.json"
+    },
+    {
+      "primaryKey": 26,
+      "displayName": "Skali",
+      "file": "monster_0026_skali.json"
+    },
+    {
+      "primaryKey": 27,
+      "displayName": "Gurbultis",
+      "file": "monster_0027_gurbultis.json"
+    },
+    {
+      "primaryKey": 28,
+      "displayName": "Lady Sentara",
+      "file": "monster_0028_lady-sentara.json"
+    },
+    {
+      "primaryKey": 29,
+      "displayName": "dark cultist",
+      "file": "monster_0029_dark-cultist.json"
+    },
+    {
+      "primaryKey": 30,
+      "displayName": "grey spider",
+      "file": "monster_0030_grey-spider.json"
+    },
+    {
+      "primaryKey": 31,
+      "displayName": "mummy",
+      "file": "monster_0031_mummy.json"
+    },
+    {
+      "primaryKey": 32,
+      "displayName": "bounty hunter",
+      "file": "monster_0032_bounty-hunter.json"
+    },
+    {
+      "primaryKey": 33,
+      "displayName": "dark cleric",
+      "file": "monster_0033_dark-cleric.json"
+    },
+    {
+      "primaryKey": 34,
+      "displayName": "dark priest",
+      "file": "monster_0034_dark-priest.json"
+    },
+    {
+      "primaryKey": 35,
+      "displayName": "dark paladin",
+      "file": "monster_0035_dark-paladin.json"
+    },
+    {
+      "primaryKey": 36,
+      "displayName": "hellhound",
+      "file": "monster_0036_hellhound.json"
+    },
+    {
+      "primaryKey": 37,
+      "displayName": "tentacled abomination",
+      "file": "monster_0037_tentacled-abomination.json"
+    },
+    {
+      "primaryKey": 38,
+      "displayName": "Guildmaster",
+      "file": "monster_0038_guildmaster.json"
+    },
+    {
+      "primaryKey": 39,
+      "displayName": "old man",
+      "file": "monster_0039_old-man.json"
+    },
+    {
+      "primaryKey": 40,
+      "displayName": "Sheriff Lionheart",
+      "file": "monster_0040_sheriff-lionheart.json"
+    },
+    {
+      "primaryKey": 41,
+      "displayName": "Giovanni",
+      "file": "monster_0041_giovanni.json"
+    },
+    {
+      "primaryKey": 42,
+      "displayName": "Meia",
+      "file": "monster_0042_meia.json"
+    },
+    {
+      "primaryKey": 43,
+      "displayName": "Sarkhee",
+      "file": "monster_0043_sarkhee.json"
+    },
+    {
+      "primaryKey": 45,
+      "displayName": "bishop",
+      "file": "monster_0045_bishop.json"
+    },
+    {
+      "primaryKey": 46,
+      "displayName": "priest",
+      "file": "monster_0046_priest.json"
+    },
+    {
+      "primaryKey": 47,
+      "displayName": "healer",
+      "file": "monster_0047_healer.json"
+    },
+    {
+      "primaryKey": 48,
+      "displayName": "dark goblin archer",
+      "file": "monster_0048_dark-goblin-archer.json"
+    },
+    {
+      "primaryKey": 49,
+      "displayName": "bandit",
+      "file": "monster_0049_bandit.json"
+    },
+    {
+      "primaryKey": 50,
+      "displayName": "wild dog",
+      "file": "monster_0050_wild-dog.json"
+    },
+    {
+      "primaryKey": 51,
+      "displayName": "forest spider",
+      "file": "monster_0051_forest-spider.json"
+    },
+    {
+      "primaryKey": 52,
+      "displayName": "giant spider",
+      "file": "monster_0052_giant-spider.json"
+    },
+    {
+      "primaryKey": 53,
+      "displayName": "dark goblin",
+      "file": "monster_0053_dark-goblin.json"
+    },
+    {
+      "primaryKey": 54,
+      "displayName": "kobold slave",
+      "file": "monster_0054_kobold-slave.json"
+    },
+    {
+      "primaryKey": 55,
+      "displayName": "black orc",
+      "file": "monster_0055_black-orc.json"
+    },
+    {
+      "primaryKey": 56,
+      "displayName": "dire wolf",
+      "file": "monster_0056_dire-wolf.json"
+    },
+    {
+      "primaryKey": 57,
+      "displayName": "slime beast",
+      "file": "monster_0057_slime-beast.json"
+    },
+    {
+      "primaryKey": 58,
+      "displayName": "half-ogre warrior",
+      "file": "monster_0058_half-ogre-warrior.json"
+    },
+    {
+      "primaryKey": 59,
+      "displayName": "Thrag",
+      "file": "monster_0059_thrag.json"
+    },
+    {
+      "primaryKey": 60,
+      "displayName": "minotaur champion",
+      "file": "monster_0060_minotaur-champion.json"
+    },
+    {
+      "primaryKey": 61,
+      "displayName": "boatman",
+      "file": "monster_0061_boatman.json"
+    },
+    {
+      "primaryKey": 62,
+      "displayName": "crippled adventurer",
+      "file": "monster_0062_crippled-adventurer.json"
+    },
+    {
+      "primaryKey": 63,
+      "displayName": "gigantic black ooze",
+      "file": "monster_0063_gigantic-black-ooze.json"
+    },
+    {
+      "primaryKey": 64,
+      "displayName": "death dog",
+      "file": "monster_0064_death-dog.json"
+    },
+    {
+      "primaryKey": 65,
+      "displayName": "skeletal warrior",
+      "file": "monster_0065_skeletal-warrior.json"
+    },
+    {
+      "primaryKey": 66,
+      "displayName": "moaning spirit",
+      "file": "monster_0066_moaning-spirit.json"
+    },
+    {
+      "primaryKey": 67,
+      "displayName": "huge tiger beetle",
+      "file": "monster_0067_huge-tiger-beetle.json"
+    },
+    {
+      "primaryKey": 68,
+      "displayName": "guardian golem",
+      "file": "monster_0068_guardian-golem.json"
+    },
+    {
+      "primaryKey": 69,
+      "displayName": "chest",
+      "file": "monster_0069_chest.json"
+    },
+    {
+      "primaryKey": 70,
+      "displayName": "warlock mercenary",
+      "file": "monster_0070_warlock-mercenary.json"
+    },
+    {
+      "primaryKey": 71,
+      "displayName": "giant bat",
+      "file": "monster_0071_giant-bat.json"
+    },
+    {
+      "primaryKey": 72,
+      "displayName": "gelatinous cube",
+      "file": "monster_0072_gelatinous-cube.json"
+    },
+    {
+      "primaryKey": 73,
+      "displayName": "healer",
+      "file": "monster_0073_healer.json"
+    },
+    {
+      "primaryKey": 74,
+      "displayName": "Nathaniel",
+      "file": "monster_0074_nathaniel.json"
+    },
+    {
+      "primaryKey": 75,
+      "displayName": "Betram",
+      "file": "monster_0075_betram.json"
+    },
+    {
+      "primaryKey": 76,
+      "displayName": "Dathalar",
+      "file": "monster_0076_dathalar.json"
+    },
+    {
+      "primaryKey": 77,
+      "displayName": "Rayth",
+      "file": "monster_0077_rayth.json"
+    },
+    {
+      "primaryKey": 78,
+      "displayName": "Corwyn",
+      "file": "monster_0078_corwyn.json"
+    },
+    {
+      "primaryKey": 79,
+      "displayName": "hardened practice dummy",
+      "file": "monster_0079_hardened-practice-dummy.json"
+    },
+    {
+      "primaryKey": 80,
+      "displayName": "cave bear",
+      "file": "monster_0080_cave-bear.json"
+    },
+    {
+      "primaryKey": 81,
+      "displayName": "ferryman",
+      "file": "monster_0081_ferryman.json"
+    },
+    {
+      "primaryKey": 82,
+      "displayName": "troll",
+      "file": "monster_0082_troll.json"
+    },
+    {
+      "primaryKey": 83,
+      "displayName": "warrior spirit",
+      "file": "monster_0083_warrior-spirit.json"
+    },
+    {
+      "primaryKey": 84,
+      "displayName": "fire lizard",
+      "file": "monster_0084_fire-lizard.json"
+    },
+    {
+      "primaryKey": 85,
+      "displayName": "witchunter spirit",
+      "file": "monster_0085_witchunter-spirit.json"
+    },
+    {
+      "primaryKey": 86,
+      "displayName": "ogre",
+      "file": "monster_0086_ogre.json"
+    },
+    {
+      "primaryKey": 87,
+      "displayName": "mystic spirit",
+      "file": "monster_0087_mystic-spirit.json"
+    },
+    {
+      "primaryKey": 88,
+      "displayName": "ranger spirit",
+      "file": "monster_0088_ranger-spirit.json"
+    },
+    {
+      "primaryKey": 89,
+      "displayName": "horned demon",
+      "file": "monster_0089_horned-demon.json"
+    },
+    {
+      "primaryKey": 90,
+      "displayName": "young girl",
+      "file": "monster_0090_young-girl.json"
+    },
+    {
+      "primaryKey": 91,
+      "displayName": "priest spirit",
+      "file": "monster_0091_priest-spirit.json"
+    },
+    {
+      "primaryKey": 92,
+      "displayName": "cleric spirit",
+      "file": "monster_0092_cleric-spirit.json"
+    },
+    {
+      "primaryKey": 93,
+      "displayName": "paladin spirit",
+      "file": "monster_0093_paladin-spirit.json"
+    },
+    {
+      "primaryKey": 94,
+      "displayName": "missionary spirit",
+      "file": "monster_0094_missionary-spirit.json"
+    },
+    {
+      "primaryKey": 95,
+      "displayName": "owlbear",
+      "file": "monster_0095_owlbear.json"
+    },
+    {
+      "primaryKey": 96,
+      "displayName": "ninja spirit",
+      "file": "monster_0096_ninja-spirit.json"
+    },
+    {
+      "primaryKey": 97,
+      "displayName": "thief spirit",
+      "file": "monster_0097_thief-spirit.json"
+    },
+    {
+      "primaryKey": 98,
+      "displayName": "bard spirit",
+      "file": "monster_0098_bard-spirit.json"
+    },
+    {
+      "primaryKey": 99,
+      "displayName": "fire elemental",
+      "file": "monster_0099_fire-elemental.json"
+    },
+    {
+      "primaryKey": 100,
+      "displayName": "frost serpent",
+      "file": "monster_0100_frost-serpent.json"
+    },
+    {
+      "primaryKey": 101,
+      "displayName": "two-headed hydra",
+      "file": "monster_0101_two-headed-hydra.json"
+    },
+    {
+      "primaryKey": 102,
+      "displayName": "gypsy spirit",
+      "file": "monster_0102_gypsy-spirit.json"
+    },
+    {
+      "primaryKey": 103,
+      "displayName": "warlock spirit",
+      "file": "monster_0103_warlock-spirit.json"
+    },
+    {
+      "primaryKey": 104,
+      "displayName": "mage spirit",
+      "file": "monster_0104_mage-spirit.json"
+    },
+    {
+      "primaryKey": 105,
+      "displayName": "druid spirit",
+      "file": "monster_0105_druid-spirit.json"
+    },
+    {
+      "primaryKey": 106,
+      "displayName": "Aldreth",
+      "file": "monster_0106_aldreth.json"
+    },
+    {
+      "primaryKey": 107,
+      "displayName": "roc hatchling",
+      "file": "monster_0107_roc-hatchling.json"
+    },
+    {
+      "primaryKey": 108,
+      "displayName": "ice sorceress",
+      "file": "monster_0108_ice-sorceress.json"
+    },
+    {
+      "primaryKey": 109,
+      "displayName": "giant rat",
+      "file": "monster_0109_giant-rat.json"
+    },
+    {
+      "primaryKey": 110,
+      "displayName": "stone golem",
+      "file": "monster_0110_stone-golem.json"
+    },
+    {
+      "primaryKey": 111,
+      "displayName": "minotaur",
+      "file": "monster_0111_minotaur.json"
+    },
+    {
+      "primaryKey": 112,
+      "displayName": "giant snake",
+      "file": "monster_0112_giant-snake.json"
+    },
+    {
+      "primaryKey": 113,
+      "displayName": "banshee",
+      "file": "monster_0113_banshee.json"
+    },
+    {
+      "primaryKey": 114,
+      "displayName": "minotaur chieftain",
+      "file": "monster_0114_minotaur-chieftain.json"
+    },
+    {
+      "primaryKey": 115,
+      "displayName": "vampire rosebush",
+      "file": "monster_0115_vampire-rosebush.json"
+    },
+    {
+      "primaryKey": 116,
+      "displayName": "archer bush",
+      "file": "monster_0116_archer-bush.json"
+    },
+    {
+      "primaryKey": 117,
+      "displayName": "animated tree",
+      "file": "monster_0117_animated-tree.json"
+    },
+    {
+      "primaryKey": 118,
+      "displayName": "carnivorous plant",
+      "file": "monster_0118_carnivorous-plant.json"
+    },
+    {
+      "primaryKey": 119,
+      "displayName": "wood golem",
+      "file": "monster_0119_wood-golem.json"
+    },
+    {
+      "primaryKey": 120,
+      "displayName": "earth elemental",
+      "file": "monster_0120_earth-elemental.json"
+    },
+    {
+      "primaryKey": 121,
+      "displayName": "dark druid",
+      "file": "monster_0121_dark-druid.json"
+    },
+    {
+      "primaryKey": 122,
+      "displayName": "high druid",
+      "file": "monster_0122_high-druid.json"
+    },
+    {
+      "primaryKey": 123,
+      "displayName": "black orc captain",
+      "file": "monster_0123_black-orc-captain.json"
+    },
+    {
+      "primaryKey": 124,
+      "displayName": "black orc shaman",
+      "file": "monster_0124_black-orc-shaman.json"
+    },
+    {
+      "primaryKey": 125,
+      "displayName": "dark goblin warlock",
+      "file": "monster_0125_dark-goblin-warlock.json"
+    },
+    {
+      "primaryKey": 126,
+      "displayName": "slave-master",
+      "file": "monster_0126_slave-master.json"
+    },
+    {
+      "primaryKey": 127,
+      "displayName": "werewolf",
+      "file": "monster_0127_werewolf.json"
+    },
+    {
+      "primaryKey": 128,
+      "displayName": "shadowy healer",
+      "file": "monster_0128_shadowy-healer.json"
+    },
+    {
+      "primaryKey": 129,
+      "displayName": "mad wizard",
+      "file": "monster_0129_mad-wizard.json"
+    },
+    {
+      "primaryKey": 130,
+      "displayName": "Jorah",
+      "file": "monster_0130_jorah.json"
+    },
+    {
+      "primaryKey": 131,
+      "displayName": "cyclops",
+      "file": "monster_0131_cyclops.json"
+    },
+    {
+      "primaryKey": 132,
+      "displayName": "Dhelvanen",
+      "file": "monster_0132_dhelvanen.json"
+    },
+    {
+      "primaryKey": 133,
+      "displayName": "violet spore",
+      "file": "monster_0133_violet-spore.json"
+    },
+    {
+      "primaryKey": 134,
+      "displayName": "black fungus tree",
+      "file": "monster_0134_black-fungus-tree.json"
+    },
+    {
+      "primaryKey": 135,
+      "displayName": "giant toad",
+      "file": "monster_0135_giant-toad.json"
+    },
+    {
+      "primaryKey": 136,
+      "displayName": "shambling mound",
+      "file": "monster_0136_shambling-mound.json"
+    },
+    {
+      "primaryKey": 137,
+      "displayName": "winged horror",
+      "file": "monster_0137_winged-horror.json"
+    },
+    {
+      "primaryKey": 138,
+      "displayName": "swamp serpent",
+      "file": "monster_0138_swamp-serpent.json"
+    },
+    {
+      "primaryKey": 139,
+      "displayName": "giant ant",
+      "file": "monster_0139_giant-ant.json"
+    },
+    {
+      "primaryKey": 140,
+      "displayName": "bola spider",
+      "file": "monster_0140_bola-spider.json"
+    },
+    {
+      "primaryKey": 141,
+      "displayName": "serpentkin hunter",
+      "file": "monster_0141_serpentkin-hunter.json"
+    },
+    {
+      "primaryKey": 142,
+      "displayName": "dark cultist",
+      "file": "monster_0142_dark-cultist.json"
+    },
+    {
+      "primaryKey": 143,
+      "displayName": "dark cleric",
+      "file": "monster_0143_dark-cleric.json"
+    },
+    {
+      "primaryKey": 144,
+      "displayName": "dark priest",
+      "file": "monster_0144_dark-priest.json"
+    },
+    {
+      "primaryKey": 145,
+      "displayName": "dark paladin",
+      "file": "monster_0145_dark-paladin.json"
+    },
+    {
+      "primaryKey": 146,
+      "displayName": "dark warrior",
+      "file": "monster_0146_dark-warrior.json"
+    },
+    {
+      "primaryKey": 147,
+      "displayName": "dark warlock",
+      "file": "monster_0147_dark-warlock.json"
+    },
+    {
+      "primaryKey": 148,
+      "displayName": "dark assassin",
+      "file": "monster_0148_dark-assassin.json"
+    },
+    {
+      "primaryKey": 149,
+      "displayName": "dark mage",
+      "file": "monster_0149_dark-mage.json"
+    },
+    {
+      "primaryKey": 150,
+      "displayName": "elite guard",
+      "file": "monster_0150_elite-guard.json"
+    },
+    {
+      "primaryKey": 151,
+      "displayName": "guard captain",
+      "file": "monster_0151_guard-captain.json"
+    },
+    {
+      "primaryKey": 152,
+      "displayName": "mutant",
+      "file": "monster_0152_mutant.json"
+    },
+    {
+      "primaryKey": 153,
+      "displayName": "earth elemental",
+      "file": "monster_0153_earth-elemental.json"
+    },
+    {
+      "primaryKey": 154,
+      "displayName": "winged horror",
+      "file": "monster_0154_winged-horror.json"
+    },
+    {
+      "primaryKey": 155,
+      "displayName": "giant rattlesnake",
+      "file": "monster_0155_giant-rattlesnake.json"
+    },
+    {
+      "primaryKey": 156,
+      "displayName": "bola spider",
+      "file": "monster_0156_bola-spider.json"
+    },
+    {
+      "primaryKey": 157,
+      "displayName": "giant ant",
+      "file": "monster_0157_giant-ant.json"
+    },
+    {
+      "primaryKey": 158,
+      "displayName": "serpentkin hunter",
+      "file": "monster_0158_serpentkin-hunter.json"
+    },
+    {
+      "primaryKey": 159,
+      "displayName": "obsidian demon",
+      "file": "monster_0159_obsidian-demon.json"
+    },
+    {
+      "primaryKey": 160,
+      "displayName": "magma man",
+      "file": "monster_0160_magma-man.json"
+    },
+    {
+      "primaryKey": 161,
+      "displayName": "flame elemental",
+      "file": "monster_0161_flame-elemental.json"
+    },
+    {
+      "primaryKey": 162,
+      "displayName": "fire bat",
+      "file": "monster_0162_fire-bat.json"
+    },
+    {
+      "primaryKey": 163,
+      "displayName": "greater hellhound",
+      "file": "monster_0163_greater-hellhound.json"
+    },
+    {
+      "primaryKey": 164,
+      "displayName": "pyro jelly",
+      "file": "monster_0164_pyro-jelly.json"
+    },
+    {
+      "primaryKey": 165,
+      "displayName": "serpentkin hunter",
+      "file": "monster_0165_serpentkin-hunter.json"
+    },
+    {
+      "primaryKey": 166,
+      "displayName": "serpentkin warrior",
+      "file": "monster_0166_serpentkin-warrior.json"
+    },
+    {
+      "primaryKey": 167,
+      "displayName": "serpentkin shaman",
+      "file": "monster_0167_serpentkin-shaman.json"
+    },
+    {
+      "primaryKey": 168,
+      "displayName": "serpentkin chieftain",
+      "file": "monster_0168_serpentkin-chieftain.json"
+    },
+    {
+      "primaryKey": 169,
+      "displayName": "serpentkin witchdoctor",
+      "file": "monster_0169_serpentkin-witchdoctor.json"
+    },
+    {
+      "primaryKey": 170,
+      "displayName": "glowing worm",
+      "file": "monster_0170_glowing-worm.json"
+    },
+    {
+      "primaryKey": 171,
+      "displayName": "crystalline spider",
+      "file": "monster_0171_crystalline-spider.json"
+    },
+    {
+      "primaryKey": 172,
+      "displayName": "glittering ooze",
+      "file": "monster_0172_glittering-ooze.json"
+    },
+    {
+      "primaryKey": 173,
+      "displayName": "wounded worker",
+      "file": "monster_0173_wounded-worker.json"
+    },
+    {
+      "primaryKey": 174,
+      "displayName": "dark bishop",
+      "file": "monster_0174_dark-bishop.json"
+    },
+    {
+      "primaryKey": 175,
+      "displayName": "alchemist",
+      "file": "monster_0175_alchemist.json"
+    },
+    {
+      "primaryKey": 176,
+      "displayName": "dark wizard",
+      "file": "monster_0176_dark-wizard.json"
+    },
+    {
+      "primaryKey": 177,
+      "displayName": "prisoner",
+      "file": "monster_0177_prisoner.json"
+    },
+    {
+      "primaryKey": 178,
+      "displayName": "master assassin",
+      "file": "monster_0178_master-assassin.json"
+    },
+    {
+      "primaryKey": 179,
+      "displayName": "living dummy",
+      "file": "monster_0179_living-dummy.json"
+    },
+    {
+      "primaryKey": 180,
+      "displayName": "Champion of Blood",
+      "file": "monster_0180_champion-of-blood.json"
+    },
+    {
+      "primaryKey": 181,
+      "displayName": "greater hellion",
+      "file": "monster_0181_greater-hellion.json"
+    },
+    {
+      "primaryKey": 182,
+      "displayName": "baby red dragon",
+      "file": "monster_0182_baby-red-dragon.json"
+    },
+    {
+      "primaryKey": 183,
+      "displayName": "young red dragon",
+      "file": "monster_0183_young-red-dragon.json"
+    },
+    {
+      "primaryKey": 184,
+      "displayName": "adolescent red dragon",
+      "file": "monster_0184_adolescent-red-dragon.json"
+    },
+    {
+      "primaryKey": 185,
+      "displayName": "adult red dragon",
+      "file": "monster_0185_adult-red-dragon.json"
+    },
+    {
+      "primaryKey": 186,
+      "displayName": "aged titan",
+      "file": "monster_0186_aged-titan.json"
+    },
+    {
+      "primaryKey": 187,
+      "displayName": "raven",
+      "file": "monster_0187_raven.json"
+    },
+    {
+      "primaryKey": 188,
+      "displayName": "bluejay",
+      "file": "monster_0188_bluejay.json"
+    },
+    {
+      "primaryKey": 189,
+      "displayName": "cardinal",
+      "file": "monster_0189_cardinal.json"
+    },
+    {
+      "primaryKey": 190,
+      "displayName": "drunken gambler",
+      "file": "monster_0190_drunken-gambler.json"
+    },
+    {
+      "primaryKey": 191,
+      "displayName": "huge gruesome creation",
+      "file": "monster_0191_huge-gruesome-creation.json"
+    },
+    {
+      "primaryKey": 192,
+      "displayName": "giant bat",
+      "file": "monster_0192_giant-bat.json"
+    },
+    {
+      "primaryKey": 193,
+      "displayName": "practice dummy",
+      "file": "monster_0193_practice-dummy.json"
+    },
+    {
+      "primaryKey": 194,
+      "displayName": "Kotar Bloodthorn",
+      "file": "monster_0194_kotar-bloodthorn.json"
+    },
+    {
+      "primaryKey": 195,
+      "displayName": "red dragon hatchling",
+      "file": "monster_0195_red-dragon-hatchling.json"
+    },
+    {
+      "primaryKey": 196,
+      "displayName": "dark-elf courser",
+      "file": "monster_0196_dark-elf-courser.json"
+    },
+    {
+      "primaryKey": 197,
+      "displayName": "sdfsfdsdfsfsfsfsdfsfsfsdfs",
+      "file": "monster_0197_sdfsfdsdfsfsfsfsdfsfsfsdfs.json"
+    },
+    {
+      "primaryKey": 198,
+      "displayName": "priest",
+      "file": "monster_0198_priest.json"
+    },
+    {
+      "primaryKey": 199,
+      "displayName": "priestess",
+      "file": "monster_0199_priestess.json"
+    },
+    {
+      "primaryKey": 200,
+      "displayName": "practice dummy",
+      "file": "monster_0200_practice-dummy.json"
+    },
+    {
+      "primaryKey": 201,
+      "displayName": "roc",
+      "file": "monster_0201_roc.json"
+    },
+    {
+      "primaryKey": 202,
+      "displayName": "nomadic tribesman",
+      "file": "monster_0202_nomadic-tribesman.json"
+    },
+    {
+      "primaryKey": 203,
+      "displayName": "grey wolf",
+      "file": "monster_0203_grey-wolf.json"
+    },
+    {
+      "primaryKey": 204,
+      "displayName": "grey guardian wolf",
+      "file": "monster_0204_grey-guardian-wolf.json"
+    },
+    {
+      "primaryKey": 205,
+      "displayName": "nomadic huntsman",
+      "file": "monster_0205_nomadic-huntsman.json"
+    },
+    {
+      "primaryKey": 206,
+      "displayName": "wild turkey",
+      "file": "monster_0206_wild-turkey.json"
+    },
+    {
+      "primaryKey": 207,
+      "displayName": "nomadic huntsman",
+      "file": "monster_0207_nomadic-huntsman.json"
+    },
+    {
+      "primaryKey": 208,
+      "displayName": "nomadic shaman",
+      "file": "monster_0208_nomadic-shaman.json"
+    },
+    {
+      "primaryKey": 209,
+      "displayName": "large yeti",
+      "file": "monster_0209_large-yeti.json"
+    },
+    {
+      "primaryKey": 210,
+      "displayName": "nomadic chieftan",
+      "file": "monster_0210_nomadic-chieftan.json"
+    },
+    {
+      "primaryKey": 211,
+      "displayName": "ice golem",
+      "file": "monster_0211_ice-golem.json"
+    },
+    {
+      "primaryKey": 212,
+      "displayName": "fire assassin",
+      "file": "monster_0212_fire-assassin.json"
+    },
+    {
+      "primaryKey": 213,
+      "displayName": "sdfsfsdfsdfsfsfsdfsdfs",
+      "file": "monster_0213_sdfsfsdfsdfsfsfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 214,
+      "displayName": "Templar",
+      "file": "monster_0214_templar.json"
+    },
+    {
+      "primaryKey": 215,
+      "displayName": "Zanthus the Lich",
+      "file": "monster_0215_zanthus-the-lich.json"
+    },
+    {
+      "primaryKey": 216,
+      "displayName": "Demoness Irikani",
+      "file": "monster_0216_demoness-irikani.json"
+    },
+    {
+      "primaryKey": 217,
+      "displayName": "elite orc guard",
+      "file": "monster_0217_elite-orc-guard.json"
+    },
+    {
+      "primaryKey": 218,
+      "displayName": "orc warleader",
+      "file": "monster_0218_orc-warleader.json"
+    },
+    {
+      "primaryKey": 219,
+      "displayName": "displacer beast",
+      "file": "monster_0219_displacer-beast.json"
+    },
+    {
+      "primaryKey": 354,
+      "displayName": "guard dog",
+      "file": "monster_0354_guard-dog.json"
+    },
+    {
+      "primaryKey": 355,
+      "displayName": "prisoner",
+      "file": "monster_0355_prisoner.json"
+    },
+    {
+      "primaryKey": 356,
+      "displayName": "slave lord",
+      "file": "monster_0356_slave-lord.json"
+    },
+    {
+      "primaryKey": 357,
+      "displayName": "dark-elf emissary",
+      "file": "monster_0357_dark-elf-emissary.json"
+    },
+    {
+      "primaryKey": 358,
+      "displayName": "wererat",
+      "file": "monster_0358_wererat.json"
+    },
+    {
+      "primaryKey": 359,
+      "displayName": "wererat shaman",
+      "file": "monster_0359_wererat-shaman.json"
+    },
+    {
+      "primaryKey": 360,
+      "displayName": "wererat champion",
+      "file": "monster_0360_wererat-champion.json"
+    },
+    {
+      "primaryKey": 361,
+      "displayName": "wererat plague-crafter",
+      "file": "monster_0361_wererat-plague-crafter.json"
+    },
+    {
+      "primaryKey": 362,
+      "displayName": "plagued prisoner",
+      "file": "monster_0362_plagued-prisoner.json"
+    },
+    {
+      "primaryKey": 363,
+      "displayName": "ghost knight",
+      "file": "monster_0363_ghost-knight.json"
+    },
+    {
+      "primaryKey": 364,
+      "displayName": "wererat emissary",
+      "file": "monster_0364_wererat-emissary.json"
+    },
+    {
+      "primaryKey": 365,
+      "displayName": "dying slaver leader",
+      "file": "monster_0365_dying-slaver-leader.json"
+    },
+    {
+      "primaryKey": 366,
+      "displayName": "Remik of the Ebon Blade",
+      "file": "monster_0366_remik-of-the-ebon-blade.json"
+    },
+    {
+      "primaryKey": 367,
+      "displayName": "sdfsdfsdfsdfsdfsd",
+      "file": "monster_0367_sdfsdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 368,
+      "displayName": "feline prisoner",
+      "file": "monster_0368_feline-prisoner.json"
+    },
+    {
+      "primaryKey": 369,
+      "displayName": "fallen angel",
+      "file": "monster_0369_fallen-angel.json"
+    },
+    {
+      "primaryKey": 370,
+      "displayName": "Timelord",
+      "file": "monster_0370_timelord.json"
+    },
+    {
+      "primaryKey": 371,
+      "displayName": "crimson high priest",
+      "file": "monster_0371_crimson-high-priest.json"
+    },
+    {
+      "primaryKey": 372,
+      "displayName": "Devil Fiend Malivek",
+      "file": "monster_0372_devil-fiend-malivek.json"
+    },
+    {
+      "primaryKey": 373,
+      "displayName": "shard creature",
+      "file": "monster_0373_shard-creature.json"
+    },
+    {
+      "primaryKey": 374,
+      "displayName": "metallic monstrosity",
+      "file": "monster_0374_metallic-monstrosity.json"
+    },
+    {
+      "primaryKey": 375,
+      "displayName": "aurumvorax",
+      "file": "monster_0375_aurumvorax.json"
+    },
+    {
+      "primaryKey": 517,
+      "displayName": "horned demon",
+      "file": "monster_0517_horned-demon.json"
+    },
+    {
+      "primaryKey": 518,
+      "displayName": "flaming mammoth",
+      "file": "monster_0518_flaming-mammoth.json"
+    },
+    {
+      "primaryKey": 519,
+      "displayName": "emerald guardian",
+      "file": "monster_0519_emerald-guardian.json"
+    },
+    {
+      "primaryKey": 520,
+      "displayName": "ankylosaur",
+      "file": "monster_0520_ankylosaur.json"
+    },
+    {
+      "primaryKey": 521,
+      "displayName": "stegosaur",
+      "file": "monster_0521_stegosaur.json"
+    },
+    {
+      "primaryKey": 760,
+      "displayName": "shade",
+      "file": "monster_0760_shade.json"
+    },
+    {
+      "primaryKey": 761,
+      "displayName": "ghoul",
+      "file": "monster_0761_ghoul.json"
+    },
+    {
+      "primaryKey": 762,
+      "displayName": "wight",
+      "file": "monster_0762_wight.json"
+    },
+    {
+      "primaryKey": 763,
+      "displayName": "skeletal warrior",
+      "file": "monster_0763_skeletal-warrior.json"
+    },
+    {
+      "primaryKey": 764,
+      "displayName": "moaning spirit",
+      "file": "monster_0764_moaning-spirit.json"
+    },
+    {
+      "primaryKey": 765,
+      "displayName": "banshee",
+      "file": "monster_0765_banshee.json"
+    },
+    {
+      "primaryKey": 220,
+      "displayName": "manticore",
+      "file": "monster_0220_manticore.json"
+    },
+    {
+      "primaryKey": 221,
+      "displayName": "gargoyle",
+      "file": "monster_0221_gargoyle.json"
+    },
+    {
+      "primaryKey": 222,
+      "displayName": "gorgon",
+      "file": "monster_0222_gorgon.json"
+    },
+    {
+      "primaryKey": 223,
+      "displayName": "harpy",
+      "file": "monster_0223_harpy.json"
+    },
+    {
+      "primaryKey": 224,
+      "displayName": "gnoll scout",
+      "file": "monster_0224_gnoll-scout.json"
+    },
+    {
+      "primaryKey": 225,
+      "displayName": "gnoll axeman",
+      "file": "monster_0225_gnoll-axeman.json"
+    },
+    {
+      "primaryKey": 226,
+      "displayName": "hill centaur",
+      "file": "monster_0226_hill-centaur.json"
+    },
+    {
+      "primaryKey": 227,
+      "displayName": "brigand",
+      "file": "monster_0227_brigand.json"
+    },
+    {
+      "primaryKey": 228,
+      "displayName": "dark monk",
+      "file": "monster_0228_dark-monk.json"
+    },
+    {
+      "primaryKey": 229,
+      "displayName": "ankheg",
+      "file": "monster_0229_ankheg.json"
+    },
+    {
+      "primaryKey": 230,
+      "displayName": "bombardier beetle",
+      "file": "monster_0230_bombardier-beetle.json"
+    },
+    {
+      "primaryKey": 231,
+      "displayName": "carrion crawler",
+      "file": "monster_0231_carrion-crawler.json"
+    },
+    {
+      "primaryKey": 232,
+      "displayName": "umber hulk",
+      "file": "monster_0232_umber-hulk.json"
+    },
+    {
+      "primaryKey": 233,
+      "displayName": "mermex hunter",
+      "file": "monster_0233_mermex-hunter.json"
+    },
+    {
+      "primaryKey": 234,
+      "displayName": "mermex warrior",
+      "file": "monster_0234_mermex-warrior.json"
+    },
+    {
+      "primaryKey": 235,
+      "displayName": "mermex worker",
+      "file": "monster_0235_mermex-worker.json"
+    },
+    {
+      "primaryKey": 236,
+      "displayName": "mermex royal guard",
+      "file": "monster_0236_mermex-royal-guard.json"
+    },
+    {
+      "primaryKey": 237,
+      "displayName": "gnoll chieftain",
+      "file": "monster_0237_gnoll-chieftain.json"
+    },
+    {
+      "primaryKey": 238,
+      "displayName": "Madame Alexia",
+      "file": "monster_0238_madame-alexia.json"
+    },
+    {
+      "primaryKey": 239,
+      "displayName": "silvery skull",
+      "file": "monster_0239_silvery-skull.json"
+    },
+    {
+      "primaryKey": 240,
+      "displayName": "mermex queen",
+      "file": "monster_0240_mermex-queen.json"
+    },
+    {
+      "primaryKey": 241,
+      "displayName": "giant pulsating cocoon",
+      "file": "monster_0241_giant-pulsating-cocoon.json"
+    },
+    {
+      "primaryKey": 242,
+      "displayName": "cocoon",
+      "file": "monster_0242_cocoon.json"
+    },
+    {
+      "primaryKey": 243,
+      "displayName": "wounded messenger",
+      "file": "monster_0243_wounded-messenger.json"
+    },
+    {
+      "primaryKey": 244,
+      "displayName": "Chancellor Annora",
+      "file": "monster_0244_chancellor-annora.json"
+    },
+    {
+      "primaryKey": 245,
+      "displayName": "royal soldier",
+      "file": "monster_0245_royal-soldier.json"
+    },
+    {
+      "primaryKey": 246,
+      "displayName": "Commander Markus",
+      "file": "monster_0246_commander-markus.json"
+    },
+    {
+      "primaryKey": 247,
+      "displayName": "Jael",
+      "file": "monster_0247_jael.json"
+    },
+    {
+      "primaryKey": 248,
+      "displayName": "barmaid",
+      "file": "monster_0248_barmaid.json"
+    },
+    {
+      "primaryKey": 249,
+      "displayName": "hooded traveller",
+      "file": "monster_0249_hooded-traveller.json"
+    },
+    {
+      "primaryKey": 250,
+      "displayName": "nasty-looking man",
+      "file": "monster_0250_nasty-looking-man.json"
+    },
+    {
+      "primaryKey": 251,
+      "displayName": "The Grey Lord",
+      "file": "monster_0251_the-grey-lord.json"
+    },
+    {
+      "primaryKey": 252,
+      "displayName": "shopkeeper",
+      "file": "monster_0252_shopkeeper.json"
+    },
+    {
+      "primaryKey": 253,
+      "displayName": "greasy thief",
+      "file": "monster_0253_greasy-thief.json"
+    },
+    {
+      "primaryKey": 254,
+      "displayName": "barmaid",
+      "file": "monster_0254_barmaid.json"
+    },
+    {
+      "primaryKey": 255,
+      "displayName": "greedy healer",
+      "file": "monster_0255_greedy-healer.json"
+    },
+    {
+      "primaryKey": 256,
+      "displayName": "grizzled trainer",
+      "file": "monster_0256_grizzled-trainer.json"
+    },
+    {
+      "primaryKey": 257,
+      "displayName": "huge dwarven witchunter",
+      "file": "monster_0257_huge-dwarven-witchunter.json"
+    },
+    {
+      "primaryKey": 258,
+      "displayName": "dark monk",
+      "file": "monster_0258_dark-monk.json"
+    },
+    {
+      "primaryKey": 259,
+      "displayName": "drunken brawler",
+      "file": "monster_0259_drunken-brawler.json"
+    },
+    {
+      "primaryKey": 260,
+      "displayName": "cutpurse",
+      "file": "monster_0260_cutpurse.json"
+    },
+    {
+      "primaryKey": 261,
+      "displayName": "depraved murderer",
+      "file": "monster_0261_depraved-murderer.json"
+    },
+    {
+      "primaryKey": 262,
+      "displayName": "crazed lunatic",
+      "file": "monster_0262_crazed-lunatic.json"
+    },
+    {
+      "primaryKey": 263,
+      "displayName": "Balthazar",
+      "file": "monster_0263_balthazar.json"
+    },
+    {
+      "primaryKey": 264,
+      "displayName": "fungus lizard",
+      "file": "monster_0264_fungus-lizard.json"
+    },
+    {
+      "primaryKey": 265,
+      "displayName": "vampire bat",
+      "file": "monster_0265_vampire-bat.json"
+    },
+    {
+      "primaryKey": 266,
+      "displayName": "silverfish",
+      "file": "monster_0266_silverfish.json"
+    },
+    {
+      "primaryKey": 267,
+      "displayName": "dragonfish",
+      "file": "monster_0267_dragonfish.json"
+    },
+    {
+      "primaryKey": 268,
+      "displayName": "water elemental",
+      "file": "monster_0268_water-elemental.json"
+    },
+    {
+      "primaryKey": 269,
+      "displayName": "night hag",
+      "file": "monster_0269_night-hag.json"
+    },
+    {
+      "primaryKey": 270,
+      "displayName": "quickling",
+      "file": "monster_0270_quickling.json"
+    },
+    {
+      "primaryKey": 271,
+      "displayName": "imp",
+      "file": "monster_0271_imp.json"
+    },
+    {
+      "primaryKey": 272,
+      "displayName": "bloodbear",
+      "file": "monster_0272_bloodbear.json"
+    },
+    {
+      "primaryKey": 273,
+      "displayName": "killer bee",
+      "file": "monster_0273_killer-bee.json"
+    },
+    {
+      "primaryKey": 274,
+      "displayName": "huorn",
+      "file": "monster_0274_huorn.json"
+    },
+    {
+      "primaryKey": 275,
+      "displayName": "pixie",
+      "file": "monster_0275_pixie.json"
+    },
+    {
+      "primaryKey": 276,
+      "displayName": "leprechaun",
+      "file": "monster_0276_leprechaun.json"
+    },
+    {
+      "primaryKey": 277,
+      "displayName": "grizzly bear",
+      "file": "monster_0277_grizzly-bear.json"
+    },
+    {
+      "primaryKey": 278,
+      "displayName": "ancient willow",
+      "file": "monster_0278_ancient-willow.json"
+    },
+    {
+      "primaryKey": 279,
+      "displayName": "huorn",
+      "file": "monster_0279_huorn.json"
+    },
+    {
+      "primaryKey": 280,
+      "displayName": "huorn",
+      "file": "monster_0280_huorn.json"
+    },
+    {
+      "primaryKey": 281,
+      "displayName": "quickling lord",
+      "file": "monster_0281_quickling-lord.json"
+    },
+    {
+      "primaryKey": 282,
+      "displayName": "faerie",
+      "file": "monster_0282_faerie.json"
+    },
+    {
+      "primaryKey": 283,
+      "displayName": "treant",
+      "file": "monster_0283_treant.json"
+    },
+    {
+      "primaryKey": 284,
+      "displayName": "unicorn",
+      "file": "monster_0284_unicorn.json"
+    },
+    {
+      "primaryKey": 285,
+      "displayName": "woodelf ranger",
+      "file": "monster_0285_woodelf-ranger.json"
+    },
+    {
+      "primaryKey": 286,
+      "displayName": "woodelf druid",
+      "file": "monster_0286_woodelf-druid.json"
+    },
+    {
+      "primaryKey": 287,
+      "displayName": "woodelf citizen",
+      "file": "monster_0287_woodelf-citizen.json"
+    },
+    {
+      "primaryKey": 288,
+      "displayName": "woodelf citizen",
+      "file": "monster_0288_woodelf-citizen.json"
+    },
+    {
+      "primaryKey": 289,
+      "displayName": "woodelf guard",
+      "file": "monster_0289_woodelf-guard.json"
+    },
+    {
+      "primaryKey": 290,
+      "displayName": "woodelf wardancer",
+      "file": "monster_0290_woodelf-wardancer.json"
+    },
+    {
+      "primaryKey": 291,
+      "displayName": "woodelf wardancer",
+      "file": "monster_0291_woodelf-wardancer.json"
+    },
+    {
+      "primaryKey": 292,
+      "displayName": "woodelf lord",
+      "file": "monster_0292_woodelf-lord.json"
+    },
+    {
+      "primaryKey": 293,
+      "displayName": "war dog",
+      "file": "monster_0293_war-dog.json"
+    },
+    {
+      "primaryKey": 294,
+      "displayName": "hobgoblin",
+      "file": "monster_0294_hobgoblin.json"
+    },
+    {
+      "primaryKey": 295,
+      "displayName": "half-ogre guard",
+      "file": "monster_0295_half-ogre-guard.json"
+    },
+    {
+      "primaryKey": 296,
+      "displayName": "ogre grunt",
+      "file": "monster_0296_ogre-grunt.json"
+    },
+    {
+      "primaryKey": 297,
+      "displayName": "ogre-mage",
+      "file": "monster_0297_ogre-mage.json"
+    },
+    {
+      "primaryKey": 298,
+      "displayName": "white dragon serpent",
+      "file": "monster_0298_white-dragon-serpent.json"
+    },
+    {
+      "primaryKey": 299,
+      "displayName": "black dragon serpent",
+      "file": "monster_0299_black-dragon-serpent.json"
+    },
+    {
+      "primaryKey": 300,
+      "displayName": "green dragon serpent",
+      "file": "monster_0300_green-dragon-serpent.json"
+    },
+    {
+      "primaryKey": 301,
+      "displayName": "blue dragon serpent",
+      "file": "monster_0301_blue-dragon-serpent.json"
+    },
+    {
+      "primaryKey": 302,
+      "displayName": "red dragon serpent",
+      "file": "monster_0302_red-dragon-serpent.json"
+    },
+    {
+      "primaryKey": 303,
+      "displayName": "lamia",
+      "file": "monster_0303_lamia.json"
+    },
+    {
+      "primaryKey": 304,
+      "displayName": "twisted one",
+      "file": "monster_0304_twisted-one.json"
+    },
+    {
+      "primaryKey": 305,
+      "displayName": "small gibbering horror",
+      "file": "monster_0305_small-gibbering-horror.json"
+    },
+    {
+      "primaryKey": 306,
+      "displayName": "gibbering horror",
+      "file": "monster_0306_gibbering-horror.json"
+    },
+    {
+      "primaryKey": 307,
+      "displayName": "large gibbering horror",
+      "file": "monster_0307_large-gibbering-horror.json"
+    },
+    {
+      "primaryKey": 308,
+      "displayName": "ghost",
+      "file": "monster_0308_ghost.json"
+    },
+    {
+      "primaryKey": 309,
+      "displayName": "crimson mist",
+      "file": "monster_0309_crimson-mist.json"
+    },
+    {
+      "primaryKey": 310,
+      "displayName": "shadowraith",
+      "file": "monster_0310_shadowraith.json"
+    },
+    {
+      "primaryKey": 311,
+      "displayName": "Goru-Nezar",
+      "file": "monster_0311_goru-nezar.json"
+    },
+    {
+      "primaryKey": 312,
+      "displayName": "huge basilisk",
+      "file": "monster_0312_huge-basilisk.json"
+    },
+    {
+      "primaryKey": 313,
+      "displayName": "chimera",
+      "file": "monster_0313_chimera.json"
+    },
+    {
+      "primaryKey": 314,
+      "displayName": "beholder",
+      "file": "monster_0314_beholder.json"
+    },
+    {
+      "primaryKey": 315,
+      "displayName": "prismatic dragon",
+      "file": "monster_0315_prismatic-dragon.json"
+    },
+    {
+      "primaryKey": 316,
+      "displayName": "frost hydra",
+      "file": "monster_0316_frost-hydra.json"
+    },
+    {
+      "primaryKey": 317,
+      "displayName": "wraithlord",
+      "file": "monster_0317_wraithlord.json"
+    },
+    {
+      "primaryKey": 318,
+      "displayName": "unholy idol",
+      "file": "monster_0318_unholy-idol.json"
+    },
+    {
+      "primaryKey": 319,
+      "displayName": "cave lizard",
+      "file": "monster_0319_cave-lizard.json"
+    },
+    {
+      "primaryKey": 320,
+      "displayName": "mutant spider",
+      "file": "monster_0320_mutant-spider.json"
+    },
+    {
+      "primaryKey": 321,
+      "displayName": "mind flayer",
+      "file": "monster_0321_mind-flayer.json"
+    },
+    {
+      "primaryKey": 322,
+      "displayName": "dark-elf hunter",
+      "file": "monster_0322_dark-elf-hunter.json"
+    },
+    {
+      "primaryKey": 323,
+      "displayName": "drider",
+      "file": "monster_0323_drider.json"
+    },
+    {
+      "primaryKey": 324,
+      "displayName": "hordeling",
+      "file": "monster_0324_hordeling.json"
+    },
+    {
+      "primaryKey": 325,
+      "displayName": "nexus hunter",
+      "file": "monster_0325_nexus-hunter.json"
+    },
+    {
+      "primaryKey": 326,
+      "displayName": "planar storm",
+      "file": "monster_0326_planar-storm.json"
+    },
+    {
+      "primaryKey": 327,
+      "displayName": "terror beast",
+      "file": "monster_0327_terror-beast.json"
+    },
+    {
+      "primaryKey": 328,
+      "displayName": "behemoth",
+      "file": "monster_0328_behemoth.json"
+    },
+    {
+      "primaryKey": 329,
+      "displayName": "Lord of the Hunt",
+      "file": "monster_0329_lord-of-the-hunt.json"
+    },
+    {
+      "primaryKey": 330,
+      "displayName": "gnome sentry",
+      "file": "monster_0330_gnome-sentry.json"
+    },
+    {
+      "primaryKey": 331,
+      "displayName": "gnome shaman",
+      "file": "monster_0331_gnome-shaman.json"
+    },
+    {
+      "primaryKey": 332,
+      "displayName": "gnome commander",
+      "file": "monster_0332_gnome-commander.json"
+    },
+    {
+      "primaryKey": 333,
+      "displayName": "dark-elf hunter",
+      "file": "monster_0333_dark-elf-hunter.json"
+    },
+    {
+      "primaryKey": 334,
+      "displayName": "dark-elf soldier",
+      "file": "monster_0334_dark-elf-soldier.json"
+    },
+    {
+      "primaryKey": 335,
+      "displayName": "dark-elf faithkeeper",
+      "file": "monster_0335_dark-elf-faithkeeper.json"
+    },
+    {
+      "primaryKey": 336,
+      "displayName": "dark-elf citizen",
+      "file": "monster_0336_dark-elf-citizen.json"
+    },
+    {
+      "primaryKey": 337,
+      "displayName": "dark-elf nobleman",
+      "file": "monster_0337_dark-elf-nobleman.json"
+    },
+    {
+      "primaryKey": 338,
+      "displayName": "dark-elf servant",
+      "file": "monster_0338_dark-elf-servant.json"
+    },
+    {
+      "primaryKey": 339,
+      "displayName": "dark-elf warlock",
+      "file": "monster_0339_dark-elf-warlock.json"
+    },
+    {
+      "primaryKey": 340,
+      "displayName": "dark-elf priestess",
+      "file": "monster_0340_dark-elf-priestess.json"
+    },
+    {
+      "primaryKey": 341,
+      "displayName": "dark-elf high priestess",
+      "file": "monster_0341_dark-elf-high-priestess.json"
+    },
+    {
+      "primaryKey": 342,
+      "displayName": "dark-elf weaponsmaster",
+      "file": "monster_0342_dark-elf-weaponsmaster.json"
+    },
+    {
+      "primaryKey": 343,
+      "displayName": "dark-elf queen",
+      "file": "monster_0343_dark-elf-queen.json"
+    },
+    {
+      "primaryKey": 344,
+      "displayName": "master torturer",
+      "file": "monster_0344_master-torturer.json"
+    },
+    {
+      "primaryKey": 345,
+      "displayName": "dark-elf archmage",
+      "file": "monster_0345_dark-elf-archmage.json"
+    },
+    {
+      "primaryKey": 346,
+      "displayName": "captain of the guard",
+      "file": "monster_0346_captain-of-the-guard.json"
+    },
+    {
+      "primaryKey": 347,
+      "displayName": "obsidian statue",
+      "file": "monster_0347_obsidian-statue.json"
+    },
+    {
+      "primaryKey": 348,
+      "displayName": "sleazy shopkeeper",
+      "file": "monster_0348_sleazy-shopkeeper.json"
+    },
+    {
+      "primaryKey": 349,
+      "displayName": "slime serpent",
+      "file": "monster_0349_slime-serpent.json"
+    },
+    {
+      "primaryKey": 350,
+      "displayName": "dark-elf royal guard",
+      "file": "monster_0350_dark-elf-royal-guard.json"
+    },
+    {
+      "primaryKey": 351,
+      "displayName": "guardian beast",
+      "file": "monster_0351_guardian-beast.json"
+    },
+    {
+      "primaryKey": 352,
+      "displayName": "slaver",
+      "file": "monster_0352_slaver.json"
+    },
+    {
+      "primaryKey": 353,
+      "displayName": "slaver leader",
+      "file": "monster_0353_slaver-leader.json"
+    },
+    {
+      "primaryKey": 376,
+      "displayName": "wild dog",
+      "file": "monster_0376_wild-dog.json"
+    },
+    {
+      "primaryKey": 377,
+      "displayName": "wild dog",
+      "file": "monster_0377_wild-dog.json"
+    },
+    {
+      "primaryKey": 378,
+      "displayName": "bandit",
+      "file": "monster_0378_bandit.json"
+    },
+    {
+      "primaryKey": 379,
+      "displayName": "warlock bandit",
+      "file": "monster_0379_warlock-bandit.json"
+    },
+    {
+      "primaryKey": 380,
+      "displayName": "bandit leader",
+      "file": "monster_0380_bandit-leader.json"
+    },
+    {
+      "primaryKey": 381,
+      "displayName": "dwarven merchant",
+      "file": "monster_0381_dwarven-merchant.json"
+    },
+    {
+      "primaryKey": 382,
+      "displayName": "bodyguard",
+      "file": "monster_0382_bodyguard.json"
+    },
+    {
+      "primaryKey": 383,
+      "displayName": "wandering cleric",
+      "file": "monster_0383_wandering-cleric.json"
+    },
+    {
+      "primaryKey": 384,
+      "displayName": "Orfeo Talespinner",
+      "file": "monster_0384_orfeo-talespinner.json"
+    },
+    {
+      "primaryKey": 385,
+      "displayName": "old gypsy woman",
+      "file": "monster_0385_old-gypsy-woman.json"
+    },
+    {
+      "primaryKey": 386,
+      "displayName": "old gypsy man",
+      "file": "monster_0386_old-gypsy-man.json"
+    },
+    {
+      "primaryKey": 387,
+      "displayName": "young gypsy",
+      "file": "monster_0387_young-gypsy.json"
+    },
+    {
+      "primaryKey": 388,
+      "displayName": "catoblepas",
+      "file": "monster_0388_catoblepas.json"
+    },
+    {
+      "primaryKey": 389,
+      "displayName": "swamp leech",
+      "file": "monster_0389_swamp-leech.json"
+    },
+    {
+      "primaryKey": 390,
+      "displayName": "crocodile",
+      "file": "monster_0390_crocodile.json"
+    },
+    {
+      "primaryKey": 391,
+      "displayName": "giant crocodile",
+      "file": "monster_0391_giant-crocodile.json"
+    },
+    {
+      "primaryKey": 392,
+      "displayName": "swamp troll",
+      "file": "monster_0392_swamp-troll.json"
+    },
+    {
+      "primaryKey": 393,
+      "displayName": "giant two-headed troll",
+      "file": "monster_0393_giant-two-headed-troll.json"
+    },
+    {
+      "primaryKey": 394,
+      "displayName": "huge black dragon",
+      "file": "monster_0394_huge-black-dragon.json"
+    },
+    {
+      "primaryKey": 395,
+      "displayName": "dwarven guard",
+      "file": "monster_0395_dwarven-guard.json"
+    },
+    {
+      "primaryKey": 396,
+      "displayName": "dwarven guard",
+      "file": "monster_0396_dwarven-guard.json"
+    },
+    {
+      "primaryKey": 397,
+      "displayName": "gnome villager",
+      "file": "monster_0397_gnome-villager.json"
+    },
+    {
+      "primaryKey": 398,
+      "displayName": "gnome farmer",
+      "file": "monster_0398_gnome-farmer.json"
+    },
+    {
+      "primaryKey": 399,
+      "displayName": "gnome shopkeeper",
+      "file": "monster_0399_gnome-shopkeeper.json"
+    },
+    {
+      "primaryKey": 400,
+      "displayName": "gnome inventor",
+      "file": "monster_0400_gnome-inventor.json"
+    },
+    {
+      "primaryKey": 401,
+      "displayName": "gnome alchemist",
+      "file": "monster_0401_gnome-alchemist.json"
+    },
+    {
+      "primaryKey": 402,
+      "displayName": "gnome enchantress",
+      "file": "monster_0402_gnome-enchantress.json"
+    },
+    {
+      "primaryKey": 403,
+      "displayName": "centipede",
+      "file": "monster_0403_centipede.json"
+    },
+    {
+      "primaryKey": 404,
+      "displayName": "kobold",
+      "file": "monster_0404_kobold.json"
+    },
+    {
+      "primaryKey": 405,
+      "displayName": "kobold warrior",
+      "file": "monster_0405_kobold-warrior.json"
+    },
+    {
+      "primaryKey": 406,
+      "displayName": "kobold king",
+      "file": "monster_0406_kobold-king.json"
+    },
+    {
+      "primaryKey": 407,
+      "displayName": "barrow wight",
+      "file": "monster_0407_barrow-wight.json"
+    },
+    {
+      "primaryKey": 408,
+      "displayName": "tortured spirit",
+      "file": "monster_0408_tortured-spirit.json"
+    },
+    {
+      "primaryKey": 409,
+      "displayName": "spectral knight",
+      "file": "monster_0409_spectral-knight.json"
+    },
+    {
+      "primaryKey": 410,
+      "displayName": "spore zombie",
+      "file": "monster_0410_spore-zombie.json"
+    },
+    {
+      "primaryKey": 411,
+      "displayName": "pale mushroom",
+      "file": "monster_0411_pale-mushroom.json"
+    },
+    {
+      "primaryKey": 412,
+      "displayName": "myconid",
+      "file": "monster_0412_myconid.json"
+    },
+    {
+      "primaryKey": 413,
+      "displayName": "dark-elf harvester",
+      "file": "monster_0413_dark-elf-harvester.json"
+    },
+    {
+      "primaryKey": 414,
+      "displayName": "water spirit",
+      "file": "monster_0414_water-spirit.json"
+    },
+    {
+      "primaryKey": 415,
+      "displayName": "salamander",
+      "file": "monster_0415_salamander.json"
+    },
+    {
+      "primaryKey": 416,
+      "displayName": "efreeti",
+      "file": "monster_0416_efreeti.json"
+    },
+    {
+      "primaryKey": 417,
+      "displayName": "dwarven cleric",
+      "file": "monster_0417_dwarven-cleric.json"
+    },
+    {
+      "primaryKey": 418,
+      "displayName": "dwarven warrior",
+      "file": "monster_0418_dwarven-warrior.json"
+    },
+    {
+      "primaryKey": 419,
+      "displayName": "dwarf",
+      "file": "monster_0419_dwarf.json"
+    },
+    {
+      "primaryKey": 420,
+      "displayName": "dwarven smith",
+      "file": "monster_0420_dwarven-smith.json"
+    },
+    {
+      "primaryKey": 421,
+      "displayName": "dwarven shopkeeper",
+      "file": "monster_0421_dwarven-shopkeeper.json"
+    },
+    {
+      "primaryKey": 422,
+      "displayName": "dwarven miner",
+      "file": "monster_0422_dwarven-miner.json"
+    },
+    {
+      "primaryKey": 423,
+      "displayName": "dwarven barkeep",
+      "file": "monster_0423_dwarven-barkeep.json"
+    },
+    {
+      "primaryKey": 424,
+      "displayName": "dwarven royal guard",
+      "file": "monster_0424_dwarven-royal-guard.json"
+    },
+    {
+      "primaryKey": 425,
+      "displayName": "dwarven nobleman",
+      "file": "monster_0425_dwarven-nobleman.json"
+    },
+    {
+      "primaryKey": 426,
+      "displayName": "dwarven royal guard",
+      "file": "monster_0426_dwarven-royal-guard.json"
+    },
+    {
+      "primaryKey": 427,
+      "displayName": "dwarven warrior",
+      "file": "monster_0427_dwarven-warrior.json"
+    },
+    {
+      "primaryKey": 428,
+      "displayName": "dwarven healer",
+      "file": "monster_0428_dwarven-healer.json"
+    },
+    {
+      "primaryKey": 429,
+      "displayName": "Champion Gudruk",
+      "file": "monster_0429_champion-gudruk.json"
+    },
+    {
+      "primaryKey": 430,
+      "displayName": "King Kulgar",
+      "file": "monster_0430_king-kulgar.json"
+    },
+    {
+      "primaryKey": 431,
+      "displayName": "Loremaster Thulgraf",
+      "file": "monster_0431_loremaster-thulgraf.json"
+    },
+    {
+      "primaryKey": 432,
+      "displayName": "Master Smith Martok",
+      "file": "monster_0432_master-smith-martok.json"
+    },
+    {
+      "primaryKey": 433,
+      "displayName": "dwarven royal guard",
+      "file": "monster_0433_dwarven-royal-guard.json"
+    },
+    {
+      "primaryKey": 434,
+      "displayName": "ancient sand dragon",
+      "file": "monster_0434_ancient-sand-dragon.json"
+    },
+    {
+      "primaryKey": 435,
+      "displayName": "ancient sand dragon",
+      "file": "monster_0435_ancient-sand-dragon.json"
+    },
+    {
+      "primaryKey": 436,
+      "displayName": "troglodyte",
+      "file": "monster_0436_troglodyte.json"
+    },
+    {
+      "primaryKey": 437,
+      "displayName": "troglodyte leader",
+      "file": "monster_0437_troglodyte-leader.json"
+    },
+    {
+      "primaryKey": 438,
+      "displayName": "rock eater",
+      "file": "monster_0438_rock-eater.json"
+    },
+    {
+      "primaryKey": 439,
+      "displayName": "margoyle",
+      "file": "monster_0439_margoyle.json"
+    },
+    {
+      "primaryKey": 440,
+      "displayName": "white scorpion",
+      "file": "monster_0440_white-scorpion.json"
+    },
+    {
+      "primaryKey": 441,
+      "displayName": "black pudding",
+      "file": "monster_0441_black-pudding.json"
+    },
+    {
+      "primaryKey": 442,
+      "displayName": "giant slug",
+      "file": "monster_0442_giant-slug.json"
+    },
+    {
+      "primaryKey": 443,
+      "displayName": "purple worm",
+      "file": "monster_0443_purple-worm.json"
+    },
+    {
+      "primaryKey": 444,
+      "displayName": "dwarf",
+      "file": "monster_0444_dwarf.json"
+    },
+    {
+      "primaryKey": 445,
+      "displayName": "dwarven miner",
+      "file": "monster_0445_dwarven-miner.json"
+    },
+    {
+      "primaryKey": 446,
+      "displayName": "dwarven warrior",
+      "file": "monster_0446_dwarven-warrior.json"
+    },
+    {
+      "primaryKey": 447,
+      "displayName": "Kai Master",
+      "file": "monster_0447_kai-master.json"
+    },
+    {
+      "primaryKey": 448,
+      "displayName": "Kai Master",
+      "file": "monster_0448_kai-master.json"
+    },
+    {
+      "primaryKey": 449,
+      "displayName": "quaggoth",
+      "file": "monster_0449_quaggoth.json"
+    },
+    {
+      "primaryKey": 450,
+      "displayName": "quaggoth thonot",
+      "file": "monster_0450_quaggoth-thonot.json"
+    },
+    {
+      "primaryKey": 451,
+      "displayName": "quaggoth jald",
+      "file": "monster_0451_quaggoth-jald.json"
+    },
+    {
+      "primaryKey": 452,
+      "displayName": "huge obsidian golem",
+      "file": "monster_0452_huge-obsidian-golem.json"
+    },
+    {
+      "primaryKey": 453,
+      "displayName": "stone elemental",
+      "file": "monster_0453_stone-elemental.json"
+    },
+    {
+      "primaryKey": 454,
+      "displayName": "gemstone juggernaut",
+      "file": "monster_0454_gemstone-juggernaut.json"
+    },
+    {
+      "primaryKey": 455,
+      "displayName": "duergar warrior",
+      "file": "monster_0455_duergar-warrior.json"
+    },
+    {
+      "primaryKey": 456,
+      "displayName": "duergar lord",
+      "file": "monster_0456_duergar-lord.json"
+    },
+    {
+      "primaryKey": 457,
+      "displayName": "dwarf warrior",
+      "file": "monster_0457_dwarf-warrior.json"
+    },
+    {
+      "primaryKey": 458,
+      "displayName": "dwarf warrior",
+      "file": "monster_0458_dwarf-warrior.json"
+    },
+    {
+      "primaryKey": 459,
+      "displayName": "brain eater",
+      "file": "monster_0459_brain-eater.json"
+    },
+    {
+      "primaryKey": 460,
+      "displayName": "shapeshifter",
+      "file": "monster_0460_shapeshifter.json"
+    },
+    {
+      "primaryKey": 461,
+      "displayName": "winged demon",
+      "file": "monster_0461_winged-demon.json"
+    },
+    {
+      "primaryKey": 462,
+      "displayName": "rotting monstrosity",
+      "file": "monster_0462_rotting-monstrosity.json"
+    },
+    {
+      "primaryKey": 463,
+      "displayName": "Gulgulthra",
+      "file": "monster_0463_gulgulthra.json"
+    },
+    {
+      "primaryKey": 464,
+      "displayName": "shifty dwarf",
+      "file": "monster_0464_shifty-dwarf.json"
+    },
+    {
+      "primaryKey": 465,
+      "displayName": "Champion Gudruk",
+      "file": "monster_0465_champion-gudruk.json"
+    },
+    {
+      "primaryKey": 466,
+      "displayName": "Ghost of Trader Tull",
+      "file": "monster_0466_ghost-of-trader-tull.json"
+    },
+    {
+      "primaryKey": 467,
+      "displayName": "purple slime",
+      "file": "monster_0467_purple-slime.json"
+    },
+    {
+      "primaryKey": 468,
+      "displayName": "green slime",
+      "file": "monster_0468_green-slime.json"
+    },
+    {
+      "primaryKey": 469,
+      "displayName": "red slime",
+      "file": "monster_0469_red-slime.json"
+    },
+    {
+      "primaryKey": 470,
+      "displayName": "azure slime",
+      "file": "monster_0470_azure-slime.json"
+    },
+    {
+      "primaryKey": 471,
+      "displayName": "white jelly",
+      "file": "monster_0471_white-jelly.json"
+    },
+    {
+      "primaryKey": 472,
+      "displayName": "zombie cat",
+      "file": "monster_0472_zombie-cat.json"
+    },
+    {
+      "primaryKey": 473,
+      "displayName": "rotworm",
+      "file": "monster_0473_rotworm.json"
+    },
+    {
+      "primaryKey": 474,
+      "displayName": "leprous outcast",
+      "file": "monster_0474_leprous-outcast.json"
+    },
+    {
+      "primaryKey": 475,
+      "displayName": "dark dabbler",
+      "file": "monster_0475_dark-dabbler.json"
+    },
+    {
+      "primaryKey": 476,
+      "displayName": "thief",
+      "file": "monster_0476_thief.json"
+    },
+    {
+      "primaryKey": 477,
+      "displayName": "smuggler",
+      "file": "monster_0477_smuggler.json"
+    },
+    {
+      "primaryKey": 478,
+      "displayName": "smuggler boss",
+      "file": "monster_0478_smuggler-boss.json"
+    },
+    {
+      "primaryKey": 479,
+      "displayName": "half-orc sentry",
+      "file": "monster_0479_half-orc-sentry.json"
+    },
+    {
+      "primaryKey": 480,
+      "displayName": "orc warrior",
+      "file": "monster_0480_orc-warrior.json"
+    },
+    {
+      "primaryKey": 481,
+      "displayName": "orc shaman",
+      "file": "monster_0481_orc-shaman.json"
+    },
+    {
+      "primaryKey": 482,
+      "displayName": "black orc boss",
+      "file": "monster_0482_black-orc-boss.json"
+    },
+    {
+      "primaryKey": 483,
+      "displayName": "worker ant",
+      "file": "monster_0483_worker-ant.json"
+    },
+    {
+      "primaryKey": 484,
+      "displayName": "soldier ant",
+      "file": "monster_0484_soldier-ant.json"
+    },
+    {
+      "primaryKey": 485,
+      "displayName": "queen ant",
+      "file": "monster_0485_queen-ant.json"
+    },
+    {
+      "primaryKey": 486,
+      "displayName": "Leo the Quick",
+      "file": "monster_0486_leo-the-quick.json"
+    },
+    {
+      "primaryKey": 487,
+      "displayName": "dark apprentice",
+      "file": "monster_0487_dark-apprentice.json"
+    },
+    {
+      "primaryKey": 488,
+      "displayName": "dark monk",
+      "file": "monster_0488_dark-monk.json"
+    },
+    {
+      "primaryKey": 489,
+      "displayName": "dark mystic",
+      "file": "monster_0489_dark-mystic.json"
+    },
+    {
+      "primaryKey": 490,
+      "displayName": "dread mystic",
+      "file": "monster_0490_dread-mystic.json"
+    },
+    {
+      "primaryKey": 491,
+      "displayName": "flesh golem",
+      "file": "monster_0491_flesh-golem.json"
+    },
+    {
+      "primaryKey": 492,
+      "displayName": "zombie",
+      "file": "monster_0492_zombie.json"
+    },
+    {
+      "primaryKey": 493,
+      "displayName": "ju-ju zombie",
+      "file": "monster_0493_ju-ju-zombie.json"
+    },
+    {
+      "primaryKey": 494,
+      "displayName": "necromancer",
+      "file": "monster_0494_necromancer.json"
+    },
+    {
+      "primaryKey": 495,
+      "displayName": "crazed lunatic",
+      "file": "monster_0495_crazed-lunatic.json"
+    },
+    {
+      "primaryKey": 496,
+      "displayName": "depraved murderer",
+      "file": "monster_0496_depraved-murderer.json"
+    },
+    {
+      "primaryKey": 497,
+      "displayName": "twisted guard",
+      "file": "monster_0497_twisted-guard.json"
+    },
+    {
+      "primaryKey": 498,
+      "displayName": "insane mage",
+      "file": "monster_0498_insane-mage.json"
+    },
+    {
+      "primaryKey": 499,
+      "displayName": "old man",
+      "file": "monster_0499_old-man.json"
+    },
+    {
+      "primaryKey": 500,
+      "displayName": "foul creation",
+      "file": "monster_0500_foul-creation.json"
+    },
+    {
+      "primaryKey": 501,
+      "displayName": "chaos demonling",
+      "file": "monster_0501_chaos-demonling.json"
+    },
+    {
+      "primaryKey": 502,
+      "displayName": "abomination",
+      "file": "monster_0502_abomination.json"
+    },
+    {
+      "primaryKey": 503,
+      "displayName": "shadow guard",
+      "file": "monster_0503_shadow-guard.json"
+    },
+    {
+      "primaryKey": 504,
+      "displayName": "Morukai",
+      "file": "monster_0504_morukai.json"
+    },
+    {
+      "primaryKey": 505,
+      "displayName": "haunting spirit",
+      "file": "monster_0505_haunting-spirit.json"
+    },
+    {
+      "primaryKey": 506,
+      "displayName": "duergar captain",
+      "file": "monster_0506_duergar-captain.json"
+    },
+    {
+      "primaryKey": 507,
+      "displayName": "practice dummy",
+      "file": "monster_0507_practice-dummy.json"
+    },
+    {
+      "primaryKey": 508,
+      "displayName": "Tyrannosaur",
+      "file": "monster_0508_tyrannosaur.json"
+    },
+    {
+      "primaryKey": 509,
+      "displayName": "tetraraptor",
+      "file": "monster_0509_tetraraptor.json"
+    },
+    {
+      "primaryKey": 510,
+      "displayName": "ruby guardian",
+      "file": "monster_0510_ruby-guardian.json"
+    },
+    {
+      "primaryKey": 511,
+      "displayName": "zapsalis",
+      "file": "monster_0511_zapsalis.json"
+    },
+    {
+      "primaryKey": 512,
+      "displayName": "pteranodon",
+      "file": "monster_0512_pteranodon.json"
+    },
+    {
+      "primaryKey": 513,
+      "displayName": "topaz guardian",
+      "file": "monster_0513_topaz-guardian.json"
+    },
+    {
+      "primaryKey": 514,
+      "displayName": "Tyrannosaur",
+      "file": "monster_0514_tyrannosaur.json"
+    },
+    {
+      "primaryKey": 515,
+      "displayName": "deinodon",
+      "file": "monster_0515_deinodon.json"
+    },
+    {
+      "primaryKey": 516,
+      "displayName": "amber guardian",
+      "file": "monster_0516_amber-guardian.json"
+    },
+    {
+      "primaryKey": 522,
+      "displayName": "sapphire guardian",
+      "file": "monster_0522_sapphire-guardian.json"
+    },
+    {
+      "primaryKey": 523,
+      "displayName": "deinonychus",
+      "file": "monster_0523_deinonychus.json"
+    },
+    {
+      "primaryKey": 524,
+      "displayName": "tetraraptor",
+      "file": "monster_0524_tetraraptor.json"
+    },
+    {
+      "primaryKey": 525,
+      "displayName": "amethyst guardian",
+      "file": "monster_0525_amethyst-guardian.json"
+    },
+    {
+      "primaryKey": 526,
+      "displayName": "disenchanter",
+      "file": "monster_0526_disenchanter.json"
+    },
+    {
+      "primaryKey": 527,
+      "displayName": "eradicator",
+      "file": "monster_0527_eradicator.json"
+    },
+    {
+      "primaryKey": 528,
+      "displayName": "onyx guardian",
+      "file": "monster_0528_onyx-guardian.json"
+    },
+    {
+      "primaryKey": 529,
+      "displayName": "demonhunter",
+      "file": "monster_0529_demonhunter.json"
+    },
+    {
+      "primaryKey": 530,
+      "displayName": "Crazed Inquisitor",
+      "file": "monster_0530_crazed-inquisitor.json"
+    },
+    {
+      "primaryKey": 531,
+      "displayName": "silver guardian",
+      "file": "monster_0531_silver-guardian.json"
+    },
+    {
+      "primaryKey": 532,
+      "displayName": "Inquisitor Fulgore",
+      "file": "monster_0532_inquisitor-fulgore.json"
+    },
+    {
+      "primaryKey": 533,
+      "displayName": "flaming zombie",
+      "file": "monster_0533_flaming-zombie.json"
+    },
+    {
+      "primaryKey": 534,
+      "displayName": "gold guardian",
+      "file": "monster_0534_gold-guardian.json"
+    },
+    {
+      "primaryKey": 535,
+      "displayName": "flaming waist",
+      "file": "monster_0535_flaming-waist.json"
+    },
+    {
+      "primaryKey": 536,
+      "displayName": "flaming torso",
+      "file": "monster_0536_flaming-torso.json"
+    },
+    {
+      "primaryKey": 537,
+      "displayName": "diamond guardian",
+      "file": "monster_0537_diamond-guardian.json"
+    },
+    {
+      "primaryKey": 538,
+      "displayName": "guardsman",
+      "file": "monster_0538_guardsman.json"
+    },
+    {
+      "primaryKey": 539,
+      "displayName": "Spacelord",
+      "file": "monster_0539_spacelord.json"
+    },
+    {
+      "primaryKey": 540,
+      "displayName": "Vashti",
+      "file": "monster_0540_vashti.json"
+    },
+    {
+      "primaryKey": 541,
+      "displayName": "Vasili",
+      "file": "monster_0541_vasili.json"
+    },
+    {
+      "primaryKey": 542,
+      "displayName": "burnt witchunter",
+      "file": "monster_0542_burnt-witchunter.json"
+    },
+    {
+      "primaryKey": 543,
+      "displayName": "giant rat",
+      "file": "monster_0543_giant-rat.json"
+    },
+    {
+      "primaryKey": 544,
+      "displayName": "platinum knight",
+      "file": "monster_0544_platinum-knight.json"
+    },
+    {
+      "primaryKey": 545,
+      "displayName": "sdfsdfsfdsfs",
+      "file": "monster_0545_sdfsdfsfdsfs.json"
+    },
+    {
+      "primaryKey": 546,
+      "displayName": "sdfsfdsdfsd",
+      "file": "monster_0546_sdfsfdsdfsd.json"
+    },
+    {
+      "primaryKey": 547,
+      "displayName": "necromancer",
+      "file": "monster_0547_necromancer.json"
+    },
+    {
+      "primaryKey": 548,
+      "displayName": "stone sphinx",
+      "file": "monster_0548_stone-sphinx.json"
+    },
+    {
+      "primaryKey": 549,
+      "displayName": "stone sphinx",
+      "file": "monster_0549_stone-sphinx.json"
+    },
+    {
+      "primaryKey": 550,
+      "displayName": "stone sphinx",
+      "file": "monster_0550_stone-sphinx.json"
+    },
+    {
+      "primaryKey": 551,
+      "displayName": "stone sphinx",
+      "file": "monster_0551_stone-sphinx.json"
+    },
+    {
+      "primaryKey": 552,
+      "displayName": "stone sphinx",
+      "file": "monster_0552_stone-sphinx.json"
+    },
+    {
+      "primaryKey": 553,
+      "displayName": "nekojin traveler",
+      "file": "monster_0553_nekojin-traveler.json"
+    },
+    {
+      "primaryKey": 554,
+      "displayName": "nekojin elder",
+      "file": "monster_0554_nekojin-elder.json"
+    },
+    {
+      "primaryKey": 555,
+      "displayName": "nekojin",
+      "file": "monster_0555_nekojin.json"
+    },
+    {
+      "primaryKey": 556,
+      "displayName": "nekojin guardian",
+      "file": "monster_0556_nekojin-guardian.json"
+    },
+    {
+      "primaryKey": 557,
+      "displayName": "stronghold guard",
+      "file": "monster_0557_stronghold-guard.json"
+    },
+    {
+      "primaryKey": 558,
+      "displayName": "guard sergeant",
+      "file": "monster_0558_guard-sergeant.json"
+    },
+    {
+      "primaryKey": 560,
+      "displayName": "Master Trader Tolgard",
+      "file": "monster_0560_master-trader-tolgard.json"
+    },
+    {
+      "primaryKey": 561,
+      "displayName": "seeress",
+      "file": "monster_0561_seeress.json"
+    },
+    {
+      "primaryKey": 562,
+      "displayName": "beautiful woman",
+      "file": "monster_0562_beautiful-woman.json"
+    },
+    {
+      "primaryKey": 563,
+      "displayName": "handsome man",
+      "file": "monster_0563_handsome-man.json"
+    },
+    {
+      "primaryKey": 564,
+      "displayName": "rakshasha",
+      "file": "monster_0564_rakshasha.json"
+    },
+    {
+      "primaryKey": 565,
+      "displayName": "rakshasha rukh",
+      "file": "monster_0565_rakshasha-rukh.json"
+    },
+    {
+      "primaryKey": 566,
+      "displayName": "rakshasha sage",
+      "file": "monster_0566_rakshasha-sage.json"
+    },
+    {
+      "primaryKey": 567,
+      "displayName": "rakshasha rajah",
+      "file": "monster_0567_rakshasha-rajah.json"
+    },
+    {
+      "primaryKey": 568,
+      "displayName": "withered old man",
+      "file": "monster_0568_withered-old-man.json"
+    },
+    {
+      "primaryKey": 569,
+      "displayName": "saracen raider",
+      "file": "monster_0569_saracen-raider.json"
+    },
+    {
+      "primaryKey": 570,
+      "displayName": "saracen leader",
+      "file": "monster_0570_saracen-leader.json"
+    },
+    {
+      "primaryKey": 571,
+      "displayName": "giant roc",
+      "file": "monster_0571_giant-roc.json"
+    },
+    {
+      "primaryKey": 572,
+      "displayName": "black asp",
+      "file": "monster_0572_black-asp.json"
+    },
+    {
+      "primaryKey": 573,
+      "displayName": "giant scorpion",
+      "file": "monster_0573_giant-scorpion.json"
+    },
+    {
+      "primaryKey": 574,
+      "displayName": "sandworm",
+      "file": "monster_0574_sandworm.json"
+    },
+    {
+      "primaryKey": 575,
+      "displayName": "dustdevil",
+      "file": "monster_0575_dustdevil.json"
+    },
+    {
+      "primaryKey": 576,
+      "displayName": "nomad",
+      "file": "monster_0576_nomad.json"
+    },
+    {
+      "primaryKey": 577,
+      "displayName": "saracen zealot",
+      "file": "monster_0577_saracen-zealot.json"
+    },
+    {
+      "primaryKey": 578,
+      "displayName": "saracen high priest",
+      "file": "monster_0578_saracen-high-priest.json"
+    },
+    {
+      "primaryKey": 579,
+      "displayName": "spiny tentacle",
+      "file": "monster_0579_spiny-tentacle.json"
+    },
+    {
+      "primaryKey": 580,
+      "displayName": "hideous abomination",
+      "file": "monster_0580_hideous-abomination.json"
+    },
+    {
+      "primaryKey": 581,
+      "displayName": "stomach lining",
+      "file": "monster_0581_stomach-lining.json"
+    },
+    {
+      "primaryKey": 582,
+      "displayName": "jackal-headed warrior",
+      "file": "monster_0582_jackal-headed-warrior.json"
+    },
+    {
+      "primaryKey": 583,
+      "displayName": "falcon-headed warrior",
+      "file": "monster_0583_falcon-headed-warrior.json"
+    },
+    {
+      "primaryKey": 584,
+      "displayName": "serpent-headed warrior",
+      "file": "monster_0584_serpent-headed-warrior.json"
+    },
+    {
+      "primaryKey": 585,
+      "displayName": "undead priest",
+      "file": "monster_0585_undead-priest.json"
+    },
+    {
+      "primaryKey": 586,
+      "displayName": "manscorpion",
+      "file": "monster_0586_manscorpion.json"
+    },
+    {
+      "primaryKey": 587,
+      "displayName": "manscorpion shaman",
+      "file": "monster_0587_manscorpion-shaman.json"
+    },
+    {
+      "primaryKey": 588,
+      "displayName": "manscorpion king",
+      "file": "monster_0588_manscorpion-king.json"
+    },
+    {
+      "primaryKey": 589,
+      "displayName": "hydra",
+      "file": "monster_0589_hydra.json"
+    },
+    {
+      "primaryKey": 590,
+      "displayName": "hydra head",
+      "file": "monster_0590_hydra-head.json"
+    },
+    {
+      "primaryKey": 591,
+      "displayName": "wraith",
+      "file": "monster_0591_wraith.json"
+    },
+    {
+      "primaryKey": 592,
+      "displayName": "shade",
+      "file": "monster_0592_shade.json"
+    },
+    {
+      "primaryKey": 593,
+      "displayName": "spectre",
+      "file": "monster_0593_spectre.json"
+    },
+    {
+      "primaryKey": 594,
+      "displayName": "Pharaoh Rastep",
+      "file": "monster_0594_pharaoh-rastep.json"
+    },
+    {
+      "primaryKey": 595,
+      "displayName": "dying pharaoh",
+      "file": "monster_0595_dying-pharaoh.json"
+    },
+    {
+      "primaryKey": 596,
+      "displayName": "grey portal",
+      "file": "monster_0596_grey-portal.json"
+    },
+    {
+      "primaryKey": 597,
+      "displayName": "Dao Lord",
+      "file": "monster_0597_dao-lord.json"
+    },
+    {
+      "primaryKey": 598,
+      "displayName": "floating key",
+      "file": "monster_0598_floating-key.json"
+    },
+    {
+      "primaryKey": 599,
+      "displayName": "huge fungus creature",
+      "file": "monster_0599_huge-fungus-creature.json"
+    },
+    {
+      "primaryKey": 600,
+      "displayName": "gaunt one temple master",
+      "file": "monster_0600_gaunt-one-temple-master.json"
+    },
+    {
+      "primaryKey": 601,
+      "displayName": "saracen raider",
+      "file": "monster_0601_saracen-raider.json"
+    },
+    {
+      "primaryKey": 602,
+      "displayName": "saracen commander",
+      "file": "monster_0602_saracen-commander.json"
+    },
+    {
+      "primaryKey": 603,
+      "displayName": "hardened practice dummy",
+      "file": "monster_0603_hardened-practice-dummy.json"
+    },
+    {
+      "primaryKey": 604,
+      "displayName": "nekojin priestess",
+      "file": "monster_0604_nekojin-priestess.json"
+    },
+    {
+      "primaryKey": 605,
+      "displayName": "Argak the Grey",
+      "file": "monster_0605_argak-the-grey.json"
+    },
+    {
+      "primaryKey": 606,
+      "displayName": "Choira Pyromancer",
+      "file": "monster_0606_choira-pyromancer.json"
+    },
+    {
+      "primaryKey": 607,
+      "displayName": "Lallim Whitemane",
+      "file": "monster_0607_lallim-whitemane.json"
+    },
+    {
+      "primaryKey": 608,
+      "displayName": "Sharh'Kur",
+      "file": "monster_0608_sharh-kur.json"
+    },
+    {
+      "primaryKey": 609,
+      "displayName": "Argak the Grey",
+      "file": "monster_0609_argak-the-grey.json"
+    },
+    {
+      "primaryKey": 610,
+      "displayName": "Choira Pyromancer",
+      "file": "monster_0610_choira-pyromancer.json"
+    },
+    {
+      "primaryKey": 611,
+      "displayName": "Lallim Whitemane",
+      "file": "monster_0611_lallim-whitemane.json"
+    },
+    {
+      "primaryKey": 612,
+      "displayName": "Sharh'Kur",
+      "file": "monster_0612_sharh-kur.json"
+    },
+    {
+      "primaryKey": 613,
+      "displayName": "sdfsdfsdfsdfsdfsdfsd",
+      "file": "monster_0613_sdfsdfsdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 614,
+      "displayName": "tasloi villager",
+      "file": "monster_0614_tasloi-villager.json"
+    },
+    {
+      "primaryKey": 615,
+      "displayName": "tasloi hunter",
+      "file": "monster_0615_tasloi-hunter.json"
+    },
+    {
+      "primaryKey": 616,
+      "displayName": "tasloi chief",
+      "file": "monster_0616_tasloi-chief.json"
+    },
+    {
+      "primaryKey": 617,
+      "displayName": "tasloi animal master",
+      "file": "monster_0617_tasloi-animal-master.json"
+    },
+    {
+      "primaryKey": 618,
+      "displayName": "giant wasp",
+      "file": "monster_0618_giant-wasp.json"
+    },
+    {
+      "primaryKey": 619,
+      "displayName": "tasloi shaman",
+      "file": "monster_0619_tasloi-shaman.json"
+    },
+    {
+      "primaryKey": 620,
+      "displayName": "wild spider",
+      "file": "monster_0620_wild-spider.json"
+    },
+    {
+      "primaryKey": 621,
+      "displayName": "trained spider",
+      "file": "monster_0621_trained-spider.json"
+    },
+    {
+      "primaryKey": 622,
+      "displayName": "massive fanged spider",
+      "file": "monster_0622_massive-fanged-spider.json"
+    },
+    {
+      "primaryKey": 623,
+      "displayName": "tasloi warrior",
+      "file": "monster_0623_tasloi-warrior.json"
+    },
+    {
+      "primaryKey": 624,
+      "displayName": "hanging cocoon",
+      "file": "monster_0624_hanging-cocoon.json"
+    },
+    {
+      "primaryKey": 625,
+      "displayName": "electric eel",
+      "file": "monster_0625_electric-eel.json"
+    },
+    {
+      "primaryKey": 626,
+      "displayName": "albino salamander",
+      "file": "monster_0626_albino-salamander.json"
+    },
+    {
+      "primaryKey": 627,
+      "displayName": "giant oyster",
+      "file": "monster_0627_giant-oyster.json"
+    },
+    {
+      "primaryKey": 628,
+      "displayName": "giant crab",
+      "file": "monster_0628_giant-crab.json"
+    },
+    {
+      "primaryKey": 629,
+      "displayName": "river ray",
+      "file": "monster_0629_river-ray.json"
+    },
+    {
+      "primaryKey": 630,
+      "displayName": "spider crab",
+      "file": "monster_0630_spider-crab.json"
+    },
+    {
+      "primaryKey": 631,
+      "displayName": "lantern fish",
+      "file": "monster_0631_lantern-fish.json"
+    },
+    {
+      "primaryKey": 632,
+      "displayName": "parasite",
+      "file": "monster_0632_parasite.json"
+    },
+    {
+      "primaryKey": 633,
+      "displayName": "crimson priest",
+      "file": "monster_0633_crimson-priest.json"
+    },
+    {
+      "primaryKey": 634,
+      "displayName": "giant war dog",
+      "file": "monster_0634_giant-war-dog.json"
+    },
+    {
+      "primaryKey": 635,
+      "displayName": "tunnel horror",
+      "file": "monster_0635_tunnel-horror.json"
+    },
+    {
+      "primaryKey": 636,
+      "displayName": "tentacled mass",
+      "file": "monster_0636_tentacled-mass.json"
+    },
+    {
+      "primaryKey": 637,
+      "displayName": "storm giant king",
+      "file": "monster_0637_storm-giant-king.json"
+    },
+    {
+      "primaryKey": 638,
+      "displayName": "storm giant",
+      "file": "monster_0638_storm-giant.json"
+    },
+    {
+      "primaryKey": 639,
+      "displayName": "storm giant commander",
+      "file": "monster_0639_storm-giant-commander.json"
+    },
+    {
+      "primaryKey": 640,
+      "displayName": "stone giant shaman",
+      "file": "monster_0640_stone-giant-shaman.json"
+    },
+    {
+      "primaryKey": 641,
+      "displayName": "stone giant",
+      "file": "monster_0641_stone-giant.json"
+    },
+    {
+      "primaryKey": 642,
+      "displayName": "stone giant chieftain",
+      "file": "monster_0642_stone-giant-chieftain.json"
+    },
+    {
+      "primaryKey": 643,
+      "displayName": "giant skeleton",
+      "file": "monster_0643_giant-skeleton.json"
+    },
+    {
+      "primaryKey": 644,
+      "displayName": "pyrotrice",
+      "file": "monster_0644_pyrotrice.json"
+    },
+    {
+      "primaryKey": 645,
+      "displayName": "hill giant shaman",
+      "file": "monster_0645_hill-giant-shaman.json"
+    },
+    {
+      "primaryKey": 646,
+      "displayName": "hill giant",
+      "file": "monster_0646_hill-giant.json"
+    },
+    {
+      "primaryKey": 647,
+      "displayName": "hill giant chieftan",
+      "file": "monster_0647_hill-giant-chieftan.json"
+    },
+    {
+      "primaryKey": 648,
+      "displayName": "devourer",
+      "file": "monster_0648_devourer.json"
+    },
+    {
+      "primaryKey": 649,
+      "displayName": "aged earth dragon",
+      "file": "monster_0649_aged-earth-dragon.json"
+    },
+    {
+      "primaryKey": 650,
+      "displayName": "cockatrice",
+      "file": "monster_0650_cockatrice.json"
+    },
+    {
+      "primaryKey": 651,
+      "displayName": "slimeworm",
+      "file": "monster_0651_slimeworm.json"
+    },
+    {
+      "primaryKey": 652,
+      "displayName": "amazon",
+      "file": "monster_0652_amazon.json"
+    },
+    {
+      "primaryKey": 653,
+      "displayName": "amazon warrior",
+      "file": "monster_0653_amazon-warrior.json"
+    },
+    {
+      "primaryKey": 654,
+      "displayName": "amazon shaman",
+      "file": "monster_0654_amazon-shaman.json"
+    },
+    {
+      "primaryKey": 655,
+      "displayName": "amazon guard",
+      "file": "monster_0655_amazon-guard.json"
+    },
+    {
+      "primaryKey": 656,
+      "displayName": "amazon battle master",
+      "file": "monster_0656_amazon-battle-master.json"
+    },
+    {
+      "primaryKey": 657,
+      "displayName": "male slave",
+      "file": "monster_0657_male-slave.json"
+    },
+    {
+      "primaryKey": 658,
+      "displayName": "massive cocoon",
+      "file": "monster_0658_massive-cocoon.json"
+    },
+    {
+      "primaryKey": 659,
+      "displayName": "gorilla",
+      "file": "monster_0659_gorilla.json"
+    },
+    {
+      "primaryKey": 660,
+      "displayName": "gorilla",
+      "file": "monster_0660_gorilla.json"
+    },
+    {
+      "primaryKey": 661,
+      "displayName": "blood hawk",
+      "file": "monster_0661_blood-hawk.json"
+    },
+    {
+      "primaryKey": 662,
+      "displayName": "leafling",
+      "file": "monster_0662_leafling.json"
+    },
+    {
+      "primaryKey": 663,
+      "displayName": "insect swarm",
+      "file": "monster_0663_insect-swarm.json"
+    },
+    {
+      "primaryKey": 664,
+      "displayName": "whipvine",
+      "file": "monster_0664_whipvine.json"
+    },
+    {
+      "primaryKey": 665,
+      "displayName": "constrictor",
+      "file": "monster_0665_constrictor.json"
+    },
+    {
+      "primaryKey": 666,
+      "displayName": "dae asp",
+      "file": "monster_0666_dae-asp.json"
+    },
+    {
+      "primaryKey": 667,
+      "displayName": "shadow frog",
+      "file": "monster_0667_shadow-frog.json"
+    },
+    {
+      "primaryKey": 668,
+      "displayName": "jeweled viper",
+      "file": "monster_0668_jeweled-viper.json"
+    },
+    {
+      "primaryKey": 669,
+      "displayName": "silver cobra",
+      "file": "monster_0669_silver-cobra.json"
+    },
+    {
+      "primaryKey": 670,
+      "displayName": "grall",
+      "file": "monster_0670_grall.json"
+    },
+    {
+      "primaryKey": 671,
+      "displayName": "moss zombie",
+      "file": "monster_0671_moss-zombie.json"
+    },
+    {
+      "primaryKey": 672,
+      "displayName": "whipvine",
+      "file": "monster_0672_whipvine.json"
+    },
+    {
+      "primaryKey": 673,
+      "displayName": "tasloi scout",
+      "file": "monster_0673_tasloi-scout.json"
+    },
+    {
+      "primaryKey": 674,
+      "displayName": "hanging cocoon",
+      "file": "monster_0674_hanging-cocoon.json"
+    },
+    {
+      "primaryKey": 675,
+      "displayName": "hanging cocoon",
+      "file": "monster_0675_hanging-cocoon.json"
+    },
+    {
+      "primaryKey": 676,
+      "displayName": "magma golem",
+      "file": "monster_0676_magma-golem.json"
+    },
+    {
+      "primaryKey": 677,
+      "displayName": "fire toad",
+      "file": "monster_0677_fire-toad.json"
+    },
+    {
+      "primaryKey": 678,
+      "displayName": "pyrogoyle",
+      "file": "monster_0678_pyrogoyle.json"
+    },
+    {
+      "primaryKey": 679,
+      "displayName": "lava imp",
+      "file": "monster_0679_lava-imp.json"
+    },
+    {
+      "primaryKey": 680,
+      "displayName": "greater salamander",
+      "file": "monster_0680_greater-salamander.json"
+    },
+    {
+      "primaryKey": 681,
+      "displayName": "pyrimera",
+      "file": "monster_0681_pyrimera.json"
+    },
+    {
+      "primaryKey": 682,
+      "displayName": "flame elemental",
+      "file": "monster_0682_flame-elemental.json"
+    },
+    {
+      "primaryKey": 683,
+      "displayName": "fire knight",
+      "file": "monster_0683_fire-knight.json"
+    },
+    {
+      "primaryKey": 685,
+      "displayName": "giant efreeti",
+      "file": "monster_0685_giant-efreeti.json"
+    },
+    {
+      "primaryKey": 686,
+      "displayName": "sand crab",
+      "file": "monster_0686_sand-crab.json"
+    },
+    {
+      "primaryKey": 687,
+      "displayName": "sandworm",
+      "file": "monster_0687_sandworm.json"
+    },
+    {
+      "primaryKey": 688,
+      "displayName": "seagull",
+      "file": "monster_0688_seagull.json"
+    },
+    {
+      "primaryKey": 689,
+      "displayName": "green tortoise",
+      "file": "monster_0689_green-tortoise.json"
+    },
+    {
+      "primaryKey": 690,
+      "displayName": "ocean hawk",
+      "file": "monster_0690_ocean-hawk.json"
+    },
+    {
+      "primaryKey": 691,
+      "displayName": "king crab",
+      "file": "monster_0691_king-crab.json"
+    },
+    {
+      "primaryKey": 692,
+      "displayName": "giant river turtle",
+      "file": "monster_0692_giant-river-turtle.json"
+    },
+    {
+      "primaryKey": 693,
+      "displayName": "behemoth hellhound",
+      "file": "monster_0693_behemoth-hellhound.json"
+    },
+    {
+      "primaryKey": 694,
+      "displayName": "old amazon woman",
+      "file": "monster_0694_old-amazon-woman.json"
+    },
+    {
+      "primaryKey": 695,
+      "displayName": "amazon craftswoman",
+      "file": "monster_0695_amazon-craftswoman.json"
+    },
+    {
+      "primaryKey": 696,
+      "displayName": "gaunt one weaver",
+      "file": "monster_0696_gaunt-one-weaver.json"
+    },
+    {
+      "primaryKey": 697,
+      "displayName": "gaunt one messenger",
+      "file": "monster_0697_gaunt-one-messenger.json"
+    },
+    {
+      "primaryKey": 698,
+      "displayName": "gaunt one elder",
+      "file": "monster_0698_gaunt-one-elder.json"
+    },
+    {
+      "primaryKey": 699,
+      "displayName": "wounded sailor",
+      "file": "monster_0699_wounded-sailor.json"
+    },
+    {
+      "primaryKey": 700,
+      "displayName": "dark phoenix",
+      "file": "monster_0700_dark-phoenix.json"
+    },
+    {
+      "primaryKey": 701,
+      "displayName": "mamba",
+      "file": "monster_0701_mamba.json"
+    },
+    {
+      "primaryKey": 702,
+      "displayName": "bone warrior",
+      "file": "monster_0702_bone-warrior.json"
+    },
+    {
+      "primaryKey": 703,
+      "displayName": "ancestral guardian",
+      "file": "monster_0703_ancestral-guardian.json"
+    },
+    {
+      "primaryKey": 704,
+      "displayName": "crane spirit",
+      "file": "monster_0704_crane-spirit.json"
+    },
+    {
+      "primaryKey": 705,
+      "displayName": "flesh ripper",
+      "file": "monster_0705_flesh-ripper.json"
+    },
+    {
+      "primaryKey": 706,
+      "displayName": "gorilla spirit",
+      "file": "monster_0706_gorilla-spirit.json"
+    },
+    {
+      "primaryKey": 707,
+      "displayName": "monkey spirit",
+      "file": "monster_0707_monkey-spirit.json"
+    },
+    {
+      "primaryKey": 708,
+      "displayName": "amazon queen",
+      "file": "monster_0708_amazon-queen.json"
+    },
+    {
+      "primaryKey": 709,
+      "displayName": "amazon queen",
+      "file": "monster_0709_amazon-queen.json"
+    },
+    {
+      "primaryKey": 710,
+      "displayName": "sahuagin shaman",
+      "file": "monster_0710_sahuagin-shaman.json"
+    },
+    {
+      "primaryKey": 711,
+      "displayName": "sahuagin",
+      "file": "monster_0711_sahuagin.json"
+    },
+    {
+      "primaryKey": 712,
+      "displayName": "sahuagin warrior",
+      "file": "monster_0712_sahuagin-warrior.json"
+    },
+    {
+      "primaryKey": 713,
+      "displayName": "coral lobster",
+      "file": "monster_0713_coral-lobster.json"
+    },
+    {
+      "primaryKey": 714,
+      "displayName": "brine hag",
+      "file": "monster_0714_brine-hag.json"
+    },
+    {
+      "primaryKey": 715,
+      "displayName": "Seher'Sahham",
+      "file": "monster_0715_seher-sahham.json"
+    },
+    {
+      "primaryKey": 716,
+      "displayName": "gnome merchant",
+      "file": "monster_0716_gnome-merchant.json"
+    },
+    {
+      "primaryKey": 717,
+      "displayName": "Sylk",
+      "file": "monster_0717_sylk.json"
+    },
+    {
+      "primaryKey": 718,
+      "displayName": "Kuel",
+      "file": "monster_0718_kuel.json"
+    },
+    {
+      "primaryKey": 719,
+      "displayName": "deranged priest",
+      "file": "monster_0719_deranged-priest.json"
+    },
+    {
+      "primaryKey": 720,
+      "displayName": "gibbering mage",
+      "file": "monster_0720_gibbering-mage.json"
+    },
+    {
+      "primaryKey": 721,
+      "displayName": "large red demonling",
+      "file": "monster_0721_large-red-demonling.json"
+    },
+    {
+      "primaryKey": 722,
+      "displayName": "Putakwa",
+      "file": "monster_0722_putakwa.json"
+    },
+    {
+      "primaryKey": 723,
+      "displayName": "practice dummy",
+      "file": "monster_0723_practice-dummy.json"
+    },
+    {
+      "primaryKey": 724,
+      "displayName": "orc warlord",
+      "file": "monster_0724_orc-warlord.json"
+    },
+    {
+      "primaryKey": 725,
+      "displayName": "orc captain",
+      "file": "monster_0725_orc-captain.json"
+    },
+    {
+      "primaryKey": 726,
+      "displayName": "ogre gladiator",
+      "file": "monster_0726_ogre-gladiator.json"
+    },
+    {
+      "primaryKey": 727,
+      "displayName": "orc lieutenant",
+      "file": "monster_0727_orc-lieutenant.json"
+    },
+    {
+      "primaryKey": 728,
+      "displayName": "orc warrior",
+      "file": "monster_0728_orc-warrior.json"
+    },
+    {
+      "primaryKey": 729,
+      "displayName": "orc fanatic",
+      "file": "monster_0729_orc-fanatic.json"
+    },
+    {
+      "primaryKey": 730,
+      "displayName": "orc trainee",
+      "file": "monster_0730_orc-trainee.json"
+    },
+    {
+      "primaryKey": 731,
+      "displayName": "nanati",
+      "file": "monster_0731_nanati.json"
+    },
+    {
+      "primaryKey": 732,
+      "displayName": "nanati",
+      "file": "monster_0732_nanati.json"
+    },
+    {
+      "primaryKey": 733,
+      "displayName": "nanati sorceress",
+      "file": "monster_0733_nanati-sorceress.json"
+    },
+    {
+      "primaryKey": 734,
+      "displayName": "nanati deathweaver",
+      "file": "monster_0734_nanati-deathweaver.json"
+    },
+    {
+      "primaryKey": 735,
+      "displayName": "nanati bladesman",
+      "file": "monster_0735_nanati-bladesman.json"
+    },
+    {
+      "primaryKey": 736,
+      "displayName": "nanati shadow",
+      "file": "monster_0736_nanati-shadow.json"
+    },
+    {
+      "primaryKey": 737,
+      "displayName": "dark assassin",
+      "file": "monster_0737_dark-assassin.json"
+    },
+    {
+      "primaryKey": 738,
+      "displayName": "dark stalker",
+      "file": "monster_0738_dark-stalker.json"
+    },
+    {
+      "primaryKey": 739,
+      "displayName": "dark nightblade",
+      "file": "monster_0739_dark-nightblade.json"
+    },
+    {
+      "primaryKey": 740,
+      "displayName": "master assassin",
+      "file": "monster_0740_master-assassin.json"
+    },
+    {
+      "primaryKey": 741,
+      "displayName": "yeti",
+      "file": "monster_0741_yeti.json"
+    },
+    {
+      "primaryKey": 742,
+      "displayName": "ice golem",
+      "file": "monster_0742_ice-golem.json"
+    },
+    {
+      "primaryKey": 743,
+      "displayName": "ice wraith",
+      "file": "monster_0743_ice-wraith.json"
+    },
+    {
+      "primaryKey": 744,
+      "displayName": "amazon shopkeeper",
+      "file": "monster_0744_amazon-shopkeeper.json"
+    },
+    {
+      "primaryKey": 745,
+      "displayName": "dying master assassin",
+      "file": "monster_0745_dying-master-assassin.json"
+    },
+    {
+      "primaryKey": 746,
+      "displayName": "stronghold guard",
+      "file": "monster_0746_stronghold-guard.json"
+    },
+    {
+      "primaryKey": 747,
+      "displayName": "massive white dragon",
+      "file": "monster_0747_massive-white-dragon.json"
+    },
+    {
+      "primaryKey": 748,
+      "displayName": "sdfsfdsdfsdfsdfsdfdsfsd",
+      "file": "monster_0748_sdfsfdsdfsdfsdfsdfdsfsd.json"
+    },
+    {
+      "primaryKey": 749,
+      "displayName": "sdfsfsdfsdfsdfsdfsdfsd",
+      "file": "monster_0749_sdfsfsdfsdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 750,
+      "displayName": "sdfsfsdfsdfsdfsdfsdfsdfsd",
+      "file": "monster_0750_sdfsfsdfsdfsdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 751,
+      "displayName": "lady of the dark",
+      "file": "monster_0751_lady-of-the-dark.json"
+    },
+    {
+      "primaryKey": 752,
+      "displayName": "orc warrior",
+      "file": "monster_0752_orc-warrior.json"
+    },
+    {
+      "primaryKey": 753,
+      "displayName": "orc fanatic",
+      "file": "monster_0753_orc-fanatic.json"
+    },
+    {
+      "primaryKey": 754,
+      "displayName": "orc trainee",
+      "file": "monster_0754_orc-trainee.json"
+    },
+    {
+      "primaryKey": 755,
+      "displayName": "Enigma Lord",
+      "file": "monster_0755_enigma-lord.json"
+    },
+    {
+      "primaryKey": 756,
+      "displayName": "frost giant",
+      "file": "monster_0756_frost-giant.json"
+    },
+    {
+      "primaryKey": 757,
+      "displayName": "elite guardsman",
+      "file": "monster_0757_elite-guardsman.json"
+    },
+    {
+      "primaryKey": 758,
+      "displayName": "skeleton",
+      "file": "monster_0758_skeleton.json"
+    },
+    {
+      "primaryKey": 759,
+      "displayName": "zombie",
+      "file": "monster_0759_zombie.json"
+    },
+    {
+      "primaryKey": 766,
+      "displayName": "ghost",
+      "file": "monster_0766_ghost.json"
+    },
+    {
+      "primaryKey": 767,
+      "displayName": "shadowraith",
+      "file": "monster_0767_shadowraith.json"
+    },
+    {
+      "primaryKey": 768,
+      "displayName": "barrow wight",
+      "file": "monster_0768_barrow-wight.json"
+    },
+    {
+      "primaryKey": 769,
+      "displayName": "zombie cat",
+      "file": "monster_0769_zombie-cat.json"
+    },
+    {
+      "primaryKey": 770,
+      "displayName": "undead priest",
+      "file": "monster_0770_undead-priest.json"
+    },
+    {
+      "primaryKey": 771,
+      "displayName": "tortured spirit",
+      "file": "monster_0771_tortured-spirit.json"
+    },
+    {
+      "primaryKey": 772,
+      "displayName": "ju-ju zombie",
+      "file": "monster_0772_ju-ju-zombie.json"
+    },
+    {
+      "primaryKey": 773,
+      "displayName": "necromancer",
+      "file": "monster_0773_necromancer.json"
+    },
+    {
+      "primaryKey": 774,
+      "displayName": "giant skeleton",
+      "file": "monster_0774_giant-skeleton.json"
+    },
+    {
+      "primaryKey": 775,
+      "displayName": "bone warrior",
+      "file": "monster_0775_bone-warrior.json"
+    },
+    {
+      "primaryKey": 776,
+      "displayName": "filthy beggar",
+      "file": "monster_0776_filthy-beggar.json"
+    },
+    {
+      "primaryKey": 777,
+      "displayName": "depraved murderer",
+      "file": "monster_0777_depraved-murderer.json"
+    },
+    {
+      "primaryKey": 778,
+      "displayName": "mangy dog",
+      "file": "monster_0778_mangy-dog.json"
+    },
+    {
+      "primaryKey": 779,
+      "displayName": "dread planewalker",
+      "file": "monster_0779_dread-planewalker.json"
+    },
+    {
+      "primaryKey": 780,
+      "displayName": "townsman",
+      "file": "monster_0780_townsman.json"
+    },
+    {
+      "primaryKey": 781,
+      "displayName": "drunken brawler",
+      "file": "monster_0781_drunken-brawler.json"
+    },
+    {
+      "primaryKey": 782,
+      "displayName": "townswoman",
+      "file": "monster_0782_townswoman.json"
+    },
+    {
+      "primaryKey": 783,
+      "displayName": "squirrel",
+      "file": "monster_0783_squirrel.json"
+    },
+    {
+      "primaryKey": 784,
+      "displayName": "Mayor Godfrey",
+      "file": "monster_0784_mayor-godfrey.json"
+    },
+    {
+      "primaryKey": 785,
+      "displayName": "troll",
+      "file": "monster_0785_troll.json"
+    },
+    {
+      "primaryKey": 786,
+      "displayName": "black cat",
+      "file": "monster_0786_black-cat.json"
+    },
+    {
+      "primaryKey": 787,
+      "displayName": "mercenary healer",
+      "file": "monster_0787_mercenary-healer.json"
+    },
+    {
+      "primaryKey": 788,
+      "displayName": "mangy dog",
+      "file": "monster_0788_mangy-dog.json"
+    },
+    {
+      "primaryKey": 789,
+      "displayName": "young gypsy girl",
+      "file": "monster_0789_young-gypsy-girl.json"
+    },
+    {
+      "primaryKey": 790,
+      "displayName": "gravedigger",
+      "file": "monster_0790_gravedigger.json"
+    },
+    {
+      "primaryKey": 791,
+      "displayName": "roc",
+      "file": "monster_0791_roc.json"
+    },
+    {
+      "primaryKey": 792,
+      "displayName": "giant roc",
+      "file": "monster_0792_giant-roc.json"
+    },
+    {
+      "primaryKey": 793,
+      "displayName": "lonely traveler",
+      "file": "monster_0793_lonely-traveler.json"
+    },
+    {
+      "primaryKey": 794,
+      "displayName": "lonely traveler",
+      "file": "monster_0794_lonely-traveler.json"
+    },
+    {
+      "primaryKey": 795,
+      "displayName": "dirty farmer",
+      "file": "monster_0795_dirty-farmer.json"
+    },
+    {
+      "primaryKey": 802,
+      "displayName": "rabid dire wolf",
+      "file": "monster_0802_rabid-dire-wolf.json"
+    },
+    {
+      "primaryKey": 803,
+      "displayName": "boneless zombie",
+      "file": "monster_0803_boneless-zombie.json"
+    },
+    {
+      "primaryKey": 804,
+      "displayName": "skeletal acid beast",
+      "file": "monster_0804_skeletal-acid-beast.json"
+    },
+    {
+      "primaryKey": 805,
+      "displayName": "scarab swarm",
+      "file": "monster_0805_scarab-swarm.json"
+    },
+    {
+      "primaryKey": 806,
+      "displayName": "weeping apparition",
+      "file": "monster_0806_weeping-apparition.json"
+    },
+    {
+      "primaryKey": 807,
+      "displayName": "wolfman",
+      "file": "monster_0807_wolfman.json"
+    },
+    {
+      "primaryKey": 1037,
+      "displayName": "Dao Lord",
+      "file": "monster_1037_dao-lord.json"
+    },
+    {
+      "primaryKey": 1038,
+      "displayName": "great green dragon",
+      "file": "monster_1038_great-green-dragon.json"
+    },
+    {
+      "primaryKey": 1039,
+      "displayName": "giant roc",
+      "file": "monster_1039_giant-roc.json"
+    },
+    {
+      "primaryKey": 1040,
+      "displayName": "Darken Beast Lord",
+      "file": "monster_1040_darken-beast-lord.json"
+    },
+    {
+      "primaryKey": 1041,
+      "displayName": "Lord of the Hunt",
+      "file": "monster_1041_lord-of-the-hunt.json"
+    },
+    {
+      "primaryKey": 1042,
+      "displayName": "giant rat",
+      "file": "monster_1042_giant-rat.json"
+    },
+    {
+      "primaryKey": 1043,
+      "displayName": "giant rat",
+      "file": "monster_1043_giant-rat.json"
+    },
+    {
+      "primaryKey": 1044,
+      "displayName": "silver warrior",
+      "file": "monster_1044_silver-warrior.json"
+    },
+    {
+      "primaryKey": 1045,
+      "displayName": "marble archer",
+      "file": "monster_1045_marble-archer.json"
+    },
+    {
+      "primaryKey": 1046,
+      "displayName": "golden mist",
+      "file": "monster_1046_golden-mist.json"
+    },
+    {
+      "primaryKey": 1047,
+      "displayName": "giant rat",
+      "file": "monster_1047_giant-rat.json"
+    },
+    {
+      "primaryKey": 1048,
+      "displayName": "spiked juggernaut",
+      "file": "monster_1048_spiked-juggernaut.json"
+    },
+    {
+      "primaryKey": 1049,
+      "displayName": "Devil Fiend",
+      "file": "monster_1049_devil-fiend.json"
+    },
+    {
+      "primaryKey": 1050,
+      "displayName": "Demoness",
+      "file": "monster_1050_demoness.json"
+    },
+    {
+      "primaryKey": 1051,
+      "displayName": "fanged demon",
+      "file": "monster_1051_fanged-demon.json"
+    },
+    {
+      "primaryKey": 1052,
+      "displayName": "demon imp",
+      "file": "monster_1052_demon-imp.json"
+    },
+    {
+      "primaryKey": 1053,
+      "displayName": "Horner the Hide",
+      "file": "monster_1053_horner-the-hide.json"
+    },
+    {
+      "primaryKey": 1054,
+      "displayName": "cloaked figure",
+      "file": "monster_1054_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 1055,
+      "displayName": "cloaked figure",
+      "file": "monster_1055_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 1056,
+      "displayName": "cloaked figure",
+      "file": "monster_1056_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 1057,
+      "displayName": "cloaked figure",
+      "file": "monster_1057_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 1058,
+      "displayName": "great green dragon",
+      "file": "monster_1058_great-green-dragon.json"
+    },
+    {
+      "primaryKey": 1059,
+      "displayName": "cloaked figure",
+      "file": "monster_1059_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 1060,
+      "displayName": "cloaked figure",
+      "file": "monster_1060_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 1061,
+      "displayName": "cloaked figure",
+      "file": "monster_1061_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 1062,
+      "displayName": "cloaked figure",
+      "file": "monster_1062_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 796,
+      "displayName": "myrmidon",
+      "file": "monster_0796_myrmidon.json"
+    },
+    {
+      "primaryKey": 797,
+      "displayName": "rogue",
+      "file": "monster_0797_rogue.json"
+    },
+    {
+      "primaryKey": 798,
+      "displayName": "rubicant",
+      "file": "monster_0798_rubicant.json"
+    },
+    {
+      "primaryKey": 799,
+      "displayName": "sorcerer",
+      "file": "monster_0799_sorcerer.json"
+    },
+    {
+      "primaryKey": 800,
+      "displayName": "sage",
+      "file": "monster_0800_sage.json"
+    },
+    {
+      "primaryKey": 801,
+      "displayName": "ogre zombie",
+      "file": "monster_0801_ogre-zombie.json"
+    },
+    {
+      "primaryKey": 808,
+      "displayName": "vampire fledgling",
+      "file": "monster_0808_vampire-fledgling.json"
+    },
+    {
+      "primaryKey": 809,
+      "displayName": "Death Shrieker",
+      "file": "monster_0809_death-shrieker.json"
+    },
+    {
+      "primaryKey": 810,
+      "displayName": "nightshade",
+      "file": "monster_0810_nightshade.json"
+    },
+    {
+      "primaryKey": 811,
+      "displayName": "Bloody Executioner",
+      "file": "monster_0811_bloody-executioner.json"
+    },
+    {
+      "primaryKey": 812,
+      "displayName": "sdfsdfsfs",
+      "file": "monster_0812_sdfsdfsfs.json"
+    },
+    {
+      "primaryKey": 813,
+      "displayName": "rotting beholder",
+      "file": "monster_0813_rotting-beholder.json"
+    },
+    {
+      "primaryKey": 814,
+      "displayName": "skeletal steed",
+      "file": "monster_0814_skeletal-steed.json"
+    },
+    {
+      "primaryKey": 815,
+      "displayName": "dark treant",
+      "file": "monster_0815_dark-treant.json"
+    },
+    {
+      "primaryKey": 816,
+      "displayName": "midnight unicorn",
+      "file": "monster_0816_midnight-unicorn.json"
+    },
+    {
+      "primaryKey": 817,
+      "displayName": "Banished One",
+      "file": "monster_0817_banished-one.json"
+    },
+    {
+      "primaryKey": 818,
+      "displayName": "hanging tree",
+      "file": "monster_0818_hanging-tree.json"
+    },
+    {
+      "primaryKey": 819,
+      "displayName": "black rosebush",
+      "file": "monster_0819_black-rosebush.json"
+    },
+    {
+      "primaryKey": 820,
+      "displayName": "clawed beast man",
+      "file": "monster_0820_clawed-beast-man.json"
+    },
+    {
+      "primaryKey": 821,
+      "displayName": "groaning cloud",
+      "file": "monster_0821_groaning-cloud.json"
+    },
+    {
+      "primaryKey": 822,
+      "displayName": "scythe skeleton",
+      "file": "monster_0822_scythe-skeleton.json"
+    },
+    {
+      "primaryKey": 823,
+      "displayName": "bone snake",
+      "file": "monster_0823_bone-snake.json"
+    },
+    {
+      "primaryKey": 824,
+      "displayName": "vampiric mist",
+      "file": "monster_0824_vampiric-mist.json"
+    },
+    {
+      "primaryKey": 825,
+      "displayName": "drooling blood ghoul",
+      "file": "monster_0825_drooling-blood-ghoul.json"
+    },
+    {
+      "primaryKey": 826,
+      "displayName": "spirit assassin",
+      "file": "monster_0826_spirit-assassin.json"
+    },
+    {
+      "primaryKey": 827,
+      "displayName": "bone warrior",
+      "file": "monster_0827_bone-warrior.json"
+    },
+    {
+      "primaryKey": 828,
+      "displayName": "wraith",
+      "file": "monster_0828_wraith.json"
+    },
+    {
+      "primaryKey": 829,
+      "displayName": "flesh golem",
+      "file": "monster_0829_flesh-golem.json"
+    },
+    {
+      "primaryKey": 830,
+      "displayName": "spectre",
+      "file": "monster_0830_spectre.json"
+    },
+    {
+      "primaryKey": 831,
+      "displayName": "Spirit of Draka",
+      "file": "monster_0831_spirit-of-draka.json"
+    },
+    {
+      "primaryKey": 832,
+      "displayName": "vampire bat",
+      "file": "monster_0832_vampire-bat.json"
+    },
+    {
+      "primaryKey": 833,
+      "displayName": "vampire magus",
+      "file": "monster_0833_vampire-magus.json"
+    },
+    {
+      "primaryKey": 834,
+      "displayName": "vampire acolyte",
+      "file": "monster_0834_vampire-acolyte.json"
+    },
+    {
+      "primaryKey": 835,
+      "displayName": "vampire elder",
+      "file": "monster_0835_vampire-elder.json"
+    },
+    {
+      "primaryKey": 836,
+      "displayName": "Ozrinom the Vampire Lord",
+      "file": "monster_0836_ozrinom-the-vampire-lord.json"
+    },
+    {
+      "primaryKey": 837,
+      "displayName": "Death Mist of Ozrinom",
+      "file": "monster_0837_death-mist-of-ozrinom.json"
+    },
+    {
+      "primaryKey": 838,
+      "displayName": "gremlin",
+      "file": "monster_0838_gremlin.json"
+    },
+    {
+      "primaryKey": 839,
+      "displayName": "Scarecrow",
+      "file": "monster_0839_scarecrow.json"
+    },
+    {
+      "primaryKey": 840,
+      "displayName": "famished cow",
+      "file": "monster_0840_famished-cow.json"
+    },
+    {
+      "primaryKey": 841,
+      "displayName": "starving pig",
+      "file": "monster_0841_starving-pig.json"
+    },
+    {
+      "primaryKey": 842,
+      "displayName": "chicken",
+      "file": "monster_0842_chicken.json"
+    },
+    {
+      "primaryKey": 843,
+      "displayName": "death chicken",
+      "file": "monster_0843_death-chicken.json"
+    },
+    {
+      "primaryKey": 844,
+      "displayName": "ancient gypsy woman",
+      "file": "monster_0844_ancient-gypsy-woman.json"
+    },
+    {
+      "primaryKey": 845,
+      "displayName": "gypsy protector",
+      "file": "monster_0845_gypsy-protector.json"
+    },
+    {
+      "primaryKey": 846,
+      "displayName": "white hart",
+      "file": "monster_0846_white-hart.json"
+    },
+    {
+      "primaryKey": 847,
+      "displayName": "white doe",
+      "file": "monster_0847_white-doe.json"
+    },
+    {
+      "primaryKey": 848,
+      "displayName": "ivory golem",
+      "file": "monster_0848_ivory-golem.json"
+    },
+    {
+      "primaryKey": 849,
+      "displayName": "Ghost of Justice Darkbane",
+      "file": "monster_0849_ghost-of-justice-darkbane.json"
+    },
+    {
+      "primaryKey": 850,
+      "displayName": "Dark Mage",
+      "file": "monster_0850_dark-mage.json"
+    },
+    {
+      "primaryKey": 851,
+      "displayName": "colossal midnight dragon",
+      "file": "monster_0851_colossal-midnight-dragon.json"
+    },
+    {
+      "primaryKey": 852,
+      "displayName": "Shadow Master",
+      "file": "monster_0852_shadow-master.json"
+    },
+    {
+      "primaryKey": 853,
+      "displayName": "sdfsdfsdfsdfsdfsdf",
+      "file": "monster_0853_sdfsdfsdfsdfsdfsdf.json"
+    },
+    {
+      "primaryKey": 854,
+      "displayName": "Mayor of Arlysia",
+      "file": "monster_0854_mayor-of-arlysia.json"
+    },
+    {
+      "primaryKey": 855,
+      "displayName": "townsman",
+      "file": "monster_0855_townsman.json"
+    },
+    {
+      "primaryKey": 856,
+      "displayName": "townswoman",
+      "file": "monster_0856_townswoman.json"
+    },
+    {
+      "primaryKey": 857,
+      "displayName": "townsman",
+      "file": "monster_0857_townsman.json"
+    },
+    {
+      "primaryKey": 858,
+      "displayName": "townswoman",
+      "file": "monster_0858_townswoman.json"
+    },
+    {
+      "primaryKey": 859,
+      "displayName": "arlysian guardsman",
+      "file": "monster_0859_arlysian-guardsman.json"
+    },
+    {
+      "primaryKey": 860,
+      "displayName": "Inquisitor Armandriel",
+      "file": "monster_0860_inquisitor-armandriel.json"
+    },
+    {
+      "primaryKey": 861,
+      "displayName": "Oik",
+      "file": "monster_0861_oik.json"
+    },
+    {
+      "primaryKey": 862,
+      "displayName": "Lud",
+      "file": "monster_0862_lud.json"
+    },
+    {
+      "primaryKey": 863,
+      "displayName": "Pastor Lander",
+      "file": "monster_0863_pastor-lander.json"
+    },
+    {
+      "primaryKey": 864,
+      "displayName": "Volum",
+      "file": "monster_0864_volum.json"
+    },
+    {
+      "primaryKey": 865,
+      "displayName": "old hermit",
+      "file": "monster_0865_old-hermit.json"
+    },
+    {
+      "primaryKey": 866,
+      "displayName": "vampire minion",
+      "file": "monster_0866_vampire-minion.json"
+    },
+    {
+      "primaryKey": 867,
+      "displayName": "horned spider",
+      "file": "monster_0867_horned-spider.json"
+    },
+    {
+      "primaryKey": 868,
+      "displayName": "animated book",
+      "file": "monster_0868_animated-book.json"
+    },
+    {
+      "primaryKey": 869,
+      "displayName": "animated book",
+      "file": "monster_0869_animated-book.json"
+    },
+    {
+      "primaryKey": 870,
+      "displayName": "animated book",
+      "file": "monster_0870_animated-book.json"
+    },
+    {
+      "primaryKey": 871,
+      "displayName": "Ijackstou the Mad",
+      "file": "monster_0871_ijackstou-the-mad.json"
+    },
+    {
+      "primaryKey": 872,
+      "displayName": "dirty fisherman",
+      "file": "monster_0872_dirty-fisherman.json"
+    },
+    {
+      "primaryKey": 873,
+      "displayName": "tsunami squid",
+      "file": "monster_0873_tsunami-squid.json"
+    },
+    {
+      "primaryKey": 874,
+      "displayName": "pirate ghost",
+      "file": "monster_0874_pirate-ghost.json"
+    },
+    {
+      "primaryKey": 875,
+      "displayName": "first mate",
+      "file": "monster_0875_first-mate.json"
+    },
+    {
+      "primaryKey": 876,
+      "displayName": "Dread Captain",
+      "file": "monster_0876_dread-captain.json"
+    },
+    {
+      "primaryKey": 877,
+      "displayName": "death minion",
+      "file": "monster_0877_death-minion.json"
+    },
+    {
+      "primaryKey": 878,
+      "displayName": "animated sword",
+      "file": "monster_0878_animated-sword.json"
+    },
+    {
+      "primaryKey": 879,
+      "displayName": "darken beast",
+      "file": "monster_0879_darken-beast.json"
+    },
+    {
+      "primaryKey": 880,
+      "displayName": "sea hag",
+      "file": "monster_0880_sea-hag.json"
+    },
+    {
+      "primaryKey": 881,
+      "displayName": "severed waist",
+      "file": "monster_0881_severed-waist.json"
+    },
+    {
+      "primaryKey": 882,
+      "displayName": "dark cupid",
+      "file": "monster_0882_dark-cupid.json"
+    },
+    {
+      "primaryKey": 883,
+      "displayName": "canimera",
+      "file": "monster_0883_canimera.json"
+    },
+    {
+      "primaryKey": 884,
+      "displayName": "daggerweed",
+      "file": "monster_0884_daggerweed.json"
+    },
+    {
+      "primaryKey": 885,
+      "displayName": "stitched zombie",
+      "file": "monster_0885_stitched-zombie.json"
+    },
+    {
+      "primaryKey": 886,
+      "displayName": "fiery skull",
+      "file": "monster_0886_fiery-skull.json"
+    },
+    {
+      "primaryKey": 887,
+      "displayName": "old man",
+      "file": "monster_0887_old-man.json"
+    },
+    {
+      "primaryKey": 888,
+      "displayName": "severed torso",
+      "file": "monster_0888_severed-torso.json"
+    },
+    {
+      "primaryKey": 889,
+      "displayName": "severed leg",
+      "file": "monster_0889_severed-leg.json"
+    },
+    {
+      "primaryKey": 890,
+      "displayName": "severed arm",
+      "file": "monster_0890_severed-arm.json"
+    },
+    {
+      "primaryKey": 891,
+      "displayName": "severed head",
+      "file": "monster_0891_severed-head.json"
+    },
+    {
+      "primaryKey": 892,
+      "displayName": "giant locust",
+      "file": "monster_0892_giant-locust.json"
+    },
+    {
+      "primaryKey": 893,
+      "displayName": "Warmonger of Blood",
+      "file": "monster_0893_warmonger-of-blood.json"
+    },
+    {
+      "primaryKey": 894,
+      "displayName": "gremlin witchdoctor",
+      "file": "monster_0894_gremlin-witchdoctor.json"
+    },
+    {
+      "primaryKey": 895,
+      "displayName": "stranglevine",
+      "file": "monster_0895_stranglevine.json"
+    },
+    {
+      "primaryKey": 896,
+      "displayName": "skeletal parrot",
+      "file": "monster_0896_skeletal-parrot.json"
+    },
+    {
+      "primaryKey": 897,
+      "displayName": "animated knight",
+      "file": "monster_0897_animated-knight.json"
+    },
+    {
+      "primaryKey": 898,
+      "displayName": "arachnigoth",
+      "file": "monster_0898_arachnigoth.json"
+    },
+    {
+      "primaryKey": 899,
+      "displayName": "deformed mutant",
+      "file": "monster_0899_deformed-mutant.json"
+    },
+    {
+      "primaryKey": 900,
+      "displayName": "blood skeleton",
+      "file": "monster_0900_blood-skeleton.json"
+    },
+    {
+      "primaryKey": 901,
+      "displayName": "dirty farmer",
+      "file": "monster_0901_dirty-farmer.json"
+    },
+    {
+      "primaryKey": 902,
+      "displayName": "animated chains",
+      "file": "monster_0902_animated-chains.json"
+    },
+    {
+      "primaryKey": 903,
+      "displayName": "dread planewalker",
+      "file": "monster_0903_dread-planewalker.json"
+    },
+    {
+      "primaryKey": 904,
+      "displayName": "crimson mist",
+      "file": "monster_0904_crimson-mist.json"
+    },
+    {
+      "primaryKey": 905,
+      "displayName": "guardsman",
+      "file": "monster_0905_guardsman.json"
+    },
+    {
+      "primaryKey": 906,
+      "displayName": "Dreadlord of Blood",
+      "file": "monster_0906_dreadlord-of-blood.json"
+    },
+    {
+      "primaryKey": 907,
+      "displayName": "sdfsfdsdfsdfdsfs",
+      "file": "monster_0907_sdfsfdsdfsdfdsfs.json"
+    },
+    {
+      "primaryKey": 908,
+      "displayName": "sdfsdfsdfdsfsdfsdn",
+      "file": "monster_0908_sdfsdfsdfdsfsdfsdn.json"
+    },
+    {
+      "primaryKey": 909,
+      "displayName": "sdfsfsdfsdfsdfsdfsdfsdfsdn",
+      "file": "monster_0909_sdfsfsdfsdfsdfsdfsdfsdfsdn.json"
+    },
+    {
+      "primaryKey": 910,
+      "displayName": "sdfsdfsdfsdfsd",
+      "file": "monster_0910_sdfsdfsdfsdfsd.json"
+    },
+    {
+      "primaryKey": 911,
+      "displayName": "Aeriana the Pure",
+      "file": "monster_0911_aeriana-the-pure.json"
+    },
+    {
+      "primaryKey": 912,
+      "displayName": "mammoth rot worm",
+      "file": "monster_0912_mammoth-rot-worm.json"
+    },
+    {
+      "primaryKey": 913,
+      "displayName": "barmaid",
+      "file": "monster_0913_barmaid.json"
+    },
+    {
+      "primaryKey": 914,
+      "displayName": "Madame Madison",
+      "file": "monster_0914_madame-madison.json"
+    },
+    {
+      "primaryKey": 915,
+      "displayName": "ivory golem",
+      "file": "monster_0915_ivory-golem.json"
+    },
+    {
+      "primaryKey": 916,
+      "displayName": "Jandare Leafdancer",
+      "file": "monster_0916_jandare-leafdancer.json"
+    },
+    {
+      "primaryKey": 917,
+      "displayName": "townsman",
+      "file": "monster_0917_townsman.json"
+    },
+    {
+      "primaryKey": 918,
+      "displayName": "townswoman",
+      "file": "monster_0918_townswoman.json"
+    },
+    {
+      "primaryKey": 919,
+      "displayName": "dirty fisherman",
+      "file": "monster_0919_dirty-fisherman.json"
+    },
+    {
+      "primaryKey": 920,
+      "displayName": "dirty farmer",
+      "file": "monster_0920_dirty-farmer.json"
+    },
+    {
+      "primaryKey": 921,
+      "displayName": "Enigma Lord",
+      "file": "monster_0921_enigma-lord.json"
+    },
+    {
+      "primaryKey": 922,
+      "displayName": "gypsy spirit",
+      "file": "monster_0922_gypsy-spirit.json"
+    },
+    {
+      "primaryKey": 923,
+      "displayName": "giant locust",
+      "file": "monster_0923_giant-locust.json"
+    },
+    {
+      "primaryKey": 924,
+      "displayName": "stitched zombie",
+      "file": "monster_0924_stitched-zombie.json"
+    },
+    {
+      "primaryKey": 925,
+      "displayName": "bone warrior",
+      "file": "monster_0925_bone-warrior.json"
+    },
+    {
+      "primaryKey": 926,
+      "displayName": "bone warrior",
+      "file": "monster_0926_bone-warrior.json"
+    },
+    {
+      "primaryKey": 927,
+      "displayName": "bone warrior",
+      "file": "monster_0927_bone-warrior.json"
+    },
+    {
+      "primaryKey": 928,
+      "displayName": "wraith knight",
+      "file": "monster_0928_wraith-knight.json"
+    },
+    {
+      "primaryKey": 929,
+      "displayName": "crowned spider",
+      "file": "monster_0929_crowned-spider.json"
+    },
+    {
+      "primaryKey": 930,
+      "displayName": "Darken Beast Lord",
+      "file": "monster_0930_darken-beast-lord.json"
+    },
+    {
+      "primaryKey": 931,
+      "displayName": "townsman",
+      "file": "monster_0931_townsman.json"
+    },
+    {
+      "primaryKey": 932,
+      "displayName": "townsman",
+      "file": "monster_0932_townsman.json"
+    },
+    {
+      "primaryKey": 933,
+      "displayName": "ancient gremlin shaman",
+      "file": "monster_0933_ancient-gremlin-shaman.json"
+    },
+    {
+      "primaryKey": 934,
+      "displayName": "Lord Feyr",
+      "file": "monster_0934_lord-feyr.json"
+    },
+    {
+      "primaryKey": 935,
+      "displayName": "stitched zombie",
+      "file": "monster_0935_stitched-zombie.json"
+    },
+    {
+      "primaryKey": 936,
+      "displayName": "gnaj zombie",
+      "file": "monster_0936_gnaj-zombie.json"
+    },
+    {
+      "primaryKey": 937,
+      "displayName": "mind flayer magus",
+      "file": "monster_0937_mind-flayer-magus.json"
+    },
+    {
+      "primaryKey": 938,
+      "displayName": "white assassin",
+      "file": "monster_0938_white-assassin.json"
+    },
+    {
+      "primaryKey": 939,
+      "displayName": "red worm",
+      "file": "monster_0939_red-worm.json"
+    },
+    {
+      "primaryKey": 940,
+      "displayName": "purple worm",
+      "file": "monster_0940_purple-worm.json"
+    },
+    {
+      "primaryKey": 941,
+      "displayName": "white worm",
+      "file": "monster_0941_white-worm.json"
+    },
+    {
+      "primaryKey": 942,
+      "displayName": "black worm",
+      "file": "monster_0942_black-worm.json"
+    },
+    {
+      "primaryKey": 943,
+      "displayName": "massive black worm",
+      "file": "monster_0943_massive-black-worm.json"
+    },
+    {
+      "primaryKey": 944,
+      "displayName": "triceratops",
+      "file": "monster_0944_triceratops.json"
+    },
+    {
+      "primaryKey": 945,
+      "displayName": "mirror portal",
+      "file": "monster_0945_mirror-portal.json"
+    },
+    {
+      "primaryKey": 946,
+      "displayName": "wraith spider",
+      "file": "monster_0946_wraith-spider.json"
+    },
+    {
+      "primaryKey": 947,
+      "displayName": "gnaj golem",
+      "file": "monster_0947_gnaj-golem.json"
+    },
+    {
+      "primaryKey": 948,
+      "displayName": "halfling prisoner",
+      "file": "monster_0948_halfling-prisoner.json"
+    },
+    {
+      "primaryKey": 949,
+      "displayName": "Gnaj the Creator",
+      "file": "monster_0949_gnaj-the-creator.json"
+    },
+    {
+      "primaryKey": 950,
+      "displayName": "green demonling",
+      "file": "monster_0950_green-demonling.json"
+    },
+    {
+      "primaryKey": 951,
+      "displayName": "green demonling",
+      "file": "monster_0951_green-demonling.json"
+    },
+    {
+      "primaryKey": 952,
+      "displayName": "blue demonling",
+      "file": "monster_0952_blue-demonling.json"
+    },
+    {
+      "primaryKey": 953,
+      "displayName": "red demonling",
+      "file": "monster_0953_red-demonling.json"
+    },
+    {
+      "primaryKey": 954,
+      "displayName": "flaming mammoth",
+      "file": "monster_0954_flaming-mammoth.json"
+    },
+    {
+      "primaryKey": 955,
+      "displayName": "horned demon",
+      "file": "monster_0955_horned-demon.json"
+    },
+    {
+      "primaryKey": 956,
+      "displayName": "vision",
+      "file": "monster_0956_vision.json"
+    },
+    {
+      "primaryKey": 957,
+      "displayName": "shadow spectre",
+      "file": "monster_0957_shadow-spectre.json"
+    },
+    {
+      "primaryKey": 958,
+      "displayName": "astral shade",
+      "file": "monster_0958_astral-shade.json"
+    },
+    {
+      "primaryKey": 959,
+      "displayName": "spectral mage",
+      "file": "monster_0959_spectral-mage.json"
+    },
+    {
+      "primaryKey": 960,
+      "displayName": "ghostly figure",
+      "file": "monster_0960_ghostly-figure.json"
+    },
+    {
+      "primaryKey": 961,
+      "displayName": "sdfsfsdfsdfsdfs",
+      "file": "monster_0961_sdfsfsdfsdfsdfs.json"
+    },
+    {
+      "primaryKey": 962,
+      "displayName": "bugbear",
+      "file": "monster_0962_bugbear.json"
+    },
+    {
+      "primaryKey": 963,
+      "displayName": "bugbear captain",
+      "file": "monster_0963_bugbear-captain.json"
+    },
+    {
+      "primaryKey": 964,
+      "displayName": "ogre",
+      "file": "monster_0964_ogre.json"
+    },
+    {
+      "primaryKey": 965,
+      "displayName": "wyvern",
+      "file": "monster_0965_wyvern.json"
+    },
+    {
+      "primaryKey": 966,
+      "displayName": "bugbear berserker",
+      "file": "monster_0966_bugbear-berserker.json"
+    },
+    {
+      "primaryKey": 967,
+      "displayName": "dark goblin archer",
+      "file": "monster_0967_dark-goblin-archer.json"
+    },
+    {
+      "primaryKey": 968,
+      "displayName": "dark goblin",
+      "file": "monster_0968_dark-goblin.json"
+    },
+    {
+      "primaryKey": 969,
+      "displayName": "mutant spider",
+      "file": "monster_0969_mutant-spider.json"
+    },
+    {
+      "primaryKey": 970,
+      "displayName": "dark-elf assassin",
+      "file": "monster_0970_dark-elf-assassin.json"
+    },
+    {
+      "primaryKey": 971,
+      "displayName": "dark-elf mage",
+      "file": "monster_0971_dark-elf-mage.json"
+    },
+    {
+      "primaryKey": 972,
+      "displayName": "dark-elf faithkeeper",
+      "file": "monster_0972_dark-elf-faithkeeper.json"
+    },
+    {
+      "primaryKey": 973,
+      "displayName": "baby black dragon",
+      "file": "monster_0973_baby-black-dragon.json"
+    },
+    {
+      "primaryKey": 974,
+      "displayName": "young black dragon",
+      "file": "monster_0974_young-black-dragon.json"
+    },
+    {
+      "primaryKey": 975,
+      "displayName": "adolescent black dragon",
+      "file": "monster_0975_adolescent-black-dragon.json"
+    },
+    {
+      "primaryKey": 976,
+      "displayName": "black dragon hatchling",
+      "file": "monster_0976_black-dragon-hatchling.json"
+    },
+    {
+      "primaryKey": 977,
+      "displayName": "baby white dragon",
+      "file": "monster_0977_baby-white-dragon.json"
+    },
+    {
+      "primaryKey": 978,
+      "displayName": "young white dragon",
+      "file": "monster_0978_young-white-dragon.json"
+    },
+    {
+      "primaryKey": 979,
+      "displayName": "adolescent white dragon",
+      "file": "monster_0979_adolescent-white-dragon.json"
+    },
+    {
+      "primaryKey": 980,
+      "displayName": "white dragon hatchling",
+      "file": "monster_0980_white-dragon-hatchling.json"
+    },
+    {
+      "primaryKey": 981,
+      "displayName": "drunken brawler",
+      "file": "monster_0981_drunken-brawler.json"
+    },
+    {
+      "primaryKey": 982,
+      "displayName": "unicorn",
+      "file": "monster_0982_unicorn.json"
+    },
+    {
+      "primaryKey": 983,
+      "displayName": "faerie",
+      "file": "monster_0983_faerie.json"
+    },
+    {
+      "primaryKey": 984,
+      "displayName": "baby blue dragon",
+      "file": "monster_0984_baby-blue-dragon.json"
+    },
+    {
+      "primaryKey": 985,
+      "displayName": "young blue dragon",
+      "file": "monster_0985_young-blue-dragon.json"
+    },
+    {
+      "primaryKey": 986,
+      "displayName": "adolescent blue dragon",
+      "file": "monster_0986_adolescent-blue-dragon.json"
+    },
+    {
+      "primaryKey": 987,
+      "displayName": "blue dragon hatchling",
+      "file": "monster_0987_blue-dragon-hatchling.json"
+    },
+    {
+      "primaryKey": 988,
+      "displayName": "Ebon Blade manhunter",
+      "file": "monster_0988_ebon-blade-manhunter.json"
+    },
+    {
+      "primaryKey": 989,
+      "displayName": "Ebon Blade assassin",
+      "file": "monster_0989_ebon-blade-assassin.json"
+    },
+    {
+      "primaryKey": 990,
+      "displayName": "baby green dragon",
+      "file": "monster_0990_baby-green-dragon.json"
+    },
+    {
+      "primaryKey": 991,
+      "displayName": "young green dragon",
+      "file": "monster_0991_young-green-dragon.json"
+    },
+    {
+      "primaryKey": 992,
+      "displayName": "adolescent green dragon",
+      "file": "monster_0992_adolescent-green-dragon.json"
+    },
+    {
+      "primaryKey": 993,
+      "displayName": "green dragon hatchling",
+      "file": "monster_0993_green-dragon-hatchling.json"
+    },
+    {
+      "primaryKey": 994,
+      "displayName": "white guardsman",
+      "file": "monster_0994_white-guardsman.json"
+    },
+    {
+      "primaryKey": 995,
+      "displayName": "black knight",
+      "file": "monster_0995_black-knight.json"
+    },
+    {
+      "primaryKey": 996,
+      "displayName": "white bishop",
+      "file": "monster_0996_white-bishop.json"
+    },
+    {
+      "primaryKey": 997,
+      "displayName": "black marble golem",
+      "file": "monster_0997_black-marble-golem.json"
+    },
+    {
+      "primaryKey": 998,
+      "displayName": "white queen",
+      "file": "monster_0998_white-queen.json"
+    },
+    {
+      "primaryKey": 999,
+      "displayName": "black king",
+      "file": "monster_0999_black-king.json"
+    },
+    {
+      "primaryKey": 1000,
+      "displayName": "hooded man",
+      "file": "monster_1000_hooded-man.json"
+    },
+    {
+      "primaryKey": 1001,
+      "displayName": "old man",
+      "file": "monster_1001_old-man.json"
+    },
+    {
+      "primaryKey": 1002,
+      "displayName": "ancient tapestry",
+      "file": "monster_1002_ancient-tapestry.json"
+    },
+    {
+      "primaryKey": 1003,
+      "displayName": "shredded tapestry",
+      "file": "monster_1003_shredded-tapestry.json"
+    },
+    {
+      "primaryKey": 1004,
+      "displayName": "Nahr",
+      "file": "monster_1004_nahr.json"
+    },
+    {
+      "primaryKey": 1005,
+      "displayName": "Nahr",
+      "file": "monster_1005_nahr.json"
+    },
+    {
+      "primaryKey": 1006,
+      "displayName": "Nahr",
+      "file": "monster_1006_nahr.json"
+    },
+    {
+      "primaryKey": 1007,
+      "displayName": "bone warrior",
+      "file": "monster_1007_bone-warrior.json"
+    },
+    {
+      "primaryKey": 1008,
+      "displayName": "mega rat",
+      "file": "monster_1008_mega-rat.json"
+    },
+    {
+      "primaryKey": 1009,
+      "displayName": "Nahr",
+      "file": "monster_1009_nahr.json"
+    },
+    {
+      "primaryKey": 1010,
+      "displayName": "Nahr",
+      "file": "monster_1010_nahr.json"
+    },
+    {
+      "primaryKey": 1011,
+      "displayName": "Nahr",
+      "file": "monster_1011_nahr.json"
+    },
+    {
+      "primaryKey": 1012,
+      "displayName": "Angelic Hunter",
+      "file": "monster_1012_angelic-hunter.json"
+    },
+    {
+      "primaryKey": 1013,
+      "displayName": "Majestic Dragon",
+      "file": "monster_1013_majestic-dragon.json"
+    },
+    {
+      "primaryKey": 1014,
+      "displayName": "Golden Phoenix",
+      "file": "monster_1014_golden-phoenix.json"
+    },
+    {
+      "primaryKey": 1015,
+      "displayName": "Demon Lord",
+      "file": "monster_1015_demon-lord.json"
+    },
+    {
+      "primaryKey": 1016,
+      "displayName": "Great Hydra",
+      "file": "monster_1016_great-hydra.json"
+    },
+    {
+      "primaryKey": 1017,
+      "displayName": "giant rat",
+      "file": "monster_1017_giant-rat.json"
+    },
+    {
+      "primaryKey": 1018,
+      "displayName": "giant rat",
+      "file": "monster_1018_giant-rat.json"
+    },
+    {
+      "primaryKey": 1019,
+      "displayName": "inquisitor",
+      "file": "monster_1019_inquisitor.json"
+    },
+    {
+      "primaryKey": 1020,
+      "displayName": "inquisitor",
+      "file": "monster_1020_inquisitor.json"
+    },
+    {
+      "primaryKey": 1021,
+      "displayName": "inquisitor",
+      "file": "monster_1021_inquisitor.json"
+    },
+    {
+      "primaryKey": 1022,
+      "displayName": "inquisitor",
+      "file": "monster_1022_inquisitor.json"
+    },
+    {
+      "primaryKey": 1023,
+      "displayName": "sdfsdfsdfsdfsdf",
+      "file": "monster_1023_sdfsdfsdfsdfsdf.json"
+    },
+    {
+      "primaryKey": 1024,
+      "displayName": "inquisitor",
+      "file": "monster_1024_inquisitor.json"
+    },
+    {
+      "primaryKey": 1025,
+      "displayName": "enormous blue dragon",
+      "file": "monster_1025_enormous-blue-dragon.json"
+    },
+    {
+      "primaryKey": 1026,
+      "displayName": "prisoner",
+      "file": "monster_1026_prisoner.json"
+    },
+    {
+      "primaryKey": 1027,
+      "displayName": "beautiful woman",
+      "file": "monster_1027_beautiful-woman.json"
+    },
+    {
+      "primaryKey": 1028,
+      "displayName": "handsome man",
+      "file": "monster_1028_handsome-man.json"
+    },
+    {
+      "primaryKey": 1029,
+      "displayName": "massive hydra head",
+      "file": "monster_1029_massive-hydra-head.json"
+    },
+    {
+      "primaryKey": 1030,
+      "displayName": "Azrandimon",
+      "file": "monster_1030_azrandimon.json"
+    },
+    {
+      "primaryKey": 1031,
+      "displayName": "darken beast",
+      "file": "monster_1031_darken-beast.json"
+    },
+    {
+      "primaryKey": 1032,
+      "displayName": "Lorzina",
+      "file": "monster_1032_lorzina.json"
+    },
+    {
+      "primaryKey": 1033,
+      "displayName": "demon imp",
+      "file": "monster_1033_demon-imp.json"
+    },
+    {
+      "primaryKey": 1034,
+      "displayName": "ancient sand dragon",
+      "file": "monster_1034_ancient-sand-dragon.json"
+    },
+    {
+      "primaryKey": 1035,
+      "displayName": "fallen angel",
+      "file": "monster_1035_fallen-angel.json"
+    },
+    {
+      "primaryKey": 1036,
+      "displayName": "aged earth dragon",
+      "file": "monster_1036_aged-earth-dragon.json"
+    },
+    {
+      "primaryKey": 1063,
+      "displayName": "old thief",
+      "file": "monster_1063_old-thief.json"
+    },
+    {
+      "primaryKey": 1064,
+      "displayName": "marble knight",
+      "file": "monster_1064_marble-knight.json"
+    },
+    {
+      "primaryKey": 1065,
+      "displayName": "white guardsman",
+      "file": "monster_1065_white-guardsman.json"
+    },
+    {
+      "primaryKey": 1066,
+      "displayName": "white knight",
+      "file": "monster_1066_white-knight.json"
+    },
+    {
+      "primaryKey": 1067,
+      "displayName": "white bishop",
+      "file": "monster_1067_white-bishop.json"
+    },
+    {
+      "primaryKey": 1068,
+      "displayName": "white marble golem",
+      "file": "monster_1068_white-marble-golem.json"
+    },
+    {
+      "primaryKey": 1069,
+      "displayName": "white queen",
+      "file": "monster_1069_white-queen.json"
+    },
+    {
+      "primaryKey": 1070,
+      "displayName": "white king",
+      "file": "monster_1070_white-king.json"
+    },
+    {
+      "primaryKey": 1071,
+      "displayName": "black guardsman",
+      "file": "monster_1071_black-guardsman.json"
+    },
+    {
+      "primaryKey": 1072,
+      "displayName": "black knight",
+      "file": "monster_1072_black-knight.json"
+    },
+    {
+      "primaryKey": 1073,
+      "displayName": "black bishop",
+      "file": "monster_1073_black-bishop.json"
+    },
+    {
+      "primaryKey": 1074,
+      "displayName": "black marble golem",
+      "file": "monster_1074_black-marble-golem.json"
+    },
+    {
+      "primaryKey": 1075,
+      "displayName": "black queen",
+      "file": "monster_1075_black-queen.json"
+    },
+    {
+      "primaryKey": 1076,
+      "displayName": "black king",
+      "file": "monster_1076_black-king.json"
+    },
+    {
+      "primaryKey": 1077,
+      "displayName": "disenchanter",
+      "file": "monster_1077_disenchanter.json"
+    },
+    {
+      "primaryKey": 1078,
+      "displayName": "eradicator",
+      "file": "monster_1078_eradicator.json"
+    },
+    {
+      "primaryKey": 1079,
+      "displayName": "demonhunter",
+      "file": "monster_1079_demonhunter.json"
+    },
+    {
+      "primaryKey": 1080,
+      "displayName": "red sphere",
+      "file": "monster_1080_red-sphere.json"
+    },
+    {
+      "primaryKey": 1081,
+      "displayName": "blue sphere",
+      "file": "monster_1081_blue-sphere.json"
+    },
+    {
+      "primaryKey": 1082,
+      "displayName": "green sphere",
+      "file": "monster_1082_green-sphere.json"
+    },
+    {
+      "primaryKey": 1083,
+      "displayName": "yellow sphere",
+      "file": "monster_1083_yellow-sphere.json"
+    },
+    {
+      "primaryKey": 1084,
+      "displayName": "Nahr",
+      "file": "monster_1084_nahr.json"
+    },
+    {
+      "primaryKey": 1085,
+      "displayName": "black guardsman",
+      "file": "monster_1085_black-guardsman.json"
+    },
+    {
+      "primaryKey": 1086,
+      "displayName": "cloaked figure",
+      "file": "monster_1086_cloaked-figure.json"
+    },
+    {
+      "primaryKey": 1087,
+      "displayName": "disenchanter",
+      "file": "monster_1087_disenchanter.json"
+    },
+    {
+      "primaryKey": 1088,
+      "displayName": "demon imp",
+      "file": "monster_1088_demon-imp.json"
+    },
+    {
+      "primaryKey": 1089,
+      "displayName": "constrictor",
+      "file": "monster_1089_constrictor.json"
+    },
+    {
+      "primaryKey": 1090,
+      "displayName": "dae asp",
+      "file": "monster_1090_dae-asp.json"
+    },
+    {
+      "primaryKey": 1091,
+      "displayName": "jeweled viper",
+      "file": "monster_1091_jeweled-viper.json"
+    },
+    {
+      "primaryKey": 1092,
+      "displayName": "silver cobra",
+      "file": "monster_1092_silver-cobra.json"
+    },
+    {
+      "primaryKey": 1093,
+      "displayName": "orc warlord",
+      "file": "monster_1093_orc-warlord.json"
+    },
+    {
+      "primaryKey": 1094,
+      "displayName": "orc captain",
+      "file": "monster_1094_orc-captain.json"
+    },
+    {
+      "primaryKey": 1095,
+      "displayName": "ogre gladiator",
+      "file": "monster_1095_ogre-gladiator.json"
+    },
+    {
+      "primaryKey": 1096,
+      "displayName": "orc lieutenant",
+      "file": "monster_1096_orc-lieutenant.json"
+    },
+    {
+      "primaryKey": 1097,
+      "displayName": "orc warrior",
+      "file": "monster_1097_orc-warrior.json"
+    },
+    {
+      "primaryKey": 1098,
+      "displayName": "orc fanatic",
+      "file": "monster_1098_orc-fanatic.json"
+    },
+    {
+      "primaryKey": 1099,
+      "displayName": "guard captain",
+      "file": "monster_1099_guard-captain.json"
+    },
+    {
+      "primaryKey": 1100,
+      "displayName": "elite guard",
+      "file": "monster_1100_elite-guard.json"
+    },
+    {
+      "primaryKey": 1101,
+      "displayName": "dark cleric",
+      "file": "monster_1101_dark-cleric.json"
+    },
+    {
+      "primaryKey": 1102,
+      "displayName": "dark mage",
+      "file": "monster_1102_dark-mage.json"
+    },
+    {
+      "primaryKey": 1103,
+      "displayName": "dark assassin",
+      "file": "monster_1103_dark-assassin.json"
+    },
+    {
+      "primaryKey": 1104,
+      "displayName": "dark warrior",
+      "file": "monster_1104_dark-warrior.json"
+    },
+    {
+      "primaryKey": 1105,
+      "displayName": "adolescent red dragon",
+      "file": "monster_1105_adolescent-red-dragon.json"
+    },
+    {
+      "primaryKey": 1106,
+      "displayName": "young red dragon",
+      "file": "monster_1106_young-red-dragon.json"
+    },
+    {
+      "primaryKey": 1107,
+      "displayName": "baby red dragon",
+      "file": "monster_1107_baby-red-dragon.json"
+    },
+    {
+      "primaryKey": 1108,
+      "displayName": "adolescent green dragon",
+      "file": "monster_1108_adolescent-green-dragon.json"
+    },
+    {
+      "primaryKey": 1109,
+      "displayName": "young green dragon",
+      "file": "monster_1109_young-green-dragon.json"
+    },
+    {
+      "primaryKey": 1110,
+      "displayName": "baby green dragon",
+      "file": "monster_1110_baby-green-dragon.json"
+    },
+    {
+      "primaryKey": 1111,
+      "displayName": "duergar captain",
+      "file": "monster_1111_duergar-captain.json"
+    },
+    {
+      "primaryKey": 1112,
+      "displayName": "duergar warrior",
+      "file": "monster_1112_duergar-warrior.json"
+    },
+    {
+      "primaryKey": 1113,
+      "displayName": "giant rat",
+      "file": "monster_1113_giant-rat.json"
+    },
+    {
+      "primaryKey": 1114,
+      "displayName": "giant rat",
+      "file": "monster_1114_giant-rat.json"
+    },
+    {
+      "primaryKey": 1115,
+      "displayName": "giant rat",
+      "file": "monster_1115_giant-rat.json"
+    },
+    {
+      "primaryKey": 1116,
+      "displayName": "giant rat",
+      "file": "monster_1116_giant-rat.json"
+    },
+    {
+      "primaryKey": 1117,
+      "displayName": "giant rat",
+      "file": "monster_1117_giant-rat.json"
+    },
+    {
+      "primaryKey": 1118,
+      "displayName": "giant rat",
+      "file": "monster_1118_giant-rat.json"
+    },
+    {
+      "primaryKey": 1119,
+      "displayName": "giant rat",
+      "file": "monster_1119_giant-rat.json"
+    },
+    {
+      "primaryKey": 1120,
+      "displayName": "giant rat",
+      "file": "monster_1120_giant-rat.json"
+    },
+    {
+      "primaryKey": 1121,
+      "displayName": "giant rat",
+      "file": "monster_1121_giant-rat.json"
+    },
+    {
+      "primaryKey": 1122,
+      "displayName": "giant rat",
+      "file": "monster_1122_giant-rat.json"
+    },
+    {
+      "primaryKey": 1123,
+      "displayName": "giant rat",
+      "file": "monster_1123_giant-rat.json"
+    },
+    {
+      "primaryKey": 1124,
+      "displayName": "giant rat",
+      "file": "monster_1124_giant-rat.json"
+    },
+    {
+      "primaryKey": 1125,
+      "displayName": "giant rat",
+      "file": "monster_1125_giant-rat.json"
+    },
+    {
+      "primaryKey": 1126,
+      "displayName": "giant rat",
+      "file": "monster_1126_giant-rat.json"
+    },
+    {
+      "primaryKey": 1127,
+      "displayName": "giant rat",
+      "file": "monster_1127_giant-rat.json"
+    },
+    {
+      "primaryKey": 1128,
+      "displayName": "giant rat",
+      "file": "monster_1128_giant-rat.json"
+    },
+    {
+      "primaryKey": 1129,
+      "displayName": "giant rat",
+      "file": "monster_1129_giant-rat.json"
+    },
+    {
+      "primaryKey": 1130,
+      "displayName": "giant rat",
+      "file": "monster_1130_giant-rat.json"
+    }
+  ]
+}

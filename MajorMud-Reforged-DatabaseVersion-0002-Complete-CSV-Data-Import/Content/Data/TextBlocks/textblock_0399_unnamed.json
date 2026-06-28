@@ -1,0 +1,12 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "tbinfo.TXT",
+  "primaryKey": 399,
+  "displayName": "",
+  "fields": {
+    "Number": 399,
+    "LinkTo": 0,
+    "Action": "failability 50 850:class 2:minlevel 15 851:giveability 50 1:giveitem 646:text 400\n",
+    "Called From": "Textblock #398"
+  }
+}

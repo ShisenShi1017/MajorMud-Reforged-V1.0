@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 8,
+    "Room Number": 911
+  },
+  "displayName": "Ancient Stronghold, Guardroom",
+  "fields": {
+    "Map Number": 8,
+    "Room Number": 911,
+    "Name": "Ancient Stronghold, Guardroom",
+    "Light": 0,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "(Max 3): 358,359,360,[22-50-52-3]",
+    "Delay": 5,
+    "Placed": "",
+    "N": "Action [on the E exit of room 8/910]: pull lever, push lever, move lever",
+    "S": "8/910",
+    "E": 0,
+    "W": 0,
+    "NE": 0,
+    "NW": 0,
+    "SE": 0,
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}

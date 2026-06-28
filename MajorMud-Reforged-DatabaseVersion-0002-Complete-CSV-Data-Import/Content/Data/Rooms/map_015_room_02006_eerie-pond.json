@@ -1,0 +1,32 @@
+{
+  "databaseVersion": "0002",
+  "sourceTable": "rooms.TXT",
+  "primaryKey": {
+    "Map Number": 15,
+    "Room Number": 2006
+  },
+  "displayName": "Eerie Pond",
+  "fields": {
+    "Map Number": 15,
+    "Room Number": 2006,
+    "Name": "Eerie Pond",
+    "Light": -175,
+    "Shop": 0,
+    "NPC": 0,
+    "CMD": 0,
+    "Spell": 0,
+    "Lair": "",
+    "Delay": 2,
+    "Placed": "",
+    "N": "15/2007",
+    "S": "15/2002",
+    "E": "15/2008",
+    "W": "15/2003",
+    "NE": "15/2009",
+    "NW": "15/2004",
+    "SE": "15/2001",
+    "SW": 0,
+    "U": 0,
+    "D": 0
+  }
+}
