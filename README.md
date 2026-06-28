@@ -1,48 +1,49 @@
 # MajorMud Reforged
 
-## Current status
+**Current status:** Repository layout frozen for Core and Server development.
 
-**Current milestone:** Standalone server foundation preparation  
-**Current database baseline:** Server-ready editable `Data/` from CSV + MegaMud `.mp` + native runtime references  
-**Current code update:** Code Update 0002 - Repository Deduplication
+## Current Versions
 
-MajorMud Reforged is being developed as a standalone MajorMud-compatible server with a future real-time editor and client inspired by MegaMud 2.0.
+- Current Code Update: **CodeUpdate-0003 — Layout Freeze, Manifest, and Redundancy Cleanup**
+- Current Database Version: **DatabaseVersion-0009 — Server-Ready Data Baseline**
+- Current milestone: **Core + Standalone Server Bootstrap**
 
-## Active repository layout
+## What changed in this update
 
-- `Apps/` - future standalone applications: Launcher, Server, Editor, Importer, Client
-- `Core/` - shared game/data/validation/runtime foundation
-- `Data/` - Reforged's editable game database and server loading source
-- `ImportedDatabases/` - original MajorMud source/reference files only
-- `Docs/` - project vision, architecture, rules, handoff, release notes, database history
-- `Reports/` - generated validation/audit reports
-- `Saves/` - player save data; never overwritten by updates
-- `Tools/` - importer/update tooling
-- `Updates/` - Code Updates and Database Versions
-- `Bin/` - future compiled executables, each in its own folder
-- `Backups/` - local runtime backups only
-- `Logs/` - runtime logs only
-- `Legacy/` - no longer active; kept only for a short note unless future migration evidence is needed
+- Added root `ProjectManifest.json` as the machine-readable project status file.
+- Standardized the active repository layout.
+- Removed redundant duplicate `README.txt` files where matching `README.md` files already exist.
+- Removed old generated apply reports that are no longer required as active repository files.
+- Kept all required database, save, source, docs, tools, and update folders.
+- Confirmed executable outputs belong in their own folders under `Bin/Windows/`.
 
-## What changed in Code Update 0002
+## Active layout
 
-This update removed redundant prototype and duplicate repository files from the active tree:
+```text
+Apps/             Application source folders: Launcher, Server, Editor, Importer, Client
+Backups/          Project backups created by update/apply tools
+Bin/              Future built executables, each in its own folder
+Core/             Shared models, validation, serialization, logging, configuration
+Data/             Reforged editable standalone game database
+Docs/             Project history, architecture, rules, handoff, and design notes
+ImportedDatabases/ Original/reference-only imports; never overwritten
+Logs/             Runtime and validation logs
+Reports/          Audit and validation reports
+Saves/            Player/server saves; never overwritten
+Tools/            Importer, updater, validation, and developer tools
+Updates/          Code Updates and Database Versions
+```
 
-- Removed duplicate `README.txt`; `README.md` is now the only root readme.
-- Removed old PowerShell prototype archives from `Legacy/`.
-- Removed deprecated old client/editor/source placeholders from `Legacy/DeprecatedRoots/`.
-- Removed old repository backup snapshots from `Backups/`.
-- Removed obsolete duplicate changelog files from `Docs/`.
-- Added `.gitignore` rules to keep generated logs/backups out of normal repository uploads.
-- Preserved `Data/`, `ImportedDatabases/`, and `Saves/`.
+## Important rules
 
-## Update rules
+- The server must load from `Data/`, not from `.DAT`, `.mdb`, `.accdb`, or CSV files.
+- `ImportedDatabases/` is reference-only after conversion.
+- `Saves/` and `ImportedDatabases/` must not be overwritten by updates.
+- Every Code Update and Database Version must run from its own extracted folder.
+- Every update must update this README and the docs.
+- Executables must live in their own folders under `Bin/Windows/`.
+- No executable is claimed unless it has actually been created.
 
-Every Code Update or Database Version must:
+## Next development step
 
-1. Run from its own extracted update folder.
-2. Include an `Apply-*.bat` until the compiled launcher/updater exists.
-3. Auto-locate the project root without requiring a typed path.
-4. Update this `README.md`.
-5. Update `CHANGELOG.md`, `VERSION.md`, and relevant docs.
-6. Preserve `Saves/` and `ImportedDatabases/` unless explicitly approved otherwise.
+Begin **Core Foundation** implementation, then build the standalone server around Core.

@@ -21,3 +21,8 @@
 
 - Database Version: game data/import/database conversion work.
 - Code Update: code, repository, tooling, launcher, server, editor, and client work.
+
+
+## Update Packaging Rule
+
+Every Code Update and Database Version must run from its own extracted folder. Every update must replace root `README.md`, update `VERSION.md`, update `CHANGELOG.md`, update `ProjectManifest.json`, and update relevant Docs.

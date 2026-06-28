@@ -1,18 +1,14 @@
 # Changelog
 
-## Code Update 0002 - Repository Deduplication
+## CodeUpdate-0003 — Layout Freeze, Manifest, and Redundancy Cleanup
 
-- Removed duplicate root `README.txt` in favor of `README.md`.
-- Removed redundant legacy PowerShell prototype archive.
-- Removed obsolete legacy client/editor/source placeholder folders.
-- Removed old backup snapshots that should not remain in the active repository tree.
-- Removed duplicate/obsolete changelog files from `Docs/`.
-- Added `.gitignore` for runtime logs, local backups, temporary reports, and build artifacts.
-- Preserved `Data/`, `ImportedDatabases/`, `Saves/`, `Apps/`, `Core/`, `Docs/`, `Tools/`, `Updates/`, and `Bin/`.
-- Updated documentation and handoff status.
+- Added root `ProjectManifest.json`.
+- Froze the repository layout for Core/Server development.
+- Removed redundant duplicate README text files where Markdown equivalents exist.
+- Removed obsolete generated apply reports from active repository tracking.
+- Added manifest-driven update rules.
+- Updated project docs and session handoff.
 
-## Code Update 0001 - Repository Reorganization & Core Foundation
+## Previous history
 
-- Established the streamlined repository layout.
-- Created `Apps/`, `Core/`, `Bin/`, `Updates/`, and supporting folders.
-- Moved prototype-era folders into `Legacy/` instead of deleting them.
+Earlier Database Versions established editable `Data/`, CSV import baselines, native DAT cataloging, MegaMud MP knowledge integration, and a server-ready database baseline. Earlier Code Updates reorganized the repository and deduplicated prototype files.

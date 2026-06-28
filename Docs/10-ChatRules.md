@@ -28,3 +28,8 @@ These rules allow future ChatGPT sessions to continue the project correctly.
 ## Honesty rule
 
 Do not claim that a patch, database version, executable, decoded format, or feature exists unless it has actually been created and verified.
+
+
+## Current Source of Truth Rule
+
+Use the latest user-uploaded repository ZIP as the source of truth until a newer ZIP or verified GitHub repository is provided. Inspect before changing anything.

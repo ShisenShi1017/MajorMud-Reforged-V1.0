@@ -20,3 +20,11 @@ The project is moving away from PowerShell as an implementation platform. PowerS
 ### Next work
 
 Build the Core data loader and server bootstrap using the new structure.
+
+
+## CodeUpdate-0003 — Layout Freeze, Manifest, and Redundancy Cleanup
+
+- Added `ProjectManifest.json`.
+- Removed redundant duplicate README text files.
+- Standardized executable folder policy.
+- Froze the repository layout so Core and Server work can proceed.

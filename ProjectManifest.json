@@ -1,0 +1,53 @@
+{
+  "project": "MajorMud Reforged",
+  "repositoryStatus": "Layout frozen for server/core development",
+  "currentCodeUpdate": "CodeUpdate-0003",
+  "currentDatabaseVersion": "DatabaseVersion-0009",
+  "sourceOfTruth": "Latest user-uploaded repository ZIP until a newer ZIP or verified GitHub baseline is provided",
+  "runtimeDataSource": "Data/",
+  "referenceOnlySources": [
+    "ImportedDatabases/",
+    "native .DAT files",
+    "CSV exports",
+    "MegaMud .mp files"
+  ],
+  "protectedFolders": [
+    "Data/",
+    "ImportedDatabases/",
+    "Saves/",
+    ".git/"
+  ],
+  "activeFolders": [
+    "Apps/",
+    "Backups/",
+    "Bin/",
+    "Core/",
+    "Data/",
+    "Docs/",
+    "ImportedDatabases/",
+    "Logs/",
+    "Reports/",
+    "Saves/",
+    "Tools/",
+    "Updates/"
+  ],
+  "executableFolders": {
+    "windows": [
+      "Bin/Windows/Launcher",
+      "Bin/Windows/Server",
+      "Bin/Windows/Editor",
+      "Bin/Windows/Importer",
+      "Bin/Windows/Client"
+    ],
+    "android": [
+      "Bin/Android/Client"
+    ]
+  },
+  "updateRules": [
+    "Code Updates and Database Versions must run from their own extracted folder",
+    "Every update replaces README.md with current status",
+    "Every update updates Docs/ and ProjectManifest.json",
+    "Do not overwrite Saves or ImportedDatabases",
+    "Do not claim executables exist unless actually built"
+  ]
+}

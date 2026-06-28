@@ -1,8 +1,8 @@
 # Updates
 
-This folder tracks update package history and local update metadata.
+This folder stores Code Updates and Database Versions after they are applied or archived.
 
-- `Updates/Code/` is for Code Update records.
-- `Updates/DatabaseVersions/` is for Database Version records.
+- Code Updates: server, editor, importer, launcher, client, tools, and repository changes.
+- Database Versions: data/import/schema/database changes.
 
-Actual update ZIP files should still be extracted and run from their own folder.
+Every update must run from its own extracted folder and include an apply script plus manifest.

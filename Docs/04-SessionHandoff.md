@@ -40,3 +40,8 @@ Start the real `Core` implementation for server loading:
 2. Add data manifest loader.
 3. Add validation result model.
 4. Add server bootstrap that reads only `Data/`.
+
+
+## Current Handoff After CodeUpdate-0003
+
+Repository layout is frozen. Next recommended task is Core Foundation implementation: data models, validation contracts, serialization, logging, configuration, and server load contract.
