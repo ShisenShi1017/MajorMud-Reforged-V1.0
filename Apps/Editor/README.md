@@ -7,3 +7,9 @@ Current state: scaffold/documentation only. No compiled executable is claimed by
 Future executable location:
 
 `Bin/Windows/Editor/`
+
+## Core Dependency
+
+This application must use `Core/` for shared models, configuration, logging, validation, serialization, repositories, events, manifest access, versioning, health checks, and utilities.
+
+Do not create app-local duplicate models for Core concepts. Compile-level Core references will be added when this application is promoted from placeholder/documented app folder to a buildable application project.

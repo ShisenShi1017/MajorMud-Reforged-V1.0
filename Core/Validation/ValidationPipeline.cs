@@ -17,11 +17,7 @@ public sealed class ValidationPipeline<T> : IValidationPipeline<T>
         var merged = new ValidationResult();
         foreach (var validator in _validators)
         {
-            var result = validator.Validate(value);
-            foreach (var issue in result.Issues)
-            {
-                merged.Issues.Add(issue);
-            }
+            merged.Merge(validator.Validate(value));
         }
         return merged;
     }

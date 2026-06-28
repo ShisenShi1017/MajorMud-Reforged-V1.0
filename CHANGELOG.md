@@ -1,5 +1,20 @@
 # Changelog
 
+## CodeUpdate-0010 - Core Services and Handoff
+
+- Continued Milestone 1 Core Framework work.
+- Added `IConfigurationProvider`, configuration entries, JSON config loading, environment loading, and typed integer access.
+- Added logging sink contract, composite logger, and in-memory log sink.
+- Added validation merge helpers and reusable required-string validator.
+- Added shared JSON file store.
+- Added in-memory data repository for dependency-free staging and tests.
+- Added update package health check for the required one-folder update ZIP layout.
+- Updated application README files with the Core dependency rule.
+- Updated `AI_CONTEXT.md` into a living handoff document with the completed/substantially-underway table and Milestone 1 completion checklist.
+- Updated architecture/update documentation with the new update-folder packaging rule.
+- Updated `README.md`, `VERSION.md`, and `ProjectManifest.json`.
+- Preserved `Saves/` and `ImportedDatabases/`.
+
 ## CodeUpdate-0007 - Core Contracts Foundation
 
 - Rebuilt Core Update 0007 from scratch.

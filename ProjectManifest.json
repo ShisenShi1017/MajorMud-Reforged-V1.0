@@ -1,12 +1,12 @@
 {
   "project": "MajorMud Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0009",
+  "codeUpdate": "0010",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / Core Audit and Test Foundation",
+  "milestone": "Milestone 1 - Core Framework / Core Services and Handoff",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
-  "updatePolicy": "Run Apply-*.bat from extracted update folder to apply to the main project folder.",
-  "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements for the next applicable Code Update or Database Version unless explicitly deferred or rejected.",
+  "updatePolicy": "Extract the update ZIP directly into the main project folder, open the single labeled update folder, and run Apply-*.bat from inside it.",
+  "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
   "preserve": [
     "Saves",
     "ImportedDatabases"
@@ -43,5 +43,29 @@
       "compiled Bin runtime handoff validation",
       "Core contract smoke tests packaged for development environments"
     ]
-  }
+  },
+  "updatePackagePolicy": "Every update ZIP contains exactly one labeled top-level folder named for the update.",
+  "handoffPolicy": "AI_CONTEXT.md is a living handoff document and must be updated every Code Update.",
+  "milestoneStatus": {
+    "Core configuration system": "In progress",
+    "Core logging system": "In progress",
+    "Validation framework": "In progress",
+    "Serialization framework": "In progress",
+    "Repository interfaces": "Substantially underway",
+    "Shared data models": "Substantially underway",
+    "Event system": "Substantially underway",
+    "Dependency injection/service registry": "In progress",
+    "Version management": "Substantially underway",
+    "Project manifest reader": "In progress",
+    "Repository health checker": "In progress",
+    "Shared utility library": "In progress",
+    "Unit-test framework": "Started",
+    "Applications using Core": "Not complete"
+  },
+  "nextRecommendedWork": [
+    "Create or wire application project stubs so every app explicitly references Core.",
+    "Finish Core logging and configuration runtime behavior.",
+    "Expand repository health checks for duplicate models and Core references.",
+    "Expand validation rules for game data before Milestone 2."
+  ]
 }

@@ -6,7 +6,7 @@
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0006 — README / New Chat Handoff`
+**Current Code Update:** `CodeUpdate-0010 — Core Services and Handoff`
 
 **Current Database Version:** `DatabaseVersion-0009 — Server-Ready Data Baseline`
 
@@ -312,3 +312,21 @@ Permanent rules now include: runtime must not require the .NET SDK, update packa
 - Suggestion rule: approved suggestions become implementation requirements unless explicitly deferred or rejected.
 
 Start new development sessions by reading `AI_CONTEXT.md`, then `Docs/Architecture/PROJECT_ROADMAP.md`.
+
+
+## CodeUpdate-0010 Notes
+
+Core Update 0010 continues Milestone 1 and adds a stronger living handoff process.
+
+Highlights:
+
+- `AI_CONTEXT.md` is now a living handoff document and must be updated every Code Update.
+- The handoff includes the completed/substantially-underway table and the Milestone 1 completion checklist.
+- Update ZIPs must contain exactly one labeled top-level folder so users can extract directly into the main project folder.
+- The `Apply-*.bat` script must run from inside that extracted update folder and automatically locate the project root.
+- Core configuration now supports typed values, JSON file loading, environment loading, and value source tracking.
+- Core logging now includes sink contracts, composite logging, and an in-memory sink.
+- Core validation now includes merge helpers and a reusable required-string validator.
+- Core serialization now includes a shared JSON file store.
+- Core repository work now includes an in-memory data repository for staging/testing.
+- Repository health work now includes update package layout validation.

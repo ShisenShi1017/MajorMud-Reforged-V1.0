@@ -3,7 +3,7 @@ namespace MajorMud.Reforged.Core.Logging;
 /// <summary>
 /// Simple dependency-free file logger source for future compiled apps.
 /// </summary>
-public sealed class FileReforgedLogger : IReforgedLogger
+public sealed class FileReforgedLogger : IReforgedLogger, ILogSink
 {
     private readonly string _logFile;
 

@@ -334,3 +334,16 @@ The project is currently in Milestone 1. Core Update 0008 adds project governanc
 Core Update 0009 adds the shared `IReforgedDataRecord` contract, extensible `GameEntity`, read-only repository contract, repository catalog contract, Core reference audit model, duplicate model audit model, and dependency-free Core test foundation. These items advance Milestone 1 but do not close it.
 
 Remaining Milestone 1 emphasis: every application must integrate with Core, duplicate application models must be removed or redirected to Core, and compiled `Bin/` runtime handoff must be validated without requiring the .NET SDK.
+
+## CodeUpdate-0010 Handoff and Update Folder Rule
+
+Added in CodeUpdate-0010:
+
+- `AI_CONTEXT.md` is a living handoff document and must be updated with every Code Update.
+- The handoff must include the current milestone, update number, completed/substantially-underway table, Milestone 1 completion checklist, remaining work, and next recommended work.
+- Every Code Update and Database Version ZIP must contain exactly one labeled top-level folder named for the update.
+- The user must be able to extract the ZIP directly into the main project folder without manually creating a folder.
+- The `Apply-*.bat` file must live inside that labeled update folder and run from there.
+- The apply script must automatically locate the project root before copying payload files.
+- Approved suggestions are implementation requirements unless explicitly deferred or rejected.
+
