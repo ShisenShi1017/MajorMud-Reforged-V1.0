@@ -2,21 +2,28 @@
 
 ## Current Focus
 
-MajorMud Reforged data independence and native runtime import foundation.
+Native MajorMud `.DAT` decoding for standalone Reforged data.
 
-## Completed in Database Version 0003
+## Last Completed
 
-- Added native runtime `.DAT` files under `ImportedDatabases/NativeRuntime/`.
-- Added source file catalog with size, SHA-256, and first-byte signatures.
-- Added importer/catalog tooling under `Tools/Importer/`.
-- Updated database format documentation.
-- Updated chat/development rules.
-- Added database audit and release notes.
+Database Version 0004 - Native DAT Decode Foundation.
 
-## Important Status
+## Current State
 
-The `.DAT` files are archived and cataloged, but not yet fully decoded. Do not claim native decoding is complete until a future database version maps records/fields and verifies them.
+- CSV-converted data exists from Database Version 0002.
+- Native `.DAT` runtime files have been cataloged and structurally inspected.
+- Full binary decoding is not complete yet.
+- The next best step is to fully map small stable files first: races, classes, then shops.
 
-## Next Recommended Work
+## Important Rules
 
-Create Database Version 0004 to start native decoding by file type, beginning with smaller structured files such as `WCCRACE.DAT`, `WCCCLASS.DAT`, `WCCBANKS.DAT`, or `WCCGANGS.DAT`, then compare decoded results against the CSV exports.
+- Data/database work is released as Database Versions.
+- Code/server/editor/client work is released as Patches.
+- Every Database Version or Patch must run from its own extracted folder.
+- Every Database Version or Patch must update docs.
+- Imported source files are reference/fallback only after conversion.
+- The standalone server must ultimately load from `Data/`, not from original `.DAT`, `.MDB`, `.ACCDB`, or CSV files.
+
+## Next Recommended Task
+
+Database Version 0005: fully decode `WCCRACE.DAT` and `WCCCLASS.DAT`, prove every race/class record against CSV, and preserve all unknown bytes.
