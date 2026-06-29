@@ -28,6 +28,8 @@ CodeUpdate-0031A corrects the CodeUpdate-0031 smoke-test compile failure and is 
 
 CodeUpdate-0032 improves Server bootstrap diagnostics by capturing ProjectManifest identity fields for startup output and future handoff clarity.
 
+CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract for host/server automation.
+
 
 ## Development Phases
 
@@ -92,4 +94,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0032 extends the Server bootstrap report/startup output with manifest identity fields. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server scope.
+Current implementation slice: CodeUpdate-0033 extends the Server bootstrap report with an explicit exit-code contract. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server scope.

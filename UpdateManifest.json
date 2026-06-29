@@ -1,8 +1,8 @@
 {
-    "codeUpdate": "0032",
-    "name": "CodeUpdate-0032-Server-Bootstrap-Manifest-Identity",
+    "codeUpdate": "0033",
+    "name": "CodeUpdate-0033-Server-Bootstrap-Exit-Code-Contract",
     "packageType": "direct-repository-patch",
-    "purpose": "Improve Server bootstrap diagnostics by capturing and reporting ProjectManifest identity fields.",
+    "purpose": "Make the Server bootstrap exit-code behavior an explicit report contract and verify success/failure codes.",
     "addsGameplayFeatures": false,
     "addsImplementationCode": true,
     "batInstallerCreated": false,
@@ -16,31 +16,30 @@
         "AI_CONTEXT.md",
         "Apps/Source/Reforged.Server/Program.cs",
         "Apps/Source/Reforged.Server/README.md",
-        "Apps/Source/Reforged.Server/ServerBootstrap.cs",
         "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
         "CHANGELOG.md",
         "Docs/Architecture/PROJECT_ROADMAP.md",
         "Docs/02-Roadmap.md",
-        "Docs/CodeUpdates/CodeUpdate-0032-Server-Bootstrap-Manifest-Identity.md",
+        "Docs/CodeUpdates/CodeUpdate-0033-Server-Bootstrap-Exit-Code-Contract.md",
         "ProjectManifest.json",
         "README.md",
         "ReleaseNotes.md",
-        "Reports/CodeUpdates/CodeUpdate-0032/ServerBootstrapManifestIdentityReport.md",
+        "Reports/CodeUpdates/CodeUpdate-0033/ServerBootstrapExitCodeContractReport.md",
         "Tests/Source/Reforged.Core.Tests/Program.cs",
         "UpdateManifest.json",
         "VERSION.md"
     ],
     "githubTruth": {
         "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-        "baselineCommit": "d8873465",
+        "baselineCommit": "a9ffa500ae317a5deee08ae68d658142e70bced7",
         "baselineStatus": "green by user report"
     },
     "localVerification": {
         "sdk": ".NET 8.0.422",
         "status": "passed",
         "restore": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests restore passed.",
-        "build": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed with 0 warnings and 0 errors.",
-        "smokeTests": "Reforged core/server smoke tests passed, including server bootstrap manifest identity coverage."
+        "build": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed with 0 warnings and 0 errors after correcting a misplaced smoke-test assertion.",
+        "smokeTests": "Reforged core/server smoke tests passed, including server bootstrap exit-code coverage."
     },
     "boundaries": [
         "No gameplay systems",
@@ -50,7 +49,7 @@
         "No editor implementation",
         "No networking expansion"
     ],
-    "handoffImprovement": "Future updates should record a short next-scope candidate and explicit boundaries separately from completed work.",
-    "recommendedNextUpdate": "CodeUpdate-0033 - next small Milestone 2 host/server improvement",
+    "handoffImprovement": "Completed work, explicit boundaries, verification status, and next-scope candidate are recorded separately.",
+    "recommendedNextUpdate": "CodeUpdate-0034 - next small Milestone 2 host/server improvement",
     "recommendedNextScopeRequiresUserApproval": true
 }

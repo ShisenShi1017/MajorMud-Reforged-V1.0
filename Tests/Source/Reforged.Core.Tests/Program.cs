@@ -158,12 +158,23 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException("Server bootstrap did not attach Server startup diagnostics.");
     }
 
+    if (report.ExitCode != 0)
+    {
+        throw new InvalidOperationException("Server bootstrap success did not expose exit code 0.");
+    }
+
     if (report.ProjectName != "Reforged" ||
         string.IsNullOrWhiteSpace(report.CodeUpdate) ||
         string.IsNullOrWhiteSpace(report.DatabaseVersion) ||
         string.IsNullOrWhiteSpace(report.Milestone))
     {
         throw new InvalidOperationException("Server bootstrap did not capture ProjectManifest identity fields.");
+    }
+
+    var failedReport = new ServerBootstrap().Run(Path.Combine(Path.GetTempPath(), $"reforged-missing-root-{Guid.NewGuid():N}"));
+    if (failedReport.Passed || failedReport.ExitCode != 1)
+    {
+        throw new InvalidOperationException("Server bootstrap failure did not expose exit code 1.");
     }
 }
 

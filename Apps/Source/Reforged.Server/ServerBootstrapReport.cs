@@ -27,6 +27,8 @@ public sealed class ServerBootstrapReport
 
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
 
+    public int ExitCode => Passed ? 0 : 1;
+
     public void AddCheck(string name) => checks.Add(name);
 
     public void AttachStartupDiagnostics(ServerStartupDiagnosticReport diagnostics)

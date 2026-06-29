@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0032 |
+| Current Code Update | 0033 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0032-Server-Bootstrap-Manifest-Identity |
+| Last Update Name | CodeUpdate-0033-Server-Bootstrap-Exit-Code-Contract |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is pending user push plus GitHub Actions verification.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and local .NET 8.0.422 restore/build/smoke verification passed.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -94,7 +94,7 @@ Do not add gameplay systems without explicit user approval.
 | Area | Status | Notes |
 |---|---:|---|
 | Host/server startup diagnostics | Started | CodeUpdate-0029 added startup-only Server diagnostics. |
-| Server bootstrap foundation | Extended in 0032 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields. |
+| Server bootstrap foundation | Extended in 0033 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields; 0033 exposes explicit exit codes. |
 | Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
 | Host/world editor | Planned | Do not begin larger editor work without approval. |
@@ -105,6 +105,7 @@ Do not add gameplay systems without explicit user approval.
 
 | Code Update | Summary |
 |---|---|
+| 0033 | Adds an explicit Server bootstrap report exit-code contract and smoke coverage for success/failure exit codes. |
 | 0032 | Captures ProjectManifest identity fields in Server bootstrap report/startup output and adds smoke coverage for those fields. |
 | 0031A | Corrected invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs` after CodeUpdate-0031 failed GitHub Actions at the test build step. |
 | 0031 | Added non-gameplay Server bootstrap entry point/report, bootstrap smoke coverage, `DEVELOPMENT_PRINCIPLES.md`, and refreshed continuity docs. |
@@ -118,6 +119,32 @@ Do not add gameplay systems without explicit user approval.
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
 
+## CodeUpdate-0033 Handoff
+
+CodeUpdate-0033 is a small Milestone 2 host/server bootstrap improvement. It makes bootstrap process-result behavior explicit by exposing an `ExitCode` value on `ServerBootstrapReport`, then returns that value from Server startup.
+
+Implemented:
+
+- Added `ServerBootstrapReport.ExitCode`.
+- Updated Server startup to return `report.ExitCode` for both success and failure.
+- Added smoke-test coverage for success exit code 0 and failure exit code 1.
+- Recorded CodeUpdate-0032 as GitHub Actions green by user report.
+
+Boundaries:
+
+- No gameplay systems.
+- No combat.
+- No character creation.
+- No world simulation loop.
+- No networking expansion.
+- No editor implementation.
+- No BAT installer or ZIP package was created by Codex.
+- Codex did not push to GitHub.
+
+Next-scope candidate:
+
+- CodeUpdate-0034 should be another small host/server slice approved by the user before implementation.
+
 ## CodeUpdate-0032 Handoff
 
 CodeUpdate-0032 is a small Milestone 2 host/server bootstrap improvement. It carries ProjectManifest identity values into the Server bootstrap report and console output so future startup diagnostics and handoffs can name the active project, CodeUpdate, database version, and milestone without relying on scattered document reading.
@@ -129,6 +156,7 @@ Implemented:
 - Updated Server startup output to print the captured identity values.
 - Added smoke-test coverage for the captured identity fields.
 - Added a handoff improvement rule: future updates should record a concise next-scope candidate and explicit boundaries separately from completed work.
+- The user reported CodeUpdate-0032 GitHub Actions green after push.
 
 Boundaries:
 
@@ -162,22 +190,22 @@ Boundaries:
 
 ## Verification Status
 
-Verified before creating CodeUpdate-0032:
+Verified before creating CodeUpdate-0033:
 
-- GitHub truth baseline was CodeUpdate-0031A at commit `d8873465` by local git history.
-- The user reported CodeUpdate-0031A GitHub Actions green before CodeUpdate-0032 started.
-- Codex local repository was clean before CodeUpdate-0032 edits.
-- Local .NET 8.0.422 restore/build/smoke verification passed.
-- GitHub Actions remains pending until the user pushes CodeUpdate-0032 and reports the result.
+- GitHub/local baseline was CodeUpdate-0032 at commit `a9ffa500ae317a5deee08ae68d658142e70bced7`.
+- The user reported CodeUpdate-0032 GitHub Actions green before CodeUpdate-0033 started.
+- Codex local repository was clean before CodeUpdate-0033 edits.
+- Local .NET 8.0.422 restore/build/smoke verification passed after correcting a misplaced smoke-test assertion.
+- GitHub Actions remains pending until the user pushes CodeUpdate-0033 and reports the result.
 
-CodeUpdate-0032 is the current local update candidate.
+CodeUpdate-0033 is the current local update candidate.
 
-CodeUpdate-0031A remains the current pushed green baseline until CodeUpdate-0032 is pushed and GitHub Actions is reported green.
+CodeUpdate-0032 remains the current pushed green baseline until CodeUpdate-0033 is pushed and GitHub Actions is reported green.
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0032 and report GitHub Actions status.
-2. After green Actions, approve the next small Milestone 2 host/server scope for CodeUpdate-0033.
+1. Push CodeUpdate-0033 and report GitHub Actions status.
+2. After green Actions, approve the next small Milestone 2 host/server scope for CodeUpdate-0034.
 3. Do not add gameplay systems without explicit approval.
 
 ## New Window Instruction

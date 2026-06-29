@@ -20,8 +20,8 @@ foreach (var issue in report.Validation.Issues)
 if (!report.Passed)
 {
     Console.Error.WriteLine("Server bootstrap failed before gameplay startup.");
-    return 1;
+    return report.ExitCode;
 }
 
 Console.WriteLine("Server bootstrap completed successfully. Gameplay, networking, and world simulation remain intentionally disabled.");
-return 0;
+return report.ExitCode;

@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0033 - Server Bootstrap Exit Code Contract
+
+- Added an explicit `ExitCode` contract to the non-gameplay Server bootstrap report.
+- Server startup now returns the bootstrap report exit code instead of duplicating success/failure code values.
+- Smoke tests now verify bootstrap success exposes exit code 0 and bootstrap failure exposes exit code 1.
+- Recorded the user-reported green GitHub Actions result for CodeUpdate-0032.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, or live editor implementation were added.
+- Local .NET 8.0.422 restore/build/smoke verification passed.
+- GitHub Actions remains pending until the user pushes CodeUpdate-0033 and reports the result.
+
 ## CodeUpdate-0032 - Server Bootstrap Manifest Identity
 
 - Added ProjectManifest identity capture to the non-gameplay Server bootstrap report.
@@ -9,7 +19,7 @@
 - Added a handoff improvement: future updates should record a short next-scope candidate and explicit boundaries separately from completed work.
 - No gameplay systems, combat, character creation, world simulation, networking expansion, or live editor implementation were added.
 - Local .NET 8.0.422 restore/build/smoke verification passed.
-- GitHub Actions remains pending until the user pushes CodeUpdate-0032 and reports the result.
+- GitHub Actions is green by user report.
 
 ## CodeUpdate-0031A - Server Smoke Test Compile Fix
 
