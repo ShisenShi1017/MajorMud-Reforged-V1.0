@@ -1,16 +1,20 @@
 # Reforged Roadmap
 
-Last Updated: 2026-06-28
+Last Updated: 2026-06-29
 
-## Current Milestone Closure Track
+## Current Milestone
 
-The project is in Milestone 1 - Core Framework Completion. Remaining work is verification-only: dependency injection setup, configuration loading, repository/data loading health, event system behavior, startup diagnostics, smoke tests, GitHub Actions build validation, continuity document updates, and final Milestone 1 baseline freeze after verification passes.
+Milestone 1 - Core Framework Completion is frozen after the user reported CodeUpdate-0026B GitHub Actions green.
 
 CodeUpdate-0024B is a corrective build-fix patch for the CoreStartupDiagnostics logger API mismatch. It does not add gameplay features.
 
 CodeUpdate-0025 completes the active rebrand audit. No gameplay features are added.
 
-CodeUpdate-0026 prepares the Milestone 1 finalization candidate. Milestone 1 should be frozen only after CodeUpdate-0026 GitHub Actions is green.
+CodeUpdate-0026 prepares the Milestone 1 finalization candidate.
+
+CodeUpdate-0026B cleans the baseline by removing generated source-project build outputs and repairing documentation encoding.
+
+CodeUpdate-0027 records the green CodeUpdate-0026B GitHub Actions gate and freezes the Milestone 1 baseline.
 
 
 ## Development Phases
@@ -72,4 +76,4 @@ The roadmap is a planning document, not an implementation claim. Items listed he
 
 ## Milestone 2 Preview
 
-After Milestone 1 is frozen, the next phase should focus on server improvements, host/world editor planning, data validation tools, runtime performance, gameplay systems, and client/editor modernization. Begin implementation only after the user approves the Milestone 2 starting scope.
+Milestone 2 should focus on engine modernization, host/world editor planning, server improvements, data validation tools, runtime performance, gameplay systems, and client/editor modernization. Begin implementation only after the user approves the Milestone 2 starting scope.

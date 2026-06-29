@@ -10,17 +10,21 @@ The active source, assembly, and project naming pattern is now `Reforged.*`. Git
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0026B - Baseline Cleanup`
+**Current Code Update:** `CodeUpdate-0027 - Milestone 1 Baseline Freeze`
 
 **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 
-**Active Milestone:** `Milestone 1 - Core Framework / Finalization Candidate`
+**Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 
-**Current Priority:** Push CodeUpdate-0026B, verify GitHub Actions, then freeze the Milestone 1 baseline and begin Milestone 2 planning only after the official gate is green.
+**Current Priority:** Begin Milestone 2 planning only after the user approves the starting scope. Milestone 1 is frozen after CodeUpdate-0026B GitHub Actions was reported green by the user.
 
 This README is the required starting point for every new ChatGPT session and every developer handoff.
 
 ---
+
+## CodeUpdate-0027 Summary
+
+CodeUpdate-0027 freezes the Milestone 1 Core Framework baseline after the user reported CodeUpdate-0026B GitHub Actions green. This update records the official gate result, marks Milestone 1 complete/frozen, and prepares Milestone 2 planning. It does not add gameplay features.
 
 ## CodeUpdate-0026B Summary
 
@@ -377,9 +381,9 @@ Code Update 0012 continues Milestone 1 by adding shared source-level Core servic
 
 ## Current Code Update
 
-Current Code Update: **0026B - Baseline Cleanup**
+Current Code Update: **0027 - Milestone 1 Baseline Freeze**
 
-This update adds Core repository-backed loaders for the current canonical `Data/` JSON categories and a GitHub Actions workflow for cloud build verification. Normal runtime still does not require the .NET SDK on the user machine.
+Milestone 1 is frozen after the user reported CodeUpdate-0026B GitHub Actions green. CodeUpdate-0027 records the freeze and prepares Milestone 2 planning. Normal runtime still does not require the .NET SDK on the user machine.
 
 
 
@@ -405,7 +409,7 @@ Run it from the repository root after extracting the update. It copies `GitHubAc
 
 ### CodeUpdate-0024 Verification Track
 
-Milestone 1 closure has begun. Current work is verification-only: dependency injection, configuration loading, repository health, event-system behavior, startup diagnostics, and smoke tests. Gameplay feature work remains deferred until after Milestone 1 is closed.
+Milestone 1 closure completed in CodeUpdate-0027 after dependency injection, configuration loading, repository health, event-system behavior, startup diagnostics, smoke tests, and GitHub Actions validation were recorded.
 
 GitHub Actions is the authoritative build gate and now restores, builds, and runs the Core smoke-test project.
 

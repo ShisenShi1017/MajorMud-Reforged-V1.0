@@ -1,17 +1,17 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0026B
+- Current Code Update: 0027
 - Current Database Version: 0009
-- Milestone: Milestone 1 - Core Framework / Finalization Candidate
+- Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
 - Build Verification: GitHub Actions cloud build via `.github/workflows/dotnet-build.yml` using `Reforged.*` project paths.
 
 ## Verification Status
 
-- Current update: CodeUpdate-0026B - Baseline Cleanup
-- Milestone 1 finalization candidate is active; freeze is pending the CodeUpdate-0026B GitHub Actions gate.
-- Local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions remains the official validation gate after user push.
+- Current update: CodeUpdate-0027 - Milestone 1 Baseline Freeze
+- Milestone 1 Core Framework is complete/frozen after the user reported CodeUpdate-0026B GitHub Actions green.
+- CodeUpdate-0027 local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions remains pending until user push.
 
 ## Update Packaging
 
@@ -29,3 +29,6 @@
 
 - CodeUpdate-0026B is a baseline cleanup patch for generated artifacts, ignore rules, and documentation encoding cleanup.
 - No BAT installer or update ZIP was created for CodeUpdate-0026B; the user controls GitHub push.
+
+- CodeUpdate-0027 freezes the Milestone 1 baseline after user-reported green GitHub Actions for CodeUpdate-0026B.
+- No BAT installer or update ZIP was created for CodeUpdate-0027; the user controls GitHub push.

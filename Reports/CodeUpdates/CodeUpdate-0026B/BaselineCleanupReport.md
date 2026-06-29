@@ -17,4 +17,4 @@ Local .NET 8.0.422 restore/build/smoke-test verification passed for Core, Server
 
 ## Freeze Status
 
-Milestone 1 remains a finalization candidate. Freeze confirmation is pending CodeUpdate-0026B GitHub Actions after the user push.
+The user later reported CodeUpdate-0026B GitHub Actions green. CodeUpdate-0027 records the final Milestone 1 baseline freeze.

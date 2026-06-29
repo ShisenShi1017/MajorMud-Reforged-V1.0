@@ -22,4 +22,4 @@ The first parallel build attempt hit a local file-lock on the shared Core output
 
 ## Official Gate
 
-The user controls the GitHub push and will report whether GitHub Actions is green. Milestone 1 should be marked frozen only after CodeUpdate-0026B is green.
+The user later reported CodeUpdate-0026B GitHub Actions green. CodeUpdate-0027 records the final Milestone 1 baseline freeze.

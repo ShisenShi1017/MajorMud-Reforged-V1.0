@@ -28,17 +28,21 @@ Reforged is not a runtime-dependent copy of the original legacy MUD. It is a cle
 
 The long-term goal is a standalone server, native importer, live editor, launcher, Windows client, Android client, gameplay systems, and plugin framework that do not require the original legacy MUD runtime.
 
-## Milestone 1 - Core Framework (Current)
+## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
 
-Current closure focus: verify dependency injection setup, configuration loading, repository/data loading health, event system behavior, startup diagnostics, smoke tests, GitHub Actions build status, and continuity documents before freezing the Milestone 1 baseline.
+Status: Complete/frozen after the user reported CodeUpdate-0026B GitHub Actions green.
 
 CodeUpdate-0024B is a corrective build-fix patch for the CoreStartupDiagnostics logger API mismatch. It does not add gameplay features. No BAT installer or update ZIP was created per current user instruction.
 
 CodeUpdate-0025 completes the active rebrand audit. Active source/build names use Reforged.*; the obsolete duplicate MajorMud-named importer utility was removed. GitHub Actions remains the official validation gate after the user push.
 
-CodeUpdate-0026 prepares the Milestone 1 finalization candidate. The final freeze is pending green GitHub Actions after the user push.
+CodeUpdate-0026 prepares the Milestone 1 finalization candidate.
+
+CodeUpdate-0026B cleans generated artifacts and documentation encoding before freeze.
+
+CodeUpdate-0027 records the green CodeUpdate-0026B GitHub Actions gate and freezes the Milestone 1 baseline.
 
 Deliverables:
 
@@ -72,17 +76,22 @@ Completion Criteria:
 - Runtime does not require the .NET SDK.
 - Handoff documents accurately track Milestone 1 progress after every update.
 
-## Milestone 2 - Native Importer
+## Milestone 2 - Engine Modernization / Host & World Editor
 
-Goal: Completely remove dependence on the original legacy runtime.
+Goal: Modernize the engine host path and prepare safe host/world editor workflows while preserving the verified Milestone 1 Core baseline.
 
-Import Sources:
+Focus Areas:
 
-- Reforged `.DAT`
-- CSV exports
-- companion client `.mp`
+- Server improvements
+- Host/world editor work
+- Data validation tools
+- Runtime performance
+- Gameplay systems
+- Client/editor modernization
 
-Features:
+Importer and data modernization work remains eligible during Milestone 2 when it supports the host/editor and server goals.
+
+Candidate data/importer tasks:
 
 - Native DAT decoder
 - CSV importer
@@ -357,4 +366,3 @@ Added in CodeUpdate-0010:
 - The `Apply-*.bat` file must live inside that labeled update folder and run from there.
 - The apply script must automatically locate the project root before copying payload files.
 - Approved suggestions are implementation requirements unless explicitly deferred or rejected.
-

@@ -22,11 +22,11 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Field | Value |
 |---|---|
 | Project | Reforged |
-| Current Milestone | Milestone 1 - Core Framework |
-| Current Code Update | 0026B |
+| Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
+| Current Code Update | 0027 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0026B-Baseline-Cleanup |
-| Milestone Estimate | 98-99% complete; final freeze pending CodeUpdate-0026B GitHub Actions |
+| Last Update Name | CodeUpdate-0027-Milestone-1-Baseline-Freeze |
+| Milestone Estimate | Milestone 1 frozen; Milestone 2 planning not started |
 | Source of Truth | GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` and latest applied local patch state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Patch-only ZIP with exactly one top-level update folder and included Apply-CodeUpdate BAT |
@@ -38,26 +38,26 @@ CodeUpdate-0019 performs the controlled project rebrand requested by the user af
 
 ## Current Development Goal
 
-Continue Milestone 1 until CodeUpdate-0026B is pushed and GitHub Actions is green. Do not begin Milestone 2 implementation until the Milestone 1 baseline is frozen after that official gate.
+Milestone 1 is frozen after the user reported CodeUpdate-0026B GitHub Actions green. Next work is Milestone 2 planning only; do not begin Milestone 2 implementation until the user approves the starting scope.
 
 ## Milestone 1 Deliverable Status
 
 | Deliverable | Status | Notes |
 |---|---:|---|
-| Core configuration system | Verified locally | Smoke tests verify defaults and flattened JSON loading. |
-| Core logging system | Verified locally | Logger contract and in-memory logger build; 0024B repaired startup diagnostics logging call. |
-| Validation framework | Verified locally | Data JSON, cross-reference, and startup diagnostics validation build and smoke-test. |
-| Serialization framework | Verified locally | JSON data loading foundations build and repository health smoke test passes. |
-| Repository interfaces | Verified locally | Repository-backed loaders and health checks build; repository health smoke test passes. |
-| Shared data models | Substantially underway | Shared DataRecord/IReforgedDataRecord/GameEntity foundations reduce app-specific model drift. |
-| Event system | Verified locally | Smoke test verifies publish and subscription disposal behavior. |
-| Dependency injection/service registry | Verified locally | Smoke test resolves registered services. |
-| Version management | Substantially underway | Version info and version manager exist. |
-| Project manifest reader | Substantially underway | Shared manifest model/reader and manifest policy fields exist. |
-| Repository health checker | Nearly complete | Health models plus update package, app Core-reference, Data JSON, Data cross-reference, and duplicate model checks exist. |
-| Shared utility library | In progress | Path safety exists; more utilities should be added only when needed. |
-| Unit-test framework | Verified locally | `Reforged.Core.Tests` runs Milestone 1 smoke tests successfully. |
-| Applications using Core | Verified locally | Server, Importer, Editor, Launcher, and Client source projects restore/build against Core. |
+| Core configuration system | Frozen | Smoke tests verify defaults and flattened JSON loading. |
+| Core logging system | Frozen | Logger contract and in-memory logger build; 0024B repaired startup diagnostics logging call. |
+| Validation framework | Frozen | Data JSON, cross-reference, and startup diagnostics validation build and smoke-test. |
+| Serialization framework | Frozen | JSON data loading foundations build and repository health smoke test passes. |
+| Repository interfaces | Frozen | Repository-backed loaders and health checks build; repository health smoke test passes. |
+| Shared data models | Frozen | Shared DataRecord/IReforgedDataRecord/GameEntity foundations reduce app-specific model drift. |
+| Event system | Frozen | Smoke test verifies publish and subscription disposal behavior. |
+| Dependency injection/service registry | Frozen | Smoke test resolves registered services. |
+| Version management | Frozen | Version info and version manager exist. |
+| Project manifest reader | Frozen | Shared manifest model/reader and manifest policy fields exist. |
+| Repository health checker | Frozen | Health models plus update package, app Core-reference, Data JSON, Data cross-reference, and duplicate model checks exist. |
+| Shared utility library | Frozen | Path safety exists; more utilities should be added only when needed. |
+| Unit-test framework | Frozen | `Reforged.Core.Tests` runs Milestone 1 smoke tests successfully. |
+| Applications using Core | Frozen | Server, Importer, Editor, Launcher, and Client source projects restore/build against Core. |
 
 ## Milestone 1 Completion Checklist
 
@@ -67,16 +67,16 @@ Continue Milestone 1 until CodeUpdate-0026B is pushed and GitHub Actions is gree
 | Every application references Core | Verified locally | All application source projects restore/build with Core project references. |
 | Core has no dependencies on application projects | Verified by structure | Keep dependency direction one-way into Core. |
 | Core configuration fully functional | Verified locally | Configuration smoke test passed. |
-| Core logging complete | Substantially underway | Add file/runtime sink expectations when Bin artifacts exist. |
-| Validation framework complete | Nearly complete | Cross-reference validation added in 0015; final smoke tests remain before Milestone 1 closure. |
-| Serialization framework complete | Nearly complete | Repository-backed loaders for current Data categories added in 0016; final smoke tests remain. |
-| Repository layer complete | Nearly complete | Core Data catalog and repository-backed loaders added in 0016; typed category-specific models can be added as schemas stabilize. |
+| Core logging complete | Frozen | Add file/runtime sink expectations in Milestone 2 only if needed. |
+| Validation framework complete | Frozen | Cross-reference validation added in 0015 and smoke-tested before freeze. |
+| Serialization framework complete | Frozen | Repository-backed loaders for current Data categories added in 0016 and smoke-tested before freeze. |
+| Repository layer complete | Frozen | Core Data catalog and repository-backed loaders added in 0016; typed category-specific models can be added as schemas stabilize. |
 | Event system complete | Verified locally | Event system smoke test passed. |
 | Dependency injection/service registry complete | Verified locally | Dependency-injection smoke test passed. |
-| Version management complete | Substantially underway | Keep VERSION.md and ProjectManifest synchronized every update. |
-| Project manifest reader complete | Substantially underway | Keep manifest schema stable and documented. |
-| Repository health checker complete | Nearly complete | Cross-reference validation added in 0015; final milestone health report remains. |
-| Shared utility library complete | In progress | Add utilities only when used by real Core code. |
+| Version management complete | Frozen | Keep VERSION.md and ProjectManifest synchronized every update. |
+| Project manifest reader complete | Frozen | Keep manifest schema stable and documented. |
+| Repository health checker complete | Frozen | Cross-reference validation and smoke tests passed before freeze. |
+| Shared utility library complete | Frozen | Add utilities only when used by real Core code. |
 | Unit-test framework established | Verified locally | Milestone 1 smoke-test project passed locally. |
 | Runtime does not require .NET SDK | Active rule | Runtime must use compiled/runtime-ready artifacts from `Bin/`; GitHub Actions now verifies builds in the cloud. |
 | Update package has exactly one top-level labeled folder | Active rule | Verify every ZIP before reporting complete. |
@@ -87,7 +87,7 @@ Continue Milestone 1 until CodeUpdate-0026B is pushed and GitHub Actions is gree
 - The latest uploaded repository ZIP is the source of truth after every applied update.
 - If no repository ZIP is available, continue from the latest verified Code Update package only if it can be used as a real working baseline.
 - If neither is available, ask the user to upload the latest repository ZIP.
-- When the user says "start" or "continue", begin the next sequential Code Update without re-explaining the plan.
+- Before starting a new Code Update, verify current milestone/update state, explain the proposed scope, suggest the next step, and get user permission unless the user has already explicitly granted it.
 - All approved suggestions become implementation requirements unless the user explicitly defers or rejects them.
 - The repository layout is frozen unless the user explicitly approves a structural change.
 - `Data/` is the authoritative game database after import.
@@ -119,6 +119,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0027 | Froze the Milestone 1 Core Framework baseline after user-reported green CodeUpdate-0026B GitHub Actions and prepared the Milestone 2 planning handoff. |
 | 0026B | Cleaned generated artifacts, repaired ignore rules, and fixed visible documentation encoding damage before baseline freeze. |
 | 0026 | Added Milestone 1 verification report, refreshed continuity docs, and prepared final freeze pending GitHub Actions. |
 | 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
@@ -162,9 +163,9 @@ This update is intentionally documentation/governance focused. It supports Miles
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0026B and confirm GitHub Actions restore/build/test passes.
-2. After green Actions, record the Milestone 1 baseline freeze confirmation.
-3. Begin Milestone 2 only after user approval.
+1. Push CodeUpdate-0027 and confirm GitHub Actions restore/build/test passes.
+2. After green Actions, ask the user to approve the first Milestone 2 starting scope.
+3. Begin Milestone 2 implementation only after explicit user approval.
 
 ## New Window Instruction
 
@@ -239,4 +240,14 @@ This patch does not add gameplay features. Codex writes only to the local worksp
 
 ## CodeUpdate-0026B Verification
 
-Local CodeUpdate-0026B verification passed on .NET SDK 8.0.422 after baseline cleanup edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. A first parallel build attempt hit a local file-lock on the shared Core output; sequential verification passed cleanly. GitHub Actions remains pending until the user pushes CodeUpdate-0026B.
+Local CodeUpdate-0026B verification passed on .NET SDK 8.0.422 after baseline cleanup edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. A first parallel build attempt hit a local file-lock on the shared Core output; sequential verification passed cleanly. The user later reported CodeUpdate-0026B GitHub Actions green.
+
+## CodeUpdate-0027 Handoff
+
+CodeUpdate-0027 freezes the Milestone 1 Core Framework baseline after the user reported CodeUpdate-0026B GitHub Actions green for commit `c282f8c8f33d886e684b218f747d668c9ea2801c`.
+
+This patch does not add gameplay features. Codex writes only to the local workspace; the user controls the GitHub push. Milestone 2 implementation must not begin until the user approves the starting scope.
+
+## CodeUpdate-0027 Verification
+
+Local CodeUpdate-0027 verification passed on .NET SDK 8.0.422 after freeze documentation edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions remains pending until the user pushes CodeUpdate-0027.

@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0027 - Milestone 1 Baseline Freeze
+
+- Recorded the user-reported green GitHub Actions result for CodeUpdate-0026B.
+- Marked Milestone 1 - Core Framework as complete/frozen.
+- Updated continuity documents, manifests, and roadmap notes for the Milestone 2 planning handoff.
+- Added the CodeUpdate-0027 baseline freeze report and update note.
+- Local .NET 8.0.422 restore/build/smoke-test verification passed.
+- No gameplay feature work was introduced.
+- No BAT installer, update ZIP, or GitHub push was created by Codex.
+
 ## CodeUpdate-0026B - Baseline Cleanup
 
 - Removed generated source-project `bin/` and `obj/` build artifacts from the local workspace.

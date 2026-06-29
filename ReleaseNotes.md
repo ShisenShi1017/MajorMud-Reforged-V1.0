@@ -1,3 +1,23 @@
+# CodeUpdate-0027 - Milestone 1 Baseline Freeze
+
+This update freezes the Milestone 1 Core Framework baseline after the user reported CodeUpdate-0026B GitHub Actions green.
+
+## Changed
+
+- Recorded CodeUpdate-0026B GitHub Actions as green by user report.
+- Marked Milestone 1 complete/frozen.
+- Prepared the Milestone 2 planning handoff.
+- Added a Milestone 1 baseline freeze report.
+
+## Notes
+
+- No gameplay features are added.
+- No BAT installer or update ZIP was created by Codex.
+- The user controls the GitHub push.
+- Local .NET 8.0.422 restore/build/smoke-test verification passed.
+- Milestone 2 implementation should begin only after the user approves the starting scope.
+
+## Previous Release Notes
 # CodeUpdate-0026B - Baseline Cleanup
 
 This update cleans the Milestone 1 finalization candidate before baseline freeze.

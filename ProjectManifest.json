@@ -1,9 +1,9 @@
 ﻿{
     "project":  "Reforged",
     "projectVersion":  "0.1.0",
-    "codeUpdate":  "0026B",
+    "codeUpdate":  "0027",
     "databaseVersion":  "0009",
-    "milestone":  "Milestone 1 - Core Framework / Finalization Candidate",
+    "milestone":  "Milestone 2 - Engine Modernization / Host & World Editor Planning",
     "runtimePolicy":  "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
     "updatePolicy":  "CodeUpdate ZIPs are patch-only packages unless explicitly requested otherwise; each ZIP must contain exactly one top-level update folder with Apply-CodeUpdate-XXXX.bat and UpdateManifest.json, and the BAT applies changed/new files into the main repository folder.",
     "suggestionPolicy":  "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -12,11 +12,12 @@
                      "ImportedDatabases"
                  ],
     "developmentStatus":  {
-                              "currentMilestone":  "Milestone 1 - Core Framework",
-                              "currentCodeUpdate":  "0026B",
+                              "currentMilestone":  "Milestone 2 - Engine Modernization / Host & World Editor Planning",
+                              "currentCodeUpdate":  "0027",
                               "currentDatabaseVersion":  "0009",
                               "completedMilestones":  [
 
+                                                          "Milestone 1 - Core Framework"
                                                       ],
                               "milestone1CompletedComponents":  [
                                                                     "configuration provider",
@@ -91,36 +92,38 @@
                                                                     "local .NET 8 restore build smoke-test verification",
                                                                     "CodeUpdate-0026B generated artifact cleanup",
                                                                     "source project build-output ignore rules",
-                                                                    "documentation encoding cleanup"
+                                                                    "documentation encoding cleanup",
+                                                                    "CodeUpdate-0027 Milestone 1 baseline freeze",
+                                                                    "user-reported CodeUpdate-0026B GitHub Actions green gate recorded",
+                                                                    "Milestone 2 planning handoff prepared"
                                                                 ],
                               "milestone1RemainingComponents":  [
-                                                                    "CodeUpdate-0026B GitHub Actions validation after user push",
-                                                                    "Milestone 1 baseline freeze confirmation after green Actions"
+                                                                    "None; Milestone 1 baseline is frozen after user-reported green CodeUpdate-0026B GitHub Actions."
                                                                 ]
                           },
     "updatePackagePolicy":  "Every update ZIP contains exactly one labeled top-level folder named for the update.",
     "handoffPolicy":  "AI_CONTEXT.md is the authoritative handoff document and must be updated every Code Update with current repository facts, status tables, checklist, update history, and next recommended work.",
     "milestoneStatus":  {
-                            "Core configuration system":  "Verified locally",
-                            "Core logging system":  "Verified locally",
-                            "Validation framework":  "Verified locally",
-                            "Serialization framework":  "Verified locally",
-                            "Repository interfaces":  "Verified locally",
-                            "Shared data models":  "Substantially underway",
-                            "Event system":  "Verified locally",
-                            "Dependency injection/service registry":  "Verified locally",
-                            "Version management":  "Substantially underway",
-                            "Project manifest reader":  "Substantially underway",
-                            "Repository health checker":  "Verified locally",
-                            "Shared utility library":  "In progress",
-                            "Unit-test framework":  "Verified locally",
-                            "Applications using Core":  "Verified locally",
-                            "No duplicated models across applications":  "Substantially underway"
+                            "Core configuration system":  "Frozen in Milestone 1 baseline",
+                            "Core logging system":  "Frozen in Milestone 1 baseline",
+                            "Validation framework":  "Frozen in Milestone 1 baseline",
+                            "Serialization framework":  "Frozen in Milestone 1 baseline",
+                            "Repository interfaces":  "Frozen in Milestone 1 baseline",
+                            "Shared data models":  "Frozen in Milestone 1 baseline",
+                            "Event system":  "Frozen in Milestone 1 baseline",
+                            "Dependency injection/service registry":  "Frozen in Milestone 1 baseline",
+                            "Version management":  "Frozen in Milestone 1 baseline",
+                            "Project manifest reader":  "Frozen in Milestone 1 baseline",
+                            "Repository health checker":  "Frozen in Milestone 1 baseline",
+                            "Shared utility library":  "Frozen in Milestone 1 baseline",
+                            "Unit-test framework":  "Frozen in Milestone 1 baseline",
+                            "Applications using Core":  "Frozen in Milestone 1 baseline",
+                            "No duplicated models across applications":  "Frozen in Milestone 1 baseline"
                         },
     "nextRecommendedWork":  [
-                                "Push CodeUpdate-0026B and confirm GitHub Actions restore/build/test passes.",
-                                "After green Actions, record Milestone 1 baseline freeze confirmation.",
-                                "Begin Milestone 2 only after user approval."
+                                "Push CodeUpdate-0027 and confirm GitHub Actions restore/build/test passes.",
+                                "After green Actions, ask the user to approve the first Milestone 2 starting scope.",
+                                "Begin Milestone 2 implementation only after explicit user approval."
                             ],
     "updateZipPolicy":  "Each update ZIP contains exactly one named top-level update folder; the apply BAT lives inside that folder and runs from there.",
     "handoffStatus":  {
@@ -129,7 +132,7 @@
                           "containsMilestoneTable":  true,
                           "containsMilestoneChecklist":  true
                       },
-    "lastUpdateName":  "CodeUpdate-0026B-Baseline-Cleanup",
-    "currentCodeUpdate":  "0026B",
-    "buildVerification":  "CodeUpdate-0026B local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions remains pending until user push."
+    "lastUpdateName":  "CodeUpdate-0027-Milestone-1-Baseline-Freeze",
+    "currentCodeUpdate":  "0027",
+    "buildVerification":  "CodeUpdate-0027 local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions remains pending until user push."
 }

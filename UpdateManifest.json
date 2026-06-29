@@ -1,34 +1,33 @@
-﻿{
-    "codeUpdate":  "0026B",
-    "name":  "CodeUpdate-0026B-Baseline-Cleanup",
+{
+    "codeUpdate":  "0027",
+    "name":  "CodeUpdate-0027-Milestone-1-Baseline-Freeze",
     "packageType":  "direct-repository-patch",
-    "purpose":  "Clean generated build artifacts, ignore rules, and documentation encoding before Milestone 1 freeze.",
+    "purpose":  "Freeze the Milestone 1 Core Framework baseline after user-reported green CodeUpdate-0026B GitHub Actions.",
     "addsGameplayFeatures":  false,
     "batInstallerCreated":  false,
     "updateZipCreated":  false,
     "gitHubPushCreatedByCodex":  false,
-    "baselineFreezeStatus":  "Candidate locally; final freeze pending CodeUpdate-0026B GitHub Actions after user push.",
+    "baselineFreezeStatus":  "Milestone 1 Core Framework baseline frozen after user-reported green CodeUpdate-0026B GitHub Actions.",
     "verificationStatus":  "Local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions pending after user push.",
     "filesChanged":  [
-                         ".gitignore",
                          "AI_CONTEXT.md",
                          "CHANGELOG.md",
-                         "Docs/CodeUpdates/CodeUpdate-0024-Core-Verification.md",
-                         "Docs/CodeUpdates/CodeUpdate-0026B-Baseline-Cleanup.md",
+                         "Docs/02-Roadmap.md",
                          "Docs/Architecture/PROJECT_ROADMAP.md",
+                         "Docs/CodeUpdates/CodeUpdate-0026B-Baseline-Cleanup.md",
+                         "Docs/CodeUpdates/CodeUpdate-0027-Milestone-1-Baseline-Freeze.md",
                          "ProjectManifest.json",
                          "README.md",
                          "ReleaseNotes.md",
                          "Reports/CodeUpdates/CodeUpdate-0026B/BaselineCleanupReport.md",
+                         "Reports/CodeUpdates/CodeUpdate-0027/Milestone1BaselineFreezeReport.md",
                          "UpdateManifest.json",
                          "VERSION.md"
                      ],
-    "generatedFoldersRemoved":  [
-                                    "Apps/Source/**/bin",
-                                    "Apps/Source/**/obj",
-                                    "Core/Source/**/bin",
-                                    "Core/Source/**/obj",
-                                    "Tests/Source/**/bin",
-                                    "Tests/Source/**/obj"
-                                ]
+    "milestone1Gate":  {
+                           "source":  "User report",
+                           "commit":  "c282f8c8f33d886e684b218f747d668c9ea2801c",
+                           "status":  "green"
+                       },
+    "nextMilestone":  "Milestone 2 - Engine Modernization / Host & World Editor Planning"
 }
