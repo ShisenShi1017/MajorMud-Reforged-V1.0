@@ -2,25 +2,51 @@
 
 ## READ THIS FIRST
 
-If you are an AI assistant, new ChatGPT window, or new developer joining this project, read this document before changing anything.
+Every AI assistant, Codex session, ChatGPT session, or developer joining this project must read this document before changing anything.
 
-1. The latest uploaded repository is the only code source of truth.
-2. Inspect the repository before making changes.
-3. Read `AI_CONTEXT.md`, `README.md`, `VERSION.md`, `CHANGELOG.md`, `ProjectManifest.json`, and this document.
-4. Continue from the latest completed Code Update.
-5. Never recreate existing work from memory.
-6. Never restructure the repository unless the user explicitly approves it.
-7. Never overwrite `Saves/` or `ImportedDatabases/` unless explicitly approved.
-8. `Data/` is the live game database after import.
-9. `ImportedDatabases/` is archive/reference only.
-10. Runtime must never require the .NET SDK.
-11. Every Code Update must execute directly from its own extracted update folder.
-12. Every Code Update must automatically locate the project root.
-13. Every Code Update must update `README.md`, `CHANGELOG.md`, `VERSION.md`, `ProjectManifest.json`, and relevant documentation.
-14. Never claim an update package exists until the ZIP has actually been created and verified.
-15. All approved architectural or project suggestions become implementation requirements for the next applicable Code Update unless the user explicitly defers or rejects them.
-16. Every update ZIP must contain exactly one named top-level update folder.
-17. The user must be able to extract the ZIP directly into the project folder, open the update folder, and run the apply BAT from there.
+Required startup order:
+
+1. `AGENTS.md`
+2. `AI_CONTEXT.md`
+3. `Docs/Architecture/PROJECT_ROADMAP.md`
+4. `README.md`
+5. `VERSION.md`
+6. `CHANGELOG.md`
+7. `ProjectManifest.json`
+8. Relevant source/test/application docs for the requested change
+
+## Source of Truth
+
+The GitHub repository is the authoritative source of truth:
+
+`ShisenShi1017/MajorMud-Reforged-V1.0`
+
+Do not use old ZIPs, prior patches, or conversation memory as truth when they conflict with GitHub. In ChatGPT mode, ZIPs are local-application vehicles only. In Codex mode, local work must be pushed and verified green in GitHub Actions before the next update continues.
+
+## Never Guess Rule
+
+Never guess when creating, fixing, packaging, reviewing, or reporting updates.
+
+- Verify current code before changing it.
+- Verify file paths before referencing them.
+- Verify package contents before linking them.
+- Verify build/test/GitHub Actions status before claiming success.
+- If verification is not possible in the current environment, state exactly what was and was not verified.
+
+## Work Modes
+
+### Codex mode
+
+- Codex updates local repository files only.
+- Codex must stop after each Code Update until the user pushes to GitHub and states the current push has green GitHub Actions.
+- Codex must not move to the next update until that green gate is confirmed or the user explicitly overrides the gate.
+
+### ChatGPT mode
+
+- ChatGPT cannot directly update the user's local repository.
+- ChatGPT uses patch-only ZIP updates for local application unless the user explicitly requests direct GitHub edits.
+- Every ChatGPT ZIP must contain exactly one top-level folder, an apply BAT, and an update manifest.
+- The ZIP must be verified before delivery.
 
 ## Project Vision
 
@@ -28,25 +54,21 @@ Reforged is not a runtime-dependent copy of the original legacy MUD. It is a cle
 
 The long-term goal is a standalone server, native importer, live editor, launcher, Windows client, Android client, gameplay systems, and plugin framework that do not require the original legacy MUD runtime.
 
+## Current Development Position
+
+- Current Code Update: `0030`
+- Current Database Version: `0009`
+- Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
+- Milestone 1: complete/frozen
+- Current priority: apply/push CodeUpdate-0030, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+
+CodeUpdate-0030 is documentation/governance only. It adds `AGENTS.md`, records the source-of-truth rules, records the Codex-vs-ChatGPT workflow split, and adds the permanent no-guess creation rule.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
 
-Status: Complete/frozen after the user reported CodeUpdate-0026B GitHub Actions green.
-
-CodeUpdate-0024B is a corrective build-fix patch for the CoreStartupDiagnostics logger API mismatch. It does not add gameplay features. No BAT installer or update ZIP was created per current user instruction.
-
-CodeUpdate-0025 completes the active rebrand audit. Active source/build names use Reforged.*; the obsolete duplicate MajorMud-named importer utility was removed. GitHub Actions remains the official validation gate after the user push.
-
-CodeUpdate-0026 prepares the Milestone 1 finalization candidate.
-
-CodeUpdate-0026B cleans generated artifacts and documentation encoding before freeze.
-
-CodeUpdate-0027 records the green CodeUpdate-0026B GitHub Actions gate and freezes the Milestone 1 baseline.
-
-CodeUpdate-0028 records the green CodeUpdate-0027 GitHub Actions gate and defines the first Milestone 2 scope plan.
-
-CodeUpdate-0029 implements the first approved Milestone 2 slice: host/server startup and runtime diagnostics foundation.
+Status: Complete/frozen after the user-reported green GitHub Actions freeze sequence.
 
 Deliverables:
 
@@ -62,15 +84,8 @@ Deliverables:
 - Project manifest reader
 - Repository health checker
 - Shared utility library
-- Unit-test framework when appropriate
-
-Applications using Core:
-
-- Server
-- Importer
-- Editor
-- Launcher
-- Client
+- Unit-test framework
+- Application Core references
 
 Completion Criteria:
 
@@ -78,48 +93,37 @@ Completion Criteria:
 - Every application references Core.
 - Core has no dependencies on application projects.
 - Runtime does not require the .NET SDK.
-- Handoff documents accurately track Milestone 1 progress after every update.
+- Handoff documents accurately track status after every update.
 
 ## Milestone 2 - Engine Modernization / Host & World Editor
 
 Goal: Modernize the engine host path and prepare safe host/world editor workflows while preserving the verified Milestone 1 Core baseline.
 
+Status: Active.
+
+CodeUpdate-0029 implemented the first constrained slice: startup-only Server diagnostics. CodeUpdate-0030 cleans governance and handoff rules before further implementation.
+
 Focus Areas:
 
 - Server improvements
-- Host/world editor work
+- Host/world editor planning and later implementation
 - Data validation tools
 - Runtime performance
-- Gameplay systems
 - Client/editor modernization
+- Gameplay systems only after explicit approval
 
-Importer and data modernization work remains eligible during Milestone 2 when it supports the host/editor and server goals.
+Boundaries until approved:
 
-Candidate data/importer tasks:
+- No gameplay systems
+- No combat
+- No character creation
+- No world simulation loop
+- No networking expansion
+- No live editor implementation beyond approved scope
 
-- Native DAT decoder
-- CSV importer
-- companion client MP importer
-- Duplicate detection
-- Cross-reference validation
-- Unknown field preservation
-- Database verification
-- JSON generation
-- Import audit reports
-- Database version generation
+Next candidate after CodeUpdate-0030 is pushed and green:
 
-Completion Criteria:
-
-- Server loads only from `Data/`.
-- Imported databases become reference-only.
-
-First implementation candidate:
-
-- CodeUpdate-0029 - Host/server startup and runtime diagnostics foundation.
-- Scope: wire Server startup through existing Core configuration, logging, service registry, repository health, event bus, and startup diagnostics.
-- Boundaries: no gameplay systems, no combat, no character creation, no networking expansion beyond startup shape unless explicitly approved.
-
-CodeUpdate-0029 implementation status: startup-only diagnostics added; next host/server work should wait until CodeUpdate-0029 is pushed and GitHub Actions is green.
+- A small host/server follow-up approved by the user after GitHub Actions verifies CodeUpdate-0030.
 
 ## Milestone 3 - Standalone Server
 
@@ -172,7 +176,7 @@ Completion Criteria:
 
 ## Milestone 5 - Launcher
 
-Goal: Replace BAT files and PowerShell.
+Goal: Replace BAT files and PowerShell for routine use.
 
 Features:
 
@@ -194,7 +198,7 @@ Completion Criteria:
 
 ## Milestone 6 - Windows Client
 
-Goal: Build a modern companion-client-inspired client.
+Goal: Build a modern companion-client-inspired Windows client.
 
 Features:
 
@@ -208,10 +212,6 @@ Features:
 - Logging
 - Themes
 - Plugins
-
-Completion Criteria:
-
-- Fully functional Windows client.
 
 ## Milestone 7 - Android Client
 
@@ -228,7 +228,7 @@ Features:
 
 ## Milestone 8 - Gameplay Systems
 
-Goal: Complete the server.
+Goal: Complete the server gameplay layer after host/server foundations are approved and stable.
 
 Systems:
 
@@ -276,105 +276,15 @@ Final Deliverables:
 
 ## Permanent Project Rules
 
-- The latest uploaded repository is the only code source of truth.
-- The `Data/` folder is the authoritative game database after import.
+- GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` is the source of truth.
+- `Data/` is the authoritative game database after import.
 - `ImportedDatabases/` remains archive/reference only.
 - Every Code Update and Database Version must inspect the repository before making changes.
-- Every update must update `README.md`, `CHANGELOG.md`, `VERSION.md`, `ProjectManifest.json`, and relevant documentation.
-- Every update must include a self-contained `Apply-*.bat` until the Launcher replaces it.
-- Every update must automatically locate the project root.
+- Every update must update `AGENTS.md` when workflow rules change and update all relevant continuity documents.
+- Every ChatGPT ZIP update must include a self-contained `Apply-*.bat` until the Launcher replaces it.
+- Every ChatGPT ZIP update must automatically locate the project root.
 - Never overwrite `Saves/` or `ImportedDatabases/` unless explicitly approved.
 - Never claim an update package exists unless it has actually been created and verified.
 - Repository layout is frozen unless the user explicitly approves a structural change.
 - Runtime must never require the .NET SDK.
-- Every update package must be executable directly from its own extracted folder and apply to the main project folder.
 - All approved suggestions must be implemented in the next applicable update unless explicitly deferred or rejected.
-
-## Suggestion Implementation Policy
-
-Suggestions made by the assistant are not loose ideas after the user approves them. Approved suggestions become tracked implementation requirements.
-
-Rules:
-
-- Implement all approved suggestions in the next applicable Code Update or Database Version.
-- If a suggestion cannot be completed safely, document the reason and mark it deferred.
-- Do not silently drop suggestions.
-- Record completed suggestions in `CHANGELOG.md` and `UpdateManifest.json`.
-- Future sessions must treat this section as a standing instruction.
-
-## Architecture Rules
-
-- Core contains no application-specific logic.
-- Every application references Core.
-- No duplicated models across applications.
-- Dependency direction always points toward Core.
-- Core remains independently testable.
-- Shared data contracts live in Core.
-- Applications may compose Core services but must not fork shared behavior.
-
-## Runtime Rules
-
-- Reforged must run without the .NET SDK.
-- Distributed runtime uses compiled/runtime-ready artifacts from `Bin/`.
-- Development/build machines may use SDKs, but SDK commands are not the user launch path.
-- No update script may fall back to SDK runtime behavior.
-
-## Update Rules
-
-Each Code Update must:
-
-- run directly from its extracted folder
-- automatically locate the project root
-- validate repository identity and version before applying
-- create backups before replacing files
-- preserve `Saves/`
-- preserve `ImportedDatabases/`
-- update project documentation and manifests
-- include `UpdateManifest.json`
-- include `Apply-CodeUpdate-XXXX-Name.bat`
-- be ZIP-created and verified before being offered
-
-## Database Rules
-
-- `Data/` is the live editable database.
-- `ImportedDatabases/` is archive/reference only.
-- Database Versions are separate from Code Updates.
-- Unknown imported fields must never be discarded.
-- Imported data should be converted into simple, human-editable Reforged data files.
-
-## AI Development Rules
-
-Every new ChatGPT session should:
-
-1. Read `AI_CONTEXT.md`.
-2. Read this roadmap.
-3. Read `README.md`.
-4. Read `VERSION.md`.
-5. Read `CHANGELOG.md`.
-6. Read `ProjectManifest.json`.
-7. Inspect repository files before making changes.
-8. Continue from the latest completed Code Update.
-9. Never regenerate existing work from memory.
-10. Never claim a ZIP exists until it is physically present and verified.
-
-## Current Development Position
-
-The project is currently in Milestone 1. Core Update 0008 adds project governance documents and continues Core framework work by adding shared configuration, serialization, event bus, service registry, manifest, health, utility, and versioning components.
-
-### CodeUpdate-0009 Continuation Notes
-
-Core Update 0009 adds the shared `IReforgedDataRecord` contract, extensible `GameEntity`, read-only repository contract, repository catalog contract, Core reference audit model, duplicate model audit model, and dependency-free Core test foundation. These items advance Milestone 1 but do not close it.
-
-Remaining Milestone 1 emphasis: every application must integrate with Core, duplicate application models must be removed or redirected to Core, and compiled `Bin/` runtime handoff must be validated without requiring the .NET SDK.
-
-## CodeUpdate-0010 Handoff and Update Folder Rule
-
-Added in CodeUpdate-0010:
-
-- `AI_CONTEXT.md` is a living handoff document and must be updated with every Code Update.
-- The handoff must include the current milestone, update number, completed/substantially-underway table, Milestone 1 completion checklist, remaining work, and next recommended work.
-- Every Code Update and Database Version ZIP must contain exactly one labeled top-level folder named for the update.
-- The user must be able to extract the ZIP directly into the main project folder without manually creating a folder.
-- The `Apply-*.bat` file must live inside that labeled update folder and run from there.
-- The apply script must automatically locate the project root before copying payload files.
-- Approved suggestions are implementation requirements unless explicitly deferred or rejected.
