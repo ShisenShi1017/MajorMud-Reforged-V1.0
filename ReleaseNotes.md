@@ -1,3 +1,24 @@
+# CodeUpdate-0028 - Milestone 2 Scope Plan
+
+This update records the green CodeUpdate-0027 GitHub Actions result and creates the first Milestone 2 scope plan.
+
+## Changed
+
+- Recorded CodeUpdate-0027 GitHub Actions as green by user report.
+- Added the initial Milestone 2 planning scope.
+- Recommended CodeUpdate-0029 as host/server startup and runtime diagnostics foundation work.
+- Kept implementation deferred until user approval.
+
+## Notes
+
+- No gameplay features are added.
+- No implementation code is added.
+- No BAT installer or update ZIP was created by Codex.
+- The user controls the GitHub push.
+- Local .NET 8.0.422 restore/build/smoke-test verification passed.
+- GitHub Actions remains the official validation gate after push.
+
+## Previous Release Notes
 # CodeUpdate-0027 - Milestone 1 Baseline Freeze
 
 This update freezes the Milestone 1 Core Framework baseline after the user reported CodeUpdate-0026B GitHub Actions green.

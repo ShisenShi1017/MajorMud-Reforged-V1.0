@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0028 - Milestone 2 Scope Plan
+
+- Recorded the user-reported green GitHub Actions result for CodeUpdate-0027.
+- Added the initial Milestone 2 scope plan.
+- Recommended CodeUpdate-0029 as host/server startup and runtime diagnostics foundation work, pending user approval.
+- Updated continuity documents, manifests, and roadmap notes for Milestone 2 planning.
+- Local .NET 8.0.422 restore/build/smoke-test verification passed.
+- No gameplay feature work or implementation code was introduced.
+- No BAT installer, update ZIP, or GitHub push was created by Codex.
+
 ## CodeUpdate-0027 - Milestone 1 Baseline Freeze
 
 - Recorded the user-reported green GitHub Actions result for CodeUpdate-0026B.

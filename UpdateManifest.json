@@ -1,33 +1,34 @@
 {
-    "codeUpdate":  "0027",
-    "name":  "CodeUpdate-0027-Milestone-1-Baseline-Freeze",
+    "codeUpdate":  "0028",
+    "name":  "CodeUpdate-0028-Milestone-2-Scope-Plan",
     "packageType":  "direct-repository-patch",
-    "purpose":  "Freeze the Milestone 1 Core Framework baseline after user-reported green CodeUpdate-0026B GitHub Actions.",
+    "purpose":  "Record CodeUpdate-0027 green and define the first Milestone 2 implementation scope candidate.",
     "addsGameplayFeatures":  false,
+    "addsImplementationCode":  false,
     "batInstallerCreated":  false,
     "updateZipCreated":  false,
     "gitHubPushCreatedByCodex":  false,
-    "baselineFreezeStatus":  "Milestone 1 Core Framework baseline frozen after user-reported green CodeUpdate-0026B GitHub Actions.",
+    "milestone1Status":  "Frozen",
+    "milestone2Status":  "Planning",
     "verificationStatus":  "Local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions pending after user push.",
     "filesChanged":  [
                          "AI_CONTEXT.md",
                          "CHANGELOG.md",
                          "Docs/02-Roadmap.md",
                          "Docs/Architecture/PROJECT_ROADMAP.md",
-                         "Docs/CodeUpdates/CodeUpdate-0026B-Baseline-Cleanup.md",
-                         "Docs/CodeUpdates/CodeUpdate-0027-Milestone-1-Baseline-Freeze.md",
+                         "Docs/CodeUpdates/CodeUpdate-0028-Milestone-2-Scope-Plan.md",
                          "ProjectManifest.json",
                          "README.md",
                          "ReleaseNotes.md",
-                         "Reports/CodeUpdates/CodeUpdate-0026B/BaselineCleanupReport.md",
-                         "Reports/CodeUpdates/CodeUpdate-0027/Milestone1BaselineFreezeReport.md",
+                         "Reports/CodeUpdates/CodeUpdate-0028/Milestone2ScopePlanReport.md",
                          "UpdateManifest.json",
                          "VERSION.md"
                      ],
-    "milestone1Gate":  {
-                           "source":  "User report",
-                           "commit":  "c282f8c8f33d886e684b218f747d668c9ea2801c",
-                           "status":  "green"
-                       },
-    "nextMilestone":  "Milestone 2 - Engine Modernization / Host & World Editor Planning"
+    "milestoneGate":  {
+                          "source":  "User report",
+                          "commit":  "3001f65272f626b968848f4ce1ea246a5010d812",
+                          "status":  "green"
+                      },
+    "recommendedNextUpdate":  "CodeUpdate-0029 - Host/server startup and runtime diagnostics foundation",
+    "recommendedNextScopeRequiresUserApproval":  true
 }

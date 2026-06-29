@@ -23,10 +23,10 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0027 |
+| Current Code Update | 0028 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0027-Milestone-1-Baseline-Freeze |
-| Milestone Estimate | Milestone 1 frozen; Milestone 2 planning not started |
+| Last Update Name | CodeUpdate-0028-Milestone-2-Scope-Plan |
+| Milestone Estimate | Milestone 1 frozen; Milestone 2 planning started |
 | Source of Truth | GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` and latest applied local patch state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Patch-only ZIP with exactly one top-level update folder and included Apply-CodeUpdate BAT |
@@ -38,7 +38,7 @@ CodeUpdate-0019 performs the controlled project rebrand requested by the user af
 
 ## Current Development Goal
 
-Milestone 1 is frozen after the user reported CodeUpdate-0026B GitHub Actions green. Next work is Milestone 2 planning only; do not begin Milestone 2 implementation until the user approves the starting scope.
+Milestone 1 is frozen after the user reported CodeUpdate-0026B and CodeUpdate-0027 GitHub Actions green. Milestone 2 planning has started. Do not begin Milestone 2 implementation until the user approves the starting scope.
 
 ## Milestone 1 Deliverable Status
 
@@ -119,6 +119,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0028 | Recorded user-reported green CodeUpdate-0027 GitHub Actions and created the first Milestone 2 scope plan. |
 | 0027 | Froze the Milestone 1 Core Framework baseline after user-reported green CodeUpdate-0026B GitHub Actions and prepared the Milestone 2 planning handoff. |
 | 0026B | Cleaned generated artifacts, repaired ignore rules, and fixed visible documentation encoding damage before baseline freeze. |
 | 0026 | Added Milestone 1 verification report, refreshed continuity docs, and prepared final freeze pending GitHub Actions. |
@@ -163,9 +164,9 @@ This update is intentionally documentation/governance focused. It supports Miles
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0027 and confirm GitHub Actions restore/build/test passes.
-2. After green Actions, ask the user to approve the first Milestone 2 starting scope.
-3. Begin Milestone 2 implementation only after explicit user approval.
+1. Push CodeUpdate-0028 and confirm GitHub Actions restore/build/test passes.
+2. Ask the user to approve CodeUpdate-0029 host/server startup and runtime diagnostics foundation.
+3. Begin implementation only after explicit user approval.
 
 ## New Window Instruction
 
@@ -250,4 +251,25 @@ This patch does not add gameplay features. Codex writes only to the local worksp
 
 ## CodeUpdate-0027 Verification
 
-Local CodeUpdate-0027 verification passed on .NET SDK 8.0.422 after freeze documentation edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions remains pending until the user pushes CodeUpdate-0027.
+Local CodeUpdate-0027 verification passed on .NET SDK 8.0.422 after freeze documentation edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. The user later reported CodeUpdate-0027 GitHub Actions green.
+
+## CodeUpdate-0028 Handoff
+
+CodeUpdate-0028 records the user-reported green GitHub Actions result for CodeUpdate-0027 commit `3001f65272f626b968848f4ce1ea246a5010d812` and opens Milestone 2 planning.
+
+Recommended next update: CodeUpdate-0029 - Host/server startup and runtime diagnostics foundation.
+
+Recommended 0029 scope:
+
+- Wire Server startup through existing Core configuration.
+- Use existing Core logging abstractions.
+- Use the existing service registry/DI foundation.
+- Run repository health checks at startup.
+- Run Core startup diagnostics from the Server path.
+- Produce clear startup diagnostics output.
+
+Boundaries for 0029 unless the user explicitly approves more: no gameplay systems, no combat, no character creation, no world simulation loop, no editor implementation, and no networking expansion beyond startup shape.
+
+## CodeUpdate-0028 Verification
+
+Local CodeUpdate-0028 verification passed on .NET SDK 8.0.422 after planning documentation edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions remains pending until the user pushes CodeUpdate-0028.

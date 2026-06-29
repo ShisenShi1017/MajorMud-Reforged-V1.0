@@ -10,17 +10,21 @@ The active source, assembly, and project naming pattern is now `Reforged.*`. Git
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0027 - Milestone 1 Baseline Freeze`
+**Current Code Update:** `CodeUpdate-0028 - Milestone 2 Scope Plan`
 
 **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 
 **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 
-**Current Priority:** Begin Milestone 2 planning only after the user approves the starting scope. Milestone 1 is frozen after CodeUpdate-0026B GitHub Actions was reported green by the user.
+**Current Priority:** Review and approve the first Milestone 2 implementation scope after CodeUpdate-0028 is pushed and GitHub Actions is green.
 
 This README is the required starting point for every new ChatGPT session and every developer handoff.
 
 ---
+
+## CodeUpdate-0028 Summary
+
+CodeUpdate-0028 records the user-reported green GitHub Actions result for CodeUpdate-0027 and creates the first Milestone 2 scope plan. It recommends CodeUpdate-0029 as a small, verifiable host/server startup and runtime diagnostics foundation. It does not add gameplay features or implementation code.
 
 ## CodeUpdate-0027 Summary
 

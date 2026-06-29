@@ -44,6 +44,8 @@ CodeUpdate-0026B cleans generated artifacts and documentation encoding before fr
 
 CodeUpdate-0027 records the green CodeUpdate-0026B GitHub Actions gate and freezes the Milestone 1 baseline.
 
+CodeUpdate-0028 records the green CodeUpdate-0027 GitHub Actions gate and defines the first Milestone 2 scope plan.
+
 Deliverables:
 
 - Core configuration system
@@ -108,6 +110,12 @@ Completion Criteria:
 
 - Server loads only from `Data/`.
 - Imported databases become reference-only.
+
+First implementation candidate:
+
+- CodeUpdate-0029 - Host/server startup and runtime diagnostics foundation.
+- Scope: wire Server startup through existing Core configuration, logging, service registry, repository health, event bus, and startup diagnostics.
+- Boundaries: no gameplay systems, no combat, no character creation, no networking expansion beyond startup shape unless explicitly approved.
 
 ## Milestone 3 - Standalone Server
 

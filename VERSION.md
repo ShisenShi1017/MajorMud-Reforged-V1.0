@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0027
+- Current Code Update: 0028
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,9 +9,9 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0027 - Milestone 1 Baseline Freeze
-- Milestone 1 Core Framework is complete/frozen after the user reported CodeUpdate-0026B GitHub Actions green.
-- CodeUpdate-0027 local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions remains pending until user push.
+- Current update: CodeUpdate-0028 - Milestone 2 Scope Plan
+- Milestone 1 Core Framework is complete/frozen; the user reported CodeUpdate-0027 GitHub Actions green.
+- CodeUpdate-0028 local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions remains pending until user push.
 
 ## Update Packaging
 
@@ -32,3 +32,6 @@
 
 - CodeUpdate-0027 freezes the Milestone 1 baseline after user-reported green GitHub Actions for CodeUpdate-0026B.
 - No BAT installer or update ZIP was created for CodeUpdate-0027; the user controls GitHub push.
+
+- CodeUpdate-0028 records CodeUpdate-0027 green and defines the first Milestone 2 scope plan.
+- No BAT installer or update ZIP was created for CodeUpdate-0028; the user controls GitHub push.
