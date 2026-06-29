@@ -1,3 +1,32 @@
+# CodeUpdate-0034 - OmniVerse Reference Audit Plan
+
+This update records OmniVerse as a read-only comparison source for future data audits.
+
+## Changed
+
+- Documented OmniVerse public reference endpoints verified during discovery.
+- Added a reference-source policy: OmniVerse can help identify mismatches, but it cannot overwrite Reforged `Data/`.
+- Recorded CodeUpdate-0033 as green by user report.
+- Added a 0034 audit plan and report.
+
+## Boundaries
+
+- No Reforged `Data/` files are rewritten.
+- No `ImportedDatabases/` files are overwritten.
+- No gameplay systems are added.
+- No combat is added.
+- No character creation is added.
+- No world simulation loop is added.
+- No networking expansion is added.
+- No live editor implementation is added.
+
+## Verification
+
+- Local .NET 8.0.422 restore/build/smoke verification passed.
+- No files under `Data/` or `ImportedDatabases/` were changed.
+- GitHub Actions remains the official validation gate after the user pushes this update.
+
+## Previous Release Notes
 # CodeUpdate-0033 - Server Bootstrap Exit Code Contract
 
 This update improves the non-gameplay Server bootstrap contract for automation and diagnostics.
@@ -21,7 +50,7 @@ This update improves the non-gameplay Server bootstrap contract for automation a
 ## Verification
 
 - Local .NET 8.0.422 restore/build/smoke verification passed.
-- GitHub Actions remains the official validation gate after the user pushes this update.
+- GitHub Actions is green by user report.
 
 ## Previous Release Notes
 # CodeUpdate-0032 - Server Bootstrap Manifest Identity

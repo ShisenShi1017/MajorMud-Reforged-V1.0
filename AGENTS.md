@@ -126,16 +126,18 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0033
+## 10. Current project position after CodeUpdate-0034
 
-- Current Code Update: `0033`
+- Current Code Update: `0034`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0033, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+- Current priority: push CodeUpdate-0034, verify GitHub Actions green, then approve the next small Milestone 2 scope.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
 CodeUpdate-0032 improves non-gameplay Server bootstrap diagnostics by capturing ProjectManifest identity fields. The user reported CodeUpdate-0032 GitHub Actions green.
 
 CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract. Future updates should continue recording completed work, boundaries, verification status, and next-scope candidates separately.
+
+CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits. OmniVerse data may identify possible mismatches, but it must not automatically overwrite Reforged `Data/` or `ImportedDatabases/`; any correction requires a reviewed and approved follow-up update.

@@ -1,5 +1,17 @@
 # Changelog
 
+## CodeUpdate-0034 - OmniVerse Reference Audit Plan
+
+- Recorded OmniVerse as a read-only reference source for future Reforged data audits.
+- Documented verified public reference endpoints for MajorMUD world/status, codex item/spell samples, and shop/trainer data.
+- Added the rule that OmniVerse may suggest corrections but must not automatically overwrite canonical Reforged `Data/`.
+- Recorded the user-reported green GitHub Actions result for CodeUpdate-0033.
+- Updated continuity documents, manifests, release notes, roadmap, and audit report.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, or data rewrite was added.
+- Local .NET 8.0.422 restore/build/smoke verification passed.
+- No files under `Data/` or `ImportedDatabases/` were changed.
+- GitHub Actions remains pending until the user pushes CodeUpdate-0034 and reports the result.
+
 ## CodeUpdate-0033 - Server Bootstrap Exit Code Contract
 
 - Added an explicit `ExitCode` contract to the non-gameplay Server bootstrap report.
@@ -8,7 +20,7 @@
 - Recorded the user-reported green GitHub Actions result for CodeUpdate-0032.
 - No gameplay systems, combat, character creation, world simulation, networking expansion, or live editor implementation were added.
 - Local .NET 8.0.422 restore/build/smoke verification passed.
-- GitHub Actions remains pending until the user pushes CodeUpdate-0033 and reports the result.
+- GitHub Actions is green by user report.
 
 ## CodeUpdate-0032 - Server Bootstrap Manifest Identity
 
