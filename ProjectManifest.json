@@ -25,10 +25,8 @@
     "milestone2Status": "Continuing with constrained host/server bootstrap work; no gameplay systems are approved.",
     "lastUpdateName": "CodeUpdate-0031A-Server-Smoke-Test-Compile-Fix",
     "nextRecommendedWork": [
-      "Apply CodeUpdate-0031A locally.",
-      "Commit and push CodeUpdate-0031A to GitHub.",
-      "Confirm GitHub Actions is green for the current push.",
-      "After green Actions, approve the next small Milestone 2 host/server scope.",
+      "CodeUpdate-0031A is the current verified baseline.",
+      "Approve the next small Milestone 2 host/server scope for CodeUpdate-0032.",
       "Do not add gameplay systems without explicit approval."
     ]
   },
@@ -56,5 +54,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0031 failed GitHub Actions because Tests/Source/Reforged.Core.Tests/Program.cs contained invalid C# string escaping. CodeUpdate-0031A fixes that syntax error. Local restore/build/test could not be run in ChatGPT because the packaging container does not have the .NET SDK."
+  "buildVerification": "CodeUpdate-0031 failed GitHub Actions because Tests/Source/Reforged.Core.Tests/Program.cs contained invalid C# string escaping. CodeUpdate-0031A fixes that syntax error. User reported CodeUpdate-0031A GitHub Actions green. Codex local .NET 8.0.422 sequential restore/build/smoke verification passed."
 }

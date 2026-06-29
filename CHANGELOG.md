@@ -7,7 +7,8 @@
 - Recorded CodeUpdate-0031A as a corrective build-fix patch for CodeUpdate-0031.
 - Updated continuity documents, release notes, ProjectManifest, roadmap, and this changelog.
 - No gameplay systems, combat, character creation, world simulation, networking expansion, or live editor implementation were added.
-- Local .NET restore/build/test could not be run in the ChatGPT packaging container because the .NET SDK is not installed; GitHub Actions remains the official validation gate after push.
+- User reported CodeUpdate-0031A GitHub Actions green.
+- Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
 ## CodeUpdate-0031 - Server Bootstrap Foundation
 

@@ -1,46 +1,50 @@
 {
-    "codeUpdate":  "0029",
-    "name":  "CodeUpdate-0029-Host-Server-Startup-Diagnostics",
-    "packageType":  "direct-repository-patch",
-    "purpose":  "Add startup-only Server diagnostics as the first Milestone 2 implementation slice.",
-    "addsGameplayFeatures":  false,
-    "addsImplementationCode":  true,
-    "batInstallerCreated":  false,
-    "updateZipCreated":  false,
-    "gitHubPushCreatedByCodex":  false,
-    "milestone1Status":  "Frozen",
-    "milestone2Status":  "Implementation started with constrained host/server diagnostics scope.",
-    "verificationStatus":  "Local .NET 8.0.422 restore/build/core-server-smoke verification passed; GitHub Actions pending after user push.",
-    "filesChanged":  [
-                         "AI_CONTEXT.md",
-                         "Apps/Source/Reforged.Server/README.md",
-                         "Apps/Source/Reforged.Server/ServerStartupDiagnosticReport.cs",
-                         "Apps/Source/Reforged.Server/ServerStartupDiagnostics.cs",
-                         "CHANGELOG.md",
-                         "Docs/02-Roadmap.md",
-                         "Docs/Architecture/PROJECT_ROADMAP.md",
-                         "Docs/CodeUpdates/CodeUpdate-0029-Host-Server-Startup-Diagnostics.md",
-                         "ProjectManifest.json",
-                         "README.md",
-                         "ReleaseNotes.md",
-                         "Reports/CodeUpdates/CodeUpdate-0029/HostServerStartupDiagnosticsReport.md",
-                         "Tests/Source/Reforged.Core.Tests/Program.cs",
-                         "Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj",
-                         "UpdateManifest.json",
-                         "VERSION.md"
-                     ],
-    "milestoneGate":  {
-                          "source":  "User report",
-                          "commit":  "1c479e57fc348568af7a463bae88590fadde29f5",
-                          "status":  "green"
-                      },
-    "boundaries":  [
-                       "No gameplay systems",
-                       "No combat",
-                       "No character creation",
-                       "No world simulation loop",
-                       "No editor implementation",
-                       "No networking expansion"
-                   ],
-    "recommendedNextScopeRequiresUserApproval":  true
+    "codeUpdate": "0031A",
+    "name": "CodeUpdate-0031A-Server-Smoke-Test-Compile-Fix",
+    "packageType": "direct-repository-patch",
+    "purpose": "Correct the CodeUpdate-0031 smoke-test compile failure and record the verified 0031A baseline.",
+    "addsGameplayFeatures": false,
+    "addsImplementationCode": false,
+    "batInstallerCreated": false,
+    "updateZipCreated": false,
+    "gitHubPushCreatedByCodex": false,
+    "milestone1Status": "Frozen",
+    "milestone2Status": "Continuing with constrained host/server bootstrap work; no gameplay systems are approved.",
+    "verificationStatus": "CodeUpdate-0031A GitHub Actions green by user report; Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.",
+    "filesChanged": [
+        "AI_CONTEXT.md",
+        "CHANGELOG.md",
+        "ProjectManifest.json",
+        "README.md",
+        "ReleaseNotes.md",
+        "Tests/Source/Reforged.Core.Tests/Program.cs",
+        "UpdateManifest.json",
+        "VERSION.md",
+        "Docs/Architecture/PROJECT_ROADMAP.md"
+    ],
+    "githubTruth": {
+        "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
+        "commit": "abad0b2e89a8a36fe5c743bd4990bf68e7d24d81",
+        "status": "green by user report"
+    },
+    "localVerification": {
+        "sdk": ".NET 8.0.422",
+        "restore": "passed sequentially",
+        "build": "passed sequentially for Core, Server, Importer, Editor, Launcher, Client, and Tests",
+        "smokeTests": "passed; dependency injection, configuration, event system, repository health, startup diagnostics, server startup diagnostics, and server bootstrap"
+    },
+    "corrects": {
+        "codeUpdate": "0031",
+        "reason": "GitHub Actions failed because Tests/Source/Reforged.Core.Tests/Program.cs contained invalid C# string escaping in the configuration smoke-test JSON string."
+    },
+    "boundaries": [
+        "No gameplay systems",
+        "No combat",
+        "No character creation",
+        "No world simulation loop",
+        "No editor implementation",
+        "No networking expansion"
+    ],
+    "recommendedNextUpdate": "CodeUpdate-0032 - next small Milestone 2 host/server improvement",
+    "recommendedNextScopeRequiresUserApproval": true
 }

@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrects a syntax error in the test project introduced by the 0031 smoke-test JSON string.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrects a syntax error in the test project introduced by the 0031 smoke-test JSON string and is the current verified baseline after user-reported green GitHub Actions.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -125,6 +125,7 @@ Implemented:
 
 - Fixed `Tests/Source/Reforged.Core.Tests/Program.cs` by escaping the JSON test string.
 - Updated continuity documents and report files.
+- Synchronized `UpdateManifest.json` to the verified CodeUpdate-0031A baseline after a stale 0029 manifest was found locally.
 
 Boundaries:
 
@@ -142,7 +143,9 @@ Verified before creating CodeUpdate-0031A:
 - GitHub truth showed CodeUpdate-0031 and Milestone 2 state.
 - GitHub truth showed the invalid C# JSON string in `Tests/Source/Reforged.Core.Tests/Program.cs`.
 - User provided the GitHub Actions failure output identifying the same file and line.
-- Local package container does not have the .NET SDK, so local restore/build/test could not be run here.
+- The ChatGPT package container did not have the .NET SDK, so local restore/build/test could not be run during ZIP creation.
+- The user later reported CodeUpdate-0031A GitHub Actions green.
+- Codex local .NET 8.0.422 sequential restore/build/smoke verification passed after the patch was applied locally.
 
 Package verification required before delivery:
 
@@ -152,15 +155,13 @@ Package verification required before delivery:
 - ZIP contains `UpdateManifest.json`.
 - ZIP contains patch payload only.
 
-GitHub Actions remains pending until the user applies, commits, and pushes CodeUpdate-0031A.
+CodeUpdate-0031A is the current verified baseline.
 
 ## Next Recommended Work
 
-1. Apply CodeUpdate-0031A locally.
-2. Commit and push to GitHub.
-3. Confirm GitHub Actions is green for the current push.
-4. After green Actions, approve the next small Milestone 2 host/server scope.
-5. Do not add gameplay systems without explicit approval.
+1. Approve the next small Milestone 2 host/server scope for CodeUpdate-0032.
+2. Keep CodeUpdate-0032 narrow and verifiable.
+3. Do not add gameplay systems without explicit approval.
 
 ## New Window Instruction
 

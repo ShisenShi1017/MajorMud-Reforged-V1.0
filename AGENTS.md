@@ -132,6 +132,6 @@ Every ChatGPT-created Code Update ZIP must:
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: apply/push CodeUpdate-0031A, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+- Current priority: approve the next small Milestone 2 host/server scope for CodeUpdate-0032.
 
-CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. It does not add gameplay features, networking, combat, character creation, or world simulation.
+CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.

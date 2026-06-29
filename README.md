@@ -7,7 +7,7 @@
 - **Current Code Update:** `CodeUpdate-0031A - Server Smoke Test Compile Fix`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Apply/push CodeUpdate-0031A, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+- **Current Priority:** Approve the next small Milestone 2 host/server scope for CodeUpdate-0032.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -160,9 +160,9 @@ Status: active.
 
 CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure.
 
-Next safe work after CodeUpdate-0031A is pushed and GitHub Actions is green:
+Next safe work after verified CodeUpdate-0031A:
 
-1. Approve the next small Milestone 2 host/server scope.
+1. Approve the next small Milestone 2 host/server scope for CodeUpdate-0032.
 2. Keep work narrow and verifiable.
 3. Do not add gameplay systems without explicit user approval.
 

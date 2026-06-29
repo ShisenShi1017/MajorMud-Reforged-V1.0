@@ -21,5 +21,6 @@ This update is a corrective build-fix patch for CodeUpdate-0031.
 - GitHub truth was read before creating this patch.
 - The user-provided GitHub Actions failure output was matched to the current GitHub file.
 - The update ZIP was verified for one top-level folder, BAT installer, manifest, and patch-only payload before delivery.
-- The ChatGPT packaging container does not include the .NET SDK, so local restore/build/test could not be run here.
-- GitHub Actions remains the official validation gate after the user applies, commits, and pushes this update.
+- The ChatGPT packaging container did not include the .NET SDK, so local restore/build/test could not be run during ZIP creation.
+- The user later reported CodeUpdate-0031A GitHub Actions green.
+- Codex local .NET 8.0.422 sequential restore/build/smoke verification passed after the patch was applied locally.

@@ -14,8 +14,8 @@
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
 - CodeUpdate-0031A fixes the syntax error only.
-- The ChatGPT packaging container does not have the .NET SDK, so local restore/build/test could not be run here.
-- GitHub Actions remains pending until the user applies, commits, and pushes CodeUpdate-0031A.
+- CodeUpdate-0031A GitHub Actions is green by user report.
+- Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
 ## Source of Truth
 
