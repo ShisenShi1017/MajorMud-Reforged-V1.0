@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0034
+- Current Code Update: 0035
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0034 - OmniVerse Reference Audit Plan
+- Current update: CodeUpdate-0035 - Server Bootstrap Validation Summary
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -21,7 +21,9 @@
 - CodeUpdate-0033 local .NET 8.0.422 restore/build/smoke verification passed.
 - CodeUpdate-0033 GitHub Actions is green by user report.
 - CodeUpdate-0034 local .NET 8.0.422 restore/build/smoke verification passed.
-- CodeUpdate-0034 GitHub Actions is pending until the user pushes and reports the result.
+- CodeUpdate-0034 GitHub Actions is green by user report.
+- CodeUpdate-0035 local .NET 8.0.422 restore/build/smoke verification passed.
+- CodeUpdate-0035 GitHub Actions is pending until the user pushes and reports the result.
 
 ## Reference Data Policy
 

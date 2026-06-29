@@ -57,11 +57,11 @@ The long-term goal is a standalone server, native importer, live editor, launche
 
 ## Current Development Position
 
-- Current Code Update: `0034`
+- Current Code Update: `0035`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0034, verify GitHub Actions green, then approve the next small Milestone 2 scope.
+- Current priority: push CodeUpdate-0035, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -70,6 +70,8 @@ CodeUpdate-0032 improves Server bootstrap diagnostics by capturing ProjectManife
 CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract for future host/server automation.
 
 CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits. It does not rewrite `Data/` or overwrite `ImportedDatabases/`.
+
+CodeUpdate-0035 adds Server bootstrap validation issue counts for startup output and future host tooling.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -94,6 +96,7 @@ Completed/started slices:
 - CodeUpdate-0032: Server bootstrap manifest identity output.
 - CodeUpdate-0033: Server bootstrap exit-code contract.
 - CodeUpdate-0034: OmniVerse read-only reference audit policy.
+- CodeUpdate-0035: Server bootstrap validation summary counts.
 
 Focus Areas:
 
@@ -113,9 +116,9 @@ Boundaries until approved:
 - No networking expansion.
 - No live editor implementation beyond approved scope.
 
-Next candidate after CodeUpdate-0034 is pushed and green:
+Next candidate after CodeUpdate-0035 is pushed and green:
 
-- CodeUpdate-0035: a small follow-up approved by the user before implementation.
+- CodeUpdate-0036: a small host/server follow-up approved by the user before implementation.
 
 ## Milestone 3 - Standalone Server
 

@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0034 - OmniVerse Reference Audit Plan`
+- **Current Code Update:** `CodeUpdate-0035 - Server Bootstrap Validation Summary`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0034, verify GitHub Actions green, then approve the next small Milestone 2 scope.
+- **Current Priority:** Push CodeUpdate-0035, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -25,9 +25,17 @@ Every session must read these files before changing the repository:
 8. `DEVELOPMENT_PRINCIPLES.md`
 9. Relevant source, test, and application documentation for the requested change
 
+## CodeUpdate-0035 Summary
+
+CodeUpdate-0035 improves the non-gameplay Server bootstrap by exposing validation issue counts and printing a startup validation summary by severity. It keeps the work on the pre-website host/server track.
+
+No data rewrite, gameplay features, combat, character creation, world simulation, networking expansion, or live editor implementation are added.
+
 ## CodeUpdate-0034 Summary
 
 CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits. OmniVerse may help identify possible mismatches in Reforged data, but it must not automatically overwrite canonical `Data/` or archive `ImportedDatabases/`.
+
+CodeUpdate-0034 GitHub Actions is green by user report.
 
 No data rewrite, gameplay features, combat, character creation, world simulation, networking expansion, or live editor implementation are added.
 
@@ -182,9 +190,9 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts.
 
-Next safe work after CodeUpdate-0034 is pushed and GitHub Actions is green:
+Next safe work after CodeUpdate-0035 is pushed and GitHub Actions is green:
 
 1. Approve the next small Milestone 2 host/server scope.
 2. Keep work narrow and verifiable.

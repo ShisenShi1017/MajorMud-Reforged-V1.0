@@ -163,6 +163,13 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException("Server bootstrap success did not expose exit code 0.");
     }
 
+    if (report.IssueCount != report.Validation.Issues.Count ||
+        report.ErrorCount != 0 ||
+        report.FatalCount != 0)
+    {
+        throw new InvalidOperationException("Server bootstrap success did not expose expected validation issue counts.");
+    }
+
     if (report.ProjectName != "Reforged" ||
         string.IsNullOrWhiteSpace(report.CodeUpdate) ||
         string.IsNullOrWhiteSpace(report.DatabaseVersion) ||
@@ -175,6 +182,11 @@ void ServerBootstrapSmoke()
     if (failedReport.Passed || failedReport.ExitCode != 1)
     {
         throw new InvalidOperationException("Server bootstrap failure did not expose exit code 1.");
+    }
+
+    if (failedReport.IssueCount == 0 || failedReport.ErrorCount + failedReport.FatalCount == 0)
+    {
+        throw new InvalidOperationException("Server bootstrap failure did not expose expected validation error counts.");
     }
 }
 

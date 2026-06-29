@@ -29,6 +29,16 @@ public sealed class ServerBootstrapReport
 
     public int ExitCode => Passed ? 0 : 1;
 
+    public int IssueCount => Validation.Issues.Count;
+
+    public int InfoCount => Validation.Issues.Count(issue => issue.Severity == ValidationSeverity.Info);
+
+    public int WarningCount => Validation.Issues.Count(issue => issue.Severity == ValidationSeverity.Warning);
+
+    public int ErrorCount => Validation.Issues.Count(issue => issue.Severity == ValidationSeverity.Error);
+
+    public int FatalCount => Validation.Issues.Count(issue => issue.Severity == ValidationSeverity.Fatal);
+
     public void AddCheck(string name) => checks.Add(name);
 
     public void AttachStartupDiagnostics(ServerStartupDiagnosticReport diagnostics)

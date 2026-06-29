@@ -1,10 +1,10 @@
 {
-    "codeUpdate": "0034",
-    "name": "CodeUpdate-0034-OmniVerse-Reference-Audit-Plan",
+    "codeUpdate": "0035",
+    "name": "CodeUpdate-0035-Server-Bootstrap-Validation-Summary",
     "packageType": "direct-repository-patch",
-    "purpose": "Record OmniVerse as a read-only reference source for future data audits without rewriting Reforged Data.",
+    "purpose": "Expose Server bootstrap validation issue counts for startup output and future host tooling.",
     "addsGameplayFeatures": false,
-    "addsImplementationCode": false,
+    "addsImplementationCode": true,
     "batInstallerCreated": false,
     "updateZipCreated": false,
     "gitHubPushCreatedByCodex": false,
@@ -14,21 +14,24 @@
     "filesChanged": [
         "AGENTS.md",
         "AI_CONTEXT.md",
+        "Apps/Source/Reforged.Server/Program.cs",
+        "Apps/Source/Reforged.Server/README.md",
+        "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
         "CHANGELOG.md",
         "Docs/Architecture/PROJECT_ROADMAP.md",
         "Docs/02-Roadmap.md",
-        "Docs/CodeUpdates/CodeUpdate-0034-OmniVerse-Reference-Audit-Plan.md",
-        "Docs/DataSources/OmniVerse-Reference-Audit.md",
+        "Docs/CodeUpdates/CodeUpdate-0035-Server-Bootstrap-Validation-Summary.md",
         "ProjectManifest.json",
         "README.md",
         "ReleaseNotes.md",
-        "Reports/CodeUpdates/CodeUpdate-0034/OmniVerseReferenceAuditPlanReport.md",
+        "Reports/CodeUpdates/CodeUpdate-0035/ServerBootstrapValidationSummaryReport.md",
+        "Tests/Source/Reforged.Core.Tests/Program.cs",
         "UpdateManifest.json",
         "VERSION.md"
     ],
     "githubTruth": {
         "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-        "baselineCommit": "6d75c3819ec4ba2e450e4ed205186a0795ff04fe",
+        "baselineCommit": "22243b7e",
         "baselineStatus": "green by user report"
     },
     "localVerification": {
@@ -36,8 +39,7 @@
         "status": "passed",
         "restore": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests restore passed.",
         "build": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed with 0 warnings and 0 errors.",
-        "smokeTests": "Reforged core/server smoke tests passed.",
-        "dataSafety": "No files under Data/ or ImportedDatabases/ were changed by this update."
+        "smokeTests": "Reforged core/server smoke tests passed, including server bootstrap validation summary coverage."
     },
     "boundaries": [
         "No gameplay systems",
@@ -51,6 +53,6 @@
     ],
     "referencePolicy": "OmniVerse may be used only as a comparison source. Reforged Data remains canonical unless a specific mismatch is reviewed and approved for correction.",
     "handoffImprovement": "Completed work, explicit boundaries, verification status, reference-source policy, and next-scope candidate are recorded separately.",
-    "recommendedNextUpdate": "CodeUpdate-0035 - next small approved Milestone 2 scope",
+    "recommendedNextUpdate": "CodeUpdate-0036 - next small approved Milestone 2 host/server scope",
     "recommendedNextScopeRequiresUserApproval": true
 }

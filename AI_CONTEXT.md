@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0034 |
+| Current Code Update | 0035 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0034-OmniVerse-Reference-Audit-Plan |
+| Last Update Name | CodeUpdate-0035-Server-Bootstrap-Validation-Summary |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits without rewriting Reforged `Data/`.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -95,7 +95,7 @@ Do not add gameplay systems without explicit user approval.
 | Area | Status | Notes |
 |---|---:|---|
 | Host/server startup diagnostics | Started | CodeUpdate-0029 added startup-only Server diagnostics. |
-| Server bootstrap foundation | Extended in 0033 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields; 0033 exposes explicit exit codes. |
+| Server bootstrap foundation | Extended in 0035 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields; 0033 exposes explicit exit codes; 0035 exposes validation issue counts. |
 | Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
 | Host/world editor | Planned | Do not begin larger editor work without approval. |
@@ -107,6 +107,7 @@ Do not add gameplay systems without explicit user approval.
 
 | Code Update | Summary |
 |---|---|
+| 0035 | Adds Server bootstrap validation issue-count summaries for startup output and future host tooling. |
 | 0034 | Records OmniVerse as a read-only reference source for future data audits and forbids automatic website-to-Data rewrites. |
 | 0033 | Adds an explicit Server bootstrap report exit-code contract and smoke coverage for success/failure exit codes. |
 | 0032 | Captures ProjectManifest identity fields in Server bootstrap report/startup output and adds smoke coverage for those fields. |
@@ -122,6 +123,34 @@ Do not add gameplay systems without explicit user approval.
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
 
+## CodeUpdate-0035 Handoff
+
+CodeUpdate-0035 returns to the pre-website Milestone 2 host/server path. It adds validation issue counts to the Server bootstrap report so startup output and future host tooling can summarize validation state without parsing raw issue text.
+
+Implemented:
+
+- Added total, info, warning, error, and fatal issue-count properties to `ServerBootstrapReport`.
+- Updated Server startup output to print a validation summary by severity.
+- Added smoke-test coverage for validation issue counts on successful and failed bootstrap paths.
+- Recorded CodeUpdate-0034 as GitHub Actions green by user report.
+
+Boundaries:
+
+- No `Data/` rewrite.
+- No `ImportedDatabases/` overwrite.
+- No gameplay systems.
+- No combat.
+- No character creation.
+- No world simulation loop.
+- No networking expansion.
+- No editor implementation.
+- No BAT installer or ZIP package was created by Codex.
+- Codex did not push to GitHub.
+
+Next-scope candidate:
+
+- CodeUpdate-0036 should be another small host/server slice approved by the user before implementation.
+
 ## CodeUpdate-0034 Handoff
 
 CodeUpdate-0034 is a documentation/reference-audit update. The user clarified that OmniVerse should not rewrite Reforged data unless it helps identify a reviewed correction. This update records OmniVerse as a comparison source only.
@@ -133,6 +162,7 @@ Implemented:
 - Added `Reports/CodeUpdates/CodeUpdate-0034/OmniVerseReferenceAuditPlanReport.md`.
 - Recorded verified OmniVerse public endpoints for MajorMUD `wcc` reference discovery.
 - Recorded CodeUpdate-0033 as GitHub Actions green by user report.
+- The user reported CodeUpdate-0034 GitHub Actions green after push.
 
 Reference policy:
 
@@ -230,24 +260,22 @@ Boundaries:
 
 ## Verification Status
 
-Verified before creating CodeUpdate-0034:
+Verified before creating CodeUpdate-0035:
 
-- GitHub/local baseline was CodeUpdate-0033 at commit `6d75c3819ec4ba2e450e4ed205186a0795ff04fe`.
-- The user reported CodeUpdate-0033 GitHub Actions green before CodeUpdate-0034 started.
-- Codex local repository was clean before CodeUpdate-0034 edits.
-- OmniVerse public endpoints were inspected for reference-audit planning.
+- GitHub/local baseline was CodeUpdate-0034 at commit `22243b7e`.
+- The user reported CodeUpdate-0034 GitHub Actions green before CodeUpdate-0035 started.
+- Codex local repository was clean before CodeUpdate-0035 edits.
 - Local .NET 8.0.422 restore/build/smoke verification passed.
-- No files under `Data/` or `ImportedDatabases/` were changed.
-- GitHub Actions remains pending until the user pushes CodeUpdate-0034 and reports the result.
+- GitHub Actions remains pending until the user pushes CodeUpdate-0035 and reports the result.
 
-CodeUpdate-0034 is the current local update candidate.
+CodeUpdate-0035 is the current local update candidate.
 
-CodeUpdate-0033 remains the current pushed green baseline until CodeUpdate-0034 is pushed and GitHub Actions is reported green.
+CodeUpdate-0034 remains the current pushed green baseline until CodeUpdate-0035 is pushed and GitHub Actions is reported green.
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0034 and report GitHub Actions status.
-2. After green Actions, approve the next small Milestone 2 scope for CodeUpdate-0035.
+1. Push CodeUpdate-0035 and report GitHub Actions status.
+2. After green Actions, approve the next small Milestone 2 host/server scope for CodeUpdate-0036.
 3. Do not add gameplay systems without explicit approval.
 
 ## New Window Instruction

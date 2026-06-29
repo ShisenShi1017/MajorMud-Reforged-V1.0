@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0035 - Server Bootstrap Validation Summary
+
+- Added validation issue-count properties to the non-gameplay Server bootstrap report.
+- Server bootstrap console output now includes a validation summary by severity.
+- Smoke tests verify success and failure bootstrap paths expose expected validation issue counts.
+- Recorded the user-reported green GitHub Actions result for CodeUpdate-0034.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, or data rewrite was added.
+- Local .NET 8.0.422 restore/build/smoke verification passed.
+- GitHub Actions remains pending until the user pushes CodeUpdate-0035 and reports the result.
+
 ## CodeUpdate-0034 - OmniVerse Reference Audit Plan
 
 - Recorded OmniVerse as a read-only reference source for future Reforged data audits.
@@ -10,7 +20,7 @@
 - No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, or data rewrite was added.
 - Local .NET 8.0.422 restore/build/smoke verification passed.
 - No files under `Data/` or `ImportedDatabases/` were changed.
-- GitHub Actions remains pending until the user pushes CodeUpdate-0034 and reports the result.
+- GitHub Actions is green by user report.
 
 ## CodeUpdate-0033 - Server Bootstrap Exit Code Contract
 
