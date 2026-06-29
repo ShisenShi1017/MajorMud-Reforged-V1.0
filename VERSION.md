@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0035
+- Current Code Update: 0036
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0035 - Server Bootstrap Validation Summary
+- Current update: CodeUpdate-0036 - Knowledge Base and Design Decisions
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -23,14 +23,17 @@
 - CodeUpdate-0034 local .NET 8.0.422 restore/build/smoke verification passed.
 - CodeUpdate-0034 GitHub Actions is green by user report.
 - CodeUpdate-0035 local .NET 8.0.422 restore/build/smoke verification passed.
-- CodeUpdate-0035 GitHub Actions is pending until the user pushes and reports the result.
+- CodeUpdate-0035 GitHub Actions is green by user report.
+- CodeUpdate-0036 is documentation/research only; no local build was run in ChatGPT.
+- CodeUpdate-0036 GitHub Actions is pending after this direct GitHub documentation update.
 
 ## Reference Data Policy
 
 - Reforged `Data/` remains canonical.
 - `ImportedDatabases/` remains archive/reference only.
 - OmniVerse may be used as a read-only comparison source to identify possible corrections.
-- No website/API data may overwrite Reforged data without a reviewed, approved follow-up update.
+- LLT XML, MegaMUD databases, MegaMUD `.mp` paths, Mud Hex documentation, MudInfo, MudCentral, Reddit/community sources, WCC archives, and WSGSERVE `.dat` files are reference or verification sources only unless explicitly approved for a reviewed import/reconciliation update.
+- No website/API/community/tool data may overwrite Reforged data without a reviewed, approved follow-up update.
 
 ## Source of Truth
 
