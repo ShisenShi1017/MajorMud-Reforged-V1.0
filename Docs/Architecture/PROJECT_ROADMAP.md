@@ -57,13 +57,13 @@ The long-term goal is a standalone server, native importer, live editor, launche
 
 ## Current Development Position
 
-- Current Code Update: `0031`
+- Current Code Update: `0031A`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: apply/push CodeUpdate-0031, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+- Current priority: apply/push CodeUpdate-0031A, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
 
-CodeUpdate-0031 adds the first non-gameplay Server bootstrap entry point, a bootstrap report, ProjectManifest/folder checks, smoke coverage, and `DEVELOPMENT_PRINCIPLES.md`.
+CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -84,6 +84,7 @@ Completed/started slices:
 - CodeUpdate-0029: startup-only Server diagnostics.
 - CodeUpdate-0030: governance/source-of-truth/handoff cleanup.
 - CodeUpdate-0031: non-gameplay Server bootstrap foundation.
+- CodeUpdate-0031A: corrective smoke-test compile fix for the 0031 GitHub Actions failure.
 
 Focus Areas:
 
@@ -103,9 +104,9 @@ Boundaries until approved:
 - No networking expansion.
 - No live editor implementation beyond approved scope.
 
-Next candidate after CodeUpdate-0031 is pushed and green:
+Next candidate after CodeUpdate-0031A is pushed and green:
 
-- A small host/server follow-up approved by the user after GitHub Actions verifies CodeUpdate-0031.
+- A small host/server follow-up approved by the user after GitHub Actions verifies CodeUpdate-0031A.
 
 ## Milestone 3 - Standalone Server
 

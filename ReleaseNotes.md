@@ -1,26 +1,11 @@
-# CodeUpdate-0031 - Server Bootstrap Foundation
+# CodeUpdate-0031A - Server Smoke Test Compile Fix
 
-This update adds the first non-gameplay Server bootstrap foundation for Milestone 2.
+This update is a corrective build-fix patch for CodeUpdate-0031.
 
-## Changed
+## Fixed
 
-- Added `Apps/Source/Reforged.Server/Program.cs`.
-- Added `Apps/Source/Reforged.Server/ServerBootstrap.cs`.
-- Added `Apps/Source/Reforged.Server/ServerBootstrapReport.cs`.
-- Updated `Apps/Source/Reforged.Server/Reforged.Server.csproj` to produce an executable Server project.
-- Added Server bootstrap smoke coverage to `Tests/Source/Reforged.Core.Tests/Program.cs`.
-- Added `DEVELOPMENT_PRINCIPLES.md`.
-- Updated continuity documents and Server source README.
-- Added a CodeUpdate-0031 report.
-
-## Bootstrap behavior
-
-The Server bootstrap verifies:
-
-- Repository root discovery.
-- Required project folders.
-- `ProjectManifest.json` readability and basic Reforged identity fields.
-- Existing Server startup diagnostics from CodeUpdate-0029.
+- Corrected the configuration smoke-test JSON string in `Tests/Source/Reforged.Core.Tests/Program.cs`.
+- The previous CodeUpdate-0031 file contained unescaped JSON quotes inside a normal C# string literal, causing GitHub Actions to fail with `Syntax error, ',' expected` at `Program.cs#L59`.
 
 ## Boundaries
 
@@ -34,7 +19,7 @@ The Server bootstrap verifies:
 ## Verification
 
 - GitHub truth was read before creating this patch.
-- Existing CodeUpdate-0029 Server diagnostics files were verified before extending them.
+- The user-provided GitHub Actions failure output was matched to the current GitHub file.
 - The update ZIP was verified for one top-level folder, BAT installer, manifest, and patch-only payload before delivery.
 - The ChatGPT packaging container does not include the .NET SDK, so local restore/build/test could not be run here.
 - GitHub Actions remains the official validation gate after the user applies, commits, and pushes this update.

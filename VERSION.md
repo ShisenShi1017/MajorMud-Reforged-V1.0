@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0031
+- Current Code Update: 0031A
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,13 +9,13 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0031 - Server Bootstrap Foundation
+- Current update: CodeUpdate-0031A - Server Smoke Test Compile Fix
 - Milestone 1 Core Framework is complete/frozen.
-- CodeUpdate-0029 added startup-only Server diagnostics as the first constrained Milestone 2 implementation slice.
-- CodeUpdate-0030 was reported green by the user and is now the governance baseline.
-- CodeUpdate-0031 adds a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
+- CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
+- CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
+- CodeUpdate-0031A fixes the syntax error only.
 - The ChatGPT packaging container does not have the .NET SDK, so local restore/build/test could not be run here.
-- GitHub Actions remains pending until the user applies, commits, and pushes CodeUpdate-0031.
+- GitHub Actions remains pending until the user applies, commits, and pushes CodeUpdate-0031A.
 
 ## Source of Truth
 

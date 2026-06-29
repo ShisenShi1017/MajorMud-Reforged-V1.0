@@ -56,7 +56,7 @@ void DependencyInjectionSmoke()
 void ConfigurationSmoke()
 {
     var temp = Path.Combine(Path.GetTempPath(), $"reforged-config-{Guid.NewGuid():N}.json");
-    File.WriteAllText(temp, "{"server":{"port":4000},"enabled":true}");
+    File.WriteAllText(temp, "{\"server\":{\"port\":4000},\"enabled\":true}");
     try
     {
         var configuration = new RuntimeConfigurationProvider()

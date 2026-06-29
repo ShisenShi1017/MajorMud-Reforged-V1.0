@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0031 - Server Bootstrap Foundation`
+- **Current Code Update:** `CodeUpdate-0031A - Server Smoke Test Compile Fix`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Apply/push CodeUpdate-0031, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+- **Current Priority:** Apply/push CodeUpdate-0031A, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -25,11 +25,9 @@ Every session must read these files before changing the repository:
 8. `DEVELOPMENT_PRINCIPLES.md`
 9. Relevant source, test, and application documentation for the requested change
 
-## CodeUpdate-0031 Summary
+## CodeUpdate-0031A Summary
 
-CodeUpdate-0031 adds the first non-gameplay Server bootstrap foundation. It adds an executable Server entry point, a bootstrap runner, a bootstrap report, repository-root/folder/manifest validation, and smoke-test coverage that wraps the existing CodeUpdate-0029 Server startup diagnostics.
-
-This update also adds `DEVELOPMENT_PRINCIPLES.md` to keep long-term engineering standards separate from agent workflow rules.
+CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. GitHub Actions reported a C# syntax error in `Tests/Source/Reforged.Core.Tests/Program.cs` at the configuration smoke-test JSON line. This patch fixes the test JSON string escaping so the test project can compile.
 
 No gameplay features, combat, character creation, world simulation, networking expansion, or live editor implementation are added.
 
@@ -81,15 +79,7 @@ Never guess when creating, fixing, reviewing, or reporting an update.
 
 Reforged is a standalone game engine and toolset inspired by the original legacy MUD.
 
-The project goal is to build:
-
-- A standalone Reforged server.
-- A shared Core framework used by every application.
-- A native importer that converts original legacy data into Reforged data.
-- A live editor that works through the server safely.
-- A launcher that eventually replaces update/apply batch workflows.
-- A future companion client-style Windows client.
-- A future Android client.
+The project goal is to build a standalone Reforged server, shared Core framework, native importer, live editor, launcher, Windows client, Android client, gameplay systems, and plugin framework.
 
 Reforged must not depend on Microsoft Access, OLEDB, the original legacy executable, or the original runtime files during normal server operation. Original legacy files are import/reference material only.
 
@@ -168,9 +158,9 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 adds the first non-gameplay Server bootstrap foundation around the existing diagnostics path.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure.
 
-Next safe work after CodeUpdate-0031 is pushed and GitHub Actions is green:
+Next safe work after CodeUpdate-0031A is pushed and GitHub Actions is green:
 
 1. Approve the next small Milestone 2 host/server scope.
 2. Keep work narrow and verifiable.

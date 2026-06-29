@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0031A - Server Smoke Test Compile Fix
+
+- Corrected invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
+- Fixed the GitHub Actions test build failure reported at `Program.cs#L59` with `Syntax error, ',' expected`.
+- Recorded CodeUpdate-0031A as a corrective build-fix patch for CodeUpdate-0031.
+- Updated continuity documents, release notes, ProjectManifest, roadmap, and this changelog.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, or live editor implementation were added.
+- Local .NET restore/build/test could not be run in the ChatGPT packaging container because the .NET SDK is not installed; GitHub Actions remains the official validation gate after push.
+
 ## CodeUpdate-0031 - Server Bootstrap Foundation
 
 - Added `Apps/Source/Reforged.Server/Program.cs` as the first non-gameplay Server entry point.
@@ -9,7 +18,7 @@
 - Added `DEVELOPMENT_PRINCIPLES.md` to separate engineering principles from agent workflow rules.
 - Updated continuity documents, roadmap, release notes, ProjectManifest, and Server source README.
 - No gameplay systems, combat, character creation, world simulation, networking expansion, or live editor implementation were added.
-- Local .NET restore/build/test could not be run in the ChatGPT packaging container because the .NET SDK is not installed; GitHub Actions remains the official validation gate after push.
+- GitHub Actions failed after push due to a syntax error in the smoke-test JSON string; CodeUpdate-0031A corrects this.
 
 ## CodeUpdate-0030 - Truth Documentation Cleanup and Agent Handoff Rules
 
@@ -40,26 +49,6 @@
 - Updated continuity documents, manifests, and roadmap notes for Milestone 2 planning.
 - Local .NET 8.0.422 restore/build/smoke-test verification passed.
 - No gameplay feature work or implementation code was introduced.
-- No BAT installer, update ZIP, or GitHub push was created by Codex.
-
-## CodeUpdate-0027 - Milestone 1 Baseline Freeze
-
-- Recorded the user-reported green GitHub Actions result for CodeUpdate-0026B.
-- Marked Milestone 1 - Core Framework as complete/frozen.
-- Updated continuity documents, manifests, and roadmap notes for the Milestone 2 planning handoff.
-- Added the CodeUpdate-0027 baseline freeze report and update note.
-- Local .NET 8.0.422 restore/build/smoke-test verification passed.
-- No gameplay feature work was introduced.
-- No BAT installer, update ZIP, or GitHub push was created by Codex.
-
-## CodeUpdate-0026B - Baseline Cleanup
-
-- Removed generated source-project `bin/` and `obj/` build artifacts from the local workspace.
-- Added targeted `.gitignore` rules for source/test project build outputs while preserving the intentional root `Bin/` runtime handoff folder.
-- Repaired visible mojibake/encoding damage in continuity documents.
-- Recorded this cleanup as a Milestone 1 baseline hygiene patch before final freeze.
-- Local .NET 8.0.422 restore/build/smoke-test verification passed.
-- No gameplay feature work was introduced.
 - No BAT installer, update ZIP, or GitHub push was created by Codex.
 
 ## Earlier History

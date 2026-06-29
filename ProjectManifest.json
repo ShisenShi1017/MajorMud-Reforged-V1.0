@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0031",
+  "codeUpdate": "0031A",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -16,17 +16,17 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0031",
+    "currentCodeUpdate": "0031A",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server bootstrap work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0031-Server-Bootstrap-Foundation",
+    "lastUpdateName": "CodeUpdate-0031A-Server-Smoke-Test-Compile-Fix",
     "nextRecommendedWork": [
-      "Apply CodeUpdate-0031 locally.",
-      "Commit and push CodeUpdate-0031 to GitHub.",
+      "Apply CodeUpdate-0031A locally.",
+      "Commit and push CodeUpdate-0031A to GitHub.",
       "Confirm GitHub Actions is green for the current push.",
       "After green Actions, approve the next small Milestone 2 host/server scope.",
       "Do not add gameplay systems without explicit approval."
@@ -56,5 +56,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0031 package was statically verified in ChatGPT, but local restore/build/test could not be run because the packaging container does not have the .NET SDK. GitHub Actions remains pending until push."
+  "buildVerification": "CodeUpdate-0031 failed GitHub Actions because Tests/Source/Reforged.Core.Tests/Program.cs contained invalid C# string escaping. CodeUpdate-0031A fixes that syntax error. Local restore/build/test could not be run in ChatGPT because the packaging container does not have the .NET SDK."
 }

@@ -67,8 +67,9 @@ Every new work session must read or verify:
 5. `VERSION.md`
 6. `CHANGELOG.md`
 7. `ProjectManifest.json`
-8. Relevant app/source/test files for the requested change
-9. Current GitHub Actions status when build verification is part of the task
+8. `DEVELOPMENT_PRINCIPLES.md` when architecture, runtime, or code quality decisions are involved
+9. Relevant app/source/test files for the requested change
+10. Current GitHub Actions status when build verification is part of the task
 
 ## 5. Update rules
 
@@ -125,12 +126,12 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0031
+## 10. Current project position after CodeUpdate-0031A
 
-- Current Code Update: `0031`
+- Current Code Update: `0031A`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: apply/push CodeUpdate-0031, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+- Current priority: apply/push CodeUpdate-0031A, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
 
-CodeUpdate-0031 adds the first non-gameplay Server bootstrap entry point, a bootstrap report, bootstrap smoke coverage, and `DEVELOPMENT_PRINCIPLES.md`. It does not add gameplay features, networking, combat, character creation, or world simulation.
+CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. It does not add gameplay features, networking, combat, character creation, or world simulation.

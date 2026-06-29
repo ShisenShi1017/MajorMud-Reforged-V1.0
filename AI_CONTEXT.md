@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0031 |
+| Current Code Update | 0031A |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0031-Server-Bootstrap-Foundation |
+| Last Update Name | CodeUpdate-0031A-Server-Smoke-Test-Compile-Fix |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 adds a first non-gameplay Server bootstrap entry point around the existing diagnostics path and records engineering principles in `DEVELOPMENT_PRINCIPLES.md`.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrects a syntax error in the test project introduced by the 0031 smoke-test JSON string.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -94,7 +94,7 @@ Do not add gameplay systems without explicit user approval.
 | Area | Status | Notes |
 |---|---:|---|
 | Host/server startup diagnostics | Started | CodeUpdate-0029 added startup-only Server diagnostics. |
-| Server bootstrap foundation | Added in 0031 | Adds entry point, bootstrap report, manifest/folder checks, and smoke coverage without gameplay. |
+| Server bootstrap foundation | Corrective patch in 0031A | 0031 added the bootstrap; 0031A fixes the smoke-test compile error. |
 | Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
 | Host/world editor | Planned | Do not begin larger editor work without approval. |
@@ -105,6 +105,7 @@ Do not add gameplay systems without explicit user approval.
 
 | Code Update | Summary |
 |---|---|
+| 0031A | Corrected invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs` after CodeUpdate-0031 failed GitHub Actions at the test build step. |
 | 0031 | Added non-gameplay Server bootstrap entry point/report, bootstrap smoke coverage, `DEVELOPMENT_PRINCIPLES.md`, and refreshed continuity docs. |
 | 0030 | Added `AGENTS.md`, corrected source-of-truth and mode rules, removed stale continuity direction, and recorded the never-guess creation rule. |
 | 0029 | Added startup-only Server diagnostics and a smoke test for the first constrained Milestone 2 implementation slice. |
@@ -116,19 +117,14 @@ Do not add gameplay systems without explicit user approval.
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
 
-## CodeUpdate-0031 Handoff
+## CodeUpdate-0031A Handoff
 
-CodeUpdate-0031 is the next small Milestone 2 host/server slice after the user reported CodeUpdate-0030 GitHub Actions green. It adds a real Server project entry point and a bootstrap path that verifies repository root, required folders, ProjectManifest identity, and existing Server startup diagnostics.
+CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. The user reported GitHub Actions failed with repeated `Syntax error, ',' expected` messages at `Tests/Source/Reforged.Core.Tests/Program.cs#L59`. GitHub truth confirmed the configuration smoke test used an unescaped JSON string inside a normal C# string literal.
 
 Implemented:
 
-- `Apps/Source/Reforged.Server/Program.cs`
-- `Apps/Source/Reforged.Server/ServerBootstrap.cs`
-- `Apps/Source/Reforged.Server/ServerBootstrapReport.cs`
-- Updated `Apps/Source/Reforged.Server/Reforged.Server.csproj` with `OutputType=Exe`
-- Added Server bootstrap smoke coverage in `Tests/Source/Reforged.Core.Tests/Program.cs`
-- Added `DEVELOPMENT_PRINCIPLES.md`
-- Updated continuity docs and report files
+- Fixed `Tests/Source/Reforged.Core.Tests/Program.cs` by escaping the JSON test string.
+- Updated continuity documents and report files.
 
 Boundaries:
 
@@ -141,27 +137,26 @@ Boundaries:
 
 ## Verification Status
 
-Verified before creating CodeUpdate-0031:
+Verified before creating CodeUpdate-0031A:
 
-- `AGENTS.md` exists and records mode/source-of-truth/no-guess/package rules.
-- Current GitHub truth showed CodeUpdate-0030 and Milestone 2 state.
-- Server startup diagnostics and report files exist from CodeUpdate-0029.
-- Core/Server smoke test currently includes Server diagnostics coverage.
+- GitHub truth showed CodeUpdate-0031 and Milestone 2 state.
+- GitHub truth showed the invalid C# JSON string in `Tests/Source/Reforged.Core.Tests/Program.cs`.
+- User provided the GitHub Actions failure output identifying the same file and line.
 - Local package container does not have the .NET SDK, so local restore/build/test could not be run here.
 
 Package verification required before delivery:
 
 - ZIP exists.
 - ZIP contains exactly one top-level folder.
-- ZIP contains `Apply-CodeUpdate-0031.bat`.
+- ZIP contains `Apply-CodeUpdate-0031A.bat`.
 - ZIP contains `UpdateManifest.json`.
 - ZIP contains patch payload only.
 
-GitHub Actions remains pending until the user applies, commits, and pushes CodeUpdate-0031.
+GitHub Actions remains pending until the user applies, commits, and pushes CodeUpdate-0031A.
 
 ## Next Recommended Work
 
-1. Apply CodeUpdate-0031 locally.
+1. Apply CodeUpdate-0031A locally.
 2. Commit and push to GitHub.
 3. Confirm GitHub Actions is green for the current push.
 4. After green Actions, approve the next small Milestone 2 host/server scope.
