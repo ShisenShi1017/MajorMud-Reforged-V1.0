@@ -8,6 +8,8 @@ The project is in Milestone 1 - Core Framework Completion. Remaining work is ver
 
 CodeUpdate-0024B is a corrective build-fix patch for the CoreStartupDiagnostics logger API mismatch. It does not add gameplay features.
 
+CodeUpdate-0025 completes the active rebrand audit. No gameplay features are added.
+
 
 ## Development Phases
 

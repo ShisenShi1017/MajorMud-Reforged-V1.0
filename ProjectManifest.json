@@ -1,9 +1,9 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0024B",
+  "codeUpdate": "0025",
   "databaseVersion": "0009",
-  "milestone": "Milestone 1 - Core Framework / Core Verification",
+  "milestone": "Milestone 1 - Core Framework / Rebrand Completion Audit",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
   "updatePolicy": "CodeUpdate ZIPs are patch-only packages unless explicitly requested otherwise; each ZIP must contain exactly one top-level update folder with Apply-CodeUpdate-XXXX.bat and UpdateManifest.json, and the BAT applies changed/new files into the main repository folder.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0024B",
+    "currentCodeUpdate": "0025",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -81,7 +81,9 @@
       "startup diagnostics verification",
       "CodeUpdate-0024B CoreStartupDiagnostics logger API mismatch repair",
       "patch-only CodeUpdate packaging policy",
-      "CodeUpdate BAT installer requirement"
+      "CodeUpdate BAT installer requirement",
+      "CodeUpdate-0025 active rebrand audit",
+      "obsolete duplicate MajorMud-named importer utility removed"
     ],
     "milestone1RemainingComponents": [
       "GitHub Actions build result review after user push",
@@ -109,9 +111,9 @@
     "No duplicated models across applications": "Substantially underway"
   },
   "nextRecommendedWork": [
-    "Push CodeUpdate-0020 and confirm GitHub Actions uses Reforged.* paths.",
-    "If GitHub still shows MajorMud.* paths, manually replace .github/workflows/dotnet-build.yml with GitHubActions/dotnet-build.yml.",
-    "Continue Core contract smoke tests after CI is green."
+    "Push CodeUpdate-0025 and confirm GitHub Actions restore/build/test passes.",
+    "If GitHub Actions is green, begin CodeUpdate-0026 Milestone 1 Finalization after user approval.",
+    "Generate the final Milestone 1 verification report before freezing the baseline."
   ],
   "updateZipPolicy": "Each update ZIP contains exactly one named top-level update folder; the apply BAT lives inside that folder and runs from there.",
   "handoffStatus": {
@@ -120,7 +122,7 @@
     "containsMilestoneTable": true,
     "containsMilestoneChecklist": true
   },
-  "lastUpdateName": "CodeUpdate-0024B-CoreStartupDiagnostics-Logger-Fix",
-  "currentCodeUpdate": "0024B",
-  "buildVerification": "GitHub Actions cloud build using Reforged.* project paths; CodeUpdate-0024B should restore/build/test locally when the .NET SDK is available."
+  "lastUpdateName": "CodeUpdate-0025-Rebrand-Completion-Audit",
+  "currentCodeUpdate": "0025",
+  "buildVerification": "Local verification passed on .NET SDK 8.0.422: restore/build for Core, Server, Importer, Editor, Launcher, Client, and Core smoke tests; smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions remains the official validation gate after user push."
 }

@@ -23,10 +23,10 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | Current Milestone | Milestone 1 - Core Framework |
-| Current Code Update | 0024B |
+| Current Code Update | 0025 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0024B-CoreStartupDiagnostics-Logger-Fix |
-| Milestone Estimate | 92-95% complete |
+| Last Update Name | CodeUpdate-0025-Rebrand-Completion-Audit |
+| Milestone Estimate | 95-97% complete |
 | Source of Truth | GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` and latest applied local patch state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Patch-only ZIP with exactly one top-level update folder and included Apply-CodeUpdate BAT |
@@ -119,6 +119,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. No BAT installer or update ZIP was created per current user instruction. |
 | 0017 | Added GitHub Actions cloud verification documentation, Bin runtime artifact expectations, and SDK-free runtime handoff catalog validation. |
 | 0016 | Added repository-backed Core Data loaders, a Core Data catalog, loader health checks, and GitHub Actions cloud build verification. |
@@ -195,9 +196,9 @@ Important validation note:
 
 Next update:
 
-- CodeUpdate-0025 â€” Rebrand Completion.
-- Audit remaining `MajorMud` identifiers.
-- Complete remaining Reforged namespace/assembly/documentation cleanup where appropriate.
+- CodeUpdate-0026 - Milestone 1 Finalization.
+- Generate Milestone 1 verification report.
+- Update continuity docs and prepare Milestone 2 roadmap only after verification passes.
 
 
 ## CodeUpdate-0024B Handoff
@@ -205,3 +206,13 @@ Next update:
 CodeUpdate-0024B is a corrective build-fix patch for CodeUpdate-0024. It fixes the CoreStartupDiagnostics logger API mismatch by replacing the invalid concrete Info(...) call with the verified existing Write(LogSeverity.Information, ...) method on InMemoryReforgedLogger.
 
 This patch does not add gameplay features. No BAT installer or update ZIP was created per current user instruction. Run local dotnet restore, dotnet build, and smoke tests when the SDK is available; GitHub Actions remains the official validation gate after commit and push.
+
+## CodeUpdate-0025 Handoff
+
+CodeUpdate-0025 completes the active rebrand audit for Milestone 1 closure. Active source projects, assemblies, namespaces, and workflow paths use Reforged.*. The obsolete duplicate importer utility Tools/Importer/MajorMudDatDecoder.py was removed because Tools/Importer/ReforgedDatDecoder.py is the active equivalent used by current importer scripts.
+
+This patch does not add gameplay features. Codex writes only to the local workspace; the user controls the GitHub push. GitHub Actions on github.com/ShisenShi1017/MajorMud-Reforged-V1.0 remains the official validation gate after push.
+
+## CodeUpdate-0025 Verification
+
+Local .NET 8.0.422 verification passed for CodeUpdate-0025. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions on github.com/ShisenShi1017/MajorMud-Reforged-V1.0 remains the official validation gate after the user pushes.

@@ -28,13 +28,15 @@ Reforged is not a runtime-dependent copy of the original legacy MUD. It is a cle
 
 The long-term goal is a standalone server, native importer, live editor, launcher, Windows client, Android client, gameplay systems, and plugin framework that do not require the original legacy MUD runtime.
 
-## Milestone 1 â€” Core Framework (Current)
+## Milestone 1 Ã¢â‚¬â€ Core Framework (Current)
 
 Goal: Build the shared foundation that every application depends on.
 
 Current closure focus: verify dependency injection setup, configuration loading, repository/data loading health, event system behavior, startup diagnostics, smoke tests, GitHub Actions build status, and continuity documents before freezing the Milestone 1 baseline.
 
 CodeUpdate-0024B is a corrective build-fix patch for the CoreStartupDiagnostics logger API mismatch. It does not add gameplay features. No BAT installer or update ZIP was created per current user instruction.
+
+CodeUpdate-0025 completes the active rebrand audit. Active source/build names use Reforged.*; the obsolete duplicate MajorMud-named importer utility was removed. GitHub Actions remains the official validation gate after the user push.
 
 Deliverables:
 
@@ -68,7 +70,7 @@ Completion Criteria:
 - Runtime does not require the .NET SDK.
 - Handoff documents accurately track Milestone 1 progress after every update.
 
-## Milestone 2 â€” Native Importer
+## Milestone 2 Ã¢â‚¬â€ Native Importer
 
 Goal: Completely remove dependence on the original legacy runtime.
 
@@ -96,7 +98,7 @@ Completion Criteria:
 - Server loads only from `Data/`.
 - Imported databases become reference-only.
 
-## Milestone 3 â€” Standalone Server
+## Milestone 3 Ã¢â‚¬â€ Standalone Server
 
 Goal: Build the standalone game server.
 
@@ -121,7 +123,7 @@ Completion Criteria:
 
 - Server boots successfully using only Reforged data.
 
-## Milestone 4 â€” Live Editor
+## Milestone 4 Ã¢â‚¬â€ Live Editor
 
 Goal: Replace static editing with live server editing.
 
@@ -145,7 +147,7 @@ Completion Criteria:
 
 - Server updates safely without direct file editing.
 
-## Milestone 5 â€” Launcher
+## Milestone 5 Ã¢â‚¬â€ Launcher
 
 Goal: Replace BAT files and PowerShell.
 
@@ -167,7 +169,7 @@ Completion Criteria:
 
 - No routine use of BAT files beyond compatibility.
 
-## Milestone 6 â€” Windows Client
+## Milestone 6 Ã¢â‚¬â€ Windows Client
 
 Goal: Build a modern companion-client-inspired client.
 
@@ -188,7 +190,7 @@ Completion Criteria:
 
 - Fully functional Windows client.
 
-## Milestone 7 â€” Android Client
+## Milestone 7 Ã¢â‚¬â€ Android Client
 
 Goal: Mobile companion.
 
@@ -201,7 +203,7 @@ Features:
 - Inventory
 - Notifications
 
-## Milestone 8 â€” Gameplay Systems
+## Milestone 8 Ã¢â‚¬â€ Gameplay Systems
 
 Goal: Complete the server.
 
@@ -220,7 +222,7 @@ Systems:
 - Scripting
 - Respawns
 
-## Milestone 9 â€” Plugin Framework
+## Milestone 9 Ã¢â‚¬â€ Plugin Framework
 
 Goal: Allow extensions without modifying Core.
 
@@ -233,7 +235,7 @@ Features:
 - Server extensions
 - Editor extensions
 
-## Milestone 10 â€” Version 1.0
+## Milestone 10 Ã¢â‚¬â€ Version 1.0
 
 Goal: Production-ready release.
 

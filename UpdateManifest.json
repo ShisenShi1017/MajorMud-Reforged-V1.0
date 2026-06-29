@@ -1,24 +1,25 @@
 ﻿{
-    "codeUpdate":  "0024B",
-    "name":  "CodeUpdate-0024B-CoreStartupDiagnostics-Logger-Fix",
+    "codeUpdate":  "0025",
+    "name":  "CodeUpdate-0025-Rebrand-Completion-Audit",
     "packageType":  "direct-repository-patch",
-    "purpose":  "Corrective build-fix patch for the CodeUpdate-0024 CoreStartupDiagnostics logger API mismatch.",
+    "purpose":  "Complete active Reforged rebrand audit before Milestone 1 finalization.",
     "addsGameplayFeatures":  false,
     "batInstallerCreated":  false,
     "updateZipCreated":  false,
-    "packagingNote":  "No BAT installer or update ZIP was created per current user instruction.",
-    "verificationStatus":  "Local restore/build/test should be run when the .NET SDK is available; GitHub Actions is the official validation gate after commit and push.",
-    "files":  [
-                  "AI_CONTEXT.md",
-                  "CHANGELOG.md",
-                  "Core/Source/Reforged.Core/Diagnostics/CoreStartupDiagnostics.cs",
-                  "Docs/02-Roadmap.md",
-                  "Docs/Architecture/PROJECT_ROADMAP.md",
-                  "Docs/CodeUpdates/CodeUpdate-0024-Core-Verification.md",
-                  "ProjectManifest.json",
-                  "README.md",
-                  "ReleaseNotes.md",
-                  "UpdateManifest.json",
-                  "VERSION.md"
-              ]
+    "gitHubPushCreatedByCodex":  false,
+    "packagingNote":  "No BAT installer or update ZIP was created. Codex only wrote local files; the user controls GitHub push.",
+    "verificationStatus":  "Local verification passed on .NET SDK 8.0.422: restore/build for Core, Server, Importer, Editor, Launcher, Client, and Core smoke tests; smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions remains the official validation gate after user push.",
+    "filesChanged":  [
+                         "AI_CONTEXT.md",
+                         "CHANGELOG.md",
+                         "Docs/CodeUpdates/CodeUpdate-0025-Rebrand-Completion.md",
+                         "ProjectManifest.json",
+                         "README.md",
+                         "ReleaseNotes.md",
+                         "UpdateManifest.json",
+                         "VERSION.md"
+                     ],
+    "filesRemoved":  [
+                         "Tools/Importer/MajorMudDatDecoder.py"
+                     ]
 }

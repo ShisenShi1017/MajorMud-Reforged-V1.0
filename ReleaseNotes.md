@@ -1,3 +1,27 @@
+# CodeUpdate-0025 - Rebrand Completion Audit
+
+This update completes the active rebrand audit for Milestone 1 closure.
+
+## Changed
+
+- Removed obsolete duplicate importer utility Tools/Importer/MajorMudDatDecoder.py.
+- Confirmed active source projects, assemblies, namespaces, and workflows use Reforged.* naming.
+- Updated continuity documents for CodeUpdate-0025.
+
+## Local Verification
+
+- .NET SDK 8.0.422 was detected locally.
+- Restore/build passed for Core, all application projects, and Core smoke tests.
+- Core smoke tests passed and reported all Milestone 1 core smoke tests passed.
+
+## Notes
+
+- No gameplay features are added.
+- No BAT installer or update ZIP was created by Codex.
+- The user controls the GitHub push; GitHub Actions remains the official validation gate after push.
+
+## Previous Release Notes
+
 # CodeUpdate-0024B - Core Startup Diagnostics Logger Fix
 
 This corrective patch repairs the CodeUpdate-0024 build failure in CoreStartupDiagnostics.
@@ -5,6 +29,7 @@ This corrective patch repairs the CodeUpdate-0024 build failure in CoreStartupDi
 ## Fixed
 
 - Replaced the invalid concrete logger Info(...) call with the verified existing Write(LogSeverity.Information, ...) API.
+
 
 ## Notes
 
