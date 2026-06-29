@@ -1,16 +1,16 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0025
+- Current Code Update: 0026
 - Current Database Version: 0009
-- Milestone: Milestone 1 - Core Framework / Rebrand Completion Audit
+- Milestone: Milestone 1 - Core Framework / Finalization Candidate
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
 - Build Verification: GitHub Actions cloud build via `.github/workflows/dotnet-build.yml` using `Reforged.*` project paths.
 
 ## Verification Status
 
-- Current update: CodeUpdate-0025 - Rebrand Completion Audit
-- Milestone 1 closure track is active.
+- Current update: CodeUpdate-0026 - Milestone 1 Finalization
+- Milestone 1 finalization candidate is active; freeze is pending the CodeUpdate-0026 GitHub Actions gate.
 - Local build/test validation should be run when the .NET SDK is available; GitHub Actions remains the official validation gate.
 
 ## Update Packaging
@@ -23,3 +23,6 @@
 
 - CodeUpdate-0025 is a rebrand completion audit and direct local patch with no gameplay features.
 - No BAT installer or update ZIP was created for CodeUpdate-0025 per current workflow; the user controls GitHub push.
+
+- CodeUpdate-0026 is a Milestone 1 finalization candidate with local verification passed and GitHub Actions pending after user push.
+- No BAT installer or update ZIP was created for CodeUpdate-0026; the user controls GitHub push.

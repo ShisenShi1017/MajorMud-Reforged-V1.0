@@ -10,6 +10,8 @@ CodeUpdate-0024B is a corrective build-fix patch for the CoreStartupDiagnostics 
 
 CodeUpdate-0025 completes the active rebrand audit. No gameplay features are added.
 
+CodeUpdate-0026 prepares the Milestone 1 finalization candidate. Milestone 1 should be frozen only after CodeUpdate-0026 GitHub Actions is green.
+
 
 ## Development Phases
 
@@ -67,3 +69,7 @@ Planned focus areas:
 ## Roadmap Rule
 
 The roadmap is a planning document, not an implementation claim. Items listed here are not complete unless recorded in release notes or patch history.
+
+## Milestone 2 Preview
+
+After Milestone 1 is frozen, the next phase should focus on server improvements, host/world editor planning, data validation tools, runtime performance, gameplay systems, and client/editor modernization. Begin implementation only after the user approves the Milestone 2 starting scope.

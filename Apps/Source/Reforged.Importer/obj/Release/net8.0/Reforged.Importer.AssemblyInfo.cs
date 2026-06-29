@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Reforged.Importer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef6876f8d8008901bdb2c463920c3ead1b910692")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c42955e53e32b70d872a6433012daaa62e60fdf1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Reforged.Importer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Reforged.Importer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,3 +1,27 @@
+# CodeUpdate-0026 - Milestone 1 Finalization
+
+This update prepares the Milestone 1 Core Framework baseline for final freeze.
+
+## Changed
+
+- Added a Milestone 1 verification report.
+- Updated continuity documents and manifests for CodeUpdate-0026.
+- Prepared Milestone 2 roadmap direction without starting Milestone 2 implementation.
+
+## Local Verification
+
+- .NET SDK 8.0.422 was detected locally.
+- Restore/build passed for Core, all application projects, and Core smoke tests after the 0026 finalization edits.
+- Core smoke tests passed and reported all Milestone 1 core smoke tests passed.
+
+## Notes
+
+- No gameplay features are added.
+- No BAT installer or update ZIP was created by Codex.
+- The user controls the GitHub push.
+- Milestone 1 should be marked frozen only after CodeUpdate-0026 GitHub Actions is green.
+
+## Previous Release Notes
 # CodeUpdate-0025 - Rebrand Completion Audit
 
 This update completes the active rebrand audit for Milestone 1 closure.
@@ -11,7 +35,7 @@ This update completes the active rebrand audit for Milestone 1 closure.
 ## Local Verification
 
 - .NET SDK 8.0.422 was detected locally.
-- Restore/build passed for Core, all application projects, and Core smoke tests.
+- Restore/build passed for Core, all application projects, and Core smoke tests after the 0026 finalization edits.
 - Core smoke tests passed and reported all Milestone 1 core smoke tests passed.
 
 ## Notes

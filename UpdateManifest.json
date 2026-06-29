@@ -1,25 +1,25 @@
 ﻿{
-    "codeUpdate":  "0025",
-    "name":  "CodeUpdate-0025-Rebrand-Completion-Audit",
+    "codeUpdate":  "0026",
+    "name":  "CodeUpdate-0026-Milestone-1-Finalization",
     "packageType":  "direct-repository-patch",
-    "purpose":  "Complete active Reforged rebrand audit before Milestone 1 finalization.",
+    "purpose":  "Prepare Milestone 1 Core Framework baseline for final freeze after official GitHub Actions validation.",
     "addsGameplayFeatures":  false,
     "batInstallerCreated":  false,
     "updateZipCreated":  false,
     "gitHubPushCreatedByCodex":  false,
-    "packagingNote":  "No BAT installer or update ZIP was created. Codex only wrote local files; the user controls GitHub push.",
-    "verificationStatus":  "Local verification passed on .NET SDK 8.0.422: restore/build for Core, Server, Importer, Editor, Launcher, Client, and Core smoke tests; smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions remains the official validation gate after user push.",
+    "baselineFreezeStatus":  "Candidate locally; final freeze pending CodeUpdate-0026 GitHub Actions after user push.",
+    "verificationStatus":  "Local CodeUpdate-0026 verification passed on .NET SDK 8.0.422 after finalization edits: restore/build for Core, Server, Importer, Editor, Launcher, Client, and Core smoke tests; smoke-test run reported all Milestone 1 core smoke tests passed. User reports CodeUpdate-0025 GitHub Actions was green. CodeUpdate-0026 GitHub Actions remains pending until the user pushes this local patch.",
     "filesChanged":  [
                          "AI_CONTEXT.md",
                          "CHANGELOG.md",
-                         "Docs/CodeUpdates/CodeUpdate-0025-Rebrand-Completion.md",
+                         "Docs/CodeUpdates/CodeUpdate-0026-Milestone-1-Finalization.md",
+                         "Docs/02-Roadmap.md",
+                         "Docs/Architecture/PROJECT_ROADMAP.md",
                          "ProjectManifest.json",
                          "README.md",
                          "ReleaseNotes.md",
+                         "Reports/CodeUpdates/CodeUpdate-0026/Milestone1VerificationReport.md",
                          "UpdateManifest.json",
                          "VERSION.md"
-                     ],
-    "filesRemoved":  [
-                         "Tools/Importer/MajorMudDatDecoder.py"
                      ]
 }
