@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0036 - Knowledge Base and Design Decisions
+
+- Added a CodeUpdate-0036 documentation plan for the Reforged knowledge base, design decisions, and reference-source policy.
+- Added `KnowledgeBase/DesignDecisions/DesignDecisionIndex.md` to track accepted/proposed design decisions.
+- Added `KnowledgeBase/Research/ReferenceSourceCatalog.md` to catalog WCC, WSGSERVE, LLT XML, MegaMUD, Mud Hex, OmniVerse, MudInfo, MudCentral, Reddit/community sources, and other verified references.
+- Added `KnowledgeBase/MeetingNotes/CodeUpdate-0036-Discussion-Recap.md` to preserve the major design discussion after CodeUpdate-0035.
+- Recorded the user-reported green GitHub Actions result for CodeUpdate-0035.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, AI runtime, data rewrite, or raw third-party binary/reference archive import was added.
+- CodeUpdate-0036 is documentation/research only; no local build was run in ChatGPT.
+- GitHub Actions remains pending until the user verifies this direct GitHub documentation update.
+
 ## CodeUpdate-0035 - Server Bootstrap Validation Summary
 
 - Added validation issue-count properties to the non-gameplay Server bootstrap report.
@@ -8,7 +19,7 @@
 - Recorded the user-reported green GitHub Actions result for CodeUpdate-0034.
 - No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, or data rewrite was added.
 - Local .NET 8.0.422 restore/build/smoke verification passed.
-- GitHub Actions remains pending until the user pushes CodeUpdate-0035 and reports the result.
+- GitHub Actions is green by user report.
 
 ## CodeUpdate-0034 - OmniVerse Reference Audit Plan
 
@@ -87,7 +98,7 @@
 
 ## CodeUpdate-0028 - Milestone 2 Scope Plan
 
-- Recorded the user-reported green GitHub Actions result for CodeUpdate-0027.
+- Recorded the user-reported green CodeUpdate-0027 GitHub Actions result.
 - Added the initial Milestone 2 scope plan.
 - Recommended CodeUpdate-0029 as host/server startup and runtime diagnostics foundation work, pending user approval.
 - Updated continuity documents, manifests, and roadmap notes for Milestone 2 planning.
