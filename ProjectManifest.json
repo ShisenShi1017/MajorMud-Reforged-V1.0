@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0030",
+  "codeUpdate": "0031",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -16,17 +16,17 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0030",
+    "currentCodeUpdate": "0031",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "Started with constrained host/server startup diagnostics in CodeUpdate-0029; CodeUpdate-0030 is documentation/governance cleanup.",
-    "lastUpdateName": "CodeUpdate-0030-Truth-Documentation-Cleanup",
+    "milestone2Status": "Continuing with constrained host/server bootstrap work; no gameplay systems are approved.",
+    "lastUpdateName": "CodeUpdate-0031-Server-Bootstrap-Foundation",
     "nextRecommendedWork": [
-      "Apply CodeUpdate-0030 locally.",
-      "Commit and push CodeUpdate-0030 to GitHub.",
+      "Apply CodeUpdate-0031 locally.",
+      "Commit and push CodeUpdate-0031 to GitHub.",
       "Confirm GitHub Actions is green for the current push.",
       "After green Actions, approve the next small Milestone 2 host/server scope.",
       "Do not add gameplay systems without explicit approval."
@@ -35,6 +35,7 @@
   "handoffPolicy": {
     "agentFile": "AGENTS.md",
     "handoffDocument": "AI_CONTEXT.md",
+    "engineeringPrinciples": "DEVELOPMENT_PRINCIPLES.md",
     "mustUpdateEveryCodeUpdate": true,
     "mustUpdateRelevantDocs": true,
     "requiredStartupOrder": [
@@ -44,7 +45,8 @@
       "README.md",
       "VERSION.md",
       "CHANGELOG.md",
-      "ProjectManifest.json"
+      "ProjectManifest.json",
+      "DEVELOPMENT_PRINCIPLES.md"
     ]
   },
   "updateZipPolicy": {
@@ -54,5 +56,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0030 is documentation/governance only. GitHub Actions remains pending until the user applies, commits, and pushes this update."
+  "buildVerification": "CodeUpdate-0031 package was statically verified in ChatGPT, but local restore/build/test could not be run because the packaging container does not have the .NET SDK. GitHub Actions remains pending until push."
 }

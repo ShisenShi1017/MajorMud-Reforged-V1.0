@@ -1,0 +1,29 @@
+using Reforged.Core.Validation;
+
+namespace Reforged.Server;
+
+/// <summary>
+/// Captures the non-gameplay Server bootstrap result.
+/// </summary>
+public sealed class ServerBootstrapReport
+{
+    private readonly List<string> checks = new();
+
+    public IReadOnlyList<string> Checks => checks;
+
+    public string? ProjectRoot { get; internal set; }
+
+    public ValidationResult Validation { get; } = new();
+
+    public ServerStartupDiagnosticReport? StartupDiagnostics { get; private set; }
+
+    public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
+
+    public void AddCheck(string name) => checks.Add(name);
+
+    public void AttachStartupDiagnostics(ServerStartupDiagnosticReport diagnostics)
+    {
+        StartupDiagnostics = diagnostics;
+        Validation.Merge(diagnostics.Validation);
+    }
+}

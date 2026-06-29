@@ -15,8 +15,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 5. Read `VERSION.md`.
 6. Read `CHANGELOG.md`.
 7. Read `ProjectManifest.json`.
-8. Inspect relevant repository files before making changes.
-9. Continue from the latest verified Code Update recorded here.
+8. Read `DEVELOPMENT_PRINCIPLES.md` for engineering decisions.
+9. Inspect relevant repository files before making changes.
+10. Continue from the latest verified Code Update recorded here.
 
 ## Current Repository Facts
 
@@ -25,10 +26,10 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0030 |
+| Current Code Update | 0031 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0030-Truth-Documentation-Cleanup |
-| Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation has started but should proceed in small verified slices |
+| Last Update Name | CodeUpdate-0031-Server-Bootstrap-Foundation |
+| Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | ChatGPT Packaging Policy | Patch-only ZIP with exactly one top-level update folder, included Apply-CodeUpdate BAT, and UpdateManifest.json |
@@ -36,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0030 cleans truth documentation and creates `AGENTS.md` so ChatGPT, Codex, and future handoffs follow the same rules.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 adds a first non-gameplay Server bootstrap entry point around the existing diagnostics path and records engineering principles in `DEVELOPMENT_PRINCIPLES.md`.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -93,6 +94,8 @@ Do not add gameplay systems without explicit user approval.
 | Area | Status | Notes |
 |---|---:|---|
 | Host/server startup diagnostics | Started | CodeUpdate-0029 added startup-only Server diagnostics. |
+| Server bootstrap foundation | Added in 0031 | Adds entry point, bootstrap report, manifest/folder checks, and smoke coverage without gameplay. |
+| Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
 | Host/world editor | Planned | Do not begin larger editor work without approval. |
 | Gameplay systems | Not started | Requires explicit user approval. |
@@ -102,6 +105,7 @@ Do not add gameplay systems without explicit user approval.
 
 | Code Update | Summary |
 |---|---|
+| 0031 | Added non-gameplay Server bootstrap entry point/report, bootstrap smoke coverage, `DEVELOPMENT_PRINCIPLES.md`, and refreshed continuity docs. |
 | 0030 | Added `AGENTS.md`, corrected source-of-truth and mode rules, removed stale continuity direction, and recorded the never-guess creation rule. |
 | 0029 | Added startup-only Server diagnostics and a smoke test for the first constrained Milestone 2 implementation slice. |
 | 0028 | Recorded user-reported green CodeUpdate-0027 GitHub Actions and created the first Milestone 2 scope plan. |
@@ -112,55 +116,52 @@ Do not add gameplay systems without explicit user approval.
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
 
-## CodeUpdate-0030 Handoff
+## CodeUpdate-0031 Handoff
 
-CodeUpdate-0030 is documentation/governance only. It adds `AGENTS.md`, updates truth documents, records the Codex-vs-ChatGPT workflow split, and makes the no-guess creation rule explicit.
+CodeUpdate-0031 is the next small Milestone 2 host/server slice after the user reported CodeUpdate-0030 GitHub Actions green. It adds a real Server project entry point and a bootstrap path that verifies repository root, required folders, ProjectManifest identity, and existing Server startup diagnostics.
 
 Implemented:
 
-- `AGENTS.md`
-- Updated `AI_CONTEXT.md`
-- Updated `README.md`
-- Updated `CHANGELOG.md`
-- Updated `VERSION.md`
-- Updated `ProjectManifest.json`
-- Updated `ReleaseNotes.md`
-- Updated `Docs/Architecture/PROJECT_ROADMAP.md`
-- Updated `Apps/Server/README.md`
-- Added `Reports/CodeUpdates/CodeUpdate-0030/CodeUpdate-0030-Truth-Documentation-Cleanup.md`
+- `Apps/Source/Reforged.Server/Program.cs`
+- `Apps/Source/Reforged.Server/ServerBootstrap.cs`
+- `Apps/Source/Reforged.Server/ServerBootstrapReport.cs`
+- Updated `Apps/Source/Reforged.Server/Reforged.Server.csproj` with `OutputType=Exe`
+- Added Server bootstrap smoke coverage in `Tests/Source/Reforged.Core.Tests/Program.cs`
+- Added `DEVELOPMENT_PRINCIPLES.md`
+- Updated continuity docs and report files
 
 Boundaries:
 
-- No source implementation code.
 - No gameplay systems.
 - No combat.
 - No character creation.
 - No world simulation loop.
 - No networking expansion.
+- No live editor implementation.
 
 ## Verification Status
 
-Verified before creating CodeUpdate-0030:
+Verified before creating CodeUpdate-0031:
 
-- GitHub repository access was available.
-- Current truth documents showed CodeUpdate-0029 and Milestone 2 state.
-- Current CoreStartupDiagnostics logger fix was present in GitHub.
-- GitHub Actions workflow path exists and restores/builds Core, app projects, and tests.
-- Stale source-of-truth and milestone text existed in current docs and was targeted by this docs-only update.
+- `AGENTS.md` exists and records mode/source-of-truth/no-guess/package rules.
+- Current GitHub truth showed CodeUpdate-0030 and Milestone 2 state.
+- Server startup diagnostics and report files exist from CodeUpdate-0029.
+- Core/Server smoke test currently includes Server diagnostics coverage.
+- Local package container does not have the .NET SDK, so local restore/build/test could not be run here.
 
 Package verification required before delivery:
 
 - ZIP exists.
 - ZIP contains exactly one top-level folder.
-- ZIP contains `Apply-CodeUpdate-0030.bat`.
+- ZIP contains `Apply-CodeUpdate-0031.bat`.
 - ZIP contains `UpdateManifest.json`.
 - ZIP contains patch payload only.
 
-GitHub Actions remains pending until the user applies, commits, and pushes CodeUpdate-0030.
+GitHub Actions remains pending until the user applies, commits, and pushes CodeUpdate-0031.
 
 ## Next Recommended Work
 
-1. Apply CodeUpdate-0030 locally.
+1. Apply CodeUpdate-0031 locally.
 2. Commit and push to GitHub.
 3. Confirm GitHub Actions is green for the current push.
 4. After green Actions, approve the next small Milestone 2 host/server scope.
@@ -168,4 +169,4 @@ GitHub Actions remains pending until the user applies, commits, and pushes CodeU
 
 ## New Window Instruction
 
-If this is a new ChatGPT or Codex session, do not ask the user to restate project history. Read `AGENTS.md`, this file, the roadmap, README, VERSION, CHANGELOG, and ProjectManifest, inspect GitHub truth, then continue from the next recommended work unless the user gives different instructions.
+If this is a new ChatGPT or Codex session, do not ask the user to restate project history. Read `AGENTS.md`, this file, the roadmap, README, VERSION, CHANGELOG, ProjectManifest, and `DEVELOPMENT_PRINCIPLES.md`, inspect GitHub truth, then continue from the next recommended work unless the user gives different instructions.

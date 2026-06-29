@@ -14,7 +14,8 @@ var tests = new List<(string Name, Action Body)>
     ("event system publishes and disposes", EventSystemSmoke),
     ("repository health checks run", RepositoryHealthSmoke),
     ("startup diagnostics run", StartupDiagnosticsSmoke),
-    ("server startup diagnostics run", ServerStartupDiagnosticsSmoke)
+    ("server startup diagnostics run", ServerStartupDiagnosticsSmoke),
+    ("server bootstrap runs", ServerBootstrapSmoke)
 };
 
 var failures = new List<string>();
@@ -55,7 +56,7 @@ void DependencyInjectionSmoke()
 void ConfigurationSmoke()
 {
     var temp = Path.Combine(Path.GetTempPath(), $"reforged-config-{Guid.NewGuid():N}.json");
-    File.WriteAllText(temp, "{\"server\":{\"port\":4000},\"enabled\":true}");
+    File.WriteAllText(temp, "{"server":{"port":4000},"enabled":true}");
     try
     {
         var configuration = new RuntimeConfigurationProvider()
@@ -133,6 +134,28 @@ void ServerStartupDiagnosticsSmoke()
     if (report.CoreReport is null || !report.CoreReport.Checks.Contains("repository-health"))
     {
         throw new InvalidOperationException("Server startup diagnostics did not run Core repository health diagnostics.");
+    }
+}
+
+void ServerBootstrapSmoke()
+{
+    var report = new ServerBootstrap().Run(root);
+    if (!report.Passed)
+    {
+        throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "startup-diagnostics" })
+    {
+        if (!report.Checks.Contains(required))
+        {
+            throw new InvalidOperationException($"Server bootstrap did not run required check: {required}");
+        }
+    }
+
+    if (report.StartupDiagnostics is null || !report.StartupDiagnostics.Checks.Contains("server-identity"))
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach Server startup diagnostics.");
     }
 }
 

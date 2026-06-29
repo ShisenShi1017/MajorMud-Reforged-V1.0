@@ -88,7 +88,7 @@ Every Code Update must:
 
 Every Code Update must update all relevant continuity documents, including at minimum:
 
-- `AGENTS.md` when workflow rules change
+- `AGENTS.md` when workflow rules or current project position change
 - `AI_CONTEXT.md`
 - `README.md`
 - `CHANGELOG.md`
@@ -121,12 +121,16 @@ Every ChatGPT-created Code Update ZIP must:
 - Never overwrite `Saves/` or `ImportedDatabases/`.
 - Be physically created and inspected before being linked.
 
-## 9. Current project position after CodeUpdate-0030
+## 9. Engineering principles
 
-- Current Code Update: `0030`
+`DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
+
+## 10. Current project position after CodeUpdate-0031
+
+- Current Code Update: `0031`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: apply/push CodeUpdate-0030, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+- Current priority: apply/push CodeUpdate-0031, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
 
-CodeUpdate-0030 is documentation/governance only. It adds this agent handoff file and corrects continuity rules. It does not add gameplay features or source implementation code.
+CodeUpdate-0031 adds the first non-gameplay Server bootstrap entry point, a bootstrap report, bootstrap smoke coverage, and `DEVELOPMENT_PRINCIPLES.md`. It does not add gameplay features, networking, combat, character creation, or world simulation.

@@ -1,30 +1,40 @@
-# CodeUpdate-0030 - Truth Documentation Cleanup and Agent Handoff Rules
+# CodeUpdate-0031 - Server Bootstrap Foundation
 
-This update cleans the project handoff rules and creates a root `AGENTS.md` file so ChatGPT, Codex, and future sessions follow the same instructions.
+This update adds the first non-gameplay Server bootstrap foundation for Milestone 2.
 
 ## Changed
 
-- Added `AGENTS.md`.
-- Updated `AI_CONTEXT.md`.
-- Updated `README.md`.
-- Updated `CHANGELOG.md`.
-- Updated `VERSION.md`.
-- Updated `ProjectManifest.json`.
-- Updated `Docs/Architecture/PROJECT_ROADMAP.md`.
-- Updated `Apps/Server/README.md`.
-- Added `Reports/CodeUpdates/CodeUpdate-0030/CodeUpdate-0030-Truth-Documentation-Cleanup.md`.
+- Added `Apps/Source/Reforged.Server/Program.cs`.
+- Added `Apps/Source/Reforged.Server/ServerBootstrap.cs`.
+- Added `Apps/Source/Reforged.Server/ServerBootstrapReport.cs`.
+- Updated `Apps/Source/Reforged.Server/Reforged.Server.csproj` to produce an executable Server project.
+- Added Server bootstrap smoke coverage to `Tests/Source/Reforged.Core.Tests/Program.cs`.
+- Added `DEVELOPMENT_PRINCIPLES.md`.
+- Updated continuity documents and Server source README.
+- Added a CodeUpdate-0031 report.
 
-## Rules Recorded
+## Bootstrap behavior
 
-- GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` is the source of truth.
-- Each chat window must identify whether it is Codex mode or ChatGPT mode before making changes.
-- Codex updates local only and waits for user push plus stated green GitHub Actions before continuing.
-- ChatGPT uses ZIP patch workflow for local updates unless explicitly instructed otherwise.
-- Never guess when creating, fixing, packaging, reviewing, or reporting updates.
+The Server bootstrap verifies:
 
-## Notes
+- Repository root discovery.
+- Required project folders.
+- `ProjectManifest.json` readability and basic Reforged identity fields.
+- Existing Server startup diagnostics from CodeUpdate-0029.
 
-- No source implementation code is added.
-- No gameplay features are added.
-- No combat, character creation, world simulation, editor implementation, or networking expansion is added.
+## Boundaries
+
+- No gameplay systems are added.
+- No combat is added.
+- No character creation is added.
+- No world simulation loop is added.
+- No networking expansion is added.
+- No live editor implementation is added.
+
+## Verification
+
+- GitHub truth was read before creating this patch.
+- Existing CodeUpdate-0029 Server diagnostics files were verified before extending them.
+- The update ZIP was verified for one top-level folder, BAT installer, manifest, and patch-only payload before delivery.
+- The ChatGPT packaging container does not include the .NET SDK, so local restore/build/test could not be run here.
 - GitHub Actions remains the official validation gate after the user applies, commits, and pushes this update.
