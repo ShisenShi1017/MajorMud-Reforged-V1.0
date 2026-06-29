@@ -9,7 +9,9 @@ This project explicitly references `Core/Source/Reforged.Core/Reforged.Core.cspr
 - CodeUpdate-0029 added startup-only Server diagnostics.
 - CodeUpdate-0031 adds a non-gameplay Server bootstrap entry point.
 
-The bootstrap path verifies repository root discovery, required project folders, ProjectManifest identity, and existing Server startup diagnostics. It does not start gameplay systems.
+The bootstrap path verifies repository root discovery, required project folders, ProjectManifest identity, and existing Server startup diagnostics. It also captures the manifest project, CodeUpdate, database version, and milestone for startup output. It does not start gameplay systems.
+
+CodeUpdate-0032 extends the bootstrap report so those manifest identity fields are available to future host/server diagnostics and handoff output.
 
 ## Boundaries
 

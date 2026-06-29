@@ -1,3 +1,33 @@
+# CodeUpdate-0032 - Server Bootstrap Manifest Identity
+
+This update improves the non-gameplay Server bootstrap diagnostics.
+
+## Changed
+
+- Server bootstrap report now captures ProjectManifest identity fields.
+- Server bootstrap console output now prints project, CodeUpdate, database version, and milestone.
+- Smoke tests now verify those manifest identity fields are captured.
+- Continuity documents record the 0032 scope and next handoff rule.
+
+## Handoff Improvement
+
+Future updates should include a short next-scope candidate and explicit boundaries separately from completed work. This makes handoff safer without starting unapproved work.
+
+## Boundaries
+
+- No gameplay systems are added.
+- No combat is added.
+- No character creation is added.
+- No world simulation loop is added.
+- No networking expansion is added.
+- No live editor implementation is added.
+
+## Verification
+
+- Local .NET 8.0.422 restore/build/smoke verification passed.
+- GitHub Actions remains the official validation gate after the user pushes this update.
+
+## Previous Release Notes
 # CodeUpdate-0031A - Server Smoke Test Compile Fix
 
 This update is a corrective build-fix patch for CodeUpdate-0031.

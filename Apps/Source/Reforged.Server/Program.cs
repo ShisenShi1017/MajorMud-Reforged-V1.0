@@ -6,6 +6,10 @@ var report = bootstrap.Run(startDirectory);
 
 Console.WriteLine("Reforged Server Bootstrap");
 Console.WriteLine($"ProjectRoot: {report.ProjectRoot ?? "<not found>"}");
+Console.WriteLine($"Project: {report.ProjectName ?? "<unknown>"}");
+Console.WriteLine($"CodeUpdate: {report.CodeUpdate ?? "<unknown>"}");
+Console.WriteLine($"DatabaseVersion: {report.DatabaseVersion ?? "<unknown>"}");
+Console.WriteLine($"Milestone: {report.Milestone ?? "<unknown>"}");
 Console.WriteLine($"Checks: {string.Join(", ", report.Checks)}");
 
 foreach (var issue in report.Validation.Issues)

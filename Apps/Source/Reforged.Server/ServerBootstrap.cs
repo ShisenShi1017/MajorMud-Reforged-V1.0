@@ -86,6 +86,12 @@ public sealed class ServerBootstrap
             var project = root.TryGetProperty("project", out var projectProperty) ? projectProperty.GetString() : null;
             var codeUpdate = root.TryGetProperty("codeUpdate", out var codeUpdateProperty) ? codeUpdateProperty.GetString() : null;
             var databaseVersion = root.TryGetProperty("databaseVersion", out var databaseVersionProperty) ? databaseVersionProperty.GetString() : null;
+            var milestone = root.TryGetProperty("milestone", out var milestoneProperty) ? milestoneProperty.GetString() : null;
+
+            report.ProjectName = project;
+            report.CodeUpdate = codeUpdate;
+            report.DatabaseVersion = databaseVersion;
+            report.Milestone = milestone;
 
             if (!string.Equals(project, "Reforged", StringComparison.Ordinal))
             {

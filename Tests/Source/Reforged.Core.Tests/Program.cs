@@ -157,6 +157,14 @@ void ServerBootstrapSmoke()
     {
         throw new InvalidOperationException("Server bootstrap did not attach Server startup diagnostics.");
     }
+
+    if (report.ProjectName != "Reforged" ||
+        string.IsNullOrWhiteSpace(report.CodeUpdate) ||
+        string.IsNullOrWhiteSpace(report.DatabaseVersion) ||
+        string.IsNullOrWhiteSpace(report.Milestone))
+    {
+        throw new InvalidOperationException("Server bootstrap did not capture ProjectManifest identity fields.");
+    }
 }
 
 static string LocateProjectRoot(string start)

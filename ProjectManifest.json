@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0031A",
+  "codeUpdate": "0032",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -16,17 +16,17 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0031A",
+    "currentCodeUpdate": "0032",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server bootstrap work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0031A-Server-Smoke-Test-Compile-Fix",
+    "lastUpdateName": "CodeUpdate-0032-Server-Bootstrap-Manifest-Identity",
     "nextRecommendedWork": [
-      "CodeUpdate-0031A is the current verified baseline.",
-      "Approve the next small Milestone 2 host/server scope for CodeUpdate-0032.",
+      "Push CodeUpdate-0032 and confirm GitHub Actions restore/build/test passes.",
+      "After green Actions, approve the next small Milestone 2 host/server scope.",
       "Do not add gameplay systems without explicit approval."
     ]
   },
@@ -54,5 +54,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0031 failed GitHub Actions because Tests/Source/Reforged.Core.Tests/Program.cs contained invalid C# string escaping. CodeUpdate-0031A fixes that syntax error. User reported CodeUpdate-0031A GitHub Actions green. Codex local .NET 8.0.422 sequential restore/build/smoke verification passed."
+  "buildVerification": "CodeUpdate-0032 local .NET 8.0.422 restore/build/smoke verification passed. GitHub Actions remains pending until user push."
 }

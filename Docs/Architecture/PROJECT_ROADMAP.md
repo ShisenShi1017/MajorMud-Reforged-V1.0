@@ -57,13 +57,15 @@ The long-term goal is a standalone server, native importer, live editor, launche
 
 ## Current Development Position
 
-- Current Code Update: `0031A`
+- Current Code Update: `0032`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: approve the next small Milestone 2 host/server scope for CodeUpdate-0032.
+- Current priority: push CodeUpdate-0032, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
+
+CodeUpdate-0032 improves Server bootstrap diagnostics by capturing ProjectManifest identity fields for startup output and smoke-test verification.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -104,9 +106,9 @@ Boundaries until approved:
 - No networking expansion.
 - No live editor implementation beyond approved scope.
 
-Next candidate after verified CodeUpdate-0031A:
+Next candidate after CodeUpdate-0032 is pushed and green:
 
-- CodeUpdate-0032: a small host/server follow-up approved by the user before implementation.
+- CodeUpdate-0033: a small host/server follow-up approved by the user before implementation.
 
 ## Milestone 3 - Standalone Server
 

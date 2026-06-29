@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0031A |
+| Current Code Update | 0032 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0031A-Server-Smoke-Test-Compile-Fix |
+| Last Update Name | CodeUpdate-0032-Server-Bootstrap-Manifest-Identity |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrects a syntax error in the test project introduced by the 0031 smoke-test JSON string and is the current verified baseline after user-reported green GitHub Actions.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is pending user push plus GitHub Actions verification.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -94,7 +94,7 @@ Do not add gameplay systems without explicit user approval.
 | Area | Status | Notes |
 |---|---:|---|
 | Host/server startup diagnostics | Started | CodeUpdate-0029 added startup-only Server diagnostics. |
-| Server bootstrap foundation | Corrective patch in 0031A | 0031 added the bootstrap; 0031A fixes the smoke-test compile error. |
+| Server bootstrap foundation | Extended in 0032 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields. |
 | Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
 | Host/world editor | Planned | Do not begin larger editor work without approval. |
@@ -105,6 +105,7 @@ Do not add gameplay systems without explicit user approval.
 
 | Code Update | Summary |
 |---|---|
+| 0032 | Captures ProjectManifest identity fields in Server bootstrap report/startup output and adds smoke coverage for those fields. |
 | 0031A | Corrected invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs` after CodeUpdate-0031 failed GitHub Actions at the test build step. |
 | 0031 | Added non-gameplay Server bootstrap entry point/report, bootstrap smoke coverage, `DEVELOPMENT_PRINCIPLES.md`, and refreshed continuity docs. |
 | 0030 | Added `AGENTS.md`, corrected source-of-truth and mode rules, removed stale continuity direction, and recorded the never-guess creation rule. |
@@ -116,6 +117,29 @@ Do not add gameplay systems without explicit user approval.
 | 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
+
+## CodeUpdate-0032 Handoff
+
+CodeUpdate-0032 is a small Milestone 2 host/server bootstrap improvement. It carries ProjectManifest identity values into the Server bootstrap report and console output so future startup diagnostics and handoffs can name the active project, CodeUpdate, database version, and milestone without relying on scattered document reading.
+
+Implemented:
+
+- Added project, CodeUpdate, database version, and milestone fields to `ServerBootstrapReport`.
+- Updated `ServerBootstrap` to capture those fields while validating `ProjectManifest.json`.
+- Updated Server startup output to print the captured identity values.
+- Added smoke-test coverage for the captured identity fields.
+- Added a handoff improvement rule: future updates should record a concise next-scope candidate and explicit boundaries separately from completed work.
+
+Boundaries:
+
+- No gameplay systems.
+- No combat.
+- No character creation.
+- No world simulation loop.
+- No networking expansion.
+- No editor implementation.
+- No BAT installer or ZIP package was created by Codex.
+- Codex did not push to GitHub.
 
 ## CodeUpdate-0031A Handoff
 
@@ -138,29 +162,22 @@ Boundaries:
 
 ## Verification Status
 
-Verified before creating CodeUpdate-0031A:
+Verified before creating CodeUpdate-0032:
 
-- GitHub truth showed CodeUpdate-0031 and Milestone 2 state.
-- GitHub truth showed the invalid C# JSON string in `Tests/Source/Reforged.Core.Tests/Program.cs`.
-- User provided the GitHub Actions failure output identifying the same file and line.
-- The ChatGPT package container did not have the .NET SDK, so local restore/build/test could not be run during ZIP creation.
-- The user later reported CodeUpdate-0031A GitHub Actions green.
-- Codex local .NET 8.0.422 sequential restore/build/smoke verification passed after the patch was applied locally.
+- GitHub truth baseline was CodeUpdate-0031A at commit `d8873465` by local git history.
+- The user reported CodeUpdate-0031A GitHub Actions green before CodeUpdate-0032 started.
+- Codex local repository was clean before CodeUpdate-0032 edits.
+- Local .NET 8.0.422 restore/build/smoke verification passed.
+- GitHub Actions remains pending until the user pushes CodeUpdate-0032 and reports the result.
 
-Package verification required before delivery:
+CodeUpdate-0032 is the current local update candidate.
 
-- ZIP exists.
-- ZIP contains exactly one top-level folder.
-- ZIP contains `Apply-CodeUpdate-0031A.bat`.
-- ZIP contains `UpdateManifest.json`.
-- ZIP contains patch payload only.
-
-CodeUpdate-0031A is the current verified baseline.
+CodeUpdate-0031A remains the current pushed green baseline until CodeUpdate-0032 is pushed and GitHub Actions is reported green.
 
 ## Next Recommended Work
 
-1. Approve the next small Milestone 2 host/server scope for CodeUpdate-0032.
-2. Keep CodeUpdate-0032 narrow and verifiable.
+1. Push CodeUpdate-0032 and report GitHub Actions status.
+2. After green Actions, approve the next small Milestone 2 host/server scope for CodeUpdate-0033.
 3. Do not add gameplay systems without explicit approval.
 
 ## New Window Instruction

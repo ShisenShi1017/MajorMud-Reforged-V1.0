@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0031A - Server Smoke Test Compile Fix`
+- **Current Code Update:** `CodeUpdate-0032 - Server Bootstrap Manifest Identity`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Approve the next small Milestone 2 host/server scope for CodeUpdate-0032.
+- **Current Priority:** Push CodeUpdate-0032, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -24,6 +24,14 @@ Every session must read these files before changing the repository:
 7. `ProjectManifest.json`
 8. `DEVELOPMENT_PRINCIPLES.md`
 9. Relevant source, test, and application documentation for the requested change
+
+## CodeUpdate-0032 Summary
+
+CodeUpdate-0032 improves the non-gameplay Server bootstrap by capturing ProjectManifest identity fields and printing them during startup diagnostics: project, CodeUpdate, database version, and milestone. It also adds smoke-test coverage for those captured fields.
+
+Local .NET 8.0.422 restore/build/smoke verification passed. GitHub Actions remains pending until the user pushes this update and reports the result.
+
+No gameplay features, combat, character creation, world simulation, networking expansion, or live editor implementation are added.
 
 ## CodeUpdate-0031A Summary
 
@@ -160,9 +168,9 @@ Status: active.
 
 CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure.
 
-Next safe work after verified CodeUpdate-0031A:
+Next safe work after CodeUpdate-0032 is pushed and GitHub Actions is green:
 
-1. Approve the next small Milestone 2 host/server scope for CodeUpdate-0032.
+1. Approve the next small Milestone 2 host/server scope.
 2. Keep work narrow and verifiable.
 3. Do not add gameplay systems without explicit user approval.
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0032 - Server Bootstrap Manifest Identity
+
+- Added ProjectManifest identity capture to the non-gameplay Server bootstrap report.
+- Server bootstrap output now includes project, CodeUpdate, database version, and milestone values.
+- Added smoke-test coverage to verify the bootstrap captures manifest identity fields.
+- Updated Server documentation and continuity records.
+- Added a handoff improvement: future updates should record a short next-scope candidate and explicit boundaries separately from completed work.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, or live editor implementation were added.
+- Local .NET 8.0.422 restore/build/smoke verification passed.
+- GitHub Actions remains pending until the user pushes CodeUpdate-0032 and reports the result.
+
 ## CodeUpdate-0031A - Server Smoke Test Compile Fix
 
 - Corrected invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.

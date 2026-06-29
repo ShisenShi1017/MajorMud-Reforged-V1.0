@@ -13,6 +13,14 @@ public sealed class ServerBootstrapReport
 
     public string? ProjectRoot { get; internal set; }
 
+    public string? ProjectName { get; internal set; }
+
+    public string? CodeUpdate { get; internal set; }
+
+    public string? DatabaseVersion { get; internal set; }
+
+    public string? Milestone { get; internal set; }
+
     public ValidationResult Validation { get; } = new();
 
     public ServerStartupDiagnosticReport? StartupDiagnostics { get; private set; }

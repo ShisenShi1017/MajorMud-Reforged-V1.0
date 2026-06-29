@@ -20,6 +20,14 @@ CodeUpdate-0028 records the green CodeUpdate-0027 GitHub Actions gate and define
 
 CodeUpdate-0029 implements the first approved Milestone 2 slice: host/server startup and runtime diagnostics foundation.
 
+CodeUpdate-0030 records permanent GitHub/source-of-truth, handoff, and Codex-vs-ChatGPT workflow rules.
+
+CodeUpdate-0031 adds the first non-gameplay Server bootstrap entry point and smoke coverage.
+
+CodeUpdate-0031A corrects the CodeUpdate-0031 smoke-test compile failure and is green by user report.
+
+CodeUpdate-0032 improves Server bootstrap diagnostics by capturing ProjectManifest identity fields for startup output and future handoff clarity.
+
 
 ## Development Phases
 
@@ -83,3 +91,5 @@ The roadmap is a planning document, not an implementation claim. Items listed he
 Milestone 2 should focus on engine modernization, host/world editor planning, server improvements, data validation tools, runtime performance, gameplay systems, and client/editor modernization. Begin implementation only after the user approves the Milestone 2 starting scope.
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
+
+Current implementation slice: CodeUpdate-0032 extends the Server bootstrap report/startup output with manifest identity fields. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server scope.
