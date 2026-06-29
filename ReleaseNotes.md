@@ -1,3 +1,24 @@
+# CodeUpdate-0029 - Host Server Startup Diagnostics
+
+This update adds the first narrow Milestone 2 implementation: startup-only Server diagnostics.
+
+## Changed
+
+- Added Server startup diagnostics.
+- Added a Server startup diagnostic report.
+- Added a smoke test for the Server diagnostics path.
+- Updated Server documentation and continuity records.
+
+## Notes
+
+- No gameplay features are added.
+- No combat, character creation, world simulation, editor implementation, or networking expansion is added.
+- No BAT installer or update ZIP was created by Codex.
+- The user controls the GitHub push.
+- Local .NET 8.0.422 restore/build/core-server-smoke verification passed.
+- GitHub Actions remains the official validation gate after push.
+
+## Previous Release Notes
 # CodeUpdate-0028 - Milestone 2 Scope Plan
 
 This update records the green CodeUpdate-0027 GitHub Actions result and creates the first Milestone 2 scope plan.

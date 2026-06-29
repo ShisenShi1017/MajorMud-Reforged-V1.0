@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0029 - Host Server Startup Diagnostics
+
+- Added startup-only Server diagnostics for the first Milestone 2 implementation step.
+- Wired Server startup checks through existing Core configuration, logging, service registry, event bus, repository health, and startup diagnostics.
+- Added a Server startup diagnostics smoke test.
+- Updated the Server README and continuity documents.
+- Local .NET 8.0.422 restore/build/core-server-smoke verification passed.
+- No gameplay systems, combat, character creation, world simulation, editor implementation, or networking expansion were added.
+
 ## CodeUpdate-0028 - Milestone 2 Scope Plan
 
 - Recorded the user-reported green GitHub Actions result for CodeUpdate-0027.

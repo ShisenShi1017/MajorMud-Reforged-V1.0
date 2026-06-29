@@ -23,10 +23,10 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0028 |
+| Current Code Update | 0029 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0028-Milestone-2-Scope-Plan |
-| Milestone Estimate | Milestone 1 frozen; Milestone 2 planning started |
+| Last Update Name | CodeUpdate-0029-Host-Server-Startup-Diagnostics |
+| Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation started with constrained host/server diagnostics |
 | Source of Truth | GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` and latest applied local patch state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Patch-only ZIP with exactly one top-level update folder and included Apply-CodeUpdate BAT |
@@ -38,7 +38,7 @@ CodeUpdate-0019 performs the controlled project rebrand requested by the user af
 
 ## Current Development Goal
 
-Milestone 1 is frozen after the user reported CodeUpdate-0026B and CodeUpdate-0027 GitHub Actions green. Milestone 2 planning has started. Do not begin Milestone 2 implementation until the user approves the starting scope.
+Milestone 1 is frozen after the user reported CodeUpdate-0026B and CodeUpdate-0027 GitHub Actions green. Milestone 2 implementation started in CodeUpdate-0029 after the user approved the host/server startup diagnostics scope. Do not add gameplay systems without explicit user approval.
 
 ## Milestone 1 Deliverable Status
 
@@ -119,6 +119,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0029 | Added startup-only Server diagnostics and a smoke test for the first constrained Milestone 2 implementation slice. |
 | 0028 | Recorded user-reported green CodeUpdate-0027 GitHub Actions and created the first Milestone 2 scope plan. |
 | 0027 | Froze the Milestone 1 Core Framework baseline after user-reported green CodeUpdate-0026B GitHub Actions and prepared the Milestone 2 planning handoff. |
 | 0026B | Cleaned generated artifacts, repaired ignore rules, and fixed visible documentation encoding damage before baseline freeze. |
@@ -164,9 +165,9 @@ This update is intentionally documentation/governance focused. It supports Miles
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0028 and confirm GitHub Actions restore/build/test passes.
-2. Ask the user to approve CodeUpdate-0029 host/server startup and runtime diagnostics foundation.
-3. Begin implementation only after explicit user approval.
+1. Push CodeUpdate-0029 and confirm GitHub Actions restore/build/test passes.
+2. After green Actions, ask the user to approve the next small Milestone 2 host/server scope.
+3. Do not add gameplay systems without explicit user approval.
 
 ## New Window Instruction
 
@@ -272,4 +273,23 @@ Boundaries for 0029 unless the user explicitly approves more: no gameplay system
 
 ## CodeUpdate-0028 Verification
 
-Local CodeUpdate-0028 verification passed on .NET SDK 8.0.422 after planning documentation edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions remains pending until the user pushes CodeUpdate-0028.
+Local CodeUpdate-0028 verification passed on .NET SDK 8.0.422 after planning documentation edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. The user later reported CodeUpdate-0028 GitHub Actions green.
+
+## CodeUpdate-0029 Handoff
+
+CodeUpdate-0029 adds startup-only Server diagnostics as the first constrained Milestone 2 implementation slice after the user reported CodeUpdate-0028 GitHub Actions green for commit `1c479e57fc348568af7a463bae88590fadde29f5`.
+
+Implemented:
+
+- `Apps/Source/Reforged.Server/ServerStartupDiagnostics.cs`
+- `Apps/Source/Reforged.Server/ServerStartupDiagnosticReport.cs`
+- Server startup diagnostics smoke test in `Tests/Source/Reforged.Core.Tests/Program.cs`
+- Test project reference from `Reforged.Core.Tests` to `Reforged.Server`
+
+The Server diagnostics path verifies Server identity, configuration defaults, service registry wiring, event bus behavior, and the existing Core startup diagnostics path.
+
+Boundaries: no gameplay systems, no combat, no character creation, no world simulation loop, no editor implementation, and no networking expansion.
+
+## CodeUpdate-0029 Verification
+
+Local CodeUpdate-0029 verification passed on .NET SDK 8.0.422 after implementation edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core/Server smoke-test project. The smoke-test run reported all Reforged core/server smoke tests passed. GitHub Actions remains pending until the user pushes CodeUpdate-0029.

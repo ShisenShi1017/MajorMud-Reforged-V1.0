@@ -10,13 +10,13 @@ The active source, assembly, and project naming pattern is now `Reforged.*`. Git
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0028 - Milestone 2 Scope Plan`
+**Current Code Update:** `CodeUpdate-0029 - Host Server Startup Diagnostics`
 
 **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 
 **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 
-**Current Priority:** Review and approve the first Milestone 2 implementation scope after CodeUpdate-0028 is pushed and GitHub Actions is green.
+**Current Priority:** Push CodeUpdate-0029, verify GitHub Actions, then approve the next small Milestone 2 host/server scope.
 
 This README is the required starting point for every new ChatGPT session and every developer handoff.
 
@@ -25,6 +25,10 @@ This README is the required starting point for every new ChatGPT session and eve
 ## CodeUpdate-0028 Summary
 
 CodeUpdate-0028 records the user-reported green GitHub Actions result for CodeUpdate-0027 and creates the first Milestone 2 scope plan. It recommends CodeUpdate-0029 as a small, verifiable host/server startup and runtime diagnostics foundation. It does not add gameplay features or implementation code.
+
+## CodeUpdate-0029 Summary
+
+CodeUpdate-0029 starts Milestone 2 implementation by adding startup-only Server diagnostics. The Server path now verifies identity, configuration defaults, service registry wiring, event bus behavior, and existing Core startup diagnostics without starting gameplay systems, combat, character creation, world simulation, editor work, or networking expansion.
 
 ## CodeUpdate-0027 Summary
 

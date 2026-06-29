@@ -46,6 +46,8 @@ CodeUpdate-0027 records the green CodeUpdate-0026B GitHub Actions gate and freez
 
 CodeUpdate-0028 records the green CodeUpdate-0027 GitHub Actions gate and defines the first Milestone 2 scope plan.
 
+CodeUpdate-0029 implements the first approved Milestone 2 slice: host/server startup and runtime diagnostics foundation.
+
 Deliverables:
 
 - Core configuration system
@@ -116,6 +118,8 @@ First implementation candidate:
 - CodeUpdate-0029 - Host/server startup and runtime diagnostics foundation.
 - Scope: wire Server startup through existing Core configuration, logging, service registry, repository health, event bus, and startup diagnostics.
 - Boundaries: no gameplay systems, no combat, no character creation, no networking expansion beyond startup shape unless explicitly approved.
+
+CodeUpdate-0029 implementation status: startup-only diagnostics added; next host/server work should wait until CodeUpdate-0029 is pushed and GitHub Actions is green.
 
 ## Milestone 3 - Standalone Server
 

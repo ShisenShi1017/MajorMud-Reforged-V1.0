@@ -4,6 +4,7 @@ using Reforged.Core.Events;
 using Reforged.Core.Health;
 using Reforged.Core.Logging;
 using Reforged.Core.Services;
+using Reforged.Server;
 
 var root = LocateProjectRoot(AppContext.BaseDirectory);
 var tests = new List<(string Name, Action Body)>
@@ -12,7 +13,8 @@ var tests = new List<(string Name, Action Body)>
     ("configuration loads defaults and flattened json", ConfigurationSmoke),
     ("event system publishes and disposes", EventSystemSmoke),
     ("repository health checks run", RepositoryHealthSmoke),
-    ("startup diagnostics run", StartupDiagnosticsSmoke)
+    ("startup diagnostics run", StartupDiagnosticsSmoke),
+    ("server startup diagnostics run", ServerStartupDiagnosticsSmoke)
 };
 
 var failures = new List<string>();
@@ -36,7 +38,7 @@ if (failures.Count > 0)
     return 1;
 }
 
-Console.WriteLine("All Milestone 1 core smoke tests passed.");
+Console.WriteLine("All Reforged core/server smoke tests passed.");
 return 0;
 
 void DependencyInjectionSmoke()
@@ -109,6 +111,28 @@ void StartupDiagnosticsSmoke()
         {
             throw new InvalidOperationException($"Startup diagnostics did not run required check: {required}");
         }
+    }
+}
+
+void ServerStartupDiagnosticsSmoke()
+{
+    var report = new ServerStartupDiagnostics().Run(root);
+    if (!report.Passed)
+    {
+        throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    foreach (var required in new[] { "server-identity", "server-service-registry", "server-configuration", "server-event-system", "core-startup-diagnostics" })
+    {
+        if (!report.Checks.Contains(required))
+        {
+            throw new InvalidOperationException($"Server startup diagnostics did not run required check: {required}");
+        }
+    }
+
+    if (report.CoreReport is null || !report.CoreReport.Checks.Contains("repository-health"))
+    {
+        throw new InvalidOperationException("Server startup diagnostics did not run Core repository health diagnostics.");
     }
 }
 

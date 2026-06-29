@@ -18,6 +18,8 @@ CodeUpdate-0027 records the green CodeUpdate-0026B GitHub Actions gate and freez
 
 CodeUpdate-0028 records the green CodeUpdate-0027 GitHub Actions gate and defines the first Milestone 2 scope plan.
 
+CodeUpdate-0029 implements the first approved Milestone 2 slice: host/server startup and runtime diagnostics foundation.
+
 
 ## Development Phases
 
@@ -80,4 +82,4 @@ The roadmap is a planning document, not an implementation claim. Items listed he
 
 Milestone 2 should focus on engine modernization, host/world editor planning, server improvements, data validation tools, runtime performance, gameplay systems, and client/editor modernization. Begin implementation only after the user approves the Milestone 2 starting scope.
 
-Recommended first implementation candidate after CodeUpdate-0028 is green: host/server startup and runtime diagnostics foundation. This should stay small and verifiable by wiring Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
+First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.

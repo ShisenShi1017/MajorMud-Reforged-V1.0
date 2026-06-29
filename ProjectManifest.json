@@ -1,7 +1,7 @@
 ﻿{
     "project":  "Reforged",
     "projectVersion":  "0.1.0",
-    "codeUpdate":  "0028",
+    "codeUpdate":  "0029",
     "databaseVersion":  "0009",
     "milestone":  "Milestone 2 - Engine Modernization / Host & World Editor Planning",
     "runtimePolicy":  "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
@@ -13,7 +13,7 @@
                  ],
     "developmentStatus":  {
                               "currentMilestone":  "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-                              "currentCodeUpdate":  "0028",
+                              "currentCodeUpdate":  "0029",
                               "currentDatabaseVersion":  "0009",
                               "completedMilestones":  [
 
@@ -98,7 +98,11 @@
                                                                     "Milestone 2 planning handoff prepared",
                                                                     "user-reported CodeUpdate-0027 GitHub Actions green gate recorded",
                                                                     "CodeUpdate-0028 Milestone 2 scope plan",
-                                                                    "CodeUpdate-0029 host/server diagnostics candidate selected"
+                                                                    "CodeUpdate-0029 host/server diagnostics candidate selected",
+                                                                    "user-reported CodeUpdate-0028 GitHub Actions green gate recorded",
+                                                                    "Server startup diagnostics",
+                                                                    "Server startup diagnostic report",
+                                                                    "Server startup diagnostics smoke test"
                                                                 ],
                               "milestone1RemainingComponents":  [
                                                                     "None; Milestone 1 baseline is frozen after user-reported green CodeUpdate-0026B GitHub Actions."
@@ -124,9 +128,9 @@
                             "No duplicated models across applications":  "Frozen in Milestone 1 baseline"
                         },
     "nextRecommendedWork":  [
-                                "Push CodeUpdate-0028 and confirm GitHub Actions restore/build/test passes.",
-                                "Ask the user to approve CodeUpdate-0029 host/server startup and runtime diagnostics foundation.",
-                                "Begin implementation only after explicit user approval."
+                                "Push CodeUpdate-0029 and confirm GitHub Actions restore/build/test passes.",
+                                "After green Actions, ask the user to approve the next small Milestone 2 host/server scope.",
+                                "Do not add gameplay systems without explicit user approval."
                             ],
     "updateZipPolicy":  "Each update ZIP contains exactly one named top-level update folder; the apply BAT lives inside that folder and runs from there.",
     "handoffStatus":  {
@@ -135,7 +139,7 @@
                           "containsMilestoneTable":  true,
                           "containsMilestoneChecklist":  true
                       },
-    "lastUpdateName":  "CodeUpdate-0028-Milestone-2-Scope-Plan",
-    "currentCodeUpdate":  "0028",
-    "buildVerification":  "CodeUpdate-0028 local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions remains pending until user push."
+    "lastUpdateName":  "CodeUpdate-0029-Host-Server-Startup-Diagnostics",
+    "currentCodeUpdate":  "0029",
+    "buildVerification":  "CodeUpdate-0029 local .NET 8.0.422 restore/build/core-server-smoke verification passed; GitHub Actions remains pending until user push."
 }
