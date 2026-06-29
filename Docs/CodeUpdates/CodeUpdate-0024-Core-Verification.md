@@ -1,4 +1,4 @@
-# CodeUpdate-0024 — Core Verification
+# CodeUpdate-0024 â€” Core Verification
 
 ## Purpose
 
@@ -40,3 +40,9 @@ The local packaging environment used for this update did not include the .NET SD
 ## Packaging Correction
 
 CodeUpdate-0024 and all future Code Updates must be delivered as patch-only packages unless the user explicitly requests a full repository baseline. Each update ZIP must contain exactly one top-level folder, include an `Apply-CodeUpdate-XXXX.bat` installer, and include an `UpdateManifest.json` describing the changed/new files.
+
+## CodeUpdate-0024B Corrective Patch
+
+CodeUpdate-0024B repairs the Core startup diagnostics build failure introduced by the logger API mismatch. CoreStartupDiagnostics was calling Info(...) on the concrete InMemoryReforgedLogger type, but the concrete logger implementation exposes the verified Write(LogSeverity severity, string source, string message, string? detail = null) method. The corrective patch now writes the startup diagnostic result with Write(LogSeverity.Information, ...).
+
+This patch is build-fix only and does not add gameplay features. No BAT installer or update ZIP was created per current user instruction. Verification should include local dotnet restore, dotnet build, and smoke tests when the SDK is available; GitHub Actions remains the official validation gate after commit and push.

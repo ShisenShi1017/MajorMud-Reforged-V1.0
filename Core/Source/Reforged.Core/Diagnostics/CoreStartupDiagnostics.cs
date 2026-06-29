@@ -52,7 +52,7 @@ public sealed class CoreStartupDiagnostics
             report.Validation.Add(ValidationSeverity.Error, "DUPLICATE_MODEL_ENFORCEMENT", issue);
         }
 
-        logger.Info("CoreStartupDiagnostics", report.Passed ? "Milestone 1 startup diagnostics passed." : "Milestone 1 startup diagnostics found issues.");
+        logger.Write(LogSeverity.Information, "CoreStartupDiagnostics", report.Passed ? "Milestone 1 startup diagnostics passed." : "Milestone 1 startup diagnostics found issues.");
         return report;
     }
 }

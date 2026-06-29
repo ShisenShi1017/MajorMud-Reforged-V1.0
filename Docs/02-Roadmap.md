@@ -1,6 +1,13 @@
 # Reforged Roadmap
 
-Last Updated: 2026-06-27
+Last Updated: 2026-06-28
+
+## Current Milestone Closure Track
+
+The project is in Milestone 1 - Core Framework Completion. Remaining work is verification-only: dependency injection setup, configuration loading, repository/data loading health, event system behavior, startup diagnostics, smoke tests, GitHub Actions build validation, continuity document updates, and final Milestone 1 baseline freeze after verification passes.
+
+CodeUpdate-0024B is a corrective build-fix patch for the CoreStartupDiagnostics logger API mismatch. It does not add gameplay features.
+
 
 ## Development Phases
 

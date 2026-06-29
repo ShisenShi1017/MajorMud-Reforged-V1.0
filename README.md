@@ -10,17 +10,21 @@ The active source, assembly, and project naming pattern is now `Reforged.*`. Git
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0015 — Data Cross-Reference Validation`
+**Current Code Update:** `CodeUpdate-0024B - Core Startup Diagnostics Logger Fix`
 
-**Current Database Version:** `DatabaseVersion-0009 — Server-Ready Data Baseline`
+**Current Database Version:** `DatabaseVersion-0009 â€” Server-Ready Data Baseline`
 
-**Active Milestone:** `Milestone 1 — Core Framework / Completion Verification`
+**Active Milestone:** `Milestone 1 â€” Core Framework / Completion Verification`
 
-**Current Priority:** Finish Milestone 1 by adding Data loaders, preparing Bin runtime expectations, expanding smoke tests, and producing final verification before starting Milestone 2.
+**Current Priority:** Finish Milestone 1 verification by repairing build blockers, confirming dependency injection, configuration loading, repository/data loading, event-system behavior, startup diagnostics, and smoke tests before starting Milestone 2.
 
 This README is the required starting point for every new ChatGPT session and every developer handoff.
 
 ---
+
+## CodeUpdate-0024B Summary
+
+CodeUpdate-0024B is a corrective Milestone 1 build-fix patch. It repairs the CoreStartupDiagnostics logger API mismatch by replacing the invalid concrete Info(...) call with the verified existing Write(LogSeverity.Information, ...) logging API. It does not add gameplay features. No BAT installer or update ZIP was created per current user instruction.
 
 ## CodeUpdate-0015 Summary
 
@@ -202,7 +206,7 @@ The user does not want to install SDKs or developer runtimes just to run finishe
 
 ---
 
-## Current Milestone: Milestone 1 — Core Framework
+## Current Milestone: Milestone 1 â€” Core Framework
 
 The active milestone is Core.
 
@@ -233,19 +237,19 @@ Applications should not directly depend on each other.
 
 ```text
 Apps
-  │
-  ▼
+  â”‚
+  â–¼
 Core
-  │
-  ▼
+  â”‚
+  â–¼
 Data Repository
-  │
-  ▼
+  â”‚
+  â–¼
 Server
-  │
-  ├── Editor API
-  ├── Client Sessions
-  └── Launcher / Admin Tools
+  â”‚
+  â”œâ”€â”€ Editor API
+  â”œâ”€â”€ Client Sessions
+  â””â”€â”€ Launcher / Admin Tools
 ```
 
 The editor should eventually edit live server data through a server/admin API rather than editing runtime files directly while the server is running.
@@ -314,7 +318,7 @@ Milestone 1 continues with Core contracts for events, services, validation pipel
 Runtime rule: Reforged must not require the .NET SDK to run. Normal users must launch compiled executables or runtime-ready artifacts from `Bin/`; SDK launch/build commands are not valid runtime paths.
 
 Update rule: each Code Update must be executable from its own extracted folder and apply into the main project folder through its included `Apply-*.bat` script.
-## Code Update 0008 — Governance and Core Services
+## Code Update 0008 â€” Governance and Core Services
 
 Core Update 0008 continues Milestone 1 by adding project-governance documents and additional Core services. New sessions should begin with `AI_CONTEXT.md`, then `Docs/Architecture/PROJECT_ROADMAP.md`.
 
@@ -393,3 +397,7 @@ Milestone 1 closure has begun. Current work is verification-only: dependency inj
 
 GitHub Actions is the authoritative build gate and now restores, builds, and runs the Core smoke-test project.
 
+
+### CodeUpdate-0024B Corrective Patch
+
+CodeUpdate-0024B repairs the CodeUpdate-0024 build failure in CoreStartupDiagnostics by using the existing in-memory logger Write(LogSeverity.Information, ...) API. This direct repository patch updates continuity documents and does not create a BAT installer or update ZIP per current user instruction. GitHub Actions remains the official validation gate after the patch is committed and pushed.

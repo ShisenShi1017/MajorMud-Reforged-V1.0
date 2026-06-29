@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0024",
+  "codeUpdate": "0024B",
   "databaseVersion": "0009",
   "milestone": "Milestone 1 - Core Framework / Core Verification",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
@@ -13,7 +13,7 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 1 - Core Framework",
-    "currentCodeUpdate": "0024",
+    "currentCodeUpdate": "0024B",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [],
     "milestone1CompletedComponents": [
@@ -79,6 +79,7 @@
       "old project-name textual branding cleanup",
       "Core verification smoke tests",
       "startup diagnostics verification",
+      "CodeUpdate-0024B CoreStartupDiagnostics logger API mismatch repair",
       "patch-only CodeUpdate packaging policy",
       "CodeUpdate BAT installer requirement"
     ],
@@ -119,7 +120,7 @@
     "containsMilestoneTable": true,
     "containsMilestoneChecklist": true
   },
-  "lastUpdateName": "CodeUpdate-0020-GitHub-Actions-Rebrand-Path-Repair",
-  "currentCodeUpdate": "0020",
-  "buildVerification": "GitHub Actions cloud build using Reforged.* project paths."
+  "lastUpdateName": "CodeUpdate-0024B-CoreStartupDiagnostics-Logger-Fix",
+  "currentCodeUpdate": "0024B",
+  "buildVerification": "GitHub Actions cloud build using Reforged.* project paths; CodeUpdate-0024B should restore/build/test locally when the .NET SDK is available."
 }

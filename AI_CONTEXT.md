@@ -23,11 +23,11 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | Current Milestone | Milestone 1 - Core Framework |
-| Current Code Update | 0024 |
+| Current Code Update | 0024B |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0024-Core-Verification |
+| Last Update Name | CodeUpdate-0024B-CoreStartupDiagnostics-Logger-Fix |
 | Milestone Estimate | 92-95% complete |
-| Source of Truth | Latest user-uploaded repository ZIP after each applied update |
+| Source of Truth | GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` and latest applied local patch state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Patch-only ZIP with exactly one top-level update folder and included Apply-CodeUpdate BAT |
 
@@ -119,6 +119,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. No BAT installer or update ZIP was created per current user instruction. |
 | 0017 | Added GitHub Actions cloud verification documentation, Bin runtime artifact expectations, and SDK-free runtime handoff catalog validation. |
 | 0016 | Added repository-backed Core Data loaders, a Core Data catalog, loader health checks, and GitHub Actions cloud build verification. |
 | 0015 | Added source-level Data cross-reference validation for rooms, items, monsters, shops, quests, loot tables, races, classes, and world data. |
@@ -194,7 +195,13 @@ Important validation note:
 
 Next update:
 
-- CodeUpdate-0025 — Rebrand Completion.
+- CodeUpdate-0025 â€” Rebrand Completion.
 - Audit remaining `MajorMud` identifiers.
 - Complete remaining Reforged namespace/assembly/documentation cleanup where appropriate.
 
+
+## CodeUpdate-0024B Handoff
+
+CodeUpdate-0024B is a corrective build-fix patch for CodeUpdate-0024. It fixes the CoreStartupDiagnostics logger API mismatch by replacing the invalid concrete Info(...) call with the verified existing Write(LogSeverity.Information, ...) method on InMemoryReforgedLogger.
+
+This patch does not add gameplay features. No BAT installer or update ZIP was created per current user instruction. Run local dotnet restore, dotnet build, and smoke tests when the SDK is available; GitHub Actions remains the official validation gate after commit and push.

@@ -1,3 +1,20 @@
+# CodeUpdate-0024B - Core Startup Diagnostics Logger Fix
+
+This corrective patch repairs the CodeUpdate-0024 build failure in CoreStartupDiagnostics.
+
+## Fixed
+
+- Replaced the invalid concrete logger Info(...) call with the verified existing Write(LogSeverity.Information, ...) API.
+
+## Notes
+
+- This is a build-fix patch only.
+- No gameplay features are added.
+- No BAT installer or update ZIP was created per current user instruction.
+- GitHub Actions remains the official validation gate after commit/push.
+
+## Previous Release Notes
+
 # CodeUpdate-0023 - Fresh GitHub Actions Workflow with BAT Installer
 
 This update repeats the fresh GitHub Actions workflow setup and adds the missing Windows batch installer.

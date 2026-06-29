@@ -1,5 +1,12 @@
 # Changelog
 
+## CodeUpdate-0024B - Core Startup Diagnostics Logger Fix
+
+- Corrected the CoreStartupDiagnostics logger call to use the verified InMemoryReforgedLogger.Write(LogSeverity.Information, ...) API.
+- Fixed the CodeUpdate-0024 build failure caused by calling Info on the concrete in-memory logger type.
+- Recorded CodeUpdate-0024B as a direct corrective patch with no gameplay feature work.
+- No BAT installer or update package was created per current user instruction.
+
 ## CodeUpdate-0024 - Core Verification
 
 - Added dependency-free Core event bus contracts and in-memory implementation.
@@ -114,7 +121,7 @@
 - Added runtime execution policy: normal project runtime must not require the .NET SDK.
 - Added update execution policy: update package must run from its own extracted folder and apply into the main project folder.
 - Preserves `Saves/` and `ImportedDatabases/`; neither folder is included in this package.
-## CodeUpdate-0008 — Governance and Core Services
+## CodeUpdate-0008 â€” Governance and Core Services
 
 - Continued Milestone 1 Core Framework work.
 - Added `AI_CONTEXT.md` as a fast entry point for new ChatGPT windows and developers.
@@ -123,7 +130,7 @@
 - Added Core configuration provider, serializer contract/implementation, event bus, service registry, manifest reader, health checker, path safety helper, and version manager.
 - Updated project manifest with development status tracking.
 - Preserved no-SDK runtime policy and extracted-folder update execution rule.
-## CodeUpdate-0009 — Core Audit and Test Foundation
+## CodeUpdate-0009 â€” Core Audit and Test Foundation
 
 - Continued Milestone 1 Core Framework work.
 - Added `IReforgedDataRecord` so applications can share one Core data-record identity contract.
