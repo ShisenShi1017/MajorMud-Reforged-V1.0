@@ -10,17 +10,21 @@ The active source, assembly, and project naming pattern is now `Reforged.*`. Git
 
 ## Current Project State
 
-**Current Code Update:** `CodeUpdate-0026 - Milestone 1 Finalization`
+**Current Code Update:** `CodeUpdate-0026B - Baseline Cleanup`
 
-**Current Database Version:** `DatabaseVersion-0009 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Server-Ready Data Baseline`
+**Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 
 **Active Milestone:** `Milestone 1 - Core Framework / Finalization Candidate`
 
-**Current Priority:** Push CodeUpdate-0026, verify GitHub Actions, then freeze the Milestone 1 baseline and begin Milestone 2 planning only after the official gate is green.
+**Current Priority:** Push CodeUpdate-0026B, verify GitHub Actions, then freeze the Milestone 1 baseline and begin Milestone 2 planning only after the official gate is green.
 
 This README is the required starting point for every new ChatGPT session and every developer handoff.
 
 ---
+
+## CodeUpdate-0026B Summary
+
+CodeUpdate-0026B cleans the Milestone 1 finalization candidate by removing generated source-project build outputs, repairing targeted ignore rules, and fixing visible documentation encoding damage. It does not add gameplay features. Milestone 1 should be frozen only after the user pushes this patch and GitHub Actions is green.
 
 ## CodeUpdate-0026 Summary
 
@@ -214,7 +218,7 @@ The user does not want to install SDKs or developer runtimes just to run finishe
 
 ---
 
-## Current Milestone: Milestone 1 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Core Framework
+## Current Milestone: Milestone 1 - Core Framework
 
 The active milestone is Core.
 
@@ -245,19 +249,19 @@ Applications should not directly depend on each other.
 
 ```text
 Apps
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¼
+  |
+  v
 Core
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¼
+  |
+  v
 Data Repository
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¼
+  |
+  v
 Server
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ Editor API
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ Client Sessions
-  ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ Launcher / Admin Tools
+  |
+  +-- Editor API
+  +-- Client Sessions
+  +-- Launcher / Admin Tools
 ```
 
 The editor should eventually edit live server data through a server/admin API rather than editing runtime files directly while the server is running.
@@ -326,7 +330,7 @@ Milestone 1 continues with Core contracts for events, services, validation pipel
 Runtime rule: Reforged must not require the .NET SDK to run. Normal users must launch compiled executables or runtime-ready artifacts from `Bin/`; SDK launch/build commands are not valid runtime paths.
 
 Update rule: each Code Update must be executable from its own extracted folder and apply into the main project folder through its included `Apply-*.bat` script.
-## Code Update 0008 ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Governance and Core Services
+## Code Update 0008 - Governance and Core Services
 
 Core Update 0008 continues Milestone 1 by adding project-governance documents and additional Core services. New sessions should begin with `AI_CONTEXT.md`, then `Docs/Architecture/PROJECT_ROADMAP.md`.
 
@@ -373,7 +377,7 @@ Code Update 0012 continues Milestone 1 by adding shared source-level Core servic
 
 ## Current Code Update
 
-Current Code Update: **0026 - Milestone 1 Finalization**
+Current Code Update: **0026B - Baseline Cleanup**
 
 This update adds Core repository-backed loaders for the current canonical `Data/` JSON categories and a GitHub Actions workflow for cloud build verification. Normal runtime still does not require the .NET SDK on the user machine.
 

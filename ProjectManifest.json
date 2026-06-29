@@ -1,7 +1,7 @@
 ﻿{
     "project":  "Reforged",
     "projectVersion":  "0.1.0",
-    "codeUpdate":  "0026",
+    "codeUpdate":  "0026B",
     "databaseVersion":  "0009",
     "milestone":  "Milestone 1 - Core Framework / Finalization Candidate",
     "runtimePolicy":  "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
@@ -13,7 +13,7 @@
                  ],
     "developmentStatus":  {
                               "currentMilestone":  "Milestone 1 - Core Framework",
-                              "currentCodeUpdate":  "0026",
+                              "currentCodeUpdate":  "0026B",
                               "currentDatabaseVersion":  "0009",
                               "completedMilestones":  [
 
@@ -88,10 +88,13 @@
                                                                     "obsolete duplicate MajorMud-named importer utility removed",
                                                                     "CodeUpdate-0026 Milestone 1 verification report",
                                                                     "Milestone 2 roadmap direction prepared",
-                                                                    "local .NET 8 restore build smoke-test verification"
+                                                                    "local .NET 8 restore build smoke-test verification",
+                                                                    "CodeUpdate-0026B generated artifact cleanup",
+                                                                    "source project build-output ignore rules",
+                                                                    "documentation encoding cleanup"
                                                                 ],
                               "milestone1RemainingComponents":  [
-                                                                    "CodeUpdate-0026 GitHub Actions validation after user push",
+                                                                    "CodeUpdate-0026B GitHub Actions validation after user push",
                                                                     "Milestone 1 baseline freeze confirmation after green Actions"
                                                                 ]
                           },
@@ -115,7 +118,7 @@
                             "No duplicated models across applications":  "Substantially underway"
                         },
     "nextRecommendedWork":  [
-                                "Push CodeUpdate-0026 and confirm GitHub Actions restore/build/test passes.",
+                                "Push CodeUpdate-0026B and confirm GitHub Actions restore/build/test passes.",
                                 "After green Actions, record Milestone 1 baseline freeze confirmation.",
                                 "Begin Milestone 2 only after user approval."
                             ],
@@ -126,7 +129,7 @@
                           "containsMilestoneTable":  true,
                           "containsMilestoneChecklist":  true
                       },
-    "lastUpdateName":  "CodeUpdate-0026-Milestone-1-Finalization",
-    "currentCodeUpdate":  "0026",
-    "buildVerification":  "Local CodeUpdate-0026 verification passed on .NET SDK 8.0.422 after finalization edits: restore/build for Core, Server, Importer, Editor, Launcher, Client, and Core smoke tests; smoke-test run reported all Milestone 1 core smoke tests passed. User reports CodeUpdate-0025 GitHub Actions was green. CodeUpdate-0026 GitHub Actions remains pending until the user pushes this local patch."
+    "lastUpdateName":  "CodeUpdate-0026B-Baseline-Cleanup",
+    "currentCodeUpdate":  "0026B",
+    "buildVerification":  "CodeUpdate-0026B local .NET 8.0.422 restore/build/smoke-test verification passed; GitHub Actions remains pending until user push."
 }

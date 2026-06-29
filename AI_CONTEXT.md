@@ -23,10 +23,10 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | Current Milestone | Milestone 1 - Core Framework |
-| Current Code Update | 0026 |
+| Current Code Update | 0026B |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0026-Milestone-1-Finalization |
-| Milestone Estimate | 98-99% complete; final freeze pending CodeUpdate-0026 GitHub Actions |
+| Last Update Name | CodeUpdate-0026B-Baseline-Cleanup |
+| Milestone Estimate | 98-99% complete; final freeze pending CodeUpdate-0026B GitHub Actions |
 | Source of Truth | GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` and latest applied local patch state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | Update Packaging Policy | Patch-only ZIP with exactly one top-level update folder and included Apply-CodeUpdate BAT |
@@ -38,7 +38,7 @@ CodeUpdate-0019 performs the controlled project rebrand requested by the user af
 
 ## Current Development Goal
 
-Continue Milestone 1 until CodeUpdate-0026 is pushed and GitHub Actions is green. Do not begin Milestone 2 implementation until the Milestone 1 baseline is frozen after that official gate.
+Continue Milestone 1 until CodeUpdate-0026B is pushed and GitHub Actions is green. Do not begin Milestone 2 implementation until the Milestone 1 baseline is frozen after that official gate.
 
 ## Milestone 1 Deliverable Status
 
@@ -119,6 +119,7 @@ Do not leave this document with stale update numbers, stale milestone estimates,
 
 | Code Update | Summary |
 |---|---|
+| 0026B | Cleaned generated artifacts, repaired ignore rules, and fixed visible documentation encoding damage before baseline freeze. |
 | 0026 | Added Milestone 1 verification report, refreshed continuity docs, and prepared final freeze pending GitHub Actions. |
 | 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. No BAT installer or update ZIP was created per current user instruction. |
@@ -161,7 +162,7 @@ This update is intentionally documentation/governance focused. It supports Miles
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0026 and confirm GitHub Actions restore/build/test passes.
+1. Push CodeUpdate-0026B and confirm GitHub Actions restore/build/test passes.
 2. After green Actions, record the Milestone 1 baseline freeze confirmation.
 3. Begin Milestone 2 only after user approval.
 
@@ -229,3 +230,13 @@ Next after green Actions: record the freeze confirmation, then begin Milestone 2
 ## CodeUpdate-0026 Verification
 
 Local CodeUpdate-0026 verification passed on .NET SDK 8.0.422 after finalization edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. GitHub Actions remains pending until the user pushes CodeUpdate-0026.
+
+## CodeUpdate-0026B Handoff
+
+CodeUpdate-0026B cleans the Milestone 1 finalization candidate before baseline freeze. It removes generated source-project build outputs from the local workspace, preserves the intentional root Bin/ runtime handoff folder, repairs .gitignore, and fixes visible documentation encoding damage.
+
+This patch does not add gameplay features. Codex writes only to the local workspace; the user controls the GitHub push. Milestone 1 should be marked frozen only after CodeUpdate-0026B GitHub Actions is green.
+
+## CodeUpdate-0026B Verification
+
+Local CodeUpdate-0026B verification passed on .NET SDK 8.0.422 after baseline cleanup edits. Restore/build passed for Core, Server, Importer, Editor, Launcher, Client, and the Core smoke-test project. The smoke-test run reported all Milestone 1 core smoke tests passed. A first parallel build attempt hit a local file-lock on the shared Core output; sequential verification passed cleanly. GitHub Actions remains pending until the user pushes CodeUpdate-0026B.

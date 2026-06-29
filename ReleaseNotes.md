@@ -1,3 +1,23 @@
+# CodeUpdate-0026B - Baseline Cleanup
+
+This update cleans the Milestone 1 finalization candidate before baseline freeze.
+
+## Changed
+
+- Removed generated source-project `bin/` and `obj/` folders from the local workspace.
+- Added targeted `.gitignore` rules for source/test project build outputs.
+- Repaired visible documentation encoding damage.
+- Added a baseline cleanup report.
+
+## Notes
+
+- No gameplay features are added.
+- No BAT installer or update ZIP was created by Codex.
+- The user controls the GitHub push.
+- Local .NET 8.0.422 restore/build/smoke-test verification passed.
+- Milestone 1 should be marked frozen only after CodeUpdate-0026B GitHub Actions is green.
+
+## Previous Release Notes
 # CodeUpdate-0026 - Milestone 1 Finalization
 
 This update prepares the Milestone 1 Core Framework baseline for final freeze.

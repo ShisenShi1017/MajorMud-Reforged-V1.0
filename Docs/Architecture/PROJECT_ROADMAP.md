@@ -28,7 +28,7 @@ Reforged is not a runtime-dependent copy of the original legacy MUD. It is a cle
 
 The long-term goal is a standalone server, native importer, live editor, launcher, Windows client, Android client, gameplay systems, and plugin framework that do not require the original legacy MUD runtime.
 
-## Milestone 1 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Core Framework (Current)
+## Milestone 1 - Core Framework (Current)
 
 Goal: Build the shared foundation that every application depends on.
 
@@ -72,7 +72,7 @@ Completion Criteria:
 - Runtime does not require the .NET SDK.
 - Handoff documents accurately track Milestone 1 progress after every update.
 
-## Milestone 2 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Native Importer
+## Milestone 2 - Native Importer
 
 Goal: Completely remove dependence on the original legacy runtime.
 
@@ -100,7 +100,7 @@ Completion Criteria:
 - Server loads only from `Data/`.
 - Imported databases become reference-only.
 
-## Milestone 3 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Standalone Server
+## Milestone 3 - Standalone Server
 
 Goal: Build the standalone game server.
 
@@ -125,7 +125,7 @@ Completion Criteria:
 
 - Server boots successfully using only Reforged data.
 
-## Milestone 4 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Live Editor
+## Milestone 4 - Live Editor
 
 Goal: Replace static editing with live server editing.
 
@@ -149,7 +149,7 @@ Completion Criteria:
 
 - Server updates safely without direct file editing.
 
-## Milestone 5 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Launcher
+## Milestone 5 - Launcher
 
 Goal: Replace BAT files and PowerShell.
 
@@ -171,7 +171,7 @@ Completion Criteria:
 
 - No routine use of BAT files beyond compatibility.
 
-## Milestone 6 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Windows Client
+## Milestone 6 - Windows Client
 
 Goal: Build a modern companion-client-inspired client.
 
@@ -192,7 +192,7 @@ Completion Criteria:
 
 - Fully functional Windows client.
 
-## Milestone 7 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Android Client
+## Milestone 7 - Android Client
 
 Goal: Mobile companion.
 
@@ -205,7 +205,7 @@ Features:
 - Inventory
 - Notifications
 
-## Milestone 8 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Gameplay Systems
+## Milestone 8 - Gameplay Systems
 
 Goal: Complete the server.
 
@@ -224,7 +224,7 @@ Systems:
 - Scripting
 - Respawns
 
-## Milestone 9 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Plugin Framework
+## Milestone 9 - Plugin Framework
 
 Goal: Allow extensions without modifying Core.
 
@@ -237,7 +237,7 @@ Features:
 - Server extensions
 - Editor extensions
 
-## Milestone 10 ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â Version 1.0
+## Milestone 10 - Version 1.0
 
 Goal: Production-ready release.
 

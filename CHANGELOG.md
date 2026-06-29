@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0026B - Baseline Cleanup
+
+- Removed generated source-project `bin/` and `obj/` build artifacts from the local workspace.
+- Added targeted `.gitignore` rules for source/test project build outputs while preserving the intentional root `Bin/` runtime handoff folder.
+- Repaired visible mojibake/encoding damage in continuity documents.
+- Recorded this cleanup as a Milestone 1 baseline hygiene patch before final freeze.
+- Local .NET 8.0.422 restore/build/smoke-test verification passed.
+- No gameplay feature work was introduced.
+- No BAT installer, update ZIP, or GitHub push was created by Codex.
 ## CodeUpdate-0026 - Milestone 1 Finalization
 
 - Added the Milestone 1 verification report under `Reports/CodeUpdates/CodeUpdate-0026/`.
@@ -139,7 +148,7 @@
 - Added runtime execution policy: normal project runtime must not require the .NET SDK.
 - Added update execution policy: update package must run from its own extracted folder and apply into the main project folder.
 - Preserves `Saves/` and `ImportedDatabases/`; neither folder is included in this package.
-## CodeUpdate-0008 ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Governance and Core Services
+## CodeUpdate-0008 - Governance and Core Services
 
 - Continued Milestone 1 Core Framework work.
 - Added `AI_CONTEXT.md` as a fast entry point for new ChatGPT windows and developers.
@@ -148,7 +157,7 @@
 - Added Core configuration provider, serializer contract/implementation, event bus, service registry, manifest reader, health checker, path safety helper, and version manager.
 - Updated project manifest with development status tracking.
 - Preserved no-SDK runtime policy and extracted-folder update execution rule.
-## CodeUpdate-0009 ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â Core Audit and Test Foundation
+## CodeUpdate-0009 - Core Audit and Test Foundation
 
 - Continued Milestone 1 Core Framework work.
 - Added `IReforgedDataRecord` so applications can share one Core data-record identity contract.

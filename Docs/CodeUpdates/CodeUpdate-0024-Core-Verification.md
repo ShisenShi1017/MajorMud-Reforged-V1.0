@@ -1,4 +1,4 @@
-# CodeUpdate-0024 â€” Core Verification
+# CodeUpdate-0024 - Core Verification
 
 ## Purpose
 

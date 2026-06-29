@@ -1,4 +1,4 @@
-# MajorMud Reforged generated/runtime files
+# Reforged generated/runtime files
 Logs/*
 !Logs/README.md
 Reports/*.tmp
@@ -12,3 +12,10 @@ Bin/Windows/**/*.pdb
 .vs/
 
 # Keep source data and saves visible intentionally unless the project owner decides otherwise.
+# .NET source project build outputs
+/Apps/Source/**/bin/
+/Apps/Source/**/obj/
+/Core/Source/**/bin/
+/Core/Source/**/obj/
+/Tests/Source/**/bin/
+/Tests/Source/**/obj/
