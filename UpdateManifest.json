@@ -2,7 +2,7 @@
   "codeUpdate": "0039",
   "name": "CodeUpdate-0039-Server-Bootstrap-Readiness-Summary",
   "packageType": "direct-repository-patch",
-  "purpose": "Expose compact non-gameplay Server bootstrap readiness for future host/editor tooling and record Classic-first Server mode direction.",
+  "purpose": "Expose compact non-gameplay Server bootstrap readiness, record Classic-first and engine-first Server direction, and preserve the WCC default install as reference/import material.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": true,
   "batInstallerCreated": false,
@@ -10,7 +10,7 @@
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained host/server bootstrap work; no gameplay systems are approved.",
-  "verificationStatus": "Local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, and Server bootstrap run passed after Classic-first planning docs were folded in. GitHub Actions pending after user push.",
+  "verificationStatus": "Local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, Server bootstrap run, and WCC default archive integrity verification passed after folded documentation/import work. GitHub Actions pending after user push.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
@@ -22,9 +22,12 @@
     "Docs/Architecture/PROJECT_ROADMAP.md",
     "Docs/CodeUpdates/CodeUpdate-0038-Server-Bootstrap-Directory-Status.md",
     "Docs/CodeUpdates/CodeUpdate-0039-Server-Bootstrap-Readiness-Summary.md",
+    "Docs/DataSources/WCC-Default-Install-Reference.md",
     "Docs/SDS/Data-Format.md",
+    "Docs/SDS/Engine-Architecture-Principles.md",
     "Docs/SDS/README.md",
     "Docs/SDS/Server-Mode-Profile.md",
+    "ImportedDatabases/WCCDefaultInstall/",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
@@ -42,12 +45,13 @@
   "localVerification": {
     "sdk": ".NET 8.0.422",
     "status": "passed",
-    "scope": "Server bootstrap readiness summary plus Classic-first Server mode direction documentation",
+    "scope": "Server bootstrap readiness summary, Classic-first/engine-first Server direction documentation, and WCC default install reference import",
     "json": "ProjectManifest.json and UpdateManifest.json parsed successfully.",
     "restore": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests restore passed.",
     "build": "Core, Server, and Core.Tests Release builds passed with 0 warnings and 0 errors after Classic-first planning docs were folded in. Full app build had passed before the documentation fold.",
     "smokeTests": "Reforged core/server smoke tests passed after Classic-first planning docs were folded in.",
-    "serverBootstrap": "Server bootstrap run passed and reported Readiness: host-tools-ready; gameplay=disabled."
+    "serverBootstrap": "Server bootstrap run passed and reported Readiness: host-tools-ready; gameplay=disabled.",
+    "wccDefaultInstall": "RAR integrity test passed; extracted 152 files under ImportedDatabases/WCCDefaultInstall/wcc default; source archive SHA-256 92FA1CBD86E00154789950FB2BE443E0CB24C735B631BC44DE14531F0D422E5D."
   },
   "boundaries": [
     "No gameplay systems",
@@ -57,10 +61,12 @@
     "No editor implementation",
     "No networking expansion",
     "No Data rewrite",
-    "No ImportedDatabases overwrite"
+    "No ImportedDatabases overwrite",
+    "No WCC executable/runtime dependency"
   ],
   "modeDirection": "First real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved.",
-  "handoffImprovement": "CodeUpdate-0039 records CodeUpdate-0038 as green by user report, records Classic-first Server direction, and recommends a read-only Classic Data inventory summary as a future server startup slice.",
+  "engineDirection": "Favor reusable engine systems over feature-specific systems. Prefer data-driven world behavior, reusable engine behavior, and editor-visible structures where practical.",
+  "handoffImprovement": "CodeUpdate-0039 records CodeUpdate-0038 as green by user report, records Classic-first and engine-first Server direction, imports the WCC default install as reference material, and recommends a read-only Classic Data inventory summary as a future server startup slice.",
   "recommendedNextUpdate": "Next small approved Milestone 2 host/server or Classic data-readiness slice after CodeUpdate-0039 is pushed and GitHub Actions is green.",
   "recommendedNextScopeRequiresUserApproval": true
 }

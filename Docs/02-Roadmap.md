@@ -44,6 +44,8 @@ CodeUpdate-0039 adds a compact host-tool readiness summary to Server bootstrap w
 
 CodeUpdate-0039 also records the Classic-first Server direction: build the first real Server around the Classic baseline, keep architecture mode-ready, and do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or advanced behavior until explicitly approved.
 
+CodeUpdate-0039 also records the engine-first architecture direction and imports the user-provided default WCC install into `ImportedDatabases/WCCDefaultInstall/` as reference/import material only. No canonical `Data/` rewrite is included.
+
 
 ## Development Phases
 

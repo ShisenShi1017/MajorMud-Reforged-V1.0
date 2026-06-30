@@ -203,6 +203,22 @@ Future intended evolution:
 4. Custom/editor-created worlds.
 5. AI systems and advanced behavior only after explicit approval.
 
+## Engine Architecture Direction
+
+Classic is the first target, but the Server is an engine, not a Classic-only server.
+
+Favor reusable engine systems over feature-specific systems. Keep the engine generic whenever practical. Avoid naming or designing systems around Classic unless the behavior is truly Classic-specific.
+
+When designing new Server features, ask whether the feature can be data-driven, reused by future modes, exposed to the Editor later, and implemented without unnecessarily tying the engine to Classic.
+
+Classic, Reforged, custom worlds, future expansions, and additional rule sets should not require separate server codebases. Favor extensibility over shortcuts, but avoid premature complexity.
+
+## WCC Default Install Reference
+
+The user-provided default WCC install archive is preserved under `ImportedDatabases/WCCDefaultInstall/` as reference/import material.
+
+This source is not live `Data/`, not a runtime dependency, and not an approval to rewrite canonical Reforged data. Any conversion or reconciliation must be a separate reviewed update.
+
 ## Code Update Rules
 
 Code Updates are for repository, Core, server, editor, importer, launcher, client, tooling, and documentation changes.

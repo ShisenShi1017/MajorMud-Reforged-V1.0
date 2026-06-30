@@ -17,6 +17,8 @@ CodeUpdate-0039 adds a non-gameplay readiness summary to the Server bootstrap re
 - Startup output prints readiness status while keeping gameplay status disabled.
 - Core smoke tests verify host-tool readiness remains true on the successful bootstrap path and gameplay status remains disabled.
 - Planning/continuity docs record that the first real Server target is Classic baseline only, while architecture remains mode-ready for future explicitly approved mode/profile loading.
+- Planning/continuity docs record that the Server should favor reusable engine systems over feature-specific systems.
+- User-provided WCC default install archive was preserved and extracted under `ImportedDatabases/WCCDefaultInstall/`.
 
 ## Boundaries
 
@@ -24,6 +26,8 @@ CodeUpdate-0039 adds a non-gameplay readiness summary to the Server bootstrap re
 - No combat, character creation, world simulation, networking expansion, or live editor behavior was added.
 - No `Data/` or `ImportedDatabases/` files were changed.
 - No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader was implemented.
+- No canonical `Data/` files were changed.
+- No WCC executable/runtime file was made a live server dependency.
 
 ## Verification Status
 
@@ -34,4 +38,5 @@ CodeUpdate-0039 adds a non-gameplay readiness summary to the Server bootstrap re
 - After the documentation fold, Core, Server, and Core.Tests Release builds passed with 0 warnings and 0 errors.
 - Reforged core/server smoke tests passed after the documentation fold.
 - Server bootstrap run passed after the documentation fold and reported `Readiness: host-tools-ready; gameplay=disabled`.
+- WCC default RAR archive integrity test passed with 152 extracted files.
 - GitHub Actions remains pending until the user pushes CodeUpdate-0039 and reports the result.

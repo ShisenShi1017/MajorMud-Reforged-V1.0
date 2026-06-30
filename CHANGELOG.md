@@ -7,9 +7,11 @@
 - Updated Server startup output to print readiness status while keeping gameplay status disabled.
 - Added smoke-test coverage for readiness status.
 - Folded in the Classic-first Server direction as planning/continuity documentation.
+- Folded in engine-first architecture direction as planning/continuity documentation.
+- Added the user-provided WCC default install under `ImportedDatabases/WCCDefaultInstall/` as reference/import material.
 - Recorded CodeUpdate-0038 GitHub Actions as green by user report.
-- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, Reforged mode, Custom mode, AI systems, alternate gameplay rules, data rewrite, or `ImportedDatabases` overwrite is included.
-- Local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, and Server bootstrap run passed after Classic-first planning docs were folded in.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, Reforged mode, Custom mode, AI systems, alternate gameplay rules, canonical `Data` rewrite, or `ImportedDatabases` overwrite is included.
+- Local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, Server bootstrap run, and WCC default archive integrity verification passed after folded documentation/import work.
 
 ## CodeUpdate-0038 - Server Bootstrap Directory Status
 

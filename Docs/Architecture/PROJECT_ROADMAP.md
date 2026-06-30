@@ -77,6 +77,23 @@ Future intended evolution:
 4. Custom/editor-created worlds.
 5. AI systems and advanced behavior only after explicit approval.
 
+## Engine Architecture Direction
+
+Classic is the first target, but the Server is an engine, not a Classic-only server.
+
+Favor reusable engine systems over feature-specific systems. Keep the engine generic whenever practical. Avoid naming or designing systems around Classic unless they truly are Classic-specific. World behavior should come from data whenever appropriate. Engine behavior should come from reusable systems rather than hardcoded game logic.
+
+Future gameplay systems should plug into the engine instead of replacing it.
+
+When designing new Server features, ask:
+
+1. Can this be data-driven?
+2. Can this be reused by future modes?
+3. Can this be exposed to the Editor later?
+4. Does this unnecessarily tie the engine to Classic?
+
+Classic, Reforged, custom worlds, future expansions, and additional rule sets should not require separate server codebases. Favor extensibility over shortcuts, but avoid premature complexity.
+
 ## Current Development Position
 
 - Current Code Update: `0039`
@@ -104,6 +121,8 @@ CodeUpdate-0038 adds required-directory status records and counts to the non-gam
 CodeUpdate-0039 adds a compact host-tool readiness summary while keeping gameplay status disabled.
 
 CodeUpdate-0039 also records the Classic-first Server direction: Classic baseline first, mode-ready architecture later, no Reforged/Custom/AI/alternate gameplay behavior until explicitly approved.
+
+CodeUpdate-0039 also records the engine-first architecture direction and imports the user-provided WCC default install into `ImportedDatabases/WCCDefaultInstall/` as reference/import material only.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -152,6 +171,7 @@ Boundaries until approved:
 - No networking expansion.
 - No live editor implementation beyond approved scope.
 - No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader implementation.
+- No `Data/` rewrite from imported WCC reference material.
 
 Next candidate after CodeUpdate-0039 is pushed and green:
 

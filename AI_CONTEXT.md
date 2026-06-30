@@ -61,6 +61,29 @@ Future intended evolution:
 4. Custom/editor-created worlds.
 5. AI systems and advanced behavior after explicit approval.
 
+## Engine-First Architecture Direction
+
+Classic is the first target, but the Server is an engine, not a Classic-only server.
+
+Favor reusable engine systems over feature-specific systems. Avoid naming or designing systems around Classic unless they truly are Classic-specific. World behavior should come from data whenever appropriate, and engine behavior should come from reusable systems rather than hardcoded game logic.
+
+When designing new Server features, ask:
+
+1. Can this be data-driven?
+2. Can this be reused by future modes?
+3. Can this be exposed to the Editor later?
+4. Does this unnecessarily tie the engine to Classic?
+
+Future gameplay systems should plug into the engine instead of replacing it. Classic, Reforged, custom worlds, future expansions, and additional rule sets should not require separate server codebases. Favor extensibility over shortcuts, but avoid premature complexity.
+
+## Imported Reference Sources
+
+- WCC default install archive imported to `ImportedDatabases/WCCDefaultInstall/` during CodeUpdate-0039.
+- The preserved source archive is `ImportedDatabases/WCCDefaultInstall/SourceArchive/wcc default.rar`.
+- The extracted folder is `ImportedDatabases/WCCDefaultInstall/wcc default/`.
+- Archive integrity test passed with 152 extracted files and SHA-256 `92FA1CBD86E00154789950FB2BE443E0CB24C735B631BC44DE14531F0D422E5D`.
+- This is reference/import material only. No `Data/` rewrite or runtime dependency is approved.
+
 ## Permanent Project Rules
 
 - GitHub repository `ShisenShi1017/MajorMud-Reforged-V1.0` is the source of truth.
@@ -160,6 +183,8 @@ Implemented:
 - Kept gameplay status explicitly disabled.
 - Added smoke-test coverage for readiness status.
 - Folded in the Classic-first server direction as planning/continuity documentation.
+- Folded in the engine-first architecture direction as planning/continuity documentation.
+- Added the user-provided WCC default install archive under `ImportedDatabases/WCCDefaultInstall/` as reference/import material.
 - Recorded CodeUpdate-0038 GitHub Actions as green by user report.
 
 Boundaries:
@@ -173,11 +198,13 @@ Boundaries:
 - No networking expansion.
 - No editor implementation.
 - No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader implementation.
+- No `Data/` rewrite from the WCC default install.
+- No use of WCC executable/runtime files as live server dependencies.
 - Codex did not push to GitHub.
 
 Next-scope candidate:
 
-- Push CodeUpdate-0039 and wait for green GitHub Actions. A safe next slice is a read-only `Data/` inventory summary for server startup.
+- Push CodeUpdate-0039 and wait for green GitHub Actions. A safe next slice is a read-only Classic data inventory summary for server startup, using `ImportedDatabases/WCCDefaultInstall/` as reference only.
 
 ## CodeUpdate-0038 Handoff
 

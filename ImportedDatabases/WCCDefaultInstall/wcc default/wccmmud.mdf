@@ -1,0 +1,35 @@
+; WCCMMUD.MDF
+
+Module Name: MajorMUD
+
+
+
+Developer: Lance Neumann (West Coast Creations)
+
+Unconditional
+
+Requires: GALEML WGSFSD WGSFSE WGSFTF
+Replaces:
+
+Install: WCCMISC
+
+Online user manual: WCCMMUD.DOC
+
+DLLs: WCCMMUD
+MSGs: WCCMMUD WCCMMHLP WCCTEXT
+
+Btrieve files:        17
+
+Cleanup:
+
+Event-1:
+Event-2:
+Event-3:
+Event-4:
+
+WGS UP: wccmmutl -needed -fast
+
+Add-On Utility: WCCMMUTL -- MajorMUD Utilities
+
+I Need: GALEML WGSFSD WGSFSE WGSFTF
+Needs Me: WCCMMPLS

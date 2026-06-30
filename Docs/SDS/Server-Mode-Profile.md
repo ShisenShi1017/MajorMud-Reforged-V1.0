@@ -14,6 +14,8 @@ Classic is the first runtime baseline, but the implementation should stay mode-r
 
 Only simple extension points needed for future mode/profile loading should be added before the Classic baseline is working.
 
+The Server should still be designed as a reusable engine. Classic is the first verified target, not a reason to create a Classic-only server codebase.
+
 ## Responsibility Split
 
 - `Data/` defines world content.
@@ -31,4 +33,3 @@ Only simple extension points needed for future mode/profile loading should be ad
 ## Boundary
 
 This is a planning document only. CodeUpdate-0039 does not implement mode loading, Reforged mode, Custom mode, AI systems, alternate gameplay rules, or runtime gameplay systems.
-

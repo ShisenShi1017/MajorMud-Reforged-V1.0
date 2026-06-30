@@ -153,3 +153,5 @@ CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Ser
 CodeUpdate-0039 adds a compact host-tool readiness summary to the non-gameplay Server bootstrap report and startup output. It records CodeUpdate-0038 as green by user report and keeps gameplay status explicitly disabled.
 
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
+
+Engine direction after CodeUpdate-0039: favor reusable engine systems over feature-specific systems. Avoid designing around Classic unless behavior is truly Classic-specific. Prefer data-driven world behavior, reusable engine behavior, and editor-visible structures where practical. The WCC default install under `ImportedDatabases/WCCDefaultInstall/` is reference/import material only.

@@ -33,7 +33,9 @@
 - CodeUpdate-0038 GitHub Actions is green by user report.
 - CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay disabled.
 - CodeUpdate-0039 records the Classic-first Server direction as planning/continuity documentation.
-- CodeUpdate-0039 local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, and Server bootstrap run passed after Classic-first planning docs were folded in.
+- CodeUpdate-0039 records engine-first architecture direction as planning/continuity documentation.
+- CodeUpdate-0039 adds the user-provided WCC default install under `ImportedDatabases/WCCDefaultInstall/` as reference/import material only.
+- CodeUpdate-0039 local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, Server bootstrap run, and WCC default archive integrity verification passed after folded documentation/import work.
 
 ## Reference Data Policy
 

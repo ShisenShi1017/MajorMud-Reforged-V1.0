@@ -10,6 +10,8 @@ This update improves non-gameplay Server bootstrap diagnostics for future host/e
 - Gameplay status remains explicitly disabled.
 - Smoke tests verify readiness status on the successful bootstrap path.
 - Classic-first Server direction is recorded for future planning: Classic baseline first, mode-ready architecture later.
+- Engine-first architecture direction is recorded: reusable engine systems over feature-specific server code.
+- User-provided WCC default install is preserved under `ImportedDatabases/WCCDefaultInstall/` as reference/import material.
 - CodeUpdate-0038 is recorded as green by user report.
 
 ## Boundaries
@@ -23,10 +25,12 @@ This update improves non-gameplay Server bootstrap diagnostics for future host/e
 - No networking expansion is added.
 - No live editor implementation is added.
 - No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader is implemented.
+- No canonical `Data/` rewrite is included.
+- No WCC executable/runtime file is made a live server dependency.
 
 ## Verification
 
-- Local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, and Server bootstrap run passed after Classic-first planning docs were folded in.
+- Local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, Server bootstrap run, and WCC default archive integrity verification passed after folded documentation/import work.
 - GitHub Actions remains pending until the user pushes this update and reports the result.
 
 ## Previous Release Notes
