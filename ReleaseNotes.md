@@ -1,3 +1,34 @@
+# CodeUpdate-0037 - Software Design Specification and Continuity Cleanup
+
+This documentation-only update combines the CodeUpdate-0036B continuity cleanup package with the CodeUpdate-0037 Software Design Specification package.
+
+## Changed
+
+- Fetched GitHub truth and fast-forwarded local `main` to the CodeUpdate-0036 baseline before applying.
+- Repaired stale continuity documents that still referenced CodeUpdate-0035 after CodeUpdate-0036 direct-GitHub documentation commits.
+- Added draft Software Design Specification planning records under `Docs/SDS/`.
+- Added CodeUpdate-0037 documentation and verification report.
+
+## Boundaries
+
+- No source-code behavior is changed.
+- No Reforged `Data/` files are rewritten.
+- No `ImportedDatabases/` files are overwritten.
+- No gameplay systems are added.
+- No combat is added.
+- No character creation is added.
+- No world simulation loop is added.
+- No networking expansion is added.
+- No live editor implementation is added.
+
+## Verification
+
+- CodeUpdate-0036B and CodeUpdate-0037 ZIP contents were inspected before merging.
+- JSON parse and local .NET 8.0.422 restore/build/smoke verification passed.
+- Initial parallel Client/Editor build attempts hit a transient shared Core `obj` file lock; rerunning those builds sequentially passed with 0 warnings and 0 errors.
+- GitHub Actions remains pending until the user pushes this update and reports the result.
+
+## Previous Release Notes
 # CodeUpdate-0035 - Server Bootstrap Validation Summary
 
 This update improves non-gameplay Server bootstrap diagnostics for host tooling.

@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0037 - Software Design Specification and Continuity Cleanup
+
+- Combined the user-provided CodeUpdate-0036B continuity cleanup package and CodeUpdate-0037 Software Design Specification package into one local documentation update.
+- Fetched GitHub truth and fast-forwarded local `main` to CodeUpdate-0036 before applying the combined update.
+- Repaired stale continuity documents that still referenced CodeUpdate-0035 after CodeUpdate-0036 direct-GitHub commits.
+- Added draft `Docs/SDS/` Software Design Specification planning records for future AI, combat, quest, explorer, discovery map, launcher, host editor, loot, networking, plugin, expansion, data-format, gameplay-flag, and ganghouse systems.
+- Added CodeUpdate-0037 documentation and verification report.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, source-code behavior changes, data rewrite, or third-party raw archive import is included.
+- JSON parse and local .NET 8.0.422 restore/build/smoke verification passed.
+- GitHub Actions remains pending until the user pushes this local update and reports the result.
+
 ## CodeUpdate-0036 - Knowledge Base and Design Decisions
 
 - Added a CodeUpdate-0036 documentation plan for the Reforged knowledge base, design decisions, and reference-source policy.

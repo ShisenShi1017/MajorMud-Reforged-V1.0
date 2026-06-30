@@ -57,11 +57,11 @@ The long-term goal is a standalone server, native importer, live editor, launche
 
 ## Current Development Position
 
-- Current Code Update: `0035`
+- Current Code Update: `0037`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0035, verify GitHub Actions green, then approve the next small Milestone 2 host/server scope.
+- Current priority: push CodeUpdate-0037, verify GitHub Actions green, then approve the next small Milestone 2 host/server or planning scope.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -72,6 +72,10 @@ CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report con
 CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits. It does not rewrite `Data/` or overwrite `ImportedDatabases/`.
 
 CodeUpdate-0035 adds Server bootstrap validation issue counts for startup output and future host tooling.
+
+CodeUpdate-0036 adds knowledge-base, design-decision, reference-source, and discussion-recap documentation through direct GitHub commits.
+
+CodeUpdate-0037 combines the 0036B continuity cleanup package with the 0037 Software Design Specification package. It adds draft `Docs/SDS/` planning records and repairs stale continuity. It does not implement runtime systems.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -97,6 +101,8 @@ Completed/started slices:
 - CodeUpdate-0033: Server bootstrap exit-code contract.
 - CodeUpdate-0034: OmniVerse read-only reference audit policy.
 - CodeUpdate-0035: Server bootstrap validation summary counts.
+- CodeUpdate-0036: knowledge-base and design-decision documentation.
+- CodeUpdate-0037: Software Design Specification draft planning records and continuity cleanup.
 
 Focus Areas:
 
@@ -116,9 +122,9 @@ Boundaries until approved:
 - No networking expansion.
 - No live editor implementation beyond approved scope.
 
-Next candidate after CodeUpdate-0035 is pushed and green:
+Next candidate after CodeUpdate-0037 is pushed and green:
 
-- CodeUpdate-0036: a small host/server follow-up approved by the user before implementation.
+- A small host/server or planning follow-up approved by the user before implementation.
 
 ## Milestone 3 - Standalone Server
 

@@ -34,6 +34,10 @@ CodeUpdate-0034 records OmniVerse as a read-only reference source for future dat
 
 CodeUpdate-0035 adds Server bootstrap validation summary counts for startup output and future host tooling.
 
+CodeUpdate-0036 adds knowledge-base, design-decision, reference-source, and discussion-recap documentation through direct GitHub commits.
+
+CodeUpdate-0037 combines the 0036B continuity cleanup package with the 0037 Software Design Specification package. It adds draft planning documents under `Docs/SDS/` and repairs stale continuity. It does not implement gameplay, networking, editor behavior, or data rewrites.
+
 
 ## Development Phases
 
@@ -98,4 +102,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0035 extends Server bootstrap diagnostics with validation issue counts. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server scope.
+Current implementation/planning slice: CodeUpdate-0037 adds documentation-only Software Design Specification planning records and continuity cleanup. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server or planning scope.

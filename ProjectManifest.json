@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0035",
+  "codeUpdate": "0037",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -16,17 +16,17 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0035",
+    "currentCodeUpdate": "0037",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "Continuing with constrained host/server bootstrap work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0035-Server-Bootstrap-Validation-Summary",
+    "milestone2Status": "Continuing with constrained host/server and planning work; no gameplay systems are approved.",
+    "lastUpdateName": "CodeUpdate-0037-Software-Design-Specification",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0035 and confirm GitHub Actions restore/build/test passes.",
-      "After green Actions, approve the next small Milestone 2 host/server scope.",
+      "Push CodeUpdate-0037 and confirm GitHub Actions restore/build/test passes.",
+      "After green Actions, approve the next small Milestone 2 host/server or planning scope.",
       "Do not add gameplay systems without explicit approval."
     ]
   },
@@ -54,5 +54,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0034 GitHub Actions green by user report. CodeUpdate-0035 local .NET 8.0.422 restore/build/smoke verification passed."
+  "buildVerification": "CodeUpdate-0035 local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 fetched from GitHub origin/main at commit 105ed76b. CodeUpdate-0037 JSON parse and local .NET 8.0.422 restore/build/smoke verification passed; GitHub Actions pending after user push."
 }
