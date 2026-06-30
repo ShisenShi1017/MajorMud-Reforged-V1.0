@@ -40,6 +40,10 @@ CodeUpdate-0037 combines the 0036B continuity cleanup package with the 0037 Soft
 
 CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap report and startup output.
 
+CodeUpdate-0039 adds a compact host-tool readiness summary to Server bootstrap while keeping gameplay status disabled.
+
+CodeUpdate-0039 also records the Classic-first Server direction: build the first real Server around the Classic baseline, keep architecture mode-ready, and do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or advanced behavior until explicitly approved.
+
 
 ## Development Phases
 
@@ -104,4 +108,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0038 adds Server bootstrap required-directory status reporting. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server scope.
+Current implementation slice: CodeUpdate-0039 adds Server bootstrap host-tool readiness summary reporting. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server or data-readiness scope.

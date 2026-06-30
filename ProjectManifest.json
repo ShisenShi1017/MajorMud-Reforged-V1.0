@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0038",
+  "codeUpdate": "0039",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -16,16 +16,16 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0038",
+    "currentCodeUpdate": "0039",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and planning work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0038-Server-Bootstrap-Directory-Status",
+    "lastUpdateName": "CodeUpdate-0039-Server-Bootstrap-Readiness-Summary",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0038 and confirm GitHub Actions restore/build/test passes.",
+      "Push CodeUpdate-0039 and confirm GitHub Actions restore/build/test passes.",
       "After green Actions, approve the next small Milestone 2 host/server or planning scope.",
       "Do not add gameplay systems without explicit approval."
     ]
@@ -54,5 +54,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0037 JSON parse and local .NET 8.0.422 restore/build/smoke verification passed; GitHub Actions green by user report. CodeUpdate-0038 local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed."
+  "buildVerification": "CodeUpdate-0038 local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed; GitHub Actions green by user report. CodeUpdate-0039 local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, and Server bootstrap run passed after Classic-first planning docs were folded in."
 }

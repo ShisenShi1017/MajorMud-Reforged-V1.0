@@ -30,4 +30,4 @@ CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Ser
 - Core, Server, Importer, Editor, Launcher, Client, and Core.Tests sequential Release builds passed with 0 warnings and 0 errors.
 - Reforged core/server smoke tests passed.
 - Server bootstrap run passed and reported `RequiredDirectories: 6/6 present, 0 missing`.
-- GitHub Actions remains pending until the user pushes CodeUpdate-0038 and reports the result.
+- GitHub Actions is green by user report.

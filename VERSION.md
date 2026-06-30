@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0038
+- Current Code Update: 0039
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0038 - Server Bootstrap Directory Status
+- Current update: CodeUpdate-0039 - Server Bootstrap Readiness Summary
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -30,6 +30,10 @@
 - CodeUpdate-0037 GitHub Actions is green by user report.
 - CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path.
 - CodeUpdate-0038 local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed.
+- CodeUpdate-0038 GitHub Actions is green by user report.
+- CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay disabled.
+- CodeUpdate-0039 records the Classic-first Server direction as planning/continuity documentation.
+- CodeUpdate-0039 local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, and Server bootstrap run passed after Classic-first planning docs were folded in.
 
 ## Reference Data Policy
 

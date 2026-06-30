@@ -178,6 +178,17 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException("Server bootstrap success did not expose expected required directory status.");
     }
 
+    if (!report.Readiness.ProjectRootFound ||
+        !report.Readiness.RequiredDirectoriesReady ||
+        !report.Readiness.ManifestReady ||
+        !report.Readiness.StartupDiagnosticsReady ||
+        !report.Readiness.HostToolsReady ||
+        report.Readiness.Status != "host-tools-ready" ||
+        report.Readiness.GameplayStatus != "disabled")
+    {
+        throw new InvalidOperationException("Server bootstrap success did not expose expected host-tool readiness status.");
+    }
+
     if (report.ProjectName != "Reforged" ||
         string.IsNullOrWhiteSpace(report.CodeUpdate) ||
         string.IsNullOrWhiteSpace(report.DatabaseVersion) ||

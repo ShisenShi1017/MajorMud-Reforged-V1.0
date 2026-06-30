@@ -25,9 +25,8 @@ CodeUpdate-0038 continues the small Milestone 2 host/server bootstrap path. It m
 
 ## Verification
 
-Local verification is recorded in `UpdateManifest.json`. GitHub Actions remains pending until the user pushes CodeUpdate-0038 and reports the result.
+Local verification is recorded in `UpdateManifest.json`. GitHub Actions is green by user report.
 
 ## Next Recommended Work
 
 After CodeUpdate-0038 is pushed and GitHub Actions is green, continue with one small approved Milestone 2 host/server slice. A safe candidate is adding a non-gameplay bootstrap readiness summary object for host/editor tooling.
-

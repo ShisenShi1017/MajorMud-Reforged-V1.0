@@ -1,3 +1,35 @@
+# CodeUpdate-0039 - Server Bootstrap Readiness Summary
+
+This update improves non-gameplay Server bootstrap diagnostics for future host/editor tooling.
+
+## Changed
+
+- Server bootstrap reports now expose a compact readiness summary.
+- Readiness includes project root, required directories, manifest identity, startup diagnostics, and host-tool readiness.
+- Server startup output now prints readiness status.
+- Gameplay status remains explicitly disabled.
+- Smoke tests verify readiness status on the successful bootstrap path.
+- Classic-first Server direction is recorded for future planning: Classic baseline first, mode-ready architecture later.
+- CodeUpdate-0038 is recorded as green by user report.
+
+## Boundaries
+
+- No Reforged `Data/` files are rewritten.
+- No `ImportedDatabases/` files are overwritten.
+- No gameplay systems are added.
+- No combat is added.
+- No character creation is added.
+- No world simulation loop is added.
+- No networking expansion is added.
+- No live editor implementation is added.
+- No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader is implemented.
+
+## Verification
+
+- Local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, and Server bootstrap run passed after Classic-first planning docs were folded in.
+- GitHub Actions remains pending until the user pushes this update and reports the result.
+
+## Previous Release Notes
 # CodeUpdate-0038 - Server Bootstrap Directory Status
 
 This update improves non-gameplay Server bootstrap diagnostics for future host tooling.
@@ -24,7 +56,7 @@ This update improves non-gameplay Server bootstrap diagnostics for future host t
 ## Verification
 
 - Local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed.
-- GitHub Actions remains pending until the user pushes this update and reports the result.
+- GitHub Actions is green by user report.
 
 ## Previous Release Notes
 # CodeUpdate-0037 - Software Design Specification and Continuity Cleanup

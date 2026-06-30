@@ -48,6 +48,16 @@ public sealed class ServerBootstrapReport
 
     public int MissingRequiredDirectoryCount => requiredDirectories.Count(directory => !directory.Exists);
 
+    public ServerBootstrapReadiness Readiness => new(
+        ProjectRoot is not null,
+        PresentRequiredDirectoryCount == RequiredDirectoryCount && RequiredDirectoryCount > 0,
+        !string.IsNullOrWhiteSpace(ProjectName) &&
+            !string.IsNullOrWhiteSpace(CodeUpdate) &&
+            !string.IsNullOrWhiteSpace(DatabaseVersion) &&
+            !string.IsNullOrWhiteSpace(Milestone),
+        StartupDiagnostics?.Passed == true,
+        Passed);
+
     public void AddCheck(string name) => checks.Add(name);
 
     public void AddRequiredDirectory(string name, string path, bool exists) =>
@@ -61,3 +71,15 @@ public sealed class ServerBootstrapReport
 }
 
 public sealed record RequiredDirectoryStatus(string Name, string Path, bool Exists);
+
+public sealed record ServerBootstrapReadiness(
+    bool ProjectRootFound,
+    bool RequiredDirectoriesReady,
+    bool ManifestReady,
+    bool StartupDiagnosticsReady,
+    bool HostToolsReady)
+{
+    public string Status => HostToolsReady ? "host-tools-ready" : "not-ready";
+
+    public string GameplayStatus => "disabled";
+}

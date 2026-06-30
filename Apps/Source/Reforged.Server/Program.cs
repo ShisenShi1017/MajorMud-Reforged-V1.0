@@ -11,6 +11,7 @@ Console.WriteLine($"CodeUpdate: {report.CodeUpdate ?? "<unknown>"}");
 Console.WriteLine($"DatabaseVersion: {report.DatabaseVersion ?? "<unknown>"}");
 Console.WriteLine($"Milestone: {report.Milestone ?? "<unknown>"}");
 Console.WriteLine($"Checks: {string.Join(", ", report.Checks)}");
+Console.WriteLine($"Readiness: {report.Readiness.Status}; gameplay={report.Readiness.GameplayStatus}");
 Console.WriteLine($"RequiredDirectories: {report.PresentRequiredDirectoryCount}/{report.RequiredDirectoryCount} present, {report.MissingRequiredDirectoryCount} missing");
 Console.WriteLine($"Validation: {report.IssueCount} issue(s), {report.InfoCount} info, {report.WarningCount} warning(s), {report.ErrorCount} error(s), {report.FatalCount} fatal");
 

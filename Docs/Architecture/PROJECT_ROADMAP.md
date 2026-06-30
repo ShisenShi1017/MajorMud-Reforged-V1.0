@@ -55,13 +55,35 @@ Reforged is not a runtime-dependent copy of the original legacy MUD. It is a cle
 
 The long-term goal is a standalone server, native importer, live editor, launcher, Windows client, Android client, gameplay systems, and plugin framework that do not require the original legacy MUD runtime.
 
+## Server Mode Direction
+
+The first real Server target is the Classic baseline. The Server should load and run Classic data first.
+
+Do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or advanced behavior until explicitly approved.
+
+Architecture should remain mode-ready without hardcoding Classic in a way that blocks future modes. Add only simple extension points needed for future mode/profile loading until the Classic baseline is working.
+
+Responsibility split:
+
+- `Data/` defines world/content.
+- Server defines and enforces engine behavior.
+- Editor should eventually edit data safely.
+
+Future intended evolution:
+
+1. Classic server baseline.
+2. Mode/profile loader.
+3. Reforged mode as Classic-derived data/rules overrides.
+4. Custom/editor-created worlds.
+5. AI systems and advanced behavior only after explicit approval.
+
 ## Current Development Position
 
-- Current Code Update: `0038`
+- Current Code Update: `0039`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0038, verify GitHub Actions green, then approve the next small Milestone 2 host/server or planning scope.
+- Current priority: push CodeUpdate-0039, verify GitHub Actions green, then approve the next small Milestone 2 host/server or data-readiness scope.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -78,6 +100,10 @@ CodeUpdate-0036 adds knowledge-base, design-decision, reference-source, and disc
 CodeUpdate-0037 combines the 0036B continuity cleanup package with the 0037 Software Design Specification package. It adds draft `Docs/SDS/` planning records and repairs stale continuity. It does not implement runtime systems.
 
 CodeUpdate-0038 adds required-directory status records and counts to the non-gameplay Server bootstrap report and startup output.
+
+CodeUpdate-0039 adds a compact host-tool readiness summary while keeping gameplay status disabled.
+
+CodeUpdate-0039 also records the Classic-first Server direction: Classic baseline first, mode-ready architecture later, no Reforged/Custom/AI/alternate gameplay behavior until explicitly approved.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -106,6 +132,7 @@ Completed/started slices:
 - CodeUpdate-0036: knowledge-base and design-decision documentation.
 - CodeUpdate-0037: Software Design Specification draft planning records and continuity cleanup.
 - CodeUpdate-0038: Server bootstrap required-directory status reporting.
+- CodeUpdate-0039: Server bootstrap host-tool readiness summary.
 
 Focus Areas:
 
@@ -124,10 +151,11 @@ Boundaries until approved:
 - No world simulation loop.
 - No networking expansion.
 - No live editor implementation beyond approved scope.
+- No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader implementation.
 
-Next candidate after CodeUpdate-0038 is pushed and green:
+Next candidate after CodeUpdate-0039 is pushed and green:
 
-- A small host/server follow-up approved by the user before implementation.
+- A small host/server or data-readiness follow-up approved by the user before implementation.
 
 ## Milestone 3 - Standalone Server
 

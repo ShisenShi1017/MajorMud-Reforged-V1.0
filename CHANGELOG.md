@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0039 - Server Bootstrap Readiness Summary
+
+- Added a compact host-tool readiness summary to the non-gameplay Server bootstrap report.
+- Added readiness flags for project root, required directories, manifest identity, startup diagnostics, and host-tool readiness.
+- Updated Server startup output to print readiness status while keeping gameplay status disabled.
+- Added smoke-test coverage for readiness status.
+- Folded in the Classic-first Server direction as planning/continuity documentation.
+- Recorded CodeUpdate-0038 GitHub Actions as green by user report.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, Reforged mode, Custom mode, AI systems, alternate gameplay rules, data rewrite, or `ImportedDatabases` overwrite is included.
+- Local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, and Server bootstrap run passed after Classic-first planning docs were folded in.
+
 ## CodeUpdate-0038 - Server Bootstrap Directory Status
 
 - Added required-directory status records to the non-gameplay Server bootstrap report.
@@ -9,6 +20,7 @@
 - Recorded CodeUpdate-0037 GitHub Actions as green by user report.
 - No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, data rewrite, or `ImportedDatabases` overwrite is included.
 - Local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed.
+- GitHub Actions is green by user report.
 
 ## CodeUpdate-0037 - Software Design Specification and Continuity Cleanup
 

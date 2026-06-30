@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0038 - Server Bootstrap Directory Status`
+- **Current Code Update:** `CodeUpdate-0039 - Server Bootstrap Readiness Summary`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0038, verify GitHub Actions green, then approve the next small Milestone 2 host/server or planning scope.
+- **Current Priority:** Push CodeUpdate-0039, verify GitHub Actions green, then approve the next small Milestone 2 host/server or data-readiness scope.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -25,9 +25,19 @@ Every session must read these files before changing the repository:
 8. `DEVELOPMENT_PRINCIPLES.md`
 9. Relevant source, test, and application documentation for the requested change
 
+## CodeUpdate-0039 Summary
+
+CodeUpdate-0039 improves the non-gameplay Server bootstrap by exposing a compact host-tool readiness summary. Startup output now states whether the repo is ready for host/editor tooling while keeping gameplay status explicitly disabled.
+
+CodeUpdate-0038 GitHub Actions is green by user report.
+
+No data rewrite, gameplay features, combat, character creation, world simulation, networking expansion, or live editor implementation are added.
+
 ## CodeUpdate-0038 Summary
 
 CodeUpdate-0038 improves the non-gameplay Server bootstrap by exposing required-directory status records and counts in the bootstrap report and startup output. This helps future host/editor tooling inspect repository readiness without parsing validation errors.
+
+CodeUpdate-0038 GitHub Actions is green by user report.
 
 CodeUpdate-0037 GitHub Actions is green by user report.
 
@@ -177,6 +187,22 @@ The standalone server must load from `Data/` only. After successful conversion, 
 
 OmniVerse may be used as a read-only comparison source for future audits. Website/API data can support a proposed correction, but corrections must be reviewed and approved before changing `Data/`.
 
+## Server Mode Direction
+
+The first real Server target is the Classic baseline. The Server should load and run Classic data first.
+
+Reforged mode, Custom mode, AI systems, alternate gameplay rules, and advanced behavior are not approved yet. Server architecture should stay mode-ready, but only simple extension points needed for future mode/profile loading should be added before the Classic baseline is working.
+
+`Data/` defines world/content. Server defines and enforces engine behavior. The Editor should eventually edit data safely.
+
+Future intended evolution:
+
+1. Classic server baseline.
+2. Mode/profile loader.
+3. Reforged mode as Classic-derived data/rules overrides.
+4. Custom/editor-created worlds.
+5. AI systems and advanced behavior only after explicit approval.
+
 ## Code Update Rules
 
 Code Updates are for repository, Core, server, editor, importer, launcher, client, tooling, and documentation changes.
@@ -212,9 +238,9 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output.
 
-Next safe work after CodeUpdate-0038 is pushed and GitHub Actions is green:
+Next safe work after CodeUpdate-0039 is pushed and GitHub Actions is green:
 
 1. Approve the next small Milestone 2 host/server scope.
 2. Keep work narrow and verifiable.
