@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0038 - Server Bootstrap Directory Status
+
+- Added required-directory status records to the non-gameplay Server bootstrap report.
+- Added required-directory total, present, and missing counts for future host/editor tooling.
+- Updated Server startup output to print required-directory summary and detail lines.
+- Added smoke-test coverage for required-directory status.
+- Recorded CodeUpdate-0037 GitHub Actions as green by user report.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, data rewrite, or `ImportedDatabases` overwrite is included.
+- Local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed.
+
 ## CodeUpdate-0037 - Software Design Specification and Continuity Cleanup
 
 - Combined the user-provided CodeUpdate-0036B continuity cleanup package and CodeUpdate-0037 Software Design Specification package into one local documentation update.
@@ -9,7 +19,7 @@
 - Added CodeUpdate-0037 documentation and verification report.
 - No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, source-code behavior changes, data rewrite, or third-party raw archive import is included.
 - JSON parse and local .NET 8.0.422 restore/build/smoke verification passed.
-- GitHub Actions remains pending until the user pushes this local update and reports the result.
+- GitHub Actions is green by user report.
 
 ## CodeUpdate-0036 - Knowledge Base and Design Decisions
 

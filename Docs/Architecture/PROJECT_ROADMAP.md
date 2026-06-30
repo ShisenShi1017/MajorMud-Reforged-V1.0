@@ -57,11 +57,11 @@ The long-term goal is a standalone server, native importer, live editor, launche
 
 ## Current Development Position
 
-- Current Code Update: `0037`
+- Current Code Update: `0038`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0037, verify GitHub Actions green, then approve the next small Milestone 2 host/server or planning scope.
+- Current priority: push CodeUpdate-0038, verify GitHub Actions green, then approve the next small Milestone 2 host/server or planning scope.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -76,6 +76,8 @@ CodeUpdate-0035 adds Server bootstrap validation issue counts for startup output
 CodeUpdate-0036 adds knowledge-base, design-decision, reference-source, and discussion-recap documentation through direct GitHub commits.
 
 CodeUpdate-0037 combines the 0036B continuity cleanup package with the 0037 Software Design Specification package. It adds draft `Docs/SDS/` planning records and repairs stale continuity. It does not implement runtime systems.
+
+CodeUpdate-0038 adds required-directory status records and counts to the non-gameplay Server bootstrap report and startup output.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -103,6 +105,7 @@ Completed/started slices:
 - CodeUpdate-0035: Server bootstrap validation summary counts.
 - CodeUpdate-0036: knowledge-base and design-decision documentation.
 - CodeUpdate-0037: Software Design Specification draft planning records and continuity cleanup.
+- CodeUpdate-0038: Server bootstrap required-directory status reporting.
 
 Focus Areas:
 
@@ -122,9 +125,9 @@ Boundaries until approved:
 - No networking expansion.
 - No live editor implementation beyond approved scope.
 
-Next candidate after CodeUpdate-0037 is pushed and green:
+Next candidate after CodeUpdate-0038 is pushed and green:
 
-- A small host/server or planning follow-up approved by the user before implementation.
+- A small host/server follow-up approved by the user before implementation.
 
 ## Milestone 3 - Standalone Server
 

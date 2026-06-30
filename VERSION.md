@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0037
+- Current Code Update: 0038
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0037 - Software Design Specification and Continuity Cleanup
+- Current update: CodeUpdate-0038 - Server Bootstrap Directory Status
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -27,7 +27,9 @@
 - CodeUpdate-0036 is documentation/research only and is present in GitHub `origin/main` at commit `105ed76b`.
 - CodeUpdate-0037 is documentation-only; it combines the CodeUpdate-0036B continuity cleanup package with the CodeUpdate-0037 Software Design Specification package.
 - CodeUpdate-0037 JSON parse and local .NET 8.0.422 restore/build/smoke verification passed.
-- CodeUpdate-0037 GitHub Actions is pending until the user pushes this local update and reports the result.
+- CodeUpdate-0037 GitHub Actions is green by user report.
+- CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path.
+- CodeUpdate-0038 local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed.
 
 ## Reference Data Policy
 

@@ -35,4 +35,4 @@ JSON parse and local .NET 8.0.422 restore/build/smoke verification passed.
 
 The first parallel Client and Editor build attempts hit a transient shared Core `obj` file lock. Both projects passed when rerun sequentially with 0 warnings and 0 errors.
 
-GitHub Actions remains pending until the user pushes CodeUpdate-0037 and reports the result.
+GitHub Actions is green by user report.

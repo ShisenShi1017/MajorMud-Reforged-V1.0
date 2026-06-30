@@ -62,7 +62,11 @@ public sealed class ServerBootstrap
         report.AddCheck("required-directories");
         foreach (var directory in RequiredDirectories)
         {
-            if (!Directory.Exists(Path.Combine(projectRoot, directory)))
+            var path = Path.Combine(projectRoot, directory);
+            var exists = Directory.Exists(path);
+            report.AddRequiredDirectory(directory, path, exists);
+
+            if (!exists)
             {
                 report.Validation.Add(ValidationSeverity.Error, "SERVER_BOOTSTRAP_DIRECTORY", $"Required directory is missing: {directory}");
             }

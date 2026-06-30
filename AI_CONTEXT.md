@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0037 |
+| Current Code Update | 0038 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0037-Software-Design-Specification |
+| Last Update Name | CodeUpdate-0038-Server-Bootstrap-Directory-Status |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -95,7 +95,7 @@ Do not add gameplay systems without explicit user approval.
 | Area | Status | Notes |
 |---|---:|---|
 | Host/server startup diagnostics | Started | CodeUpdate-0029 added startup-only Server diagnostics. |
-| Server bootstrap foundation | Extended in 0035 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields; 0033 exposes explicit exit codes; 0035 exposes validation issue counts. |
+| Server bootstrap foundation | Extended in 0038 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields; 0033 exposes explicit exit codes; 0035 exposes validation issue counts; 0038 exposes required-directory status. |
 | Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Knowledge base and SDS planning | Started in 0036/0037 | 0036 added knowledge-base/design-decision records; 0037 adds draft SDS planning docs and repairs stale continuity. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
@@ -108,6 +108,7 @@ Do not add gameplay systems without explicit user approval.
 
 | Code Update | Summary |
 |---|---|
+| 0038 | Adds required-directory status records/counts to Server bootstrap report and startup output. |
 | 0037 | Combines 0036B continuity cleanup with draft Software Design Specification planning documents under `Docs/SDS/`. |
 | 0036 | Adds knowledge-base, design-decision, reference-source, and discussion-recap documentation through direct GitHub commits. |
 | 0035 | Adds Server bootstrap validation issue-count summaries for startup output and future host tooling. |
@@ -125,6 +126,35 @@ Do not add gameplay systems without explicit user approval.
 | 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
+
+## CodeUpdate-0038 Handoff
+
+CodeUpdate-0038 is a small non-gameplay Milestone 2 host/server update. It makes the required directory verification already performed by Server bootstrap visible as structured report data and startup output.
+
+Implemented:
+
+- Added `RequiredDirectoryStatus` records to `ServerBootstrapReport`.
+- Added total, present, and missing required-directory counts.
+- Updated `ServerBootstrap` to record every required directory and its resolved path.
+- Updated Server startup output to print required-directory summary and details.
+- Added smoke-test coverage for required-directory status.
+- Recorded CodeUpdate-0037 GitHub Actions as green by user report.
+
+Boundaries:
+
+- No `Data/` rewrite.
+- No `ImportedDatabases/` overwrite.
+- No gameplay systems.
+- No combat.
+- No character creation.
+- No world simulation loop.
+- No networking expansion.
+- No editor implementation.
+- Codex did not push to GitHub.
+
+Next-scope candidate:
+
+- Push CodeUpdate-0038 and wait for green GitHub Actions. A safe next slice is a non-gameplay bootstrap readiness summary object for host/editor tooling.
 
 ## CodeUpdate-0037 Handoff
 
@@ -301,15 +331,21 @@ Verified before creating CodeUpdate-0037:
 - CodeUpdate-0036B and CodeUpdate-0037 ZIP contents were inspected before merging.
 - JSON parse and local .NET 8.0.422 restore/build/smoke verification passed for CodeUpdate-0037.
 - Initial parallel Client and Editor build attempts hit a transient shared Core `obj` file lock; both passed when rerun sequentially.
-- GitHub Actions remains pending until the user pushes CodeUpdate-0037 and reports the result.
+- The user reported CodeUpdate-0037 GitHub Actions green before CodeUpdate-0038 started.
 
-CodeUpdate-0037 is the current local update candidate.
+Verified before creating CodeUpdate-0038:
 
-CodeUpdate-0036 remains the current pushed GitHub baseline until CodeUpdate-0037 is pushed and GitHub Actions is reported green.
+- Local `main` was clean and aligned with `origin/main` at commit `ad40ba85`.
+- Repository manifests recorded CodeUpdate-0037 and DatabaseVersion 0009.
+- User reported CodeUpdate-0037 GitHub Actions green.
+
+CodeUpdate-0038 is the current local update candidate.
+
+CodeUpdate-0037 remains the current pushed green baseline until CodeUpdate-0038 is pushed and GitHub Actions is reported green.
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0037 and report GitHub Actions status.
+1. Push CodeUpdate-0038 and report GitHub Actions status.
 2. After green Actions, approve the next small Milestone 2 host/server or planning scope.
 3. Do not add gameplay systems without explicit approval.
 

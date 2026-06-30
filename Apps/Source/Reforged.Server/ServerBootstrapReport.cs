@@ -8,8 +8,11 @@ namespace Reforged.Server;
 public sealed class ServerBootstrapReport
 {
     private readonly List<string> checks = new();
+    private readonly List<RequiredDirectoryStatus> requiredDirectories = new();
 
     public IReadOnlyList<string> Checks => checks;
+
+    public IReadOnlyList<RequiredDirectoryStatus> RequiredDirectories => requiredDirectories;
 
     public string? ProjectRoot { get; internal set; }
 
@@ -39,7 +42,16 @@ public sealed class ServerBootstrapReport
 
     public int FatalCount => Validation.Issues.Count(issue => issue.Severity == ValidationSeverity.Fatal);
 
+    public int RequiredDirectoryCount => requiredDirectories.Count;
+
+    public int PresentRequiredDirectoryCount => requiredDirectories.Count(directory => directory.Exists);
+
+    public int MissingRequiredDirectoryCount => requiredDirectories.Count(directory => !directory.Exists);
+
     public void AddCheck(string name) => checks.Add(name);
+
+    public void AddRequiredDirectory(string name, string path, bool exists) =>
+        requiredDirectories.Add(new RequiredDirectoryStatus(name, path, exists));
 
     public void AttachStartupDiagnostics(ServerStartupDiagnosticReport diagnostics)
     {
@@ -47,3 +59,5 @@ public sealed class ServerBootstrapReport
         Validation.Merge(diagnostics.Validation);
     }
 }
+
+public sealed record RequiredDirectoryStatus(string Name, string Path, bool Exists);

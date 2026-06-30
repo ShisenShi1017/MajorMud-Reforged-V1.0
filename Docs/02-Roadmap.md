@@ -38,6 +38,8 @@ CodeUpdate-0036 adds knowledge-base, design-decision, reference-source, and disc
 
 CodeUpdate-0037 combines the 0036B continuity cleanup package with the 0037 Software Design Specification package. It adds draft planning documents under `Docs/SDS/` and repairs stale continuity. It does not implement gameplay, networking, editor behavior, or data rewrites.
 
+CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap report and startup output.
+
 
 ## Development Phases
 
@@ -102,4 +104,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation/planning slice: CodeUpdate-0037 adds documentation-only Software Design Specification planning records and continuity cleanup. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server or planning scope.
+Current implementation slice: CodeUpdate-0038 adds Server bootstrap required-directory status reporting. Next work should wait for user push plus green GitHub Actions, then continue with one small approved host/server scope.

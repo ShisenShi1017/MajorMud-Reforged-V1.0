@@ -11,7 +11,13 @@ Console.WriteLine($"CodeUpdate: {report.CodeUpdate ?? "<unknown>"}");
 Console.WriteLine($"DatabaseVersion: {report.DatabaseVersion ?? "<unknown>"}");
 Console.WriteLine($"Milestone: {report.Milestone ?? "<unknown>"}");
 Console.WriteLine($"Checks: {string.Join(", ", report.Checks)}");
+Console.WriteLine($"RequiredDirectories: {report.PresentRequiredDirectoryCount}/{report.RequiredDirectoryCount} present, {report.MissingRequiredDirectoryCount} missing");
 Console.WriteLine($"Validation: {report.IssueCount} issue(s), {report.InfoCount} info, {report.WarningCount} warning(s), {report.ErrorCount} error(s), {report.FatalCount} fatal");
+
+foreach (var directory in report.RequiredDirectories)
+{
+    Console.WriteLine($"Directory: {(directory.Exists ? "present" : "missing")} {directory.Name} -> {directory.Path}");
+}
 
 foreach (var issue in report.Validation.Issues)
 {

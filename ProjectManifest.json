@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0037",
+  "codeUpdate": "0038",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -16,16 +16,16 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0037",
+    "currentCodeUpdate": "0038",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and planning work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0037-Software-Design-Specification",
+    "lastUpdateName": "CodeUpdate-0038-Server-Bootstrap-Directory-Status",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0037 and confirm GitHub Actions restore/build/test passes.",
+      "Push CodeUpdate-0038 and confirm GitHub Actions restore/build/test passes.",
       "After green Actions, approve the next small Milestone 2 host/server or planning scope.",
       "Do not add gameplay systems without explicit approval."
     ]
@@ -54,5 +54,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0035 local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 fetched from GitHub origin/main at commit 105ed76b. CodeUpdate-0037 JSON parse and local .NET 8.0.422 restore/build/smoke verification passed; GitHub Actions pending after user push."
+  "buildVerification": "CodeUpdate-0037 JSON parse and local .NET 8.0.422 restore/build/smoke verification passed; GitHub Actions green by user report. CodeUpdate-0038 local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed."
 }

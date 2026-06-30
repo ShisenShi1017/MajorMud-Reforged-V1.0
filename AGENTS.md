@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0037
+## 10. Current project position after CodeUpdate-0038
 
-- Current Code Update: `0037`
+- Current Code Update: `0038`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0037, verify GitHub Actions green, then approve the next small Milestone 2 host/server or planning scope.
+- Current priority: push CodeUpdate-0038, verify GitHub Actions green, then approve the next small Milestone 2 host/server or planning scope.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -147,3 +147,5 @@ CodeUpdate-0035 adds Server bootstrap validation issue counts for startup output
 CodeUpdate-0036 adds knowledge-base, design-decision, reference-source, and discussion-recap documentation through direct GitHub commits.
 
 CodeUpdate-0037 combines the user-provided CodeUpdate-0036B continuity cleanup package and CodeUpdate-0037 Software Design Specification package into one documentation-only local update. It adds draft `Docs/SDS/` planning records and repairs stale continuity. It does not add gameplay, editor behavior, networking expansion, source-code behavior changes, or data rewrites.
+
+CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap report and startup output. It records CodeUpdate-0037 as green by user report and does not add gameplay, editor behavior, networking expansion, or data rewrites.

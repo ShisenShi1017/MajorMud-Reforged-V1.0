@@ -170,6 +170,14 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException("Server bootstrap success did not expose expected validation issue counts.");
     }
 
+    if (report.RequiredDirectoryCount != 6 ||
+        report.PresentRequiredDirectoryCount != 6 ||
+        report.MissingRequiredDirectoryCount != 0 ||
+        !report.RequiredDirectories.Any(directory => directory.Name == "Data" && directory.Exists))
+    {
+        throw new InvalidOperationException("Server bootstrap success did not expose expected required directory status.");
+    }
+
     if (report.ProjectName != "Reforged" ||
         string.IsNullOrWhiteSpace(report.CodeUpdate) ||
         string.IsNullOrWhiteSpace(report.DatabaseVersion) ||
