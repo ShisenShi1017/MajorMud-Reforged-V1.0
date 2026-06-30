@@ -54,6 +54,8 @@ CodeUpdate-0042 adds read-only canonical Server data catalog loading to bootstra
 
 CodeUpdate-0043 classifies canonical Server data categories as runtime-ready or runtime-blocked and makes empty placeholder categories visible without failing startup.
 
+CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. It does not rewrite canonical `Data/`, run original executables, use keygens, or add gameplay.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
@@ -122,4 +124,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0043 adds Server data readiness classification. Next work should wait for user push plus green GitHub Actions, then continue with one small approved server data-readiness or parser/comparison scope.
+Current implementation slice: CodeUpdate-0044 adds the original reference capture/extractor tool. Next work should wait for user push plus green GitHub Actions, then use extractor outputs with ChatGPT for reviewed data extraction analysis or continue with one small approved server data-readiness/parser/comparison scope.

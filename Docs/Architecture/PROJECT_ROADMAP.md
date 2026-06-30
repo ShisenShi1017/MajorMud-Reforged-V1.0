@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0043`
+- Current Code Update: `0044`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0043, verify GitHub Actions green, then approve one narrow server data-readiness or Classic parser/comparison scope.
+- Current priority: push CodeUpdate-0044, verify GitHub Actions green, then use reference-capture outputs for reviewed extraction analysis before approving one narrow server data-readiness or Classic parser/comparison scope.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -131,6 +131,8 @@ CodeUpdate-0041 adds the read-only Classic parity audit foundation to Server boo
 CodeUpdate-0042 adds read-only canonical Server data catalog loading to bootstrap. It reports registered Core data category status and record counts before gameplay exists.
 
 CodeUpdate-0043 classifies canonical Server data categories as runtime-ready or runtime-blocked and makes empty placeholder categories visible without failing startup.
+
+CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. It preserves source material, inventories files and strings, and keeps all output reference-only until a separate reviewed reconciliation update.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -164,6 +166,7 @@ Completed/started slices:
 - CodeUpdate-0041: read-only Classic parity audit foundation.
 - CodeUpdate-0042: Server data catalog bootstrap readiness.
 - CodeUpdate-0043: Server data readiness classification.
+- CodeUpdate-0044: Original reference capture/extractor tool.
 
 Focus Areas:
 
@@ -187,9 +190,9 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0043 is pushed and green:
+Next candidate after CodeUpdate-0044 is pushed and green:
 
-- One narrow server data-readiness or Classic parser/comparison follow-up approved by the user before implementation.
+- Use extractor outputs with ChatGPT for actual extraction analysis and proposed mappings, or approve one narrow server data-readiness or Classic parser/comparison follow-up before implementation.
 
 ## Milestone 3 - Standalone Server
 

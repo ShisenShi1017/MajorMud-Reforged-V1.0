@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0043
+- Current Code Update: 0044
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0043 - Server Data Readiness Classification
+- Current update: CodeUpdate-0044 - Original Reference Extractor
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -43,6 +43,10 @@
 - CodeUpdate-0042 local bootstrap loads 13/13 registered categories and 4,527 records, with 5 empty placeholder categories.
 - CodeUpdate-0043 classifies canonical Server data readiness as runtime-ready or runtime-blocked while keeping startup non-gameplay.
 - CodeUpdate-0043 local bootstrap reports 8 runtime-ready categories, 5 runtime-blocked placeholders, and 4,527 loaded records.
+- CodeUpdate-0043 GitHub Actions is green by user report.
+- CodeUpdate-0044 adds a reference-only original data capture/extractor tool under `Tools/ReferenceCapture/`.
+- CodeUpdate-0044 local PowerShell extractor self-test passed against `Tools/ReferenceCapture/README.md`; temporary self-test outputs were removed.
+- CodeUpdate-0044 does not run original executables, does not use keygens, does not rewrite canonical `Data/`, and does not add gameplay.
 
 ## Reference Data Policy
 

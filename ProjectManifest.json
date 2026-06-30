@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0043",
+  "codeUpdate": "0044",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,16 +18,17 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0043",
+    "currentCodeUpdate": "0044",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0043-Server-Data-Readiness-Classification",
+    "lastUpdateName": "CodeUpdate-0044-Original-Reference-Extractor",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0043 and confirm GitHub Actions restore/build/test passes.",
+      "Push CodeUpdate-0044 and confirm GitHub Actions restore/build/test passes.",
+      "Use the original reference capture tool with ChatGPT-guided extraction work to produce reviewed evidence before any data reconciliation.",
       "After green Actions, approve one narrow server data-readiness check or field-level Classic parser/comparison category.",
       "Do not delete imported/reference data until Reforged-native Data is complete, verified, and explicitly approved for cleanup."
     ]
@@ -56,5 +57,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0043 local Server and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. Server bootstrap run passed and reported loaded-with-runtime-gaps, 13/13 canonical categories present, 8 runtime-ready categories, 5 runtime-blocked placeholders, 4,527 records loaded, Readiness: host-tools-ready, and gameplay=disabled. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0044 local PowerShell extractor self-test passed against Tools/ReferenceCapture/README.md, producing a one-file inventory and string report before temporary output cleanup. Local .NET verification is recorded in UpdateManifest.json. GitHub Actions remains the official gate after user push."
 }

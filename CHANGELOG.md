@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0044 - Original Reference Extractor
+
+- Added `Tools/ReferenceCapture/Capture-OriginalReferenceData.ps1` for reference-only capture of original Worldgroup, WCC, WBB, WSGSERVE, and related source material.
+- Added source preservation, ZIP extraction, optional 7-Zip-backed RAR/7z extraction, SHA-256 file inventory, category hints, printable string extraction, and JSON/CSV/Markdown reports.
+- Added `Tools/ReferenceCapture/README.md` with safe usage and extraction boundaries.
+- Recorded CodeUpdate-0043 GitHub Actions as green by user report.
+- Preserved the rule that imported/reference outputs are evidence only and cannot overwrite canonical `Data/` without a reviewed follow-up update.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, editor implementation, canonical `Data` rewrite, imported data deletion, original executable execution, keygen use, license bypass, or exact parity claim is included.
+
 ## CodeUpdate-0043 - Server Data Readiness Classification
 
 - Added runtime-readiness classification to canonical Server data catalog summaries.

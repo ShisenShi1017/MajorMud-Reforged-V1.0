@@ -1,3 +1,35 @@
+# CodeUpdate-0044 - Original Reference Extractor
+
+This update adds a safe reference-capture extractor for original/source material. It preserves and inventories legacy files for later reviewed extraction work without running original programs or changing live Reforged `Data/`.
+
+## Changed
+
+- Added `Tools/ReferenceCapture/Capture-OriginalReferenceData.ps1`.
+- Added `Tools/ReferenceCapture/README.md`.
+- Added archive preservation under named `ImportedDatabases/ReferenceCaptures/` output folders.
+- Added file inventory, SHA-256 hashing, category hints, printable string extraction, and JSON/CSV/Markdown reports under named `Reports/ReferenceCaptures/` output folders.
+- Supports `.zip` extraction directly and `.rar`/`.7z` extraction when 7-Zip is installed.
+- Recorded CodeUpdate-0043 GitHub Actions as green by user report.
+
+## Verification
+
+- PowerShell extractor self-test passed against `Tools/ReferenceCapture/README.md`.
+- Self-test produced one file inventory and 35 string rows.
+- Temporary self-test output was removed after inspection.
+- Final .NET verification is recorded in `UpdateManifest.json`.
+
+## Boundaries
+
+- No canonical `Data/` rewrite.
+- No imported data deletion.
+- No original EXE, DLL, COM, or SYS execution.
+- No keygen use or license bypass.
+- No WCC/WBB/WSGSERVE automatic reconciliation.
+- No gameplay systems.
+- No world simulation loop.
+- No exact MajorMUD parity claim.
+
+## Previous Release Notes
 # CodeUpdate-0043 - Server Data Readiness Classification
 
 This update separates canonical data file presence from runtime readiness. Server startup now reports which data categories are runtime-ready and which are present but blocked by empty placeholder data.
