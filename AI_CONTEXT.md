@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0041 |
+| Current Code Update | 0042 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0041-Classic-Parity-Audit-Foundation |
+| Last Update Name | CodeUpdate-0042-Server-Data-Catalog-Bootstrap |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -141,7 +141,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 | Area | Status | Notes |
 |---|---:|---|
 | Host/server startup diagnostics | Started | CodeUpdate-0029 added startup-only Server diagnostics. |
-| Server bootstrap foundation | Extended in 0041 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields; 0033 exposes explicit exit codes; 0035 exposes validation issue counts; 0038 exposes required-directory status; 0039 exposes host-tool readiness; 0041 attaches read-only Classic parity inventory. |
+| Server bootstrap foundation | Extended in 0042 | 0031 added the bootstrap; 0031A fixed the smoke-test compile error; 0032 captures manifest identity fields; 0033 exposes explicit exit codes; 0035 exposes validation issue counts; 0038 exposes required-directory status; 0039 exposes host-tool readiness; 0041 attaches read-only Classic parity inventory; 0042 loads canonical Server data catalog readiness. |
 | Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Knowledge base and SDS planning | Started in 0036/0037 | 0036 added knowledge-base/design-decision records; 0037 adds draft SDS planning docs and repairs stale continuity. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
@@ -154,6 +154,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 
 | Code Update | Summary |
 |---|---|
+| 0042 | Adds read-only canonical Server data catalog loading and startup reporting. |
 | 0041 | Adds read-only Classic parity audit inventory to Server bootstrap while making no exact parity claim. |
 | 0040 | Preserves WCC-labeled WBB material under ImportedDatabases as reference/import material only. |
 | 0039 | Adds a compact Server bootstrap readiness summary for host/editor tooling while keeping gameplay disabled. |
@@ -175,6 +176,45 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 | 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
+
+## CodeUpdate-0042 Handoff
+
+CodeUpdate-0042 is a small non-gameplay Milestone 2 server-building update. It wires existing Core canonical data loading into Server bootstrap so startup can report which live `Data/` categories are readable before gameplay systems exist.
+
+Implemented:
+
+- Added `ServerDataCatalogAudit` and report models.
+- Loaded registered Core data categories through `CoreDataRepositoryLoader`.
+- Attached Server data catalog readiness to non-gameplay Server bootstrap.
+- Updated Server startup output to print category status, file size, and loaded record count.
+- Added smoke coverage for direct Server data catalog loading and bootstrap attachment.
+- Recorded CodeUpdate-0041 GitHub Actions as green by user report.
+
+Current local bootstrap result:
+
+- 13/13 registered categories present.
+- 4,527 records loaded.
+- 5 empty placeholder categories remain visible: loot tables, quests, rooms, shops, and trainers.
+- Gameplay remains disabled.
+
+Boundaries:
+
+- No `Data/` rewrite.
+- No WCC import or reconciliation.
+- No `ImportedDatabases/` overwrite.
+- No gameplay systems.
+- No combat.
+- No character creation.
+- No world simulation loop.
+- No networking expansion.
+- No editor implementation.
+- No proprietary WCC/WBB/WSGSERVE parser.
+- No exact MajorMUD parity claim.
+- Codex did not push to GitHub.
+
+Next-scope candidate:
+
+- Push CodeUpdate-0042 and wait for green GitHub Actions. A safe next slice is one narrow server data-readiness check, such as reporting empty canonical categories separately from loaded categories, or one approved parser/comparison category.
 
 ## CodeUpdate-0041 Handoff
 
@@ -205,7 +245,7 @@ Boundaries:
 
 Next-scope candidate:
 
-- Push CodeUpdate-0041 and wait for green GitHub Actions. A safe next slice is one narrow field-level Classic parser/comparison category, likely rooms or shops, only after approval.
+- CodeUpdate-0041 is green by user report. Follow the current CodeUpdate-0042 handoff above for next work.
 
 ## CodeUpdate-0039 Handoff
 
@@ -460,14 +500,14 @@ Verified before creating CodeUpdate-0039:
 - Repository manifests recorded CodeUpdate-0038 and DatabaseVersion 0009.
 - User reported CodeUpdate-0038 GitHub Actions green.
 
-CodeUpdate-0041 is the current local update candidate.
+CodeUpdate-0042 is the current local update candidate.
 
-CodeUpdate-0039 and CodeUpdate-0040 are present in history. CodeUpdate-0041 remains pending user push and GitHub Actions green report.
+CodeUpdate-0041 is green by user report. CodeUpdate-0042 remains pending user push and GitHub Actions green report.
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0041 and report GitHub Actions status.
-2. After green Actions, approve one narrow Classic parser/comparison or server-readiness scope.
+1. Push CodeUpdate-0042 and report GitHub Actions status.
+2. After green Actions, approve one narrow server data-readiness or Classic parser/comparison scope.
 3. Do not add gameplay systems without explicit approval.
 
 ## New Window Instruction

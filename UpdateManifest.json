@@ -1,8 +1,8 @@
 {
-  "codeUpdate": "0041",
-  "name": "CodeUpdate-0041-Classic-Parity-Audit-Foundation",
+  "codeUpdate": "0042",
+  "name": "CodeUpdate-0042-Server-Data-Catalog-Bootstrap",
   "packageType": "direct-repository-patch",
-  "purpose": "Add a read-only Classic parity audit foundation to Server bootstrap so Reforged can inventory canonical Data and imported reference material before exact parsers or gameplay systems are introduced.",
+  "purpose": "Wire canonical Core Data catalog loading into non-gameplay Server bootstrap so startup can report live Data category readiness before gameplay systems are introduced.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": true,
   "batInstallerCreated": false,
@@ -10,43 +10,41 @@
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-  "verificationStatus": "Local JSON parse passed. Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed sequentially with 0 warnings and 0 errors after an initial parallel Core.Tests build hit a transient Core obj file lock. Smoke tests passed. Server bootstrap run passed and printed Classic parity inventory status with gameplay disabled. GitHub Actions remains pending after user push.",
+  "verificationStatus": "Local Server and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. Server bootstrap run passed and reported 13/13 canonical categories present, 4,527 records loaded, 5 empty placeholder categories, Readiness: host-tools-ready, and gameplay=disabled. GitHub Actions remains pending after user push.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
-    "Apps/Source/Reforged.Server/ClassicParityAudit.cs",
-    "Apps/Source/Reforged.Server/ClassicParityAuditModels.cs",
     "Apps/Source/Reforged.Server/Program.cs",
     "Apps/Source/Reforged.Server/README.md",
     "Apps/Source/Reforged.Server/ServerBootstrap.cs",
     "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
+    "Apps/Source/Reforged.Server/ServerDataCatalogAudit.cs",
+    "Apps/Source/Reforged.Server/ServerDataCatalogAuditModels.cs",
     "CHANGELOG.md",
-    "DEVELOPMENT_PRINCIPLES.md",
     "Docs/02-Roadmap.md",
     "Docs/Architecture/PROJECT_ROADMAP.md",
-    "Docs/CodeUpdates/CodeUpdate-0041-Classic-Parity-Audit-Foundation.md",
-    "Docs/DataSources/Classic-Parity-Audit.md",
+    "Docs/CodeUpdates/CodeUpdate-0042-Server-Data-Catalog-Bootstrap.md",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0041/ClassicParityAuditFoundationReport.md",
+    "Reports/CodeUpdates/CodeUpdate-0042/ServerDataCatalogBootstrapReport.md",
     "Tests/Source/Reforged.Core.Tests/Program.cs",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineCommit": "8b488c58",
-    "baselineStatus": "Local main and GitHub main matched before reapplying CodeUpdate-0041; root docs still recorded stale 0039 state."
+    "baselineCommit": "af3ff8ba",
+    "baselineStatus": "CodeUpdate-0041 green by user report"
   },
   "localVerification": {
     "status": "passed",
-    "scope": "Classic parity audit foundation, continuity repair, and WCC reference-only rule",
+    "scope": "Server data catalog bootstrap readiness",
     "json": "ProjectManifest.json and UpdateManifest.json parsed successfully.",
     "restore": "No restore was required; no package references changed.",
-    "build": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed sequentially with 0 warnings and 0 errors after an initial parallel Core.Tests build hit a transient Core obj file lock.",
-    "smokeTests": "Reforged core/server smoke tests passed, including Classic parity audit inventory coverage.",
-    "serverBootstrap": "Server bootstrap run passed and reported CodeUpdate 0041, Readiness: host-tools-ready; gameplay=disabled, and ClassicParity: inventory-ready."
+    "build": "Apps/Source/Reforged.Server/Reforged.Server.csproj and Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj Release builds passed with 0 warnings and 0 errors.",
+    "smokeTests": "Reforged core/server smoke tests passed, including Server data catalog audit coverage.",
+    "serverBootstrap": "Server bootstrap run passed and reported ServerDataCatalog: loaded-with-empty-categories; categories=13/13; empty=5; records=4527; gameplay=disabled."
   },
   "boundaries": [
     "No gameplay systems",
@@ -57,10 +55,16 @@
     "No networking expansion",
     "No Data rewrite",
     "No ImportedDatabases overwrite",
+    "No WCC import or reconciliation",
     "No proprietary WCC/WBB/WSGSERVE parser",
     "No exact MajorMUD parity claim"
   ],
   "referenceDataPolicy": "All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.",
-  "recommendedNextUpdate": "After CodeUpdate-0041 is pushed and GitHub Actions is green, approve one narrow field-level Classic parser/comparison category or server-readiness scope.",
+  "knownLimitations": [
+    "The Server data catalog loads records but does not start gameplay.",
+    "Loot tables, quests, rooms, shops, and trainers are present as empty placeholder categories in the current canonical Data baseline.",
+    "Imported/reference material remains excluded from runtime loading."
+  ],
+  "recommendedNextUpdate": "After CodeUpdate-0042 is pushed and GitHub Actions is green, approve one narrow server data-readiness check or field-level Classic parser/comparison category.",
   "recommendedNextScopeRequiresUserApproval": true
 }

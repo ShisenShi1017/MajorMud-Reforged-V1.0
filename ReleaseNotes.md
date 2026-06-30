@@ -1,3 +1,29 @@
+# CodeUpdate-0042 - Server Data Catalog Bootstrap
+
+This update adds read-only canonical Server data catalog loading to the non-gameplay bootstrap path. Server startup now loads registered Core `Data/` categories and prints category readiness before any gameplay systems are started.
+
+## Changed
+
+- Added Server data catalog audit models and loader.
+- Attached canonical data category readiness to Server bootstrap.
+- Printed category status, file size, and loaded record count during startup.
+- Added smoke-test coverage.
+
+## Verification
+
+- Server bootstrap loads 13/13 categories and 4,527 records.
+- Empty placeholder categories remain visible: loot tables, quests, rooms, shops, and trainers.
+- Gameplay remains disabled.
+
+## Boundaries
+
+- No canonical `Data/` rewrite.
+- No WCC import or reconciliation.
+- No gameplay systems.
+- No world simulation loop.
+- No exact MajorMUD parity claim.
+
+## Previous Release Notes
 # CodeUpdate-0041 - Classic Parity Audit Foundation
 
 This update adds the first read-only Classic parity audit foundation. Server bootstrap now inventories canonical `Data/` and imported reference material so future updates can measure Classic coverage after exact parsers are added.

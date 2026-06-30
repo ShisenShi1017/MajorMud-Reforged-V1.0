@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0042 - Server Data Catalog Bootstrap
+
+- Added read-only Server data catalog loading through the existing Core `CoreDataRepositoryLoader`.
+- Attached canonical `Data/` category readiness to non-gameplay Server bootstrap.
+- Updated Server startup output to print canonical data category status, file sizes, and loaded record counts.
+- Added smoke-test coverage for Server data catalog attachment and direct catalog audit loading.
+- Local bootstrap loads 13/13 registered categories and 4,527 records, with 5 empty placeholder categories.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, data rewrite, WCC import, proprietary binary parser, or exact parity claim is included.
+
 ## CodeUpdate-0041 - Classic Parity Audit Foundation
 
 - Added read-only Classic parity audit inventory for canonical `Data/` and imported reference material.

@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0041
+## 10. Current project position after CodeUpdate-0042
 
-- Current Code Update: `0041`
+- Current Code Update: `0042`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0041, verify GitHub Actions green, then approve one narrow Classic parser/comparison or server-readiness scope.
+- Current priority: push CodeUpdate-0042, verify GitHub Actions green, then approve one narrow server data-readiness or Classic parser/comparison scope.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -155,6 +155,8 @@ CodeUpdate-0039 adds a compact host-tool readiness summary to the non-gameplay S
 CodeUpdate-0040 preserves WCC-labeled WBB material under `ImportedDatabases/WCCLabeledWBB/` as reference/import material only.
 
 CodeUpdate-0041 adds the read-only Classic parity audit foundation to Server bootstrap. It inventories canonical `Data/` and imported reference material but does not parse proprietary legacy formats and does not claim exact MajorMUD parity.
+
+CodeUpdate-0042 adds read-only canonical Server data catalog loading to bootstrap. It loads registered Core data categories from `Data/`, reports category status and record counts, and keeps gameplay disabled.
 
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 

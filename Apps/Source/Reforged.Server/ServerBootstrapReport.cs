@@ -30,6 +30,8 @@ public sealed class ServerBootstrapReport
 
     public ClassicParityAuditReport? ClassicParityAudit { get; private set; }
 
+    public ServerDataCatalogAuditReport? ServerDataCatalog { get; private set; }
+
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
 
     public int ExitCode => Passed ? 0 : 1;
@@ -74,6 +76,11 @@ public sealed class ServerBootstrapReport
     public void AttachClassicParityAudit(ClassicParityAuditReport audit)
     {
         ClassicParityAudit = audit;
+    }
+
+    public void AttachServerDataCatalog(ServerDataCatalogAuditReport audit)
+    {
+        ServerDataCatalog = audit;
     }
 }
 

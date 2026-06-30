@@ -20,6 +20,15 @@ foreach (var directory in report.RequiredDirectories)
     Console.WriteLine($"Directory: {(directory.Exists ? "present" : "missing")} {directory.Name} -> {directory.Path}");
 }
 
+if (report.ServerDataCatalog is not null)
+{
+    Console.WriteLine($"ServerDataCatalog: {report.ServerDataCatalog.Status}; categories={report.ServerDataCatalog.PresentCategoryCount}/{report.ServerDataCatalog.CategoryCount}; empty={report.ServerDataCatalog.EmptyCategoryCount}; records={report.ServerDataCatalog.LoadedRecordCount}");
+    foreach (var category in report.ServerDataCatalog.Categories)
+    {
+        Console.WriteLine($"ServerDataCategory: {category.Category}; status={category.Status}; records={category.RecordCount}; file={category.RelativePath}; bytes={category.FileSizeBytes}");
+    }
+}
+
 if (report.ClassicParityAudit is not null)
 {
     Console.WriteLine($"ClassicParity: {report.ClassicParityAudit.Status}; canonicalFiles={report.ClassicParityAudit.CanonicalFileCount}; importedReferenceFiles={report.ClassicParityAudit.ImportedReferenceFileCount}; exactNameMatches={report.ClassicParityAudit.ExactNameMatchCount}");

@@ -50,6 +50,8 @@ CodeUpdate-0040 preserves WCC-labeled WBB material under `ImportedDatabases/WCCL
 
 CodeUpdate-0041 adds the read-only Classic parity audit foundation to Server bootstrap. It inventories canonical `Data/` and imported reference material, but does not parse proprietary legacy formats and does not claim exact MajorMUD parity.
 
+CodeUpdate-0042 adds read-only canonical Server data catalog loading to bootstrap. It reports registered Core data category status and record counts before gameplay exists.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 
@@ -116,4 +118,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0041 adds Server bootstrap Classic parity inventory reporting. Next work should wait for user push plus green GitHub Actions, then continue with one small approved parser/comparison or server-readiness scope.
+Current implementation slice: CodeUpdate-0042 adds Server bootstrap canonical data catalog reporting. Next work should wait for user push plus green GitHub Actions, then continue with one small approved server data-readiness or parser/comparison scope.

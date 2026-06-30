@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0041
+- Current Code Update: 0042
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0041 - Classic Parity Audit Foundation
+- Current update: CodeUpdate-0042 - Server Data Catalog Bootstrap
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -39,6 +39,8 @@
 - CodeUpdate-0040 preserves WCC-labeled WBB material under `ImportedDatabases/WCCLabeledWBB/` as reference/import material only.
 - CodeUpdate-0041 adds a read-only Classic parity audit foundation attached to Server bootstrap.
 - CodeUpdate-0041 does not parse binary legacy formats yet and does not claim exact MajorMUD parity.
+- CodeUpdate-0042 adds read-only canonical Server data catalog loading to Server bootstrap.
+- CodeUpdate-0042 local bootstrap loads 13/13 registered categories and 4,527 records, with 5 empty placeholder categories.
 
 ## Reference Data Policy
 

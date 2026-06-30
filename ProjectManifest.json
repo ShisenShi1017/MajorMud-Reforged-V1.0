@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0041",
+  "codeUpdate": "0042",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -17,17 +17,17 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0041",
+    "currentCodeUpdate": "0042",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0041-Classic-Parity-Audit-Foundation",
+    "lastUpdateName": "CodeUpdate-0042-Server-Data-Catalog-Bootstrap",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0041 and confirm GitHub Actions restore/build/test passes.",
-      "After green Actions, approve one narrow field-level Classic parser/comparison category or server-readiness scope.",
+      "Push CodeUpdate-0042 and confirm GitHub Actions restore/build/test passes.",
+      "After green Actions, approve one narrow server data-readiness check or field-level Classic parser/comparison category.",
       "Do not claim exact MajorMUD parity until parsed comparison evidence supports it."
     ]
   },
@@ -55,5 +55,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0041 local JSON parse passed. Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed sequentially with 0 warnings and 0 errors after an initial parallel Core.Tests build hit a transient Core obj file lock. Smoke tests passed. Server bootstrap run passed and printed Classic parity inventory status with gameplay disabled. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0042 local Server and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. Server bootstrap run passed and reported 13/13 canonical categories present, 4,527 records loaded, 5 empty placeholder categories, Readiness: host-tools-ready, and gameplay=disabled. GitHub Actions remains the official gate after user push."
 }

@@ -16,6 +16,7 @@ var tests = new List<(string Name, Action Body)>
     ("startup diagnostics run", StartupDiagnosticsSmoke),
     ("server startup diagnostics run", ServerStartupDiagnosticsSmoke),
     ("server bootstrap runs", ServerBootstrapSmoke),
+    ("server data catalog loads canonical data", ServerDataCatalogAuditSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
 };
 
@@ -146,7 +147,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "startup-diagnostics", "classic-parity-audit" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "server-data-catalog", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -157,6 +158,14 @@ void ServerBootstrapSmoke()
     if (report.StartupDiagnostics is null || !report.StartupDiagnostics.Checks.Contains("server-identity"))
     {
         throw new InvalidOperationException("Server bootstrap did not attach Server startup diagnostics.");
+    }
+
+    if (report.ServerDataCatalog is null ||
+        report.ServerDataCatalog.CategoryCount < 10 ||
+        report.ServerDataCatalog.MissingCategoryCount != 0 ||
+        report.ServerDataCatalog.LoadedRecordCount == 0)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach expected Server data catalog inventory.");
     }
 
     if (report.ClassicParityAudit is null || report.ClassicParityAudit.Categories.Count == 0)
@@ -212,6 +221,38 @@ void ServerBootstrapSmoke()
     if (failedReport.IssueCount == 0 || failedReport.ErrorCount + failedReport.FatalCount == 0)
     {
         throw new InvalidOperationException("Server bootstrap failure did not expose expected validation error counts.");
+    }
+}
+
+void ServerDataCatalogAuditSmoke()
+{
+    var validation = new Reforged.Core.Validation.ValidationResult();
+    var report = new ServerDataCatalogAudit().Run(root, validation);
+    if (validation.HasErrors)
+    {
+        throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    if (report.DataRoot is null || !report.DataRoot.EndsWith("Data", StringComparison.Ordinal))
+    {
+        throw new InvalidOperationException("Server data catalog did not capture Data root.");
+    }
+
+    if (report.CategoryCount < 10 ||
+        report.PresentCategoryCount != report.CategoryCount ||
+        report.MissingCategoryCount != 0 ||
+        report.LoadedRecordCount == 0 ||
+        string.IsNullOrWhiteSpace(report.Status))
+    {
+        throw new InvalidOperationException("Server data catalog did not expose expected category readiness.");
+    }
+
+    foreach (var category in new[] { "items", "rooms", "world_rooms" })
+    {
+        if (!report.Categories.Any(summary => summary.Category == category && summary.FileExists))
+        {
+            throw new InvalidOperationException($"Server data catalog did not include expected category: {category}");
+        }
     }
 }
 
