@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0042
+- Current Code Update: 0043
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0042 - Server Data Catalog Bootstrap
+- Current update: CodeUpdate-0043 - Server Data Readiness Classification
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -41,12 +41,15 @@
 - CodeUpdate-0041 does not parse binary legacy formats yet and does not claim exact MajorMUD parity.
 - CodeUpdate-0042 adds read-only canonical Server data catalog loading to Server bootstrap.
 - CodeUpdate-0042 local bootstrap loads 13/13 registered categories and 4,527 records, with 5 empty placeholder categories.
+- CodeUpdate-0043 classifies canonical Server data readiness as runtime-ready or runtime-blocked while keeping startup non-gameplay.
+- CodeUpdate-0043 local bootstrap reports 8 runtime-ready categories, 5 runtime-blocked placeholders, and 4,527 loaded records.
 
 ## Reference Data Policy
 
 - Reforged `Data/` remains canonical.
 - `ImportedDatabases/` remains archive/reference only.
 - All WCC data, including WCC default installs, WCC-labeled WBB material, WSGSERVE-related files, and WCC-derived archives, is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
+- `ImportedDatabases/` should be retired only after all needed source data has been decoded, imported, recreated as Reforged-native `Data/`, verified, and explicitly approved for cleanup.
 - OmniVerse may be used as a read-only comparison source to identify possible corrections.
 - LLT XML, MegaMUD databases, MegaMUD `.mp` paths, Mud Hex documentation, MudInfo, MudCentral, Reddit/community sources, WCC archives, and WSGSERVE `.dat` files are reference or verification sources only unless explicitly approved for a reviewed import/reconciliation update.
 - No website/API/community/tool data may overwrite Reforged data without a reviewed, approved follow-up update.

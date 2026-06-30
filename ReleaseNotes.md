@@ -1,3 +1,33 @@
+# CodeUpdate-0043 - Server Data Readiness Classification
+
+This update separates canonical data file presence from runtime readiness. Server startup now reports which data categories are runtime-ready and which are present but blocked by empty placeholder data.
+
+## Changed
+
+- Added runtime-ready and runtime-blocked counts.
+- Added placeholder classification for empty canonical categories.
+- Added readiness notes for each Server data category.
+- Added smoke-test coverage for the readiness classification.
+- Recorded the eventual goal to retire imported/reference data after Reforged-native data is complete and verified.
+
+## Verification
+
+- Server bootstrap reports 13/13 categories present.
+- Runtime-ready categories: 8.
+- Runtime-blocked placeholder categories: 5.
+- Loaded records: 4,527.
+- Gameplay remains disabled.
+
+## Boundaries
+
+- No canonical `Data/` rewrite.
+- No imported data deletion.
+- No WCC import or reconciliation.
+- No gameplay systems.
+- No world simulation loop.
+- No exact MajorMUD parity claim.
+
+## Previous Release Notes
 # CodeUpdate-0042 - Server Data Catalog Bootstrap
 
 This update adds read-only canonical Server data catalog loading to the non-gameplay bootstrap path. Server startup now loads registered Core `Data/` categories and prints category readiness before any gameplay systems are started.

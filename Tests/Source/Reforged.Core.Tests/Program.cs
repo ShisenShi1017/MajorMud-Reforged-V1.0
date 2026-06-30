@@ -163,7 +163,9 @@ void ServerBootstrapSmoke()
     if (report.ServerDataCatalog is null ||
         report.ServerDataCatalog.CategoryCount < 10 ||
         report.ServerDataCatalog.MissingCategoryCount != 0 ||
-        report.ServerDataCatalog.LoadedRecordCount == 0)
+        report.ServerDataCatalog.LoadedRecordCount == 0 ||
+        report.ServerDataCatalog.RuntimeBlockedCategoryCount == 0 ||
+        report.ServerDataCatalog.EmptyPlaceholderCategoryCount == 0)
     {
         throw new InvalidOperationException("Server bootstrap did not attach expected Server data catalog inventory.");
     }
@@ -242,6 +244,10 @@ void ServerDataCatalogAuditSmoke()
         report.PresentCategoryCount != report.CategoryCount ||
         report.MissingCategoryCount != 0 ||
         report.LoadedRecordCount == 0 ||
+        report.RuntimeReadyCategoryCount == 0 ||
+        report.RuntimeBlockedCategoryCount == 0 ||
+        report.EmptyPlaceholderCategoryCount == 0 ||
+        report.Status != "loaded-with-runtime-gaps" ||
         string.IsNullOrWhiteSpace(report.Status))
     {
         throw new InvalidOperationException("Server data catalog did not expose expected category readiness.");
@@ -252,6 +258,19 @@ void ServerDataCatalogAuditSmoke()
         if (!report.Categories.Any(summary => summary.Category == category && summary.FileExists))
         {
             throw new InvalidOperationException($"Server data catalog did not include expected category: {category}");
+        }
+    }
+
+    foreach (var category in new[] { "loot_tables", "quests", "rooms", "shops", "trainers" })
+    {
+        var summary = report.Categories.FirstOrDefault(item => item.Category == category);
+        if (summary is null ||
+            !summary.IsPlaceholder ||
+            summary.RuntimeReady ||
+            summary.Status != "placeholder-empty-needs-data" ||
+            string.IsNullOrWhiteSpace(summary.ReadinessNote))
+        {
+            throw new InvalidOperationException($"Server data catalog did not classify expected placeholder category: {category}");
         }
     }
 }

@@ -22,10 +22,10 @@ foreach (var directory in report.RequiredDirectories)
 
 if (report.ServerDataCatalog is not null)
 {
-    Console.WriteLine($"ServerDataCatalog: {report.ServerDataCatalog.Status}; categories={report.ServerDataCatalog.PresentCategoryCount}/{report.ServerDataCatalog.CategoryCount}; empty={report.ServerDataCatalog.EmptyCategoryCount}; records={report.ServerDataCatalog.LoadedRecordCount}");
+    Console.WriteLine($"ServerDataCatalog: {report.ServerDataCatalog.Status}; categories={report.ServerDataCatalog.PresentCategoryCount}/{report.ServerDataCatalog.CategoryCount}; runtimeReady={report.ServerDataCatalog.RuntimeReadyCategoryCount}; runtimeBlocked={report.ServerDataCatalog.RuntimeBlockedCategoryCount}; placeholders={report.ServerDataCatalog.EmptyPlaceholderCategoryCount}; records={report.ServerDataCatalog.LoadedRecordCount}");
     foreach (var category in report.ServerDataCatalog.Categories)
     {
-        Console.WriteLine($"ServerDataCategory: {category.Category}; status={category.Status}; records={category.RecordCount}; file={category.RelativePath}; bytes={category.FileSizeBytes}");
+        Console.WriteLine($"ServerDataCategory: {category.Category}; status={category.Status}; runtimeReady={category.RuntimeReady}; placeholder={category.IsPlaceholder}; records={category.RecordCount}; file={category.RelativePath}; bytes={category.FileSizeBytes}; note={category.ReadinessNote}");
     }
 }
 

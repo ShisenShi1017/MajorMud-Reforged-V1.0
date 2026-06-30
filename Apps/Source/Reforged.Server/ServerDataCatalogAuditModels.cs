@@ -21,6 +21,12 @@ public sealed class ServerDataCatalogAuditReport
 
     public int EmptyCategoryCount => categories.Count(category => category.FileExists && category.RecordCount == 0);
 
+    public int EmptyPlaceholderCategoryCount => categories.Count(category => category.IsPlaceholder && category.RecordCount == 0);
+
+    public int RuntimeReadyCategoryCount => categories.Count(category => category.RuntimeReady);
+
+    public int RuntimeBlockedCategoryCount => categories.Count(category => !category.RuntimeReady);
+
     public int LoadedRecordCount => categories.Sum(category => category.RecordCount);
 
     public string Status
@@ -42,7 +48,7 @@ public sealed class ServerDataCatalogAuditReport
                 return "no-records-loaded";
             }
 
-            return EmptyCategoryCount > 0 ? "loaded-with-empty-categories" : "loaded";
+            return RuntimeBlockedCategoryCount > 0 ? "loaded-with-runtime-gaps" : "runtime-ready";
         }
     }
 
@@ -56,4 +62,7 @@ public sealed record ServerDataCategorySummary(
     bool FileExists,
     long FileSizeBytes,
     int RecordCount,
-    string Status);
+    bool IsPlaceholder,
+    bool RuntimeReady,
+    string Status,
+    string ReadinessNote);

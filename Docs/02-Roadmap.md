@@ -52,7 +52,11 @@ CodeUpdate-0041 adds the read-only Classic parity audit foundation to Server boo
 
 CodeUpdate-0042 adds read-only canonical Server data catalog loading to bootstrap. It reports registered Core data category status and record counts before gameplay exists.
 
+CodeUpdate-0043 classifies canonical Server data categories as runtime-ready or runtime-blocked and makes empty placeholder categories visible without failing startup.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
+
+Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
 
 ## Development Phases
@@ -118,4 +122,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0042 adds Server bootstrap canonical data catalog reporting. Next work should wait for user push plus green GitHub Actions, then continue with one small approved server data-readiness or parser/comparison scope.
+Current implementation slice: CodeUpdate-0043 adds Server data readiness classification. Next work should wait for user push plus green GitHub Actions, then continue with one small approved server data-readiness or parser/comparison scope.

@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0042",
+  "codeUpdate": "0043",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -11,24 +11,25 @@
   "neverGuessPolicy": "Never guess when creating, fixing, reviewing, packaging, or reporting updates. Verify before claiming success; if something cannot be verified, state that clearly.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
   "referenceDataPolicy": "All WCC data, WCC-labeled data, WSGSERVE-related data, imported archives, website data, and community/tool data are reference-only unless the user explicitly approves a reviewed import or reconciliation update.",
+  "importedDataRetirementPolicy": "ImportedDatabases may be retired from normal project work only after all needed source data has been decoded, imported, recreated as Reforged-native Data, verified by reports, and explicitly approved for cleanup.",
   "preserve": [
     "Saves",
     "ImportedDatabases"
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0042",
+    "currentCodeUpdate": "0043",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0042-Server-Data-Catalog-Bootstrap",
+    "lastUpdateName": "CodeUpdate-0043-Server-Data-Readiness-Classification",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0042 and confirm GitHub Actions restore/build/test passes.",
+      "Push CodeUpdate-0043 and confirm GitHub Actions restore/build/test passes.",
       "After green Actions, approve one narrow server data-readiness check or field-level Classic parser/comparison category.",
-      "Do not claim exact MajorMUD parity until parsed comparison evidence supports it."
+      "Do not delete imported/reference data until Reforged-native Data is complete, verified, and explicitly approved for cleanup."
     ]
   },
   "handoffPolicy": {
@@ -55,5 +56,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0042 local Server and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. Server bootstrap run passed and reported 13/13 canonical categories present, 4,527 records loaded, 5 empty placeholder categories, Readiness: host-tools-ready, and gameplay=disabled. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0043 local Server and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. Server bootstrap run passed and reported loaded-with-runtime-gaps, 13/13 canonical categories present, 8 runtime-ready categories, 5 runtime-blocked placeholders, 4,527 records loaded, Readiness: host-tools-ready, and gameplay=disabled. GitHub Actions remains the official gate after user push."
 }

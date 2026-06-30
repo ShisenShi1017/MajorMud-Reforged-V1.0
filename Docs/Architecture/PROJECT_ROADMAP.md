@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0042`
+- Current Code Update: `0043`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0042, verify GitHub Actions green, then approve one narrow server data-readiness or Classic parser/comparison scope.
+- Current priority: push CodeUpdate-0043, verify GitHub Actions green, then approve one narrow server data-readiness or Classic parser/comparison scope.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -129,6 +129,8 @@ CodeUpdate-0040 preserves WCC-labeled WBB material under `ImportedDatabases/WCCL
 CodeUpdate-0041 adds the read-only Classic parity audit foundation to Server bootstrap. It inventories canonical `Data/` and imported reference material, but does not parse proprietary legacy formats and does not claim exact MajorMUD parity.
 
 CodeUpdate-0042 adds read-only canonical Server data catalog loading to bootstrap. It reports registered Core data category status and record counts before gameplay exists.
+
+CodeUpdate-0043 classifies canonical Server data categories as runtime-ready or runtime-blocked and makes empty placeholder categories visible without failing startup.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -161,6 +163,7 @@ Completed/started slices:
 - CodeUpdate-0040: WCC-labeled WBB reference/import material preservation.
 - CodeUpdate-0041: read-only Classic parity audit foundation.
 - CodeUpdate-0042: Server data catalog bootstrap readiness.
+- CodeUpdate-0043: Server data readiness classification.
 
 Focus Areas:
 
@@ -182,8 +185,9 @@ Boundaries until approved:
 - No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader implementation.
 - No `Data/` rewrite from imported WCC reference material.
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
+- Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0042 is pushed and green:
+Next candidate after CodeUpdate-0043 is pushed and green:
 
 - One narrow server data-readiness or Classic parser/comparison follow-up approved by the user before implementation.
 

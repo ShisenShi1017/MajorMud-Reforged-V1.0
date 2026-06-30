@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0042
+## 10. Current project position after CodeUpdate-0043
 
-- Current Code Update: `0042`
+- Current Code Update: `0043`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0042, verify GitHub Actions green, then approve one narrow server data-readiness or Classic parser/comparison scope.
+- Current priority: push CodeUpdate-0043, verify GitHub Actions green, then approve one narrow server data-readiness or Classic parser/comparison scope.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -158,8 +158,12 @@ CodeUpdate-0041 adds the read-only Classic parity audit foundation to Server boo
 
 CodeUpdate-0042 adds read-only canonical Server data catalog loading to bootstrap. It loads registered Core data categories from `Data/`, reports category status and record counts, and keeps gameplay disabled.
 
+CodeUpdate-0043 classifies canonical Server data categories as runtime-ready or runtime-blocked. It reports empty placeholders without failing startup or starting gameplay.
+
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 
 Engine direction after CodeUpdate-0039: favor reusable engine systems over feature-specific systems. Avoid designing around Classic unless behavior is truly Classic-specific. Prefer data-driven world behavior, reusable engine behavior, and editor-visible structures where practical. The WCC default install under `ImportedDatabases/WCCDefaultInstall/` is reference/import material only.
 
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
+
+Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.

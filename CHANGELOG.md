@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0043 - Server Data Readiness Classification
+
+- Added runtime-readiness classification to canonical Server data catalog summaries.
+- Separated file presence, record loading, placeholder status, runtime-ready status, and readiness notes.
+- Updated Server startup output to report runtime-ready and runtime-blocked category counts.
+- Added smoke-test coverage for placeholder categories and runtime-readiness classification.
+- Recorded the long-term goal to retire `ImportedDatabases/` only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, data rewrite, WCC import, imported data deletion, proprietary binary parser, or exact parity claim is included.
+
 ## CodeUpdate-0042 - Server Data Catalog Bootstrap
 
 - Added read-only Server data catalog loading through the existing Core `CoreDataRepositoryLoader`.

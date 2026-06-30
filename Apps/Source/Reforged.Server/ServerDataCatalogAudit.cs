@@ -9,6 +9,15 @@ namespace Reforged.Server;
 /// </summary>
 public sealed class ServerDataCatalogAudit
 {
+    private static readonly IReadOnlyDictionary<string, string> PlaceholderCategories = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        ["loot_tables"] = "Present but empty; loot population rules are not runtime-ready yet.",
+        ["quests"] = "Present but empty; quest content is not runtime-ready yet.",
+        ["rooms"] = "Present but empty; current room content is loaded through world_rooms until room data is normalized.",
+        ["shops"] = "Present but empty; shop inventories are not runtime-ready yet.",
+        ["trainers"] = "Present but empty; trainer data is not runtime-ready yet."
+    };
+
     public ServerDataCatalogAuditReport Run(string projectRoot, ValidationResult validation)
     {
         var root = Path.GetFullPath(projectRoot);
@@ -28,6 +37,8 @@ public sealed class ServerDataCatalogAudit
             var recordCount = catalog.TryGetCategory(descriptor.Category, out var loadedCategory)
                 ? loadedCategory.Records.Count
                 : 0;
+            var isPlaceholder = PlaceholderCategories.ContainsKey(descriptor.Category);
+            var runtimeReady = exists && recordCount > 0;
 
             if (!exists)
             {
@@ -46,19 +57,47 @@ public sealed class ServerDataCatalogAudit
                 exists,
                 size,
                 recordCount,
-                DetermineStatus(exists, recordCount)));
+                isPlaceholder,
+                runtimeReady,
+                DetermineStatus(exists, recordCount, isPlaceholder),
+                DetermineReadinessNote(descriptor.Category, exists, recordCount, isPlaceholder)));
         }
 
         return report;
     }
 
-    private static string DetermineStatus(bool exists, int recordCount)
+    private static string DetermineStatus(bool exists, int recordCount, bool isPlaceholder)
     {
         if (!exists)
         {
             return "missing";
         }
 
-        return recordCount == 0 ? "empty" : "loaded";
+        if (recordCount > 0)
+        {
+            return "runtime-ready";
+        }
+
+        return isPlaceholder ? "placeholder-empty-needs-data" : "empty-needs-data";
+    }
+
+    private static string DetermineReadinessNote(string category, bool exists, int recordCount, bool isPlaceholder)
+    {
+        if (!exists)
+        {
+            return "Required canonical data file is missing.";
+        }
+
+        if (recordCount > 0)
+        {
+            return "Canonical data file is present and records loaded.";
+        }
+
+        if (isPlaceholder && PlaceholderCategories.TryGetValue(category, out var note))
+        {
+            return note;
+        }
+
+        return "Canonical data file is present but no records loaded.";
     }
 }
