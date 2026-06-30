@@ -5,7 +5,7 @@ namespace Reforged.Server;
 
 /// <summary>
 /// Starts the Server application far enough to verify repository identity, required folders,
-/// manifest readability, and startup diagnostics without starting gameplay systems.
+/// manifest readability, startup diagnostics, and read-only Classic parity inventory without starting gameplay systems.
 /// </summary>
 public sealed class ServerBootstrap
 {
@@ -35,6 +35,10 @@ public sealed class ServerBootstrap
         report.AddCheck("startup-diagnostics");
         var diagnostics = new ServerStartupDiagnostics().Run(root);
         report.AttachStartupDiagnostics(diagnostics);
+
+        report.AddCheck("classic-parity-audit");
+        var classicParityAudit = new ClassicParityAudit().Run(root);
+        report.AttachClassicParityAudit(classicParityAudit);
 
         return report;
     }

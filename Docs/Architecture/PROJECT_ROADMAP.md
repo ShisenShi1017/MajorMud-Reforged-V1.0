@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0039`
+- Current Code Update: `0041`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0039, verify GitHub Actions green, then approve the next small Milestone 2 host/server or data-readiness scope.
+- Current priority: push CodeUpdate-0041, verify GitHub Actions green, then approve one narrow Classic parser/comparison or server-readiness scope.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -123,6 +123,10 @@ CodeUpdate-0039 adds a compact host-tool readiness summary while keeping gamepla
 CodeUpdate-0039 also records the Classic-first Server direction: Classic baseline first, mode-ready architecture later, no Reforged/Custom/AI/alternate gameplay behavior until explicitly approved.
 
 CodeUpdate-0039 also records the engine-first architecture direction and imports the user-provided WCC default install into `ImportedDatabases/WCCDefaultInstall/` as reference/import material only.
+
+CodeUpdate-0040 preserves WCC-labeled WBB material under `ImportedDatabases/WCCLabeledWBB/` as reference/import material only.
+
+CodeUpdate-0041 adds the read-only Classic parity audit foundation to Server bootstrap. It inventories canonical `Data/` and imported reference material, but does not parse proprietary legacy formats and does not claim exact MajorMUD parity.
 
 ## Milestone 1 - Core Framework (Frozen)
 
@@ -152,6 +156,8 @@ Completed/started slices:
 - CodeUpdate-0037: Software Design Specification draft planning records and continuity cleanup.
 - CodeUpdate-0038: Server bootstrap required-directory status reporting.
 - CodeUpdate-0039: Server bootstrap host-tool readiness summary.
+- CodeUpdate-0040: WCC-labeled WBB reference/import material preservation.
+- CodeUpdate-0041: read-only Classic parity audit foundation.
 
 Focus Areas:
 
@@ -172,10 +178,11 @@ Boundaries until approved:
 - No live editor implementation beyond approved scope.
 - No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader implementation.
 - No `Data/` rewrite from imported WCC reference material.
+- All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
-Next candidate after CodeUpdate-0039 is pushed and green:
+Next candidate after CodeUpdate-0041 is pushed and green:
 
-- A small host/server or data-readiness follow-up approved by the user before implementation.
+- One narrow Classic parser/comparison or server-readiness follow-up approved by the user before implementation.
 
 ## Milestone 3 - Standalone Server
 

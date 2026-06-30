@@ -1,5 +1,21 @@
 # Changelog
 
+## CodeUpdate-0041 - Classic Parity Audit Foundation
+
+- Added read-only Classic parity audit inventory for canonical `Data/` and imported reference material.
+- Added broad category summaries for rooms, monsters, items, spells, shops, quests, classes/races, ganghouses, maps/paths, and raw legacy databases.
+- Attached the audit to non-gameplay Server bootstrap and startup output.
+- Added smoke-test coverage for audit inventory and bootstrap attachment.
+- Recorded that all WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
+- No gameplay systems, combat, character creation, world simulation, networking expansion, live editor implementation, data rewrite, imported-reference overwrite, proprietary binary parser, or exact parity claim is included.
+
+## CodeUpdate-0040 - WCC-Labeled WBB Imported Reference Archive
+
+- Preserved the user-provided `wbbmud.zip` archive under `ImportedDatabases/WCCLabeledWBB/` as reference/import material.
+- Added archive manifest, file inventory, source archive, extracted reference files, and import report.
+- Recorded that the archive is WCC-labeled WBB because the source BBS hosted two different games.
+- No canonical `Data/` rewrite, gameplay implementation, runtime dependency on legacy executables/DLLs, or overwrite of existing imported archives is included.
+
 ## CodeUpdate-0039 - Server Bootstrap Readiness Summary
 
 - Added a compact host-tool readiness summary to the non-gameplay Server bootstrap report.

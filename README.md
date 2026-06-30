@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0039 - Server Bootstrap Readiness Summary`
+- **Current Code Update:** `CodeUpdate-0041 - Classic Parity Audit Foundation`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0039, verify GitHub Actions green, then approve the next small Milestone 2 host/server or data-readiness scope.
+- **Current Priority:** Push CodeUpdate-0041, verify GitHub Actions green, then approve one narrow Classic parity parser/comparison or server-readiness scope.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -24,6 +24,18 @@ Every session must read these files before changing the repository:
 7. `ProjectManifest.json`
 8. `DEVELOPMENT_PRINCIPLES.md`
 9. Relevant source, test, and application documentation for the requested change
+
+## CodeUpdate-0041 Summary
+
+CodeUpdate-0041 adds the first read-only Classic parity audit foundation. Server bootstrap now inventories canonical `Data/` and imported reference material, prints broad Classic category status, and keeps gameplay disabled.
+
+This does not parse proprietary legacy binary formats yet, does not rewrite `Data/`, and does not claim exact MajorMUD parity.
+
+## CodeUpdate-0040 Summary
+
+CodeUpdate-0040 preserves the user-provided WCC-labeled WBB archive under `ImportedDatabases/WCCLabeledWBB/` as reference/import material only.
+
+All WCC data and WCC-labeled data is reference-only unless the user explicitly approves a reviewed import or reconciliation update.
 
 ## CodeUpdate-0039 Summary
 
@@ -185,6 +197,8 @@ Bin/
 
 The standalone server must load from `Data/` only. After successful conversion, imported databases and original runtime files are kept only for audit, verification, troubleshooting, and future re-import work.
 
+All WCC data, including WCC default installs, WCC-labeled WBB material, WSGSERVE-related files, and WCC-derived archives, must be treated as reference-only unless the user explicitly states otherwise for a reviewed update.
+
 OmniVerse may be used as a read-only comparison source for future audits. Website/API data can support a proposed correction, but corrections must be reviewed and approved before changing `Data/`.
 
 ## Server Mode Direction
@@ -254,11 +268,11 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation.
 
-Next safe work after CodeUpdate-0039 is pushed and GitHub Actions is green:
+Next safe work after CodeUpdate-0041 is pushed and GitHub Actions is green:
 
-1. Approve the next small Milestone 2 host/server scope.
+1. Approve one narrow field-level Classic parser/comparison or server-readiness scope.
 2. Keep work narrow and verifiable.
 3. Do not add gameplay systems without explicit user approval.
 

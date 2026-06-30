@@ -14,6 +14,7 @@ This document describes how Reforged should be engineered. `AGENTS.md` describes
 8. Runtime users should not need the .NET SDK.
 9. Preserve `Saves/` and `ImportedDatabases/` unless the user explicitly approves otherwise.
 10. Documentation must change with the code so handoffs stay accurate.
+11. Treat all WCC data as reference-only unless the user explicitly approves a reviewed import or reconciliation update.
 
 ## Server development principles
 

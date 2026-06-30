@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0039",
+  "codeUpdate": "0041",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -10,24 +10,25 @@
   "modePolicy": "Each assistant must identify mode first. Codex updates local only and waits for user push plus stated green GitHub Actions before continuing. ChatGPT uses verified patch ZIPs for local application unless explicitly instructed otherwise.",
   "neverGuessPolicy": "Never guess when creating, fixing, reviewing, packaging, or reporting updates. Verify before claiming success; if something cannot be verified, state that clearly.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
+  "referenceDataPolicy": "All WCC data, WCC-labeled data, WSGSERVE-related data, imported archives, website data, and community/tool data are reference-only unless the user explicitly approves a reviewed import or reconciliation update.",
   "preserve": [
     "Saves",
     "ImportedDatabases"
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0039",
+    "currentCodeUpdate": "0041",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "Continuing with constrained host/server and planning work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0039-Server-Bootstrap-Readiness-Summary",
+    "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
+    "lastUpdateName": "CodeUpdate-0041-Classic-Parity-Audit-Foundation",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0039 and confirm GitHub Actions restore/build/test passes.",
-      "After green Actions, approve the next small Milestone 2 host/server or planning scope.",
-      "Do not add gameplay systems without explicit approval."
+      "Push CodeUpdate-0041 and confirm GitHub Actions restore/build/test passes.",
+      "After green Actions, approve one narrow field-level Classic parser/comparison category or server-readiness scope.",
+      "Do not claim exact MajorMUD parity until parsed comparison evidence supports it."
     ]
   },
   "handoffPolicy": {
@@ -54,5 +55,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0038 local .NET 8.0.422 JSON parse, restore, sequential Release build, smoke tests, and Server bootstrap run passed; GitHub Actions green by user report. CodeUpdate-0039 local .NET 8.0.422 JSON parse, affected Release builds, smoke tests, Server bootstrap run, and WCC default archive integrity verification passed after folded documentation/import work."
+  "buildVerification": "CodeUpdate-0041 local JSON parse passed. Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed sequentially with 0 warnings and 0 errors after an initial parallel Core.Tests build hit a transient Core obj file lock. Smoke tests passed. Server bootstrap run passed and printed Classic parity inventory status with gameplay disabled. GitHub Actions remains the official gate after user push."
 }

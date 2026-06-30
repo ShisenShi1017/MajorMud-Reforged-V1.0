@@ -28,6 +28,8 @@ public sealed class ServerBootstrapReport
 
     public ServerStartupDiagnosticReport? StartupDiagnostics { get; private set; }
 
+    public ClassicParityAuditReport? ClassicParityAudit { get; private set; }
+
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
 
     public int ExitCode => Passed ? 0 : 1;
@@ -67,6 +69,11 @@ public sealed class ServerBootstrapReport
     {
         StartupDiagnostics = diagnostics;
         Validation.Merge(diagnostics.Validation);
+    }
+
+    public void AttachClassicParityAudit(ClassicParityAuditReport audit)
+    {
+        ClassicParityAudit = audit;
     }
 }
 

@@ -1,3 +1,24 @@
+# CodeUpdate-0041 - Classic Parity Audit Foundation
+
+This update adds the first read-only Classic parity audit foundation. Server bootstrap now inventories canonical `Data/` and imported reference material so future updates can measure Classic coverage after exact parsers are added.
+
+## Changed
+
+- Added Classic parity audit models and inventory logic.
+- Attached Classic parity inventory to Server bootstrap.
+- Added Server startup output for broad parity categories.
+- Added smoke-test coverage.
+- Recorded that all WCC data is reference-only unless explicitly approved otherwise.
+
+## Boundaries
+
+- No canonical `Data/` rewrite.
+- No `ImportedDatabases/` overwrite.
+- No gameplay systems.
+- No exact MajorMUD parity claim.
+- No proprietary binary parser yet.
+
+## Previous Release Notes
 # CodeUpdate-0039 - Server Bootstrap Readiness Summary
 
 This update improves non-gameplay Server bootstrap diagnostics for future host/editor tooling.

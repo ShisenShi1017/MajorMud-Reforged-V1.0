@@ -15,7 +15,8 @@ var tests = new List<(string Name, Action Body)>
     ("repository health checks run", RepositoryHealthSmoke),
     ("startup diagnostics run", StartupDiagnosticsSmoke),
     ("server startup diagnostics run", ServerStartupDiagnosticsSmoke),
-    ("server bootstrap runs", ServerBootstrapSmoke)
+    ("server bootstrap runs", ServerBootstrapSmoke),
+    ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
 };
 
 var failures = new List<string>();
@@ -145,7 +146,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "startup-diagnostics" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -156,6 +157,11 @@ void ServerBootstrapSmoke()
     if (report.StartupDiagnostics is null || !report.StartupDiagnostics.Checks.Contains("server-identity"))
     {
         throw new InvalidOperationException("Server bootstrap did not attach Server startup diagnostics.");
+    }
+
+    if (report.ClassicParityAudit is null || report.ClassicParityAudit.Categories.Count == 0)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach Classic parity audit inventory.");
     }
 
     if (report.ExitCode != 0)
@@ -206,6 +212,30 @@ void ServerBootstrapSmoke()
     if (failedReport.IssueCount == 0 || failedReport.ErrorCount + failedReport.FatalCount == 0)
     {
         throw new InvalidOperationException("Server bootstrap failure did not expose expected validation error counts.");
+    }
+}
+
+void ClassicParityAuditSmoke()
+{
+    var report = new ClassicParityAudit().Run(root);
+    if (report.CanonicalDataPath is null || !report.CanonicalDataPath.EndsWith("Data", StringComparison.Ordinal))
+    {
+        throw new InvalidOperationException("Classic parity audit did not capture canonical Data path.");
+    }
+
+    if (report.ImportedDatabasesPath is null || !report.ImportedDatabasesPath.EndsWith("ImportedDatabases", StringComparison.Ordinal))
+    {
+        throw new InvalidOperationException("Classic parity audit did not capture ImportedDatabases path.");
+    }
+
+    if (report.Sources.Count != 2 || report.Categories.Count < 8)
+    {
+        throw new InvalidOperationException("Classic parity audit did not produce expected source/category inventory.");
+    }
+
+    if (string.IsNullOrWhiteSpace(report.Status))
+    {
+        throw new InvalidOperationException("Classic parity audit did not expose an inventory status.");
     }
 }
 

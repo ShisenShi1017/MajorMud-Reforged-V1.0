@@ -20,6 +20,15 @@ foreach (var directory in report.RequiredDirectories)
     Console.WriteLine($"Directory: {(directory.Exists ? "present" : "missing")} {directory.Name} -> {directory.Path}");
 }
 
+if (report.ClassicParityAudit is not null)
+{
+    Console.WriteLine($"ClassicParity: {report.ClassicParityAudit.Status}; canonicalFiles={report.ClassicParityAudit.CanonicalFileCount}; importedReferenceFiles={report.ClassicParityAudit.ImportedReferenceFileCount}; exactNameMatches={report.ClassicParityAudit.ExactNameMatchCount}");
+    foreach (var category in report.ClassicParityAudit.Categories)
+    {
+        Console.WriteLine($"ClassicParityCategory: {category.Category}; canonical={category.CanonicalFileCount}; imported={category.ImportedReferenceFileCount}; matches={category.ExactNameMatchCount}; status={category.Status}");
+    }
+}
+
 foreach (var issue in report.Validation.Issues)
 {
     Console.Error.WriteLine($"{issue.Severity}: {issue.Code}: {issue.Message}");
