@@ -1,0 +1,16 @@
+dataset,file_size,inferred_record_size,inferred_record_count,string_xref_count,record_size_literal_hits,record_count_literal_hits,file_size_literal_hits,descriptor_evidence_score,evidence_types,promotion_status
+WCCACMSR,6144,,,0,0,0,58,58,file_size_literal,hold_static_candidate
+WCCACTS,65536,,,0,0,0,50,50,file_size_literal,hold_static_candidate
+WCCBANKS,1536,,,0,0,0,66,66,file_size_literal,hold_static_candidate
+WCCCLASS,6144,,,0,0,0,58,58,file_size_literal,hold_static_candidate
+WCCGANGS,2048,,,0,0,0,99,99,file_size_literal,hold_static_candidate
+WCCITEMS,1404928,1024,1372,0,100,2,0,304,record_size_literal;record_count_literal,hold_static_candidate
+WCCKNMSR,561152,,,0,0,0,0,0,,hold_static_candidate
+WCCMP001,30973440,,,0,0,0,0,0,,hold_static_candidate
+WCCMSG,870912,,,0,0,0,0,0,,hold_static_candidate
+WCCRACE,3072,,,0,0,0,60,60,file_size_literal,hold_static_candidate
+WCCSHOPS,78336,512,153,0,100,65,0,430,record_size_literal;record_count_literal,hold_static_candidate
+WCCSPELS,256512,256,1002,0,100,30,0,360,record_size_literal;record_count_literal,hold_static_candidate
+WCCTEXT,1073152,,,0,0,0,0,0,,hold_static_candidate
+WCCUPDAT,58357760,,,0,0,0,0,0,,hold_static_candidate
+WCCUSERS,10240,,,0,0,0,59,59,file_size_literal,hold_static_candidate

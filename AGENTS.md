@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0046
+## 10. Current project position after CodeUpdate-0047
 
-- Current Code Update: `0046`
+- Current Code Update: `0047`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: continue gathering OmniVerse room/reference data before the next user push. Treat OmniVerse API captures and MudInfo maps as validation/correlation evidence only.
+- Current priority: push CodeUpdate-0047, verify GitHub Actions green by user report, then continue DataDecode0051 Combat Routine Correlation using the GitHub repository as the direct working copy.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -166,6 +166,8 @@ CodeUpdate-0045 integrates the user-provided DataDecode0043 Import Readiness Val
 
 CodeUpdate-0046 imports the gathered OmniVerse/MudInfo reference payload under `ImportedDatabases/OmniVerseReference/CodeUpdate0046/` for validation/correlation only. It includes WCC OmniVerse API captures for abilities, classes, items, monsters, races, shops, spells, world status, 168 shop-seeded roommap files, 1,246 room detail files, a 23-entry room capture error log, the MudInfo `maps.rar` source archive, and 102 extracted MudInfo map files. HTTrack captured the OmniVerse SPA shell/assets externally under `E:\Httracks\OmniVerseCodexFull`, but the committed verification payload is the API/map evidence, not the web shell cache. Original MajorMUD binary files remain authoritative; CodeUpdate-0046 does not rewrite canonical `Data/`, promote fields, add server behavior, add gameplay, or assume OmniVerse public IDs equal binary row indexes.
 
+CodeUpdate-0047 preserves the user-provided DataDecode0049 WGSERVER record access / structure correlation checkpoint under `DataDecodeCheckpoints/DataDecode0049/` and records the DataDecode0050 GitHub transition handoff under `DataDecodeCheckpoints/DataDecode0050/`. DataDecode0049 reports 15 NativeRuntime DAT datasets profiled, 5,916 executable strings, 9,574 record constant hits, 29 string-address xrefs, 29 record-access candidate windows, 15 descriptor candidates, 93 canonical term hits, and 0 field promotions. DataDecode0050 changes the decode workflow: future decode passes must update the GitHub repository directly, with ZIPs allowed only as archival/checkpoint artifacts. No standalone DataDecode0050 ZIP was supplied in this Codex turn; dispatcher/message items are handoff continuity only until supported by committed reports or binary-backed evidence.
+
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 
 Engine direction after CodeUpdate-0039: favor reusable engine systems over feature-specific systems. Avoid designing around Classic unless behavior is truly Classic-specific. Prefer data-driven world behavior, reusable engine behavior, and editor-visible structures where practical. The WCC default install under `ImportedDatabases/WCCDefaultInstall/` is reference/import material only.
@@ -177,3 +179,5 @@ Imported/reference data may eventually be retired only after Reforged-native `Da
 Future extraction work should remain staged as capture, decode, compare, and reviewed apply steps. Capture and decode outputs are evidence only until a separate approved reconciliation update changes canonical `Data/`.
 
 Original MajorMUD binary files remain authoritative. Imported data, MegaMud files, OmniVerse snapshots, mudinfo references, maps, WBB comparisons, website data, community data, and tool-derived data are validation/correlation evidence only. Never assume public OmniVerse IDs equal binary row indexes. Never promote noisy raw U16 matches or candidate fields without corroborating binary evidence.
+
+DataDecode workflow after CodeUpdate-0047: stop using checkpoint ZIPs as independent working repositories. Every future decode pass starts from the GitHub repository, commits reports/metrics/handoffs directly, preserves historical reports, and updates continuity documents. ZIPs may be exported for archival use, but GitHub remains the master copy.

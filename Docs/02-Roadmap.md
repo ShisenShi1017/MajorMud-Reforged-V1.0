@@ -60,6 +60,8 @@ CodeUpdate-0045 integrates the DataDecode0043 Import Readiness Validation checkp
 
 CodeUpdate-0046 imports the gathered OmniVerse/MudInfo reference payload under `ImportedDatabases/OmniVerseReference/CodeUpdate0046/` for validation/correlation only. The payload includes WCC codex API JSON for abilities, classes, items, monsters, races, shops, spells, world status, 168 shop-seeded roommap files, 1,246 room detail files, a 23-entry room capture error log, the MudInfo `maps.rar` source archive, and 102 extracted MudInfo map files.
 
+CodeUpdate-0047 preserves DataDecode0049 under `DataDecodeCheckpoints/DataDecode0049/` and records the DataDecode0050 GitHub transition handoff under `DataDecodeCheckpoints/DataDecode0050/`. Future decode passes use the GitHub repository as the direct working copy; ZIPs are archival/checkpoint artifacts only.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
@@ -128,4 +130,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0046 records and imports the current reference capture payload. Next work should run binary-first verification against the imported reference evidence, expand room coverage where endpoint seeds are still missing, and keep all OmniVerse/MudInfo data validation-only with binary evidence authoritative.
+Current implementation slice: CodeUpdate-0047 records the DataDecode repository transition. Next work should continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy, preserving binary evidence as authoritative and promoting no fields without proof.

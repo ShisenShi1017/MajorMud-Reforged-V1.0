@@ -1,0 +1,94 @@
+term,string_text,file_offset,rva,section,classification
+room,Ran out of room for this file.,316846,321966,DATA,schema_or_engine_anchor
+room,HD room avail:  %7.7s,340492,345612,DATA,schema_or_engine_anchor
+room,_fsdroom,388786,527026,.edata,schema_or_engine_anchor
+room,_qroom,393718,531958,.edata,schema_or_engine_anchor
+item,GetDlgItem,365152,499808,.INIT,schema_or_engine_anchor
+item,EnableMenuItem,365186,499842,.INIT,schema_or_engine_anchor
+item,_itemcnt,391089,529329,.edata,schema_or_engine_anchor
+item,_itemcntd,391098,529338,.edata,schema_or_engine_anchor
+item,_itemidx,391108,529348,.edata,schema_or_engine_anchor
+item,_itemidxd,391117,529357,.edata,schema_or_engine_anchor
+quest,Answers to additional signup questions:,337215,342335,DATA,schema_or_engine_anchor
+flag,flags,323668,328788,DATA,schema_or_engine_anchor
+flag,acctflags,325700,330820,DATA,schema_or_engine_anchor
+flag,s:jumpflags,326069,331189,DATA,schema_or_engine_anchor
+flag,BP=%08X SP=%08X IP=%08X Flags=%08X,356376,361496,DATA,schema_or_engine_anchor
+flag,_cvtFlags,386713,524953,.edata,schema_or_engine_anchor
+flag,_usrflags,396316,534556,.edata,schema_or_engine_anchor
+flags,flags,323668,328788,DATA,schema_or_engine_anchor
+flags,acctflags,325700,330820,DATA,schema_or_engine_anchor
+flags,s:jumpflags,326069,331189,DATA,schema_or_engine_anchor
+flags,BP=%08X SP=%08X IP=%08X Flags=%08X,356376,361496,DATA,schema_or_engine_anchor
+flags,_cvtFlags,386713,524953,.edata,schema_or_engine_anchor
+flags,_usrflags,396316,534556,.edata,schema_or_engine_anchor
+message,message,338605,343725,DATA,schema_or_engine_anchor
+message,Send a message to ,339114,344234,DATA,schema_or_engine_anchor
+message,Set log-on message,339173,344293,DATA,schema_or_engine_anchor
+message,messages: ,339228,344348,DATA,schema_or_engine_anchor
+message,NULL -- MESSAGE IGNORED ,340104,345224,DATA,schema_or_engine_anchor
+message,QUIT -- MESSAGE IGNORED ,340131,345251,DATA,schema_or_engine_anchor
+message,AUDIT TRAIL MESSAGE TOO LONG!,343388,348508,DATA,schema_or_engine_anchor
+message,"TOO MANY LANGUAGES (%d) & MESSAGES (%d) IN ""%s""",348751,353871,DATA,schema_or_engine_anchor
+message,MESSAGE NUMBER %d OUT OF RANGE IN %s,348847,353967,DATA,schema_or_engine_anchor
+message,CANNOT SEEK MESSAGE NUMBER %d (LANGUAGE %d) IN %s,348884,354004,DATA,schema_or_engine_anchor
+message,CANNOT READ MESSAGE NUMBER %d (LANGUAGE %d) IN %s,348935,354055,DATA,schema_or_engine_anchor
+message,FormatMessageA,362772,497428,.INIT,schema_or_engine_anchor
+message,SendMessageA,364770,499426,.INIT,schema_or_engine_anchor
+message,PostThreadMessageA,364816,499472,.INIT,schema_or_engine_anchor
+message,PostQuitMessage,364838,499494,.INIT,schema_or_engine_anchor
+message,PeekMessageA,364856,499512,.INIT,schema_or_engine_anchor
+message,MessageBoxA,364886,499542,.INIT,schema_or_engine_anchor
+message,MessageBeep,364900,499556,.INIT,schema_or_engine_anchor
+message,GetMessageA,365128,499784,.INIT,schema_or_engine_anchor
+message,DispatchMessageA,365218,499874,.INIT,schema_or_engine_anchor
+message,TranslateMessage,365354,500010,.INIT,schema_or_engine_anchor
+message,_pageUserMessage,393187,531427,.edata,schema_or_engine_anchor
+event,Event %1.1d,343448,348568,DATA,schema_or_engine_anchor
+event,/EVENT/WGSERVER/WGS_RUNNING,355104,360224,DATA,schema_or_engine_anchor
+event,/EVENT/WGSERVER/GROUP_RUNNING,355132,360252,DATA,schema_or_engine_anchor
+event,/EVENT/WGSERVER/UTIL_RUNNING,355162,360282,DATA,schema_or_engine_anchor
+event,/EVENT/WGSERVER/WGSINT_RUNNING,355191,360311,DATA,schema_or_engine_anchor
+event,/EVENT/WGSERVER/WGSCNF_RUNNING,355222,360342,DATA,schema_or_engine_anchor
+event,CreateEventA,362404,497060,.INIT,schema_or_engine_anchor
+event,SetEvent,363008,497664,.INIT,schema_or_engine_anchor
+event,ResetEvent,363234,497890,.INIT,schema_or_engine_anchor
+event,OpenEventA,363322,497978,.INIT,schema_or_engine_anchor
+event,ReportEventA,365568,500224,.INIT,schema_or_engine_anchor
+event,RegisterEventSourceA,365614,500270,.INIT,schema_or_engine_anchor
+event,DeregisterEventSource,365812,500468,.INIT,schema_or_engine_anchor
+record,CAN'T RECORD DEBTS TO DISK!,310590,315710,DATA,schema_or_engine_anchor
+record,This account record does ,312685,317805,DATA,schema_or_engine_anchor
+record,%s record too large for Main Executive,312999,318119,DATA,schema_or_engine_anchor
+record,MISSING A USER'S KEYRING RECORD,327788,332908,DATA,schema_or_engine_anchor
+record,(%s has been given a blank keyring record.),327820,332940,DATA,schema_or_engine_anchor
+record,MISSING A CLASS KEYRING RECORD,327864,332984,DATA,schema_or_engine_anchor
+record,(%s class has been given a blank keyring record.),327895,333015,DATA,schema_or_engine_anchor
+record,user-account database record of User-ID: ,339697,344817,DATA,schema_or_engine_anchor
+record,Recorded %d/%d/%d %d:%02d:%02d,356291,361411,DATA,schema_or_engine_anchor
+record,CAN'T SWAP OUT TRANSPORT RECORD!,360824,365944,DATA,schema_or_engine_anchor
+record,CAN'T SWAP IN TRANSPORT RECORD!,360857,365977,DATA,schema_or_engine_anchor
+record,_pageLoadRecord,393099,531339,.edata,schema_or_engine_anchor
+record,_pageSaveRecord,393158,531398,.edata,schema_or_engine_anchor
+offset,OffsetRect,364872,499528,.INIT,schema_or_engine_anchor
+class,BAD CLASS SETUP!  CLASSES ARE IMMEDIATELY EXPIRING TO,310868,315988,DATA,schema_or_engine_anchor
+class,ONE-ANOTHER (INVOLVING THE %s CLASS)!,310922,316042,DATA,schema_or_engine_anchor
+class,Class Switch Notification,311032,316152,DATA,schema_or_engine_anchor
+class,Class stats,314209,319329,DATA,schema_or_engine_anchor
+class,s:classinfo,322700,327820,DATA,schema_or_engine_anchor
+class,s:classkeys,322724,327844,DATA,schema_or_engine_anchor
+class,s:classlist,322748,327868,DATA,schema_or_engine_anchor
+class,s:classmsgs,322772,327892,DATA,schema_or_engine_anchor
+class,s:classkill,322796,327916,DATA,schema_or_engine_anchor
+class,nextclass,323444,328564,DATA,schema_or_engine_anchor
+class,class,325188,330308,DATA,schema_or_engine_anchor
+class,retclass,325220,330340,DATA,schema_or_engine_anchor
+class,class change,326744,331864,DATA,schema_or_engine_anchor
+class,s:classinfo,326867,331987,DATA,schema_or_engine_anchor
+class,MISSING A CLASS KEYRING RECORD,327864,332984,DATA,schema_or_engine_anchor
+class,(%s class has been given a blank keyring record.),327895,333015,DATA,schema_or_engine_anchor
+class,<class deleted -- will be deleted at cleanup>,336585,341705,DATA,schema_or_engine_anchor
+class,BAD CLASS IN SIGNUP OPTION SUPCLS,337270,342390,DATA,schema_or_engine_anchor
+class,WGSMAINWINDOW_CLASS,342496,347616,DATA,schema_or_engine_anchor
+class,RegisterClassA,364798,499454,.INIT,schema_or_engine_anchor
+class,_crtclass,386502,524742,.edata,schema_or_engine_anchor

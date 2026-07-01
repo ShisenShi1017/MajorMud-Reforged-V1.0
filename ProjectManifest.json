@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0046",
+  "codeUpdate": "0047",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,18 +18,18 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0046",
+    "currentCodeUpdate": "0047",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0046-OmniVerse-Capture-Checkpoint",
+    "lastUpdateName": "CodeUpdate-0047-DataDecode-GitHub-Transition",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0046 and wait for user-reported green GitHub Actions before continuing.",
-      "Run binary-first verification against ImportedDatabases/OmniVerseReference/CodeUpdate0046 after CodeUpdate-0046 is green.",
-      "Expand room coverage beyond the shop-seeded capture where endpoint seeds are still missing.",
+      "Push CodeUpdate-0047 and wait for user-reported green GitHub Actions before continuing.",
+      "Continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy after CodeUpdate-0047 is green.",
+      "Treat ZIPs as archival/checkpoint artifacts only; future decode passes update the repository directly.",
       "Treat OmniVerse API captures and MudInfo maps as validation/correlation evidence only.",
       "Do not import unknown/candidate fields until binary evidence plus corroborating proof supports them.",
       "Do not assume public OmniVerse IDs equal binary row indexes.",
@@ -60,5 +60,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0046 imports the gathered OmniVerse/MudInfo reference payload under ImportedDatabases/OmniVerseReference/CodeUpdate0046 for validation/correlation only. It records user-reported green CodeUpdate-0045, HTTrack shell/assets capture as external context, OmniVerse API/map evidence, room capture counts, MudInfo maps preservation, and no-mirror data strategy. ProjectManifest.json and UpdateManifest.json parsed successfully. Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0047 preserves DataDecode0049 under DataDecodeCheckpoints/DataDecode0049 and records the DataDecode0050 GitHub transition handoff under DataDecodeCheckpoints/DataDecode0050. ProjectManifest.json, UpdateManifest.json, and DataDecode0050 metrics parsed successfully. Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. GitHub Actions remains the official gate after user push."
 }

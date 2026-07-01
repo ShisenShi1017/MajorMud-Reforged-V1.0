@@ -1,3 +1,31 @@
+# CodeUpdate-0047 - DataDecode GitHub Transition
+
+This update transitions decode work to the GitHub repository as the authoritative working copy.
+
+## Changed
+
+- Preserved DataDecode0049 under `DataDecodeCheckpoints/DataDecode0049/`.
+- Recorded DataDecode0049 WGSERVER record access / structure correlation findings.
+- Added DataDecode0050 GitHub transition handoff and metrics under `DataDecodeCheckpoints/DataDecode0050/`.
+- Recorded future decode passes as repository-direct commits, with ZIPs limited to archival/checkpoint artifact use.
+
+## Verification
+
+- DataDecode0049 ZIP contents were listed and preserved.
+- DataDecode0049 ZIP SHA-256 was recorded.
+- `wgserver.exe` size and SHA-256 were recorded without copying or executing the binary.
+- Final local verification is recorded in `UpdateManifest.json`.
+
+## Boundaries
+
+- No canonical `Data/` rewrite.
+- No field promotions.
+- No server behavior changes.
+- No gameplay systems.
+- No executable execution.
+- No public-ID to binary-row assumptions.
+
+## Previous Release Notes
 # CodeUpdate-0046 - OmniVerse Capture Checkpoint
 
 This update records the current OmniVerse/MudInfo reference capture state before continuing data gathering.

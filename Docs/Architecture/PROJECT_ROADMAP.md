@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0046`
+- Current Code Update: `0047`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: continue gathering OmniVerse room/reference data before the next user push. Treat OmniVerse API captures and MudInfo maps as validation/correlation evidence only.
+- Current priority: push CodeUpdate-0047, wait for user-reported green GitHub Actions, then continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -138,6 +138,8 @@ CodeUpdate-0045 integrates the DataDecode0043 Import Readiness Validation checkp
 
 CodeUpdate-0046 imports the gathered OmniVerse/MudInfo reference payload under `ImportedDatabases/OmniVerseReference/CodeUpdate0046/` for validation/correlation only. The payload includes WCC OmniVerse API captures for major codex categories, 168 shop-seeded roommap files, 1,246 room detail files, a 23-entry room capture error log, the MudInfo `maps.rar` source archive, and 102 extracted MudInfo map files. The OmniVerse SPA shell/assets were captured externally by HTTrack, but they are not the committed verification payload.
 
+CodeUpdate-0047 preserves the user-provided DataDecode0049 WGSERVER record access / structure correlation checkpoint and records the DataDecode0050 GitHub transition handoff. Future decode passes must update the GitHub repository directly. ZIPs may still be exported as archival/checkpoint artifacts, but they are no longer the primary working source of truth.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -173,6 +175,7 @@ Completed/started slices:
 - CodeUpdate-0044: Original reference capture/extractor tool.
 - CodeUpdate-0045: DataDecode0043 checkpoint integration.
 - CodeUpdate-0046: OmniVerse/MudInfo capture checkpoint.
+- CodeUpdate-0047: DataDecode GitHub transition and DataDecode0049 preservation.
 
 Focus Areas:
 
@@ -196,9 +199,12 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0046:
+Next candidate after CodeUpdate-0047:
 
-- Run binary-first verification against the imported OmniVerse/MudInfo reference payload, expand room coverage beyond the shop-seeded capture where endpoint seeds are still missing, and keep all reference data validation-only until binary evidence bridges public IDs to binary rows.
+- Continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy.
+- Focus on damage, armor, spell, resistance, and ability calculation correlations.
+- Preserve previous decode reports instead of overwriting historical analysis.
+- Promote no fields without binary evidence.
 
 ## Milestone 3 - Standalone Server
 

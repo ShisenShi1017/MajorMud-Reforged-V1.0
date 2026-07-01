@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0046 - OmniVerse Capture Checkpoint`
+- **Current Code Update:** `CodeUpdate-0047 - DataDecode GitHub Transition`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0046, wait for green GitHub Actions, then run binary-first verification against the imported OmniVerse/MudInfo reference payload.
+- **Current Priority:** Push CodeUpdate-0047, wait for green GitHub Actions, then continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -24,6 +24,18 @@ Every session must read these files before changing the repository:
 7. `ProjectManifest.json`
 8. `DEVELOPMENT_PRINCIPLES.md`
 9. Relevant source, test, and application documentation for the requested change
+
+## CodeUpdate-0047 Summary
+
+CodeUpdate-0047 moves decode continuity into the repository as the authoritative working copy.
+
+It preserves the user-provided DataDecode0049 WGSERVER record access / structure correlation package under `DataDecodeCheckpoints/DataDecode0049/` and records the DataDecode0050 GitHub transition handoff under `DataDecodeCheckpoints/DataDecode0050/`.
+
+DataDecode0049 reports 15 NativeRuntime DAT datasets profiled, 5,916 executable ASCII strings, 9,574 record constant hits, 29 string-address xrefs, 29 record-access candidate windows, 15 descriptor candidates, 93 canonical term hits, and 0 field promotions.
+
+Future decode passes must update the GitHub repository directly. ZIPs may still be exported as archival/checkpoint artifacts, but they are no longer the primary working source of truth.
+
+No canonical `Data/` rewrite, field promotion, server behavior change, gameplay system, `ImportedDatabases/` deletion, or executable execution is included.
 
 ## CodeUpdate-0046 Summary
 
@@ -312,14 +324,14 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition.
 
-Next safe work after CodeUpdate-0046:
+Next safe work after CodeUpdate-0047:
 
-1. Run binary-first verification against the imported OmniVerse/MudInfo reference payload.
-2. Expand room coverage beyond the shop-seeded capture where endpoint seeds are still missing.
-3. Keep all OmniVerse and MudInfo data as validation/correlation evidence only.
-4. Keep unknown/candidate fields soft until binary evidence plus corroborating proof supports them.
+1. Wait for user push and green GitHub Actions.
+2. Continue DataDecode0051 Combat Routine Correlation from the GitHub repository.
+3. Keep unknown/candidate fields soft until binary evidence plus corroborating proof supports them.
+4. Do not promote fields based solely on U16/U32 matches.
 5. Do not add gameplay systems without explicit user approval.
 
 ## Long-Term Roadmap

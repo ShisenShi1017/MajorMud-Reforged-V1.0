@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0047 - DataDecode GitHub Transition
+
+- Preserved the user-provided DataDecode0049 WGSERVER record access / structure correlation checkpoint under `DataDecodeCheckpoints/DataDecode0049/`.
+- Recorded DataDecode0049 package SHA-256 `8869C12860A5D645F5EBA5B8F6F51C9389A98E96A3ABA7B8CBB57288CCCE8A2B`.
+- Recorded `wgserver.exe` reference hash `4DA28D718CF99701AA63C1889770F293BB3EC828AEA5E8BEA500473D2698C73F` without copying or executing the binary.
+- Added DataDecode0050 GitHub transition handoff and metrics under `DataDecodeCheckpoints/DataDecode0050/`.
+- Updated continuity documents so future decode passes use the GitHub repository as the direct working copy; ZIPs are archival/checkpoint artifacts only.
+- No canonical `Data` rewrites, server behavior changes, field promotions, gameplay systems, executable execution, or public-ID to binary-row assumptions are included.
+
 ## CodeUpdate-0046 - OmniVerse Capture Checkpoint
 
 - Recorded CodeUpdate-0045 as green by user report.
