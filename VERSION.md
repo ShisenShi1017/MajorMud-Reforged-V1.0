@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0047
+- Current Code Update: 0048
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0047 - DataDecode GitHub Transition
+- Current update: CodeUpdate-0048 - Unified Decoded Data and Phone Workflow
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -55,6 +55,9 @@
 - CodeUpdate-0046 does not rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, or assume OmniVerse public IDs equal binary row indexes.
 - CodeUpdate-0047 preserves DataDecode0049 under `DataDecodeCheckpoints/DataDecode0049/`, records DataDecode0050 GitHub transition handoff under `DataDecodeCheckpoints/DataDecode0050/`, and moves future decode workflow to repository-direct commits.
 - CodeUpdate-0047 does not rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, execute `wgserver.exe`, or assume OmniVerse public IDs equal binary row indexes.
+- CodeUpdate-0048 adds `DataDecodeCheckpoints/UnifiedDecodedData/` with generated decoded-data inventory and OmniVerse comparison reports.
+- CodeUpdate-0048 adds Android ChatGPT decode workflow docs and phone handoff templates for non-PowerShell phone-based decode work.
+- CodeUpdate-0048 does not rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, or delete imported/reference data.
 
 ## Reference Data Policy
 

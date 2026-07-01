@@ -1,3 +1,30 @@
+# CodeUpdate-0048 - Unified Decoded Data and Phone Workflow
+
+This update creates a unified decoded-data index and adds an Android ChatGPT handoff workflow.
+
+## Changed
+
+- Added `Tools/DataDecode/Build-UnifiedDecodedData.ps1`.
+- Generated `DataDecodeCheckpoints/UnifiedDecodedData/`.
+- Added category comparison reports against the CodeUpdate0046 OmniVerse/MudInfo reference payload.
+- Added Android ChatGPT decode workflow docs and phone handoff templates.
+
+## Verification
+
+- Unified decoded-data report builder ran successfully.
+- Generated manifest and comparison summary were inspected.
+- Final local verification is recorded in `UpdateManifest.json`.
+
+## Boundaries
+
+- No canonical `Data/` rewrite.
+- No field promotions.
+- No server behavior changes.
+- No gameplay systems.
+- No imported/reference deletion.
+- No OmniVerse-only promotion.
+
+## Previous Release Notes
 # CodeUpdate-0047 - DataDecode GitHub Transition
 
 This update transitions decode work to the GitHub repository as the authoritative working copy.

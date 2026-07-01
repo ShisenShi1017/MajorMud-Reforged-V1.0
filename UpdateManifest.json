@@ -1,76 +1,88 @@
 {
-  "codeUpdate": "0047",
-  "name": "CodeUpdate-0047-DataDecode-GitHub-Transition",
+  "codeUpdate": "0048",
+  "name": "CodeUpdate-0048-Unified-Decoded-Data-And-Phone-Workflow",
   "packageType": "direct-repository-patch",
-  "purpose": "Preserve DataDecode0049, record the DataDecode0050 GitHub transition handoff, and make the repository the direct working copy for future decode passes.",
+  "purpose": "Create a unified decoded-data inventory/comparison surface and add Android ChatGPT phone handoff workflow documentation.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": false,
+  "addsTooling": true,
   "batInstallerCreated": false,
   "updateZipCreated": false,
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with binary-first data completion and executable correlation; no gameplay systems are approved.",
-  "verificationStatus": "Local repository was aligned with origin/main before CodeUpdate-0047. DataDecode0049 ZIP contents were listed and preserved under DataDecodeCheckpoints/DataDecode0049. DataDecode0049 ZIP SHA-256 was recorded. wgserver.exe size and SHA-256 were recorded without copying or executing the binary. DataDecode0050 transition handoff and metrics were added. ProjectManifest.json, UpdateManifest.json, and DataDecode0050 metrics parsed successfully. Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. GitHub Actions remains pending after user push.",
+  "verificationStatus": "User reported CodeUpdate-0046 and CodeUpdate-0047 GitHub Actions green. Local repository was aligned with origin/main before CodeUpdate-0048. Unified decoded-data report builder ran successfully. Generated manifest and comparison summary were inspected. ProjectManifest.json, UpdateManifest.json, and UnifiedDecodedDataManifest.json parsed successfully. Core and Core.Tests Release builds passed with 0 warnings and 0 errors after sequential rerun; an initial parallel Core build attempt hit a transient file lock while the test build compiled Core. Smoke tests passed. GitHub Actions remains pending after user push.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
     "CHANGELOG.md",
-    "DataDecodeCheckpoints/DataDecode0049/",
-    "DataDecodeCheckpoints/DataDecode0050/",
+    "DataDecodeCheckpoints/PhoneHandoffTemplates/",
+    "DataDecodeCheckpoints/UnifiedDecodedData/",
     "Docs/02-Roadmap.md",
     "Docs/Architecture/PROJECT_ROADMAP.md",
+    "Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0047/DataDecodeGitHubTransitionReport.md",
+    "Reports/CodeUpdates/CodeUpdate-0048/UnifiedDecodedDataAndPhoneWorkflowReport.md",
+    "Tools/DataDecode/Build-UnifiedDecodedData.ps1",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "Local main was aligned with origin/main before CodeUpdate-0047."
+    "baselineStatus": "CodeUpdate-0046 and CodeUpdate-0047 green by user report; local main aligned with origin/main before CodeUpdate-0048."
   },
   "localVerification": {
     "status": "passed",
-    "scope": "Documentation/reference decode transition only",
-    "json": "ProjectManifest.json and UpdateManifest.json parsed successfully.",
-    "metrics": "DataDecode0050_Metrics.csv parsed successfully.",
+    "scope": "Documentation/report/tooling update only",
+    "builder": "Tools/DataDecode/Build-UnifiedDecodedData.ps1 ran successfully.",
+    "json": "ProjectManifest.json, UpdateManifest.json, and UnifiedDecodedDataManifest.json parsed successfully.",
     "restore": "No restore was required; no package references changed.",
-    "build": "Core and Core.Tests Release builds passed with 0 warnings and 0 errors.",
+    "build": "Core and Core.Tests Release builds passed with 0 warnings and 0 errors after sequential rerun. Initial parallel Core build attempt hit a transient file lock.",
     "smokeTests": "Reforged core/server smoke tests passed."
   },
-  "preservedPackages": {
-    "dataDecode0049": {
-      "sourcePath": "C:\\Users\\djkao\\Downloads\\DataDecode0049-WGSERVERRecordAccessStructureCorrelation-PreMirror.zip",
-      "repositoryPath": "DataDecodeCheckpoints/DataDecode0049/",
-      "sha256": "8869C12860A5D645F5EBA5B8F6F51C9389A98E96A3ABA7B8CBB57288CCCE8A2B",
-      "fileCount": 17
-    }
+  "unifiedDecodedData": {
+    "path": "DataDecodeCheckpoints/UnifiedDecodedData/",
+    "sourceInventoryRows": 1653,
+    "canonicalCounts": {
+      "classes": 15,
+      "races": 13,
+      "skills": 46,
+      "items": 1770,
+      "spells": 1180,
+      "monsters": 98,
+      "shops": 0,
+      "rooms": 0
+    },
+    "nativeDecodeCounts": {
+      "WCCITEMS_records": 1336,
+      "WCCSPELS_records": 930,
+      "WCCSHOPS_records": 145
+    },
+    "omniVerseCounts": {
+      "abilities": 188,
+      "classes": 15,
+      "races": 13,
+      "items": 1950,
+      "spells": 1350,
+      "shops": 178,
+      "monsters": 1100,
+      "roomDetails": 1246,
+      "roommaps": 168
+    },
+    "keyFindings": [
+      "Classes and races have complete normalized-name coverage against OmniVerse.",
+      "Canonical items are simplified and lack legacy_number; only name-level coverage is reported.",
+      "Canonical spells have sourceId values and partially map to OmniVerse legacy_number.",
+      "Canonical rooms and shops are placeholders, while OmniVerse and native decoded evidence exists.",
+      "Canonical monsters are starter/sample records and are not a decoded parity dataset yet."
+    ]
   },
-  "referenceExecutables": {
-    "wgserverExe": {
-      "sourcePath": "C:\\Worldgroup Server\\wgserver.exe",
-      "bytes": 432128,
-      "sha256": "4DA28D718CF99701AA63C1889770F293BB3EC828AEA5E8BEA500473D2698C73F",
-      "copiedToRepository": false,
-      "executed": false
-    }
-  },
-  "dataDecode0049Metrics": {
-    "nativeDatDatasetsProfiled": 15,
-    "asciiStringsLength4Plus": 5916,
-    "recordConstantHits": 9574,
-    "stringAddressXrefs": 29,
-    "recordAccessWindows": 29,
-    "descriptorCandidates": 15,
-    "canonicalTermHits": 93,
-    "fieldPromotions": 0
-  },
-  "dataDecode0050Transition": {
-    "standaloneZipSupplied": false,
-    "repositoryDirectWorkflow": true,
-    "nextPass": "DataDecode0051 - Combat Routine Correlation",
-    "zipPolicy": "ZIPs may be exported as archival/checkpoint artifacts only; GitHub repository is the direct working copy."
+  "androidChatGptWorkflow": {
+    "workflowDocument": "Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md",
+    "templateFolder": "DataDecodeCheckpoints/PhoneHandoffTemplates/",
+    "policy": "Phone ChatGPT outputs structured handoff text only. They are not repository truth until Codex verifies and commits them."
   },
   "boundaries": [
     "No gameplay systems",
@@ -79,10 +91,10 @@
     "No ImportedDatabases deletion",
     "No field promotions",
     "No public-ID to binary-row assumption",
-    "No execution or copying of wgserver.exe",
-    "No standalone DataDecode0050 ZIP was supplied in this Codex turn"
+    "No OmniVerse-only promotion",
+    "No U16/U32-only promotion"
   ],
-  "referenceDataPolicy": "Original MajorMUD binary files remain authoritative. WGSERVER.EXE, Native DAT files, WBB comparisons, imported datasets, OmniVerse mirrors, website data, community data, and tool-derived data are validation/correlation evidence only unless a reviewed binary-backed reconciliation update explicitly promotes a field.",
+  "referenceDataPolicy": "Original MajorMUD binary files remain authoritative. OmniVerse, MudInfo, imported datasets, WBB comparisons, website data, community data, and tool-derived data are validation/correlation evidence only unless a reviewed binary-backed reconciliation update explicitly promotes a field.",
   "recommendedNextUpdate": "After user push and green GitHub Actions, continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy.",
   "recommendedNextScopeRequiresUserApproval": true
 }

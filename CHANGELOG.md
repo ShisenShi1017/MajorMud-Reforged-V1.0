@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0048 - Unified Decoded Data and Phone Workflow
+
+- Added `Tools/DataDecode/Build-UnifiedDecodedData.ps1` to generate a repo-native decoded-data inventory and OmniVerse comparison surface.
+- Added `DataDecodeCheckpoints/UnifiedDecodedData/` with generated manifest, source inventory, category summary, and comparison CSV reports.
+- Added Android ChatGPT decode workflow docs under `Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md`.
+- Added phone handoff templates under `DataDecodeCheckpoints/PhoneHandoffTemplates/`.
+- Recorded comparison findings: classes/races have full normalized-name coverage, spells have partial `sourceId` coverage, items are name-only correlation, and shops/rooms/monsters remain incomplete as Reforged-native canonical data.
+- No canonical `Data` rewrites, server behavior changes, field promotions, gameplay systems, or imported/reference deletions are included.
+
 ## CodeUpdate-0047 - DataDecode GitHub Transition
 
 - Preserved the user-provided DataDecode0049 WGSERVER record access / structure correlation checkpoint under `DataDecodeCheckpoints/DataDecode0049/`.

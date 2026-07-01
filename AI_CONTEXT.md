@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0047 |
+| Current Code Update | 0048 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0047-DataDecode-GitHub-Transition |
+| Last Update Name | CodeUpdate-0048-Unified-Decoded-Data-And-Phone-Workflow |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap and is green by user report. CodeUpdate-0043 classifies canonical Server data readiness and is green by user report. CodeUpdate-0044 adds the original reference capture/extractor tool. CodeUpdate-0045 integrates the DataDecode0043 checkpoint as the pre-mirror import-readiness baseline and is green by user report. CodeUpdate-0046 imports the OmniVerse/MudInfo capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub transition handoff so future decode passes work directly in the repository.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap and is green by user report. CodeUpdate-0043 classifies canonical Server data readiness and is green by user report. CodeUpdate-0044 adds the original reference capture/extractor tool. CodeUpdate-0045 integrates the DataDecode0043 checkpoint as the pre-mirror import-readiness baseline and is green by user report. CodeUpdate-0046 imports the OmniVerse/MudInfo capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub transition handoff so future decode passes work directly in the repository. CodeUpdate-0048 creates the unified decoded-data comparison folder and Android ChatGPT phone handoff workflow.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -88,6 +88,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 - CodeUpdate-0045 adds the DataDecode0043 checkpoint under `DataDecodeCheckpoints/DataDecode0043/`. DataDecode0043 is a pre-mirror import-readiness baseline only, with 0 canonical field promotions.
 - CodeUpdate-0046 imports the gathered OmniVerse/MudInfo reference payload under `ImportedDatabases/OmniVerseReference/CodeUpdate0046/` for validation/correlation only. The payload includes WCC OmniVerse API captures for abilities, classes, items, monsters, races, shops, spells, world status, 168 shop-seeded roommap files, 1,246 room detail files, a 23-entry room capture error log, the MudInfo `maps.rar` source archive, and 102 extracted MudInfo map files.
 - CodeUpdate-0047 preserves DataDecode0049 under `DataDecodeCheckpoints/DataDecode0049/` and records DataDecode0050 transition continuity under `DataDecodeCheckpoints/DataDecode0050/`. Future decode passes should update the repository directly rather than working from standalone ZIP repositories.
+- CodeUpdate-0048 adds `DataDecodeCheckpoints/UnifiedDecodedData/` as a generated inventory/comparison surface and `Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md` for phone-based ChatGPT decode handoffs.
 - All WCC data, including WCC default installs, WCC-labeled WBB material, WSGSERVE-related files, and WCC-derived archives, is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Long-term cleanup goal: retire `ImportedDatabases/` from normal project work only after all needed source data has been decoded, imported, recreated as Reforged-native `Data/`, verified by reports, and explicitly approved for cleanup.
 
@@ -152,6 +153,8 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 | Data decode checkpointing | Started in 0045 | 0045 integrates DataDecode0043 as the pre-mirror import-readiness baseline. Full DataDecode0044 should wait for OmniVerse HTTrack mirror indexing or runtime/debug evidence. |
 | OmniVerse/MudInfo capture | Imported reference evidence in 0046 | 0046 records HTTrack shell/assets as external context and imports WCC API JSON, shop-seeded roommaps/details, capture error logs, and MudInfo maps under `ImportedDatabases/OmniVerseReference/CodeUpdate0046/` for validation/correlation only. |
 | Decode repository transition | Active in 0047 | 0047 preserves DataDecode0049 and records DataDecode0050 transition rules. Future decode passes use GitHub as the direct working copy; ZIPs are archival artifacts only. |
+| Unified decoded data | Active in 0048 | 0048 adds generated inventory/comparison reports under `DataDecodeCheckpoints/UnifiedDecodedData/`, comparing canonical/native decode data against the CodeUpdate0046 OmniVerse reference payload. |
+| Android ChatGPT workflow | Active in 0048 | 0048 adds phone handoff docs/templates so decode work from Android ChatGPT can be structured without PowerShell. |
 | Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Knowledge base and SDS planning | Started in 0036/0037 | 0036 added knowledge-base/design-decision records; 0037 adds draft SDS planning docs and repairs stale continuity. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
@@ -164,6 +167,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 
 | Code Update | Summary |
 |---|---|
+| 0048 | Adds unified decoded-data inventory/comparison reports and Android ChatGPT phone handoff workflow. |
 | 0047 | Preserves DataDecode0049 and records the DataDecode0050 GitHub transition so future decode passes commit directly to the repository. |
 | 0046 | Imports current OmniVerse/MudInfo reference payload and records partial shop-seeded room evidence. |
 | 0045 | Integrates the DataDecode0043 pre-mirror import-readiness checkpoint without changing Data or server behavior. |
@@ -191,6 +195,45 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 | 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
+
+## CodeUpdate-0048 Handoff
+
+CodeUpdate-0048 is a documentation/reporting/tooling update for decoded-data consolidation and phone-friendly handoff.
+
+Implemented:
+
+- Added `Tools/DataDecode/Build-UnifiedDecodedData.ps1`.
+- Generated `DataDecodeCheckpoints/UnifiedDecodedData/`.
+- Added `Inventory/DecodedSourceInventory.csv` with 1,653 source inventory rows.
+- Added `Summary/OmniVerseComparisonSummary.csv`.
+- Added category comparison CSVs for classes, races, items, spells, and monsters.
+- Added `Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md`.
+- Added `DataDecodeCheckpoints/PhoneHandoffTemplates/`.
+- Recorded that phone ChatGPT work is structured handoff text only until Codex verifies and commits it.
+
+Comparison snapshot:
+
+- Classes: 15 canonical, 15 OmniVerse, 15 normalized-name matches.
+- Races: 13 canonical, 13 OmniVerse, 13 normalized-name matches.
+- Skills/abilities: 46 canonical skills versus 188 OmniVerse abilities; not equivalent yet.
+- Items: 1,770 canonical, 1,950 OmniVerse, 1,948 OmniVerse item names present in canonical data by normalized name only.
+- Spells: 1,180 canonical, 1,350 OmniVerse, 1,151 matched by `sourceId` to `legacy_number`.
+- Shops: 0 canonical, 145 native decoded records, 178 OmniVerse shops.
+- Monsters: 98 canonical starter/sample records, 1,100 OmniVerse monsters, 50 normalized-name matches.
+- Rooms: 0 canonical, 1,246 OmniVerse room details, 168 OmniVerse roommaps.
+
+Boundaries:
+
+- No `Data/` rewrite.
+- No imported/reference deletion.
+- No field promotions.
+- No server behavior changes.
+- No gameplay systems.
+- No OmniVerse-only promotion.
+
+Next-scope candidate:
+
+- After user push and green Actions, continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy.
 
 ## CodeUpdate-0047 Handoff
 
