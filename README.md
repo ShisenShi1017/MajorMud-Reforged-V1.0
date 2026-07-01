@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0049 - DataDecode0050 Dispatcher Checkpoint`
+- **Current Code Update:** `CodeUpdate-0049 - DataDecode0068 Spell Engine Proof`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0049, wait for green GitHub Actions, then continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy.
+- **Current Priority:** Push CodeUpdate-0049, wait for green GitHub Actions, then continue DataDecode0069 Spell Executable Dataflow Proof from the GitHub repository working copy.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -27,15 +27,13 @@ Every session must read these files before changing the repository:
 
 ## CodeUpdate-0049 Summary
 
-CodeUpdate-0049 preserves the real DataDecode0050 WGSERVER Event & Message Dispatcher Correlation checkpoint under `DataDecodeCheckpoints/DataDecode0050/`.
+CodeUpdate-0049 preserves the user-provided DataDecode0068 Spell Engine Proof checkpoint under `DataDecodeCheckpoints/DataDecode0068/`.
 
-The earlier transition-only DataDecode0050 files from CodeUpdate-0047 are preserved under `DataDecodeCheckpoints/DataDecode0050/Transition/`. The root DataDecode0050 folder now contains the actual dispatcher correlation package.
+DataDecode0068 reports 1,180 canonical spell records, 930 native WCCSPELS records, 1,789 native WCCSPELS string rows, 1,350 OmniVerse/WCC spell reference records, 1,151 canonical `sourceId` to OmniVerse `legacy_number` matches, 41 canonical spell raw field positions, 10 reference MHT files scanned, 505 repo files with spell-term hits, 5,916 WGSERVER printable strings, 46 WGSERVER spell-term string rows, 439 WGSERVER spell constant probe rows, 8 evidence matrix rows, and 0 field promotions.
 
-DataDecode0050 reports 274 event/message/schema-focused executable strings, 86 string pointer xrefs, 86 candidate dispatch/reference windows, 1,739 WCCMSG/WCCTEXT anchors, 850 cross-file U16 candidate rows, and 0 field promotions.
+The unified decoded-data inventory was regenerated and now records 1,701 source inventory rows. DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
 
-HTTrack/OmniVerse helped clarify coverage gaps and comparison targets, but it did not prove dispatcher behavior. Binary evidence remains authoritative.
-
-No canonical `Data/` rewrite, field promotion, server behavior change, gameplay system, executable execution, or OmniVerse-only promotion is included.
+No canonical `Data/` rewrite, spell field promotion, server behavior change, gameplay system, executable execution, or OmniVerse-only promotion is included.
 
 ## CodeUpdate-0048 Summary
 
@@ -346,12 +344,12 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition. CodeUpdate-0048 adds unified decoded-data comparison reports and Android ChatGPT handoff workflow. CodeUpdate-0049 preserves the real DataDecode0050 dispatcher correlation checkpoint.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition. CodeUpdate-0048 adds unified decoded-data comparison reports and Android ChatGPT handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof.
 
 Next safe work after CodeUpdate-0049:
 
 1. Wait for user push and green GitHub Actions.
-2. Continue DataDecode0051 Combat Routine Correlation from the GitHub repository.
+2. Continue DataDecode0069 Spell Executable Dataflow Proof from the GitHub repository.
 3. Keep unknown/candidate fields soft until binary evidence plus corroborating proof supports them.
 4. Do not promote fields based solely on U16/U32 matches.
 5. Do not add gameplay systems without explicit user approval.

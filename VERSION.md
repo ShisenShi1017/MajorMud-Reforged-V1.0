@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0048
+- Current Code Update: 0049
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0048 - Unified Decoded Data and Phone Workflow
+- Current update: CodeUpdate-0049 - DataDecode0068 Spell Engine Proof
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -58,6 +58,9 @@
 - CodeUpdate-0048 adds `DataDecodeCheckpoints/UnifiedDecodedData/` with generated decoded-data inventory and OmniVerse comparison reports.
 - CodeUpdate-0048 adds Android ChatGPT decode workflow docs and phone handoff templates for non-PowerShell phone-based decode work.
 - CodeUpdate-0048 does not rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, or delete imported/reference data.
+- CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof under `DataDecodeCheckpoints/DataDecode0068/` and refreshes the unified decoded-data inventory.
+- CodeUpdate-0049 records 1,151 canonical spell `sourceId` to OmniVerse `legacy_number` matches and 0 field promotions.
+- CodeUpdate-0049 does not rewrite canonical `Data/`, change server behavior, promote spell fields, add gameplay systems, execute `wgserver.exe`, or make OmniVerse-only promotions.
 
 ## Reference Data Policy
 

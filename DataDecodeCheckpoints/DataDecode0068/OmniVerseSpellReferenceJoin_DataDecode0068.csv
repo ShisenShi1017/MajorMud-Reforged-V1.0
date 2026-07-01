@@ -1,0 +1,1181 @@
+canonicalCommand,canonicalId,canonicalName,ovAttackType,ovDuration,ovMatched,ovMaxEffect,ovMinEffect,ovName,ovResistAbility,ovResistType,ovSpellLevel,ovSpellType,ovTargetType,sourceId,status
+mmis,spell_1,magic missile,4,0,yes,12,4,magic missile,0,0,1,0,8,1,reference join only; not a field promotion
+illu,spell_2,illuminate,4,0,yes,4012,4012,illuminate,0,0,2,3,1,2,reference join only; not a field promotion
+shld,spell_4,ethereal shield,4,60,yes,3,3,ethereal shield,0,0,5,3,1,4,reference join only; not a field promotion
+fjet,spell_5,frost jet,0,0,yes,14,8,frost jet,0,0,4,0,8,5,reference join only; not a field promotion
+rcol,spell_6,resist cold,0,70,yes,6,6,resist cold,0,1,4,3,2,6,reference join only; not a field promotion
+smit,spell_7,smite,4,60,yes,1,1,smite,0,1,3,3,2,7,reference join only; not a field promotion
+lbol,spell_8,lightning bolt,3,0,yes,12,16,lightning bolt,0,0,8,0,8,8,reference join only; not a field promotion
+rfir,spell_9,resist fire,4,70,yes,4,4,resist fire,0,1,6,3,2,9,reference join only; not a field promotion
+star,spell_26,starlight,4,80,yes,175,175,starlight,0,0,1,3,1,26,reference join only; not a field promotion
+harm,spell_12,harm,4,0,yes,13,4,harm,0,2,1,0,8,12,reference join only; not a field promotion
+mihe,spell_13,minor healing,4,0,yes,8,2,minor healing,0,1,1,3,2,13,reference join only; not a field promotion
+bles,spell_14,bless,4,40,yes,3,3,bless,0,1,2,3,2,14,reference join only; not a field promotion
+curs,spell_15,curse,4,40,yes,-6,-6,curse,0,2,2,3,8,15,reference join only; not a field promotion
+hamm,spell_16,spiritual hammer,4,0,yes,14,4,spiritual hammer,0,0,4,0,8,16,reference join only; not a field promotion
+mahe,spell_17,major healing,4,0,yes,10,6,major healing,0,1,8,3,2,17,reference join only; not a field promotion
+turn,spell_18,turn undead,4,0,yes,15,12,turn undead,0,0,3,0,4,18,reference join only; not a field promotion
+cure,spell_19,cure poison,4,0,yes,8,8,cure poison,0,1,7,3,2,19,reference join only; not a field promotion
+aura,spell_20,holy aura,4,60,yes,10,10,holy aura,0,1,9,3,13,20,reference join only; not a field promotion
+unho,spell_21,unholy aura,4,60,yes,10,10,unholy aura,0,1,9,3,13,21,reference join only; not a field promotion
+agon,spell_22,agony,4,0,yes,11,18,agony,0,2,8,0,8,22,reference join only; not a field promotion
+chan,spell_23,chant,4,40,yes,3,3,chant,0,1,6,3,13,23,reference join only; not a field promotion
+dtec,spell_24,detect magic,4,0,yes,1,1,detect magic,0,0,5,3,7,24,reference join only; not a field promotion
+vine,spell_25,vine strike,4,0,yes,9,4,vine strike,0,0,1,0,8,25,reference join only; not a field promotion
+mend,spell_27,mend,4,0,yes,12,3,mend,0,1,2,3,2,27,reference join only; not a field promotion
+chao,spell_30,elemental chaos,4,0,yes,13,7,elemental chaos,0,0,4,0,8,30,reference join only; not a field promotion
+anti,spell_31,antidote,4,0,yes,8,8,antidote,0,1,6,3,2,31,reference join only; not a field promotion
+rlit,spell_32,resist lightning,4,60,yes,1,1,resist lightning,0,1,9,3,2,32,reference join only; not a field promotion
+swar,spell_33,swarm,4,0,yes,36,24,swarm,0,0,12,0,12,33,reference join only; not a field promotion
+skin,spell_34,barkskin,4,40,yes,10,10,barkskin,0,1,7,3,1,34,reference join only; not a field promotion
+pbol,spell_35,poison bolt,6,0,yes,15,19,poison bolt,0,2,10,0,8,35,reference join only; not a field promotion
+owl,spell_37,way of the owl,4,60,yes,10,10,way of the owl,0,0,3,3,1,37,reference join only; not a field promotion
+swan,spell_36,way of the swan,4,0,yes,3,3,way of the swan,0,0,2,3,1,36,reference join only; not a field promotion
+tige,spell_38,way of the tiger,4,60,yes,2,2,way of the tiger,0,0,5,3,1,38,reference join only; not a field promotion
+cat,spell_39,way of the cat,4,60,yes,0,0,way of the cat,0,0,4,3,1,39,reference join only; not a field promotion
+rat,spell_40,way of the rat,4,60,yes,0,0,way of the rat,0,0,6,3,1,40,reference join only; not a field promotion
+valr,spell_42,song of valour,4,35,yes,5,5,song of valour,0,1,2,3,13,42,reference join only; not a field promotion
+lore,spell_41,song of lore,4,0,yes,1,1,song of lore,0,0,1,3,7,41,reference join only; not a field promotion
+mfor,spell_43,song of misfortune,4,20,yes,-10,-10,song of misfortune,0,2,3,3,12,43,reference join only; not a field promotion
+disc,spell_44,song of discord,4,0,yes,13,3,song of discord,0,0,3,0,8,44,reference join only; not a field promotion
+bril,spell_45,song of brilliance,4,40,yes,5,5,song of brilliance,0,1,5,3,2,45,reference join only; not a field promotion
+wisd,spell_46,song of wisdom,4,40,yes,5,5,song of wisdom,0,1,4,3,2,46,reference join only; not a field promotion
+mite,spell_47,song of might,4,40,yes,5,5,song of might,0,1,6,3,2,47,reference join only; not a field promotion
+agil,spell_48,song of agility,4,40,yes,5,5,song of agility,0,1,7,3,2,48,reference join only; not a field promotion
+char,spell_49,song of charming,4,100,yes,100,100,song of charming,0,2,4,3,4,49,reference join only; not a field promotion
+red,spell_50,red potion,4,0,yes,8,2,red potion,0,1,0,3,1,50,reference join only; not a field promotion
+armr,spell_52,magic armour,4,60,yes,5,5,magic armour,0,1,6,3,1,52,reference join only; not a field promotion
+flas,spell_51,flash,4,5,yes,9999,9999,flash,0,2,7,3,12,51,reference join only; not a field promotion
+dazl,spell_53,song of dazzling,4,10,yes,25,25,song of dazzling,0,2,14,3,8,53,reference join only; not a field promotion
+vamp,spell_54,vampiric touch,4,0,yes,20,8,vampiric touch,0,1,11,0,8,54,reference join only; not a field promotion
+ensl,spell_55,enslave,4,60,yes,0,0,enslave,0,2,18,3,4,55,reference join only; not a field promotion
+sbol,spell_56,sunbolt,1,0,yes,18,30,sunbolt,0,0,13,0,8,56,reference join only; not a field promotion
+sped,spell_57,speed,4,20,yes,85,85,speed,0,1,12,3,2,57,reference join only; not a field promotion
+dtch,spell_58,deathtouch,4,0,yes,18,25,deathtouch,0,0,16,0,8,58,reference join only; not a field promotion
+slow,spell_59,slow,4,10,yes,125,125,slow,0,2,10,3,8,59,reference join only; not a field promotion
+fear,spell_60,fear,4,10,yes,90,35,fear,0,0,0,3,8,60,reference join only; not a field promotion
+gcrs,spell_61,greater curse,4,40,yes,-10,-10,greater curse,0,2,9,3,8,61,reference join only; not a field promotion
+dfav,spell_62,divine favour,4,30,yes,10,10,divine favour,0,1,19,3,2,62,reference join only; not a field promotion
+conf,spell_63,confusion,4,10,yes,25,25,confusion,0,2,14,3,8,63,reference join only; not a field promotion
+shok,spell_64,shockshield,3,40,yes,5,1,shockshield,0,0,9,3,1,64,reference join only; not a field promotion
+disp,spell_65,dispel magic,4,0,yes,0,0,dispel magic,0,1,5,3,6,65,reference join only; not a field promotion
+hold,spell_66,hold person,4,4,yes,100,100,hold person,0,2,14,3,8,66,reference join only; not a field promotion
+disf,spell_67,divine disfavour,4,30,yes,-15,-15,divine disfavour,0,2,19,3,8,67,reference join only; not a field promotion
+mute,spell_68,mute,4,20,yes,-20,-40,mute,0,2,10,3,8,68,reference join only; not a field promotion
+bind,spell_69,magebind,4,40,yes,-50,-150,magebind,0,0,0,3,12,69,reference join only; not a field promotion
+free,spell_70,freedom,4,0,yes,100,100,freedom,0,1,16,3,2,70,reference join only; not a field promotion
+burn,spell_71,burning aura,1,20,yes,1,1,burning aura,0,2,13,3,8,71,reference join only; not a field promotion
+spear,spell_72,spear,4,0,yes,0,0,spear,0,0,0,0,8,72,reference join only; not a field promotion
+wind,spell_73,black wind,4,10,yes,1,1,black wind,0,2,21,3,12,73,reference join only; not a field promotion
+rcrs,spell_74,remove curse,4,0,yes,-1,-1,remove curse,0,0,14,3,2,74,reference join only; not a field promotion
+blit,spell_75,blight,4,40,yes,-6,-6,blight,0,2,6,3,12,75,reference join only; not a field promotion
+viole,spell_112,violet potion,4,0,yes,8,8,violet potion,0,1,0,3,1,112,reference join only; not a field promotion
+blin,spell_77,blind,4,10,yes,1,1,blind,0,2,12,3,8,77,reference join only; not a field promotion
+breat,spell_78,breathes flame,1,0,yes,20,4,breathes flame,0,0,0,0,0,78,reference join only; not a field promotion
+spit,spell_79,spits a stream of venom,6,100,yes,10,6,spits a stream of venom,0,0,0,1,0,79,reference join only; not a field promotion
+bite,spell_80,bites,6,100,yes,12,8,bites,0,0,0,1,8,80,reference join only; not a field promotion
+bite,spell_81,savagely bites,6,100,yes,16,10,savagely bites,0,0,0,1,8,81,reference join only; not a field promotion
+draw,spell_82,draws the breath,4,0,yes,12,4,draws the breath,0,0,0,3,0,82,reference join only; not a field promotion
+high,spell_83,high-pitched scream,4,20,yes,20,20,high-pitched scream,0,0,0,3,0,83,reference join only; not a field promotion
+brea,spell_84,breathes,4,50,yes,-10,-10,breathes,0,0,0,3,0,84,reference join only; not a field promotion
+speak,spell_85,speaks in a booming voice,4,100,yes,-10,-10,speaks in a booming voice,0,0,0,3,0,85,reference join only; not a field promotion
+diss,spell_86,dissolves,4,0,yes,0,0,dissolves,0,0,0,3,0,86,reference join only; not a field promotion
+site,spell_87,cure blindness,4,0,yes,9999,9999,cure blindness,0,1,12,3,2,87,reference join only; not a field promotion
+cded,spell_88,control undead,4,80,yes,100,100,control undead,0,2,16,3,4,88,reference join only; not a field promotion
+grhe,spell_89,greater healing,4,0,yes,10,5,greater healing,0,1,15,3,2,89,reference join only; not a field promotion
+head,spell_90,hydra head create,4,0,yes,0,0,hydra head create,0,0,0,3,1,90,reference join only; not a field promotion
+aler,spell_91,alertness,4,60,yes,10,10,alertness,0,1,2,3,2,91,reference join only; not a field promotion
+char,spell_92,charm animal,4,60,yes,100,100,charm animal,0,2,5,3,4,92,reference join only; not a field promotion
+enta,spell_93,entangle,4,4,yes,100,100,entangle,0,2,14,3,8,93,reference join only; not a field promotion
+strk,spell_94,stonestrike,2,0,yes,11,14,stonestrike,0,0,8,0,8,94,reference join only; not a field promotion
+acid,spell_95,acid jet,5,0,yes,18,24,acid jet,0,0,13,0,8,95,reference join only; not a field promotion
+fool,spell_96,song of foolishness,4,40,yes,-5,-5,song of foolishness,0,2,5,3,8,96,reference join only; not a field promotion
+dumb,spell_97,song of stupidity,4,40,yes,-5,-5,song of stupidity,0,2,6,3,8,97,reference join only; not a field promotion
+weak,spell_98,song of weakness,4,40,yes,-5,-5,song of weakness,0,2,7,3,8,98,reference join only; not a field promotion
+clum,spell_99,song of clumsiness,4,40,yes,-5,-5,song of clumsiness,0,2,8,3,8,99,reference join only; not a field promotion
+trav,spell_100,song of traveling,4,80,yes,20,20,song of traveling,0,1,9,3,13,100,reference join only; not a field promotion
+dran,spell_101,song of draining,4,0,yes,16,4,song of draining,0,2,11,0,8,101,reference join only; not a field promotion
+blas,spell_102,song of blasting,4,0,yes,21,6,song of blasting,0,0,10,0,8,102,reference join only; not a field promotion
+boar,spell_103,way of the boar,4,20,yes,15,15,way of the boar,0,0,7,3,1,103,reference join only; not a field promotion
+drgn,spell_104,way of the dragon,1,0,yes,14,13,way of the dragon,0,0,8,0,8,104,reference join only; not a field promotion
+monk,spell_105,way of the monkey,4,40,yes,0,0,way of the monkey,0,0,9,3,1,105,reference join only; not a field promotion
+mant,spell_106,way of the mantis,4,20,yes,85,85,way of the mantis,0,0,10,3,1,106,reference join only; not a field promotion
+prev,spell_107,protection from evil,4,50,yes,10,10,protection from evil,0,1,5,3,2,107,reference join only; not a field promotion
+prgd,spell_108,protection from good,4,50,yes,10,10,protection from good,0,1,5,3,2,108,reference join only; not a field promotion
+hit,spell_109,flame hits,1,0,yes,3,1,flame hits,0,0,0,0,8,109,reference join only; not a field promotion
+hfor,spell_110,holy force,4,0,yes,24,18,holy force,0,0,13,0,8,110,reference join only; not a field promotion
+ufor,spell_111,unholy force,4,0,yes,24,18,unholy force,0,0,13,0,8,111,reference join only; not a field promotion
+jet,spell_113,breathes a jet of fire,1,0,yes,20,5,breathes a jet of fire,0,0,0,0,0,113,reference join only; not a field promotion
+bles,spell_114,sword major bless,4,60,yes,10,10,sword major bless,0,1,0,3,13,114,reference join only; not a field promotion
+magm,spell_115,magma drip,1,0,yes,30,10,magma drip,0,0,0,0,2,115,reference join only; not a field promotion
+enve,spell_116,envelops,1,10,yes,2,2,envelops,0,0,0,0,8,116,reference join only; not a field promotion
+,spell_117,breathes a jet of frost,0,0,yes,20,5,breathes a jet of frost,0,0,0,0,0,117,reference join only; not a field promotion
+inc,spell_118,incense,4,150,yes,2,2,incense,0,0,0,3,1,118,reference join only; not a field promotion
+alch,spell_119,alcohol,4,150,yes,25,5,alcohol,0,0,0,3,1,119,reference join only; not a field promotion
+fbal,spell_120,fireball,1,0,yes,45,33,fireball,0,0,15,0,12,120,reference join only; not a field promotion
+gdhe,spell_121,godheal,4,0,yes,30,35,godheal,0,1,22,3,2,121,reference join only; not a field promotion
+gwra,spell_122,god's wrath,4,0,yes,30,57,god's wrath,0,0,25,0,8,122,reference join only; not a field promotion
+grai,spell_123,greater healing rain,4,0,yes,35,15,greater healing rain,0,1,24,3,13,123,reference join only; not a field promotion
+dark,spell_124,dark force,4,0,yes,10,4,dark force,0,0,0,3,8,124,reference join only; not a field promotion
+para,spell_125,paralyze,4,4,yes,100,100,paralyze,0,2,25,3,12,125,reference join only; not a field promotion
+acid,spell_126,acid hits,5,0,yes,3,1,acid hits,0,0,0,3,8,126,reference join only; not a field promotion
+weak,spell_127,weakness touch,4,40,yes,0,0,weakness touch,0,0,0,3,0,127,reference join only; not a field promotion
+stun,spell_128,stunned,4,2,yes,100,100,stunned,0,0,0,3,8,128,reference join only; not a field promotion
+blur,spell_129,blur,4,70,yes,5,5,blur,0,1,1,3,2,129,reference join only; not a field promotion
+shad,spell_130,shadowform,4,30,yes,5,5,shadowform,0,0,7,3,1,130,reference join only; not a field promotion
+stnk,spell_131,stinking cloud,4,20,yes,5,5,stinking cloud,0,2,8,3,12,131,reference join only; not a field promotion
+mshi,spell_132,mageshield,4,60,yes,7,7,mageshield,0,0,9,3,1,132,reference join only; not a field promotion
+blad,spell_133,dancing blades,4,0,yes,38,21,dancing blades,0,0,11,0,12,133,reference join only; not a field promotion
+vuln,spell_134,vulnerability,4,1,yes,-8,-8,vulnerability,0,2,14,3,8,134,reference join only; not a field promotion
+isto,spell_135,ice storm,0,15,yes,3,3,ice storm,0,1,17,3,12,135,reference join only; not a field promotion
+ebol,spell_136,eldritch bolt,4,0,yes,8,40,eldritch bolt,0,0,20,0,8,136,reference join only; not a field promotion
+sens,spell_137,senselessness,4,40,yes,-10,-10,senselessness,0,2,4,3,8,137,reference join only; not a field promotion
+rhel,spell_138,rapid healing,4,60,yes,200,200,rapid healing,0,1,11,3,2,138,reference join only; not a field promotion
+rain,spell_139,acid rain,5,20,yes,1,1,acid rain,0,2,15,3,12,139,reference join only; not a field promotion
+csto,spell_140,chaos storm,4,0,yes,35,29,chaos storm,0,0,15,0,12,140,reference join only; not a field promotion
+petr,spell_141,partial petrification,4,20,yes,150,150,partial petrification,0,2,16,3,8,141,reference join only; not a field promotion
+pclo,spell_142,poison cloud,4,40,yes,3,3,poison cloud,0,2,17,3,12,142,reference join only; not a field promotion
+rott,spell_143,rotting flesh,4,10,yes,6,6,rotting flesh,0,2,18,3,8,143,reference join only; not a field promotion
+irfa,spell_144,iron faith,4,30,yes,2,2,iron faith,0,0,7,3,1,144,reference join only; not a field promotion
+rain,spell_145,healing rain,4,0,yes,10,4,healing rain,0,1,10,3,13,145,reference join only; not a field promotion
+gbls,spell_146,greater bless,4,40,yes,6,6,greater bless,0,1,10,3,2,146,reference join only; not a field promotion
+glit,spell_147,glitterdust,4,30,yes,-10,-10,glitterdust,0,0,11,3,0,147,reference join only; not a field promotion
+armr,spell_148,holy armour,4,60,yes,2,2,holy armour,0,0,11,3,1,148,reference join only; not a field promotion
+uarm,spell_149,unholy armour,4,60,yes,2,2,unholy armour,0,0,11,3,1,149,reference join only; not a field promotion
+cdes,spell_150,cure disease,4,0,yes,143,143,cure disease,0,1,13,3,2,150,reference join only; not a field promotion
+disr,spell_151,disrupt,4,0,yes,52,30,disrupt,0,0,16,0,4,151,reference join only; not a field promotion
+mrai,spell_152,major healing rain,4,0,yes,20,8,major healing rain,0,1,17,3,13,152,reference join only; not a field promotion
+gstk,spell_153,godstrike,4,0,yes,20,30,godstrike,0,0,20,0,8,153,reference join only; not a field promotion
+ment,spell_154,mental blast,4,0,yes,40,18,mental blast,0,0,0,0,8,154,reference join only; not a field promotion
+helm,spell_155,eagle helm,4,20,yes,100,100,eagle helm,0,0,0,3,1,155,reference join only; not a field promotion
+jade,spell_156,jade amulet,4,0,yes,999,999,jade amulet,0,0,0,3,1,156,reference join only; not a field promotion
+ame,spell_157,amethyst pendant,4,70,yes,5,5,amethyst pendant,0,0,0,3,1,157,reference join only; not a field promotion
+shad,spell_158,shadow cloak,4,30,yes,5,5,shadow cloak,0,0,0,3,1,158,reference join only; not a field promotion
+blaz,spell_159,blazing inferno,1,0,yes,60,25,blazing inferno,0,0,0,0,12,159,reference join only; not a field promotion
+curp,spell_160,cure paralysis,4,0,yes,100,100,cure paralysis,0,0,23,3,2,160,reference join only; not a field promotion
+sati,spell_161,white satin gloves,4,0,yes,20,8,white satin gloves,0,1,0,3,2,161,reference join only; not a field promotion
+dark,spell_162,dark touch,4,0,yes,62,23,dark touch,0,2,0,0,8,162,reference join only; not a field promotion
+opal,spell_163,opal ring,4,0,yes,48,25,opal ring,0,0,0,0,8,163,reference join only; not a field promotion
+free,spell_164,free,4,0,yes,100,100,free,0,0,0,3,1,164,reference join only; not a field promotion
+sash,spell_165,multicoloured sash,4,40,yes,5,5,multicoloured sash,0,0,0,3,1,165,reference join only; not a field promotion
+sand,spell_168,winged sandals,4,20,yes,80,80,winged sandals,0,0,0,3,1,168,reference join only; not a field promotion
+shi,spell_169,mirrored shield,4,8,yes,999,999,mirrored shield,0,0,0,3,12,169,reference join only; not a field promotion
+mace,spell_170,silvery mace,4,0,yes,3,1,silvery mace,0,0,0,0,8,170,reference join only; not a field promotion
+ebony,spell_171,ebony greataxe,4,40,yes,-6,-6,ebony greataxe,0,2,0,3,12,171,reference join only; not a field promotion
+dark,spell_172,dark fire,1,0,yes,6,1,dark fire,0,0,0,0,8,172,reference join only; not a field promotion
+lbol,spell_173,thunderstaff-lbol,3,0,yes,0,0,thunderstaff-lbol,0,0,0,0,8,173,reference join only; not a field promotion
+hits,spell_174,thunderstaff-hits,3,0,yes,3,1,thunderstaff-hits,0,0,0,0,8,174,reference join only; not a field promotion
+fjet,spell_175,frost sceptre-fjet,0,0,yes,32,12,frost sceptre-fjet,0,0,0,0,8,175,reference join only; not a field promotion
+chill,spell_176,frost sceptre-chill touch,0,10,yes,-2,-5,frost sceptre-chill touch,0,0,0,0,8,176,reference join only; not a field promotion
+flay,spell_177,flay,6,80,yes,12,6,flay,0,0,0,3,8,177,reference join only; not a field promotion
+hits,spell_178,serpent scourge-hits,6,0,yes,3,1,serpent scourge-hits,0,0,0,0,8,178,reference join only; not a field promotion
+rod,spell_179,heavy black rod,4,10,yes,1,1,heavy black rod,0,2,0,3,8,179,reference join only; not a field promotion
+moon,spell_180,moonsword,4,0,yes,24,12,moonsword,0,0,0,0,8,180,reference join only; not a field promotion
+blue,spell_181,blue potion,4,0,yes,1,1,blue potion,0,1,0,3,1,181,reference join only; not a field promotion
+turq,spell_182,turquoise potion,4,0,yes,20,8,turquoise potion,0,1,0,3,1,182,reference join only; not a field promotion
+gree,spell_183,green potion,4,20,yes,80,80,green potion,0,1,0,3,1,183,reference join only; not a field promotion
+yell,spell_184,yellow potion,4,60,yes,8,8,yellow potion,0,1,0,3,1,184,reference join only; not a field promotion
+pink,spell_185,frothing pink potion,4,0,yes,40,20,frothing pink potion,0,0,0,3,1,185,reference join only; not a field promotion
+silv,spell_186,silvery potion,4,60,yes,4,4,silvery potion,0,1,0,3,1,186,reference join only; not a field promotion
+oran,spell_187,orange potion,0,60,yes,3,3,orange potion,0,1,0,3,1,187,reference join only; not a field promotion
+white,spell_188,white potion,4,60,yes,-8,-8,white potion,0,1,0,3,1,188,reference join only; not a field promotion
+black,spell_189,black orb,4,40,yes,-15,-15,black orb,0,1,0,3,1,189,reference join only; not a field promotion
+iron,spell_190,iron tube,1,0,yes,40,20,iron tube,0,0,0,0,12,190,reference join only; not a field promotion
+roc,spell_191,shriek,4,10,yes,25,25,shriek,0,0,0,3,12,191,reference join only; not a field promotion
+quak,spell_192,quake,2,0,yes,20,10,quake,0,0,0,0,12,192,reference join only; not a field promotion
+roar,spell_193,roar,4,20,yes,12,5,roar,0,0,0,3,12,193,reference join only; not a field promotion
+free,spell_194,freeze,4,20,yes,-10,-10,freeze,0,0,0,3,12,194,reference join only; not a field promotion
+ice,spell_195,ice blast,0,0,yes,55,18,ice blast,0,0,0,0,0,195,reference join only; not a field promotion
+curs,spell_196,black curse,4,20,yes,-6,-6,black curse,0,2,0,3,0,196,reference join only; not a field promotion
+ice,spell_197,ice breath,0,0,yes,40,12,ice breath,0,0,0,0,0,197,reference join only; not a field promotion
+rapt,spell_198,raptor summon,0,0,yes,509,509,raptor summon,0,0,0,3,1,198,reference join only; not a field promotion
+rose,spell_199,rose book confuse,4,60,yes,25,25,rose book confuse,0,0,0,3,1,199,reference join only; not a field promotion
+blind,spell_200,blind book,4,60,yes,1,1,blind book,0,0,0,3,1,200,reference join only; not a field promotion
+rip,spell_201,rip,4,8,yes,4,2,rip,0,0,0,0,8,201,reference join only; not a field promotion
+wail,spell_202,banshee's wail,4,80,yes,-20,-20,banshee's wail,0,0,0,3,12,202,reference join only; not a field promotion
+vamp,spell_203,vampire rosebush,4,0,yes,4,1,vampire rosebush,0,0,0,0,8,203,reference join only; not a field promotion
+spray,spell_204,sprays,4,0,yes,16,6,sprays,0,0,0,0,12,204,reference join only; not a field promotion
+acid,spell_205,belches acid,5,0,yes,23,12,belches acid,0,0,0,0,8,205,reference join only; not a field promotion
+sharp,spell_206,sharp stones,4,0,yes,25,12,sharp stones,0,0,0,0,8,206,reference join only; not a field promotion
+embr,spell_207,ember,1,0,yes,-20,0,ember,0,0,45,0,8,207,reference join only; not a field promotion
+tower,spell_209,tower of flame,1,0,yes,70,27,tower of flame,0,0,0,0,8,209,reference join only; not a field promotion
+srip,spell_211,soul rip,4,0,yes,-10,10,soul rip,0,0,45,0,8,211,reference join only; not a field promotion
+opaq,spell_213,opaque field,4,0,yes,0,0,opaque field,0,0,0,3,1,213,reference join only; not a field promotion
+black,spell_214,black gem,4,20,yes,1,1,black gem,0,0,0,3,1,214,reference join only; not a field promotion
+argak,spell_215,argak summon,4,0,yes,609,609,argak summon,0,0,0,3,1,215,reference join only; not a field promotion
+simp,spell_216,sphere of implosion,4,0,yes,30,10,sphere of implosion,0,0,40,0,8,216,reference join only; not a field promotion
+choir,spell_217,choira summon,4,0,yes,610,610,choira summon,0,0,0,3,1,217,reference join only; not a field promotion
+fire,spell_218,temple of fire fire,1,0,yes,100,40,temple of fire fire,0,0,0,0,2,218,reference join only; not a field promotion
+lal,spell_226,lallim summon,4,0,yes,611,611,lallim summon,0,0,0,3,1,226,reference join only; not a field promotion
+shar,spell_227,sharah'kur summon,4,0,yes,612,612,sharah'kur summon,0,0,0,3,1,227,reference join only; not a field promotion
+catl,spell_228,catlobepas eye,4,0,yes,9999,9999,catlobepas eye,0,0,0,3,1,228,reference join only; not a field promotion
+flask,spell_229,flask,4,0,yes,16,6,flask,0,0,0,0,12,229,reference join only; not a field promotion
+gout,spell_230,gout of flame,1,0,yes,35,15,gout of flame,0,0,0,3,2,230,reference join only; not a field promotion
+eye,spell_231,eye beam,4,0,yes,75,35,eye beam,0,0,0,0,8,231,reference join only; not a field promotion
+spray,spell_232,spray of spores,4,0,yes,10,3,spray of spores,0,0,0,0,8,232,reference join only; not a field promotion
+spore,spell_233,spore explosion,4,0,yes,19,7,spore explosion,0,0,0,0,12,233,reference join only; not a field promotion
+engu,spell_234,engulfs,4,45,yes,1,1,engulfs,0,0,0,3,8,234,reference join only; not a field promotion
+rem,spell_235,remove engulfs,4,0,yes,234,234,remove engulfs,0,0,0,3,12,235,reference join only; not a field promotion
+thick,spell_237,thick webbing,4,10,yes,1,1,thick webbing,0,0,0,3,8,237,reference join only; not a field promotion
+spits,spell_238,spits,6,10,yes,-5,-5,spits,0,0,0,3,8,238,reference join only; not a field promotion
+fire,spell_239,summon fire elemental,1,0,yes,-30,80,summon fire elemental,0,0,40,0,8,239,reference join only; not a field promotion
+icel,spell_240,summon ice elemental,0,0,yes,-30,80,summon ice elemental,0,0,40,0,8,240,reference join only; not a field promotion
+lite,spell_241,summon lightning elemental,3,0,yes,-30,80,summon lightning elemental,0,0,37,0,8,241,reference join only; not a field promotion
+stne,spell_242,summon stone elemental,2,0,yes,-30,80,summon stone elemental,0,0,37,0,8,242,reference join only; not a field promotion
+expl,spell_244,explode,1,0,yes,16,8,explode,0,0,0,3,12,244,reference join only; not a field promotion
+ball,spell_246,ball of magma,1,0,yes,40,18,ball of magma,0,0,0,0,8,246,reference join only; not a field promotion
+fire,spell_247,breathes fire,1,0,yes,35,15,breathes fire,0,0,0,0,8,247,reference join only; not a field promotion
+yell,spell_248,yellow fungus,4,0,yes,20,8,yellow fungus,0,0,0,3,1,248,reference join only; not a field promotion
+red,spell_250,red fungus,4,30,yes,8,8,red fungus,0,0,0,3,1,250,reference join only; not a field promotion
+uwra,spell_252,unholy wrath,4,0,yes,0,0,unholy wrath,0,0,0,0,8,252,reference join only; not a field promotion
+colu,spell_254,colour spray,4,0,yes,0,40,colour spray,0,0,32,0,8,254,reference join only; not a field promotion
+corr,spell_255,corrosion,4,100,yes,-5,-5,corrosion,0,2,0,3,12,255,reference join only; not a field promotion
+sfog,spell_256,solid fog,4,30,yes,125,125,solid fog,0,2,0,3,12,256,reference join only; not a field promotion
+msto,spell_257,mana storm,4,0,yes,20,20,mana storm,0,0,0,0,12,257,reference join only; not a field promotion
+trans,spell_258,transform,4,0,yes,181,181,transform,0,0,100,3,6,258,reference join only; not a field promotion
+rain,spell_259,rain of blood,4,0,yes,10,10,rain of blood,0,0,0,0,12,259,reference join only; not a field promotion
+vort,spell_260,vortex of pain,4,20,yes,25,25,vortex of pain,0,2,0,3,12,260,reference join only; not a field promotion
+flame,spell_261,flame shower,1,0,yes,65,30,flame shower,0,0,0,0,12,261,reference join only; not a field promotion
+eng,spell_262,engulf in flame,1,15,yes,5,5,engulf in flame,0,0,0,0,8,262,reference join only; not a field promotion
+dfir,spell_263,dragonfire,1,0,yes,10,4,dragonfire,0,0,0,0,8,263,reference join only; not a field promotion
+mist,spell_264,mystic mist,4,30,yes,25,25,mystic mist,0,0,0,3,12,264,reference join only; not a field promotion
+fury,spell_267,divine fury,4,0,yes,-70,50,divine fury,0,0,30,0,8,267,reference join only; not a field promotion
+dmer,spell_268,divine mercy,4,0,yes,65,25,divine mercy,0,1,30,3,13,268,reference join only; not a field promotion
+life,spell_269,song of life,4,30,yes,50,50,song of life,0,1,8,3,13,269,reference join only; not a field promotion
+mute,spell_270,song of silence,4,20,yes,-10,-30,song of silence,0,2,12,3,12,270,reference join only; not a field promotion
+leth,spell_271,song of lethargy,4,20,yes,120,120,song of lethargy,0,2,13,3,8,271,reference join only; not a field promotion
+quik,spell_272,song of quickness,4,20,yes,85,85,song of quickness,0,1,15,3,2,272,reference join only; not a field promotion
+pain,spell_273,song of pain,4,0,yes,6,22,song of pain,0,0,16,0,8,273,reference join only; not a field promotion
+stun,spell_274,song of stunning,4,1,yes,100,100,song of stunning,0,2,18,3,8,274,reference join only; not a field promotion
+shok,spell_275,song of shockwave,4,0,yes,30,14,song of shockwave,0,0,19,0,12,275,reference join only; not a field promotion
+hero,spell_276,song of heroism,4,30,yes,10,10,song of heroism,0,1,21,3,2,276,reference join only; not a field promotion
+sbla,spell_277,song of sonic blast,4,0,yes,12,31,song of sonic blast,0,0,22,0,8,277,reference join only; not a field promotion
+evas,spell_278,song of evasion,4,5,yes,5,5,song of evasion,0,1,24,3,1,278,reference join only; not a field promotion
+note,spell_279,note of destruction,4,0,yes,100,20,note of destruction,0,0,0,0,12,279,reference join only; not a field promotion
+sum,spell_280,summon twins,4,0,yes,0,0,summon twins,0,0,0,3,1,280,reference join only; not a field promotion
+wind,spell_283,wind of haste,4,20,yes,80,80,wind of haste,0,1,22,3,13,283,reference join only; not a field promotion
+mete,spell_285,meteor swarm,4,0,yes,10,20,meteor swarm,0,0,25,0,8,285,reference join only; not a field promotion
+spir,spell_287,spirit horde,4,0,yes,55,77,spirit horde,0,0,28,0,12,287,reference join only; not a field promotion
+ston,spell_289,stoneskin,2,30,yes,60,60,stoneskin,0,0,19,3,1,289,reference join only; not a field promotion
+blaz,spell_290,blaze,1,0,yes,0,38,blaze,0,0,20,0,8,290,reference join only; not a field promotion
+doom,spell_291,creeping doom,4,30,yes,4,4,creeping doom,0,2,22,3,8,291,reference join only; not a field promotion
+mael,spell_292,maelstrom,4,0,yes,35,62,maelstrom,0,0,24,0,12,292,reference join only; not a field promotion
+plas,spell_293,plasma bolt,4,0,yes,50,54,plasma bolt,0,0,23,0,8,293,reference join only; not a field promotion
+plag,spell_294,plague,4,40,yes,2,2,plague,0,2,26,3,12,294,reference join only; not a field promotion
+quak,spell_295,earthquake,2,0,yes,62,91,earthquake,0,0,28,0,12,295,reference join only; not a field promotion
+fist,spell_296,earthfist,2,0,yes,-70,72,earthfist,0,0,30,0,8,296,reference join only; not a field promotion
+tort,spell_297,way of the tortoise,4,45,yes,10,10,way of the tortoise,0,0,12,3,1,297,reference join only; not a field promotion
+bear,spell_298,way of the bear,4,30,yes,20,20,way of the bear,0,0,15,3,1,298,reference join only; not a field promotion
+cobr,spell_299,way of the cobra,6,80,yes,6,6,way of the cobra,0,2,18,3,8,299,reference join only; not a field promotion
+hypn,spell_300,hypnotic hands,4,7,yes,-15,-15,hypnotic hands,0,2,21,3,8,300,reference join only; not a field promotion
+fist,spell_301,way of the exploding fist,4,0,yes,30,0,way of the exploding fist,0,0,24,0,8,301,reference join only; not a field promotion
+pres,spell_302,pressure points,4,40,yes,4,4,pressure points,0,0,27,3,1,302,reference join only; not a field promotion
+hand,spell_303,hand of death,4,28,yes,6,6,hand of death,0,0,30,3,8,303,reference join only; not a field promotion
+zeal,spell_304,zeal,4,10,yes,0,0,zeal,0,0,25,3,1,304,reference join only; not a field promotion
+smoke,spell_305,smoke bomb,4,5,yes,1,1,smoke bomb,0,0,8,3,12,305,reference join only; not a field promotion
+anni,spell_306,death gaze,4,0,yes,100,100,death gaze,0,0,0,3,8,306,reference join only; not a field promotion
+ginv,spell_307,globe of invulnerability,4,500,yes,100,100,globe of invulnerability,0,0,0,3,2,307,reference join only; not a field promotion
+siso,spell_308,sphere of isolation,4,200,yes,100,100,sphere of isolation,0,0,0,3,8,308,reference join only; not a field promotion
+chai,spell_309,ethereal chains,4,8,yes,1,1,ethereal chains,0,0,0,3,8,309,reference join only; not a field promotion
+nmag,spell_310,negate magic,4,0,yes,0,0,negate magic,0,0,0,3,2,310,reference join only; not a field promotion
+doom,spell_311,judgement of doom,4,9999,yes,5,5,judgement of doom,0,0,0,3,8,311,reference join only; not a field promotion
+eyem,spell_312,Eye of Magnus,4,200,yes,100,100,Eye of Magnus,0,0,0,3,2,312,reference join only; not a field promotion
+rsto,spell_313,bigheal,4,0,yes,9999,9999,bigheal,0,0,0,3,13,313,reference join only; not a field promotion
+comb,spell_314,combat fury,4,500,yes,50,50,combat fury,0,0,0,3,2,314,reference join only; not a field promotion
+food,spell_316,food,4,0,yes,2,0,food,0,0,0,3,1,316,reference join only; not a field promotion
+aid,spell_315,calls for aid,4,0,yes,0,0,calls for aid,0,0,0,3,8,315,reference join only; not a field promotion
+drink,spell_317,drink,4,0,yes,1,1,drink,0,0,0,3,1,317,reference join only; not a field promotion
+knock,spell_318,knockdown,4,4,yes,-5,-5,knockdown,0,0,0,1,8,318,reference join only; not a field promotion
+fire,spell_319,firebomb,1,0,yes,25,8,firebomb,0,0,0,0,12,319,reference join only; not a field promotion
+spike,spell_320,volley of spikes,4,0,yes,16,5,volley of spikes,0,0,0,0,8,320,reference join only; not a field promotion
+drops,spell_321,drops,4,0,yes,20,4,drops,0,0,0,0,8,321,reference join only; not a field promotion
+green,spell_322,breathes a greenish cloud,4,20,yes,150,150,breathes a greenish cloud,0,2,0,0,12,322,reference join only; not a field promotion
+disea,spell_323,diseased,4,30,yes,1,1,diseased,0,0,0,0,8,323,reference join only; not a field promotion
+power,spell_324,power punch,4,0,yes,25,10,power punch,0,0,0,0,8,324,reference join only; not a field promotion
+spit,spell_325,spits acid,5,0,yes,40,12,spits acid,0,0,0,0,8,325,reference join only; not a field promotion
+vapor,spell_326,cloud of reddish vapour,4,0,yes,16,4,cloud of reddish vapour,0,0,0,0,12,326,reference join only; not a field promotion
+para,spell_327,paralyzed,4,3,yes,1,1,paralyzed,0,0,0,3,8,327,reference join only; not a field promotion
+gaze,spell_328,gazes,4,10,yes,25,25,gazes,0,0,0,3,8,328,reference join only; not a field promotion
+thin,spell_329,thin tendrils,4,6,yes,1,1,thin tendrils,0,0,0,3,8,329,reference join only; not a field promotion
+fluid,spell_330,violet fluid,4,5,yes,5,5,violet fluid,0,0,0,0,8,330,reference join only; not a field promotion
+merm,spell_331,mermex poison,6,60,yes,-5,-5,mermex poison,0,0,0,1,8,331,reference join only; not a field promotion
+sunb,spell_332,sunbolt wand,1,0,yes,55,25,sunbolt wand,0,0,0,0,8,332,reference join only; not a field promotion
+skull,spell_333,skull wand,4,0,yes,239,239,skull wand,0,0,0,3,8,333,reference join only; not a field promotion
+vacuu,spell_334,vacuum,4,0,yes,0,0,vacuum,0,0,0,3,6,334,reference join only; not a field promotion
+fall,spell_335,fall,4,0,yes,15,5,fall,0,0,0,3,1,335,reference join only; not a field promotion
+pool,spell_337,pool,4,40,yes,0,0,pool,0,0,0,3,1,337,reference join only; not a field promotion
+mist,spell_339,violet fluid mist,4,5,yes,5,5,violet fluid mist,0,0,0,0,12,339,reference join only; not a field promotion
+area,spell_340,area entrap,4,10,yes,1,1,area entrap,0,0,0,3,12,340,reference join only; not a field promotion
+beam,spell_341,green beam,4,0,yes,60,32,green beam,0,0,0,0,8,341,reference join only; not a field promotion
+vamp,spell_342,vampiric hits,4,0,yes,6,1,vampiric hits,0,0,0,0,8,342,reference join only; not a field promotion
+tent,spell_343,tentacles,4,0,yes,30,15,tentacles,0,0,0,3,1,343,reference join only; not a field promotion
+fren,spell_345,frenzy,4,1,yes,0,0,frenzy,0,1,15,3,2,345,reference join only; not a field promotion
+mfre,spell_346,mass frenzy,4,10,yes,0,0,mass frenzy,0,1,20,3,13,346,reference join only; not a field promotion
+rite,spell_347,righteousness,4,40,yes,6,6,righteousness,0,1,15,3,2,347,reference join only; not a field promotion
+blud,spell_348,blood ritual,4,40,yes,6,6,blood ritual,0,1,15,3,2,348,reference join only; not a field promotion
+rgen,spell_349,regeneration,4,10,yes,4,2,regeneration,0,1,15,3,2,349,reference join only; not a field promotion
+trol,spell_350,way of the troll,4,10,yes,3,3,way of the troll,0,0,16,3,1,350,reference join only; not a field promotion
+whip,spell_351,whip entangle,4,3,yes,-5,-5,whip entangle,0,0,0,0,8,351,reference join only; not a field promotion
+beat,spell_352,beat up,4,0,yes,15,5,beat up,0,0,0,3,0,352,reference join only; not a field promotion
+sharp,spell_353,sharp blade,4,5,yes,2,2,sharp blade,0,0,0,0,8,353,reference join only; not a field promotion
+fiery,spell_357,fiery spark,1,0,yes,10,2,fiery spark,0,0,0,0,8,357,reference join only; not a field promotion
+black,spell_356,black cauldron,4,0,yes,9999,9999,black cauldron,0,1,0,3,1,356,reference join only; not a field promotion
+green,spell_355,pale green lichen,4,300,yes,10,5,pale green lichen,0,1,0,3,1,355,reference join only; not a field promotion
+pois,spell_354,poison blade,6,0,yes,10,0,poison blade,0,0,0,0,8,354,reference join only; not a field promotion
+vamp,spell_358,vampiric bite,4,0,yes,10,3,vampiric bite,0,0,0,0,8,358,reference join only; not a field promotion
+breat,spell_359,breathes burning steam,1,0,yes,30,10,breathes burning steam,0,0,0,0,8,359,reference join only; not a field promotion
+free,spell_360,freezes,0,0,yes,25,10,freezes,0,0,0,3,8,360,reference join only; not a field promotion
+drain,spell_361,drain life,4,0,yes,12,2,drain life,0,0,0,0,8,361,reference join only; not a field promotion
+lepro,spell_362,leprosy,4,14,yes,10,10,leprosy,0,2,0,3,8,362,reference join only; not a field promotion
+skull,spell_363,summon silver skull,4,0,yes,1,1,summon silver skull,0,0,0,3,8,363,reference join only; not a field promotion
+dart,spell_364,flame dart,1,0,yes,20,10,flame dart,0,0,0,0,8,364,reference join only; not a field promotion
+bee,spell_365,bee poison,4,100,yes,20,12,bee poison,0,0,0,0,8,365,reference join only; not a field promotion
+root,spell_366,roots,4,0,yes,30,8,roots,0,0,0,0,8,366,reference join only; not a field promotion
+bolt,spell_367,magic bolt,4,0,yes,30,6,magic bolt,0,0,0,0,8,367,reference join only; not a field promotion
+gold,spell_368,gold dust,4,60,yes,-15,-15,gold dust,0,0,0,3,8,368,reference join only; not a field promotion
+bee,spell_369,bee honey,4,50,yes,4,4,bee honey,0,0,0,3,1,369,reference join only; not a field promotion
+green,spell_370,green fruit,4,0,yes,20,8,green fruit,0,0,0,3,1,370,reference join only; not a field promotion
+huorn,spell_371,summon huorn,4,0,yes,279,279,summon huorn,0,0,0,3,8,371,reference join only; not a field promotion
+sleep,spell_372,sleep,4,10,yes,100,100,sleep,0,2,0,3,8,372,reference join only; not a field promotion
+mush,spell_373,mushroom poison,4,100,yes,60,30,mushroom poison,0,0,0,3,1,373,reference join only; not a field promotion
+msen,spell_374,mass entangle,4,4,yes,100,100,mass entangle,0,2,25,3,12,374,reference join only; not a field promotion
+cone,spell_375,cone of frost,0,0,yes,10,0,cone of frost,0,0,0,0,8,375,reference join only; not a field promotion
+spray,spell_376,spray of acid,5,0,yes,0,0,spray of acid,0,0,0,0,8,376,reference join only; not a field promotion
+cloud,spell_377,cloud of poison,4,0,yes,20,10,cloud of poison,0,0,0,0,8,377,reference join only; not a field promotion
+bolt,spell_378,bolt of lightning,3,0,yes,0,0,bolt of lightning,0,0,50,0,8,378,reference join only; not a field promotion
+blast,spell_379,blast of flame,1,0,yes,0,0,blast of flame,0,0,0,0,8,379,reference join only; not a field promotion
+ill,spell_380,creature illusion,4,20,yes,15,15,creature illusion,0,2,0,3,8,380,reference join only; not a field promotion
+gibb,spell_381,gibbers,4,10,yes,25,25,gibbers,0,0,0,3,8,381,reference join only; not a field promotion
+div,spell_382,medium divides,4,0,yes,305,305,medium divides,0,0,0,3,6,382,reference join only; not a field promotion
+div,spell_383,large divides,4,0,yes,306,306,large divides,0,0,0,3,6,383,reference join only; not a field promotion
+dive,spell_384,divine intervention,4,160,yes,8,8,divine intervention,0,0,0,3,1,384,reference join only; not a field promotion
+chai,spell_385,chain lightning,3,0,yes,50,10,chain lightning,0,0,0,0,12,385,reference join only; not a field promotion
+bani,spell_435,banish,4,20,yes,2429,2417,banish,0,2,40,3,12,435,reference join only; not a field promotion
+gas,spell_387,a cloud of poison gas,4,0,yes,0,10,a cloud of poison gas,0,0,100,0,12,387,reference join only; not a field promotion
+drai,spell_389,drains,4,0,yes,30,12,drains,0,0,0,0,12,389,reference join only; not a field promotion
+power,spell_390,powerless,4,60,yes,-25,-25,powerless,0,0,0,3,8,390,reference join only; not a field promotion
+beam,spell_391,necromantic beam,4,0,yes,40,15,necromantic beam,0,0,0,0,8,391,reference join only; not a field promotion
+petr,spell_392,petrification,4,20,yes,100,100,petrification,0,2,0,3,8,392,reference join only; not a field promotion
+ston,spell_393,stone to flesh,4,0,yes,100,100,stone to flesh,0,1,18,3,0,393,reference join only; not a field promotion
+cone,spell_394,cone of fire,1,0,yes,70,22,cone of fire,0,0,0,0,8,394,reference join only; not a field promotion
+death,spell_398,death ray,4,0,yes,40,13,death ray,0,0,0,0,8,398,reference join only; not a field promotion
+beam,spell_399,rainbow beam,4,0,yes,120,36,rainbow beam,0,0,0,0,8,399,reference join only; not a field promotion
+frost,spell_400,frost hits,0,0,yes,8,2,frost hits,0,0,0,0,8,400,reference join only; not a field promotion
+jet,spell_401,jet of frost,0,0,yes,45,15,jet of frost,0,0,0,0,8,401,reference join only; not a field promotion
+blee,spell_402,bleeding,4,10,yes,4,2,bleeding,0,0,0,0,8,402,reference join only; not a field promotion
+sacr,spell_404,sacrifice,4,0,yes,-20,-60,sacrifice,0,1,18,3,0,404,reference join only; not a field promotion
+chao,spell_405,chaos shield,4,60,yes,50,-50,chaos shield,0,1,21,3,2,405,reference join only; not a field promotion
+flux,spell_406,mana flux,4,80,yes,150,-100,mana flux,0,1,16,3,1,406,reference join only; not a field promotion
+eye,spell_407,eye of the beholder,4,25,yes,100,100,eye of the beholder,0,1,0,3,1,407,reference join only; not a field promotion
+suns,spell_408,sunsword,1,0,yes,30,6,sunsword,0,0,0,0,8,408,reference join only; not a field promotion
+cons,spell_409,constriction,4,20,yes,1,1,constriction,0,2,0,0,8,409,reference join only; not a field promotion
+light,spell_411,lightning hits,3,0,yes,20,5,lightning hits,0,0,0,0,8,411,reference join only; not a field promotion
+mana,spell_412,mana rgen drain,4,10,yes,-25,-100,mana rgen drain,0,0,0,3,6,412,reference join only; not a field promotion
+fire,spell_413,firestorm,1,0,yes,250,100,firestorm,0,0,0,0,12,413,reference join only; not a field promotion
+burn,spell_414,burning,1,20,yes,4,4,burning,0,0,0,0,12,414,reference join only; not a field promotion
+ele,spell_415,elemental fusion,4,0,yes,10,3,elemental fusion,0,0,0,3,8,415,reference join only; not a field promotion
+ele,spell_416,elemental earthquake,2,0,yes,4,1,elemental earthquake,0,0,0,0,8,416,reference join only; not a field promotion
+ele,spell_417,elemental lightning,3,0,yes,4,1,elemental lightning,0,0,0,0,8,417,reference join only; not a field promotion
+ele,spell_418,elemental fire,1,0,yes,4,1,elemental fire,0,0,0,0,8,418,reference join only; not a field promotion
+ele,spell_419,elemental ice,0,0,yes,4,1,elemental ice,0,0,0,0,8,419,reference join only; not a field promotion
+blaz,spell_420,blazing comet,4,0,yes,80,20,blazing comet,0,0,0,0,8,420,reference join only; not a field promotion
+cosm,spell_421,cosmos spell,4,10,yes,20,20,cosmos spell,0,0,0,3,1,421,reference join only; not a field promotion
+feeb,spell_423,feeblemind,4,40,yes,-15,-15,feeblemind,0,0,14,3,8,423,reference join only; not a field promotion
+weak,spell_424,weakness,4,40,yes,-5,-5,weakness,0,0,14,3,8,424,reference join only; not a field promotion
+blast,spell_425,blasts,4,2,yes,5,5,blasts,0,0,0,3,8,425,reference join only; not a field promotion
+cone,spell_426,cone of flame,1,0,yes,10,5,cone of flame,0,0,0,0,8,426,reference join only; not a field promotion
+venom,spell_427,venom explosion,4,0,yes,40,20,venom explosion,0,0,0,0,12,427,reference join only; not a field promotion
+chakr,spell_428,chakram,4,0,yes,0,0,chakram,0,0,0,0,8,428,reference join only; not a field promotion
+arc,spell_429,energy arc,4,0,yes,0,10,energy arc,0,0,0,3,8,429,reference join only; not a field promotion
+terr,spell_430,terror,4,10,yes,90,35,terror,0,2,0,3,12,430,reference join only; not a field promotion
+energ,spell_431,energy hits,4,0,yes,40,10,energy hits,0,0,0,3,8,431,reference join only; not a field promotion
+energ,spell_432,energy drain,4,0,yes,10,1,energy drain,0,0,0,3,8,432,reference join only; not a field promotion
+energ,spell_433,energy vortex,4,0,yes,0,0,energy vortex,0,0,0,3,12,433,reference join only; not a field promotion
+obs,spell_434,obsidian talisman teleport,4,0,yes,2430,2417,obsidian talisman teleport,0,0,0,3,1,434,reference join only; not a field promotion
+roof,spell_437,crash through roof,4,0,yes,40,10,crash through roof,0,0,0,3,2,437,reference join only; not a field promotion
+sdf,spell_438,sdf,4,0,yes,893,893,sdf,0,0,0,3,1,438,reference join only; not a field promotion
+time,spell_439,time distortion,4,20,yes,150,150,time distortion,0,2,0,3,12,439,reference join only; not a field promotion
+globe,spell_440,globe of darkness,4,40,yes,-999,-999,globe of darkness,0,2,0,3,12,440,reference join only; not a field promotion
+shado,spell_441,shadowstrike,4,0,yes,100,40,shadowstrike,0,0,0,0,8,441,reference join only; not a field promotion
+shim,spell_457,shimmering vial,4,0,yes,20,8,shimmering vial,0,0,0,3,1,457,reference join only; not a field promotion
+dark,spell_443,darkness hits,4,30,yes,0,0,darkness hits,0,0,0,3,8,443,reference join only; not a field promotion
+summ,spell_444,summon slaver leader,4,0,yes,365,365,summon slaver leader,0,0,0,3,6,444,reference join only; not a field promotion
+dis,spell_445,disease,4,60,yes,5,1,disease,0,2,0,0,8,445,reference join only; not a field promotion
+remov,spell_447,remove bonds,4,0,yes,1,1,remove bonds,0,1,0,3,2,447,reference join only; not a field promotion
+cross,spell_448,cross of vengeance,4,600,yes,0,0,cross of vengeance,0,1,0,3,1,448,reference join only; not a field promotion
+arcan,spell_449,arcane tome incantation,4,1200,yes,25,25,arcane tome incantation,0,1,0,3,1,449,reference join only; not a field promotion
+,spell_450,pristine scroll,4,0,yes,150,120,pristine scroll,0,0,0,0,13,450,reference join only; not a field promotion
+strai,spell_451,strain,4,0,yes,10,2,strain,0,0,0,3,1,451,reference join only; not a field promotion
+trap,spell_452,trap lightning,3,0,yes,150,75,trap lightning,0,0,0,3,1,452,reference join only; not a field promotion
+black,spell_453,black water,5,0,yes,15,5,black water,0,0,0,3,2,453,reference join only; not a field promotion
+port,spell_454,portal teleport,4,0,yes,1320,1042,portal teleport,0,0,0,3,1,454,reference join only; not a field promotion
+black,spell_458,black potion,4,0,yes,150,50,black potion,0,0,0,3,1,458,reference join only; not a field promotion
+summ,spell_456,summon weaponmaster,4,0,yes,342,342,summon weaponmaster,0,0,0,3,1,456,reference join only; not a field promotion
+wound,spell_455,wounded,4,50,yes,1,1,wounded,0,0,0,3,1,455,reference join only; not a field promotion
+gold,spell_459,golden vial,4,0,yes,250,250,golden vial,0,0,0,3,1,459,reference join only; not a field promotion
+wood,spell_460,wooden box,4,0,yes,0,0,wooden box,0,0,0,3,1,460,reference join only; not a field promotion
+oak,spell_463,oak chest,4,0,yes,0,0,oak chest,0,0,0,3,1,463,reference join only; not a field promotion
+wood,spell_462,wooden box items,4,0,yes,0,0,wooden box items,0,0,0,3,1,462,reference join only; not a field promotion
+wood,spell_461,wooden box gems,4,0,yes,0,0,wooden box gems,0,0,0,3,1,461,reference join only; not a field promotion
+oak,spell_464,oak chest items,4,0,yes,0,0,oak chest items,0,0,0,3,1,464,reference join only; not a field promotion
+mass,spell_465,massive wooden chest items,4,0,yes,0,0,massive wooden chest items,0,0,0,3,1,465,reference join only; not a field promotion
+mass,spell_466,massive wooden chest,4,0,yes,0,0,massive wooden chest,0,0,0,3,1,466,reference join only; not a field promotion
+silv,spell_467,silver box,4,0,yes,0,0,silver box,0,0,0,3,1,467,reference join only; not a field promotion
+silv,spell_468,silver box gems,4,0,yes,0,0,silver box gems,0,0,0,3,1,468,reference join only; not a field promotion
+silv,spell_469,silver box items,4,0,yes,0,0,silver box items,0,0,0,3,1,469,reference join only; not a field promotion
+iron,spell_470,iron-banded chest,4,0,yes,0,0,iron-banded chest,0,0,0,3,1,470,reference join only; not a field promotion
+dark,spell_471,darkwood chest,4,0,yes,0,0,darkwood chest,0,0,0,3,1,471,reference join only; not a field promotion
+gold,spell_472,golden box,4,0,yes,0,0,golden box,0,0,0,3,1,472,reference join only; not a field promotion
+gold,spell_473,golden box gems,4,0,yes,0,0,golden box gems,0,0,0,3,1,473,reference join only; not a field promotion
+gold,spell_474,golden box items,4,0,yes,0,0,golden box items,0,0,0,3,1,474,reference join only; not a field promotion
+steel,spell_475,steel chest,4,0,yes,0,0,steel chest,0,0,0,3,1,475,reference join only; not a field promotion
+silv,spell_476,silverwood chest,4,0,yes,0,0,silverwood chest,0,0,0,3,1,476,reference join only; not a field promotion
+shock,spell_477,shock hit,3,0,yes,3,1,shock hit,0,0,0,3,8,477,reference join only; not a field promotion
+blast,spell_478,blast of lightning,3,0,yes,0,1,blast of lightning,0,0,0,3,8,478,reference join only; not a field promotion
+zaps,spell_479,zaps,3,1,yes,1,1,zaps,0,0,0,3,8,479,reference join only; not a field promotion
+wild,spell_480,wild dog pack,4,0,yes,376,376,wild dog pack,0,0,0,3,1,480,reference join only; not a field promotion
+warl,spell_481,warlock bandit summon,4,0,yes,0,0,warlock bandit summon,0,0,0,3,1,481,reference join only; not a field promotion
+band,spell_482,bandit leader summon,4,0,yes,0,0,bandit leader summon,0,0,0,3,1,482,reference join only; not a field promotion
+body,spell_483,bodyguard,4,0,yes,382,382,bodyguard,0,0,0,3,1,483,reference join only; not a field promotion
+inn,spell_484,inn rest,4,11,yes,100,100,inn rest,0,0,0,3,6,484,reference join only; not a field promotion
+swamp,spell_485,swamp poison,6,0,yes,20,2,swamp poison,0,0,0,0,0,485,reference join only; not a field promotion
+horr,spell_486,horrible curse,4,20,yes,0,0,horrible curse,0,0,0,3,8,486,reference join only; not a field promotion
+gyp,spell_487,gypsy withering,4,4,yes,0,0,gypsy withering,0,0,0,3,1,487,reference join only; not a field promotion
+death,spell_488,death curse,4,0,yes,1000,1000,death curse,0,0,0,3,1,488,reference join only; not a field promotion
+sum,spell_489,summon gypsy,4,0,yes,0,0,summon gypsy,0,0,100,3,1,489,reference join only; not a field promotion
+card,spell_490,card-wizard,4,2400,yes,0,0,card-wizard,0,0,0,3,1,490,reference join only; not a field promotion
+card,spell_491,card-priest,4,2400,yes,0,0,card-priest,0,0,0,3,1,491,reference join only; not a field promotion
+card,spell_492,card-knight,4,2400,yes,0,0,card-knight,0,0,0,3,1,492,reference join only; not a field promotion
+card,spell_493,card-chariot,4,2400,yes,0,0,card-chariot,0,0,0,3,1,493,reference join only; not a field promotion
+card,spell_494,card-grail,4,2400,yes,0,0,card-grail,0,0,0,3,1,494,reference join only; not a field promotion
+card,spell_495,card-sun,4,2400,yes,0,0,card-sun,0,0,0,3,1,495,reference join only; not a field promotion
+card,spell_496,card-wheel of fortune,4,2400,yes,0,0,card-wheel of fortune,0,0,0,3,1,496,reference join only; not a field promotion
+card,spell_497,card-angel,4,2400,yes,0,0,card-angel,0,0,0,3,1,497,reference join only; not a field promotion
+card,spell_498,card-death,4,2400,yes,0,0,card-death,0,0,0,3,1,498,reference join only; not a field promotion
+card,spell_499,card-fool,4,2400,yes,0,0,card-fool,0,0,0,3,1,499,reference join only; not a field promotion
+card,spell_500,card-swamp,4,2400,yes,0,0,card-swamp,0,0,0,3,1,500,reference join only; not a field promotion
+card,spell_501,card-demon,4,2400,yes,0,0,card-demon,0,0,0,3,1,501,reference join only; not a field promotion
+card,spell_502,card-void,4,2400,yes,0,0,card-void,0,0,0,3,1,502,reference join only; not a field promotion
+rina,spell_503,rinaldo,4,3000,yes,0,0,rinaldo,0,0,0,3,1,503,reference join only; not a field promotion
+blood,spell_505,blood drain,4,0,yes,10,2,blood drain,0,0,0,0,8,505,reference join only; not a field promotion
+troll,spell_506,troll regeneration,4,9999,yes,3,3,troll regeneration,0,0,0,3,1,506,reference join only; not a field promotion
+troll,spell_507,troll death,4,0,yes,0,0,troll death,0,0,0,3,8,507,reference join only; not a field promotion
+troll,spell_508,giant troll death,4,0,yes,0,0,giant troll death,0,0,0,3,6,508,reference join only; not a field promotion
+acid,spell_509,blast of acid,5,0,yes,0,20,blast of acid,0,0,0,0,8,509,reference join only; not a field promotion
+dwar,spell_510,summon dwarven guard,4,0,yes,396,396,summon dwarven guard,0,0,0,3,8,510,reference join only; not a field promotion
+free,spell_511,freezing water,0,0,yes,4,1,freezing water,0,0,0,3,8,511,reference join only; not a field promotion
+hold,spell_512,holding breath,5,25,yes,0,0,holding breath,0,0,0,3,1,512,reference join only; not a field promotion
+drown,spell_513,drowning,5,5,yes,20,5,drowning,0,0,0,3,1,513,reference join only; not a field promotion
+drown,spell_514,drowned to death,5,0,yes,9999,9999,drowned to death,0,0,0,3,1,514,reference join only; not a field promotion
+drown,spell_515,stop drowning,4,0,yes,0,0,stop drowning,0,0,0,3,6,515,reference join only; not a field promotion
+exit,spell_516,exit water,4,1,yes,0,0,exit water,0,0,0,3,2,516,reference join only; not a field promotion
+summ,spell_517,summon kobold,4,0,yes,404,404,summon kobold,0,0,0,3,1,517,reference join only; not a field promotion
+life,spell_518,life energy,4,0,yes,20,4,life energy,0,0,0,0,8,518,reference join only; not a field promotion
+bolt,spell_519,bolt of energy,4,0,yes,40,7,bolt of energy,0,0,0,0,8,519,reference join only; not a field promotion
+sucks,spell_520,sucks the life,4,0,yes,15,3,sucks the life,0,0,0,0,12,520,reference join only; not a field promotion
+cloud,spell_521,cloud of spores,4,20,yes,1,1,cloud of spores,0,0,0,3,8,521,reference join only; not a field promotion
+dead,spell_522,deadly spores,4,0,yes,1,1,deadly spores,0,0,0,3,1,522,reference join only; not a field promotion
+spore,spell_523,spore zombie curse,4,600,yes,1,1,spore zombie curse,0,0,0,3,1,523,reference join only; not a field promotion
+zomb,spell_524,zombie death,4,0,yes,1000,1000,zombie death,0,0,0,3,1,524,reference join only; not a field promotion
+rem,spell_525,remove mask,5,0,yes,1,1,remove mask,0,0,0,3,8,525,reference join only; not a field promotion
+magm,spell_526,magma heat,1,0,yes,60,30,magma heat,0,0,0,0,2,526,reference join only; not a field promotion
+whir,spell_527,whirlwind of fire,1,0,yes,0,0,whirlwind of fire,0,0,0,0,12,527,reference join only; not a field promotion
+sum,spell_528,summon royal guard,4,0,yes,424,424,summon royal guard,0,0,0,3,8,528,reference join only; not a field promotion
+drag,spell_531,dragonfear,4,0,yes,0,0,dragonfear,0,0,200,3,12,531,reference join only; not a field promotion
+sum,spell_530,king's summons,4,0,yes,426,426,king's summons,0,0,0,3,8,530,reference join only; not a field promotion
+drag,spell_532,dragon fear effect,4,100,yes,100,100,dragon fear effect,0,0,0,3,1,532,reference join only; not a field promotion
+vile,spell_533,vile oil,4,10,yes,-5,-10,vile oil,0,0,0,3,8,533,reference join only; not a field promotion
+summ,spell_534,summon troglodytes,4,0,yes,436,436,summon troglodytes,0,0,100,3,1,534,reference join only; not a field promotion
+swee,spell_536,sweeps trigger,4,0,yes,1244,1244,sweeps trigger,0,0,0,3,1,536,reference join only; not a field promotion
+swee,spell_537,sweeps,4,1,yes,0,0,sweeps,0,0,30,0,12,537,reference join only; not a field promotion
+sand,spell_538,sand breath,4,0,yes,0,0,sand breath,0,0,0,0,12,538,reference join only; not a field promotion
+sand,spell_539,sand blind,4,3,yes,1,1,sand blind,0,0,0,3,12,539,reference join only; not a field promotion
+sum,spell_540,summon kai master,4,0,yes,448,448,summon kai master,0,0,100,3,6,540,reference join only; not a field promotion
+kai,spell_541,kai master temp,4,1,yes,0,0,kai master temp,0,0,0,3,12,541,reference join only; not a field promotion
+tele,spell_542,telekinesis,4,0,yes,0,7,telekinesis,0,0,0,0,8,542,reference join only; not a field promotion
+mole,spell_543,molecular agitation,4,0,yes,20,7,molecular agitation,0,2,0,0,8,543,reference join only; not a field promotion
+cell,spell_544,cell adjustment,4,0,yes,30,10,cell adjustment,0,0,0,3,1,544,reference join only; not a field promotion
+obs,spell_545,obsidian shards,4,0,yes,40,11,obsidian shards,0,0,0,0,12,545,reference join only; not a field promotion
+obs,spell_546,obsidian talisman,4,0,yes,1091,1091,obsidian talisman,0,0,0,3,1,546,reference join only; not a field promotion
+obs,spell_547,obsidian talisman explosion,4,0,yes,250,50,obsidian talisman explosion,0,0,0,3,1,547,reference join only; not a field promotion
+spray,spell_548,spray of gems,4,0,yes,70,14,spray of gems,0,0,0,0,8,548,reference join only; not a field promotion
+sque,spell_549,squeezes,4,0,yes,0,10,squeezes,0,0,0,0,8,549,reference join only; not a field promotion
+sum,spell_550,summon brain eater,4,0,yes,459,459,summon brain eater,0,0,100,3,6,550,reference join only; not a field promotion
+sum,spell_551,summon shapeshifter,4,0,yes,460,460,summon shapeshifter,0,0,100,3,6,551,reference join only; not a field promotion
+icy,spell_552,icy beam,0,0,yes,40,10,icy beam,0,0,0,3,8,552,reference join only; not a field promotion
+expl,spell_553,explosion,4,0,yes,30,6,explosion,0,0,0,0,12,553,reference join only; not a field promotion
+red,spell_554,red mist,4,30,yes,3,3,red mist,0,0,0,3,1,554,reference join only; not a field promotion
+blue,spell_555,blue mist,4,0,yes,20,4,blue mist,0,0,0,3,1,555,reference join only; not a field promotion
+belch,spell_556,belches,4,0,yes,60,11,belches,0,0,0,0,8,556,reference join only; not a field promotion
+rot,spell_557,rot,4,0,yes,3,0,rot,0,0,0,0,12,557,reference join only; not a field promotion
+temp,spell_558,spectral temp,4,1,yes,0,0,spectral temp,0,0,0,3,12,558,reference join only; not a field promotion
+text,spell_559,spectral text,4,0,yes,0,0,spectral text,0,0,0,3,1,559,reference join only; not a field promotion
+gulg,spell_560,gulguthra death,4,1,yes,0,0,gulguthra death,0,0,0,0,12,560,reference join only; not a field promotion
+port,spell_561,gulguthra portal,4,0,yes,0,0,gulguthra portal,0,0,0,3,1,561,reference join only; not a field promotion
+flesh,spell_562,flesh-eater,4,0,yes,100,30,flesh-eater,0,0,0,0,8,562,reference join only; not a field promotion
+flesh,spell_563,area flesh-eater,4,0,yes,40,13,area flesh-eater,0,0,0,0,12,563,reference join only; not a field promotion
+gold,spell_564,golden chest,4,0,yes,0,0,golden chest,0,0,0,3,1,564,reference join only; not a field promotion
+adam,spell_565,adamantite chest,4,0,yes,0,0,adamantite chest,0,0,0,3,1,565,reference join only; not a field promotion
+iron,spell_566,black iron chest,4,0,yes,0,0,black iron chest,0,0,0,3,1,566,reference join only; not a field promotion
+,spell_567,crimson chest,4,0,yes,0,0,crimson chest,0,0,0,3,1,567,reference join only; not a field promotion
+temp,spell_568,efreeti temp,4,1,yes,0,0,efreeti temp,0,0,0,3,12,568,reference join only; not a field promotion
+text,spell_569,efreeti text,4,0,yes,0,0,efreeti text,0,0,0,3,1,569,reference join only; not a field promotion
+temp,spell_570,gemstone temp,4,1,yes,0,0,gemstone temp,0,0,0,3,12,570,reference join only; not a field promotion
+text,spell_571,gemstone text,4,0,yes,0,0,gemstone text,0,0,0,3,1,571,reference join only; not a field promotion
+text,spell_572,kai master text,4,0,yes,0,0,kai master text,0,0,0,3,1,572,reference join only; not a field promotion
+cloth,spell_573,small cloth pouch,4,0,yes,0,0,small cloth pouch,0,0,0,3,1,573,reference join only; not a field promotion
+kobo,spell_574,kobold death,4,1,yes,0,0,kobold death,0,0,0,3,12,574,reference join only; not a field promotion
+text,spell_575,kobold text,4,0,yes,0,0,kobold text,0,0,0,3,1,575,reference join only; not a field promotion
+troll,spell_576,giant troll temp,4,1,yes,0,0,giant troll temp,0,0,0,3,12,576,reference join only; not a field promotion
+troll,spell_577,giant troll text,4,0,yes,0,0,giant troll text,0,0,0,3,1,577,reference join only; not a field promotion
+golem,spell_578,obsidian golem temp,4,1,yes,0,0,obsidian golem temp,0,0,0,3,12,578,reference join only; not a field promotion
+golem,spell_579,obsidian golem text,4,0,yes,0,0,obsidian golem text,0,0,0,3,1,579,reference join only; not a field promotion
+golem,spell_580,obsidian talisman drain,4,0,yes,50,25,obsidian talisman drain,0,0,0,3,1,580,reference join only; not a field promotion
+duerg,spell_582,duergar teleport,4,0,yes,6,6,duergar teleport,0,0,0,3,13,582,reference join only; not a field promotion
+jail,spell_583,jail,4,0,yes,0,0,jail,0,0,0,3,8,583,reference join only; not a field promotion
+jail,spell_584,jail teleport,4,0,yes,545,541,jail teleport,0,0,0,3,1,584,reference join only; not a field promotion
+exit,spell_585,exit jail,4,0,yes,0,0,exit jail,0,0,0,3,1,585,reference join only; not a field promotion
+fiend,spell_586,fiend jail time,4,200,yes,585,585,fiend jail time,0,0,0,3,1,586,reference join only; not a field promotion
+cold,spell_587,cold hits,0,0,yes,3,1,cold hits,0,0,0,3,8,587,reference join only; not a field promotion
+poiso,spell_588,poison hits,6,0,yes,3,1,poison hits,0,0,0,0,8,588,reference join only; not a field promotion
+burn,spell_589,burn hits,1,0,yes,3,1,burn hits,0,0,0,3,8,589,reference join only; not a field promotion
+dark,spell_591,darkbolt,4,0,yes,24,4,darkbolt,0,0,0,0,8,591,reference join only; not a field promotion
+summ,spell_592,summon zombie cat,4,0,yes,472,472,summon zombie cat,0,0,0,3,1,592,reference join only; not a field promotion
+summ,spell_593,summon orc warrior,4,0,yes,480,480,summon orc warrior,0,0,0,3,8,593,reference join only; not a field promotion
+glob,spell_594,globule,4,30,yes,1,1,globule,0,0,0,3,8,594,reference join only; not a field promotion
+asy,spell_596,asylum,4,0,yes,1206,1183,asylum,0,0,0,3,1,596,reference join only; not a field promotion
+cell,spell_597,cell north,4,0,yes,1263,1255,cell north,0,0,0,3,1,597,reference join only; not a field promotion
+cell,spell_598,cell south,4,0,yes,1272,1264,cell south,0,0,0,3,1,598,reference join only; not a field promotion
+cell,spell_599,cell east,4,0,yes,1281,1273,cell east,0,0,0,3,1,599,reference join only; not a field promotion
+,spell_600,cell west,4,0,yes,1290,1282,cell west,0,0,0,3,1,600,reference join only; not a field promotion
+,spell_601,glob of slime,4,0,yes,8,3,glob of slime,0,0,0,0,8,601,reference join only; not a field promotion
+laughs,spell_602,laughs,4,0,yes,0,0,laughs,0,0,0,0,8,602,reference join only; not a field promotion
+,spell_603,dread mystic temp,4,1,yes,0,0,dread mystic temp,0,0,0,3,12,603,reference join only; not a field promotion
+,spell_604,dread mystic text,4,0,yes,0,0,dread mystic text,0,0,0,3,1,604,reference join only; not a field promotion
+,spell_605,smuggler temp,4,1,yes,0,0,smuggler temp,0,0,0,3,12,605,reference join only; not a field promotion
+,spell_606,smuggler text,4,0,yes,0,0,smuggler text,0,0,0,3,1,606,reference join only; not a field promotion
+,spell_607,potion of levitation,4,0,yes,0,0,potion of levitation,0,0,0,3,1,607,reference join only; not a field promotion
+,spell_608,white jelly temp,4,1,yes,0,0,white jelly temp,0,0,0,3,12,608,reference join only; not a field promotion
+,spell_609,white jelly text,4,0,yes,0,0,white jelly text,0,0,0,3,1,609,reference join only; not a field promotion
+,spell_610,ant queen temp,4,1,yes,0,0,ant queen temp,0,0,0,3,12,610,reference join only; not a field promotion
+,spell_611,ant queen text,4,0,yes,0,0,ant queen text,0,0,0,3,1,611,reference join only; not a field promotion
+,spell_612,brigand lord temp,4,1,yes,0,0,brigand lord temp,0,0,0,3,12,612,reference join only; not a field promotion
+,spell_613,brigand lord text,4,0,yes,0,0,brigand lord text,0,0,0,3,1,613,reference join only; not a field promotion
+,spell_614,morukai temp,4,200,yes,0,0,morukai temp,0,0,0,3,1,614,reference join only; not a field promotion
+,spell_615,necromancer temp,4,1,yes,0,0,necromancer temp,0,0,0,3,12,615,reference join only; not a field promotion
+,spell_616,necromancer text,4,0,yes,0,0,necromancer text,0,0,0,3,1,616,reference join only; not a field promotion
+,spell_617,flesh golem temp,4,1,yes,0,0,flesh golem temp,0,0,0,3,12,617,reference join only; not a field promotion
+,spell_618,flesh golem text,4,0,yes,0,0,flesh golem text,0,0,0,3,1,618,reference join only; not a field promotion
+,spell_619,upper portal,4,0,yes,0,0,upper portal,0,0,0,3,1,619,reference join only; not a field promotion
+,spell_620,lower portal (invited),4,0,yes,0,0,lower portal (invited),0,0,0,3,1,620,reference join only; not a field promotion
+,spell_621,lower portal (uninvited),4,0,yes,1327,1292,lower portal (uninvited),0,0,0,3,1,621,reference join only; not a field promotion
+,spell_622,summon duergar,0,0,yes,455,455,summon duergar,0,0,0,3,1,622,reference join only; not a field promotion
+,spell_623,arrow trap,4,0,yes,60,20,arrow trap,0,0,0,0,1,623,reference join only; not a field promotion
+,spell_624,blade trap,4,0,yes,120,40,blade trap,0,0,0,0,1,624,reference join only; not a field promotion
+,spell_625,spear trap,4,0,yes,180,60,spear trap,0,0,0,0,1,625,reference join only; not a field promotion
+,spell_626,sawblade trap,4,0,yes,240,80,sawblade trap,0,0,0,0,1,626,reference join only; not a field promotion
+,spell_627,redberry poison trigger,4,0,yes,1500,1500,redberry poison trigger,0,0,0,0,1,627,reference join only; not a field promotion
+,spell_628,redberry poison trap,6,200,yes,50,30,redberry poison trap,0,0,0,0,1,628,reference join only; not a field promotion
+,spell_629,venom trigger,4,0,yes,1502,1502,venom trigger,0,0,0,0,1,629,reference join only; not a field promotion
+,spell_630,venom trap,6,0,yes,200,100,venom trap,0,0,0,0,1,630,reference join only; not a field promotion
+,spell_631,venom save,6,0,yes,100,50,venom save,0,0,0,0,1,631,reference join only; not a field promotion
+,spell_632,mistweed trigger,4,0,yes,1504,1504,mistweed trigger,0,0,0,0,1,632,reference join only; not a field promotion
+,spell_633,mistweed trap,6,20,yes,100,100,mistweed trap,0,0,0,0,1,633,reference join only; not a field promotion
+,spell_634,mistweed save,6,20,yes,-10,-10,mistweed save,0,0,0,0,1,634,reference join only; not a field promotion
+,spell_635,nightshade poison trigger,6,0,yes,1506,1506,nightshade poison trigger,0,0,0,0,1,635,reference join only; not a field promotion
+,spell_636,nightshade trap,6,0,yes,400,200,nightshade trap,0,0,0,0,1,636,reference join only; not a field promotion
+,spell_637,nightshade poison save,6,0,yes,200,100,nightshade poison save,0,0,0,0,1,637,reference join only; not a field promotion
+,spell_638,fire trap,1,0,yes,225,100,fire trap,0,0,0,0,1,638,reference join only; not a field promotion
+,spell_639,lightning trap,3,0,yes,300,125,lightning trap,0,0,0,0,1,639,reference join only; not a field promotion
+,spell_640,house trap trigger,4,0,yes,1508,1508,house trap trigger,0,0,0,0,1,640,reference join only; not a field promotion
+,spell_649,sil_tel,4,0,yes,61,45,sil_tel,0,0,0,3,1,649,reference join only; not a field promotion
+,spell_646,flaming spawn,4,0,yes,533,533,flaming spawn,0,0,0,3,1,646,reference join only; not a field promotion
+,spell_645,portal dispel,4,0,yes,0,0,portal dispel,0,0,0,3,1,645,reference join only; not a field promotion
+,spell_644,seedy+ jail time,4,100,yes,585,585,seedy+ jail time,0,0,0,3,1,644,reference join only; not a field promotion
+,spell_643,outlaw jail time,4,125,yes,585,585,outlaw jail time,0,0,0,3,1,643,reference join only; not a field promotion
+,spell_642,criminal jail time,4,150,yes,585,585,criminal jail time,0,0,0,3,1,642,reference join only; not a field promotion
+,spell_641,villain jail time,4,175,yes,585,585,villain jail time,0,0,0,3,1,641,reference join only; not a field promotion
+,spell_664,glass orb,4,2400,yes,3,3,glass orb,0,1,0,3,1,664,reference join only; not a field promotion
+,spell_665,crystal orb,4,0,yes,8,2,crystal orb,0,1,0,3,1,665,reference join only; not a field promotion
+,spell_666,granite orb,4,2400,yes,1,1,granite orb,0,1,0,3,1,666,reference join only; not a field promotion
+,spell_667,marble orb,4,0,yes,8,2,marble orb,0,1,0,3,1,667,reference join only; not a field promotion
+,spell_668,ashwood wand,4,60,yes,6,6,ashwood wand,0,1,0,3,2,668,reference join only; not a field promotion
+,spell_669,teak wand,4,0,yes,20,8,teak wand,0,1,0,3,2,669,reference join only; not a field promotion
+,spell_670,mahogany wand,4,0,yes,20,4,mahogany wand,0,1,0,3,2,670,reference join only; not a field promotion
+,spell_671,pine wand,4,0,yes,1,1,pine wand,0,1,0,3,2,671,reference join only; not a field promotion
+,spell_672,darkwood rod,4,0,yes,35,15,darkwood rod,0,1,0,3,1,672,reference join only; not a field promotion
+,spell_673,silverwood rod,4,0,yes,30,5,silverwood rod,0,1,0,3,2,673,reference join only; not a field promotion
+,spell_674,rosewood rod,4,35,yes,150,150,rosewood rod,0,1,0,3,2,674,reference join only; not a field promotion
+,spell_675,birch rod,4,10,yes,1,1,birch rod,0,1,0,3,1,675,reference join only; not a field promotion
+,spell_676,cedar rod,4,10,yes,85,85,cedar rod,0,1,0,3,1,676,reference join only; not a field promotion
+,spell_677,jail heal,4,0,yes,1,1,jail heal,0,0,0,3,2,677,reference join only; not a field promotion
+,spell_678,darkwood_tel,4,0,yes,1416,1396,darkwood_tel,0,0,0,3,1,678,reference join only; not a field promotion
+,spell_740,dao death temp,4,1,yes,0,0,dao death temp,0,0,0,3,12,740,reference join only; not a field promotion
+,spell_681,exit muddy water,4,1,yes,1,1,exit muddy water,0,0,0,3,1,681,reference join only; not a field promotion
+,spell_682,stop mud drown,4,0,yes,1,1,stop mud drown,0,0,0,3,1,682,reference join only; not a field promotion
+,spell_683,desert spell,4,0,yes,0,0,desert spell,0,0,0,3,6,683,reference join only; not a field promotion
+,spell_684,desert spell 2,4,0,yes,0,0,desert spell 2,0,0,0,3,6,684,reference join only; not a field promotion
+timer,spell_685,timer,4,80,yes,0,0,timer,0,0,0,3,1,685,reference join only; not a field promotion
+,spell_686,pyramid 1 teleport,4,0,yes,0,0,pyramid 1 teleport,0,0,0,3,1,686,reference join only; not a field promotion
+,spell_687,pyramid 1 exit,4,0,yes,0,0,pyramid 1 exit,0,0,0,3,1,687,reference join only; not a field promotion
+,spell_688,fire pit damage,1,0,yes,20,5,fire pit damage,0,0,0,3,1,688,reference join only; not a field promotion
+,spell_689,level 1 fall,4,0,yes,10,5,level 1 fall,0,0,0,3,1,689,reference join only; not a field promotion
+,spell_690,pyramid 2 random,4,0,yes,0,0,pyramid 2 random,0,0,0,3,6,690,reference join only; not a field promotion
+cleanup,spell_691,cleanup,4,0,yes,1278,1239,cleanup,0,0,0,3,6,691,reference join only; not a field promotion
+,spell_692,cleanup 2,4,0,yes,1278,1239,cleanup 2,0,0,0,3,6,692,reference join only; not a field promotion
+darts,spell_693,darts,4,0,yes,30,10,darts,0,0,0,3,1,693,reference join only; not a field promotion
+,spell_694,dart poison,6,150,yes,10,10,dart poison,0,0,0,3,1,694,reference join only; not a field promotion
+,spell_695,crossbow bolts,4,0,yes,50,20,crossbow bolts,0,0,0,3,1,695,reference join only; not a field promotion
+,spell_696,scything blade,4,0,yes,75,25,scything blade,0,0,0,3,1,696,reference join only; not a field promotion
+,spell_697,flame blast,1,0,yes,100,40,flame blast,0,0,0,3,1,697,reference join only; not a field promotion
+,spell_698,crushing blocks,4,0,yes,150,50,crushing blocks,0,0,0,3,1,698,reference join only; not a field promotion
+,spell_699,pyramid 3 random,4,0,yes,0,0,pyramid 3 random,0,0,0,3,6,699,reference join only; not a field promotion
+,spell_700,cleanup 3,4,0,yes,1278,1239,cleanup 3,0,0,0,3,6,700,reference join only; not a field promotion
+,spell_701,pyramid 4 arch pass,4,0,yes,0,0,pyramid 4 arch pass,0,0,0,3,1,701,reference join only; not a field promotion
+,spell_702,pyramid 4 arch fail,4,0,yes,0,0,pyramid 4 arch fail,0,0,0,3,1,702,reference join only; not a field promotion
+fruit,spell_703,fruit,4,10,yes,0,0,fruit,0,0,0,3,1,703,reference join only; not a field promotion
+poison,spell_704,poison,6,5000,yes,30,30,poison,0,0,0,3,1,704,reference join only; not a field promotion
+,spell_705,rakshasha,4,0,yes,564,564,rakshasha,0,0,0,3,1,705,reference join only; not a field promotion
+fork,spell_706,forked lightning,3,0,yes,0,40,forked lightning,0,0,35,0,8,706,reference join only; not a field promotion
+,spell_707,level 2 fall,4,0,yes,30,15,level 2 fall,0,0,0,3,1,707,reference join only; not a field promotion
+,spell_708,level 3 fall,4,0,yes,70,35,level 3 fall,0,0,0,3,1,708,reference join only; not a field promotion
+,spell_709,level 4 fall,4,0,yes,150,75,level 4 fall,0,0,0,3,1,709,reference join only; not a field promotion
+,spell_710,level 5 fall,4,0,yes,310,155,level 5 fall,0,0,0,3,1,710,reference join only; not a field promotion
+,spell_711,waterskin,4,600,yes,0,0,waterskin,0,0,0,3,1,711,reference join only; not a field promotion
+,spell_712,desert damage,1,0,yes,20,5,desert damage,0,0,0,3,1,712,reference join only; not a field promotion
+,spell_713,desert sandstorm,4,0,yes,1084,1055,desert sandstorm,0,0,0,3,13,713,reference join only; not a field promotion
+sinkhole,spell_714,sinkhole,4,0,yes,1520,1279,sinkhole,0,0,0,3,1,714,reference join only; not a field promotion
+,spell_715,whirlwind,4,0,yes,26,8,whirlwind,0,0,0,0,8,715,reference join only; not a field promotion
+fury,spell_716,elemental fury,2,0,yes,15,30,elemental fury,0,0,35,0,8,716,reference join only; not a field promotion
+soul,spell_721,soulstrike,4,0,yes,-30,90,soulstrike,0,0,35,0,8,721,reference join only; not a field promotion
+,spell_722,spits a stream of acid,5,0,yes,50,12,spits a stream of acid,0,0,0,0,8,722,reference join only; not a field promotion
+devour,spell_723,devour,4,0,yes,0,0,devour,0,0,0,3,8,723,reference join only; not a field promotion
+,spell_724,stomach bile,4,0,yes,20,10,stomach bile,0,0,0,0,12,724,reference join only; not a field promotion
+,spell_725,spit out temp,4,1,yes,0,0,spit out temp,0,0,0,3,12,725,reference join only; not a field promotion
+,spell_726,hydra head,4,0,yes,590,590,hydra head,0,0,0,0,6,726,reference join only; not a field promotion
+,spell_727,pharaoh death temp,4,1,yes,0,0,pharaoh death temp,0,0,0,3,12,727,reference join only; not a field promotion
+,spell_728,pharaoh death,4,0,yes,0,0,pharaoh death,0,0,0,3,1,728,reference join only; not a field promotion
+,spell_729,pharaoh aging,4,999,yes,5,5,pharaoh aging,0,0,0,3,1,729,reference join only; not a field promotion
+,spell_730,portal creation spell,4,999,yes,5,5,portal creation spell,0,0,0,3,1,730,reference join only; not a field promotion
+,spell_731,spit up,4,0,yes,0,0,spit up,0,0,0,3,1,731,reference join only; not a field promotion
+,spell_732,pyramid 1 exit temp,4,1,yes,0,0,pyramid 1 exit temp,0,0,0,3,1,732,reference join only; not a field promotion
+,spell_733,out archway check,4,0,yes,0,0,out archway check,0,0,0,3,1,733,reference join only; not a field promotion
+,spell_734,out archway temp,4,9999,yes,0,0,out archway temp,0,0,0,3,1,734,reference join only; not a field promotion
+,spell_735,in archway check,4,0,yes,0,0,in archway check,0,0,0,3,1,735,reference join only; not a field promotion
+,spell_736,remove archway temp,4,0,yes,0,0,remove archway temp,0,0,0,3,1,736,reference join only; not a field promotion
+,spell_739,rainbow stone,4,0,yes,0,0,rainbow stone,0,0,25,3,1,739,reference join only; not a field promotion
+,spell_738,crescent moon staff,4,0,yes,0,0,crescent moon staff,0,0,30,3,2,738,reference join only; not a field promotion
+,spell_741,dao death,4,0,yes,0,0,dao death,0,0,0,3,1,741,reference join only; not a field promotion
+,spell_742,dao scatter,4,0,yes,335,335,dao scatter,0,0,0,3,6,742,reference join only; not a field promotion
+,spell_743,desert sandstorm temp,4,1,yes,0,0,desert sandstorm temp,0,0,0,3,1,743,reference join only; not a field promotion
+anno,spell_744,annointed hands,4,0,yes,0,2,annointed hands,0,1,10,3,0,744,reference join only; not a field promotion
+,spell_745,sunstone bracelet,4,9000,yes,71,71,sunstone bracelet,0,0,0,3,1,745,reference join only; not a field promotion
+,spell_746,increase HP,0,10,yes,25,25,increase HP,0,0,0,3,2,746,reference join only; not a field promotion
+,spell_747,allow healing,4,30,yes,13,13,allow healing,0,0,0,3,2,747,reference join only; not a field promotion
+chsu,spell_748,chaos surge,4,80,yes,0,-1,chaos surge,0,0,47,3,1,748,reference join only; not a field promotion
+elfu,spell_749,eldritch fury,4,0,yes,10,40,eldritch fury,0,0,47,0,8,749,reference join only; not a field promotion
+knok,spell_750,wizard knock,0,0,yes,100,100,wizard knock,0,0,17,3,11,750,reference join only; not a field promotion
+,spell_751,demon explosion,1,0,yes,200,100,demon explosion,0,0,0,3,12,751,reference join only; not a field promotion
+,spell_753,silver river,4,0,yes,0,0,silver river,0,0,0,3,6,753,reference join only; not a field promotion
+battered,spell_754,battered,4,0,yes,20,10,battered,0,0,0,3,1,754,reference join only; not a field promotion
+,spell_755,island landing,4,0,yes,0,0,island landing,0,0,0,3,1,755,reference join only; not a field promotion
+,spell_756,pastor box,4,0,yes,9630,9630,pastor box,0,0,0,3,1,756,reference join only; not a field promotion
+break,spell_757,break,4,0,yes,20,10,break,0,0,0,0,8,757,reference join only; not a field promotion
+,spell_758,flame altar,1,0,yes,0,0,flame altar,0,0,0,3,1,758,reference join only; not a field promotion
+,spell_759,dark blessing,4,10,yes,0,0,dark blessing,0,0,0,3,1,759,reference join only; not a field promotion
+,spell_760,wasp poison,4,100,yes,20,12,wasp poison,0,0,0,1,8,760,reference join only; not a field promotion
+,spell_761,spider poison,4,100,yes,20,12,spider poison,0,0,0,1,8,761,reference join only; not a field promotion
+net,spell_762,net,4,6,yes,1,1,net,2,2,0,0,8,762,reference join only; not a field promotion
+,spell_763,voodoo stab,4,0,yes,10,5,voodoo stab,0,0,0,0,8,763,reference join only; not a field promotion
+,spell_764,splinterstorm,4,0,yes,125,55,splinterstorm,0,0,0,0,12,764,reference join only; not a field promotion
+,spell_765,massive boulder,2,0,yes,0,0,massive boulder,1,0,0,3,8,765,reference join only; not a field promotion
+,spell_766,flesh-eating gas,4,0,yes,290,90,flesh-eating gas,0,0,0,0,12,766,reference join only; not a field promotion
+,spell_767,grabs and smashes,4,0,yes,0,0,grabs and smashes,0,0,0,0,8,767,reference join only; not a field promotion
+,spell_768,burning maw,1,0,yes,130,90,burning maw,0,0,0,0,8,768,reference join only; not a field promotion
+,spell_770,giant skeleton shriek,4,5,yes,12,5,giant skeleton shriek,0,0,0,3,12,770,reference join only; not a field promotion
+bliz,spell_771,blizzard,0,0,yes,50,80,blizzard,0,0,40,0,12,771,reference join only; not a field promotion
+,spell_772,hail of stones,2,0,yes,0,10,hail of stones,0,0,0,0,12,772,reference join only; not a field promotion
+,spell_773,stormcrown,3,0,yes,200,40,stormcrown,0,0,40,3,8,773,reference join only; not a field promotion
+,spell_774,thunderstun,4,3,yes,50,60,thunderstun,0,0,45,3,12,774,reference join only; not a field promotion
+thdr,spell_775,thunderclap,3,0,yes,190,40,thunderclap,0,0,45,0,12,775,reference join only; not a field promotion
+,spell_776,silver rapier,4,2,yes,100,100,silver rapier,0,0,0,3,8,776,reference join only; not a field promotion
+,spell_777,voodoo stun,4,2,yes,100,100,voodoo stun,0,0,0,0,12,777,reference join only; not a field promotion
+,spell_778,platinum mace,4,0,yes,20,1,platinum mace,0,0,0,3,1,778,reference join only; not a field promotion
+,spell_779,witchwood spear,4,4,yes,100,100,witchwood spear,0,0,0,3,8,779,reference join only; not a field promotion
+,spell_780,black flail,4,30,yes,10,0,black flail,0,0,0,3,1,780,reference join only; not a field promotion
+shock,spell_781,shock,0,0,yes,0,0,shock,0,0,0,0,0,781,reference join only; not a field promotion
+dfrm,spell_839,form of the dragon,4,1,yes,839,839,form of the dragon,0,0,50,3,1,839,reference join only; not a field promotion
+,spell_784,summon storm giant,4,0,yes,1,1,summon storm giant,0,0,0,3,1,784,reference join only; not a field promotion
+,spell_785,summon stone giant,4,0,yes,1,1,summon stone giant,0,0,0,3,1,785,reference join only; not a field promotion
+,spell_786,stormcrown thunderstun,3,2,yes,100,100,stormcrown thunderstun,0,0,0,3,12,786,reference join only; not a field promotion
+,spell_788,skull-beam,4,0,yes,90,15,skull-beam,0,0,0,0,8,788,reference join only; not a field promotion
+,spell_789,lightning shot,3,0,yes,80,45,lightning shot,0,0,0,0,8,789,reference join only; not a field promotion
+combust,spell_790,combust,1,0,yes,100,40,combust,0,1,0,0,8,790,reference join only; not a field promotion
+,spell_791,tonfa spell,4,0,yes,1,1,tonfa spell,0,1,0,3,0,791,reference join only; not a field promotion
+elem,spell_792,song of the elements,4,50,yes,15,15,song of the elements,0,0,40,3,13,792,reference join only; not a field promotion
+,spell_807,grall bite,4,60,yes,-50,-150,grall bite,0,0,0,3,0,807,reference join only; not a field promotion
+,spell_794,dae asp poison 3,4,100,yes,125,125,dae asp poison 3,0,0,0,3,0,794,reference join only; not a field promotion
+,spell_796,constrictor off,4,0,yes,795,795,constrictor off,0,0,0,3,12,796,reference join only; not a field promotion
+,spell_797,dae asp poison 1,4,100,yes,20,12,dae asp poison 1,0,0,0,1,0,797,reference join only; not a field promotion
+,spell_798,dae asp poison 2,4,100,yes,-10,-30,dae asp poison 2,0,0,0,3,0,798,reference join only; not a field promotion
+,spell_799,wing cut,4,12,yes,10,10,wing cut,2,0,0,0,8,799,reference join only; not a field promotion
+,spell_800,gorilla summon,4,0,yes,1,1,gorilla summon,0,0,0,3,1,800,reference join only; not a field promotion
+batt,spell_801,song of battle,4,30,yes,1,1,song of battle,0,0,40,3,13,801,reference join only; not a field promotion
+magm,spell_802,magma blast,1,0,yes,6,3,magma blast,0,0,45,0,8,802,reference join only; not a field promotion
+soot,spell_803,song of soothing,4,20,yes,75,75,song of soothing,0,1,35,3,13,803,reference join only; not a field promotion
+mgra,spell_804,merciful grace,4,0,yes,25,-25,merciful grace,0,0,40,3,2,804,reference join only; not a field promotion
+atem,spell_805,acid tempest,5,0,yes,20,80,acid tempest,0,2,40,0,12,805,reference join only; not a field promotion
+cfrm,spell_838,form of the crane,4,300,yes,150,150,form of the crane,0,0,40,3,1,838,reference join only; not a field promotion
+,spell_808,grall claw,4,60,yes,-2,-15,grall claw,0,0,0,3,0,808,reference join only; not a field promotion
+,spell_809,jeweled viper death,4,12,yes,-10,-25,jeweled viper death,0,0,0,3,12,809,reference join only; not a field promotion
+,spell_810,jeweled viper bite,4,0,yes,0,0,jeweled viper bite,0,0,0,3,0,810,reference join only; not a field promotion
+,spell_811,web entangle,4,2,yes,100,100,web entangle,0,0,0,3,1,811,reference join only; not a field promotion
+,spell_812,web slow,4,20,yes,125,125,web slow,0,0,0,3,1,812,reference join only; not a field promotion
+misc,spell_813,misc,0,5,yes,10,4,misc,0,0,40,3,12,813,reference join only; not a field promotion
+,spell_814,mind flayer summon,4,0,yes,1,1,mind flayer summon,0,0,0,3,1,814,reference join only; not a field promotion
+dcor,spell_816,divine courage,4,40,yes,3,3,divine courage,0,0,45,3,13,816,reference join only; not a field promotion
+,spell_855,cure for takata leaf,4,0,yes,8,8,cure for takata leaf,0,0,0,3,1,855,reference join only; not a field promotion
+,spell_818,mamba fear effect,4,100,yes,20,20,mamba fear effect,0,0,200,3,1,818,reference join only; not a field promotion
+,spell_819,mamba fear spell,4,0,yes,0,0,mamba fear spell,0,0,200,3,12,819,reference join only; not a field promotion
+,spell_820,mamba poison,6,100,yes,80,30,mamba poison,0,0,0,1,0,820,reference join only; not a field promotion
+,spell_821,AG Wail,4,40,yes,-20,-20,AG Wail,0,1,0,3,12,821,reference join only; not a field promotion
+flux,spell_833,bone necklace,4,80,yes,150,-100,bone necklace,0,1,0,3,1,833,reference join only; not a field promotion
+,spell_834,fire portal,1,0,yes,100,100,fire portal,0,0,0,3,1,834,reference join only; not a field promotion
+,spell_835,salt spray,4,0,yes,50,20,salt spray,0,1,0,0,12,835,reference join only; not a field promotion
+gfrm,spell_840,form of the gorilla,4,300,yes,-10,-10,form of the gorilla,0,0,40,3,1,840,reference join only; not a field promotion
+mfrm,spell_841,form of the monkey,4,300,yes,10,10,form of the monkey,0,0,40,3,1,841,reference join only; not a field promotion
+vfrm,spell_842,form of the viper,4,300,yes,15,15,form of the viper,0,0,50,3,1,842,reference join only; not a field promotion
+,spell_843,snake summon,4,0,yes,0,0,snake summon,0,0,0,3,8,843,reference join only; not a field promotion
+,spell_844,salca dart,4,12,yes,-40,-40,salca dart,0,0,30,3,8,844,reference join only; not a field promotion
+,spell_845,fangblade poison,4,100,yes,35,15,fangblade poison,0,0,0,1,0,845,reference join only; not a field promotion
+,spell_846,bane dart,4,120,yes,-5,-10,bane dart,0,0,30,3,8,846,reference join only; not a field promotion
+chain,spell_848,chain,4,30,yes,100,100,chain,0,0,0,3,8,848,reference join only; not a field promotion
+,spell_849,darkwood staff,4,4,yes,100,100,darkwood staff,0,0,0,3,8,849,reference join only; not a field promotion
+,spell_850,fall from bridge,4,0,yes,150,80,fall from bridge,0,0,0,3,2,850,reference join only; not a field promotion
+,spell_851,bridge trigger spell,4,0,yes,0,0,bridge trigger spell,0,0,200,3,0,851,reference join only; not a field promotion
+web,spell_852,web spell,0,0,yes,0,0,web spell,0,0,0,3,2,852,reference join only; not a field promotion
+wcur,spell_853,wrathful curse,4,7,yes,100,100,wrathful curse,0,2,40,3,8,853,reference join only; not a field promotion
+ntap,spell_854,nature tap,4,100,yes,150,-100,nature tap,0,1,32,3,1,854,reference join only; not a field promotion
+,spell_857,golden idol teleport,0,0,yes,0,0,golden idol teleport,0,0,0,3,2,857,reference join only; not a field promotion
+,spell_859,heros tabard,4,45,yes,200,200,heros tabard,0,0,30,3,1,859,reference join only; not a field promotion
+,spell_860,inquisitors cloak,4,6,yes,1,1,inquisitors cloak,0,0,30,3,12,860,reference join only; not a field promotion
+,spell_861,firebrand cape,4,15,yes,0,0,firebrand cape,0,0,30,3,1,861,reference join only; not a field promotion
+,spell_862,folds of worship,4,75,yes,75,75,folds of worship,0,0,30,3,1,862,reference join only; not a field promotion
+,spell_863,faithkeeper,4,30,yes,3,3,faithkeeper,0,0,30,3,1,863,reference join only; not a field promotion
+,spell_864,death's shadow,4,20,yes,0,0,death's shadow,0,0,30,3,1,864,reference join only; not a field promotion
+,spell_865,shawl of fortune,4,45,yes,15,15,shawl of fortune,0,0,30,3,1,865,reference join only; not a field promotion
+,spell_866,tails of battle,4,20,yes,70,70,tails of battle,0,0,20,3,1,866,reference join only; not a field promotion
+,spell_867,runed cape,4,40,yes,30,30,runed cape,0,0,30,3,1,867,reference join only; not a field promotion
+,spell_868,leafwoven cloak,4,20,yes,30,30,leafwoven cloak,0,0,30,3,1,868,reference join only; not a field promotion
+,spell_869,mantle of the woodsman,4,15,yes,25,25,mantle of the woodsman,0,0,30,3,1,869,reference join only; not a field promotion
+,spell_870,peasant cloak,4,40,yes,100,100,peasant cloak,0,0,30,3,1,870,reference join only; not a field promotion
+,spell_871,dark phoenix death,0,0,yes,0,0,dark phoenix death,0,0,0,3,1,871,reference join only; not a field promotion
+,spell_872,cloak of faith,4,50,yes,10,10,cloak of faith,0,0,30,3,1,872,reference join only; not a field promotion
+,spell_877,dark phoenix temp,0,1,yes,0,0,dark phoenix temp,0,0,0,3,12,877,reference join only; not a field promotion
+,spell_878,remove forms,4,0,yes,10,10,remove forms,0,0,40,3,1,878,reference join only; not a field promotion
+bite,spell_883,bite,4,0,yes,35,10,bite,0,0,0,3,1,883,reference join only; not a field promotion
+,spell_885,alder chest open,4,0,yes,0,0,alder chest open,0,0,0,3,1,885,reference join only; not a field promotion
+,spell_886,orc warlord summon,4,0,yes,541,541,orc warlord summon,0,0,0,3,1,886,reference join only; not a field promotion
+,spell_887,orc captain summon,4,0,yes,541,541,orc captain summon,0,0,0,3,1,887,reference join only; not a field promotion
+,spell_889,deed give,4,0,yes,0,0,deed give,0,0,0,3,1,889,reference join only; not a field promotion
+,spell_891,nanati dispel,4,0,yes,0,0,nanati dispel,0,1,0,3,6,891,reference join only; not a field promotion
+,spell_893,stealth trap,4,1,yes,-200,-200,stealth trap,0,0,0,3,11,893,reference join only; not a field promotion
+,spell_895,icy breath,0,0,yes,0,0,icy breath,0,0,25,0,12,895,reference join only; not a field promotion
+,spell_896,drain spell,4,0,yes,-10,-30,drain spell,0,0,25,0,8,896,reference join only; not a field promotion
+gele,spell_897,globe of the elements,4,100,yes,25,25,globe of the elements,0,1,29,3,1,897,reference join only; not a field promotion
+,spell_898,storm mountain,4,0,yes,0,0,storm mountain,0,1,0,3,1,898,reference join only; not a field promotion
+,spell_899,necromantic storm,4,0,yes,0,0,necromantic storm,0,0,0,0,12,899,reference join only; not a field promotion
+,spell_900,frigid blast of wind,0,20,yes,8,4,frigid blast of wind,0,0,25,0,12,900,reference join only; not a field promotion
+,spell_901,freeze spell,0,5,yes,15,5,freeze spell,0,1,25,0,8,901,reference join only; not a field promotion
+,spell_902,dying assassin,4,0,yes,365,365,dying assassin,0,0,0,3,6,902,reference join only; not a field promotion
+,spell_903,ice chest open,4,0,yes,0,0,ice chest open,0,0,0,3,1,903,reference join only; not a field promotion
+,spell_904,lady dark death,4,10,yes,9999,9999,lady dark death,0,0,0,3,1,904,reference join only; not a field promotion
+,spell_905,poison darts,4,60,yes,20,12,poison darts,0,0,0,3,8,905,reference join only; not a field promotion
+,spell_915,darkwood forest spell,0,0,yes,0,0,darkwood forest spell,0,0,0,3,1,915,reference join only; not a field promotion
+,spell_916,lady dark temp,0,1,yes,0,0,lady dark temp,0,0,0,3,12,916,reference join only; not a field promotion
+,spell_917,carved ivory mask,4,60,yes,30,15,carved ivory mask,0,0,0,3,1,917,reference join only; not a field promotion
+,spell_918,silvermere spell,4,0,yes,0,0,silvermere spell,0,0,0,3,1,918,reference join only; not a field promotion
+,spell_919,smoking blackwood chest open,4,0,yes,0,0,smoking blackwood chest open,0,0,0,3,1,919,reference join only; not a field promotion
+,spell_920,stone chest open,4,0,yes,0,0,stone chest open,0,0,0,3,1,920,reference join only; not a field promotion
+,spell_921,frozen death,4,0,yes,0,0,frozen death,0,0,0,3,1,921,reference join only; not a field promotion
+,spell_922,necro summon,4,0,yes,9065,9065,necro summon,0,0,0,3,1,922,reference join only; not a field promotion
+,spell_923,bridge jump,4,0,yes,2594,2590,bridge jump,0,0,0,3,2,923,reference join only; not a field promotion
+,spell_924,glowing tunnel rgen,4,0,yes,300,-300,glowing tunnel rgen,0,0,0,3,1,924,reference join only; not a field promotion
+,spell_925,temple noise,4,0,yes,0,0,temple noise,0,0,0,3,1,925,reference join only; not a field promotion
+,spell_927,earthquake hold,4,4,yes,100,100,earthquake hold,0,0,28,3,12,927,reference join only; not a field promotion
+,spell_930,phoenix terror,4,10,yes,100,100,phoenix terror,0,0,0,3,12,930,reference join only; not a field promotion
+,spell_931,phoenixfire,1,0,yes,300,120,phoenixfire,0,0,0,0,8,931,reference join only; not a field promotion
+,spell_932,planewalker wail,4,80,yes,-30,-30,planewalker wail,0,0,0,3,12,932,reference join only; not a field promotion
+darkness,spell_933,darkness,4,20,yes,-999,-999,darkness,0,2,0,3,12,933,reference join only; not a field promotion
+,spell_934,drenched in acid,5,20,yes,7,4,drenched in acid,0,0,40,3,12,934,reference join only; not a field promotion
+,spell_935,sysop jail time,4,600,yes,929,929,sysop jail time,0,0,0,3,1,935,reference join only; not a field promotion
+,spell_936,sysop jail tele,4,0,yes,44,44,sysop jail tele,0,0,0,3,1,936,reference join only; not a field promotion
+,spell_937,gruesome curse,4,10,yes,15,5,gruesome curse,0,0,0,3,8,937,reference join only; not a field promotion
+,spell_938,wretched boils,4,10,yes,10,4,wretched boils,0,0,0,3,8,938,reference join only; not a field promotion
+,spell_939,paralysis,4,0,yes,100,100,paralysis,0,0,0,3,8,939,reference join only; not a field promotion
+,spell_942,surprise pounds,4,0,yes,385,290,surprise pounds,0,0,0,0,8,942,reference join only; not a field promotion
+,spell_943,sys j,1,0,yes,100,100,sys j,0,0,0,3,6,943,reference join only; not a field promotion
+,spell_944,magma explosion,1,0,yes,80,30,magma explosion,0,0,0,0,2,944,reference join only; not a field promotion
+,spell_945,acid burns,5,0,yes,50,5,acid burns,0,0,0,3,8,945,reference join only; not a field promotion
+burrows,spell_946,burrows,1,20,yes,12,3,burrows,0,0,0,3,8,946,reference join only; not a field promotion
+,spell_947,burrows deeper,0,200,yes,20,10,burrows deeper,0,0,0,3,1,947,reference join only; not a field promotion
+,spell_948,death's door,4,0,yes,9999,9999,death's door,0,0,0,3,1,948,reference join only; not a field promotion
+frail,spell_949,frail,0,15,yes,-50,-500,frail,0,0,0,3,8,949,reference join only; not a field promotion
+absorb,spell_950,absorb,4,0,yes,20,5,absorb,0,0,0,0,8,950,reference join only; not a field promotion
+,spell_951,convulsions,0,7,yes,30,10,convulsions,0,0,0,3,8,951,reference join only; not a field promotion
+lacerate,spell_953,lacerate,4,15,yes,8,4,lacerate,0,0,0,0,8,953,reference join only; not a field promotion
+,spell_958,necro drain,4,7,yes,10,2,necro drain,0,0,0,3,8,958,reference join only; not a field promotion
+,spell_959,rosebush drain,4,0,yes,30,12,rosebush drain,0,0,0,3,8,959,reference join only; not a field promotion
+,spell_960,entangles,4,200,yes,1,1,entangles,0,0,0,3,8,960,reference join only; not a field promotion
+,spell_961,rosebush sleep,4,4,yes,100,100,rosebush sleep,0,2,0,3,8,961,reference join only; not a field promotion
+,spell_962,rosebush death,4,0,yes,960,960,rosebush death,0,0,0,3,12,962,reference join only; not a field promotion
+,spell_964,random dmg,4,0,yes,981,977,random dmg,0,0,0,3,8,964,reference join only; not a field promotion
+,spell_977,rocks shred,2,0,yes,15,5,rocks shred,0,0,0,0,8,977,reference join only; not a field promotion
+,spell_978,ice freezes,0,0,yes,15,5,ice freezes,0,0,0,0,8,978,reference join only; not a field promotion
+,spell_979,fire burns,1,0,yes,15,5,fire burns,0,0,0,0,8,979,reference join only; not a field promotion
+,spell_980,acid sears,5,0,yes,15,5,acid sears,0,0,0,0,8,980,reference join only; not a field promotion
+,spell_981,lightning shocks,3,0,yes,15,5,lightning shocks,0,0,0,0,8,981,reference join only; not a field promotion
+purified,spell_982,purified,4,0,yes,15,10,purified,0,0,0,3,8,982,reference join only; not a field promotion
+,spell_986,sdfsdfsdfsdfs,4,30,yes,10,1,sdfsdfsdfsdfs,0,0,0,0,8,986,reference join only; not a field promotion
+,spell_987,hellfire burns,1,0,yes,30,5,hellfire burns,0,0,0,0,8,987,reference join only; not a field promotion
+,spell_988,evil random,4,0,yes,987,984,evil random,0,0,0,3,8,988,reference join only; not a field promotion
+,spell_989,vampire mist,4,0,yes,824,824,vampire mist,0,0,0,3,6,989,reference join only; not a field promotion
+,spell_990,lord mist,4,0,yes,0,0,lord mist,0,0,0,3,6,990,reference join only; not a field promotion
+,spell_991,deeply bite,4,0,yes,0,0,deeply bite,0,0,0,3,8,991,reference join only; not a field promotion
+,spell_993,vampire kill,4,0,yes,9999,9999,vampire kill,0,0,0,3,1,993,reference join only; not a field promotion
+,spell_994,vampire summon,4,0,yes,808,808,vampire summon,0,0,0,3,1,994,reference join only; not a field promotion
+,spell_995,wolfman summon,4,0,yes,807,807,wolfman summon,0,0,0,3,1,995,reference join only; not a field promotion
+crow,spell_996,crow,4,0,yes,843,843,crow,0,0,0,3,8,996,reference join only; not a field promotion
+,spell_997,blackwood chest open,4,0,yes,9384,9384,blackwood chest open,0,0,0,3,1,997,reference join only; not a field promotion
+howl,spell_998,howl,0,0,yes,802,802,howl,0,0,0,0,1,998,reference join only; not a field promotion
+,spell_999,dark temp,0,0,yes,807,807,dark temp,0,0,0,0,1,999,reference join only; not a field promotion
+purify,spell_1000,purify,4,0,yes,25,5,purify,0,0,0,3,8,1000,reference join only; not a field promotion
+sunlight,spell_1002,sunlight,1,0,yes,0,0,sunlight,0,0,50,0,8,1002,reference join only; not a field promotion
+fspk,spell_1003,frozen spike,0,0,yes,20,-15,frozen spike,0,0,50,0,8,1003,reference join only; not a field promotion
+mans,spell_1004,manashield,4,5,yes,0,0,manashield,0,0,50,3,1,1004,reference join only; not a field promotion
+word,spell_1005,exalted word,4,0,yes,10,0,exalted word,0,0,50,0,8,1005,reference join only; not a field promotion
+gaunts,spell_1006,gaunts,4,0,yes,20,10,gaunts,0,0,50,3,0,1006,reference join only; not a field promotion
+nebo,spell_1008,necromantic bolt,4,0,yes,50,30,necromantic bolt,0,0,50,0,8,1008,reference join only; not a field promotion
+sunburst,spell_1009,sunburst,4,0,yes,0,0,sunburst,0,1,37,0,4,1009,reference join only; not a field promotion
+,spell_1010,unholy light,4,0,yes,0,0,unholy light,0,0,0,3,8,1010,reference join only; not a field promotion
+shad,spell_1011,shadow breath,4,0,yes,150,50,shadow breath,0,0,0,3,12,1011,reference join only; not a field promotion
+reju,spell_1012,rejuvinating field,4,10,yes,0,1,rejuvinating field,0,1,32,3,13,1012,reference join only; not a field promotion
+enli,spell_1014,song of enlightenment,4,30,yes,10,10,song of enlightenment,0,1,23,3,2,1014,reference join only; not a field promotion
+freezing,spell_1015,freezing,0,10,yes,10,4,freezing,0,1,40,3,12,1015,reference join only; not a field promotion
+prow,spell_1016,natural prowess,4,10,yes,0,0,natural prowess,0,0,25,3,1,1016,reference join only; not a field promotion
+blank,spell_1017,blank,4,0,yes,0,0,blank,0,0,0,3,8,1017,reference join only; not a field promotion
+deca,spell_1019,cloud of decay,4,2,yes,-15,-15,cloud of decay,0,0,41,3,12,1019,reference join only; not a field promotion
+etta,spell_1020,ethereal taint,4,4,yes,-20,-20,ethereal taint,0,0,44,3,12,1020,reference join only; not a field promotion
+futl,spell_1021,song of futility,4,1,yes,-10,-5,song of futility,0,0,45,3,12,1021,reference join only; not a field promotion
+hopl,spell_1022,song of hopelessness,4,0,yes,-10,-5,song of hopelessness,0,0,48,3,12,1022,reference join only; not a field promotion
+damn,spell_1025,damnation,4,10,yes,-10,-20,damnation,0,2,42,3,8,1025,reference join only; not a field promotion
+spor,spell_1026,spore cloud,4,1,yes,10,0,spore cloud,0,0,50,3,12,1026,reference join only; not a field promotion
+,spell_1030,cone of ice,0,0,yes,0,0,cone of ice,0,0,0,0,8,1030,reference join only; not a field promotion
+,spell_1031,cone of lightning,3,0,yes,0,0,cone of lightning,0,0,0,0,8,1031,reference join only; not a field promotion
+,spell_1032,zombie summon,4,0,yes,0,0,zombie summon,0,0,0,3,1,1032,reference join only; not a field promotion
+,spell_1033,blind globe,4,40,yes,1,1,blind globe,0,0,0,3,12,1033,reference join only; not a field promotion
+,spell_1035,stinky cloud,4,10,yes,35,15,stinky cloud,0,2,0,3,12,1035,reference join only; not a field promotion
+,spell_1037,plant summon,4,0,yes,0,0,plant summon,0,0,0,3,1,1037,reference join only; not a field promotion
+prbe,spell_1038,prismatic beam,4,0,yes,-10,-5,prismatic beam,0,0,50,0,8,1038,reference join only; not a field promotion
+rsto,spell_1039,restoration,4,0,yes,0,0,restoration,0,0,0,3,2,1039,reference join only; not a field promotion
+,spell_1040,blackwood forest,4,0,yes,9404,9404,blackwood forest,0,0,0,3,6,1040,reference join only; not a field promotion
+blsh,spell_1041,bladed sphere,4,5,yes,0,0,bladed sphere,0,0,50,3,1,1041,reference join only; not a field promotion
+gmst,spell_1042,glacial mist,4,1,yes,10,0,glacial mist,0,0,50,3,12,1042,reference join only; not a field promotion
+clwo,spell_1043,close wounds,4,0,yes,0,0,close wounds,0,1,50,3,2,1043,reference join only; not a field promotion
+barb,spell_1062,barbskin,4,30,yes,2,0,barbskin,0,0,50,3,1,1062,reference join only; not a field promotion
+pit,spell_1045,pit,4,1,yes,0,0,pit,0,0,0,3,1,1045,reference join only; not a field promotion
+prsl,spell_1046,protective shell,4,5,yes,0,0,protective shell,0,0,50,3,1,1046,reference join only; not a field promotion
+boul,spell_1047,boulder,2,0,yes,20,-15,boulder,0,0,50,0,8,1047,reference join only; not a field promotion
+infe,spell_1048,inferno,1,0,yes,20,-15,inferno,0,0,50,0,8,1048,reference join only; not a field promotion
+,spell_1050,gremlin summon,4,0,yes,0,0,gremlin summon,0,0,0,3,1,1050,reference join only; not a field promotion
+nuke,spell_1051,armageddon,4,0,yes,9999,9999,armageddon,0,0,50,3,12,1051,reference join only; not a field promotion
+,spell_1052,pris effect,4,0,yes,1068,1064,pris effect,0,0,0,0,8,1052,reference join only; not a field promotion
+rsto,spell_1053,resist stone,4,60,yes,1,1,resist stone,0,0,12,3,2,1053,reference join only; not a field promotion
+,spell_1054,amar summon,0,0,yes,0,0,master summon,0,0,0,3,1,1054,reference join only; not a field promotion
+bcns,spell_1055,BCNS,4,40,yes,0,0,BCNS,0,0,40,3,1,1055,reference join only; not a field promotion
+dapl,spell_1056,dark plague,4,1,yes,0,0,dark plague,0,0,50,3,12,1056,reference join only; not a field promotion
+hsto,spell_1057,hellstorm,1,0,yes,75,30,hellstorm,0,0,50,0,12,1057,reference join only; not a field promotion
+esto,spell_1058,eldritch storm,4,0,yes,0,-30,eldritch storm,0,0,40,0,12,1058,reference join only; not a field promotion
+dihe,spell_1059,divine healing,4,0,yes,95,15,divine healing,0,0,50,3,0,1059,reference join only; not a field promotion
+prbe,spell_1060,priestly benediction,4,10,yes,7,5,priestly benediction,0,0,50,3,0,1060,reference join only; not a field promotion
+datr,spell_1061,dark transfusion,4,0,yes,-80,-200,dark transfusion,0,0,50,3,0,1061,reference join only; not a field promotion
+come,spell_1063,comet,4,0,yes,0,0,comet,0,0,50,0,8,1063,reference join only; not a field promotion
+,spell_1064,yellow beam,4,10,yes,200,200,yellow beam,0,1,0,0,8,1064,reference join only; not a field promotion
+,spell_1065,violet beam,4,10,yes,15,15,violet beam,0,1,0,0,8,1065,reference join only; not a field promotion
+,spell_1066,black beam,4,10,yes,-100,-500,black beam,0,1,0,0,8,1066,reference join only; not a field promotion
+,spell_1067,red beam,4,10,yes,-1,-5,red beam,0,1,0,0,8,1067,reference join only; not a field promotion
+,spell_1069,yellow wave,4,5,yes,200,200,yellow wave,0,1,50,0,12,1069,reference join only; not a field promotion
+,spell_1070,violet wave,4,5,yes,15,15,violet wave,0,1,50,0,12,1070,reference join only; not a field promotion
+,spell_1071,black wave,4,5,yes,-100,-500,black wave,0,1,50,0,12,1071,reference join only; not a field promotion
+,spell_1072,red wave,4,5,yes,-1,-5,red wave,0,1,50,0,12,1072,reference join only; not a field promotion
+,spell_1073,green wave,4,5,yes,18,10,green wave,0,0,50,0,12,1073,reference join only; not a field promotion
+pbla,spell_1074,prismatic blast,4,0,yes,-50,0,prismatic blast,0,0,50,0,12,1074,reference join only; not a field promotion
+,spell_1076,sea 1,4,0,yes,0,0,sea 1,0,0,0,3,6,1076,reference join only; not a field promotion
+,spell_1077,sea 2,4,0,yes,0,0,sea 2,0,0,0,3,6,1077,reference join only; not a field promotion
+,spell_1078,sea 3,4,0,yes,0,0,sea 3,0,0,0,3,6,1078,reference join only; not a field promotion
+,spell_1079,white forest noise,4,0,yes,0,0,white forest noise,0,0,0,3,6,1079,reference join only; not a field promotion
+,spell_1080,tainted word,4,0,yes,20,0,tainted word,0,0,50,0,8,1080,reference join only; not a field promotion
+,spell_1082,animated summon,4,0,yes,0,0,animated summon,0,0,0,3,1,1082,reference join only; not a field promotion
+,spell_1083,library summon,4,0,yes,834,833,library summon,0,0,0,3,1,1083,reference join only; not a field promotion
+,spell_1084,locust summon,4,0,yes,892,891,locust summon,0,0,0,3,1,1084,reference join only; not a field promotion
+,spell_1085,sea trigger,4,0,yes,9361,9361,sea trigger,0,0,0,3,1,1085,reference join only; not a field promotion
+,spell_1086,sea trigger 2,4,0,yes,9362,9362,sea trigger 2,0,0,0,3,1,1086,reference join only; not a field promotion
+,spell_1087,sea trigger 3,4,0,yes,9363,9363,sea trigger 3,0,0,0,3,1,1087,reference join only; not a field promotion
+,spell_1088,sea teleport,4,0,yes,9357,9357,sea teleport,0,0,0,3,1,1088,reference join only; not a field promotion
+,spell_1089,ship teleport,4,0,yes,985,981,ship teleport,0,0,0,3,1,1089,reference join only; not a field promotion
+,spell_1090,sea tele 1,4,0,yes,1204,1014,sea tele 1,0,0,0,3,13,1090,reference join only; not a field promotion
+,spell_1091,sea tele 2,4,0,yes,1415,1205,sea tele 2,0,0,0,3,13,1091,reference join only; not a field promotion
+,spell_1092,sea tele 3,4,0,yes,1621,1416,sea tele 3,0,0,0,3,13,1092,reference join only; not a field promotion
+,spell_1093,sdfsdfsdfsdf,4,1,yes,100,100,web,0,0,0,3,8,1093,reference join only; not a field promotion
+,spell_1095,rotten eye,4,100,yes,100,100,rotten eye,0,0,0,3,1,1095,reference join only; not a field promotion
+word,spell_1096,balanced word,4,0,yes,0,0,balanced word,0,0,50,0,8,1096,reference join only; not a field promotion
+halo,spell_1098,angelic halo,4,80,yes,0,0,angelic halo,0,0,50,3,2,1098,reference join only; not a field promotion
+bals,spell_1099,balanced sight,4,80,yes,200,200,balanced sight,0,0,50,3,13,1099,reference join only; not a field promotion
+,spell_1100,gypsy combo,4,0,yes,9577,9577,gypsy combo,0,0,50,3,8,1100,reference join only; not a field promotion
+,spell_1101,dragon summon tapestry,4,0,yes,1002,1002,dragon summon tapestry,0,0,0,3,1,1101,reference join only; not a field promotion
+dark,spell_1102,infernal darkness,0,80,yes,0,0,infernal darkness,0,0,50,3,12,1102,reference join only; not a field promotion
+know,spell_1103,song of knowledge,4,40,yes,0,0,song of knowledge,0,1,26,3,13,1103,reference join only; not a field promotion
+sage,spell_1104,song of sageness,4,40,yes,0,0,song of sageness,0,1,24,3,13,1104,reference join only; not a field promotion
+,spell_1105,summon steed,4,0,yes,814,814,summon steed,0,0,0,3,1,1105,reference join only; not a field promotion
+foce,spell_1106,song of force,4,40,yes,0,0,song of force,0,1,28,3,13,1106,reference join only; not a field promotion
+swif,spell_1108,song of swiftness,4,40,yes,0,0,song of swiftness,0,1,30,3,13,1108,reference join only; not a field promotion
+strut,spell_1109,strut,4,2,yes,25,25,strut,0,1,19,3,12,1109,reference join only; not a field promotion
+,spell_1111,beholder death,4,30,yes,20,20,beholder death,0,0,0,3,12,1111,reference join only; not a field promotion
+ebin,spell_1112,earthbind,4,80,yes,-15,0,earthbind,0,0,50,3,1,1112,reference join only; not a field promotion
+,spell_1113,monster dark plague,4,20,yes,25,10,monster dark plague,0,0,0,3,12,1113,reference join only; not a field promotion
+sabre,spell_1114,sabre,4,0,yes,-1,-10,sabre,0,0,0,0,8,1114,reference join only; not a field promotion
+,spell_1115,draka tomb,4,0,yes,0,0,draka tomb,0,0,0,3,2,1115,reference join only; not a field promotion
+,spell_1116,too far,4,0,yes,2018,2005,too far,0,0,0,3,1,1116,reference join only; not a field promotion
+,spell_1118,lunar beam,4,0,yes,50,50,lunar beam,0,0,0,3,8,1118,reference join only; not a field promotion
+,spell_1119,darken howl,4,0,yes,1031,1031,darken howl,0,0,0,3,6,1119,reference join only; not a field promotion
+gypsy,spell_1120,gypsy,4,1,yes,0,0,gypsy,0,0,0,3,12,1120,reference join only; not a field promotion
+tree,spell_1122,tree,4,1,yes,0,0,tree,0,0,0,3,12,1122,reference join only; not a field promotion
+heart,spell_1123,heart,4,0,yes,0,0,heart,0,0,0,3,1,1123,reference join only; not a field promotion
+vamp,spell_1124,vamp,0,1,yes,0,0,vamp,0,0,0,3,12,1124,reference join only; not a field promotion
+gem,spell_1125,gem,4,0,yes,0,0,gem,0,0,0,3,1,1125,reference join only; not a field promotion
+,spell_1126,graveyard,4,0,yes,9471,9471,graveyard,0,0,0,3,1,1126,reference join only; not a field promotion
+,spell_1128,crimson potion,4,0,yes,120,40,crimson potion,0,0,0,3,1,1128,reference join only; not a field promotion
+,spell_1129,bubbling blue potion,4,5,yes,15,8,bubbling blue potion,0,0,0,3,1,1129,reference join only; not a field promotion
+,spell_1130,oily potion,4,0,yes,150,-100,oily potion,0,0,0,3,1,1130,reference join only; not a field promotion
+,spell_1131,sickly green potion,4,15,yes,10,2,sickly green potion,0,0,0,3,1,1131,reference join only; not a field promotion
+,spell_1132,black potion acid,5,5,yes,10,5,black potion acid,0,0,0,3,8,1132,reference join only; not a field promotion
+,spell_1133,frothing brown potion,0,10,yes,-200,-200,frothing brown potion,0,0,0,3,1,1133,reference join only; not a field promotion
+,spell_1135,ray of fire from the heavens,3,0,yes,100,50,ray of fire from the heavens,0,0,0,3,1,1135,reference join only; not a field promotion
+,spell_1136,dark mage temp,4,1,yes,0,0,dark mage temp,0,0,0,3,12,1136,reference join only; not a field promotion
+,spell_1137,dark mage text,4,0,yes,0,0,dark mage text,0,0,0,3,1,1137,reference join only; not a field promotion
+,spell_1138,mana dead,3,10,yes,-10,-20,mana dead,0,0,0,3,8,1138,reference join only; not a field promotion
+,spell_1139,card-draw,0,0,yes,0,0,card-draw,0,0,0,3,1,1139,reference join only; not a field promotion
+,spell_1140,summon mayor,4,0,yes,898,898,summon mayor,0,0,0,3,1,1140,reference join only; not a field promotion
+web,spell_1141,web,4,1,yes,100,100,web,0,0,0,3,8,1141,reference join only; not a field promotion
+,spell_1142,ice fall,4,0,yes,60,50,ice fall,0,0,0,3,1,1142,reference join only; not a field promotion
+,spell_1143,black explosion,1,0,yes,200,100,black explosion,0,0,0,3,11,1143,reference join only; not a field promotion
+,spell_1144,ice cavern level 1,4,1,yes,9407,9407,ice cavern level 1,0,0,0,3,6,1144,reference join only; not a field promotion
+,spell_1145,ice cavern level 2,4,1,yes,9410,9410,ice cavern level 2,0,0,0,3,6,1145,reference join only; not a field promotion
+,spell_1147,church check,4,0,yes,0,0,church check,0,0,0,3,6,1147,reference join only; not a field promotion
+,spell_1148,mind flayer slay,4,0,yes,9627,9627,mind flayer slay,0,0,0,3,8,1148,reference join only; not a field promotion
+,spell_1149,mind flayer kill,4,0,yes,9999,9999,mind flayer kill,0,0,0,3,1,1149,reference join only; not a field promotion
+steak,spell_1151,steak,0,0,yes,9356,9356,steak,0,0,0,3,1,1151,reference join only; not a field promotion
+,spell_1152,bone dock,0,0,yes,9655,9655,bone dock,0,0,0,3,1,1152,reference join only; not a field promotion
+,spell_1153,bloodwood chest open,4,0,yes,0,0,bloodwood chest open,0,0,0,3,1,1153,reference join only; not a field promotion
+,spell_1154,burnt iron chest open,4,0,yes,0,0,burnt iron chest open,0,0,0,3,1,1154,reference join only; not a field promotion
+,spell_1155,jagged lightning bolt,3,0,yes,25,25,jagged lightning bolt,0,0,0,0,8,1155,reference join only; not a field promotion
+,spell_1156,ruby staff,1,0,yes,50,25,ruby staff,0,0,0,3,8,1156,reference join only; not a field promotion
+,spell_1157,bone chest open,4,0,yes,9497,9497,bone chest open,0,0,0,3,1,1157,reference join only; not a field promotion
+,spell_1158,frost giant summon,4,0,yes,4056,4056,frost giant summon,0,0,0,3,1,1158,reference join only; not a field promotion
+fist,spell_1159,fist of death,4,0,yes,100,10,fist of death,0,0,60,0,8,1159,reference join only; not a field promotion
+,spell_1160,lifeforce,4,0,yes,40,10,lifeforce,0,0,0,3,8,1160,reference join only; not a field promotion
+,spell_1161,rainbow potion,0,0,yes,1164,1162,rainbow potion,0,0,0,3,1,1161,reference join only; not a field promotion
+,spell_1162,rainbow1,4,10,yes,10,4,rainbow1,0,0,0,3,1,1162,reference join only; not a field promotion
+,spell_1163,rainbow2,4,30,yes,25,10,rainbow2,0,1,0,3,1,1163,reference join only; not a field promotion
+,spell_1164,rainbow3,4,0,yes,150,150,rainbow3,0,0,0,3,1,1164,reference join only; not a field promotion
+,spell_1166,enigma tele,0,1,yes,0,0,enigma tele,0,0,0,3,2,1166,reference join only; not a field promotion
+,spell_1167,enigma temp,4,1,yes,0,0,enigma temp,0,0,0,3,12,1167,reference join only; not a field promotion
+,spell_1168,enigma text,4,0,yes,0,0,enigma text,0,0,0,3,1,1168,reference join only; not a field promotion
+,spell_1169,spear slam knockdown,4,4,yes,0,0,spear slam knockdown,0,0,0,0,8,1169,reference join only; not a field promotion
+parrot,spell_1170,parrot,4,0,yes,896,896,parrot,0,0,0,3,1,1170,reference join only; not a field promotion
+vomit,spell_1171,vomit,1,0,yes,0,0,vomit,0,0,0,0,8,1171,reference join only; not a field promotion
+,spell_1172,cloud of poison gas,6,0,yes,0,0,cloud of poison gas,0,0,0,0,12,1172,reference join only; not a field promotion
+,spell_1173,destructo smash,4,0,yes,250,120,destructo smash,0,0,0,0,12,1173,reference join only; not a field promotion
+,spell_1174,bloodstone bracers,4,0,yes,1266,1265,bloodstone bracers,0,0,0,0,12,1174,reference join only; not a field promotion
+,spell_1175,wrong letter,4,0,yes,90,45,wrong letter,0,0,0,3,1,1175,reference join only; not a field promotion
+,spell_1177,fear trigger,4,0,yes,9695,9695,fear trigger,0,0,0,3,1,1177,reference join only; not a field promotion
+,spell_1178,fear1,4,10,yes,90,35,fear1,0,0,0,3,1,1178,reference join only; not a field promotion
+,spell_1179,fear2,4,20,yes,12,5,fear2,0,0,0,3,1,1179,reference join only; not a field promotion
+,spell_1180,fear3,4,100,yes,35,15,fear3,0,0,0,3,1,1180,reference join only; not a field promotion
+,spell_1181,fear random,4,0,yes,1180,1178,fear random,0,0,0,3,1,1181,reference join only; not a field promotion
+,spell_1182,burning summon,4,0,yes,0,0,burning summon,0,0,0,3,1,1182,reference join only; not a field promotion
+,spell_1183,fire explosion,1,0,yes,50,20,fire explosion,0,0,0,0,12,1183,reference join only; not a field promotion
+,spell_1187,pris weapon effect,4,0,yes,1192,1188,pris weapon effect,0,0,0,0,8,1187,reference join only; not a field promotion
+,spell_1195,fist death,4,0,yes,9999,9999,fist death,0,0,0,3,1,1195,reference join only; not a field promotion
+,spell_1196,dark mage exp,4,0,yes,9677,9677,dark mage exp,0,0,0,3,1,1196,reference join only; not a field promotion
+,spell_1198,demon summon,0,0,yes,518,517,demon summon,0,0,0,3,1,1198,reference join only; not a field promotion
+,spell_1199,lich temp,4,1,yes,0,0,lich temp,0,0,0,3,12,1199,reference join only; not a field promotion
+,spell_1200,lich text,4,1,yes,0,0,lich text,0,0,0,3,1,1200,reference join only; not a field promotion
+,spell_1201,cudgel random,4,0,yes,1245,1244,cudgel random,0,0,0,3,8,1201,reference join only; not a field promotion
+redo,spell_1202,clean,4,0,yes,4053,4053,clean,0,0,2,3,2,1202,reference join only; not a field promotion
+,spell_1203,tail quake,4,0,yes,100,100,tail quake,0,0,0,0,12,1203,reference join only; not a field promotion
+,spell_1205,fungus spell,4,0,yes,4072,4072,fungus spell,0,0,0,3,6,1205,reference join only; not a field promotion
+,spell_1206,fungus cloud,4,10,yes,20,5,fungus cloud,0,0,0,3,1,1206,reference join only; not a field promotion
+,spell_1208,shreaded tapestry summon,4,0,yes,1003,1003,shreaded tapestry summon,0,0,0,3,1,1208,reference join only; not a field promotion
+,spell_1209,gnaj bolt,1,0,yes,0,0,gnaj bolt,0,0,0,0,8,1209,reference join only; not a field promotion
+,spell_1210,blast of energy,4,0,yes,0,-20,blast of energy,0,0,1,0,8,1210,reference join only; not a field promotion
+,spell_1211,tapestry summon,4,0,yes,1002,1002,tapestry summon,0,0,0,3,1,1211,reference join only; not a field promotion
+,spell_1212,gnaj explosion,4,0,yes,150,50,gnaj explosion,0,0,0,3,12,1212,reference join only; not a field promotion
+,spell_1213,cracked pit,4,1,yes,4077,4077,cracked pit,0,0,0,3,6,1213,reference join only; not a field promotion
+hellfire,spell_1214,hellfire,1,0,yes,0,0,hellfire,0,0,0,0,8,1214,reference join only; not a field promotion
+,spell_1216,summon demonling,4,0,yes,950,950,summon demonling,0,0,0,3,1,1216,reference join only; not a field promotion
+,spell_1217,summon astral shade,4,0,yes,958,958,summon astral shade,0,0,0,3,1,1217,reference join only; not a field promotion
+,spell_1218,exp test,4,0,yes,10,1,lich scatter,0,0,0,3,6,1218,reference join only; not a field promotion
+,spell_1219,summon bugbear,4,0,yes,962,962,summon bugbear,0,0,0,3,1,1219,reference join only; not a field promotion
+,spell_1220,blacknight,4,15,yes,0,0,blacknight,0,0,30,3,1,1220,reference join only; not a field promotion
+,spell_1221,vanishing jumpkick,4,0,yes,9999,9999,vanishing jumpkick,0,0,0,0,8,1221,reference join only; not a field promotion
+,spell_1222,ether death,4,0,yes,9999,9999,ether death,0,0,0,0,8,1222,reference join only; not a field promotion
+,spell_1223,enigma tele self,4,0,yes,0,0,enigma tele self,0,0,0,3,13,1223,reference join only; not a field promotion
+portal,spell_1224,portal,4,0,yes,4096,4096,portal,0,0,0,3,8,1224,reference join only; not a field promotion
+blink,spell_1225,blink,4,5,yes,0,0,blink,0,0,0,3,12,1225,reference join only; not a field promotion
+,spell_1226,enigma summon,4,0,yes,0,0,enigma summon,0,0,0,3,1,1226,reference join only; not a field promotion
+,spell_1227,tapestry check,4,0,yes,0,0,tapestry check,0,0,0,3,1,1227,reference join only; not a field promotion
+,spell_1228,tapestry fail,4,0,yes,0,0,tapestry fail,0,0,0,3,1,1228,reference join only; not a field promotion
+,spell_1229,tapestry room,4,0,yes,0,0,tapestry room,0,0,0,3,12,1229,reference join only; not a field promotion
+,spell_1231,island spell,4,0,yes,0,0,island spell,0,0,0,3,1,1231,reference join only; not a field promotion
+noose,spell_1232,noose,4,0,yes,9999,9999,noose,0,0,0,3,1,1232,reference join only; not a field promotion
+,spell_1233,summon enigma lord,4,0,yes,921,921,summon enigma lord,0,0,100,3,6,1233,reference join only; not a field promotion
+,spell_1234,kill enigma,4,2,yes,10,10,kill enigma,0,0,0,3,12,1234,reference join only; not a field promotion
+,spell_1235,face rgen,4,0,yes,0,0,face rgen,0,0,0,3,1,1235,reference join only; not a field promotion
+,spell_1236,encumbrance,0,1,yes,100,100,encumbrance,0,0,0,3,1,1236,reference join only; not a field promotion
+dmag,spell_1239,destroy magic,4,0,yes,0,0,destroy magic,0,0,0,3,1,1239,reference join only; not a field promotion
+,spell_1240,burning death,1,0,yes,10,5,burning death,0,0,0,3,8,1240,reference join only; not a field promotion
+starbeam,spell_1241,starbeam,4,0,yes,4,34,starbeam,0,0,0,0,8,1241,reference join only; not a field promotion
+mist,spell_1242,sdfsdfsdffsdfsd,4,10,yes,25,25,sdfsdfsdffsdfsd,0,2,26,3,12,1242,reference join only; not a field promotion
+,spell_1243,zombie bomb,4,0,yes,150,50,zombie bomb,0,0,0,0,12,1243,reference join only; not a field promotion
+stun,spell_1244,stun,4,2,yes,100,100,stun,0,0,0,3,8,1244,reference join only; not a field promotion
+,spell_1246,nebo secondary,4,0,yes,-20,0,nebo secondary,0,0,0,0,8,1246,reference join only; not a field promotion
+turn,spell_1251,area undead,4,0,yes,15,12,area undead,0,0,3,0,12,1251,reference join only; not a field promotion
+,spell_1252,dead heal,4,0,yes,-999,-999,dead heal,0,1,999,3,8,1252,reference join only; not a field promotion
+mmis,spell_1253,rat missile,4,0,yes,1000,1000,rat missile,0,0,1,0,8,1253,reference join only; not a field promotion
+,spell_1255,gust of wind,4,20,yes,0,0,gust of wind,0,0,25,0,12,1255,reference join only; not a field promotion
+,spell_1256,magma rock chest,4,0,yes,0,0,magma rock chest,0,0,0,3,1,1256,reference join only; not a field promotion
+,spell_1257,gloomy teleport,4,0,yes,656,633,gloomy teleport,0,0,0,3,1,1257,reference join only; not a field promotion
+,spell_1258,large chest,4,0,yes,0,0,large chest,0,0,0,3,1,1258,reference join only; not a field promotion
+fury,spell_1259,unholy fury,4,0,yes,-70,50,unholy fury,0,0,0,0,8,1259,reference join only; not a field promotion
+,spell_1260,massive chest,4,0,yes,0,0,massive chest,0,0,0,3,1,1260,reference join only; not a field promotion
+,spell_1261,dirty pool,4,40,yes,-5,-10,dirty pool,0,0,0,3,1,1261,reference join only; not a field promotion
+,spell_1262,bolt of light,4,0,yes,100,110,bolt of light,0,0,0,3,8,1262,reference join only; not a field promotion
+,spell_1263,silver casket,4,0,yes,0,0,silver casket,0,0,0,3,1,1263,reference join only; not a field promotion
+,spell_1264,sandstone chest open,4,0,yes,0,0,sandstone chest open,0,0,0,3,1,1264,reference join only; not a field promotion
+,spell_1265,ruby-encrusted fire,1,0,yes,0,0,ruby-encrusted fire,0,0,0,0,12,1265,reference join only; not a field promotion
+,spell_1267,fortress trigger,4,0,yes,0,0,fortress trigger,0,1,0,3,1,1267,reference join only; not a field promotion
+rcol,spell_1269,ice shield,0,70,yes,6,6,ice shield,0,1,4,3,2,1269,reference join only; not a field promotion
+rfir,spell_1270,fire shield,4,70,yes,4,4,fire shield,0,1,6,3,2,1270,reference join only; not a field promotion
+rlit,spell_1271,lightning shield,4,60,yes,1,1,lightning shield,0,1,9,3,2,1271,reference join only; not a field promotion
+,spell_1272,1,,,no,,,,,,,,,1272,reference join only; not a field promotion
+,spell_1273,12,,,no,,,,,,,,,1273,reference join only; not a field promotion
+,spell_1274,123,,,no,,,,,,,,,1274,reference join only; not a field promotion
+,spell_1275,1234,,,no,,,,,,,,,1275,reference join only; not a field promotion
+,spell_1276,12345,,,no,,,,,,,,,1276,reference join only; not a field promotion
+,spell_1277,123456,,,no,,,,,,,,,1277,reference join only; not a field promotion
+,spell_1278,1234567,,,no,,,,,,,,,1278,reference join only; not a field promotion
+,spell_1279,12345678,,,no,,,,,,,,,1279,reference join only; not a field promotion
+,spell_1280,123456789,,,no,,,,,,,,,1280,reference join only; not a field promotion
+,spell_1281,1234567890,,,no,,,,,,,,,1281,reference join only; not a field promotion
+,spell_1282,12345678901,,,no,,,,,,,,,1282,reference join only; not a field promotion
+,spell_1283,123456789012,,,no,,,,,,,,,1283,reference join only; not a field promotion
+,spell_1284,1234567890123,,,no,,,,,,,,,1284,reference join only; not a field promotion
+,spell_1285,12345678901234,,,no,,,,,,,,,1285,reference join only; not a field promotion
+,spell_1286,123456789012345,,,no,,,,,,,,,1286,reference join only; not a field promotion
+,spell_1287,1234567890123456,,,no,,,,,,,,,1287,reference join only; not a field promotion
+,spell_1288,12345678901234567,,,no,,,,,,,,,1288,reference join only; not a field promotion
+,spell_1289,123456789012345678,,,no,,,,,,,,,1289,reference join only; not a field promotion
+,spell_1290,1234567890123456789,,,no,,,,,,,,,1290,reference join only; not a field promotion
+,spell_1291,12345678901234567890,,,no,,,,,,,,,1291,reference join only; not a field promotion
+,spell_1292,123456789012345678901,,,no,,,,,,,,,1292,reference join only; not a field promotion
+,spell_1293,1234567890123456789012,,,no,,,,,,,,,1293,reference join only; not a field promotion
+,spell_1294,12345678901234567890123,,,no,,,,,,,,,1294,reference join only; not a field promotion
+,spell_1295,123456789012345678901234,,,no,,,,,,,,,1295,reference join only; not a field promotion
+,spell_1296,1234567890123456789012345,,,no,,,,,,,,,1296,reference join only; not a field promotion
+,spell_1297,12345678901234567890123456,,,no,,,,,,,,,1297,reference join only; not a field promotion
+,spell_1298,123456789012345678901234567,,,no,,,,,,,,,1298,reference join only; not a field promotion
+,spell_1299,1234567890123456789012345678,,,no,,,,,,,,,1299,reference join only; not a field promotion
+,spell_1300,12345678901234567890123456789,,,no,,,,,,,,,1300,reference join only; not a field promotion
+tent,spell_1301,barbed tentacles,4,0,yes,50,25,barbed tentacles,0,0,37,0,8,1301,reference join only; not a field promotion
+,spell_1303,tele out of pit,4,0,yes,0,0,tele out of pit,0,0,0,3,6,1303,reference join only; not a field promotion
+,spell_1305,meadow trigger,4,0,yes,0,0,meadow trigger,0,1,0,3,1,1305,reference join only; not a field promotion
+,spell_1306,cloud trigger,4,0,yes,0,0,cloud trigger,0,1,0,3,1,1306,reference join only; not a field promotion
+,spell_1307,fire trigger,4,0,yes,0,0,fire trigger,0,1,0,3,1,1307,reference join only; not a field promotion
+,spell_1308,branch check,4,0,yes,0,0,branch check,0,0,0,3,1,1308,reference join only; not a field promotion
+,spell_1309,great hydra head summon,4,0,yes,0,0,great hydra head summon,0,0,0,3,1,1309,reference join only; not a field promotion
+sand,spell_1310,sandstorm,4,7,yes,1,4,sandstorm,0,0,38,3,12,1310,reference join only; not a field promotion
+glac,spell_1311,glacial blades,0,0,yes,-10,70,glacial blades,0,0,33,0,8,1311,reference join only; not a field promotion
+,spell_1312,,4,2,yes,100,100,Unknown Spell #1312,0,0,0,3,8,1312,reference join only; not a field promotion
+,spell_1313,voodoo doll,4,0,yes,1312,1311,voodoo doll,0,0,0,0,8,1313,reference join only; not a field promotion
+camo,spell_1314,camouflage,4,30,yes,3,3,camouflage,0,0,7,3,1,1314,reference join only; not a field promotion
+unfa,spell_1315,unholy fanaticism,4,40,yes,0,0,unholy fanaticism,0,0,45,3,13,1315,reference join only; not a field promotion
+bevi,spell_1316,blessed vision,4,0,yes,0,0,blessed vision,0,0,41,3,13,1316,reference join only; not a field promotion
+curi,spell_1317,curing wind,4,0,yes,90,40,curing wind,0,0,47,3,13,1317,reference join only; not a field promotion
+,spell_1318,foot quake,4,0,yes,100,100,foot quake,0,0,0,0,12,1318,reference join only; not a field promotion
+spin,spell_1319,spike spin,4,0,yes,50,25,spike spin,0,0,0,0,12,1319,reference join only; not a field promotion
+hark,spell_1320,nuke spell,4,0,yes,1000,1000,nuke spell,0,0,50,3,11,1320,reference join only; not a field promotion
+,spell_1322,hold immune,4,10,yes,74,74,hold immune,0,1,0,3,1,1322,reference join only; not a field promotion
+,spell_1323,fear immune,4,80,yes,0,0,fear immune,0,1,0,3,1,1323,reference join only; not a field promotion
+,spell_1324,seared by the flames,1,0,yes,0,0,seared by the flames,0,0,0,3,1,1324,reference join only; not a field promotion
+,spell_1325,thief  filter,4,0,yes,0,0,thief  filter,0,1,0,3,1,1325,reference join only; not a field promotion
+,spell_1326,battle  filter,4,0,yes,0,0,battle  filter,0,1,0,3,1,1326,reference join only; not a field promotion
+,spell_1327,magic filter,4,0,yes,0,0,magic filter,0,1,0,3,1,1327,reference join only; not a field promotion
+,spell_1328,sdfsdfsdfsdfsdfsdfdsfsd,4,0,yes,0,0,level 10 teleport,0,1,0,3,1,1328,reference join only; not a field promotion
+,spell_1329,summon diamond cloak,4,0,yes,1059,1059,summon diamond cloak,0,0,100,3,6,1329,reference join only; not a field promotion
+,spell_1330,summon pearl cloak,4,0,yes,1060,1060,summon pearl cloak,0,0,100,3,6,1330,reference join only; not a field promotion
+,spell_1331,summon moonstone cloak,4,0,yes,1061,1061,summon moonstone cloak,0,0,100,3,6,1331,reference join only; not a field promotion
+,spell_1332,summon marble cloak,4,0,yes,1062,1062,summon marble cloak,0,0,100,3,6,1332,reference join only; not a field promotion
+,spell_1333,thievry teleport,4,0,yes,2982,2982,thievry teleport,0,0,0,3,1,1333,reference join only; not a field promotion
+,spell_1334,greatsword,4,0,yes,0,0,greatsword,0,0,0,3,1,1334,reference join only; not a field promotion
+,spell_1335,hallway teleport,4,0,yes,2982,2982,hallway teleport,0,0,0,3,1,1335,reference join only; not a field promotion
+,spell_1336,galacial mist,4,1,yes,10,0,galacial mist,0,0,50,3,12,1336,reference join only; not a field promotion
+,spell_1337,spellcaster filter,4,0,yes,5,-50,spellcaster filter,0,0,0,3,1,1337,reference join only; not a field promotion
+,spell_1338,fire chamber heat,1,0,yes,300,100,fire chamber heat,0,0,0,0,2,1338,reference join only; not a field promotion
+,spell_1339,lightning chamber,3,0,yes,300,100,lightning chamber,0,0,0,0,2,1339,reference join only; not a field promotion
+,spell_1340,ice chamber,3,0,yes,300,100,ice chamber,0,0,0,0,2,1340,reference join only; not a field promotion
+,spell_1341,stone chamber,2,0,yes,300,100,stone chamber,0,0,0,0,2,1341,reference join only; not a field promotion
+,spell_1342,sdfsdfsdfsdfsdfsd,1,0,yes,0,0,sdfsdfsdfsdfsdf,0,0,0,0,2,1342,reference join only; not a field promotion
+,spell_1343,crimson shard,1,0,yes,0,0,crimson shard,0,0,0,3,1,1343,reference join only; not a field promotion
+,spell_1344,amber shard,3,0,yes,0,0,amber shard,0,0,0,3,1,1344,reference join only; not a field promotion
+,spell_1345,sapphire shard,0,0,yes,0,0,sapphire shard,0,0,0,3,1,1345,reference join only; not a field promotion
+,spell_1346,quartz shard,2,0,yes,0,0,quartz shard,0,0,0,3,1,1346,reference join only; not a field promotion
+,spell_1347,all ball summon,4,0,yes,0,0,all ball summon,0,0,0,3,1,1347,reference join only; not a field promotion
+,spell_1348,red ball summon,4,0,yes,0,0,red ball summon,0,0,0,3,1,1348,reference join only; not a field promotion
+,spell_1349,blue ball summon,4,0,yes,0,0,blue ball summon,0,0,0,3,1,1349,reference join only; not a field promotion
+,spell_1350,green ball summon,4,0,yes,0,0,green ball summon,0,0,0,3,1,1350,reference join only; not a field promotion
+,spell_1351,yellow ball summon,4,0,yes,0,0,yellow ball summon,0,0,0,3,1,1351,reference join only; not a field promotion
+,spell_1352,blood bath,4,0,yes,100,50,blood bath,0,0,0,3,1,1352,reference join only; not a field promotion
+,spell_1356,final nahr summon,4,0,yes,0,0,final nahr summon,0,0,0,3,1,1356,reference join only; not a field promotion
+,spell_1357,rock check,4,0,yes,0,0,rock check,0,0,0,3,1,1357,reference join only; not a field promotion
+,spell_1358,invoke staff,4,0,yes,0,0,invoke staff,0,0,0,3,1,1358,reference join only; not a field promotion
+,spell_1359,gather ore,0,0,yes,0,0,gather ore,0,0,0,3,1,1359,reference join only; not a field promotion
+,spell_1360,phoenix boss check,4,0,yes,3246,3242,phoenix boss check,0,0,0,3,1,1360,reference join only; not a field promotion
+,spell_1361,hydra boss check,4,0,yes,4120,4120,hydra boss check,0,0,0,3,1,1361,reference join only; not a field promotion
+,spell_1366,poison bite,6,60,yes,4,4,poison bite,0,2,10,0,8,1366,reference join only; not a field promotion
+exor,spell_1367,exorcism,4,0,yes,0,100,exorcism,0,0,47,0,4,1367,reference join only; not a field promotion
+roar,spell_1368,roar cancel,4,0,yes,0,0,roar cancel,0,0,0,3,12,1368,reference join only; not a field promotion
+,spell_1370,demon lord boss check,4,0,yes,2950,2944,demon lord boss check,0,0,0,3,1,1370,reference join only; not a field promotion
+,spell_1371,majestic boss check,4,0,yes,2889,2883,majestic boss check,0,0,0,3,1,1371,reference join only; not a field promotion
+,spell_1372,chess pieces,4,0,yes,4326,4326,chess pieces,0,0,0,3,1,1372,reference join only; not a field promotion
+rpet,spell_1373,ray of petrification,4,20,yes,100,100,ray of petrification,0,2,0,3,8,1373,reference join only; not a field promotion
+,spell_1375,solo trainer key check,4,0,yes,0,0,solo trainer key check,0,0,0,3,1,1375,reference join only; not a field promotion
+,spell_1376,solo mage scatter,4,0,yes,3247,3247,solo mage scatter,0,0,0,3,6,1376,reference join only; not a field promotion
+nity,spell_1377,serenity,0,80,yes,50,-25,serenity,0,0,37,3,1,1377,reference join only; not a field promotion
+prfl,spell_1378,profane link,0,80,yes,50,-25,profane link,0,0,35,3,1,1378,reference join only; not a field promotion
+glac,spell_1381,glacial skin,0,20,yes,30,30,glacial skin,0,0,48,3,1,1381,reference join only; not a field promotion
+mira,spell_1382,shimmering mirage,4,40,yes,5,5,shimmering mirage,0,0,38,3,13,1382,reference join only; not a field promotion
+bast,spell_1383,sacred bastion,4,60,yes,10,10,sacred bastion,0,0,37,3,1,1383,reference join only; not a field promotion
+hesh,spell_1384,hellfire shield,4,60,yes,0,0,hellfire shield,0,0,37,3,1,1384,reference join only; not a field promotion
+,spell_1385,vial of holy water,4,0,yes,50,15,vial of holy water,0,0,0,3,4,1385,reference join only; not a field promotion
+duergar,spell_1386,duergar,0,0,yes,1112,1112,duergar,0,0,0,3,1,1386,reference join only; not a field promotion
+beau,spell_1388,song of beauty,4,40,yes,5,5,song of beauty,0,0,9,3,2,1388,reference join only; not a field promotion
+ugly,spell_1389,song of ugliness,4,40,yes,-5,-5,song of ugliness,0,0,10,3,0,1389,reference join only; not a field promotion
+,spell_1390,keyring summoner,0,0,yes,4391,4391,keyring summoner,0,0,0,3,1,1390,reference join only; not a field promotion
+,spell_1391,mesmerize,4,15,yes,25,25,mesmerize,0,0,0,3,12,1391,reference join only; not a field promotion
+fire,spell_1392,Dancing fire,1,0,yes,400,150,Dancing fire,0,0,0,0,8,1392,reference join only; not a field promotion
+magm,spell_1393,magma wave,1,0,yes,0,0,magma wave,0,0,0,0,12,1393,reference join only; not a field promotion
+inci,spell_1394,incinerate,1,0,yes,0,0,incinerate,0,0,0,0,12,1394,reference join only; not a field promotion
+kiss,spell_1395,kiss of Vasili,1,0,yes,200,100,kiss of Vasili,0,0,0,0,12,1395,reference join only; not a field promotion
+magm,spell_1396,magma bubbles,1,0,yes,200,100,magma bubbles,0,0,0,0,12,1396,reference join only; not a field promotion
+,spell_1398,blueberries,0,5,yes,15,15,blueberries,0,0,0,3,1,1398,reference join only; not a field promotion

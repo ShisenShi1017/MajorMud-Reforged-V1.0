@@ -64,6 +64,8 @@ CodeUpdate-0047 preserves DataDecode0049 under `DataDecodeCheckpoints/DataDecode
 
 CodeUpdate-0048 creates `DataDecodeCheckpoints/UnifiedDecodedData/` as the generated inventory/comparison surface for decoded data and the CodeUpdate0046 OmniVerse/MudInfo reference payload. It also adds Android ChatGPT decode workflow docs and phone handoff templates.
 
+CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof under `DataDecodeCheckpoints/DataDecode0068/` and refreshes the unified decoded-data inventory to 1,701 source rows. DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
@@ -132,4 +134,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0048 records the unified decoded-data comparison surface and phone handoff workflow. Next work should continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy, preserving binary evidence as authoritative and promoting no fields without proof.
+Current implementation slice: CodeUpdate-0049 records DataDecode0068 Spell Engine Proof. Next work should continue DataDecode0069 Spell Executable Dataflow Proof from the GitHub repository working copy, preserving binary evidence as authoritative and promoting no fields without proof.

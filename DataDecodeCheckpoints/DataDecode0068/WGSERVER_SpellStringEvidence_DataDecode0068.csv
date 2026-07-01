@@ -1,0 +1,47 @@
+fileOffset,hitCount,string,terms
+186371,1,hICE,ice
+316152,1,MULTICHOICE,ice
+316380,1,Choices:  ,ice
+316731,1,FSD invoked with a buffer %d bytes too small,buff
+318719,1,LZH/ICE ,ice
+318867,1,LZH/ICE file is not properly formatted,ice
+326931,1,Target User-ID is invalid (bad character),target
+326973,1,Target User-ID is invalid (profanity detected),target
+327020,1,Target User-ID is invalid (too short),target
+327058,1,Target User-ID is invalid (too long),target
+327095,1,Target User-ID is invalid (already in use),target
+327138,1,Target User-ID is invalid (undefined reason),target
+328487,1,StartServiceCtrlDispatcher failed.,ice
+328549,1,GALGSBL License Violation Detected!,ice
+329427,1,(Ready to service users),ice
+335226,1,<Data Input Buffer Overflow>,buff
+335255,1,<Echo Output Buffer Overflow>,buff
+335285,1,<Data Output Buffer Overflow>,buff
+335315,1,<Status Input Buffer Overflow>,buff
+335346,1,<Command Output Buffer Overflow>,buff
+341141,1,Service,ice
+341748,1,SetServiceStatus Failed,ice
+341780,1,RegisterServiceCtrlHandler failed,ice
+341839,1,"Please use ""Worldgroup Server"" to initiate the service",ice
+341909,1,OpenSCManager failed,mana
+341941,1,OpenService failed,ice
+341960,1,QueryServiceStatus failed,ice
+352648,1,GALGSBL License Violation Detected!,ice
+360220,1,LINKSTART BUFFER TOO SMALL FOR ANYTHING (%s)!,buff
+360273,1,LINKSTART BUFFER TOO SMALL FOR BASIC INFO (%s)!,buff
+360321,1,LINKSTART BUFFER TOO SMALL FOR MODULE INFO (%s)!,buff
+362100,1,FlushConsoleInputBuffer,buff
+362790,1,Sleep,sleep
+363082,1,SetConsoleScreenBufferSize,buff
+363802,1,GetConsoleScreenBufferInfo,buff
+365464,1,StartServiceCtrlDispatcherA,ice
+365494,1,SetServiceStatus,ice
+365584,1,RegisterServiceCtrlHandlerA,ice
+365724,1,QueryServiceStatus,ice
+365746,1,OpenServiceA,ice
+365762,1,OpenSCManagerA,mana
+365836,1,CloseServiceHandle,ice
+390531,1,_iceheadFDA,ice
+390918,1,_isRunAsService,ice
+391656,1,_lstunm,stun
+393523,1,_prfbuffers,buff

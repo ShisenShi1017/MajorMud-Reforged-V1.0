@@ -132,7 +132,7 @@ Every ChatGPT-created Code Update ZIP must:
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0049, verify GitHub Actions green by user report, then continue DataDecode0051 Combat Routine Correlation using the GitHub repository as the direct working copy.
+- Current priority: push CodeUpdate-0049, verify GitHub Actions green by user report, then continue DataDecode0069 Spell Executable Dataflow Proof using the GitHub repository as the direct working copy.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -170,7 +170,7 @@ CodeUpdate-0047 preserves the user-provided DataDecode0049 WGSERVER record acces
 
 CodeUpdate-0048 creates `DataDecodeCheckpoints/UnifiedDecodedData/` as a repo-native index and comparison surface for current decoded data and the CodeUpdate0046 OmniVerse/MudInfo reference payload. It adds generated inventory, category comparison reports, and an Android ChatGPT decode workflow under `Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md` plus phone handoff templates. It does not move historical reports, rewrite canonical `Data/`, promote fields, add server behavior, or add gameplay.
 
-CodeUpdate-0049 preserves the real DataDecode0050 WGSERVER Event & Message Dispatcher Correlation checkpoint under `DataDecodeCheckpoints/DataDecode0050/`. The earlier transition-only DataDecode0050 notes from CodeUpdate-0047 are preserved under `DataDecodeCheckpoints/DataDecode0050/Transition/`. DataDecode0050 reports 5,916 ASCII strings, 39 UTF-16LE strings, 274 event/message/schema-focused strings, 86 string pointer xrefs, 86 dispatch/reference candidate windows, 1,739 WCCMSG/WCCTEXT anchors, 850 cross-file U16 candidates, and 0 canonical promotions. HTTrack/OmniVerse helped identify coverage gaps but did not prove dispatcher behavior or field semantics.
+CodeUpdate-0049 preserves the user-provided DataDecode0068 Spell Engine Proof checkpoint under `DataDecodeCheckpoints/DataDecode0068/` and refreshes `DataDecodeCheckpoints/UnifiedDecodedData/`. DataDecode0068 reports 1,180 canonical spell records, 930 native WCCSPELS records, 1,789 native WCCSPELS string rows, 1,350 OmniVerse/WCC spell reference records, 1,151 canonical `sourceId` to OmniVerse `legacy_number` matches, 41 canonical spell raw field positions, 10 reference MHT files scanned, 505 repo files with spell-term hits, 5,916 WGSERVER printable strings, 46 WGSERVER spell-term string rows, 439 WGSERVER spell constant probe rows, 8 evidence matrix rows, and 0 field promotions. DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
 
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 

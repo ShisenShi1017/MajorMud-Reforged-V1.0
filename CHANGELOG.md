@@ -1,5 +1,14 @@
 # Changelog
 
+## CodeUpdate-0049 - DataDecode0068 Spell Engine Proof
+
+- Preserved the user-provided DataDecode0068 Spell Engine Proof checkpoint under `DataDecodeCheckpoints/DataDecode0068/`.
+- Recorded DataDecode0068 package SHA-256 `587B92CE0495BF20C0619E4F2139CAA980F17A2EAE70A8C36A7A4162374CAFE6`.
+- Recorded spell proof metrics: 1,180 canonical spells, 930 native WCCSPELS records, 1,789 native WCCSPELS string rows, 1,350 OmniVerse spell reference records, 1,151 canonical-to-OmniVerse spell matches, 41 raw field positions, 439 WGSERVER spell constant probes, and 0 field promotions.
+- Refreshed `DataDecodeCheckpoints/UnifiedDecodedData/`; the source inventory now records 1,701 rows.
+- Recorded that DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
+- No canonical `Data` rewrites, server behavior changes, spell field promotions, gameplay systems, executable execution, or OmniVerse-only promotions are included.
+
 ## CodeUpdate-0048 - Unified Decoded Data and Phone Workflow
 
 - Added `Tools/DataDecode/Build-UnifiedDecodedData.ps1` to generate a repo-native decoded-data inventory and OmniVerse comparison surface.

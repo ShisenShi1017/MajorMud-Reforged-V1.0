@@ -1,3 +1,33 @@
+# CodeUpdate-0049 - DataDecode0068 Spell Engine Proof
+
+This update preserves the user-provided DataDecode0068 Spell Engine Proof checkpoint.
+
+## Changed
+
+- Added DataDecode0068 under `DataDecodeCheckpoints/DataDecode0068/`.
+- Added a DataDecode0068 repository README.
+- Added a CodeUpdate-0049 report.
+- Refreshed `DataDecodeCheckpoints/UnifiedDecodedData/`.
+- Recorded that DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
+
+## Verification
+
+- DataDecode0068 ZIP contents were listed and copied from its payload.
+- DataDecode0068 ZIP SHA-256 was recorded.
+- DataDecode0068 report, metrics, and handoff were inspected.
+- Unified decoded-data report builder ran successfully.
+- Final local verification is recorded in `UpdateManifest.json`.
+
+## Boundaries
+
+- No canonical `Data/` rewrite.
+- No spell field promotions.
+- No server behavior changes.
+- No gameplay systems.
+- No executable execution.
+- No OmniVerse-only promotion.
+
+## Previous Release Notes
 # CodeUpdate-0048 - Unified Decoded Data and Phone Workflow
 
 This update creates a unified decoded-data index and adds an Android ChatGPT handoff workflow.

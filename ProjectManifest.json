@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0048",
+  "codeUpdate": "0049",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,18 +18,20 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0048",
+    "currentCodeUpdate": "0049",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0048-Unified-Decoded-Data-And-Phone-Workflow",
+    "lastUpdateName": "CodeUpdate-0049-DataDecode0068-Spell-Engine-Proof",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0048 and wait for user-reported green GitHub Actions before continuing.",
-      "Continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy after CodeUpdate-0048 is green.",
+      "Push CodeUpdate-0049 and wait for user-reported green GitHub Actions before continuing.",
+      "Continue DataDecode0069 Spell Executable Dataflow Proof from the GitHub repository working copy after CodeUpdate-0049 is green.",
       "Use DataDecodeCheckpoints/UnifiedDecodedData as the current decoded-data inventory and OmniVerse comparison surface.",
+      "Use DataDecodeCheckpoints/DataDecode0068 as the preserved Spell Engine Proof checkpoint.",
+      "Do not claim DataDecode0051 through DataDecode0067 are repository-preserved unless those packages are supplied and committed later.",
       "Use Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md for phone-based ChatGPT decode handoffs.",
       "Treat ZIPs as archival/checkpoint artifacts only; future decode passes update the repository directly.",
       "Treat OmniVerse API captures and MudInfo maps as validation/correlation evidence only.",
@@ -62,5 +64,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0048 adds Tools/DataDecode/Build-UnifiedDecodedData.ps1, generates DataDecodeCheckpoints/UnifiedDecodedData comparison reports, and adds Android ChatGPT phone handoff workflow docs/templates. ProjectManifest.json, UpdateManifest.json, and UnifiedDecodedDataManifest.json parsed successfully. Core and Core.Tests Release builds passed with 0 warnings and 0 errors after sequential rerun; an initial parallel Core build attempt hit a transient file lock while the test build compiled Core. Smoke tests passed. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof under DataDecodeCheckpoints/DataDecode0068 and refreshes DataDecodeCheckpoints/UnifiedDecodedData to 1,701 source inventory rows. ProjectManifest.json, UpdateManifest.json, and UnifiedDecodedDataManifest.json parsed successfully. DataDecode0068 Metrics and Manifest CSV files parsed successfully. Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. GitHub Actions remains the official gate after user push."
 }

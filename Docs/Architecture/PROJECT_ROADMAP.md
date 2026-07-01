@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0048`
+- Current Code Update: `0049`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0048, wait for user-reported green GitHub Actions, then continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy.
+- Current priority: push CodeUpdate-0049, wait for user-reported green GitHub Actions, then continue DataDecode0069 Spell Executable Dataflow Proof from the GitHub repository working copy.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -142,6 +142,8 @@ CodeUpdate-0047 preserves the user-provided DataDecode0049 WGSERVER record acces
 
 CodeUpdate-0048 creates `DataDecodeCheckpoints/UnifiedDecodedData/` as a generated decoded-data inventory and OmniVerse comparison surface. It also adds Android ChatGPT handoff workflow docs for phone-based decode work where PowerShell is unavailable.
 
+CodeUpdate-0049 preserves the user-provided DataDecode0068 Spell Engine Proof checkpoint under `DataDecodeCheckpoints/DataDecode0068/` and refreshes the unified decoded-data inventory. DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -179,6 +181,7 @@ Completed/started slices:
 - CodeUpdate-0046: OmniVerse/MudInfo capture checkpoint.
 - CodeUpdate-0047: DataDecode GitHub transition and DataDecode0049 preservation.
 - CodeUpdate-0048: Unified decoded-data inventory, OmniVerse comparison, and Android ChatGPT decode workflow.
+- CodeUpdate-0049: DataDecode0068 Spell Engine Proof preservation.
 
 Focus Areas:
 
@@ -202,10 +205,10 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0048:
+Next candidate after CodeUpdate-0049:
 
-- Continue DataDecode0051 Combat Routine Correlation from the GitHub repository working copy.
-- Focus on damage, armor, spell, resistance, and ability calculation correlations.
+- Continue DataDecode0069 Spell Executable Dataflow Proof from the GitHub repository working copy.
+- Focus on spell routine identification, native WCCSPELS record base pointer proof, field offset load proof, and arithmetic/branch use proof.
 - Preserve previous decode reports instead of overwriting historical analysis.
 - Promote no fields without binary evidence.
 
