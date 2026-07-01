@@ -1,15 +1,13 @@
 metric,value
-static_binary_reverse_engineering_confidence,approximately 98%
-record_structure_confidence,approximately 99.7%
-room_graph_confidence,approximately 99.5%
-item_confidence,approximately 98%
-spell_confidence,approximately 98%
-monster_npc_confidence,approximately 97-98%
-shop_confidence,approximately 98%
-message_textblock_confidence,approximately 98%
-quest_structure_confidence,approximately 97%
-cross_database_relationship_confidence,approximately 98%
-wgserver_executable_correlation_confidence,approximately 96%
-field_promotions,0
-standalone_datadecode0050_zip_supplied,false
-primary_workflow_after_0050,github_repository_direct
+wgserver_sha256,4da28d718cf99701aa63c1889770f293bb3ec828aea5e8bea500473d2698c73f
+wgserver_size_bytes,432128
+pe_sections,7
+ascii_strings,5916
+utf16_strings,39
+event_message_focus_strings,274
+string_pointer_xrefs,86
+dispatch_candidate_windows,86
+textblock_anchor_rows,1739
+cross_file_u16_candidate_rows,850
+priority_candidates,86
+canonical_promotions,0

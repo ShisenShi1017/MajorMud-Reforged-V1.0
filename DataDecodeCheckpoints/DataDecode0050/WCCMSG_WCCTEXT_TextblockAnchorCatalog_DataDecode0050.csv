@@ -1,0 +1,1740 @@
+source_file,file_offset,length,text_sample,term_hits
+WCCMSG.DAT,1034,34,You fire a %s at %s for %d damage!,damage
+WCCMSG.DAT,1116,35,%s fires a %s at you for %d damage!,damage
+WCCMSG.DAT,1198,34,%s fires a %s at %s for %s damage!,damage
+WCCMSG.DAT,1287,12,You cast %s!,cast
+WCCMSG.DAT,1369,12,%s casts %s!,cast
+WCCMSG.DAT,1451,12,%s casts %s!,cast
+WCCMSG.DAT,1546,35,You fire an %s at %s for %d damage!,damage
+WCCMSG.DAT,1628,37,%s throws an %s at you for %d damage!,damage
+WCCMSG.DAT,1710,22,%s throws an %s at %s!,
+WCCMSG.DAT,1799,52,"You cast %s, and a shimmering field forms about you.",cast
+WCCMSG.DAT,1963,18,%s casts %s on %s!,cast
+WCCMSG.DAT,2058,34,You fire a %s at %s for %d damage!,damage
+WCCMSG.DAT,2140,37,%s sears you with a %s for %d damage!,damage
+WCCMSG.DAT,2222,20,%s fires a %s at %s!,
+WCCMSG.DAT,2311,57,"You cast %s at %s, surrounding him with a pale blue glow.",cast
+WCCMSG.DAT,2393,63,"%s casts a spell on you, surrounding you with a pale blue glow.",spell|cast
+WCCMSG.DAT,2475,18,%s casts %s on %s!,cast
+WCCMSG.DAT,2570,18,You cast %s on %s!,cast
+WCCMSG.DAT,2652,21,%s casts %s upon you!,cast
+WCCMSG.DAT,2734,18,%s casts %s on %s!,cast
+WCCMSG.DAT,2823,39,You let loose a %s at %s for %d damage!,damage
+WCCMSG.DAT,2905,37,%s fries you with a %s for %d damage!,damage
+WCCMSG.DAT,2987,20,%s fires a %s at %s!,
+WCCMSG.DAT,3082,56,"You cast %s on %s, surrounding him with a pale red glow.",cast
+WCCMSG.DAT,3164,57,"%s casts %s on you, surrounding you with a pale red glow.",cast
+WCCMSG.DAT,3246,18,%s casts %s on %s!,cast
+WCCMSG.DAT,3335,40,You summon %s to slice %s for %d damage!,damage
+WCCMSG.DAT,3417,47,%s slices you with a cloud of %s for %d damage!,damage
+WCCMSG.DAT,3499,18,%s casts %s at %s!,cast
+WCCMSG.DAT,3676,6,pounds,
+WCCMSG.DAT,3758,6,pounds,
+WCCMSG.DAT,3847,10,go manhole,
+WCCMSG.DAT,3929,6,go man,
+WCCMSG.DAT,4011,13,enter manhole,enter
+WCCMSG.DAT,4106,9,go secret,
+WCCMSG.DAT,4188,6,go sec,
+WCCMSG.DAT,4270,12,enter secret,enter
+WCCMSG.DAT,4359,32,You cast %s at %s for %d damage!,cast|damage
+WCCMSG.DAT,4441,33,%s casts %s on you for %d damage!,cast|damage
+WCCMSG.DAT,4523,32,%s casts %s on %s for %s damage!,cast|damage
+WCCMSG.DAT,4618,37,"You cast %s on %s, healing %d damage!",cast|damage|heal
+WCCMSG.DAT,4700,19,%s casts %s on you!,cast
+WCCMSG.DAT,4782,18,%s casts %s on %s!,cast
+WCCMSG.DAT,4871,18,You cast %s on %s!,cast
+WCCMSG.DAT,4953,24,%s casts a spell on you!,spell|cast
+WCCMSG.DAT,5035,18,%s casts %s on %s!,cast
+WCCMSG.DAT,5130,18,You cast %s on %s!,cast
+WCCMSG.DAT,5212,24,%s casts a spell on you!,spell|cast
+WCCMSG.DAT,5294,18,%s casts %s on %s!,cast
+WCCMSG.DAT,5383,32,You cast %s on %s for %d damage!,cast|damage
+WCCMSG.DAT,5465,33,%s casts %s on you for %d damage!,cast|damage
+WCCMSG.DAT,5547,32,%s casts %s on %s for %s damage!,cast|damage
+WCCMSG.DAT,5642,33,You cast %s on %s for %d healing!,cast|heal
+WCCMSG.DAT,5724,19,%s casts %s on you!,cast
+WCCMSG.DAT,5806,18,%s casts %s on %s!,cast
+WCCMSG.DAT,5895,32,You cast %s on %s for %d damage!,cast|damage
+WCCMSG.DAT,5977,33,%s casts %s on you for %d damage!,cast|damage
+WCCMSG.DAT,6059,18,%s casts %s on %s!,cast
+WCCMSG.DAT,6154,18,You cast %s on %s!,cast
+WCCMSG.DAT,6236,19,%s casts %s on you!,cast
+WCCMSG.DAT,6318,18,%s casts %s on %s!,cast
+WCCMSG.DAT,6407,62,"You cast %s, surrounding everyone in the room in a white glow!",room|cast
+WCCMSG.DAT,6489,59,"%s casts a spell on you, surrounding you with a white glow!",spell|cast
+WCCMSG.DAT,6571,64,"%s casts %s, surrounding everyone in the room with a white glow!",room|cast
+WCCMSG.DAT,6666,64,"You cast %s, surrounding everyone in the room with a black glow!",room|cast
+WCCMSG.DAT,6748,59,"%s casts a spell on you, surrounding you with a black glow!",spell|cast
+WCCMSG.DAT,6830,69,"%s casts a spell, surrounding everyone in the room with a black glow!",room|spell|cast
+WCCMSG.DAT,6919,32,You cast %s on %s for %d damage!,cast|damage
+WCCMSG.DAT,7001,33,%s casts %s on you for %d damage!,cast|damage
+WCCMSG.DAT,7083,32,%s casts %s on %s for %s damage!,cast|damage
+WCCMSG.DAT,7178,36,You cast %s on everyone in the room!,room|cast
+WCCMSG.DAT,7260,36,%s casts %s on everyone in the room!,room|cast
+WCCMSG.DAT,7342,36,%s casts %s on everyone in the room!,room|cast
+WCCMSG.DAT,7431,34,A %s crawls into the room from %s.,room
+WCCMSG.DAT,7513,36,The %s crawls out of the room to %s.,room
+WCCMSG.DAT,7595,44,The lashworm crawls into the room after you!,room
+WCCMSG.DAT,7690,31,The %s bites you for %d damage!,damage
+WCCMSG.DAT,7772,30,The %s bites %s for %s damage!,damage
+WCCMSG.DAT,7854,57,The giant rat falls to the ground with a tortured squeak.,
+WCCMSG.DAT,7912,12,s and blood.,
+WCCMSG.DAT,7943,34,A %s creeps into the room from %s.,room
+WCCMSG.DAT,8025,36,The %s creeps out of the room to %s.,room
+WCCMSG.DAT,8107,34,The giant rat creeps in after you!,
+WCCMSG.DAT,8202,49,The %s darts forward and bites you for %d damage!,damage
+WCCMSG.DAT,8284,48,The %s darts forward and bites %s for %s damage!,damage
+WCCMSG.DAT,8366,37,The lashworm falls dead at your feet.,
+WCCMSG.DAT,8455,36,A %s scuttles into the room from %s.,room
+WCCMSG.DAT,8537,38,The %s scuttles out of the room to %s.,room
+WCCMSG.DAT,8619,38,The filthbug chases you into the room!,room
+WCCMSG.DAT,8714,48,The %s claws you with its pincers for %d damage!,damage
+WCCMSG.DAT,8796,44,The %s rips %s with its claws for %s damage!,damage
+WCCMSG.DAT,8878,59,"The filthbug collapses, its legs curling tightly around it.",
+WCCMSG.DAT,8967,32,A %s creeps in the room from %s.,room
+WCCMSG.DAT,9049,36,The %s creeps out of the room to %s.,room
+WCCMSG.DAT,9131,55,"The carrion beast charges after you, hissing furiously!",
+WCCMSG.DAT,9226,30,The %s rips you for %d damage!,damage
+WCCMSG.DAT,9308,48,The %s leaps on %s and chomps him for %s damage!,damage
+WCCMSG.DAT,9390,64,"The carrion beast falls to the ground with a yelp, and is still.",
+WCCMSG.DAT,9479,33,A %s oozes into the room from %s.,room
+WCCMSG.DAT,9561,35,The %s oozes out of the room to %s.,room
+WCCMSG.DAT,9643,34,The acid slime oozes in after you!,
+WCCMSG.DAT,9738,50,The %s whips you with its pseudopod for %d damage!,damage
+WCCMSG.DAT,9820,49,The %s whips %s with its pseudopod for %s damage!,damage
+WCCMSG.DAT,9902,53,The acid slime dissolves into a puddle of bluish goo.,
+WCCMSG.DAT,9991,7,go hole,
+WCCMSG.DAT,10073,6,go hol,
+WCCMSG.DAT,10155,10,enter hole,enter
+WCCMSG.DAT,10250,18,You cast %s on %s.,cast
+WCCMSG.DAT,10332,19,%s casts %s on you!,cast
+WCCMSG.DAT,10414,18,%s casts %s on %s!,cast
+WCCMSG.DAT,10503,34,An %s walks into the room from %s.,room
+WCCMSG.DAT,10585,35,The %s walks out of the room to %s.,room
+WCCMSG.DAT,10667,40,The orc rogue follows you into the room!,room
+WCCMSG.DAT,10762,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,10844,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,10926,37,The orc rogue collapses with a grunt.,
+WCCMSG.DAT,11015,34,A %s sneaks into the room from %s.,room
+WCCMSG.DAT,11097,36,The %s sneaks out of the room to %s.,room
+WCCMSG.DAT,11179,48,The kobold thief creeps into the room after you!,room
+WCCMSG.DAT,11274,31,The %s stabs you for %d damage!,damage
+WCCMSG.DAT,11356,30,The %s stabs %s for %s damage!,damage
+WCCMSG.DAT,11438,55,The kobold thief falls to the ground with a shrill cry.,
+WCCMSG.DAT,11527,10,pull lever,
+WCCMSG.DAT,11609,10,push lever,
+WCCMSG.DAT,11691,10,move lever,
+WCCMSG.DAT,12810,19,impale|skewer|slash,
+WCCMSG.DAT,12892,23,impales|skewers|slashes,
+WCCMSG.DAT,12974,23,impales|skewers|slashes,
+WCCMSG.DAT,13063,13,hack|chop|cut,
+WCCMSG.DAT,13145,16,hacks|chops|cuts,
+WCCMSG.DAT,13227,16,hacks|chops|cuts,
+WCCMSG.DAT,13322,17,slash|impale|hack,
+WCCMSG.DAT,13404,20,slashes|impales|hack,
+WCCMSG.DAT,13486,21,slashes|impales|hacks,
+WCCMSG.DAT,13575,12,stab|cut|jab,
+WCCMSG.DAT,13657,15,stabs|cuts|jabs,
+WCCMSG.DAT,13739,15,stabs|cuts|jabs,
+WCCMSG.DAT,13834,15,chop|hack|slash,
+WCCMSG.DAT,13916,19,chops|hacks|slashes,
+WCCMSG.DAT,13998,19,chops|hacks|slashes,
+WCCMSG.DAT,14087,20,skewer|impale|pierce,
+WCCMSG.DAT,14169,23,skewers|impales|pierces,
+WCCMSG.DAT,14251,23,skewers|impales|pierces,
+WCCMSG.DAT,14346,15,cleave|chop|cut,
+WCCMSG.DAT,14428,18,cleaves|chops|cuts,
+WCCMSG.DAT,14510,18,cleaves|chops|cuts,
+WCCMSG.DAT,14599,18,smash|clobber|slam,
+WCCMSG.DAT,14681,22,smashes|clobbers|slams,
+WCCMSG.DAT,14763,22,smashes|clobbers|slams,
+WCCMSG.DAT,14858,20,bludgeon|smash|crush,
+WCCMSG.DAT,14940,25,bludgeons|smashes|crushes,
+WCCMSG.DAT,15022,25,bludgeons|smashes|crushes,
+WCCMSG.DAT,15370,15,slice|cut|slash,
+WCCMSG.DAT,15452,19,slices|cuts|slashes,
+WCCMSG.DAT,15534,19,slices|cuts|slashes,
+WCCMSG.DAT,15623,9,lash|whip,
+WCCMSG.DAT,15705,12,lashes|whips,
+WCCMSG.DAT,15787,12,lashes|whips,
+WCCMSG.DAT,15964,6,smacks,
+WCCMSG.DAT,16046,6,smacks,
+WCCMSG.DAT,16135,34,A %s crawls into the room from %s.,room
+WCCMSG.DAT,16217,36,The %s crawls out of the room to %s.,room
+WCCMSG.DAT,16299,41,The cave worm slithers quickly after you!,
+WCCMSG.DAT,16394,32,The %s chomps you for %d damage!,damage
+WCCMSG.DAT,16476,31,The %s chomps %s for %s damage!,damage
+WCCMSG.DAT,16558,41,The cave worm collapes with a dull thump.,
+WCCMSG.DAT,16647,33,A %s walks into the room from %s.,room
+WCCMSG.DAT,16729,35,The %s walks out of the room to %s.,room
+WCCMSG.DAT,16811,32,The guardsman charges after you!,
+WCCMSG.DAT,16906,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,16988,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,17070,48,"The guardsman utters a sharp cry, and collapses.",
+WCCMSG.DAT,17159,34,A %s creeps into the room from %s.,room
+WCCMSG.DAT,17241,36,The %s creeps out of the room to %s.,room
+WCCMSG.DAT,17323,35,The thug follows you into the room!,room
+WCCMSG.DAT,17418,33,The %s smashes you for %d damage!,damage
+WCCMSG.DAT,17500,32,The %s smashes %s for %s damage!,damage
+WCCMSG.DAT,17582,32,The thug collapses with a groan.,
+WCCMSG.DAT,17671,33,A %s walks into the room from %s.,room
+WCCMSG.DAT,17753,35,The %s walks out of the room to %s.,room
+WCCMSG.DAT,17835,43,The skeleton walks into the room after you!,room
+WCCMSG.DAT,17930,30,The %s rips you for %d damage!,damage
+WCCMSG.DAT,18012,29,The %s rips %s for %s damage!,damage
+WCCMSG.DAT,18094,42,The skeleton crumbles into a pile of dust.,
+WCCMSG.DAT,18183,36,A %s shambles into the room from %s.,room
+WCCMSG.DAT,18265,38,The %s shambles out of the room to %s.,room
+WCCMSG.DAT,18347,31,The zombie stomps in after you!,
+WCCMSG.DAT,18954,35,The %s bludgeons you for %d damage!,damage
+WCCMSG.DAT,19036,34,The %s bludgeons %s for %s damage!,damage
+WCCMSG.DAT,19118,37,The zombie collapses without a sound.,
+WCCMSG.DAT,19207,32,You cast %s on %s for %d damage!,cast|damage
+WCCMSG.DAT,19289,38,%s lashes you with a %s for %d damage!,damage
+WCCMSG.DAT,19371,18,%s casts %s on %s!,cast
+WCCMSG.DAT,19466,12,You cast %s!,cast
+WCCMSG.DAT,19548,12,%s casts %s!,cast
+WCCMSG.DAT,19630,12,%s casts %s!,cast
+WCCMSG.DAT,19719,42,"You cast %s on %s, regenerating %d damage!",cast|damage
+WCCMSG.DAT,19801,53,"%s casts %s on you, regenerating some of your wounds!",cast
+WCCMSG.DAT,19883,18,%s casts %s on %s!,cast
+WCCMSG.DAT,19978,48,"You cast %s on %s, disrupting him for %d damage!",cast|damage
+WCCMSG.DAT,20060,42,"%s casts %s, disrupting you for %d damage!",cast|damage
+WCCMSG.DAT,20142,18,%s casts %s on %s!,cast
+WCCMSG.DAT,20231,18,You cast %s on %s!,cast
+WCCMSG.DAT,20313,19,%s casts %s on you!,cast
+WCCMSG.DAT,20395,18,%s casts %s on %s!,cast
+WCCMSG.DAT,20490,59,"You cast %s on %s, surrounding him with a bright blue glow!",cast
+WCCMSG.DAT,20572,65,"%s casts a spell on you, surrounding you with a bright blue glow!",spell|cast
+WCCMSG.DAT,20654,18,%s casts %s on %s!,cast
+WCCMSG.DAT,20743,24,You cast %s on the room!,room|cast
+WCCMSG.DAT,20768,7,damage!,damage
+WCCMSG.DAT,20825,33,%s casts %s on you for %d damage!,cast|damage
+WCCMSG.DAT,20907,24,%s casts %s on the room!,room|cast
+WCCMSG.DAT,21002,24,You cast %s on yourself!,cast
+WCCMSG.DAT,21166,12,%s casts %s!,cast
+WCCMSG.DAT,21255,55,"You cast %s on %s, surrounding him with an earthy glow!",cast
+WCCMSG.DAT,21337,60,"%s casts a spell on you, surrounding you with a earthy glow!",spell|cast
+WCCMSG.DAT,21419,18,%s casts %s on %s!,cast
+WCCMSG.DAT,21514,35,A small golem stomps into the room.,room
+WCCMSG.DAT,21596,32,The small golem leaves the room.,room
+WCCMSG.DAT,21678,28,The small golem follows you!,
+WCCMSG.DAT,21767,31,The %s clubs you for %d damage!,damage
+WCCMSG.DAT,21849,30,The %s clubs %s for %s damage!,damage
+WCCMSG.DAT,21931,33,The small golem crumbles to dust.,
+WCCMSG.DAT,22026,11,push button,
+WCCMSG.DAT,22108,8,push but,
+WCCMSG.DAT,22190,11,push button,
+WCCMSG.DAT,22279,37,You walk through an illusionary wall!,
+WCCMSG.DAT,22361,37,You walk through an illusionary wall!,
+WCCMSG.DAT,22538,33,A shade materializes in the room.,room
+WCCMSG.DAT,22620,33,The shade vanishes from the room.,room
+WCCMSG.DAT,22702,35,The shade appears right behind you!,
+WCCMSG.DAT,22791,47,The %s chills you with its touch for %d damage!,damage
+WCCMSG.DAT,22873,46,The %s chills %s with its touch for %s damage!,damage
+WCCMSG.DAT,22955,38,The shade vanishes with an eerie wail.,
+WCCMSG.DAT,23050,33,A %s lopes into the room from %s.,room
+WCCMSG.DAT,23132,35,The %s lopes out of the room to %s.,room
+WCCMSG.DAT,23214,40,The ghoul charges after you ferociously!,
+WCCMSG.DAT,23303,31,The %s claws you for %d damage!,damage
+WCCMSG.DAT,23385,30,The %s claws %s for %s damage!,damage
+WCCMSG.DAT,23467,37,The ghoul collapses in a filthy heap.,
+WCCMSG.DAT,23562,34,A %s creeps into the room from %s.,room
+WCCMSG.DAT,23644,36,The %s creeps out of the room to %s.,room
+WCCMSG.DAT,23726,25,The wight runs after you!,
+WCCMSG.DAT,23815,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,23897,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,23979,39,The wight collapses into a broken heap.,
+WCCMSG.DAT,24074,36,An %s strides into the room from %s.,room
+WCCMSG.DAT,24156,35,The %s walks out of the room to %s.,room
+WCCMSG.DAT,24238,30,The orc sentry runs after you!,
+WCCMSG.DAT,24327,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,24409,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,24491,46,"The orc sentry eyes you evilly, and collapses.",
+WCCMSG.DAT,25098,36,An %s strides into the room from %s.,room
+WCCMSG.DAT,25180,35,The %s walks out of the room to %s.,room
+WCCMSG.DAT,25262,55,The orc lieutenant charges after you with a battle cry!,
+WCCMSG.DAT,25351,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,25433,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,25515,48,"The orc lieutenant utters a low growl, and dies.",
+WCCMSG.DAT,25610,33,A %s walks into the room from %s.,room
+WCCMSG.DAT,25692,35,The %s walks out of the room to %s.,room
+WCCMSG.DAT,25774,32,The mercenary charges after you!,
+WCCMSG.DAT,25863,33,The %s impales you for %d damage!,damage
+WCCMSG.DAT,25945,32,The %s impales %s for %s damage!,damage
+WCCMSG.DAT,26027,41,The mercenary dies with an agonized moan.,
+WCCMSG.DAT,26122,34,A %s stomps into the room from %s.,room
+WCCMSG.DAT,26204,36,The %s stomps out of the room to %s.,room
+WCCMSG.DAT,26286,32,The half-ogre charges after you!,
+WCCMSG.DAT,26375,33,The %s smashes you for %d damage!,damage
+WCCMSG.DAT,26457,32,The %s smashes %s for %s damage!,damage
+WCCMSG.DAT,26539,47,The half-ogre bodyguard falls like a hewn tree.,
+WCCMSG.DAT,26887,18,You invoke the %s.,
+WCCMSG.DAT,26970,73,s invokes the %s on you!                                                 ,
+WCCMSG.DAT,27051,18,%s invokes the %s!,
+WCCMSG.DAT,27146,18,You invoke the %s.,
+WCCMSG.DAT,27228,25,%s invokes the %s on you!,
+WCCMSG.DAT,27310,24,%s invokes the %s on %s!,
+WCCMSG.DAT,27399,18,You invoke the %s.,
+WCCMSG.DAT,27481,25,%s invokes the %s on you!,
+WCCMSG.DAT,27563,24,%s invokes the %s on %s!,
+WCCMSG.DAT,27658,18,You invoke the %s.,
+WCCMSG.DAT,27740,25,%s invokes the %s on you!,
+WCCMSG.DAT,27822,24,%s invokes the %s on %s!,
+WCCMSG.DAT,27911,18,You invoke the %s.,
+WCCMSG.DAT,27993,25,%s invokes the %s on you!,
+WCCMSG.DAT,28075,24,%s invokes the %s on %s!,
+WCCMSG.DAT,28170,35,A %s strides into the room from %s.,room
+WCCMSG.DAT,28252,37,The %s strides out of the room to %s.,room
+WCCMSG.DAT,28334,32,The dark cultist runs after you!,
+WCCMSG.DAT,28423,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,28505,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,28587,43,The dark cultist collapses without a sound.,
+WCCMSG.DAT,28682,40,You discharge an %s at %s for %d damage!,damage
+WCCMSG.DAT,28764,41,%s discharges an %s at you for %d damage!,damage
+WCCMSG.DAT,28846,26,%s discharges an %s at %s!,
+WCCMSG.DAT,28935,36,A %s scuttles into the room from %s.,room
+WCCMSG.DAT,29017,38,The %s scuttles out of the room to %s.,room
+WCCMSG.DAT,29099,31,The grey spider runs after you!,
+WCCMSG.DAT,29194,31,The %s bites you for %d damage!,damage
+WCCMSG.DAT,29276,30,The %s bites %s for %s damage!,damage
+WCCMSG.DAT,29358,62,"The grey spider collapses, its legs curling tightly around it.",
+WCCMSG.DAT,29447,8,swing at,
+WCCMSG.DAT,29529,9,swings at,
+WCCMSG.DAT,29611,9,swings at,
+WCCMSG.DAT,29706,9,thrust at,
+WCCMSG.DAT,29788,10,thrusts at,
+WCCMSG.DAT,29870,10,thrusts at,
+WCCMSG.DAT,29959,8,lunge at,
+WCCMSG.DAT,30041,9,lunges at,
+WCCMSG.DAT,30123,9,lunges at,
+WCCMSG.DAT,30218,8,flail at,
+WCCMSG.DAT,30300,9,flails at,
+WCCMSG.DAT,30382,9,flails at,
+WCCMSG.DAT,30471,8,swipe at,
+WCCMSG.DAT,30553,9,swipes at,
+WCCMSG.DAT,30635,9,swipes at,
+WCCMSG.DAT,30730,36,A %s shambles into the room from %s.,room
+WCCMSG.DAT,30812,37,The %s wanders out of the room to %s.,room
+WCCMSG.DAT,30894,28,The mummy lumbers after you!,
+WCCMSG.DAT,30983,46,The %s smashes you with its arm for %d damage!,damage
+WCCMSG.DAT,31065,45,The %s smashes %s with its arm for %s damage!,damage
+WCCMSG.DAT,31147,58,"The mummy's wrapping unravels, revealing nothing but dust.",
+WCCMSG.DAT,31754,32,The %s pounds you for %d damage!,damage
+WCCMSG.DAT,31836,31,The %s pounds %s for %s damage!,damage
+WCCMSG.DAT,31918,50,"The dark priest falls to the ground, and is still.",
+WCCMSG.DAT,32007,53,"The %s %ssnaps at %s, %sbut %s dodges out of the way!",
+WCCMSG.DAT,32089,39,The %s %ssnaps at you with its %steeth!,
+WCCMSG.DAT,32171,38,The %s %ssnaps at %s with its %steeth!,
+WCCMSG.DAT,32266,54,"The %s %slunges at %s, %sbut %s dodges out of the way!",
+WCCMSG.DAT,32348,25,The %s %slunges at %syou!,
+WCCMSG.DAT,32430,25,The %s %slunges at %s! %s,
+WCCMSG.DAT,32519,53,"The %s %sclaws at %s, %sbut %s dodges out of the way!",
+WCCMSG.DAT,32601,40,The %s %sswipes at you with its %sclaws!,
+WCCMSG.DAT,32683,39,The %s %sswipes at %s with its %sclaws!,
+WCCMSG.DAT,32778,54,"The %s %slashes at %s, %sbut %s dodges out of the way!",
+WCCMSG.DAT,32860,23,The %s %sflails at you!,
+WCCMSG.DAT,32942,22,The %s %sflails at %s!,
+WCCMSG.DAT,33031,49,"The %s %s you, but your armour deflects the blow!",
+WCCMSG.DAT,33113,46,"The %s %s %s, but %s armour deflects the blow!",
+WCCMSG.DAT,33195,41,"The %s %s you with its %s, but you dodge!",
+WCCMSG.DAT,33290,23,A %s stalks in from %s.,
+WCCMSG.DAT,33372,24,The %s stalks out to %s.,
+WCCMSG.DAT,33454,31,The dark priest runs after you!,
+WCCMSG.DAT,33543,54,"The %s %sswings at %s, %sbut %s dodges out of the way!",
+WCCMSG.DAT,33625,38,The %s %sswings at you with its %sarm!,
+WCCMSG.DAT,33664,11,but misses!,
+WCCMSG.DAT,33707,37,The %s %sswings at %s with its %sarm!,
+WCCMSG.DAT,33745,11,but misses!,
+WCCMSG.DAT,33802,35,The %s bludgeons you for %d damage!,damage
+WCCMSG.DAT,33884,34,The %s bludgeons %s for %s damage!,damage
+WCCMSG.DAT,33966,36,The dark cleric collapses in a heap.,
+WCCMSG.DAT,34055,60,"The %s %sreaches out for %s, %sbut %s dodges out of the way!",
+WCCMSG.DAT,34137,31,The %s %sreaches out for %syou!,
+WCCMSG.DAT,34219,31,The %s %sreaches out for %s! %s,
+WCCMSG.DAT,34314,24,A %s strides in from %s.,
+WCCMSG.DAT,34396,25,The %s strides out to %s.,
+WCCMSG.DAT,34478,31,The dark cleric runs after you!,
+WCCMSG.DAT,34567,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,34649,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,34731,45,"The bounty hunter reaches for you, then dies.",
+WCCMSG.DAT,34826,33,A bounty hunter walks in from %s.,
+WCCMSG.DAT,34908,34,The bounty hunter walks out to %s.,
+WCCMSG.DAT,34990,36,The bounty hunter charges after you!,
+WCCMSG.DAT,35079,8,push eye,
+WCCMSG.DAT,35161,8,push but,
+WCCMSG.DAT,35243,11,push button,
+WCCMSG.DAT,35338,57,"The %s %ssnaps at you, but your armour deflects the blow!",
+WCCMSG.DAT,35420,54,"The %s %ssnaps at %s, but %s armour deflects the blow!",
+WCCMSG.DAT,35502,54,"The %s %ssnaps at %syou, but you dodge out of the way!",
+WCCMSG.DAT,35591,58,"The %s %slunges at you, but your armour deflects the blow!",
+WCCMSG.DAT,35673,55,"The %s %slunges at %s, but %s armour deflects the blow!",
+WCCMSG.DAT,35755,55,"The %s %slunges at %syou, but you dodge out of the way!",
+WCCMSG.DAT,35850,57,"The %s %sclaws at you, but your armour deflects the blow!",
+WCCMSG.DAT,35932,54,"The %s %sclaws at %s, but %s armour deflects the blow!",
+WCCMSG.DAT,36014,54,"The %s %sclaws at you, %sbut you dodge out of the way!",
+WCCMSG.DAT,36103,58,"The %s %slashes at you, but your armour deflects the blow!",
+WCCMSG.DAT,36185,55,"The %s %slashes at %s, but %s armour deflects the blow!",
+WCCMSG.DAT,36267,55,"The %s %slashes at %syou, but you dodge out of the way!",
+WCCMSG.DAT,36362,40,"The %s %s %s with its %s, but %s dodges!",
+WCCMSG.DAT,36444,26,The %s %s you with its %s!,
+WCCMSG.DAT,36526,25,The %s %s %s with its %s!,
+WCCMSG.DAT,36615,58,"The %s %sswings at you, but your armour deflects the blow!",
+WCCMSG.DAT,36697,55,"The %s %sswings at %s, but %s armour deflects the blow!",
+WCCMSG.DAT,36779,55,"The %s %sswings at %syou, but you dodge out of the way!",
+WCCMSG.DAT,36874,29,The %s %sreaches out for you!,
+WCCMSG.DAT,36956,31,The %s %sreaches out for %s! %s,
+WCCMSG.DAT,37038,61,"The %s %sreaches %sout for you, but you dodge out of the way!",
+WCCMSG.DAT,37127,10,push brick,
+WCCMSG.DAT,37209,8,push bri,
+WCCMSG.DAT,37291,10,move brick,
+WCCMSG.DAT,37898,24,A %s strides in from %s.,
+WCCMSG.DAT,37980,25,The %s strides out to %s.,
+WCCMSG.DAT,38062,35,The dark paladin charges after you!,
+WCCMSG.DAT,38151,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,38233,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,38315,50,The dark paladin falls to the ground with a grunt.,
+WCCMSG.DAT,38410,23,A %s stalks in from %s.,
+WCCMSG.DAT,38492,24,The %s stalks out to %s.,
+WCCMSG.DAT,38574,30,The hellhound lopes after you!,
+WCCMSG.DAT,38663,39,The %s savagely rips you for %d damage!,damage
+WCCMSG.DAT,38745,38,The %s savagely rips %s for %s damage!,damage
+WCCMSG.DAT,38827,42,"The hellhound growls menacingly, and dies.",
+WCCMSG.DAT,38922,54,A tentacled abomination slithers out of the dark pool.,
+WCCMSG.DAT,39004,49,The tentacled abomination slithers out to the %s.,
+WCCMSG.DAT,39086,44,The tentacled abomination lumbers after you!,
+WCCMSG.DAT,39175,47,The %s whips you with a tentacle for %d damage!,damage
+WCCMSG.DAT,39257,46,The %s whips %s with a tentacle for %s damage!,damage
+WCCMSG.DAT,39339,50,The tentacled abomination collapses in a wet heap.,
+WCCMSG.DAT,39434,58,"The %s %sflails at you, but your armour deflects the blow!",
+WCCMSG.DAT,39516,55,"The %s %sflails at %s, but %s armour deflects the blow!",
+WCCMSG.DAT,39598,55,"The %s %sflails at %syou, but you dodge out of the way!",
+WCCMSG.DAT,39687,54,"The %s %sflails at %s, %sbut %s dodges out of the way!",
+WCCMSG.DAT,39769,41,The %s %sflails at %syou with a tentacle!,
+WCCMSG.DAT,39851,40,The %s %sflails at %s with a %stentacle!,
+WCCMSG.DAT,40028,6,shoots,
+WCCMSG.DAT,40110,6,shoots,
+WCCMSG.DAT,40199,7,fire at,
+WCCMSG.DAT,40281,8,fires at,
+WCCMSG.DAT,40363,8,fires at,
+WCCMSG.DAT,40458,18,%s enters from %s.,enter
+WCCMSG.DAT,40540,15,%s exits to %s.,exit
+WCCMSG.DAT,40711,63,You pull the lever. Off in the distance you hear a small click.,
+WCCMSG.DAT,40793,38,%s pulls a lever on the southern wall!,
+WCCMSG.DAT,40970,20,You push the button.,
+WCCMSG.DAT,41052,19,%s pushes a button!,
+WCCMSG.DAT,41223,19,You pull the lever.,
+WCCMSG.DAT,41305,29,%s pulls a lever on the wall!,
+WCCMSG.DAT,41482,35,You climb into the pitch-dark hole.,
+WCCMSG.DAT,41564,37,%s climbs through a hole in the wall!,
+WCCMSG.DAT,41646,37,%s enters through a hole in the wall!,enter
+WCCMSG.DAT,41735,58,"You pull open the manhole cover, and slip inside the hole.",
+WCCMSG.DAT,41817,34,%s enters a manhole in the ground!,enter
+WCCMSG.DAT,41899,34,%s enters from a manhole overhead!,enter
+WCCMSG.DAT,41994,48,"You push the brick, and it slides into a recess.",
+WCCMSG.DAT,42076,35,%s pushes a brick in the fireplace!,
+WCCMSG.DAT,42329,6,sprays,
+WCCMSG.DAT,42411,6,sprays,
+WCCMSG.DAT,42506,8,spray at,
+WCCMSG.DAT,42588,9,sprays at,
+WCCMSG.DAT,42670,9,sprays at,
+WCCMSG.DAT,42759,7,go path,
+WCCMSG.DAT,42841,10,enter path,enter
+WCCMSG.DAT,42923,9,walk path,
+WCCMSG.DAT,43018,63,"You push through the dense foliage, and walk onto a small path.",
+WCCMSG.DAT,43100,60,"%s shoves aside the foliage, and disappears among the trees.",
+WCCMSG.DAT,43182,65,"You hear a loud crashing sound, and %s appears through the trees!",
+WCCMSG.DAT,43271,59,"You step onto the crumbling edge of a pit, and fall inside!",
+WCCMSG.DAT,43353,60,"%s steps onto the crumbling edge of a pit, and falls inside!",
+WCCMSG.DAT,43435,38,%s falls down into the pit from above!,
+WCCMSG.DAT,44042,36,You scramble out of the shallow pit.,
+WCCMSG.DAT,44124,36,%s scrambles out of the shallow pit.,
+WCCMSG.DAT,44206,41,%s scrambles up out of the pit to safety.,
+WCCMSG.DAT,44295,11,pull switch,
+WCCMSG.DAT,44377,11,move switch,
+WCCMSG.DAT,44459,8,pull swi,
+WCCMSG.DAT,44554,63,"You pull the switch, and hear a harsh grating sound from below.",
+WCCMSG.DAT,44636,32,%s moves around under the table.,
+WCCMSG.DAT,44971,41,The dark goblin archer charges after you!,
+WCCMSG.DAT,45066,32,The %s shoots you for %d damage!,damage
+WCCMSG.DAT,45148,31,The %s shoots %s for %s damage!,damage
+WCCMSG.DAT,45230,54,The dark goblin archer collapses with a spiteful hiss.,
+WCCMSG.DAT,45319,20,You feel confused...,
+WCCMSG.DAT,45401,28,"%s stumbles about, confused!",
+WCCMSG.DAT,45483,17,You are confused!,
+WCCMSG.DAT,45578,8,shoot at,
+WCCMSG.DAT,45660,9,shoots at,
+WCCMSG.DAT,45742,9,shoots at,
+WCCMSG.DAT,45831,22,A %s walks in from %s.,
+WCCMSG.DAT,45913,23,The %s walks out to %s.,
+WCCMSG.DAT,45995,51,The bandit charges after you with a triumphant cry!,
+WCCMSG.DAT,46090,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,46172,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,46254,37,"The bandit eyes you evilly, and dies.",
+WCCMSG.DAT,46343,22,A %s lopes in from %s.,
+WCCMSG.DAT,46425,23,The %s lopes out to %s.,
+WCCMSG.DAT,46507,35,"The dog charges after you, yelping!",
+WCCMSG.DAT,46602,30,The %s rips you for %d damage!,damage
+WCCMSG.DAT,46684,29,Ths %s rips %s for %s damage!,damage
+WCCMSG.DAT,46766,31,"The dog yelps loudly, and dies.",
+WCCMSG.DAT,46855,25,A %s scuttles in from %s.,
+WCCMSG.DAT,46937,26,The %s scuttles out to %s.,
+WCCMSG.DAT,47019,55,"The forest spider scuttles after you, chittering madly!",
+WCCMSG.DAT,47114,31,The %s bites you for %d damage!,damage
+WCCMSG.DAT,47196,30,The %s bites %s for %s damage!,damage
+WCCMSG.DAT,47278,36,The forest spider curls up and dies.,
+WCCMSG.DAT,47367,35,A giant spider scuttles in from %s.,
+WCCMSG.DAT,47449,36,The giant spider scuttles out to %s.,
+WCCMSG.DAT,47531,35,The giant spider charges after you!,
+WCCMSG.DAT,47626,40,The %s bites you savagely for %d damage!,damage
+WCCMSG.DAT,47708,30,The %s bites %s for %s damage!,damage
+WCCMSG.DAT,47790,45,The giant spider collapses with an evil wail.,
+WCCMSG.DAT,47879,24,A %s strides in from %s.,
+WCCMSG.DAT,47961,25,The %s strides out to %s.,
+WCCMSG.DAT,48043,31,The dark goblin runs after you!,
+WCCMSG.DAT,48138,33,The %s smashes you for %d damage!,damage
+WCCMSG.DAT,48220,32,The %s smashes %s for %s damage!,damage
+WCCMSG.DAT,48302,40,The dark goblin spits up blood and dies!,
+WCCMSG.DAT,48391,25,A %s shuffles in from %s.,
+WCCMSG.DAT,48473,26,The %s shuffles out to %s.,
+WCCMSG.DAT,48555,32,The kobold slave runs after you!,
+WCCMSG.DAT,48650,31,The %s stabs you for %d damage!,damage
+WCCMSG.DAT,48732,30,The %s stabs %s for %s damage!,damage
+WCCMSG.DAT,48814,39,The kobold slave collapses with a sigh.,
+WCCMSG.DAT,48903,24,A %s strides in from %s.,
+WCCMSG.DAT,48985,25,The %s strides out to %s.,
+WCCMSG.DAT,49067,50,The black orc charges after you with a fierce cry!,
+WCCMSG.DAT,49162,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,49244,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,49326,47,The black orc falls to the ground with a grunt.,
+WCCMSG.DAT,49415,22,A %s lopes in from %s.,
+WCCMSG.DAT,49497,23,The %s lopes out to %s.,
+WCCMSG.DAT,49579,32,The dire wolf charges after you!,
+WCCMSG.DAT,50186,39,The %s rips you savagely for %d damage!,damage
+WCCMSG.DAT,50268,38,The %s rips %s savagely for %s damage!,damage
+WCCMSG.DAT,50350,43,"The dire wolf utters a low growl, and dies.",
+WCCMSG.DAT,50439,22,A %s oozes in from %s.,
+WCCMSG.DAT,50521,23,The %s oozes out to %s.,
+WCCMSG.DAT,50603,32,The slime beast oozes after you!,
+WCCMSG.DAT,50698,31,The %s slaps you for %d damage!,damage
+WCCMSG.DAT,50780,30,The %s slaps %s for %s damage!,damage
+WCCMSG.DAT,50862,55,The slime beast dissolves into a mass of reeking flesh.,
+WCCMSG.DAT,50951,23,A %s stomps in from %s.,
+WCCMSG.DAT,51033,24,The %s stomps out to %s.,
+WCCMSG.DAT,51115,40,The half-ogre warrior lumbers after you!,
+WCCMSG.DAT,51210,33,The %s smashes you for %d damage!,damage
+WCCMSG.DAT,51292,32,The %s smashes %s for %s damage!,damage
+WCCMSG.DAT,51374,60,The half-ogre warrior falls to the ground with a loud thump.,
+WCCMSG.DAT,51463,25,Thrag smashes in from %s!,
+WCCMSG.DAT,51545,24,Thrag smashes out to %s!,
+WCCMSG.DAT,51627,36,Thrag charges after you with a roar!,
+WCCMSG.DAT,51722,29,%s smashes you for %d damage!,damage
+WCCMSG.DAT,51804,28,%s smashes %s for %s damage!,damage
+WCCMSG.DAT,51886,45,"Thrag utters a deafening moan, and collapses.",
+WCCMSG.DAT,51975,45,"%s %s you, but your armour deflects the blow!",
+WCCMSG.DAT,52057,42,"%s %s %s, but %s armour deflects the blow!",
+WCCMSG.DAT,52139,37,"%s %s you with his %s, but you dodge!",
+WCCMSG.DAT,52234,36,"%s %s %s with his %s, but %s dodges!",
+WCCMSG.DAT,52316,22,%s %s you with his %s!,
+WCCMSG.DAT,52339,11,but misses!,
+WCCMSG.DAT,52398,21,%s %s %s with his %s!,
+WCCMSG.DAT,52420,11,but misses!,
+WCCMSG.DAT,52487,56,"The %s smacks you, but %syour armour absorbs the damage!",damage
+WCCMSG.DAT,52569,54,"The %s %scrushes %s, but %s armour absorbs the damage!",damage
+WCCMSG.DAT,52651,55,"The %s %slunges at you, %sbut you dodge out of the way!",
+WCCMSG.DAT,52746,14,slice and dice,
+WCCMSG.DAT,52828,15,slice and dices,
+WCCMSG.DAT,52910,15,slice and dices,
+WCCMSG.DAT,52999,8,swing at,
+WCCMSG.DAT,53081,9,swings at,
+WCCMSG.DAT,53163,9,swings at,
+WCCMSG.DAT,53258,65,"You drink the %s, and a healing warmth spreads through your body!",heal
+WCCMSG.DAT,53422,23,%s quaffs a red potion!,
+WCCMSG.DAT,53511,42,"You cast %s on %s, draining %d hit points!",cast
+WCCMSG.DAT,53593,51,"%s casts %s on you, and siphons away %d hit points!",cast
+WCCMSG.DAT,53675,37,"%s casts %s on %s, who reels in pain!",cast
+WCCMSG.DAT,53770,64,"You hop into one of the boats. In no time, you reach the island.",
+WCCMSG.DAT,53852,70,"%s hops into one of the boats, and begins to row out across the river.",
+WCCMSG.DAT,53934,63,"%s lands on the beach, and hops out of his boat onto the shore.",
+WCCMSG.DAT,54023,8,go crack,
+WCCMSG.DAT,54105,11,enter crack,enter
+WCCMSG.DAT,54187,7,go path,
+WCCMSG.DAT,54282,65,"You walk into the wide crack, and follow a path through the rock.",
+WCCMSG.DAT,54364,29,%s walks into the wide crack.,
+WCCMSG.DAT,54446,30,%s enters from the wide crack.,enter
+WCCMSG.DAT,54535,31,The %s whaps you for %d damage!,damage
+WCCMSG.DAT,54617,30,The %s whaps %s for %s damage!,damage
+WCCMSG.DAT,54794,36,You squeeze through the narrow hole.,
+WCCMSG.DAT,54876,22,%s climbs into a hole.,
+WCCMSG.DAT,54958,29,%s enters from a narrow hole.,enter
+WCCMSG.DAT,55047,62,"You feel dizzy for a moment, but the feeling quickly subsides.",
+WCCMSG.DAT,55129,26,%s just left to the south.,
+WCCMSG.DAT,55211,31,%s just arrived from the north.,
+WCCMSG.DAT,55306,62,"You feel dizzy for a moment, but the feeling quickly subsides.",
+WCCMSG.DAT,55388,25,%s just left to the east.,
+WCCMSG.DAT,55470,30,%s just arrived from the west.,
+WCCMSG.DAT,55559,62,"You feel dizzy for a moment, but the feeling quickly subsides.",
+WCCMSG.DAT,55641,26,%s just left to the north.,
+WCCMSG.DAT,55723,31,%s just arrived from the south.,
+WCCMSG.DAT,56330,62,"You feel dizzy for a moment, but the feeling quickly subsides.",
+WCCMSG.DAT,56412,25,%s just left to the west.,
+WCCMSG.DAT,56494,30,%s just arrived from the east.,
+WCCMSG.DAT,56665,9,say river,
+WCCMSG.DAT,56747,11,speak river,
+WCCMSG.DAT,56842,27,"You speak the word ""river"".",
+WCCMSG.DAT,56924,27,"%s utters the word ""river"".",
+WCCMSG.DAT,57095,9,push star,
+WCCMSG.DAT,57354,50,"You push the star symbol, and hear a slight click.",
+WCCMSG.DAT,57436,51,%s pushes the star symbol. You hear a slight click.,
+WCCMSG.DAT,57607,9,push moon,
+WCCMSG.DAT,57866,50,You push the moon symbol. You hear a slight click.,
+WCCMSG.DAT,57948,51,%s pushes the moon symbol. You hear a slight click.,
+WCCMSG.DAT,58119,14,turn sun right,
+WCCMSG.DAT,58201,21,turn sun symbol right,
+WCCMSG.DAT,58283,15,twist sun right,
+WCCMSG.DAT,58378,54,You turn the sun symbol right. You hear a small click.,
+WCCMSG.DAT,58460,54,%s turns the sun symbol right. You hear a small click.,
+WCCMSG.DAT,58631,9,heartbeat,
+WCCMSG.DAT,58713,13,say heartbeat,
+WCCMSG.DAT,58795,15,speak heartbeat,
+WCCMSG.DAT,58890,31,"You speak the word ""heartbeat"".",
+WCCMSG.DAT,58972,31,"%s utters the word ""heartbeat"".",
+WCCMSG.DAT,59143,9,pull ring,
+WCCMSG.DAT,59225,14,pull nose ring,
+WCCMSG.DAT,59307,14,pull nose-ring,
+WCCMSG.DAT,59402,66,"You pull the minotaur statue's nose ring, which retracts slightly.",
+WCCMSG.DAT,59484,35,%s pulls on the statue's nose ring.,
+WCCMSG.DAT,59655,14,pull left horn,
+WCCMSG.DAT,59737,14,move left horn,
+WCCMSG.DAT,59914,61,"You pull the minotaur statue's left horn, which moves freely.",
+WCCMSG.DAT,59996,44,%s pulls on the minotaur statue's left horn.,
+WCCMSG.DAT,60167,14,push right eye,
+WCCMSG.DAT,60426,63,"You push the minotaur statue's right eye, which clicks audibly.",
+WCCMSG.DAT,60508,42,%s pushes the minotaur statue's right eye.,
+WCCMSG.DAT,60679,15,pull right horn,
+WCCMSG.DAT,60761,15,move right horn,
+WCCMSG.DAT,60938,62,"You pull the minotaur statue's right horn, which moves freely.",
+WCCMSG.DAT,61020,45,%s pulls on the minotaur statue's right horn.,
+WCCMSG.DAT,61191,13,push left eye,
+WCCMSG.DAT,61450,69,"You push the statue's left eye, and a strong shock runs through you!!",
+WCCMSG.DAT,61532,63,"%s pushes the statue's left eye, looks surprised, and vanishes!",
+WCCMSG.DAT,61614,33,%s appears in a shimmering flash!,
+WCCMSG.DAT,61703,72,"You pull the lever, and a trapdoor opens beneath you! You fall through!!",trap|door
+WCCMSG.DAT,61785,49,"%s pulls the lever, and falls through a trapdoor!",trap|door
+WCCMSG.DAT,61867,39,%s falls through a hole in the ceiling!,
+WCCMSG.DAT,62474,60,"You clamber out of the hole, and fall ten feet onto a beach!",
+WCCMSG.DAT,62556,44,%s climbs out through the hole to the south.,
+WCCMSG.DAT,62638,52,%s falls out of a hole far up the face of the cliff!,
+WCCMSG.DAT,62727,38,A minotaur champion stomps in from %s.,
+WCCMSG.DAT,62809,39,The minotaur champion stomps out to %s.,
+WCCMSG.DAT,62891,40,The minotaur champion charges after you!,
+WCCMSG.DAT,62986,33,The %s cleaves you for %d damage!,damage
+WCCMSG.DAT,63068,32,The %s cleaves %s for %s damage!,damage
+WCCMSG.DAT,63150,65,"The minotaur champion lets out a deafening bellow, and collapses!",
+WCCMSG.DAT,63321,7,crushes,
+WCCMSG.DAT,63403,7,crushes,
+WCCMSG.DAT,63498,34,A giant black ooze enters from %s.,enter
+WCCMSG.DAT,63580,34,The giant black ooze leaves to %s.,
+WCCMSG.DAT,63662,33,The giant black ooze follows you!,
+WCCMSG.DAT,63751,58,The %s crushes you with its incredible bulk for %d damage!,damage
+WCCMSG.DAT,63833,57,Ths %s crushes %s with its incredible bulk for %s damage!,damage
+WCCMSG.DAT,63915,31,The giant black ooze dissolves.,
+WCCMSG.DAT,64263,7,snap at,
+WCCMSG.DAT,64345,8,snaps at,
+WCCMSG.DAT,64427,8,snaps at,
+WCCMSG.DAT,64522,22,A %s lopes in from %s.,
+WCCMSG.DAT,64604,23,The %s lopes out to %s.,
+WCCMSG.DAT,64686,32,The death dog runs in after you!,death
+WCCMSG.DAT,64775,30,The %s rips you for %d damage!,damage
+WCCMSG.DAT,64857,29,The %s rips %s for %s damage!,damage
+WCCMSG.DAT,64939,38,"The death dog growls softly, and dies.",death
+WCCMSG.DAT,65034,24,A %s strides in from %s.,
+WCCMSG.DAT,65116,23,The %s walks out to %s.,
+WCCMSG.DAT,65198,39,The skeletal warrior charges after you!,
+WCCMSG.DAT,65287,33,The %s slashes you for %d damage!,damage
+WCCMSG.DAT,65369,32,The %s slashes %s for %s damage!,damage
+WCCMSG.DAT,65451,55,"The skeletal warrior falters, then collapses in a heap.",
+WCCMSG.DAT,65799,42,A moaning spirit appears right beside you!,
+WCCMSG.DAT,65881,40,The moaning spirit vanishes with a wail!,
+WCCMSG.DAT,65963,36,The moaning spirit floats after you!,
+WCCMSG.DAT,66058,53,The %s touches you with a ghostly hand for %d damage!,damage
+WCCMSG.DAT,66140,52,The %s touches %s with a ghostly hand for %s damage!,damage
+WCCMSG.DAT,66222,47,"The spirit gasps loudly, sighs, and disappears.",
+WCCMSG.DAT,66393,6,chokes,
+WCCMSG.DAT,66475,6,chokes,
+WCCMSG.DAT,66570,9,reach for,
+WCCMSG.DAT,66652,11,reaches for,
+WCCMSG.DAT,66734,11,reaches for,
+WCCMSG.DAT,66823,40,A huge tiger beetle scuttles in from %s.,
+WCCMSG.DAT,66905,41,The huge tiger beetle scuttles out to %s.,
+WCCMSG.DAT,66987,40,The huge tiger beetle charges after you!,
+WCCMSG.DAT,67082,30,The %s rips you for %d damage!,damage
+WCCMSG.DAT,67164,29,The %s rips %s for %s damage!,damage
+WCCMSG.DAT,67246,59,"The huge tiger beetle drops to the ground, its shell split.",drop
+WCCMSG.DAT,67335,65,"You drink the %s, and a healing warmth spreads through your body!",heal
+WCCMSG.DAT,67499,56,"%s unstoppers a violet potion, and downs it in one gulp!",
+WCCMSG.DAT,67594,38,You drink down the thick violet fluid.,
+WCCMSG.DAT,67758,26,%s quaffs a violet potion!,
+WCCMSG.DAT,67847,52,"You climb into a boat, and row your way to the port.",
+WCCMSG.DAT,67929,53,"%s climbs into a boat, and rows off across the river.",
+WCCMSG.DAT,68011,46,%s rows up to the dock in a boat and moors it.,
+WCCMSG.DAT,68618,35,A guardian golem stomps in from %s.,
+WCCMSG.DAT,68700,36,The guardian golem stomps out to %s.,
+WCCMSG.DAT,68782,36,The guardian golem stomps after you!,
+WCCMSG.DAT,68871,33,The %s smashes you for %d damage!,damage
+WCCMSG.DAT,68953,32,The %s smashes %s for %s damage!,damage
+WCCMSG.DAT,69035,64,"The guardian golem collapses, shattering into a thousand shards.",
+WCCMSG.DAT,69130,31,A walking chest enters from %s.,enter
+WCCMSG.DAT,69212,34,The walking chest walks out to %s.,
+WCCMSG.DAT,69294,33,The walking chest runs after you!,
+WCCMSG.DAT,69383,30,The %s rips you for %d damage!,damage
+WCCMSG.DAT,69465,29,The %s rips %s for %s damage!,damage
+WCCMSG.DAT,69547,40,"The mimic topples to the ground, broken.",
+WCCMSG.DAT,69642,54,"The %s %slunges at %s, %sbut %s dodges out of the way!",
+WCCMSG.DAT,69724,25,The %s %slunges at %syou!,
+WCCMSG.DAT,69806,25,The %s %slunges at %s! %s,
+WCCMSG.DAT,69895,54,"The %s %sreaches for you, but you move out of the way!",
+WCCMSG.DAT,69977,53,"The %s %sreaches for %s, but %s moves out of the way!",
+WCCMSG.DAT,70059,42,"The %s %sreaches for %syou, but you dodge!",
+WCCMSG.DAT,70154,41,"The %s %sreaches for %s, %sbut %s dodges!",
+WCCMSG.DAT,70236,27,The %s %sreaches for %syou!,
+WCCMSG.DAT,70318,27,The %s %sreaches for %s! %s,
+WCCMSG.DAT,70407,33,The %s impales you for %d damage!,damage
+WCCMSG.DAT,70489,32,The %s impales %s for %s damage!,damage
+WCCMSG.DAT,70666,41,The %s all-out slashes you for %d damage!,damage
+WCCMSG.DAT,70748,40,The %s all-out slashes %s for %s damage!,damage
+WCCMSG.DAT,70919,41,The %s all-out slashes you for %d damage!,damage
+WCCMSG.DAT,71001,40,The %s all-out slashes %s for %s damage!,damage
+WCCMSG.DAT,71178,41,The %s casts %s on you! You feel unlucky!,cast
+WCCMSG.DAT,71260,22,The %s casts %s on %s!,cast
+WCCMSG.DAT,71431,42,The %s breathes fire on you for %d damage!,damage
+WCCMSG.DAT,71513,41,The %s breathes fire on %s for %s damage!,damage
+WCCMSG.DAT,71690,27,You %s at %s for %d damage!,damage
+WCCMSG.DAT,71772,31,The %s %s at you for %d damage!,damage
+WCCMSG.DAT,71854,30,The %s %s at %s for %s damage!,damage
+WCCMSG.DAT,71943,41,The %s all-out smashes you for %d damage!,damage
+WCCMSG.DAT,72025,40,The %s all-out smashes %s for %s damage!,damage
+WCCMSG.DAT,72202,39,The %s all-out chops you for %d damage!,damage
+WCCMSG.DAT,72284,38,The %s all-out chops %s for %s damage!,damage
+WCCMSG.DAT,72455,13,You %s at %s!,
+WCCMSG.DAT,72537,17,The %s %s at you!,
+WCCMSG.DAT,72619,16,The %s %s at %s!,
+WCCMSG.DAT,72714,46,The %s bites you for %d damage! You feel sick!,damage
+WCCMSG.DAT,72796,30,The %s bites %s for %s damage!,damage
+WCCMSG.DAT,73049,32,Poison burns through your veins!,
+WCCMSG.DAT,73308,19,You feel VERY sick!,
+WCCMSG.DAT,73479,43,The %s all-out bludgeons you for %d damage!,damage
+WCCMSG.DAT,73561,42,The %s all-out bludgeons %s for %s damage!,damage
+WCCMSG.DAT,73738,63,%s picks you up and smashes you against the wall for %d damage!,damage
+WCCMSG.DAT,73820,48,%s picks %s up and smashes him against the wall!,
+WCCMSG.DAT,73991,46,%s smashes you with a huge fist for %d damage!,damage
+WCCMSG.DAT,74073,45,%s smashes %s with a huge fist for %s damage!,damage
+WCCMSG.DAT,74762,44,%s kicks you with a huge foot for %d damage!,damage
+WCCMSG.DAT,74844,43,%s kicks %s with a huge foot for %s damage!,damage
+WCCMSG.DAT,75015,45,The %s guts you with his horns for %d damage!,damage
+WCCMSG.DAT,75097,44,The %s guts %s with his horns for %s damage!,damage
+WCCMSG.DAT,75274,29,You %s from %s for %d damage!,damage
+WCCMSG.DAT,75356,39,The %s %s from your body for %d damage!,damage
+WCCMSG.DAT,75438,25,The %s %s from %s's body!,
+WCCMSG.DAT,75527,7,lash at,
+WCCMSG.DAT,75609,9,lashes at,
+WCCMSG.DAT,75691,9,lashes at,
+WCCMSG.DAT,75786,43,"You cast %s, blinding everyone in the room!",room|cast
+WCCMSG.DAT,75868,43,"%s casts %s, blinding everyone in the room!",room|cast
+WCCMSG.DAT,75950,43,"%s casts %s, blinding everyone in the room!",room|cast
+WCCMSG.DAT,76039,18,You cast %s on %s.,cast
+WCCMSG.DAT,76121,44,%s casts %s on you. You can see in the dark!,cast
+WCCMSG.DAT,76203,18,%s casts %s on %s.,cast
+WCCMSG.DAT,76298,59,You cast %s on yourself. A glimmering shield surrounds you!,cast
+WCCMSG.DAT,76462,18,%s casts %s on %s!,cast
+WCCMSG.DAT,76551,56,You cast %s on yourself. A crackling field surround you!,cast
+WCCMSG.DAT,76715,12,%s casts %s.,cast
+WCCTEXT.DAT,8925,10,@detailsL@,
+WCCTEXT.DAT,9613,8,@shrine@,
+WCCTEXT.DAT,9634,6,ZQSST*,
+WCCTEXT.DAT,9646,6,ZQSST*,
+WCCTEXT.DAT,11218,8,NNN@B@@h,
+WCCTEXT.DAT,11334,8,@Bnow@i@,
+WCCTEXT.DAT,11555,7,NNNB@@h,
+WCCTEXT.DAT,11711,6,NNN@@t,
+WCCTEXT.DAT,12527,6,GL@*iG,
+WCCTEXT.DAT,13554,6,*nZ*bZ,
+WCCTEXT.DAT,15458,9,@nooooL@a,
+WCCTEXT.DAT,15897,7,@stock@,
+WCCTEXT.DAT,16296,7,@stock@,
+WCCTEXT.DAT,17641,14,@buy@training@,
+WCCTEXT.DAT,18069,8,@borrow@,
+WCCTEXT.DAT,18199,6,skiff@,
+WCCTEXT.DAT,18501,9,_@borrow@,
+WCCTEXT.DAT,18527,15,_@borrow@skiff@,
+WCCTEXT.DAT,18801,14,@buy@training@,
+WCCTEXT.DAT,19558,8,@shrine@,
+WCCTEXT.DAT,20575,15,_@borrow@skiff@,
+WCCTEXT.DAT,20849,14,@buy@training@,
+WCCTEXT.DAT,21606,8,@shrine@,
+WCCTEXT.DAT,23939,16,@buy@trainingN@o,
+WCCTEXT.DAT,24077,8,@spells@,spell
+WCCTEXT.DAT,24196,15,*silvermereNB@t,
+WCCTEXT.DAT,24242,6,@test@,
+WCCTEXT.DAT,25598,8,L@Bhalt@,
+WCCTEXT.DAT,25840,10,@strongAB*,
+WCCTEXT.DAT,26901,32,L@never@get@thragGs@treasureAB@h,get
+WCCTEXT.DAT,27060,32,L@Bnever@get@thragGs@treasureAB*,get
+WCCTEXT.DAT,38359,7,@QRU@Q*,
+WCCTEXT.DAT,45148,7,@QRU@Q*,
+WCCTEXT.DAT,45713,8,@spells@,spell
+WCCTEXT.DAT,45832,14,*silvermereNB*,
+WCCTEXT.DAT,46156,8,@shrine@,
+WCCTEXT.DAT,47196,7,@QRU@Q*,
+WCCTEXT.DAT,47761,8,@spells@,spell
+WCCTEXT.DAT,47880,14,*silvermereNB*,
+WCCTEXT.DAT,48204,8,@shrine@,
+WCCTEXT.DAT,49211,8,@RQRV@Q*,
+WCCTEXT.DAT,49244,7,@QRU@Q*,
+WCCTEXT.DAT,49809,8,@spells@,spell
+WCCTEXT.DAT,49928,14,*silvermereNB*,
+WCCTEXT.DAT,50252,8,@shrine@,
+WCCTEXT.DAT,51259,8,@RQRV@Q*,
+WCCTEXT.DAT,51292,7,@QRU@Q*,
+WCCTEXT.DAT,51857,8,@spells@,spell
+WCCTEXT.DAT,51976,14,*silvermereNB*,
+WCCTEXT.DAT,52300,8,@shrine@,
+WCCTEXT.DAT,53307,8,@RQRV@Q*,
+WCCTEXT.DAT,53340,7,@QRU@Q*,
+WCCTEXT.DAT,53905,8,@spells@,spell
+WCCTEXT.DAT,54024,14,*silvermereNB*,
+WCCTEXT.DAT,54348,8,@shrine@,
+WCCTEXT.DAT,56129,6,@QRSSZ,
+WCCTEXT.DAT,56152,9,@MQP@VPYZ,
+WCCTEXT.DAT,56169,7,@WST@XZ,
+WCCTEXT.DAT,56183,6,@QRSU*,
+WCCTEXT.DAT,56206,6,@QRSSZ,
+WCCTEXT.DAT,56229,9,@MQP@VPYZ,
+WCCTEXT.DAT,56246,7,@WST@XZ,
+WCCTEXT.DAT,56260,6,@QRSU*,
+WCCTEXT.DAT,56321,6,@RP@WZ,
+WCCTEXT.DAT,56365,6,@WP@QZ,
+WCCTEXT.DAT,56382,7,@QRY@Q*,
+WCCTEXT.DAT,56449,6,@RP@WZ,
+WCCTEXT.DAT,56493,6,@WP@QZ,
+WCCTEXT.DAT,56510,7,@QRY@Q*,
+WCCTEXT.DAT,56570,6,@RP@WZ,
+WCCTEXT.DAT,56614,6,@WP@QZ,
+WCCTEXT.DAT,56631,7,@QRY@Q*,
+WCCTEXT.DAT,56697,6,@RP@WZ,
+WCCTEXT.DAT,56741,6,@WP@QZ,
+WCCTEXT.DAT,56758,7,@QRY@Q*,
+WCCTEXT.DAT,58012,8,@UP@SQXZ,
+WCCTEXT.DAT,58063,8,@UP@SQXZ,
+WCCTEXT.DAT,58123,9,@QRP@SQXZ,
+WCCTEXT.DAT,58175,9,@QRP@SQXZ,
+WCCTEXT.DAT,58238,9,@RPP@SQXZ,
+WCCTEXT.DAT,58290,9,@RPP@SQXZ,
+WCCTEXT.DAT,58349,10,@QPPP@SQXZ,
+WCCTEXT.DAT,58402,10,@QPPP@SQXZ,
+WCCTEXT.DAT,58463,10,@RUPP@SQXZ,
+WCCTEXT.DAT,58516,10,@RUPP@SQXZ,
+WCCTEXT.DAT,58577,10,@UPPP@SQXZ,
+WCCTEXT.DAT,58630,10,@UPPP@SQXZ,
+WCCTEXT.DAT,58970,9,@healing@,heal
+WCCTEXT.DAT,59035,20,@buy@minor@healingL@,heal
+WCCTEXT.DAT,59157,20,@buy@major@healingL@,heal
+WCCTEXT.DAT,59279,22,@buy@greater@healingL@,heal
+WCCTEXT.DAT,59436,18,@buy@cure@poisonL@,
+WCCTEXT.DAT,59569,19,@buy@cure@diseaseL@,
+WCCTEXT.DAT,59706,19,@buy@remove@curseL@,
+WCCTEXT.DAT,59871,9,@QUP@SQXZ,
+WCCTEXT.DAT,59912,9,@QUP@SQXZ,
+WCCTEXT.DAT,59962,9,@SUP@SQXZ,
+WCCTEXT.DAT,60003,9,@SUP@SQXZ,
+WCCTEXT.DAT,60055,9,@VPP@SQXZ,
+WCCTEXT.DAT,60096,9,@VPP@SQXZ,
+WCCTEXT.DAT,60144,10,@SPPP@SQXZ,
+WCCTEXT.DAT,60186,10,@SPPP@SQXZ,
+WCCTEXT.DAT,60236,10,@WUPP@SQXZ,
+WCCTEXT.DAT,60278,10,@WUPP@SQXZ,
+WCCTEXT.DAT,60328,11,@QUPPP@SQXZ,
+WCCTEXT.DAT,60371,11,@QUPPP@SQXZ,
+WCCTEXT.DAT,60438,13,L@Bget@outA@y,get
+WCCTEXT.DAT,60483,12,A@get@outAB*,get
+WCCTEXT.DAT,61175,10,@dragonN@a,
+WCCTEXT.DAT,61255,6,@hope@,
+WCCTEXT.DAT,61535,6,NNN@i@,
+WCCTEXT.DAT,63457,6,@help@,
+WCCTEXT.DAT,65118,6,@will@,
+WCCTEXT.DAT,65238,9,@TXV@STTZ,
+WCCTEXT.DAT,65315,9,@TXV@STTZ,
+WCCTEXT.DAT,65407,9,@TXV@STTZ,
+WCCTEXT.DAT,65481,9,@TXV@STTZ,
+WCCTEXT.DAT,65590,9,@TXQ@STTZ,
+WCCTEXT.DAT,65667,9,@TXQ@STTZ,
+WCCTEXT.DAT,65748,9,@TXQ@STTZ,
+WCCTEXT.DAT,65822,9,@TXQ@STTZ,
+WCCTEXT.DAT,65906,9,@TWY@STTZ,
+WCCTEXT.DAT,65982,9,@TWY@STTZ,
+WCCTEXT.DAT,66055,9,@TWY@STTZ,
+WCCTEXT.DAT,66128,9,@TWY@STTZ,
+WCCTEXT.DAT,66221,9,@TXP@STTZ,
+WCCTEXT.DAT,66318,9,@TXP@STTZ,
+WCCTEXT.DAT,66408,9,@TXP@STTZ,
+WCCTEXT.DAT,66510,9,@TXP@STTZ,
+WCCTEXT.DAT,66604,9,@TXP@STTZ,
+WCCTEXT.DAT,66691,9,@TXP@STTZ,
+WCCTEXT.DAT,67418,6,NNN@i@,
+WCCTEXT.DAT,67678,6,NNNB@h,
+WCCTEXT.DAT,67815,6,NNNB@h,
+WCCTEXT.DAT,69074,6,@me_@p,
+WCCTEXT.DAT,69400,8,Z@Bhelp@,
+WCCTEXT.DAT,69536,7,@keysL@,key
+WCCTEXT.DAT,73214,6,@must@,
+WCCTEXT.DAT,73278,8,@mustAB*,
+WCCTEXT.DAT,73303,8,@mortal@,
+WCCTEXT.DAT,73676,6,@keys@,key
+WCCTEXT.DAT,73990,9,@TYP@TVWZ,
+WCCTEXT.DAT,74019,9,@TYQ@TVYZ,
+WCCTEXT.DAT,74048,9,@TYR@TWQZ,
+WCCTEXT.DAT,74139,9,@TYP@TVWZ,
+WCCTEXT.DAT,74168,9,@TYQ@TVYZ,
+WCCTEXT.DAT,74197,9,@TYR@TWQZ,
+WCCTEXT.DAT,74282,9,@TYP@TVWZ,
+WCCTEXT.DAT,74311,9,@TYQ@TVYZ,
+WCCTEXT.DAT,74340,9,@TYR@TWQZ,
+WCCTEXT.DAT,74431,9,@TYP@TVWZ,
+WCCTEXT.DAT,74460,9,@TYQ@TVYZ,
+WCCTEXT.DAT,74489,9,@TYR@TWQZ,
+WCCTEXT.DAT,74589,9,@TYP@TVWZ,
+WCCTEXT.DAT,74618,9,@TYQ@TVYZ,
+WCCTEXT.DAT,74647,9,@TYR@TWQZ,
+WCCTEXT.DAT,74753,9,@TYP@TVWZ,
+WCCTEXT.DAT,74782,9,@TYQ@TVYZ,
+WCCTEXT.DAT,74811,9,@TYR@TWQZ,
+WCCTEXT.DAT,74911,9,@TYP@TVWZ,
+WCCTEXT.DAT,74940,9,@TYQ@TVYZ,
+WCCTEXT.DAT,74969,9,@TYR@TWQZ,
+WCCTEXT.DAT,75075,9,@TYP@TVWZ,
+WCCTEXT.DAT,75104,9,@TYQ@TVYZ,
+WCCTEXT.DAT,75133,9,@TYR@TWQZ,
+WCCTEXT.DAT,75216,9,@TYP@TVWZ,
+WCCTEXT.DAT,75245,9,@TYQ@TVYZ,
+WCCTEXT.DAT,75274,9,@TYR@TWQZ,
+WCCTEXT.DAT,75363,9,@TYP@TVWZ,
+WCCTEXT.DAT,75392,9,@TYQ@TVYZ,
+WCCTEXT.DAT,75421,9,@TYR@TWQZ,
+WCCTEXT.DAT,75505,9,@TYP@TVWZ,
+WCCTEXT.DAT,75534,9,@TYQ@TVYZ,
+WCCTEXT.DAT,75563,9,@TYR@TWQZ,
+WCCTEXT.DAT,75653,9,@TYP@TVWZ,
+WCCTEXT.DAT,75682,9,@TYQ@TVYZ,
+WCCTEXT.DAT,75711,9,@TYR@TWQZ,
+WCCTEXT.DAT,76353,8,@QRUP@WZ,
+WCCTEXT.DAT,76387,6,@RR@SZ,
+WCCTEXT.DAT,76404,7,@QSP@Q*,
+WCCTEXT.DAT,76502,8,@QRUP@WZ,
+WCCTEXT.DAT,76536,6,@RR@SZ,
+WCCTEXT.DAT,76553,7,@QSP@Q*,
+WCCTEXT.DAT,76651,8,@QRUP@WZ,
+WCCTEXT.DAT,76685,6,@RR@SZ,
+WCCTEXT.DAT,76702,7,@QSP@Q*,
+WCCTEXT.DAT,77978,9,@TYY@UQPZ,
+WCCTEXT.DAT,78099,9,@TYY@UQPZ,
+WCCTEXT.DAT,78205,9,@TYY@UQPZ,
+WCCTEXT.DAT,78318,9,@TYY@UQPZ,
+WCCTEXT.DAT,79087,7,@youNB*,
+WCCTEXT.DAT,79114,7,@QSQ@QZ,
+WCCTEXT.DAT,79133,7,@QSQ@QZ,
+WCCTEXT.DAT,79186,6,@UX@QZ,
+WCCTEXT.DAT,79202,6,@WP@R*,
+WCCTEXT.DAT,79260,7,@QSQ@QZ,
+WCCTEXT.DAT,79279,7,@QSQ@QZ,
+WCCTEXT.DAT,79332,6,@UX@QZ,
+WCCTEXT.DAT,79348,6,@WP@R*,
+WCCTEXT.DAT,79405,7,@QSQ@QZ,
+WCCTEXT.DAT,79424,7,@QSQ@QZ,
+WCCTEXT.DAT,79477,6,@UX@QZ,
+WCCTEXT.DAT,79493,7,@WP@R**,
+WCCTEXT.DAT,79772,6,N@Ba@*,
+WCCTEXT.DAT,80498,7,@RSYZP*,
+WCCTEXT.DAT,80566,7,@QSQ@TZ,
+WCCTEXT.DAT,80666,7,@QSQ@TZ,
+WCCTEXT.DAT,80757,7,@QSQ@QZ,
+WCCTEXT.DAT,80775,7,@QSQ@R*,
+WCCTEXT.DAT,80836,7,@QSQ@SZ,
+WCCTEXT.DAT,80854,7,@QSQ@T*,
+WCCTEXT.DAT,80909,7,@QSQ@Q*,
+WCCTEXT.DAT,80921,6,ZRUR*c,
+WCCTEXT.DAT,81093,9,@;{P[Q[SR,
+WCCTEXT.DAT,81116,6,;{P[SR,
+WCCTEXT.DAT,81150,9,*;{P[Q[SR,
+WCCTEXT.DAT,81170,6,;{P[SR,
+WCCTEXT.DAT,82096,9,@;{P[Q[SR,
+WCCTEXT.DAT,82116,6,;{P[SR,
+WCCTEXT.DAT,82227,12,;{Rj;{QTc;{P,
+WCCTEXT.DAT,82294,19,N*;{QScO;{RWc;{P[SR,
+WCCTEXT.DAT,82315,8,;{RRc;{P,
+WCCTEXT.DAT,82324,12,O@@@@|*;{QRc,
+WCCTEXT.DAT,82337,11,;{RWc;{P[SR,
+WCCTEXT.DAT,82352,7,@;{P[SV,
+WCCTEXT.DAT,82361,8,;{QXc;{P,
+WCCTEXT.DAT,82378,6,*;{QRc,
+WCCTEXT.DAT,82385,11,;{RXc;{P[SR,
+WCCTEXT.DAT,82400,8,;{QYc;{P,
+WCCTEXT.DAT,82425,7,O*;{QRc,
+WCCTEXT.DAT,82433,9,@@@;{P[SS,
+WCCTEXT.DAT,82461,12,@]M@@@;{P[SR,
+WCCTEXT.DAT,82479,8,;{QXc;{P,
+WCCTEXT.DAT,82489,6,*;{QRc,
+WCCTEXT.DAT,82496,11,;{RWc;{P[SR,
+WCCTEXT.DAT,82513,8,;{QXc;{P,
+WCCTEXT.DAT,82523,6,*;{QRc,
+WCCTEXT.DAT,82530,21,;{QRc@;{d8;{QSc;{P[SR,
+WCCTEXT.DAT,82558,8,;{QXc;{P,
+WCCTEXT.DAT,82568,6,*;{QRc,
+WCCTEXT.DAT,82575,6,;{QPcn,
+WCCTEXT.DAT,82585,11,;{QQc;{P[SR,
+WCCTEXT.DAT,82610,7,;{Uc;{P,
+WCCTEXT.DAT,82619,6,*;{QRc,
+WCCTEXT.DAT,82626,11,;{RWc;{P[SR,
+WCCTEXT.DAT,82653,8,;{P[Q[SP,
+WCCTEXT.DAT,82670,6,*;{QRc,
+WCCTEXT.DAT,82677,11,;{RXc;{P[SR,
+WCCTEXT.DAT,82700,7,;{Xc;{P,
+WCCTEXT.DAT,82709,6,*;{QRc,
+WCCTEXT.DAT,82716,11,;{RWc;{P[SR,
+WCCTEXT.DAT,82745,7,;{Vc;{P,
+WCCTEXT.DAT,82754,6,*;{QRc,
+WCCTEXT.DAT,82761,10,;{QUc;{P[Q,
+WCCTEXT.DAT,82773,6,;{P[SS,
+WCCTEXT.DAT,82787,10,@@@@;{P[SR,
+WCCTEXT.DAT,82814,7,;{Uc;{P,
+WCCTEXT.DAT,82823,6,*;{QRc,
+WCCTEXT.DAT,82830,11,;{RSc;{P[SS,
+WCCTEXT.DAT,82843,10,;{Yc;{P[SR,
+WCCTEXT.DAT,82863,7,;{Uc;{P,
+WCCTEXT.DAT,82872,6,*;{QRc,
+WCCTEXT.DAT,82879,11,;{RTc;{P[SS,
+WCCTEXT.DAT,82893,10,;{Vc;{P[SR,
+WCCTEXT.DAT,82915,7,;{Vc;{P,
+WCCTEXT.DAT,82924,6,*;{QRc,
+WCCTEXT.DAT,82931,8,@@@;{P[Q,
+WCCTEXT.DAT,82957,11,;{QPc;{P[SS,
+WCCTEXT.DAT,82970,10,;{Uc;{P[SR,
+WCCTEXT.DAT,82993,7,;{Vc;{P,
+WCCTEXT.DAT,83002,6,*;{QRc,
+WCCTEXT.DAT,83009,11,;{RWc;{P[SS,
+WCCTEXT.DAT,83023,9,@@@;{P[SR,
+WCCTEXT.DAT,83044,7,;{Wc;{P,
+WCCTEXT.DAT,83053,6,*;{QRc,
+WCCTEXT.DAT,83060,9,@@@;{P[SV,
+WCCTEXT.DAT,83086,11,;{QTc;{P[SS,
+WCCTEXT.DAT,83099,7,@;{P[SR,
+WCCTEXT.DAT,83116,8,;{QPc;{P,
+WCCTEXT.DAT,83126,6,*;{QRc,
+WCCTEXT.DAT,83133,11,;{SPc;{P[SS,
+WCCTEXT.DAT,83146,10,;{Uc;{P[SR,
+WCCTEXT.DAT,83158,7,@;{P[SQ,
+WCCTEXT.DAT,83167,6,;{P[SR,
+WCCTEXT.DAT,83176,7,;{Yc;{P,
+WCCTEXT.DAT,83185,6,*;{QRc,
+WCCTEXT.DAT,83192,9,@@@;{P[SQ,
+WCCTEXT.DAT,83218,11,;{QUc;{P[SS,
+WCCTEXT.DAT,83231,10,;{Uc;{P[SR,
+WCCTEXT.DAT,83248,7,;{Xc;{P,
+WCCTEXT.DAT,83257,6,*;{QRc,
+WCCTEXT.DAT,83264,11,;{SQc;{P[SS,
+WCCTEXT.DAT,83277,10,;{Vc;{P[SR,
+WCCTEXT.DAT,83291,7,;{Yc;{P,
+WCCTEXT.DAT,83300,6,*;{QRc,
+WCCTEXT.DAT,83307,11,@@@;{P[Q[SP,
+WCCTEXT.DAT,83335,11,;{QWc;{P[SS,
+WCCTEXT.DAT,83349,10,;{Uc;{P[SR,
+WCCTEXT.DAT,83361,8,;{QPc;{P,
+WCCTEXT.DAT,83371,6,*;{QRc,
+WCCTEXT.DAT,83378,11,;{STc;{P[SS,
+WCCTEXT.DAT,83391,10,;{Uc;{P[SR,
+WCCTEXT.DAT,83403,7,;{Yc;{P,
+WCCTEXT.DAT,83412,6,*;{QRc,
+WCCTEXT.DAT,83419,11,;{SUc;{P[SS,
+WCCTEXT.DAT,83432,10,@@@@;{P[SR,
+WCCTEXT.DAT,83444,7,;{Yc;{P,
+WCCTEXT.DAT,83453,6,*;{QPc,
+WCCTEXT.DAT,83512,7,*;{QQc|,
+WCCTEXT.DAT,83574,7,;{RUUd*,
+WCCTEXT.DAT,83588,7,;{Uc;{P,
+WCCTEXT.DAT,83597,6,*;{QRc,
+WCCTEXT.DAT,83604,11,;{RUc;{P[SR,
+WCCTEXT.DAT,83625,12,;{Wc;{P[Q[SR,
+WCCTEXT.DAT,83639,9,@@@;{P[SS,
+WCCTEXT.DAT,83650,7,@@@@;{P,
+WCCTEXT.DAT,83659,6,*;{QRc,
+WCCTEXT.DAT,83666,10,@@;{P[Q[SR,
+WCCTEXT.DAT,83695,10,;{Xc;{P[SR,
+WCCTEXT.DAT,83715,11,;{QSc;{P[SS,
+WCCTEXT.DAT,83728,6,@@@;{P,
+WCCTEXT.DAT,83736,6,*;{QRc,
+WCCTEXT.DAT,83743,11,;{RTc;{P[SR,
+WCCTEXT.DAT,83763,11,;{QTc;{P[SS,
+WCCTEXT.DAT,83783,6,*;{QRc,
+WCCTEXT.DAT,83790,11,;{RYc;{P[SR,
+WCCTEXT.DAT,83804,8,;{QYc;{P,
+WCCTEXT.DAT,83814,6,*;{QRc,
+WCCTEXT.DAT,83827,6,*;{QPc,
+WCCTEXT.DAT,83886,7,*;{QQc|,
+WCCTEXT.DAT,83948,7,;{RUUd*,
+WCCTEXT.DAT,83989,12,;{Rj;{QTc;{P,
+WCCTEXT.DAT,84056,25,N*;{QScO;{UPcO@@@@|*;{QRc,
+WCCTEXT.DAT,84082,10,;{QXc;{P[Q,
+WCCTEXT.DAT,84094,6,;{P[SS,
+WCCTEXT.DAT,84108,8,;{RTc;{P,
+WCCTEXT.DAT,84125,6,*;{QRc,
+WCCTEXT.DAT,84132,11,;{RVc;{P[SS,
+WCCTEXT.DAT,84146,8,;{RRc;{P,
+WCCTEXT.DAT,84161,7,O*;{QRc,
+WCCTEXT.DAT,84169,11,;{RXc;{P[SS,
+WCCTEXT.DAT,84182,8,;{RQc;{P,
+WCCTEXT.DAT,84192,6,*;{QRc,
+WCCTEXT.DAT,84199,11,;{RYc;{P[SS,
+WCCTEXT.DAT,84213,8,;{QYc;{P,
+WCCTEXT.DAT,84223,6,*;{QRc,
+WCCTEXT.DAT,84230,8,@@;{P[SS,
+WCCTEXT.DAT,84257,13,@]M;{Wc;{P[SR,
+WCCTEXT.DAT,84272,6,;{P[SS,
+WCCTEXT.DAT,84280,8,;{QXc;{P,
+WCCTEXT.DAT,84290,6,*;{QRc,
+WCCTEXT.DAT,84297,11,;{RYc;{P[SR,
+WCCTEXT.DAT,84310,8,@@;{P[SS,
+WCCTEXT.DAT,84321,8,;{QVc;{P,
+WCCTEXT.DAT,84331,6,*;{QRc,
+WCCTEXT.DAT,84338,11,;{RWc;{P[SR,
+WCCTEXT.DAT,84353,10,@@@@;{P[SS,
+WCCTEXT.DAT,84365,8,;{QUc;{P,
+WCCTEXT.DAT,84375,6,*;{QRc,
+WCCTEXT.DAT,84382,21,;{QRc@;{d8;{QSc;{P[SR,
+WCCTEXT.DAT,84409,10,@@@@;{P[SS,
+WCCTEXT.DAT,84421,8,;{QTc;{P,
+WCCTEXT.DAT,84431,6,*;{QRc,
+WCCTEXT.DAT,84438,6,;{QPcn,
+WCCTEXT.DAT,84448,11,;{RPc;{P[SS,
+WCCTEXT.DAT,84461,8,;{QTc;{P,
+WCCTEXT.DAT,84471,6,*;{QRc,
+WCCTEXT.DAT,84478,11,;{STc;{P[ST,
+WCCTEXT.DAT,84491,7,@;{P[SS,
+WCCTEXT.DAT,84500,8,;{QSc;{P,
+WCCTEXT.DAT,84510,6,*;{QRc,
+WCCTEXT.DAT,84517,11,;{SVc;{P[SR,
+WCCTEXT.DAT,84530,6,;{P[SS,
+WCCTEXT.DAT,84538,8,;{QRc;{P,
+WCCTEXT.DAT,84548,6,*;{QRc,
+WCCTEXT.DAT,84555,11,;{SUc;{P[SR,
+WCCTEXT.DAT,84568,8,@@;{P[SS,
+WCCTEXT.DAT,84578,8,;{QQc;{P,
+WCCTEXT.DAT,84588,6,*;{QRc,
+WCCTEXT.DAT,84595,11,;{RWc;{P[SR,
+WCCTEXT.DAT,84615,10,@@@@;{P[SS,
+WCCTEXT.DAT,84627,8,;{QPc;{P,
+WCCTEXT.DAT,84637,6,*;{QRc,
+WCCTEXT.DAT,84644,7,@@;{P[Q,
+WCCTEXT.DAT,84669,11,;{QQc;{P[SR,
+WCCTEXT.DAT,84690,10,;{Uc;{P[SS,
+WCCTEXT.DAT,84702,7,;{Yc;{P,
+WCCTEXT.DAT,84711,6,*;{QRc,
+WCCTEXT.DAT,84718,11,;{RUc;{P[SR,
+WCCTEXT.DAT,84738,10,;{Wc;{P[SS,
+WCCTEXT.DAT,84750,7,;{Xc;{P,
+WCCTEXT.DAT,84759,6,*;{QRc,
+WCCTEXT.DAT,84766,8,@@;{P[ST,
+WCCTEXT.DAT,84792,11,;{QQc;{P[SR,
+WCCTEXT.DAT,84812,8,;{Xc;{P[,
+WCCTEXT.DAT,84848,6,@MUPPZ,
+WCCTEXT.DAT,84862,7,@RXY@Q*,
+WCCTEXT.DAT,84889,8,@QP@VTSZ,
+WCCTEXT.DAT,84905,8,@RP@VTTZ,
+WCCTEXT.DAT,85765,9,*;{P[Q[SR,
+WCCTEXT.DAT,85782,6,;{P[SR,
+WCCTEXT.DAT,86996,6,;{P[SR,
+WCCTEXT.DAT,87683,9,@UWP@VUWZ,
+WCCTEXT.DAT,87722,6,@QQ@R*,
+WCCTEXT.DAT,87756,9,@UWP@VUWZ,
+WCCTEXT.DAT,87795,6,@QQ@R*,
+WCCTEXT.DAT,87832,9,@UWP@VUWZ,
+WCCTEXT.DAT,87871,6,@QQ@R*,
+WCCTEXT.DAT,87898,9,@UWP@VUWZ,
+WCCTEXT.DAT,87937,6,@QQ@R*,
+WCCTEXT.DAT,92307,7,Z**BNNN,
+WCCTEXT.DAT,93327,7,@TXW@RZ,
+WCCTEXT.DAT,93377,7,@TXW@RZ,
+WCCTEXT.DAT,93427,7,@TXW@RZ,
+WCCTEXT.DAT,93477,7,@TXW@RZ,
+WCCTEXT.DAT,93502,9,~@@@;{P[Q,
+WCCTEXT.DAT,93512,7,KMK@KMM,
+WCCTEXT.DAT,93520,7,@@@@;{P,
+WCCTEXT.DAT,93528,12,~;{QUc;{P[SS,
+WCCTEXT.DAT,93545,9,@;{P[Q[SP,
+WCCTEXT.DAT,93555,23,@;{d>@;{d>@@;{d>@@;{P[Q,
+WCCTEXT.DAT,93580,9,@;{P[Q[SP,
+WCCTEXT.DAT,93590,31,@;{d>@@@;{d>@@;{d>@@@;{d>@@@;{P,
+WCCTEXT.DAT,93622,6,~;{P[Q,
+WCCTEXT.DAT,93629,18,KMMK;{VcKMK;{Uc;{P,
+WCCTEXT.DAT,93648,18,~@@@~@@~;{Uc;{P[SS,
+WCCTEXT.DAT,93670,9,@;{P[Q[SP,
+WCCTEXT.DAT,93680,27,@;{d>@;{d>@@;{d>@@;{d>;{P[Q,
+WCCTEXT.DAT,93708,13,KMMK@;{P[Q[SP,
+WCCTEXT.DAT,93722,22,@;{d>@@;{d>@;{d>@;{P[Q,
+WCCTEXT.DAT,93745,13,KMMMMK@@@@;{P,
+WCCTEXT.DAT,93759,10,~;{Vc;{P[Q,
+WCCTEXT.DAT,93775,15,~@@~;{QUc;{P[SS,
+WCCTEXT.DAT,93794,8,;{P[Q[SP,
+WCCTEXT.DAT,93803,31,@;{d>@@;{d>@@;{d>@@@;{d>@@;{P[Q,
+WCCTEXT.DAT,93835,15,KMMMMMMK;{Uc;{P,
+WCCTEXT.DAT,93851,13,~;{Wc~@@;{P[Q,
+WCCTEXT.DAT,93865,10,KMK;{Uc;{P,
+WCCTEXT.DAT,93876,18,~@@@@~@@@~@@;{P[SS,
+WCCTEXT.DAT,93898,10,@@;{P[Q[SP,
+WCCTEXT.DAT,93909,57,@;{d>@;{d>@@;{d>@@;{d>@;{d>@@@;{d>@;{d>@@;{d>@;{d>;{Uc;{P,
+WCCTEXT.DAT,93967,17,~@@@@~;{Wc~@;{P[Q,
+WCCTEXT.DAT,93985,14,KMK;{QUc;{P[SS,
+WCCTEXT.DAT,94003,9,@;{P[Q[SP,
+WCCTEXT.DAT,94013,50,@;{d>@@;{d>@@;{d>@@@;{d>@@;{d>@@;{d>@@;{d>;{QYc;{P,
+WCCTEXT.DAT,94064,9,~@@@;{P[Q,
+WCCTEXT.DAT,94074,8,KMK@@;{P,
+WCCTEXT.DAT,94083,16,~@@~@~;{Uc;{P[SS,
+WCCTEXT.DAT,94104,10,@@;{P[Q[SP,
+WCCTEXT.DAT,94115,37,@;{d>@;{d>@@@;{d>@@@;{d>@@@;{d>@@@;{P,
+WCCTEXT.DAT,94153,23,~@@~@@@@~@@@~;{QPc;{P[Q,
+WCCTEXT.DAT,94184,12,~;{QPc;{P[SS,
+WCCTEXT.DAT,94229,15,;{Rj;{QRc;{P[SS,
+WCCTEXT.DAT,94295,10,O@;{P[Q[SP,
+WCCTEXT.DAT,94306,27,@;{d>@@;{d>@@;{d>;{Uc;{P[SS,
+WCCTEXT.DAT,94335,6,O@@;{P,
+WCCTEXT.DAT,94342,23,~@@~@@~@@~@@~@@@@;{P[SS,
+WCCTEXT.DAT,94368,10,;{Yc|*;{Vc,
+WCCTEXT.DAT,94380,7,O;{P[SQ,
+WCCTEXT.DAT,94392,9,@;{P[Q[SP,
+WCCTEXT.DAT,94402,20,@;{d>@@;{d>@;{d>@;{P,
+WCCTEXT.DAT,94423,30,~;{Uc~@@@~@@@@~@@@@~@~@@;{P[SQ,
+WCCTEXT.DAT,94464,7,@;{P[SS,
+WCCTEXT.DAT,94479,8,O@;{P[SV,
+WCCTEXT.DAT,94489,10,@@;{P[Q[SP,
+WCCTEXT.DAT,94500,29,@;{d>@@@@;{d>@@@;{d>@;{d>@;{P,
+WCCTEXT.DAT,94530,31,~@@~@@@~@@@~@@~@@@~@~;{Vc;{P[SV,
+WCCTEXT.DAT,94562,14,KMMMK@@@;{P[SS,
+WCCTEXT.DAT,94582,11,O@@;{P[Q[SP,
+WCCTEXT.DAT,94594,10,@;{d>;{P[Q,
+WCCTEXT.DAT,94606,9,@;{P[Q[SP,
+WCCTEXT.DAT,94616,31,@;{d>@@@;{d>@@;{d>@@;{d>@@@@;{P,
+WCCTEXT.DAT,94648,32,~@@~@@~@@@@~@@@~@@@@~@@@~@;{P[SV,
+WCCTEXT.DAT,94686,9,@@@;{P[SS,
+WCCTEXT.DAT,94697,12,*NO@;{P[Q[SP,
+WCCTEXT.DAT,94710,21,@;{d>@;{d>@@;{d>;{P[Q,
+WCCTEXT.DAT,94732,12,KMMK;{P[Q[SP,
+WCCTEXT.DAT,94745,21,@;{d>@@@;{d>@;{d>@;{P,
+WCCTEXT.DAT,94767,35,~@@@@~@@@@~@@~@@@~@@~@@~@~@@@;{P[SV,
+WCCTEXT.DAT,94803,15,KMMMMK@@@;{P[SS,
+WCCTEXT.DAT,94822,9,@;{P[Q[SP,
+WCCTEXT.DAT,94832,33,@;{d>@;{d>@@;{d>@;{d>@@@;{d>;{P[Q,
+WCCTEXT.DAT,94866,11,KK@;{P[Q[SP,
+WCCTEXT.DAT,94878,18,@;{d>@@@;{d>@@@;{P,
+WCCTEXT.DAT,94897,27,~@@@~;{Vc~@@@~@@@@~@@@;{P[Q,
+WCCTEXT.DAT,94925,8,KM;{P[SV,
+WCCTEXT.DAT,94934,13,KMK;{Vc;{P[SS,
+WCCTEXT.DAT,94951,9,@;{P[Q[SP,
+WCCTEXT.DAT,94961,30,@;{d>@@;{d>@;{d>@@;{d>@@@;{P[Q,
+WCCTEXT.DAT,94993,9,@;{P[Q[SP,
+WCCTEXT.DAT,95003,25,@;{d>@@@;{d>@@;{d>;{Uc;{P,
+WCCTEXT.DAT,95029,21,~@@~@@@~;{Uc~@@@;{P[Q,
+WCCTEXT.DAT,95051,10,KMMK@@@;{P,
+WCCTEXT.DAT,95062,13,~@@@~@@;{P[SS,
+WCCTEXT.DAT,95079,9,@;{P[Q[SP,
+WCCTEXT.DAT,95089,24,@;{d>@@;{d>@@;{d>@@;{P[Q,
+WCCTEXT.DAT,95114,12,KMK@;{P[Q[SP,
+WCCTEXT.DAT,95127,23,@;{d>@@;{d>@@;{d>@@@;{P,
+WCCTEXT.DAT,95151,21,~@@@@~@@@@~@@@@~;{P[Q,
+WCCTEXT.DAT,95173,10,KMMMK@@;{P,
+WCCTEXT.DAT,95184,16,~@@@@~;{Uc;{P[SS,
+WCCTEXT.DAT,95205,8,;{P[Q[SP,
+WCCTEXT.DAT,95214,24,@;{d>@@;{d>@@@;{d>@;{P[Q,
+WCCTEXT.DAT,95240,8,;{P[Q[SP,
+WCCTEXT.DAT,95249,36,@;{d>@@;{d>@@;{d>@@;{d>@@@;{d>@@@;{P,
+WCCTEXT.DAT,95286,17,~@@~@@~@@~@@;{P[Q,
+WCCTEXT.DAT,95304,14,KMK;{QWc;{P[SS,
+WCCTEXT.DAT,95320,12,*NO@;{P[Q[SP,
+WCCTEXT.DAT,95333,22,@;{d>@@;{d>@;{d>@;{P[Q,
+WCCTEXT.DAT,95356,11,KK@;{P[Q[SP,
+WCCTEXT.DAT,95368,37,@;{d>@;{d>@;{d>@@;{d>@@@;{d>;{Yc;{P[Q,
+WCCTEXT.DAT,95406,15,KMK@@KMK;{Uc;{P,
+WCCTEXT.DAT,95422,20,~@@@@~@@@@~@@@;{P[SS,
+WCCTEXT.DAT,95446,8,;{P[Q[SP,
+WCCTEXT.DAT,95455,24,@;{d>@@@;{d>@@;{d>@;{P[Q,
+WCCTEXT.DAT,95481,8,;{P[Q[SP,
+WCCTEXT.DAT,95490,32,@;{d>@@@@;{d>@@;{d>@@;{d>@@@;{TP,
+WCCTEXT.DAT,95523,15,;{Rj;{QPc;{P[SS,
+WCCTEXT.DAT,95539,22,KMK*@KMMMMMMMMMMMMMMMN,
+WCCTEXT.DAT,95565,8,@@;{P[SQ,
+WCCTEXT.DAT,95574,7,@;{d8@s,
+WCCTEXT.DAT,95590,8,;{P[Q[SP,
+WCCTEXT.DAT,95599,11,CCC*@;{P[SS,
+WCCTEXT.DAT,95612,13,;{QUc;{P[Q[SP,
+WCCTEXT.DAT,95626,11,CCC*@;{P[SS,
+WCCTEXT.DAT,95639,8,@@;{P[SQ,
+WCCTEXT.DAT,95648,7,@;{d1@w,
+WCCTEXT.DAT,95666,8,;{P[Q[SP,
+WCCTEXT.DAT,95675,11,CCC*@;{P[SS,
+WCCTEXT.DAT,95688,13,;{QWc;{P[Q[SP,
+WCCTEXT.DAT,95702,11,CCC*@;{P[SS,
+WCCTEXT.DAT,95715,8,@@;{P[SQ,
+WCCTEXT.DAT,95724,7,@;{d9@r,
+WCCTEXT.DAT,95737,12,;{Wc;{P[Q[SP,
+WCCTEXT.DAT,95750,10,CC*@;{P[SS,
+WCCTEXT.DAT,95761,27,KMMMMMMMMMMMMMMMMMMMK*;{QPc,
+WCCTEXT.DAT,95791,6,*;{QPc,
+WCCTEXT.DAT,95800,6,*;{QPc,
+WCCTEXT.DAT,95809,6,*;{QPc,
+WCCTEXT.DAT,96848,6,*;{P[P,
+WCCTEXT.DAT,96902,10,Z**@;{P[SR,
+WCCTEXT.DAT,97165,9,NB**;{P[P,
+WCCTEXT.DAT,97336,9,@;{P[Q[SS,
+WCCTEXT.DAT,97514,9,A**;{P[SV,
+WCCTEXT.DAT,97582,9,@QPPLPPP@,
+WCCTEXT.DAT,98320,6,;{P[SR,
+WCCTEXT.DAT,99641,6,@QRSTZ,
+WCCTEXT.DAT,99664,9,@MQP@VPYZ,
+WCCTEXT.DAT,99681,7,@WSY@XZ,
+WCCTEXT.DAT,99695,6,@QRSU*,
+WCCTEXT.DAT,99718,6,@QRSTZ,
+WCCTEXT.DAT,99741,9,@MQP@VPYZ,
+WCCTEXT.DAT,99758,7,@WSY@XZ,
+WCCTEXT.DAT,99772,6,@QRSU*,
+WCCTEXT.DAT,99786,6,@QRSVZ,
+WCCTEXT.DAT,99800,8,@QRSP@QZ,
+WCCTEXT.DAT,99910,9,NB**;{P[P,
+WCCTEXT.DAT,100081,9,@;{P[Q[SS,
+WCCTEXT.DAT,100259,9,A**;{P[SV,
+WCCTEXT.DAT,100327,9,@QPPLPPP@,
+WCCTEXT.DAT,100368,6,*;{P[P,
+WCCTEXT.DAT,100422,10,Z**@;{P[SR,
+WCCTEXT.DAT,100675,9,@VPW@WWRZ,
+WCCTEXT.DAT,100727,9,@VPW@WWRZ,
+WCCTEXT.DAT,100780,9,@VPW@WWRZ,
+WCCTEXT.DAT,100843,7,@VSP@RZ,
+WCCTEXT.DAT,100893,7,@VSP@RZ,
+WCCTEXT.DAT,100943,7,@VSP@RZ,
+WCCTEXT.DAT,100993,7,@VSP@RZ,
+WCCTEXT.DAT,101249,12,;{Rj;{QTc;{P,
+WCCTEXT.DAT,101262,79,NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNMMN*;{QScO;{UPcO@@@@|*;{QRc,
+WCCTEXT.DAT,101342,9,@@@;{P[SQ,
+WCCTEXT.DAT,101359,9,L;{SYc;{P,
+WCCTEXT.DAT,101369,7,KMMN@@@,
+WCCTEXT.DAT,101377,6,*;{QRc,
+WCCTEXT.DAT,101395,7,O*;{QRc,
+WCCTEXT.DAT,101403,10,;{Wc;{P[SQ,
+WCCTEXT.DAT,101454,6,N@@;{P,
+WCCTEXT.DAT,101462,6,*;{QRc,
+WCCTEXT.DAT,101469,8,@@;{P[SQ,
+WCCTEXT.DAT,101523,6,@@@;{P,
+WCCTEXT.DAT,101531,6,*;{QRc,
+WCCTEXT.DAT,101538,8,@@;{P[SQ,
+WCCTEXT.DAT,101600,6,*;{QRc,
+WCCTEXT.DAT,101607,8,@@;{P[SQ,
+WCCTEXT.DAT,101659,7,;{Uc;{P,
+WCCTEXT.DAT,101668,6,*;{QRc,
+WCCTEXT.DAT,101675,8,@@;{P[SQ,
+WCCTEXT.DAT,101727,7,;{Uc;{P,
+WCCTEXT.DAT,101736,6,*;{QRc,
+WCCTEXT.DAT,101743,8,@@;{P[SQ,
+WCCTEXT.DAT,101797,6,@@@;{P,
+WCCTEXT.DAT,101805,6,*;{QRc,
+WCCTEXT.DAT,101812,8,@@;{P[SQ,
+WCCTEXT.DAT,101866,6,@@@;{P,
+WCCTEXT.DAT,101874,6,*;{QRc,
+WCCTEXT.DAT,101881,8,@@;{P[SQ,
+WCCTEXT.DAT,101934,7,@@@@;{P,
+WCCTEXT.DAT,101943,6,*;{QRc,
+WCCTEXT.DAT,101950,8,@@;{P[SQ,
+WCCTEXT.DAT,102012,6,*;{QRc,
+WCCTEXT.DAT,102019,8,@@;{P[SQ,
+WCCTEXT.DAT,102071,7,;{Uc;{P,
+WCCTEXT.DAT,102080,6,*;{QRc,
+WCCTEXT.DAT,102087,8,@@;{P[SQ,
+WCCTEXT.DAT,102136,8,N;{Wc;{P,
+WCCTEXT.DAT,102146,6,*;{QRc,
+WCCTEXT.DAT,102159,6,*;{QRc,
+WCCTEXT.DAT,102166,10,;{Wc;{P[SQ,
+WCCTEXT.DAT,102191,9,N;{RXc;{P,
+WCCTEXT.DAT,102202,6,*;{QRc,
+WCCTEXT.DAT,102209,11,;{SUc;{P[SQ,
+WCCTEXT.DAT,102233,6,@@@;{P,
+WCCTEXT.DAT,102241,6,*;{QRc,
+WCCTEXT.DAT,102254,58,*;{QPcKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMN;{Uc,
+WCCTEXT.DAT,102313,7,*;{QQc|,
+WCCTEXT.DAT,102376,7,;{RUUd*,
+WCCTEXT.DAT,102955,7,ZYQWP**,
+WCCTEXT.DAT,103163,6,NB**Bt,
+WCCTEXT.DAT,103201,9,@;{P[Q[SR,
+WCCTEXT.DAT,103218,6,;{P[SR,
+WCCTEXT.DAT,103333,9,*;{P[Q[SR,
+WCCTEXT.DAT,103357,6,;{P[SR,
+WCCTEXT.DAT,103803,9,@;{P[Q[SR,
+WCCTEXT.DAT,103830,7,*;{P[SR,
+WCCTEXT.DAT,103856,9,@;{P[Q[SR,
+WCCTEXT.DAT,103875,6,;{P[SR,
+WCCTEXT.DAT,103899,9,@;{P[Q[SR,
+WCCTEXT.DAT,103920,7,@;{P[SR,
+WCCTEXT.DAT,104180,9,@;{P[Q[SR,
+WCCTEXT.DAT,104197,6,;{P[SR,
+WCCTEXT.DAT,104237,11,NB**@;{P[SV,
+WCCTEXT.DAT,104477,7,ZYQYQ**,
+WCCTEXT.DAT,104489,6,;{P[SR,
+WCCTEXT.DAT,105005,9,@;{P[Q[SR,
+WCCTEXT.DAT,105030,6,;{P[SR,
+WCCTEXT.DAT,105135,9,@;{P[Q[SR,
+WCCTEXT.DAT,105150,6,;{P[SR,
+WCCTEXT.DAT,105236,9,@;{P[Q[SR,
+WCCTEXT.DAT,105255,6,;{P[SR,
+WCCTEXT.DAT,105317,9,@;{P[Q[SR,
+WCCTEXT.DAT,105343,6,;{P[SR,
+WCCTEXT.DAT,105391,9,@;{P[Q[SR,
+WCCTEXT.DAT,105404,6,;{P[SR,
+WCCTEXT.DAT,105499,9,@;{P[Q[SR,
+WCCTEXT.DAT,105526,6,;{P[SR,
+WCCTEXT.DAT,105575,9,@;{P[Q[SR,
+WCCTEXT.DAT,105591,6,;{P[SR,
+WCCTEXT.DAT,105701,9,@;{P[Q[SR,
+WCCTEXT.DAT,105714,6,;{P[SR,
+WCCTEXT.DAT,105819,9,@;{P[Q[SR,
+WCCTEXT.DAT,105833,6,;{P[SR,
+WCCTEXT.DAT,105912,9,@;{P[Q[SR,
+WCCTEXT.DAT,105939,6,;{P[SR,
+WCCTEXT.DAT,106022,9,@;{P[Q[SR,
+WCCTEXT.DAT,106038,6,;{P[SR,
+WCCTEXT.DAT,106218,9,@;{P[Q[SR,
+WCCTEXT.DAT,106237,6,;{P[SR,
+WCCTEXT.DAT,106517,7,*;{P[SR,
+WCCTEXT.DAT,106775,8,NB**;{SW,
+WCCTEXT.DAT,106846,7,N**;{SR,
+WCCTEXT.DAT,106968,7,@;{P[SR,
+WCCTEXT.DAT,107090,8,NB**;{SW,
+WCCTEXT.DAT,107146,7,N**;{SR,
+WCCTEXT.DAT,107255,7,@;{P[SR,
+WCCTEXT.DAT,107651,9,@;{P[Q[SR,
+WCCTEXT.DAT,107670,6,;{P[SR,
+WCCTEXT.DAT,108441,9,@QRW@XRYZ,
+WCCTEXT.DAT,108461,9,@QRX@XRYZ,
+WCCTEXT.DAT,108481,7,@QRV@QZ,
+WCCTEXT.DAT,108567,9,@MUQ@XPQZ,
+WCCTEXT.DAT,108587,7,@QRV@RZ,
+WCCTEXT.DAT,108606,7,@QRV@RZ,
+WCCTEXT.DAT,108640,6,@QRSTZ,
+WCCTEXT.DAT,108663,9,@MQP@VPVZ,
+WCCTEXT.DAT,108680,7,@WSQ@XZ,
+WCCTEXT.DAT,108694,6,@QRSU*,
+WCCTEXT.DAT,108717,6,@QRSTZ,
+WCCTEXT.DAT,108740,9,@MQP@VPVZ,
+WCCTEXT.DAT,108757,7,@WSQ@XZ,
+WCCTEXT.DAT,108771,6,@QRSU*,
+WCCTEXT.DAT,108778,6,;{P[SR,
+WCCTEXT.DAT,108874,6,ZYPSQ*,
+WCCTEXT.DAT,108884,6,ZYPSR*,
+WCCTEXT.DAT,108896,6,ZQXRP*,
+WCCTEXT.DAT,108907,6,ZQXRP*,
+WCCTEXT.DAT,108919,6,ZQXRP*,
+WCCTEXT.DAT,108932,6,ZQXRP*,
+WCCTEXT.DAT,108949,6,ZQXRP*,
+WCCTEXT.DAT,108967,6,ZYPSP*,
+WCCTEXT.DAT,108982,6,ZYPSR*,
+WCCTEXT.DAT,109213,7,@;{P[SR,
+WCCTEXT.DAT,109284,16,@call@to@arms_B*,
+WCCTEXT.DAT,109997,9,@MUQ@XPQZ,
+WCCTEXT.DAT,110017,7,@QRV@QZ,
+WCCTEXT.DAT,110036,7,@QRV@QZ,
+WCCTEXT.DAT,110054,7,@QRV@RZ,
+WCCTEXT.DAT,110098,7,N**;{SR,
+WCCTEXT.DAT,110234,8,NB**;{SW,
+WCCTEXT.DAT,110331,9,@;{P[Q[SU,
+WCCTEXT.DAT,110366,7,N**;{SR,
+WCCTEXT.DAT,110748,9,Z**;{P[SR,
+WCCTEXT.DAT,111005,9,@;{P[Q[SR,
+WCCTEXT.DAT,111021,7,@;{P[SR,
+WCCTEXT.DAT,111086,9,N**;{P[SR,
+WCCTEXT.DAT,111210,9,@;{P[Q[SR,
+WCCTEXT.DAT,111237,6,;{P[SR,
+WCCTEXT.DAT,111252,9,@;{P[Q[SR,
+WCCTEXT.DAT,111271,7,@;{P[SR,
+WCCTEXT.DAT,111323,7,NB**;{P,
+WCCTEXT.DAT,111442,9,N**;{P[SR,
+WCCTEXT.DAT,111601,9,@MUQ@XPQZ,
+WCCTEXT.DAT,111621,7,@QRV@RZ,
+WCCTEXT.DAT,111640,7,@QRV@RZ,
+WCCTEXT.DAT,111658,7,@QRV@S*,
+WCCTEXT.DAT,111697,6,ZSUR*m,
+WCCTEXT.DAT,111708,6,ZSUR*c,
+WCCTEXT.DAT,111809,6,ZQRUR*,
+WCCTEXT.DAT,111818,6,ZRXUS*,
+WCCTEXT.DAT,111967,9,Z**;{P[SR,
+WCCTEXT.DAT,112324,9,@;{P[Q[SR,
+WCCTEXT.DAT,112342,6,;{P[SR,
+WCCTEXT.DAT,112481,9,@MUQ@XPQZ,
+WCCTEXT.DAT,112501,7,@QRV@SZ,
+WCCTEXT.DAT,112520,7,@QRV@SZ,
+WCCTEXT.DAT,112538,7,@QRV@TZ,
+WCCTEXT.DAT,112670,6,@QRSRZ,
+WCCTEXT.DAT,112693,9,@MQP@VPQZ,
+WCCTEXT.DAT,112710,7,@WRP@XZ,
+WCCTEXT.DAT,112724,6,@QRSU*,
+WCCTEXT.DAT,112748,6,@QRSRZ,
+WCCTEXT.DAT,112771,9,@MQP@VPQZ,
+WCCTEXT.DAT,112788,7,@WRP@XZ,
+WCCTEXT.DAT,112802,6,@QRSU*,
+WCCTEXT.DAT,112861,9,N**;{P[SR,
+WCCTEXT.DAT,113124,7,NB**;{P,
+WCCTEXT.DAT,113171,9,Z**;{P[SR,
+WCCTEXT.DAT,113357,7,NB**;{P,
+WCCTEXT.DAT,113439,9,N**;{P[SR,
+WCCTEXT.DAT,113615,7,NB**;{P,
+WCCTEXT.DAT,113781,9,N**;{P[SR,
+WCCTEXT.DAT,113959,7,NB**;{P,
+WCCTEXT.DAT,114292,9,Z**;{P[SR,
+WCCTEXT.DAT,115340,9,@;{P[Q[SR,
+WCCTEXT.DAT,115354,6,;{P[SR,
+WCCTEXT.DAT,115576,9,@MUQ@XPQZ,
+WCCTEXT.DAT,115596,7,@QRV@TZ,
+WCCTEXT.DAT,115615,7,@QRV@TZ,
+WCCTEXT.DAT,115633,7,@QRV@UZ,
+WCCTEXT.DAT,116077,8,N**@;{SR,
+WCCMSG_strings.tsv,0,18,offset	length	text,text
+WCCMSG_strings.tsv,1,42,1034	34	You fire a %s at %s for %d damage!,damage
+WCCMSG_strings.tsv,3,43,1116	35	%s fires a %s at you for %d damage!,damage
+WCCMSG_strings.tsv,5,42,1198	34	%s fires a %s at %s for %s damage!,damage
+WCCMSG_strings.tsv,7,20,1287	12	You cast %s!,cast
+WCCMSG_strings.tsv,9,20,1369	12	%s casts %s!,cast
+WCCMSG_strings.tsv,11,20,1451	12	%s casts %s!,cast
+WCCMSG_strings.tsv,13,43,1546	35	You fire an %s at %s for %d damage!,damage
+WCCMSG_strings.tsv,15,45,1628	37	%s throws an %s at you for %d damage!,damage
+WCCMSG_strings.tsv,19,60,"1799	52	You cast %s, and a shimmering field forms about you.",cast
+WCCMSG_strings.tsv,22,26,1963	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,24,42,2058	34	You fire a %s at %s for %d damage!,damage
+WCCMSG_strings.tsv,26,45,2140	37	%s sears you with a %s for %d damage!,damage
+WCCMSG_strings.tsv,30,65,"2311	57	You cast %s at %s, surrounding him with a pale blue glow.",cast
+WCCMSG_strings.tsv,32,71,"2393	63	%s casts a spell on you, surrounding you with a pale blue glow.",spell|cast
+WCCMSG_strings.tsv,34,26,2475	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,36,26,2570	18	You cast %s on %s!,cast
+WCCMSG_strings.tsv,38,29,2652	21	%s casts %s upon you!,cast
+WCCMSG_strings.tsv,40,26,2734	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,42,47,2823	39	You let loose a %s at %s for %d damage!,damage
+WCCMSG_strings.tsv,44,45,2905	37	%s fries you with a %s for %d damage!,damage
+WCCMSG_strings.tsv,48,64,"3082	56	You cast %s on %s, surrounding him with a pale red glow.",cast
+WCCMSG_strings.tsv,50,65,"3164	57	%s casts %s on you, surrounding you with a pale red glow.",cast
+WCCMSG_strings.tsv,52,26,3246	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,54,48,3335	40	You summon %s to slice %s for %d damage!,damage
+WCCMSG_strings.tsv,56,55,3417	47	%s slices you with a cloud of %s for %d damage!,damage
+WCCMSG_strings.tsv,58,26,3499	18	%s casts %s at %s!,cast
+WCCMSG_strings.tsv,70,21,4011	13	enter manhole,enter
+WCCMSG_strings.tsv,76,20,4270	12	enter secret,enter
+WCCMSG_strings.tsv,78,40,4359	32	You cast %s at %s for %d damage!,cast|damage
+WCCMSG_strings.tsv,80,41,4441	33	%s casts %s on you for %d damage!,cast|damage
+WCCMSG_strings.tsv,82,40,4523	32	%s casts %s on %s for %s damage!,cast|damage
+WCCMSG_strings.tsv,84,45,"4618	37	You cast %s on %s, healing %d damage!",cast|damage|heal
+WCCMSG_strings.tsv,86,27,4700	19	%s casts %s on you!,cast
+WCCMSG_strings.tsv,88,26,4782	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,90,26,4871	18	You cast %s on %s!,cast
+WCCMSG_strings.tsv,92,32,4953	24	%s casts a spell on you!,spell|cast
+WCCMSG_strings.tsv,94,26,5035	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,96,26,5130	18	You cast %s on %s!,cast
+WCCMSG_strings.tsv,98,32,5212	24	%s casts a spell on you!,spell|cast
+WCCMSG_strings.tsv,100,26,5294	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,102,40,5383	32	You cast %s on %s for %d damage!,cast|damage
+WCCMSG_strings.tsv,104,41,5465	33	%s casts %s on you for %d damage!,cast|damage
+WCCMSG_strings.tsv,106,40,5547	32	%s casts %s on %s for %s damage!,cast|damage
+WCCMSG_strings.tsv,108,41,5642	33	You cast %s on %s for %d healing!,cast|heal
+WCCMSG_strings.tsv,110,27,5724	19	%s casts %s on you!,cast
+WCCMSG_strings.tsv,112,26,5806	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,114,40,5895	32	You cast %s on %s for %d damage!,cast|damage
+WCCMSG_strings.tsv,116,41,5977	33	%s casts %s on you for %d damage!,cast|damage
+WCCMSG_strings.tsv,118,26,6059	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,120,26,6154	18	You cast %s on %s!,cast
+WCCMSG_strings.tsv,122,27,6236	19	%s casts %s on you!,cast
+WCCMSG_strings.tsv,124,26,6318	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,126,70,"6407	62	You cast %s, surrounding everyone in the room in a white glow!",room|cast
+WCCMSG_strings.tsv,128,67,"6489	59	%s casts a spell on you, surrounding you with a white glow!",spell|cast
+WCCMSG_strings.tsv,130,72,"6571	64	%s casts %s, surrounding everyone in the room with a white glow!",room|cast
+WCCMSG_strings.tsv,132,72,"6666	64	You cast %s, surrounding everyone in the room with a black glow!",room|cast
+WCCMSG_strings.tsv,134,67,"6748	59	%s casts a spell on you, surrounding you with a black glow!",spell|cast
+WCCMSG_strings.tsv,136,77,"6830	69	%s casts a spell, surrounding everyone in the room with a black glow!",room|spell|cast
+WCCMSG_strings.tsv,138,40,6919	32	You cast %s on %s for %d damage!,cast|damage
+WCCMSG_strings.tsv,140,41,7001	33	%s casts %s on you for %d damage!,cast|damage
+WCCMSG_strings.tsv,142,40,7083	32	%s casts %s on %s for %s damage!,cast|damage
+WCCMSG_strings.tsv,144,44,7178	36	You cast %s on everyone in the room!,room|cast
+WCCMSG_strings.tsv,146,44,7260	36	%s casts %s on everyone in the room!,room|cast
+WCCMSG_strings.tsv,148,44,7342	36	%s casts %s on everyone in the room!,room|cast
+WCCMSG_strings.tsv,150,42,7431	34	A %s crawls into the room from %s.,room
+WCCMSG_strings.tsv,152,44,7513	36	The %s crawls out of the room to %s.,room
+WCCMSG_strings.tsv,154,52,7595	44	The lashworm crawls into the room after you!,room
+WCCMSG_strings.tsv,156,39,7690	31	The %s bites you for %d damage!,damage
+WCCMSG_strings.tsv,158,38,7772	30	The %s bites %s for %s damage!,damage
+WCCMSG_strings.tsv,162,42,7943	34	A %s creeps into the room from %s.,room
+WCCMSG_strings.tsv,164,44,8025	36	The %s creeps out of the room to %s.,room
+WCCMSG_strings.tsv,168,57,8202	49	The %s darts forward and bites you for %d damage!,damage
+WCCMSG_strings.tsv,170,56,8284	48	The %s darts forward and bites %s for %s damage!,damage
+WCCMSG_strings.tsv,174,44,8455	36	A %s scuttles into the room from %s.,room
+WCCMSG_strings.tsv,176,46,8537	38	The %s scuttles out of the room to %s.,room
+WCCMSG_strings.tsv,178,46,8619	38	The filthbug chases you into the room!,room
+WCCMSG_strings.tsv,180,56,8714	48	The %s claws you with its pincers for %d damage!,damage
+WCCMSG_strings.tsv,182,52,8796	44	The %s rips %s with its claws for %s damage!,damage
+WCCMSG_strings.tsv,186,40,8967	32	A %s creeps in the room from %s.,room
+WCCMSG_strings.tsv,188,44,9049	36	The %s creeps out of the room to %s.,room
+WCCMSG_strings.tsv,192,38,9226	30	The %s rips you for %d damage!,damage
+WCCMSG_strings.tsv,194,56,9308	48	The %s leaps on %s and chomps him for %s damage!,damage
+WCCMSG_strings.tsv,198,41,9479	33	A %s oozes into the room from %s.,room
+WCCMSG_strings.tsv,200,43,9561	35	The %s oozes out of the room to %s.,room
+WCCMSG_strings.tsv,204,58,9738	50	The %s whips you with its pseudopod for %d damage!,damage
+WCCMSG_strings.tsv,206,57,9820	49	The %s whips %s with its pseudopod for %s damage!,damage
+WCCMSG_strings.tsv,214,19,10155	10	enter hole,enter
+WCCMSG_strings.tsv,216,27,10250	18	You cast %s on %s.,cast
+WCCMSG_strings.tsv,218,28,10332	19	%s casts %s on you!,cast
+WCCMSG_strings.tsv,220,27,10414	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,222,43,10503	34	An %s walks into the room from %s.,room
+WCCMSG_strings.tsv,224,44,10585	35	The %s walks out of the room to %s.,room
+WCCMSG_strings.tsv,226,49,10667	40	The orc rogue follows you into the room!,room
+WCCMSG_strings.tsv,228,42,10762	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,230,41,10844	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,234,43,11015	34	A %s sneaks into the room from %s.,room
+WCCMSG_strings.tsv,236,45,11097	36	The %s sneaks out of the room to %s.,room
+WCCMSG_strings.tsv,238,57,11179	48	The kobold thief creeps into the room after you!,room
+WCCMSG_strings.tsv,240,40,11274	31	The %s stabs you for %d damage!,damage
+WCCMSG_strings.tsv,242,39,11356	30	The %s stabs %s for %s damage!,damage
+WCCMSG_strings.tsv,330,43,16135	34	A %s crawls into the room from %s.,room
+WCCMSG_strings.tsv,332,45,16217	36	The %s crawls out of the room to %s.,room
+WCCMSG_strings.tsv,336,41,16394	32	The %s chomps you for %d damage!,damage
+WCCMSG_strings.tsv,338,40,16476	31	The %s chomps %s for %s damage!,damage
+WCCMSG_strings.tsv,342,42,16647	33	A %s walks into the room from %s.,room
+WCCMSG_strings.tsv,344,44,16729	35	The %s walks out of the room to %s.,room
+WCCMSG_strings.tsv,348,42,16906	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,350,41,16988	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,354,43,17159	34	A %s creeps into the room from %s.,room
+WCCMSG_strings.tsv,356,45,17241	36	The %s creeps out of the room to %s.,room
+WCCMSG_strings.tsv,358,44,17323	35	The thug follows you into the room!,room
+WCCMSG_strings.tsv,360,42,17418	33	The %s smashes you for %d damage!,damage
+WCCMSG_strings.tsv,362,41,17500	32	The %s smashes %s for %s damage!,damage
+WCCMSG_strings.tsv,366,42,17671	33	A %s walks into the room from %s.,room
+WCCMSG_strings.tsv,368,44,17753	35	The %s walks out of the room to %s.,room
+WCCMSG_strings.tsv,370,52,17835	43	The skeleton walks into the room after you!,room
+WCCMSG_strings.tsv,372,39,17930	30	The %s rips you for %d damage!,damage
+WCCMSG_strings.tsv,374,38,18012	29	The %s rips %s for %s damage!,damage
+WCCMSG_strings.tsv,378,45,18183	36	A %s shambles into the room from %s.,room
+WCCMSG_strings.tsv,380,47,18265	38	The %s shambles out of the room to %s.,room
+WCCMSG_strings.tsv,384,44,18954	35	The %s bludgeons you for %d damage!,damage
+WCCMSG_strings.tsv,386,43,19036	34	The %s bludgeons %s for %s damage!,damage
+WCCMSG_strings.tsv,390,41,19207	32	You cast %s on %s for %d damage!,cast|damage
+WCCMSG_strings.tsv,392,47,19289	38	%s lashes you with a %s for %d damage!,damage
+WCCMSG_strings.tsv,394,27,19371	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,396,21,19466	12	You cast %s!,cast
+WCCMSG_strings.tsv,398,21,19548	12	%s casts %s!,cast
+WCCMSG_strings.tsv,400,21,19630	12	%s casts %s!,cast
+WCCMSG_strings.tsv,402,51,"19719	42	You cast %s on %s, regenerating %d damage!",cast|damage
+WCCMSG_strings.tsv,404,62,"19801	53	%s casts %s on you, regenerating some of your wounds!",cast
+WCCMSG_strings.tsv,406,27,19883	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,408,57,"19978	48	You cast %s on %s, disrupting him for %d damage!",cast|damage
+WCCMSG_strings.tsv,410,51,"20060	42	%s casts %s, disrupting you for %d damage!",cast|damage
+WCCMSG_strings.tsv,412,27,20142	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,414,27,20231	18	You cast %s on %s!,cast
+WCCMSG_strings.tsv,416,28,20313	19	%s casts %s on you!,cast
+WCCMSG_strings.tsv,418,27,20395	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,420,68,"20490	59	You cast %s on %s, surrounding him with a bright blue glow!",cast
+WCCMSG_strings.tsv,422,74,"20572	65	%s casts a spell on you, surrounding you with a bright blue glow!",spell|cast
+WCCMSG_strings.tsv,424,27,20654	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,426,33,20743	24	You cast %s on the room!,room|cast
+WCCMSG_strings.tsv,427,15,20768	7	damage!,damage
+WCCMSG_strings.tsv,429,42,20825	33	%s casts %s on you for %d damage!,cast|damage
+WCCMSG_strings.tsv,431,33,20907	24	%s casts %s on the room!,room|cast
+WCCMSG_strings.tsv,433,33,21002	24	You cast %s on yourself!,cast
+WCCMSG_strings.tsv,436,21,21166	12	%s casts %s!,cast
+WCCMSG_strings.tsv,438,64,"21255	55	You cast %s on %s, surrounding him with an earthy glow!",cast
+WCCMSG_strings.tsv,440,69,"21337	60	%s casts a spell on you, surrounding you with a earthy glow!",spell|cast
+WCCMSG_strings.tsv,442,27,21419	18	%s casts %s on %s!,cast
+WCCMSG_strings.tsv,444,44,21514	35	A small golem stomps into the room.,room
+WCCMSG_strings.tsv,446,41,21596	32	The small golem leaves the room.,room
+WCCMSG_strings.tsv,450,40,21767	31	The %s clubs you for %d damage!,damage
+WCCMSG_strings.tsv,452,39,21849	30	The %s clubs %s for %s damage!,damage
+WCCMSG_strings.tsv,467,42,22538	33	A shade materializes in the room.,room
+WCCMSG_strings.tsv,469,42,22620	33	The shade vanishes from the room.,room
+WCCMSG_strings.tsv,473,56,22791	47	The %s chills you with its touch for %d damage!,damage
+WCCMSG_strings.tsv,475,55,22873	46	The %s chills %s with its touch for %s damage!,damage
+WCCMSG_strings.tsv,479,42,23050	33	A %s lopes into the room from %s.,room
+WCCMSG_strings.tsv,481,44,23132	35	The %s lopes out of the room to %s.,room
+WCCMSG_strings.tsv,485,40,23303	31	The %s claws you for %d damage!,damage
+WCCMSG_strings.tsv,487,39,23385	30	The %s claws %s for %s damage!,damage
+WCCMSG_strings.tsv,491,43,23562	34	A %s creeps into the room from %s.,room
+WCCMSG_strings.tsv,493,45,23644	36	The %s creeps out of the room to %s.,room
+WCCMSG_strings.tsv,497,42,23815	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,499,41,23897	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,503,45,24074	36	An %s strides into the room from %s.,room
+WCCMSG_strings.tsv,505,44,24156	35	The %s walks out of the room to %s.,room
+WCCMSG_strings.tsv,509,42,24327	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,511,41,24409	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,515,45,25098	36	An %s strides into the room from %s.,room
+WCCMSG_strings.tsv,517,44,25180	35	The %s walks out of the room to %s.,room
+WCCMSG_strings.tsv,521,42,25351	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,523,41,25433	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,527,42,25610	33	A %s walks into the room from %s.,room
+WCCMSG_strings.tsv,529,44,25692	35	The %s walks out of the room to %s.,room
+WCCMSG_strings.tsv,533,42,25863	33	The %s impales you for %d damage!,damage
+WCCMSG_strings.tsv,535,41,25945	32	The %s impales %s for %s damage!,damage
+WCCMSG_strings.tsv,539,43,26122	34	A %s stomps into the room from %s.,room
+WCCMSG_strings.tsv,541,45,26204	36	The %s stomps out of the room to %s.,room
+WCCMSG_strings.tsv,545,42,26375	33	The %s smashes you for %d damage!,damage
+WCCMSG_strings.tsv,547,41,26457	32	The %s smashes %s for %s damage!,damage
+WCCMSG_strings.tsv,586,44,28170	35	A %s strides into the room from %s.,room
+WCCMSG_strings.tsv,588,46,28252	37	The %s strides out of the room to %s.,room
+WCCMSG_strings.tsv,592,42,28423	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,594,41,28505	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,598,49,28682	40	You discharge an %s at %s for %d damage!,damage
+WCCMSG_strings.tsv,600,50,28764	41	%s discharges an %s at you for %d damage!,damage
+WCCMSG_strings.tsv,604,45,28935	36	A %s scuttles into the room from %s.,room
+WCCMSG_strings.tsv,606,47,29017	38	The %s scuttles out of the room to %s.,room
+WCCMSG_strings.tsv,610,40,29194	31	The %s bites you for %d damage!,damage
+WCCMSG_strings.tsv,612,39,29276	30	The %s bites %s for %s damage!,damage
+WCCMSG_strings.tsv,646,45,30730	36	A %s shambles into the room from %s.,room
+WCCMSG_strings.tsv,648,46,30812	37	The %s wanders out of the room to %s.,room
+WCCMSG_strings.tsv,652,55,30983	46	The %s smashes you with its arm for %d damage!,damage
+WCCMSG_strings.tsv,654,54,31065	45	The %s smashes %s with its arm for %s damage!,damage
+WCCMSG_strings.tsv,658,41,31754	32	The %s pounds you for %d damage!,damage
+WCCMSG_strings.tsv,660,40,31836	31	The %s pounds %s for %s damage!,damage
+WCCMSG_strings.tsv,708,44,33802	35	The %s bludgeons you for %d damage!,damage
+WCCMSG_strings.tsv,710,43,33884	34	The %s bludgeons %s for %s damage!,damage
+WCCMSG_strings.tsv,726,42,34567	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,728,41,34649	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,798,42,38151	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,800,41,38233	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,810,48,38663	39	The %s savagely rips you for %d damage!,damage
+WCCMSG_strings.tsv,812,47,38745	38	The %s savagely rips %s for %s damage!,damage
+WCCMSG_strings.tsv,822,56,39175	47	The %s whips you with a tentacle for %d damage!,damage
+WCCMSG_strings.tsv,824,55,39257	46	The %s whips %s with a tentacle for %s damage!,damage
+WCCMSG_strings.tsv,852,27,40458	18	%s enters from %s.,enter
+WCCMSG_strings.tsv,854,24,40540	15	%s exits to %s.,exit
+WCCMSG_strings.tsv,876,46,41646	37	%s enters through a hole in the wall!,enter
+WCCMSG_strings.tsv,880,43,41817	34	%s enters a manhole in the ground!,enter
+WCCMSG_strings.tsv,882,43,41899	34	%s enters from a manhole overhead!,enter
+WCCMSG_strings.tsv,903,19,42841	10	enter path,enter
+WCCMSG_strings.tsv,940,41,45066	32	The %s shoots you for %d damage!,damage
+WCCMSG_strings.tsv,942,40,45148	31	The %s shoots %s for %s damage!,damage
+WCCMSG_strings.tsv,964,42,46090	33	The %s slashes you for %d damage!,damage
+WCCMSG_strings.tsv,966,41,46172	32	The %s slashes %s for %s damage!,damage
+WCCMSG_strings.tsv,976,39,46602	30	The %s rips you for %d damage!,damage
+WCCMSG_strings.tsv,978,38,46684	29	Ths %s rips %s for %s damage!,damage
+WCCMSG_strings.tsv,988,40,47114	31	The %s bites you for %d damage!,damage
+WCCMSG_strings.tsv,990,39,47196	30	The %s bites %s for %s damage!,damage
+WCCTEXT_strings.tsv,0,18,offset	length	text,text
+WCCTEXT_strings.tsv,149,16,24077	8	@spells@,spell
+WCCTEXT_strings.tsv,193,41,26901	32	L@never@get@thragGs@treasureAB@h,get
+WCCTEXT_strings.tsv,194,41,27060	32	L@Bnever@get@thragGs@treasureAB*,get
+WCCTEXT_strings.tsv,253,16,45713	8	@spells@,spell
+WCCTEXT_strings.tsv,265,16,47761	8	@spells@,spell
+WCCTEXT_strings.tsv,279,16,49809	8	@spells@,spell
+WCCTEXT_strings.tsv,294,16,51857	8	@spells@,spell
+WCCTEXT_strings.tsv,306,16,53905	8	@spells@,spell
+WCCTEXT_strings.tsv,407,17,58970	9	@healing@,heal
+WCCTEXT_strings.tsv,409,29,59035	20	@buy@minor@healingL@,heal
+WCCTEXT_strings.tsv,413,29,59157	20	@buy@major@healingL@,heal
+WCCTEXT_strings.tsv,417,31,59279	22	@buy@greater@healingL@,heal
+WCCTEXT_strings.tsv,456,22,60438	13	L@Bget@outA@y,get
+WCCTEXT_strings.tsv,457,21,60483	12	A@get@outAB*,get
+WCCTEXT_strings.tsv,623,15,69536	7	@keysL@,key
+WCCTEXT_strings.tsv,641,14,73676	6	@keys@,key

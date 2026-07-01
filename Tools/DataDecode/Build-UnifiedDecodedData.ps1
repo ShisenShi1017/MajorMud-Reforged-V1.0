@@ -245,7 +245,7 @@ Write-Csv -Rows $summaryRows -Path (Join-Path $summaryRoot "OmniVerseComparisonS
 
 $manifest = [pscustomobject]@{
     name = "Unified decoded data and OmniVerse comparison index"
-    codeUpdate = "0048"
+    codeUpdate = "0049"
     generatedUtc = (Get-Date).ToUniversalTime().ToString("o")
     policy = "Index and comparison reports only. Original MajorMUD binaries remain authoritative. OmniVerse/MudInfo data is validation/correlation evidence only."
     sourceInventoryFileCount = $sourceRows.Count

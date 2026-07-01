@@ -1,0 +1,82 @@
+source,va,section,terms,text,bridge_type
+wgserver_string,0x4500d4,DATA,msg,s:classmsgs,executable term anchor
+wgserver_string,0x450454,DATA,flag,flags,executable term anchor
+wgserver_string,0x4506f4,DATA,msg,totalmsgs,executable term anchor
+wgserver_string,0x450c44,DATA,flag,acctflags,executable term anchor
+wgserver_string,0x450db5,DATA,flag,s:jumpflags,executable term anchor
+wgserver_string,0x453796,DATA,text,CAN'T EXPORT SIGNUPS TO TEXT!,executable term anchor
+wgserver_string,0x45393f,DATA,quest,Answers to additional signup questions:,executable term anchor
+wgserver_string,0x453e85,DATA,msg,set msg,executable term anchor
+wgserver_string,0x453ead,DATA,message,message,executable term anchor
+wgserver_string,0x4540aa,DATA,message,Send a message to ,executable term anchor
+wgserver_string,0x4540e5,DATA,message,Set log-on message,executable term anchor
+wgserver_string,0x45411c,DATA,message,messages: ,executable term anchor
+wgserver_string,0x454219,DATA,msg,total no. of E-mail & Forum msgs in position ,executable term anchor
+wgserver_string,0x454247,DATA,msg,open no. of E-mail msgs in position ,executable term anchor
+wgserver_string,0x45426c,DATA,msg,open no. of Forum msgs in position ,executable term anchor
+wgserver_string,0x454488,DATA,message,NULL -- MESSAGE IGNORED ,executable term anchor
+wgserver_string,0x4544a3,DATA,message,QUIT -- MESSAGE IGNORED ,executable term anchor
+wgserver_string,0x4546b1,DATA,msg,Opn Forum msgs: %7u,executable term anchor
+wgserver_string,0x45515c,DATA,message,AUDIT TRAIL MESSAGE TOO LONG!,executable term anchor
+wgserver_string,0x455198,DATA,event,Event %1.1d,executable term anchor
+wgserver_string,0x45664f,DATA,message,"TOO MANY LANGUAGES (%d) & MESSAGES (%d) IN ""%s""",executable term anchor
+wgserver_string,0x45669d,DATA,msg,INIMSG NOT CALLED,executable term anchor
+wgserver_string,0x4566af,DATA,message,MESSAGE NUMBER %d OUT OF RANGE IN %s,executable term anchor
+wgserver_string,0x4566d4,DATA,message,CANNOT SEEK MESSAGE NUMBER %d (LANGUAGE %d) IN %s,executable term anchor
+wgserver_string,0x456707,DATA,message,CANNOT READ MESSAGE NUMBER %d (LANGUAGE %d) IN %s,executable term anchor
+wgserver_string,0x4567db,DATA,msg,MSG:%s/%d,executable term anchor
+wgserver_string,0x4568d0,DATA,msg,the .MSG file,executable term anchor
+wgserver_string,0x457644,DATA,msg,WGSMAJOR.MSG,executable term anchor
+wgserver_string,0x457eac,DATA,msg,wgsmajor.msg,executable term anchor
+wgserver_string,0x457f20,DATA,event,/EVENT/WGSERVER/WGS_RUNNING,executable term anchor
+wgserver_string,0x457f3c,DATA,event,/EVENT/WGSERVER/GROUP_RUNNING,executable term anchor
+wgserver_string,0x457f5a,DATA,event,/EVENT/WGSERVER/UTIL_RUNNING,executable term anchor
+wgserver_string,0x457f77,DATA,event,/EVENT/WGSERVER/WGSINT_RUNNING,executable term anchor
+wgserver_string,0x457f96,DATA,event,/EVENT/WGSERVER/WGSCNF_RUNNING,executable term anchor
+wgserver_string,0x458418,DATA,flag,BP=%08X SP=%08X IP=%08X Flags=%08X,executable term anchor
+wgserver_string,0x458522,DATA,msg,MSG:%s/%d,executable term anchor
+wgserver_string,0x45852e,DATA,msg,MSG:<INVALID STRING>/%d,executable term anchor
+wgserver_string,0x4795a4,.INIT,event,CreateEventA,executable term anchor
+wgserver_string,0x4795d2,.INIT,text|get,GetThreadContext,executable term anchor
+wgserver_string,0x479714,.INIT,message,FormatMessageA,executable term anchor
+wgserver_string,0x479800,.INIT,event,SetEvent,executable term anchor
+wgserver_string,0x4798e2,.INIT,event,ResetEvent,executable term anchor
+wgserver_string,0x47993a,.INIT,event,OpenEventA,executable term anchor
+wgserver_string,0x479b76,.INIT,text,SetConsoleTextAttribute,executable term anchor
+wgserver_string,0x479ee2,.INIT,message,SendMessageA,executable term anchor
+wgserver_string,0x479f10,.INIT,message,PostThreadMessageA,executable term anchor
+wgserver_string,0x479f26,.INIT,message,PostQuitMessage,executable term anchor
+wgserver_string,0x479f38,.INIT,message,PeekMessageA,executable term anchor
+wgserver_string,0x479f56,.INIT,message,MessageBoxA,executable term anchor
+wgserver_string,0x479f64,.INIT,message,MessageBeep,executable term anchor
+wgserver_string,0x47a048,.INIT,message|get,GetMessageA,executable term anchor
+wgserver_string,0x47a0a2,.INIT,message|dispatch,DispatchMessageA,executable term anchor
+wgserver_string,0x47a12a,.INIT,message,TranslateMessage,executable term anchor
+wgserver_string,0x47a164,.INIT,text,SetWindowTextA,executable term anchor
+wgserver_string,0x47a200,.INIT,event,ReportEventA,executable term anchor
+wgserver_string,0x47a22e,.INIT,event,RegisterEventSourceA,executable term anchor
+wgserver_string,0x47a2f4,.INIT,event,DeregisterEventSource,executable term anchor
+wgserver_string,0x47a322,.INIT,text,SetTextColor,executable term anchor
+wgserver_string,0x47a350,.INIT,text|get,GetTextExtentPoint32A,executable term anchor
+wgserver_string,0x480069,.edata,msg,_clsmsg,executable term anchor
+wgserver_string,0x480071,.edata,msg,_clsmsgrdr,executable term anchor
+wgserver_string,0x480299,.edata,flag,_cvtFlags,executable term anchor
+wgserver_string,0x480dd9,.edata,text|get,_getErrorText,executable term anchor
+wgserver_string,0x480dfe,.edata,text|get,_getLastErrorText,executable term anchor
+wgserver_string,0x480e10,.edata,msg|get,_getMsgBlk,executable term anchor
+wgserver_string,0x481264,.edata,msg,_inimsg,executable term anchor
+wgserver_string,0x48126c,.edata,msg,_inimsgrdr,executable term anchor
+wgserver_string,0x4817bb,.edata,msg,_msgbuf,executable term anchor
+wgserver_string,0x4817c3,.edata,msg,_msghdl,executable term anchor
+wgserver_string,0x4817cb,.edata,msg,_msgnam,executable term anchor
+wgserver_string,0x4817d3,.edata,msg,_msgscan,executable term anchor
+wgserver_string,0x4817dc,.edata,msg,_msgseek,executable term anchor
+wgserver_string,0x481ab2,.edata,msg,_opnmsg,executable term anchor
+wgserver_string,0x481be3,.edata,message,_pageUserMessage,executable term anchor
+wgserver_string,0x481d47,.edata,msg,_prfmsg,executable term anchor
+wgserver_string,0x481e15,.edata,msg,_rawmsg,executable term anchor
+wgserver_string,0x481e3d,.edata,msg,_rdmsg,executable term anchor
+wgserver_string,0x481f06,.edata,text,_register_textvar,executable term anchor
+wgserver_string,0x482037,.edata,text,_rtextFDA,executable term anchor
+wgserver_string,0x4826de,.edata,msg,_tshmsg,executable term anchor
+wgserver_string,0x48281c,.edata,flag,_usrflags,executable term anchor

@@ -1,0 +1,275 @@
+kind,file_offset,va,section,text,terms,length
+ascii,312633,4512057,DATA,ENTER  Save changed info ,enter,25
+ascii,313202,4512626,DATA,Custom RIP Lib. Download,load,24
+ascii,315470,4514894,DATA,"Operator entered ""X"".",enter,21
+ascii,316251,4515675,DATA,Enter at least %d character(s),enter,30
+ascii,316282,4515706,DATA,"Enter at least ""%.*s""",enter,21
+ascii,316308,4515732,DATA,Enter at least %ld,enter,18
+ascii,316327,4515751,DATA,"Enter no higher than ""%.*s""",enter,27
+ascii,316355,4515779,DATA,Enter no higher than %ld,enter,24
+ascii,316414,4515838,DATA,Are you sure?  Enter QUIT or ^O to quit now.,enter,44
+ascii,316846,4516270,DATA,Ran out of room for this file.,room,30
+ascii,322408,4521832,DATA,zmdinb: Invalid state for %c [%d],state,33
+ascii,322724,4522148,DATA,s:classkeys,key,11
+ascii,322772,4522196,DATA,s:classmsgs,msg,11
+ascii,322796,4522220,DATA,s:classkill,kill,11
+ascii,322940,4522364,DATA,s:sysloading,load,12
+ascii,323060,4522484,DATA,su:usrclskeys,key,13
+ascii,323084,4522508,DATA,su:usrpslkeys,key,13
+ascii,323668,4523092,DATA,flags,flag,5
+ascii,324276,4523700,DATA,downloads,load,9
+ascii,324308,4523732,DATA,uploads,load,7
+ascii,324340,4523764,DATA,totalmsgs,msg,9
+ascii,325700,4525124,DATA,acctflags,flag,9
+ascii,326069,4525493,DATA,s:jumpflags,flag,11
+ascii,326931,4526355,DATA,Target User-ID is invalid (bad character),get,41
+ascii,326973,4526397,DATA,Target User-ID is invalid (profanity detected),get,46
+ascii,327020,4526444,DATA,Target User-ID is invalid (too short),get,37
+ascii,327058,4526482,DATA,Target User-ID is invalid (too long),get,36
+ascii,327095,4526519,DATA,Target User-ID is invalid (already in use),get,42
+ascii,327138,4526562,DATA,Target User-ID is invalid (undefined reason),get,44
+ascii,327776,4527200,DATA,wgskey2.dat,key,11
+ascii,327788,4527212,DATA,MISSING A USER'S KEYRING RECORD,key,31
+ascii,327820,4527244,DATA,(%s has been given a blank keyring record.),give|key,43
+ascii,327864,4527288,DATA,MISSING A CLASS KEYRING RECORD,key,30
+ascii,327895,4527319,DATA,(%s class has been given a blank keyring record.),give|key,49
+ascii,328487,4527911,DATA,StartServiceCtrlDispatcher failed.,dispatch,34
+ascii,328856,4528280,DATA,INTERRUPT HANDLER NOT INITIALIZED,handler,33
+ascii,329752,4529176,DATA,TOO MANY GLOBAL COMMAND HANDLERS,handler,32
+ascii,330616,4530040,DATA,_getTCPConnectInfo,get,18
+ascii,335768,4535192,DATA,      Press any key      ,key,25
+ascii,336067,4535491,DATA,pageGetInfoHook returned NULL in setPageSettingUid! (PAGE.C),get,60
+ascii,336128,4535552,DATA,pageGetInfoHook returned NULL in pageShow! (PAGE.C),get,51
+ascii,336790,4536214,DATA,CAN'T EXPORT SIGNUPS TO TEXT!,text,29
+ascii,337215,4536639,DATA,Answers to additional signup questions:,quest,39
+ascii,338565,4537989,DATA,set msg,msg,7
+ascii,338589,4538013,DATA, kill  ,kill,7
+ascii,338605,4538029,DATA,message,message,7
+ascii,338644,4538068,DATA,uploads,load,7
+ascii,338652,4538076,DATA,dnloads,load,7
+ascii,338858,4538282,DATA,<ENTER>,enter,7
+ascii,339114,4538538,DATA,Send a message to ,message,18
+ascii,339173,4538597,DATA,Set log-on message,message,18
+ascii,339192,4538616,DATA,Kill ,kill,5
+ascii,339228,4538652,DATA,messages: ,message,10
+ascii,339389,4538813,DATA,total number of uploads to date in position ,load,44
+ascii,339434,4538858,DATA,total number of downloads to date in position ,load,46
+ascii,339481,4538905,DATA,total no. of E-mail & Forum msgs in position ,msg,45
+ascii,339527,4538951,DATA,open no. of E-mail msgs in position ,msg,36
+ascii,339564,4538988,DATA,open no. of Forum msgs in position ,msg,35
+ascii,340104,4539528,DATA,NULL -- MESSAGE IGNORED ,message,24
+ascii,340131,4539555,DATA,QUIT -- MESSAGE IGNORED ,message,24
+ascii,340492,4539916,DATA,HD room avail:  %7.7s,room,21
+ascii,340575,4539999,DATA,Tot uploads:   %8.8s,load,20
+ascii,340596,4540020,DATA,Tot dnloads:   %8.8s,load,20
+ascii,340657,4540081,DATA,Opn Forum msgs: %7u,msg,19
+ascii,341301,4540725,DATA,Loading: %8.8s               ,load,29
+ascii,341382,4540806,DATA,LOADDLL: Unable to load module %s! %s,load,37
+ascii,341780,4541204,DATA,RegisterServiceCtrlHandler failed,handler,33
+ascii,341986,4541410,DATA,/MFILE/WGSERVER/WGSExitCode,exit,27
+ascii,342190,4541614,DATA,Warning!!!  Selecting OK will disconnect all users from your system and take your system offline.,take,97
+ascii,342463,4541887,DATA,Please use F10 F9 to exit.,exit,26
+ascii,342937,4542361,DATA,Unable to get comm state %s error: %s,get|state,37
+ascii,342975,4542399,DATA,Unable to set comm state %s error: %s,state,37
+ascii,343013,4542437,DATA,Unable to get comm timeouts %s error: %s,get,40
+ascii,343388,4542812,DATA,AUDIT TRAIL MESSAGE TOO LONG!,message,29
+ascii,343448,4542872,DATA,Event %1.1d,event,11
+ascii,345893,4545317,DATA,ATTEMPTED TO GET POINTER TO UNRESERVED AREA!,get,44
+ascii,348068,4547492,DATA,getasc: READ ERROR INDEX %d IN %s,get,33
+ascii,348751,4548175,DATA,"TOO MANY LANGUAGES (%d) & MESSAGES (%d) IN ""%s""",message,47
+ascii,348829,4548253,DATA,INIMSG NOT CALLED,msg,17
+ascii,348847,4548271,DATA,MESSAGE NUMBER %d OUT OF RANGE IN %s,message,36
+ascii,348884,4548308,DATA,CANNOT SEEK MESSAGE NUMBER %d (LANGUAGE %d) IN %s,message,49
+ascii,348935,4548359,DATA,CANNOT READ MESSAGE NUMBER %d (LANGUAGE %d) IN %s,message,49
+ascii,349147,4548571,DATA,MSG:%s/%d,msg,9
+ascii,349392,4548816,DATA,the .MSG file,msg,13
+ascii,352836,4552260,DATA,WGSMAJOR.MSG,msg,12
+ascii,354420,4553844,DATA,    << Press any key to proceed >>,key,34
+ascii,354512,4553936,DATA,"Unexpected exit, no recovery method supplied...",exit,47
+ascii,354591,4554015,DATA,GETRNO: Error opening %s for input.,get,35
+ascii,354632,4554056,DATA,GETRNO: Error reading %s!,get,25
+ascii,354658,4554082,DATA,GETRNO: Cannot locate registration number.,get,42
+ascii,354988,4554412,DATA,wgsmajor.msg,msg,12
+ascii,355016,4554440,DATA,Please use the normal Exit command to end the program.,exit,54
+ascii,355104,4554528,DATA,/EVENT/WGSERVER/WGS_RUNNING,event,27
+ascii,355132,4554556,DATA,/EVENT/WGSERVER/GROUP_RUNNING,event,29
+ascii,355162,4554586,DATA,/EVENT/WGSERVER/UTIL_RUNNING,event,28
+ascii,355191,4554615,DATA,/EVENT/WGSERVER/WGSINT_RUNNING,event,30
+ascii,355222,4554646,DATA,/EVENT/WGSERVER/WGSCNF_RUNNING,event,30
+ascii,355477,4554901,DATA,BEGIN-XACTION,action,13
+ascii,355491,4554915,DATA,ABORT-XACTION,action,13
+ascii,355505,4554929,DATA,END-XACTION,action,11
+ascii,355552,4554976,DATA,GET-ABSOLUTE,get,12
+ascii,355807,4555231,DATA,buildFDA: too many keys!,key,24
+ascii,355832,4555256,DATA,buildFDA: too many key segments!,key,32
+ascii,356376,4555800,DATA,BP=%08X SP=%08X IP=%08X Flags=%08X,flag,34
+ascii,356601,4556025,DATA,"Online level %d, state %d, substate %d",state,38
+ascii,356642,4556066,DATA,MSG:%s/%d,msg,9
+ascii,356654,4556078,DATA,MSG:<INVALID STRING>/%d,msg,23
+ascii,356867,4556291,DATA, state=%6d            ,state,22
+ascii,357692,4557116,DATA,__GetExceptDLLinfo,get,18
+ascii,361094,4690054,.INIT,__fgetc,get,7
+ascii,361112,4690072,.INIT,_fgetc,get,6
+ascii,361150,4690110,.INIT,_getch,get,6
+ascii,361374,4690334,.INIT,_getenv,get,7
+ascii,361494,4690454,.INIT,_exit,exit,5
+ascii,361502,4690462,.INIT,__ExceptionHandler,handler,18
+ascii,361686,4690646,.INIT,_fgets,get,6
+ascii,362030,4690990,.INIT,GetCommState,get|state,12
+ascii,362046,4691006,.INIT,GetDateFormatA,get,14
+ascii,362126,4691086,.INIT,GetLocalTime,get,12
+ascii,362222,4691182,.INIT,GetOverlappedResult,get,19
+ascii,362292,4691252,.INIT,GetSystemInfo,get,13
+ascii,362308,4691268,.INIT,GetLocaleInfoA,get,14
+ascii,362346,4691306,.INIT,EnterCriticalSection,enter,20
+ascii,362404,4691364,.INIT,CreateEventA,event,12
+ascii,362450,4691410,.INIT,GetThreadContext,text|get,16
+ascii,362544,4691504,.INIT,LoadLibraryA,load,12
+ascii,362772,4691732,.INIT,FormatMessageA,message,14
+ascii,362812,4691772,.INIT,GetCommModemStatus,get,18
+ascii,362834,4691794,.INIT,GetCommProperties,get,17
+ascii,362866,4691826,.INIT,GetCommTimeouts,get,15
+ascii,363008,4691968,.INIT,SetEvent,event,8
+ascii,363154,4692114,.INIT,SetConsoleCtrlHandler,handler,21
+ascii,363234,4692194,.INIT,ResetEvent,event,10
+ascii,363322,4692282,.INIT,OpenEventA,event,10
+ascii,363532,4692492,.INIT,GetTickCount,get,12
+ascii,363548,4692508,.INIT,GetProcAddress,get,14
+ascii,363578,4692538,.INIT,GetStdHandle,get,12
+ascii,363594,4692554,.INIT,GetProcessHeap,get,14
+ascii,363612,4692572,.INIT,GetModuleFileNameA,get,18
+ascii,363634,4692594,.INIT,GetExitCodeThread,get|exit,17
+ascii,363684,4692644,.INIT,GetDiskFreeSpaceA,get,17
+ascii,363704,4692664,.INIT,GetLastError,get,12
+ascii,363720,4692680,.INIT,GetCurrentThreadId,get,18
+ascii,363742,4692702,.INIT,SetCommState,state,12
+ascii,363758,4692718,.INIT,GetCurrentThread,get,16
+ascii,363778,4692738,.INIT,GetCurrentDirectoryA,get,20
+ascii,363802,4692762,.INIT,GetConsoleScreenBufferInfo,get,26
+ascii,363860,4692820,.INIT,GetVersionExA,get,13
+ascii,363876,4692836,.INIT,GetConsoleMode,get,14
+ascii,363894,4692854,.INIT,SetConsoleTextAttribute,text,23
+ascii,363944,4692904,.INIT,GetConsoleCursorInfo,get,20
+ascii,363968,4692928,.INIT,GetTimeFormatA,get,14
+ascii,363986,4692946,.INIT,GetModuleHandleA,get,16
+ascii,364770,4693730,.INIT,SendMessageA,message,12
+ascii,364816,4693776,.INIT,PostThreadMessageA,message,18
+ascii,364838,4693798,.INIT,PostQuitMessage,message,15
+ascii,364856,4693816,.INIT,PeekMessageA,message,12
+ascii,364886,4693846,.INIT,MessageBoxA,message,11
+ascii,364900,4693860,.INIT,MessageBeep,message,11
+ascii,364914,4693874,.INIT,LoadIconA,load,9
+ascii,364926,4693886,.INIT,LoadCursorA,load,11
+ascii,364940,4693900,.INIT,LoadBitmapA,load,11
+ascii,364954,4693914,.INIT,LoadAcceleratorsA,load,17
+ascii,365026,4693986,.INIT,GetWindowRect,get,13
+ascii,365042,4694002,.INIT,GetWindowPlacement,get,18
+ascii,365064,4694024,.INIT,GetWindowLongA,get,14
+ascii,365082,4694042,.INIT,GetSystemMetrics,get,16
+ascii,365102,4694062,.INIT,GetSysColor,get,11
+ascii,365116,4694076,.INIT,GetParent,get,9
+ascii,365128,4694088,.INIT,GetMessageA,message|get,11
+ascii,365142,4694102,.INIT,GetMenu,get,7
+ascii,365152,4694112,.INIT,GetDlgItem,item|get,10
+ascii,365166,4694126,.INIT,GetDC,get,5
+ascii,365186,4694146,.INIT,EnableMenuItem,item,14
+ascii,365218,4694178,.INIT,DispatchMessageA,message|dispatch,16
+ascii,365354,4694314,.INIT,TranslateMessage,message,16
+ascii,365412,4694372,.INIT,SetWindowTextA,text,14
+ascii,365464,4694424,.INIT,StartServiceCtrlDispatcherA,dispatch,27
+ascii,365514,4694474,.INIT,SetSecurityDescriptorDacl,script,25
+ascii,365568,4694528,.INIT,ReportEventA,event,12
+ascii,365584,4694544,.INIT,RegisterServiceCtrlHandlerA,handler,27
+ascii,365614,4694574,.INIT,RegisterEventSourceA,event,20
+ascii,365676,4694636,.INIT,RegOpenKeyExA,key,13
+ascii,365692,4694652,.INIT,RegCreateKeyExA,key,15
+ascii,365710,4694670,.INIT,RegCloseKey,key,11
+ascii,365780,4694740,.INIT,InitializeSecurityDescriptor,script,28
+ascii,365812,4694772,.INIT,DeregisterEventSource,event,21
+ascii,365858,4694818,.INIT,SetTextColor,text,12
+ascii,365904,4694864,.INIT,GetTextExtentPoint32A,text|get,21
+ascii,365928,4694888,.INIT,GetObjectA,get,10
+ascii,366084,4695044,.INIT,WSAGetLastError,get,15
+ascii,384434,4716978,.edata,__GetExceptDLLinfo,get,18
+ascii,385748,4718292,.edata,_cataexit,exit,9
+ascii,385811,4718355,.edata,_cfgGetStr,get,10
+ascii,386153,4718697,.edata,_clsmsg,msg,7
+ascii,386161,4718705,.edata,_clsmsgrdr,msg,10
+ascii,386448,4718992,.edata,_cpykey,key,7
+ascii,386713,4719257,.edata,_cvtFlags,flag,9
+ascii,387210,4719754,.edata,_dfaGetAbsLock,get,14
+ascii,387225,4719769,.edata,_dfaGetLock,get,11
+ascii,387678,4720222,.edata,_dlkeys,key,7
+ascii,388241,4720785,.edata,_fgetstg,get,8
+ascii,388325,4720869,.edata,_findkey,key,8
+ascii,388521,4721065,.edata,_freekey,key,8
+ascii,388786,4721330,.edata,_fsdroom,room,8
+ascii,389558,4722102,.edata,_gen_haskey,key,11
+ascii,389593,4722137,.edata,_getErrorText,text|get,13
+ascii,389607,4722151,.edata,_getFileGMT,get,11
+ascii,389619,4722163,.edata,_getFileTm,get,10
+ascii,389630,4722174,.edata,_getLastErrorText,text|get,17
+ascii,389648,4722192,.edata,_getMsgBlk,msg|get,10
+ascii,389659,4722203,.edata,_getPseudokey2,get|key,14
+ascii,389674,4722218,.edata,_getShortName,get,13
+ascii,389688,4722232,.edata,_getasc,get,7
+ascii,389696,4722240,.edata,_getchc,get,7
+ascii,389704,4722248,.edata,_getdft,get,7
+ascii,389712,4722256,.edata,_getgen,get,7
+ascii,389720,4722264,.edata,_getlst,get,7
+ascii,389728,4722272,.edata,_getrno,get,7
+ascii,389736,4722280,.edata,_getval,get,7
+ascii,389744,4722288,.edata,_getvalbuf,get,10
+ascii,389755,4722299,.edata,_givkey,key,7
+ascii,389763,4722307,.edata,_glbkey,key,7
+ascii,389771,4722315,.edata,_glbkeyi,key,8
+ascii,390096,4722640,.edata,_haskey,key,7
+ascii,390112,4722656,.edata,_hasmkey,key,8
+ascii,390574,4723118,.edata,_imdrop,drop,7
+ascii,390756,4723300,.edata,_inimsg,msg,7
+ascii,390764,4723308,.edata,_inimsgrdr,msg,10
+ascii,391089,4723633,.edata,_itemcnt,item,8
+ascii,391098,4723642,.edata,_itemcntd,item,9
+ascii,391108,4723652,.edata,_itemidx,item,8
+ascii,391117,4723661,.edata,_itemidxd,item,9
+ascii,391136,4723680,.edata,_keyhit,key,7
+ascii,391144,4723688,.edata,_keynam,key,7
+ascii,391152,4723696,.edata,_keysbb,key,7
+ascii,391461,4724005,.edata,_loadacc,load,8
+ascii,391470,4724014,.edata,_loadkeys,key|load,9
+ascii,391480,4724024,.edata,_loadtv,load,7
+ascii,391488,4724032,.edata,_loadup,load,7
+ascii,391609,4724153,.edata,_low_haskey,key,11
+ascii,391843,4724387,.edata,_mdfgets,get,8
+ascii,392123,4724667,.edata,_msgbuf,msg,7
+ascii,392131,4724675,.edata,_msghdl,msg,7
+ascii,392139,4724683,.edata,_msgnam,msg,7
+ascii,392147,4724691,.edata,_msgscan,msg,8
+ascii,392156,4724700,.edata,_msgseek,msg,8
+ascii,392562,4725106,.edata,_noignkey,key,9
+ascii,392587,4725131,.edata,_npkeys,key,7
+ascii,392657,4725201,.edata,_numPseudokey2,key,14
+ascii,392882,4725426,.edata,_opnmsg,msg,7
+ascii,392910,4725454,.edata,_othkey,key,7
+ascii,393025,4725569,.edata,_pageGetInfoHook,get,16
+ascii,393042,4725586,.edata,_pageGetInfoNum,get,15
+ascii,393099,4725643,.edata,_pageLoadRecord,load,15
+ascii,393187,4725731,.edata,_pageUserMessage,message,16
+ascii,393204,4725748,.edata,_pagekey,key,8
+ascii,393418,4725962,.edata,_pkeys,key,6
+ascii,393543,4726087,.edata,_prfmsg,msg,7
+ascii,393718,4726262,.edata,_qroom,room,6
+ascii,393749,4726293,.edata,_rawmsg,msg,7
+ascii,393789,4726333,.edata,_rdmsg,msg,6
+ascii,393990,4726534,.edata,_register_textvar,text,17
+ascii,394107,4726651,.edata,_rmvkey,key,7
+ascii,394295,4726839,.edata,_rtextFDA,text,9
+ascii,394749,4727293,.edata,_scngetc,get,8
+ascii,395709,4728253,.edata,_syskey,key,7
+ascii,395717,4728261,.edata,_sysload,load,8
+ascii,395844,4728388,.edata,_tfstate,state,8
+ascii,395998,4728542,.edata,_tshmsg,msg,7
+ascii,396047,4728591,.edata,_uhskey,key,7
+ascii,396055,4728599,.edata,_uhsmkey,key,8
+ascii,396081,4728625,.edata,_uidkey,key,7
+ascii,396316,4728860,.edata,_usrflags,flag,9

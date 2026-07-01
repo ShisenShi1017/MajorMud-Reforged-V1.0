@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0048
+## 10. Current project position after CodeUpdate-0049
 
-- Current Code Update: `0048`
+- Current Code Update: `0049`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0048, verify GitHub Actions green by user report, then continue DataDecode0051 Combat Routine Correlation using the GitHub repository as the direct working copy.
+- Current priority: push CodeUpdate-0049, verify GitHub Actions green by user report, then continue DataDecode0051 Combat Routine Correlation using the GitHub repository as the direct working copy.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -169,6 +169,8 @@ CodeUpdate-0046 imports the gathered OmniVerse/MudInfo reference payload under `
 CodeUpdate-0047 preserves the user-provided DataDecode0049 WGSERVER record access / structure correlation checkpoint under `DataDecodeCheckpoints/DataDecode0049/` and records the DataDecode0050 GitHub transition handoff under `DataDecodeCheckpoints/DataDecode0050/`. DataDecode0049 reports 15 NativeRuntime DAT datasets profiled, 5,916 executable strings, 9,574 record constant hits, 29 string-address xrefs, 29 record-access candidate windows, 15 descriptor candidates, 93 canonical term hits, and 0 field promotions. DataDecode0050 changes the decode workflow: future decode passes must update the GitHub repository directly, with ZIPs allowed only as archival/checkpoint artifacts. No standalone DataDecode0050 ZIP was supplied in this Codex turn; dispatcher/message items are handoff continuity only until supported by committed reports or binary-backed evidence.
 
 CodeUpdate-0048 creates `DataDecodeCheckpoints/UnifiedDecodedData/` as a repo-native index and comparison surface for current decoded data and the CodeUpdate0046 OmniVerse/MudInfo reference payload. It adds generated inventory, category comparison reports, and an Android ChatGPT decode workflow under `Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md` plus phone handoff templates. It does not move historical reports, rewrite canonical `Data/`, promote fields, add server behavior, or add gameplay.
+
+CodeUpdate-0049 preserves the real DataDecode0050 WGSERVER Event & Message Dispatcher Correlation checkpoint under `DataDecodeCheckpoints/DataDecode0050/`. The earlier transition-only DataDecode0050 notes from CodeUpdate-0047 are preserved under `DataDecodeCheckpoints/DataDecode0050/Transition/`. DataDecode0050 reports 5,916 ASCII strings, 39 UTF-16LE strings, 274 event/message/schema-focused strings, 86 string pointer xrefs, 86 dispatch/reference candidate windows, 1,739 WCCMSG/WCCTEXT anchors, 850 cross-file U16 candidates, and 0 canonical promotions. HTTrack/OmniVerse helped identify coverage gaps but did not prove dispatcher behavior or field semantics.
 
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 
