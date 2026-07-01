@@ -1,3 +1,31 @@
+# CodeUpdate-0046 - OmniVerse Capture Checkpoint
+
+This update records the current OmniVerse/MudInfo reference capture state before continuing data gathering.
+
+## Changed
+
+- Recorded CodeUpdate-0045 as green by user report.
+- Recorded `E:\Httracks\OmniVerseCodexFull` as the HTTrack OmniVerse SPA shell/assets capture.
+- Imported the gathered OmniVerse/MudInfo reference payload under `ImportedDatabases/OmniVerseReference/CodeUpdate0046/`.
+- Recorded WCC API capture counts and hashes for abilities, classes, items, monsters, races, shops, spells, world status, 168 shop-seeded roommaps, 1,246 room details, and a 23-entry room capture error log.
+- Recorded and preserved MudInfo `maps.rar` hash, source archive, and 102 extracted MudInfo map files.
+
+## Verification
+
+- Local reference capture files were counted and hashed.
+- HTTrack limitation was verified: the site uses API-loaded data, so HTTrack does not enumerate full codex records by itself.
+- Final local repository verification is recorded in `UpdateManifest.json`.
+
+## Boundaries
+
+- Captured reference evidence was copied into `ImportedDatabases/OmniVerseReference/CodeUpdate0046/` for validation/correlation only.
+- No canonical `Data/` rewrite.
+- No field promotions.
+- No server behavior changes.
+- No gameplay systems.
+- No public-ID to binary-row assumptions.
+
+## Previous Release Notes
 # CodeUpdate-0045 - DataDecode0043 Checkpoint Integration
 
 This update integrates the user-provided DataDecode0043 Import Readiness Validation checkpoint as repository reference documentation.

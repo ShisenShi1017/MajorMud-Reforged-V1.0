@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0045
+## 10. Current project position after CodeUpdate-0046
 
-- Current Code Update: `0045`
+- Current Code Update: `0046`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0045, verify GitHub Actions green, then use DataDecode0043 as the pre-mirror import-readiness baseline. Do not import unknown/candidate fields until binary evidence plus mirror or runtime proof supports them.
+- Current priority: continue gathering OmniVerse room/reference data before the next user push. Treat OmniVerse API captures and MudInfo maps as validation/correlation evidence only.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -163,6 +163,8 @@ CodeUpdate-0043 classifies canonical Server data categories as runtime-ready or 
 CodeUpdate-0044 adds the original reference capture/extractor tool under `Tools/ReferenceCapture/`. It preserves and inventories original/reference material, extracts ZIP files directly, can extract RAR/7z files when 7-Zip is available, captures printable strings, and writes evidence reports. It does not run original executables, does not use keygens, does not rewrite canonical `Data/`, does not delete imported/reference data, does not add gameplay, and does not claim exact MajorMUD parity.
 
 CodeUpdate-0045 integrates the user-provided DataDecode0043 Import Readiness Validation checkpoint under `DataDecodeCheckpoints/DataDecode0043/`. DataDecode0043 estimates static binary decode at approximately 96-97%, registers 5 import blockers, reviews 1,000 foreign-key candidates, hashes 83 native source files, and promotes 0 canonical fields. It is a pre-mirror baseline only and does not change server behavior or canonical `Data/`.
+
+CodeUpdate-0046 imports the gathered OmniVerse/MudInfo reference payload under `ImportedDatabases/OmniVerseReference/CodeUpdate0046/` for validation/correlation only. It includes WCC OmniVerse API captures for abilities, classes, items, monsters, races, shops, spells, world status, 168 shop-seeded roommap files, 1,246 room detail files, a 23-entry room capture error log, the MudInfo `maps.rar` source archive, and 102 extracted MudInfo map files. HTTrack captured the OmniVerse SPA shell/assets externally under `E:\Httracks\OmniVerseCodexFull`, but the committed verification payload is the API/map evidence, not the web shell cache. Original MajorMUD binary files remain authoritative; CodeUpdate-0046 does not rewrite canonical `Data/`, promote fields, add server behavior, add gameplay, or assume OmniVerse public IDs equal binary row indexes.
 
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 

@@ -1,101 +1,98 @@
 {
-  "codeUpdate": "0045",
-  "name": "CodeUpdate-0045-DataDecode0043-Checkpoint-Integration",
+  "codeUpdate": "0046",
+  "name": "CodeUpdate-0046-OmniVerse-Capture-Checkpoint",
   "packageType": "direct-repository-patch",
-  "purpose": "Integrate the user-provided DataDecode0043 Import Readiness Validation checkpoint as repository documentation/reference evidence without changing server behavior or canonical Data.",
+  "purpose": "Record and import the current OmniVerse/MudInfo reference capture state for binary-first verification.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": false,
   "batInstallerCreated": false,
   "updateZipCreated": false,
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
-  "milestone2Status": "Continuing with constrained host/server, reference capture, decode evidence, and data-readiness work; no gameplay systems are approved.",
-  "verificationStatus": "DataDecode0043 ZIP was found, hashed, listed, extracted into DataDecodeCheckpoints/DataDecode0043, and inspected. Package SHA-256: 0547361D07D8979F77F88B2D463E9AB720FC9851831AE107C369189FF51A5259. Internal manifest verification found two expected package limitations: DataDecode0043_Manifest.csv and UpdateManifest.json differ from their own recorded manifest sizes/hashes, while the remaining listed checkpoint files matched. ProjectManifest.json and UpdateManifest.json parsed successfully. Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. Server bootstrap run passed and reported CodeUpdate 0045, host-tools-ready, gameplay=disabled, 13/13 canonical categories present, 8 runtime-ready categories, 5 runtime-blocked placeholders, and 4,527 records loaded. GitHub Actions remains pending after user push.",
+  "milestone2Status": "Continuing with binary-first data completion and reference/correlation capture; no gameplay systems are approved.",
+  "verificationStatus": "Local repository was clean at CodeUpdate-0045 before this update. User reported CodeUpdate-0045 GitHub Actions green. HTTrack captured the OmniVerse app shell/assets under E:\\Httracks\\OmniVerseCodexFull as external context. Direct WCC OmniVerse API captures were imported under ImportedDatabases/OmniVerseReference/CodeUpdate0046 for items, monsters, spells, classes, races, abilities, shops, world status, 168 shop-seeded roommaps, and 1,246 room details. MudInfo maps.rar was preserved with 102 extracted map files. ProjectManifest.json and UpdateManifest.json parsed successfully. Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. GitHub Actions remains pending after user push.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
     "CHANGELOG.md",
-    "DataDecodeCheckpoints/DataDecode0043/AI_CONTEXT_DataDecode0043_Append.md",
-    "DataDecodeCheckpoints/DataDecode0043/CHANGELOG_DataDecode0043_Append.md",
-    "DataDecodeCheckpoints/DataDecode0043/CanonicalSchemaConstraintAudit_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/DataDecode0043_Handoff.md",
-    "DataDecodeCheckpoints/DataDecode0043/DataDecode0043_Manifest.csv",
-    "DataDecodeCheckpoints/DataDecode0043/DataDecode0043_Metrics.csv",
-    "DataDecodeCheckpoints/DataDecode0043/DataDecode0043_Report.md",
-    "DataDecodeCheckpoints/DataDecode0043/ForeignKeyImportGateReview_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/ImportBlockingIssueRegister_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/ImportStagingDecisionMatrix_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/InputBaselineInventory_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/Install_DataDecode0043_Checkpoint.bat",
-    "DataDecodeCheckpoints/DataDecode0043/NativeImportSourceIntegrity_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/ReleaseNotes_DataDecode0043_Append.md",
-    "DataDecodeCheckpoints/DataDecode0043/RepoImportValidationSurface_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/RepositoryJsonFieldConstraintAudit_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/RepositoryJsonImportReadiness_DataDecode0043.csv",
-    "DataDecodeCheckpoints/DataDecode0043/Roadmap_DataDecode0043_Append.md",
-    "DataDecodeCheckpoints/DataDecode0043/UpdateManifest.json",
-    "DataDecodeCheckpoints/DataDecode0043/VERSION_DataDecode0043_Append.md",
     "Docs/02-Roadmap.md",
     "Docs/Architecture/PROJECT_ROADMAP.md",
-    "Docs/CodeUpdates/CodeUpdate-0045-DataDecode0043-Checkpoint-Integration.md",
+    "Docs/CodeUpdates/CodeUpdate-0046-OmniVerse-Capture-Checkpoint.md",
+    "ImportedDatabases/OmniVerseReference/CodeUpdate0046/",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0045/DataDecode0043CheckpointIntegrationReport.md",
+    "Reports/CodeUpdates/CodeUpdate-0046/OmniVerseCaptureCheckpointReport.md",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineCommit": "1aa32554",
-    "baselineStatus": "Local main and origin/main were aligned at Code Update 0044 before this integration. Current GitHub Actions status was not independently checked in this turn; user explicitly approved starting CodeUpdate-0045 after ZIP inspection."
+    "baselineCommit": "local origin/main at CodeUpdate-0045 before update",
+    "baselineStatus": "CodeUpdate-0045 green by user report"
   },
   "localVerification": {
     "status": "passed",
-    "scope": "Documentation/reference checkpoint integration only",
-    "zipInspection": "Passed with limitations: package listed 20 files; extracted checkpoint contains 20 files; package SHA-256 recorded.",
-    "manifestIntegrity": "18 of 20 manifest-listed files matched recorded size/hash. DataDecode0043_Manifest.csv and UpdateManifest.json differ from their own recorded manifest entries and are recorded as known package limitations.",
+    "scope": "Documentation/reference capture import only",
     "json": "ProjectManifest.json and UpdateManifest.json parsed successfully.",
     "restore": "No restore was required; no package references changed.",
-    "build": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed with 0 warnings and 0 errors.",
-    "smokeTests": "Reforged core/server smoke tests passed.",
-    "serverBootstrap": "Server bootstrap run passed and reported CodeUpdate 0045, host-tools-ready, gameplay=disabled, categories=13/13, runtimeReady=8, runtimeBlocked=5, placeholders=5, records=4527."
+    "build": "Core and Core.Tests Release builds passed with 0 warnings and 0 errors.",
+    "smokeTests": "Reforged core/server smoke tests passed."
   },
-  "dataDecode0043": {
-    "title": "Import Readiness Validation",
-    "decodeEstimate": "96-97%",
-    "canonicalSchemasChecked": 6,
-    "repoJsonDatasetsChecked": 16,
-    "repoJsonFieldsProfiled": 63,
-    "foreignKeyCandidatesReviewed": 1000,
-    "nativeSourceFilesHashed": 83,
-    "importBlockersRegistered": 5,
-    "canonicalFieldPromotions": 0
+  "referenceCaptures": {
+    "mudInfoMapsArchive": {
+      "path": "E:\\Httracks\\MajorMud - Refoge\\www.mudinfo.net\\maps\\phantoms\\maps.rar",
+      "sha256": "E13D866FFD7DB251AEEFEA41EE3156DCED8B70374ED8BE630DDF90D69AB3B0CE",
+      "archiveType": "RAR5",
+      "fileCount": 102,
+      "folderCount": 2,
+      "unpackedBytes": 969430
+    },
+    "omniVerseHttrackShell": {
+      "path": "E:\\Httracks\\OmniVerseCodexFull",
+      "fileCount": 17,
+      "notes": "HTTrack captured the SPA shell, JS bundle, CSS, and assets. It did not enumerate API-loaded codex records by itself."
+    },
+    "omniVerseWccApi": {
+      "sourcePath": "E:\\Httracks\\OmniVerseCodexApi\\wcc",
+      "repositoryPath": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc",
+      "roomCapture": {
+        "seedCount": 168,
+        "roommapFiles": 168,
+        "discoveredRooms": 1269,
+        "roomDetailFiles": 1246,
+        "errorCount": 23,
+        "errorLog": "room-capture-errors-wcc.csv"
+      },
+      "files": [
+        { "file": "codex-ability-wcc.json", "records": 188, "bytes": 46792, "sha256": "0DF691178423099A061477D8DB2B5F0653A6861F61ADE98FAAFDF8C5A0FAEA17" },
+        { "file": "codex-class-wcc.json", "records": 15, "bytes": 4422, "sha256": "2D7638C81A3E7E3ACE0C581E892ED484889F1BEE1667120641B50F2CCFBFFD82" },
+        { "file": "codex-item-wcc.json", "records": 1950, "bytes": 1819144, "sha256": "576E5D2FFF63DA84004F5EF8B42C82545BBC04475E46AFB10C0FE0F5CD130C3A" },
+        { "file": "codex-monster-wcc.json", "records": 1100, "bytes": 1549498, "sha256": "83D8FB4098107324B454DB4299668624A20C838A094204917D75CA4861E12024" },
+        { "file": "codex-race-wcc.json", "records": 13, "bytes": 4273, "sha256": "60122690E85093D7F4F860955E3BD0AA48CE0FB4E8FC2833FA86EF9AA3349282" },
+        { "file": "codex-shop-wcc.json", "records": 178, "bytes": 383545, "sha256": "FE9E824BE629D594E29068129DD302DA73A58775400263AAAB4188D6FBEA9AEC" },
+        { "file": "codex-spell-wcc.json", "records": 1350, "bytes": 928400, "sha256": "1DD3F35AE5559F1CD5B724D1B74964737A58490B5C4BE564F0E5F0B4993BE0D3" },
+        { "file": "world-status.json", "records": 3, "bytes": 434, "sha256": "E01F452967730DEA6BB2EC60203D864F46EF1F33115A7B7DB53C7BC1B603659E" }
+      ]
+    }
   },
   "boundaries": [
     "No gameplay systems",
-    "No combat",
-    "No character creation",
-    "No world simulation loop",
-    "No editor implementation",
-    "No networking expansion",
     "No server behavior changes",
     "No canonical Data rewrite",
     "No ImportedDatabases deletion",
-    "No imported/reference overwrite",
-    "No automatic WCC/WBB/WSGSERVE reconciliation",
+    "Reference payload copied only under ImportedDatabases/OmniVerseReference/CodeUpdate0046",
     "No field promotions",
     "No public-ID to binary-row assumption",
     "No exact MajorMUD parity claim"
   ],
-  "referenceDataPolicy": "Original MajorMUD binary files remain authoritative. Imported data, MegaMud files, OmniVerse snapshots, mudinfo references, maps, WBB comparisons, website data, community data, and tool-derived data remain validation/correlation evidence only unless the user explicitly approves a reviewed import/reconciliation update supported by binary evidence.",
+  "referenceDataPolicy": "Original MajorMUD binary files remain authoritative. OmniVerse API captures, MudInfo maps, HTTrack output, imported data, MegaMud files, WBB comparisons, website data, community data, and tool-derived data are validation/correlation evidence only.",
   "knownLimitations": [
-    "DataDecode0043 is pre-mirror import readiness validation, not production import.",
-    "Public OmniVerse ID to binary row mapping remains a high-severity blocker.",
-    "Candidate bitfields, script/event dispatch, and semantically unconfirmed foreign keys remain soft/candidate data.",
-    "The DataDecode0043 package manifest has stale entries for DataDecode0043_Manifest.csv and UpdateManifest.json.",
-    "Full DataDecode0044 should wait for a complete OmniVerse HTTrack mirror or runtime/debugging access to original behavior."
+    "HTTrack alone captured only the OmniVerse SPA shell/assets; API-loaded data must be captured through explicit API endpoints.",
+    "Room coverage is partial and shop-seeded; additional endpoint seeds may be needed.",
+    "OmniVerse public IDs must not be assumed to equal binary row indexes.",
+    "MudInfo maps can help layout/area correlation but cannot assign binary room IDs by themselves."
   ],
-  "recommendedNextUpdate": "After CodeUpdate-0045 is pushed and GitHub Actions is green, do not import fields yet. Use DataDecode0043 as the pre-mirror baseline; start DataDecode0044 only with full OmniVerse HTTrack mirror indexing or runtime/debug evidence.",
+  "recommendedNextUpdate": "After user push and green GitHub Actions, run binary-first verification against the imported OmniVerse/MudInfo reference payload and expand room coverage where endpoint seeds are still missing.",
   "recommendedNextScopeRequiresUserApproval": true
 }

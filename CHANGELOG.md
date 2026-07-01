@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0046 - OmniVerse Capture Checkpoint
+
+- Recorded CodeUpdate-0045 as green by user report.
+- Recorded the HTTrack OmniVerse SPA shell/assets capture under `E:\Httracks\OmniVerseCodexFull`.
+- Imported the gathered OmniVerse/MudInfo reference payload under `ImportedDatabases/OmniVerseReference/CodeUpdate0046/` for validation/correlation only.
+- Recorded direct WCC OmniVerse API capture files for abilities, classes, items, monsters, races, shops, spells, world status, 168 shop-seeded roommaps, 1,246 room details, and a 23-entry room capture error log.
+- Recorded and preserved MudInfo `maps.rar` archive hash, source archive, and 102 extracted MudInfo map files.
+- Documented that HTTrack alone does not capture OmniVerse codex records because the site loads data through API calls.
+- Documented that the committed reference payload excludes exploratory HTTrack cache/test files to keep final 0046 evidence clean.
+- No canonical `Data` rewrites, server behavior changes, field promotions, gameplay systems, or public-ID to binary-row assumptions are included.
+
 ## CodeUpdate-0045 - DataDecode0043 Checkpoint Integration
 
 - Added the user-provided `DataDecode0043-ImportReadinessValidation-PreMirror` checkpoint under `DataDecodeCheckpoints/DataDecode0043/`.
