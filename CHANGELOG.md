@@ -1,5 +1,13 @@
 # Changelog
 
+## CodeUpdate-0045 - DataDecode0043 Checkpoint Integration
+
+- Added the user-provided `DataDecode0043-ImportReadinessValidation-PreMirror` checkpoint under `DataDecodeCheckpoints/DataDecode0043/`.
+- Recorded DataDecode0043 as the pre-mirror import-readiness baseline: 96-97% static decode estimate, 6 canonical schemas checked, 16 repository JSON datasets checked, 1,000 foreign-key candidates reviewed, 83 native source files hashed, 5 import blockers registered, and 0 canonical field promotions.
+- Documented that original MajorMUD binary files remain authoritative and OmniVerse/public IDs must not be assumed to equal binary record indexes.
+- Documented package verification limitations: `DataDecode0043_Manifest.csv` and checkpoint `UpdateManifest.json` do not match their own recorded manifest size/hash entries.
+- No server behavior, gameplay, networking, editor implementation, canonical `Data` rewrite, imported data deletion, field promotion, or production import is included.
+
 ## CodeUpdate-0044 - Original Reference Extractor
 
 - Added `Tools/ReferenceCapture/Capture-OriginalReferenceData.ps1` for reference-only capture of original Worldgroup, WCC, WBB, WSGSERVE, and related source material.

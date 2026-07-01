@@ -1,0 +1,17 @@
+dataset,path,top_type,record_count_estimate,field_count_sample,schema_target,matched_schema_field_names,sha256,error
+classes,Data/classes.json,list,15,9,none,0,298f53ab55c362eed2c625ef57efe64d4cc0cb28c46fdfb9d31a35b73d28a181,
+derived_stats,Data/derived_stats.json,dict,14,0,none,0,0a138b5c0924d7df0fe36dbfe935cfbeb3d0fc8ae1988bf7d6505a02ba0f93d1,
+items,Data/items.json,ERROR,0,0,,0,b0968f79849bacf4f8a5613807ff0270d9c4bf2a1abd87938b36a87dbbbe832b,Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+leveling,Data/leveling.json,dict,6,3,none,0,d2ed50630c9a46a4c7abef16f42dfc513e2bbf7d8ca3d42597239e59c3b026ed,
+loot_tables,Data/loot_tables.json,ERROR,0,0,,0,dfa943fd41d72e83bb7f3a986ed019d2e77a8c9460597ad25ece4587d97d1bb9,Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+messages,Data/messages.json,dict,612,7,none,0,1a3f27becc4735fb9efc2d777b820a2a4cabb3c5188e2c471803598c1c79bc22,
+monsters,Data/monsters.json,list,98,11,Monsters,0,d24e596c4785b6aa7566d9866f90664c7eb588c5647c6123ec2908ed1ffd9ac0,
+progression,Data/progression.json,dict,1,4,none,0,8c986e49f4b77e6468cdf0d8c25f510db28e8fbd6d9c601187a31dde3a3cd500,
+quests,Data/quests.json,ERROR,0,0,,0,dfa943fd41d72e83bb7f3a986ed019d2e77a8c9460597ad25ece4587d97d1bb9,Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+races,Data/races.json,list,13,8,none,0,5b41a3fc9e8a057d4a5d86f8a6f533761a37850f1de44be2cfdccd9bab8e453c,
+rooms,Data/rooms.json,ERROR,0,0,,0,dfa943fd41d72e83bb7f3a986ed019d2e77a8c9460597ad25ece4587d97d1bb9,Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+shops,Data/shops.json,ERROR,0,0,,0,dfa943fd41d72e83bb7f3a986ed019d2e77a8c9460597ad25ece4587d97d1bb9,Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+skills,Data/skills.json,dict,46,7,none,0,c6d5339408e82ccc97effc2bd2c25ca15535223e7116690fe7e57955301b53cb,
+spells,Data/spells.json,dict,1180,11,Spells,0,33a0e1dbca122bf52d3789699c750ae2fdd82918c2b28cbea43a8d006fcfda1c,
+trainers,Data/trainers.json,ERROR,0,0,,0,dfa943fd41d72e83bb7f3a986ed019d2e77a8c9460597ad25ece4587d97d1bb9,Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+world,Data/world.json,dict,1,3,none,0,46e729ef7ca6339711a4d3c31a7332472779bc050cd57ed225474515c81f55bd,

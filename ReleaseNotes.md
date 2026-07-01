@@ -1,3 +1,34 @@
+# CodeUpdate-0045 - DataDecode0043 Checkpoint Integration
+
+This update integrates the user-provided DataDecode0043 Import Readiness Validation checkpoint as repository reference documentation.
+
+## Changed
+
+- Added `DataDecodeCheckpoints/DataDecode0043/`.
+- Preserved the DataDecode0043 report, handoff, metrics, manifest, schema audits, repository JSON audits, foreign-key import gate review, import blocker register, staging decision matrix, native source integrity report, and append notes.
+- Recorded DataDecode0043 as the pre-mirror import-readiness baseline.
+- Recorded that no canonical fields were promoted.
+- Recorded package manifest limitations for `DataDecode0043_Manifest.csv` and checkpoint `UpdateManifest.json`.
+
+## Verification
+
+- ZIP SHA-256: `0547361D07D8979F77F88B2D463E9AB720FC9851831AE107C369189FF51A5259`.
+- ZIP contents listed and extracted into `DataDecodeCheckpoints/DataDecode0043/`.
+- 18 of 20 checkpoint manifest-listed files matched recorded size/hash.
+- 2 manifest-listed files had stale recorded size/hash entries and are documented as known package limitations.
+- Final local verification is recorded in `UpdateManifest.json`.
+
+## Boundaries
+
+- No canonical `Data/` rewrite.
+- No imported data deletion.
+- No field promotions.
+- No server behavior changes.
+- No gameplay systems.
+- No public-ID to binary-row assumptions.
+- No exact MajorMUD parity claim.
+
+## Previous Release Notes
 # CodeUpdate-0044 - Original Reference Extractor
 
 This update adds a safe reference-capture extractor for original/source material. It preserves and inventories legacy files for later reviewed extraction work without running original programs or changing live Reforged `Data/`.

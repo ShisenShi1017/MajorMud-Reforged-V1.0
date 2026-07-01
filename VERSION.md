@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0044
+- Current Code Update: 0045
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0044 - Original Reference Extractor
+- Current update: CodeUpdate-0045 - DataDecode0043 Checkpoint Integration
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -47,6 +47,9 @@
 - CodeUpdate-0044 adds a reference-only original data capture/extractor tool under `Tools/ReferenceCapture/`.
 - CodeUpdate-0044 local PowerShell extractor self-test passed against `Tools/ReferenceCapture/README.md`; temporary self-test outputs were removed.
 - CodeUpdate-0044 does not run original executables, does not use keygens, does not rewrite canonical `Data/`, and does not add gameplay.
+- CodeUpdate-0045 integrates the DataDecode0043 Import Readiness Validation checkpoint under `DataDecodeCheckpoints/DataDecode0043/`.
+- DataDecode0043 reports approximately 96-97% static decode completion, 5 import blockers, and 0 canonical field promotions.
+- CodeUpdate-0045 does not change canonical `Data/`, server behavior, gameplay, or import state.
 
 ## Reference Data Policy
 

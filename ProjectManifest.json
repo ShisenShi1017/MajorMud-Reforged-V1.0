@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0044",
+  "codeUpdate": "0045",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,18 +18,19 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0044",
+    "currentCodeUpdate": "0045",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0044-Original-Reference-Extractor",
+    "lastUpdateName": "CodeUpdate-0045-DataDecode0043-Checkpoint-Integration",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0044 and confirm GitHub Actions restore/build/test passes.",
-      "Use the original reference capture tool with ChatGPT-guided extraction work to produce reviewed evidence before any data reconciliation.",
-      "After green Actions, approve one narrow server data-readiness check or field-level Classic parser/comparison category.",
+      "Push CodeUpdate-0045 and confirm GitHub Actions restore/build/test passes.",
+      "Treat DataDecode0043 as the pre-mirror import-readiness baseline.",
+      "Do not import unknown/candidate fields until binary evidence plus mirror or runtime proof supports them.",
+      "Start DataDecode0044 only with a full OmniVerse HTTrack mirror or runtime/debugging access to original behavior.",
       "Do not delete imported/reference data until Reforged-native Data is complete, verified, and explicitly approved for cleanup."
     ]
   },
@@ -57,5 +58,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0044 local PowerShell extractor self-test passed against Tools/ReferenceCapture/README.md, producing a one-file inventory and string report before temporary output cleanup. Local .NET verification is recorded in UpdateManifest.json. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0045 integrates the DataDecode0043 checkpoint as documentation/reference evidence only. ZIP SHA-256 and manifest verification were recorded; two stale package manifest entries were identified and documented. ProjectManifest.json and UpdateManifest.json parsed successfully. Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. Server bootstrap run passed and reported CodeUpdate 0045, host-tools-ready, gameplay=disabled, 13/13 canonical categories present, 8 runtime-ready categories, 5 runtime-blocked placeholders, and 4,527 records loaded. GitHub Actions remains the official gate after user push."
 }

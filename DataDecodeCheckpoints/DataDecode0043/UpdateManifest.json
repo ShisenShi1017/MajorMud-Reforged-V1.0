@@ -1,0 +1,28 @@
+{
+  "pass": "DataDecode0043",
+  "title": "Import Readiness Validation",
+  "created_utc": "2026-06-30T23:17:39.444721Z",
+  "files": [
+    "AI_CONTEXT_DataDecode0043_Append.md",
+    "CHANGELOG_DataDecode0043_Append.md",
+    "CanonicalSchemaConstraintAudit_DataDecode0043.csv",
+    "DataDecode0043_Handoff.md",
+    "DataDecode0043_Manifest.csv",
+    "DataDecode0043_Metrics.csv",
+    "DataDecode0043_Report.md",
+    "ForeignKeyImportGateReview_DataDecode0043.csv",
+    "ImportBlockingIssueRegister_DataDecode0043.csv",
+    "ImportStagingDecisionMatrix_DataDecode0043.csv",
+    "InputBaselineInventory_DataDecode0043.csv",
+    "Install_DataDecode0043_Checkpoint.bat",
+    "NativeImportSourceIntegrity_DataDecode0043.csv",
+    "ReleaseNotes_DataDecode0043_Append.md",
+    "RepoImportValidationSurface_DataDecode0043.csv",
+    "RepositoryJsonFieldConstraintAudit_DataDecode0043.csv",
+    "RepositoryJsonImportReadiness_DataDecode0043.csv",
+    "Roadmap_DataDecode0043_Append.md",
+    "UpdateManifest.json",
+    "VERSION_DataDecode0043_Append.md"
+  ],
+  "verified": "archive_test_pending"
+}

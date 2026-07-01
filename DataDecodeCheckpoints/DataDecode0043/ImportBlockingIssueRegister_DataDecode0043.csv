@@ -1,0 +1,6 @@
+blocker,severity,affects,resolution,import_policy
+public OmniVerse ID to binary row mapping bridge,high,rooms/items/spells/monsters/shops/quests,full mirror or explicit mapping samples,store external_id separately; do not enforce as binary primary key
+candidate bitfields without semantic labels,medium,items/spells/monsters/rooms,runtime or mirror behavior confirmation,import raw bytes and candidate flags as nullable metadata
+script/event dispatch not fully proven,medium,quests/traps/textblocks/NPC interactions,runtime watchpoints or executable flow analysis,soft-link candidate event references only
+foreign-key candidates range-fit but not semantically confirmed,medium,cross-database references,mirror validation or runtime dereference proof,do not create hard DB constraints yet
+WBB comparison is non-authoritative,low,cross-version confidence,treat WCC as authoritative source,use WBB only as stability evidence

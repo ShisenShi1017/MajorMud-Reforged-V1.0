@@ -1,0 +1,3 @@
+dataset,schema,json_field_count,direct_schema_name_matches,decision,notes
+monsters,Monsters,11,0,staging-ok,JSON data can be staged separately from native binary import; public ID bridge still required for native parity.
+spells,Spells,11,0,staging-ok,JSON data can be staged separately from native binary import; public ID bridge still required for native parity.
