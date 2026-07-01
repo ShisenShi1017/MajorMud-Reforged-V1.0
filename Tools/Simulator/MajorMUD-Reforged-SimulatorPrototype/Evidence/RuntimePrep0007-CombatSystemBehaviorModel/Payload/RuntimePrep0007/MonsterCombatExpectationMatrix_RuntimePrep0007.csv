@@ -1,0 +1,99 @@
+monster_id,name,level,hp,damage_min,damage_max,xp,gold,source,combat_fields_present,runtime_status
+goblin,goblin,1,5,1,3,5,3,starter,True,expected-model-only; live AI/combat not validated
+orc,orc,3,18,2,6,18,8,starter,True,expected-model-only; live AI/combat not validated
+skeleton,skeleton,2,12,1,5,12,2,starter,True,expected-model-only; live AI/combat not validated
+rat,giant rat,1,4,1,2,3,0,starter,True,expected-model-only; live AI/combat not validated
+mon_goblin_path,Goblin Path,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_beholder,Beholder,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_chimera,Chimera,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_huge_basilisk,Huge Basilisk,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_prismatic_dragon,Prismatic Dragon,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_wraithlord,Wraithlord,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_ghost_of_justice_darkbane,Ghost of Justice Darkbane,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_rotting_beholder,Rotting Beholder,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_giant_fortress_animal_pen,"Giant Fortress, Animal Pen",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_hill_giant_chieftain,Hill Giant Chieftain,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_stone_giant_chieftain_1601095,Stone Giant Chieftain-1601095,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_storm_giant_commander,Storm Giant Commander,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_storm_giant_king,Storm Giant King,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_ancient_stronghold_apparatus,Ancient Stronghold (Apparatus),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_dark_elf_emissary,Dark-elf Emissary,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_ghost_knight,Ghost Knight,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_gnome_commander,Gnome Commander,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_serpentkin_chieftain,Serpentkin Chieftain,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_wererat_emissary,Wererat Emissary,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_giant_spider,Giant Spider,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_great_green_dragon,Great Green Dragon,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_green_dragons_inner_loop,Green Dragons ( Inner Loop),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_green_dragons,Green Dragons,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_main_road_spider_fork,Main Road (Spider Fork),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_black_orc_boss,Black Orc Boss,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_commander_markus,Commander Markus,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_dragon_s_teeth_hills_hole,Dragon's Teeth Hills (Hole),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_dragon_s_teeth_hills_obelisk_1,Dragon's Teeth Hills (Obelisk 1),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_dragon_s_teeth_hills_obelisk_2,Dragon's Teeth Hills (Obelisk 2),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_dragon_s_teeth_hills_talisman,Dragon's Teeth Hills (Talisman),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_dragon_s_teeth_hills_vortex,Dragon's Teeth Hills (Vortex),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_dragon_s_teeth_hills_gnoll_fork,"Dragon's Teeth Hills, Gnoll Fork",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_dragon_s_teeth_hills_rocky_passag,"Dragon's Teeth Hills, Rocky Passag",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_giant_pulsating_cocoon,Giant Pulsating Cocoon,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_gnoll_chieftain,Gnoll Chieftain,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_smoking_crater,Smoking Crater,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_goblin_caves_green_metal_key_door,Goblin Caves (green metal key door),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_goblin_caves_large_iron_key_door,Goblin Caves (large iron key door),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_goblin_caves_slavemaster_fork,Goblin Caves (Slavemaster fork),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_goblin_caves_slime_beast_fork,Goblin Caves (Slime Beast fork),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_goblin_caves_werewolf_fork,Goblin Caves (Werewolf fork),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_goblin_caves,Goblin Caves,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_orc_barracks_east_side,"Orc Barracks, East Side",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_orc_barracks_outside_warlord,"Orc Barracks, Outside Warlord",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_orc_barracks_west_side,"Orc Barracks, West Side",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_orc_warlord,Orc Warlord,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_slime_beast,Slime Beast,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_werewolf,Werewolf,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_minotaur_chieftain,Minotaur Chieftain,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_ancient_sand_dragon,Ancient Sand Dragon,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_ancient_sand_dragon_neutral,Ancient Sand Dragon (neutral),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_king_kulgar,King Kulgar,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_adult_she_dragon,Adult She-Dragon,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_flame_pit_demoness_irikani,Flame Pit (Demoness Irikani),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_lava_tube_red_dragons,Lava Tube (Red Dragons),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_magma_river_dragon_nest,"Magma River, Dragon Nest",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_giant_two_headed_troll,Giant Two-Headed Troll,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_huge_black_dragon,Huge Black Dragon,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_kobold_king,Kobold King,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_misty_bog_black_dragons_area,Misty Bog (Black Dragons Area),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_misty_bog_black_dragon_fork,"Misty Bog, Black Dragon Fork",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_misty_swamp_dragon_fork,Misty Swamp (Dragon Fork),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_mossy_tunnel_lichen,Mossy Tunnel (Lichen),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_giant_river_turtle,Giant River Turtle,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_king_crab,King Crab,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_slimeworm_lair,Slimeworm Lair,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_black_ice_cavern_dragon_fork,"Black Ice Cavern, Dragon Fork",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_ice_tower_ice_sorceress,Ice Tower (Ice Sorceress),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_massive_white_dragon,Massive White Dragon,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_nomadic_chieftain,Nomadic Chieftain,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_torchlit_caverns_obelisk,Torchlit Caverns Obelisk,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_torchlit_caverns,Torchlit Caverns,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_blue_dragons_entrance,Blue Dragons Entrance,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_enormous_blue_dragon,Enormous Blue Dragon,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_manscorpion_king,Manscorpion King,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_saracen_commander,Saracen Commander,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorched_cavern_firepit_2,"Scorched Cavern, Firepit (2)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorched_cavern_firepit_3,"Scorched Cavern, Firepit (3)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorched_cavern_firepit_4,"Scorched Cavern, Firepit (4)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorched_cavern_firepit,"Scorched Cavern, Firepit",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorching_desert_ancient_jail,"Scorching Desert, Ancient Jail",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorching_desert_basalt_obelisk_1,"Scorching Desert, Basalt Obelisk (1)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorching_desert_basalt_obelisk_2,"Scorching Desert, Basalt Obelisk (2)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorching_desert_basalt_obelisk_3,"Scorching Desert, Basalt Obelisk (3)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorching_desert_limestone_entrance_1,"Scorching Desert, Limestone Entrance (1)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorching_desert_limestone_entrance_2,"Scorching Desert, Limestone Entrance (2)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorching_desert_limestone_entrance_3,"Scorching Desert, Limestone Entrance (3)",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_scorching_desert_nomad_tent,"Scorching Desert, Nomad Tent",1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_wailing_tavern_nasty_looking_man,Wailing Tavern (Nasty-Looking Man),1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_orc_mansion,Orc Mansion,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_orc_warleader,Orc Warleader,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_aged_earth_dragon_entrance,Aged Earth Dragon Entrance,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_giant_efreetis,Giant Efreetis,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated
+mon_red_demonling,Red Demonling,1,10,1,4,5,1,placeholder from MegaMMUD Rooms.md,True,expected-model-only; live AI/combat not validated

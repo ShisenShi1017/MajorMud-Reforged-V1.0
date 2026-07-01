@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0049
+## 10. Current project position after CodeUpdate-0050
 
-- Current Code Update: `0049`
+- Current Code Update: `0050`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0049, verify GitHub Actions green by user report, then continue DataDecode0069 Spell Executable Dataflow Proof using the GitHub repository as the direct working copy.
+- Current priority: push CodeUpdate-0050, verify GitHub Actions green by user report, then decide whether to continue SimulatorBuild0003 expected-model work or return to a narrow server data-readiness slice.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -171,6 +171,8 @@ CodeUpdate-0047 preserves the user-provided DataDecode0049 WGSERVER record acces
 CodeUpdate-0048 creates `DataDecodeCheckpoints/UnifiedDecodedData/` as a repo-native index and comparison surface for current decoded data and the CodeUpdate0046 OmniVerse/MudInfo reference payload. It adds generated inventory, category comparison reports, and an Android ChatGPT decode workflow under `Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md` plus phone handoff templates. It does not move historical reports, rewrite canonical `Data/`, promote fields, add server behavior, or add gameplay.
 
 CodeUpdate-0049 preserves the user-provided DataDecode0068 Spell Engine Proof checkpoint under `DataDecodeCheckpoints/DataDecode0068/` and refreshes `DataDecodeCheckpoints/UnifiedDecodedData/`. DataDecode0068 reports 1,180 canonical spell records, 930 native WCCSPELS records, 1,789 native WCCSPELS string rows, 1,350 OmniVerse/WCC spell reference records, 1,151 canonical `sourceId` to OmniVerse `legacy_number` matches, 41 canonical spell raw field positions, 10 reference MHT files scanned, 505 repo files with spell-term hits, 5,916 WGSERVER printable strings, 46 WGSERVER spell-term string rows, 439 WGSERVER spell constant probe rows, 8 evidence matrix rows, and 0 field promotions. DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
+
+CodeUpdate-0050 preserves the user-provided SimulatorBuild0002 handoff package under `DataDecodeCheckpoints/SimulatorBuild0002/`, extracts the final DataDecode0110 static certification checkpoint under `DataDecodeCheckpoints/DataDecode0110/`, adds selected DAT decoding decision docs from DataDecode0099 through DataDecode0108, and installs the expected-model simulator under `Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/`. DataDecode0110 certifies static `ImportedDatabases` evidence only and carries forward 3,975 unresolved ownership rows plus 5,464 unresolved static rows. SimulatorBuild0002 is useful as an expected-model server reference harness but is not live Worldgroup runtime validation. CodeUpdate-0050 excludes the embedded stale full repository archive and generated Python cache files.
 
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 

@@ -1,0 +1,4 @@
+decision_id,decision,basis,runtime_verified
+RP0006-DEC-001,"WBB/WCC message resources are treated as secondary binary/static corroboration for dialogue, prompts, and interaction text.",User-directed WBB second binary source plus DataDecode0096 WBB resource verification and extracted WBB message resources.,no
+RP0006-DEC-002,"Quest/dialogue/script trigger rows are candidate runtime checks, not live behavior certification.",Worldgroup runtime was not executed; no runtime observations were introduced.,no
+RP0006-DEC-003,"Empty repository quests.json is preserved as an unresolved limitation, not inferred.",Repository Data/quests.json parsed to an empty JSON array in this pass.,no

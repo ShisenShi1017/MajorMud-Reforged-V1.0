@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0049 |
+| Current Code Update | 0050 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0049-DataDecode0068-Spell-Engine-Proof |
+| Last Update Name | CodeUpdate-0050-SimulatorBuild0002-Handoff-And-DataDecode0110-Static-Certification |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap and is green by user report. CodeUpdate-0043 classifies canonical Server data readiness and is green by user report. CodeUpdate-0044 adds the original reference capture/extractor tool. CodeUpdate-0045 integrates the DataDecode0043 checkpoint as the pre-mirror import-readiness baseline and is green by user report. CodeUpdate-0046 imports the OmniVerse/MudInfo capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub transition handoff so future decode passes work directly in the repository. CodeUpdate-0048 creates the unified decoded-data comparison folder and Android ChatGPT phone handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof and refreshes unified decoded-data inventory.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap and is green by user report. CodeUpdate-0043 classifies canonical Server data readiness and is green by user report. CodeUpdate-0044 adds the original reference capture/extractor tool. CodeUpdate-0045 integrates the DataDecode0043 checkpoint as the pre-mirror import-readiness baseline and is green by user report. CodeUpdate-0046 imports the OmniVerse/MudInfo capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub transition handoff so future decode passes work directly in the repository. CodeUpdate-0048 creates the unified decoded-data comparison folder and Android ChatGPT phone handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof and refreshes unified decoded-data inventory. CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, DataDecode0110 final static certification, RuntimePrep0001-0009 archives, and the expected-model simulator.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -90,6 +90,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 - CodeUpdate-0047 preserves DataDecode0049 under `DataDecodeCheckpoints/DataDecode0049/` and records DataDecode0050 transition continuity under `DataDecodeCheckpoints/DataDecode0050/`. Future decode passes should update the repository directly rather than working from standalone ZIP repositories.
 - CodeUpdate-0048 adds `DataDecodeCheckpoints/UnifiedDecodedData/` as a generated inventory/comparison surface and `Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md` for phone-based ChatGPT decode handoffs.
 - CodeUpdate-0049 adds `DataDecodeCheckpoints/DataDecode0068/` as a repository-preserved Spell Engine Proof checkpoint. DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
+- CodeUpdate-0050 adds `DataDecodeCheckpoints/DataDecode0110/`, `DataDecodeCheckpoints/SimulatorBuild0002/`, and `Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/`. SimulatorBuild0002 is expected-model evidence only until live runtime validation exists.
 - All WCC data, including WCC default installs, WCC-labeled WBB material, WSGSERVE-related files, and WCC-derived archives, is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Long-term cleanup goal: retire `ImportedDatabases/` from normal project work only after all needed source data has been decoded, imported, recreated as Reforged-native `Data/`, verified by reports, and explicitly approved for cleanup.
 
@@ -157,6 +158,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 | Unified decoded data | Active in 0048 | 0048 adds generated inventory/comparison reports under `DataDecodeCheckpoints/UnifiedDecodedData/`, comparing canonical/native decode data against the CodeUpdate0046 OmniVerse reference payload. |
 | Android ChatGPT workflow | Active in 0048 | 0048 adds phone handoff docs/templates so decode work from Android ChatGPT can be structured without PowerShell. |
 | Spell engine proof | Preserved in 0049 | 0049 preserves DataDecode0068, recording spell proof evidence and 0 field promotions. Next proof target is DataDecode0069 executable dataflow. |
+| Simulator/runtime-prep evidence | Preserved in 0050 | 0050 preserves SimulatorBuild0002, RuntimePrep0001-0009 archives, DataDecode0110 static certification, and the expected-model simulator. Live runtime validation remains pending. |
 | Engineering principles | Added in 0031 | `DEVELOPMENT_PRINCIPLES.md` records long-term engineering discipline. |
 | Knowledge base and SDS planning | Started in 0036/0037 | 0036 added knowledge-base/design-decision records; 0037 adds draft SDS planning docs and repairs stale continuity. |
 | Engine modernization | Planning/early implementation | Continue in small verified slices. |
@@ -169,6 +171,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 
 | Code Update | Summary |
 |---|---|
+| 0050 | Preserves SimulatorBuild0002 handoff evidence, DataDecode0110 static certification, RuntimePrep archives, and expected-model simulator tooling. |
 | 0049 | Preserves DataDecode0068 Spell Engine Proof and refreshes unified decoded-data inventory. |
 | 0048 | Adds unified decoded-data inventory/comparison reports and Android ChatGPT phone handoff workflow. |
 | 0047 | Preserves DataDecode0049 and records the DataDecode0050 GitHub transition so future decode passes commit directly to the repository. |
@@ -198,6 +201,58 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 | 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
+
+## CodeUpdate-0050 Handoff
+
+CodeUpdate-0050 is a documentation/reference/tooling preservation update for the user-provided SimulatorBuild0002 handoff package.
+
+Implemented:
+
+- Added `DataDecodeCheckpoints/SimulatorBuild0002/`.
+- Added `DataDecodeCheckpoints/SimulatorBuild0002/README.md`.
+- Added `DataDecodeCheckpoints/DataDecode0110/`.
+- Added selected DataDecode0099-0108 DAT decoding decision docs under `Docs/DATDecoding/`.
+- Added `Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/`.
+- Added `Reports/CodeUpdates/CodeUpdate-0050/SimulatorBuild0002HandoffReport.md`.
+- Refreshed `DataDecodeCheckpoints/UnifiedDecodedData/`; source inventory now has 1,725 rows.
+- Updated `Tools/DataDecode/Build-UnifiedDecodedData.ps1` so generated manifest `codeUpdate` comes from `ProjectManifest.json` instead of a hardcoded value.
+- Recorded SimulatorBuild0002 source package SHA-256 `66DF6BF0E1885A96C1B3BFB9A9D535FEDA8FA9D025A807509175B4C644D758DA`.
+- Excluded the embedded stale full repository archive and generated Python cache files.
+
+DataDecode0110 metrics:
+
+- Imported database files checked: 3,908.
+- Imported database CSV files: 5.
+- Imported database MDB files: 1.
+- Unsupported inferences made: 0.
+- Unresolved ownership rows carried forward: 3,975.
+- Unresolved static rows carried forward: 5,464.
+- Static certification complete: yes, for `ImportedDatabases` scope only.
+- Runtime validation started: no.
+
+Simulator verification:
+
+- Python 3.14.6 detected.
+- `python run_simulator.py summary` passed.
+- `python run_simulator.py unknowns` passed and reported 27 unknown/unresolved rows.
+- `python run_simulator.py search-room Silver` passed.
+- `python run_simulator.py spell missile` passed.
+- `python tests\smoke_test.py` passed after a local import-path repair in the simulator smoke test.
+
+Boundaries:
+
+- No canonical `Data/` rewrite.
+- No imported/reference data deletion.
+- No runtime field promotions.
+- No server behavior changes.
+- No gameplay systems.
+- No live Worldgroup runtime validation claim.
+- No exact combat, timer, script, AI, drop-rate, shop, or quest behavior certification.
+- SimulatorBuild0002 is expected-model evidence only.
+
+Next-scope candidate:
+
+- After user push and green Actions, approve either a narrow SimulatorBuild0003 expected-model spawn/timer slice or a narrow server data-readiness slice that uses the simulator only as reference evidence.
 
 ## CodeUpdate-0049 Handoff
 
@@ -240,7 +295,7 @@ Boundaries:
 
 Next-scope candidate:
 
-- After user push and green Actions, continue DataDecode0069 Spell Executable Dataflow Proof from the GitHub repository working copy.
+- CodeUpdate-0049 was superseded by CodeUpdate-0050. Follow the current CodeUpdate-0050 handoff for next work.
 
 ## CodeUpdate-0048 Handoff
 
@@ -772,15 +827,15 @@ Verified before creating CodeUpdate-0039:
 - Repository manifests recorded CodeUpdate-0038 and DatabaseVersion 0009.
 - User reported CodeUpdate-0038 GitHub Actions green.
 
-CodeUpdate-0046 is the current local update candidate.
+CodeUpdate-0050 is the current local update candidate.
 
-Local `main` and `origin/main` were aligned at CodeUpdate-0045 before CodeUpdate-0046 started. CodeUpdate-0046 should be pushed by the user after the amended final local commit is ready.
+Local `main` and `origin/main` were aligned at CodeUpdate-0049 before CodeUpdate-0050 started. CodeUpdate-0050 should be pushed by the user after the final local commit is ready.
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0046 after the final amended local commit is ready and report GitHub Actions status.
-2. After green Actions, run binary-first verification against `ImportedDatabases/OmniVerseReference/CodeUpdate0046/`.
-3. Expand room coverage beyond the shop-seeded capture where endpoint seeds are still missing.
+1. Push CodeUpdate-0050 after the final local commit is ready and report GitHub Actions status.
+2. After green Actions, approve either a narrow SimulatorBuild0003 expected-model spawn/timer slice or a narrow server data-readiness slice that treats simulator output as reference evidence only.
+3. Keep live runtime behavior uncertified until controlled Worldgroup validation exists.
 4. Do not add gameplay systems without explicit approval.
 
 ## New Window Instruction

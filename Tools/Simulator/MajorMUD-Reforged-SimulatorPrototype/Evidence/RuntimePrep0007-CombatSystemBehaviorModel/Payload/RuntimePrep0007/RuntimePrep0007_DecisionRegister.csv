@@ -1,0 +1,4 @@
+decision_id,decision,basis
+RP0007-D001,"RuntimePrep0007 is an expected behavior model, not live runtime validation.",No Worldgroup or game runtime observations were used.
+RP0007-D002,Repository JSON and SDS files are used only as available evidence in this regeneration.,Uploaded RuntimePrep0006 checkpoint plus MajorMUD Reforged repository were verified before use.
+RP0007-D003,Unverified combat engine behavior remains unresolved.,Project rule: do not infer behavior where evidence is missing.

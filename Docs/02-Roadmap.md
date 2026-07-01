@@ -66,6 +66,8 @@ CodeUpdate-0048 creates `DataDecodeCheckpoints/UnifiedDecodedData/` as the gener
 
 CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof under `DataDecodeCheckpoints/DataDecode0068/` and refreshes the unified decoded-data inventory to 1,701 source rows. DataDecode0051 through DataDecode0067 are not claimed as repo-preserved unless supplied later.
 
+CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, extracts DataDecode0110 final static certification, adds selected DataDecode0099-0108 DAT decoding decision docs, and installs the expected-model simulator under `Tools/Simulator/`. SimulatorBuild0002 can help future server work as a reference harness, but it does not certify live runtime behavior.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
@@ -134,4 +136,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0049 records DataDecode0068 Spell Engine Proof. Next work should continue DataDecode0069 Spell Executable Dataflow Proof from the GitHub repository working copy, preserving binary evidence as authoritative and promoting no fields without proof.
+Current implementation slice: CodeUpdate-0050 records SimulatorBuild0002 and DataDecode0110 static certification evidence. Next work should either continue with a narrow SimulatorBuild0003 expected-model spawn/timer slice or return to a narrow server data-readiness slice that treats simulator output as expected-model reference evidence only.

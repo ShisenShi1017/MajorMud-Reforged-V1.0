@@ -1,0 +1,1038 @@
+map_id,room_number,room_key,room_name,runtime_confirmation_needed,configured_respawn_minutes,monster_group_id,boss_type_id,linked_spawn_room,max_area_cap
+1,1,map1-room1,Town Gates,spawn_timer_configured,5,0,0,0,0
+1,10,map1-room10,Lucky Strike Casino,monster_group_population;spawn_timer_configured,5,6,0,0,0
+1,101,map1-room101,"Silver Street, Eastern End",monster_group_population;boss_presence_or_unique_spawn,0,5,784,0,0
+1,102,map1-room102,Silver Street,monster_group_population;boss_presence_or_unique_spawn,0,5,40,0,0
+1,103,map1-room103,Intersection of Silver St. & Bridge St.,monster_group_population,0,5,0,0,0
+1,104,map1-room104,Intersection of Silver St. & Park St.,monster_group_population,0,5,0,0,0
+1,105,map1-room105,Silver Street,monster_group_population,0,5,0,0,0
+1,106,map1-room106,Intersection of Silver St. & Brass St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,107,map1-room107,Silver Street,monster_group_population,0,6,0,0,0
+1,1072,map1-room1072,Slum Entrance,monster_group_population,0,5,0,0,0
+1,1073,map1-room1073,Slum Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,6,0,1073,6
+1,1074,map1-room1074,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1075,map1-room1075,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1076,map1-room1076,"Slum Street, Crossroads",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,6,0,1073,0
+1,1077,map1-room1077,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1078,map1-room1078,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1079,map1-room1079,"Slum Street, Bend",monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1080,map1-room1080,"Slum Street, Bend",monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1081,map1-room1081,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1089,map1-room1089,"Slum Street, Square",monster_group_population;linked_spawn_room_behavior,0,6,0,1083,0
+1,11,map1-room11,Lucky Strike Casino,monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,6,789,0,0
+1,1120,map1-room1120,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1121,map1-room1121,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1122,map1-room1122,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1123,map1-room1123,"Slum Street, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1124,map1-room1124,Slum Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,6,0,1073,0
+1,114,map1-room114,Oak Street,monster_group_population,0,6,0,0,0
+1,1152,map1-room1152,"Slum Street, Bend",monster_group_population;linked_spawn_room_behavior,0,6,0,1155,0
+1,1153,map1-room1153,"Slum Street, Bend",monster_group_population;linked_spawn_room_behavior,0,6,0,1155,0
+1,1154,map1-room1154,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1155,0
+1,1155,map1-room1155,"Slum Street, Intersection",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,6,0,1155,9
+1,1156,map1-room1156,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1083,0
+1,1157,map1-room1157,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1083,0
+1,1158,map1-room1158,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1083,0
+1,1159,map1-room1159,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1083,0
+1,1160,map1-room1160,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1083,0
+1,1161,map1-room1161,Slum Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,6,0,1083,0
+1,1162,map1-room1162,Slum Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,6,0,1162,8
+1,1163,map1-room1163,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1162,0
+1,1181,map1-room1181,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1182,map1-room1182,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1183,map1-room1183,"Slum Street, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1184,map1-room1184,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1185,map1-room1185,"Slum Street, Bend",monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1186,map1-room1186,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1187,map1-room1187,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1188,map1-room1188,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1083,0
+1,1189,map1-room1189,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1155,0
+1,1190,map1-room1190,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1155,0
+1,1191,map1-room1191,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1155,0
+1,1205,map1-room1205,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1206,map1-room1206,"Slum Street, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1207,map1-room1207,Slum Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,6,0,1073,0
+1,1208,map1-room1208,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1209,map1-room1209,"Slum Street, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1210,map1-room1210,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1211,map1-room1211,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1212,map1-room1212,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1213,map1-room1213,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1214,map1-room1214,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,1216,map1-room1216,Slum Street,monster_group_population;linked_spawn_room_behavior,0,6,0,1073,0
+1,127,map1-room127,Park Street,monster_group_population,0,5,0,0,0
+1,130,map1-room130,Park,monster_group_population,0,6,0,0,0
+1,132,map1-room132,Oak Street,monster_group_population,0,6,0,0,0
+1,1330,map1-room1330,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,11,0,1330,100
+1,1352,map1-room1352,Dungeon Corridor,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,1355,map1-room1355,Dungeon Corridor,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,137,map1-room137,Park,monster_group_population;spawn_timer_configured,2,6,0,0,0
+1,1381,map1-room1381,"Town Gates, Inner Bailey",monster_group_population,0,5,0,0,0
+1,159,map1-room159,Jael's Missile Weapons,boss_presence_or_unique_spawn,0,0,247,0,0
+1,1711,map1-room1711,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1718,map1-room1718,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1719,map1-room1719,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1720,map1-room1720,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1722,map1-room1722,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1723,map1-room1723,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,10,0,1709,0
+1,1724,map1-room1724,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1725,map1-room1725,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1726,map1-room1726,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1727,map1-room1727,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1728,map1-room1728,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1729,map1-room1729,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,10,0,1709,0
+1,1730,map1-room1730,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1731,map1-room1731,Darkwood Forest,monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,1809,map1-room1809,Gang House,spawn_timer_configured,5,0,0,0,0
+1,1813,map1-room1813,Pier,monster_group_population;boss_presence_or_unique_spawn;area_cap_behavior,0,2,61,0,1
+1,184,map1-room184,Intersection of Bridge St. & Crown St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,2,map1-room2,Lucky Strike Casino,monster_group_population;spawn_timer_configured,5,6,0,0,0
+1,206,map1-room206,Arena Practice Room,boss_presence_or_unique_spawn,0,0,200,0,0
+1,207,map1-room207,Brass Street,monster_group_population,0,6,0,0,0
+1,21,map1-room21,Intersection of Guild St. & River St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,212,map1-room212,Intersection of Crown St. & Brass St.,monster_group_population;spawn_timer_configured,5,2,0,0,0
+1,2141,map1-room2141,"Newhaven, Weapons Shop",monster_group_population;boss_presence_or_unique_spawn,0,2,74,0,0
+1,2142,map1-room2142,"Newhaven, Armour Shop",monster_group_population;boss_presence_or_unique_spawn,0,2,75,0,0
+1,2144,map1-room2144,"Newhaven, Spell Shop",monster_group_population;boss_presence_or_unique_spawn,0,2,77,0,0
+1,2145,map1-room2145,"Newhaven, General Store",monster_group_population;boss_presence_or_unique_spawn,0,2,76,0,0
+1,2147,map1-room2147,"Newhaven, Adventurer's Guild",monster_group_population;boss_presence_or_unique_spawn,0,2,78,0,0
+1,2149,map1-room2149,"Newhaven, Docks",boss_presence_or_unique_spawn,0,0,81,0,0
+1,218,map1-room218,Intersection of Guild St. & Crown St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,219,map1-room219,Guild Street,monster_group_population;spawn_timer_configured,2,6,0,0,0
+1,2190,map1-room2190,"Newhaven, Healer",monster_group_population;boss_presence_or_unique_spawn,0,2,73,0,0
+1,222,map1-room222,Guild Street,monster_group_population;spawn_timer_configured,2,6,0,0,0
+1,223,map1-room223,"Guild Street, Southern End",monster_group_population;spawn_timer_configured,1,6,0,0,0
+1,2231,map1-room2231,Large Tomb,boss_presence_or_unique_spawn,0,0,83,0,0
+1,2236,map1-room2236,Large Tomb,boss_presence_or_unique_spawn,0,0,85,0,0
+1,224,map1-room224,Town Square,monster_group_population;boss_presence_or_unique_spawn,0,5,784,0,0
+1,2240,map1-room2240,Large Tomb,boss_presence_or_unique_spawn,0,0,87,0,0
+1,2241,map1-room2241,Large Tomb,boss_presence_or_unique_spawn,0,0,88,0,0
+1,225,map1-room225,"Sovereign Street, Northern End",monster_group_population,0,6,0,0,0
+1,2256,map1-room2256,Large Tomb,boss_presence_or_unique_spawn;spawn_timer_configured,5,0,91,0,0
+1,2258,map1-room2258,Large Tomb,boss_presence_or_unique_spawn,0,0,92,0,0
+1,226,map1-room226,Sovereign Street,monster_group_population;spawn_timer_configured,5,6,0,0,0
+1,2260,map1-room2260,Large Tomb,boss_presence_or_unique_spawn,0,0,93,0,0
+1,2262,map1-room2262,Large Tomb,boss_presence_or_unique_spawn,0,0,94,0,0
+1,2273,map1-room2273,Large Tomb,boss_presence_or_unique_spawn,0,0,96,0,0
+1,2275,map1-room2275,Large Tomb,boss_presence_or_unique_spawn,0,0,97,0,0
+1,2278,map1-room2278,Large Tomb,boss_presence_or_unique_spawn,0,0,98,0,0
+1,228,map1-room228,Sovereign Street,monster_group_population;spawn_timer_configured,3,6,0,0,0
+1,229,map1-room229,Intersection of Sovereign St. & Oak St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,2300,map1-room2300,Large Tomb,boss_presence_or_unique_spawn,0,0,102,0,0
+1,2301,map1-room2301,Large Tomb,boss_presence_or_unique_spawn,0,0,103,0,0
+1,2302,map1-room2302,Large Tomb,boss_presence_or_unique_spawn,0,0,104,0,0
+1,2303,map1-room2303,Large Tomb,boss_presence_or_unique_spawn,0,0,105,0,0
+1,2304,map1-room2304,"Darkwood Forest, Clearing",monster_group_population;linked_spawn_room_behavior,0,10,0,1709,0
+1,2305,map1-room2305,"Darkwood Tree, Small House",monster_group_population;boss_presence_or_unique_spawn,0,10,106,0,0
+1,2306,map1-room2306,"Small House, Attic",monster_group_population;spawn_timer_configured,5,10,0,0,0
+1,2307,map1-room2307,Spell Shop,monster_group_population,0,6,0,0,0
+1,231,map1-room231,Oak Street,spawn_timer_configured,5,0,0,0,0
+1,232,map1-room232,Oak Street,spawn_timer_configured,5,0,0,0,0
+1,2325,map1-room2325,Small Dark Room,monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,15,2,128,0,0
+1,233,map1-room233,Oak Street,spawn_timer_configured,5,0,0,0,0
+1,2335,map1-room2335,Small Pier,area_cap_behavior,0,0,0,0,1
+1,2342,map1-room2342,"The Silver River, Silvermere Docks",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,20,21,0,2342,15
+1,2343,map1-room2343,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior,0,21,0,2342,0
+1,2344,map1-room2344,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior,0,21,0,2342,0
+1,2345,map1-room2345,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior,0,21,0,2342,0
+1,2346,map1-room2346,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior,0,21,0,2342,0
+1,2347,map1-room2347,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior,0,21,0,2342,0
+1,2363,map1-room2363,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior,0,21,0,2342,0
+1,2364,map1-room2364,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,21,0,2342,0
+1,2365,map1-room2365,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,21,0,2342,0
+1,2366,map1-room2366,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,21,0,2342,0
+1,2367,map1-room2367,"The Silver River, North of Silvermere",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,21,0,2342,0
+1,239,map1-room239,Dusty Shack,boss_presence_or_unique_spawn;spawn_timer_configured,5,0,1053,0,0
+1,2418,map1-room2418,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,2437,map1-room2437,Bloodied Booth,spawn_timer_configured,5,0,0,0,0
+1,245,map1-room245,Intersection of Stone St. and Crown St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,253,map1-room253,Silver Street,monster_group_population,0,5,0,0,0
+1,254,map1-room254,"Silver Street, Western End",monster_group_population,0,5,0,0,0
+1,260,map1-room260,Sovereign Street,monster_group_population,0,5,0,0,0
+1,2606,map1-room2606,"Graveyard, Western Edge",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,2607,map1-room2607,"Graveyard, Western Edge",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,2608,map1-room2608,"Graveyard, Western Edge",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,2609,map1-room2609,"Graveyard, Western Edge",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,261,map1-room261,Sovereign Street,monster_group_population,0,6,0,0,0
+1,263,map1-room263,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,2642,map1-room2642,"Graveyard, South-East Corner",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,2643,map1-room2643,"Graveyard, Eastern Edge",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,2644,map1-room2644,"Graveyard, Eastern Edge",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,2645,map1-room2645,"Graveyard, Eastern Edge",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,2646,map1-room2646,"Graveyard, Eastern Edge",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,2654,map1-room2654,Silvermere Residence,spawn_timer_configured,5,0,0,0,0
+1,2668,map1-room2668,Silvermere Residence,spawn_timer_configured,5,0,0,0,0
+1,2670,map1-room2670,Silvermere Residence,spawn_timer_configured,5,0,0,0,0
+1,2680,map1-room2680,Gold Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,2650,0
+1,271,map1-room271,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,274,map1-room274,Warlock Training Room,spawn_timer_configured,5,0,0,0,0
+1,2783,map1-room2783,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,11,0,1330,0
+1,2784,map1-room2784,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,11,0,1330,0
+1,2785,map1-room2785,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,11,0,1330,0
+1,2786,map1-room2786,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,2,11,0,1330,0
+1,2787,map1-room2787,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,11,0,1330,0
+1,2788,map1-room2788,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,11,0,1330,0
+1,2789,map1-room2789,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,11,0,1330,0
+1,2790,map1-room2790,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,11,0,1330,0
+1,2791,map1-room2791,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,11,0,1330,0
+1,2792,map1-room2792,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,11,0,1330,0
+1,2793,map1-room2793,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,11,0,1330,0
+1,2794,map1-room2794,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,11,0,1330,0
+1,28,map1-room28,River Street,monster_group_population,0,5,0,0,0
+1,288,map1-room288,The Silver River,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,21,0,2342,0
+1,289,map1-room289,"Halls of Training, Entrance",spawn_timer_configured,5,0,0,0,0
+1,290,map1-room290,Sarkhee's Jewellery,monster_group_population;boss_presence_or_unique_spawn,0,2,43,0,0
+1,2935,map1-room2935,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2936,map1-room2936,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2937,map1-room2937,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2938,map1-room2938,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2939,map1-room2939,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2940,map1-room2940,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2941,map1-room2941,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2959,map1-room2959,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,296,map1-room296,Docks,spawn_timer_configured,5,0,0,0,0
+1,2960,map1-room2960,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2961,map1-room2961,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2962,map1-room2962,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2963,map1-room2963,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2964,map1-room2964,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2965,map1-room2965,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2966,map1-room2966,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2967,map1-room2967,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2968,map1-room2968,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,2969,map1-room2969,Darkwood Forest,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,2,14,0,2803,200
+1,297,map1-room297,Bank of Godfrey,monster_group_population;boss_presence_or_unique_spawn,0,5,784,0,0
+1,301,map1-room301,"Temple Street, Eastern End",monster_group_population,0,5,0,0,0
+1,302,map1-room302,Temple Street,monster_group_population,0,5,0,0,0
+1,303,map1-room303,Temple Street,monster_group_population,0,5,0,0,0
+1,305,map1-room305,"Skali's Fine Armour, Front Room",monster_group_population;boss_presence_or_unique_spawn,0,2,27,0,0
+1,306,map1-room306,"Skali's Fine Armour, Showroom",monster_group_population;boss_presence_or_unique_spawn,0,2,26,0,0
+1,307,map1-room307,Thuluk's Marvelous Axes,monster_group_population;boss_presence_or_unique_spawn,0,2,23,0,0
+1,309,map1-room309,"Sentara's Clothing, Front Room",monster_group_population;boss_presence_or_unique_spawn,0,2,28,0,0
+1,311,map1-room311,"The Homely Hearth, Common Room",monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,2,6,248,0,0
+1,313,map1-room313,"The Homely Hearth, Stairwell",monster_group_population,0,5,0,0,0
+1,315,map1-room315,"The Homely Hearth, Common Room",monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,1,6,249,0,0
+1,318,map1-room318,Intersection of Stone St. & Oak St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,321,map1-room321,Oak Street,spawn_timer_configured,5,0,0,0,0
+1,324,map1-room324,Intersection of Temple St. & Stone St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,325,map1-room325,Temple Street,monster_group_population;spawn_timer_configured,3,5,0,0,0
+1,3276,map1-room3276,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,3281,map1-room3281,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,3282,map1-room3282,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,3288,map1-room3288,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,3293,map1-room3293,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,3294,map1-room3294,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,3300,map1-room3300,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,3301,map1-room3301,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,3302,map1-room3302,"Blue Tower, Second Floor",spawn_timer_configured,5,0,0,0,0
+1,3303,map1-room3303,"Blue Tower, Second Floor",spawn_timer_configured,5,0,0,0,0
+1,3304,map1-room3304,"Blue Tower, Third Floor",spawn_timer_configured,5,0,0,0,0
+1,3305,map1-room3305,"Blue Tower, Third Floor",spawn_timer_configured,5,0,0,0,0
+1,3306,map1-room3306,"Blue Tower, Fourth Floor",spawn_timer_configured,5,0,0,0,0
+1,3307,map1-room3307,"Blue Tower, Fourth Floor",spawn_timer_configured,5,0,0,0,0
+1,3308,map1-room3308,"Blue Tower, Top Floor",spawn_timer_configured,5,0,0,0,0
+1,3309,map1-room3309,"Blue Tower, Top Floor",spawn_timer_configured,5,0,0,0,0
+1,332,map1-room332,Curio Shop,monster_group_population;boss_presence_or_unique_spawn,0,2,42,0,0
+1,3336,map1-room3336,Bank Vault,spawn_timer_configured,5,0,0,0,0
+1,3337,map1-room3337,Bank Vault,spawn_timer_configured,5,0,0,0,0
+1,3338,map1-room3338,Bank Vault,spawn_timer_configured,5,0,0,0,0
+1,3339,map1-room3339,Bank Vault,spawn_timer_configured,5,0,0,0,0
+1,334,map1-room334,General Store,monster_group_population;boss_presence_or_unique_spawn,0,2,41,0,0
+1,3340,map1-room3340,Bank Vault,spawn_timer_configured,5,0,0,0,0
+1,3343,map1-room3343,Empty Room,spawn_timer_configured,5,0,0,0,0
+1,3344,map1-room3344,Empty Room,spawn_timer_configured,5,0,0,0,0
+1,3345,map1-room3345,Empty Room,spawn_timer_configured,5,0,0,0,0
+1,3346,map1-room3346,Empty Room,spawn_timer_configured,5,0,0,0,0
+1,348,map1-room348,"Adventurer's Guild, Foyer",monster_group_population;boss_presence_or_unique_spawn,0,2,39,0,0
+1,35,map1-room35,Intersection of River St. & Westwall St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,354,map1-room354,Colin's Maces,monster_group_population;boss_presence_or_unique_spawn,0,2,25,0,0
+1,355,map1-room355,Helfgrim's Blades,monster_group_population;boss_presence_or_unique_spawn,0,2,24,0,0
+1,373,map1-room373,Sheriff's Office,monster_group_population;spawn_timer_configured,2,5,0,0,0
+1,383,map1-room383,Dark Alley,monster_group_population;spawn_timer_configured,1,6,0,0,0
+1,39,map1-room39,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,390,map1-room390,"Guild Street, Northern End",monster_group_population;spawn_timer_configured,1,6,0,0,0
+1,391,map1-room391,Wailing Hound Tavern,monster_group_population;boss_presence_or_unique_spawn,0,6,248,0,0
+1,398,map1-room398,Magic Shoppe,monster_group_population;boss_presence_or_unique_spawn,0,2,22,0,0
+1,40,map1-room40,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,405,map1-room405,Small Alleyway,monster_group_population;spawn_timer_configured,2,6,0,0,0
+1,41,map1-room41,Bank Vault,spawn_timer_configured,5,0,0,0,0
+1,442,map1-room442,Thin Alleyway,spawn_timer_configured,5,0,0,0,0
+1,452,map1-room452,Secret Passage,spawn_timer_configured,5,0,0,0,0
+1,516,map1-room516,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,522,map1-room522,Temple Spell Store,monster_group_population;boss_presence_or_unique_spawn,0,2,46,0,0
+1,525,map1-room525,Temple Chapel,monster_group_population;boss_presence_or_unique_spawn,0,2,45,0,0
+1,527,map1-room527,Temple Healer,monster_group_population;boss_presence_or_unique_spawn,0,2,243,0,0
+1,529,map1-room529,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,530,map1-room530,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,532,map1-room532,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,536,map1-room536,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,537,map1-room537,Junkyard,spawn_timer_configured,5,0,0,0,0
+1,538,map1-room538,Dungeon Stairs,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,539,map1-room539,Dungeon Corridor,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,540,map1-room540,Dungeon Corridor,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,542,map1-room542,Jail Cell,spawn_timer_configured,5,0,0,0,0
+1,543,map1-room543,Jail Cell,spawn_timer_configured,5,0,0,0,0
+1,544,map1-room544,Jail Cell,spawn_timer_configured,5,0,0,0,0
+1,545,map1-room545,Jail Cell,spawn_timer_configured,5,0,0,0,0
+1,65,map1-room65,"Strange Mansion, Entrance",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,1,11,0,65,10
+1,650,map1-room650,"Sewer Tunnel, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,66,map1-room66,Intersection of Noble St. & Westwall St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,69,map1-room69,"Noble Street, Slum Gates",monster_group_population;spawn_timer_configured,3,6,0,0,0
+1,713,map1-room713,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,714,map1-room714,"Sewer Tunnel, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,715,map1-room715,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,716,map1-room716,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,717,map1-room717,"Sewer Tunnel, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,718,map1-room718,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,719,map1-room719,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,720,map1-room720,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,730,map1-room730,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,6,0,766,0
+1,731,map1-room731,"Sewer Tunnel, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,732,map1-room732,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,733,map1-room733,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,734,map1-room734,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,735,map1-room735,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,736,map1-room736,"Sewer Tunnel, Dead End",monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,751,map1-room751,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,752,map1-room752,"Sewer Tunnel, Intersection",monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,753,map1-room753,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,757,map1-room757,Sewer Tunnel,monster_group_population;linked_spawn_room_behavior,0,6,0,766,0
+1,8,map1-room8,Intersection of Estwall St. & Crown St.,monster_group_population;spawn_timer_configured,5,5,0,0,0
+1,816,map1-room816,"Graveyard, Entry",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,1,7,0,816,100
+1,817,map1-room817,"Graveyard, Southern Edge",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,818,map1-room818,"Graveyard, Southern Edge",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,7,0,816,0
+1,819,map1-room819,"Graveyard, Southern Edge",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,820,map1-room820,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,822,map1-room822,Graveyard,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,7,0,816,0
+1,823,map1-room823,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,824,map1-room824,Graveyard,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,1,7,790,816,0
+1,826,map1-room826,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,828,map1-room828,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,829,map1-room829,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,830,map1-room830,Graveyard,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,1,7,790,816,0
+1,831,map1-room831,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,832,map1-room832,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,833,map1-room833,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,834,map1-room834,"Graveyard, Tomb Entrance",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,7,0,816,0
+1,835,map1-room835,Crypt,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,836,map1-room836,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,837,map1-room837,"Graveyard, East of Tomb",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,838,map1-room838,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,839,map1-room839,"Graveyard, North of Tomb",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,840,map1-room840,Graveyard,monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,842,map1-room842,"Graveyard, West of Tomb",monster_group_population;linked_spawn_room_behavior,0,7,0,816,0
+1,848,map1-room848,Inn Second Floor,monster_group_population,0,5,0,0,0
+10,268,map10-room268,"Rocky Trail, Bottleneck Pass",monster_group_population,0,16,0,0,0
+10,269,map10-room269,"Rocky Trail, Bottleneck Pass",monster_group_population,0,16,0,0,0
+10,270,map10-room270,"Ancient Keep, Entrance",monster_group_population,0,16,0,0,0
+10,271,map10-room271,"Ancient Keep, Throne Room",monster_group_population;boss_presence_or_unique_spawn,0,2,186,0,0
+10,306,map10-room306,Rocky Trail,monster_group_population;spawn_timer_configured,5,16,0,0,0
+12,1,map12-room1,"Scorching Desert, Outside Village",spawn_timer_configured,5,0,0,0,0
+12,10,map12-room10,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,1046,map12-room1046,"Scorching Desert, Outside Village",spawn_timer_configured,5,0,0,0,0
+12,1047,map12-room1047,"Scorching Desert, Outside Village",spawn_timer_configured,5,0,0,0,0
+12,12,map12-room12,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,13,map12-room13,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,14,map12-room14,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,15,map12-room15,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,16,map12-room16,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,17,map12-room17,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,1799,map12-room1799,Deep Dark Pit,boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,0,589,1521,0
+12,18,map12-room18,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,19,map12-room19,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,2,map12-room2,Dusty Village,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,20,0,2,50
+12,20,map12-room20,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,21,map12-room21,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,22,map12-room22,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,2249,map12-room2249,Small Stone Chamber,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,1521,0
+12,23,map12-room23,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,2381,map12-room2381,Platform of Stars,boss_presence_or_unique_spawn;spawn_timer_configured,5,0,539,0,0
+12,24,map12-room24,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,25,map12-room25,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,26,map12-room26,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,27,map12-room27,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,28,map12-room28,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,29,map12-room29,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,3,map12-room3,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,31,map12-room31,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,32,map12-room32,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,33,map12-room33,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,34,map12-room34,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,35,map12-room35,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,36,map12-room36,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,37,map12-room37,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,38,map12-room38,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,39,map12-room39,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,4,map12-room4,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,40,map12-room40,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,42,map12-room42,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,43,map12-room43,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,44,map12-room44,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,45,map12-room45,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,47,map12-room47,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,48,map12-room48,Canvas Tent,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,49,map12-room49,Village Store,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,5,map12-room5,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,50,map12-room50,Storage Room,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,51,map12-room51,Cloakroom,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,52,map12-room52,Common Room,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,53,map12-room53,Inn Stairwell,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,54,map12-room54,Kitchen,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,55,map12-room55,"Upper Floor, Landing",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,56,map12-room56,Sleeping Chamber,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,57,map12-room57,Sleeping Chamber,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,58,map12-room58,Sleeping Chamber,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,59,map12-room59,Ornate Tent,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,20,554,2,0
+12,6,map12-room6,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,7,map12-room7,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,714,map12-room714,Scorching Desert,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,135,0
+12,8,map12-room8,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+12,861,map12-room861,Scorching Desert,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,135,0
+12,9,map12-room9,Dusty Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,20,0,2,0
+16,1521,map16-room1521,"Earthen Catacombs, Spiral Staircase",monster_group_population;spawn_timer_configured,5,31,0,0,0
+16,2550,map16-room2550,"Lagoon, Open Water",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,2550,35
+16,2551,map16-room2551,"Lagoon, Reef",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,2550,35
+16,2659,map16-room2659,"Floating Platform, Dock",monster_group_population;spawn_timer_configured,5,31,0,0,0
+16,2660,map16-room2660,"Floating Platform, Dock",monster_group_population;spawn_timer_configured,5,31,0,0,0
+16,2661,map16-room2661,"Floating Platform, Dock",monster_group_population;spawn_timer_configured,5,31,0,0,0
+16,2662,map16-room2662,"Floating Platform, Dock",monster_group_population;spawn_timer_configured,5,31,0,0,0
+16,2663,map16-room2663,"Floating Platform, Hut",monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,31,722,0,0
+16,311,map16-room311,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,312,map16-room312,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,313,map16-room313,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,314,map16-room314,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,315,map16-room315,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,316,map16-room316,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,317,map16-room317,"Armour Shop, Front Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,318,map16-room318,"Armour Shop, Back Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,319,map16-room319,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,320,map16-room320,Bank,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,321,map16-room321,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,322,map16-room322,Corner of Market Street and Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,323,map16-room323,Well Lit Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,324,map16-room324,Well Lit Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,325,map16-room325,"Well Lit Alley, Corner",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,326,map16-room326,Well Lit Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,327,map16-room327,Well Lit Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,328,map16-room328,"Well Lit Alley, Dead End",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,329,map16-room329,Hides Shop,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,330,map16-room330,"Weapons Shop, Front Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,331,map16-room331,"Weapons Shop, Back Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,332,map16-room332,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,333,map16-room333,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,334,map16-room334,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,335,map16-room335,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,336,map16-room336,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,337,map16-room337,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,80
+16,357,map16-room357,Forest Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,358,map16-room358,Forest Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,359,map16-room359,"Forest Street, Intersection",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,360,map16-room360,Elder's Path,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,361,map16-room361,Elder's Path,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,375,map16-room375,Elder's Path,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,376,map16-room376,"Forest Street, Intersection",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,377,map16-room377,Forest Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,378,map16-room378,Forest Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,379,map16-room379,Elders' Council Chambers,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,380,map16-room380,"Elders' Council Chambers, Waiting Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,381,map16-room381,"Elders' Council Chambers, Private Quarters",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,382,map16-room382,"Elders' Council Chambers, Craftswoman's Room",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,695,311,50
+16,383,map16-room383,"Elders' Council Chambers, Meeting Hall",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,384,map16-room384,"Elders' Council Chambers, Meeting Hall",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,656,311,50
+16,385,map16-room385,Forest Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,412,map16-room412,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,413,map16-room413,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,414,map16-room414,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,415,map16-room415,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,416,map16-room416,Barracks,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,417,map16-room417,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,418,map16-room418,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,419,map16-room419,Corner of Market Street and Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,420,map16-room420,Well Lit Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,421,map16-room421,Well Lit Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,422,map16-room422,"Well Lit Alley, Corner",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,423,map16-room423,Well Lit Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,424,map16-room424,Well Lit Alley,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,427,map16-room427,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,428,map16-room428,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,429,map16-room429,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,430,map16-room430,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,431,map16-room431,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,432,map16-room432,"Magic Shop, Front Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,433,map16-room433,"Magic Shop, Back Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,434,map16-room434,Jewelry Shop,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,435,map16-room435,"General Store, Front Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,436,map16-room436,"General Store, Back Room",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,437,map16-room437,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,438,map16-room438,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,439,map16-room439,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,440,map16-room440,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,441,map16-room441,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,442,map16-room442,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,443,map16-room443,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,444,map16-room444,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,445,map16-room445,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,446,map16-room446,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,447,map16-room447,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,448,map16-room448,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,449,map16-room449,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,450,map16-room450,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,451,map16-room451,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,452,map16-room452,Market Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,453,map16-room453,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,454,map16-room454,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,455,map16-room455,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,456,map16-room456,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,457,map16-room457,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,458,map16-room458,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,459,map16-room459,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,460,map16-room460,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,461,map16-room461,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,462,map16-room462,Central Street,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,463,map16-room463,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,464,map16-room464,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,465,map16-room465,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,466,map16-room466,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,467,map16-room467,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,468,map16-room468,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,474,map16-room474,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,475,map16-room475,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,476,map16-room476,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,477,map16-room477,Temple Stairs,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,694,311,50
+16,478,map16-room478,Temple Stairs,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,311,50
+16,479,map16-room479,Training Grounds,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,31,0,485,5
+16,480,map16-room480,Training Grounds,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,31,0,485,5
+16,486,map16-room486,Training Grounds,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,31,0,485,5
+16,498,map16-room498,Training Grounds,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,31,0,485,5
+16,526,map16-room526,Training Grounds,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,31,0,485,5
+16,527,map16-room527,Training Grounds,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,31,0,485,5
+16,528,map16-room528,Training Grounds,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,31,0,485,5
+16,529,map16-room529,Training Grounds,monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,31,0,485,5
+16,624,map16-room624,"Lagoon, Reef",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,570,30
+16,625,map16-room625,"Lagoon, Reef",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,570,30
+16,626,map16-room626,"Lagoon, Reef",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,570,30
+16,627,map16-room627,"Lagoon, Reef",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,570,30
+16,628,map16-room628,"Lagoon, Reef",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,570,30
+16,629,map16-room629,"Lagoon, Reef",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,570,30
+16,630,map16-room630,"Lagoon, Reef",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,31,0,570,30
+17,1009,map17-room1009,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,2265,map17-room2265,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2266,map17-room2266,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2267,map17-room2267,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2268,map17-room2268,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2269,map17-room2269,Town Square,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,29,854,2269,60
+17,2270,map17-room2270,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2271,map17-room2271,Main Street,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,854,2269,0
+17,2272,map17-room2272,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2273,map17-room2273,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2274,map17-room2274,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2275,map17-room2275,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2276,map17-room2276,Main Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2277,map17-room2277,"Arlysia, City Entrance",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,854,2269,0
+17,2278,map17-room2278,Stargazer's Lane,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2279,map17-room2279,Stargazer's Lane,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2280,map17-room2280,"Stargazer's Lane, Park Entrance",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2281,map17-room2281,Stargazer's Lane,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2287,map17-room2287,Dock Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2288,map17-room2288,Dock Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2289,map17-room2289,Dock Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2290,map17-room2290,Intersection of Dock Street & Haven Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2291,map17-room2291,Dock Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2292,map17-room2292,Dock Street,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,854,2269,0
+17,2293,map17-room2293,Dock Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2294,map17-room2294,Dock Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2295,map17-room2295,"Arlysia, City Entrance",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2307,map17-room2307,Long Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2352,map17-room2352,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2353,map17-room2353,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2354,map17-room2354,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2355,map17-room2355,Intersection of Seaside Way & Saint's Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2356,map17-room2356,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2380,map17-room2380,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2381,map17-room2381,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2382,map17-room2382,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2383,map17-room2383,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2384,map17-room2384,Seaside Way,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2387,map17-room2387,Haven Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2388,map17-room2388,Intersection of Haven Street & Long Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2389,map17-room2389,Haven Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2390,map17-room2390,Haven Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2391,map17-room2391,Haven Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2392,map17-room2392,Haven Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2393,map17-room2393,Haven Street,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,852,2269,0
+17,2397,map17-room2397,Saint's Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2398,map17-room2398,Saint's Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2399,map17-room2399,Saint's Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2400,map17-room2400,Saint's Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2401,map17-room2401,Gryphon Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2402,map17-room2402,Gryphon Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2403,map17-room2403,Gryphon Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2404,map17-room2404,Gryphon Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2405,map17-room2405,Gryphon Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2406,map17-room2406,Gryphon Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2426,map17-room2426,Arena Practice Room,spawn_timer_configured,5,0,0,0,0
+17,2433,map17-room2433,Aeriana's Apothecary,boss_presence_or_unique_spawn;spawn_timer_configured,5,0,911,0,0
+17,2435,map17-room2435,Bank of Arlysia,spawn_timer_configured,5,0,0,0,0
+17,2436,map17-room2436,Jandar's Missile Weapons,boss_presence_or_unique_spawn;spawn_timer_configured,5,0,916,0,0
+17,2437,map17-room2437,Abandoned Shop,spawn_timer_configured,5,0,0,0,0
+17,2438,map17-room2438,Lud's Smithy,boss_presence_or_unique_spawn;spawn_timer_configured,5,0,862,0,0
+17,2439,map17-room2439,Hap's General Store,spawn_timer_configured,5,0,0,0,0
+17,2440,map17-room2440,The Goode Seamstress,boss_presence_or_unique_spawn;spawn_timer_configured,5,0,914,0,0
+17,2441,map17-room2441,Tavern,boss_presence_or_unique_spawn;spawn_timer_configured,5,0,861,0,0
+17,2442,map17-room2442,Tavern,spawn_timer_configured,5,0,0,0,0
+17,2443,map17-room2443,City Park,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2472,map17-room2472,Dirt Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2473,map17-room2473,Dirt Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2474,map17-room2474,Dirt Street,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2490,map17-room2490,Dirt Street Home,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2500,map17-room2500,Town Hall,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,854,2269,0
+17,2501,map17-room2501,"Town Hall, Office of the Mayor",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2502,map17-room2502,Town Hall,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2503,map17-room2503,"Town Hall, Stairwell",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,2269,0
+17,2940,map17-room2940,"Adventurer's Guild, Universal Trainer",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2982,map17-room2982,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2991,map17-room2991,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2992,map17-room2992,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2993,map17-room2993,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2994,map17-room2994,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2995,map17-room2995,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2996,map17-room2996,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2997,map17-room2997,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2998,map17-room2998,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,2999,map17-room2999,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3000,map17-room3000,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3005,map17-room3005,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3006,map17-room3006,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3010,map17-room3010,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3013,map17-room3013,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3014,map17-room3014,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3015,map17-room3015,Grand Hallway,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3036,map17-room3036,Shadowy Passage,monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,2,1056,0,0
+17,3037,map17-room3037,Shadowy Passage,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3038,map17-room3038,Shadowy Passage,monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,2,1054,0,0
+17,3039,map17-room3039,Shadowy Passage,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3040,map17-room3040,Shadowy Passage,monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,2,1057,0,0
+17,3041,map17-room3041,Shadowy Passage,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3056,map17-room3056,"Marble Room, Black Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3057,map17-room3057,"Marble Room, White Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3061,map17-room3061,"Marble Room, White Square",monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,2,999,0,0
+17,3062,map17-room3062,"Marble Room, Black Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3063,map17-room3063,"Marble Room, Black Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3064,map17-room3064,"Marble Room, White Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3065,map17-room3065,"Marble Room, Black Square",monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,2,998,0,0
+17,3067,map17-room3067,"Marble Room, Black Square",monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,2,994,0,0
+17,3068,map17-room3068,"Marble Room, White Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3069,map17-room3069,"Marble Room, Black Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3070,map17-room3070,"Marble Room, White Square",monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,2,995,0,0
+17,3071,map17-room3071,"Marble Room, Black Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3082,map17-room3082,"Marble Room, Black Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3141,map17-room3141,Amber Fortress,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3142,map17-room3142,Amber Fortress,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3143,map17-room3143,Amber Fortress,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3144,map17-room3144,Amber Fortress,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3189,map17-room3189,"Marble Room, Black Square",monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,3247,map17-room3247,Grand Chamber,monster_group_population;spawn_timer_configured,5,2,0,0,0
+17,512,map17-room512,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,513,map17-room513,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,514,map17-room514,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,515,map17-room515,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,516,map17-room516,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,517,map17-room517,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,518,map17-room518,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,519,map17-room519,"Arlysia, Outer Wall",spawn_timer_configured,5,0,0,0,0
+17,574,map17-room574,"Arlysia, City Docks",spawn_timer_configured,5,0,0,0,0
+17,575,map17-room575,"Arlysia, City Docks",spawn_timer_configured,5,0,0,0,0
+17,576,map17-room576,"Arlysia, City Docks",spawn_timer_configured,5,0,0,0,0
+17,577,map17-room577,"Arlysia, City Docks",spawn_timer_configured,5,0,0,0,0
+17,633,map17-room633,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,634,map17-room634,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,635,map17-room635,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,636,map17-room636,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,637,map17-room637,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,638,map17-room638,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,639,map17-room639,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,640,map17-room640,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,641,map17-room641,"Blackwood Forest, Winding Trail",monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,817,591,0
+17,770,map17-room770,"Gypsy Encampment, Entrance",monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,29,0,770,5
+17,771,map17-room771,Gypsy Encampment,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,29,0,770,5
+17,772,map17-room772,Gypsy Encampment,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,29,0,770,5
+17,773,map17-room773,Gypsy Encampment,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,29,0,770,5
+17,774,map17-room774,"Gypsy Encampment, Campfire",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,770,0
+17,775,map17-room775,Gypsy Encampment,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,29,0,770,5
+17,776,map17-room776,Gypsy Wagon,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,29,844,770,0
+17,777,map17-room777,Gypsy Wagon,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,770,0
+17,778,map17-room778,Gypsy Wagon,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,770,0
+17,779,map17-room779,Gypsy Wagon,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,29,0,770,0
+2,1173,map2-room1173,Stone Tunnel,monster_group_population;linked_spawn_room_behavior,0,9,0,1123,0
+2,1176,map2-room1176,Stone Tunnel,monster_group_population;linked_spawn_room_behavior,0,9,0,1123,0
+2,1177,map2-room1177,Stone Tunnel,monster_group_population;linked_spawn_room_behavior,0,9,0,1123,0
+2,1178,map2-room1178,Stone Tunnel,monster_group_population;linked_spawn_room_behavior,0,9,0,1123,0
+2,1179,map2-room1179,Stone Tunnel,monster_group_population;linked_spawn_room_behavior,0,9,0,1123,0
+2,1183,map2-room1183,Stone Tunnel,monster_group_population;linked_spawn_room_behavior,0,9,0,1123,0
+2,176,map2-room176,"Rocky Valley, Massive Doors",monster_group_population;linked_spawn_room_behavior,0,9,0,116,0
+2,1808,map2-room1808,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2519,map2-room2519,"Rhudaur, Massive Doors",monster_group_population;linked_spawn_room_behavior;area_cap_behavior,0,19,0,2519,38
+2,2520,map2-room2520,"Shadow Street, Northern End",monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2521,map2-room2521,Shadow Street,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2522,map2-room2522,"Shadow Street, Southern End",monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2523,map2-room2523,Rhudaur Town Centre,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,2,19,0,2519,0
+2,2524,map2-room2524,"Dagger Street, Eastern End",monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2525,map2-room2525,"Dagger Street, Western End",monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2526,map2-room2526,"Flame Street, Western End",monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2527,map2-room2527,"Flame Street, Eastern End",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,2,19,0,2519,0
+2,2528,map2-room2528,"Temple Street, Northern End",monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2529,map2-room2529,"Temple Street, Southern End",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,19,0,2519,0
+2,2530,map2-room2530,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2531,map2-room2531,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2534,map2-room2534,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2535,map2-room2535,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2536,map2-room2536,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2537,map2-room2537,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2538,map2-room2538,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2539,map2-room2539,Smelly Dump,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,26,0,2519,0
+2,2540,map2-room2540,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2541,map2-room2541,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2544,map2-room2544,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2545,map2-room2545,Dark Alley,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2546,map2-room2546,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,19,0,2519,0
+2,2547,map2-room2547,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2548,map2-room2548,Dark Park,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2549,map2-room2549,Dark Park,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,19,0,2519,0
+2,2550,map2-room2550,The Drunken Demon Inn,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2551,map2-room2551,The Drunken Demon Inn,monster_group_population;spawn_timer_configured,60,19,0,0,0
+2,2552,map2-room2552,"The Drunken Demon Inn, Stairwell",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,1,19,0,2519,0
+2,2553,map2-room2553,"The Drunken Demon Inn, Kitchen",monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2559,map2-room2559,Ruined Mansion,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2560,map2-room2560,Abandoned House,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2561,map2-room2561,Thieve's Guild,monster_group_population;boss_presence_or_unique_spawn,0,19,253,0,0
+2,2562,map2-room2562,Weapon Shop,monster_group_population;spawn_timer_configured,60,19,0,0,0
+2,2563,map2-room2563,Missile Weapon Shop,monster_group_population;spawn_timer_configured,60,19,0,0,0
+2,2564,map2-room2564,The Bloody Dagger Tavern,monster_group_population;spawn_timer_configured,60,19,0,0,0
+2,2566,map2-room2566,Exotic Weapons Shop,monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,10,19,257,0,0
+2,2567,map2-room2567,Armour Shop,monster_group_population;spawn_timer_configured,60,19,0,0,0
+2,2568,map2-room2568,Bank of Rhudaur,monster_group_population;boss_presence_or_unique_spawn,0,19,238,0,0
+2,2569,map2-room2569,The Screaming Wench Tavern,monster_group_population;spawn_timer_configured,60,19,0,0,0
+2,2570,map2-room2570,Training Hall,monster_group_population;boss_presence_or_unique_spawn,0,19,256,0,0
+2,2571,map2-room2571,Dark Temple,monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2572,map2-room2572,"Dark Temple, Healing Room",monster_group_population;boss_presence_or_unique_spawn,0,19,255,0,0
+2,2573,map2-room2573,"Dark Temple, Altar",monster_group_population;linked_spawn_room_behavior,0,19,0,2519,0
+2,2574,map2-room2574,Mystical Items Store,monster_group_population;spawn_timer_configured,60,19,0,0,0
+2,2575,map2-room2575,"Fine Mansion, Foyer",monster_group_population,0,19,0,0,0
+2,2576,map2-room2576,Fine Mansion,monster_group_population,0,19,0,0,0
+2,2577,map2-room2577,"Fine Mansion, Study",monster_group_population;boss_presence_or_unique_spawn,0,19,263,0,0
+2,2581,map2-room2581,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2582,map2-room2582,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2583,map2-room2583,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2584,map2-room2584,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,2,19,0,2519,0
+2,2585,map2-room2585,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2586,map2-room2586,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,2,19,0,2519,0
+2,2587,map2-room2587,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2588,map2-room2588,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2589,map2-room2589,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2590,map2-room2590,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2592,map2-room2592,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2593,map2-room2593,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2594,map2-room2594,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2595,map2-room2595,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2596,map2-room2596,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2597,map2-room2597,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2598,map2-room2598,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2599,map2-room2599,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+2,2600,map2-room2600,Dark Alley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,19,0,2519,0
+3,541,map3-room541,Common Area,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,10,5,0,525,0
+3,542,map3-room542,Training Area,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,10,5,0,525,0
+4,1,map4-room1,Silvermere Property Office,spawn_timer_configured,5,0,0,0,0
+6,117,map6-room117,Valley Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,118,map6-room118,Valley Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,119,map6-room119,Valley Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,120,map6-room120,"Valley Path, Near Inn",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,121,map6-room121,"Valley Path, Outside Inn",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,122,map6-room122,"Valley Path, Outside Inn",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,123,map6-room123,Grassy Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,124,map6-room124,Gypsy Encampment,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,385,110,0
+6,1244,map6-room1244,Ascent to Khazarad,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,77,0
+6,1245,map6-room1245,Gates of Khazarad,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,24,0,1245,250
+6,1246,map6-room1246,Entrance to Khazarad,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1247,map6-room1247,Barracks,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1248,map6-room1248,Barracks,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1249,map6-room1249,"Khazarad, Entry Arch",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,125,map6-room125,"Cozy Inn, Foyer",boss_presence_or_unique_spawn;linked_spawn_room_behavior,0,0,553,110,0
+6,1250,map6-room1250,"Khazarad, Mithril Way",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1251,map6-room1251,"Khazarad, Mithril Way",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1252,map6-room1252,"Khazarad, Mithril Way",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1253,map6-room1253,"Khazarad, Mithril Way",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1254,map6-room1254,"Khazarad, Mithril Way",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1255,map6-room1255,"Khazarad, Garden Walk",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1256,map6-room1256,"Khazarad, Garden Walk",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1257,map6-room1257,"Khazarad, Garden Walk",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1258,map6-room1258,"Khazarad, Garden Walk",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1259,map6-room1259,"Khazarad, Garden Entrance",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,126,map6-room126,Common Room,boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,0,384,110,0
+6,1260,map6-room1260,"Khazarad, Garden Walk",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1261,map6-room1261,"Khazarad, Garden Walk",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1262,map6-room1262,"Khazarad, Garden Walk",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1263,map6-room1263,"Khazarad, Gate Wall",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1264,map6-room1264,"Khazarad, Gate Wall",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1265,map6-room1265,"Khazarad, Corner of Gate Wall and Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1266,map6-room1266,"Khazarad, Gate Wall",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1267,map6-room1267,"Khazarad, Gate Wall",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1268,map6-room1268,"Khazarad, Corner of Gate Wall and Iron Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1269,map6-room1269,"Khazarad, Iron Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,127,map6-room127,Kitchen,linked_spawn_room_behavior;spawn_timer_configured,5,0,0,110,0
+6,1274,map6-room1274,"Khazarad, Iron Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1275,map6-room1275,"Khazarad, Junction of Iron Street and South Alley",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1276,map6-room1276,"Khazarad, Iron Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,128,map6-room128,Stairwell,linked_spawn_room_behavior;spawn_timer_configured,5,0,0,110,0
+6,1282,map6-room1282,"Khazarad, Corner of Iron Street and Mine Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1283,map6-room1283,"Khazarad, Mine Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1284,map6-room1284,"Khazarad, Mine Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1285,map6-room1285,"Khazarad, Junction of Mine Street and Craft Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1286,map6-room1286,"Khazarad, Mine Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1287,map6-room1287,"Khazarad, Mine Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1288,map6-room1288,"Khazarad, Corner of Mine Street and Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1289,map6-room1289,"Khazarad, Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1290,map6-room1290,"Khazarad, Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1291,map6-room1291,"Khazarad, Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1292,map6-room1292,"Khazarad, Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1293,map6-room1293,"Khazarad, Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1294,map6-room1294,"Khazarad, Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1295,map6-room1295,"Khazarad, Junction of Forge Street and South Alley",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1296,map6-room1296,"Khazarad, Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1301,map6-room1301,"Khazarad, Forge Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1302,map6-room1302,"Khazarad, North Alley",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1303,map6-room1303,"Khazarad, South Alley",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1304,map6-room1304,"Khazarad, Craft Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1305,map6-room1305,"Khazarad, Craft Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1306,map6-room1306,"Khazarad, Craft Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1307,map6-room1307,"Khazarad, Craft Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1308,map6-room1308,"Khazarad, Craft Street",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1309,map6-room1309,Stone Garden of Khazarad,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1314,map6-room1314,Dwarven Home,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1316,map6-room1316,Dwarven Home,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1317,map6-room1317,Dwarven Home,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1328,map6-room1328,Khazarad Inn,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,419,1245,0
+6,1329,map6-room1329,"Khazarad Inn, Stairwell",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,133,map6-room133,"Valley Path, Crossroads",linked_spawn_room_behavior;spawn_timer_configured,5,0,0,110,0
+6,1330,map6-room1330,"Khazarad Inn, Hallway",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1331,map6-room1331,"Khazarad Inn, Bedroom",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1332,map6-room1332,Frothing Mug Tavern,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,423,1245,0
+6,1333,map6-room1333,Gambling Hall,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,1000,1245,0
+6,1334,map6-room1334,Bank of Khazarad,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1335,map6-room1335,General Store,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,421,1245,0
+6,1336,map6-room1336,Axe of Fury Weapon Store,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,421,1245,0
+6,1337,map6-room1337,Martok's Battered Breastplate,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,421,1245,0
+6,1339,map6-room1339,Gaol of Khazarad,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,134,map6-room134,Swampside Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,1340,map6-room1340,"Gaol of Khazarad, Hallway",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1341,map6-room1341,Square Cell,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1342,map6-room1342,Harkul's Haberdashery,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,421,1245,0
+6,1343,map6-room1343,Gurdal's Leather Goods,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,421,1245,0
+6,1344,map6-room1344,Drotha's Deadly Weaponry,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,421,1245,0
+6,1345,map6-room1345,Storage Room,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1346,map6-room1346,Gorthun's Gemstones,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,421,1245,0
+6,1347,map6-room1347,Dwarven Temple,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,428,1245,0
+6,1348,map6-room1348,Dwarven Temple,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,429,1245,0
+6,1349,map6-room1349,Great Arena of Khazarad,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,135,map6-room135,Swampside Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,1350,map6-room1350,"Arena, Spectator Seats",linked_spawn_room_behavior;spawn_timer_configured,5,0,0,1245,0
+6,1352,map6-room1352,Training Area,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1353,map6-room1353,Rubbish Disposal Chamber,linked_spawn_room_behavior;spawn_timer_configured,5,0,0,1245,0
+6,1355,map6-room1355,Forge Entrance,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,136,map6-room136,Swampside Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,1361,map6-room1361,Ornate Passageway,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,1362,map6-room1362,"Ornate Passageway, Stairwell",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1245,0
+6,137,map6-room137,Swampside Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,1567,map6-room1567,Miner's Guild,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,24,0,1567,15
+6,1568,map6-room1568,Iron Mine Entrance,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1569,map6-room1569,"Iron Mine, Cart Track",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1570,map6-room1570,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1571,map6-room1571,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1572,map6-room1572,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1573,map6-room1573,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1574,map6-room1574,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1576,map6-room1576,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1577,map6-room1577,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1578,map6-room1578,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1579,map6-room1579,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1580,map6-room1580,Iron Mine Tunnel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1585,map6-room1585,"Iron Mine, Cart Track",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1586,map6-room1586,"Iron Mine, Cart Track",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1587,map6-room1587,"Iron Mine, Cart Track",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1588,map6-room1588,"Iron Mine, Cart Track",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,1589,map6-room1589,"Iron Mine, Cart Track",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,1567,0
+6,234,map6-room234,Swampside Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,235,map6-room235,Swampside Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,236,map6-room236,Swampside Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,237,map6-room237,Swampside Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,110,0
+6,238,map6-room238,Misty Swamp Path,monster_group_population;linked_spawn_room_behavior;area_cap_behavior;spawn_timer_configured,5,24,0,238,125
+6,239,map6-room239,Misty Swamp Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,238,0
+6,240,map6-room240,Misty Swamp Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,238,0
+6,548,map6-room548,Rocky Plain Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,549,map6-room549,"Gnome Village, Entrance",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,550,map6-room550,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,551,map6-room551,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,552,map6-room552,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,553,map6-room553,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,554,map6-room554,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,555,map6-room555,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,556,map6-room556,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,557,map6-room557,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,558,map6-room558,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,559,map6-room559,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,560,map6-room560,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,561,map6-room561,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,562,map6-room562,Ascent to Khazarad,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,563,map6-room563,Small Cottage,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,564,map6-room564,Small Cottage,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,565,map6-room565,Eating Hall,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,566,map6-room566,General Store,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,399,540,0
+6,567,map6-room567,Jeweler's Shop,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,399,540,0
+6,568,map6-room568,Small Cottage,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,569,map6-room569,Small Cottage,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,570,map6-room570,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,571,map6-room571,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,572,map6-room572,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,573,map6-room573,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,578,map6-room578,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,579,map6-room579,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,580,map6-room580,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,581,map6-room581,Small Cottage,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,582,map6-room582,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,583,map6-room583,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,584,map6-room584,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,585,map6-room585,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,586,map6-room586,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,587,map6-room587,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,588,map6-room588,Small Cottage,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,610,map6-room610,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,611,map6-room611,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,612,map6-room612,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,613,map6-room613,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,614,map6-room614,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,615,map6-room615,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,616,map6-room616,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,617,map6-room617,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,618,map6-room618,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,619,map6-room619,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,621,map6-room621,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,622,map6-room622,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,625,map6-room625,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,628,map6-room628,Small Cottage,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,629,map6-room629,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,630,map6-room630,Small Cottage,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,631,map6-room631,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,632,map6-room632,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,633,map6-room633,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,634,map6-room634,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,635,map6-room635,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,636,map6-room636,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,637,map6-room637,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,638,map6-room638,Gnome Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,645,map6-room645,Alchemist's Hut,monster_group_population;boss_presence_or_unique_spawn;linked_spawn_room_behavior;spawn_timer_configured,5,24,401,540,0
+6,676,map6-room676,Tilled Fields,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,679,map6-room679,Tilled Fields,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,709,map6-room709,Rocky Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,710,map6-room710,Rocky Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+6,711,map6-room711,Rocky Path,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,24,0,540,0
+7,1112,map7-room1112,"Dark Valley, Iron Gate",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,26,0,1107,0
+7,1113,map7-room1113,Dreary Village,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1114,map7-room1114,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1115,map7-room1115,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1116,map7-room1116,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1117,map7-room1117,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1118,map7-room1118,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1119,map7-room1119,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1120,map7-room1120,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1121,map7-room1121,Dreary Village,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,26,0,1107,0
+7,1122,map7-room1122,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1123,map7-room1123,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1124,map7-room1124,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1125,map7-room1125,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1126,map7-room1126,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1127,map7-room1127,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1128,map7-room1128,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1129,map7-room1129,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1130,map7-room1130,"Dreary Village, Crossroads",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,26,0,1107,0
+7,1131,map7-room1131,"Dreary Village, Back Streets",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1132,map7-room1132,Dreary Village,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1133,map7-room1133,Dreary Village,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1134,map7-room1134,Stone Barracks,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,8,26,0,1107,0
+7,1135,map7-room1135,Evil Chapel,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,26,0,1107,0
+7,1136,map7-room1136,Small Store,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1137,map7-room1137,Dirt Road,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1138,map7-room1138,Dirt Road,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1139,map7-room1139,Dirt Road,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1140,map7-room1140,Dirt Road,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1141,map7-room1141,"Dirt Road, Black Fortress Gate",monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1142,map7-room1142,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1143,map7-room1143,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1144,map7-room1144,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1145,map7-room1145,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1146,map7-room1146,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1147,map7-room1147,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1149,map7-room1149,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1150,map7-room1150,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1151,map7-room1151,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1152,map7-room1152,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1153,map7-room1153,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1154,map7-room1154,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1155,map7-room1155,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1156,map7-room1156,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1157,map7-room1157,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1163,map7-room1163,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1164,map7-room1164,Black Weed Fields,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1171,map7-room1171,Ramshackle Barn,monster_group_population;linked_spawn_room_behavior,0,26,0,1107,0
+7,1529,map7-room1529,Dark Valley,monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,26,0,1107,0
+7,780,map7-room780,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,781,map7-room781,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,782,map7-room782,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,783,map7-room783,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,784,map7-room784,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,785,map7-room785,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,27,0,732,0
+7,786,map7-room786,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,787,map7-room787,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,788,map7-room788,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,789,map7-room789,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,790,map7-room790,"Cracked Plain, Black Chasm",monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,815,map7-room815,Cracked Plain,monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,816,map7-room816,Cracked Plain,monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,817,map7-room817,Cracked Plain,monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,818,map7-room818,Cracked Plain,monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,819,map7-room819,Cracked Plain,monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,830,map7-room830,Cracked Plain,monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,831,map7-room831,Cracked Plain,monster_group_population;linked_spawn_room_behavior,0,27,0,732,0
+7,933,map7-room933,"Lava Fields, Cavern Wall",monster_group_population;linked_spawn_room_behavior;spawn_timer_configured,5,27,0,883,0
+8,1041,map8-room1041,Ethereal Prison,monster_group_population;boss_presence_or_unique_spawn;spawn_timer_configured,5,22,370,0,0
+8,460,map8-room460,Large Hole,monster_group_population,0,22,0,0,0
+8,461,map8-room461,Black Steel Gate,monster_group_population,0,22,0,0,0
+8,462,map8-room462,"Town Gates, Archway",monster_group_population,0,22,0,0,0
+8,463,map8-room463,"Dark Street, Junction",monster_group_population,0,22,0,0,0
+8,464,map8-room464,Back Road,monster_group_population,0,22,0,0,0
+8,465,map8-room465,Back Road,monster_group_population,0,22,0,0,0
+8,466,map8-room466,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,467,map8-room467,"Dark Street, Junction",monster_group_population,0,22,0,0,0
+8,468,map8-room468,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,469,map8-room469,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,470,map8-room470,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,471,map8-room471,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,472,map8-room472,"Dark Street, Junction",monster_group_population,0,22,0,0,0
+8,473,map8-room473,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,474,map8-room474,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,475,map8-room475,"Dark Street, Junction",monster_group_population,0,22,0,0,0
+8,476,map8-room476,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,477,map8-room477,"Dark Street, Junction",monster_group_population,0,22,0,0,0
+8,478,map8-room478,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,479,map8-room479,Back Road,monster_group_population,0,22,0,0,0
+8,480,map8-room480,Back Road,monster_group_population,0,22,0,0,0
+8,481,map8-room481,"City, Main Street",monster_group_population;spawn_timer_configured,5,22,0,0,0
+8,482,map8-room482,"Dark Street, Junction",monster_group_population,0,22,0,0,0
+8,483,map8-room483,Back Road,monster_group_population,0,22,0,0,0
+8,484,map8-room484,Back Road,monster_group_population,0,22,0,0,0
+8,485,map8-room485,"City, Main Street",monster_group_population,0,22,0,0,0
+8,486,map8-room486,Musty Store,monster_group_population;boss_presence_or_unique_spawn,0,22,348,0,0
+8,487,map8-room487,Narrow Alley,monster_group_population,0,22,0,0,0
+8,488,map8-room488,Narrow Alley,monster_group_population,0,22,0,0,0
+8,491,map8-room491,Cobblestone Path,monster_group_population,0,22,0,0,0
+8,492,map8-room492,Royal Prison,monster_group_population,0,22,0,0,0
+8,559,map8-room559,"Dark-Elf City, Moatside",monster_group_population,0,22,0,0,0
+8,560,map8-room560,"Dark-Elf Castle, Gatehouse",monster_group_population,0,22,0,0,0

@@ -1,0 +1,51 @@
+{
+  "artifact": "MajorMUD-Reforged-SimulatorPrototype implemented",
+  "runtime_used": false,
+  "worldgroup_used": false,
+  "live_runtime_observations_used": 0,
+  "evidence_chain": "RuntimePrep0001-0009 preserved",
+  "implemented_features": [
+    "interactive_shell",
+    "room_population",
+    "navigation_graph",
+    "shops",
+    "loot_lookup_and_rolls",
+    "npc_dialogue_search",
+    "spell_skill_search",
+    "combat_placeholder",
+    "runtime_backlog"
+  ],
+  "smoke_tests": [
+    {
+      "command": "python3 run_simulator.py summary",
+      "returncode": 0,
+      "stdout_first_line": "MajorMUD Reforged Evidence-Backed Simulator",
+      "stderr": ""
+    },
+    {
+      "command": "python3 run_simulator.py simulate-room map1-room101 --ticks 1",
+      "returncode": 0,
+      "stdout_first_line": "Room: map1-room101 \u2014 Silver Street, Eastern End",
+      "stderr": ""
+    },
+    {
+      "command": "python3 run_simulator.py exits AADE",
+      "returncode": 0,
+      "stdout_first_line": "from_code=AADE | from_name=Abandoned Asylum, Dead End- | to_code=ASYL | to_name=Warped Asylum | first_command=s | final_command=s | classification=intra_area_path | one_way_candidate=yes",
+      "stderr": ""
+    },
+    {
+      "command": "python3 run_simulator.py shop 65",
+      "returncode": 0,
+      "stdout_first_line": "Shop 65: Aldreth's Spells at Small House, Attic",
+      "stderr": ""
+    },
+    {
+      "command": "python3 run_simulator.py spell missile",
+      "returncode": 0,
+      "stdout_first_line": "spell_id=spell_1 | source_id=1 | name=magic missile | command=mmis | notes=Imported raw fields preserved for spell editor tuning. | runtime_status=spell effects/costs/cast timing require runtime validation",
+      "stderr": ""
+    }
+  ],
+  "all_smoke_tests_passed": true
+}

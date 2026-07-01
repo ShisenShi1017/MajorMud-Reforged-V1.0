@@ -1,5 +1,17 @@
 # Changelog
 
+## CodeUpdate-0050 - SimulatorBuild0002 Handoff and DataDecode0110 Static Certification
+
+- Preserved the user-provided SimulatorBuild0002 Codex handoff under `DataDecodeCheckpoints/SimulatorBuild0002/`.
+- Extracted final DataDecode0110 static certification files under `DataDecodeCheckpoints/DataDecode0110/`.
+- Added selected DataDecode0099-0108 DAT decoding decision docs under `Docs/DATDecoding/`.
+- Installed the expected-model simulator under `Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/`.
+- Recorded source package SHA-256 `66DF6BF0E1885A96C1B3BFB9A9D535FEDA8FA9D025A807509175B4C644D758DA`.
+- Recorded DataDecode0110 metrics: 3,908 imported database files checked, 1 MDB present, 5 CSV files present, 0 unsupported inferences, 3,975 unresolved ownership rows carried forward, and 5,464 unresolved static rows carried forward.
+- Recorded that SimulatorBuild0002 is expected-model evidence only and does not certify live Worldgroup behavior.
+- Excluded generated Python `__pycache__` files and the embedded stale full repository archive.
+- No canonical `Data` rewrites, server behavior changes, field promotions, gameplay systems, or live runtime validation are included.
+
 ## CodeUpdate-0049 - DataDecode0068 Spell Engine Proof
 
 - Preserved the user-provided DataDecode0068 Spell Engine Proof checkpoint under `DataDecodeCheckpoints/DataDecode0068/`.

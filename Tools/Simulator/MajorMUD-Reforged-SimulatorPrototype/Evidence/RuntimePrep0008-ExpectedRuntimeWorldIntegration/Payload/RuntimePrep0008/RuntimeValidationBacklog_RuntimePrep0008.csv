@@ -1,0 +1,7 @@
+validation_phase,domain,requires_worldgroup,reason
+RuntimeValidation0001,world_population,yes,"actual room population, spawn timing, lair behavior, and server-side spawn state must be observed live"
+RuntimeValidation0002,navigation,yes,hidden/scripted exits and special transitions require engine behavior
+RuntimeValidation0003,shops_items,yes,"transactions, restock, access restrictions, and shop scripts are runtime behavior"
+RuntimeValidation0004,drops_rewards,yes,"RNG, drop frequency, container behavior, and live awards are runtime behavior"
+RuntimeValidation0005,npc_quests,yes,"dialogue trigger order, quest state transitions, and NPC interaction scripts require runtime"
+RuntimeValidation0006,combat_systems,yes,"formulas, AI, status effects, attack timing, and XP/gold application require live behavior"

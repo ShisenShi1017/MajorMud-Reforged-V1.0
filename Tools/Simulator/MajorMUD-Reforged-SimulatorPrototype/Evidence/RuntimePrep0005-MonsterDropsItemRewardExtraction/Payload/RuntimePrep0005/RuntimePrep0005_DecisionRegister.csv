@@ -1,0 +1,5 @@
+decision,basis
+MDB/ImportedDatabases remains authoritative,codex-monster-wcc and codex-item-wcc are used as static configured evidence; live runtime is not observed
+loot_named creates configured monster-item expected drop edges,"Monster records expose item_id, name, and drop_percent; item_id is cross-checked against codex-item-wcc"
+currency_drops and open_rewards are kept separate from item drops,They represent configured currency awards rather than item ownership edges
+"room drop availability is derived, not directly observed",RuntimePrep0002 population model is joined to RuntimePrep0005 monster drop matrix

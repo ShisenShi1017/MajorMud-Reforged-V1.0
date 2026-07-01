@@ -1,0 +1,1771 @@
+item_id,name,type,slot,bonus_keys,has_bonuses,runtime_status
+cloth_mask,cloth mask,armor,face,stealth,True,equipment/stat application requires runtime validation
+bronze_earring,bronze earring,jewelry,left ear,perception,True,equipment/stat application requires runtime validation
+rusty_dagger,rusty dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+leather_armor,leather armor,armor,body,,False,equipment/stat application requires runtime validation
+wooden_shield,wooden shield,shield,off hand,,False,equipment/stat application requires runtime validation
+healing_potion,healing potion,consumable,,,False,equipment/stat application requires runtime validation
+leather_cap,leather cap,armor,head,,False,equipment/stat application requires runtime validation
+leather_belt,leather belt,armor,waist,,False,equipment/stat application requires runtime validation
+item_9,grey robes,armor,body,,False,equipment/stat application requires runtime validation
+item_11,large sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_12,rigid leather tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_13,studded leather tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_14,chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_15,scalemail tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_16,brigandine tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_17,half-plate corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_18,light plate corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_19,full plate corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_20,cloth pants,armor,legs,,False,equipment/stat application requires runtime validation
+item_22,leather pants,armor,legs,,False,equipment/stat application requires runtime validation
+item_23,rigid leather pants,armor,legs,,False,equipment/stat application requires runtime validation
+item_24,chainmail leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_25,scalemail leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_26,brigandine leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_27,light plate leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_28,full plate leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_29,small sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_30,skullcap,armor,head,,False,equipment/stat application requires runtime validation
+item_32,soft leather cap,armor,head,,False,equipment/stat application requires runtime validation
+item_33,hard leather helm,armor,head,,False,equipment/stat application requires runtime validation
+item_34,chain coif,armor,head,,False,equipment/stat application requires runtime validation
+item_35,pot-helm,armor,head,,False,equipment/stat application requires runtime validation
+item_36,horned helmet,armor,head,,False,equipment/stat application requires runtime validation
+item_37,visored greathelm,armor,head,,False,equipment/stat application requires runtime validation
+item_38,cotton gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_39,suede gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_40,leather gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_41,hard leather gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_42,chain gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_43,scale gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_44,plate gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_45,cloth shoes,armor,feet,,False,equipment/stat application requires runtime validation
+item_46,padded black boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_47,ironwood shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_48,fist,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_49,hardened leather boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_50,chainmail boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_51,plate boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_53,travelers cloak,item,misc,,False,equipment/stat application requires runtime validation
+item_55,silk cape,item,misc,,False,equipment/stat application requires runtime validation
+item_56,greatcloak,item,inventory,,False,equipment/stat application requires runtime validation
+item_57,buckler shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_58,target shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_59,round shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_60,spiked shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_61,curved heater,armor,off hand,,False,equipment/stat application requires runtime validation
+item_62,kite shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_64,longsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_65,broadsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_67,shortsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_68,dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_69,knife,item,inventory,,False,equipment/stat application requires runtime validation
+item_70,stiletto,armor,hands,,False,equipment/stat application requires runtime validation
+item_71,battle axe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_72,scimitar,item,inventory,,False,equipment/stat application requires runtime validation
+item_73,short-spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_74,sickle,item,inventory,,False,equipment/stat application requires runtime validation
+item_75,hatchet,item,inventory,,False,equipment/stat application requires runtime validation
+item_76,falchion,item,inventory,,False,equipment/stat application requires runtime validation
+item_78,greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_79,flamberge,item,inventory,,False,equipment/stat application requires runtime validation
+item_80,bastard sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_81,greataxe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_82,halberd,item,inventory,,False,equipment/stat application requires runtime validation
+item_83,pike,item,inventory,,False,equipment/stat application requires runtime validation
+item_85,long-spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_86,glaive,item,inventory,,False,equipment/stat application requires runtime validation
+item_87,mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_88,morning-star,item,inventory,,False,equipment/stat application requires runtime validation
+item_89,heavy-mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_90,club,item,inventory,,False,equipment/stat application requires runtime validation
+item_91,warhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_92,spiked club,item,inventory,,False,equipment/stat application requires runtime validation
+item_93,whip,armor,hands,,False,equipment/stat application requires runtime validation
+item_95,war mattock,item,inventory,,False,equipment/stat application requires runtime validation
+item_100,quarterstaff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_101,iron-capped staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_102,flail,item,inventory,,False,equipment/stat application requires runtime validation
+item_103,battle-hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_104,iron staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_105,sandals,armor,feet,,False,equipment/stat application requires runtime validation
+item_106,wall,item,inventory,,False,equipment/stat application requires runtime validation
+item_107,crack,item,inventory,,False,equipment/stat application requires runtime validation
+item_108,tapestry,item,inventory,,False,equipment/stat application requires runtime validation
+item_109,hole,item,inventory,,False,equipment/stat application requires runtime validation
+item_110,fountain,item,inventory,,False,equipment/stat application requires runtime validation
+item_111,statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_112,sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_113,griffon shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_114,griffon,item,inventory,,False,equipment/stat application requires runtime validation
+item_115,jeweled longsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_116,glowing warhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_118,high-necked robes,armor,body,,False,equipment/stat application requires runtime validation
+item_119,scroll of magic missile,item,inventory,,False,equipment/stat application requires runtime validation
+item_120,scroll of illuminate,item,inventory,,False,equipment/stat application requires runtime validation
+item_121,scroll of detect magic,item,inventory,,False,equipment/stat application requires runtime validation
+item_124,scroll of frost jet,item,inventory,,False,equipment/stat application requires runtime validation
+item_125,scroll of resist cold,item,inventory,,False,equipment/stat application requires runtime validation
+item_126,scroll of smite,item,inventory,,False,equipment/stat application requires runtime validation
+item_127,scroll of lightning bolt,item,inventory,,False,equipment/stat application requires runtime validation
+item_128,scroll of resist fire,item,inventory,,False,equipment/stat application requires runtime validation
+item_130,scroll of cause harm,item,inventory,,False,equipment/stat application requires runtime validation
+item_131,scroll of minor healing,item,inventory,,False,equipment/stat application requires runtime validation
+item_132,scroll of bless,item,inventory,,False,equipment/stat application requires runtime validation
+item_133,scroll of curse,item,inventory,,False,equipment/stat application requires runtime validation
+item_134,scroll of spiritual hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_135,scroll of major healing,item,inventory,,False,equipment/stat application requires runtime validation
+item_136,scroll of turn undead,item,inventory,,False,equipment/stat application requires runtime validation
+item_137,scroll of cure poison,item,inventory,,False,equipment/stat application requires runtime validation
+item_138,scroll of holy aura,item,inventory,,False,equipment/stat application requires runtime validation
+item_139,scroll of unholy aura,item,inventory,,False,equipment/stat application requires runtime validation
+item_140,scroll of agony,item,inventory,,False,equipment/stat application requires runtime validation
+item_141,scroll of chant,item,inventory,,False,equipment/stat application requires runtime validation
+item_142,scroll of vine strike,item,inventory,,False,equipment/stat application requires runtime validation
+item_143,scroll of starlight,item,inventory,,False,equipment/stat application requires runtime validation
+item_144,scroll of mend,item,inventory,,False,equipment/stat application requires runtime validation
+item_147,scroll of alertness,item,inventory,,False,equipment/stat application requires runtime validation
+item_148,scroll of antidote,item,inventory,,False,equipment/stat application requires runtime validation
+item_149,scroll of resist lightning,item,inventory,,False,equipment/stat application requires runtime validation
+item_150,scroll of swarm,item,inventory,,False,equipment/stat application requires runtime validation
+item_151,scroll of barkskin,item,inventory,,False,equipment/stat application requires runtime validation
+item_152,scroll of charm animal,item,inventory,,False,equipment/stat application requires runtime validation
+item_153,songsheet of item lore,item,inventory,,False,equipment/stat application requires runtime validation
+item_154,songsheet of valour,item,inventory,,False,equipment/stat application requires runtime validation
+item_155,songsheet of misfortune,item,inventory,,False,equipment/stat application requires runtime validation
+item_156,songsheet of discord,item,inventory,,False,equipment/stat application requires runtime validation
+item_157,songsheet of brilliance,item,inventory,,False,equipment/stat application requires runtime validation
+item_158,songsheet of wisdom,item,inventory,,False,equipment/stat application requires runtime validation
+item_159,songsheet of might,item,inventory,,False,equipment/stat application requires runtime validation
+item_160,songsheet of agility,item,inventory,,False,equipment/stat application requires runtime validation
+item_161,iron ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_162,copper ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_163,silver ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_164,amethyst ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_165,golden amulet,item,misc,,False,equipment/stat application requires runtime validation
+item_166,silver holy amulet,item,inventory,,False,equipment/stat application requires runtime validation
+item_167,golden braided belt,item,inventory,,False,equipment/stat application requires runtime validation
+item_168,platinum tiara,armor,head,,False,equipment/stat application requires runtime validation
+item_169,silver bracers,armor,feet,,False,equipment/stat application requires runtime validation
+item_170,golden armbands,item,inventory,,False,equipment/stat application requires runtime validation
+item_171,maul,item,inventory,,False,equipment/stat application requires runtime validation
+item_172,black star key,item,inventory,,False,equipment/stat application requires runtime validation
+item_174,scroll of cure paralysis,item,inventory,,False,equipment/stat application requires runtime validation
+item_175,torch,armor,hands,,False,equipment/stat application requires runtime validation
+item_176,lantern,item,inventory,,False,equipment/stat application requires runtime validation
+item_177,bone key,item,inventory,,False,equipment/stat application requires runtime validation
+item_178,silvery mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_179,black chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_180,black shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_181,tomb door,item,inventory,,False,equipment/stat application requires runtime validation
+item_182,stone door,item,inventory,,False,equipment/stat application requires runtime validation
+item_183,sarcophagus,item,inventory,,False,equipment/stat application requires runtime validation
+item_184,lever,item,inventory,,False,equipment/stat application requires runtime validation
+item_185,manhole,item,inventory,,False,equipment/stat application requires runtime validation
+item_186,iron sink,item,inventory,,False,equipment/stat application requires runtime validation
+item_187,fireplace,item,inventory,,False,equipment/stat application requires runtime validation
+item_188,brick,item,inventory,,False,equipment/stat application requires runtime validation
+item_189,black door,item,inventory,,False,equipment/stat application requires runtime validation
+item_190,spiked collar,item,misc,,False,equipment/stat application requires runtime validation
+item_191,rope and grapple,item,inventory,,False,equipment/stat application requires runtime validation
+item_192,red skull,item,inventory,,False,equipment/stat application requires runtime validation
+item_193,scroll of greater curse,item,misc,,False,equipment/stat application requires runtime validation
+item_194,scroll of divine favour,item,misc,,False,equipment/stat application requires runtime validation
+item_195,scroll of divine disfavour,item,misc,,False,equipment/stat application requires runtime validation
+item_196,scroll of black wind,item,misc,,False,equipment/stat application requires runtime validation
+item_197,scroll of godheal,item,misc,,False,equipment/stat application requires runtime validation
+item_198,scroll of god's wrath,item,inventory,,False,equipment/stat application requires runtime validation
+item_199,scroll of great healing rain,item,inventory,,False,equipment/stat application requires runtime validation
+item_200,scroll of paralyze,item,inventory,,False,equipment/stat application requires runtime validation
+item_201,scroll of divine fury,item,inventory,,False,equipment/stat application requires runtime validation
+item_202,sacrificial robes,armor,body,,False,equipment/stat application requires runtime validation
+item_203,emerald-tipped crozier,item,inventory,,False,equipment/stat application requires runtime validation
+item_204,bloodstained shortsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_205,moonblade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_206,switch,item,inventory,,False,equipment/stat application requires runtime validation
+item_207,stone table,item,inventory,,False,equipment/stat application requires runtime validation
+item_208,shortbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_209,huge darkwood club,item,inventory,,False,equipment/stat application requires runtime validation
+item_210,platinum ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_211,golden belt,armor,head,,False,equipment/stat application requires runtime validation
+item_212,ruby necklace,armor,feet,,False,equipment/stat application requires runtime validation
+item_213,black leather tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_214,holy medallion,item,misc,,False,equipment/stat application requires runtime validation
+item_215,platinum bracers,armor,head,,False,equipment/stat application requires runtime validation
+item_216,gold ring,armor,head,,False,equipment/stat application requires runtime validation
+item_217,elven war-spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_218,laen longsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_220,vorpal sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_221,sunsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_222,prismatic claymore,armor,hands,,False,equipment/stat application requires runtime validation
+item_223,minor healing potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_224,scroll of divine mercy,armor,feet,,False,equipment/stat application requires runtime validation
+item_225,songsheet of life,item,inventory,,False,equipment/stat application requires runtime validation
+item_226,ebony greataxe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_227,blackened skin-bound book,item,inventory,,False,equipment/stat application requires runtime validation
+item_228,cracks,item,inventory,,False,equipment/stat application requires runtime validation
+item_241,bas-relief image,item,inventory,,False,equipment/stat application requires runtime validation
+item_242,brass plaque,item,inventory,,False,equipment/stat application requires runtime validation
+item_243,ebony triangle,item,inventory,,False,equipment/stat application requires runtime validation
+item_244,golden sun symbol,item,inventory,,False,equipment/stat application requires runtime validation
+item_245,silvery moon symbol,item,inventory,,False,equipment/stat application requires runtime validation
+item_246,seven-pointed star symbol,item,inventory,,False,equipment/stat application requires runtime validation
+item_247,stone face,item,inventory,,False,equipment/stat application requires runtime validation
+item_248,minotaur statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_249,statue's stone greataxe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_250,statue's horned head,item,inventory,,False,equipment/stat application requires runtime validation
+item_251,statue's eyes,item,inventory,,False,equipment/stat application requires runtime validation
+item_252,words scratched into floor,item,inventory,,False,equipment/stat application requires runtime validation
+item_253,statue's nose ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_254,bone staircase,item,inventory,,False,equipment/stat application requires runtime validation
+item_255,iron door,item,inventory,,False,equipment/stat application requires runtime validation
+item_256,wooden table,item,inventory,,False,equipment/stat application requires runtime validation
+item_257,stone shelves,item,inventory,,False,equipment/stat application requires runtime validation
+item_258,bone-handled headcutter,armor,feet,,False,equipment/stat application requires runtime validation
+item_259,ruby key,item,inventory,,False,equipment/stat application requires runtime validation
+item_264,serpent staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_265,golden broadsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_266,golden breastplate,armor,body,,False,equipment/stat application requires runtime validation
+item_267,rosewood staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_268,shimmering white robes,armor,body,,False,equipment/stat application requires runtime validation
+item_269,cure poison potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_271,bulletin,item,inventory,,False,equipment/stat application requires runtime validation
+item_272,starsteel scimitar,item,inventory,,False,equipment/stat application requires runtime validation
+item_273,red robes,armor,body,,False,equipment/stat application requires runtime validation
+item_274,black robes,armor,body,,False,equipment/stat application requires runtime validation
+item_275,white robes,armor,body,,False,equipment/stat application requires runtime validation
+item_276,green robes,armor,body,,False,equipment/stat application requires runtime validation
+item_277,blue robes,armor,body,,False,equipment/stat application requires runtime validation
+item_278,violet robes,armor,body,,False,equipment/stat application requires runtime validation
+item_279,yellow robes,armor,body,,False,equipment/stat application requires runtime validation
+item_280,orange robes,armor,body,,False,equipment/stat application requires runtime validation
+item_282,iron ration,item,inventory,,False,equipment/stat application requires runtime validation
+item_283,waterskin,item,inventory,,False,equipment/stat application requires runtime validation
+item_284,incense,item,inventory,,False,equipment/stat application requires runtime validation
+item_285,bone charm,item,inventory,,False,equipment/stat application requires runtime validation
+item_286,brass lamp,item,inventory,,False,equipment/stat application requires runtime validation
+item_287,glass mirror,armor,off hand,,False,equipment/stat application requires runtime validation
+item_288,carved ivory mask,item,inventory,,False,equipment/stat application requires runtime validation
+item_289,silk robe,armor,body,,False,equipment/stat application requires runtime validation
+item_290,tankard of mead,item,inventory,,False,equipment/stat application requires runtime validation
+item_291,jug of dark ale,item,inventory,,False,equipment/stat application requires runtime validation
+item_292,bottle of wine,item,inventory,,False,equipment/stat application requires runtime validation
+item_293,roast mutton,item,inventory,,False,equipment/stat application requires runtime validation
+item_294,beef stew,item,inventory,,False,equipment/stat application requires runtime validation
+item_295,fine broadsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_296,scroll of magic armour,item,inventory,,False,equipment/stat application requires runtime validation
+item_297,scroll of flash,item,inventory,,False,equipment/stat application requires runtime validation
+item_298,scroll of shockshield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_299,scroll of prot. from evil,item,inventory,,False,equipment/stat application requires runtime validation
+item_300,scroll of prot. from good,item,inventory,,False,equipment/stat application requires runtime validation
+item_301,scroll of cure blindness,item,inventory,,False,equipment/stat application requires runtime validation
+item_302,scroll of blight,item,inventory,,False,equipment/stat application requires runtime validation
+item_303,scroll of poison bolt,item,inventory,,False,equipment/stat application requires runtime validation
+item_304,scroll of burning aura,item,inventory,,False,equipment/stat application requires runtime validation
+item_305,scroll of acid jet,item,inventory,,False,equipment/stat application requires runtime validation
+item_306,songsheet of charm,item,inventory,,False,equipment/stat application requires runtime validation
+item_307,songsheet of foolishness,item,inventory,,False,equipment/stat application requires runtime validation
+item_308,songsheet of stupidity,item,inventory,,False,equipment/stat application requires runtime validation
+item_309,songsheet of weakness,item,inventory,,False,equipment/stat application requires runtime validation
+item_310,songsheet of clumsiness,item,inventory,,False,equipment/stat application requires runtime validation
+item_311,songsheet of traveling,item,inventory,,False,equipment/stat application requires runtime validation
+item_312,songsheet of blasting,item,inventory,,False,equipment/stat application requires runtime validation
+item_313,scroll of elemental chaos,item,inventory,,False,equipment/stat application requires runtime validation
+item_314,scroll of stone strike,item,inventory,,False,equipment/stat application requires runtime validation
+item_315,scroll of freedom,item,inventory,,False,equipment/stat application requires runtime validation
+item_316,scroll of entangle,item,inventory,,False,equipment/stat application requires runtime validation
+item_317,scroll of slow,item,inventory,,False,equipment/stat application requires runtime validation
+item_318,scroll of speed,item,inventory,,False,equipment/stat application requires runtime validation
+item_319,scroll of vampiric touch,item,inventory,,False,equipment/stat application requires runtime validation
+item_320,scroll of enslave,item,inventory,,False,equipment/stat application requires runtime validation
+item_321,scroll of confusion,item,inventory,,False,equipment/stat application requires runtime validation
+item_322,scroll of sunbolt,item,inventory,,False,equipment/stat application requires runtime validation
+item_323,scroll of control undead,item,inventory,,False,equipment/stat application requires runtime validation
+item_324,scroll of blind,item,inventory,,False,equipment/stat application requires runtime validation
+item_325,hellblade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_326,scroll of hold person,item,inventory,,False,equipment/stat application requires runtime validation
+item_327,ancient scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_328,scroll of holy force,item,inventory,,False,equipment/stat application requires runtime validation
+item_329,scroll of unholy force,item,inventory,,False,equipment/stat application requires runtime validation
+item_330,tarnished chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_331,Indiana Jones hat,armor,head,,False,equipment/stat application requires runtime validation
+item_332,padded vest,armor,body,,False,equipment/stat application requires runtime validation
+item_333,padded pants,armor,legs,,False,equipment/stat application requires runtime validation
+item_334,padded helm,armor,head,,False,equipment/stat application requires runtime validation
+item_335,padded gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_336,padded boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_337,claw glyph,item,inventory,,False,equipment/stat application requires runtime validation
+item_338,iron key,item,inventory,,False,equipment/stat application requires runtime validation
+item_339,golden battleaxe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_340,flame glyph,item,inventory,,False,equipment/stat application requires runtime validation
+item_341,obsidian key,item,inventory,,False,equipment/stat application requires runtime validation
+item_342,mithril cutlass,armor,feet,,False,equipment/stat application requires runtime validation
+item_343,fist glyph,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_344,stone key,item,inventory,,False,equipment/stat application requires runtime validation
+item_345,sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_346,copper key,item,inventory,,False,equipment/stat application requires runtime validation
+item_347,shimmering greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_348,platinum mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_349,black flail,item,inventory,,False,equipment/stat application requires runtime validation
+item_350,crystal shortsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_351,ebony ninjato,item,inventory,,False,equipment/stat application requires runtime validation
+item_352,flametongue,item,inventory,,False,equipment/stat application requires runtime validation
+item_353,darkwood staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_354,obsidian runestaff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_355,jeweled main-gauche,armor,off hand,,False,equipment/stat application requires runtime validation
+item_356,silver rapier,item,inventory,,False,equipment/stat application requires runtime validation
+item_357,clawed gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_358,witchwood spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_359,jeweled scimitar,item,inventory,,False,equipment/stat application requires runtime validation
+item_360,brass key,item,inventory,,False,equipment/stat application requires runtime validation
+item_361,glowing broadsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_362,runed chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_363,steel nunchaku,item,inventory,,False,equipment/stat application requires runtime validation
+item_364,ninjato,armor,hands,,False,equipment/stat application requires runtime validation
+item_365,kusari gama,item,inventory,,False,equipment/stat application requires runtime validation
+item_366,black tabi,armor,feet,,False,equipment/stat application requires runtime validation
+item_367,hooded mask,armor,head,,False,equipment/stat application requires runtime validation
+item_368,black ninja robes,armor,body,,False,equipment/stat application requires runtime validation
+item_369,emerald-hilted rapier,item,inventory,,False,equipment/stat application requires runtime validation
+item_370,tower shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_372,soulsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_373,scroll of blur,item,inventory,,False,equipment/stat application requires runtime validation
+item_374,scroll of stinking cloud,item,inventory,,False,equipment/stat application requires runtime validation
+item_375,scroll of mageshield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_376,scroll of mute,item,inventory,,False,equipment/stat application requires runtime validation
+item_377,scroll of dancing blades,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_378,scroll of vulnerability,item,inventory,,False,equipment/stat application requires runtime validation
+item_379,scroll of fireball,item,inventory,,False,equipment/stat application requires runtime validation
+item_380,scroll of deathtouch,item,inventory,,False,equipment/stat application requires runtime validation
+item_381,scroll of eldritch bolt,item,inventory,,False,equipment/stat application requires runtime validation
+item_382,scroll of senselessness,item,inventory,,False,equipment/stat application requires runtime validation
+item_383,scroll of rapid healing,item,inventory,,False,equipment/stat application requires runtime validation
+item_384,scroll of acid rain,item,inventory,,False,equipment/stat application requires runtime validation
+item_385,scroll of partial petrify,item,inventory,,False,equipment/stat application requires runtime validation
+item_386,scroll of poison cloud,item,inventory,,False,equipment/stat application requires runtime validation
+item_387,scroll of rotting flesh,item,inventory,,False,equipment/stat application requires runtime validation
+item_388,scroll of iron faith,item,inventory,,False,equipment/stat application requires runtime validation
+item_389,scroll of healing rain,item,inventory,,False,equipment/stat application requires runtime validation
+item_390,scroll of greater bless,item,inventory,,False,equipment/stat application requires runtime validation
+item_391,scroll of glitterdust,item,inventory,,False,equipment/stat application requires runtime validation
+item_392,scroll of holy armour,item,inventory,,False,equipment/stat application requires runtime validation
+item_393,scroll of unholy armour,item,inventory,,False,equipment/stat application requires runtime validation
+item_394,scroll of cure disease,item,inventory,,False,equipment/stat application requires runtime validation
+item_395,scroll of remove curse,item,inventory,,False,equipment/stat application requires runtime validation
+item_396,scroll of greater healing,item,inventory,,False,equipment/stat application requires runtime validation
+item_397,scroll of disrupt,item,inventory,,False,equipment/stat application requires runtime validation
+item_398,scroll of major healing rain,item,inventory,,False,equipment/stat application requires runtime validation
+item_399,scroll of godstrike,item,inventory,,False,equipment/stat application requires runtime validation
+item_400,holy miter,armor,head,,False,equipment/stat application requires runtime validation
+item_401,silvery skullcap,armor,head,,False,equipment/stat application requires runtime validation
+item_402,eagle helm,armor,head,,False,equipment/stat application requires runtime validation
+item_403,wolf helm,armor,head,,False,equipment/stat application requires runtime validation
+item_404,runed cowl,armor,head,,False,equipment/stat application requires runtime validation
+item_405,crested war helm,armor,head,,False,equipment/stat application requires runtime validation
+item_406,jade amulet,item,inventory,,False,equipment/stat application requires runtime validation
+item_407,amethyst pendant,item,inventory,,False,equipment/stat application requires runtime validation
+item_408,ethereal amulet,item,inventory,,False,equipment/stat application requires runtime validation
+item_409,holy vestements,armor,body,,False,equipment/stat application requires runtime validation
+item_410,gilded robes,armor,body,,False,equipment/stat application requires runtime validation
+item_411,runed robes,armor,body,,False,equipment/stat application requires runtime validation
+item_412,wyvernhide tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_413,cat's-eye pendant,item,inventory,,False,equipment/stat application requires runtime validation
+item_414,gianthair vest,armor,body,,False,equipment/stat application requires runtime validation
+item_415,red enameled scalemail,armor,body,,False,equipment/stat application requires runtime validation
+item_416,chainmail halter,armor,body,,False,equipment/stat application requires runtime validation
+item_417,steel brassiere,armor,body,,False,equipment/stat application requires runtime validation
+item_418,fine breastplate,armor,body,,False,equipment/stat application requires runtime validation
+item_419,adamantite chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_420,shadow cloak,item,misc,,False,equipment/stat application requires runtime validation
+item_421,crimson cloak,item,misc,,False,equipment/stat application requires runtime validation
+item_422,elven cloak,item,misc,,False,equipment/stat application requires runtime validation
+item_423,adamantite bracers,armor,feet,,False,equipment/stat application requires runtime validation
+item_424,serpent armbands,item,inventory,,False,equipment/stat application requires runtime validation
+item_425,crimson bracers,item,misc,,False,equipment/stat application requires runtime validation
+item_426,silver bracelet,item,inventory,,False,equipment/stat application requires runtime validation
+item_427,ivory bracers,item,inventory,,False,equipment/stat application requires runtime validation
+item_428,fingerbone bracelet,item,inventory,,False,equipment/stat application requires runtime validation
+item_429,silk gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_430,gauntlets of power,armor,hands,,False,equipment/stat application requires runtime validation
+item_431,white satin gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_432,embroidered black gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_433,sapphire ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_434,mithril ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_435,opal ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_436,moonstone ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_437,malachite ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_438,belt of might,item,inventory,,False,equipment/stat application requires runtime validation
+item_439,fine platinum chain,item,inventory,,False,equipment/stat application requires runtime validation
+item_440,silk trousers,armor,legs,,False,equipment/stat application requires runtime validation
+item_441,leather skirt,armor,legs,,False,equipment/stat application requires runtime validation
+item_442,silvery chain leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_443,black plate leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_444,dwarven work boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_445,elven boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_446,winged sandals,armor,feet,,False,equipment/stat application requires runtime validation
+item_447,snakeskin boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_448,mirrored shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_449,heavy bone mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_450,starsteel greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_451,dwarven-craft hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_452,trident,item,inventory,,False,equipment/stat application requires runtime validation
+item_453,warpblade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_454,hell-flail,item,inventory,,False,equipment/stat application requires runtime validation
+item_455,thunderstaff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_456,frost sceptre,item,inventory,,False,equipment/stat application requires runtime validation
+item_457,serpent scourge,item,inventory,,False,equipment/stat application requires runtime validation
+item_458,black scimitar,item,inventory,,False,equipment/stat application requires runtime validation
+item_459,oaken staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_460,golden sickle,item,inventory,,False,equipment/stat application requires runtime validation
+item_461,bladed staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_462,heavy black rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_463,crystal spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_464,blue potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_465,turquoise potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_466,green potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_467,yellow potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_468,frothing pink potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_469,silvery potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_470,orange potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_471,white potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_472,black orb,item,inventory,,False,equipment/stat application requires runtime validation
+item_473,belt of faith,item,inventory,,False,equipment/stat application requires runtime validation
+item_474,darkwood ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_475,green metal key,item,inventory,,False,equipment/stat application requires runtime validation
+item_476,large iron key,item,inventory,,False,equipment/stat application requires runtime validation
+item_478,tree trunk,item,inventory,,False,equipment/stat application requires runtime validation
+item_479,cyclops eye,item,inventory,,False,equipment/stat application requires runtime validation
+item_480,greater red dragon scale,item,inventory,,False,equipment/stat application requires runtime validation
+item_481,spider silk,item,inventory,,False,equipment/stat application requires runtime validation
+item_482,crystal sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_483,crystal club,item,inventory,,False,equipment/stat application requires runtime validation
+item_484,rolled parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_485,large broken tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_486,greater hellhound hide,item,inventory,,False,equipment/stat application requires runtime validation
+item_487,magma amulet,item,inventory,,False,equipment/stat application requires runtime validation
+item_488,large boulder,item,inventory,,False,equipment/stat application requires runtime validation
+item_489,Kher grass,item,inventory,,False,equipment/stat application requires runtime validation
+item_490,cross key,item,inventory,,False,equipment/stat application requires runtime validation
+item_491,runed key,item,inventory,,False,equipment/stat application requires runtime validation
+item_492,skull key,item,inventory,,False,equipment/stat application requires runtime validation
+item_493,skull sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_494,glowing red amulet,item,inventory,,False,equipment/stat application requires runtime validation
+item_495,gleaming steel device,item,inventory,,False,equipment/stat application requires runtime validation
+item_496,dark temple key,item,inventory,,False,equipment/stat application requires runtime validation
+item_497,katana,item,inventory,,False,equipment/stat application requires runtime validation
+item_498,black plate corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_499,golden chalice,armor,off hand,,False,equipment/stat application requires runtime validation
+item_500,hideous altar,item,inventory,,False,equipment/stat application requires runtime validation
+item_501,scroll of shadowform,item,inventory,,False,equipment/stat application requires runtime validation
+item_502,scroll of ice storm,item,inventory,,False,equipment/stat application requires runtime validation
+item_503,scroll of chaos storm,item,inventory,,False,equipment/stat application requires runtime validation
+item_504,multicoloured sash,armor,feet,,False,equipment/stat application requires runtime validation
+item_505,iron tube,item,inventory,,False,equipment/stat application requires runtime validation
+item_506,silver disk,item,inventory,,False,equipment/stat application requires runtime validation
+item_507,shattered skeleton,item,inventory,,False,equipment/stat application requires runtime validation
+item_508,crystal ball,item,inventory,,False,equipment/stat application requires runtime validation
+item_509,silver pedestal,item,inventory,,False,equipment/stat application requires runtime validation
+item_510,lava-rock,item,inventory,,False,equipment/stat application requires runtime validation
+item_511,glowing ruby,item,inventory,,False,equipment/stat application requires runtime validation
+item_512,sabre of inquisition,item,inventory,,False,equipment/stat application requires runtime validation
+item_514,sabre,armor,hands,,False,equipment/stat application requires runtime validation
+item_515,starcharts,item,inventory,,False,equipment/stat application requires runtime validation
+item_516,thin grey tome,item,inventory,,False,equipment/stat application requires runtime validation
+item_517,silver spined tome,item,inventory,,False,equipment/stat application requires runtime validation
+item_518,flat black tome,item,inventory,,False,equipment/stat application requires runtime validation
+item_519,rune-carved staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_520,glass key,item,inventory,,False,equipment/stat application requires runtime validation
+item_521,silvery plate corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_522,silvery crested shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_523,fine silvery broadsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_524,decapitated head,item,inventory,,False,equipment/stat application requires runtime validation
+item_525,altar,item,inventory,,False,equipment/stat application requires runtime validation
+item_526,huge darkwood tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_527,pipe,item,inventory,,False,equipment/stat application requires runtime validation
+item_528,eye socket,item,inventory,,False,equipment/stat application requires runtime validation
+item_529,songsheet of draining,item,inventory,,False,equipment/stat application requires runtime validation
+item_530,songsheet of silence,item,inventory,,False,equipment/stat application requires runtime validation
+item_531,songsheet of lethargy,item,inventory,,False,equipment/stat application requires runtime validation
+item_532,songsheet of dazzling,item,inventory,,False,equipment/stat application requires runtime validation
+item_533,songsheet of quickness,item,inventory,,False,equipment/stat application requires runtime validation
+item_534,songsheet of pain,item,inventory,,False,equipment/stat application requires runtime validation
+item_535,songsheet of stunning,item,inventory,,False,equipment/stat application requires runtime validation
+item_536,songsheet of shockwave,item,inventory,,False,equipment/stat application requires runtime validation
+item_537,songsheet of heroism,item,inventory,,False,equipment/stat application requires runtime validation
+item_538,songsheet of sonic blast,item,inventory,,False,equipment/stat application requires runtime validation
+item_539,songsheet of evasion,item,inventory,,False,equipment/stat application requires runtime validation
+item_540,flurry of blades,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_541,obsidian claymore,item,inventory,,False,equipment/stat application requires runtime validation
+item_542,scroll of solid fog,item,inventory,,False,equipment/stat application requires runtime validation
+item_543,scroll of wind of haste,item,inventory,,False,equipment/stat application requires runtime validation
+item_544,scroll of mana storm,item,inventory,,False,equipment/stat application requires runtime validation
+item_545,scroll of corrosion,item,inventory,,False,equipment/stat application requires runtime validation
+item_546,scroll of meteor swarm,item,inventory,,False,equipment/stat application requires runtime validation
+item_547,scroll of mystic mist,item,inventory,,False,equipment/stat application requires runtime validation
+item_548,scroll of spirit horde,item,inventory,,False,equipment/stat application requires runtime validation
+item_549,scroll of dragonfire,item,inventory,,False,equipment/stat application requires runtime validation
+item_550,scroll of stoneskin,item,inventory,,False,equipment/stat application requires runtime validation
+item_551,scroll of blaze,item,inventory,,False,equipment/stat application requires runtime validation
+item_552,scroll of creeping doom,item,inventory,,False,equipment/stat application requires runtime validation
+item_553,scroll of maelstrom,item,inventory,,False,equipment/stat application requires runtime validation
+item_554,scroll of plasma bolt,item,inventory,,False,equipment/stat application requires runtime validation
+item_555,scroll of plague,item,inventory,,False,equipment/stat application requires runtime validation
+item_556,scroll of earthquake,item,inventory,,False,equipment/stat application requires runtime validation
+item_557,scroll of earthfist,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_558,ninja battle armour,armor,body,,False,equipment/stat application requires runtime validation
+item_559,poisoned shuriken,item,inventory,,False,equipment/stat application requires runtime validation
+item_560,smoke bomb,armor,hands,,False,equipment/stat application requires runtime validation
+item_561,demon's skull mask,armor,feet,,False,equipment/stat application requires runtime validation
+item_563,grey leather-bound tome,item,inventory,,False,equipment/stat application requires runtime validation
+item_565,map of north darkwood,item,inventory,,False,equipment/stat application requires runtime validation
+item_566,map of south darkwood,item,inventory,,False,equipment/stat application requires runtime validation
+item_567,charred scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_568,serrated battle axe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_569,rusty iron key,item,inventory,,False,equipment/stat application requires runtime validation
+item_570,crowbar,item,inventory,,False,equipment/stat application requires runtime validation
+item_571,window,item,inventory,,False,equipment/stat application requires runtime validation
+item_572,rusted gate,item,inventory,,False,equipment/stat application requires runtime validation
+item_573,rusty fence,item,inventory,,False,equipment/stat application requires runtime validation
+item_574,chained door,item,inventory,,False,equipment/stat application requires runtime validation
+item_575,western wall,item,inventory,,False,equipment/stat application requires runtime validation
+item_576,small black holes,item,inventory,,False,equipment/stat application requires runtime validation
+item_577,smooth metal stud,item,inventory,,False,equipment/stat application requires runtime validation
+item_579,chair,item,inventory,,False,equipment/stat application requires runtime validation
+item_580,book,item,inventory,,False,equipment/stat application requires runtime validation
+item_581,stove,item,inventory,,False,equipment/stat application requires runtime validation
+item_583,map,item,inventory,,False,equipment/stat application requires runtime validation
+item_584,ancient door,item,inventory,,False,equipment/stat application requires runtime validation
+item_585,hills,item,inventory,,False,equipment/stat application requires runtime validation
+item_586,road,item,inventory,,False,equipment/stat application requires runtime validation
+item_587,wooden sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_588,avalanche of jagged rubble,item,inventory,,False,equipment/stat application requires runtime validation
+item_589,displacer beast tentacle,item,inventory,,False,equipment/stat application requires runtime validation
+item_590,manticore tail,item,inventory,,False,equipment/stat application requires runtime validation
+item_591,longbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_592,composite bow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_593,black serpent key,item,inventory,,False,equipment/stat application requires runtime validation
+item_594,piece of black chitin,item,inventory,,False,equipment/stat application requires runtime validation
+item_595,path,item,inventory,,False,equipment/stat application requires runtime validation
+item_596,two-headed morningstar,item,inventory,,False,equipment/stat application requires runtime validation
+item_597,gnarled wand,item,inventory,,False,equipment/stat application requires runtime validation
+item_598,large canvas tent,item,inventory,,False,equipment/stat application requires runtime validation
+item_599,massive canvas tent,item,inventory,,False,equipment/stat application requires runtime validation
+item_600,bonfire,item,inventory,,False,equipment/stat application requires runtime validation
+item_601,scroll with black seal,item,inventory,,False,equipment/stat application requires runtime validation
+item_602,walls,item,inventory,,False,equipment/stat application requires runtime validation
+item_605,small hole,item,inventory,,False,equipment/stat application requires runtime validation
+item_606,green bubbling pool,item,inventory,,False,equipment/stat application requires runtime validation
+item_607,crystal flask,item,inventory,,False,equipment/stat application requires runtime validation
+item_608,glowing crystal flask,item,inventory,,False,equipment/stat application requires runtime validation
+item_609,flaming scimitar,item,inventory,,False,equipment/stat application requires runtime validation
+item_610,silvery longbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_611,golden snake earrings,item,inventory,,False,equipment/stat application requires runtime validation
+item_612,curved black dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_613,pile of digested bodies,item,inventory,,False,equipment/stat application requires runtime validation
+item_614,partially digested body,item,inventory,,False,equipment/stat application requires runtime validation
+item_615,violet organic walls,item,inventory,,False,equipment/stat application requires runtime validation
+item_616,partially concealed hole,item,inventory,,False,equipment/stat application requires runtime validation
+item_617,black mountains,item,inventory,,False,equipment/stat application requires runtime validation
+item_618,crevice trail,item,inventory,,False,equipment/stat application requires runtime validation
+item_619,thick brown vines,item,inventory,,False,equipment/stat application requires runtime validation
+item_620,filthy nests,item,inventory,,False,equipment/stat application requires runtime validation
+item_621,severed head of Markus,item,inventory,,False,equipment/stat application requires runtime validation
+item_622,locked wooden box,item,inventory,,False,equipment/stat application requires runtime validation
+item_623,crossbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_624,heavy crossbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_625,sling,item,inventory,,False,equipment/stat application requires runtime validation
+item_626,staff-sling,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_627,grey rolled parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_628,tattered scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_629,holy writ,item,inventory,,False,equipment/stat application requires runtime validation
+item_630,skin-covered book,item,inventory,,False,equipment/stat application requires runtime validation
+item_631,barkskin scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_632,double crossbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_633,rapier,item,inventory,,False,equipment/stat application requires runtime validation
+item_634,main-gauche,armor,off hand,,False,equipment/stat application requires runtime validation
+item_635,serpentine sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_636,serpentine dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_637,barbed whip,item,inventory,,False,equipment/stat application requires runtime validation
+item_638,black chitin helm,armor,head,,False,equipment/stat application requires runtime validation
+item_639,black chitin armour,armor,body,,False,equipment/stat application requires runtime validation
+item_640,black chitin leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_641,black chitin shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_642,white gold ring,armor,feet,,False,equipment/stat application requires runtime validation
+item_643,pewter door,item,inventory,,False,equipment/stat application requires runtime validation
+item_644,throne,item,inventory,,False,equipment/stat application requires runtime validation
+item_645,black and white serpent ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_646,Magebane sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_647,lockpicks,item,inventory,,False,equipment/stat application requires runtime validation
+item_648,thief's kit,item,inventory,,False,equipment/stat application requires runtime validation
+item_649,pewter tankard,item,inventory,,False,equipment/stat application requires runtime validation
+item_650,dead cat,item,inventory,,False,equipment/stat application requires runtime validation
+item_651,ruby-eyed skull ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_652,massive black doors,item,inventory,,False,equipment/stat application requires runtime validation
+item_653,alleyway,item,inventory,,False,equipment/stat application requires runtime validation
+item_654,street,item,inventory,,False,equipment/stat application requires runtime validation
+item_655,iron sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_657,smoky black talisman,item,inventory,,False,equipment/stat application requires runtime validation
+item_658,huge bulletin,item,inventory,,False,equipment/stat application requires runtime validation
+item_684,severed head of Goru-Nezar,item,inventory,,False,equipment/stat application requires runtime validation
+item_685,Dusk,item,inventory,,False,equipment/stat application requires runtime validation
+item_686,ebony kris,item,inventory,,False,equipment/stat application requires runtime validation
+item_687,twisted bone staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_689,small diamond,item,inventory,,False,equipment/stat application requires runtime validation
+item_690,log raft,item,inventory,,False,equipment/stat application requires runtime validation
+item_691,wooden skiff,item,inventory,,False,equipment/stat application requires runtime validation
+item_692,marsh light,item,inventory,,False,equipment/stat application requires runtime validation
+item_693,silver river,item,inventory,,False,equipment/stat application requires runtime validation
+item_694,silvermere wall,item,inventory,,False,equipment/stat application requires runtime validation
+item_695,dark forest,item,inventory,,False,equipment/stat application requires runtime validation
+item_696,long bridge,item,inventory,,False,equipment/stat application requires runtime validation
+item_697,rocky waterfall,item,inventory,,False,equipment/stat application requires runtime validation
+item_698,dark brown walls of stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_699,pale green lichen,item,inventory,,False,equipment/stat application requires runtime validation
+item_700,elevated rocky ledge,item,inventory,,False,equipment/stat application requires runtime validation
+item_701,carved wall face with design,item,inventory,,False,equipment/stat application requires runtime validation
+item_702,black cauldron,item,inventory,,False,equipment/stat application requires runtime validation
+item_703,skull wand,item,inventory,,False,equipment/stat application requires runtime validation
+item_704,manastone,item,misc,,False,equipment/stat application requires runtime validation
+item_705,ancient statues,item,inventory,,False,equipment/stat application requires runtime validation
+item_706,huge stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_707,huge fallen tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_708,silvery stream,item,inventory,,False,equipment/stat application requires runtime validation
+item_709,silvery pool,item,inventory,,False,equipment/stat application requires runtime validation
+item_710,darkened ironwood forest,item,inventory,,False,equipment/stat application requires runtime validation
+item_711,wavy-bladed dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_712,shillelagh,item,inventory,,False,equipment/stat application requires runtime validation
+item_713,huge tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_714,golden honeycomb,item,inventory,,False,equipment/stat application requires runtime validation
+item_715,bushes,item,inventory,,False,equipment/stat application requires runtime validation
+item_716,bright red plant,item,inventory,,False,equipment/stat application requires runtime validation
+item_717,small green fruit,item,inventory,,False,equipment/stat application requires runtime validation
+item_718,huge broken willow,item,inventory,,False,equipment/stat application requires runtime validation
+item_719,woodland robes,armor,body,,False,equipment/stat application requires runtime validation
+item_720,pearl ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_721,bronzewood forest,item,inventory,,False,equipment/stat application requires runtime validation
+item_722,unicorn horn,armor,feet,,False,equipment/stat application requires runtime validation
+item_723,copperwood forest,item,inventory,,False,equipment/stat application requires runtime validation
+item_724,large tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_725,handful of brown nuts,item,inventory,,False,equipment/stat application requires runtime validation
+item_726,strange mushrooms,item,inventory,,False,equipment/stat application requires runtime validation
+item_727,witchwood breastplate,armor,body,,False,equipment/stat application requires runtime validation
+item_728,silverwood plate corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_729,silverwood forest,item,inventory,,False,equipment/stat application requires runtime validation
+item_730,rope bridge,item,inventory,,False,equipment/stat application requires runtime validation
+item_731,elven waybread,item,inventory,,False,equipment/stat application requires runtime validation
+item_732,massive wooden club,item,inventory,,False,equipment/stat application requires runtime validation
+item_733,spiked gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_734,ancient stone wall,item,inventory,,False,equipment/stat application requires runtime validation
+item_735,demolished doors,item,inventory,,False,equipment/stat application requires runtime validation
+item_736,white fang,item,inventory,,False,equipment/stat application requires runtime validation
+item_737,black fang,item,inventory,,False,equipment/stat application requires runtime validation
+item_738,green fang,item,inventory,,False,equipment/stat application requires runtime validation
+item_739,blue fang,item,inventory,,False,equipment/stat application requires runtime validation
+item_740,red fang,item,inventory,,False,equipment/stat application requires runtime validation
+item_741,dragonclaw staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_742,silverwood staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_743,spiked plate corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_744,crumbling bible,item,inventory,,False,equipment/stat application requires runtime validation
+item_745,blades of balance,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_746,chrome key,item,inventory,,False,equipment/stat application requires runtime validation
+item_747,demonhide bracers,item,misc,,False,equipment/stat application requires runtime validation
+item_748,mithril helm,armor,head,,False,equipment/stat application requires runtime validation
+item_749,holy avenger,item,inventory,,False,equipment/stat application requires runtime validation
+item_750,icehammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_752,black silk robes,armor,body,,False,equipment/stat application requires runtime validation
+item_753,black silk pants,armor,legs,,False,equipment/stat application requires runtime validation
+item_754,black silk slippers,armor,feet,,False,equipment/stat application requires runtime validation
+item_755,black silk gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_756,contraption,item,inventory,,False,equipment/stat application requires runtime validation
+item_757,dragon key,item,inventory,,False,equipment/stat application requires runtime validation
+item_758,white dragon carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_759,black dragon carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_760,green dragon carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_761,blue dragon carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_762,dragon carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_763,blood lance,armor,body,,False,equipment/stat application requires runtime validation
+item_764,black tome,item,inventory,,False,equipment/stat application requires runtime validation
+item_765,forgotten scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_766,iceforge anvil,item,inventory,,False,equipment/stat application requires runtime validation
+item_767,frozen hydra,item,inventory,,False,equipment/stat application requires runtime validation
+item_768,frozen giant,item,inventory,,False,equipment/stat application requires runtime validation
+item_769,ancient tome,item,inventory,,False,equipment/stat application requires runtime validation
+item_770,small book,item,inventory,,False,equipment/stat application requires runtime validation
+item_771,painting,item,inventory,,False,equipment/stat application requires runtime validation
+item_772,stone mouth,item,inventory,,False,equipment/stat application requires runtime validation
+item_773,plaque on gate,item,inventory,,False,equipment/stat application requires runtime validation
+item_774,palace key,item,inventory,,False,equipment/stat application requires runtime validation
+item_775,ogre map,item,inventory,,False,equipment/stat application requires runtime validation
+item_776,elf-head,item,inventory,,False,equipment/stat application requires runtime validation
+item_777,head of the woodelf lord,item,inventory,,False,equipment/stat application requires runtime validation
+item_778,eye of the beholder,item,inventory,,False,equipment/stat application requires runtime validation
+item_784,nexus spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_788,staff of the elements,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_793,adamantite spear,armor,hands,,False,equipment/stat application requires runtime validation
+item_794,gleaming contraption,item,inventory,,False,equipment/stat application requires runtime validation
+item_795,plaque,item,inventory,,False,equipment/stat application requires runtime validation
+item_797,mining helm,armor,head,,False,equipment/stat application requires runtime validation
+item_798,nexus chakram,item,inventory,,False,equipment/stat application requires runtime validation
+item_799,whirling vortex,item,inventory,,False,equipment/stat application requires runtime validation
+item_800,shining metallic robes,armor,body,,False,equipment/stat application requires runtime validation
+item_802,obsidian obelisk,item,inventory,,False,equipment/stat application requires runtime validation
+item_804,rubble,item,inventory,,False,equipment/stat application requires runtime validation
+item_805,boulder,item,inventory,,False,equipment/stat application requires runtime validation
+item_806,gate key,item,inventory,,False,equipment/stat application requires runtime validation
+item_807,bloodstone orb,item,inventory,,False,equipment/stat application requires runtime validation
+item_808,glowing key,item,inventory,,False,equipment/stat application requires runtime validation
+item_809,adamantite key,item,inventory,,False,equipment/stat application requires runtime validation
+item_810,dark blue orb,item,inventory,,False,equipment/stat application requires runtime validation
+item_811,opal brooch,item,inventory,,False,equipment/stat application requires runtime validation
+item_812,shelf and jars,item,inventory,,False,equipment/stat application requires runtime validation
+item_813,golden key,item,inventory,,False,equipment/stat application requires runtime validation
+item_814,wooden desk,item,inventory,,False,equipment/stat application requires runtime validation
+item_815,amber talisman,item,inventory,,False,equipment/stat application requires runtime validation
+item_816,huge keg,item,inventory,,False,equipment/stat application requires runtime validation
+item_817,greasy leather bracelet,item,inventory,,False,equipment/stat application requires runtime validation
+item_818,mutilated corpses,item,inventory,,False,equipment/stat application requires runtime validation
+item_819,giant apparatus,item,inventory,,False,equipment/stat application requires runtime validation
+item_820,moldy key,item,inventory,,False,equipment/stat application requires runtime validation
+item_821,rune-etched sceptre,armor,hands,,False,equipment/stat application requires runtime validation
+item_822,adamantite katana,item,inventory,,False,equipment/stat application requires runtime validation
+item_823,jeweled adamantite longsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_824,cat-o-nine tails,item,inventory,,False,equipment/stat application requires runtime validation
+item_825,adamantite claymore,item,inventory,,False,equipment/stat application requires runtime validation
+item_826,obsidian field plate,armor,body,,False,equipment/stat application requires runtime validation
+item_827,carved statues,item,inventory,,False,equipment/stat application requires runtime validation
+item_828,small glass flask,item,inventory,,False,equipment/stat application requires runtime validation
+item_829,diamond-studded ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_830,silversilk trousers,armor,legs,,False,equipment/stat application requires runtime validation
+item_831,large silvery cross,armor,off hand,,False,equipment/stat application requires runtime validation
+item_832,ivory bracelet,item,inventory,,False,equipment/stat application requires runtime validation
+item_833,arcane tome,armor,off hand,,False,equipment/stat application requires runtime validation
+item_834,darkwood shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_835,pristine scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_836,mithril-runed tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_837,door with puzzle lock,item,inventory,,False,equipment/stat application requires runtime validation
+item_838,guild bulletin,item,inventory,,False,equipment/stat application requires runtime validation
+item_839,nightblack portal,item,inventory,,False,equipment/stat application requires runtime validation
+item_841,tattered note,item,inventory,,False,equipment/stat application requires runtime validation
+item_843,ruby emblem,item,inventory,,False,equipment/stat application requires runtime validation
+item_844,red key,item,inventory,,False,equipment/stat application requires runtime validation
+item_845,mithril chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_846,fine chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_847,ogre-skin shirt,armor,body,,False,equipment/stat application requires runtime validation
+item_848,silvery shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_850,dwarven chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_851,crystal platemail,armor,body,,False,equipment/stat application requires runtime validation
+item_852,long battle shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_853,prismatic robes,armor,body,,False,equipment/stat application requires runtime validation
+item_854,lacquered battle armour,armor,body,,False,equipment/stat application requires runtime validation
+item_856,adamantite platemail tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_857,skull shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_858,astral robes,armor,body,,False,equipment/stat application requires runtime validation
+item_859,behemoth hide,armor,body,,False,equipment/stat application requires runtime validation
+item_860,dragonscale armour,armor,body,,False,equipment/stat application requires runtime validation
+item_861,aegis shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_862,silversilk tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_863,fine greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_864,fine mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_865,black steel halberd,item,inventory,,False,equipment/stat application requires runtime validation
+item_866,great bronzewood club,item,inventory,,False,equipment/stat application requires runtime validation
+item_867,ashwood staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_868,dwarven axe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_869,dwarven hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_870,three-headed flail,item,inventory,,False,equipment/stat application requires runtime validation
+item_871,long golden staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_872,runic warhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_873,demon-carved halberd,item,inventory,,False,equipment/stat application requires runtime validation
+item_874,dragontooth trident,armor,hands,,False,equipment/stat application requires runtime validation
+item_875,starsteel mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_876,wicked bone scythe,item,inventory,,False,equipment/stat application requires runtime validation
+item_877,stormhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_878,shimmering vial,item,inventory,,False,equipment/stat application requires runtime validation
+item_879,black potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_880,golden vial,item,inventory,,False,equipment/stat application requires runtime validation
+item_881,azurite stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_882,agate stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_883,hematite stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_884,malachite stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_885,obsidian stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_886,turquoise stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_887,bloodstone,item,inventory,,False,equipment/stat application requires runtime validation
+item_888,carnelian stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_889,moonstone,item,inventory,,False,equipment/stat application requires runtime validation
+item_890,onyx stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_891,piece of crystal,item,inventory,,False,equipment/stat application requires runtime validation
+item_892,piece of amber,item,inventory,,False,equipment/stat application requires runtime validation
+item_893,amethyst stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_894,piece of jade,item,inventory,,False,equipment/stat application requires runtime validation
+item_895,aquamarine stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_896,garnet,item,inventory,,False,equipment/stat application requires runtime validation
+item_897,pearl,item,inventory,,False,equipment/stat application requires runtime validation
+item_898,topaz stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_899,black opal,item,inventory,,False,equipment/stat application requires runtime validation
+item_900,fire opal,item,inventory,,False,equipment/stat application requires runtime validation
+item_901,opal,item,inventory,,False,equipment/stat application requires runtime validation
+item_902,diamond,item,inventory,,False,equipment/stat application requires runtime validation
+item_903,emerald,item,inventory,,False,equipment/stat application requires runtime validation
+item_904,ruby,item,inventory,,False,equipment/stat application requires runtime validation
+item_905,sapphire,item,inventory,,False,equipment/stat application requires runtime validation
+item_906,wooden box,item,inventory,,False,equipment/stat application requires runtime validation
+item_907,oak chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_908,massive wooden chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_909,iron-banded chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_910,silver box,item,inventory,,False,equipment/stat application requires runtime validation
+item_911,huge darkwood chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_912,golden box,item,inventory,,False,equipment/stat application requires runtime validation
+item_913,steel chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_914,silverwood chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_915,crater,item,inventory,,False,equipment/stat application requires runtime validation
+item_916,gouged walls,item,inventory,,False,equipment/stat application requires runtime validation
+item_917,gleaming shard,item,inventory,,False,equipment/stat application requires runtime validation
+item_918,grey bushes,item,inventory,,False,equipment/stat application requires runtime validation
+item_920,golden hide,item,inventory,,False,equipment/stat application requires runtime validation
+item_921,silver flute,armor,off hand,,False,equipment/stat application requires runtime validation
+item_922,golden harp,armor,off hand,,False,equipment/stat application requires runtime validation
+item_923,bardic lute,armor,off hand,,False,equipment/stat application requires runtime validation
+item_924,room ticket,item,inventory,,False,equipment/stat application requires runtime validation
+item_925,swamp boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_926,fine throwing knife,item,inventory,,False,equipment/stat application requires runtime validation
+item_927,black retchweed,item,inventory,,False,equipment/stat application requires runtime validation
+item_928,swamp,item,inventory,,False,equipment/stat application requires runtime validation
+item_929,gnomish fish-helm,armor,head,,False,equipment/stat application requires runtime validation
+item_930,climbing harness,item,inventory,,False,equipment/stat application requires runtime validation
+item_931,iron crown,armor,head,,False,equipment/stat application requires runtime validation
+item_932,spectral sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_934,patch of black mushrooms,item,inventory,,False,equipment/stat application requires runtime validation
+item_935,Eternal Fire,item,inventory,,False,equipment/stat application requires runtime validation
+item_936,pickaxe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_937,stone sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_938,slag sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_939,gambling sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_940,mountain of rubble,item,inventory,,False,equipment/stat application requires runtime validation
+item_941,Storm Spirit,item,inventory,,False,equipment/stat application requires runtime validation
+item_942,mine pass,item,inventory,,False,equipment/stat application requires runtime validation
+item_943,copper ore,item,inventory,,False,equipment/stat application requires runtime validation
+item_944,silver ore,item,inventory,,False,equipment/stat application requires runtime validation
+item_945,gold ore,item,inventory,,False,equipment/stat application requires runtime validation
+item_946,mine sign,item,inventory,,False,equipment/stat application requires runtime validation
+item_947,iron ore,item,inventory,,False,equipment/stat application requires runtime validation
+item_948,obsidian talisman,item,inventory,,False,equipment/stat application requires runtime validation
+item_949,Heartstone,item,inventory,,False,equipment/stat application requires runtime validation
+item_950,gold signet ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_951,cracked obelisk,item,inventory,,False,equipment/stat application requires runtime validation
+item_952,runic key,item,inventory,,False,equipment/stat application requires runtime validation
+item_953,gleaming dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_954,enchanted dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_955,Spirit Dagger of Goijar,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_956,golden chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_957,adamantite chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_958,black iron chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_959,Ice Tear,item,inventory,,False,equipment/stat application requires runtime validation
+item_960,small cloth pouch,item,inventory,,False,equipment/stat application requires runtime validation
+item_961,dirty parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_962,small black mushrooms,item,inventory,,False,equipment/stat application requires runtime validation
+item_963,bag of poison,item,inventory,,False,equipment/stat application requires runtime validation
+item_965,quest token,item,inventory,,False,equipment/stat application requires runtime validation
+item_966,acid gland,item,inventory,,False,equipment/stat application requires runtime validation
+item_967,golden hide tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_968,metal plate,item,inventory,,False,equipment/stat application requires runtime validation
+item_969,serrated scimitar,armor,hands,,False,equipment/stat application requires runtime validation
+item_970,pig on a spit,item,inventory,,False,equipment/stat application requires runtime validation
+item_971,roots,item,inventory,,False,equipment/stat application requires runtime validation
+item_972,unfertilized eggs,item,inventory,,False,equipment/stat application requires runtime validation
+item_974,alder chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_975,steel key,item,inventory,,False,equipment/stat application requires runtime validation
+item_976,skeleton key,item,inventory,,False,equipment/stat application requires runtime validation
+item_978,text inscription,item,inventory,,False,equipment/stat application requires runtime validation
+item_979,jade wave carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_980,obsidian mountain carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_981,white marble fog carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_982,sunstone flame carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_983,titanium fork,item,inventory,,False,equipment/stat application requires runtime validation
+item_984,tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_985,door,item,inventory,,False,equipment/stat application requires runtime validation
+item_986,ivory statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_987,basalt key,item,inventory,,False,equipment/stat application requires runtime validation
+item_988,brass knuckles,armor,hands,,False,equipment/stat application requires runtime validation
+item_989,yellowed note,item,inventory,,False,equipment/stat application requires runtime validation
+item_990,old parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_991,smudged paper,item,inventory,,False,equipment/stat application requires runtime validation
+item_992,potion of levitation,item,inventory,,False,equipment/stat application requires runtime validation
+item_993,waterfall,item,inventory,,False,equipment/stat application requires runtime validation
+item_994,double-terminated quartz,item,inventory,,False,equipment/stat application requires runtime validation
+item_995,cave roots,item,inventory,,False,equipment/stat application requires runtime validation
+item_996,magical quartz rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_997,barrier,item,inventory,,False,equipment/stat application requires runtime validation
+item_998,golden egg,item,inventory,,False,equipment/stat application requires runtime validation
+item_999,skull mask,armor,head,,False,equipment/stat application requires runtime validation
+item_1000,phoenix feather,item,misc,,False,equipment/stat application requires runtime validation
+item_1001,mandible,item,inventory,,False,equipment/stat application requires runtime validation
+item_1002,wire key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1004,ruby ninjato,item,inventory,,False,equipment/stat application requires runtime validation
+item_1005,etched adamant broadsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1006,antlered helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1008,red parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1009,orange parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1010,yellow parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1011,green parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1012,blue parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1013,violet parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1014,black parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1015,silver parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1016,gold parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1017,white parchment deed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1018,ornate red key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1020,orange key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1021,ornate orange key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1022,topaz emblem,armor,feet,,False,equipment/stat application requires runtime validation
+item_1023,nexus blade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1024,yellow key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1025,ornate yellow key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1026,amber emblem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1027,ancient paper,item,inventory,,False,equipment/stat application requires runtime validation
+item_1028,green key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1029,ornate green key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1030,emerald emblem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1032,blue key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1033,ornate blue key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1034,sapphire emblem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1036,violet key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1037,ornate violet key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1038,amethyst emblem,armor,feet,,False,equipment/stat application requires runtime validation
+item_1040,black key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1041,ornate black key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1042,onyx emblem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1044,silver key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1045,ornate silver key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1046,silver emblem,armor,feet,,False,equipment/stat application requires runtime validation
+item_1047,ruby-encrusted bracers,armor,feet,,False,equipment/stat application requires runtime validation
+item_1048,gold key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1049,ornate gold key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1050,gold emblem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1051,blackened parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_1052,white key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1053,ornate white key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1054,diamond emblem,armor,feet,,False,equipment/stat application requires runtime validation
+item_1055,wishbone,item,inventory,,False,equipment/stat application requires runtime validation
+item_1056,silver banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1057,black banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1058,white banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1059,red banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1060,gold banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1061,blue banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1062,green banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1063,violet banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1064,orange banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1065,yellow banner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1066,rotted tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_1067,crimson spiked shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_1068,sharktooth trident,item,inventory,,False,equipment/stat application requires runtime validation
+item_1069,etched adamant warhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1070,etched adamant greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1071,Demon's Maw,item,inventory,,False,equipment/stat application requires runtime validation
+item_1072,runed petrified staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1073,burning staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1074,copperwood staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1075,ice crystal staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1076,dirty obsidian key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1077,ancient obsidian key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1078,flaming portal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1079,shuriken,item,inventory,,False,equipment/stat application requires runtime validation
+item_1080,catoblepas eye,item,inventory,,False,equipment/stat application requires runtime validation
+item_1081,flaming star,item,inventory,,False,equipment/stat application requires runtime validation
+item_1082,midnight glare,armor,feet,,False,equipment/stat application requires runtime validation
+item_1083,practice dummy,item,inventory,,False,equipment/stat application requires runtime validation
+item_1084,azure shamshir,item,inventory,,False,equipment/stat application requires runtime validation
+item_1085,light ball,item,inventory,,False,equipment/stat application requires runtime validation
+item_1086,scroll of zeal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1087,round table,item,inventory,,False,equipment/stat application requires runtime validation
+item_1088,bed,item,inventory,,False,equipment/stat application requires runtime validation
+item_1089,bookshelf,item,inventory,,False,equipment/stat application requires runtime validation
+item_1090,long table,item,inventory,,False,equipment/stat application requires runtime validation
+item_1091,wooden chair,item,inventory,,False,equipment/stat application requires runtime validation
+item_1092,bench,item,inventory,,False,equipment/stat application requires runtime validation
+item_1093,desk,item,inventory,,False,equipment/stat application requires runtime validation
+item_1094,cabinet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1095,dresser,item,inventory,,False,equipment/stat application requires runtime validation
+item_1096,rug,item,inventory,,False,equipment/stat application requires runtime validation
+item_1097,tournament badge,item,inventory,,False,equipment/stat application requires runtime validation
+item_1098,newbie manual,item,inventory,,False,equipment/stat application requires runtime validation
+item_1099,crimson badge,item,inventory,,False,equipment/stat application requires runtime validation
+item_1100,black badge,item,inventory,,False,equipment/stat application requires runtime validation
+item_1101,orc-head,item,inventory,,False,equipment/stat application requires runtime validation
+item_1102,iron badge,item,inventory,,False,equipment/stat application requires runtime validation
+item_1103,glass orb,item,inventory,,False,equipment/stat application requires runtime validation
+item_1104,crystal orb,item,inventory,,False,equipment/stat application requires runtime validation
+item_1105,granite orb,item,inventory,,False,equipment/stat application requires runtime validation
+item_1106,marble orb,item,inventory,,False,equipment/stat application requires runtime validation
+item_1107,ashwood wand,item,inventory,,False,equipment/stat application requires runtime validation
+item_1108,teak wand,item,inventory,,False,equipment/stat application requires runtime validation
+item_1109,mahogany wand,item,inventory,,False,equipment/stat application requires runtime validation
+item_1110,pine wand,item,inventory,,False,equipment/stat application requires runtime validation
+item_1111,darkwood rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_1112,silverwood rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_1113,rosewood rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_1114,birch rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_1115,cedar rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_1116,shadow material,item,inventory,,False,equipment/stat application requires runtime validation
+item_1117,holy water vial,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1118,summoning bone,item,inventory,,False,equipment/stat application requires runtime validation
+item_1119,honeycakes,item,inventory,,False,equipment/stat application requires runtime validation
+item_1120,mulled wine,item,inventory,,False,equipment/stat application requires runtime validation
+item_1121,cup of tea,item,inventory,,False,equipment/stat application requires runtime validation
+item_1122,palm tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_1123,shimmering pool,item,inventory,,False,equipment/stat application requires runtime validation
+item_1124,angular key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1125,three-toothed key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1126,well,item,inventory,,False,equipment/stat application requires runtime validation
+item_1127,basalt obelisk,item,inventory,,False,equipment/stat application requires runtime validation
+item_1130,mummified miner,item,inventory,,False,equipment/stat application requires runtime validation
+item_1131,red iron key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1132,black altar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1148,copper amulet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1149,stone hand,item,inventory,,False,equipment/stat application requires runtime validation
+item_1150,jeweled altar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1151,stone letters,item,inventory,,False,equipment/stat application requires runtime validation
+item_1152,saracen head,item,inventory,,False,equipment/stat application requires runtime validation
+item_1153,moon-lamp,item,inventory,,False,equipment/stat application requires runtime validation
+item_1154,heavy box,item,inventory,,False,equipment/stat application requires runtime validation
+item_1155,tiger-claw necklace,item,inventory,,False,equipment/stat application requires runtime validation
+item_1156,silvery scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1157,jeweled turban,armor,head,,False,equipment/stat application requires runtime validation
+item_1158,shelf,item,inventory,,False,equipment/stat application requires runtime validation
+item_1159,red book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1160,blue book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1161,dwarven ale,item,inventory,,False,equipment/stat application requires runtime validation
+item_1162,red iron ore,item,inventory,,False,equipment/stat application requires runtime validation
+item_1163,red iron axe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1164,red iron hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1165,red iron dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1166,worn stone tablet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1167,papyrus scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1168,khopesh sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1169,two-headed pike,item,inventory,,False,equipment/stat application requires runtime validation
+item_1170,golden pike,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1171,hydra key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1172,meteorite rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_1173,golden headdress,armor,head,,False,equipment/stat application requires runtime validation
+item_1174,crescent moon staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1175,golden lion key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1176,spiked obsidian collar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1177,rainbow stone,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1178,sculpture,item,inventory,,False,equipment/stat application requires runtime validation
+item_1179,inscribed leather scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1180,sunstone wristband,item,inventory,,False,equipment/stat application requires runtime validation
+item_1181,silverbark canoe,item,inventory,,False,equipment/stat application requires runtime validation
+item_1182,barbed spear,armor,hands,,False,equipment/stat application requires runtime validation
+item_1183,severed head of Irikani,item,inventory,,False,equipment/stat application requires runtime validation
+item_1184,curved fang,armor,hands,,False,equipment/stat application requires runtime validation
+item_1186,spider silk trousers,armor,legs,,False,equipment/stat application requires runtime validation
+item_1187,bone necklace,item,inventory,,False,equipment/stat application requires runtime validation
+item_1188,dented wizard's hat,armor,head,,False,equipment/stat application requires runtime validation
+item_1189,net,armor,hands,,False,equipment/stat application requires runtime validation
+item_1190,javelin,armor,hands,,False,equipment/stat application requires runtime validation
+item_1191,stone javelin,item,inventory,,False,equipment/stat application requires runtime validation
+item_1192,mithril plate leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1193,mithril chain leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1194,wyvernhide pants,armor,legs,,False,equipment/stat application requires runtime validation
+item_1195,black leather leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1196,chameleon leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1197,red chitin leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1198,red chitin helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1199,red chitin armour,armor,body,,False,equipment/stat application requires runtime validation
+item_1200,red chitin shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_1201,sapling longbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1202,bloodstained chakram,armor,feet,,False,equipment/stat application requires runtime validation
+item_1203,bronze chakram,item,inventory,,False,equipment/stat application requires runtime validation
+item_1204,ethereal chakram,item,inventory,,False,equipment/stat application requires runtime validation
+item_1205,giant spiked collar,armor,head,,False,equipment/stat application requires runtime validation
+item_1206,fur-lined pouch,item,inventory,,False,equipment/stat application requires runtime validation
+item_1207,gargantuan stone maul,item,inventory,,False,equipment/stat application requires runtime validation
+item_1208,giantwood club,armor,feet,,False,equipment/stat application requires runtime validation
+item_1209,lionskin belt,armor,head,,False,equipment/stat application requires runtime validation
+item_1210,lionskin tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1211,great spiked club,item,inventory,,False,equipment/stat application requires runtime validation
+item_1212,petrified stone corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_1213,stormmetal greataxe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1214,stormmetal scalemail tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1215,stormmetal bracers,armor,feet,,False,equipment/stat application requires runtime validation
+item_1216,storm crown,armor,head,,False,equipment/stat application requires runtime validation
+item_1217,titanic stone maul,item,inventory,,False,equipment/stat application requires runtime validation
+item_1218,beaded belt,item,inventory,,False,equipment/stat application requires runtime validation
+item_1219,silver belt,item,inventory,,False,equipment/stat application requires runtime validation
+item_1220,ogre bone bracelet,armor,feet,,False,equipment/stat application requires runtime validation
+item_1221,shadow bracelet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1222,thief's pouch,item,inventory,,False,equipment/stat application requires runtime validation
+item_1223,witchwood bracelet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1224,mithril bracelets,item,inventory,,False,equipment/stat application requires runtime validation
+item_1225,silverwood lute,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1226,blackwood staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1227,black leather belt,item,inventory,,False,equipment/stat application requires runtime validation
+item_1228,dark hood,armor,head,,False,equipment/stat application requires runtime validation
+item_1229,runed longbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1230,shimmering sash,item,inventory,,False,equipment/stat application requires runtime validation
+item_1231,skull-capped staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1232,trollskin boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1233,scaled lantern,item,inventory,,False,equipment/stat application requires runtime validation
+item_1234,glowing pearl,item,inventory,,False,equipment/stat application requires runtime validation
+item_1235,giant crab shell,item,inventory,,False,equipment/stat application requires runtime validation
+item_1237,ruby earrings,item,inventory,,False,equipment/stat application requires runtime validation
+item_1238,mithril earrings,item,inventory,,False,equipment/stat application requires runtime validation
+item_1240,diamond earrings,item,inventory,,False,equipment/stat application requires runtime validation
+item_1242,sparkling pendant,item,inventory,,False,equipment/stat application requires runtime validation
+item_1243,icy scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1244,cosmic staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1245,starhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1246,severed earth dragon claw,item,inventory,,False,equipment/stat application requires runtime validation
+item_1247,sdfsdfsdfsdfsdfsdfsfsdf,item,inventory,,False,equipment/stat application requires runtime validation
+item_1248,deathcoil,item,inventory,,False,equipment/stat application requires runtime validation
+item_1249,deathblade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1250,naginata,armor,head,,False,equipment/stat application requires runtime validation
+item_1251,kote,item,inventory,,False,equipment/stat application requires runtime validation
+item_1252,manriki-gusari,item,inventory,,False,equipment/stat application requires runtime validation
+item_1253,gunsen,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1254,tonfa,item,inventory,,False,equipment/stat application requires runtime validation
+item_1255,twin shortswords,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1256,webbed gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1257,bloodstained broadsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1258,ball of webbing,armor,hands,,False,equipment/stat application requires runtime validation
+item_1259,leaf blade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1260,giant pearl,item,inventory,,False,equipment/stat application requires runtime validation
+item_1261,glowing vine,item,inventory,,False,equipment/stat application requires runtime validation
+item_1262,spider silk robes,armor,body,,False,equipment/stat application requires runtime validation
+item_1263,feathered key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1264,chiseled key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1265,magma key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1266,polished key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1267,red rock key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1268,crocodile fang,item,inventory,,False,equipment/stat application requires runtime validation
+item_1269,frozen shard,item,inventory,,False,equipment/stat application requires runtime validation
+item_1270,pixie wings,item,inventory,,False,equipment/stat application requires runtime validation
+item_1271,pulsating heart,item,inventory,,False,equipment/stat application requires runtime validation
+item_1272,scorpion tail,item,inventory,,False,equipment/stat application requires runtime validation
+item_1273,spider leg,item,inventory,,False,equipment/stat application requires runtime validation
+item_1274,piece of shell,item,inventory,,False,equipment/stat application requires runtime validation
+item_1275,mamba fang,item,inventory,,False,equipment/stat application requires runtime validation
+item_1276,crane totem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1277,dragon totem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1278,gorilla totem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1279,monkey totem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1280,viper totem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1281,golden idol,item,inventory,,False,equipment/stat application requires runtime validation
+item_1284,songsheet of the elements,item,inventory,,False,equipment/stat application requires runtime validation
+item_1285,scroll of merciful grace,item,inventory,,False,equipment/stat application requires runtime validation
+item_1286,songsheet of soothing,item,inventory,,False,equipment/stat application requires runtime validation
+item_1287,scroll of magma blast,item,inventory,,False,equipment/stat application requires runtime validation
+item_1288,scroll of acid tempest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1289,king crab claw,armor,hands,,False,equipment/stat application requires runtime validation
+item_1291,scroll of wizard knock,item,inventory,,False,equipment/stat application requires runtime validation
+item_1292,salca dart,item,inventory,,False,equipment/stat application requires runtime validation
+item_1293,heavy spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_1294,fluked trident,armor,head,,False,equipment/stat application requires runtime validation
+item_1295,fangblade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1296,bane dart,item,inventory,,False,equipment/stat application requires runtime validation
+item_1297,stone head,item,inventory,,False,equipment/stat application requires runtime validation
+item_1298,thundering scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1299,withered tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_1300,scroll of wrathful curse,item,inventory,,False,equipment/stat application requires runtime validation
+item_1301,staff of power,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1302,fungus walls,item,inventory,,False,equipment/stat application requires runtime validation
+item_1303,tukata root,item,inventory,,False,equipment/stat application requires runtime validation
+item_1304,songsheet of battle,item,inventory,,False,equipment/stat application requires runtime validation
+item_1305,behemoth hellhound hide,item,inventory,,False,equipment/stat application requires runtime validation
+item_1306,scroll of nature tap,item,inventory,,False,equipment/stat application requires runtime validation
+item_1307,battered wooden chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1308,boomstick,item,inventory,,False,equipment/stat application requires runtime validation
+item_1309,hero's tabard,armor,feet,,False,equipment/stat application requires runtime validation
+item_1310,inquisitor's cloak,item,misc,,False,equipment/stat application requires runtime validation
+item_1311,firebrand cape,armor,feet,,False,equipment/stat application requires runtime validation
+item_1312,cloak of faith,armor,head,,False,equipment/stat application requires runtime validation
+item_1313,folds of worship,item,misc,,False,equipment/stat application requires runtime validation
+item_1314,faith keeper,item,misc,,False,equipment/stat application requires runtime validation
+item_1315,death's shadow,item,misc,,False,equipment/stat application requires runtime validation
+item_1316,blacknight,item,misc,,False,equipment/stat application requires runtime validation
+item_1317,lyrist's companion,item,misc,,False,equipment/stat application requires runtime validation
+item_1318,shawl of fortune,item,misc,,False,equipment/stat application requires runtime validation
+item_1319,tails of battle,item,misc,,False,equipment/stat application requires runtime validation
+item_1320,runed cape,item,misc,,False,equipment/stat application requires runtime validation
+item_1321,leafwoven cloak,item,misc,,False,equipment/stat application requires runtime validation
+item_1322,mantle of the woodsman,item,misc,,False,equipment/stat application requires runtime validation
+item_1323,peasant cloak,item,misc,,False,equipment/stat application requires runtime validation
+item_1324,scroll of divine courage,item,inventory,,False,equipment/stat application requires runtime validation
+item_1325,emerald-studded bracelet,armor,head,,False,equipment/stat application requires runtime validation
+item_1326,shimmering portal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1327,blackened dirk,armor,feet,,False,equipment/stat application requires runtime validation
+item_1328,sai,armor,hands,,False,equipment/stat application requires runtime validation
+item_1329,blackened wrist guard,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1330,lifestealer,armor,hands,,False,equipment/stat application requires runtime validation
+item_1331,black embroidered robes,armor,body,,False,equipment/stat application requires runtime validation
+item_1332,black diamond,item,inventory,,False,equipment/stat application requires runtime validation
+item_1333,crystal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1334,Draka's Blade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1335,head of the orc warlord,item,inventory,,False,equipment/stat application requires runtime validation
+item_1336,crimson scale gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1337,sacrificial dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1338,curved bone dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1339,diary,item,inventory,,False,equipment/stat application requires runtime validation
+item_1340,scroll of ethereal shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_1341,red parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_1343,bloody meat cleaver,item,inventory,,False,equipment/stat application requires runtime validation
+item_1344,ice chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1346,wedding gown,armor,body,,False,equipment/stat application requires runtime validation
+item_1347,wedding band,item,misc,,False,equipment/stat application requires runtime validation
+item_1348,gavel of justice,item,inventory,,False,equipment/stat application requires runtime validation
+item_1349,daikatana,item,inventory,,False,equipment/stat application requires runtime validation
+item_1350,ice crystal falchion,armor,feet,,False,equipment/stat application requires runtime validation
+item_1351,magical rune,item,inventory,,False,equipment/stat application requires runtime validation
+item_1352,smoking blackwood chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1353,black runed shovel,armor,hands,,False,equipment/stat application requires runtime validation
+item_1354,stone chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1355,blizzardfang,item,inventory,,False,equipment/stat application requires runtime validation
+item_1356,severed arm,item,inventory,,False,equipment/stat application requires runtime validation
+item_1357,severed leg,item,inventory,,False,equipment/stat application requires runtime validation
+item_1358,spiked black tentacle,item,inventory,,False,equipment/stat application requires runtime validation
+item_1359,minotaur horn,item,inventory,,False,equipment/stat application requires runtime validation
+item_1361,platinum greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1362,gravestone,item,inventory,,False,equipment/stat application requires runtime validation
+item_1363,jail cell,item,inventory,,False,equipment/stat application requires runtime validation
+item_1364,midnight sash,armor,head,,False,equipment/stat application requires runtime validation
+item_1365,dented soup can,armor,feet,,False,equipment/stat application requires runtime validation
+item_1373,a statue of warrior,item,inventory,,False,equipment/stat application requires runtime validation
+item_1374,songsheet of destruction,item,inventory,,False,equipment/stat application requires runtime validation
+item_1401,a statue of witchhunter,item,inventory,,False,equipment/stat application requires runtime validation
+item_1402,a statue of paladin,item,inventory,,False,equipment/stat application requires runtime validation
+item_1403,a statue of cleric,item,inventory,,False,equipment/stat application requires runtime validation
+item_1404,a statue of priest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1405,a statue of missionary,item,inventory,,False,equipment/stat application requires runtime validation
+item_1406,a statue of ninja,item,inventory,,False,equipment/stat application requires runtime validation
+item_1407,a statue of thief,item,inventory,,False,equipment/stat application requires runtime validation
+item_1408,a statue of bard,item,inventory,,False,equipment/stat application requires runtime validation
+item_1409,a statue of gypsy,item,inventory,,False,equipment/stat application requires runtime validation
+item_1410,a statue of warlock,item,inventory,,False,equipment/stat application requires runtime validation
+item_1411,a statue of mage,item,inventory,,False,equipment/stat application requires runtime validation
+item_1412,a statue of druid,item,inventory,,False,equipment/stat application requires runtime validation
+item_1413,a statue of ranger,item,inventory,,False,equipment/stat application requires runtime validation
+item_1414,a statue of mystic,item,inventory,,False,equipment/stat application requires runtime validation
+item_1415,shovel,armor,head,,False,equipment/stat application requires runtime validation
+item_1416,jail key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1417,young tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_1421,mouthpiece,item,inventory,,False,equipment/stat application requires runtime validation
+item_1422,battlehorn,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1423,red dragon tail,item,inventory,,False,equipment/stat application requires runtime validation
+item_1424,dragon fang,armor,hands,,False,equipment/stat application requires runtime validation
+item_1425,red dragonscale whip,item,inventory,,False,equipment/stat application requires runtime validation
+item_1426,tent,item,inventory,,False,equipment/stat application requires runtime validation
+item_1427,tainted ruby,item,inventory,,False,equipment/stat application requires runtime validation
+item_1428,ornate dragon carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_1429,red dragon hide,armor,feet,,False,equipment/stat application requires runtime validation
+item_1430,red dragon gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1431,red dragon leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1432,red dragon tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1433,red dragon helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1434,red dragon boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1435,soulblighter,item,inventory,,False,equipment/stat application requires runtime validation
+item_1436,cruel bone greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1437,blackened unicorn horn,item,inventory,,False,equipment/stat application requires runtime validation
+item_1438,farming hoe,item,inventory,,False,equipment/stat application requires runtime validation
+item_1439,runed farming hoe,item,inventory,,False,equipment/stat application requires runtime validation
+item_1440,rusty scythe,item,inventory,,False,equipment/stat application requires runtime validation
+item_1441,deck of cards,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1442,faded shawl,item,inventory,,False,equipment/stat application requires runtime validation
+item_1443,withered walking stick,item,inventory,,False,equipment/stat application requires runtime validation
+item_1444,bloodwood chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1445,vorpal hatchet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1446,sunburst necklace,item,inventory,,False,equipment/stat application requires runtime validation
+item_1447,platinum plate leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1448,jewel-encrusted warhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1449,Darkbane,item,inventory,,False,equipment/stat application requires runtime validation
+item_1450,fur cloak,item,inventory,,False,equipment/stat application requires runtime validation
+item_1451,fur gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_1452,silvery spiked corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_1454,ethereal dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1455,brimstone hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1456,bloodstone ring,armor,feet,,False,equipment/stat application requires runtime validation
+item_1457,dark onyx ring,armor,head,,False,equipment/stat application requires runtime validation
+item_1458,scarlet doublet,armor,body,,False,equipment/stat application requires runtime validation
+item_1459,executioner's hood,armor,head,,False,equipment/stat application requires runtime validation
+item_1460,black stained tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1461,heavy black boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1462,red rose,item,inventory,,False,equipment/stat application requires runtime validation
+item_1463,black rose,item,inventory,,False,equipment/stat application requires runtime validation
+item_1464,burning black feather,item,inventory,,False,equipment/stat application requires runtime validation
+item_1465,vibrant scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1467,throwing hammers,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1468,diamond-encrusted bracelet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1469,elven harp,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1470,blackened bracelet,item,misc,,False,equipment/stat application requires runtime validation
+item_1471,nightblack scythe,item,inventory,,False,equipment/stat application requires runtime validation
+item_1472,bone ring,item,misc,,False,equipment/stat application requires runtime validation
+item_1473,bone club,item,inventory,,False,equipment/stat application requires runtime validation
+item_1474,blackwood cudgel,item,inventory,,False,equipment/stat application requires runtime validation
+item_1475,rod of might,item,inventory,,False,equipment/stat application requires runtime validation
+item_1476,blackwood longbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1477,reading glasses,item,inventory,,False,equipment/stat application requires runtime validation
+item_1478,blackwood war-spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_1479,scarab necklace,item,inventory,,False,equipment/stat application requires runtime validation
+item_1480,templar greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1481,beastly claws,armor,feet,,False,equipment/stat application requires runtime validation
+item_1482,feather-tipped hat,armor,head,,False,equipment/stat application requires runtime validation
+item_1483,displacer fur cloak,item,inventory,,False,equipment/stat application requires runtime validation
+item_1484,mithril executioner's axe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1485,burnt iron chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1486,elven longbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1487,Sword of Ozrinom,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1488,duergar check,item,misc,,False,equipment/stat application requires runtime validation
+item_1489,saracen check,item,misc,,False,equipment/stat application requires runtime validation
+item_1490,arena check,item,misc,,False,equipment/stat application requires runtime validation
+item_1491,crimson scalemail tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1492,crimson scalemail leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1493,crimson helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1495,dragonfang ninjato,item,inventory,,False,equipment/stat application requires runtime validation
+item_1496,great blackwood chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1497,anointed morningstar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1498,diamond longsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1499,Holy Wrath and Righteous Fury,item,inventory,,False,equipment/stat application requires runtime validation
+item_1500,spiritual warhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1501,white gold flail,item,inventory,,False,equipment/stat application requires runtime validation
+item_1502,great mithril battle-hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1503,iron wand,item,inventory,,False,equipment/stat application requires runtime validation
+item_1504,platinum greathelm,armor,head,,False,equipment/stat application requires runtime validation
+item_1505,diamond scimitar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1506,Solarblade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1507,moonstone rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_1508,Angel's talon,item,inventory,,False,equipment/stat application requires runtime validation
+item_1509,white oaken staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1510,obsidian trident,item,inventory,,False,equipment/stat application requires runtime validation
+item_1511,Demonslayer,item,inventory,,False,equipment/stat application requires runtime validation
+item_1512,Judicator,item,inventory,,False,equipment/stat application requires runtime validation
+item_1513,obsidian greatsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1514,ruby staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1515,ivory crozier,item,inventory,,False,equipment/stat application requires runtime validation
+item_1516,amber pearl earrings,item,inventory,,False,equipment/stat application requires runtime validation
+item_1517,fur boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1518,brown leather boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1519,winged boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1520,bleeding main-gauche,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1521,onyx earrings,armor,hands,,False,equipment/stat application requires runtime validation
+item_1522,battered chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_1523,serrated spiked shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_1524,black velvet gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_1525,crimson earrings,item,inventory,,False,equipment/stat application requires runtime validation
+item_1526,star helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1527,turquoise ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_1528,silverwood helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1529,cobra earrings,item,inventory,,False,equipment/stat application requires runtime validation
+item_1530,Caladbolg,item,misc,,False,equipment/stat application requires runtime validation
+item_1531,shadowy portal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1533,ancient blackwood heart,item,inventory,,False,equipment/stat application requires runtime validation
+item_1534,white oak forest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1536,jagged bone key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1537,tattered map,item,inventory,,False,equipment/stat application requires runtime validation
+item_1538,tattered grey scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1539,tattered grey tome,item,inventory,,False,equipment/stat application requires runtime validation
+item_1540,red leather manual,item,inventory,,False,equipment/stat application requires runtime validation
+item_1541,rotted book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1542,black leather book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1543,molding parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_1544,plain scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1545,tattered manual,item,inventory,,False,equipment/stat application requires runtime validation
+item_1546,ebony scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1547,yellowed parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_1548,ancient book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1551,old map,item,inventory,,False,equipment/stat application requires runtime validation
+item_1554,massive black gem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1555,long golden chain,item,inventory,,False,equipment/stat application requires runtime validation
+item_1556,altar of dawn,item,inventory,,False,equipment/stat application requires runtime validation
+item_1558,pew,item,inventory,,False,equipment/stat application requires runtime validation
+item_1559,ship's wheel,item,inventory,,False,equipment/stat application requires runtime validation
+item_1560,chipped obsidian key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1561,platinum key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1562,angelic statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1563,scholarly statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1564,mage statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1566,ancient parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_1567,ruined book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1569,crimson tome,item,inventory,,False,equipment/stat application requires runtime validation
+item_1570,black book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1571,blackened scripture,item,inventory,,False,equipment/stat application requires runtime validation
+item_1575,leaf bound scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1576,red leather book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1579,death shroud,armor,body,,False,equipment/stat application requires runtime validation
+item_1581,cot,item,inventory,,False,equipment/stat application requires runtime validation
+item_1582,bulletin board,item,inventory,,False,equipment/stat application requires runtime validation
+item_1583,coffin,item,inventory,,False,equipment/stat application requires runtime validation
+item_1584,Flamemasher,item,inventory,,False,equipment/stat application requires runtime validation
+item_1585,paired dragonblades,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1586,sapphire chakram,item,inventory,,False,equipment/stat application requires runtime validation
+item_1587,Frosthand,item,inventory,,False,equipment/stat application requires runtime validation
+item_1588,stone warhammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1589,hammers of balance,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1590,Windblade,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1591,petrified mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1592,acid slasher,item,inventory,,False,equipment/stat application requires runtime validation
+item_1593,staff of scales,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1594,jeweled dirk,item,inventory,,False,equipment/stat application requires runtime validation
+item_1595,MagiRavager,item,inventory,,False,equipment/stat application requires runtime validation
+item_1596,vorpal cutlass,item,inventory,,False,equipment/stat application requires runtime validation
+item_1597,jeweled maul,item,inventory,,False,equipment/stat application requires runtime validation
+item_1598,journal,armor,body,,False,equipment/stat application requires runtime validation
+item_1599,medal of flame,item,inventory,,False,equipment/stat application requires runtime validation
+item_1600,sacrificed body,item,inventory,,False,equipment/stat application requires runtime validation
+item_1601,levers,item,inventory,,False,equipment/stat application requires runtime validation
+item_1603,platinum box,item,inventory,,False,equipment/stat application requires runtime validation
+item_1604,bank safe,item,inventory,,False,equipment/stat application requires runtime validation
+item_1607,sealed letter,item,misc,,False,equipment/stat application requires runtime validation
+item_1608,small vial,item,inventory,,False,equipment/stat application requires runtime validation
+item_1609,songsheet of swiftness,item,inventory,,False,equipment/stat application requires runtime validation
+item_1610,songsheet of force,item,inventory,,False,equipment/stat application requires runtime validation
+item_1611,songsheet of knowledge,item,inventory,,False,equipment/stat application requires runtime validation
+item_1612,songsheet of sageness,item,inventory,,False,equipment/stat application requires runtime validation
+item_1613,enigma placeholder,armor,body,,False,equipment/stat application requires runtime validation
+item_1614,fingerbone key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1615,ancient tapestry,item,inventory,,False,equipment/stat application requires runtime validation
+item_1616,Deathweaver,item,inventory,,False,equipment/stat application requires runtime validation
+item_1617,skull flail,item,inventory,,False,equipment/stat application requires runtime validation
+item_1618,demonic pitchfork,item,inventory,,False,equipment/stat application requires runtime validation
+item_1619,AngelCrusher,item,inventory,,False,equipment/stat application requires runtime validation
+item_1620,netherworld hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1621,flail of oblivion,item,inventory,,False,equipment/stat application requires runtime validation
+item_1622,abyssal scimitar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1623,Demontongue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1624,Soulwaste,item,inventory,,False,equipment/stat application requires runtime validation
+item_1625,darkbone staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1626,bloodkrys,armor,feet,,False,equipment/stat application requires runtime validation
+item_1627,Magus Ripper,item,inventory,,False,equipment/stat application requires runtime validation
+item_1628,serrated bone war-spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_1629,crimson-hilted morningstar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1630,shreaded tapestry,armor,body,,False,equipment/stat application requires runtime validation
+item_1632,hangman's noose,item,inventory,,False,equipment/stat application requires runtime validation
+item_1633,songsheet of enlightenment,item,inventory,,False,equipment/stat application requires runtime validation
+item_1635,enigma gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_1637,spectral shroud,armor,body,,False,equipment/stat application requires runtime validation
+item_1638,amber sceptre,item,inventory,,False,equipment/stat application requires runtime validation
+item_1640,crimson blood robes,armor,body,,False,equipment/stat application requires runtime validation
+item_1641,vortex staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1642,barbed circlet,armor,head,,False,equipment/stat application requires runtime validation
+item_1643,chaotic vortex,item,inventory,,False,equipment/stat application requires runtime validation
+item_1644,greatbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1645,blackwood shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_1646,scroll of serenity,item,inventory,,False,equipment/stat application requires runtime validation
+item_1647,vorpal katana,item,inventory,,False,equipment/stat application requires runtime validation
+item_1648,blackwood forest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1649,Crest of Silvermere,armor,feet,,False,equipment/stat application requires runtime validation
+item_1650,blackwood harp,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1651,arlysian longsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1652,arlysian mace,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1653,arlysian dagger,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1654,ethereal sabre,item,inventory,,False,equipment/stat application requires runtime validation
+item_1655,silver signet ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_1656,morningstar ring,item,misc,,False,equipment/stat application requires runtime validation
+item_1657,shamanic headdress,armor,head,,False,equipment/stat application requires runtime validation
+item_1659,crimson potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_1660,bubbling blue potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_1661,oily potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_1662,grey potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_1663,sickly green potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_1664,frothing brown potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_1665,rainbow potion,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1666,golden sun robes,armor,body,,False,equipment/stat application requires runtime validation
+item_1667,ancient bone chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1668,silvery spiked shield,shield,off hand,,False,equipment/stat application requires runtime validation
+item_1676,black dragon robes,armor,body,,False,equipment/stat application requires runtime validation
+item_1677,tissue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1678,rotted worm skin,armor,body,,False,equipment/stat application requires runtime validation
+item_1679,platinum plate gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1680,blood portal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1681,scroll of rejuvenation,item,inventory,,False,equipment/stat application requires runtime validation
+item_1682,gravestones,item,inventory,,False,equipment/stat application requires runtime validation
+item_1683,pile of spectral webbing,item,inventory,,False,equipment/stat application requires runtime validation
+item_1684,weeping statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1686,hideous face,item,inventory,,False,equipment/stat application requires runtime validation
+item_1688,anvil,item,inventory,,False,equipment/stat application requires runtime validation
+item_1689,firepit,item,inventory,,False,equipment/stat application requires runtime validation
+item_1690,splotched scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1691,Kai battle-staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1692,astral staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1693,ancient sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1694,ancient chime,item,inventory,,False,equipment/stat application requires runtime validation
+item_1695,golden locket,item,inventory,,False,equipment/stat application requires runtime validation
+item_1696,cracked statue head,item,inventory,,False,equipment/stat application requires runtime validation
+item_1697,twisted tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_1698,turbo's favourite placeholder,item,inventory,,False,equipment/stat application requires runtime validation
+item_1699,barbed key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1700,stormmetal belt,armor,feet,,False,equipment/stat application requires runtime validation
+item_1701,bone leg boney,item,inventory,,False,equipment/stat application requires runtime validation
+item_1702,bookcase,item,inventory,,False,equipment/stat application requires runtime validation
+item_1703,pile of rubble,item,inventory,,False,equipment/stat application requires runtime validation
+item_1705,dead room,item,inventory,,False,equipment/stat application requires runtime validation
+item_1706,shining white talisman,item,inventory,,False,equipment/stat application requires runtime validation
+item_1707,starsteel corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_1708,runed sacrificial robes,armor,body,,False,equipment/stat application requires runtime validation
+item_1709,mithril dwarven axe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1710,serrated dwarven axe,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1711,black dragon gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1712,black dragon leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1713,black dragon tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1714,black dragon helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1715,black dragon boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1716,white dragon gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1717,white dragon leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1718,white dragon tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1719,white dragon helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1720,white dragon boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1721,blue dragon gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1722,blue dragon leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1723,blue dragon tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1724,blue dragon helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1725,blue dragon boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1727,large chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1728,arlysian firegut,item,inventory,,False,equipment/stat application requires runtime validation
+item_1729,diamond willow staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1730,rotten eye,item,inventory,,False,equipment/stat application requires runtime validation
+item_1731,rotted tongue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1735,white dragon hide,armor,feet,,False,equipment/stat application requires runtime validation
+item_1736,black dragon hide,armor,feet,,False,equipment/stat application requires runtime validation
+item_1737,blue dragon hide,armor,feet,,False,equipment/stat application requires runtime validation
+item_1738,massive chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1739,jeweled adamantite ninjato,item,inventory,,False,equipment/stat application requires runtime validation
+item_1740,adamantite longsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1741,blackened book,item,inventory,,False,equipment/stat application requires runtime validation
+item_1742,dusty papyrus,item,inventory,,False,equipment/stat application requires runtime validation
+item_1743,sdf parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_1744,ethereal tablet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1745,green dragon hide,armor,feet,,False,equipment/stat application requires runtime validation
+item_1746,severed head of Enigma Lord,item,inventory,,False,equipment/stat application requires runtime validation
+item_1747,blood gore,item,inventory,,False,equipment/stat application requires runtime validation
+item_1748,granite coffin,item,inventory,,False,equipment/stat application requires runtime validation
+item_1749,yellow bone portal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1750,scroll of camouflage,item,inventory,,False,equipment/stat application requires runtime validation
+item_1751,scroll of barbed tentacles,item,inventory,,False,equipment/stat application requires runtime validation
+item_1752,large rock,armor,body,,False,equipment/stat application requires runtime validation
+item_1777,Crest of Arlysia,item,inventory,,False,equipment/stat application requires runtime validation
+item_1778,crimson tankard,item,inventory,,False,equipment/stat application requires runtime validation
+item_1779,golden plaque,item,inventory,,False,equipment/stat application requires runtime validation
+item_1784,stone,item,inventory,,False,equipment/stat application requires runtime validation
+item_1785,disfigured statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1786,warrior statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1787,wooden hammer,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1788,wooden stake,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1789,scrawling wall,item,inventory,,False,equipment/stat application requires runtime validation
+item_1790,black scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1792,stone statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1793,stone sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1795,stone jaw,item,inventory,,False,equipment/stat application requires runtime validation
+item_1799,pristine coffin,item,inventory,,False,equipment/stat application requires runtime validation
+item_1802,Feyr,item,inventory,,False,equipment/stat application requires runtime validation
+item_1803,adamantite scimitar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1804,dark plated warchest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1806,copper box,item,inventory,,False,equipment/stat application requires runtime validation
+item_1808,shadowy corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_1810,large black gem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1813,crowned spider skull,armor,head,,False,equipment/stat application requires runtime validation
+item_1814,horned spider skull,armor,head,,False,equipment/stat application requires runtime validation
+item_1815,scroll of natural prowess,item,inventory,,False,equipment/stat application requires runtime validation
+item_1816,blood inscripted scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1817,scroll of mass entangle,item,inventory,,False,equipment/stat application requires runtime validation
+item_1818,scroll of sleep,item,inventory,,False,equipment/stat application requires runtime validation
+item_1819,magma rock chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1820,lunar chainmail hauberk,armor,body,,False,equipment/stat application requires runtime validation
+item_1821,lunar chainmail leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1822,lunar chainmail coif,armor,head,,False,equipment/stat application requires runtime validation
+item_1823,lunar chain gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1824,sadamune,item,inventory,,False,equipment/stat application requires runtime validation
+item_1826,granite tablet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1827,magma chunk,item,inventory,,False,equipment/stat application requires runtime validation
+item_1828,metallic parchment,item,inventory,,False,equipment/stat application requires runtime validation
+item_1829,frozen orb,item,inventory,,False,equipment/stat application requires runtime validation
+item_1831,table,item,inventory,,False,equipment/stat application requires runtime validation
+item_1832,aged desk,item,inventory,,False,equipment/stat application requires runtime validation
+item_1834,silver casket,item,inventory,,False,equipment/stat application requires runtime validation
+item_1835,stormmetal corselet,armor,body,,False,equipment/stat application requires runtime validation
+item_1836,silversilk gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_1837,silversilk slippers,armor,feet,,False,equipment/stat application requires runtime validation
+item_1838,demonhide sandals,armor,feet,,False,equipment/stat application requires runtime validation
+item_1839,sapphire bracers,item,inventory,,False,equipment/stat application requires runtime validation
+item_1840,sandstone chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_1841,black plate boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1842,black plate gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1843,black dragon tabi,armor,feet,,False,equipment/stat application requires runtime validation
+item_1844,mithril plate gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1845,prismatic slippers,armor,feet,,False,equipment/stat application requires runtime validation
+item_1846,prismatic gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_1847,prismatic trousers,armor,legs,,False,equipment/stat application requires runtime validation
+item_1848,astral slippers,armor,feet,,False,equipment/stat application requires runtime validation
+item_1849,astral trousers,armor,legs,,False,equipment/stat application requires runtime validation
+item_1850,astral gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_1851,shadowy ankh,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1852,wyvernhide gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1853,wyvernhide boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1854,adamantite ninjato,item,misc,,False,equipment/stat application requires runtime validation
+item_1855,scroll of eldritch fury,item,inventory,,False,equipment/stat application requires runtime validation
+item_1856,adamantite ring,item,inventory,,False,equipment/stat application requires runtime validation
+item_1857,adamantite chainmail leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1858,adamantite chain gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1859,adamantite chainmail coif,armor,head,,False,equipment/stat application requires runtime validation
+item_1860,adamantite scalemail tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1861,adamantite scalemail leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1862,adamantite scale gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1863,adamantite enforced boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1864,starsteel plate boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1865,starsteel plate gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1866,starsteel greathelm,armor,head,,False,equipment/stat application requires runtime validation
+item_1867,starsteel plate leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1868,starsteel bracers,item,inventory,,False,equipment/stat application requires runtime validation
+item_1869,tattered white bible,item,inventory,,False,equipment/stat application requires runtime validation
+item_1870,green dragon tunic,armor,body,,False,equipment/stat application requires runtime validation
+item_1871,green dragon leggings,armor,legs,,False,equipment/stat application requires runtime validation
+item_1872,green dragon helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1873,green dragon gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1874,green dragon boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1875,wyvernhide helm,armor,head,,False,equipment/stat application requires runtime validation
+item_1876,blood-stained manual,item,inventory,,False,equipment/stat application requires runtime validation
+item_1877,blessed scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1879,hide inscripted scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1880,platinum plate boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1881,lunar chainmail boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1882,belt of the crimson flame,armor,feet,,False,equipment/stat application requires runtime validation
+item_1883,ogre-skin baldric,item,inventory,,False,equipment/stat application requires runtime validation
+item_1884,crimson inquisition mask,armor,feet,,False,equipment/stat application requires runtime validation
+item_1885,turkey leg,item,inventory,,False,equipment/stat application requires runtime validation
+item_1886,scroll of chaos surge,item,inventory,,False,equipment/stat application requires runtime validation
+item_1888,severed purple tentacle,item,inventory,,False,equipment/stat application requires runtime validation
+item_1891,great hydra statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1893,nexus portal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1894,burning key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1895,golden pillar,item,inventory,,False,equipment/stat application requires runtime validation
+item_1896,bubbling black potion,item,inventory,,False,equipment/stat application requires runtime validation
+item_1897,charred spear,item,inventory,,False,equipment/stat application requires runtime validation
+item_1898,ornate panther carving,item,inventory,,False,equipment/stat application requires runtime validation
+item_1899,ancient key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1900,silver plaque,item,inventory,,False,equipment/stat application requires runtime validation
+item_1901,slimey spiked key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1902,stone rook key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1903,bronze statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1904,starsteel shortsword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1905,enigma sandals,armor,feet,,False,equipment/stat application requires runtime validation
+item_1906,tree branch,item,inventory,,False,equipment/stat application requires runtime validation
+item_1907,bow of silver,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1908,chained pile of bones,item,inventory,,False,equipment/stat application requires runtime validation
+item_1909,shintai sword,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1910,golden rod,item,inventory,,False,equipment/stat application requires runtime validation
+item_1911,black spiked ball,item,inventory,,False,equipment/stat application requires runtime validation
+item_1912,black spike,item,inventory,,False,equipment/stat application requires runtime validation
+item_1913,dynamite longbow,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1914,copper cross,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1915,massive boulder,item,inventory,,False,equipment/stat application requires runtime validation
+item_1916,multicoloured staff,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1917,diamond pedestal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1918,pearl pedestal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1919,moonstone pedestal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1920,marble pedestal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1924,marble,item,inventory,,False,equipment/stat application requires runtime validation
+item_1926,marble statue,item,inventory,,False,equipment/stat application requires runtime validation
+item_1927,crystal gem,item,inventory,,False,equipment/stat application requires runtime validation
+item_1930,helmet key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1931,star key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1932,ankh key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1933,white pawn,item,inventory,,False,equipment/stat application requires runtime validation
+item_1934,black knight,item,inventory,,False,equipment/stat application requires runtime validation
+item_1935,white bishop,item,inventory,,False,equipment/stat application requires runtime validation
+item_1936,white queen,item,inventory,,False,equipment/stat application requires runtime validation
+item_1937,black king,item,inventory,,False,equipment/stat application requires runtime validation
+item_1938,sceptre,item,inventory,,False,equipment/stat application requires runtime validation
+item_1939,black rook,item,inventory,,False,equipment/stat application requires runtime validation
+item_1940,crown key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1942,amber key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1943,sapphire key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1946,iron pedestal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1947,crimson shard,item,inventory,,False,equipment/stat application requires runtime validation
+item_1948,amber shard,item,inventory,,False,equipment/stat application requires runtime validation
+item_1949,sapphire shard,item,inventory,,False,equipment/stat application requires runtime validation
+item_1950,quartz shard,item,inventory,,False,equipment/stat application requires runtime validation
+item_1951,stone pedestal,item,inventory,,False,equipment/stat application requires runtime validation
+item_1954,placeholder for nahr,item,inventory,,False,equipment/stat application requires runtime validation
+item_1955,nexus ore,item,inventory,,False,equipment/stat application requires runtime validation
+item_1956,skeletal remains,item,inventory,,False,equipment/stat application requires runtime validation
+item_1957,rock outcropping,item,inventory,,False,equipment/stat application requires runtime validation
+item_1958,void,item,inventory,,False,equipment/stat application requires runtime validation
+item_1959,dusty tricorne,armor,head,,False,equipment/stat application requires runtime validation
+item_1960,raven claw,item,inventory,,False,equipment/stat application requires runtime validation
+item_1961,black dragon hood,armor,head,,False,equipment/stat application requires runtime validation
+item_1964,gold jeweled ring,armor,feet,,False,equipment/stat application requires runtime validation
+item_1965,longsword1,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1966,longsword2,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1967,longsword3,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1968,longsword4,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1969,longsword5,weapon,main hand,,False,equipment/stat application requires runtime validation
+item_1970,silver gloves,armor,hands,,False,equipment/stat application requires runtime validation
+item_1971,silver hood,armor,head,,False,equipment/stat application requires runtime validation
+item_1972,lightning whip,item,inventory,,False,equipment/stat application requires runtime validation
+item_1973,black chitin gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1974,red chitin gauntlets,armor,hands,,False,equipment/stat application requires runtime validation
+item_1975,training key,item,inventory,,False,equipment/stat application requires runtime validation
+item_1976,orc check,item,misc,,False,equipment/stat application requires runtime validation
+item_1977,dragon check,item,misc,,False,equipment/stat application requires runtime validation
+item_1978,cultist check,item,misc,,False,equipment/stat application requires runtime validation
+item_1979,stone wall letters,item,inventory,,False,equipment/stat application requires runtime validation
+item_1980,greater black dragon scale,item,inventory,,False,equipment/stat application requires runtime validation
+item_1981,greater white dragon scale,item,inventory,,False,equipment/stat application requires runtime validation
+item_1982,greater blue dragon scale,item,inventory,,False,equipment/stat application requires runtime validation
+item_1983,greater green dragon scale,item,inventory,,False,equipment/stat application requires runtime validation
+item_1984,iron earrings,item,inventory,,False,equipment/stat application requires runtime validation
+item_1985,green check,item,misc,,False,equipment/stat application requires runtime validation
+item_1989,burning scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1990,sandstone tablet,item,inventory,,False,equipment/stat application requires runtime validation
+item_1991,scroll of glacial skin,item,inventory,,False,equipment/stat application requires runtime validation
+item_1992,stained papyrus scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_1994,flaming ring,armor,feet,,False,equipment/stat application requires runtime validation
+item_1995,tarnished ring,armor,feet,,False,equipment/stat application requires runtime validation
+item_1996,adamantite wrist guard,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1997,runed wrist guard,armor,off hand,,False,equipment/stat application requires runtime validation
+item_1998,mithril chainmail boots,armor,feet,,False,equipment/stat application requires runtime validation
+item_1999,red paisley bandanna,armor,head,,False,equipment/stat application requires runtime validation
+item_2000,gold-coin sash,item,inventory,,False,equipment/stat application requires runtime validation
+item_2001,brass zills,armor,off hand,,False,equipment/stat application requires runtime validation
+item_2002,mirrored choli,armor,body,,False,equipment/stat application requires runtime validation
+item_2003,blue pantaloons,armor,legs,,False,equipment/stat application requires runtime validation
+item_2004,layered sun skirt,armor,legs,,False,equipment/stat application requires runtime validation
+item_2005,songsheet of beauty,item,inventory,,False,equipment/stat application requires runtime validation
+item_2006,songsheet of ugliness,item,inventory,,False,equipment/stat application requires runtime validation
+item_2007,astral skirt,armor,legs,,False,equipment/stat application requires runtime validation
+item_2008,black silk skirt,armor,legs,,False,equipment/stat application requires runtime validation
+item_2009,prismatic skirt,armor,legs,,False,equipment/stat application requires runtime validation
+item_2010,silk skirt,armor,legs,,False,equipment/stat application requires runtime validation
+item_2011,white scroll,item,inventory,,False,equipment/stat application requires runtime validation
+item_2012,shimmering papyrus,item,inventory,,False,equipment/stat application requires runtime validation
+item_2013,crimson chest,item,inventory,,False,equipment/stat application requires runtime validation
+item_2015,water lily,item,inventory,,False,equipment/stat application requires runtime validation
+item_2016,violet orchid,item,inventory,,False,equipment/stat application requires runtime validation
+item_2017,onion,item,inventory,,False,equipment/stat application requires runtime validation
+item_2018,carrot,item,inventory,,False,equipment/stat application requires runtime validation
+item_2019,potato,item,inventory,,False,equipment/stat application requires runtime validation
+item_2020,pumpkin,item,inventory,,False,equipment/stat application requires runtime validation
+item_2021,red keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2022,orange keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2023,yellow keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2024,green keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2025,blue keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2026,violet keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2027,black keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2028,silver keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2029,gold keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2030,white keyring,item,inventory,,False,equipment/stat application requires runtime validation
+item_2032,skirts of flame,armor,legs,,False,equipment/stat application requires runtime validation
+item_2033,ruby hairpin,armor,feet,,False,equipment/stat application requires runtime validation
+item_2034,lock of fiery hair,item,inventory,,False,equipment/stat application requires runtime validation
+item_2035,crimson ring,armor,feet,,False,equipment/stat application requires runtime validation
+item_2036,apple tree,item,inventory,,False,equipment/stat application requires runtime validation
+item_2038,apple,item,inventory,,False,equipment/stat application requires runtime validation
+item_2039,bruised apple,item,inventory,,False,equipment/stat application requires runtime validation
+item_2040,wooden ladder,item,inventory,,False,equipment/stat application requires runtime validation
+item_2041,flowery apron,item,inventory,,False,equipment/stat application requires runtime validation
+item_2042,apple pie,item,inventory,,False,equipment/stat application requires runtime validation
+item_2043,glass jug,item,inventory,,False,equipment/stat application requires runtime validation
+item_2044,jug of cider,item,inventory,,False,equipment/stat application requires runtime validation
+item_2045,dunce cap,armor,head,,False,equipment/stat application requires runtime validation
+item_2046,Pen and Paper,item,inventory,,False,equipment/stat application requires runtime validation
+new_items_1782575649,New item,,,,False,equipment/stat application requires runtime validation
+new_items_1782575654,New item,,,,False,equipment/stat application requires runtime validation
+new_items_1782575658,New item,,,,False,equipment/stat application requires runtime validation

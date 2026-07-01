@@ -77,6 +77,7 @@ $outRoot = Join-Path $ProjectRoot "DataDecodeCheckpoints\UnifiedDecodedData"
 $comparisonRoot = Join-Path $outRoot "Comparisons"
 $inventoryRoot = Join-Path $outRoot "Inventory"
 $summaryRoot = Join-Path $outRoot "Summary"
+$projectManifest = Read-JsonFile (Join-Path $ProjectRoot "ProjectManifest.json")
 
 New-Item -ItemType Directory -Force -Path $comparisonRoot | Out-Null
 New-Item -ItemType Directory -Force -Path $inventoryRoot | Out-Null
@@ -245,7 +246,7 @@ Write-Csv -Rows $summaryRows -Path (Join-Path $summaryRoot "OmniVerseComparisonS
 
 $manifest = [pscustomobject]@{
     name = "Unified decoded data and OmniVerse comparison index"
-    codeUpdate = "0049"
+    codeUpdate = $projectManifest.codeUpdate
     generatedUtc = (Get-Date).ToUniversalTime().ToString("o")
     policy = "Index and comparison reports only. Original MajorMUD binaries remain authoritative. OmniVerse/MudInfo data is validation/correlation evidence only."
     sourceInventoryFileCount = $sourceRows.Count

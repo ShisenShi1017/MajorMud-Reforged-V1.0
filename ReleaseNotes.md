@@ -1,3 +1,30 @@
+# CodeUpdate-0050 - SimulatorBuild0002 Handoff and DataDecode0110 Static Certification
+
+This update preserves the user-provided SimulatorBuild0002 handoff and final static DataDecode0110 checkpoint.
+
+Highlights:
+
+- Added `DataDecodeCheckpoints/SimulatorBuild0002/`.
+- Added `DataDecodeCheckpoints/DataDecode0110/`.
+- Added selected DataDecode0099-0108 DAT decoding decision docs.
+- Added `Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/`.
+- Recorded that the simulator is expected-model evidence only, not live runtime certification.
+- Excluded the embedded stale full repository archive and generated Python cache files.
+
+Verification:
+
+- Handoff ZIP contents were inspected.
+- Handoff ZIP SHA-256 was recorded.
+- DataDecode0110 CSV/JSON files parsed locally.
+- Unified decoded-data inventory was regenerated.
+- .NET Core/Core.Tests Release builds passed.
+- Core/server smoke tests passed.
+- Python 3.14.6 ran simulator summary, unknown queue, room search, spell search, and smoke test successfully.
+
+Known limitation:
+
+- SimulatorBuild0002 can help server work as a scenario/reference harness, but live runtime behavior still requires controlled Worldgroup validation.
+
 # CodeUpdate-0049 - DataDecode0068 Spell Engine Proof
 
 This update preserves the user-provided DataDecode0068 Spell Engine Proof checkpoint.

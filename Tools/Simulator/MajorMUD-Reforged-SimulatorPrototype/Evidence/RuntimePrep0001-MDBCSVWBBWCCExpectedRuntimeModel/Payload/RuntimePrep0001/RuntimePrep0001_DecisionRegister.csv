@@ -1,0 +1,6 @@
+decision_area,decision,basis
+phase_status,RUNTIME_PREP_STARTED_COMPLETE_FOR_EXPECTED_MODEL_SCAFFOLD,No live Worldgroup runtime observations used; model inherits verified DataDecode0110 static certification.
+primary_authority,MDB_AND_MDBTOOLS_CSV_REMAIN_AUTHORITATIVE,DataDecode0110 certified ImportedDatabases scope and runtime readiness plan.
+secondary_binary_source,WBB_WCC_ALLOWED_AS_CORROBORATION_ONLY,WBBResourceVerification_DataDecode0096 and WCC/codex resources are inherited evidence; not allowed to override MDB without explicit conflict evidence.
+runtime_claims,NO_TRUE_RUNTIME_VALIDATION_CLAIMS,"Worldgroup was not executed and no runtime logs, screenshots, room inspections, or spawn timing observations were supplied."
+next_pass,RuntimePrep0002_WorldPopulationExtraction,Use MDB/mdbtools CSV and inherited room/detail inventory paths to build room-by-room expected population table.

@@ -1,0 +1,4 @@
+issue_id,domain,status,description
+RP0008-ISSUE-001,runtime_behavior,preserved_unresolved,No Worldgroup server was run; integration is an expected model only.
+RP0008-ISSUE-002,npc_quest_behavior,preserved_unresolved,"Quest MHT is supporting documentation, not authoritative over MDB/CSV/WBB/WCC evidence."
+RP0008-ISSUE-003,combat_behavior,preserved_unresolved,"Combat formulas, AI priorities, status effects, and XP/gold application remain runtime-only."

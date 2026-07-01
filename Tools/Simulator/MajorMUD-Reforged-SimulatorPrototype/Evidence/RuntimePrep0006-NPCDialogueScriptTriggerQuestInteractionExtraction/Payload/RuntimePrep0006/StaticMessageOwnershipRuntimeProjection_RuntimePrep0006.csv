@@ -1,0 +1,155 @@
+message_id,category,key,owner,confidence,runtime_verified,candidate_category,text
+system.welcomeTitle,system,welcomeTitle,canonical_runtime_message_resource,C95_static_canonical_repository,no,dialogue_or_user_message_candidate,Reforged
+system.prompt,system,prompt,canonical_runtime_message_resource,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,>
+system.unknownCommand,system,unknownCommand,canonical_runtime_message_resource,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,Unknown command. Type help.
+system.needTrainer,system,needTrainer,canonical_runtime_message_resource,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,You need to be at a trainer to do that.
+combat.playerAttack,combat,playerAttack,canonical_runtime_message_resource,C95_static_canonical_repository,no,dialogue_or_user_message_candidate,You attack {target} for {damage} damage.
+combat.playerKill,combat,playerKill,canonical_runtime_message_resource,C95_static_canonical_repository,no,dialogue_or_user_message_candidate;quest_or_progression_interaction_candidate,You attack {target} for {damage} damage and defeat it.
+combat.monsterDeathReward,combat,monsterDeathReward,canonical_runtime_message_resource,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,You gain {xp} XP and {gold} gold.
+monsters.goblin.enterAggro,monsters,goblin.enterAggro,canonical_runtime_message_resource,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,The goblin lunges at you for {damage} damage.
+msg_16,messages,arrow trap,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,An arrow shoots out of the door and strikes {target} for {dmg} damage!
+msg_23,messages,barbskin,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Iron spikes protrude from your skin!
+Your skin returns to normal"
+msg_30,messages,black curse,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"A black curse is upon you
+Your vision returns to normal"
+msg_31,messages,black orb,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Your legs are petrified
+Your legs return to normal"
+msg_38,messages,blackwood forest sounds,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"^M
+The bitter scent of evil is rich in the air."
+msg_39,messages,blackwood forest sounds,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate,"^M
+You hear faint whispering behind you."
+msg_75,messages,chase (bushes),imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"enter bushes
+{target} pushes through the bushes!"
+msg_76,messages,chase (bushes),imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"enter bush
+{target} squeezes into the opening under the bushes."
+msg_102,messages,chase (lever),imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"pull lever
+{target} pulls the lever, and falls through a trapdoor!"
+msg_104,messages,chase (manhole),imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"go manhole
+{target} enters a manhole in the ground!"
+msg_115,messages,chase (portal),imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"go crimson
+{target} enters the crimson portal and vanishes!"
+msg_116,messages,chase (portal),imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"go ebony
+{target} enters the ebony portal and vanishes!"
+msg_117,messages,chase (portal),imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate;script_trigger_or_prompt_candidate,"go golden
+{target} enters the golden portal and vanishes!"
+msg_163,messages,convulsions,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You are in convulsions!
+Your body returns to normal."
+msg_168,messages,crimson bracers,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,A blazing inferno sears {target} for {dmg} damage!
+msg_178,messages,dark transfusion,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"You are filled with a feeling of grace.
+The feeling subsides"
+msg_181,messages,death chicken,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,A deathly shriek announces an evil prescence!
+msg_197,messages,eagle helm,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Your eyes are tingling
+Your awareness returns to normal"
+msg_227,messages,feeblemind,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate;quest_or_progression_interaction_candidate,"You feel moronic
+You feel your intelligence return"
+msg_247,messages,form of the monkey,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"The spirit of the monkey inhabits your body!
+The spirit of the monkey has left your body!"
+msg_248,messages,form of the monkey,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"You are distracted!
+The spirit of the monkey has left your body!"
+msg_251,messages,freezing blizzard,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Icy hail pelts everyone in the room
+Your awareness returns to normal."
+msg_252,messages,freezing blizzard,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Icy hail pelts {target}, freezing your bones!
+Your awareness returns to normal."
+msg_253,messages,freezing blizzard,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel oblivious!
+Your awareness returns to normal."
+msg_263,messages,galleon transport,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"^M
+You suddenly find your self aboard an ancient sea vessel!"
+msg_268,messages,glacial skin,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Your skin is covered in hardened protective ice!
+The protective ice melts and your skin returns to normal."
+msg_278,messages,gold dust,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You are cursed by a leprechaun
+The leprechaun's curse wears off"
+msg_283,messages,gruesome curse,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You don't feel so good.
+You begin to feel better, the taint removed."
+msg_294,messages,holy aura,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel safe from evil
+The effects of protection from evil wear off"
+msg_316,messages,leafwoven cloak,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"The energy of the earth flows through you!
+The energies return to the land!"
+msg_331,messages,mana dead,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Something has poisoned your mana!
+Your mana returns to normal"
+msg_351,messages,monster entry,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,A deathly shriek announces an evil prescence
+msg_355,messages,monster entry,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,A laughter filled with ancient evil sounds behind you
+msg_356,messages,monster entry,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,A mocking female laugh announces an evil prescence
+msg_376,messages,multicoloured sash,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel evasive
+Your quickness returns to normal"
+msg_378,messages,mute,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate,"You are silenced
+You can talk again"
+msg_394,messages,partial petrification,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You are partially petrified
+Your body returns to normal"
+msg_395,messages,peasant cloak,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Your mind is at peace!
+The chaos of the world returns!"
+msg_396,messages,petrification,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You are transformed into stone
+Your body returns to its normal state"
+msg_397,messages,petrification,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You struggle, but you are solid stone
+Your body returns to its normal state"
+msg_409,messages,powerless,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel powerless
+You suddenly feel your strength return"
+msg_411,messages,priestly benediction,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"You are filled with a feeling of grace
+The feeling subsides"
+msg_416,messages,protection from evil,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel safe from evil
+You no longer feel safe from evil!"
+msg_417,messages,protection from good,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel safe from good
+The effects of protection from good wear off"
+msg_420,messages,pyramid doors,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate;script_trigger_or_prompt_candidate,"^M
+Doors on this level creak and thump!"
+msg_422,messages,rapid healing,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You are healing faster
+Your healing rate returns to normal"
+msg_433,messages,rosewood rod,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You are healing faster!
+Your healing rate returns to normal."
+msg_442,messages,senselessness,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel oblivious
+Your awareness returns to normal"
+msg_446,messages,shadowform,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You are a shadow
+You return to your normal form"
+msg_449,messages,shawl of fortune,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"The grace of the ancient gypsies flows through you!
+The ancient gypsy grace leaves your body!"
+msg_457,messages,Silvermere sounds,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate,"^M
+A guardsman shouts out the time of day."
+msg_458,messages,Silvermere sounds,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate,"^M
+A voice shouts aloud ""Read the bulletin in the Adventurer's Guild!"""
+msg_471,messages,song of agility,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel agile
+Your agility returns to normal"
+msg_473,messages,song of battle,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"Your blood races in your veins!
+You begin to feel calmer."
+msg_474,messages,song of beauty,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel radiant!
+Your charm returns to normal"
+msg_476,messages,song of brilliance,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate;quest_or_progression_interaction_candidate,"You feel smart
+Your intelligence returns to normal"
+msg_477,messages,song of clumsiness,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel clumsy
+Your agility returns to normal"
+msg_485,messages,song of foolishness,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel foolish
+Your wisdom returns to normal"
+msg_486,messages,song of force,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel strong!
+Your strength returns to normal."
+msg_488,messages,song of knowledge,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate;quest_or_progression_interaction_candidate,"You feel smart!
+Your intelligence returns to normal."
+msg_491,messages,song of might,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel strong
+Your strength returns to normal"
+msg_495,messages,song of sageness,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel wise!
+Your wisdom returns to normal"
+msg_498,messages,song of silence,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate,"You are silenced
+You can talk again"
+msg_500,messages,song of soothing,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"You feel soothed.
+Your meditative state ends"
+msg_502,messages,song of stupidity,imported_message_catalog_entry,C95_static_canonical_repository,no,dialogue_or_user_message_candidate;quest_or_progression_interaction_candidate,"You feel dull
+Your intelligence returns to normal"
+msg_503,messages,song of swiftness,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel agile!
+Your agility returns to normal."
+msg_506,messages,song of ugliness,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel repulsive
+Your charm returns to normal"
+msg_508,messages,song of weakness,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel weak!
+Your strength returns to normal"
+msg_509,messages,song of wisdom,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel wise
+Your wisdom returns to normal"
+msg_515,messages,spear trap,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,A spear flies out of the door and impales {target} for {dmg} damage!
+msg_528,messages,stone to flesh,imported_message_catalog_entry,C95_static_canonical_repository,no,shop_or_economy_interaction_candidate,"With a cracking sound, {target} is restored to flesh!"
+msg_529,messages,stoneskin,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"Your skin is as hard as stone
+Your skin returns to normal"
+msg_533,messages,stormmetal bracers,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,White lightning shoots out frying {target} for {dmg} damage!
+msg_576,messages,unholy aura,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel safe from good
+The effects of protection from good wear off"
+msg_594,messages,way of the monkey,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,"You feel evasive
+The effects of way of the monkey wear off"
+msg_600,messages,weakness,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You feel weak and powerless
+You feel your strength return"
+msg_604,messages,white potion,imported_message_catalog_entry,C95_static_canonical_repository,no,quest_or_progression_interaction_candidate,"You are drugged
+Your body returns to normal"
+msg_609,messages,wizard knock,imported_message_catalog_entry,C95_static_canonical_repository,no,script_trigger_or_prompt_candidate,Your wizard knock opens a door!

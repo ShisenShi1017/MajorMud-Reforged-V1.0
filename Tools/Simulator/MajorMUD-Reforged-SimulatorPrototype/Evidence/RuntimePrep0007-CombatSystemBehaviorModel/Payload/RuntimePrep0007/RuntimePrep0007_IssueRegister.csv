@@ -1,0 +1,3 @@
+issue_id,severity,description,resolution
+RP0007-I001,expected,"Live combat formulas, AI priority, spell frequency, status processing, and timing cannot be certified without a running runtime.",Preserved as runtime-required.
+RP0007-I002,data-limitation,Uploaded inputs for this regeneration include RuntimePrep0006 and repository data; deeper MDB-only combat fields not present in the local regenerated input set were not inferred.,Use authoritative ImportedDatabases/MDB evidence if supplied in a future cumulative package; no fabricated fields added.

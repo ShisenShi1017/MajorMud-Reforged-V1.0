@@ -1,0 +1,9 @@
+simulator_module,readiness,backing_layers,notes
+data_loader,ready_for_prototype,RuntimePrep0001-0007,Can load checkpoint CSV matrices and preserve unresolved flags.
+room_graph,ready_for_prototype,"RuntimePrep0002, RuntimePrep0003","Supports room listings, exits, area transitions, one-way/special candidate flags."
+population_engine,ready_for_prototype,RuntimePrep0002,Can instantiate configured expected populations; live spawn timing remains unverified.
+shop_engine,ready_for_prototype,RuntimePrep0004,Can display expected shop inventories; transaction/restock scripts require runtime validation.
+loot_engine,ready_for_prototype,RuntimePrep0005,Can model configured monster and currency drops; RNG/live award behavior unresolved.
+npc_quest_engine,partial,RuntimePrep0006 plus quest MHT support,Can present candidate dialogue/quest prompts; live trigger and state machine need more evidence/runtime.
+combat_engine,partial,RuntimePrep0007,Can create placeholder/expected combat model; real formulas and AI decisions not certified.
+validation_harness,ready_for_design,all RuntimePrep checkpoints,Can compare future Worldgroup observations against prepared expected model.
