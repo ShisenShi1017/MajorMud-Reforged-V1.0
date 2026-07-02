@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0050",
+  "codeUpdate": "0051",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,21 +18,25 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0050",
+    "currentCodeUpdate": "0051",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0050-SimulatorBuild0002-Handoff-And-DataDecode0110-Static-Certification",
+    "lastUpdateName": "CodeUpdate-0051-Import-Staging-And-Build0021-Behavioral-Recovery",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0050 and wait for user-reported green GitHub Actions before continuing.",
-      "Approve either a narrow SimulatorBuild0003 spawn/timer expected-model slice or a narrow server data-readiness slice that treats simulator output as expected-model reference evidence only.",
+      "Push CodeUpdate-0051 and wait for user-reported green GitHub Actions before continuing.",
+      "Use DataDecodeCheckpoints/ImportStaging as the reviewed import staging surface before rewriting any canonical Data file.",
+      "Start the first reviewed import diff with one high-confidence category, preferably rooms/navigation, while keeping hidden/scripted exits marked uncertain.",
+      "Use DataDecodeCheckpoints/SimulatorBuild0021 and Docs/BehavioralRecovery/Build0021 as Build0021 evidence/catalog material only.",
+      "Do not promote Build0021 strong_candidate or runtime_required formulas to certified original behavior.",
       "Use DataDecodeCheckpoints/UnifiedDecodedData as the current decoded-data inventory and OmniVerse comparison surface.",
       "Use DataDecodeCheckpoints/DataDecode0068 as the preserved Spell Engine Proof checkpoint.",
       "Use DataDecodeCheckpoints/DataDecode0110 as the preserved final static ImportedDatabases certification checkpoint.",
       "Use DataDecodeCheckpoints/SimulatorBuild0002 as the preserved simulator handoff and RuntimePrep evidence archive.",
+      "Use DataDecodeCheckpoints/ImportStaging/Queues/PhoneDecodeImportHandoffTemplate.csv for Android ChatGPT data handoffs.",
       "Do not claim DataDecode0051 through DataDecode0067 are repository-preserved unless those packages are supplied and committed later.",
       "Use Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md for phone-based ChatGPT decode handoffs.",
       "Treat ZIPs as archival/checkpoint artifacts only; future decode passes update the repository directly.",
@@ -67,5 +71,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, extracts DataDecode0110 final static certification, installs the expected-model simulator, and refreshes DataDecodeCheckpoints/UnifiedDecodedData. ProjectManifest.json, UpdateManifest.json, and UnifiedDecodedDataManifest.json parsed successfully. DataDecode0110 CSV/JSON files parsed successfully. Python 3.14.6 ran simulator summary, unknown queue, room search, spell search, and smoke test successfully after a small simulator test import-path repair. Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Smoke tests passed. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0051 adds a report-only import staging readiness generator and generated staging reports under DataDecodeCheckpoints/ImportStaging, and preserves Build0021 behavioral recovery evidence under Docs/BehavioralRecovery/Build0021 and DataDecodeCheckpoints/SimulatorBuild0021. CodeUpdate-0050 GitHub Actions is green by user report. Build-ImportStagingReport.ps1 ran successfully and generated canonical data surface, simulator evidence surface, canonical import staging queue, phone handoff template, manifest, README, and report files. Build0021 copied files were verified against the outer handoff manifest hashes; the internal Build0021 manifest has documented stale rows for its own manifest and verification JSON. Sequential local .NET Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Core/server smoke tests passed. GitHub Actions remains the official gate after user push."
 }

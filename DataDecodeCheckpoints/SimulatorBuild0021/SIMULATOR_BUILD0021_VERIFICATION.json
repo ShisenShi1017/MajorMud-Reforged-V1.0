@@ -1,0 +1,83 @@
+{
+  "build": "SimulatorBuild0021-BehavioralInferenceFormulaMining",
+  "outgoing_artifact_verified": true,
+  "file_count": 9,
+  "manifest": [
+    {
+      "path": "BehavioralFormulaCatalog_Build0021.csv",
+      "bytes": 6584,
+      "sha256": "1d67899cca697cdd69f260934420954523ac8e752743cefaef25678e5e70fa46"
+    },
+    {
+      "path": "EvidenceSourceCoverage_Build0021.csv",
+      "bytes": 610,
+      "sha256": "d411efa8f6e45610648fb93e87a8338e3259b0d62e4e742a53e196fa6c685cfa"
+    },
+    {
+      "path": "InputArtifactVerification_Build0021.csv",
+      "bytes": 434,
+      "sha256": "b44c5109185aacfd22d9e76411f0fa763a2e11c83ba00e39c6ea2ab34133bec3"
+    },
+    {
+      "path": "MonsterCorrelationMatrix_Build0021.csv",
+      "bytes": 458,
+      "sha256": "444ede6c54eec80f607ada5c753831db814270c8ee9ac9c74893d180fe75d0a2"
+    },
+    {
+      "path": "RuntimeRequiredMatrix_Build0021.csv",
+      "bytes": 1466,
+      "sha256": "92a860019a0105a4d799b53c718e3daee6fd1742f2466caa2e649a09f5b636e7"
+    },
+    {
+      "path": "SIMULATOR_BUILD0021_HANDOFF.md",
+      "bytes": 885,
+      "sha256": "33d97d0ad18478e78a18c981e48bbe3d8aa47e251e2d3dd150edd9c154935c28"
+    },
+    {
+      "path": "SIMULATOR_BUILD0021_MANIFEST.csv",
+      "bytes": 868,
+      "sha256": "4b149e549d52cb3c606fc792c7cde9b83ad43a7c056ce7670d54bee8994ff549"
+    },
+    {
+      "path": "SIMULATOR_BUILD0021_METRICS.json",
+      "bytes": 1901,
+      "sha256": "f096e2e4197e3387a9ef13fb43eb38ab958d853d42e45d8b3cee7de50016d76f"
+    },
+    {
+      "path": "SIMULATOR_BUILD0021_REPORT.md",
+      "bytes": 3831,
+      "sha256": "f2102bdeee85a3d74cb9f2162bbd2daa3d78a9e4ed2eaba2d9db1df439050a51"
+    }
+  ],
+  "runtime_boundary": "static/inferred only; no live Worldgroup runtime validation claimed",
+  "formula_confidence_counts": {
+    "verified_from_data": 6,
+    "strong_candidate": 4,
+    "runtime_required": 4,
+    "weak_candidate": 2
+  },
+  "input_zip_tests": [
+    {
+      "artifact": "MajorMUD-Reforged-SimulatorBuild0020-FullSystemsSimulationMatrix.zip",
+      "zip_test": "passed",
+      "sha256": "435e47a92fbd5b54b3b35a0c181cc6de6eeb1ab8e2131802edf95a1c1458ac8b"
+    },
+    {
+      "artifact": "MajorMud-Reforged-V1.0-main(15).zip",
+      "zip_test": "passed",
+      "sha256": "013ce36bebdc39116308e6c6fb86dacf7331d98735f8290e472e9279d8aa80fa"
+    },
+    {
+      "artifact": "Worldgroup Server(1).zip",
+      "zip_test": "passed",
+      "sha256": "5e98e61aa8abc9dbf1c811f3d36c4943424bc0aa7a8d9df2a98bc16e55a95e78"
+    }
+  ],
+  "outgoing_zip": {
+    "path": "/mnt/data/build0021_work/out/MajorMUD-Reforged-BehavioralRecoveryBuild0021.zip",
+    "bytes": 11361,
+    "sha256": "e1ed0c3ea244a2dbdbe44f8b1ce19ae3a724653d724de30efa537ca0dbc57636",
+    "entry_count": 10,
+    "zip_test": "passed"
+  }
+}

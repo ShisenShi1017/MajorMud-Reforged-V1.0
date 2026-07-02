@@ -1,3 +1,30 @@
+# CodeUpdate-0051 - Import Staging and Build0021 Behavioral Recovery
+
+This update creates a report-only import staging surface and preserves the user-provided Build0021 behavioral recovery evidence package.
+
+Highlights:
+
+- Added `Tools/DataDecode/Build-ImportStagingReport.ps1`.
+- Generated `DataDecodeCheckpoints/ImportStaging/`.
+- Added a canonical import staging queue and Android ChatGPT phone handoff template.
+- Preserved Build0021 under `Docs/BehavioralRecovery/Build0021/`.
+- Preserved Build0021 under `DataDecodeCheckpoints/SimulatorBuild0021/`.
+- Added `Docs/CodeUpdates/CODEX_BUILD0021_REPO_UPDATE.md`.
+- Added `Core/Runtime/BehavioralRecovery/README.md`.
+
+Verification:
+
+- CodeUpdate-0050 GitHub Actions is green by user report.
+- Build0021 ZIP was inspected and copied overlay files were verified against the handoff manifest hashes.
+- Import staging reports were generated and inspected.
+- Local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors.
+- Local core/server smoke tests passed.
+
+Known limitation:
+
+- Build0021 is behavioral recovery evidence only. It uses no live Worldgroup runtime validation and does not certify `strong_candidate` or `runtime_required` formulas as original behavior.
+- The outer Codex handoff manifest hashes matched copied Build0021 files. The internal Build0021 manifest contains stale rows for its own manifest and verification JSON, preserved as supplied evidence.
+
 # CodeUpdate-0050 - SimulatorBuild0002 Handoff and DataDecode0110 Static Certification
 
 This update preserves the user-provided SimulatorBuild0002 handoff and final static DataDecode0110 checkpoint.

@@ -68,6 +68,8 @@ CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof under `DataDecodeChe
 
 CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, extracts DataDecode0110 final static certification, adds selected DataDecode0099-0108 DAT decoding decision docs, and installs the expected-model simulator under `Tools/Simulator/`. SimulatorBuild0002 can help future server work as a reference harness, but it does not certify live runtime behavior.
 
+CodeUpdate-0051 adds report-only import staging readiness reports under `DataDecodeCheckpoints/ImportStaging/` and preserves Build0021 behavioral recovery evidence under `Docs/BehavioralRecovery/Build0021/` and `DataDecodeCheckpoints/SimulatorBuild0021/`. Build0021 is evidence/catalog material only; it does not certify live runtime behavior or promote candidate formulas.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
@@ -136,4 +138,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0050 records SimulatorBuild0002 and DataDecode0110 static certification evidence. Next work should either continue with a narrow SimulatorBuild0003 expected-model spawn/timer slice or return to a narrow server data-readiness slice that treats simulator output as expected-model reference evidence only.
+Current implementation slice: CodeUpdate-0051 records import staging readiness and Build0021 behavioral recovery evidence. Next work should create the first reviewed import diff for one high-confidence category, preferably rooms/navigation, while treating simulator output as expected-model reference evidence only.

@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0050`
+- Current Code Update: `0051`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0050, wait for user-reported green GitHub Actions, then decide whether to continue SimulatorBuild0003 expected-model work or return to a narrow server data-readiness slice.
+- Current priority: push CodeUpdate-0051, wait for user-reported green GitHub Actions, then create the first reviewed import diff for one high-confidence category, preferably rooms/navigation.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -146,6 +146,8 @@ CodeUpdate-0049 preserves the user-provided DataDecode0068 Spell Engine Proof ch
 
 CodeUpdate-0050 preserves the user-provided SimulatorBuild0002 handoff, extracts DataDecode0110 final static certification, adds selected DataDecode0099-0108 DAT decoding decision docs, and installs the expected-model simulator. SimulatorBuild0002 is useful as a server reference harness, but it is not live Worldgroup runtime validation.
 
+CodeUpdate-0051 adds report-only import staging readiness reports and preserves the user-provided Build0021 behavioral recovery evidence package. Build0021 records 6 `verified_from_data`, 4 `strong_candidate`, 2 `weak_candidate`, and 4 `runtime_required` formula/catalog entries. It does not use live Worldgroup runtime validation and does not certify simulator executable formula updates.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -185,6 +187,7 @@ Completed/started slices:
 - CodeUpdate-0048: Unified decoded-data inventory, OmniVerse comparison, and Android ChatGPT decode workflow.
 - CodeUpdate-0049: DataDecode0068 Spell Engine Proof preservation.
 - CodeUpdate-0050: SimulatorBuild0002 handoff and DataDecode0110 static certification preservation.
+- CodeUpdate-0051: Import staging readiness reports and Build0021 behavioral recovery evidence preservation.
 
 Focus Areas:
 
@@ -208,9 +211,9 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0050:
+Next candidate after CodeUpdate-0051:
 
-- Approve either a narrow SimulatorBuild0003 expected-model spawn/timer slice or a narrow server data-readiness slice that uses the simulator only as expected-model reference evidence.
+- Create the first reviewed import diff for one high-confidence category, preferably rooms/navigation.
 - Keep live runtime behavior uncertified until controlled Worldgroup validation is available.
 - Preserve previous decode reports instead of overwriting historical analysis.
 - Promote no fields without binary evidence.

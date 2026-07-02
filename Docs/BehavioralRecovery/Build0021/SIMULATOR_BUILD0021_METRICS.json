@@ -1,0 +1,65 @@
+{
+  "build": "SimulatorBuild0021-BehavioralInferenceFormulaMining",
+  "runtime_used": false,
+  "live_worldgroup_validation": false,
+  "input_artifacts": [
+    {
+      "artifact": "MajorMUD-Reforged-SimulatorBuild0020-FullSystemsSimulationMatrix.zip",
+      "bytes": 25899321,
+      "sha256": "435e47a92fbd5b54b3b35a0c181cc6de6eeb1ab8e2131802edf95a1c1458ac8b",
+      "zip_test": "passed",
+      "entry_count": 859
+    },
+    {
+      "artifact": "MajorMud-Reforged-V1.0-main(15).zip",
+      "bytes": 64148863,
+      "sha256": "013ce36bebdc39116308e6c6fb86dacf7331d98735f8290e472e9279d8aa80fa",
+      "zip_test": "passed",
+      "entry_count": 4823
+    },
+    {
+      "artifact": "Worldgroup Server(1).zip",
+      "bytes": 39827647,
+      "sha256": "5e98e61aa8abc9dbf1c811f3d36c4943424bc0aa7a8d9df2a98bc16e55a95e78",
+      "zip_test": "passed",
+      "entry_count": 3392
+    }
+  ],
+  "counts": {
+    "imported_items": 1950,
+    "imported_monsters": 1100,
+    "imported_spells": 1350,
+    "imported_shops": 178,
+    "imported_classes": 15,
+    "imported_races": 13,
+    "repo_items": 1770,
+    "repo_and_sim_csv_files": 335,
+    "worldgroup_server_files": 3064
+  },
+  "formula_confidence_counts": {
+    "verified_from_data": 6,
+    "strong_candidate": 4,
+    "runtime_required": 4,
+    "weak_candidate": 2
+  },
+  "item_nonzero_weaponish": 482,
+  "item_nonzero_armorish": 565,
+  "shop_inventory_rows": 3550,
+  "spell_nonzero_field_counts": {
+    "energy_cost": 231,
+    "min_effect": 998,
+    "max_effect": 998,
+    "difficulty": 1148,
+    "levels_for_max_increase": 271,
+    "max_increase": 270,
+    "levels_for_min_increase": 219,
+    "min_increase": 219,
+    "mana_cost": 307,
+    "level_cap": 339,
+    "duration": 543,
+    "levels_for_duration_increase": 176,
+    "duration_increase": 92
+  },
+  "monster_correlation_rows": 10,
+  "simulator_code_updates": "none; produced evidence/catalog inputs only"
+}

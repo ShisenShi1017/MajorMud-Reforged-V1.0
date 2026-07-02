@@ -1,5 +1,18 @@
 # Changelog
 
+## CodeUpdate-0051 - Import Staging and Build0021 Behavioral Recovery
+
+- Recorded CodeUpdate-0050 GitHub Actions as green by user report.
+- Added `Tools/DataDecode/Build-ImportStagingReport.ps1`.
+- Generated `DataDecodeCheckpoints/ImportStaging/` with canonical data surface, simulator evidence surface, import staging queue, phone handoff template, manifest, README, and report files.
+- Preserved the user-provided Build0021 behavioral recovery evidence package under `Docs/BehavioralRecovery/Build0021/` and `DataDecodeCheckpoints/SimulatorBuild0021/`.
+- Added `Docs/CodeUpdates/CODEX_BUILD0021_REPO_UPDATE.md`.
+- Added `Core/Runtime/BehavioralRecovery/README.md`.
+- Added `Reports/CodeUpdates/CodeUpdate-0051/ImportStagingAndBuild0021Report.md`.
+- Recorded import staging counts: 1,246 evidence-backed room records, 178 shops, 732 monster item drop edges, 125 quest/progression candidates, 46 skill/trainer-related rows, 1,770 item/equipment records, 1,180 spell records, and 1,100 expected monster records.
+- Recorded Build0021 formula/catalog confidence counts: 6 `verified_from_data`, 4 `strong_candidate`, 2 `weak_candidate`, and 4 `runtime_required`.
+- No canonical `Data` rewrites, server behavior changes, field promotions, gameplay systems, live runtime validation claims, or Build0021 formula certifications are included.
+
 ## CodeUpdate-0050 - SimulatorBuild0002 Handoff and DataDecode0110 Static Certification
 
 - Preserved the user-provided SimulatorBuild0002 Codex handoff under `DataDecodeCheckpoints/SimulatorBuild0002/`.

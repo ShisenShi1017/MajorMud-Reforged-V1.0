@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0050
+- Current Code Update: 0051
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0050 - SimulatorBuild0002 Handoff and DataDecode0110 Static Certification
+- Current update: CodeUpdate-0051 - Import Staging and Build0021 Behavioral Recovery
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -64,6 +64,14 @@
 - CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, extracts DataDecode0110 final static certification, and installs the expected-model simulator under `Tools/Simulator/`.
 - CodeUpdate-0050 records DataDecode0110 as static `ImportedDatabases` certification only, with runtime validation still not started.
 - CodeUpdate-0050 does not rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, certify live runtime behavior, or commit the embedded stale full repository archive.
+- CodeUpdate-0050 GitHub Actions is green by user report.
+- CodeUpdate-0051 adds report-only import staging readiness reports under `DataDecodeCheckpoints/ImportStaging/`.
+- CodeUpdate-0051 preserves Build0021 behavioral recovery evidence under `Docs/BehavioralRecovery/Build0021/` and `DataDecodeCheckpoints/SimulatorBuild0021/`.
+- Build0021 records 6 `verified_from_data`, 4 `strong_candidate`, 2 `weak_candidate`, and 4 `runtime_required` formula/catalog entries.
+- CodeUpdate-0051 local JSON/CSV/report validation passed.
+- CodeUpdate-0051 local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors.
+- CodeUpdate-0051 local core/server smoke tests passed.
+- CodeUpdate-0051 does not rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, certify live runtime behavior, or certify Build0021 candidate formulas.
 
 ## Reference Data Policy
 
