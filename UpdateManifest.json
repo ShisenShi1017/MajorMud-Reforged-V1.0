@@ -1,70 +1,52 @@
 {
-  "codeUpdate": "0051",
-  "name": "CodeUpdate-0051-Import-Staging-And-Build0021-Behavioral-Recovery",
+  "codeUpdate": "0052",
+  "name": "CodeUpdate-0052-Build0027-Current-State-Handoff",
   "packageType": "direct-repository-patch",
-  "purpose": "Create a report-only import staging readiness surface and preserve the user-provided Build0021 behavioral recovery evidence package without promoting formulas or rewriting canonical Data.",
+  "purpose": "Preserve the user-provided Build0027 current-state handoff so the repository reflects current recovery status without relying on chat memory or unverified simulator claims.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": false,
-  "addsTooling": true,
+  "addsTooling": false,
   "batInstallerCreated": false,
   "updateZipCreated": false,
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
-  "milestone2Status": "Continuing with binary-first data completion, reviewed import staging, and cautious server-readiness work; no gameplay systems are approved.",
-  "verificationStatus": "CodeUpdate-0050 GitHub Actions is green by user report. Build-ImportStagingReport.ps1 ran successfully and generated DataDecodeCheckpoints/ImportStaging. Generated staging reports were inspected. Build0021 ZIP was inspected, extracted to a temporary inspection folder, copied from repo_overlay into repository paths, and copied files were verified against the outer handoff manifest hashes. The internal Build0021 manifest contains stale self/verification rows for SIMULATOR_BUILD0021_MANIFEST.csv and SIMULATOR_BUILD0021_VERIFICATION.json; those rows are preserved as supplied evidence. Build0021 records 6 verified_from_data formulas, 4 strong_candidate formulas, 2 weak_candidate formulas, and 4 runtime_required items; live Worldgroup runtime validation was not used. Sequential local .NET Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Core/server smoke tests passed.",
+  "milestone2Status": "Continuing with binary-first data completion, reviewed import staging, behavioral recovery evidence, and cautious simulator harness preparation; no gameplay systems are approved.",
+  "verificationStatus": "CodeUpdate-0051 GitHub Actions is green by user report. Build0027 ZIP was inspected, extracted to a temporary inspection folder, and verified against MANIFEST.json. The Build0027 source ZIP SHA-256 is 7932FA3E6D4664D5440C0039CBF7FD85528CB0A5CBC09C7BE3C25CB2E4CF750F. Build0027 files were preserved under DataDecodeCheckpoints/CurrentStateBuild0027 and Docs/BehavioralRecovery/Build0027. Checkpoint files match the handoff manifest hashes. JSON and CSV parse validation passed. Local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Core/server smoke tests passed. An earlier parallel build attempt hit a transient shared obj file lock.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
     "CHANGELOG.md",
-    "Core/Runtime/BehavioralRecovery/README.md",
-    "DataDecodeCheckpoints/ImportStaging/",
-    "DataDecodeCheckpoints/SimulatorBuild0021/",
+    "DataDecodeCheckpoints/CurrentStateBuild0027/",
     "Docs/02-Roadmap.md",
     "Docs/Architecture/PROJECT_ROADMAP.md",
-    "Docs/BehavioralRecovery/Build0021/",
-    "Docs/CodeUpdates/CODEX_BUILD0021_REPO_UPDATE.md",
+    "Docs/BehavioralRecovery/Build0027/",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0051/ImportStagingAndBuild0021Report.md",
-    "Tools/DataDecode/Build-ImportStagingReport.ps1",
+    "Reports/CodeUpdates/CodeUpdate-0052/Build0027CurrentStateHandoffReport.md",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "CodeUpdate-0050 is green by user report.",
+    "baselineStatus": "CodeUpdate-0051 is green by user report.",
     "officialGate": "GitHub Actions after user push."
   },
-  "importStaging": {
-    "path": "DataDecodeCheckpoints/ImportStaging/",
-    "generator": "Tools/DataDecode/Build-ImportStagingReport.ps1",
-    "scope": "Read-only staging and diff reports. No canonical Data rewrite.",
-    "phoneHandoffTemplate": "DataDecodeCheckpoints/ImportStaging/Queues/PhoneDecodeImportHandoffTemplate.csv"
-  },
-  "build0021": {
-    "sourcePackage": "C:\\Users\\djkao\\Downloads\\MajorMUD-Reforged-CodexHandoff-Build0021-RepoUpdate.zip",
-    "sourcePackageSha256": "A7F88E72CEB8020F54666BC72989A0DB4E5294C806BB3C7265E93ABBA955BE36",
-    "checkpointPath": "DataDecodeCheckpoints/SimulatorBuild0021/",
-    "docsPath": "Docs/BehavioralRecovery/Build0021/",
+  "build0027": {
+    "sourcePackage": "C:\\Users\\djkao\\Downloads\\MajorMUD-Reforged-CodexHandoff-CurrentState-Build0027.zip",
+    "sourcePackageSha256": "7932FA3E6D4664D5440C0039CBF7FD85528CB0A5CBC09C7BE3C25CB2E4CF750F",
+    "checkpointPath": "DataDecodeCheckpoints/CurrentStateBuild0027/",
+    "docsPath": "Docs/BehavioralRecovery/Build0027/",
     "runtimeUsed": false,
-    "liveWorldgroupValidation": false,
-    "formulaConfidenceCounts": {
-      "verified_from_data": 6,
-      "strong_candidate": 4,
-      "weak_candidate": 2,
-      "runtime_required": 4
-    },
-    "boundary": "Evidence/catalog update only. Do not promote strong_candidate or runtime_required formulas to certified original behavior."
+    "originalRuntimeValidation": false,
+    "boundary": "Current-state handoff only. Do not treat prior chat pass/fail claims as authoritative without artifact logs or locally generated test output."
   },
   "localVerification": {
     "status": "passed",
-    "json": "ProjectManifest.json, UpdateManifest.json, ImportStagingManifest.json, and Build0021 metrics/verification JSON files parsed successfully.",
-    "csv": "Import staging CSV files and Build0021 CSV files parsed successfully.",
-    "builder": "Tools/DataDecode/Build-ImportStagingReport.ps1 ran successfully.",
+    "zipInspection": "Build0027 ZIP entries were listed and hash was recorded.",
+    "manifest": "Extracted Build0027 files matched MANIFEST.json entries; checkpoint copy also matched MANIFEST.json.",
     "build": "Sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors. An earlier parallel build attempt hit a transient shared obj file lock.",
-    "smokeTests": "Reforged core/server smoke tests passed.",
-    "build0021Manifest": "Copied Build0021 repo_overlay files match the outer handoff manifest hashes. The internal Build0021 manifest has stale rows for its own manifest and verification JSON."
+    "smokeTests": "Reforged core/server smoke tests passed."
   },
   "boundaries": [
     "No gameplay systems",
@@ -73,13 +55,11 @@
     "No ImportedDatabases deletion",
     "No runtime field promotions",
     "No live Worldgroup runtime validation claim",
-    "No exact combat/timer/script/AI/drop-rate certification",
-    "No OmniVerse-only promotion",
-    "No public-ID to binary-row assumptions",
-    "No Build0021 strong_candidate formula certification",
-    "No Build0021 runtime_required behavior promotion"
+    "No formula certification from chat summaries",
+    "No Build0024 or Build0025 expected-model matrix promotion",
+    "No executable harness implementation in this update"
   ],
-  "referenceDataPolicy": "Original MajorMUD binary files remain authoritative. SimulatorBuild0002, SimulatorBuild0021, RuntimePrep evidence, OmniVerse, MudInfo, imported datasets, WBB comparisons, website data, community data, and tool-derived data are validation/correlation evidence only unless a reviewed binary-backed reconciliation update explicitly promotes a field.",
-  "recommendedNextUpdate": "After user push and green GitHub Actions, create the first reviewed import diff for one high-confidence category, preferably rooms/navigation, while keeping hidden/scripted exits and runtime-only behavior marked uncertain.",
+  "referenceDataPolicy": "Original MajorMUD binary files remain authoritative. SimulatorBuild0021, Build0027, RuntimePrep evidence, OmniVerse, MudInfo, imported datasets, WBB comparisons, website data, community data, and tool-derived data are validation/correlation evidence only unless a reviewed binary-backed reconciliation update explicitly promotes a field.",
+  "recommendedNextUpdate": "After user push and green GitHub Actions, start CodeUpdate-0053 as the Build0028 real executable harness foundation: run existing simulator tests, capture real logs, add executable smoke tests only where hooks exist, and mark missing formula hooks skipped/xfail.",
   "recommendedNextScopeRequiresUserApproval": true
 }

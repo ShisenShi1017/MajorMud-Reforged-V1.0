@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0051",
+  "codeUpdate": "0052",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,16 +18,20 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0051",
+    "currentCodeUpdate": "0052",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0051-Import-Staging-And-Build0021-Behavioral-Recovery",
+    "lastUpdateName": "CodeUpdate-0052-Build0027-Current-State-Handoff",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0051 and wait for user-reported green GitHub Actions before continuing.",
+      "Push CodeUpdate-0052 and wait for user-reported green GitHub Actions before continuing.",
+      "Use DataDecodeCheckpoints/CurrentStateBuild0027 and Docs/BehavioralRecovery/Build0027 as the preserved Build0027 current-state handoff.",
+      "Treat Build0024 and Build0025 matrices as expected_model until converted into actual executable simulator tests.",
+      "Do not treat prior chat pass/fail claims as authoritative unless backed by artifact logs or locally generated test output.",
+      "Plan CodeUpdate-0053 as the Build0028 real executable harness foundation after 0052 is green.",
       "Use DataDecodeCheckpoints/ImportStaging as the reviewed import staging surface before rewriting any canonical Data file.",
       "Start the first reviewed import diff with one high-confidence category, preferably rooms/navigation, while keeping hidden/scripted exits marked uncertain.",
       "Use DataDecodeCheckpoints/SimulatorBuild0021 and Docs/BehavioralRecovery/Build0021 as Build0021 evidence/catalog material only.",
@@ -71,5 +75,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0051 adds a report-only import staging readiness generator and generated staging reports under DataDecodeCheckpoints/ImportStaging, and preserves Build0021 behavioral recovery evidence under Docs/BehavioralRecovery/Build0021 and DataDecodeCheckpoints/SimulatorBuild0021. CodeUpdate-0050 GitHub Actions is green by user report. Build-ImportStagingReport.ps1 ran successfully and generated canonical data surface, simulator evidence surface, canonical import staging queue, phone handoff template, manifest, README, and report files. Build0021 copied files were verified against the outer handoff manifest hashes; the internal Build0021 manifest has documented stale rows for its own manifest and verification JSON. Sequential local .NET Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Core/server smoke tests passed. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0052 preserves the user-provided Build0027 current-state handoff under DataDecodeCheckpoints/CurrentStateBuild0027 and Docs/BehavioralRecovery/Build0027. CodeUpdate-0051 GitHub Actions is green by user report. Build0027 ZIP was inspected, SHA-256 7932FA3E6D4664D5440C0039CBF7FD85528CB0A5CBC09C7BE3C25CB2E4CF750F was recorded, extracted files matched MANIFEST.json, and the checkpoint copy matched MANIFEST.json. JSON and CSV parse validation passed. Local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Core/server smoke tests passed. GitHub Actions remains the official gate after user push."
 }

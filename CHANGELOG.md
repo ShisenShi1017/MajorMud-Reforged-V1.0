@@ -1,5 +1,18 @@
 # Changelog
 
+## CodeUpdate-0052 - Build0027 Current-State Handoff
+
+- Recorded CodeUpdate-0051 GitHub Actions as green by user report.
+- Inspected `MajorMUD-Reforged-CodexHandoff-CurrentState-Build0027.zip`.
+- Recorded Build0027 ZIP SHA-256 `7932FA3E6D4664D5440C0039CBF7FD85528CB0A5CBC09C7BE3C25CB2E4CF750F`.
+- Preserved the full Build0027 handoff under `DataDecodeCheckpoints/CurrentStateBuild0027/`.
+- Preserved human-readable Build0027 docs, tasks, and evidence manifest under `Docs/BehavioralRecovery/Build0027/`.
+- Added `Reports/CodeUpdates/CodeUpdate-0052/Build0027CurrentStateHandoffReport.md`.
+- Recorded that static data/content recovery and entity/world/catalog recovery are effectively complete by handoff statement, while original runtime validation remains unavailable.
+- Recorded that Build0024/0025 matrices remain `expected_model` until converted into actual executable simulator tests.
+- Recorded that prior chat pass/fail claims are not authoritative unless backed by artifact logs or locally generated test output.
+- No executable harness implementation, canonical `Data` rewrite, server behavior change, field promotion, gameplay system, or original runtime behavior certification is included.
+
 ## CodeUpdate-0051 - Import Staging and Build0021 Behavioral Recovery
 
 - Recorded CodeUpdate-0050 GitHub Actions as green by user report.

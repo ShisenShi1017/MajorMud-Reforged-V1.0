@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0051
+## 10. Current project position after CodeUpdate-0052
 
-- Current Code Update: `0051`
+- Current Code Update: `0052`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0051, verify GitHub Actions green by user report, then create the first reviewed import diff for one high-confidence category, preferably rooms/navigation.
+- Current priority: push CodeUpdate-0052, verify GitHub Actions green by user report, then approve CodeUpdate-0053 as the Build0028 real executable harness foundation.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -175,6 +175,8 @@ CodeUpdate-0049 preserves the user-provided DataDecode0068 Spell Engine Proof ch
 CodeUpdate-0050 preserves the user-provided SimulatorBuild0002 handoff package under `DataDecodeCheckpoints/SimulatorBuild0002/`, extracts the final DataDecode0110 static certification checkpoint under `DataDecodeCheckpoints/DataDecode0110/`, adds selected DAT decoding decision docs from DataDecode0099 through DataDecode0108, and installs the expected-model simulator under `Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/`. DataDecode0110 certifies static `ImportedDatabases` evidence only and carries forward 3,975 unresolved ownership rows plus 5,464 unresolved static rows. SimulatorBuild0002 is useful as an expected-model server reference harness but is not live Worldgroup runtime validation. CodeUpdate-0050 excludes the embedded stale full repository archive and generated Python cache files.
 
 CodeUpdate-0051 adds a report-only import staging readiness surface under `DataDecodeCheckpoints/ImportStaging/` and preserves the user-provided Build0021 behavioral recovery evidence package under `Docs/BehavioralRecovery/Build0021/`, `DataDecodeCheckpoints/SimulatorBuild0021/`, `Docs/CodeUpdates/CODEX_BUILD0021_REPO_UPDATE.md`, and `Core/Runtime/BehavioralRecovery/README.md`. Build0021 records 6 `verified_from_data`, 4 `strong_candidate`, 2 `weak_candidate`, and 4 `runtime_required` formula/catalog entries. It uses no live Worldgroup runtime validation and certifies no simulator executable formula changes. CodeUpdate-0051 does not rewrite canonical `Data/`, promote fields, add gameplay, or certify `strong_candidate` or `runtime_required` behavior.
+
+CodeUpdate-0052 preserves the user-provided Build0027 current-state handoff under `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`. Build0027 records that static data/content recovery and entity/world/catalog recovery are effectively complete, but original runtime validation remains unavailable. Build0024 and Build0025 matrices remain `expected_model` until converted into actual executable simulator tests. Earlier chat pass/fail claims are not authoritative unless backed by artifact logs or locally generated test output. CodeUpdate-0052 does not add the Build0028 harness; that is the next reviewed scope after 0052 is green.
 
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 

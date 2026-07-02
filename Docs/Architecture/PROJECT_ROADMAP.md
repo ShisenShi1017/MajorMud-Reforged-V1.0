@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0051`
+- Current Code Update: `0052`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0051, wait for user-reported green GitHub Actions, then create the first reviewed import diff for one high-confidence category, preferably rooms/navigation.
+- Current priority: push CodeUpdate-0052, wait for user-reported green GitHub Actions, then approve CodeUpdate-0053 as the Build0028 real executable harness foundation.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -148,6 +148,8 @@ CodeUpdate-0050 preserves the user-provided SimulatorBuild0002 handoff, extracts
 
 CodeUpdate-0051 adds report-only import staging readiness reports and preserves the user-provided Build0021 behavioral recovery evidence package. Build0021 records 6 `verified_from_data`, 4 `strong_candidate`, 2 `weak_candidate`, and 4 `runtime_required` formula/catalog entries. It does not use live Worldgroup runtime validation and does not certify simulator executable formula updates.
 
+CodeUpdate-0052 preserves the user-provided Build0027 current-state handoff under `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`. Build0027 records that static data/content recovery and entity/world/catalog recovery are effectively complete, while original runtime validation remains unavailable. Build0024 and Build0025 matrices remain `expected_model` until converted into actual executable simulator tests.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -188,6 +190,7 @@ Completed/started slices:
 - CodeUpdate-0049: DataDecode0068 Spell Engine Proof preservation.
 - CodeUpdate-0050: SimulatorBuild0002 handoff and DataDecode0110 static certification preservation.
 - CodeUpdate-0051: Import staging readiness reports and Build0021 behavioral recovery evidence preservation.
+- CodeUpdate-0052: Build0027 current-state handoff preservation.
 
 Focus Areas:
 
@@ -211,9 +214,12 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0051:
+Next candidate after CodeUpdate-0052:
 
-- Create the first reviewed import diff for one high-confidence category, preferably rooms/navigation.
+- Approve CodeUpdate-0053 as the Build0028 real executable harness foundation.
+- Run existing simulator tests before adding new claims.
+- Add executable smoke tests only where hooks exist.
+- Mark missing formula hooks skipped/xfail with `runtime_required` or `not_implemented` labels.
 - Keep live runtime behavior uncertified until controlled Worldgroup validation is available.
 - Preserve previous decode reports instead of overwriting historical analysis.
 - Promote no fields without binary evidence.

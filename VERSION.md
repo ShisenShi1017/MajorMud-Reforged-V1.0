@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0051
+- Current Code Update: 0052
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0051 - Import Staging and Build0021 Behavioral Recovery
+- Current update: CodeUpdate-0052 - Build0027 Current-State Handoff
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -72,6 +72,14 @@
 - CodeUpdate-0051 local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors.
 - CodeUpdate-0051 local core/server smoke tests passed.
 - CodeUpdate-0051 does not rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, certify live runtime behavior, or certify Build0021 candidate formulas.
+- CodeUpdate-0051 GitHub Actions is green by user report.
+- CodeUpdate-0052 preserves Build0027 current-state handoff evidence under `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`.
+- CodeUpdate-0052 records that Build0024/0025 matrices remain `expected_model` until converted into actual executable simulator tests.
+- CodeUpdate-0052 records that prior chat pass/fail claims are not authoritative unless backed by artifact logs or locally generated test output.
+- CodeUpdate-0052 local JSON/CSV/report validation passed.
+- CodeUpdate-0052 local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors.
+- CodeUpdate-0052 local core/server smoke tests passed.
+- CodeUpdate-0052 does not add executable harness code, rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, or certify original runtime behavior.
 
 ## Reference Data Policy
 

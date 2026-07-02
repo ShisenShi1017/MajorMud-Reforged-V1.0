@@ -1,3 +1,27 @@
+# CodeUpdate-0052 - Build0027 Current-State Handoff
+
+This update preserves the user-provided Build0027 current-state handoff.
+
+Highlights:
+
+- Added `DataDecodeCheckpoints/CurrentStateBuild0027/`.
+- Added `Docs/BehavioralRecovery/Build0027/`.
+- Added `Reports/CodeUpdates/CodeUpdate-0052/Build0027CurrentStateHandoffReport.md`.
+- Recorded Build0027 ZIP SHA-256 `7932FA3E6D4664D5440C0039CBF7FD85528CB0A5CBC09C7BE3C25CB2E4CF750F`.
+
+Verification:
+
+- CodeUpdate-0051 GitHub Actions is green by user report.
+- Build0027 ZIP was inspected.
+- Extracted Build0027 files matched `MANIFEST.json`.
+- Checkpoint copy matched `MANIFEST.json`.
+- Local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors.
+- Local core/server smoke tests passed.
+
+Known limitation:
+
+- Build0027 is a current-state handoff only. It does not add the Build0028 executable harness, does not certify original runtime behavior, and does not make prior chat pass/fail claims authoritative.
+
 # CodeUpdate-0051 - Import Staging and Build0021 Behavioral Recovery
 
 This update creates a report-only import staging surface and preserves the user-provided Build0021 behavioral recovery evidence package.

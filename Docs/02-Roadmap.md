@@ -70,6 +70,8 @@ CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, extracts DataDeco
 
 CodeUpdate-0051 adds report-only import staging readiness reports under `DataDecodeCheckpoints/ImportStaging/` and preserves Build0021 behavioral recovery evidence under `Docs/BehavioralRecovery/Build0021/` and `DataDecodeCheckpoints/SimulatorBuild0021/`. Build0021 is evidence/catalog material only; it does not certify live runtime behavior or promote candidate formulas.
 
+CodeUpdate-0052 preserves Build0027 current-state handoff evidence under `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`. Build0027 records that Build0024/0025 matrices remain `expected_model` until converted into actual executable simulator tests, and that chat pass/fail claims are not authoritative without artifact logs or locally generated test output.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
@@ -138,4 +140,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0051 records import staging readiness and Build0021 behavioral recovery evidence. Next work should create the first reviewed import diff for one high-confidence category, preferably rooms/navigation, while treating simulator output as expected-model reference evidence only.
+Current implementation slice: CodeUpdate-0052 records the Build0027 current-state handoff. Next work should start the Build0028 real executable harness foundation: run existing simulator tests, capture real logs, add executable smoke tests only where hooks exist, and mark missing hooks skipped/xfail.
