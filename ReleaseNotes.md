@@ -1,3 +1,30 @@
+# CodeUpdate-0053 - Patch0068 Data Replacement and Handoff Intake
+
+This update replaces only repository `Data/` from the embedded Patch0068 `/Data` payload and preserves the related handoff evidence without keeping duplicate copies.
+
+Highlights:
+
+- Replaced `Data/` from exactly 86 embedded Patch0068 `/Data` files.
+- Preserved Patch0068 findings under `DataDecodeCheckpoints/Patch0068/`.
+- Preserved Handoff0074 under `DataDecodeCheckpoints/Handoff0074/`.
+- Recorded Patch0071 as unreadable/unapplied.
+- Removed duplicate `Docs/PatchHandoffs/` evidence copies.
+- Updated server data-readiness diagnostics and smoke expectations for the populated Patch0068 data categories.
+- Added `Reports/CodeUpdates/CodeUpdate-0053/Handoff0074Patch0071Patch0068IntakeReport.md`.
+
+Verification:
+
+- CodeUpdate-0052 GitHub Actions is green by user report.
+- Patch0068 ZIP SHA-256: `16A8C3932CF23B2B9AB2D3E9DFCA605ABA4EA09FE8BD2E77519AA385CDFD515C`.
+- Patch0068 copied manifest rows matched: 7 of 7.
+- Handoff0074 ZIP SHA-256: `B6132632A154A43AD32C1AA8CEE681E82D994CCA82A360C7728BBF64228D8AD8`.
+- Handoff0074 checksum rows matched: 5 of 6; `SHA256SUMS.txt` self-hash mismatch is documented.
+- Patch0071 ZIP SHA-256: `56B2A080BA89263F08BE134DA8DE547D941AF3B8D0CE5E4D5B9BCF1C5340F881`; built-in ZIP reader could not open it.
+
+Known limitation:
+
+- Patch0071 was not applied. Patch0074 master verification was not implemented. No server behavior or gameplay system was added.
+
 # CodeUpdate-0052 - Build0027 Current-State Handoff
 
 This update preserves the user-provided Build0027 current-state handoff.

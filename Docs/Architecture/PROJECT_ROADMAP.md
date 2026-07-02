@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0052`
+- Current Code Update: `0053`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0052, wait for user-reported green GitHub Actions, then approve CodeUpdate-0053 as the Build0028 real executable harness foundation.
+- Current priority: push CodeUpdate-0053, wait for user-reported green GitHub Actions, then run a focused verification/reconciliation pass over the new Patch0068-derived `Data/` baseline.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -150,6 +150,8 @@ CodeUpdate-0051 adds report-only import staging readiness reports and preserves 
 
 CodeUpdate-0052 preserves the user-provided Build0027 current-state handoff under `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`. Build0027 records that static data/content recovery and entity/world/catalog recovery are effectively complete, while original runtime validation remains unavailable. Build0024 and Build0025 matrices remain `expected_model` until converted into actual executable simulator tests.
 
+CodeUpdate-0053 replaces only repository `Data/` from the embedded Patch0068 `/Data` payload, preserves Patch0068 findings under `DataDecodeCheckpoints/Patch0068/`, preserves Handoff0074 under `DataDecodeCheckpoints/Handoff0074/`, and records Patch0071 as unreadable/unapplied. Duplicate `Docs/PatchHandoffs/` copies are intentionally not retained. Server data-readiness diagnostics and smoke expectations were updated for the populated data baseline. No non-`Data` Patch0068 overlay, gameplay server behavior change, gameplay system, or Patch0074 master verification implementation is included.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -191,6 +193,7 @@ Completed/started slices:
 - CodeUpdate-0050: SimulatorBuild0002 handoff and DataDecode0110 static certification preservation.
 - CodeUpdate-0051: Import staging readiness reports and Build0021 behavioral recovery evidence preservation.
 - CodeUpdate-0052: Build0027 current-state handoff preservation.
+- CodeUpdate-0053: Patch0068 embedded `Data/` replacement and Handoff0074/Patch0068 evidence intake.
 
 Focus Areas:
 
@@ -214,12 +217,12 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0052:
+Next candidate after CodeUpdate-0053:
 
-- Approve CodeUpdate-0053 as the Build0028 real executable harness foundation.
-- Run existing simulator tests before adding new claims.
-- Add executable smoke tests only where hooks exist.
-- Mark missing formula hooks skipped/xfail with `runtime_required` or `not_implemented` labels.
+- Build a master verification/reconciliation surface over current `Data/`.
+- Use Handoff0074 requirements and Patch0068 evidence as repository-tracked inputs.
+- Bring in readable later Patch0071/Patch0073/Patch0074 materials only after they can be verified.
+- Resume Build0028 executable harness work after the `Data/` baseline is verified enough for that scope.
 - Keep live runtime behavior uncertified until controlled Worldgroup validation is available.
 - Preserve previous decode reports instead of overwriting historical analysis.
 - Promote no fields without binary evidence.

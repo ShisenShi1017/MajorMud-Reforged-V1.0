@@ -72,6 +72,8 @@ CodeUpdate-0051 adds report-only import staging readiness reports under `DataDec
 
 CodeUpdate-0052 preserves Build0027 current-state handoff evidence under `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`. Build0027 records that Build0024/0025 matrices remain `expected_model` until converted into actual executable simulator tests, and that chat pass/fail claims are not authoritative without artifact logs or locally generated test output.
 
+CodeUpdate-0053 replaces only repository `Data/` from the embedded Patch0068 `/Data` payload, preserves Patch0068 findings under `DataDecodeCheckpoints/Patch0068/`, preserves Handoff0074 under `DataDecodeCheckpoints/Handoff0074/`, and records Patch0071 as unreadable/unapplied. Duplicate `Docs/PatchHandoffs/` copies are intentionally not retained.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
@@ -140,4 +142,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0052 records the Build0027 current-state handoff. Next work should start the Build0028 real executable harness foundation: run existing simulator tests, capture real logs, add executable smoke tests only where hooks exist, and mark missing hooks skipped/xfail.
+Current implementation slice: CodeUpdate-0053 records the Patch0068 embedded `Data/` replacement and Handoff0074/Patch0068 evidence intake. Next work should verify and reconcile the new `Data/` baseline before further server behavior or executable harness work.

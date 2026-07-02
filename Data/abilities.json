@@ -1,0 +1,3386 @@
+[
+  {
+    "id": "ability_114_spell",
+    "legacyNumber": 114,
+    "name": "%Spell",
+    "description": "Used in items to make a \"spell effect\" occur on a percent chance on each hit or crit. The spell cast is specified by the NEXT \"CastsSp\" attribute. See \"CastsSp\".",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_2_ac",
+    "legacyNumber": 2,
+    "name": "AC",
+    "description": "Modifies the AC value specified by the parameter, this AC is NOT affected by the targets weight. Used in barkskin and stoneskin.",
+    "color": {
+      "red": 200,
+      "green": 200,
+      "blue": 200
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_10_ac_blur",
+    "legacyNumber": 10,
+    "name": "AC(Blur)",
+    "description": "Modifies the AC value specified by the parameter, this AC IS affected by the targets encumberance. Used in blur, and the spell for the amethyst pendant.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_22_accuracy",
+    "legacyNumber": 22,
+    "name": "Accuracy",
+    "description": "Increases the targets accuracy by the value specified in the parameter. (bless increases this value by 3, divine favour increases it by 10)",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_106_accuracy_3",
+    "legacyNumber": 106,
+    "name": "Accuracy (3)",
+    "description": "Increases or decreases accuracy by the value specified in the parameter.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_105_accuracy_2",
+    "legacyNumber": 105,
+    "name": "Accuracy(2)",
+    "description": "Increases or decreases accuracy by the value specified in the parameter.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_64_addcp",
+    "legacyNumber": 64,
+    "name": "AddCP",
+    "description": "Unknown (although one would assume this can be used to add/remove CP)",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_61_affectexit",
+    "legacyNumber": 61,
+    "name": "AffectExit",
+    "description": "Unknown",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_80_affectsanimals",
+    "legacyNumber": 80,
+    "name": "AffectsAnimals",
+    "description": "Used in spells to make it ONLY affect animals.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_108_affectsliving",
+    "legacyNumber": 108,
+    "name": "AffectsLiving",
+    "description": "Used in spells to limit their abilities to only living players or monsters. See \"NonLiving\"",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_23_affectsundead",
+    "legacyNumber": 23,
+    "name": "AffectsUndead",
+    "description": "Used to make a spell ONLY work on undead monsters.",
+    "color": {
+      "red": 200,
+      "green": 200,
+      "blue": 200
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_48_agility",
+    "legacyNumber": 48,
+    "name": "Agility",
+    "description": "Increases or decreases the Agility stat by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_88_alter_hp",
+    "legacyNumber": 88,
+    "name": "Alter HP",
+    "description": "increases or decreases the targets max HP",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_16_alter_thirst",
+    "legacyNumber": 16,
+    "name": "Alter thirst",
+    "description": "Unknown",
+    "color": {
+      "red": 86,
+      "green": 53,
+      "blue": 13
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_99_alterdrpercent",
+    "legacyNumber": 99,
+    "name": "AlterDRpercent",
+    "description": "changes DR by the % in the value (is cast by some Mod 9 monsters with negative values.)",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_55_altergenerallightduration",
+    "legacyNumber": 55,
+    "name": "AlterGeneralLightDuration",
+    "description": "Unknown",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_15_alterhunger",
+    "legacyNumber": 15,
+    "name": "Alterhunger",
+    "description": "Unknown",
+    "color": {
+      "red": 86,
+      "green": 53,
+      "blue": 13
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_165_alterspdmg",
+    "legacyNumber": 165,
+    "name": "AlterSpDmg",
+    "description": "Unknown (alter spells damage (eg: used in an item or another spell to temporarily increase all spells damage)?)",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_166_altersplength",
+    "legacyNumber": 166,
+    "name": "AlterSpLength",
+    "description": "Unknown (alter the length of duration spells (eg: used in an item or another spell to temporarily increase all future spells durations)?)",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_78_animal",
+    "legacyNumber": 78,
+    "name": "Animal",
+    "description": "Used in monster attributes to flag a monster as an animal. See \"Affects Animals\".",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_51_antimagic",
+    "legacyNumber": 51,
+    "name": "AntiMagic",
+    "description": "Used in the Witchunter class definition, apperently the only effect being that MR effects beneficial as well as combat spells cast on the target.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_185_badattk",
+    "legacyNumber": 185,
+    "name": "BadAttk",
+    "description": "Do not Attack if Item Nmbr",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_31_bash",
+    "legacyNumber": 31,
+    "name": "Bash",
+    "description": "Used in almost all class definition to grant the ability to bash attack monsters.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_53_blindinglight",
+    "legacyNumber": 53,
+    "name": "BlindingLight",
+    "description": "Unknown",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_107_blinduser",
+    "legacyNumber": 107,
+    "name": "BlindUser",
+    "description": "Blinds the target.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_130_bloodchampquest",
+    "legacyNumber": 130,
+    "name": "BloodChampQuest",
+    "description": "This is the progress the player has made with the Blood Champion quest.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_116_bsaccu",
+    "legacyNumber": 116,
+    "name": "BSAccu",
+    "description": "Used in items (although I can see no reason why it couldn't be used in a spell) to specify the backstab accuracy for the weapon. A positive value increases the chance to hit, a negative value decreases the chance to hit.",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_118_bsmaxdmg",
+    "legacyNumber": 118,
+    "name": "BsMaxDmg",
+    "description": "Used in items (although I can see no reason why it couldn't be used in a spell) to specify a higher (or lower) maximum backstab damage for the weapon when armed.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_117_bsmindmg",
+    "legacyNumber": 117,
+    "name": "BsMinDmg",
+    "description": "Used in items (although I can see no reason why it couldn't be used in a spell) to specify a higher (or lower) minimum backstab damage for the weapon when armed.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_169_cannotwearlocation",
+    "legacyNumber": 169,
+    "name": "CannotWearLocation",
+    "description": "Unknown (perhaps used to make an item that can be worn on multiple locations, but, this flag is used to define WHICH locations it cannot be used on?)",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 100
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_164_castonend",
+    "legacyNumber": 164,
+    "name": "CastOnEnd%",
+    "description": "cast a spell specificed in the next EndCast ability when this spell ends only Value % chance of the time",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_43_castssp",
+    "legacyNumber": 43,
+    "name": "CastsSp",
+    "description": "Casts the spell when an item is 'used', or, with the %Spell attribute, this is the spell that is cast when the % chance is met.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_49_charm",
+    "legacyNumber": 49,
+    "name": "Charm",
+    "description": "Increases or decreases the Charm stat by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_59_classok",
+    "legacyNumber": 59,
+    "name": "ClassOk",
+    "description": "Used in items to make the item equippable by classes they aren't intended to be used with.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_103_classstealth",
+    "legacyNumber": 103,
+    "name": "ClassStealth",
+    "description": "Used in Class definitions to grant class stealth.",
+    "color": {
+      "red": 150,
+      "green": 150,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_143_clearitem",
+    "legacyNumber": 143,
+    "name": "ClearItem",
+    "description": "Poofs or unequips item number?",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_101_confusemsg",
+    "legacyNumber": 101,
+    "name": "ConfuseMsg",
+    "description": "Sets the confusion message for a previous \"Confusion\" attribute. The parameter specifies the message number to use for when the player is confused and fumbles. For the Mage spell \"confusion\", the message is along the lines of \"You fumble in confusion!\".",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_71_confusion",
+    "legacyNumber": 71,
+    "name": "Confusion",
+    "description": "Confuses the target, making them fumble in the % specified by the parameter. A parameter of +50 would make them fumble 50% of the time-- most \"stun\" spells use this with a value of +100, which makes the target fumble 100% of the time.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_58_crits",
+    "legacyNumber": 58,
+    "name": "Crits",
+    "description": "Increases or decreases the targets critical hit chance by the value specified in the parameter.",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_20_cure_poison",
+    "legacyNumber": 20,
+    "name": "Cure Poison",
+    "description": "Cures poison (cure poison has a parameter of 8, as does antidote).",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_82_cursed",
+    "legacyNumber": 82,
+    "name": "Cursed",
+    "description": "Used on items, once worn, a Cursed item can't be removed.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_83_cursed",
+    "legacyNumber": 83,
+    "name": "CURSED",
+    "description": "has the same affects as 82 (curse) so you can't remove an item but it also makes it not drop at death (unlike 82).. although the item is still unequipped at death so it kinda doesn't work right.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_1_damage",
+    "legacyNumber": 1,
+    "name": "Damage",
+    "description": "Does damage in the amount specified by the parameter. MR is not taken into account.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_17_damage_mr",
+    "legacyNumber": 17,
+    "name": "Damage(-MR)",
+    "description": "Does damage which takes into account the targets MR (or so the name implies).",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_72_damageshield",
+    "legacyNumber": 72,
+    "name": "DamageShield",
+    "description": "Used to setup a shockshield for the player. Shockshield uses this.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_134_daolordquest",
+    "legacyNumber": 134,
+    "name": "DaoLordQuest",
+    "description": "This is the progress the player has made with the DaoLord quest.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_129_darkdruidquest",
+    "legacyNumber": 129,
+    "name": "DarkDruidQuest",
+    "description": "This is the progress the player has made with the Dark Druid quest.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_155_deathtext",
+    "legacyNumber": 155,
+    "name": "DeathText",
+    "description": "Unknown (executes the specified text block when the player dies?)",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_104_defensemodifier",
+    "legacyNumber": 104,
+    "name": "DefenseModifier",
+    "description": "Unknown",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_119_del_maint",
+    "legacyNumber": 119,
+    "name": "Del@Maint",
+    "description": "Used in items to delete the item, hidden or not, at cleanup.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_115_descmsg",
+    "legacyNumber": 115,
+    "name": "DescMsg",
+    "description": "Used in spells. Specifies the message in WCCMSG.DAT to use when the spell wears off, when you are looked at, and when you type 'STAT' to see the effect listed.",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_26_detectmagic",
+    "legacyNumber": 26,
+    "name": "DetectMagic",
+    "description": "Detects the magic in an item.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_41_disarmtraps",
+    "legacyNumber": 41,
+    "name": "DisarmTraps",
+    "description": "In Race and Class definitions, this grants the ability to disarm traps, in items, this can be used to enhance the ability.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_73_dispellmagic",
+    "legacyNumber": 73,
+    "name": "DispellMagic",
+    "description": "cancels spells that affect the ability in the value (ie dispellmagic +107 cancels spells giving the \"blind\" ability), but probably only certain ones",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_34_dodge",
+    "legacyNumber": 34,
+    "name": "Dodge",
+    "description": "Increases or decreases the targets ability to Dodge by the % value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_7_dr",
+    "legacyNumber": 7,
+    "name": "DR",
+    "description": "Modifies the DR value specified by the parameter. Note that DR is expressed in multiples of 10.",
+    "color": {
+      "red": 200,
+      "green": 200,
+      "blue": 200
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_8_drain",
+    "legacyNumber": 8,
+    "name": "Drain",
+    "description": "Drains HP from the target to the caster. (usually seen in spells)",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_0_empty",
+    "legacyNumber": 0,
+    "name": "empty",
+    "description": "The \"nothing\" attribute. New objects automatically have their attributes filled with this.",
+    "color": {
+      "red": 200,
+      "green": 200,
+      "blue": 200
+    },
+    "implementationStatus": "n_a",
+    "dllNotes": "Placeholder / null ability. Never dispatched.",
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_96_encum",
+    "legacyNumber": 96,
+    "name": "Encum",
+    "description": "Increases or decreases the targets encumberance % by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_151_endcast",
+    "legacyNumber": 151,
+    "name": "EndCast",
+    "description": "Used in spell definitions to chain to another spell at the end of the current ones cast. EndCast is only called if the first spell doesn't fail.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_11_energylevel",
+    "legacyNumber": 11,
+    "name": "EnergyLevel",
+    "description": "Modifies the Energy level specified by the parameter.",
+    "color": {
+      "red": 0,
+      "green": 200,
+      "blue": 200
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_6_enslave",
+    "legacyNumber": 6,
+    "name": "Enslave",
+    "description": "Charms the target.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_168_equipitem",
+    "legacyNumber": 168,
+    "name": "EquipItem",
+    "description": "Unknown (equip either the specific item, or, perhaps the value is an item location? (head, arms, etc)? and the first elgible item found in the players inventory is used?)",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_98_evil",
+    "legacyNumber": 98,
+    "name": "Evil",
+    "description": "In spells and items, makes the spell/item useable only by Evil aligned characters.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_62_evilchance",
+    "legacyNumber": 62,
+    "name": "EvilChance",
+    "description": "Unknown",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_52_evilincombat",
+    "legacyNumber": 52,
+    "name": "EvilInCombat",
+    "description": "Used in spells to generate evil warnings and give EP when used.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_128_evilquest",
+    "legacyNumber": 128,
+    "name": "EvilQuest",
+    "description": "This is the progress the player has made with the EVIL quest.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_63_experience",
+    "legacyNumber": 63,
+    "name": "Experience",
+    "description": "Unknown (although one would assume this can be used to add/remove experience)",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_60_fear",
+    "legacyNumber": 60,
+    "name": "Fear",
+    "description": "Makes the target flee in fear. Used in duration spells.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_40_findtraps",
+    "legacyNumber": 40,
+    "name": "FindTraps",
+    "description": "In Race and Class definitions, this grants the ability to find traps, in items, this can be used to enhance the ability.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_179_findtrapsvalue",
+    "legacyNumber": 179,
+    "name": "FindTrapsValue",
+    "description": "alters user's Traps Value",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_81_freedom",
+    "legacyNumber": 81,
+    "name": "Freedom",
+    "description": "Frees the target from holding spells and spells that alter the targets speed.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_181_ghousedeed",
+    "legacyNumber": 181,
+    "name": "GHouseDeed",
+    "description": "Gang House Deed value",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_183_ghouseitem",
+    "legacyNumber": 183,
+    "name": "GHouseItem",
+    "description": "Gang House Item",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_182_ghousetax",
+    "legacyNumber": 182,
+    "name": "GHouseTax",
+    "description": "Gang House Tax value",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_160_givetempspell",
+    "legacyNumber": 160,
+    "name": "GiveTempSpell",
+    "description": "Unknown (gives the spell specified in Value/Parameter temporarily, as in, it appears in the spells/powers list? Maybe used in future items to give out spells only if a player has a specific item or has a specific item armed/equipped?)",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_97_good",
+    "legacyNumber": 97,
+    "name": "Good",
+    "description": "In spells and items, makes the spell/item useable only by Good aligned characters.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_126_goodquest",
+    "legacyNumber": 126,
+    "name": "GoodQuest",
+    "description": "This is the progress the player has made with the GOOD quest.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_184_gshopitem",
+    "legacyNumber": 184,
+    "name": "GShopItem",
+    "description": "Gang Shop Item (controller)",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_18_heal",
+    "legacyNumber": 18,
+    "name": "Heal",
+    "description": "Heals damage specified by the value in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_150_healmana",
+    "legacyNumber": 150,
+    "name": "HealMana",
+    "description": "Regenerates mana back by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_47_health",
+    "legacyNumber": 47,
+    "name": "Health",
+    "description": "Increases or decreases the Health stat by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_142_hitmagic",
+    "legacyNumber": 142,
+    "name": "HitMagic",
+    "description": "CLASS/PLAYER bypass ability for hitting magical creatures. get_user_ability_value(0x8e, player) in attack_user_monster sums the player's class HitMagic(142) plus any equipped items with HitMagic(142). This total is subtracted from the monster's Magical(28) requirement BEFORE the weapon is checked. If class+item HitMagic >= monster requirement, the weapon needs no Magical(28) at all. NOTE: Items with HitMagic(142) only (no Magical(28)) are NOT blocked by the Witchunter AntiMagic check — making them the only way for Witchunters to bypass magical creature gates beyond their class bonus.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": "attack_user_monster @ 0x42cfab: get_user_ability_value(0x8e, param_1, 0, 0, NULL) called after monster Magical requirement is accumulated. Return value subtracted from local_2c (requirement). If local_2c reaches 0 → no weapon magic check needed. If still > 0, unarmed (fists/kicks) are blocked outright; weapon must have Magical(28) >= remainder. The DLL does NOT call has_ability(0x8e) — it uses get_user_ability_value — which is why this ability does not appear in the has_ability() call survey.",
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_74_holdperson",
+    "legacyNumber": 74,
+    "name": "HoldPerson",
+    "description": "Holds the target in the room. Used with duration spells. Entangle and Hold Person use this attribute.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_123_hpregen",
+    "legacyNumber": 123,
+    "name": "HPRegen",
+    "description": "Used in any object to modify the targets HP regen rate. The Druid spell \"Rapid Healing\" and the module-1 quest rings use this attribute.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_125_icesorcquest",
+    "legacyNumber": 125,
+    "name": "IceSorcQuest",
+    "description": "This is the progress the player has made with the Ice Sorceress quest.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_13_illu",
+    "legacyNumber": 13,
+    "name": "Illu",
+    "description": "Increases or decreases the light value for the target ONLY by the value specified in the parameter.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_54_illutarget",
+    "legacyNumber": 54,
+    "name": "IlluTarget",
+    "description": "Increases or decreases the light level for the target specified by the value in the parameter.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_21_immupoison",
+    "legacyNumber": 21,
+    "name": "ImmuPoison",
+    "description": "Used in duration spells to make the target immune to poison.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_44_intel",
+    "legacyNumber": 44,
+    "name": "Intel",
+    "description": "Increases or decreases the Intel stat by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_171_invisibility",
+    "legacyNumber": 171,
+    "name": "Invisibility",
+    "description": "Unknown (some new form of stealth perhaps that doesn't rely on Stealth?)",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 100
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_91_jumpkacy",
+    "legacyNumber": 91,
+    "name": "JumpKACY",
+    "description": "believed to alter jump accuracy value",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_94_jumpkdmg",
+    "legacyNumber": 94,
+    "name": "JumpKDmg",
+    "description": "Increases jumpkick damage for the Mystic jumpkick attack.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_35_jumpkick",
+    "legacyNumber": 35,
+    "name": "JumpKick",
+    "description": "Used in the Mystic class definition to grant the JumpKick ability. A parameter of +1 is used in their definition.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_159_kaibind",
+    "legacyNumber": 159,
+    "name": "KaiBind",
+    "description": "Prevents the target from using Kai powers. Seen in 1.1u's race change to Half-Ogre's.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_30_kick",
+    "legacyNumber": 30,
+    "name": "Kick",
+    "description": "Used in the Mystic class definition to grant the Kick ability. A parameter of +1 is used in their definition.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_90_kickacy",
+    "legacyNumber": 90,
+    "name": "KickACY",
+    "description": "believed to alter kick accuracy value",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_93_kickdmg",
+    "legacyNumber": 93,
+    "name": "KickDmg",
+    "description": "Increases kick damage for the Mystic kick attack.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_33_killblow",
+    "legacyNumber": 33,
+    "name": "Killblow",
+    "description": "Unknown",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_153_killspell",
+    "legacyNumber": 153,
+    "name": "KillSpell",
+    "description": "Kills a spell without calling it's EndCast effect (if one exists).",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_42_learnsp",
+    "legacyNumber": 42,
+    "name": "LearnSp",
+    "description": "Places the spell specified in the parameter into the players spells list. Also used for Kai powers and Bard songs. Use this in a\r\r\nscroll item. The parameter is the spell number.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_162_lore",
+    "legacyNumber": 162,
+    "name": "Lore",
+    "description": "Unknown",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_100_loyalitem",
+    "legacyNumber": 100,
+    "name": "LoyalItem",
+    "description": "Makes the item stay with the player even into death. Seen in items.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_36_m_r",
+    "legacyNumber": 36,
+    "name": "M.R.",
+    "description": "Increases or decreases the targets MR by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_50_magebanequest",
+    "legacyNumber": 50,
+    "name": "MageBaneQuest",
+    "description": "This Determines if the player has completed the MageBane quest.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_79_magebind",
+    "legacyNumber": 79,
+    "name": "MageBind",
+    "description": "did use to make spellcasting impossible but not sure it's still working.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_28_magical",
+    "legacyNumber": 28,
+    "name": "Magical",
+    "description": "Defines the magical potency of an item. Witchunters cannot use items with this flag. To make a non-magical item hit highly magical creatures, use the HitMagic flag.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": "user_can_use @ 0x41fced: if player has AntiMagic(51/0x33), scans item ability array (item+0x2f6..+0x3d4, 20 slots) for ability 0x1c — returns false (blocks equip/wear/wield). attack_user_monster @ 0x42cfab: monster known_data ability loop reads 0x1c value as required magic level (local_2c). After class HitMagic(142) is subtracted, checks weapon via get_item_ability_value(0x1c, weapon, 0) — weapon Magical must meet remaining requirement. Items that carry ONLY HitMagic(142) and no Magical(28) are NOT blocked by the AntiMagic check.",
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_145_manargn",
+    "legacyNumber": 145,
+    "name": "ManaRgn",
+    "description": "Used in objects to increase or decrease the targets mana regen by the percent specified in the parameter. A value of +25 would increase the targets mana regen by 25%. A value of +100 would increase the targets mana regen by 100% (double).",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_4_max_damage",
+    "legacyNumber": 4,
+    "name": "Max Damage",
+    "description": "Modifies max damage to the value specified by the parameter.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_136_maxlevel",
+    "legacyNumber": 136,
+    "name": "MaxLevel",
+    "description": "Typically seen in items to restrict them to players ONLY of the level specified or LOWER. The value in the parameter is the maximum level.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_69_maxmana",
+    "legacyNumber": 69,
+    "name": "MaxMana",
+    "description": "Increases or decreases the targets maximum mana by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_187_meditate",
+    "legacyNumber": 187,
+    "name": "Meditate",
+    "description": "Meditate skill granted",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_135_minlevel",
+    "legacyNumber": 135,
+    "name": "MinLevel",
+    "description": "Typically seen in items (useless for spells since they have their own internal Minimum level field) to restrict them to players ONLY of the level specified or higher. The value in the parameter is the minimum level.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_146_monsguards",
+    "legacyNumber": 146,
+    "name": "MonsGuards",
+    "description": "Used in monster definitions to define a monster that protects this one. The parameter points to an entry in the monster database that will protect this one. Multiple MonsGuards can be used to make the monster be protected by different monsters.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_76_mute",
+    "legacyNumber": 76,
+    "name": "Mute",
+    "description": "Strikes the target mute, making them unable to talk in rooms, etc.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_124_negateability",
+    "legacyNumber": 124,
+    "name": "NegateAbility",
+    "description": "Removes the ability number?",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_112_neutral",
+    "legacyNumber": 112,
+    "name": "Neutral",
+    "description": "In spells and items, makes the spell/item useable only by Neutral aligned characters.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_127_neutralquest",
+    "legacyNumber": 127,
+    "name": "NeutralQuest",
+    "description": "This is the progress the player has made with the NEUTRAL quest.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_109_nonliving",
+    "legacyNumber": 109,
+    "name": "NonLiving",
+    "description": "Used in monster attributes to flag the monster as being Non Living which makes it impossible to cast spells flagged as AffectsLiving on them. See \"AffectsLiving\"",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_144_nonmagicalspell",
+    "legacyNumber": 144,
+    "name": "NonMagicalSpell",
+    "description": "Flags the spell as non-magical, thus making it immune to MR.",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_111_notevil",
+    "legacyNumber": 111,
+    "name": "NotEvil",
+    "description": "Used in items/spells to flag the object as being useable by any alignment EXCEPT Evil. (Lawful, Saint, Good, Neutral and Seedy can use it, but Outlaw, Criminal, Villain and FIEND cannot.)",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_110_notgood",
+    "legacyNumber": 110,
+    "name": "NotGood",
+    "description": "Used in items/spells to flag the object as being useable by any alignment EXCEPT Good. (Neutral, Seedy, Outlaw, Criminal, Villain and FIEND can use it, but Good, Saint, Lawful cannot.)",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_113_notneutral",
+    "legacyNumber": 113,
+    "name": "NotNeutral",
+    "description": "Used in items/spells to flag the object as being useable by any alignment EXCEPT Neutral. (Lawful, Saint, Good, Outlaw, Criminal, Villain and FIEND can use it, but Neutral and Seedy cannot.)",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_161_opendoor",
+    "legacyNumber": 161,
+    "name": "OpenDoor",
+    "description": "Unknown (opens a door, I assume, but how it determines direction/etc is unknown)",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_75_paralyze",
+    "legacyNumber": 75,
+    "name": "Paralyze",
+    "description": "Unknown",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "n_a",
+    "dllNotes": "DLL sets 0x6f4 bit 0x0800 (blocks autocast dispatch). Zero spells/items in DB use it.",
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_77_percep",
+    "legacyNumber": 77,
+    "name": "Percep",
+    "description": "Increases or decreases the targets perception by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_186_perstealth",
+    "legacyNumber": 186,
+    "name": "PerStealth",
+    "description": "Perfect Stealth",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_133_phoenixquest",
+    "legacyNumber": 133,
+    "name": "PhoenixQuest",
+    "description": "This is the progress the player has made with the Phoenix feather quest.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_37_picklocks",
+    "legacyNumber": 37,
+    "name": "Picklocks",
+    "description": "In Race and Class definitions, this grants the ability to Picklock, in items, this can be used to enhance the ability.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_180_picklocksvalue",
+    "legacyNumber": 180,
+    "name": "PickLocksValue",
+    "description": "alters user's PickLocks Value",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_19_poison",
+    "legacyNumber": 19,
+    "name": "Poison",
+    "description": "Poisons the target doing damage specified by the value in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_24_protevil",
+    "legacyNumber": 24,
+    "name": "ProtEvil",
+    "description": "Protection from evil.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_25_protgood",
+    "legacyNumber": 25,
+    "name": "ProtGood",
+    "description": "Protection from good.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_29_punch",
+    "legacyNumber": 29,
+    "name": "Punch",
+    "description": "Used in the Mystic class definition to grant the Punch ability. A parameter of +1 is used in their definition.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_89_punchacy",
+    "legacyNumber": 89,
+    "name": "PunchACY",
+    "description": "believed to alter punch accuracy value",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_92_punchdmg",
+    "legacyNumber": 92,
+    "name": "PunchDmg",
+    "description": "Increases punch damage for the Mystic punch attack.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_86_quality",
+    "legacyNumber": 86,
+    "name": "Quality",
+    "description": "Specifies an items \"Quality\". The only effect of this is to counter \"Shatter\". See \"Shatter\".",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_156_questitem",
+    "legacyNumber": 156,
+    "name": "QuestItem",
+    "description": "Makes the item a quest item",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_67_quickness",
+    "legacyNumber": 67,
+    "name": "Quickness",
+    "description": "does in fact make you walk faster (but only to a point so that it only matters if you're heavy.)",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_102_racestealth",
+    "legacyNumber": 102,
+    "name": "RaceStealth",
+    "description": "Used in Race definitions to grant racial stealth.",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_3_rcol",
+    "legacyNumber": 3,
+    "name": "Rcol",
+    "description": "Modifies resistance to cold by the value specified by the parameter.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_84_rcrs",
+    "legacyNumber": 84,
+    "name": "Rcrs",
+    "description": "Remove curse. Seen in spells. The Priest spell \"Remove Curse\" uses this flag. Removes all cursed items.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_121_recharge",
+    "legacyNumber": 121,
+    "name": "Recharge",
+    "description": "Used in items to specify the amount of \"uses\" to recharge at cleanup.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_56_rechargeitem",
+    "legacyNumber": 56,
+    "name": "RechargeItem",
+    "description": "Unknown",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_149_remove_maint",
+    "legacyNumber": 149,
+    "name": "Remove@Maint",
+    "description": "Used in items-- removes the item at cleanup, poofing it.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_122_removesspell",
+    "legacyNumber": 122,
+    "name": "RemovesSpell",
+    "description": "Used in spells to remove other spells (cancel them out).",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_158_reqtohit",
+    "legacyNumber": 158,
+    "name": "ReqToHit",
+    "description": "Monsters with this flag require that weapons (and spells?) with this IDENTICAL flag (including parameter) be used to attack it. NOTHING else will work on these monsters.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": "FUN_00429ceb @ 0x429ceb (called from attack_user_monster): get_monster_ability_value(0x9e, 0, known_data, monster_data) — if 0, pass. If monster has value N: player must have a weapon equipped AND get_item_ability_value(0x9e, weapon, 0) must equal N EXACTLY (strict equality, not >=). Unarmed always fails. No class ability can bypass this gate. Spell-side equivalent: FUN_00429d40 @ 0x429d40 in cast_monster_target performs the same exact-match check against spell ability 0x9e.",
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_65_resiststone",
+    "legacyNumber": 65,
+    "name": "ResistStone",
+    "description": "Modifies resistance to stone by the value specified by the parameter.",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_147_resistwater",
+    "legacyNumber": 147,
+    "name": "ResistWater",
+    "description": "Increases or decreases the targets resistance to Water by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_5_rfir",
+    "legacyNumber": 5,
+    "name": "Rfir",
+    "description": "Modifies resistance to fire by the value specified by the parameter.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_66_rlit",
+    "legacyNumber": 66,
+    "name": "Rlit",
+    "description": "Modifies resistance to lightning by the value specified by the parameter.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_14_roomillu",
+    "legacyNumber": 14,
+    "name": "RoomIllu",
+    "description": "Increases or decreases the light value for the entire room by the value specified in the parameter.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_138_roomvisible",
+    "legacyNumber": 138,
+    "name": "RoomVisible",
+    "description": "Makes the item visible to the entire room.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_152_rune",
+    "legacyNumber": 152,
+    "name": "Rune",
+    "description": "Flags the object as a Rune. Seen in one item.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_70_s_c",
+    "legacyNumber": 70,
+    "name": "S.C.",
+    "description": "Incresaes or decreases the targets SC by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_157_scatteritems",
+    "legacyNumber": 157,
+    "name": "ScatterItems",
+    "description": "Scatters the items in the room to the specified room(s). You can use a range to specify multiple rooms, but, these rooms must all be a part of the current map.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_173_scry",
+    "legacyNumber": 173,
+    "name": "Scry",
+    "description": "Unknown (perhaps show the room specificed in the value? No idea really)",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_57_seehidden",
+    "legacyNumber": 57,
+    "name": "SeeHidden",
+    "description": "Grants the ability to see hidden players. For monsters, this allows them to see hidden players and attack them while they are sneaking or hiding. The monster will also follow even if the player escapes and re-sneaks.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_172_seeinvisible",
+    "legacyNumber": 172,
+    "name": "SeeInvisible",
+    "description": "Unknown (most likely a way for monsters/players to see others with this new Invisible ability)",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_9_shadow",
+    "legacyNumber": 9,
+    "name": "Shadow",
+    "description": "Displays \"A shadowy figure!\" when looked at by other players.",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_178_shadowform",
+    "legacyNumber": 178,
+    "name": "Shadowform",
+    "description": "This functions much like shadowform except the value states which text block to display when the player is looked at.",
+    "color": {
+      "red": 100,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_85_shatter",
+    "legacyNumber": 85,
+    "name": "Shatter",
+    "description": "Shatters the targets weapon. The parameter (in theory) specifies which \"Quality\" of weapons the spell affects and can shatter. The Druid sell \"Shatter\" specifies a parameter of 1, and thus will not work on items with a Quality of or greater than 1.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_131_shedragonquest",
+    "legacyNumber": 131,
+    "name": "SheDragonQuest",
+    "description": "This is the progress the player has made with the SheDragon quest.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_137_shock",
+    "legacyNumber": 137,
+    "name": "Shock",
+    "description": "Sets the Shockshield message for the spell/item. See \"DmgShield\".",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_95_slay",
+    "legacyNumber": 95,
+    "name": "Slay",
+    "description": "Unknown. Used by the \"laen longsword\" item.",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_170_sleep",
+    "legacyNumber": 170,
+    "name": "Sleep",
+    "description": "Unknown",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_68_slowness",
+    "legacyNumber": 68,
+    "name": "Slowness",
+    "description": "Modifies the room movement time while not affecting stealth as a modified encumbrance would. The Mage spell \"Slow\" uses a parameter of +200 for this attribute.",
+    "color": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_32_smash",
+    "legacyNumber": 32,
+    "name": "Smash",
+    "description": "Unknown",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_87_speed",
+    "legacyNumber": 87,
+    "name": "Speed",
+    "description": "Increases or decreases the targets swing speed with their weapon or attack by the value specified in the parameter. The Mage spell \"Speed\" uses +85 for a parameter, the Mage spell \"Slow\" uses +125.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_177_spellcolours",
+    "legacyNumber": 177,
+    "name": "SpellColours",
+    "description": "Unknown (perhaps a way to specific the ANSI colour coding for spells, overriding the default colours for the spell?)",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_163_spellcomponent",
+    "legacyNumber": 163,
+    "name": "SpellComponent",
+    "description": "Make the item a spell component.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_139_spellimmu",
+    "legacyNumber": 139,
+    "name": "SpellImmu",
+    "description": "Used in objects to make the target immune to spells below or equal to the level specified in the parameter.",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_120_startmsg",
+    "legacyNumber": 120,
+    "name": "StartMsg",
+    "description": "Used in spells to specify the 'start message' for the spell.Basically, this sets the opening line for the spell before the Cast Message is sent.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 150
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_175_stealhptomp",
+    "legacyNumber": 175,
+    "name": "StealHPtoMP",
+    "description": "Unknown (convert stolen HP to Mana instead? Works like the other 'Steal' abilities?)",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_174_stealmana",
+    "legacyNumber": 174,
+    "name": "StealMana",
+    "description": "Unknown (most likely steals Mana from another Player or monster for the value specified (or min/max in a spell))",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_176_stealmptohp",
+    "legacyNumber": 176,
+    "name": "StealMPtoHP",
+    "description": "Unknown (convert stolen Mana to HP instead? Works like the other 'Steal' abilities?)",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 0
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_27_stealth",
+    "legacyNumber": 27,
+    "name": "Stealth",
+    "description": "Modifies stealth by the value in the parameter.",
+    "color": {
+      "red": 200,
+      "green": 200,
+      "blue": 200
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_46_strength",
+    "legacyNumber": 46,
+    "name": "Strength",
+    "description": "Increases or decreases the Strength stat by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_12_summon",
+    "legacyNumber": 12,
+    "name": "Summon",
+    "description": "Summons a monster specified by the parameter. The value in parameter is the monster number.",
+    "color": {
+      "red": 0,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_141_teleportmap",
+    "legacyNumber": 141,
+    "name": "TeleportMap",
+    "description": "Teleports the target to the specified map in the parameter. Usually seen with a \"Teleport room\". See \"Teleport room\".",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_140_teleportroom",
+    "legacyNumber": 140,
+    "name": "TeleportRoom",
+    "description": "Teleports the target to the specified room in the parameter. Usually seen with a \"Teleport map\". See \"Teleport map\".",
+    "color": {
+      "red": 255,
+      "green": 0,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_148_textblock",
+    "legacyNumber": 148,
+    "name": "TextBlock",
+    "description": "Executes the text block specified by the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_39_thievery",
+    "legacyNumber": 39,
+    "name": "Thievery",
+    "description": "In Race and Class definitions, this grants the ability to Rob, in items, this can be used to enhance the ability.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_38_tracking",
+    "legacyNumber": 38,
+    "name": "Tracking",
+    "description": "Used in Race and Class definitions to grant Tracking to a Race/Class.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 0
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_167_unequipitem",
+    "legacyNumber": 167,
+    "name": "UnEquipItem",
+    "description": "Unknown (remove either the specific item, or, perhaps the value is an item location? (head, arms, etc)?)",
+    "color": {
+      "red": 100,
+      "green": 0,
+      "blue": 100
+    },
+    "implementationStatus": "not_implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_154_visible_maint",
+    "legacyNumber": 154,
+    "name": "Visible@Maint",
+    "description": "Used in items to keep them visible at cleanup.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_132_wereratquest",
+    "legacyNumber": 132,
+    "name": "WereratQuest",
+    "description": "This is the progress the player has made with the Wererat quest.",
+    "color": {
+      "red": 0,
+      "green": 255,
+      "blue": 255
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "ability_45_wisdom",
+    "legacyNumber": 45,
+    "name": "Wisdom",
+    "description": "Increases or decreases the Wisdom/Willpower stat by the value specified in the parameter.",
+    "color": {
+      "red": 0,
+      "green": 100,
+      "blue": 100
+    },
+    "implementationStatus": "implemented",
+    "dllNotes": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-ability-wcc.json",
+      "promotedBy": "Patch0068"
+    }
+  }
+]

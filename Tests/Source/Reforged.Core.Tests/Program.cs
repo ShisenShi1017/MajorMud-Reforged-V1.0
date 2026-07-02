@@ -261,7 +261,21 @@ void ServerDataCatalogAuditSmoke()
         }
     }
 
-    foreach (var category in new[] { "loot_tables", "quests", "rooms", "shops", "trainers" })
+    foreach (var category in new[] { "loot_tables", "rooms", "shops", "trainers" })
+    {
+        var summary = report.Categories.FirstOrDefault(item => item.Category == category);
+        if (summary is null ||
+            summary.IsPlaceholder ||
+            !summary.RuntimeReady ||
+            summary.Status != "runtime-ready" ||
+            summary.RecordCount == 0 ||
+            string.IsNullOrWhiteSpace(summary.ReadinessNote))
+        {
+            throw new InvalidOperationException($"Server data catalog did not classify expected populated category: {category}");
+        }
+    }
+
+    foreach (var category in new[] { "quests" })
     {
         var summary = report.Categories.FirstOrDefault(item => item.Category == category);
         if (summary is null ||

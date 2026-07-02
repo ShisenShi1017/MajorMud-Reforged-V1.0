@@ -37,7 +37,7 @@ public sealed class ServerDataCatalogAudit
             var recordCount = catalog.TryGetCategory(descriptor.Category, out var loadedCategory)
                 ? loadedCategory.Records.Count
                 : 0;
-            var isPlaceholder = PlaceholderCategories.ContainsKey(descriptor.Category);
+            var isPlaceholder = recordCount == 0 && PlaceholderCategories.ContainsKey(descriptor.Category);
             var runtimeReady = exists && recordCount > 0;
 
             if (!exists)

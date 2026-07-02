@@ -1,5 +1,23 @@
 # Changelog
 
+## CodeUpdate-0053 - Patch0068 Data Replacement and Handoff Intake
+
+- Recorded CodeUpdate-0052 GitHub Actions as green by user report.
+- Inspected and preserved `MajorMUD-Reforged-CodexHandoff-0074-Recreated.zip` under `DataDecodeCheckpoints/Handoff0074/`.
+- Recorded Handoff0074 ZIP SHA-256 `B6132632A154A43AD32C1AA8CEE681E82D994CCA82A360C7728BBF64228D8AD8`.
+- Verified 5 of 6 Handoff0074 checksum rows and documented the supplied `SHA256SUMS.txt` self-hash mismatch.
+- Inspected and preserved Patch0068 findings under `DataDecodeCheckpoints/Patch0068/`.
+- Recorded Patch0068 ZIP SHA-256 `16A8C3932CF23B2B9AB2D3E9DFCA605ABA4EA09FE8BD2E77519AA385CDFD515C`.
+- Verified 7 of 7 copied Patch0068 manifest-listed files against `PATCH_0068_MANIFEST.csv`.
+- Replaced only repository `Data/` from the embedded Patch0068 `/Data` payload.
+- Recorded that exactly 86 embedded Patch0068 `Data/` files were staged and copied.
+- Intentionally did not keep duplicate `Docs/PatchHandoffs/` copies; preserved findings live once under `DataDecodeCheckpoints/`.
+- Recorded Patch0071 ZIP SHA-256 `56B2A080BA89263F08BE134DA8DE547D941AF3B8D0CE5E4D5B9BCF1C5340F881`.
+- Recorded Patch0071 as unreadable by the built-in ZIP reader with `End of Central Directory record could not be found`; Patch0071 was not applied.
+- Added `Reports/CodeUpdates/CodeUpdate-0053/Handoff0074Patch0071Patch0068IntakeReport.md`.
+- Updated server data-readiness diagnostics and smoke expectations so populated Patch0068 data categories are no longer treated as empty placeholders.
+- No non-`Data` Patch0068 overlay, Patch0071 application, Patch0074 master verification implementation, gameplay server behavior change, gameplay system, imported/reference deletion, or live runtime validation claim is included.
+
 ## CodeUpdate-0052 - Build0027 Current-State Handoff
 
 - Recorded CodeUpdate-0051 GitHub Actions as green by user report.

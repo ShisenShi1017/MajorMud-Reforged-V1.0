@@ -1,1 +1,8282 @@
-﻿[]
+[
+  {
+    "id": "loot_monster_184",
+    "monsterId": "monster_184_adolescent_red_dragon",
+    "monsterLegacyNumber": 184,
+    "entries": [
+      {
+        "name": "dragon fang",
+        "item_id": 1424,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_185",
+    "monsterId": "monster_185_adult_red_dragon",
+    "monsterLegacyNumber": 185,
+    "entries": [
+      {
+        "name": "greater red dragon scale",
+        "item_id": 480,
+        "drop_percent": 100
+      },
+      {
+        "name": "magma rock chest",
+        "item_id": 1819,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_649",
+    "monsterId": "monster_649_aged_earth_dragon",
+    "monsterLegacyNumber": 649,
+    "entries": [
+      {
+        "name": "severed earth dragon claw",
+        "item_id": 1246,
+        "drop_percent": 75
+      },
+      {
+        "name": "stone chest",
+        "item_id": 1354,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_22",
+    "monsterId": "monster_22_aiken",
+    "monsterLegacyNumber": 22,
+    "entries": [
+      {
+        "name": "iron-capped staff",
+        "item_id": 101,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_175",
+    "monsterId": "monster_175_alchemist",
+    "monsterLegacyNumber": 175,
+    "entries": [
+      {
+        "name": "turquoise potion",
+        "item_id": 465,
+        "drop_percent": 2
+      },
+      {
+        "name": "yellow potion",
+        "item_id": 467,
+        "drop_percent": 2
+      },
+      {
+        "name": "frothing pink potion",
+        "item_id": 468,
+        "drop_percent": 2
+      },
+      {
+        "name": "iron tube",
+        "item_id": 505,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_655",
+    "monsterId": "monster_655_amazon_guard",
+    "monsterLegacyNumber": 655,
+    "entries": [
+      {
+        "name": "wyvernhide tunic",
+        "item_id": 412,
+        "drop_percent": 1
+      },
+      {
+        "name": "wyvernhide pants",
+        "item_id": 1194,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_654",
+    "monsterId": "monster_654_amazon_shaman",
+    "monsterLegacyNumber": 654,
+    "entries": [
+      {
+        "name": "scroll of nature tap",
+        "item_id": 1306,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_933",
+    "monsterId": "monster_933_ancient_gremlin_shaman",
+    "monsterLegacyNumber": 933,
+    "entries": [
+      {
+        "name": "shamanic headdress",
+        "item_id": 1657,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_844",
+    "monsterId": "monster_844_ancient_gypsy_woman",
+    "monsterLegacyNumber": 844,
+    "entries": [
+      {
+        "name": "withered walking stick",
+        "item_id": 1443,
+        "drop_percent": 10
+      },
+      {
+        "name": "faded shawl",
+        "item_id": 1442,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_434",
+    "monsterId": "monster_434_ancient_sand_dragon",
+    "monsterLegacyNumber": 434,
+    "entries": [
+      {
+        "name": "huge darkwood chest",
+        "item_id": 911,
+        "drop_percent": 100
+      },
+      {
+        "name": "golden box",
+        "item_id": 912,
+        "drop_percent": 100
+      },
+      {
+        "name": "steel chest",
+        "item_id": 913,
+        "drop_percent": 100
+      },
+      {
+        "name": "silverwood chest",
+        "item_id": 914,
+        "drop_percent": 100
+      },
+      {
+        "name": "silverwood chest",
+        "item_id": 914,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_278",
+    "monsterId": "monster_278_ancient_willow",
+    "monsterLegacyNumber": 278,
+    "entries": [
+      {
+        "name": "huge broken willow",
+        "item_id": 718,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1012",
+    "monsterId": "monster_1012_angelic_hunter",
+    "monsterLegacyNumber": 1012,
+    "entries": [
+      {
+        "name": "ancient key",
+        "item_id": 1899,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_878",
+    "monsterId": "monster_878_animated_sword",
+    "monsterLegacyNumber": 878,
+    "entries": [
+      {
+        "name": "vorpal sword",
+        "item_id": 220,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_520",
+    "monsterId": "monster_520_ankylosaur",
+    "monsterLegacyNumber": 520,
+    "entries": [
+      {
+        "name": "spiked collar",
+        "item_id": 190,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_898",
+    "monsterId": "monster_898_arachnigoth",
+    "monsterLegacyNumber": 898,
+    "entries": [
+      {
+        "name": "pile of spectral webbing",
+        "item_id": 1683,
+        "drop_percent": 100
+      },
+      {
+        "name": "pile of spectral webbing",
+        "item_id": 1683,
+        "drop_percent": 100
+      },
+      {
+        "name": "pile of spectral webbing",
+        "item_id": 1683,
+        "drop_percent": 100
+      },
+      {
+        "name": "pile of spectral webbing",
+        "item_id": 1683,
+        "drop_percent": 100
+      },
+      {
+        "name": "pile of spectral webbing",
+        "item_id": 1683,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_609",
+    "monsterId": "monster_609_argak_the_grey",
+    "monsterLegacyNumber": 609,
+    "entries": [
+      {
+        "name": "granite tablet",
+        "item_id": 1826,
+        "drop_percent": 30
+      },
+      {
+        "name": "runed petrified staff",
+        "item_id": 1072,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_859",
+    "monsterId": "monster_859_arlysian_guardsman",
+    "monsterLegacyNumber": 859,
+    "entries": [
+      {
+        "name": "templar greatsword",
+        "item_id": 1480,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_958",
+    "monsterId": "monster_958_astral_shade",
+    "monsterLegacyNumber": 958,
+    "entries": [
+      {
+        "name": "astral staff",
+        "item_id": 1692,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_375",
+    "monsterId": "monster_375_aurumvorax",
+    "monsterLegacyNumber": 375,
+    "entries": [
+      {
+        "name": "golden hide",
+        "item_id": 920,
+        "drop_percent": 15
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1030",
+    "monsterId": "monster_1030_azrandimon",
+    "monsterLegacyNumber": 1030,
+    "entries": [
+      {
+        "name": "stone rook key",
+        "item_id": 1902,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_182",
+    "monsterId": "monster_182_baby_red_dragon",
+    "monsterLegacyNumber": 182,
+    "entries": [
+      {
+        "name": "red dragon tail",
+        "item_id": 1423,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_49",
+    "monsterId": "monster_49_bandit",
+    "monsterLegacyNumber": 49,
+    "entries": [
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_817",
+    "monsterId": "monster_817_banished_one",
+    "monsterLegacyNumber": 817,
+    "entries": [
+      {
+        "name": "soulblighter",
+        "item_id": 1435,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_113",
+    "monsterId": "monster_113_banshee",
+    "monsterLegacyNumber": 113,
+    "entries": [
+      {
+        "name": "ethereal amulet",
+        "item_id": 408,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_248",
+    "monsterId": "monster_248_barmaid",
+    "monsterLegacyNumber": 248,
+    "entries": [
+      {
+        "name": "pewter tankard",
+        "item_id": 649,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_913",
+    "monsterId": "monster_913_barmaid",
+    "monsterLegacyNumber": 913,
+    "entries": [
+      {
+        "name": "pewter tankard",
+        "item_id": 649,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_328",
+    "monsterId": "monster_328_behemoth",
+    "monsterLegacyNumber": 328,
+    "entries": [
+      {
+        "name": "behemoth hide",
+        "item_id": 859,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_693",
+    "monsterId": "monster_693_behemoth_hellhound",
+    "monsterLegacyNumber": 693,
+    "entries": [
+      {
+        "name": "behemoth hellhound hide",
+        "item_id": 1305,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_314",
+    "monsterId": "monster_314_beholder",
+    "monsterLegacyNumber": 314,
+    "entries": [
+      {
+        "name": "black tome",
+        "item_id": 764,
+        "drop_percent": 10
+      },
+      {
+        "name": "eye of the beholder",
+        "item_id": 778,
+        "drop_percent": 100
+      },
+      {
+        "name": "mithril helm",
+        "item_id": 748,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_786",
+    "monsterId": "monster_786_black_cat",
+    "monsterLegacyNumber": 786,
+    "entries": [
+      {
+        "name": "dead cat",
+        "item_id": 650,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_299",
+    "monsterId": "monster_299_black_dragon_serpent",
+    "monsterLegacyNumber": 299,
+    "entries": [
+      {
+        "name": "black fang",
+        "item_id": 737,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1076",
+    "monsterId": "monster_1076_black_king",
+    "monsterLegacyNumber": 1076,
+    "entries": [
+      {
+        "name": "nexus portal",
+        "item_id": 1893,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_999",
+    "monsterId": "monster_999_black_king",
+    "monsterLegacyNumber": 999,
+    "entries": [
+      {
+        "name": "black king",
+        "item_id": 1937,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_995",
+    "monsterId": "monster_995_black_knight",
+    "monsterLegacyNumber": 995,
+    "entries": [
+      {
+        "name": "black knight",
+        "item_id": 1934,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_997",
+    "monsterId": "monster_997_black_marble_golem",
+    "monsterLegacyNumber": 997,
+    "entries": [
+      {
+        "name": "black rook",
+        "item_id": 1939,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_55",
+    "monsterId": "monster_55_black_orc",
+    "monsterLegacyNumber": 55,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_123",
+    "monsterId": "monster_123_black_orc_captain",
+    "monsterLegacyNumber": 123,
+    "entries": [
+      {
+        "name": "black scimitar",
+        "item_id": 458,
+        "drop_percent": 1
+      },
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_124",
+    "monsterId": "monster_124_black_orc_shaman",
+    "monsterLegacyNumber": 124,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_819",
+    "monsterId": "monster_819_black_rosebush",
+    "monsterLegacyNumber": 819,
+    "entries": [
+      {
+        "name": "black rose",
+        "item_id": 1463,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_811",
+    "monsterId": "monster_811_bloody_executioner",
+    "monsterLegacyNumber": 811,
+    "entries": [
+      {
+        "name": "executioner's hood",
+        "item_id": 1459,
+        "drop_percent": 10
+      },
+      {
+        "name": "black stained tunic",
+        "item_id": 1460,
+        "drop_percent": 5
+      },
+      {
+        "name": "heavy black boots",
+        "item_id": 1461,
+        "drop_percent": 3
+      },
+      {
+        "name": "mithril executioner's axe",
+        "item_id": 1484,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_301",
+    "monsterId": "monster_301_blue_dragon_serpent",
+    "monsterLegacyNumber": 301,
+    "entries": [
+      {
+        "name": "blue fang",
+        "item_id": 739,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_156",
+    "monsterId": "monster_156_bola_spider",
+    "monsterLegacyNumber": 156,
+    "entries": [
+      {
+        "name": "spider silk",
+        "item_id": 481,
+        "drop_percent": 4
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_140",
+    "monsterId": "monster_140_bola_spider",
+    "monsterLegacyNumber": 140,
+    "entries": [
+      {
+        "name": "spider silk",
+        "item_id": 481,
+        "drop_percent": 4
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1007",
+    "monsterId": "monster_1007_bone_warrior",
+    "monsterLegacyNumber": 1007,
+    "entries": [
+      {
+        "name": "blackwood longbow",
+        "item_id": 1476,
+        "drop_percent": 1
+      },
+      {
+        "name": "lunar chainmail boots",
+        "item_id": 1881,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_775",
+    "monsterId": "monster_775_bone_warrior",
+    "monsterLegacyNumber": 775,
+    "entries": [
+      {
+        "name": "javelin",
+        "item_id": 1190,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_926",
+    "monsterId": "monster_926_bone_warrior",
+    "monsterLegacyNumber": 926,
+    "entries": [
+      {
+        "name": "demon-carved halberd",
+        "item_id": 873,
+        "drop_percent": 1
+      },
+      {
+        "name": "lunar chainmail coif",
+        "item_id": 1822,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_702",
+    "monsterId": "monster_702_bone_warrior",
+    "monsterLegacyNumber": 702,
+    "entries": [
+      {
+        "name": "javelin",
+        "item_id": 1190,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_827",
+    "monsterId": "monster_827_bone_warrior",
+    "monsterLegacyNumber": 827,
+    "entries": [
+      {
+        "name": "javelin",
+        "item_id": 1190,
+        "drop_percent": 1
+      },
+      {
+        "name": "lunar chainmail leggings",
+        "item_id": 1821,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_925",
+    "monsterId": "monster_925_bone_warrior",
+    "monsterLegacyNumber": 925,
+    "entries": [
+      {
+        "name": "cruel bone greatsword",
+        "item_id": 1436,
+        "drop_percent": 1
+      },
+      {
+        "name": "lunar chain gauntlets",
+        "item_id": 1823,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_927",
+    "monsterId": "monster_927_bone_warrior",
+    "monsterLegacyNumber": 927,
+    "entries": [
+      {
+        "name": "blackwood war-spear",
+        "item_id": 1478,
+        "drop_percent": 1
+      },
+      {
+        "name": "lunar chainmail hauberk",
+        "item_id": 1820,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_803",
+    "monsterId": "monster_803_boneless_zombie",
+    "monsterLegacyNumber": 803,
+    "entries": [
+      {
+        "name": "bone club",
+        "item_id": 1473,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_962",
+    "monsterId": "monster_962_bugbear",
+    "monsterLegacyNumber": 962,
+    "entries": [
+      {
+        "name": "battle-hammer",
+        "item_id": 103,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_966",
+    "monsterId": "monster_966_bugbear_berserker",
+    "monsterLegacyNumber": 966,
+    "entries": [
+      {
+        "name": "greatsword",
+        "item_id": 78,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_963",
+    "monsterId": "monster_963_bugbear_captain",
+    "monsterLegacyNumber": 963,
+    "entries": [
+      {
+        "name": "greataxe",
+        "item_id": 81,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_883",
+    "monsterId": "monster_883_canimera",
+    "monsterLegacyNumber": 883,
+    "entries": [
+      {
+        "name": "giant spiked collar",
+        "item_id": 1205,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_346",
+    "monsterId": "monster_346_captain_of_the_guard",
+    "monsterLegacyNumber": 346,
+    "entries": [
+      {
+        "name": "opal brooch",
+        "item_id": 811,
+        "drop_percent": 100
+      },
+      {
+        "name": "adamantite claymore",
+        "item_id": 825,
+        "drop_percent": 5
+      },
+      {
+        "name": "obsidian field plate",
+        "item_id": 826,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_388",
+    "monsterId": "monster_388_catoblepas",
+    "monsterLegacyNumber": 388,
+    "entries": [
+      {
+        "name": "catoblepas eye",
+        "item_id": 1080,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_465",
+    "monsterId": "monster_465_champion_gudruk",
+    "monsterLegacyNumber": 465,
+    "entries": [
+      {
+        "name": "mithril dwarven axe",
+        "item_id": 1709,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_180",
+    "monsterId": "monster_180_champion_of_blood",
+    "monsterLegacyNumber": 180,
+    "entries": [
+      {
+        "name": "black plate leggings",
+        "item_id": 443,
+        "drop_percent": 25
+      },
+      {
+        "name": "black plate corselet",
+        "item_id": 498,
+        "drop_percent": 25
+      },
+      {
+        "name": "skull sword",
+        "item_id": 493,
+        "drop_percent": 15
+      },
+      {
+        "name": "black plate boots",
+        "item_id": 1841,
+        "drop_percent": 25
+      },
+      {
+        "name": "black plate gauntlets",
+        "item_id": 1842,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_69",
+    "monsterId": "monster_69_chest",
+    "monsterLegacyNumber": 69,
+    "entries": [
+      {
+        "name": "golden broadsword",
+        "item_id": 265,
+        "drop_percent": 20
+      },
+      {
+        "name": "rosewood staff",
+        "item_id": 267,
+        "drop_percent": 20
+      },
+      {
+        "name": "shimmering white robes",
+        "item_id": 268,
+        "drop_percent": 25
+      },
+      {
+        "name": "golden breastplate",
+        "item_id": 266,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_313",
+    "monsterId": "monster_313_chimera",
+    "monsterLegacyNumber": 313,
+    "entries": [
+      {
+        "name": "demonhide bracers",
+        "item_id": 747,
+        "drop_percent": 10
+      },
+      {
+        "name": "demonhide sandals",
+        "item_id": 1838,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_610",
+    "monsterId": "monster_610_choira_pyromancer",
+    "monsterLegacyNumber": 610,
+    "entries": [
+      {
+        "name": "magma chunk",
+        "item_id": 1827,
+        "drop_percent": 30
+      },
+      {
+        "name": "burning staff",
+        "item_id": 1073,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_820",
+    "monsterId": "monster_820_clawed_beast_man",
+    "monsterLegacyNumber": 820,
+    "entries": [
+      {
+        "name": "beastly claws",
+        "item_id": 1481,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1062",
+    "monsterId": "monster_1062_cloaked_figure",
+    "monsterLegacyNumber": 1062,
+    "entries": [
+      {
+        "name": "marble",
+        "item_id": 1924,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1061",
+    "monsterId": "monster_1061_cloaked_figure",
+    "monsterLegacyNumber": 1061,
+    "entries": [
+      {
+        "name": "moonstone",
+        "item_id": 1922,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1060",
+    "monsterId": "monster_1060_cloaked_figure",
+    "monsterLegacyNumber": 1060,
+    "entries": [
+      {
+        "name": "pearl",
+        "item_id": 1923,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1059",
+    "monsterId": "monster_1059_cloaked_figure",
+    "monsterLegacyNumber": 1059,
+    "entries": [
+      {
+        "name": "diamond",
+        "item_id": 1921,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_242",
+    "monsterId": "monster_242_cocoon",
+    "monsterLegacyNumber": 242,
+    "entries": [
+      {
+        "name": "fine broadsword",
+        "item_id": 295,
+        "drop_percent": 1
+      },
+      {
+        "name": "fingerbone bracelet",
+        "item_id": 428,
+        "drop_percent": 1
+      },
+      {
+        "name": "oaken staff",
+        "item_id": 459,
+        "drop_percent": 1
+      },
+      {
+        "name": "partially digested body",
+        "item_id": 614,
+        "drop_percent": 100
+      },
+      {
+        "name": "glowing warhammer",
+        "item_id": 116,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_25",
+    "monsterId": "monster_25_colin",
+    "monsterLegacyNumber": 25,
+    "entries": [
+      {
+        "name": "heavy-mace",
+        "item_id": 89,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_851",
+    "monsterId": "monster_851_colossal_midnight_dragon",
+    "monsterLegacyNumber": 851,
+    "entries": [
+      {
+        "name": "bloodwood chest",
+        "item_id": 1444,
+        "drop_percent": 20
+      },
+      {
+        "name": "burnt iron chest",
+        "item_id": 1485,
+        "drop_percent": 50
+      },
+      {
+        "name": "ancient bone chest",
+        "item_id": 1667,
+        "drop_percent": 35
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_246",
+    "monsterId": "monster_246_commander_markus",
+    "monsterLegacyNumber": 246,
+    "entries": [
+      {
+        "name": "severed head of Markus",
+        "item_id": 621,
+        "drop_percent": 100
+      },
+      {
+        "name": "locked wooden box",
+        "item_id": 622,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_704",
+    "monsterId": "monster_704_crane_spirit",
+    "monsterLegacyNumber": 704,
+    "entries": [
+      {
+        "name": "crane totem",
+        "item_id": 1276,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_530",
+    "monsterId": "monster_530_crazed_inquisitor",
+    "monsterLegacyNumber": 530,
+    "entries": [
+      {
+        "name": "Demon's Maw",
+        "item_id": 1071,
+        "drop_percent": 20
+      },
+      {
+        "name": "crimson scalemail tunic",
+        "item_id": 1491,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_262",
+    "monsterId": "monster_262_crazed_lunatic",
+    "monsterLegacyNumber": 262,
+    "entries": [
+      {
+        "name": "dead cat",
+        "item_id": 650,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_495",
+    "monsterId": "monster_495_crazed_lunatic",
+    "monsterLegacyNumber": 495,
+    "entries": [
+      {
+        "name": "dead cat",
+        "item_id": 650,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_371",
+    "monsterId": "monster_371_crimson_high_priest",
+    "monsterLegacyNumber": 371,
+    "entries": [
+      {
+        "name": "amber sceptre",
+        "item_id": 1638,
+        "drop_percent": 11
+      },
+      {
+        "name": "crimson blood robes",
+        "item_id": 1640,
+        "drop_percent": 20
+      },
+      {
+        "name": "burning scroll",
+        "item_id": 1989,
+        "drop_percent": 15
+      },
+      {
+        "name": "demon's skull mask",
+        "item_id": 561,
+        "drop_percent": 15
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_309",
+    "monsterId": "monster_309_crimson_mist",
+    "monsterLegacyNumber": 309,
+    "entries": [
+      {
+        "name": "emerald-tipped crozier",
+        "item_id": 203,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_390",
+    "monsterId": "monster_390_crocodile",
+    "monsterLegacyNumber": 390,
+    "entries": [
+      {
+        "name": "crocodile fang",
+        "item_id": 1268,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_929",
+    "monsterId": "monster_929_crowned_spider",
+    "monsterLegacyNumber": 929,
+    "entries": [
+      {
+        "name": "crowned spider skull",
+        "item_id": 1813,
+        "drop_percent": 15
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_131",
+    "monsterId": "monster_131_cyclops",
+    "monsterLegacyNumber": 131,
+    "entries": [
+      {
+        "name": "belt of might",
+        "item_id": 438,
+        "drop_percent": 2
+      },
+      {
+        "name": "tree trunk",
+        "item_id": 478,
+        "drop_percent": 10
+      },
+      {
+        "name": "cyclops eye",
+        "item_id": 479,
+        "drop_percent": 15
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_597",
+    "monsterId": "monster_597_dao_lord",
+    "monsterLegacyNumber": 597,
+    "entries": [
+      {
+        "name": "spiked obsidian collar",
+        "item_id": 1176,
+        "drop_percent": 25
+      },
+      {
+        "name": "rainbow stone",
+        "item_id": 1177,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_345",
+    "monsterId": "monster_345_dark_elf_archmage",
+    "monsterLegacyNumber": 345,
+    "entries": [
+      {
+        "name": "scroll of spirit horde",
+        "item_id": 548,
+        "drop_percent": 10
+      },
+      {
+        "name": "twisted bone staff",
+        "item_id": 687,
+        "drop_percent": 5
+      },
+      {
+        "name": "dark blue orb",
+        "item_id": 810,
+        "drop_percent": 100
+      },
+      {
+        "name": "nightblack portal",
+        "item_id": 839,
+        "drop_percent": 100
+      },
+      {
+        "name": "scroll of sleep",
+        "item_id": 1818,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_970",
+    "monsterId": "monster_970_dark_elf_assassin",
+    "monsterLegacyNumber": 970,
+    "entries": [
+      {
+        "name": "adamantite ring",
+        "item_id": 1856,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_357",
+    "monsterId": "monster_357_dark_elf_emissary",
+    "monsterLegacyNumber": 357,
+    "entries": [
+      {
+        "name": "adamantite spear",
+        "item_id": 793,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_341",
+    "monsterId": "monster_341_dark_elf_high_priestess",
+    "monsterLegacyNumber": 341,
+    "entries": [
+      {
+        "name": "rune-etched sceptre",
+        "item_id": 821,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_322",
+    "monsterId": "monster_322_dark_elf_hunter",
+    "monsterLegacyNumber": 322,
+    "entries": [
+      {
+        "name": "adamantite spear",
+        "item_id": 793,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_333",
+    "monsterId": "monster_333_dark_elf_hunter",
+    "monsterLegacyNumber": 333,
+    "entries": [
+      {
+        "name": "adamantite spear",
+        "item_id": 793,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_343",
+    "monsterId": "monster_343_dark_elf_queen",
+    "monsterLegacyNumber": 343,
+    "entries": [
+      {
+        "name": "jeweled adamantite longsword",
+        "item_id": 823,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_342",
+    "monsterId": "monster_342_dark_elf_weaponsmaster",
+    "monsterLegacyNumber": 342,
+    "entries": [
+      {
+        "name": "adamantite katana",
+        "item_id": 822,
+        "drop_percent": 2
+      },
+      {
+        "name": "adamantite chainmail hauberk",
+        "item_id": 419,
+        "drop_percent": 5
+      },
+      {
+        "name": "black velvet gloves",
+        "item_id": 1524,
+        "drop_percent": 4
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_737",
+    "monsterId": "monster_737_dark_assassin",
+    "monsterLegacyNumber": 737,
+    "entries": [
+      {
+        "name": "blackened dirk",
+        "item_id": 1327,
+        "drop_percent": 1
+      },
+      {
+        "name": "blackened wrist guard",
+        "item_id": 1329,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_174",
+    "monsterId": "monster_174_dark_bishop",
+    "monsterLegacyNumber": 174,
+    "entries": [
+      {
+        "name": "hell-flail",
+        "item_id": 454,
+        "drop_percent": 2
+      },
+      {
+        "name": "cross key",
+        "item_id": 490,
+        "drop_percent": 100
+      },
+      {
+        "name": "runed sacrificial robes",
+        "item_id": 1708,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_143",
+    "monsterId": "monster_143_dark_cleric",
+    "monsterLegacyNumber": 143,
+    "entries": [
+      {
+        "name": "holy writ",
+        "item_id": 629,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_142",
+    "monsterId": "monster_142_dark_cultist",
+    "monsterLegacyNumber": 142,
+    "entries": [
+      {
+        "name": "black star key",
+        "item_id": 172,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_29",
+    "monsterId": "monster_29_dark_cultist",
+    "monsterLegacyNumber": 29,
+    "entries": [
+      {
+        "name": "black star key",
+        "item_id": 172,
+        "drop_percent": 7
+      },
+      {
+        "name": "sacrificial dagger",
+        "item_id": 1337,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_882",
+    "monsterId": "monster_882_dark_cupid",
+    "monsterLegacyNumber": 882,
+    "entries": [
+      {
+        "name": "blackwood longbow",
+        "item_id": 1476,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_121",
+    "monsterId": "monster_121_dark_druid",
+    "monsterLegacyNumber": 121,
+    "entries": [
+      {
+        "name": "oaken staff",
+        "item_id": 459,
+        "drop_percent": 3
+      },
+      {
+        "name": "darkwood ring",
+        "item_id": 474,
+        "drop_percent": 3
+      },
+      {
+        "name": "barkskin scroll",
+        "item_id": 631,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_125",
+    "monsterId": "monster_125_dark_goblin_warlock",
+    "monsterLegacyNumber": 125,
+    "entries": [
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_149",
+    "monsterId": "monster_149_dark_mage",
+    "monsterLegacyNumber": 149,
+    "entries": [
+      {
+        "name": "grey rolled parchment",
+        "item_id": 627,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_850",
+    "monsterId": "monster_850_dark_mage",
+    "monsterLegacyNumber": 850,
+    "entries": [
+      {
+        "name": "yellow bone portal",
+        "item_id": 1749,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_258",
+    "monsterId": "monster_258_dark_monk",
+    "monsterLegacyNumber": 258,
+    "entries": [
+      {
+        "name": "black serpent key",
+        "item_id": 593,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_488",
+    "monsterId": "monster_488_dark_monk",
+    "monsterLegacyNumber": 488,
+    "entries": [
+      {
+        "name": "black serpent key",
+        "item_id": 593,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_228",
+    "monsterId": "monster_228_dark_monk",
+    "monsterLegacyNumber": 228,
+    "entries": [
+      {
+        "name": "black serpent key",
+        "item_id": 593,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_489",
+    "monsterId": "monster_489_dark_mystic",
+    "monsterLegacyNumber": 489,
+    "entries": [
+      {
+        "name": "black serpent key",
+        "item_id": 593,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_739",
+    "monsterId": "monster_739_dark_nightblade",
+    "monsterLegacyNumber": 739,
+    "entries": [
+      {
+        "name": "ninjato",
+        "item_id": 364,
+        "drop_percent": 1
+      },
+      {
+        "name": "blackened wrist guard",
+        "item_id": 1329,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_700",
+    "monsterId": "monster_700_dark_phoenix",
+    "monsterLegacyNumber": 700,
+    "entries": [
+      {
+        "name": "golden chest",
+        "item_id": 956,
+        "drop_percent": 10
+      },
+      {
+        "name": "adamantite chest",
+        "item_id": 957,
+        "drop_percent": 10
+      },
+      {
+        "name": "black iron chest",
+        "item_id": 958,
+        "drop_percent": 10
+      },
+      {
+        "name": "smoking blackwood chest",
+        "item_id": 1352,
+        "drop_percent": 75
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_34",
+    "monsterId": "monster_34_dark_priest",
+    "monsterLegacyNumber": 34,
+    "entries": [
+      {
+        "name": "sacrificial dagger",
+        "item_id": 1337,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_144",
+    "monsterId": "monster_144_dark_priest",
+    "monsterLegacyNumber": 144,
+    "entries": [
+      {
+        "name": "skin-covered book",
+        "item_id": 630,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_738",
+    "monsterId": "monster_738_dark_stalker",
+    "monsterLegacyNumber": 738,
+    "entries": [
+      {
+        "name": "gunsen",
+        "item_id": 1253,
+        "drop_percent": 2
+      },
+      {
+        "name": "sai",
+        "item_id": 1328,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_176",
+    "monsterId": "monster_176_dark_wizard",
+    "monsterLegacyNumber": 176,
+    "entries": [
+      {
+        "name": "thunderstaff",
+        "item_id": 455,
+        "drop_percent": 2
+      },
+      {
+        "name": "runed key",
+        "item_id": 491,
+        "drop_percent": 100
+      },
+      {
+        "name": "tattered scroll",
+        "item_id": 628,
+        "drop_percent": 50
+      },
+      {
+        "name": "vibrant scroll",
+        "item_id": 1465,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_930",
+    "monsterId": "monster_930_darken_beast_lord",
+    "monsterLegacyNumber": 930,
+    "entries": [
+      {
+        "name": "Dusk",
+        "item_id": 685,
+        "drop_percent": 10
+      },
+      {
+        "name": "burnt iron chest",
+        "item_id": 1485,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_877",
+    "monsterId": "monster_877_death_minion",
+    "monsterLegacyNumber": 877,
+    "entries": [
+      {
+        "name": "nightblack scythe",
+        "item_id": 1471,
+        "drop_percent": 25
+      },
+      {
+        "name": "platinum key",
+        "item_id": 1561,
+        "drop_percent": 100
+      },
+      {
+        "name": "silver signet ring",
+        "item_id": 1655,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_809",
+    "monsterId": "monster_809_death_shrieker",
+    "monsterLegacyNumber": 809,
+    "entries": [
+      {
+        "name": "silversilk tunic",
+        "item_id": 862,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_523",
+    "monsterId": "monster_523_deinonychus",
+    "monsterLegacyNumber": 523,
+    "entries": [
+      {
+        "name": "spiked collar",
+        "item_id": 190,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1015",
+    "monsterId": "monster_1015_demon_lord",
+    "monsterLegacyNumber": 1015,
+    "entries": [
+      {
+        "name": "black spiked ball",
+        "item_id": 1911,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_216",
+    "monsterId": "monster_216_demoness_irikani",
+    "monsterLegacyNumber": 216,
+    "entries": [
+      {
+        "name": "obsidian claymore",
+        "item_id": 541,
+        "drop_percent": 10
+      },
+      {
+        "name": "flaming scimitar",
+        "item_id": 609,
+        "drop_percent": 10
+      },
+      {
+        "name": "severed head of Irikani",
+        "item_id": 1183,
+        "drop_percent": 100
+      },
+      {
+        "name": "flaming portal",
+        "item_id": 1078,
+        "drop_percent": 100
+      },
+      {
+        "name": "charred scroll",
+        "item_id": 567,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_529",
+    "monsterId": "monster_529_demonhunter",
+    "monsterLegacyNumber": 529,
+    "entries": [
+      {
+        "name": "etched adamant greatsword",
+        "item_id": 1070,
+        "drop_percent": 1
+      },
+      {
+        "name": "crimson helm",
+        "item_id": 1493,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_777",
+    "monsterId": "monster_777_depraved_murderer",
+    "monsterLegacyNumber": 777,
+    "entries": [
+      {
+        "name": "curved bone dagger",
+        "item_id": 1338,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_719",
+    "monsterId": "monster_719_deranged_priest",
+    "monsterLegacyNumber": 719,
+    "entries": [
+      {
+        "name": "scroll of wrathful curse",
+        "item_id": 1300,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_372",
+    "monsterId": "monster_372_devil_fiend_malivek",
+    "monsterLegacyNumber": 372,
+    "entries": [
+      {
+        "name": "hellblade",
+        "item_id": 325,
+        "drop_percent": 10
+      },
+      {
+        "name": "deathcoil",
+        "item_id": 1248,
+        "drop_percent": 10
+      },
+      {
+        "name": "smoking blackwood chest",
+        "item_id": 1352,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_795",
+    "monsterId": "monster_795_dirty_farmer",
+    "monsterLegacyNumber": 795,
+    "entries": [
+      {
+        "name": "farming hoe",
+        "item_id": 1438,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_920",
+    "monsterId": "monster_920_dirty_farmer",
+    "monsterLegacyNumber": 920,
+    "entries": [
+      {
+        "name": "farming hoe",
+        "item_id": 1438,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_919",
+    "monsterId": "monster_919_dirty_fisherman",
+    "monsterLegacyNumber": 919,
+    "entries": [
+      {
+        "name": "tankard of mead",
+        "item_id": 290,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_872",
+    "monsterId": "monster_872_dirty_fisherman",
+    "monsterLegacyNumber": 872,
+    "entries": [
+      {
+        "name": "tankard of mead",
+        "item_id": 290,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_526",
+    "monsterId": "monster_526_disenchanter",
+    "monsterLegacyNumber": 526,
+    "entries": [
+      {
+        "name": "etched adamant warhammer",
+        "item_id": 1069,
+        "drop_percent": 1
+      },
+      {
+        "name": "crimson spiked shield",
+        "item_id": 1067,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_219",
+    "monsterId": "monster_219_displacer_beast",
+    "monsterLegacyNumber": 219,
+    "entries": [
+      {
+        "name": "displacer beast tentacle",
+        "item_id": 589,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_876",
+    "monsterId": "monster_876_dread_captain",
+    "monsterLegacyNumber": 876,
+    "entries": [
+      {
+        "name": "great blackwood chest",
+        "item_id": 1496,
+        "drop_percent": 10
+      },
+      {
+        "name": "ethereal sabre",
+        "item_id": 1654,
+        "drop_percent": 10
+      },
+      {
+        "name": "dusty tricorne",
+        "item_id": 1959,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_490",
+    "monsterId": "monster_490_dread_mystic",
+    "monsterLegacyNumber": 490,
+    "entries": [
+      {
+        "name": "brass knuckles",
+        "item_id": 988,
+        "drop_percent": 35
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_906",
+    "monsterId": "monster_906_dreadlord_of_blood",
+    "monsterLegacyNumber": 906,
+    "entries": [
+      {
+        "name": "black plate leggings",
+        "item_id": 443,
+        "drop_percent": 0
+      },
+      {
+        "name": "red parchment",
+        "item_id": 1341,
+        "drop_percent": 100
+      },
+      {
+        "name": "brimstone hammer",
+        "item_id": 1455,
+        "drop_percent": 35
+      },
+      {
+        "name": "spiked plate corselet",
+        "item_id": 743,
+        "drop_percent": 25
+      },
+      {
+        "name": "star helm",
+        "item_id": 1526,
+        "drop_percent": 15
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_781",
+    "monsterId": "monster_781_drunken_brawler",
+    "monsterLegacyNumber": 781,
+    "entries": [
+      {
+        "name": "pewter tankard",
+        "item_id": 649,
+        "drop_percent": 100
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_981",
+    "monsterId": "monster_981_drunken_brawler",
+    "monsterLegacyNumber": 981,
+    "entries": [
+      {
+        "name": "pewter tankard",
+        "item_id": 649,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_259",
+    "monsterId": "monster_259_drunken_brawler",
+    "monsterLegacyNumber": 259,
+    "entries": [
+      {
+        "name": "pewter tankard",
+        "item_id": 649,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_190",
+    "monsterId": "monster_190_drunken_gambler",
+    "monsterLegacyNumber": 190,
+    "entries": [
+      {
+        "name": "pewter tankard",
+        "item_id": 649,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_506",
+    "monsterId": "monster_506_duergar_captain",
+    "monsterLegacyNumber": 506,
+    "entries": [
+      {
+        "name": "serrated dwarven axe",
+        "item_id": 1710,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1111",
+    "monsterId": "monster_1111_duergar_captain",
+    "monsterLegacyNumber": 1111,
+    "entries": [
+      {
+        "name": "serrated dwarven axe",
+        "item_id": 1710,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_456",
+    "monsterId": "monster_456_duergar_lord",
+    "monsterLegacyNumber": 456,
+    "entries": [
+      {
+        "name": "iron-banded chest",
+        "item_id": 909,
+        "drop_percent": 50
+      },
+      {
+        "name": "golden box",
+        "item_id": 912,
+        "drop_percent": 25
+      },
+      {
+        "name": "serrated dwarven axe",
+        "item_id": 1710,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_365",
+    "monsterId": "monster_365_dying_slaver_leader",
+    "monsterLegacyNumber": 365,
+    "entries": [
+      {
+        "name": "amber talisman",
+        "item_id": 815,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_989",
+    "monsterId": "monster_989_ebon_blade_assassin",
+    "monsterLegacyNumber": 989,
+    "entries": [
+      {
+        "name": "adamantite ninjato",
+        "item_id": 1854,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_988",
+    "monsterId": "monster_988_ebon_blade_manhunter",
+    "monsterLegacyNumber": 988,
+    "entries": [
+      {
+        "name": "salca dart",
+        "item_id": 1292,
+        "drop_percent": 1
+      },
+      {
+        "name": "bane dart",
+        "item_id": 1296,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_416",
+    "monsterId": "monster_416_efreeti",
+    "monsterLegacyNumber": 416,
+    "entries": [
+      {
+        "name": "steel chest",
+        "item_id": 913,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1100",
+    "monsterId": "monster_1100_elite_guard",
+    "monsterLegacyNumber": 1100,
+    "entries": [
+      {
+        "name": "fine broadsword",
+        "item_id": 295,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_150",
+    "monsterId": "monster_150_elite_guard",
+    "monsterLegacyNumber": 150,
+    "entries": [
+      {
+        "name": "fine broadsword",
+        "item_id": 295,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_757",
+    "monsterId": "monster_757_elite_guardsman",
+    "monsterLegacyNumber": 757,
+    "entries": [
+      {
+        "name": "platinum greatsword",
+        "item_id": 1361,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_921",
+    "monsterId": "monster_921_enigma_lord",
+    "monsterLegacyNumber": 921,
+    "entries": [
+      {
+        "name": "severed head of Enigma Lord",
+        "item_id": 1746,
+        "drop_percent": 100
+      },
+      {
+        "name": "enigma gloves",
+        "item_id": 1635,
+        "drop_percent": 5
+      },
+      {
+        "name": "enigma sandals",
+        "item_id": 1905,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1025",
+    "monsterId": "monster_1025_enormous_blue_dragon",
+    "monsterLegacyNumber": 1025,
+    "entries": [
+      {
+        "name": "huge darkwood chest",
+        "item_id": 911,
+        "drop_percent": 25
+      },
+      {
+        "name": "silverwood chest",
+        "item_id": 914,
+        "drop_percent": 25
+      },
+      {
+        "name": "alder chest",
+        "item_id": 974,
+        "drop_percent": 25
+      },
+      {
+        "name": "sandstone chest",
+        "item_id": 1840,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_527",
+    "monsterId": "monster_527_eradicator",
+    "monsterLegacyNumber": 527,
+    "entries": [
+      {
+        "name": "etched adamant broadsword",
+        "item_id": 1005,
+        "drop_percent": 1
+      },
+      {
+        "name": "crimson scalemail leggings",
+        "item_id": 1492,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_583",
+    "monsterId": "monster_583_falcon_headed_warrior",
+    "monsterLegacyNumber": 583,
+    "entries": [
+      {
+        "name": "khopesh sword",
+        "item_id": 1168,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_369",
+    "monsterId": "monster_369_fallen_angel",
+    "monsterLegacyNumber": 369,
+    "entries": [
+      {
+        "name": "laen longsword",
+        "item_id": 218,
+        "drop_percent": 5
+      },
+      {
+        "name": "ancient scroll",
+        "item_id": 327,
+        "drop_percent": 40
+      },
+      {
+        "name": "runic key",
+        "item_id": 952,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_546",
+    "monsterId": "monster_546_farmer_woodard",
+    "monsterLegacyNumber": 546,
+    "entries": [
+      {
+        "name": "hardened leather boots",
+        "item_id": 49,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_368",
+    "monsterId": "monster_368_feline_prisoner",
+    "monsterLegacyNumber": 368,
+    "entries": [
+      {
+        "name": "azure shamshir",
+        "item_id": 1084,
+        "drop_percent": 1
+      },
+      {
+        "name": "cobra earrings",
+        "item_id": 1529,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_212",
+    "monsterId": "monster_212_fire_assassin",
+    "monsterLegacyNumber": 212,
+    "entries": [
+      {
+        "name": "ruby ninjato",
+        "item_id": 1004,
+        "drop_percent": 3
+      },
+      {
+        "name": "flaming star",
+        "item_id": 1081,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_683",
+    "monsterId": "monster_683_fire_knight",
+    "monsterLegacyNumber": 683,
+    "entries": [
+      {
+        "name": "red rock key",
+        "item_id": 1267,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_84",
+    "monsterId": "monster_84_fire_lizard",
+    "monsterLegacyNumber": 84,
+    "entries": [
+      {
+        "name": "obsidian key",
+        "item_id": 341,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_829",
+    "monsterId": "monster_829_flesh_golem",
+    "monsterLegacyNumber": 829,
+    "entries": [
+      {
+        "name": "decapitated head",
+        "item_id": 524,
+        "drop_percent": 50
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 100
+      },
+      {
+        "name": "severed leg",
+        "item_id": 1357,
+        "drop_percent": 1
+      },
+      {
+        "name": "severed leg",
+        "item_id": 1357,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_491",
+    "monsterId": "monster_491_flesh_golem",
+    "monsterLegacyNumber": 491,
+    "entries": [
+      {
+        "name": "wire key",
+        "item_id": 1002,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_598",
+    "monsterId": "monster_598_floating_key",
+    "monsterLegacyNumber": 598,
+    "entries": [
+      {
+        "name": "golden lion key",
+        "item_id": 1175,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_756",
+    "monsterId": "monster_756_frost_giant",
+    "monsterLegacyNumber": 756,
+    "entries": [
+      {
+        "name": "blizzardfang",
+        "item_id": 1355,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_316",
+    "monsterId": "monster_316_frost_hydra",
+    "monsterLegacyNumber": 316,
+    "entries": [
+      {
+        "name": "icehammer",
+        "item_id": 750,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_72",
+    "monsterId": "monster_72_gelatinous_cube",
+    "monsterLegacyNumber": 72,
+    "entries": [
+      {
+        "name": "gold ring",
+        "item_id": 216,
+        "drop_percent": 1
+      },
+      {
+        "name": "tarnished chainmail hauberk",
+        "item_id": 330,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_628",
+    "monsterId": "monster_628_giant_crab",
+    "monsterLegacyNumber": 628,
+    "entries": [
+      {
+        "name": "giant crab shell",
+        "item_id": 1235,
+        "drop_percent": 2
+      },
+      {
+        "name": "giant crab shell",
+        "item_id": 1235,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_391",
+    "monsterId": "monster_391_giant_crocodile",
+    "monsterLegacyNumber": 391,
+    "entries": [
+      {
+        "name": "crocodile fang",
+        "item_id": 1268,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_685",
+    "monsterId": "monster_685_giant_efreeti",
+    "monsterLegacyNumber": 685,
+    "entries": [
+      {
+        "name": "feathered key",
+        "item_id": 1263,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_892",
+    "monsterId": "monster_892_giant_locust",
+    "monsterLegacyNumber": 892,
+    "entries": [
+      {
+        "name": "mandible",
+        "item_id": 1001,
+        "drop_percent": 25
+      },
+      {
+        "name": "mandible",
+        "item_id": 1001,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_923",
+    "monsterId": "monster_923_giant_locust",
+    "monsterLegacyNumber": 923,
+    "entries": [
+      {
+        "name": "mandible",
+        "item_id": 1001,
+        "drop_percent": 25
+      },
+      {
+        "name": "mandible",
+        "item_id": 1001,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_627",
+    "monsterId": "monster_627_giant_oyster",
+    "monsterLegacyNumber": 627,
+    "entries": [
+      {
+        "name": "glowing pearl",
+        "item_id": 1234,
+        "drop_percent": 1
+      },
+      {
+        "name": "giant pearl",
+        "item_id": 1260,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_241",
+    "monsterId": "monster_241_giant_pulsating_cocoon",
+    "monsterLegacyNumber": 241,
+    "entries": [
+      {
+        "name": "silvery longbow",
+        "item_id": 610,
+        "drop_percent": 100
+      },
+      {
+        "name": "golden snake earrings",
+        "item_id": 611,
+        "drop_percent": 100
+      },
+      {
+        "name": "pile of digested bodies",
+        "item_id": 613,
+        "drop_percent": 100
+      },
+      {
+        "name": "serpentine sword",
+        "item_id": 635,
+        "drop_percent": 100
+      },
+      {
+        "name": "curved black dagger",
+        "item_id": 612,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_692",
+    "monsterId": "monster_692_giant_river_turtle",
+    "monsterLegacyNumber": 692,
+    "entries": [
+      {
+        "name": "piece of shell",
+        "item_id": 1274,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_52",
+    "monsterId": "monster_52_giant_spider",
+    "monsterLegacyNumber": 52,
+    "entries": [
+      {
+        "name": "gold ring",
+        "item_id": 216,
+        "drop_percent": 10
+      },
+      {
+        "name": "spider leg",
+        "item_id": 1273,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_393",
+    "monsterId": "monster_393_giant_two_headed_troll",
+    "monsterLegacyNumber": 393,
+    "entries": [
+      {
+        "name": "iron-banded chest",
+        "item_id": 909,
+        "drop_percent": 15
+      },
+      {
+        "name": "massive wooden chest",
+        "item_id": 908,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_634",
+    "monsterId": "monster_634_giant_war_dog",
+    "monsterLegacyNumber": 634,
+    "entries": [
+      {
+        "name": "giant spiked collar",
+        "item_id": 1205,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_63",
+    "monsterId": "monster_63_gigantic_black_ooze",
+    "monsterLegacyNumber": 63,
+    "entries": [
+      {
+        "name": "gold ring",
+        "item_id": 216,
+        "drop_percent": 2
+      },
+      {
+        "name": "glowing broadsword",
+        "item_id": 361,
+        "drop_percent": 1
+      },
+      {
+        "name": "fingerbone bracelet",
+        "item_id": 428,
+        "drop_percent": 1
+      },
+      {
+        "name": "belt of faith",
+        "item_id": 473,
+        "drop_percent": 1
+      },
+      {
+        "name": "jeweled longsword",
+        "item_id": 115,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_41",
+    "monsterId": "monster_41_giovanni",
+    "monsterLegacyNumber": 41,
+    "entries": [
+      {
+        "name": "crowbar",
+        "item_id": 570,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_949",
+    "monsterId": "monster_949_gnaj_the_creator",
+    "monsterLegacyNumber": 949,
+    "entries": [
+      {
+        "name": "splotched scroll",
+        "item_id": 1690,
+        "drop_percent": 33
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_237",
+    "monsterId": "monster_237_gnoll_chieftain",
+    "monsterLegacyNumber": 237,
+    "entries": [
+      {
+        "name": "two-headed morningstar",
+        "item_id": 596,
+        "drop_percent": 2
+      },
+      {
+        "name": "gnarled wand",
+        "item_id": 597,
+        "drop_percent": 5
+      },
+      {
+        "name": "scroll with black seal",
+        "item_id": 601,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_332",
+    "monsterId": "monster_332_gnome_commander",
+    "monsterLegacyNumber": 332,
+    "entries": [
+      {
+        "name": "bloodstone orb",
+        "item_id": 807,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1014",
+    "monsterId": "monster_1014_golden_phoenix",
+    "monsterLegacyNumber": 1014,
+    "entries": [
+      {
+        "name": "golden rod",
+        "item_id": 1910,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_706",
+    "monsterId": "monster_706_gorilla_spirit",
+    "monsterLegacyNumber": 706,
+    "entries": [
+      {
+        "name": "gorilla totem",
+        "item_id": 1278,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_311",
+    "monsterId": "monster_311_goru_nezar",
+    "monsterLegacyNumber": 311,
+    "entries": [
+      {
+        "name": "severed head of Goru-Nezar",
+        "item_id": 684,
+        "drop_percent": 100
+      },
+      {
+        "name": "dragonclaw staff",
+        "item_id": 741,
+        "drop_percent": 5
+      },
+      {
+        "name": "spiked gauntlets",
+        "item_id": 733,
+        "drop_percent": 20
+      },
+      {
+        "name": "spiked plate corselet",
+        "item_id": 743,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_790",
+    "monsterId": "monster_790_gravedigger",
+    "monsterLegacyNumber": 790,
+    "entries": [
+      {
+        "name": "shovel",
+        "item_id": 1415,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1058",
+    "monsterId": "monster_1058_great_green_dragon",
+    "monsterLegacyNumber": 1058,
+    "entries": [
+      {
+        "name": "iron-banded chest",
+        "item_id": 909,
+        "drop_percent": 50
+      },
+      {
+        "name": "silverwood chest",
+        "item_id": 914,
+        "drop_percent": 25
+      },
+      {
+        "name": "alder chest",
+        "item_id": 974,
+        "drop_percent": 100
+      },
+      {
+        "name": "oak chest",
+        "item_id": 907,
+        "drop_percent": 75
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_163",
+    "monsterId": "monster_163_greater_hellhound",
+    "monsterLegacyNumber": 163,
+    "entries": [
+      {
+        "name": "greater hellhound hide",
+        "item_id": 486,
+        "drop_percent": 4
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_181",
+    "monsterId": "monster_181_greater_hellion",
+    "monsterLegacyNumber": 181,
+    "entries": [
+      {
+        "name": "glowing red amulet",
+        "item_id": 494,
+        "drop_percent": 100
+      },
+      {
+        "name": "golden chalice",
+        "item_id": 499,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_300",
+    "monsterId": "monster_300_green_dragon_serpent",
+    "monsterLegacyNumber": 300,
+    "entries": [
+      {
+        "name": "green fang",
+        "item_id": 738,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1099",
+    "monsterId": "monster_1099_guard_captain",
+    "monsterLegacyNumber": 1099,
+    "entries": [
+      {
+        "name": "black star key",
+        "item_id": 172,
+        "drop_percent": 1
+      },
+      {
+        "name": "fine broadsword",
+        "item_id": 295,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_151",
+    "monsterId": "monster_151_guard_captain",
+    "monsterLegacyNumber": 151,
+    "entries": [
+      {
+        "name": "fine broadsword",
+        "item_id": 295,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_351",
+    "monsterId": "monster_351_guardian_beast",
+    "monsterLegacyNumber": 351,
+    "entries": [
+      {
+        "name": "golden key",
+        "item_id": 813,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_68",
+    "monsterId": "monster_68_guardian_golem",
+    "monsterLegacyNumber": 68,
+    "entries": [
+      {
+        "name": "platinum ring",
+        "item_id": 210,
+        "drop_percent": 5
+      },
+      {
+        "name": "black leather tunic",
+        "item_id": 213,
+        "drop_percent": 5
+      },
+      {
+        "name": "holy medallion",
+        "item_id": 214,
+        "drop_percent": 5
+      },
+      {
+        "name": "platinum bracers",
+        "item_id": 215,
+        "drop_percent": 5
+      },
+      {
+        "name": "ruby necklace",
+        "item_id": 212,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_905",
+    "monsterId": "monster_905_guardsman",
+    "monsterLegacyNumber": 905,
+    "entries": [
+      {
+        "name": "round shield",
+        "item_id": 59,
+        "drop_percent": 10
+      },
+      {
+        "name": "broadsword",
+        "item_id": 65,
+        "drop_percent": 10
+      },
+      {
+        "name": "chainmail hauberk",
+        "item_id": 14,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_13",
+    "monsterId": "monster_13_guardsman",
+    "monsterLegacyNumber": 13,
+    "entries": [
+      {
+        "name": "round shield",
+        "item_id": 59,
+        "drop_percent": 10
+      },
+      {
+        "name": "broadsword",
+        "item_id": 65,
+        "drop_percent": 10
+      },
+      {
+        "name": "chainmail hauberk",
+        "item_id": 14,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_14",
+    "monsterId": "monster_14_guardsman",
+    "monsterLegacyNumber": 14,
+    "entries": [
+      {
+        "name": "round shield",
+        "item_id": 59,
+        "drop_percent": 10
+      },
+      {
+        "name": "broadsword",
+        "item_id": 65,
+        "drop_percent": 10
+      },
+      {
+        "name": "chainmail hauberk",
+        "item_id": 14,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_845",
+    "monsterId": "monster_845_gypsy_protector",
+    "monsterLegacyNumber": 845,
+    "entries": [
+      {
+        "name": "arlysian longsword",
+        "item_id": 1651,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_58",
+    "monsterId": "monster_58_half_ogre_warrior",
+    "monsterLegacyNumber": 58,
+    "entries": [
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      },
+      {
+        "name": "severed leg",
+        "item_id": 1357,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1028",
+    "monsterId": "monster_1028_handsome_man",
+    "monsterLegacyNumber": 1028,
+    "entries": [
+      {
+        "name": "tree branch",
+        "item_id": 1906,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_674",
+    "monsterId": "monster_674_hanging_cocoon",
+    "monsterLegacyNumber": 674,
+    "entries": [
+      {
+        "name": "partially digested body",
+        "item_id": 614,
+        "drop_percent": 100
+      },
+      {
+        "name": "main-gauche",
+        "item_id": 634,
+        "drop_percent": 5
+      },
+      {
+        "name": "jeweled longsword",
+        "item_id": 115,
+        "drop_percent": 2
+      },
+      {
+        "name": "silverwood lute",
+        "item_id": 1225,
+        "drop_percent": 1
+      },
+      {
+        "name": "shimmering sash",
+        "item_id": 1230,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_675",
+    "monsterId": "monster_675_hanging_cocoon",
+    "monsterLegacyNumber": 675,
+    "entries": [
+      {
+        "name": "elven cloak",
+        "item_id": 422,
+        "drop_percent": 5
+      },
+      {
+        "name": "partially digested body",
+        "item_id": 614,
+        "drop_percent": 100
+      },
+      {
+        "name": "black and white serpent ring",
+        "item_id": 645,
+        "drop_percent": 2
+      },
+      {
+        "name": "black leather belt",
+        "item_id": 1227,
+        "drop_percent": 1
+      },
+      {
+        "name": "trollskin boots",
+        "item_id": 1232,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_624",
+    "monsterId": "monster_624_hanging_cocoon",
+    "monsterLegacyNumber": 624,
+    "entries": [
+      {
+        "name": "black robes",
+        "item_id": 274,
+        "drop_percent": 5
+      },
+      {
+        "name": "opal ring",
+        "item_id": 435,
+        "drop_percent": 1
+      },
+      {
+        "name": "partially digested body",
+        "item_id": 614,
+        "drop_percent": 100
+      },
+      {
+        "name": "ruby-eyed skull ring",
+        "item_id": 651,
+        "drop_percent": 2
+      },
+      {
+        "name": "blackwood staff",
+        "item_id": 1226,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_818",
+    "monsterId": "monster_818_hanging_tree",
+    "monsterLegacyNumber": 818,
+    "entries": [
+      {
+        "name": "decapitated head",
+        "item_id": 524,
+        "drop_percent": 100
+      },
+      {
+        "name": "decapitated head",
+        "item_id": 524,
+        "drop_percent": 100
+      },
+      {
+        "name": "bloodwood chest",
+        "item_id": 1444,
+        "drop_percent": 40
+      },
+      {
+        "name": "great blackwood chest",
+        "item_id": 1496,
+        "drop_percent": 40
+      },
+      {
+        "name": "hangman's noose",
+        "item_id": 1632,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_24",
+    "monsterId": "monster_24_helfgrim",
+    "monsterLegacyNumber": 24,
+    "entries": [
+      {
+        "name": "broadsword",
+        "item_id": 65,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_36",
+    "monsterId": "monster_36_hellhound",
+    "monsterLegacyNumber": 36,
+    "entries": [
+      {
+        "name": "spiked collar",
+        "item_id": 190,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_122",
+    "monsterId": "monster_122_high_druid",
+    "monsterLegacyNumber": 122,
+    "entries": [
+      {
+        "name": "wyvernhide tunic",
+        "item_id": 412,
+        "drop_percent": 4
+      },
+      {
+        "name": "golden sickle",
+        "item_id": 460,
+        "drop_percent": 3
+      },
+      {
+        "name": "darkwood ring",
+        "item_id": 474,
+        "drop_percent": 5
+      },
+      {
+        "name": "antlered helm",
+        "item_id": 1006,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_646",
+    "monsterId": "monster_646_hill_giant",
+    "monsterLegacyNumber": 646,
+    "entries": [
+      {
+        "name": "giantwood club",
+        "item_id": 1208,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_647",
+    "monsterId": "monster_647_hill_giant_chieftan",
+    "monsterLegacyNumber": 647,
+    "entries": [
+      {
+        "name": "lionskin tunic",
+        "item_id": 1210,
+        "drop_percent": 5
+      },
+      {
+        "name": "great spiked club",
+        "item_id": 1211,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_645",
+    "monsterId": "monster_645_hill_giant_shaman",
+    "monsterLegacyNumber": 645,
+    "entries": [
+      {
+        "name": "fur-lined pouch",
+        "item_id": 1206,
+        "drop_percent": 1
+      },
+      {
+        "name": "giantwood club",
+        "item_id": 1208,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1000",
+    "monsterId": "monster_1000_hooded_man",
+    "monsterLegacyNumber": 1000,
+    "entries": [
+      {
+        "name": "greatcloak",
+        "item_id": 56,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_867",
+    "monsterId": "monster_867_horned_spider",
+    "monsterLegacyNumber": 867,
+    "entries": [
+      {
+        "name": "horned spider skull",
+        "item_id": 1814,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_312",
+    "monsterId": "monster_312_huge_basilisk",
+    "monsterLegacyNumber": 312,
+    "entries": [
+      {
+        "name": "blades of balance",
+        "item_id": 745,
+        "drop_percent": 5
+      },
+      {
+        "name": "chrome key",
+        "item_id": 746,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_394",
+    "monsterId": "monster_394_huge_black_dragon",
+    "monsterLegacyNumber": 394,
+    "entries": [
+      {
+        "name": "iron-banded chest",
+        "item_id": 909,
+        "drop_percent": 100
+      },
+      {
+        "name": "huge darkwood chest",
+        "item_id": 911,
+        "drop_percent": 50
+      },
+      {
+        "name": "steel chest",
+        "item_id": 913,
+        "drop_percent": 50
+      },
+      {
+        "name": "dragon totem",
+        "item_id": 1277,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_191",
+    "monsterId": "monster_191_huge_gruesome_creation",
+    "monsterLegacyNumber": 191,
+    "entries": [
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 100
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 5
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 50
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_452",
+    "monsterId": "monster_452_huge_obsidian_golem",
+    "monsterLegacyNumber": 452,
+    "entries": [
+      {
+        "name": "obsidian talisman",
+        "item_id": 948,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_67",
+    "monsterId": "monster_67_huge_tiger_beetle",
+    "monsterLegacyNumber": 67,
+    "entries": [
+      {
+        "name": "mandible",
+        "item_id": 1001,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_742",
+    "monsterId": "monster_742_ice_golem",
+    "monsterLegacyNumber": 742,
+    "entries": [
+      {
+        "name": "frozen shard",
+        "item_id": 1269,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_211",
+    "monsterId": "monster_211_ice_golem",
+    "monsterLegacyNumber": 211,
+    "entries": [
+      {
+        "name": "frozen shard",
+        "item_id": 1269,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_108",
+    "monsterId": "monster_108_ice_sorceress",
+    "monsterLegacyNumber": 108,
+    "entries": [
+      {
+        "name": "frost sceptre",
+        "item_id": 456,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1024",
+    "monsterId": "monster_1024_inquisitor",
+    "monsterLegacyNumber": 1024,
+    "entries": [
+      {
+        "name": "stone key",
+        "item_id": 1944,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1020",
+    "monsterId": "monster_1020_inquisitor",
+    "monsterLegacyNumber": 1020,
+    "entries": [
+      {
+        "name": "iron key",
+        "item_id": 1945,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1022",
+    "monsterId": "monster_1022_inquisitor",
+    "monsterLegacyNumber": 1022,
+    "entries": [
+      {
+        "name": "amber key",
+        "item_id": 1942,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1019",
+    "monsterId": "monster_1019_inquisitor",
+    "monsterLegacyNumber": 1019,
+    "entries": [
+      {
+        "name": "sapphire key",
+        "item_id": 1943,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1021",
+    "monsterId": "monster_1021_inquisitor",
+    "monsterLegacyNumber": 1021,
+    "entries": [
+      {
+        "name": "ruby key",
+        "item_id": 1941,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_860",
+    "monsterId": "monster_860_inquisitor_armandriel",
+    "monsterLegacyNumber": 860,
+    "entries": [
+      {
+        "name": "crimson scale gauntlets",
+        "item_id": 1336,
+        "drop_percent": 1
+      },
+      {
+        "name": "crimson scalemail leggings",
+        "item_id": 1492,
+        "drop_percent": 1
+      },
+      {
+        "name": "crimson tankard",
+        "item_id": 1778,
+        "drop_percent": 100
+      },
+      {
+        "name": "crimson spiked shield",
+        "item_id": 1067,
+        "drop_percent": 1
+      },
+      {
+        "name": "crimson scalemail tunic",
+        "item_id": 1491,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_532",
+    "monsterId": "monster_532_inquisitor_fulgore",
+    "monsterLegacyNumber": 532,
+    "entries": [
+      {
+        "name": "ancient obsidian key",
+        "item_id": 1077,
+        "drop_percent": 50
+      },
+      {
+        "name": "iron key",
+        "item_id": 1532,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_915",
+    "monsterId": "monster_915_ivory_golem",
+    "monsterLegacyNumber": 915,
+    "entries": [
+      {
+        "name": "jewel-encrusted warhammer",
+        "item_id": 1448,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_582",
+    "monsterId": "monster_582_jackal_headed_warrior",
+    "monsterLegacyNumber": 582,
+    "entries": [
+      {
+        "name": "khopesh sword",
+        "item_id": 1168,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_247",
+    "monsterId": "monster_247_jael",
+    "monsterLegacyNumber": 247,
+    "entries": [
+      {
+        "name": "iron-capped staff",
+        "item_id": 101,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_916",
+    "monsterId": "monster_916_jandare_leafdancer",
+    "monsterLegacyNumber": 916,
+    "entries": [
+      {
+        "name": "iron-capped staff",
+        "item_id": 101,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_448",
+    "monsterId": "monster_448_kai_master",
+    "monsterLegacyNumber": 448,
+    "entries": [
+      {
+        "name": "silversilk trousers",
+        "item_id": 830,
+        "drop_percent": 1
+      },
+      {
+        "name": "silversilk tunic",
+        "item_id": 862,
+        "drop_percent": 1
+      },
+      {
+        "name": "silversilk gloves",
+        "item_id": 1836,
+        "drop_percent": 1
+      },
+      {
+        "name": "silversilk slippers",
+        "item_id": 1837,
+        "drop_percent": 1
+      },
+      {
+        "name": "sapphire bracers",
+        "item_id": 1839,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_691",
+    "monsterId": "monster_691_king_crab",
+    "monsterLegacyNumber": 691,
+    "entries": [
+      {
+        "name": "king crab claw",
+        "item_id": 1289,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_406",
+    "monsterId": "monster_406_kobold_king",
+    "monsterLegacyNumber": 406,
+    "entries": [
+      {
+        "name": "wooden box",
+        "item_id": 906,
+        "drop_percent": 25
+      },
+      {
+        "name": "iron crown",
+        "item_id": 931,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_751",
+    "monsterId": "monster_751_lady_of_the_dark",
+    "monsterLegacyNumber": 751,
+    "entries": [
+      {
+        "name": "shimmering portal",
+        "item_id": 1326,
+        "drop_percent": 100
+      },
+      {
+        "name": "black embroidered robes",
+        "item_id": 1331,
+        "drop_percent": 5
+      },
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 25
+      },
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 100
+      },
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_611",
+    "monsterId": "monster_611_lallim_whitemane",
+    "monsterLegacyNumber": 611,
+    "entries": [
+      {
+        "name": "metallic parchment",
+        "item_id": 1828,
+        "drop_percent": 30
+      },
+      {
+        "name": "copperwood staff",
+        "item_id": 1074,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_303",
+    "monsterId": "monster_303_lamia",
+    "monsterLegacyNumber": 303,
+    "entries": [
+      {
+        "name": "wavy-bladed dagger",
+        "item_id": 711,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_631",
+    "monsterId": "monster_631_lantern_fish",
+    "monsterLegacyNumber": 631,
+    "entries": [
+      {
+        "name": "scaled lantern",
+        "item_id": 1233,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_721",
+    "monsterId": "monster_721_large_red_demonling",
+    "monsterLegacyNumber": 721,
+    "entries": [
+      {
+        "name": "polished key",
+        "item_id": 1266,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_209",
+    "monsterId": "monster_209_large_yeti",
+    "monsterLegacyNumber": 209,
+    "entries": [
+      {
+        "name": "glass key",
+        "item_id": 520,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_679",
+    "monsterId": "monster_679_lava_imp",
+    "monsterLegacyNumber": 679,
+    "entries": [
+      {
+        "name": "chiseled key",
+        "item_id": 1264,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_486",
+    "monsterId": "monster_486_leo_the_quick",
+    "monsterLegacyNumber": 486,
+    "entries": [
+      {
+        "name": "emerald-hilted rapier",
+        "item_id": 369,
+        "drop_percent": 10
+      },
+      {
+        "name": "steel key",
+        "item_id": 975,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_276",
+    "monsterId": "monster_276_leprechaun",
+    "monsterLegacyNumber": 276,
+    "entries": [
+      {
+        "name": "shillelagh",
+        "item_id": 712,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_793",
+    "monsterId": "monster_793_lonely_traveler",
+    "monsterLegacyNumber": 793,
+    "entries": [
+      {
+        "name": "pewter tankard",
+        "item_id": 649,
+        "drop_percent": 100
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_794",
+    "monsterId": "monster_794_lonely_traveler",
+    "monsterLegacyNumber": 794,
+    "entries": [
+      {
+        "name": "pewter tankard",
+        "item_id": 649,
+        "drop_percent": 100
+      },
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_934",
+    "monsterId": "monster_934_lord_feyr",
+    "monsterLegacyNumber": 934,
+    "entries": [
+      {
+        "name": "ruby-encrusted bracers",
+        "item_id": 1047,
+        "drop_percent": 10
+      },
+      {
+        "name": "blackened parchment",
+        "item_id": 1051,
+        "drop_percent": 100
+      },
+      {
+        "name": "Feyr",
+        "item_id": 1802,
+        "drop_percent": 10
+      },
+      {
+        "name": "shadowy corselet",
+        "item_id": 1808,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_329",
+    "monsterId": "monster_329_lord_of_the_hunt",
+    "monsterLegacyNumber": 329,
+    "entries": [
+      {
+        "name": "nexus spear",
+        "item_id": 784,
+        "drop_percent": 25
+      },
+      {
+        "name": "shining metallic robes",
+        "item_id": 800,
+        "drop_percent": 15
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1032",
+    "monsterId": "monster_1032_lorzina",
+    "monsterLegacyNumber": 1032,
+    "entries": [
+      {
+        "name": "tree branch",
+        "item_id": 1906,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_129",
+    "monsterId": "monster_129_mad_wizard",
+    "monsterLegacyNumber": 129,
+    "entries": [
+      {
+        "name": "gilded robes",
+        "item_id": 410,
+        "drop_percent": 5
+      },
+      {
+        "name": "orange potion",
+        "item_id": 470,
+        "drop_percent": 10
+      },
+      {
+        "name": "minor healing potion",
+        "item_id": 223,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_238",
+    "monsterId": "monster_238_madame_alexia",
+    "monsterLegacyNumber": 238,
+    "entries": [
+      {
+        "name": "red leather book",
+        "item_id": 1602,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_676",
+    "monsterId": "monster_676_magma_golem",
+    "monsterLegacyNumber": 676,
+    "entries": [
+      {
+        "name": "magma key",
+        "item_id": 1265,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_701",
+    "monsterId": "monster_701_mamba",
+    "monsterLegacyNumber": 701,
+    "entries": [
+      {
+        "name": "mamba fang",
+        "item_id": 1275,
+        "drop_percent": 10
+      },
+      {
+        "name": "viper totem",
+        "item_id": 1280,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_912",
+    "monsterId": "monster_912_mammoth_rot_worm",
+    "monsterLegacyNumber": 912,
+    "entries": [
+      {
+        "name": "rotted worm skin",
+        "item_id": 1678,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_586",
+    "monsterId": "monster_586_manscorpion",
+    "monsterLegacyNumber": 586,
+    "entries": [
+      {
+        "name": "two-headed pike",
+        "item_id": 1169,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_588",
+    "monsterId": "monster_588_manscorpion_king",
+    "monsterLegacyNumber": 588,
+    "entries": [
+      {
+        "name": "worn stone tablet",
+        "item_id": 1166,
+        "drop_percent": 100
+      },
+      {
+        "name": "golden pike",
+        "item_id": 1170,
+        "drop_percent": 20
+      },
+      {
+        "name": "hydra key",
+        "item_id": 1171,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_587",
+    "monsterId": "monster_587_manscorpion_shaman",
+    "monsterLegacyNumber": 587,
+    "entries": [
+      {
+        "name": "two-headed pike",
+        "item_id": 1169,
+        "drop_percent": 5
+      },
+      {
+        "name": "sandstone tablet",
+        "item_id": 1990,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_220",
+    "monsterId": "monster_220_manticore",
+    "monsterLegacyNumber": 220,
+    "entries": [
+      {
+        "name": "manticore tail",
+        "item_id": 590,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1064",
+    "monsterId": "monster_1064_marble_knight",
+    "monsterLegacyNumber": 1064,
+    "entries": [
+      {
+        "name": "marble statue",
+        "item_id": 1926,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_658",
+    "monsterId": "monster_658_massive_cocoon",
+    "monsterLegacyNumber": 658,
+    "entries": [
+      {
+        "name": "moonstone ring",
+        "item_id": 436,
+        "drop_percent": 5
+      },
+      {
+        "name": "partially digested body",
+        "item_id": 614,
+        "drop_percent": 100
+      },
+      {
+        "name": "white gold ring",
+        "item_id": 642,
+        "drop_percent": 2
+      },
+      {
+        "name": "dark hood",
+        "item_id": 1228,
+        "drop_percent": 1
+      },
+      {
+        "name": "runed longbow",
+        "item_id": 1229,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_622",
+    "monsterId": "monster_622_massive_fanged_spider",
+    "monsterLegacyNumber": 622,
+    "entries": [
+      {
+        "name": "curved fang",
+        "item_id": 1184,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_747",
+    "monsterId": "monster_747_massive_white_dragon",
+    "monsterLegacyNumber": 747,
+    "entries": [
+      {
+        "name": "steel chest",
+        "item_id": 913,
+        "drop_percent": 25
+      },
+      {
+        "name": "ice chest",
+        "item_id": 1344,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_740",
+    "monsterId": "monster_740_master_assassin",
+    "monsterLegacyNumber": 740,
+    "entries": [
+      {
+        "name": "daikatana",
+        "item_id": 1349,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_178",
+    "monsterId": "monster_178_master_assassin",
+    "monsterLegacyNumber": 178,
+    "entries": [
+      {
+        "name": "katana",
+        "item_id": 497,
+        "drop_percent": 2
+      },
+      {
+        "name": "skull key",
+        "item_id": 492,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_344",
+    "monsterId": "monster_344_master_torturer",
+    "monsterLegacyNumber": 344,
+    "entries": [
+      {
+        "name": "cat-o-nine tails",
+        "item_id": 824,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_784",
+    "monsterId": "monster_784_mayor_godfrey",
+    "monsterLegacyNumber": 784,
+    "entries": [
+      {
+        "name": "platinum greatsword",
+        "item_id": 1361,
+        "drop_percent": 1
+      },
+      {
+        "name": "Crest of Silvermere",
+        "item_id": 1649,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_854",
+    "monsterId": "monster_854_mayor_of_arlysia",
+    "monsterLegacyNumber": 854,
+    "entries": [
+      {
+        "name": "Crest of Arlysia",
+        "item_id": 1777,
+        "drop_percent": 75
+      },
+      {
+        "name": "arlysian dagger",
+        "item_id": 1653,
+        "drop_percent": 35
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_42",
+    "monsterId": "monster_42_meia",
+    "monsterLegacyNumber": 42,
+    "entries": [
+      {
+        "name": "incense",
+        "item_id": 284,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_20",
+    "monsterId": "monster_20_mercenary",
+    "monsterLegacyNumber": 20,
+    "entries": [
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_233",
+    "monsterId": "monster_233_mermex_hunter",
+    "monsterLegacyNumber": 233,
+    "entries": [
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_240",
+    "monsterId": "monster_240_mermex_queen",
+    "monsterLegacyNumber": 240,
+    "entries": [
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 100
+      },
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 35
+      },
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 20
+      },
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 20
+      },
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_236",
+    "monsterId": "monster_236_mermex_royal_guard",
+    "monsterLegacyNumber": 236,
+    "entries": [
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_234",
+    "monsterId": "monster_234_mermex_warrior",
+    "monsterLegacyNumber": 234,
+    "entries": [
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_235",
+    "monsterId": "monster_235_mermex_worker",
+    "monsterLegacyNumber": 235,
+    "entries": [
+      {
+        "name": "piece of black chitin",
+        "item_id": 594,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_374",
+    "monsterId": "monster_374_metallic_monstrosity",
+    "monsterLegacyNumber": 374,
+    "entries": [
+      {
+        "name": "gleaming shard",
+        "item_id": 917,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_816",
+    "monsterId": "monster_816_midnight_unicorn",
+    "monsterLegacyNumber": 816,
+    "entries": [
+      {
+        "name": "blackened unicorn horn",
+        "item_id": 1437,
+        "drop_percent": 30
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_937",
+    "monsterId": "monster_937_mind_flayer_magus",
+    "monsterLegacyNumber": 937,
+    "entries": [
+      {
+        "name": "severed purple tentacle",
+        "item_id": 1888,
+        "drop_percent": 5
+      },
+      {
+        "name": "vortex staff",
+        "item_id": 1641,
+        "drop_percent": 5
+      },
+      {
+        "name": "barbed circlet",
+        "item_id": 1642,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_60",
+    "monsterId": "monster_60_minotaur_champion",
+    "monsterLegacyNumber": 60,
+    "entries": [
+      {
+        "name": "bone-handled headcutter",
+        "item_id": 258,
+        "drop_percent": 25
+      },
+      {
+        "name": "ruby key",
+        "item_id": 259,
+        "drop_percent": 100
+      },
+      {
+        "name": "minotaur horn",
+        "item_id": 1359,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_114",
+    "monsterId": "monster_114_minotaur_chieftain",
+    "monsterLegacyNumber": 114,
+    "entries": [
+      {
+        "name": "ebony greataxe",
+        "item_id": 226,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_945",
+    "monsterId": "monster_945_mirror_portal",
+    "monsterLegacyNumber": 945,
+    "entries": [
+      {
+        "name": "hideous face",
+        "item_id": 1686,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_707",
+    "monsterId": "monster_707_monkey_spirit",
+    "monsterLegacyNumber": 707,
+    "entries": [
+      {
+        "name": "monkey totem",
+        "item_id": 1279,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_31",
+    "monsterId": "monster_31_mummy",
+    "monsterLegacyNumber": 31,
+    "entries": [
+      {
+        "name": "iron ring",
+        "item_id": 161,
+        "drop_percent": 1
+      },
+      {
+        "name": "copper ring",
+        "item_id": 162,
+        "drop_percent": 1
+      },
+      {
+        "name": "silver ring",
+        "item_id": 163,
+        "drop_percent": 1
+      },
+      {
+        "name": "amethyst ring",
+        "item_id": 164,
+        "drop_percent": 1
+      },
+      {
+        "name": "bone key",
+        "item_id": 177,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_796",
+    "monsterId": "monster_796_myrmidon",
+    "monsterLegacyNumber": 796,
+    "entries": [
+      {
+        "name": "arlysian longsword",
+        "item_id": 1651,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1006",
+    "monsterId": "monster_1006_nahr",
+    "monsterLegacyNumber": 1006,
+    "entries": [
+      {
+        "name": "helmet key",
+        "item_id": 1930,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1005",
+    "monsterId": "monster_1005_nahr",
+    "monsterLegacyNumber": 1005,
+    "entries": [
+      {
+        "name": "skull key",
+        "item_id": 1929,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_732",
+    "monsterId": "monster_732_nanati",
+    "monsterLegacyNumber": 732,
+    "entries": [
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_731",
+    "monsterId": "monster_731_nanati",
+    "monsterLegacyNumber": 731,
+    "entries": [
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_735",
+    "monsterId": "monster_735_nanati_bladesman",
+    "monsterLegacyNumber": 735,
+    "entries": [
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_734",
+    "monsterId": "monster_734_nanati_deathweaver",
+    "monsterLegacyNumber": 734,
+    "entries": [
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_736",
+    "monsterId": "monster_736_nanati_shadow",
+    "monsterLegacyNumber": 736,
+    "entries": [
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_733",
+    "monsterId": "monster_733_nanati_sorceress",
+    "monsterLegacyNumber": 733,
+    "entries": [
+      {
+        "name": "ashwood wand",
+        "item_id": 1107,
+        "drop_percent": 2
+      },
+      {
+        "name": "teak wand",
+        "item_id": 1108,
+        "drop_percent": 2
+      },
+      {
+        "name": "mahogany wand",
+        "item_id": 1109,
+        "drop_percent": 2
+      },
+      {
+        "name": "pine wand",
+        "item_id": 1110,
+        "drop_percent": 1
+      },
+      {
+        "name": "black diamond",
+        "item_id": 1332,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_547",
+    "monsterId": "monster_547_necromancer",
+    "monsterLegacyNumber": 547,
+    "entries": [
+      {
+        "name": "summoning bone",
+        "item_id": 1118,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_494",
+    "monsterId": "monster_494_necromancer",
+    "monsterLegacyNumber": 494,
+    "entries": [
+      {
+        "name": "skull mask",
+        "item_id": 999,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_773",
+    "monsterId": "monster_773_necromancer",
+    "monsterLegacyNumber": 773,
+    "entries": [
+      {
+        "name": "summoning bone",
+        "item_id": 1118,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_325",
+    "monsterId": "monster_325_nexus_hunter",
+    "monsterLegacyNumber": 325,
+    "entries": [
+      {
+        "name": "nexus chakram",
+        "item_id": 798,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_269",
+    "monsterId": "monster_269_night_hag",
+    "monsterLegacyNumber": 269,
+    "entries": [
+      {
+        "name": "marsh light",
+        "item_id": 692,
+        "drop_percent": 25
+      },
+      {
+        "name": "skull wand",
+        "item_id": 703,
+        "drop_percent": 100
+      },
+      {
+        "name": "crumbling bible",
+        "item_id": 744,
+        "drop_percent": 100
+      },
+      {
+        "name": "ancient scroll",
+        "item_id": 1007,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_576",
+    "monsterId": "monster_576_nomad",
+    "monsterLegacyNumber": 576,
+    "entries": [
+      {
+        "name": "waterskin",
+        "item_id": 283,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_210",
+    "monsterId": "monster_210_nomadic_chieftan",
+    "monsterLegacyNumber": 210,
+    "entries": [
+      {
+        "name": "rune-carved staff",
+        "item_id": 519,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_208",
+    "monsterId": "monster_208_nomadic_shaman",
+    "monsterLegacyNumber": 208,
+    "entries": [
+      {
+        "name": "oaken staff",
+        "item_id": 459,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_347",
+    "monsterId": "monster_347_obsidian_statue",
+    "monsterLegacyNumber": 347,
+    "entries": [
+      {
+        "name": "gate key",
+        "item_id": 806,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_86",
+    "monsterId": "monster_86_ogre",
+    "monsterLegacyNumber": 86,
+    "entries": [
+      {
+        "name": "stone key",
+        "item_id": 344,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_297",
+    "monsterId": "monster_297_ogre_mage",
+    "monsterLegacyNumber": 297,
+    "entries": [
+      {
+        "name": "spiked gauntlets",
+        "item_id": 733,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1095",
+    "monsterId": "monster_1095_ogre_gladiator",
+    "monsterLegacyNumber": 1095,
+    "entries": [
+      {
+        "name": "massive wooden club",
+        "item_id": 732,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_726",
+    "monsterId": "monster_726_ogre_gladiator",
+    "monsterLegacyNumber": 726,
+    "entries": [
+      {
+        "name": "massive wooden club",
+        "item_id": 732,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_296",
+    "monsterId": "monster_296_ogre_grunt",
+    "monsterLegacyNumber": 296,
+    "entries": [
+      {
+        "name": "massive wooden club",
+        "item_id": 732,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_545",
+    "monsterId": "monster_545_old_mother_woodard",
+    "monsterLegacyNumber": 545,
+    "entries": [
+      {
+        "name": "flowery apron",
+        "item_id": 2041,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1094",
+    "monsterId": "monster_1094_orc_captain",
+    "monsterLegacyNumber": 1094,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_725",
+    "monsterId": "monster_725_orc_captain",
+    "monsterLegacyNumber": 725,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_729",
+    "monsterId": "monster_729_orc_fanatic",
+    "monsterLegacyNumber": 729,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1098",
+    "monsterId": "monster_1098_orc_fanatic",
+    "monsterLegacyNumber": 1098,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_753",
+    "monsterId": "monster_753_orc_fanatic",
+    "monsterLegacyNumber": 753,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1096",
+    "monsterId": "monster_1096_orc_lieutenant",
+    "monsterLegacyNumber": 1096,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_19",
+    "monsterId": "monster_19_orc_lieutenant",
+    "monsterLegacyNumber": 19,
+    "entries": [
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      },
+      {
+        "name": "severed leg",
+        "item_id": 1357,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_727",
+    "monsterId": "monster_727_orc_lieutenant",
+    "monsterLegacyNumber": 727,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_18",
+    "monsterId": "monster_18_orc_sentry",
+    "monsterLegacyNumber": 18,
+    "entries": [
+      {
+        "name": "severed leg",
+        "item_id": 1357,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_730",
+    "monsterId": "monster_730_orc_trainee",
+    "monsterLegacyNumber": 730,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_754",
+    "monsterId": "monster_754_orc_trainee",
+    "monsterLegacyNumber": 754,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_218",
+    "monsterId": "monster_218_orc_warleader",
+    "monsterLegacyNumber": 218,
+    "entries": [
+      {
+        "name": "rusty iron key",
+        "item_id": 569,
+        "drop_percent": 25
+      },
+      {
+        "name": "serrated battle axe",
+        "item_id": 568,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_724",
+    "monsterId": "monster_724_orc_warlord",
+    "monsterLegacyNumber": 724,
+    "entries": [
+      {
+        "name": "lifestealer",
+        "item_id": 1330,
+        "drop_percent": 10
+      },
+      {
+        "name": "head of the orc warlord",
+        "item_id": 1335,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1093",
+    "monsterId": "monster_1093_orc_warlord",
+    "monsterLegacyNumber": 1093,
+    "entries": [
+      {
+        "name": "lifestealer",
+        "item_id": 1330,
+        "drop_percent": 1
+      },
+      {
+        "name": "head of the orc warlord",
+        "item_id": 1335,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1097",
+    "monsterId": "monster_1097_orc_warrior",
+    "monsterLegacyNumber": 1097,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_728",
+    "monsterId": "monster_728_orc_warrior",
+    "monsterLegacyNumber": 728,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_752",
+    "monsterId": "monster_752_orc_warrior",
+    "monsterLegacyNumber": 752,
+    "entries": [
+      {
+        "name": "orc-head",
+        "item_id": 1101,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_95",
+    "monsterId": "monster_95_owlbear",
+    "monsterLegacyNumber": 95,
+    "entries": [
+      {
+        "name": "copper key",
+        "item_id": 346,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_836",
+    "monsterId": "monster_836_ozrinom_the_vampire_lord",
+    "monsterLegacyNumber": 836,
+    "entries": [
+      {
+        "name": "bloodwood chest",
+        "item_id": 1444,
+        "drop_percent": 20
+      },
+      {
+        "name": "scarlet doublet",
+        "item_id": 1458,
+        "drop_percent": 50
+      },
+      {
+        "name": "Sword of Ozrinom",
+        "item_id": 1487,
+        "drop_percent": 15
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_863",
+    "monsterId": "monster_863_pastor_lander",
+    "monsterLegacyNumber": 863,
+    "entries": [
+      {
+        "name": "white robes",
+        "item_id": 275,
+        "drop_percent": 10
+      },
+      {
+        "name": "holy miter",
+        "item_id": 400,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_594",
+    "monsterId": "monster_594_pharaoh_rastep",
+    "monsterLegacyNumber": 594,
+    "entries": [
+      {
+        "name": "meteorite rod",
+        "item_id": 1172,
+        "drop_percent": 25
+      },
+      {
+        "name": "golden headdress",
+        "item_id": 1173,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_275",
+    "monsterId": "monster_275_pixie",
+    "monsterLegacyNumber": 275,
+    "entries": [
+      {
+        "name": "pixie wings",
+        "item_id": 1270,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_544",
+    "monsterId": "monster_544_platinum_knight",
+    "monsterLegacyNumber": 544,
+    "entries": [
+      {
+        "name": "platinum plate gauntlets",
+        "item_id": 1679,
+        "drop_percent": 20
+      },
+      {
+        "name": "platinum plate leggings",
+        "item_id": 1447,
+        "drop_percent": 20
+      },
+      {
+        "name": "silvery spiked corselet",
+        "item_id": 1452,
+        "drop_percent": 100
+      },
+      {
+        "name": "platinum greathelm",
+        "item_id": 1504,
+        "drop_percent": 20
+      },
+      {
+        "name": "silvery spiked shield",
+        "item_id": 1668,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_315",
+    "monsterId": "monster_315_prismatic_dragon",
+    "monsterLegacyNumber": 315,
+    "entries": [
+      {
+        "name": "holy avenger",
+        "item_id": 749,
+        "drop_percent": 5
+      },
+      {
+        "name": "white fang",
+        "item_id": 736,
+        "drop_percent": 20
+      },
+      {
+        "name": "black fang",
+        "item_id": 737,
+        "drop_percent": 20
+      },
+      {
+        "name": "green fang",
+        "item_id": 738,
+        "drop_percent": 20
+      },
+      {
+        "name": "red fang",
+        "item_id": 740,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_485",
+    "monsterId": "monster_485_queen_ant",
+    "monsterLegacyNumber": 485,
+    "entries": [
+      {
+        "name": "mandible",
+        "item_id": 1001,
+        "drop_percent": 25
+      },
+      {
+        "name": "mandible",
+        "item_id": 1001,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_270",
+    "monsterId": "monster_270_quickling",
+    "monsterLegacyNumber": 270,
+    "entries": [
+      {
+        "name": "wavy-bladed dagger",
+        "item_id": 711,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_281",
+    "monsterId": "monster_281_quickling_lord",
+    "monsterLegacyNumber": 281,
+    "entries": [
+      {
+        "name": "black silk robes",
+        "item_id": 752,
+        "drop_percent": 10
+      },
+      {
+        "name": "black silk pants",
+        "item_id": 753,
+        "drop_percent": 10
+      },
+      {
+        "name": "black silk slippers",
+        "item_id": 754,
+        "drop_percent": 10
+      },
+      {
+        "name": "black silk gloves",
+        "item_id": 755,
+        "drop_percent": 10
+      },
+      {
+        "name": "ebony kris",
+        "item_id": 686,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_567",
+    "monsterId": "monster_567_rakshasha_rajah",
+    "monsterLegacyNumber": 567,
+    "entries": [
+      {
+        "name": "silvery scroll",
+        "item_id": 1156,
+        "drop_percent": 100
+      },
+      {
+        "name": "jeweled turban",
+        "item_id": 1157,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_565",
+    "monsterId": "monster_565_rakshasha_rukh",
+    "monsterLegacyNumber": 565,
+    "entries": [
+      {
+        "name": "tiger-claw necklace",
+        "item_id": 1155,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_566",
+    "monsterId": "monster_566_rakshasha_sage",
+    "monsterLegacyNumber": 566,
+    "entries": [
+      {
+        "name": "shimmering papyrus",
+        "item_id": 2012,
+        "drop_percent": 1
+      },
+      {
+        "name": "cobra earrings",
+        "item_id": 1529,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_302",
+    "monsterId": "monster_302_red_dragon_serpent",
+    "monsterLegacyNumber": 302,
+    "entries": [
+      {
+        "name": "red fang",
+        "item_id": 740,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_797",
+    "monsterId": "monster_797_rogue",
+    "monsterLegacyNumber": 797,
+    "entries": [
+      {
+        "name": "arlysian dagger",
+        "item_id": 1653,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_813",
+    "monsterId": "monster_813_rotting_beholder",
+    "monsterLegacyNumber": 813,
+    "entries": [
+      {
+        "name": "bloodwood chest",
+        "item_id": 1444,
+        "drop_percent": 10
+      },
+      {
+        "name": "rotten eye",
+        "item_id": 1730,
+        "drop_percent": 100
+      },
+      {
+        "name": "rotted tongue",
+        "item_id": 1731,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_798",
+    "monsterId": "monster_798_rubicant",
+    "monsterLegacyNumber": 798,
+    "entries": [
+      {
+        "name": "glowing broadsword",
+        "item_id": 361,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_800",
+    "monsterId": "monster_800_sage",
+    "monsterLegacyNumber": 800,
+    "entries": [
+      {
+        "name": "glowing warhammer",
+        "item_id": 116,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_602",
+    "monsterId": "monster_602_saracen_commander",
+    "monsterLegacyNumber": 602,
+    "entries": [
+      {
+        "name": "stone hand",
+        "item_id": 1149,
+        "drop_percent": 100
+      },
+      {
+        "name": null,
+        "item_id": 2078,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_578",
+    "monsterId": "monster_578_saracen_high_priest",
+    "monsterLegacyNumber": 578,
+    "entries": [
+      {
+        "name": "papyrus scroll",
+        "item_id": 1167,
+        "drop_percent": 100
+      },
+      {
+        "name": "crescent moon staff",
+        "item_id": 1174,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_569",
+    "monsterId": "monster_569_saracen_raider",
+    "monsterLegacyNumber": 569,
+    "entries": [
+      {
+        "name": "saracen head",
+        "item_id": 1152,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1117",
+    "monsterId": "monster_1117_saracen_raider",
+    "monsterLegacyNumber": 1117,
+    "entries": [
+      {
+        "name": "saracen head",
+        "item_id": 1152,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_577",
+    "monsterId": "monster_577_saracen_zealot",
+    "monsterLegacyNumber": 577,
+    "entries": [
+      {
+        "name": "stained papyrus scroll",
+        "item_id": 1992,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_43",
+    "monsterId": "monster_43_sarkhee",
+    "monsterLegacyNumber": 43,
+    "entries": [
+      {
+        "name": "iron ring",
+        "item_id": 161,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_839",
+    "monsterId": "monster_839_scarecrow",
+    "monsterLegacyNumber": 839,
+    "entries": [
+      {
+        "name": "runed farming hoe",
+        "item_id": 1439,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_822",
+    "monsterId": "monster_822_scythe_skeleton",
+    "monsterLegacyNumber": 822,
+    "entries": [
+      {
+        "name": "rusty scythe",
+        "item_id": 1440,
+        "drop_percent": 1
+      },
+      {
+        "name": "rusty scythe",
+        "item_id": 1440,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_584",
+    "monsterId": "monster_584_serpent_headed_warrior",
+    "monsterLegacyNumber": 584,
+    "entries": [
+      {
+        "name": "khopesh sword",
+        "item_id": 1168,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_168",
+    "monsterId": "monster_168_serpentkin_chieftain",
+    "monsterLegacyNumber": 168,
+    "entries": [
+      {
+        "name": "crystal sword",
+        "item_id": 482,
+        "drop_percent": 1
+      },
+      {
+        "name": "rolled parchment",
+        "item_id": 484,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_165",
+    "monsterId": "monster_165_serpentkin_hunter",
+    "monsterLegacyNumber": 165,
+    "entries": [
+      {
+        "name": "crystal spear",
+        "item_id": 463,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_158",
+    "monsterId": "monster_158_serpentkin_hunter",
+    "monsterLegacyNumber": 158,
+    "entries": [
+      {
+        "name": "crystal spear",
+        "item_id": 463,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_141",
+    "monsterId": "monster_141_serpentkin_hunter",
+    "monsterLegacyNumber": 141,
+    "entries": [
+      {
+        "name": "crystal spear",
+        "item_id": 463,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_167",
+    "monsterId": "monster_167_serpentkin_shaman",
+    "monsterLegacyNumber": 167,
+    "entries": [
+      {
+        "name": "crystal club",
+        "item_id": 483,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_166",
+    "monsterId": "monster_166_serpentkin_warrior",
+    "monsterLegacyNumber": 166,
+    "entries": [
+      {
+        "name": "crystal sword",
+        "item_id": 482,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_169",
+    "monsterId": "monster_169_serpentkin_witchdoctor",
+    "monsterLegacyNumber": 169,
+    "entries": [
+      {
+        "name": "crystal club",
+        "item_id": 483,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_852",
+    "monsterId": "monster_852_shadow_master",
+    "monsterLegacyNumber": 852,
+    "entries": [
+      {
+        "name": "dragonfang ninjato",
+        "item_id": 1495,
+        "drop_percent": 5
+      },
+      {
+        "name": "black dragon robes",
+        "item_id": 1676,
+        "drop_percent": 10
+      },
+      {
+        "name": "black scroll",
+        "item_id": 1790,
+        "drop_percent": 100
+      },
+      {
+        "name": "black dragon tabi",
+        "item_id": 1843,
+        "drop_percent": 10
+      },
+      {
+        "name": "black dragon hood",
+        "item_id": 1961,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_612",
+    "monsterId": "monster_612_sharh_kur",
+    "monsterLegacyNumber": 612,
+    "entries": [
+      {
+        "name": "frozen orb",
+        "item_id": 1829,
+        "drop_percent": 30
+      },
+      {
+        "name": "ice crystal staff",
+        "item_id": 1075,
+        "drop_percent": 20
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_40",
+    "monsterId": "monster_40_sheriff_lionheart",
+    "monsterLegacyNumber": 40,
+    "entries": [
+      {
+        "name": "gavel of justice",
+        "item_id": 1348,
+        "drop_percent": 1
+      },
+      {
+        "name": "jail key",
+        "item_id": 1416,
+        "drop_percent": 1
+      },
+      {
+        "name": "golden braided belt",
+        "item_id": 167,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_26",
+    "monsterId": "monster_26_skali",
+    "monsterLegacyNumber": 26,
+    "entries": [
+      {
+        "name": "shortsword",
+        "item_id": 67,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_65",
+    "monsterId": "monster_65_skeletal_warrior",
+    "monsterLegacyNumber": 65,
+    "entries": [
+      {
+        "name": "fine broadsword",
+        "item_id": 295,
+        "drop_percent": 2
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_763",
+    "monsterId": "monster_763_skeletal_warrior",
+    "monsterLegacyNumber": 763,
+    "entries": [
+      {
+        "name": "fine silvery broadsword",
+        "item_id": 523,
+        "drop_percent": 15
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_126",
+    "monsterId": "monster_126_slave_master",
+    "monsterLegacyNumber": 126,
+    "entries": [
+      {
+        "name": "serpent scourge",
+        "item_id": 457,
+        "drop_percent": 1
+      },
+      {
+        "name": "green metal key",
+        "item_id": 475,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_356",
+    "monsterId": "monster_356_slave_lord",
+    "monsterLegacyNumber": 356,
+    "entries": [
+      {
+        "name": "fine broadsword",
+        "item_id": 295,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_353",
+    "monsterId": "monster_353_slaver_leader",
+    "monsterLegacyNumber": 353,
+    "entries": [
+      {
+        "name": "barbed whip",
+        "item_id": 637,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_478",
+    "monsterId": "monster_478_smuggler_boss",
+    "monsterLegacyNumber": 478,
+    "entries": [
+      {
+        "name": "fine broadsword",
+        "item_id": 295,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_799",
+    "monsterId": "monster_799_sorcerer",
+    "monsterLegacyNumber": 799,
+    "entries": [
+      {
+        "name": "quarterstaff",
+        "item_id": 100,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_409",
+    "monsterId": "monster_409_spectral_knight",
+    "monsterLegacyNumber": 409,
+    "entries": [
+      {
+        "name": "golden box",
+        "item_id": 912,
+        "drop_percent": 25
+      },
+      {
+        "name": "spectral sword",
+        "item_id": 932,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_959",
+    "monsterId": "monster_959_spectral_mage",
+    "monsterLegacyNumber": 959,
+    "entries": [
+      {
+        "name": "ancient sword",
+        "item_id": 1693,
+        "drop_percent": 25
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1048",
+    "monsterId": "monster_1048_spiked_juggernaut",
+    "monsterLegacyNumber": 1048,
+    "entries": [
+      {
+        "name": "black spike",
+        "item_id": 1912,
+        "drop_percent": 10
+      },
+      {
+        "name": "black spike",
+        "item_id": 1912,
+        "drop_percent": 10
+      },
+      {
+        "name": "black spike",
+        "item_id": 1912,
+        "drop_percent": 10
+      },
+      {
+        "name": "black spike",
+        "item_id": 1912,
+        "drop_percent": 10
+      },
+      {
+        "name": "black spike",
+        "item_id": 1912,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_826",
+    "monsterId": "monster_826_spirit_assassin",
+    "monsterLegacyNumber": 826,
+    "entries": [
+      {
+        "name": "ethereal dagger",
+        "item_id": 1454,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_642",
+    "monsterId": "monster_642_stone_giant_chieftain",
+    "monsterLegacyNumber": 642,
+    "entries": [
+      {
+        "name": "lionskin belt",
+        "item_id": 1209,
+        "drop_percent": 25
+      },
+      {
+        "name": "petrified stone corselet",
+        "item_id": 1212,
+        "drop_percent": 2
+      },
+      {
+        "name": "titanic stone maul",
+        "item_id": 1217,
+        "drop_percent": 5
+      },
+      {
+        "name": "stone head",
+        "item_id": 1297,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_640",
+    "monsterId": "monster_640_stone_giant_shaman",
+    "monsterLegacyNumber": 640,
+    "entries": [
+      {
+        "name": "gargantuan stone maul",
+        "item_id": 1207,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_639",
+    "monsterId": "monster_639_storm_giant_commander",
+    "monsterLegacyNumber": 639,
+    "entries": [
+      {
+        "name": "stormmetal greataxe",
+        "item_id": 1213,
+        "drop_percent": 1
+      },
+      {
+        "name": "thundering scroll",
+        "item_id": 1298,
+        "drop_percent": 7
+      },
+      {
+        "name": "stormmetal belt",
+        "item_id": 1700,
+        "drop_percent": 3
+      },
+      {
+        "name": "stormmetal corselet",
+        "item_id": 1835,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_637",
+    "monsterId": "monster_637_storm_giant_king",
+    "monsterLegacyNumber": 637,
+    "entries": [
+      {
+        "name": "stormhammer",
+        "item_id": 877,
+        "drop_percent": 7
+      },
+      {
+        "name": "stormmetal scalemail tunic",
+        "item_id": 1214,
+        "drop_percent": 5
+      },
+      {
+        "name": "stormmetal bracers",
+        "item_id": 1215,
+        "drop_percent": 25
+      },
+      {
+        "name": "storm crown",
+        "item_id": 1216,
+        "drop_percent": 1
+      },
+      {
+        "name": "icy scroll",
+        "item_id": 1243,
+        "drop_percent": 7
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_617",
+    "monsterId": "monster_617_tasloi_animal_master",
+    "monsterLegacyNumber": 617,
+    "entries": [
+      {
+        "name": "black leather leggings",
+        "item_id": 1195,
+        "drop_percent": 3
+      },
+      {
+        "name": "bronze chakram",
+        "item_id": 1203,
+        "drop_percent": 5
+      },
+      {
+        "name": "trollskin boots",
+        "item_id": 1232,
+        "drop_percent": 5
+      },
+      {
+        "name": "sparkling pendant",
+        "item_id": 1242,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_616",
+    "monsterId": "monster_616_tasloi_chief",
+    "monsterLegacyNumber": 616,
+    "entries": [
+      {
+        "name": "stone javelin",
+        "item_id": 1191,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_615",
+    "monsterId": "monster_615_tasloi_hunter",
+    "monsterLegacyNumber": 615,
+    "entries": [
+      {
+        "name": "net",
+        "item_id": 1189,
+        "drop_percent": 1
+      },
+      {
+        "name": "javelin",
+        "item_id": 1190,
+        "drop_percent": 1
+      },
+      {
+        "name": "glowing vine",
+        "item_id": 1261,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_673",
+    "monsterId": "monster_673_tasloi_scout",
+    "monsterLegacyNumber": 673,
+    "entries": [
+      {
+        "name": "javelin",
+        "item_id": 1190,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_619",
+    "monsterId": "monster_619_tasloi_shaman",
+    "monsterLegacyNumber": 619,
+    "entries": [
+      {
+        "name": "spider silk trousers",
+        "item_id": 1186,
+        "drop_percent": 1
+      },
+      {
+        "name": "bone necklace",
+        "item_id": 1187,
+        "drop_percent": 5
+      },
+      {
+        "name": "dented wizard's hat",
+        "item_id": 1188,
+        "drop_percent": 5
+      },
+      {
+        "name": "spider silk robes",
+        "item_id": 1262,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_614",
+    "monsterId": "monster_614_tasloi_villager",
+    "monsterLegacyNumber": 614,
+    "entries": [
+      {
+        "name": "glowing vine",
+        "item_id": 1261,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_623",
+    "monsterId": "monster_623_tasloi_warrior",
+    "monsterLegacyNumber": 623,
+    "entries": [
+      {
+        "name": "net",
+        "item_id": 1189,
+        "drop_percent": 1
+      },
+      {
+        "name": "glowing vine",
+        "item_id": 1261,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_214",
+    "monsterId": "monster_214_templar",
+    "monsterLegacyNumber": 214,
+    "entries": [
+      {
+        "name": "greatsword",
+        "item_id": 78,
+        "drop_percent": 25
+      },
+      {
+        "name": "silver holy amulet",
+        "item_id": 166,
+        "drop_percent": 50
+      },
+      {
+        "name": "full plate corselet",
+        "item_id": 19,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_37",
+    "monsterId": "monster_37_tentacled_abomination",
+    "monsterLegacyNumber": 37,
+    "entries": [
+      {
+        "name": "spiked black tentacle",
+        "item_id": 1358,
+        "drop_percent": 1
+      },
+      {
+        "name": "spiked black tentacle",
+        "item_id": 1358,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_59",
+    "monsterId": "monster_59_thrag",
+    "monsterLegacyNumber": 59,
+    "entries": [
+      {
+        "name": "huge darkwood club",
+        "item_id": 209,
+        "drop_percent": 5
+      },
+      {
+        "name": "golden belt",
+        "item_id": 211,
+        "drop_percent": 10
+      },
+      {
+        "name": "pulsating heart",
+        "item_id": 1271,
+        "drop_percent": 7
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_10",
+    "monsterId": "monster_10_thug",
+    "monsterLegacyNumber": 10,
+    "entries": [
+      {
+        "name": "severed arm",
+        "item_id": 1356,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_23",
+    "monsterId": "monster_23_thuluk",
+    "monsterLegacyNumber": 23,
+    "entries": [
+      {
+        "name": "battle axe",
+        "item_id": 71,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_82",
+    "monsterId": "monster_82_troll",
+    "monsterLegacyNumber": 82,
+    "entries": [
+      {
+        "name": "iron key",
+        "item_id": 338,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_101",
+    "monsterId": "monster_101_two_headed_hydra",
+    "monsterLegacyNumber": 101,
+    "entries": [
+      {
+        "name": "brass key",
+        "item_id": 360,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_318",
+    "monsterId": "monster_318_unholy_idol",
+    "monsterLegacyNumber": 318,
+    "entries": [
+      {
+        "name": "blood lance",
+        "item_id": 763,
+        "drop_percent": 5
+      },
+      {
+        "name": "forgotten scroll",
+        "item_id": 765,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_284",
+    "monsterId": "monster_284_unicorn",
+    "monsterLegacyNumber": 284,
+    "entries": [
+      {
+        "name": "unicorn horn",
+        "item_id": 722,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_982",
+    "monsterId": "monster_982_unicorn",
+    "monsterLegacyNumber": 982,
+    "entries": [
+      {
+        "name": "unicorn horn",
+        "item_id": 722,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_834",
+    "monsterId": "monster_834_vampire_acolyte",
+    "monsterLegacyNumber": 834,
+    "entries": [
+      {
+        "name": "blood inscripted scroll",
+        "item_id": 1816,
+        "drop_percent": 3
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_115",
+    "monsterId": "monster_115_vampire_rosebush",
+    "monsterLegacyNumber": 115,
+    "entries": [
+      {
+        "name": "red rose",
+        "item_id": 1462,
+        "drop_percent": 1
+      },
+      {
+        "name": "red rose",
+        "item_id": 1462,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_540",
+    "monsterId": "monster_540_vashti",
+    "monsterLegacyNumber": 540,
+    "entries": [
+      {
+        "name": "skirts of flame",
+        "item_id": 2032,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_541",
+    "monsterId": "monster_541_vasili",
+    "monsterLegacyNumber": 541,
+    "entries": [
+      {
+        "name": "ruby hairpin",
+        "item_id": 2033,
+        "drop_percent": 10
+      },
+      {
+        "name": "lock of fiery hair",
+        "item_id": 2034,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_383",
+    "monsterId": "monster_383_wandering_cleric",
+    "monsterLegacyNumber": 383,
+    "entries": [
+      {
+        "name": "fine breastplate",
+        "item_id": 418,
+        "drop_percent": 1
+      },
+      {
+        "name": "skull shield",
+        "item_id": 857,
+        "drop_percent": 1
+      },
+      {
+        "name": "runic warhammer",
+        "item_id": 872,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_293",
+    "monsterId": "monster_293_war_dog",
+    "monsterLegacyNumber": 293,
+    "entries": [
+      {
+        "name": "spiked collar",
+        "item_id": 190,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_70",
+    "monsterId": "monster_70_warlock_mercenary",
+    "monsterLegacyNumber": 70,
+    "entries": [
+      {
+        "name": "rigid leather tunic",
+        "item_id": 12,
+        "drop_percent": 50
+      },
+      {
+        "name": "longsword",
+        "item_id": 64,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_893",
+    "monsterId": "monster_893_warmonger_of_blood",
+    "monsterLegacyNumber": 893,
+    "entries": [
+      {
+        "name": "black plate leggings",
+        "item_id": 443,
+        "drop_percent": 100
+      },
+      {
+        "name": "cruel bone greatsword",
+        "item_id": 1436,
+        "drop_percent": 10
+      },
+      {
+        "name": "spiked plate corselet",
+        "item_id": 743,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_364",
+    "monsterId": "monster_364_wererat_emissary",
+    "monsterLegacyNumber": 364,
+    "entries": [
+      {
+        "name": "greasy leather bracelet",
+        "item_id": 817,
+        "drop_percent": 100
+      },
+      {
+        "name": "tattered note",
+        "item_id": 841,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_361",
+    "monsterId": "monster_361_wererat_plague_crafter",
+    "monsterLegacyNumber": 361,
+    "entries": [
+      {
+        "name": "small glass flask",
+        "item_id": 828,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_127",
+    "monsterId": "monster_127_werewolf",
+    "monsterLegacyNumber": 127,
+    "entries": [
+      {
+        "name": "wolf helm",
+        "item_id": 403,
+        "drop_percent": 1
+      },
+      {
+        "name": "large iron key",
+        "item_id": 476,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_996",
+    "monsterId": "monster_996_white_bishop",
+    "monsterLegacyNumber": 996,
+    "entries": [
+      {
+        "name": "white bishop",
+        "item_id": 1935,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_298",
+    "monsterId": "monster_298_white_dragon_serpent",
+    "monsterLegacyNumber": 298,
+    "entries": [
+      {
+        "name": "white fang",
+        "item_id": 736,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_994",
+    "monsterId": "monster_994_white_guardsman",
+    "monsterLegacyNumber": 994,
+    "entries": [
+      {
+        "name": "white pawn",
+        "item_id": 1933,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_1070",
+    "monsterId": "monster_1070_white_king",
+    "monsterLegacyNumber": 1070,
+    "entries": [
+      {
+        "name": "crown key",
+        "item_id": 1940,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_998",
+    "monsterId": "monster_998_white_queen",
+    "monsterLegacyNumber": 998,
+    "entries": [
+      {
+        "name": "white queen",
+        "item_id": 1936,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_440",
+    "monsterId": "monster_440_white_scorpion",
+    "monsterLegacyNumber": 440,
+    "entries": [
+      {
+        "name": "scorpion tail",
+        "item_id": 1272,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_287",
+    "monsterId": "monster_287_woodelf_citizen",
+    "monsterLegacyNumber": 287,
+    "entries": [
+      {
+        "name": "elf-head",
+        "item_id": 776,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_288",
+    "monsterId": "monster_288_woodelf_citizen",
+    "monsterLegacyNumber": 288,
+    "entries": [
+      {
+        "name": "elf-head",
+        "item_id": 776,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_286",
+    "monsterId": "monster_286_woodelf_druid",
+    "monsterLegacyNumber": 286,
+    "entries": [
+      {
+        "name": "elf-head",
+        "item_id": 776,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_289",
+    "monsterId": "monster_289_woodelf_guard",
+    "monsterLegacyNumber": 289,
+    "entries": [
+      {
+        "name": "elf-head",
+        "item_id": 776,
+        "drop_percent": 50
+      },
+      {
+        "name": "witchwood breastplate",
+        "item_id": 727,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_292",
+    "monsterId": "monster_292_woodelf_lord",
+    "monsterLegacyNumber": 292,
+    "entries": [
+      {
+        "name": "head of the woodelf lord",
+        "item_id": 777,
+        "drop_percent": 100
+      },
+      {
+        "name": "silverwood plate corselet",
+        "item_id": 728,
+        "drop_percent": 5
+      },
+      {
+        "name": "silverwood helm",
+        "item_id": 1528,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_285",
+    "monsterId": "monster_285_woodelf_ranger",
+    "monsterLegacyNumber": 285,
+    "entries": [
+      {
+        "name": "elf-head",
+        "item_id": 776,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_291",
+    "monsterId": "monster_291_woodelf_wardancer",
+    "monsterLegacyNumber": 291,
+    "entries": [
+      {
+        "name": "elf-head",
+        "item_id": 776,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_290",
+    "monsterId": "monster_290_woodelf_wardancer",
+    "monsterLegacyNumber": 290,
+    "entries": [
+      {
+        "name": "elf-head",
+        "item_id": 776,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_928",
+    "monsterId": "monster_928_wraith_knight",
+    "monsterLegacyNumber": 928,
+    "entries": [
+      {
+        "name": "cruel bone greatsword",
+        "item_id": 1436,
+        "drop_percent": 1
+      },
+      {
+        "name": "red parchment",
+        "item_id": 1631,
+        "drop_percent": 1
+      },
+      {
+        "name": "spiked plate corselet",
+        "item_id": 743,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_317",
+    "monsterId": "monster_317_wraithlord",
+    "monsterLegacyNumber": 317,
+    "entries": [
+      {
+        "name": "silverwood staff",
+        "item_id": 742,
+        "drop_percent": 10
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_974",
+    "monsterId": "monster_974_young_black_dragon",
+    "monsterLegacyNumber": 974,
+    "entries": [
+      {
+        "name": "black dragon hide",
+        "item_id": 1736,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_985",
+    "monsterId": "monster_985_young_blue_dragon",
+    "monsterLegacyNumber": 985,
+    "entries": [
+      {
+        "name": "blue dragon hide",
+        "item_id": 1737,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_991",
+    "monsterId": "monster_991_young_green_dragon",
+    "monsterLegacyNumber": 991,
+    "entries": [
+      {
+        "name": "green dragon hide",
+        "item_id": 1745,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_183",
+    "monsterId": "monster_183_young_red_dragon",
+    "monsterLegacyNumber": 183,
+    "entries": [
+      {
+        "name": "red dragon hide",
+        "item_id": 1429,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_978",
+    "monsterId": "monster_978_young_white_dragon",
+    "monsterLegacyNumber": 978,
+    "entries": [
+      {
+        "name": "white dragon hide",
+        "item_id": 1735,
+        "drop_percent": 1
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_215",
+    "monsterId": "monster_215_zanthus_the_lich",
+    "monsterLegacyNumber": 215,
+    "entries": [
+      {
+        "name": "runed cowl",
+        "item_id": 404,
+        "drop_percent": 100
+      },
+      {
+        "name": "skull-capped staff",
+        "item_id": 1231,
+        "drop_percent": 100
+      },
+      {
+        "name": "shadowy portal",
+        "item_id": 1531,
+        "drop_percent": 100
+      },
+      {
+        "name": "death shroud",
+        "item_id": 1579,
+        "drop_percent": 100
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_511",
+    "monsterId": "monster_511_zapsalis",
+    "monsterLegacyNumber": 511,
+    "entries": [
+      {
+        "name": "spiked collar",
+        "item_id": 190,
+        "drop_percent": 5
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_472",
+    "monsterId": "monster_472_zombie_cat",
+    "monsterLegacyNumber": 472,
+    "entries": [
+      {
+        "name": "dead cat",
+        "item_id": 650,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "loot_monster_769",
+    "monsterId": "monster_769_zombie_cat",
+    "monsterLegacyNumber": 769,
+    "entries": [
+      {
+        "name": "dead cat",
+        "item_id": 650,
+        "drop_percent": 50
+      }
+    ],
+    "source": {
+      "kind": "Derived from promoted monsters.json loot fields",
+      "promotedBy": "Patch0068"
+    }
+  }
+]

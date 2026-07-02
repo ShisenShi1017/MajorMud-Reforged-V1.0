@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0052
+- Current Code Update: 0053
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0052 - Build0027 Current-State Handoff
+- Current update: CodeUpdate-0053 - Patch0068 Data Replacement and Handoff Intake
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -80,6 +80,13 @@
 - CodeUpdate-0052 local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors.
 - CodeUpdate-0052 local core/server smoke tests passed.
 - CodeUpdate-0052 does not add executable harness code, rewrite canonical `Data/`, change server behavior, promote fields, add gameplay systems, or certify original runtime behavior.
+- CodeUpdate-0052 GitHub Actions is green by user report.
+- CodeUpdate-0053 replaces only repository `Data/` from the embedded Patch0068 `/Data` payload.
+- CodeUpdate-0053 preserves Patch0068 findings once under `DataDecodeCheckpoints/Patch0068/`.
+- CodeUpdate-0053 preserves Handoff0074 once under `DataDecodeCheckpoints/Handoff0074/`.
+- CodeUpdate-0053 records Patch0071 as unreadable by the built-in ZIP reader and not applied.
+- CodeUpdate-0053 updates server data-readiness diagnostics and smoke expectations so populated Patch0068 data categories are no longer treated as empty placeholders.
+- CodeUpdate-0053 does not apply non-`Data` Patch0068 files, does not add gameplay server behavior, does not add gameplay systems, and does not implement Patch0074 master verification.
 
 ## Reference Data Policy
 

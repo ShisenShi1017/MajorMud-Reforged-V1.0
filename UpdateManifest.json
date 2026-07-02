@@ -1,65 +1,79 @@
 {
-  "codeUpdate": "0052",
-  "name": "CodeUpdate-0052-Build0027-Current-State-Handoff",
+  "codeUpdate": "0053",
+  "name": "CodeUpdate-0053-Patch0068-Data-Replacement-And-Handoff-Intake",
   "packageType": "direct-repository-patch",
-  "purpose": "Preserve the user-provided Build0027 current-state handoff so the repository reflects current recovery status without relying on chat memory or unverified simulator claims.",
+  "purpose": "Replace only repository Data from the embedded Patch0068 Data payload, preserve Patch0068 and Handoff0074 evidence once under DataDecodeCheckpoints, record Patch0071 as unreadable/unapplied, and repair data-readiness classification for the populated Data baseline.",
   "addsGameplayFeatures": false,
-  "addsImplementationCode": false,
+  "addsImplementationCode": true,
   "addsTooling": false,
   "batInstallerCreated": false,
   "updateZipCreated": false,
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
-  "milestone2Status": "Continuing with binary-first data completion, reviewed import staging, behavioral recovery evidence, and cautious simulator harness preparation; no gameplay systems are approved.",
-  "verificationStatus": "CodeUpdate-0051 GitHub Actions is green by user report. Build0027 ZIP was inspected, extracted to a temporary inspection folder, and verified against MANIFEST.json. The Build0027 source ZIP SHA-256 is 7932FA3E6D4664D5440C0039CBF7FD85528CB0A5CBC09C7BE3C25CB2E4CF750F. Build0027 files were preserved under DataDecodeCheckpoints/CurrentStateBuild0027 and Docs/BehavioralRecovery/Build0027. Checkpoint files match the handoff manifest hashes. JSON and CSV parse validation passed. Local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Core/server smoke tests passed. An earlier parallel build attempt hit a transient shared obj file lock.",
+  "milestone2Status": "Continuing with data verification/reconciliation before server behavior or gameplay systems.",
+  "verificationStatus": "CodeUpdate-0052 GitHub Actions is green by user report. Handoff0074 source ZIP SHA-256 B6132632A154A43AD32C1AA8CEE681E82D994CCA82A360C7728BBF64228D8AD8 was preserved under DataDecodeCheckpoints/Handoff0074; 5 of 6 checksum rows matched and SHA256SUMS.txt has a documented self-hash mismatch. Patch0068 source ZIP SHA-256 16A8C3932CF23B2B9AB2D3E9DFCA605ABA4EA09FE8BD2E77519AA385CDFD515C was preserved under DataDecodeCheckpoints/Patch0068; 7 of 7 copied manifest-listed files matched PATCH_0068_MANIFEST.csv. Repository Data was replaced from exactly 86 embedded Patch0068 Data entries only. Patch0071 source ZIP SHA-256 56B2A080BA89263F08BE134DA8DE547D941AF3B8D0CE5E4D5B9BCF1C5340F881 could not be read by the built-in ZIP reader and was not applied. ProjectManifest, UpdateManifest, and Data JSON parse validation passed. Patch0068 CSV parse validation passed. git diff --check passed. Local sequential Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed with 0 warnings and 0 errors. Local core/server smoke tests passed.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
+    "Apps/Source/Reforged.Server/ServerDataCatalogAudit.cs",
     "CHANGELOG.md",
-    "DataDecodeCheckpoints/CurrentStateBuild0027/",
+    "Core/Source/Reforged.Core/Health/CoreDataRepositoryHealthCheck.cs",
+    "Data/",
+    "DataDecodeCheckpoints/Handoff0074/",
+    "DataDecodeCheckpoints/Patch0068/",
     "Docs/02-Roadmap.md",
     "Docs/Architecture/PROJECT_ROADMAP.md",
-    "Docs/BehavioralRecovery/Build0027/",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0052/Build0027CurrentStateHandoffReport.md",
+    "Reports/CodeUpdates/CodeUpdate-0053/Handoff0074Patch0071Patch0068IntakeReport.md",
+    "Tests/Source/Reforged.Core.Tests/Program.cs",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "CodeUpdate-0051 is green by user report.",
+    "baselineStatus": "CodeUpdate-0052 is green by user report.",
     "officialGate": "GitHub Actions after user push."
   },
-  "build0027": {
-    "sourcePackage": "C:\\Users\\djkao\\Downloads\\MajorMUD-Reforged-CodexHandoff-CurrentState-Build0027.zip",
-    "sourcePackageSha256": "7932FA3E6D4664D5440C0039CBF7FD85528CB0A5CBC09C7BE3C25CB2E4CF750F",
-    "checkpointPath": "DataDecodeCheckpoints/CurrentStateBuild0027/",
-    "docsPath": "Docs/BehavioralRecovery/Build0027/",
-    "runtimeUsed": false,
-    "originalRuntimeValidation": false,
-    "boundary": "Current-state handoff only. Do not treat prior chat pass/fail claims as authoritative without artifact logs or locally generated test output."
+  "dataReplacement": {
+    "sourcePackage": "C:\\Users\\djkao\\Downloads\\MajorMUD-Reforged-Patch0068-DataVerification-FullPromotion-Cumulative.zip",
+    "sourcePackageSha256": "16A8C3932CF23B2B9AB2D3E9DFCA605ABA4EA09FE8BD2E77519AA385CDFD515C",
+    "embeddedSourceZipSha256": "96DDFC1D1658BA3D98678FA28ECF185E6E6B7A1D5A6C9D725332FC2C88507AC3",
+    "replacedPath": "Data/",
+    "embeddedDataFileCount": 86,
+    "scope": "Only embedded Data entries were applied. No other embedded full-source or cumulative package files were overlaid."
   },
-  "localVerification": {
-    "status": "passed",
-    "zipInspection": "Build0027 ZIP entries were listed and hash was recorded.",
-    "manifest": "Extracted Build0027 files matched MANIFEST.json entries; checkpoint copy also matched MANIFEST.json.",
-    "build": "Sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors. An earlier parallel build attempt hit a transient shared obj file lock.",
-    "smokeTests": "Reforged core/server smoke tests passed."
+  "handoff0074": {
+    "sourcePackage": "C:\\Users\\djkao\\Downloads\\MajorMUD-Reforged-CodexHandoff-0074-Recreated.zip",
+    "sourcePackageSha256": "B6132632A154A43AD32C1AA8CEE681E82D994CCA82A360C7728BBF64228D8AD8",
+    "checkpointPath": "DataDecodeCheckpoints/Handoff0074/",
+    "checksumRowsMatched": "5 of 6",
+    "knownLimitation": "SHA256SUMS.txt self-hash entry does not match the supplied file; preserved as supplied."
+  },
+  "patch0068": {
+    "checkpointPath": "DataDecodeCheckpoints/Patch0068/",
+    "copiedManifestRowsMatched": "7 of 7",
+    "nestedDataSurfaceRows": 86,
+    "boundary": "Evidence preserved once under DataDecodeCheckpoints. Duplicate Docs/PatchHandoffs copies were intentionally not retained."
+  },
+  "patch0071": {
+    "sourcePackage": "C:\\Users\\djkao\\Downloads\\MajorMUD-Reforged-Patch0071-RoomPlaceholderPrune-Cumulative.zip",
+    "sourcePackageSha256": "56B2A080BA89263F08BE134DA8DE547D941AF3B8D0CE5E4D5B9BCF1C5340F881",
+    "status": "Unreadable by built-in ZIP reader; not applied.",
+    "error": "End of Central Directory record could not be found."
   },
   "boundaries": [
     "No gameplay systems",
-    "No server behavior changes",
-    "No canonical Data rewrite",
+    "No gameplay server behavior changes",
+    "No non-Data Patch0068 overlay",
+    "No Patch0071 application",
+    "No Patch0074 master verification implementation",
     "No ImportedDatabases deletion",
-    "No runtime field promotions",
     "No live Worldgroup runtime validation claim",
-    "No formula certification from chat summaries",
-    "No Build0024 or Build0025 expected-model matrix promotion",
     "No executable harness implementation in this update"
   ],
-  "referenceDataPolicy": "Original MajorMUD binary files remain authoritative. SimulatorBuild0021, Build0027, RuntimePrep evidence, OmniVerse, MudInfo, imported datasets, WBB comparisons, website data, community data, and tool-derived data are validation/correlation evidence only unless a reviewed binary-backed reconciliation update explicitly promotes a field.",
-  "recommendedNextUpdate": "After user push and green GitHub Actions, start CodeUpdate-0053 as the Build0028 real executable harness foundation: run existing simulator tests, capture real logs, add executable smoke tests only where hooks exist, and mark missing formula hooks skipped/xfail.",
+  "referenceDataPolicy": "Original MajorMUD binary files remain authoritative. Patch0068 Data is the current repository Data replacement baseline after this update, while Patch0068 evidence, Handoff0074, OmniVerse, MudInfo, imported datasets, WBB comparisons, website data, community data, and tool-derived data remain validation/correlation evidence unless a reviewed binary-backed reconciliation update explicitly changes canonical Data.",
+  "recommendedNextUpdate": "After user push and green GitHub Actions, build a master Data verification/reconciliation surface over current Data, Handoff0074 requirements, Patch0068 evidence, and any readable later Patch0071/Patch0073/Patch0074 materials.",
   "recommendedNextScopeRequiresUserApproval": true
 }

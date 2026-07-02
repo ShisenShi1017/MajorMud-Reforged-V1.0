@@ -1,314 +1,545 @@
 [
   {
-    "id": "human",
-    "name": "Human",
-    "description": "Balanced and adaptable.",
-    "baseStats": {
-      "str": 10,
-      "agi": 10,
-      "int": 10,
-      "wil": 10,
-      "cha": 10,
-      "con": 10
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "half_ogre",
-    "name": "Half-Ogre",
-    "description": "Huge, strong, and hard to knock down.",
-    "baseStats": {
-      "str": 15,
-      "agi": 9,
-      "int": 7,
-      "wil": 9,
-      "cha": 7,
-      "con": 14
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "kang",
-    "name": "Kang",
-    "description": "Scaled warrior race with strong body and stubborn will.",
-    "baseStats": {
-      "str": 13,
-      "agi": 10,
-      "int": 8,
-      "wil": 12,
-      "cha": 8,
-      "con": 13
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "nekojin",
-    "name": "Nekojin",
-    "description": "Catlike, quick, alert, and agile.",
-    "baseStats": {
-      "str": 9,
-      "agi": 15,
-      "int": 10,
-      "wil": 10,
-      "cha": 11,
-      "con": 9
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "gaunt_one",
-    "name": "Gaunt One",
-    "description": "Lean, strange, and magically inclined.",
-    "baseStats": {
-      "str": 8,
-      "agi": 12,
-      "int": 14,
-      "wil": 13,
-      "cha": 8,
-      "con": 8
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "goblin",
-    "name": "Goblin",
-    "description": "Small, crafty, quick, and hard to pin down.",
-    "baseStats": {
-      "str": 8,
-      "agi": 14,
-      "int": 11,
-      "wil": 9,
-      "cha": 8,
-      "con": 9
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "dwarf",
-    "name": "Dwarf",
-    "description": "Stout and durable.",
-    "baseStats": {
-      "str": 12,
-      "agi": 9,
-      "int": 10,
-      "wil": 12,
-      "cha": 9,
-      "con": 14
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "gnome",
-    "name": "Gnome",
-    "description": "Small, clever, and magically curious.",
-    "baseStats": {
-      "str": 7,
-      "agi": 11,
-      "int": 15,
-      "wil": 12,
-      "cha": 10,
-      "con": 8
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "halfling",
-    "name": "Halfling",
-    "description": "Small, lucky, quick, and charming.",
-    "baseStats": {
-      "str": 7,
-      "agi": 14,
-      "int": 11,
-      "wil": 10,
-      "cha": 14,
-      "con": 9
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "elf",
-    "name": "Elf",
-    "description": "Quick, sharp-eyed, and lightly built.",
-    "baseStats": {
-      "str": 8,
-      "agi": 13,
-      "int": 13,
-      "wil": 11,
-      "cha": 11,
-      "con": 8
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "half_elf",
-    "name": "Half-Elf",
-    "description": "Versatile mix of human adaptability and elven grace.",
-    "baseStats": {
-      "str": 10,
-      "agi": 12,
-      "int": 12,
-      "wil": 10,
-      "cha": 11,
-      "con": 10
-    },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
-    },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
-  },
-  {
-    "id": "dark_elf",
+    "legacy_number": 7,
     "name": "Dark-Elf",
-    "description": "Cunning, sharp-minded, and dangerous in the dark.",
-    "baseStats": {
-      "str": 9,
-      "agi": 13,
-      "int": 14,
-      "wil": 10,
-      "cha": 8,
-      "con": 9
+    "min_stats": {
+      "agl": 50,
+      "cha": 40,
+      "hea": 30,
+      "int": 50,
+      "str": 40,
+      "wil": 30
     },
-    "statCaps": {
-      "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
+    "max_stats": {
+      "agl": 120,
+      "cha": 110,
+      "hea": 90,
+      "int": 120,
+      "str": 90,
+      "wil": 100
     },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 45,
+    "abilities": [
+      {
+        "bonus": 80,
+        "value": 13,
+        "ability_id": 0
+      },
+      {
+        "bonus": 0,
+        "value": 102,
+        "ability_id": 1
+      },
+      {
+        "bonus": 1,
+        "value": 58,
+        "ability_id": 2
+      },
+      {
+        "bonus": 3,
+        "value": 106,
+        "ability_id": 3
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
   },
   {
-    "id": "half_orc",
-    "name": "Half-Orc",
-    "description": "Strong, tough, and rough around the edges.",
-    "baseStats": {
-      "str": 13,
-      "agi": 10,
-      "int": 8,
-      "wil": 8,
-      "cha": 7,
-      "con": 13
+    "legacy_number": 2,
+    "name": "Dwarf",
+    "min_stats": {
+      "agl": 30,
+      "cha": 30,
+      "hea": 50,
+      "int": 30,
+      "str": 50,
+      "wil": 50
     },
-    "statCaps": {
+    "max_stats": {
+      "agl": 90,
+      "cha": 85,
+      "hea": 120,
+      "int": 90,
+      "str": 110,
+      "wil": 120
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 30,
+    "abilities": [
+      {
+        "bonus": 10,
+        "value": 36,
+        "ability_id": 0
+      },
+      {
+        "bonus": 75,
+        "value": 13,
+        "ability_id": 1
+      },
+      {
+        "bonus": 20,
+        "value": 96,
+        "ability_id": 2
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 5,
+    "name": "Elf",
+    "min_stats": {
+      "agl": 50,
+      "cha": 50,
+      "hea": 30,
+      "int": 50,
+      "str": 35,
+      "wil": 40
+    },
+    "max_stats": {
+      "agl": 120,
+      "cha": 120,
+      "hea": 80,
+      "int": 120,
+      "str": 90,
+      "wil": 100
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 45,
+    "abilities": [
+      {
+        "bonus": 50,
+        "value": 13,
+        "ability_id": 0
+      },
+      {
+        "bonus": 0,
+        "value": 102,
+        "ability_id": 1
+      },
+      {
+        "bonus": 10,
+        "value": 69,
+        "ability_id": 2
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 13,
+    "name": "Gaunt One",
+    "min_stats": {
+      "agl": 50,
+      "cha": 30,
+      "hea": 30,
+      "int": 60,
+      "str": 40,
+      "wil": 50
+    },
+    "max_stats": {
+      "agl": 110,
+      "cha": 80,
+      "hea": 70,
+      "int": 140,
       "str": 100,
-      "agi": 100,
-      "int": 100,
-      "wil": 100,
-      "cha": 100,
-      "con": 100
+      "wil": 100
     },
-    "secondaryBonuses": {},
-    "availableClasses": "all",
-    "source": "legacy MUD database name list / starter tuning"
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 50,
+    "abilities": [
+      {
+        "bonus": 200,
+        "value": 13,
+        "ability_id": 0
+      },
+      {
+        "bonus": 10,
+        "value": 77,
+        "ability_id": 1
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 3,
+    "name": "Gnome",
+    "min_stats": {
+      "agl": 45,
+      "cha": 35,
+      "hea": 40,
+      "int": 45,
+      "str": 35,
+      "wil": 40
+    },
+    "max_stats": {
+      "agl": 110,
+      "cha": 90,
+      "hea": 100,
+      "int": 110,
+      "str": 90,
+      "wil": 100
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 20,
+    "abilities": [
+      {
+        "bonus": 5,
+        "value": 36,
+        "ability_id": 0
+      },
+      {
+        "bonus": 65,
+        "value": 13,
+        "ability_id": 1
+      },
+      {
+        "bonus": 0,
+        "value": 37,
+        "ability_id": 2
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 9,
+    "name": "Goblin",
+    "min_stats": {
+      "agl": 55,
+      "cha": 40,
+      "hea": 40,
+      "int": 45,
+      "str": 30,
+      "wil": 40
+    },
+    "max_stats": {
+      "agl": 125,
+      "cha": 100,
+      "hea": 100,
+      "int": 115,
+      "str": 70,
+      "wil": 100
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 35,
+    "abilities": [
+      {
+        "bonus": 65,
+        "value": 13,
+        "ability_id": 0
+      },
+      {
+        "bonus": 0,
+        "value": 102,
+        "ability_id": 1
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 6,
+    "name": "Half-Elf",
+    "min_stats": {
+      "agl": 45,
+      "cha": 50,
+      "hea": 30,
+      "int": 45,
+      "str": 40,
+      "wil": 40
+    },
+    "max_stats": {
+      "agl": 110,
+      "cha": 110,
+      "hea": 100,
+      "int": 110,
+      "str": 90,
+      "wil": 100
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 15,
+    "abilities": [
+      {
+        "bonus": 10,
+        "value": 69,
+        "ability_id": 0
+      },
+      {
+        "bonus": 25,
+        "value": 13,
+        "ability_id": 1
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 10,
+    "name": "Half-Ogre",
+    "min_stats": {
+      "agl": 20,
+      "cha": 25,
+      "hea": 60,
+      "int": 20,
+      "str": 70,
+      "wil": 25
+    },
+    "max_stats": {
+      "agl": 60,
+      "cha": 60,
+      "hea": 150,
+      "int": 60,
+      "str": 150,
+      "wil": 70
+    },
+    "hp_bonus": 1,
+    "cp_cost": 100,
+    "exp_modifier": 30,
+    "abilities": [
+      {
+        "bonus": 15,
+        "value": 36,
+        "ability_id": 0
+      },
+      {
+        "bonus": 20,
+        "value": 7,
+        "ability_id": 1
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 8,
+    "name": "Half-Orc",
+    "min_stats": {
+      "agl": 40,
+      "cha": 30,
+      "hea": 50,
+      "int": 30,
+      "str": 45,
+      "wil": 30
+    },
+    "max_stats": {
+      "agl": 100,
+      "cha": 80,
+      "hea": 120,
+      "int": 90,
+      "str": 110,
+      "wil": 95
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 0,
+    "abilities": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 4,
+    "name": "Halfling",
+    "min_stats": {
+      "agl": 60,
+      "cha": 40,
+      "hea": 40,
+      "int": 30,
+      "str": 20,
+      "wil": 40
+    },
+    "max_stats": {
+      "agl": 150,
+      "cha": 100,
+      "hea": 100,
+      "int": 90,
+      "str": 60,
+      "wil": 100
+    },
+    "hp_bonus": -1,
+    "cp_cost": 100,
+    "exp_modifier": 25,
+    "abilities": [
+      {
+        "bonus": 0,
+        "value": 102,
+        "ability_id": 0
+      },
+      {
+        "bonus": 10,
+        "value": 34,
+        "ability_id": 1
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 1,
+    "name": "Human",
+    "min_stats": {
+      "agl": 40,
+      "cha": 40,
+      "hea": 40,
+      "int": 40,
+      "str": 40,
+      "wil": 40
+    },
+    "max_stats": {
+      "agl": 100,
+      "cha": 100,
+      "hea": 100,
+      "int": 100,
+      "str": 100,
+      "wil": 100
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 0,
+    "abilities": null,
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 11,
+    "name": "Kang",
+    "min_stats": {
+      "agl": 30,
+      "cha": 30,
+      "hea": 50,
+      "int": 30,
+      "str": 55,
+      "wil": 45
+    },
+    "max_stats": {
+      "agl": 90,
+      "cha": 85,
+      "hea": 110,
+      "int": 90,
+      "str": 120,
+      "wil": 110
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 35,
+    "abilities": [
+      {
+        "bonus": 100,
+        "value": 21,
+        "ability_id": 0
+      },
+      {
+        "bonus": 10,
+        "value": 7,
+        "ability_id": 1
+      },
+      {
+        "bonus": 5,
+        "value": 2,
+        "ability_id": 2
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
+  },
+  {
+    "legacy_number": 12,
+    "name": "Nekojin",
+    "min_stats": {
+      "agl": 60,
+      "cha": 50,
+      "hea": 30,
+      "int": 40,
+      "str": 40,
+      "wil": 30
+    },
+    "max_stats": {
+      "agl": 130,
+      "cha": 110,
+      "hea": 80,
+      "int": 100,
+      "str": 100,
+      "wil": 90
+    },
+    "hp_bonus": 0,
+    "cp_cost": 100,
+    "exp_modifier": 50,
+    "abilities": [
+      {
+        "bonus": 0,
+        "value": 102,
+        "ability_id": 0
+      },
+      {
+        "bonus": 50,
+        "value": 13,
+        "ability_id": 1
+      },
+      {
+        "bonus": 0,
+        "value": 38,
+        "ability_id": 2
+      },
+      {
+        "bonus": 10,
+        "value": 5,
+        "ability_id": 3
+      },
+      {
+        "bonus": -10,
+        "value": 3,
+        "ability_id": 4
+      }
+    ],
+    "source": {
+      "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+      "file": "codex-race-wcc.json",
+      "promotedBy": "Patch0067"
+    }
   }
 ]

@@ -31,5 +31,5 @@ public sealed class CoreDataRepositoryHealthCheck
         return result;
     }
 
-    private static bool CategoryUsuallyHasRecords(string category) => category is not ("loot_tables" or "quests" or "rooms" or "shops" or "trainers");
+    private static bool CategoryUsuallyHasRecords(string category) => category is not "quests";
 }

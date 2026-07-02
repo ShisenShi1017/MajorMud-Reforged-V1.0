@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0052",
+  "codeUpdate": "0053",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,20 +18,24 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0052",
+    "currentCodeUpdate": "0053",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained host/server and data-readiness work; no gameplay systems are approved.",
-    "lastUpdateName": "CodeUpdate-0052-Build0027-Current-State-Handoff",
+    "lastUpdateName": "CodeUpdate-0053-Patch0068-Data-Replacement-And-Handoff-Intake",
     "nextRecommendedWork": [
-      "Push CodeUpdate-0052 and wait for user-reported green GitHub Actions before continuing.",
+      "Push CodeUpdate-0053 and wait for user-reported green GitHub Actions before continuing.",
+      "Use current Data as the Patch0068 embedded Data replacement baseline until a later reviewed reconciliation update changes it.",
+      "Use DataDecodeCheckpoints/Patch0068 as the single preserved Patch0068 evidence copy.",
+      "Use DataDecodeCheckpoints/Handoff0074 as the single preserved Handoff0074 evidence copy.",
+      "Treat Patch0071 as blocked/unapplied until a readable archive or extracted folder is supplied.",
       "Use DataDecodeCheckpoints/CurrentStateBuild0027 and Docs/BehavioralRecovery/Build0027 as the preserved Build0027 current-state handoff.",
       "Treat Build0024 and Build0025 matrices as expected_model until converted into actual executable simulator tests.",
       "Do not treat prior chat pass/fail claims as authoritative unless backed by artifact logs or locally generated test output.",
-      "Plan CodeUpdate-0053 as the Build0028 real executable harness foundation after 0052 is green.",
+      "Plan the next update as a data verification/reconciliation pass over current Data before resuming executable harness work.",
       "Use DataDecodeCheckpoints/ImportStaging as the reviewed import staging surface before rewriting any canonical Data file.",
       "Start the first reviewed import diff with one high-confidence category, preferably rooms/navigation, while keeping hidden/scripted exits marked uncertain.",
       "Use DataDecodeCheckpoints/SimulatorBuild0021 and Docs/BehavioralRecovery/Build0021 as Build0021 evidence/catalog material only.",
@@ -75,5 +79,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0052 preserves the user-provided Build0027 current-state handoff under DataDecodeCheckpoints/CurrentStateBuild0027 and Docs/BehavioralRecovery/Build0027. CodeUpdate-0051 GitHub Actions is green by user report. Build0027 ZIP was inspected, SHA-256 7932FA3E6D4664D5440C0039CBF7FD85528CB0A5CBC09C7BE3C25CB2E4CF750F was recorded, extracted files matched MANIFEST.json, and the checkpoint copy matched MANIFEST.json. JSON and CSV parse validation passed. Local sequential Core and Core.Tests Release builds passed with 0 warnings and 0 errors. Core/server smoke tests passed. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0053 records CodeUpdate-0052 GitHub Actions as green by user report. Handoff0074 was preserved under DataDecodeCheckpoints/Handoff0074 with 5 of 6 checksum rows matching and a documented SHA256SUMS self-hash mismatch. Patch0068 evidence was preserved under DataDecodeCheckpoints/Patch0068; 7 of 7 copied manifest-listed files matched PATCH_0068_MANIFEST.csv. Repository Data was replaced from exactly 86 embedded Patch0068 Data entries only. Patch0071 could not be read by the built-in ZIP reader and was not applied. ProjectManifest, UpdateManifest, and Data JSON parse validation passed. Patch0068 CSV parse validation passed. git diff --check passed. Local sequential Core, Server, Importer, Editor, Launcher, Client, and Core.Tests Release builds passed with 0 warnings and 0 errors. Local core/server smoke tests passed. GitHub Actions remains the official gate after user push."
 }

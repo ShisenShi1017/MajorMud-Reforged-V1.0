@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0052 - Build0027 Current-State Handoff`
+- **Current Code Update:** `CodeUpdate-0053 - Patch0068 Data Replacement and Handoff Intake`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0052, wait for green GitHub Actions, then approve CodeUpdate-0053 as the Build0028 real executable harness foundation.
+- **Current Priority:** Push CodeUpdate-0053, wait for green GitHub Actions, then run a focused verification/reconciliation pass over the new `Data/` baseline.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -24,6 +24,18 @@ Every session must read these files before changing the repository:
 7. `ProjectManifest.json`
 8. `DEVELOPMENT_PRINCIPLES.md`
 9. Relevant source, test, and application documentation for the requested change
+
+## CodeUpdate-0053 Summary
+
+CodeUpdate-0053 replaces only repository `Data/` from the embedded Patch0068 `/Data` payload.
+
+It preserves Patch0068 findings under `DataDecodeCheckpoints/Patch0068/` and Handoff0074 under `DataDecodeCheckpoints/Handoff0074/`. Duplicate `Docs/PatchHandoffs/` copies are intentionally not retained.
+
+Patch0068 contributed 86 embedded `Data/` files, including populated rooms, room graph, shops, loot tables, abilities, message/text catalogs, behavioral runtime evidence, and provenance material. Patch0071 was inspected by hash but could not be opened by the built-in ZIP reader, so it remains unapplied.
+
+Server data-readiness diagnostics and smoke expectations were updated so populated Patch0068 data categories are no longer treated as empty placeholders.
+
+No non-`Data` Patch0068 overlay, Patch0071 application, Patch0074 master verification implementation, gameplay server behavior change, gameplay system, imported/reference deletion, or live runtime validation claim is included.
 
 ## CodeUpdate-0052 Summary
 
@@ -378,14 +390,14 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition. CodeUpdate-0048 adds unified decoded-data comparison reports and Android ChatGPT handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof. CodeUpdate-0050 preserves SimulatorBuild0002, RuntimePrep0001-0009 handoff evidence, and DataDecode0110 static certification. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without formula promotion. CodeUpdate-0052 preserves Build0027 current-state handoff evidence.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition. CodeUpdate-0048 adds unified decoded-data comparison reports and Android ChatGPT handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof. CodeUpdate-0050 preserves SimulatorBuild0002, RuntimePrep0001-0009 handoff evidence, and DataDecode0110 static certification. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without formula promotion. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload and preserves Patch0068/Handoff0074 evidence under `DataDecodeCheckpoints/`.
 
-Next safe work after CodeUpdate-0052:
+Next safe work after CodeUpdate-0053:
 
 1. Wait for user push and green GitHub Actions.
-2. Approve CodeUpdate-0053 as the Build0028 real executable harness foundation.
-3. Run existing simulator tests before adding new claims.
-4. Add executable smoke tests only where hooks exist and mark missing hooks skipped/xfail.
+2. Verify and reconcile the new Patch0068-derived `Data/` baseline before further server behavior work.
+3. Use Handoff0074 requirements to build a master verification surface from current `Data/` and preserved evidence.
+4. Resume executable harness work only after the data baseline is verified enough for that scope.
 5. Do not add gameplay systems without explicit user approval.
 
 ## Long-Term Roadmap
