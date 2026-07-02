@@ -1,0 +1,36 @@
+{
+  "baseline": "Validation0006",
+  "pass": "Validation0007",
+  "data_changed": false,
+  "asm_size": 12963731,
+  "disassembly_procedures_total": 802,
+  "disassembly_signal_procedures": 342,
+  "mbbsemu_signal_files": 304,
+  "term_counts": {
+    "search": 355,
+    "hidden": 130,
+    "hide": 132,
+    "cleanup": 111,
+    "clean": 119,
+    "reset": 49,
+    "respawn": 0,
+    "spawn": 0,
+    "timer": 59,
+    "rtkick": 54,
+    "begin_polling": 24,
+    "polling": 376,
+    "quest": 144,
+    "monster": 3261,
+    "death": 20,
+    "save": 588,
+    "btrieve": 0
+  },
+  "engine_doc_promotions_new": 0,
+  "data_promotions_new": 0,
+  "remaining_blockers": [
+    "exact cleanup flags",
+    "exact monster respawn scheduler",
+    "exact search formula",
+    "quest persistence fields"
+  ]
+}

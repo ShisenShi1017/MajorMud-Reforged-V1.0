@@ -1,0 +1,17 @@
+MajorMUD Reforged Evidence-Backed Simulator
+Preset: RuntimePrep0009 simulator-readiness / no Worldgroup
+Runtime boundary: Expected behavior model only. No live Worldgroup runtime observations are included or certified.
+Rooms: 1246 | Nav edges: 1182 | Shops: 178 | Shop items: 1236
+Monster drop rows: 732 | Currency rows: 368 | NPC/dialogue candidates: 433
+Combat rows: 98 | Spells: 1180 | Skills: 46 | Classes: 15 | Equipment: 1770
+Unresolved/unknown queue rows: 27
+
+Simulator readiness:
+domain=Data loading | status=READY | simulator_scope=Load cumulative expected model artifacts and repository/static evidence | runtime_boundary=Must not claim gameplay equivalence
+domain=Rooms and navigation | status=READY_FOR_PROTOTYPE | simulator_scope=Room graph, movement, area transitions, one-way/special candidates as flagged | runtime_boundary=Hidden/scripted exits require live confirmation
+domain=World population | status=READY_FOR_PROTOTYPE | simulator_scope=Expected room populations, monster placement, spawn groups, boss/unique placement, configured respawn fields | runtime_boundary=Actual timing/lair behavior requires runtime
+domain=Shops/items | status=READY_FOR_PROTOTYPE | simulator_scope=Shop catalogs, item availability, ownership links | runtime_boundary=Transaction quirks and dynamic scripting require runtime
+domain=Loot/rewards | status=READY_FOR_PROTOTYPE | simulator_scope=Monster drops, currency ranges/relationships, container/open reward candidates | runtime_boundary=Actual probability and event order require runtime
+domain=NPC/dialogue/quests | status=PARTIAL | simulator_scope=Dialogue/progression candidates and quest checklist references | runtime_boundary=Trigger order, state mutation, and quest completion need runtime
+domain=Combat/systems | status=PARTIAL | simulator_scope=Expected stat/equipment/spell/skill/class matrices and verification checklist | runtime_boundary=Formulas, AI priorities, timing, status effects require runtime
+domain=Validation harness | status=READY | simulator_scope=Generate expected-vs-observed checklist outputs for future Worldgroup comparison | runtime_boundary=Observed column remains empty until runtime

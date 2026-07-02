@@ -1,0 +1,9 @@
+Area,Decision,Evidence,Limit
+Host nightly cleanup lifecycle,PROMOTE_TO_ENGINE_DOC,"MBBSEmu host has daily cleanup timer, warning timer, removes sessions, then calls module mcurou and finrou. MajorMUD exports/contains MCUROU/FINROU routines.",Do not promote module-specific object cleanup flags yet.
+RTKICK one-shot delayed scheduler,PROMOTE_TO_ENGINE_DOC,MBBSEmu implements RTKICK as delayed seconds-based one-shot routine; MajorMUD disassembly contains RTKICK calls.,Do not infer exact monster timer intervals from this alone.
+BEGIN_POLLING persistent per-session polling,PROMOTE_TO_ENGINE_DOC,MBBSEmu states BEGIN_POLLING runs as often as possible until STOP_POLLING; MajorMUD contains BEGIN_POLLING calls.,"Document as host service, not game-specific loop semantics."
+Search subsystem existence,PROMOTE_TO_ENGINE_DOC,MajorMUD disassembly includes _CMD_SEARCH and _CLEAR_SEARCH_FLAGS plus many hidden/hide references.,Exact stat formula not promoted.
+Room/area reset command path,PROMOTE_TO_ENGINE_DOC_CANDIDATE,MajorMUD disassembly includes reset command text and _RESET_ROOM.,Needs routine-level review before promotion beyond documentation.
+Cleanup item flags hide/delete,NO_PROMOTION,"General cleanup and hide/delete strings exist, but exact per-item flags are not mapped.",Keep as hypothesis only.
+Quest persistence variables,NO_PROMOTION,Quest/save/load/Btrieve evidence exists but exact variables/transitions are unmapped.,Needs routine-level data-field mapping.
+Monster respawn exact scheduler,NO_PROMOTION,RTKICK and reset evidence exists but exact MajorMUD monster scheduling routine remains unmapped.,Keep normal 15-min and death-start timer as user-knowledge hypothesis until tied to routine/data fields.

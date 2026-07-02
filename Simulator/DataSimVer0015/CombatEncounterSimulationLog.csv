@@ -1,0 +1,241 @@
+profile,profile_level,monster_source_id,monster_name,monster_level,monster_hp,attack_rows,expected_rounds_to_defeat,expected_incoming_damage,result,reason
+novice_warrior,1,1,giant rat,1,12,1,1.98,1.19,success,expected_player_survives_model
+novice_warrior,1,2,lashworm,1,15,1,2.19,0.88,success,expected_player_survives_model
+novice_warrior,1,3,filthbug,1,15,1,3.06,1.84,success,expected_player_survives_model
+novice_warrior,1,4,carrion beast,1,18,1,3.19,1.91,success,expected_player_survives_model
+novice_warrior,1,5,acid slime,1,25,1,3.65,4.02,success,expected_player_survives_model
+novice_warrior,1,6,orc rogue,1,30,2,5.41,10.55,success,expected_player_survives_model
+novice_warrior,1,7,kobold thief,1,20,1,3.6,2.43,success,expected_player_survives_model
+novice_warrior,1,8,cave worm,1,70,1,18.67,93.35,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,10,thug,1,28,1,5.23,15.3,success,expected_player_survives_model
+novice_warrior,1,11,skeleton,1,43,1,6.67,21.01,success,expected_player_survives_model
+novice_warrior,1,12,zombie,1,62,1,14.76,46.49,success,expected_player_survives_model
+novice_warrior,1,13,guardsman,1,200,2,173.91,12820.65,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,14,guardsman,1,200,3,173.91,22142.22,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,15,shade,1,75,2,14.02,121.13,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,16,ghoul,1,73,2,13.15,75.94,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,17,wight,1,80,2,15.84,78.41,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,18,orc sentry,1,46,2,8.68,60.76,success,expected_player_survives_model
+novice_warrior,1,19,orc lieutenant,1,55,2,12.94,114.68,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,20,mercenary,1,46,1,8.68,32.55,success,expected_player_survives_model
+novice_warrior,1,21,half-ogre bodyguard,1,60,2,15.0,179.1,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,22,Aiken,1,150,3,55.56,338.92,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,23,Thuluk,1,200,2,200.0,8280.0,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,24,Helfgrim,1,200,2,200.0,6900.0,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,25,Colin,1,200,2,200.0,7300.0,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,26,Skali,1,300,2,300.0,10770.0,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,27,Gurbultis,1,300,2,300.0,10650.0,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,28,Lady Sentara,1,100,0,,,failure,monster_has_no_attack_rows
+novice_warrior,1,29,dark cultist,1,50,2,8.2,51.27,success,expected_player_survives_model
+novice_warrior,1,30,grey spider,1,66,2,15.53,113.85,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,31,mummy,1,100,3,23.53,2246.2,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,32,bounty hunter,1,90,1,54.55,440.49,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,33,dark cleric,1,86,3,22.93,331.57,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,34,dark priest,1,75,3,13.51,169.82,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,35,dark paladin,1,90,3,30.51,545.67,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,36,hellhound,1,85,2,22.67,1088.5,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,37,tentacled abomination,1,100,2,23.53,1139.32,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,38,Guildmaster,1,10,0,,,failure,monster_has_no_attack_rows
+novice_warrior,1,39,old man,1,10,1,3.85,0.48,success,expected_player_survives_model
+novice_warrior,1,40,Sheriff Lionheart,1,1000,2,1000.0,266750.0,failure,expected_player_defeated_or_underleveled_model
+novice_warrior,1,41,Giovanni,1,200,4,181.82,4767.32,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,1,giant rat,1,12,1,0.59,0.0,success,expected_player_survives_model
+journeyman_rogue,8,2,lashworm,1,15,1,0.71,0.0,success,expected_player_survives_model
+journeyman_rogue,8,3,filthbug,1,15,1,0.79,0.0,success,expected_player_survives_model
+journeyman_rogue,8,4,carrion beast,1,18,1,0.91,0.0,success,expected_player_survives_model
+journeyman_rogue,8,5,acid slime,1,25,1,1.19,0.54,success,expected_player_survives_model
+journeyman_rogue,8,6,orc rogue,1,30,2,1.52,1.25,success,expected_player_survives_model
+journeyman_rogue,8,7,kobold thief,1,20,1,1.01,0.18,success,expected_player_survives_model
+journeyman_rogue,8,8,cave worm,1,70,1,3.9,14.04,success,expected_player_survives_model
+journeyman_rogue,8,10,thug,1,28,1,1.43,2.75,success,expected_player_survives_model
+journeyman_rogue,8,11,skeleton,1,43,1,2.08,4.37,success,expected_player_survives_model
+journeyman_rogue,8,12,zombie,1,62,1,3.37,6.74,success,expected_player_survives_model
+journeyman_rogue,8,13,guardsman,1,200,2,13.03,823.63,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,14,guardsman,1,200,3,13.03,1530.31,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,15,shade,1,75,2,3.84,23.65,success,expected_player_survives_model
+journeyman_rogue,8,16,ghoul,1,73,2,3.7,14.57,success,expected_player_survives_model
+journeyman_rogue,8,17,wight,1,80,2,4.16,14.04,success,expected_player_survives_model
+journeyman_rogue,8,18,orc sentry,1,46,2,2.36,11.26,success,expected_player_survives_model
+journeyman_rogue,8,19,orc lieutenant,1,55,2,2.98,19.22,success,expected_player_survives_model
+journeyman_rogue,8,20,mercenary,1,46,1,2.36,6.14,success,expected_player_survives_model
+journeyman_rogue,8,21,half-ogre bodyguard,1,60,2,3.3,25.71,success,expected_player_survives_model
+journeyman_rogue,8,22,Aiken,1,150,3,8.88,4.8,success,expected_player_survives_model
+journeyman_rogue,8,23,Thuluk,1,200,2,13.99,554.0,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,24,Helfgrim,1,200,2,13.25,433.28,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,25,Colin,1,200,2,13.25,459.78,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,26,Skali,1,300,2,30.61,1020.54,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,27,Gurbultis,1,300,2,45.8,1510.48,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,28,Lady Sentara,1,100,0,,,failure,monster_has_no_attack_rows
+journeyman_rogue,8,29,dark cultist,1,50,2,2.46,10.3,success,expected_player_survives_model
+journeyman_rogue,8,30,grey spider,1,66,2,3.58,18.21,success,expected_player_survives_model
+journeyman_rogue,8,31,mummy,1,100,3,5.42,444.22,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,32,bounty hunter,1,90,1,5.68,36.21,success,expected_player_survives_model
+journeyman_rogue,8,33,dark cleric,1,86,3,4.79,31.03,success,expected_player_survives_model
+journeyman_rogue,8,34,dark priest,1,75,3,3.8,18.6,success,expected_player_survives_model
+journeyman_rogue,8,35,dark paladin,1,90,3,5.25,60.32,success,expected_player_survives_model
+journeyman_rogue,8,36,hellhound,1,85,2,4.74,192.55,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,37,tentacled abomination,1,100,2,5.42,221.91,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,38,Guildmaster,1,10,0,,,failure,monster_has_no_attack_rows
+journeyman_rogue,8,39,old man,1,10,1,0.6,0.0,success,expected_player_survives_model
+journeyman_rogue,8,40,Sheriff Lionheart,1,1000,2,93.9,24874.11,failure,expected_player_defeated_or_underleveled_model
+journeyman_rogue,8,41,Giovanni,1,200,4,13.07,234.48,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,1,giant rat,1,12,1,0.42,0.19,success,expected_player_survives_model
+adept_mage,15,2,lashworm,1,15,1,0.51,0.15,success,expected_player_survives_model
+adept_mage,15,3,filthbug,1,15,1,0.55,0.25,success,expected_player_survives_model
+adept_mage,15,4,carrion beast,1,18,1,0.64,0.29,success,expected_player_survives_model
+adept_mage,15,5,acid slime,1,25,1,0.85,0.82,success,expected_player_survives_model
+adept_mage,15,6,orc rogue,1,30,2,1.07,1.83,success,expected_player_survives_model
+adept_mage,15,7,kobold thief,1,20,1,0.72,0.4,success,expected_player_survives_model
+adept_mage,15,8,cave worm,1,70,1,2.68,12.73,success,expected_player_survives_model
+adept_mage,15,10,thug,1,28,1,1.01,2.79,success,expected_player_survives_model
+adept_mage,15,11,skeleton,1,43,1,1.49,4.43,success,expected_player_survives_model
+adept_mage,15,12,zombie,1,62,1,2.33,6.82,success,expected_player_survives_model
+adept_mage,15,13,guardsman,1,200,2,8.49,606.32,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,14,guardsman,1,200,3,8.49,1064.41,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,15,shade,1,75,2,2.7,22.17,success,expected_player_survives_model
+adept_mage,15,16,ghoul,1,73,2,2.61,14.39,success,expected_player_survives_model
+adept_mage,15,17,wight,1,80,2,2.91,13.75,success,expected_player_survives_model
+adept_mage,15,18,orc sentry,1,46,2,1.66,10.95,success,expected_player_survives_model
+adept_mage,15,19,orc lieutenant,1,55,2,2.06,17.4,success,expected_player_survives_model
+adept_mage,15,20,mercenary,1,46,1,1.66,5.91,success,expected_player_survives_model
+adept_mage,15,21,half-ogre bodyguard,1,60,2,2.27,24.99,success,expected_player_survives_model
+adept_mage,15,22,Aiken,1,150,3,5.98,22.92,success,expected_player_survives_model
+adept_mage,15,23,Thuluk,1,200,2,8.89,368.05,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,24,Helfgrim,1,200,2,8.58,296.01,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,25,Colin,1,200,2,8.58,313.17,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,26,Skali,1,300,2,16.67,594.95,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,27,Gurbultis,1,300,2,20.34,718.0,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,28,Lady Sentara,1,100,0,,,failure,monster_has_no_attack_rows
+adept_mage,15,29,dark cultist,1,50,2,1.75,10.32,success,expected_player_survives_model
+adept_mage,15,30,grey spider,1,66,2,2.48,17.27,success,expected_player_survives_model
+adept_mage,15,31,mummy,1,100,3,3.75,346.97,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,32,bounty hunter,1,90,1,3.74,29.41,success,expected_player_survives_model
+adept_mage,15,33,dark cleric,1,86,3,3.29,41.34,success,expected_player_survives_model
+adept_mage,15,34,dark priest,1,75,3,2.68,28.69,success,expected_player_survives_model
+adept_mage,15,35,dark paladin,1,90,3,3.55,58.67,success,expected_player_survives_model
+adept_mage,15,36,hellhound,1,85,2,3.25,150.9,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,37,tentacled abomination,1,100,2,3.75,175.61,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,38,Guildmaster,1,10,0,,,failure,monster_has_no_attack_rows
+adept_mage,15,39,old man,1,10,1,0.4,0.03,success,expected_player_survives_model
+adept_mage,15,40,Sheriff Lionheart,1,1000,2,53.05,14151.09,failure,expected_player_defeated_or_underleveled_model
+adept_mage,15,41,Giovanni,1,200,4,8.51,198.5,failure,expected_player_defeated_or_underleveled_model
+veteran_cleric,25,1,giant rat,1,12,1,0.26,0.0,success,expected_player_survives_model
+veteran_cleric,25,2,lashworm,1,15,1,0.32,0.0,success,expected_player_survives_model
+veteran_cleric,25,3,filthbug,1,15,1,0.33,0.0,success,expected_player_survives_model
+veteran_cleric,25,4,carrion beast,1,18,1,0.39,0.0,success,expected_player_survives_model
+veteran_cleric,25,5,acid slime,1,25,1,0.53,0.05,success,expected_player_survives_model
+veteran_cleric,25,6,orc rogue,1,30,2,0.65,0.11,success,expected_player_survives_model
+veteran_cleric,25,7,kobold thief,1,20,1,0.43,0.0,success,expected_player_survives_model
+veteran_cleric,25,8,cave worm,1,70,1,1.58,4.11,success,expected_player_survives_model
+veteran_cleric,25,10,thug,1,28,1,0.61,0.75,success,expected_player_survives_model
+veteran_cleric,25,11,skeleton,1,43,1,0.91,1.25,success,expected_player_survives_model
+veteran_cleric,25,12,zombie,1,62,1,1.38,1.69,success,expected_player_survives_model
+veteran_cleric,25,13,guardsman,1,200,2,4.78,264.24,failure,expected_player_defeated_or_underleveled_model
+veteran_cleric,25,14,guardsman,1,200,3,4.78,524.61,failure,expected_player_defeated_or_underleveled_model
+veteran_cleric,25,15,shade,1,75,2,1.63,7.16,success,expected_player_survives_model
+veteran_cleric,25,16,ghoul,1,73,2,1.58,4.15,success,expected_player_survives_model
+veteran_cleric,25,17,wight,1,80,2,1.75,3.94,success,expected_player_survives_model
+veteran_cleric,25,18,orc sentry,1,46,2,1.0,3.21,success,expected_player_survives_model
+veteran_cleric,25,19,orc lieutenant,1,55,2,1.22,5.75,success,expected_player_survives_model
+veteran_cleric,25,20,mercenary,1,46,1,1.0,1.79,success,expected_player_survives_model
+veteran_cleric,25,21,half-ogre bodyguard,1,60,2,1.34,6.49,success,expected_player_survives_model
+veteran_cleric,25,22,Aiken,1,150,3,3.46,1.43,success,expected_player_survives_model
+veteran_cleric,25,23,Thuluk,1,200,2,4.91,185.6,success,expected_player_survives_model
+veteran_cleric,25,24,Helfgrim,1,200,2,4.81,148.63,success,expected_player_survives_model
+veteran_cleric,25,25,Colin,1,200,2,4.81,158.25,success,expected_player_survives_model
+veteran_cleric,25,26,Skali,1,300,2,8.28,257.59,failure,expected_player_defeated_or_underleveled_model
+veteran_cleric,25,27,Gurbultis,1,300,2,9.09,279.79,failure,expected_player_defeated_or_underleveled_model
+veteran_cleric,25,28,Lady Sentara,1,100,0,,,failure,monster_has_no_attack_rows
+veteran_cleric,25,29,dark cultist,1,50,2,1.07,2.94,success,expected_player_survives_model
+veteran_cleric,25,30,grey spider,1,66,2,1.47,5.14,success,expected_player_survives_model
+veteran_cleric,25,31,mummy,1,100,3,2.23,160.13,success,expected_player_survives_model
+veteran_cleric,25,32,bounty hunter,1,90,1,2.13,10.73,success,expected_player_survives_model
+veteran_cleric,25,33,dark cleric,1,86,3,1.94,3.4,success,expected_player_survives_model
+veteran_cleric,25,34,dark priest,1,75,3,1.62,0.7,success,expected_player_survives_model
+veteran_cleric,25,35,dark paladin,1,90,3,2.06,15.13,success,expected_player_survives_model
+veteran_cleric,25,36,hellhound,1,85,2,1.91,67.0,success,expected_player_survives_model
+veteran_cleric,25,37,tentacled abomination,1,100,2,2.23,78.82,success,expected_player_survives_model
+veteran_cleric,25,38,Guildmaster,1,10,0,,,failure,monster_has_no_attack_rows
+veteran_cleric,25,39,old man,1,10,1,0.23,0.0,success,expected_player_survives_model
+veteran_cleric,25,40,Sheriff Lionheart,1,1000,2,26.95,7089.2,failure,expected_player_defeated_or_underleveled_model
+veteran_cleric,25,41,Giovanni,1,200,4,4.79,81.69,success,expected_player_survives_model
+champion_warrior,40,1,giant rat,1,12,1,0.16,0.0,success,expected_player_survives_model
+champion_warrior,40,2,lashworm,1,15,1,0.2,0.0,success,expected_player_survives_model
+champion_warrior,40,3,filthbug,1,15,1,0.2,0.0,success,expected_player_survives_model
+champion_warrior,40,4,carrion beast,1,18,1,0.24,0.0,success,expected_player_survives_model
+champion_warrior,40,5,acid slime,1,25,1,0.33,0.0,success,expected_player_survives_model
+champion_warrior,40,6,orc rogue,1,30,2,0.4,0.0,success,expected_player_survives_model
+champion_warrior,40,7,kobold thief,1,20,1,0.27,0.0,success,expected_player_survives_model
+champion_warrior,40,8,cave worm,1,70,1,0.95,0.66,success,expected_player_survives_model
+champion_warrior,40,10,thug,1,28,1,0.37,0.02,success,expected_player_survives_model
+champion_warrior,40,11,skeleton,1,43,1,0.56,0.07,success,expected_player_survives_model
+champion_warrior,40,12,zombie,1,62,1,0.84,0.06,success,expected_player_survives_model
+champion_warrior,40,13,guardsman,1,200,2,2.81,108.18,success,expected_player_survives_model
+champion_warrior,40,14,guardsman,1,200,3,2.81,257.35,success,expected_player_survives_model
+champion_warrior,40,15,shade,1,75,2,1.0,1.03,success,expected_player_survives_model
+champion_warrior,40,16,ghoul,1,73,2,0.97,0.0,success,expected_player_survives_model
+champion_warrior,40,17,wight,1,80,2,1.07,0.0,success,expected_player_survives_model
+champion_warrior,40,18,orc sentry,1,46,2,0.61,0.29,success,expected_player_survives_model
+champion_warrior,40,19,orc lieutenant,1,55,2,0.74,0.98,success,expected_player_survives_model
+champion_warrior,40,20,mercenary,1,46,1,0.61,0.16,success,expected_player_survives_model
+champion_warrior,40,21,half-ogre bodyguard,1,60,2,0.81,0.85,success,expected_player_survives_model
+champion_warrior,40,22,Aiken,1,150,3,2.07,0.14,success,expected_player_survives_model
+champion_warrior,40,23,Thuluk,1,200,2,2.86,85.51,success,expected_player_survives_model
+champion_warrior,40,24,Helfgrim,1,200,2,2.82,65.71,success,expected_player_survives_model
+champion_warrior,40,25,Colin,1,200,2,2.82,71.35,success,expected_player_survives_model
+champion_warrior,40,26,Skali,1,300,2,4.58,109.6,success,expected_player_survives_model
+champion_warrior,40,27,Gurbultis,1,300,2,4.82,114.04,success,expected_player_survives_model
+champion_warrior,40,28,Lady Sentara,1,100,0,,,failure,monster_has_no_attack_rows
+champion_warrior,40,29,dark cultist,1,50,2,0.66,0.15,success,expected_player_survives_model
+champion_warrior,40,30,grey spider,1,66,2,0.89,0.46,success,expected_player_survives_model
+champion_warrior,40,31,mummy,1,100,3,1.35,68.13,success,expected_player_survives_model
+champion_warrior,40,32,bounty hunter,1,90,1,1.26,1.97,success,expected_player_survives_model
+champion_warrior,40,33,dark cleric,1,86,3,1.17,0.52,success,expected_player_survives_model
+champion_warrior,40,34,dark priest,1,75,3,0.99,0.04,success,expected_player_survives_model
+champion_warrior,40,35,dark paladin,1,90,3,1.24,3.5,success,expected_player_survives_model
+champion_warrior,40,36,hellhound,1,85,2,1.15,26.97,success,expected_player_survives_model
+champion_warrior,40,37,tentacled abomination,1,100,2,1.35,31.96,success,expected_player_survives_model
+champion_warrior,40,38,Guildmaster,1,10,0,,,failure,monster_has_no_attack_rows
+champion_warrior,40,39,old man,1,10,1,0.14,0.0,success,expected_player_survives_model
+champion_warrior,40,40,Sheriff Lionheart,1,1000,2,15.07,3852.65,failure,expected_player_defeated_or_underleveled_model
+champion_warrior,40,41,Giovanni,1,200,4,2.82,39.21,success,expected_player_survives_model
+endgame_hybrid,70,1,giant rat,1,12,1,0.09,0.0,success,expected_player_survives_model
+endgame_hybrid,70,2,lashworm,1,15,1,0.12,0.0,success,expected_player_survives_model
+endgame_hybrid,70,3,filthbug,1,15,1,0.12,0.0,success,expected_player_survives_model
+endgame_hybrid,70,4,carrion beast,1,18,1,0.14,0.0,success,expected_player_survives_model
+endgame_hybrid,70,5,acid slime,1,25,1,0.19,0.0,success,expected_player_survives_model
+endgame_hybrid,70,6,orc rogue,1,30,2,0.24,0.0,success,expected_player_survives_model
+endgame_hybrid,70,7,kobold thief,1,20,1,0.16,0.0,success,expected_player_survives_model
+endgame_hybrid,70,8,cave worm,1,70,1,0.56,0.03,success,expected_player_survives_model
+endgame_hybrid,70,10,thug,1,28,1,0.22,0.0,success,expected_player_survives_model
+endgame_hybrid,70,11,skeleton,1,43,1,0.34,0.0,success,expected_player_survives_model
+endgame_hybrid,70,12,zombie,1,62,1,0.49,0.0,success,expected_player_survives_model
+endgame_hybrid,70,13,guardsman,1,200,2,1.63,43.07,success,expected_player_survives_model
+endgame_hybrid,70,14,guardsman,1,200,3,1.63,127.76,success,expected_player_survives_model
+endgame_hybrid,70,15,shade,1,75,2,0.59,0.0,success,expected_player_survives_model
+endgame_hybrid,70,16,ghoul,1,73,2,0.57,0.0,success,expected_player_survives_model
+endgame_hybrid,70,17,wight,1,80,2,0.63,0.0,success,expected_player_survives_model
+endgame_hybrid,70,18,orc sentry,1,46,2,0.36,0.0,success,expected_player_survives_model
+endgame_hybrid,70,19,orc lieutenant,1,55,2,0.44,0.09,success,expected_player_survives_model
+endgame_hybrid,70,20,mercenary,1,46,1,0.36,0.0,success,expected_player_survives_model
+endgame_hybrid,70,21,half-ogre bodyguard,1,60,2,0.48,0.0,success,expected_player_survives_model
+endgame_hybrid,70,22,Aiken,1,150,3,1.21,0.0,success,expected_player_survives_model
+endgame_hybrid,70,23,Thuluk,1,200,2,1.64,40.02,success,expected_player_survives_model
+endgame_hybrid,70,24,Helfgrim,1,200,2,1.63,29.5,success,expected_player_survives_model
+endgame_hybrid,70,25,Colin,1,200,2,1.63,32.76,success,expected_player_survives_model
+endgame_hybrid,70,26,Skali,1,300,2,2.56,49.05,success,expected_player_survives_model
+endgame_hybrid,70,27,Gurbultis,1,300,2,2.63,49.81,success,expected_player_survives_model
+endgame_hybrid,70,28,Lady Sentara,1,100,0,,,failure,monster_has_no_attack_rows
+endgame_hybrid,70,29,dark cultist,1,50,2,0.39,0.0,success,expected_player_survives_model
+endgame_hybrid,70,30,grey spider,1,66,2,0.52,0.0,success,expected_player_survives_model
+endgame_hybrid,70,31,mummy,1,100,3,0.79,28.02,success,expected_player_survives_model
+endgame_hybrid,70,32,bounty hunter,1,90,1,0.73,0.0,success,expected_player_survives_model
+endgame_hybrid,70,33,dark cleric,1,86,3,0.69,0.01,success,expected_player_survives_model
+endgame_hybrid,70,34,dark priest,1,75,3,0.59,0.0,success,expected_player_survives_model
+endgame_hybrid,70,35,dark paladin,1,90,3,0.72,0.49,success,expected_player_survives_model
+endgame_hybrid,70,36,hellhound,1,85,2,0.68,10.55,success,expected_player_survives_model
+endgame_hybrid,70,37,tentacled abomination,1,100,2,0.79,12.62,success,expected_player_survives_model
+endgame_hybrid,70,38,Guildmaster,1,10,0,,,failure,monster_has_no_attack_rows
+endgame_hybrid,70,39,old man,1,10,1,0.08,0.0,success,expected_player_survives_model
+endgame_hybrid,70,40,Sheriff Lionheart,1,1000,2,8.47,2118.35,failure,expected_player_defeated_or_underleveled_model
+endgame_hybrid,70,41,Giovanni,1,200,4,1.63,19.07,success,expected_player_survives_model

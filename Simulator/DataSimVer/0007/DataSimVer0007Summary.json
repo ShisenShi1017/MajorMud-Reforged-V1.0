@@ -1,0 +1,71 @@
+{
+  "pass": "DataSimVer0007",
+  "title": "Virtual Character State & Progression Simulation",
+  "created_utc": "2026-07-02T16:20:54.975641+00:00",
+  "baseline": "MajorMUD-Reforged-DataSimVer0005-Cumulative.zip (DataSimVer0006 not present in this workspace; 0007 recreated per user request)",
+  "data_policy": {
+    "Data_changed": false,
+    "room_endpoints_promoted": 0,
+    "special_exit_semantics_promoted": 0,
+    "evidence_class": "expected-model"
+  },
+  "statistics": {
+    "rooms_analyzed": 1246,
+    "exits_analyzed": 3022,
+    "profiles": 6,
+    "simulation_rows": 18132,
+    "room_clue_rows": 512,
+    "candidate_key_items": 165,
+    "classes_cataloged": 15,
+    "races_cataloged": 13
+  },
+  "profile_result_counts": {
+    "char_l01_warrior_baseline": {
+      "reachable_expected_model": 1727,
+      "conditional_key_or_lock_required": 247,
+      "blocked_missing_destination": 210,
+      "conditional_special_or_scripted": 268,
+      "conditional_text_command_required": 514,
+      "conditional_level_unknown_threshold": 56
+    },
+    "char_l10_explorer": {
+      "reachable_expected_model": 1727,
+      "conditional_key_or_lock_required": 247,
+      "blocked_missing_destination": 210,
+      "conditional_special_or_scripted": 268,
+      "conditional_text_command_required": 514,
+      "conditional_level_unknown_threshold": 56
+    },
+    "char_l20_spellcaster": {
+      "reachable_expected_model": 1727,
+      "conditional_key_or_lock_required": 247,
+      "blocked_missing_destination": 210,
+      "conditional_special_or_scripted": 268,
+      "conditional_text_command_required": 514,
+      "conditional_level_unknown_threshold": 56
+    },
+    "char_l40_advanced": {
+      "reachable_expected_model": 1735,
+      "conditional_key_satisfied_by_profile": 250,
+      "blocked_missing_destination": 210,
+      "conditional_special_or_scripted": 307,
+      "conditional_text_command_required": 520
+    },
+    "char_l60_veteran": {
+      "reachable_expected_model": 1735,
+      "conditional_key_satisfied_by_profile": 250,
+      "blocked_missing_destination": 210,
+      "conditional_special_or_scripted": 307,
+      "conditional_text_command_required": 520
+    },
+    "char_diagnostic_allflags": {
+      "reachable_expected_model": 2562,
+      "conditional_key_satisfied_by_profile": 250,
+      "blocked_missing_destination": 210
+    }
+  },
+  "session_health": {
+    "recommendation": "continue_current_window",
+    "note": "No new window required yet; consider a fresh window after the next few heavy passes or once reverse-engineering notes are available."
+  }
+}

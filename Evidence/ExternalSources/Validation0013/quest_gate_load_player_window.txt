@@ -1,0 +1,37 @@
+3128:                 jz      short loc_1C3F
+3129:                 push    ds
+3130:                 push    offset aYourEvilPoints ; "Your evil points have been adjusted to "...
+3131:                 call    PRF             ; prf(string);
+3132:                 add     sp, 4
+3133:                 mov     ax, seg USRNUM
+3134:                 mov     es, ax
+3135:                 assume es:nothing
+3136:                 push    word ptr es:USRNUM ; int usrnum;
+3137:                 call    _TELL_USER
+3138:                 pop     cx
+3139: 
+3140: loc_1C3F:                               ; CODE XREF: _LOAD_PLAYER+F75↑j
+3141:                                         ; _LOAD_PLAYER+13A5↑j
+3142:                 les     bx, [bp+var_4]
+3143:                 assume es:nothing
+3144:                 cmp     word ptr es:[bx+709h], 0Bh
+3145:                 jge     short loc_1C88
+3146:                 les     bx, [bp+var_4]
+3147:                 cmp     word ptr es:[bx+53Ch], 0FF38h
+3148:                 jge     short loc_1C88
+3149:                 les     bx, [bp+var_4]
+3150:                 mov     word ptr es:[bx+53Ch], 0FF38h
+3151:                 push    ds
+3152:                 push    offset aYourEvilPoints ; "Your evil points have been adjusted to "...
+3153:                 call    PRF             ; prf(string);
+3154:                 add     sp, 4
+3155:                 push    ds
+3156:                 push    offset aYouWillHaveToC ; "You will have to complete a quest to re"...
+3157:                 call    PRF             ; prf(string);
+3158:                 add     sp, 4
+3159:                 mov     ax, seg USRNUM
+3160:                 mov     es, ax
+3161:                 assume es:nothing
+3162:                 push    word ptr es:USRNUM ; int usrnum;
+3163:                 call    _TELL_USER
+3164:                 pop     cx

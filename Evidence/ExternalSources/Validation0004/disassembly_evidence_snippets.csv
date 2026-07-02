@@ -1,0 +1,51 @@
+term,line,excerpt
+quest,3156,"add     sp, 4 | push    ds | push    offset aYouWillHaveToC ; ""You will have to complete a quest to re""... | call    PRF             ; prf(string); | add     sp, 4"
+quest,29056,; Attributes: bp-based frame |  | public _ASK_MONSTER_A_QUESTION | _ASK_MONSTER_A_QUESTION proc far        ; CODE XREF: _CMD_ASK+CFâP | ; _CMD_GREET+ACâP
+quest,29057, | public _ASK_MONSTER_A_QUESTION | _ASK_MONSTER_A_QUESTION proc far        ; CODE XREF: _CMD_ASK+CFâP | ; _CMD_GREET+ACâP | 
+quest,29103,"; --------------------------------------------------------------------------- |  | loc_F41B:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+68âj | les     bx, [bp+var_14] | assume es:nothing"
+quest,29115,"inc     word ptr [bp+var_14] |  | loc_F433:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+3Câj | mov     ax, word ptr [bp+var_14] | or      ax, word ptr [bp+var_14+2]"
+attack,6863,"loc_3C9A:                               ; CODE XREF: _MOVE_USER+2Fâj | push    [bp+arg_0] | call    _CLEAR_BACKSTAB_ATTACK_TYPE | pop     cx | les     bx, [bp+var_12]"
+attack,9581,"jnz     short loc_5677 | push    [bp+arg_0] | call    _GIVE_MONSTERS_A_FREE_ATTACK | pop     cx | or      al, al"
+attack,20909,; Attributes: bp-based frame |  | sub_B634        proc far                ; CODE XREF: _ATTACK_USER_USER+1161âP | ; _ATTACK_USER_USER+11DCâP ... | 
+attack,20910, | sub_B634        proc far                ; CODE XREF: _ATTACK_USER_USER+1161âP | ; _ATTACK_USER_USER+11DCâP ... |  | var_4           = dword ptr -4
+attack,28673,public _STOP_USERS_EXIT | _STOP_USERS_EXIT proc far               ; CODE XREF: _MONSTER_CAST+17DâP | ; _ATTACK_USER_USER+4BDâP ... |  | var_4           = dword ptr -4
+damage,85307,"push    offset asc_97942 ; ""*"" | push    [bp+arg_E] | call    _GET_DAMAGE_DESCRIPTOR | pop     cx | push    dx"
+damage,85510,"add     sp, 0Ch | push    [bp+arg_E] | call    _GET_DAMAGE_DESCRIPTOR | pop     cx | push    dx"
+damage,98768,; Attributes: bp-based frame |  | public _GET_DAMAGE_DESCRIPTOR | _GET_DAMAGE_DESCRIPTOR proc far         ; CODE XREF: _MONSTER_DISPLAY_SPELL_SUCCESS+28CâP | ; _MONSTER_DISPLAY_SPELL_SUCCESS+44FâP ...
+damage,98769, | public _GET_DAMAGE_DESCRIPTOR | _GET_DAMAGE_DESCRIPTOR proc far         ; CODE XREF: _MONSTER_DISPLAY_SPELL_SUCCESS+28CâP | ; _MONSTER_DISPLAY_SPELL_SUCCESS+44FâP ... | 
+damage,98797,pop     bp | retf | _GET_DAMAGE_DESCRIPTOR endp |  | 
+spell,2219,"add     sp, 4 | push    ds | push    offset aUnfortunatelyI ; ""(Unfortunately, if any spells were cast""... | call    PRF             ; prf(string); | add     sp, 4"
+spell,2282,"add     bx, ax | push    word ptr es:[bx+40h] | call    _GET_SPELL_DATA | pop     cx | mov     [bp+var_1A], dx"
+spell,2311,"push    word ptr [bp+var_4] | push    [bp+arg_0] | call    _PERFORM_SPELL_TERMINATION_PLAYER | add     sp, 0Eh | "
+spell,7209,"add     sp, 4 | push    ds | push    offset aYouNeedToCastA ; ""You need to cast a spell to go that way""... | jmp     loc_5242 | ; ---------------------------------------------------------------------------"
+spell,11484,"add     bx, ax | push    word ptr es:[bx+40h] | call    _GET_SPELL_DATA | pop     cx | mov     [bp+var_A], dx"
+experience,1566,"push    word ptr [bp+var_4+2] | push    word ptr [bp+var_4] | call    _RESTRUCTURE_EXPERIENCE | add     sp, 4 | "
+experience,4201,; Attributes: bp-based frame |  | public _ADD_EXPERIENCE | _ADD_EXPERIENCE proc far                ; CODE XREF: _DISTRIBUTE_EXPERIENCE+175âP | ; _DISTRIBUTE_EXPERIENCE+20CâP ...
+experience,4202, | public _ADD_EXPERIENCE | _ADD_EXPERIENCE proc far                ; CODE XREF: _DISTRIBUTE_EXPERIENCE+175âP | ; _DISTRIBUTE_EXPERIENCE+20CâP ... | 
+experience,4203,public _ADD_EXPERIENCE | _ADD_EXPERIENCE proc far                ; CODE XREF: _DISTRIBUTE_EXPERIENCE+175âP | ; _DISTRIBUTE_EXPERIENCE+20CâP ... |  | var_22          = dword ptr -22h
+experience,4242,"; --------------------------------------------------------------------------- |  | loc_2866:                               ; CODE XREF: _ADD_EXPERIENCE+2Fâj | les     bx, [bp+var_4] | push    word ptr es:[bx+92h]"
+gold,19915,; Attributes: bp-based frame |  | public _DEPOSIT_GOLD | _DEPOSIT_GOLD   proc far                ; CODE XREF: _CMD_DEPOSIT+147âP | 
+gold,19916, | public _DEPOSIT_GOLD | _DEPOSIT_GOLD   proc far                ; CODE XREF: _CMD_DEPOSIT+147âP |  | var_C           = dword ptr -0Ch
+gold,19951,; --------------------------------------------------------------------------- |  | loc_AF87:                               ; CODE XREF: _DEPOSIT_GOLD+2Bâj | push    [bp+arg_2] | push    [bp+arg_0]
+gold,19966,; --------------------------------------------------------------------------- |  | loc_AFAC:                               ; CODE XREF: _DEPOSIT_GOLD+54âj | push    [bp+arg_8] | push    [bp+arg_6]
+gold,19987,"; --------------------------------------------------------------------------- |  | loc_AFD4:                               ; CODE XREF: _DEPOSIT_GOLD+7Câj | mov     dx, [bp+arg_8] | mov     ax, [bp+arg_6]"
+death,126588,"add     sp, 4 | push    ds | push    offset aNoteThisRoomIs ; ""NOTE: This room is *not* a death-free z""... | call    PRF             ; prf(string); | add     sp, 4"
+death,222642,"push    es:word_9990E | push    ds | push    offset aDeathSettingD ; ""Death Setting: %d\r"" | call    PRF             ; prf(string); | add     sp, 6"
+death,225228,"jz      short loc_725BD | push    ds | push    offset aArenaRoomsAreI ; ""Arena rooms are in normal mode (death d""... | jmp     loc_74E1D | ; ---------------------------------------------------------------------------"
+death,225234,"loc_725BD:                              ; CODE XREF: _CMD_SYSOP+17A1âj | push    ds | push    offset aArenaRoomsAreI_0 ; ""Arena rooms are in combat mode (death D""... | jmp     loc_74E1D | ; ---------------------------------------------------------------------------"
+death,264579,"push    word ptr [bp+arg_0] | push    ds | push    offset aSysLogDeaths ; ""SYS_LOG_DEATHS"" | call    SAMETO          ; int match=sameto(char *shorts, char *longs); | add     sp, 8"
+save,3904,"push    [bp+var_6] | push    [bp+var_8] | call    _GET_SAVED_EVIL_POINTS | add     sp, 4 | les     bx, [bp+var_4]"
+save,3969,public _CALC_EXP_NEEDED | _CALC_EXP_NEEDED proc far               ; CODE XREF: _HELP_TEXT+3CDâP | ; _SAVE_PERMANENT_INFO+239âP ... |  | var_12          = word ptr -12h
+save,12307,"add     sp, 14h | push    [bp+arg_4] | call    _SAVE_PLAYER | pop     cx | cmp     [bp+var_1A], 0"
+save,12327,loc_6EAE:                               ; CODE XREF: _CHECK_KILL_USER+9F3âj | push    [bp+arg_4] | call    _SAVE_EVIL_POINTS | pop     cx | call    TODAY           ; int date=today();
+save,12357,"push    ax | push    [bp+arg_4] | call    _SAVE_PERMANENT_INFO | add     sp, 4 | les     bx, [bp+arg_0]"
+load,20,; Title 'MajorMUD' | ; Target operating system         MS Windows | ; File Load CRC                   000000000h | ; Program Entry Point   (CS:IP)   0000:0000 | ; Initial Stack Pointer (SS:SP)   0000:0000
+load,327, | public _UPDATE_ALLOWED_WORN_ITEMS | _UPDATE_ALLOWED_WORN_ITEMS proc far     ; CODE XREF: _LOAD_PLAYER+1549âp | ; _ADD_EVIL_POINTS+33CâP ... | 
+load,501, | sub_350         proc far                ; CODE XREF: sub_476+343âp | ; _LOAD_PLAYER+3E5âp |  | var_10          = word ptr -10h
+load,643,; Attributes: bp-based frame |  | sub_476         proc far                ; CODE XREF: _LOAD_PLAYER+1413âp | ; _CMD_SYSOP+2981âP | 
+load,1148,; Attributes: bp-based frame |  | public _LOAD_PLAYER | _LOAD_PLAYER    proc far                ; CODE XREF: _LJNGAME_STTROU+1709âP | ; sub_7D5A6+27âP ...
+monster,6301,"push    [bp+arg_4] | push    [bp+arg_2] | call    _GENERATE_MONSTER | add     sp, 18h | les     bx, [bp+var_4]"
+monster,6410,"push    [bp+arg_4] | push    [bp+arg_2] | call    _GENERATE_MONSTER | add     sp, 18h | or      ax, dx"
+monster,9581,"jnz     short loc_5677 | push    [bp+arg_0] | call    _GIVE_MONSTERS_A_FREE_ATTACK | pop     cx | or      al, al"
+monster,10343,"push    [bp+var_A] | push    [bp+arg_0] | call    _HANDLE_FOLLOWING_MONSTERS | add     sp, 0Ch | "
+monster,10686,; Attributes: bp-based frame |  | public _ADD_MONSTER_TO_ROOM | _ADD_MONSTER_TO_ROOM proc far           ; CODE XREF: _GENERATE_MONSTER+B2BâP | ; _MOVE_MONSTER+56EâP ...

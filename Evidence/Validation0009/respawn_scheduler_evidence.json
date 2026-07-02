@@ -1,0 +1,805 @@
+{
+  "pass": "Validation0009",
+  "baseline": "Validation0008",
+  "objective": "Targeted rerun: monster respawn scheduler, background monster creation, RTKICK/polling interaction, room occupancy, and cleanup separation.",
+  "stats": {
+    "asm_lines": 328626,
+    "major_mud_procedures": 802,
+    "generate_monster_calls_total": 17,
+    "calc_minutes_difference_calls_total": 1,
+    "background_monster_create_refs": 8,
+    "rtkick_refs": 54,
+    "begin_polling_refs": 24
+  },
+  "procedure_evidence": {
+    "_BACKGROUND_MONSTER_CREATE": {
+      "start_line": 74995,
+      "end_line": 75026,
+      "line_count": 32,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 1,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": true,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 75014,
+          "text": "75010:                 push    offset _BACKGROUND_MONSTER_CREATE\n75011:                 mov     ax, seg dseg43\n75012:                 mov     es, ax\n75013:                 assume es:dseg43\n75014:                 push    es:word_998E8\n75015:                 push    cs\n75016:                 call    near ptr _MY_RTKICK\n75017:                 add     sp, 6\n75018:                 push    0Bh\n75019:                 call    sub_1A6B0\n75020:                 pop     cx\n75021:                 pop     ds"
+        },
+        {
+          "source_line": 75016,
+          "text": "75012:                 mov     es, ax\n75013:                 assume es:dseg43\n75014:                 push    es:word_998E8\n75015:                 push    cs\n75016:                 call    near ptr _MY_RTKICK\n75017:                 add     sp, 6\n75018:                 push    0Bh\n75019:                 call    sub_1A6B0\n75020:                 pop     cx\n75021:                 pop     ds\n75022:                 assume ds:dseg81\n75023:                 pop     di"
+        }
+      ]
+    },
+    "sub_26DF7": {
+      "start_line": 78913,
+      "end_line": 79608,
+      "line_count": 696,
+      "calls_generate_monster": 4,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 4,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 79097,
+          "text": "79093:                 mov     ax, dx\n79094:                 shl     ax, 2\n79095:                 les     bx, [bp+var_10]\n79096:                 add     bx, ax\n79097:                 mov     ax, es:[bx+400h]\n79098:                 or      ax, es:[bx+402h]\n79099:                 jz      short loc_26F91\n79100:                 inc     [bp+var_8]\n79101: \n79102: loc_26F91:                              ; CODE XREF: sub_26DF7+195\u2191j\n79103:                 inc     dx\n79104:                 cmp     dx, 0Fh"
+        },
+        {
+          "source_line": 79098,
+          "text": "79094:                 shl     ax, 2\n79095:                 les     bx, [bp+var_10]\n79096:                 add     bx, ax\n79097:                 mov     ax, es:[bx+400h]\n79098:                 or      ax, es:[bx+402h]\n79099:                 jz      short loc_26F91\n79100:                 inc     [bp+var_8]\n79101: \n79102: loc_26F91:                              ; CODE XREF: sub_26DF7+195\u2191j\n79103:                 inc     dx\n79104:                 cmp     dx, 0Fh\n79105:                 jl      short loc_26F78"
+        },
+        {
+          "source_line": 79104,
+          "text": "79100:                 inc     [bp+var_8]\n79101: \n79102: loc_26F91:                              ; CODE XREF: sub_26DF7+195\u2191j\n79103:                 inc     dx\n79104:                 cmp     dx, 0Fh\n79105:                 jl      short loc_26F78\n79106:                 mov     [bp+var_4], 0\n79107:                 jmp     short loc_26FF6\n79108: ; ---------------------------------------------------------------------------\n79109: \n79110: loc_26F9E:                              ; CODE XREF: sub_26DF7+20B\u2193j\n79111:                 push    [bp+var_4]"
+        },
+        {
+          "source_line": 79176,
+          "text": "79172:                 push    1\n79173:                 call    GENRDN          ; int genrdn(int min,int max);\n79174:                 add     sp, 4\n79175:                 mov     dx, ax\n79176:                 cmp     [bp+var_8], 0Fh\n79177:                 jl      short loc_27053\n79178:                 jmp     loc_2714D\n79179: ; ---------------------------------------------------------------------------\n79180: \n79181: loc_27053:                              ; CODE XREF: sub_26DF7+257\u2191j\n79182:                 mov     ax, [bp+var_8]\n79183:                 cmp     ax, [bp+var_A]"
+        },
+        {
+          "source_line": 79241,
+          "text": "79237:                 push    [bp+var_1E]\n79238:                 push    [bp+var_20]\n79239:                 push    [bp+var_1A]\n79240:                 push    [bp+var_1C]\n79241:                 call    _GENERATE_MONSTER\n79242:                 add     sp, 18h\n79243:                 or      ax, dx\n79244:                 jz      short loc_2714D\n79245:                 inc     [bp+var_22]\n79246:                 cmp     [bp+var_22], 8\n79247:                 jle     short loc_2714D\n79248:                 mov     ax, [bp+var_2]"
+        },
+        {
+          "source_line": 79284,
+          "text": "79280:                 push    [bp+var_1E]\n79281:                 push    [bp+var_20]\n79282:                 push    [bp+var_1A]\n79283:                 push    [bp+var_1C]\n79284:                 call    _GENERATE_MONSTER\n79285:                 add     sp, 18h\n79286:                 or      ax, dx\n79287:                 jz      short loc_2714D\n79288:                 cmp     [bp+var_22], 8\n79289:                 jle     short loc_27101\n79290: \n79291: loc_2714D:                              ; CODE XREF: sub_26DF7+52\u2191j"
+        },
+        {
+          "source_line": 79471,
+          "text": "79467:                 mov     ax, dx\n79468:                 shl     ax, 2\n79469:                 les     bx, [bp+var_10]\n79470:                 add     bx, ax\n79471:                 mov     ax, es:[bx+400h]\n79472:                 or      ax, es:[bx+402h]\n79473:                 jz      short loc_272F4\n79474:                 inc     cx\n79475: \n79476: loc_272F4:                              ; CODE XREF: sub_26DF7+4FA\u2191j\n79477:                 inc     dx\n79478:                 cmp     dx, 0Fh"
+        },
+        {
+          "source_line": 79472,
+          "text": "79468:                 shl     ax, 2\n79469:                 les     bx, [bp+var_10]\n79470:                 add     bx, ax\n79471:                 mov     ax, es:[bx+400h]\n79472:                 or      ax, es:[bx+402h]\n79473:                 jz      short loc_272F4\n79474:                 inc     cx\n79475: \n79476: loc_272F4:                              ; CODE XREF: sub_26DF7+4FA\u2191j\n79477:                 inc     dx\n79478:                 cmp     dx, 0Fh\n79479:                 jl      short loc_272DD"
+        },
+        {
+          "source_line": 79478,
+          "text": "79474:                 inc     cx\n79475: \n79476: loc_272F4:                              ; CODE XREF: sub_26DF7+4FA\u2191j\n79477:                 inc     dx\n79478:                 cmp     dx, 0Fh\n79479:                 jl      short loc_272DD\n79480:                 mov     bx, [bp+var_2]\n79481:                 imul    bx, 0Ah\n79482:                 mov     al, [bx+2Ah]\n79483:                 mov     ah, 0\n79484:                 cmp     ax, cx\n79485:                 jg      short loc_2730D"
+        },
+        {
+          "source_line": 79507,
+          "text": "79503:                 push    [bp+var_1E]\n79504:                 push    [bp+var_20]\n79505:                 push    [bp+var_1A]\n79506:                 push    [bp+var_1C]\n79507:                 call    _GENERATE_MONSTER\n79508:                 add     sp, 18h\n79509:                 or      ax, dx\n79510:                 jz      short loc_273C8\n79511:                 inc     [bp+var_22]\n79512:                 cmp     [bp+var_22], 8\n79513:                 jle     short loc_273C8\n79514:                 mov     ax, [bp+var_2]"
+        },
+        {
+          "source_line": 79550,
+          "text": "79546:                 push    [bp+var_1E]\n79547:                 push    [bp+var_20]\n79548:                 push    [bp+var_1A]\n79549:                 push    [bp+var_1C]\n79550:                 call    _GENERATE_MONSTER\n79551:                 add     sp, 18h\n79552:                 or      ax, dx\n79553:                 jz      short loc_273C8\n79554:                 cmp     [bp+var_22], 8\n79555:                 jle     short loc_2737C\n79556: \n79557: loc_273C8:                              ; CODE XREF: sub_26DF7+513\u2191j"
+        }
+      ]
+    },
+    "_GENERATE_MONSTER": {
+      "start_line": 81612,
+      "end_line": 83232,
+      "line_count": 1621,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 1,
+      "calls_random": 18,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 81612,
+          "text": "81612: _GENERATE_MONSTER proc far              ; CODE XREF: _USER_ALLOWED_IN_ROOM+C1\u2191P\n81613:                                         ; _USER_ALLOWED_IN_ROOM+1CF\u2191P ...\n81614: \n81615: var_60E         = word ptr -60Eh\n81616: var_60C         = word ptr -60Ch\n81617: var_5D8         = byte ptr -5D8h\n81618: var_332         = byte ptr -332h\n81619: var_32E         = word ptr -32Eh"
+        },
+        {
+          "source_line": 81729,
+          "text": "81725:                 jnz     short loc_283D5\n81726:                 jmp     loc_28F9D\n81727: ; ---------------------------------------------------------------------------\n81728: \n81729: loc_283D5:                              ; CODE XREF: _GENERATE_MONSTER+10\u2191j\n81730:                                         ; _GENERATE_MONSTER+18\u2191j\n81731:                 mov     ax, seg dseg42\n81732:                 mov     es, ax\n81733:                 assume es:dseg42\n81734:                 cmp     es:byte_98D96, 0\n81735:                 jz      short loc_283E5\n81736:                 jmp     loc_28F9D"
+        },
+        {
+          "source_line": 81730,
+          "text": "81726:                 jmp     loc_28F9D\n81727: ; ---------------------------------------------------------------------------\n81728: \n81729: loc_283D5:                              ; CODE XREF: _GENERATE_MONSTER+10\u2191j\n81730:                                         ; _GENERATE_MONSTER+18\u2191j\n81731:                 mov     ax, seg dseg42\n81732:                 mov     es, ax\n81733:                 assume es:dseg42\n81734:                 cmp     es:byte_98D96, 0\n81735:                 jz      short loc_283E5\n81736:                 jmp     loc_28F9D\n81737: ; ---------------------------------------------------------------------------"
+        },
+        {
+          "source_line": 81739,
+          "text": "81735:                 jz      short loc_283E5\n81736:                 jmp     loc_28F9D\n81737: ; ---------------------------------------------------------------------------\n81738: \n81739: loc_283E5:                              ; CODE XREF: _GENERATE_MONSTER+28\u2191j\n81740:                 push    [bp+arg_6]\n81741:                 push    [bp+arg_4]\n81742:                 push    [bp+arg_2]\n81743:                 push    [bp+arg_0]\n81744:                 call    _GET_ROOM_DATA\n81745:                 add     sp, 8\n81746:                 mov     word ptr [bp+var_C+2], dx"
+        },
+        {
+          "source_line": 81768,
+          "text": "81764:                 jnz     short loc_28438\n81765:                 cmp     ax, [bp+arg_A]\n81766:                 jz      short loc_28441\n81767: \n81768: loc_28438:                              ; CODE XREF: _GENERATE_MONSTER+4D\u2191j\n81769:                                         ; _GENERATE_MONSTER+67\u2191j ...\n81770:                 cmp     [bp+arg_16], 0\n81771:                 jnz     short loc_28441\n81772:                 jmp     loc_28F9D\n81773: ; ---------------------------------------------------------------------------\n81774: \n81775: loc_28441:                              ; CODE XREF: _GENERATE_MONSTER+5F\u2191j"
+        },
+        {
+          "source_line": 81769,
+          "text": "81765:                 cmp     ax, [bp+arg_A]\n81766:                 jz      short loc_28441\n81767: \n81768: loc_28438:                              ; CODE XREF: _GENERATE_MONSTER+4D\u2191j\n81769:                                         ; _GENERATE_MONSTER+67\u2191j ...\n81770:                 cmp     [bp+arg_16], 0\n81771:                 jnz     short loc_28441\n81772:                 jmp     loc_28F9D\n81773: ; ---------------------------------------------------------------------------\n81774: \n81775: loc_28441:                              ; CODE XREF: _GENERATE_MONSTER+5F\u2191j\n81776:                                         ; _GENERATE_MONSTER+7E\u2191j ..."
+        },
+        {
+          "source_line": 81775,
+          "text": "81771:                 jnz     short loc_28441\n81772:                 jmp     loc_28F9D\n81773: ; ---------------------------------------------------------------------------\n81774: \n81775: loc_28441:                              ; CODE XREF: _GENERATE_MONSTER+5F\u2191j\n81776:                                         ; _GENERATE_MONSTER+7E\u2191j ...\n81777:                 mov     [bp+var_11], 0\n81778:                 mov     [bp+var_1E], 0\n81779:                 jmp     short loc_2846A\n81780: ; ---------------------------------------------------------------------------\n81781: \n81782: loc_2844C:                              ; CODE XREF: _GENERATE_MONSTER+BC\u2193j"
+        },
+        {
+          "source_line": 81776,
+          "text": "81772:                 jmp     loc_28F9D\n81773: ; ---------------------------------------------------------------------------\n81774: \n81775: loc_28441:                              ; CODE XREF: _GENERATE_MONSTER+5F\u2191j\n81776:                                         ; _GENERATE_MONSTER+7E\u2191j ...\n81777:                 mov     [bp+var_11], 0\n81778:                 mov     [bp+var_1E], 0\n81779:                 jmp     short loc_2846A\n81780: ; ---------------------------------------------------------------------------\n81781: \n81782: loc_2844C:                              ; CODE XREF: _GENERATE_MONSTER+BC\u2193j\n81783:                 mov     ax, [bp+var_1E]"
+        },
+        {
+          "source_line": 81782,
+          "text": "81778:                 mov     [bp+var_1E], 0\n81779:                 jmp     short loc_2846A\n81780: ; ---------------------------------------------------------------------------\n81781: \n81782: loc_2844C:                              ; CODE XREF: _GENERATE_MONSTER+BC\u2193j\n81783:                 mov     ax, [bp+var_1E]\n81784:                 shl     ax, 2\n81785:                 les     bx, [bp+var_C]\n81786:                 add     bx, ax\n81787:                 mov     ax, es:[bx+400h]\n81788:                 or      ax, es:[bx+402h]\n81789:                 jnz     short loc_28467"
+        },
+        {
+          "source_line": 81787,
+          "text": "81783:                 mov     ax, [bp+var_1E]\n81784:                 shl     ax, 2\n81785:                 les     bx, [bp+var_C]\n81786:                 add     bx, ax\n81787:                 mov     ax, es:[bx+400h]\n81788:                 or      ax, es:[bx+402h]\n81789:                 jnz     short loc_28467\n81790:                 mov     [bp+var_11], 1\n81791: \n81792: loc_28467:                              ; CODE XREF: _GENERATE_MONSTER+A9\u2191j\n81793:                 inc     [bp+var_1E]\n81794: "
+        },
+        {
+          "source_line": 81788,
+          "text": "81784:                 shl     ax, 2\n81785:                 les     bx, [bp+var_C]\n81786:                 add     bx, ax\n81787:                 mov     ax, es:[bx+400h]\n81788:                 or      ax, es:[bx+402h]\n81789:                 jnz     short loc_28467\n81790:                 mov     [bp+var_11], 1\n81791: \n81792: loc_28467:                              ; CODE XREF: _GENERATE_MONSTER+A9\u2191j\n81793:                 inc     [bp+var_1E]\n81794: \n81795: loc_2846A:                              ; CODE XREF: _GENERATE_MONSTER+92\u2191j"
+        },
+        {
+          "source_line": 81792,
+          "text": "81788:                 or      ax, es:[bx+402h]\n81789:                 jnz     short loc_28467\n81790:                 mov     [bp+var_11], 1\n81791: \n81792: loc_28467:                              ; CODE XREF: _GENERATE_MONSTER+A9\u2191j\n81793:                 inc     [bp+var_1E]\n81794: \n81795: loc_2846A:                              ; CODE XREF: _GENERATE_MONSTER+92\u2191j\n81796:                 cmp     [bp+var_1E], 0Fh\n81797:                 jge     short loc_28476\n81798:                 cmp     [bp+var_11], 0\n81799:                 jz      short loc_2844C"
+        }
+      ]
+    },
+    "_CALC_MINUTES_DIFFERENCE": {
+      "start_line": 81064,
+      "end_line": 81324,
+      "line_count": 261,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 11,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 81064,
+          "text": "81064: _CALC_MINUTES_DIFFERENCE proc far       ; CODE XREF: _GENERATE_MONSTER+41C\u2193p\n81065: \n81066: var_18          = word ptr -18h\n81067: var_16          = word ptr -16h\n81068: var_14          = word ptr -14h\n81069: var_12          = word ptr -12h\n81070: var_10          = word ptr -10h\n81071: var_E           = word ptr -0Eh"
+        },
+        {
+          "source_line": 81184,
+          "text": "81180:                 push    word ptr es:USRNUM ; int usrnum;\n81181:                 call    _TELL_USER\n81182:                 pop     cx\n81183: \n81184: loc_2807A:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+87\u2191j\n81185:                                         ; _CALC_MINUTES_DIFFERENCE+94\u2191j ...\n81186:                 mov     ax, [bp+arg_4]\n81187:                 cmp     ax, [bp+arg_0]\n81188:                 ja      short loc_28092\n81189:                 mov     ax, [bp+arg_4]\n81190:                 cmp     ax, [bp+arg_0]\n81191:                 jnz     short loc_280CF"
+        },
+        {
+          "source_line": 81185,
+          "text": "81181:                 call    _TELL_USER\n81182:                 pop     cx\n81183: \n81184: loc_2807A:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+87\u2191j\n81185:                                         ; _CALC_MINUTES_DIFFERENCE+94\u2191j ...\n81186:                 mov     ax, [bp+arg_4]\n81187:                 cmp     ax, [bp+arg_0]\n81188:                 ja      short loc_28092\n81189:                 mov     ax, [bp+arg_4]\n81190:                 cmp     ax, [bp+arg_0]\n81191:                 jnz     short loc_280CF\n81192:                 mov     ax, [bp+arg_6]"
+        },
+        {
+          "source_line": 81196,
+          "text": "81192:                 mov     ax, [bp+arg_6]\n81193:                 cmp     ax, [bp+arg_2]\n81194:                 jbe     short loc_28099\n81195: \n81196: loc_28092:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+109\u2191j\n81197:                 xor     dx, dx\n81198:                 xor     ax, ax\n81199:                 jmp     loc_281C5\n81200: ; ---------------------------------------------------------------------------\n81201: \n81202: loc_28099:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+119\u2191j\n81203:                 mov     cx, [bp+var_A]"
+        },
+        {
+          "source_line": 81202,
+          "text": "81198:                 xor     ax, ax\n81199:                 jmp     loc_281C5\n81200: ; ---------------------------------------------------------------------------\n81201: \n81202: loc_28099:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+119\u2191j\n81203:                 mov     cx, [bp+var_A]\n81204:                 mov     bx, [bp+var_C]\n81205:                 sub     bx, [bp+var_14]\n81206:                 sbb     cx, [bp+var_12]\n81207:                 xor     dx, dx\n81208:                 mov     ax, 3Ch ; '<'\n81209:                 call    F_LXMUL"
+        },
+        {
+          "source_line": 81223,
+          "text": "81219:                 sbb     [bp+var_2], dx\n81220:                 jmp     short loc_28142\n81221: ; ---------------------------------------------------------------------------\n81222: \n81223: loc_280CF:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+111\u2191j\n81224:                 mov     ax, [bp+arg_0]\n81225:                 sub     ax, [bp+arg_4]\n81226:                 dec     ax\n81227:                 mov     [bp+var_6], 0\n81228:                 mov     [bp+var_8], ax\n81229:                 xor     cx, cx\n81230:                 mov     bx, 17h"
+        },
+        {
+          "source_line": 81263,
+          "text": "81259:                 call    F_LXMUL\n81260:                 add     [bp+var_4], ax\n81261:                 adc     [bp+var_2], dx\n81262: \n81263: loc_28142:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+156\u2191j\n81264:                 mov     ax, seg dseg36\n81265:                 mov     es, ax\n81266:                 assume es:dseg36\n81267:                 cmp     es:byte_8D44A, 0\n81268:                 jz      short loc_281BF\n81269:                 mov     ax, seg USRNUM\n81270:                 mov     es, ax"
+        },
+        {
+          "source_line": 81312,
+          "text": "81308:                 push    word ptr es:USRNUM ; int usrnum;\n81309:                 call    _TELL_USER\n81310:                 pop     cx\n81311: \n81312: loc_281BF:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+1D6\u2191j\n81313:                                         ; _CALC_MINUTES_DIFFERENCE+1E3\u2191j ...\n81314:                 mov     dx, [bp+var_2]\n81315:                 mov     ax, [bp+var_4]\n81316: \n81317: loc_281C5:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+11F\u2191j\n81318:                 pop     ds\n81319:                 assume ds:dseg81"
+        },
+        {
+          "source_line": 81313,
+          "text": "81309:                 call    _TELL_USER\n81310:                 pop     cx\n81311: \n81312: loc_281BF:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+1D6\u2191j\n81313:                                         ; _CALC_MINUTES_DIFFERENCE+1E3\u2191j ...\n81314:                 mov     dx, [bp+var_2]\n81315:                 mov     ax, [bp+var_4]\n81316: \n81317: loc_281C5:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+11F\u2191j\n81318:                 pop     ds\n81319:                 assume ds:dseg81\n81320:                 pop     di"
+        },
+        {
+          "source_line": 81317,
+          "text": "81313:                                         ; _CALC_MINUTES_DIFFERENCE+1E3\u2191j ...\n81314:                 mov     dx, [bp+var_2]\n81315:                 mov     ax, [bp+var_4]\n81316: \n81317: loc_281C5:                              ; CODE XREF: _CALC_MINUTES_DIFFERENCE+11F\u2191j\n81318:                 pop     ds\n81319:                 assume ds:dseg81\n81320:                 pop     di\n81321:                 pop     si\n81322:                 leave\n81323:                 retf\n81324: _CALC_MINUTES_DIFFERENCE endp"
+        },
+        {
+          "source_line": 81324,
+          "text": "81320:                 pop     di\n81321:                 pop     si\n81322:                 leave\n81323:                 retf\n81324: _CALC_MINUTES_DIFFERENCE endp"
+        }
+      ]
+    },
+    "_USER_ALLOWED_IN_ROOM": {
+      "start_line": 6214,
+      "end_line": 6586,
+      "line_count": 373,
+      "calls_generate_monster": 2,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 6301,
+          "text": "6297:                 push    [bp+arg_8]\n6298:                 push    [bp+arg_6]\n6299:                 push    [bp+arg_4]\n6300:                 push    [bp+arg_2]\n6301:                 call    _GENERATE_MONSTER\n6302:                 add     sp, 18h\n6303:                 les     bx, [bp+var_4]\n6304:                 mov     dx, es:[bx+2]\n6305:                 mov     ax, es:[bx]\n6306:                 cmp     dx, [bp+arg_8]\n6307:                 jnz     short loc_38CD\n6308:                 cmp     ax, [bp+arg_6]"
+        },
+        {
+          "source_line": 6410,
+          "text": "6406:                 push    [bp+arg_8]\n6407:                 push    [bp+arg_6]\n6408:                 push    [bp+arg_4]\n6409:                 push    [bp+arg_2]\n6410:                 call    _GENERATE_MONSTER\n6411:                 add     sp, 18h\n6412:                 or      ax, dx\n6413:                 jz      short loc_39BC\n6414:                 cmp     [bp+var_E], 0Fh\n6415:                 jl      short loc_3970\n6416: \n6417: loc_39BC:                               ; CODE XREF: _USER_ALLOWED_IN_ROOM+18C\u2191j"
+        },
+        {
+          "source_line": 6414,
+          "text": "6410:                 call    _GENERATE_MONSTER\n6411:                 add     sp, 18h\n6412:                 or      ax, dx\n6413:                 jz      short loc_39BC\n6414:                 cmp     [bp+var_E], 0Fh\n6415:                 jl      short loc_3970\n6416: \n6417: loc_39BC:                               ; CODE XREF: _USER_ALLOWED_IN_ROOM+18C\u2191j\n6418:                                         ; _USER_ALLOWED_IN_ROOM+1D9\u2191j\n6419:                 les     bx, [bp+var_4]\n6420:                 mov     dx, es:[bx+2]\n6421:                 mov     ax, es:[bx]"
+        }
+      ]
+    },
+    "_SLOW_UPDATE_MONSTERS": {
+      "start_line": 75478,
+      "end_line": 75500,
+      "line_count": 23,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 75478,
+          "text": "75478: _SLOW_UPDATE_MONSTERS proc far          ; CODE XREF: _BACKGROUND_SLOW+20\u2191p\n75479:                 push    si              ; WCCMMUD_141\n75480:                 push    di\n75481:                 push    ds\n75482:                 mov     ax, seg dseg38\n75483:                 mov     ds, ax\n75484:                 assume ds:dseg38\n75485:                 add     word_94B24, 1"
+        },
+        {
+          "source_line": 75491,
+          "text": "75487:                 cmp     word_94B22, 1\n75488:                 jge     short loc_24F94\n75489:                 inc     word_94B22\n75490: \n75491: loc_24F94:                              ; CODE XREF: _SLOW_UPDATE_MONSTERS+17\u2191j\n75492:                 nop\n75493:                 push    cs\n75494:                 call    near ptr _SLOW_UPDATE_NEXT_MONSTER\n75495:                 pop     ds\n75496:                 assume ds:dseg81\n75497:                 pop     di\n75498:                 pop     si"
+        },
+        {
+          "source_line": 75500,
+          "text": "75496:                 assume ds:dseg81\n75497:                 pop     di\n75498:                 pop     si\n75499:                 retf\n75500: _SLOW_UPDATE_MONSTERS endp"
+        }
+      ]
+    },
+    "_SLOW_UPDATE_NEXT_MONSTER": {
+      "start_line": 75512,
+      "end_line": 75573,
+      "line_count": 62,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": true,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 75513,
+          "text": "75512: _SLOW_UPDATE_NEXT_MONSTER proc far      ; CODE XREF: _LJNGAME_USER_POLLING_ROUTINE+6D\u2191P\n75513:                                         ; _SLOW_UPDATE_MONSTERS+1F\u2191p\n75514: \n75515: var_4           = dword ptr -4\n75516: \n75517:                 enter   4, 0            ; WCCMMUD_142\n75518:                 push    si\n75519:                 push    di\n75520:                 push    ds"
+        },
+        {
+          "source_line": 75550,
+          "text": "75546:                 push    word ptr [bp+var_4+2]\n75547:                 push    word ptr [bp+var_4]\n75548:                 nop\n75549:                 push    cs\n75550:                 call    near ptr _SLOW_UPDATE_MONSTER\n75551:                 add     sp, 4\n75552: \n75553: loc_24FF2:                              ; CODE XREF: _SLOW_UPDATE_NEXT_MONSTER+29\u2191j\n75554:                                         ; _SLOW_UPDATE_NEXT_MONSTER+35\u2191j ...\n75555:                 inc     word_94B20\n75556:                 mov     ax, seg dseg43\n75557:                 mov     es, ax"
+        },
+        {
+          "source_line": 75559,
+          "text": "75555:                 inc     word_94B20\n75556:                 mov     ax, seg dseg43\n75557:                 mov     es, ax\n75558:                 assume es:dseg43\n75559:                 mov     ax, es:word_998C4\n75560:                 cmp     ax, word_94B20\n75561:                 jg      short loc_2500F\n75562:                 mov     word_94B20, 0\n75563:                 dec     word_94B22\n75564: \n75565: loc_2500F:                              ; CODE XREF: _SLOW_UPDATE_NEXT_MONSTER+11\u2191j\n75566:                                         ; _SLOW_UPDATE_NEXT_MONSTER+66\u2191j"
+        }
+      ]
+    },
+    "_MEDIUM_UPDATE_MONSTERS": {
+      "start_line": 75584,
+      "end_line": 75605,
+      "line_count": 22,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 75584,
+          "text": "75584: _MEDIUM_UPDATE_MONSTERS proc far        ; CODE XREF: _BACKGROUND_MEDIUM+17\u2191p\n75585:                 push    si              ; WCCMMUD_143\n75586:                 push    di\n75587:                 push    ds\n75588:                 mov     ax, seg dseg38\n75589:                 mov     ds, ax\n75590:                 assume ds:dseg38\n75591:                 cmp     word_94B2C, 1"
+        },
+        {
+          "source_line": 75595,
+          "text": "75591:                 cmp     word_94B2C, 1\n75592:                 jge     short loc_25027\n75593:                 inc     word_94B2C\n75594: \n75595: loc_25027:                              ; CODE XREF: _MEDIUM_UPDATE_MONSTERS+D\u2191j\n75596:                 mov     word_94B28, 0\n75597:                 nop\n75598:                 push    cs\n75599:                 call    near ptr _MEDIUM_UPDATE_NEXT_MONSTER\n75600:                 pop     ds\n75601:                 assume ds:dseg81\n75602:                 pop     di"
+        },
+        {
+          "source_line": 75605,
+          "text": "75601:                 assume ds:dseg81\n75602:                 pop     di\n75603:                 pop     si\n75604:                 retf\n75605: _MEDIUM_UPDATE_MONSTERS endp"
+        }
+      ]
+    },
+    "_MEDIUM_UPDATE_NEXT_MONSTER": {
+      "start_line": 75617,
+      "end_line": 75678,
+      "line_count": 62,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": true,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 75618,
+          "text": "75617: _MEDIUM_UPDATE_NEXT_MONSTER proc far    ; CODE XREF: _LJNGAME_USER_POLLING_ROUTINE+77\u2191P\n75618:                                         ; _MEDIUM_UPDATE_MONSTERS+1B\u2191p\n75619: \n75620: var_4           = dword ptr -4\n75621: \n75622:                 enter   4, 0            ; WCCMMUD_144\n75623:                 push    si\n75624:                 push    di\n75625:                 push    ds"
+        },
+        {
+          "source_line": 75655,
+          "text": "75651:                 push    word ptr [bp+var_4+2]\n75652:                 push    word ptr [bp+var_4]\n75653:                 nop\n75654:                 push    cs\n75655:                 call    near ptr _MEDIUM_UPDATE_MONSTER\n75656:                 add     sp, 4\n75657: \n75658: loc_2508B:                              ; CODE XREF: _MEDIUM_UPDATE_NEXT_MONSTER+29\u2191j\n75659:                                         ; _MEDIUM_UPDATE_NEXT_MONSTER+35\u2191j ...\n75660:                 inc     word_94B2A\n75661:                 mov     ax, seg dseg43\n75662:                 mov     es, ax"
+        },
+        {
+          "source_line": 75664,
+          "text": "75660:                 inc     word_94B2A\n75661:                 mov     ax, seg dseg43\n75662:                 mov     es, ax\n75663:                 assume es:dseg43\n75664:                 mov     ax, es:word_998C4\n75665:                 cmp     ax, word_94B2A\n75666:                 jg      short loc_250A8\n75667:                 mov     word_94B2A, 0\n75668:                 dec     word_94B2C\n75669: \n75670: loc_250A8:                              ; CODE XREF: _MEDIUM_UPDATE_NEXT_MONSTER+11\u2191j\n75671:                                         ; _MEDIUM_UPDATE_NEXT_MONSTER+66\u2191j"
+        }
+      ]
+    },
+    "_FAST_UPDATE_MONSTERS": {
+      "start_line": 75689,
+      "end_line": 75709,
+      "line_count": 21,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 75689,
+          "text": "75689: _FAST_UPDATE_MONSTERS proc far          ; CODE XREF: _BACKGROUND_FAST+4D\u2191p\n75690:                 push    si              ; WCCMMUD_145\n75691:                 push    di\n75692:                 push    ds\n75693:                 mov     ax, seg dseg38\n75694:                 mov     ds, ax\n75695:                 assume ds:dseg38\n75696:                 cmp     word_94B30, 1"
+        },
+        {
+          "source_line": 75700,
+          "text": "75696:                 cmp     word_94B30, 1\n75697:                 jge     short loc_250C0\n75698:                 inc     word_94B30\n75699: \n75700: loc_250C0:                              ; CODE XREF: _FAST_UPDATE_MONSTERS+D\u2191j\n75701:                 nop\n75702:                 push    cs\n75703:                 call    near ptr _FAST_UPDATE_NEXT_MONSTER\n75704:                 pop     ds\n75705:                 assume ds:dseg81\n75706:                 pop     di\n75707:                 pop     si"
+        },
+        {
+          "source_line": 75709,
+          "text": "75705:                 assume ds:dseg81\n75706:                 pop     di\n75707:                 pop     si\n75708:                 retf\n75709: _FAST_UPDATE_MONSTERS endp"
+        }
+      ]
+    },
+    "_FAST_UPDATE_NEXT_MONSTER": {
+      "start_line": 75721,
+      "end_line": 75785,
+      "line_count": 65,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": true,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 75722,
+          "text": "75721: _FAST_UPDATE_NEXT_MONSTER proc far      ; CODE XREF: _LJNGAME_USER_POLLING_ROUTINE+72\u2191P\n75722:                                         ; _FAST_UPDATE_MONSTERS+15\u2191p\n75723: \n75724: var_4           = dword ptr -4\n75725: \n75726:                 enter   4, 0            ; WCCMMUD_146\n75727:                 push    si\n75728:                 push    di\n75729:                 push    ds"
+        },
+        {
+          "source_line": 75762,
+          "text": "75758:                 push    word ptr [bp+var_4+2]\n75759:                 push    word ptr [bp+var_4]\n75760:                 nop\n75761:                 push    cs\n75762:                 call    near ptr _FAST_UPDATE_MONSTER\n75763:                 add     sp, 4\n75764: \n75765: loc_25128:                              ; CODE XREF: _FAST_UPDATE_NEXT_MONSTER+29\u2191j\n75766:                                         ; _FAST_UPDATE_NEXT_MONSTER+35\u2191j ...\n75767:                 inc     word_94B2E\n75768:                 mov     ax, seg dseg43\n75769:                 mov     es, ax"
+        },
+        {
+          "source_line": 75771,
+          "text": "75767:                 inc     word_94B2E\n75768:                 mov     ax, seg dseg43\n75769:                 mov     es, ax\n75770:                 assume es:dseg43\n75771:                 mov     ax, es:word_998C4\n75772:                 cmp     ax, word_94B2E\n75773:                 jg      short loc_25145\n75774:                 mov     word_94B2E, 0\n75775:                 dec     word_94B30\n75776: \n75777: loc_25145:                              ; CODE XREF: _FAST_UPDATE_NEXT_MONSTER+11\u2191j\n75778:                                         ; _FAST_UPDATE_NEXT_MONSTER+70\u2191j"
+        }
+      ]
+    },
+    "_BACKGROUND_SLOW": {
+      "start_line": 74357,
+      "end_line": 74497,
+      "line_count": 141,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 1,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 8,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 74380,
+          "text": "74376:                 push    cs\n74377:                 call    near ptr _SLOW_UPDATE_CHARACTERS\n74378:                 nop\n74379:                 push    cs\n74380:                 call    near ptr _SLOW_UPDATE_MONSTERS\n74381:                 inc     word_94B1E\n74382:                 cmp     word_94B1E, 14h\n74383:                 jle     short loc_247E9\n74384:                 mov     word_94B1E, 0\n74385:                 call    _RESTOCK_ITEMS\n74386: \n74387: loc_247E9:                              ; CODE XREF: _BACKGROUND_SLOW+2C\u2191j"
+        },
+        {
+          "source_line": 74483,
+          "text": "74479:                 push    offset _BACKGROUND_SLOW\n74480:                 mov     ax, seg dseg43\n74481:                 mov     es, ax\n74482:                 assume es:dseg43\n74483:                 push    es:word_998F2\n74484:                 nop\n74485:                 push    cs\n74486:                 call    near ptr _MY_RTKICK\n74487:                 add     sp, 6\n74488:                 push    0Bh\n74489:                 call    sub_1A6B0\n74490:                 pop     cx"
+        },
+        {
+          "source_line": 74486,
+          "text": "74482:                 assume es:dseg43\n74483:                 push    es:word_998F2\n74484:                 nop\n74485:                 push    cs\n74486:                 call    near ptr _MY_RTKICK\n74487:                 add     sp, 6\n74488:                 push    0Bh\n74489:                 call    sub_1A6B0\n74490:                 pop     cx\n74491:                 pop     ds\n74492:                 assume ds:dseg81\n74493:                 pop     di"
+        }
+      ]
+    },
+    "_BACKGROUND_MEDIUM": {
+      "start_line": 74508,
+      "end_line": 74544,
+      "line_count": 37,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 1,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": true,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 74524,
+          "text": "74520:                 push    cs\n74521:                 call    near ptr _MEDIUM_UPDATE_CHARACTERS\n74522:                 nop\n74523:                 push    cs\n74524:                 call    near ptr _MEDIUM_UPDATE_MONSTERS\n74525:                 push    cs\n74526:                 call    near ptr sub_23FC9\n74527:                 push    seg cseg06\n74528:                 push    offset _BACKGROUND_MEDIUM\n74529:                 mov     ax, seg dseg43\n74530:                 mov     es, ax\n74531:                 push    es:word_998F4"
+        },
+        {
+          "source_line": 74531,
+          "text": "74527:                 push    seg cseg06\n74528:                 push    offset _BACKGROUND_MEDIUM\n74529:                 mov     ax, seg dseg43\n74530:                 mov     es, ax\n74531:                 push    es:word_998F4\n74532:                 nop\n74533:                 push    cs\n74534:                 call    near ptr _MY_RTKICK\n74535:                 add     sp, 6\n74536:                 push    0Bh\n74537:                 call    sub_1A6B0\n74538:                 pop     cx"
+        },
+        {
+          "source_line": 74534,
+          "text": "74530:                 mov     es, ax\n74531:                 push    es:word_998F4\n74532:                 nop\n74533:                 push    cs\n74534:                 call    near ptr _MY_RTKICK\n74535:                 add     sp, 6\n74536:                 push    0Bh\n74537:                 call    sub_1A6B0\n74538:                 pop     cx\n74539:                 pop     ds\n74540:                 assume ds:dseg81\n74541:                 pop     di"
+        }
+      ]
+    },
+    "_BACKGROUND_FAST": {
+      "start_line": 74555,
+      "end_line": 74615,
+      "line_count": 61,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 4,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": true,
+      "snippets": [
+        {
+          "source_line": 74573,
+          "text": "74569:                 push    offset _BACKGROUND_FAST\n74570:                 mov     ax, seg dseg43\n74571:                 mov     es, ax\n74572:                 assume es:dseg43\n74573:                 push    es:word_998F6\n74574:                 call    RTKICK          ; rtkick(int time, void *rouptr());\n74575:                 add     sp, 6\n74576:                 jmp     short loc_249AC\n74577: ; ---------------------------------------------------------------------------\n74578: \n74579: loc_24960:                              ; CODE XREF: _BACKGROUND_FAST+13\u2191j\n74580:                 push    7"
+        },
+        {
+          "source_line": 74574,
+          "text": "74570:                 mov     ax, seg dseg43\n74571:                 mov     es, ax\n74572:                 assume es:dseg43\n74573:                 push    es:word_998F6\n74574:                 call    RTKICK          ; rtkick(int time, void *rouptr());\n74575:                 add     sp, 6\n74576:                 jmp     short loc_249AC\n74577: ; ---------------------------------------------------------------------------\n74578: \n74579: loc_24960:                              ; CODE XREF: _BACKGROUND_FAST+13\u2191j\n74580:                 push    7\n74581:                 call    sub_1A6B0"
+        },
+        {
+          "source_line": 74593,
+          "text": "74589:                 push    cs\n74590:                 call    near ptr _FAST_UPDATE_CHARACTERS\n74591:                 nop\n74592:                 push    cs\n74593:                 call    near ptr _FAST_UPDATE_MONSTERS\n74594:                 push    seg cseg06\n74595:                 push    offset _BACKGROUND_FAST\n74596:                 mov     ax, seg dseg43\n74597:                 mov     es, ax\n74598:                 push    es:word_998F6\n74599:                 call    RTKICK          ; rtkick(int time, void *rouptr());\n74600:                 add     sp, 6"
+        },
+        {
+          "source_line": 74598,
+          "text": "74594:                 push    seg cseg06\n74595:                 push    offset _BACKGROUND_FAST\n74596:                 mov     ax, seg dseg43\n74597:                 mov     es, ax\n74598:                 push    es:word_998F6\n74599:                 call    RTKICK          ; rtkick(int time, void *rouptr());\n74600:                 add     sp, 6\n74601:                 push    0Bh\n74602:                 call    sub_1A6B0\n74603:                 pop     cx\n74604:                 mov     ax, seg dseg36\n74605:                 mov     es, ax"
+        },
+        {
+          "source_line": 74599,
+          "text": "74595:                 push    offset _BACKGROUND_FAST\n74596:                 mov     ax, seg dseg43\n74597:                 mov     es, ax\n74598:                 push    es:word_998F6\n74599:                 call    RTKICK          ; rtkick(int time, void *rouptr());\n74600:                 add     sp, 6\n74601:                 push    0Bh\n74602:                 call    sub_1A6B0\n74603:                 pop     cx\n74604:                 mov     ax, seg dseg36\n74605:                 mov     es, ax\n74606:                 assume es:dseg36"
+        }
+      ]
+    },
+    "_MY_RTKICK": {
+      "start_line": 74839,
+      "end_line": 74984,
+      "line_count": 146,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 15,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 74839,
+          "text": "74839: _MY_RTKICK      proc far                ; CODE XREF: _INIT__WCCMMUD+B46\u2191P\n74840:                                         ; _INIT__WCCMMUD+B5E\u2191P ...\n74841: \n74842: var_C           = dword ptr -0Ch\n74843: var_8           = dword ptr -8\n74844: var_4           = dword ptr -4\n74845: arg_0           = word ptr  6\n74846: arg_2           = word ptr  8"
+        },
+        {
+          "source_line": 74866,
+          "text": "74862:                 jnz     short loc_24B62\n74863:                 jmp     loc_24C7A\n74864: ; ---------------------------------------------------------------------------\n74865: \n74866: loc_24B62:                              ; CODE XREF: _MY_RTKICK+1C\u2191j\n74867:                 mov     ax, [bp+arg_0]\n74868:                 cwd\n74869:                 add     ax, word_94B10\n74870:                 adc     dx, word_94B12\n74871:                 les     bx, [bp+var_4]\n74872:                 mov     es:[bx+2], dx\n74873:                 mov     es:[bx], ax"
+        },
+        {
+          "source_line": 74895,
+          "text": "74891:                 ja      short loc_24BBC\n74892:                 cmp     ax, es:[bx]\n74893:                 jbe     short loc_24BDE\n74894: \n74895: loc_24BBC:                              ; CODE XREF: _MY_RTKICK+74\u2191j\n74896:                 les     bx, [bp+var_4]\n74897:                 mov     dx, word ptr dword_94B14+2\n74898:                 mov     ax, word ptr dword_94B14\n74899:                 mov     es:[bx+0Ah], dx\n74900:                 mov     es:[bx+8], ax\n74901: \n74902: loc_24BCE:                              ; CODE XREF: _MY_RTKICK+5E\u2191j"
+        },
+        {
+          "source_line": 74902,
+          "text": "74898:                 mov     ax, word ptr dword_94B14\n74899:                 mov     es:[bx+0Ah], dx\n74900:                 mov     es:[bx+8], ax\n74901: \n74902: loc_24BCE:                              ; CODE XREF: _MY_RTKICK+5E\u2191j\n74903:                 mov     dx, word ptr [bp+var_4+2]\n74904:                 mov     ax, word ptr [bp+var_4]\n74905:                 mov     word ptr dword_94B14+2, dx\n74906:                 mov     word ptr dword_94B14, ax\n74907:                 jmp     loc_24C7A\n74908: ; ---------------------------------------------------------------------------\n74909: "
+        },
+        {
+          "source_line": 74910,
+          "text": "74906:                 mov     word ptr dword_94B14, ax\n74907:                 jmp     loc_24C7A\n74908: ; ---------------------------------------------------------------------------\n74909: \n74910: loc_24BDE:                              ; CODE XREF: _MY_RTKICK+72\u2191j\n74911:                                         ; _MY_RTKICK+79\u2191j\n74912:                 mov     dx, word ptr dword_94B14+2\n74913:                 mov     ax, word ptr dword_94B14\n74914:                 mov     word ptr [bp+var_8+2], dx\n74915:                 mov     word ptr [bp+var_8], ax\n74916:                 mov     dx, word ptr dword_94B14+2\n74917:                 mov     ax, word ptr dword_94B14"
+        },
+        {
+          "source_line": 74911,
+          "text": "74907:                 jmp     loc_24C7A\n74908: ; ---------------------------------------------------------------------------\n74909: \n74910: loc_24BDE:                              ; CODE XREF: _MY_RTKICK+72\u2191j\n74911:                                         ; _MY_RTKICK+79\u2191j\n74912:                 mov     dx, word ptr dword_94B14+2\n74913:                 mov     ax, word ptr dword_94B14\n74914:                 mov     word ptr [bp+var_8+2], dx\n74915:                 mov     word ptr [bp+var_8], ax\n74916:                 mov     dx, word ptr dword_94B14+2\n74917:                 mov     ax, word ptr dword_94B14\n74918:                 mov     word ptr [bp+var_C+2], dx"
+        },
+        {
+          "source_line": 74923,
+          "text": "74919:                 mov     word ptr [bp+var_C], ax\n74920:                 jmp     short loc_24C1A\n74921: ; ---------------------------------------------------------------------------\n74922: \n74923: loc_24BFA:                              ; CODE XREF: _MY_RTKICK+F2\u2193j\n74924:                                         ; _MY_RTKICK+F9\u2193j\n74925:                 mov     dx, word ptr [bp+var_8+2]\n74926:                 mov     ax, word ptr [bp+var_8]\n74927:                 mov     word ptr [bp+var_C+2], dx\n74928:                 mov     word ptr [bp+var_C], ax\n74929:                 mov     es, word ptr [bp+var_C+2]\n74930:                 mov     bx, word ptr [bp+var_8]"
+        },
+        {
+          "source_line": 74924,
+          "text": "74920:                 jmp     short loc_24C1A\n74921: ; ---------------------------------------------------------------------------\n74922: \n74923: loc_24BFA:                              ; CODE XREF: _MY_RTKICK+F2\u2193j\n74924:                                         ; _MY_RTKICK+F9\u2193j\n74925:                 mov     dx, word ptr [bp+var_8+2]\n74926:                 mov     ax, word ptr [bp+var_8]\n74927:                 mov     word ptr [bp+var_C+2], dx\n74928:                 mov     word ptr [bp+var_C], ax\n74929:                 mov     es, word ptr [bp+var_C+2]\n74930:                 mov     bx, word ptr [bp+var_8]\n74931:                 mov     dx, es:[bx+0Ah]"
+        },
+        {
+          "source_line": 74936,
+          "text": "74932:                 mov     ax, es:[bx+8]\n74933:                 mov     word ptr [bp+var_8+2], dx\n74934:                 mov     word ptr [bp+var_8], ax\n74935: \n74936: loc_24C1A:                              ; CODE XREF: _MY_RTKICK+B7\u2191j\n74937:                 mov     ax, word ptr [bp+var_8]\n74938:                 or      ax, word ptr [bp+var_8+2]\n74939:                 jz      short loc_24C3C\n74940:                 les     bx, [bp+var_8]\n74941:                 mov     dx, es:[bx+2]\n74942:                 mov     ax, es:[bx]\n74943:                 les     bx, [bp+var_4]"
+        },
+        {
+          "source_line": 74950,
+          "text": "74946:                 jnz     short loc_24C3C\n74947:                 cmp     ax, es:[bx]\n74948:                 jb      short loc_24BFA\n74949: \n74950: loc_24C3C:                              ; CODE XREF: _MY_RTKICK+DF\u2191j\n74951:                                         ; _MY_RTKICK+F4\u2191j\n74952:                 mov     ax, word ptr [bp+var_C]\n74953:                 or      ax, word ptr [bp+var_C+2]\n74954:                 jz      short loc_24C6D\n74955:                 les     bx, [bp+var_C]\n74956:                 mov     dx, es:[bx+0Ah]\n74957:                 mov     ax, es:[bx+8]"
+        },
+        {
+          "source_line": 74951,
+          "text": "74947:                 cmp     ax, es:[bx]\n74948:                 jb      short loc_24BFA\n74949: \n74950: loc_24C3C:                              ; CODE XREF: _MY_RTKICK+DF\u2191j\n74951:                                         ; _MY_RTKICK+F4\u2191j\n74952:                 mov     ax, word ptr [bp+var_C]\n74953:                 or      ax, word ptr [bp+var_C+2]\n74954:                 jz      short loc_24C6D\n74955:                 les     bx, [bp+var_C]\n74956:                 mov     dx, es:[bx+0Ah]\n74957:                 mov     ax, es:[bx+8]\n74958:                 les     bx, [bp+var_4]"
+        },
+        {
+          "source_line": 74969,
+          "text": "74965:                 mov     es:[bx+8], ax\n74966:                 jmp     short loc_24C7A\n74967: ; ---------------------------------------------------------------------------\n74968: \n74969: loc_24C6D:                              ; CODE XREF: _MY_RTKICK+101\u2191j\n74970:                 push    word ptr [bp+var_4+2]\n74971:                 push    word ptr [bp+var_4]\n74972:                 push    cs\n74973:                 call    near ptr sub_24A84\n74974:                 add     sp, 4\n74975: \n74976: loc_24C7A:                              ; CODE XREF: _MY_RTKICK+1E\u2191j"
+        }
+      ]
+    },
+    "_PERFORM_KICKS": {
+      "start_line": 74761,
+      "end_line": 74827,
+      "line_count": 67,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": []
+    },
+    "_ADD_MONSTER_TO_ROOM": {
+      "start_line": 10687,
+      "end_line": 10761,
+      "line_count": 75,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 10687,
+          "text": "10687: _ADD_MONSTER_TO_ROOM proc far           ; CODE XREF: _GENERATE_MONSTER+B2B\u2193P\n10688:                                         ; _MOVE_MONSTER+56E\u2193P ...\n10689: \n10690: arg_0           = dword ptr  6\n10691: arg_4           = word ptr  0Ah\n10692: arg_6           = word ptr  0Ch\n10693: arg_8           = word ptr  0Eh\n10694: arg_A           = word ptr  10h"
+        },
+        {
+          "source_line": 10718,
+          "text": "10714:                 add     sp, 8\n10715:                 mov     word ptr [bp+arg_0+2], dx\n10716:                 mov     word ptr [bp+arg_0], ax\n10717: \n10718: loc_5FED:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+11\u2191j\n10719:                 mov     ax, word ptr [bp+arg_0]\n10720:                 or      ax, word ptr [bp+arg_0+2]\n10721:                 jz      short loc_603A\n10722:                 xor     cx, cx\n10723: \n10724: loc_5FF7:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+78\u2193j\n10725:                 mov     ax, cx"
+        },
+        {
+          "source_line": 10724,
+          "text": "10720:                 or      ax, word ptr [bp+arg_0+2]\n10721:                 jz      short loc_603A\n10722:                 xor     cx, cx\n10723: \n10724: loc_5FF7:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+78\u2193j\n10725:                 mov     ax, cx\n10726:                 shl     ax, 2\n10727:                 les     bx, [bp+arg_0]\n10728:                 add     bx, ax\n10729:                 mov     ax, es:[bx+400h]\n10730:                 or      ax, es:[bx+402h]\n10731:                 jnz     short loc_6034"
+        },
+        {
+          "source_line": 10729,
+          "text": "10725:                 mov     ax, cx\n10726:                 shl     ax, 2\n10727:                 les     bx, [bp+arg_0]\n10728:                 add     bx, ax\n10729:                 mov     ax, es:[bx+400h]\n10730:                 or      ax, es:[bx+402h]\n10731:                 jnz     short loc_6034\n10732:                 les     bx, [bp+arg_0]\n10733:                 mov     byte ptr es:[bx+5EDh], 1\n10734:                 mov     ax, cx\n10735:                 shl     ax, 2\n10736:                 les     bx, [bp+arg_0]"
+        },
+        {
+          "source_line": 10730,
+          "text": "10726:                 shl     ax, 2\n10727:                 les     bx, [bp+arg_0]\n10728:                 add     bx, ax\n10729:                 mov     ax, es:[bx+400h]\n10730:                 or      ax, es:[bx+402h]\n10731:                 jnz     short loc_6034\n10732:                 les     bx, [bp+arg_0]\n10733:                 mov     byte ptr es:[bx+5EDh], 1\n10734:                 mov     ax, cx\n10735:                 shl     ax, 2\n10736:                 les     bx, [bp+arg_0]\n10737:                 add     bx, ax"
+        },
+        {
+          "source_line": 10740,
+          "text": "10736:                 les     bx, [bp+arg_0]\n10737:                 add     bx, ax\n10738:                 mov     dx, [bp+arg_E]\n10739:                 mov     ax, [bp+arg_C]\n10740:                 mov     es:[bx+402h], dx\n10741:                 mov     es:[bx+400h], ax\n10742:                 mov     ax, cx\n10743:                 jmp     short loc_603D\n10744: ; ---------------------------------------------------------------------------\n10745: \n10746: loc_6034:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+4B\u2191j\n10747:                 inc     cx"
+        },
+        {
+          "source_line": 10741,
+          "text": "10737:                 add     bx, ax\n10738:                 mov     dx, [bp+arg_E]\n10739:                 mov     ax, [bp+arg_C]\n10740:                 mov     es:[bx+402h], dx\n10741:                 mov     es:[bx+400h], ax\n10742:                 mov     ax, cx\n10743:                 jmp     short loc_603D\n10744: ; ---------------------------------------------------------------------------\n10745: \n10746: loc_6034:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+4B\u2191j\n10747:                 inc     cx\n10748:                 cmp     cx, 0Fh"
+        },
+        {
+          "source_line": 10746,
+          "text": "10742:                 mov     ax, cx\n10743:                 jmp     short loc_603D\n10744: ; ---------------------------------------------------------------------------\n10745: \n10746: loc_6034:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+4B\u2191j\n10747:                 inc     cx\n10748:                 cmp     cx, 0Fh\n10749:                 jl      short loc_5FF7\n10750: \n10751: loc_603A:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+33\u2191j\n10752:                 mov     ax, 0FFFFh\n10753: "
+        },
+        {
+          "source_line": 10748,
+          "text": "10744: ; ---------------------------------------------------------------------------\n10745: \n10746: loc_6034:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+4B\u2191j\n10747:                 inc     cx\n10748:                 cmp     cx, 0Fh\n10749:                 jl      short loc_5FF7\n10750: \n10751: loc_603A:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+33\u2191j\n10752:                 mov     ax, 0FFFFh\n10753: \n10754: loc_603D:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+72\u2191j\n10755:                 pop     ds"
+        },
+        {
+          "source_line": 10751,
+          "text": "10747:                 inc     cx\n10748:                 cmp     cx, 0Fh\n10749:                 jl      short loc_5FF7\n10750: \n10751: loc_603A:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+33\u2191j\n10752:                 mov     ax, 0FFFFh\n10753: \n10754: loc_603D:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+72\u2191j\n10755:                 pop     ds\n10756:                 assume ds:dseg81\n10757:                 pop     di\n10758:                 pop     si"
+        },
+        {
+          "source_line": 10754,
+          "text": "10750: \n10751: loc_603A:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+33\u2191j\n10752:                 mov     ax, 0FFFFh\n10753: \n10754: loc_603D:                               ; CODE XREF: _ADD_MONSTER_TO_ROOM+72\u2191j\n10755:                 pop     ds\n10756:                 assume ds:dseg81\n10757:                 pop     di\n10758:                 pop     si\n10759:                 pop     bp\n10760:                 retf\n10761: _ADD_MONSTER_TO_ROOM endp"
+        },
+        {
+          "source_line": 10761,
+          "text": "10757:                 pop     di\n10758:                 pop     si\n10759:                 pop     bp\n10760:                 retf\n10761: _ADD_MONSTER_TO_ROOM endp"
+        }
+      ]
+    },
+    "_TAKE_MONSTER_FROM_ROOM": {
+      "start_line": 10773,
+      "end_line": 10848,
+      "line_count": 76,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 10814,
+          "text": "10810:                 mov     ax, cx\n10811:                 shl     ax, 2\n10812:                 les     bx, [bp+arg_0]\n10813:                 add     bx, ax\n10814:                 mov     dx, es:[bx+402h]\n10815:                 mov     ax, es:[bx+400h]\n10816:                 cmp     dx, [bp+arg_E]\n10817:                 jnz     short loc_60BC\n10818:                 cmp     ax, [bp+arg_C]\n10819:                 jnz     short loc_60BC\n10820:                 les     bx, [bp+arg_0]\n10821:                 mov     byte ptr es:[bx+5EDh], 1"
+        },
+        {
+          "source_line": 10815,
+          "text": "10811:                 shl     ax, 2\n10812:                 les     bx, [bp+arg_0]\n10813:                 add     bx, ax\n10814:                 mov     dx, es:[bx+402h]\n10815:                 mov     ax, es:[bx+400h]\n10816:                 cmp     dx, [bp+arg_E]\n10817:                 jnz     short loc_60BC\n10818:                 cmp     ax, [bp+arg_C]\n10819:                 jnz     short loc_60BC\n10820:                 les     bx, [bp+arg_0]\n10821:                 mov     byte ptr es:[bx+5EDh], 1\n10822:                 mov     ax, cx"
+        },
+        {
+          "source_line": 10826,
+          "text": "10822:                 mov     ax, cx\n10823:                 shl     ax, 2\n10824:                 les     bx, [bp+arg_0]\n10825:                 add     bx, ax\n10826:                 mov     word ptr es:[bx+402h], 0\n10827:                 mov     word ptr es:[bx+400h], 0\n10828:                 mov     ax, cx\n10829:                 jmp     short loc_60C5\n10830: ; ---------------------------------------------------------------------------\n10831: \n10832: loc_60BC:                               ; CODE XREF: _TAKE_MONSTER_FROM_ROOM+4E\u2191j\n10833:                                         ; _TAKE_MONSTER_FROM_ROOM+53\u2191j"
+        },
+        {
+          "source_line": 10827,
+          "text": "10823:                 shl     ax, 2\n10824:                 les     bx, [bp+arg_0]\n10825:                 add     bx, ax\n10826:                 mov     word ptr es:[bx+402h], 0\n10827:                 mov     word ptr es:[bx+400h], 0\n10828:                 mov     ax, cx\n10829:                 jmp     short loc_60C5\n10830: ; ---------------------------------------------------------------------------\n10831: \n10832: loc_60BC:                               ; CODE XREF: _TAKE_MONSTER_FROM_ROOM+4E\u2191j\n10833:                                         ; _TAKE_MONSTER_FROM_ROOM+53\u2191j\n10834:                 inc     cx"
+        },
+        {
+          "source_line": 10835,
+          "text": "10831: \n10832: loc_60BC:                               ; CODE XREF: _TAKE_MONSTER_FROM_ROOM+4E\u2191j\n10833:                                         ; _TAKE_MONSTER_FROM_ROOM+53\u2191j\n10834:                 inc     cx\n10835:                 cmp     cx, 0Fh\n10836:                 jl      short loc_6079\n10837: \n10838: loc_60C2:                               ; CODE XREF: _TAKE_MONSTER_FROM_ROOM+33\u2191j\n10839:                 mov     ax, 0FFFFh\n10840: \n10841: loc_60C5:                               ; CODE XREF: _TAKE_MONSTER_FROM_ROOM+78\u2191j\n10842:                 pop     ds"
+        }
+      ]
+    },
+    "_CONFIRM_MONSTER_IN_ROOM": {
+      "start_line": 10860,
+      "end_line": 10921,
+      "line_count": 62,
+      "calls_generate_monster": 0,
+      "calls_rtkick": 0,
+      "calls_calc_minutes_difference": 0,
+      "calls_random": 0,
+      "mentions_word_998C4": false,
+      "mentions_word_998E8": false,
+      "mentions_word_998F4": false,
+      "mentions_word_998F6": false,
+      "snippets": [
+        {
+          "source_line": 10895,
+          "text": "10891:                 mov     ax, cx\n10892:                 shl     ax, 2\n10893:                 les     bx, [bp+var_4]\n10894:                 add     bx, ax\n10895:                 mov     dx, es:[bx+402h]\n10896:                 mov     ax, es:[bx+400h]\n10897:                 cmp     dx, [bp+arg_A]\n10898:                 jnz     short loc_611C\n10899:                 cmp     ax, [bp+arg_8]\n10900:                 jnz     short loc_611C\n10901:                 mov     ax, cx\n10902:                 jmp     short loc_6125"
+        },
+        {
+          "source_line": 10896,
+          "text": "10892:                 shl     ax, 2\n10893:                 les     bx, [bp+var_4]\n10894:                 add     bx, ax\n10895:                 mov     dx, es:[bx+402h]\n10896:                 mov     ax, es:[bx+400h]\n10897:                 cmp     dx, [bp+arg_A]\n10898:                 jnz     short loc_611C\n10899:                 cmp     ax, [bp+arg_8]\n10900:                 jnz     short loc_611C\n10901:                 mov     ax, cx\n10902:                 jmp     short loc_6125\n10903: ; ---------------------------------------------------------------------------"
+        },
+        {
+          "source_line": 10908,
+          "text": "10904: \n10905: loc_611C:                               ; CODE XREF: _CONFIRM_MONSTER_IN_ROOM+47\u2191j\n10906:                                         ; _CONFIRM_MONSTER_IN_ROOM+4C\u2191j\n10907:                 inc     cx\n10908:                 cmp     cx, 0Fh\n10909:                 jl      short loc_60FA\n10910: \n10911: loc_6122:                               ; CODE XREF: _CONFIRM_MONSTER_IN_ROOM+2C\u2191j\n10912:                 mov     ax, 0FFFFh\n10913: \n10914: loc_6125:                               ; CODE XREF: _CONFIRM_MONSTER_IN_ROOM+50\u2191j\n10915:                 pop     ds"
+        }
+      ]
+    }
+  },
+  "host_evidence": {
+    "MbbsHost.cs": {
+      "path": "/mnt/data/ext_v9/MBBSEmu-master/MBBSEmu/HostProcess/MbbsHost.cs",
+      "matches": {
+        "ProcessRTKICK": 2,
+        "BEGIN_POLLING": 4,
+        "RTKICK": 10,
+        "RealTimeRoutine": 0,
+        "Delay": 2,
+        "Executed": 3,
+        "Stopwatch": 7,
+        "Timer.Hertz": 1,
+        "cleanup": 84
+      }
+    },
+    "RealTimeRoutine.cs": {
+      "path": "/mnt/data/ext_v9/MBBSEmu-master/MBBSEmu/Module/RealTimeRoutine.cs",
+      "matches": {
+        "ProcessRTKICK": 0,
+        "BEGIN_POLLING": 0,
+        "RTKICK": 4,
+        "RealTimeRoutine": 3,
+        "Delay": 9,
+        "Executed": 3,
+        "Stopwatch": 3,
+        "Timer.Hertz": 0,
+        "cleanup": 0
+      }
+    },
+    "Ordinals.cs": {
+      "path": "/mnt/data/ext_v9/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Ordinals.cs",
+      "matches": {
+        "ProcessRTKICK": 0,
+        "BEGIN_POLLING": 1,
+        "RTKICK": 1,
+        "RealTimeRoutine": 0,
+        "Delay": 0,
+        "Executed": 0,
+        "Stopwatch": 0,
+        "Timer.Hertz": 0,
+        "cleanup": 2
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "V9-F1",
+      "status": "validated_engine_doc",
+      "claim": "MajorMUD has a dedicated background monster creation routine scheduled with RTKICK/_MY_RTKICK.",
+      "support": [
+        "WCCMMUD.DLL.asm:_BACKGROUND_MONSTER_CREATE",
+        "WCCMMUD.DLL.asm:_MY_RTKICK",
+        "MBBSEmu:ProcessRTKICK"
+      ]
+    },
+    {
+      "id": "V9-F2",
+      "status": "validated_engine_doc",
+      "claim": "Monster update work is split into slow, medium, and fast update paths and can also be advanced from the user polling routine.",
+      "support": [
+        "WCCMMUD.DLL.asm:_BACKGROUND_SLOW/_MEDIUM/_FAST",
+        "WCCMMUD.DLL.asm:_LJNGAME_USER_POLLING_ROUTINE"
+      ]
+    },
+    {
+      "id": "V9-F3",
+      "status": "validated_engine_doc",
+      "claim": "Monster generation checks room monster slots before generating; room occupancy/slot availability affects whether generation can proceed.",
+      "support": [
+        "WCCMMUD.DLL.asm:_GENERATE_MONSTER offsets 400h/402h loop and 0Fh slot limit"
+      ]
+    },
+    {
+      "id": "V9-F4",
+      "status": "partial",
+      "claim": "Explicit monster timer evidence exists in _GENERATE_MONSTER using stored date/time fields plus _CALC_MINUTES_DIFFERENCE and a random jitter around byte offset 0ADh. Exact semantic name/record mapping is still not promoted to /Data.",
+      "support": [
+        "WCCMMUD.DLL.asm:_GENERATE_MONSTER offsets 0A1h/0A3h/0ADh/0AEh/0B0h",
+        "WCCMMUD.DLL.asm:_CALC_MINUTES_DIFFERENCE"
+      ]
+    },
+    {
+      "id": "V9-F5",
+      "status": "not_promoted",
+      "claim": "Exact normal 15-minute global creature respawn interval remains user/domain knowledge and simulator hypothesis; this pass found scheduler architecture, but not a direct 15-minute constant mapped to normal creatures.",
+      "support": [
+        "Absence of direct 15-minute proof in mapped routine-level evidence"
+      ]
+    }
+  ],
+  "promotions": {
+    "engine_documentation_approved": 3,
+    "data_promotions_approved": 0,
+    "approved_engine_docs": [
+      "Background monster creation is RTKICK-scheduled",
+      "Monster updates are split into fast/medium/slow pipelines",
+      "Room monster slot occupancy gates generation"
+    ],
+    "not_promoted": [
+      "Exact 15-minute global respawn interval",
+      "Exact per-monster timer field names",
+      "Exact cleanup interaction with monster timers",
+      "Quest/boss-specific respawn flags"
+    ]
+  }
+}

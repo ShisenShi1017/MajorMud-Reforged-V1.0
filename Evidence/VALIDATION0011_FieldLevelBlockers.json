@@ -1,0 +1,21 @@
+{
+  "pass": "Validation0011",
+  "baseline": "Validation0010",
+  "data_changed": false,
+  "focus": [
+    "cleanup flag encoding",
+    "quest persistence field mapping",
+    "field-level blockers"
+  ],
+  "text_files_scanned": 468,
+  "cleanup_signal_lines": 19521,
+  "quest_signal_lines": 93294,
+  "timer_signal_lines": 43935,
+  "search_signal_lines": 52828,
+  "cleanup_signal_files": 227,
+  "quest_signal_files": 274,
+  "engine_doc_promotions": 1,
+  "data_promotions": 0,
+  "finding": "Field-level cleanup and quest mapping remains partially unresolved; promotion limited to documentation-level evidence classification and blocker map.",
+  "next": "Validation0012"
+}

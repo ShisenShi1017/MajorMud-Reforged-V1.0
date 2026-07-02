@@ -1,0 +1,18 @@
+{
+  "verification": "DataSimVer0001",
+  "generated_utc": "2026-07-02T15:49:30.318803+00:00",
+  "data_file_count": 92,
+  "json_file_count": 76,
+  "json_parse_errors": 1,
+  "expected_files_missing": 0,
+  "duplicate_id_count": 0,
+  "room_count": 1246,
+  "room_endpoint_scan_count": 10019,
+  "room_endpoint_missing_count": 7281,
+  "generic_reference_scan_count": 3296,
+  "generic_missing_reference_count": 10577,
+  "room_endpoints_promoted": 0,
+  "special_exit_semantics_promoted": 0,
+  "evidence_classification": "expected-model structural verification only; not original runtime proof",
+  "data_mutation": "none"
+}

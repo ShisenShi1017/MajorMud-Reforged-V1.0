@@ -1,0 +1,42 @@
+{
+  "pass": "DataSimVer0021",
+  "baseline": "DataSimVer0020",
+  "data_changed": false,
+  "promotion": {
+    "room_endpoints": 0,
+    "special_exit_semantics": 0,
+    "cleanup_semantics": 0,
+    "monster_respawn_semantics": 0
+  },
+  "status": "hypothesis_only",
+  "user_runtime_knowledge": {
+    "normal_creature_respawn": "approximately 15 minutes",
+    "explicit_respawn_timer": "starts on monster death",
+    "timer_reset_interaction": "explicit respawn timer continues through daily reset/cleanup"
+  },
+  "expected_model": {
+    "standard_monster_scheduler": {
+      "type": "global periodic pass",
+      "interval_minutes": "~15",
+      "evidence_class": "user_runtime_knowledge_pending_verification"
+    },
+    "explicit_monster_scheduler": {
+      "type": "per-monster death-triggered countdown",
+      "starts": "on_death",
+      "continues_through_reset": true,
+      "evidence_class": "user_runtime_knowledge_pending_verification"
+    },
+    "daily_cleanup_interaction": {
+      "cleanup_does_not_restart_explicit_respawn_timer": true,
+      "cleanup_and_respawn_are_separate_subsystems": "hypothesis"
+    }
+  },
+  "evidence_scan": {
+    "monster_records_analyzed": 1100,
+    "monster_records_with_timer_like_fields": 0,
+    "room_records_analyzed": 1246,
+    "room_records_with_timer_like_fields": 1246,
+    "search_skill_record_found": false,
+    "search_skill_record": null
+  }
+}

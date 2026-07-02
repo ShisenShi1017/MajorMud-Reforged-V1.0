@@ -1,0 +1,62 @@
+[
+  {
+    "profile_id": "char_l01_warrior_baseline",
+    "name": "Level 1 Human Warrior",
+    "level": 1,
+    "class": "Warrior",
+    "race": "Human",
+    "inventory_mode": "none",
+    "flags": "none",
+    "purpose": "new-player baseline; no assumed keys or flags"
+  },
+  {
+    "profile_id": "char_l10_explorer",
+    "name": "Level 10 Explorer",
+    "level": 10,
+    "class": "Warrior",
+    "race": "Human",
+    "inventory_mode": "common_keys",
+    "flags": "none",
+    "purpose": "early/mid exploration with likely simple keys"
+  },
+  {
+    "profile_id": "char_l20_spellcaster",
+    "name": "Level 20 Spellcaster",
+    "level": 20,
+    "class": "Mage",
+    "race": "Elf",
+    "inventory_mode": "magic_keys",
+    "flags": "none",
+    "purpose": "spell/travel clue testing; spell logic still inferred only"
+  },
+  {
+    "profile_id": "char_l40_advanced",
+    "name": "Level 40 Advanced Character",
+    "level": 40,
+    "class": "Paladin",
+    "race": "Human",
+    "inventory_mode": "all_keys",
+    "flags": "limited",
+    "purpose": "advanced access and level gate classification"
+  },
+  {
+    "profile_id": "char_l60_veteran",
+    "name": "Level 60+ Veteran",
+    "level": 60,
+    "class": "Warrior",
+    "race": "Dwarf",
+    "inventory_mode": "all_keys",
+    "flags": "limited",
+    "purpose": "endgame-level access classification"
+  },
+  {
+    "profile_id": "char_diagnostic_allflags",
+    "name": "Diagnostic Character",
+    "level": 999,
+    "class": "Diagnostic",
+    "race": "Diagnostic",
+    "inventory_mode": "all_items",
+    "flags": "all",
+    "purpose": "diagnostic-only; documents possible behavior, not player-proof"
+  }
+]

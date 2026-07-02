@@ -1,0 +1,51 @@
+{
+  "name": "DataSimVer0020 Daily Worldgroup Cleanup/Reset Expected Model",
+  "source_basis": [
+    "user runtime hypothesis about original Worldgroup daily reset cleanup",
+    "direct /Data fields: roomItems, hiddenItemIds, room spawn.respawnMinutes, monster behavior timers/caps, search skill governingAttributes"
+  ],
+  "promotion_status": "hypothesis/simulator model only; /Data unchanged",
+  "daily_cycle_steps_expected_model": [
+    "maintenance_window_begins_once_per_day",
+    "room object cleanup evaluates each persistent room object",
+    "objects with destroy-on-cleanup behavior are deleted from runtime world state",
+    "objects with hide-on-cleanup behavior remain in current room but move to hidden/searchable state",
+    "hidden objects require Search to rediscover",
+    "Search is governed by skills.search attributes agi and int per Data/skills.json",
+    "spawn and population timers are reconciled against room spawn and monster behavior fields",
+    "quest/persistent exceptions must be preserved until direct evidence proves cleanup eligibility"
+  ],
+  "known_direct_evidence": {
+    "rooms": 1246,
+    "items": 1950,
+    "monsters": 1100,
+    "rooms_with_visible_items": 82,
+    "rooms_with_hidden_items": 211,
+    "visible_item_links": 103,
+    "hidden_item_links": 268,
+    "rooms_with_respawn_minutes": 728,
+    "monsters_with_respawn_hours": 0,
+    "monsters_with_regen_time": 310,
+    "search_skill": {
+      "key": "search",
+      "name": "Search",
+      "category": "rogue",
+      "description": "Find hidden items and clues",
+      "max": 100,
+      "governingAttributes": [
+        "agi",
+        "int"
+      ],
+      "effects": "Data-driven hook; server will increasingly use this skill in checks."
+    },
+    "message_clue_rows": 70
+  },
+  "non_promoted_unknowns": [
+    "exact daily reset clock time",
+    "exact destroy-on-cleanup flag location",
+    "exact hide-on-cleanup flag location",
+    "exact search formula/threshold",
+    "quest cleanup exemptions",
+    "scheduler ordering"
+  ]
+}

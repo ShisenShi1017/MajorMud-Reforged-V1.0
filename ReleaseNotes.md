@@ -1,3 +1,31 @@
+# CodeUpdate-0054 - Validation0013 and DocUpdate0024 New-Files Intake
+
+This update copies only repository-new files from the Validation0013 cumulative package and DocUpdate0024 Librarium planning package.
+
+Highlights:
+
+- Copied 437 new files from Validation0013.
+- Skipped 86 existing Validation0013 repository paths without overwriting them.
+- Copied 2 new files from DocUpdate0024.
+- Added `Data/Validation/` validation surfaces.
+- Added validation, data-simulation, evidence, report, simulator, and planning materials.
+- Added `Tools/MDBExtractor/offline_mdb_text_extractor.py`.
+- Added `Docs/ArchitectureVision.md`.
+- Added copy/skip inventories and intake report under `Reports/CodeUpdates/CodeUpdate-0054/`.
+
+Verification:
+
+- CodeUpdate-0053 GitHub Actions is green by user report.
+- Validation0013 ZIP SHA-256: `5E8804557B371C526F48FEF2C7333F344A66316FF48ECE7C3E209FD260297AD1`.
+- DocUpdate0024 ZIP SHA-256: `2022CF91CDF85D5E0136B7765DF9B8EE7D0F193C6E9FCCE4A2B2AF59C8DEED02`.
+- Copied JSON parse passed for 72 files.
+- Copied CSV read validation passed for 183 files.
+- MDB extractor Python bytecode compile passed.
+
+Known limitation:
+
+- This is a new-file intake only. Existing repository files were not overwritten, and no reconciliation, field promotion, runtime validation, or gameplay behavior is claimed.
+
 # CodeUpdate-0053 - Patch0068 Data Replacement and Handoff Intake
 
 This update replaces only repository `Data/` from the embedded Patch0068 `/Data` payload and preserves the related handoff evidence without keeping duplicate copies.

@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0053`
+- Current Code Update: `0054`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0053, wait for user-reported green GitHub Actions, then run a focused verification/reconciliation pass over the new Patch0068-derived `Data/` baseline.
+- Current priority: push CodeUpdate-0054, wait for user-reported green GitHub Actions, then build a focused verification index over Validation0013 evidence and the current `Data/` baseline.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -152,6 +152,8 @@ CodeUpdate-0052 preserves the user-provided Build0027 current-state handoff unde
 
 CodeUpdate-0053 replaces only repository `Data/` from the embedded Patch0068 `/Data` payload, preserves Patch0068 findings under `DataDecodeCheckpoints/Patch0068/`, preserves Handoff0074 under `DataDecodeCheckpoints/Handoff0074/`, and records Patch0071 as unreadable/unapplied. Duplicate `Docs/PatchHandoffs/` copies are intentionally not retained. Server data-readiness diagnostics and smoke expectations were updated for the populated data baseline. No non-`Data` Patch0068 overlay, gameplay server behavior change, gameplay system, or Patch0074 master verification implementation is included.
 
+CodeUpdate-0054 copies only repository-new files from the Validation0013 cumulative package and DocUpdate0024 Librarium planning package. It adds 437 new Validation0013 files and 2 new DocUpdate0024 files while skipping 86 existing Validation0013 paths without overwriting them. It does not replace the CodeUpdate-0053 `Data/` baseline, promote fields, add gameplay, or claim live runtime validation.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -194,6 +196,7 @@ Completed/started slices:
 - CodeUpdate-0051: Import staging readiness reports and Build0021 behavioral recovery evidence preservation.
 - CodeUpdate-0052: Build0027 current-state handoff preservation.
 - CodeUpdate-0053: Patch0068 embedded `Data/` replacement and Handoff0074/Patch0068 evidence intake.
+- CodeUpdate-0054: Validation0013 and DocUpdate0024 new-file-only evidence/planning intake.
 
 Focus Areas:
 
@@ -217,10 +220,10 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0053:
+Next candidate after CodeUpdate-0054:
 
-- Build a master verification/reconciliation surface over current `Data/`.
-- Use Handoff0074 requirements and Patch0068 evidence as repository-tracked inputs.
+- Build a focused verification index over Validation0013 evidence and current `Data/`.
+- Use Handoff0074 requirements, Patch0068 evidence, and Validation0013 reports as repository-tracked inputs.
 - Bring in readable later Patch0071/Patch0073/Patch0074 materials only after they can be verified.
 - Resume Build0028 executable harness work after the `Data/` baseline is verified enough for that scope.
 - Keep live runtime behavior uncertified until controlled Worldgroup validation is available.

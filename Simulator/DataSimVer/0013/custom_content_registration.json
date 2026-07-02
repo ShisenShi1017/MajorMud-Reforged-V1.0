@@ -1,0 +1,25 @@
+{
+  "pass": "DataSimVer0013",
+  "objective": "Register sysop/GM placeholder-room hypothesis and user-requested custom Synopsis Room / code_of_twinks_78 command without modifying legacy /Data.",
+  "data_changed": false,
+  "room_endpoints_promoted": 0,
+  "special_exit_semantics_promoted": 0,
+  "custom_additions": {
+    "rooms_added_to_overlay": 1,
+    "commands_added_to_overlay": 1
+  },
+  "behavior_model": [
+    {
+      "actor": "normal_player",
+      "action": "code_of_twinks_78",
+      "expected": "fail",
+      "reason": "requires sysop/gm access"
+    },
+    {
+      "actor": "sysop_or_gm",
+      "action": "code_of_twinks_78",
+      "expected": "success-model",
+      "reason": "custom command routes to custom_sysop_synopsis_room; runtime implementation pending"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "pass": "Validation0002",
+  "baseline": "Validation0001 / DataSimVer0024",
+  "data_changed": false,
+  "source_files_scanned": {
+    "MBBSEmu_cs": 215,
+    "MajorMUD_asm_lines": 328627
+  },
+  "host_cleanup_mapping": {
+    "Cleanup.Time_setting": true,
+    "daily_timer": true,
+    "cleanup_grace_minutes": 10,
+    "warning_minutes": 5,
+    "module_cleanup_routine": "mcurou",
+    "module_finish_routine": "finrou",
+    "reloads_modules_after_cleanup": true
+  },
+  "host_timer_mapping": {
+    "Timer.Hertz_default": 36,
+    "uses_tick_timer": true,
+    "programmable_interval_timer_INT8": true
+  },
+  "major_mud_disassembly_mapping": {
+    "proc_far_count": 800,
+    "RTKICK_call_count": 44,
+    "BEGIN_POLLING_call_count": 12,
+    "background_routines": [
+      "BACKGROUND_ENERGY",
+      "BACKGROUND_FAST",
+      "BACKGROUND_INACTIVITY",
+      "BACKGROUND_MEDIUM",
+      "BACKGROUND_MONSTER_CREATE",
+      "BACKGROUND_OTHER",
+      "BACKGROUND_SAVE_BUFFERS",
+      "BACKGROUND_SLOW",
+      "BACKGROUND_UPDATE_EXITS"
+    ],
+    "background_registration_refs": [
+      [
+        32546,
+        "BACKGROUND_FAST"
+      ],
+      [
+        32554,
+        "BACKGROUND_MONSTER_CREATE"
+      ],
+      [
+        32561,
+        "BACKGROUND_OTHER"
+      ],
+      [
+        32568,
+        "BACKGROUND_SLOW"
+      ],
+      [
+        32575,
+        "BACKGROUND_MEDIUM"
+      ],
+      [
+        32582,
+        "BACKGROUND_ENERGY"
+      ],
+      [
+        32589,
+        "BACKGROUND_INACTIVITY"
+      ],
+      [
+        73874,
+        "BACKGROUND_ENERGY"
+      ],
+      [
+        74479,
+        "BACKGROUND_SLOW"
+      ],
+      [
+        74528,
+        "BACKGROUND_MEDIUM"
+      ],
+      [
+        74569,
+        "BACKGROUND_FAST"
+      ],
+      [
+        74595,
+        "BACKGROUND_FAST"
+      ],
+      [
+        75010,
+        "BACKGROUND_MONSTER_CREATE"
+      ],
+      [
+        75052,
+        "BACKGROUND_OTHER"
+      ],
+      [
+        75101,
+        "BACKGROUND_SAVE_BUFFERS"
+      ],
+      [
+        75242,
+        "BACKGROUND_INACTIVITY"
+      ],
+      [
+        108792,
+        "BACKGROUND_SAVE_BUFFERS"
+      ],
+      [
+        180188,
+        "BACKGROUND_UPDATE_EXITS"
+      ]
+    ],
+    "search_hit_count": 351
+  },
+  "promotion_status": {
+    "nightly_host_cleanup": "verified_against_MBBSEmu_host_not_original_module_promotion",
+    "MajorMUD_background_routines": "mapped_not_semantically_promoted",
+    "search_cleanup_respawn": "not_promoted"
+  }
+}

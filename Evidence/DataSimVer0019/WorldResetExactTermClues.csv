@@ -1,0 +1,11 @@
+file,term,classification,promoted
+Data/rooms.json,respawn,string_or_field_presence_only,false
+Data/items.json,regen,string_or_field_presence_only,false
+Data/items.json,event,string_or_field_presence_only,false
+Data/monsters.json,respawn,string_or_field_presence_only,false
+Data/monsters.json,regen,string_or_field_presence_only,false
+Data/monsters.json,event,string_or_field_presence_only,false
+Data/messages.json,regen,string_or_field_presence_only,false
+Data/message_text_catalogs.json,reset,string_or_field_presence_only,false
+Data/message_text_catalogs.json,regen,string_or_field_presence_only,false
+Data/message_text_catalogs.json,event,string_or_field_presence_only,false

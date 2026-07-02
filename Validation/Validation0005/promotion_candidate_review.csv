@@ -1,0 +1,7 @@
+behavior,evidence,status,promotion_target,promote_to_data,reason
+Host polling/RTKICK scheduling exists,MBBSEmu host source + MajorMUD disassembly references,host/module validated,EngineKnowledge only,False,"Host and module evidence exist, but exact MajorMUD schedule semantics still need routine-level timing map."
+Search command and hidden discovery path exists,Validation0003 disassembly mapping + procedure signal clusters,module validated,EngineKnowledge + simulator model,False,Path exists but exact search formula and data field binding are not proven.
+Cleanup/reset routines exist,MBBSEmu host cleanup concepts + MajorMUD reset/cleanup symbols,partially validated,EngineKnowledge only,False,Delete vs hide flags not yet bound to exact MDB/Data fields.
+Monster/room reset and respawn routines exist,MajorMUD disassembly reset/spawn/timer signal clusters,partially validated,EngineKnowledge + simulator model,False,15 minute and death-start timer model still needs routine confirmation and field mapping.
+Combat/attack/damage routines exist,MajorMUD disassembly combat/attack/damage clusters,module validated at presence level,EngineKnowledge only,False,Exact formulas are not yet reconstructed.
+Quest/persistence routines exist,MajorMUD quest/save/load + MBBSEmu Btrieve/storage evidence,module/host validated at presence level,EngineKnowledge only,False,Quest variable storage and transitions not yet bound to data structures.

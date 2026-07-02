@@ -1,0 +1,1501 @@
+profile,profile_level,spell_source_id,spell_name,spell_level,mana_cost,energy_cost,duration,target_type,result,reason
+novice_warrior,1,50,red potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,60,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,69,magebind,0,0,0,40,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,72,spear,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,78,breathes flame,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,79,spits a stream of venom,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,80,bites,0,0,0,100,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,81,savagely bites,0,0,1000,100,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,82,draws the breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,83,high-pitched scream,0,0,0,20,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,84,breathes,0,0,1000,50,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,85,speaks in a booming voice,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,86,dissolves,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,90,hydra head create,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,109,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,112,violet potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,113,breathes a jet of fire,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,114,sword major bless,0,8,0,60,13,failure,missing_level_mana_or_energy_model
+novice_warrior,1,115,magma drip,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,116,envelops,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,117,breathes a jet of frost,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,118,incense,0,0,0,150,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,119,alcohol,0,0,0,150,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,124,dark force,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,126,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,127,weakness touch,0,0,0,40,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,128,stunned,0,0,0,2,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,154,mental blast,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,155,eagle helm,0,0,0,20,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,156,jade amulet,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,157,amethyst pendant,0,0,0,70,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,158,shadow cloak,0,0,0,30,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,159,blazing inferno,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,161,white satin gloves,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,162,dark touch,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,163,opal ring,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,164,free,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,165,multicoloured sash,0,0,0,40,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,168,winged sandals,0,0,0,20,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,169,mirrored shield,0,0,0,8,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,170,silvery mace,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,171,ebony greataxe,0,0,0,40,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,172,dark fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,173,thunderstaff-lbol,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,174,thunderstaff-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,175,frost sceptre-fjet,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,176,frost sceptre-chill touch,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,177,flay,0,0,0,80,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,178,serpent scourge-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,179,heavy black rod,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,180,moonsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,181,blue potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,182,turquoise potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,183,green potion,0,0,0,20,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,184,yellow potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,185,frothing pink potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,186,silvery potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,187,orange potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,188,white potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,189,black orb,0,0,0,40,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,190,iron tube,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,191,shriek,0,0,1000,10,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,192,quake,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,193,roar,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,194,freeze,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,195,ice blast,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,196,black curse,0,0,1000,20,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,197,ice breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,198,raptor summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,199,rose book confuse,0,0,0,60,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,200,blind book,0,0,0,60,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,201,rip,0,0,0,8,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,202,banshee's wail,0,0,0,80,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,203,vampire rosebush,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,204,sprays,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,205,belches acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,206,sharp stones,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,208,swarm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,209,tower of flame,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,212,chaos storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,213,opaque field,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,214,black gem,0,0,0,20,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,215,argak summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,217,choira summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,218,temple of fire fire,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,219,minor healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,220,major healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,221,greater healing,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,222,cure poison,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,223,cure disease,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,224,remove curse,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,225,dark force,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,226,lallim summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,227,sharah'kur summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,228,catlobepas eye,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,229,flask,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,230,gout of flame,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,231,eye beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,232,spray of spores,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,233,spore explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,234,engulfs,0,0,1000,45,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,235,remove engulfs,0,0,0,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,236,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,237,thick webbing,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,238,spits,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,243,fireball,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,244,explode,0,0,0,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,245,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,246,ball of magma,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,247,breathes fire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,248,yellow fungus,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,249,yellow fungus,0,0,0,6,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,250,red fungus,0,0,0,30,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,251,paralyze,0,0,1000,4,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,252,unholy wrath,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,253,black wind,0,0,1000,15,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,255,corrosion,0,0,1000,100,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,256,solid fog,0,0,1000,30,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,257,mana storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,259,rain of blood,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,260,vortex of pain,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,261,flame shower,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,262,engulf in flame,0,0,1000,15,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,263,dragonfire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,264,mystic mist,0,0,0,30,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,265,dragonfire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,266,dragonfire,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,279,note of destruction,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,280,summon twins,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,306,death gaze,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,307,globe of invulnerability,0,0,0,500,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,308,sphere of isolation,0,0,0,200,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,309,ethereal chains,0,0,0,8,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,310,negate magic,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,311,judgement of doom,0,0,0,9999,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,312,Eye of Magnus,0,0,0,200,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,313,bigheal,0,0,0,0,13,success,profile_meets_level_and_resource_model
+novice_warrior,1,314,combat fury,0,0,0,500,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,315,calls for aid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,316,food,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,317,drink,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,318,knockdown,0,0,0,4,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,319,firebomb,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,320,volley of spikes,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,321,drops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,322,breathes a greenish cloud,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,323,diseased,0,0,0,30,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,324,power punch,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,325,spits acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,326,cloud of reddish vapour,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,327,paralyzed,0,0,0,3,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,328,gazes,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,329,thin tendrils,0,0,1000,6,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,330,violet fluid,0,0,1000,5,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,331,mermex poison,0,0,0,60,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,332,sunbolt wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,333,skull wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,334,vacuum,0,0,0,0,6,success,profile_meets_level_and_resource_model
+novice_warrior,1,335,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,336,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,337,pool,0,0,0,40,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,338,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,339,violet fluid mist,0,0,1000,5,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,340,area entrap,0,0,500,10,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,341,green beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,342,vampiric hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,343,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,344,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,351,whip entangle,0,0,0,3,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,352,beat up,0,0,0,0,0,success,profile_meets_level_and_resource_model
+novice_warrior,1,353,sharp blade,0,0,0,5,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,354,poison blade,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,355,pale green lichen,0,0,0,300,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,356,black cauldron,0,0,1000,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,357,fiery spark,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,358,vampiric bite,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,359,breathes burning steam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,360,freezes,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,361,drain life,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,362,leprosy,0,0,0,14,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,363,summon silver skull,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,364,flame dart,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,365,bee poison,0,0,0,100,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,366,roots,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,367,magic bolt,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,368,gold dust,0,0,0,60,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,369,bee honey,0,0,0,50,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,370,green fruit,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,371,summon huorn,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,372,sleep,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,373,mushroom poison,0,0,0,100,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,375,cone of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,376,spray of acid,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,377,cloud of poison,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,379,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,380,creature illusion,0,0,0,20,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,381,gibbers,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,382,medium divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+novice_warrior,1,383,large divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+novice_warrior,1,384,divine intervention,0,0,0,160,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,385,chain lightning,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,388,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,389,drains,0,0,0,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,390,powerless,0,0,0,60,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,391,necromantic beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,392,petrification,0,0,0,20,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,394,cone of fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,395,hold person,0,0,0,4,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,396,slow,0,0,0,20,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,397,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,398,death ray,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,399,rainbow beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,400,frost hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,401,jet of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,402,bleeding,0,0,0,10,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,403,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,407,eye of the beholder,0,0,0,25,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,408,sunsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,409,constriction,0,0,0,20,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,410,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,411,lightning hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,412,mana rgen drain,0,0,0,10,6,success,profile_meets_level_and_resource_model
+novice_warrior,1,413,firestorm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,414,burning,0,0,0,20,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,415,elemental fusion,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,416,elemental earthquake,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,417,elemental lightning,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,418,elemental fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,419,elemental ice,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,420,blazing comet,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,421,cosmos spell,0,25,0,10,1,failure,missing_level_mana_or_energy_model
+novice_warrior,1,422,barkskin,0,0,0,10,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,425,blasts,0,0,0,2,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,426,cone of flame,0,0,250,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,427,venom explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,428,chakram,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,429,energy arc,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,430,terror,0,0,0,10,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,431,energy hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,432,energy drain,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,433,energy vortex,0,0,0,0,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,434,obsidian talisman teleport,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,436,fall,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,437,crash through roof,0,0,0,0,2,success,profile_meets_level_and_resource_model
+novice_warrior,1,438,sdf,0,0,0,0,1,success,profile_meets_level_and_resource_model
+novice_warrior,1,439,time distortion,0,0,0,20,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,440,globe of darkness,0,0,0,40,12,success,profile_meets_level_and_resource_model
+novice_warrior,1,441,shadowstrike,0,0,0,0,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,443,darkness hits,0,0,0,30,8,success,profile_meets_level_and_resource_model
+novice_warrior,1,444,summon slaver leader,0,0,0,0,6,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,50,red potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,60,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,69,magebind,0,0,0,40,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,72,spear,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,78,breathes flame,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,79,spits a stream of venom,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,80,bites,0,0,0,100,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,81,savagely bites,0,0,1000,100,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,82,draws the breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,83,high-pitched scream,0,0,0,20,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,84,breathes,0,0,1000,50,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,85,speaks in a booming voice,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,86,dissolves,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,90,hydra head create,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,109,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,112,violet potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,113,breathes a jet of fire,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,114,sword major bless,0,8,0,60,13,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,115,magma drip,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,116,envelops,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,117,breathes a jet of frost,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,118,incense,0,0,0,150,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,119,alcohol,0,0,0,150,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,124,dark force,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,126,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,127,weakness touch,0,0,0,40,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,128,stunned,0,0,0,2,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,154,mental blast,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,155,eagle helm,0,0,0,20,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,156,jade amulet,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,157,amethyst pendant,0,0,0,70,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,158,shadow cloak,0,0,0,30,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,159,blazing inferno,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,161,white satin gloves,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,162,dark touch,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,163,opal ring,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,164,free,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,165,multicoloured sash,0,0,0,40,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,168,winged sandals,0,0,0,20,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,169,mirrored shield,0,0,0,8,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,170,silvery mace,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,171,ebony greataxe,0,0,0,40,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,172,dark fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,173,thunderstaff-lbol,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,174,thunderstaff-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,175,frost sceptre-fjet,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,176,frost sceptre-chill touch,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,177,flay,0,0,0,80,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,178,serpent scourge-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,179,heavy black rod,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,180,moonsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,181,blue potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,182,turquoise potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,183,green potion,0,0,0,20,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,184,yellow potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,185,frothing pink potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,186,silvery potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,187,orange potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,188,white potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,189,black orb,0,0,0,40,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,190,iron tube,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,191,shriek,0,0,1000,10,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,192,quake,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,193,roar,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,194,freeze,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,195,ice blast,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,196,black curse,0,0,1000,20,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,197,ice breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,198,raptor summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,199,rose book confuse,0,0,0,60,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,200,blind book,0,0,0,60,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,201,rip,0,0,0,8,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,202,banshee's wail,0,0,0,80,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,203,vampire rosebush,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,204,sprays,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,205,belches acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,206,sharp stones,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,208,swarm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,209,tower of flame,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,212,chaos storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,213,opaque field,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,214,black gem,0,0,0,20,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,215,argak summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,217,choira summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,218,temple of fire fire,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,219,minor healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,220,major healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,221,greater healing,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,222,cure poison,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,223,cure disease,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,224,remove curse,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,225,dark force,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,226,lallim summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,227,sharah'kur summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,228,catlobepas eye,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,229,flask,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,230,gout of flame,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,231,eye beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,232,spray of spores,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,233,spore explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,234,engulfs,0,0,1000,45,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,235,remove engulfs,0,0,0,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,236,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,237,thick webbing,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,238,spits,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,243,fireball,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,244,explode,0,0,0,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,245,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,246,ball of magma,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,247,breathes fire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,248,yellow fungus,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,249,yellow fungus,0,0,0,6,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,250,red fungus,0,0,0,30,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,251,paralyze,0,0,1000,4,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,252,unholy wrath,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,253,black wind,0,0,1000,15,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,255,corrosion,0,0,1000,100,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,256,solid fog,0,0,1000,30,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,257,mana storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,259,rain of blood,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,260,vortex of pain,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,261,flame shower,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,262,engulf in flame,0,0,1000,15,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,263,dragonfire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,264,mystic mist,0,0,0,30,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,265,dragonfire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,266,dragonfire,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,279,note of destruction,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,280,summon twins,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,306,death gaze,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,307,globe of invulnerability,0,0,0,500,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,308,sphere of isolation,0,0,0,200,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,309,ethereal chains,0,0,0,8,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,310,negate magic,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,311,judgement of doom,0,0,0,9999,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,312,Eye of Magnus,0,0,0,200,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,313,bigheal,0,0,0,0,13,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,314,combat fury,0,0,0,500,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,315,calls for aid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,316,food,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,317,drink,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,318,knockdown,0,0,0,4,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,319,firebomb,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,320,volley of spikes,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,321,drops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,322,breathes a greenish cloud,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,323,diseased,0,0,0,30,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,324,power punch,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,325,spits acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,326,cloud of reddish vapour,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,327,paralyzed,0,0,0,3,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,328,gazes,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,329,thin tendrils,0,0,1000,6,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,330,violet fluid,0,0,1000,5,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,331,mermex poison,0,0,0,60,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,332,sunbolt wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,333,skull wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,334,vacuum,0,0,0,0,6,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,335,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,336,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,337,pool,0,0,0,40,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,338,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,339,violet fluid mist,0,0,1000,5,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,340,area entrap,0,0,500,10,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,341,green beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,342,vampiric hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,343,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,344,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,351,whip entangle,0,0,0,3,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,352,beat up,0,0,0,0,0,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,353,sharp blade,0,0,0,5,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,354,poison blade,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,355,pale green lichen,0,0,0,300,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,356,black cauldron,0,0,1000,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,357,fiery spark,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,358,vampiric bite,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,359,breathes burning steam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,360,freezes,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,361,drain life,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,362,leprosy,0,0,0,14,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,363,summon silver skull,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,364,flame dart,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,365,bee poison,0,0,0,100,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,366,roots,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,367,magic bolt,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,368,gold dust,0,0,0,60,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,369,bee honey,0,0,0,50,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,370,green fruit,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,371,summon huorn,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,372,sleep,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,373,mushroom poison,0,0,0,100,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,375,cone of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,376,spray of acid,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,377,cloud of poison,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,379,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,380,creature illusion,0,0,0,20,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,381,gibbers,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,382,medium divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,383,large divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,384,divine intervention,0,0,0,160,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,385,chain lightning,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,388,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,389,drains,0,0,0,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,390,powerless,0,0,0,60,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,391,necromantic beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,392,petrification,0,0,0,20,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,394,cone of fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,395,hold person,0,0,0,4,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,396,slow,0,0,0,20,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,397,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,398,death ray,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,399,rainbow beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,400,frost hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,401,jet of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,402,bleeding,0,0,0,10,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,403,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,407,eye of the beholder,0,0,0,25,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,408,sunsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,409,constriction,0,0,0,20,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,410,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,411,lightning hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,412,mana rgen drain,0,0,0,10,6,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,413,firestorm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,414,burning,0,0,0,20,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,415,elemental fusion,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,416,elemental earthquake,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,417,elemental lightning,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,418,elemental fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,419,elemental ice,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,420,blazing comet,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,421,cosmos spell,0,25,0,10,1,failure,missing_level_mana_or_energy_model
+journeyman_rogue,8,422,barkskin,0,0,0,10,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,425,blasts,0,0,0,2,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,426,cone of flame,0,0,250,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,427,venom explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,428,chakram,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,429,energy arc,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,430,terror,0,0,0,10,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,431,energy hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,432,energy drain,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,433,energy vortex,0,0,0,0,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,434,obsidian talisman teleport,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,436,fall,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,437,crash through roof,0,0,0,0,2,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,438,sdf,0,0,0,0,1,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,439,time distortion,0,0,0,20,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,440,globe of darkness,0,0,0,40,12,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,441,shadowstrike,0,0,0,0,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,443,darkness hits,0,0,0,30,8,success,profile_meets_level_and_resource_model
+journeyman_rogue,8,444,summon slaver leader,0,0,0,0,6,success,profile_meets_level_and_resource_model
+adept_mage,15,50,red potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,60,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,69,magebind,0,0,0,40,12,success,profile_meets_level_and_resource_model
+adept_mage,15,72,spear,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,78,breathes flame,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+adept_mage,15,79,spits a stream of venom,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+adept_mage,15,80,bites,0,0,0,100,8,success,profile_meets_level_and_resource_model
+adept_mage,15,81,savagely bites,0,0,1000,100,8,success,profile_meets_level_and_resource_model
+adept_mage,15,82,draws the breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+adept_mage,15,83,high-pitched scream,0,0,0,20,0,success,profile_meets_level_and_resource_model
+adept_mage,15,84,breathes,0,0,1000,50,0,success,profile_meets_level_and_resource_model
+adept_mage,15,85,speaks in a booming voice,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+adept_mage,15,86,dissolves,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+adept_mage,15,90,hydra head create,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,109,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,112,violet potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,113,breathes a jet of fire,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+adept_mage,15,114,sword major bless,0,8,0,60,13,success,profile_meets_level_and_resource_model
+adept_mage,15,115,magma drip,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,116,envelops,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,117,breathes a jet of frost,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+adept_mage,15,118,incense,0,0,0,150,1,success,profile_meets_level_and_resource_model
+adept_mage,15,119,alcohol,0,0,0,150,1,success,profile_meets_level_and_resource_model
+adept_mage,15,124,dark force,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,126,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,127,weakness touch,0,0,0,40,0,success,profile_meets_level_and_resource_model
+adept_mage,15,128,stunned,0,0,0,2,8,success,profile_meets_level_and_resource_model
+adept_mage,15,154,mental blast,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,155,eagle helm,0,0,0,20,1,success,profile_meets_level_and_resource_model
+adept_mage,15,156,jade amulet,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,157,amethyst pendant,0,0,0,70,1,success,profile_meets_level_and_resource_model
+adept_mage,15,158,shadow cloak,0,0,0,30,1,success,profile_meets_level_and_resource_model
+adept_mage,15,159,blazing inferno,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,161,white satin gloves,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,162,dark touch,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,163,opal ring,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,164,free,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,165,multicoloured sash,0,0,0,40,1,success,profile_meets_level_and_resource_model
+adept_mage,15,168,winged sandals,0,0,0,20,1,success,profile_meets_level_and_resource_model
+adept_mage,15,169,mirrored shield,0,0,0,8,12,success,profile_meets_level_and_resource_model
+adept_mage,15,170,silvery mace,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,171,ebony greataxe,0,0,0,40,12,success,profile_meets_level_and_resource_model
+adept_mage,15,172,dark fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,173,thunderstaff-lbol,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,174,thunderstaff-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,175,frost sceptre-fjet,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,176,frost sceptre-chill touch,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,177,flay,0,0,0,80,8,success,profile_meets_level_and_resource_model
+adept_mage,15,178,serpent scourge-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,179,heavy black rod,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,180,moonsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,181,blue potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,182,turquoise potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,183,green potion,0,0,0,20,1,success,profile_meets_level_and_resource_model
+adept_mage,15,184,yellow potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+adept_mage,15,185,frothing pink potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,186,silvery potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+adept_mage,15,187,orange potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+adept_mage,15,188,white potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+adept_mage,15,189,black orb,0,0,0,40,1,success,profile_meets_level_and_resource_model
+adept_mage,15,190,iron tube,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,191,shriek,0,0,1000,10,12,success,profile_meets_level_and_resource_model
+adept_mage,15,192,quake,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,193,roar,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+adept_mage,15,194,freeze,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+adept_mage,15,195,ice blast,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+adept_mage,15,196,black curse,0,0,1000,20,0,success,profile_meets_level_and_resource_model
+adept_mage,15,197,ice breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+adept_mage,15,198,raptor summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,199,rose book confuse,0,0,0,60,1,success,profile_meets_level_and_resource_model
+adept_mage,15,200,blind book,0,0,0,60,1,success,profile_meets_level_and_resource_model
+adept_mage,15,201,rip,0,0,0,8,8,success,profile_meets_level_and_resource_model
+adept_mage,15,202,banshee's wail,0,0,0,80,12,success,profile_meets_level_and_resource_model
+adept_mage,15,203,vampire rosebush,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,204,sprays,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,205,belches acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,206,sharp stones,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,208,swarm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,209,tower of flame,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,212,chaos storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,213,opaque field,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,214,black gem,0,0,0,20,1,success,profile_meets_level_and_resource_model
+adept_mage,15,215,argak summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,217,choira summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,218,temple of fire fire,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,219,minor healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,220,major healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,221,greater healing,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,222,cure poison,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,223,cure disease,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,224,remove curse,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,225,dark force,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,226,lallim summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,227,sharah'kur summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,228,catlobepas eye,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,229,flask,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,230,gout of flame,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,231,eye beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,232,spray of spores,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,233,spore explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,234,engulfs,0,0,1000,45,8,success,profile_meets_level_and_resource_model
+adept_mage,15,235,remove engulfs,0,0,0,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,236,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,237,thick webbing,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,238,spits,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,243,fireball,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,244,explode,0,0,0,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,245,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,246,ball of magma,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,247,breathes fire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,248,yellow fungus,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,249,yellow fungus,0,0,0,6,1,success,profile_meets_level_and_resource_model
+adept_mage,15,250,red fungus,0,0,0,30,1,success,profile_meets_level_and_resource_model
+adept_mage,15,251,paralyze,0,0,1000,4,12,success,profile_meets_level_and_resource_model
+adept_mage,15,252,unholy wrath,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,253,black wind,0,0,1000,15,12,success,profile_meets_level_and_resource_model
+adept_mage,15,255,corrosion,0,0,1000,100,12,success,profile_meets_level_and_resource_model
+adept_mage,15,256,solid fog,0,0,1000,30,12,success,profile_meets_level_and_resource_model
+adept_mage,15,257,mana storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,259,rain of blood,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,260,vortex of pain,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+adept_mage,15,261,flame shower,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,262,engulf in flame,0,0,1000,15,8,success,profile_meets_level_and_resource_model
+adept_mage,15,263,dragonfire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,264,mystic mist,0,0,0,30,12,success,profile_meets_level_and_resource_model
+adept_mage,15,265,dragonfire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,266,dragonfire,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,279,note of destruction,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,280,summon twins,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,306,death gaze,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,307,globe of invulnerability,0,0,0,500,2,success,profile_meets_level_and_resource_model
+adept_mage,15,308,sphere of isolation,0,0,0,200,8,success,profile_meets_level_and_resource_model
+adept_mage,15,309,ethereal chains,0,0,0,8,8,success,profile_meets_level_and_resource_model
+adept_mage,15,310,negate magic,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,311,judgement of doom,0,0,0,9999,8,success,profile_meets_level_and_resource_model
+adept_mage,15,312,Eye of Magnus,0,0,0,200,2,success,profile_meets_level_and_resource_model
+adept_mage,15,313,bigheal,0,0,0,0,13,success,profile_meets_level_and_resource_model
+adept_mage,15,314,combat fury,0,0,0,500,2,success,profile_meets_level_and_resource_model
+adept_mage,15,315,calls for aid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,316,food,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,317,drink,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,318,knockdown,0,0,0,4,8,success,profile_meets_level_and_resource_model
+adept_mage,15,319,firebomb,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,320,volley of spikes,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,321,drops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,322,breathes a greenish cloud,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+adept_mage,15,323,diseased,0,0,0,30,8,success,profile_meets_level_and_resource_model
+adept_mage,15,324,power punch,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,325,spits acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,326,cloud of reddish vapour,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,327,paralyzed,0,0,0,3,8,success,profile_meets_level_and_resource_model
+adept_mage,15,328,gazes,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,329,thin tendrils,0,0,1000,6,8,success,profile_meets_level_and_resource_model
+adept_mage,15,330,violet fluid,0,0,1000,5,8,success,profile_meets_level_and_resource_model
+adept_mage,15,331,mermex poison,0,0,0,60,8,success,profile_meets_level_and_resource_model
+adept_mage,15,332,sunbolt wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,333,skull wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,334,vacuum,0,0,0,0,6,success,profile_meets_level_and_resource_model
+adept_mage,15,335,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,336,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,337,pool,0,0,0,40,1,success,profile_meets_level_and_resource_model
+adept_mage,15,338,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,339,violet fluid mist,0,0,1000,5,12,success,profile_meets_level_and_resource_model
+adept_mage,15,340,area entrap,0,0,500,10,12,success,profile_meets_level_and_resource_model
+adept_mage,15,341,green beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,342,vampiric hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,343,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,344,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,351,whip entangle,0,0,0,3,8,success,profile_meets_level_and_resource_model
+adept_mage,15,352,beat up,0,0,0,0,0,success,profile_meets_level_and_resource_model
+adept_mage,15,353,sharp blade,0,0,0,5,8,success,profile_meets_level_and_resource_model
+adept_mage,15,354,poison blade,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,355,pale green lichen,0,0,0,300,1,success,profile_meets_level_and_resource_model
+adept_mage,15,356,black cauldron,0,0,1000,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,357,fiery spark,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,358,vampiric bite,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,359,breathes burning steam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,360,freezes,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,361,drain life,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,362,leprosy,0,0,0,14,8,success,profile_meets_level_and_resource_model
+adept_mage,15,363,summon silver skull,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,364,flame dart,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,365,bee poison,0,0,0,100,8,success,profile_meets_level_and_resource_model
+adept_mage,15,366,roots,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,367,magic bolt,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,368,gold dust,0,0,0,60,8,success,profile_meets_level_and_resource_model
+adept_mage,15,369,bee honey,0,0,0,50,1,success,profile_meets_level_and_resource_model
+adept_mage,15,370,green fruit,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,371,summon huorn,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,372,sleep,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,373,mushroom poison,0,0,0,100,1,success,profile_meets_level_and_resource_model
+adept_mage,15,375,cone of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,376,spray of acid,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,377,cloud of poison,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,379,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,380,creature illusion,0,0,0,20,8,success,profile_meets_level_and_resource_model
+adept_mage,15,381,gibbers,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,382,medium divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+adept_mage,15,383,large divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+adept_mage,15,384,divine intervention,0,0,0,160,1,success,profile_meets_level_and_resource_model
+adept_mage,15,385,chain lightning,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,388,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,389,drains,0,0,0,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,390,powerless,0,0,0,60,8,success,profile_meets_level_and_resource_model
+adept_mage,15,391,necromantic beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,392,petrification,0,0,0,20,8,success,profile_meets_level_and_resource_model
+adept_mage,15,394,cone of fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,395,hold person,0,0,0,4,8,success,profile_meets_level_and_resource_model
+adept_mage,15,396,slow,0,0,0,20,8,success,profile_meets_level_and_resource_model
+adept_mage,15,397,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,398,death ray,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,399,rainbow beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,400,frost hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,401,jet of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,402,bleeding,0,0,0,10,8,success,profile_meets_level_and_resource_model
+adept_mage,15,403,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,407,eye of the beholder,0,0,0,25,1,success,profile_meets_level_and_resource_model
+adept_mage,15,408,sunsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,409,constriction,0,0,0,20,8,success,profile_meets_level_and_resource_model
+adept_mage,15,410,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,411,lightning hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,412,mana rgen drain,0,0,0,10,6,success,profile_meets_level_and_resource_model
+adept_mage,15,413,firestorm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,414,burning,0,0,0,20,12,success,profile_meets_level_and_resource_model
+adept_mage,15,415,elemental fusion,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,416,elemental earthquake,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,417,elemental lightning,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,418,elemental fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,419,elemental ice,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,420,blazing comet,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,421,cosmos spell,0,25,0,10,1,success,profile_meets_level_and_resource_model
+adept_mage,15,422,barkskin,0,0,0,10,1,success,profile_meets_level_and_resource_model
+adept_mage,15,425,blasts,0,0,0,2,8,success,profile_meets_level_and_resource_model
+adept_mage,15,426,cone of flame,0,0,250,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,427,venom explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,428,chakram,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,429,energy arc,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,430,terror,0,0,0,10,12,success,profile_meets_level_and_resource_model
+adept_mage,15,431,energy hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,432,energy drain,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,433,energy vortex,0,0,0,0,12,success,profile_meets_level_and_resource_model
+adept_mage,15,434,obsidian talisman teleport,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,436,fall,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,437,crash through roof,0,0,0,0,2,success,profile_meets_level_and_resource_model
+adept_mage,15,438,sdf,0,0,0,0,1,success,profile_meets_level_and_resource_model
+adept_mage,15,439,time distortion,0,0,0,20,12,success,profile_meets_level_and_resource_model
+adept_mage,15,440,globe of darkness,0,0,0,40,12,success,profile_meets_level_and_resource_model
+adept_mage,15,441,shadowstrike,0,0,0,0,8,success,profile_meets_level_and_resource_model
+adept_mage,15,443,darkness hits,0,0,0,30,8,success,profile_meets_level_and_resource_model
+adept_mage,15,444,summon slaver leader,0,0,0,0,6,success,profile_meets_level_and_resource_model
+veteran_cleric,25,50,red potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,60,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,69,magebind,0,0,0,40,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,72,spear,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,78,breathes flame,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,79,spits a stream of venom,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,80,bites,0,0,0,100,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,81,savagely bites,0,0,1000,100,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,82,draws the breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,83,high-pitched scream,0,0,0,20,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,84,breathes,0,0,1000,50,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,85,speaks in a booming voice,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,86,dissolves,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,90,hydra head create,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,109,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,112,violet potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,113,breathes a jet of fire,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,114,sword major bless,0,8,0,60,13,success,profile_meets_level_and_resource_model
+veteran_cleric,25,115,magma drip,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,116,envelops,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,117,breathes a jet of frost,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,118,incense,0,0,0,150,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,119,alcohol,0,0,0,150,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,124,dark force,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,126,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,127,weakness touch,0,0,0,40,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,128,stunned,0,0,0,2,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,154,mental blast,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,155,eagle helm,0,0,0,20,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,156,jade amulet,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,157,amethyst pendant,0,0,0,70,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,158,shadow cloak,0,0,0,30,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,159,blazing inferno,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,161,white satin gloves,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,162,dark touch,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,163,opal ring,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,164,free,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,165,multicoloured sash,0,0,0,40,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,168,winged sandals,0,0,0,20,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,169,mirrored shield,0,0,0,8,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,170,silvery mace,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,171,ebony greataxe,0,0,0,40,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,172,dark fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,173,thunderstaff-lbol,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,174,thunderstaff-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,175,frost sceptre-fjet,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,176,frost sceptre-chill touch,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,177,flay,0,0,0,80,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,178,serpent scourge-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,179,heavy black rod,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,180,moonsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,181,blue potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,182,turquoise potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,183,green potion,0,0,0,20,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,184,yellow potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,185,frothing pink potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,186,silvery potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,187,orange potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,188,white potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,189,black orb,0,0,0,40,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,190,iron tube,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,191,shriek,0,0,1000,10,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,192,quake,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,193,roar,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,194,freeze,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,195,ice blast,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,196,black curse,0,0,1000,20,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,197,ice breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,198,raptor summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,199,rose book confuse,0,0,0,60,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,200,blind book,0,0,0,60,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,201,rip,0,0,0,8,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,202,banshee's wail,0,0,0,80,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,203,vampire rosebush,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,204,sprays,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,205,belches acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,206,sharp stones,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,208,swarm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,209,tower of flame,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,212,chaos storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,213,opaque field,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,214,black gem,0,0,0,20,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,215,argak summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,217,choira summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,218,temple of fire fire,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,219,minor healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,220,major healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,221,greater healing,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,222,cure poison,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,223,cure disease,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,224,remove curse,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,225,dark force,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,226,lallim summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,227,sharah'kur summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,228,catlobepas eye,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,229,flask,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,230,gout of flame,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,231,eye beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,232,spray of spores,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,233,spore explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,234,engulfs,0,0,1000,45,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,235,remove engulfs,0,0,0,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,236,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,237,thick webbing,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,238,spits,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,243,fireball,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,244,explode,0,0,0,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,245,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,246,ball of magma,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,247,breathes fire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,248,yellow fungus,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,249,yellow fungus,0,0,0,6,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,250,red fungus,0,0,0,30,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,251,paralyze,0,0,1000,4,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,252,unholy wrath,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,253,black wind,0,0,1000,15,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,255,corrosion,0,0,1000,100,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,256,solid fog,0,0,1000,30,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,257,mana storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,259,rain of blood,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,260,vortex of pain,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,261,flame shower,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,262,engulf in flame,0,0,1000,15,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,263,dragonfire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,264,mystic mist,0,0,0,30,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,265,dragonfire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,266,dragonfire,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,279,note of destruction,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,280,summon twins,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,306,death gaze,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,307,globe of invulnerability,0,0,0,500,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,308,sphere of isolation,0,0,0,200,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,309,ethereal chains,0,0,0,8,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,310,negate magic,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,311,judgement of doom,0,0,0,9999,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,312,Eye of Magnus,0,0,0,200,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,313,bigheal,0,0,0,0,13,success,profile_meets_level_and_resource_model
+veteran_cleric,25,314,combat fury,0,0,0,500,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,315,calls for aid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,316,food,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,317,drink,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,318,knockdown,0,0,0,4,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,319,firebomb,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,320,volley of spikes,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,321,drops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,322,breathes a greenish cloud,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,323,diseased,0,0,0,30,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,324,power punch,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,325,spits acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,326,cloud of reddish vapour,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,327,paralyzed,0,0,0,3,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,328,gazes,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,329,thin tendrils,0,0,1000,6,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,330,violet fluid,0,0,1000,5,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,331,mermex poison,0,0,0,60,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,332,sunbolt wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,333,skull wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,334,vacuum,0,0,0,0,6,success,profile_meets_level_and_resource_model
+veteran_cleric,25,335,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,336,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,337,pool,0,0,0,40,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,338,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,339,violet fluid mist,0,0,1000,5,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,340,area entrap,0,0,500,10,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,341,green beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,342,vampiric hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,343,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,344,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,351,whip entangle,0,0,0,3,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,352,beat up,0,0,0,0,0,success,profile_meets_level_and_resource_model
+veteran_cleric,25,353,sharp blade,0,0,0,5,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,354,poison blade,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,355,pale green lichen,0,0,0,300,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,356,black cauldron,0,0,1000,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,357,fiery spark,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,358,vampiric bite,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,359,breathes burning steam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,360,freezes,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,361,drain life,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,362,leprosy,0,0,0,14,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,363,summon silver skull,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,364,flame dart,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,365,bee poison,0,0,0,100,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,366,roots,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,367,magic bolt,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,368,gold dust,0,0,0,60,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,369,bee honey,0,0,0,50,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,370,green fruit,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,371,summon huorn,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,372,sleep,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,373,mushroom poison,0,0,0,100,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,375,cone of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,376,spray of acid,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,377,cloud of poison,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,379,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,380,creature illusion,0,0,0,20,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,381,gibbers,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,382,medium divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+veteran_cleric,25,383,large divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+veteran_cleric,25,384,divine intervention,0,0,0,160,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,385,chain lightning,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,388,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,389,drains,0,0,0,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,390,powerless,0,0,0,60,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,391,necromantic beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,392,petrification,0,0,0,20,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,394,cone of fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,395,hold person,0,0,0,4,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,396,slow,0,0,0,20,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,397,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,398,death ray,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,399,rainbow beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,400,frost hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,401,jet of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,402,bleeding,0,0,0,10,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,403,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,407,eye of the beholder,0,0,0,25,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,408,sunsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,409,constriction,0,0,0,20,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,410,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,411,lightning hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,412,mana rgen drain,0,0,0,10,6,success,profile_meets_level_and_resource_model
+veteran_cleric,25,413,firestorm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,414,burning,0,0,0,20,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,415,elemental fusion,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,416,elemental earthquake,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,417,elemental lightning,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,418,elemental fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,419,elemental ice,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,420,blazing comet,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,421,cosmos spell,0,25,0,10,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,422,barkskin,0,0,0,10,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,425,blasts,0,0,0,2,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,426,cone of flame,0,0,250,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,427,venom explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,428,chakram,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,429,energy arc,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,430,terror,0,0,0,10,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,431,energy hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,432,energy drain,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,433,energy vortex,0,0,0,0,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,434,obsidian talisman teleport,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,436,fall,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,437,crash through roof,0,0,0,0,2,success,profile_meets_level_and_resource_model
+veteran_cleric,25,438,sdf,0,0,0,0,1,success,profile_meets_level_and_resource_model
+veteran_cleric,25,439,time distortion,0,0,0,20,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,440,globe of darkness,0,0,0,40,12,success,profile_meets_level_and_resource_model
+veteran_cleric,25,441,shadowstrike,0,0,0,0,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,443,darkness hits,0,0,0,30,8,success,profile_meets_level_and_resource_model
+veteran_cleric,25,444,summon slaver leader,0,0,0,0,6,success,profile_meets_level_and_resource_model
+champion_warrior,40,50,red potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,60,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,69,magebind,0,0,0,40,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,72,spear,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,78,breathes flame,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,79,spits a stream of venom,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,80,bites,0,0,0,100,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,81,savagely bites,0,0,1000,100,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,82,draws the breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,83,high-pitched scream,0,0,0,20,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,84,breathes,0,0,1000,50,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,85,speaks in a booming voice,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,86,dissolves,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,90,hydra head create,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,109,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,112,violet potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,113,breathes a jet of fire,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,114,sword major bless,0,8,0,60,13,success,profile_meets_level_and_resource_model
+champion_warrior,40,115,magma drip,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,116,envelops,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,117,breathes a jet of frost,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,118,incense,0,0,0,150,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,119,alcohol,0,0,0,150,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,124,dark force,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,126,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,127,weakness touch,0,0,0,40,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,128,stunned,0,0,0,2,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,154,mental blast,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,155,eagle helm,0,0,0,20,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,156,jade amulet,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,157,amethyst pendant,0,0,0,70,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,158,shadow cloak,0,0,0,30,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,159,blazing inferno,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,161,white satin gloves,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,162,dark touch,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,163,opal ring,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,164,free,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,165,multicoloured sash,0,0,0,40,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,168,winged sandals,0,0,0,20,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,169,mirrored shield,0,0,0,8,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,170,silvery mace,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,171,ebony greataxe,0,0,0,40,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,172,dark fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,173,thunderstaff-lbol,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,174,thunderstaff-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,175,frost sceptre-fjet,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,176,frost sceptre-chill touch,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,177,flay,0,0,0,80,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,178,serpent scourge-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,179,heavy black rod,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,180,moonsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,181,blue potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,182,turquoise potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,183,green potion,0,0,0,20,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,184,yellow potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,185,frothing pink potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,186,silvery potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,187,orange potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,188,white potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,189,black orb,0,0,0,40,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,190,iron tube,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,191,shriek,0,0,1000,10,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,192,quake,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,193,roar,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,194,freeze,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,195,ice blast,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,196,black curse,0,0,1000,20,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,197,ice breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,198,raptor summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,199,rose book confuse,0,0,0,60,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,200,blind book,0,0,0,60,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,201,rip,0,0,0,8,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,202,banshee's wail,0,0,0,80,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,203,vampire rosebush,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,204,sprays,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,205,belches acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,206,sharp stones,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,208,swarm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,209,tower of flame,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,212,chaos storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,213,opaque field,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,214,black gem,0,0,0,20,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,215,argak summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,217,choira summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,218,temple of fire fire,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,219,minor healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,220,major healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,221,greater healing,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,222,cure poison,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,223,cure disease,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,224,remove curse,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,225,dark force,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,226,lallim summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,227,sharah'kur summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,228,catlobepas eye,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,229,flask,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,230,gout of flame,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,231,eye beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,232,spray of spores,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,233,spore explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,234,engulfs,0,0,1000,45,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,235,remove engulfs,0,0,0,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,236,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,237,thick webbing,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,238,spits,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,243,fireball,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,244,explode,0,0,0,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,245,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,246,ball of magma,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,247,breathes fire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,248,yellow fungus,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,249,yellow fungus,0,0,0,6,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,250,red fungus,0,0,0,30,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,251,paralyze,0,0,1000,4,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,252,unholy wrath,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,253,black wind,0,0,1000,15,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,255,corrosion,0,0,1000,100,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,256,solid fog,0,0,1000,30,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,257,mana storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,259,rain of blood,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,260,vortex of pain,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,261,flame shower,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,262,engulf in flame,0,0,1000,15,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,263,dragonfire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,264,mystic mist,0,0,0,30,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,265,dragonfire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,266,dragonfire,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,279,note of destruction,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,280,summon twins,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,306,death gaze,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,307,globe of invulnerability,0,0,0,500,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,308,sphere of isolation,0,0,0,200,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,309,ethereal chains,0,0,0,8,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,310,negate magic,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,311,judgement of doom,0,0,0,9999,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,312,Eye of Magnus,0,0,0,200,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,313,bigheal,0,0,0,0,13,success,profile_meets_level_and_resource_model
+champion_warrior,40,314,combat fury,0,0,0,500,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,315,calls for aid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,316,food,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,317,drink,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,318,knockdown,0,0,0,4,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,319,firebomb,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,320,volley of spikes,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,321,drops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,322,breathes a greenish cloud,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,323,diseased,0,0,0,30,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,324,power punch,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,325,spits acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,326,cloud of reddish vapour,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,327,paralyzed,0,0,0,3,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,328,gazes,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,329,thin tendrils,0,0,1000,6,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,330,violet fluid,0,0,1000,5,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,331,mermex poison,0,0,0,60,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,332,sunbolt wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,333,skull wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,334,vacuum,0,0,0,0,6,success,profile_meets_level_and_resource_model
+champion_warrior,40,335,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,336,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,337,pool,0,0,0,40,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,338,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,339,violet fluid mist,0,0,1000,5,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,340,area entrap,0,0,500,10,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,341,green beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,342,vampiric hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,343,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,344,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,351,whip entangle,0,0,0,3,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,352,beat up,0,0,0,0,0,success,profile_meets_level_and_resource_model
+champion_warrior,40,353,sharp blade,0,0,0,5,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,354,poison blade,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,355,pale green lichen,0,0,0,300,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,356,black cauldron,0,0,1000,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,357,fiery spark,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,358,vampiric bite,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,359,breathes burning steam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,360,freezes,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,361,drain life,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,362,leprosy,0,0,0,14,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,363,summon silver skull,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,364,flame dart,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,365,bee poison,0,0,0,100,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,366,roots,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,367,magic bolt,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,368,gold dust,0,0,0,60,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,369,bee honey,0,0,0,50,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,370,green fruit,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,371,summon huorn,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,372,sleep,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,373,mushroom poison,0,0,0,100,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,375,cone of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,376,spray of acid,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,377,cloud of poison,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,379,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,380,creature illusion,0,0,0,20,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,381,gibbers,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,382,medium divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+champion_warrior,40,383,large divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+champion_warrior,40,384,divine intervention,0,0,0,160,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,385,chain lightning,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,388,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,389,drains,0,0,0,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,390,powerless,0,0,0,60,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,391,necromantic beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,392,petrification,0,0,0,20,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,394,cone of fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,395,hold person,0,0,0,4,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,396,slow,0,0,0,20,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,397,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,398,death ray,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,399,rainbow beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,400,frost hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,401,jet of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,402,bleeding,0,0,0,10,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,403,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,407,eye of the beholder,0,0,0,25,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,408,sunsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,409,constriction,0,0,0,20,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,410,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,411,lightning hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,412,mana rgen drain,0,0,0,10,6,success,profile_meets_level_and_resource_model
+champion_warrior,40,413,firestorm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,414,burning,0,0,0,20,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,415,elemental fusion,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,416,elemental earthquake,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,417,elemental lightning,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,418,elemental fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,419,elemental ice,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,420,blazing comet,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,421,cosmos spell,0,25,0,10,1,failure,missing_level_mana_or_energy_model
+champion_warrior,40,422,barkskin,0,0,0,10,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,425,blasts,0,0,0,2,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,426,cone of flame,0,0,250,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,427,venom explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,428,chakram,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,429,energy arc,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,430,terror,0,0,0,10,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,431,energy hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,432,energy drain,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,433,energy vortex,0,0,0,0,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,434,obsidian talisman teleport,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,436,fall,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,437,crash through roof,0,0,0,0,2,success,profile_meets_level_and_resource_model
+champion_warrior,40,438,sdf,0,0,0,0,1,success,profile_meets_level_and_resource_model
+champion_warrior,40,439,time distortion,0,0,0,20,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,440,globe of darkness,0,0,0,40,12,success,profile_meets_level_and_resource_model
+champion_warrior,40,441,shadowstrike,0,0,0,0,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,443,darkness hits,0,0,0,30,8,success,profile_meets_level_and_resource_model
+champion_warrior,40,444,summon slaver leader,0,0,0,0,6,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,50,red potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,60,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,69,magebind,0,0,0,40,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,72,spear,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,78,breathes flame,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,79,spits a stream of venom,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,80,bites,0,0,0,100,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,81,savagely bites,0,0,1000,100,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,82,draws the breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,83,high-pitched scream,0,0,0,20,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,84,breathes,0,0,1000,50,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,85,speaks in a booming voice,0,0,1000,100,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,86,dissolves,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,90,hydra head create,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,109,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,112,violet potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,113,breathes a jet of fire,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,114,sword major bless,0,8,0,60,13,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,115,magma drip,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,116,envelops,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,117,breathes a jet of frost,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,118,incense,0,0,0,150,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,119,alcohol,0,0,0,150,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,124,dark force,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,126,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,127,weakness touch,0,0,0,40,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,128,stunned,0,0,0,2,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,154,mental blast,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,155,eagle helm,0,0,0,20,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,156,jade amulet,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,157,amethyst pendant,0,0,0,70,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,158,shadow cloak,0,0,0,30,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,159,blazing inferno,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,161,white satin gloves,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,162,dark touch,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,163,opal ring,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,164,free,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,165,multicoloured sash,0,0,0,40,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,168,winged sandals,0,0,0,20,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,169,mirrored shield,0,0,0,8,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,170,silvery mace,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,171,ebony greataxe,0,0,0,40,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,172,dark fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,173,thunderstaff-lbol,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,174,thunderstaff-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,175,frost sceptre-fjet,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,176,frost sceptre-chill touch,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,177,flay,0,0,0,80,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,178,serpent scourge-hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,179,heavy black rod,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,180,moonsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,181,blue potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,182,turquoise potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,183,green potion,0,0,0,20,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,184,yellow potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,185,frothing pink potion,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,186,silvery potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,187,orange potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,188,white potion,0,0,0,60,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,189,black orb,0,0,0,40,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,190,iron tube,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,191,shriek,0,0,1000,10,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,192,quake,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,193,roar,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,194,freeze,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,195,ice blast,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,196,black curse,0,0,1000,20,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,197,ice breath,0,0,1000,0,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,198,raptor summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,199,rose book confuse,0,0,0,60,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,200,blind book,0,0,0,60,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,201,rip,0,0,0,8,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,202,banshee's wail,0,0,0,80,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,203,vampire rosebush,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,204,sprays,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,205,belches acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,206,sharp stones,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,208,swarm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,209,tower of flame,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,212,chaos storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,213,opaque field,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,214,black gem,0,0,0,20,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,215,argak summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,217,choira summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,218,temple of fire fire,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,219,minor healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,220,major healing,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,221,greater healing,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,222,cure poison,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,223,cure disease,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,224,remove curse,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,225,dark force,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,226,lallim summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,227,sharah'kur summon,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,228,catlobepas eye,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,229,flask,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,230,gout of flame,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,231,eye beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,232,spray of spores,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,233,spore explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,234,engulfs,0,0,1000,45,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,235,remove engulfs,0,0,0,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,236,acid hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,237,thick webbing,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,238,spits,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,243,fireball,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,244,explode,0,0,0,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,245,flame hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,246,ball of magma,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,247,breathes fire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,248,yellow fungus,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,249,yellow fungus,0,0,0,6,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,250,red fungus,0,0,0,30,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,251,paralyze,0,0,1000,4,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,252,unholy wrath,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,253,black wind,0,0,1000,15,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,255,corrosion,0,0,1000,100,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,256,solid fog,0,0,1000,30,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,257,mana storm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,259,rain of blood,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,260,vortex of pain,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,261,flame shower,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,262,engulf in flame,0,0,1000,15,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,263,dragonfire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,264,mystic mist,0,0,0,30,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,265,dragonfire,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,266,dragonfire,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,279,note of destruction,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,280,summon twins,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,306,death gaze,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,307,globe of invulnerability,0,0,0,500,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,308,sphere of isolation,0,0,0,200,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,309,ethereal chains,0,0,0,8,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,310,negate magic,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,311,judgement of doom,0,0,0,9999,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,312,Eye of Magnus,0,0,0,200,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,313,bigheal,0,0,0,0,13,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,314,combat fury,0,0,0,500,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,315,calls for aid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,316,food,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,317,drink,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,318,knockdown,0,0,0,4,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,319,firebomb,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,320,volley of spikes,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,321,drops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,322,breathes a greenish cloud,0,0,1000,20,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,323,diseased,0,0,0,30,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,324,power punch,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,325,spits acid,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,326,cloud of reddish vapour,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,327,paralyzed,0,0,0,3,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,328,gazes,0,0,1000,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,329,thin tendrils,0,0,1000,6,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,330,violet fluid,0,0,1000,5,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,331,mermex poison,0,0,0,60,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,332,sunbolt wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,333,skull wand,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,334,vacuum,0,0,0,0,6,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,335,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,336,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,337,pool,0,0,0,40,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,338,fall,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,339,violet fluid mist,0,0,1000,5,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,340,area entrap,0,0,500,10,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,341,green beam,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,342,vampiric hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,343,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,344,tentacles,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,351,whip entangle,0,0,0,3,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,352,beat up,0,0,0,0,0,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,353,sharp blade,0,0,0,5,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,354,poison blade,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,355,pale green lichen,0,0,0,300,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,356,black cauldron,0,0,1000,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,357,fiery spark,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,358,vampiric bite,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,359,breathes burning steam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,360,freezes,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,361,drain life,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,362,leprosy,0,0,0,14,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,363,summon silver skull,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,364,flame dart,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,365,bee poison,0,0,0,100,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,366,roots,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,367,magic bolt,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,368,gold dust,0,0,0,60,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,369,bee honey,0,0,0,50,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,370,green fruit,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,371,summon huorn,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,372,sleep,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,373,mushroom poison,0,0,0,100,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,375,cone of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,376,spray of acid,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,377,cloud of poison,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,379,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,380,creature illusion,0,0,0,20,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,381,gibbers,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,382,medium divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,383,large divides,0,0,0,0,6,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,384,divine intervention,0,0,0,160,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,385,chain lightning,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,388,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,389,drains,0,0,0,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,390,powerless,0,0,0,60,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,391,necromantic beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,392,petrification,0,0,0,20,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,394,cone of fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,395,hold person,0,0,0,4,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,396,slow,0,0,0,20,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,397,fear,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,398,death ray,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,399,rainbow beam,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,400,frost hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,401,jet of frost,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,402,bleeding,0,0,0,10,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,403,blast of flame,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,407,eye of the beholder,0,0,0,25,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,408,sunsword,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,409,constriction,0,0,0,20,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,410,envelops,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,411,lightning hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,412,mana rgen drain,0,0,0,10,6,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,413,firestorm,0,0,1000,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,414,burning,0,0,0,20,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,415,elemental fusion,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,416,elemental earthquake,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,417,elemental lightning,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,418,elemental fire,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,419,elemental ice,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,420,blazing comet,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,421,cosmos spell,0,25,0,10,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,422,barkskin,0,0,0,10,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,425,blasts,0,0,0,2,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,426,cone of flame,0,0,250,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,427,venom explosion,0,0,0,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,428,chakram,0,0,1000,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,429,energy arc,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,430,terror,0,0,0,10,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,431,energy hits,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,432,energy drain,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,433,energy vortex,0,0,0,0,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,434,obsidian talisman teleport,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,436,fall,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,437,crash through roof,0,0,0,0,2,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,438,sdf,0,0,0,0,1,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,439,time distortion,0,0,0,20,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,440,globe of darkness,0,0,0,40,12,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,441,shadowstrike,0,0,0,0,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,443,darkness hits,0,0,0,30,8,success,profile_meets_level_and_resource_model
+endgame_hybrid,70,444,summon slaver leader,0,0,0,0,6,success,profile_meets_level_and_resource_model

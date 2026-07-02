@@ -1,0 +1,377 @@
+[
+  {
+    "line": 1249,
+    "match": "call    SETBTV          ; void setbtv(BTVFILE *bbprt);",
+    "snippet": "1243:                 mov     word ptr es:[bx+8Ch], 0\n1244:                 mov     ax, seg dseg36\n1245:                 mov     es, ax\n1246:                 assume es:dseg36\n1247:                 push    word ptr es:dword_8D48A+2\n1248:                 push    word ptr es:dword_8D48A\n1249:                 call    SETBTV          ; void setbtv(BTVFILE *bbprt);\n1250:                 add     sp, 4\n1251:                 push    0\n1252:                 push    5\n1253:                 push    0\n1254:                 push    [bp+var_A]\n1255:                 push    [bp+var_C]"
+  },
+  {
+    "line": 1258,
+    "match": "call    OBTBTVL         ; int obtbtvl (void *recptr, void *key, int keynum, int obtopt, int loktyp);",
+    "snippet": "1252:                 push    5\n1253:                 push    0\n1254:                 push    [bp+var_A]\n1255:                 push    [bp+var_C]\n1256:                 push    word ptr [bp+var_4+2]\n1257:                 push    word ptr [bp+var_4]\n1258:                 call    OBTBTVL         ; int obtbtvl (void *recptr, void *key, int keynum, int obtopt, int loktyp);\n1259:                 add     sp, 0Eh\n1260:                 mov     [bp+var_1E], ax\n1261:                 call    RSTBTV          ; void rstbtv (void);\n1262:                 cmp     [bp+var_1E], 0\n1263:                 jnz     short loc_972\n1264:                 jmp     loc_1F60"
+  },
+  {
+    "line": 1261,
+    "match": "call    RSTBTV          ; void rstbtv (void);",
+    "snippet": "1255:                 push    [bp+var_C]\n1256:                 push    word ptr [bp+var_4+2]\n1257:                 push    word ptr [bp+var_4]\n1258:                 call    OBTBTVL         ; int obtbtvl (void *recptr, void *key, int keynum, int obtopt, int loktyp);\n1259:                 add     sp, 0Eh\n1260:                 mov     [bp+var_1E], ax\n1261:                 call    RSTBTV          ; void rstbtv (void);\n1262:                 cmp     [bp+var_1E], 0\n1263:                 jnz     short loc_972\n1264:                 jmp     loc_1F60\n1265: ; ---------------------------------------------------------------------------\n1266: \n1267: loc_972:                                ; CODE XREF: _LOAD_PLAYER+F1\u2191j"
+  },
+  {
+    "line": 3156,
+    "match": "push    offset aYouWillHaveToC ; \"You will have to complete a quest to re\"...",
+    "snippet": "3150:                 mov     word ptr es:[bx+53Ch], 0FF38h\n3151:                 push    ds\n3152:                 push    offset aYourEvilPoints ; \"Your evil points have been adjusted to \"...\n3153:                 call    PRF             ; prf(string);\n3154:                 add     sp, 4\n3155:                 push    ds\n3156:                 push    offset aYouWillHaveToC ; \"You will have to complete a quest to re\"...\n3157:                 call    PRF             ; prf(string);\n3158:                 add     sp, 4\n3159:                 mov     ax, seg USRNUM\n3160:                 mov     es, ax\n3161:                 assume es:nothing\n3162:                 push    word ptr es:USRNUM ; int usrnum;"
+  },
+  {
+    "line": 5241,
+    "match": "call    SETBTV          ; void setbtv(BTVFILE *bbprt);",
+    "snippet": "5235:                 mov     [bp+var_6], 1\n5236:                 mov     ax, seg dseg36\n5237:                 mov     es, ax\n5238:                 assume es:dseg36\n5239:                 push    es:word_8D484\n5240:                 push    es:word_8D482\n5241:                 call    SETBTV          ; void setbtv(BTVFILE *bbprt);\n5242:                 add     sp, 4\n5243:                 mov     ax, word ptr [bp+var_4]\n5244:                 or      ax, word ptr [bp+var_4+2]\n5245:                 jz      short loc_30C0\n5246:                 push    0\n5247:                 push    5"
+  },
+  {
+    "line": 5255,
+    "match": "call    OBTBTVL         ; int obtbtvl (void *recptr, void *key, int keynum, int obtopt, int loktyp);",
+    "snippet": "5249:                 push    ss\n5250:                 lea     ax, [bp+arg_2]\n5251:                 push    ax\n5252:                 push    ss\n5253:                 lea     ax, [bp+var_84]\n5254:                 push    ax\n5255:                 call    OBTBTVL         ; int obtbtvl (void *recptr, void *key, int keynum, int obtopt, int loktyp);\n5256:                 add     sp, 0Eh\n5257:                 or      ax, ax\n5258:                 jnz     short loc_30C7\n5259: \n5260: loc_30C0:                               ; CODE XREF: sub_3064+3D\u2191j\n5261:                 mov     [bp+var_6], 0"
+  },
+  {
+    "line": 5272,
+    "match": "call    RSTBTV          ; void rstbtv (void);",
+    "snippet": "5266:                 les     bx, [bp+var_4]\n5267:                 assume es:nothing\n5268:                 mov     ax, [bp+arg_2]\n5269:                 mov     es:[bx+90h], ax\n5270: \n5271: loc_30D2:                               ; CODE XREF: sub_3064+61\u2191j\n5272:                 call    RSTBTV          ; void rstbtv (void);\n5273:                 mov     ax, [bp+var_6]\n5274:                 pop     ds\n5275:                 assume ds:dseg81\n5276:                 pop     di\n5277:                 pop     si\n5278:                 leave"
+  },
+  {
+    "line": 5313,
+    "match": "call    SETBTV          ; void setbtv(BTVFILE *bbprt);",
+    "snippet": "5307:                 mov     [bp+var_6], 1\n5308:                 mov     ax, seg dseg36\n5309:                 mov     es, ax\n5310:                 assume es:dseg36\n5311:                 push    es:word_8D488\n5312:                 push    es:word_8D486\n5313:                 call    SETBTV          ; void setbtv(BTVFILE *bbprt);\n5314:                 add     sp, 4\n5315:                 mov     ax, word ptr [bp+var_4]\n5316:                 or      ax, word ptr [bp+var_4+2]\n5317:                 jz      short loc_313B\n5318:                 push    0\n5319:                 push    5"
+  },
+  {
+    "line": 5327,
+    "match": "call    OBTBTVL         ; int obtbtvl (void *recptr, void *key, int keynum, int obtopt, int loktyp);",
+    "snippet": "5321:                 push    ss\n5322:                 lea     ax, [bp+arg_2]\n5323:                 push    ax\n5324:                 push    ss\n5325:                 lea     ax, [bp+var_A0]\n5326:                 push    ax\n5327:                 call    OBTBTVL         ; int obtbtvl (void *recptr, void *key, int keynum, int obtopt, int loktyp);\n5328:                 add     sp, 0Eh\n5329:                 or      ax, ax\n5330:                 jnz     short loc_3142\n5331: \n5332: loc_313B:                               ; CODE XREF: sub_30DF+3D\u2191j\n5333:                 mov     [bp+var_6], 0"
+  },
+  {
+    "line": 5344,
+    "match": "call    RSTBTV          ; void rstbtv (void);",
+    "snippet": "5338:                 les     bx, [bp+var_4]\n5339:                 assume es:nothing\n5340:                 mov     ax, [bp+arg_2]\n5341:                 mov     es:[bx+92h], ax\n5342: \n5343: loc_314D:                               ; CODE XREF: sub_30DF+61\u2191j\n5344:                 call    RSTBTV          ; void rstbtv (void);\n5345:                 mov     ax, [bp+var_6]\n5346:                 pop     ds\n5347:                 assume ds:dseg81\n5348:                 pop     di\n5349:                 pop     si\n5350:                 leave"
+  },
+  {
+    "line": 5639,
+    "match": "push    seg _BTURNO",
+    "snippet": "5633:                 mov     [bp+var_6], 0\n5634:                 push    ss\n5635:                 lea     ax, [bp+var_10]\n5636:                 push    ax\n5637:                 push    0\n5638:                 push    2\n5639:                 push    seg _BTURNO\n5640:                 push    offset _BTURNO  ; char bturno[];\n5641:                 call    sub_6711A\n5642:                 add     sp, 0Ch\n5643:                 mov     [bp+var_2], dx\n5644:                 mov     [bp+var_4], ax\n5645:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 5640,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "5634:                 push    ss\n5635:                 lea     ax, [bp+var_10]\n5636:                 push    ax\n5637:                 push    0\n5638:                 push    2\n5639:                 push    seg _BTURNO\n5640:                 push    offset _BTURNO  ; char bturno[];\n5641:                 call    sub_6711A\n5642:                 add     sp, 0Ch\n5643:                 mov     [bp+var_2], dx\n5644:                 mov     [bp+var_4], ax\n5645:                 mov     ax, [bp+var_4]\n5646:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 5685,
+    "match": "push    seg _BTURNO",
+    "snippet": "5679:                 mov     [bp+var_6], 0\n5680:                 push    ss\n5681:                 lea     ax, [bp+var_10]\n5682:                 push    ax\n5683:                 push    0\n5684:                 push    3\n5685:                 push    seg _BTURNO\n5686:                 push    offset _BTURNO  ; char bturno[];\n5687:                 call    sub_6711A\n5688:                 add     sp, 0Ch\n5689:                 mov     [bp+var_2], dx\n5690:                 mov     [bp+var_4], ax\n5691:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 5686,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "5680:                 push    ss\n5681:                 lea     ax, [bp+var_10]\n5682:                 push    ax\n5683:                 push    0\n5684:                 push    3\n5685:                 push    seg _BTURNO\n5686:                 push    offset _BTURNO  ; char bturno[];\n5687:                 call    sub_6711A\n5688:                 add     sp, 0Ch\n5689:                 mov     [bp+var_2], dx\n5690:                 mov     [bp+var_4], ax\n5691:                 mov     ax, [bp+var_4]\n5692:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 5731,
+    "match": "push    seg _BTURNO",
+    "snippet": "5725:                 mov     [bp+var_6], 0\n5726:                 push    ss\n5727:                 lea     ax, [bp+var_10]\n5728:                 push    ax\n5729:                 push    0\n5730:                 push    6\n5731:                 push    seg _BTURNO\n5732:                 push    offset _BTURNO  ; char bturno[];\n5733:                 call    sub_6711A\n5734:                 add     sp, 0Ch\n5735:                 mov     [bp+var_2], dx\n5736:                 mov     [bp+var_4], ax\n5737:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 5732,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "5726:                 push    ss\n5727:                 lea     ax, [bp+var_10]\n5728:                 push    ax\n5729:                 push    0\n5730:                 push    6\n5731:                 push    seg _BTURNO\n5732:                 push    offset _BTURNO  ; char bturno[];\n5733:                 call    sub_6711A\n5734:                 add     sp, 0Ch\n5735:                 mov     [bp+var_2], dx\n5736:                 mov     [bp+var_4], ax\n5737:                 mov     ax, [bp+var_4]\n5738:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 5777,
+    "match": "push    seg _BTURNO",
+    "snippet": "5771:                 mov     [bp+var_6], 0\n5772:                 push    ss\n5773:                 lea     ax, [bp+var_10]\n5774:                 push    ax\n5775:                 push    0\n5776:                 push    8\n5777:                 push    seg _BTURNO\n5778:                 push    offset _BTURNO  ; char bturno[];\n5779:                 call    sub_6711A\n5780:                 add     sp, 0Ch\n5781:                 mov     [bp+var_2], dx\n5782:                 mov     [bp+var_4], ax\n5783:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 5778,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "5772:                 push    ss\n5773:                 lea     ax, [bp+var_10]\n5774:                 push    ax\n5775:                 push    0\n5776:                 push    8\n5777:                 push    seg _BTURNO\n5778:                 push    offset _BTURNO  ; char bturno[];\n5779:                 call    sub_6711A\n5780:                 add     sp, 0Ch\n5781:                 mov     [bp+var_2], dx\n5782:                 mov     [bp+var_4], ax\n5783:                 mov     ax, [bp+var_4]\n5784:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 5823,
+    "match": "push    seg _BTURNO",
+    "snippet": "5817:                 mov     [bp+var_6], 0\n5818:                 push    ss\n5819:                 lea     ax, [bp+var_10]\n5820:                 push    ax\n5821:                 push    0\n5822:                 push    9\n5823:                 push    seg _BTURNO\n5824:                 push    offset _BTURNO  ; char bturno[];\n5825:                 call    sub_6711A\n5826:                 add     sp, 0Ch\n5827:                 mov     [bp+var_2], dx\n5828:                 mov     [bp+var_4], ax\n5829:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 5824,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "5818:                 push    ss\n5819:                 lea     ax, [bp+var_10]\n5820:                 push    ax\n5821:                 push    0\n5822:                 push    9\n5823:                 push    seg _BTURNO\n5824:                 push    offset _BTURNO  ; char bturno[];\n5825:                 call    sub_6711A\n5826:                 add     sp, 0Ch\n5827:                 mov     [bp+var_2], dx\n5828:                 mov     [bp+var_4], ax\n5829:                 mov     ax, [bp+var_4]\n5830:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 5869,
+    "match": "push    seg _BTURNO",
+    "snippet": "5863:                 mov     [bp+var_6], 0\n5864:                 push    ss\n5865:                 lea     ax, [bp+var_10]\n5866:                 push    ax\n5867:                 push    0\n5868:                 push    0Ch\n5869:                 push    seg _BTURNO\n5870:                 push    offset _BTURNO  ; char bturno[];\n5871:                 call    sub_6711A\n5872:                 add     sp, 0Ch\n5873:                 mov     [bp+var_2], dx\n5874:                 mov     [bp+var_4], ax\n5875:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 5870,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "5864:                 push    ss\n5865:                 lea     ax, [bp+var_10]\n5866:                 push    ax\n5867:                 push    0\n5868:                 push    0Ch\n5869:                 push    seg _BTURNO\n5870:                 push    offset _BTURNO  ; char bturno[];\n5871:                 call    sub_6711A\n5872:                 add     sp, 0Ch\n5873:                 mov     [bp+var_2], dx\n5874:                 mov     [bp+var_4], ax\n5875:                 mov     ax, [bp+var_4]\n5876:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 5915,
+    "match": "push    seg _BTURNO",
+    "snippet": "5909:                 mov     [bp+var_6], 0\n5910:                 push    ss\n5911:                 lea     ax, [bp+var_10]\n5912:                 push    ax\n5913:                 push    0\n5914:                 push    0Fh\n5915:                 push    seg _BTURNO\n5916:                 push    offset _BTURNO  ; char bturno[];\n5917:                 call    sub_6711A\n5918:                 add     sp, 0Ch\n5919:                 mov     [bp+var_2], dx\n5920:                 mov     [bp+var_4], ax\n5921:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 5916,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "5910:                 push    ss\n5911:                 lea     ax, [bp+var_10]\n5912:                 push    ax\n5913:                 push    0\n5914:                 push    0Fh\n5915:                 push    seg _BTURNO\n5916:                 push    offset _BTURNO  ; char bturno[];\n5917:                 call    sub_6711A\n5918:                 add     sp, 0Ch\n5919:                 mov     [bp+var_2], dx\n5920:                 mov     [bp+var_4], ax\n5921:                 mov     ax, [bp+var_4]\n5922:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 5961,
+    "match": "push    seg _BTURNO",
+    "snippet": "5955:                 mov     [bp+var_6], 0\n5956:                 push    ss\n5957:                 lea     ax, [bp+var_10]\n5958:                 push    ax\n5959:                 push    0\n5960:                 push    10h\n5961:                 push    seg _BTURNO\n5962:                 push    offset _BTURNO  ; char bturno[];\n5963:                 call    sub_6711A\n5964:                 add     sp, 0Ch\n5965:                 mov     [bp+var_2], dx\n5966:                 mov     [bp+var_4], ax\n5967:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 5962,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "5956:                 push    ss\n5957:                 lea     ax, [bp+var_10]\n5958:                 push    ax\n5959:                 push    0\n5960:                 push    10h\n5961:                 push    seg _BTURNO\n5962:                 push    offset _BTURNO  ; char bturno[];\n5963:                 call    sub_6711A\n5964:                 add     sp, 0Ch\n5965:                 mov     [bp+var_2], dx\n5966:                 mov     [bp+var_4], ax\n5967:                 mov     ax, [bp+var_4]\n5968:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 6007,
+    "match": "push    seg _BTURNO",
+    "snippet": "6001:                 mov     [bp+var_6], 0\n6002:                 push    ss\n6003:                 lea     ax, [bp+var_10]\n6004:                 push    ax\n6005:                 push    0\n6006:                 push    11h\n6007:                 push    seg _BTURNO\n6008:                 push    offset _BTURNO  ; char bturno[];\n6009:                 call    sub_6711A\n6010:                 add     sp, 0Ch\n6011:                 mov     [bp+var_2], dx\n6012:                 mov     [bp+var_4], ax\n6013:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 6008,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "6002:                 push    ss\n6003:                 lea     ax, [bp+var_10]\n6004:                 push    ax\n6005:                 push    0\n6006:                 push    11h\n6007:                 push    seg _BTURNO\n6008:                 push    offset _BTURNO  ; char bturno[];\n6009:                 call    sub_6711A\n6010:                 add     sp, 0Ch\n6011:                 mov     [bp+var_2], dx\n6012:                 mov     [bp+var_4], ax\n6013:                 mov     ax, [bp+var_4]\n6014:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 6049,
+    "match": "push    seg _BTURNO",
+    "snippet": "6043:                 mov     [bp+var_6], 0\n6044:                 push    ss\n6045:                 lea     ax, [bp+var_10]\n6046:                 push    ax\n6047:                 push    0\n6048:                 push    12h\n6049:                 push    seg _BTURNO\n6050:                 push    offset _BTURNO  ; char bturno[];\n6051:                 call    sub_6711A\n6052:                 add     sp, 0Ch\n6053:                 mov     [bp+var_2], dx\n6054:                 mov     [bp+var_4], ax\n6055:                 mov     ax, [bp+var_4]"
+  },
+  {
+    "line": 6050,
+    "match": "push    offset _BTURNO  ; char bturno[];",
+    "snippet": "6044:                 push    ss\n6045:                 lea     ax, [bp+var_10]\n6046:                 push    ax\n6047:                 push    0\n6048:                 push    12h\n6049:                 push    seg _BTURNO\n6050:                 push    offset _BTURNO  ; char bturno[];\n6051:                 call    sub_6711A\n6052:                 add     sp, 0Ch\n6053:                 mov     [bp+var_2], dx\n6054:                 mov     [bp+var_4], ax\n6055:                 mov     ax, [bp+var_4]\n6056:                 or      ax, [bp+var_2]"
+  },
+  {
+    "line": 22199,
+    "match": "public _GET_USER_NUMBER",
+    "snippet": "22193: ;\n22194: \n22195: ; =============== S U B R O U T I N E =======================================\n22196: \n22197: ; Attributes: bp-based frame\n22198: \n22199:                 public _GET_USER_NUMBER\n22200: _GET_USER_NUMBER proc far               ; CODE XREF: _FAST_UPDATE_MONSTER+A4\u2193P\n22201:                                         ; sub_274CC+140\u2193P ...\n22202: \n22203: var_6           = word ptr -6\n22204: var_4           = word ptr -4\n22205: var_2           = word ptr -2"
+  },
+  {
+    "line": 22200,
+    "match": "_GET_USER_NUMBER proc far               ; CODE XREF: _FAST_UPDATE_MONSTER+A4\u2193P",
+    "snippet": "22194: \n22195: ; =============== S U B R O U T I N E =======================================\n22196: \n22197: ; Attributes: bp-based frame\n22198: \n22199:                 public _GET_USER_NUMBER\n22200: _GET_USER_NUMBER proc far               ; CODE XREF: _FAST_UPDATE_MONSTER+A4\u2193P\n22201:                                         ; sub_274CC+140\u2193P ...\n22202: \n22203: var_6           = word ptr -6\n22204: var_4           = word ptr -4\n22205: var_2           = word ptr -2\n22206: arg_0           = word ptr  6"
+  },
+  {
+    "line": 22226,
+    "match": "loc_BFC7:                               ; CODE XREF: _GET_USER_NUMBER+1C\u2191j",
+    "snippet": "22220:                 or      ax, [bp+arg_2]\n22221:                 jnz     short loc_BFC7\n22222:                 mov     ax, 0FFFFh\n22223:                 jmp     loc_C079\n22224: ; ---------------------------------------------------------------------------\n22225: \n22226: loc_BFC7:                               ; CODE XREF: _GET_USER_NUMBER+1C\u2191j\n22227:                 mov     [bp+var_2], 0\n22228:                 jmp     loc_C053\n22229: ; ---------------------------------------------------------------------------\n22230: \n22231: loc_BFCF:                               ; CODE XREF: _GET_USER_NUMBER+BE\u2193j\n22232:                 push    [bp+var_2]"
+  },
+  {
+    "line": 22231,
+    "match": "loc_BFCF:                               ; CODE XREF: _GET_USER_NUMBER+BE\u2193j",
+    "snippet": "22225: \n22226: loc_BFC7:                               ; CODE XREF: _GET_USER_NUMBER+1C\u2191j\n22227:                 mov     [bp+var_2], 0\n22228:                 jmp     loc_C053\n22229: ; ---------------------------------------------------------------------------\n22230: \n22231: loc_BFCF:                               ; CODE XREF: _GET_USER_NUMBER+BE\u2193j\n22232:                 push    [bp+var_2]\n22233:                 call    sub_79700\n22234:                 pop     cx\n22235:                 or      al, al\n22236:                 jz      short loc_C050\n22237:                 cmp     [bp+arg_4], 0"
+  },
+  {
+    "line": 22253,
+    "match": "loc_BFFD:                               ; CODE XREF: _GET_USER_NUMBER+3D\u2191j",
+    "snippet": "22247:                 push    cs\n22248:                 call    near ptr _LJNSAME\n22249:                 add     sp, 8\n22250:                 or      ax, ax\n22251:                 jnz     short loc_C019\n22252: \n22253: loc_BFFD:                               ; CODE XREF: _GET_USER_NUMBER+3D\u2191j\n22254:                 push    [bp+var_2]\n22255:                 push    cs\n22256:                 call    near ptr sub_2FA4\n22257:                 pop     cx\n22258:                 push    dx\n22259:                 push    ax"
+  },
+  {
+    "line": 22267,
+    "match": "loc_C019:                               ; CODE XREF: _GET_USER_NUMBER+58\u2191j",
+    "snippet": "22261:                 push    [bp+arg_0]\n22262:                 call    SAMEAS          ; int match=sameas(char *stgl, char* stg2);\n22263:                 add     sp, 8\n22264:                 or      ax, ax\n22265:                 jz      short loc_C050\n22266: \n22267: loc_C019:                               ; CODE XREF: _GET_USER_NUMBER+58\u2191j\n22268:                 push    [bp+var_2]\n22269:                 push    cs\n22270:                 call    near ptr sub_2FA4\n22271:                 pop     cx\n22272:                 push    dx\n22273:                 push    ax"
+  },
+  {
+    "line": 22292,
+    "match": "loc_C050:                               ; CODE XREF: _GET_USER_NUMBER+37\u2191j",
+    "snippet": "22286:                 push    [bp+arg_0]\n22287:                 call    SAMEAS          ; int match=sameas(char *stgl, char* stg2);\n22288:                 add     sp, 8\n22289:                 or      ax, ax\n22290:                 jnz     short loc_C071\n22291: \n22292: loc_C050:                               ; CODE XREF: _GET_USER_NUMBER+37\u2191j\n22293:                                         ; _GET_USER_NUMBER+74\u2191j\n22294:                 inc     [bp+var_2]\n22295: \n22296: loc_C053:                               ; CODE XREF: _GET_USER_NUMBER+29\u2191j\n22297:                 mov     ax, seg NTERMS\n22298:                 mov     es, ax"
+  },
+  {
+    "line": 22293,
+    "match": "; _GET_USER_NUMBER+74\u2191j",
+    "snippet": "22287:                 call    SAMEAS          ; int match=sameas(char *stgl, char* stg2);\n22288:                 add     sp, 8\n22289:                 or      ax, ax\n22290:                 jnz     short loc_C071\n22291: \n22292: loc_C050:                               ; CODE XREF: _GET_USER_NUMBER+37\u2191j\n22293:                                         ; _GET_USER_NUMBER+74\u2191j\n22294:                 inc     [bp+var_2]\n22295: \n22296: loc_C053:                               ; CODE XREF: _GET_USER_NUMBER+29\u2191j\n22297:                 mov     ax, seg NTERMS\n22298:                 mov     es, ax\n22299:                 mov     ax, word ptr es:NTERMS ; int nterms;"
+  },
+  {
+    "line": 22296,
+    "match": "loc_C053:                               ; CODE XREF: _GET_USER_NUMBER+29\u2191j",
+    "snippet": "22290:                 jnz     short loc_C071\n22291: \n22292: loc_C050:                               ; CODE XREF: _GET_USER_NUMBER+37\u2191j\n22293:                                         ; _GET_USER_NUMBER+74\u2191j\n22294:                 inc     [bp+var_2]\n22295: \n22296: loc_C053:                               ; CODE XREF: _GET_USER_NUMBER+29\u2191j\n22297:                 mov     ax, seg NTERMS\n22298:                 mov     es, ax\n22299:                 mov     ax, word ptr es:NTERMS ; int nterms;\n22300:                 cmp     ax, [bp+var_2]\n22301:                 jle     short loc_C064\n22302:                 jmp     loc_BFCF"
+  },
+  {
+    "line": 22305,
+    "match": "loc_C064:                               ; CODE XREF: _GET_USER_NUMBER+BC\u2191j",
+    "snippet": "22299:                 mov     ax, word ptr es:NTERMS ; int nterms;\n22300:                 cmp     ax, [bp+var_2]\n22301:                 jle     short loc_C064\n22302:                 jmp     loc_BFCF\n22303: ; ---------------------------------------------------------------------------\n22304: \n22305: loc_C064:                               ; CODE XREF: _GET_USER_NUMBER+BC\u2191j\n22306:                 cmp     [bp+var_6], 1\n22307:                 jle     short loc_C071\n22308:                 mov     [bp+var_4], 0FFFEh\n22309:                 jmp     short loc_C076\n22310: ; ---------------------------------------------------------------------------\n22311: "
+  },
+  {
+    "line": 22312,
+    "match": "loc_C071:                               ; CODE XREF: _GET_USER_NUMBER+AB\u2191j",
+    "snippet": "22306:                 cmp     [bp+var_6], 1\n22307:                 jle     short loc_C071\n22308:                 mov     [bp+var_4], 0FFFEh\n22309:                 jmp     short loc_C076\n22310: ; ---------------------------------------------------------------------------\n22311: \n22312: loc_C071:                               ; CODE XREF: _GET_USER_NUMBER+AB\u2191j\n22313:                                         ; _GET_USER_NUMBER+C5\u2191j\n22314:                 call    CLRPRF          ; clrprf()\n22315: \n22316: loc_C076:                               ; CODE XREF: _GET_USER_NUMBER+CC\u2191j\n22317:                 mov     ax, [bp+var_4]\n22318: "
+  },
+  {
+    "line": 22313,
+    "match": "; _GET_USER_NUMBER+C5\u2191j",
+    "snippet": "22307:                 jle     short loc_C071\n22308:                 mov     [bp+var_4], 0FFFEh\n22309:                 jmp     short loc_C076\n22310: ; ---------------------------------------------------------------------------\n22311: \n22312: loc_C071:                               ; CODE XREF: _GET_USER_NUMBER+AB\u2191j\n22313:                                         ; _GET_USER_NUMBER+C5\u2191j\n22314:                 call    CLRPRF          ; clrprf()\n22315: \n22316: loc_C076:                               ; CODE XREF: _GET_USER_NUMBER+CC\u2191j\n22317:                 mov     ax, [bp+var_4]\n22318: \n22319: loc_C079:                               ; CODE XREF: _GET_USER_NUMBER+21\u2191j"
+  },
+  {
+    "line": 22316,
+    "match": "loc_C076:                               ; CODE XREF: _GET_USER_NUMBER+CC\u2191j",
+    "snippet": "22310: ; ---------------------------------------------------------------------------\n22311: \n22312: loc_C071:                               ; CODE XREF: _GET_USER_NUMBER+AB\u2191j\n22313:                                         ; _GET_USER_NUMBER+C5\u2191j\n22314:                 call    CLRPRF          ; clrprf()\n22315: \n22316: loc_C076:                               ; CODE XREF: _GET_USER_NUMBER+CC\u2191j\n22317:                 mov     ax, [bp+var_4]\n22318: \n22319: loc_C079:                               ; CODE XREF: _GET_USER_NUMBER+21\u2191j\n22320:                 pop     ds\n22321:                 assume ds:dseg81\n22322:                 pop     di"
+  },
+  {
+    "line": 22319,
+    "match": "loc_C079:                               ; CODE XREF: _GET_USER_NUMBER+21\u2191j",
+    "snippet": "22313:                                         ; _GET_USER_NUMBER+C5\u2191j\n22314:                 call    CLRPRF          ; clrprf()\n22315: \n22316: loc_C076:                               ; CODE XREF: _GET_USER_NUMBER+CC\u2191j\n22317:                 mov     ax, [bp+var_4]\n22318: \n22319: loc_C079:                               ; CODE XREF: _GET_USER_NUMBER+21\u2191j\n22320:                 pop     ds\n22321:                 assume ds:dseg81\n22322:                 pop     di\n22323:                 pop     si\n22324:                 leave\n22325:                 retf"
+  },
+  {
+    "line": 22326,
+    "match": "_GET_USER_NUMBER endp",
+    "snippet": "22320:                 pop     ds\n22321:                 assume ds:dseg81\n22322:                 pop     di\n22323:                 pop     si\n22324:                 leave\n22325:                 retf\n22326: _GET_USER_NUMBER endp\n22327: \n22328: ;\n22329: ; External Entry #52 into the Module\n22330: ; Attributes (0003): Fixed Exported Shared dataseg\n22331: ;\n22332: "
+  },
+  {
+    "line": 22337,
+    "match": "public _GET_USER_NUMBER_FROM_ID",
+    "snippet": "22331: ;\n22332: \n22333: ; =============== S U B R O U T I N E =======================================\n22334: \n22335: ; Attributes: bp-based frame\n22336: \n22337:                 public _GET_USER_NUMBER_FROM_ID\n22338: _GET_USER_NUMBER_FROM_ID proc far       ; CODE XREF: _REFRESH_SEARCH_NONE+24E\u2193P\n22339:                                         ; _XREF_USERS_ITEMS_POLLING_ROUTINE+77\u2193P\n22340: \n22341: var_8           = word ptr -8\n22342: var_6           = word ptr -6\n22343: var_4           = word ptr -4"
+  },
+  {
+    "line": 22338,
+    "match": "_GET_USER_NUMBER_FROM_ID proc far       ; CODE XREF: _REFRESH_SEARCH_NONE+24E\u2193P",
+    "snippet": "22332: \n22333: ; =============== S U B R O U T I N E =======================================\n22334: \n22335: ; Attributes: bp-based frame\n22336: \n22337:                 public _GET_USER_NUMBER_FROM_ID\n22338: _GET_USER_NUMBER_FROM_ID proc far       ; CODE XREF: _REFRESH_SEARCH_NONE+24E\u2193P\n22339:                                         ; _XREF_USERS_ITEMS_POLLING_ROUTINE+77\u2193P\n22340: \n22341: var_8           = word ptr -8\n22342: var_6           = word ptr -6\n22343: var_4           = word ptr -4\n22344: var_2           = word ptr -2"
+  },
+  {
+    "line": 22363,
+    "match": "loc_C09C:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+17\u2191j",
+    "snippet": "22357:                 or      ax, [bp+arg_2]\n22358:                 jnz     short loc_C09C\n22359:                 mov     ax, 0FFFFh\n22360:                 jmp     short loc_C0FF\n22361: ; ---------------------------------------------------------------------------\n22362: \n22363: loc_C09C:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+17\u2191j\n22364:                 mov     [bp+var_2], 0\n22365:                 jmp     short loc_C0E8\n22366: ; ---------------------------------------------------------------------------\n22367: \n22368: loc_C0A3:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+7C\u2193j\n22369:                 push    [bp+var_2]"
+  },
+  {
+    "line": 22368,
+    "match": "loc_C0A3:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+7C\u2193j",
+    "snippet": "22362: \n22363: loc_C09C:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+17\u2191j\n22364:                 mov     [bp+var_2], 0\n22365:                 jmp     short loc_C0E8\n22366: ; ---------------------------------------------------------------------------\n22367: \n22368: loc_C0A3:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+7C\u2193j\n22369:                 push    [bp+var_2]\n22370:                 call    sub_79700\n22371:                 pop     cx\n22372:                 or      al, al\n22373:                 jz      short loc_C0E5\n22374:                 push    [bp+var_2]"
+  },
+  {
+    "line": 22393,
+    "match": "loc_C0E5:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+30\u2191j",
+    "snippet": "22387:                 add     sp, 8\n22388:                 or      ax, ax\n22389:                 jz      short loc_C0E5\n22390:                 mov     ax, [bp+var_2]\n22391:                 mov     [bp+var_4], ax\n22392: \n22393: loc_C0E5:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+30\u2191j\n22394:                                         ; _GET_USER_NUMBER_FROM_ID+47\u2191j ...\n22395:                 inc     [bp+var_2]\n22396: \n22397: loc_C0E8:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+23\u2191j\n22398:                 mov     ax, seg NTERMS\n22399:                 mov     es, ax"
+  },
+  {
+    "line": 22394,
+    "match": "; _GET_USER_NUMBER_FROM_ID+47\u2191j ...",
+    "snippet": "22388:                 or      ax, ax\n22389:                 jz      short loc_C0E5\n22390:                 mov     ax, [bp+var_2]\n22391:                 mov     [bp+var_4], ax\n22392: \n22393: loc_C0E5:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+30\u2191j\n22394:                                         ; _GET_USER_NUMBER_FROM_ID+47\u2191j ...\n22395:                 inc     [bp+var_2]\n22396: \n22397: loc_C0E8:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+23\u2191j\n22398:                 mov     ax, seg NTERMS\n22399:                 mov     es, ax\n22400:                 mov     ax, word ptr es:NTERMS ; int nterms;"
+  },
+  {
+    "line": 22397,
+    "match": "loc_C0E8:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+23\u2191j",
+    "snippet": "22391:                 mov     [bp+var_4], ax\n22392: \n22393: loc_C0E5:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+30\u2191j\n22394:                                         ; _GET_USER_NUMBER_FROM_ID+47\u2191j ...\n22395:                 inc     [bp+var_2]\n22396: \n22397: loc_C0E8:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+23\u2191j\n22398:                 mov     ax, seg NTERMS\n22399:                 mov     es, ax\n22400:                 mov     ax, word ptr es:NTERMS ; int nterms;\n22401:                 cmp     ax, [bp+var_2]\n22402:                 jle     short loc_C0FC\n22403:                 cmp     [bp+var_4], 0FFFFh"
+  },
+  {
+    "line": 22406,
+    "match": "loc_C0FC:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+76\u2191j",
+    "snippet": "22400:                 mov     ax, word ptr es:NTERMS ; int nterms;\n22401:                 cmp     ax, [bp+var_2]\n22402:                 jle     short loc_C0FC\n22403:                 cmp     [bp+var_4], 0FFFFh\n22404:                 jz      short loc_C0A3\n22405: \n22406: loc_C0FC:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+76\u2191j\n22407:                 mov     ax, [bp+var_4]\n22408: \n22409: loc_C0FF:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+1C\u2191j\n22410:                 pop     ds\n22411:                 assume ds:dseg81\n22412:                 pop     di"
+  },
+  {
+    "line": 22409,
+    "match": "loc_C0FF:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+1C\u2191j",
+    "snippet": "22403:                 cmp     [bp+var_4], 0FFFFh\n22404:                 jz      short loc_C0A3\n22405: \n22406: loc_C0FC:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+76\u2191j\n22407:                 mov     ax, [bp+var_4]\n22408: \n22409: loc_C0FF:                               ; CODE XREF: _GET_USER_NUMBER_FROM_ID+1C\u2191j\n22410:                 pop     ds\n22411:                 assume ds:dseg81\n22412:                 pop     di\n22413:                 pop     si\n22414:                 leave\n22415:                 retf"
+  },
+  {
+    "line": 22416,
+    "match": "_GET_USER_NUMBER_FROM_ID endp",
+    "snippet": "22410:                 pop     ds\n22411:                 assume ds:dseg81\n22412:                 pop     di\n22413:                 pop     si\n22414:                 leave\n22415:                 retf\n22416: _GET_USER_NUMBER_FROM_ID endp\n22417: \n22418: ;\n22419: ; External Entry #50 into the Module\n22420: ; Attributes (0003): Fixed Exported Shared dataseg\n22421: ;\n22422: "
+  },
+  {
+    "line": 23159,
+    "match": "call    _BTECH          ; int btuech(int chan, int mode);",
+    "snippet": "23153:                 mov     word ptr [bp+var_4], ax\n23154:                 mov     ax, word ptr [bp+var_4]\n23155:                 or      ax, word ptr [bp+var_4+2]\n23156:                 jz      short loc_C6FE\n23157:                 push    0\n23158:                 push    [bp+arg_0]\n23159:                 call    _BTECH          ; int btuech(int chan, int mode);\n23160:                 add     sp, 4\n23161:                 les     bx, [bp+var_4]\n23162:                 mov     al, [bp+arg_2]\n23163:                 add     es:[bx+6ACh], al\n23164: \n23165: loc_C6FE:                               ; CODE XREF: _ADD_DELAY+21\u2191j"
+  },
+  {
+    "line": 29056,
+    "match": "public _ASK_MONSTER_A_QUESTION",
+    "snippet": "29050: ;\n29051: \n29052: ; =============== S U B R O U T I N E =======================================\n29053: \n29054: ; Attributes: bp-based frame\n29055: \n29056:                 public _ASK_MONSTER_A_QUESTION\n29057: _ASK_MONSTER_A_QUESTION proc far        ; CODE XREF: _CMD_ASK+CF\u2193P\n29058:                                         ; _CMD_GREET+AC\u2193P\n29059: \n29060: var_26          = dword ptr -26h\n29061: var_21          = byte ptr -21h\n29062: var_20          = word ptr -20h"
+  },
+  {
+    "line": 29057,
+    "match": "_ASK_MONSTER_A_QUESTION proc far        ; CODE XREF: _CMD_ASK+CF\u2193P",
+    "snippet": "29051: \n29052: ; =============== S U B R O U T I N E =======================================\n29053: \n29054: ; Attributes: bp-based frame\n29055: \n29056:                 public _ASK_MONSTER_A_QUESTION\n29057: _ASK_MONSTER_A_QUESTION proc far        ; CODE XREF: _CMD_ASK+CF\u2193P\n29058:                                         ; _CMD_GREET+AC\u2193P\n29059: \n29060: var_26          = dword ptr -26h\n29061: var_21          = byte ptr -21h\n29062: var_20          = word ptr -20h\n29063: var_1E          = word ptr -1Eh"
+  },
+  {
+    "line": 29103,
+    "match": "loc_F41B:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+68\u2193j",
+    "snippet": "29097:                 mov     ax, word ptr [bp+var_4]\n29098:                 or      ax, word ptr [bp+var_4+2]\n29099:                 jnz     short loc_F433\n29100:                 jmp     loc_F7BD\n29101: ; ---------------------------------------------------------------------------\n29102: \n29103: loc_F41B:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+68\u2193j\n29104:                 les     bx, [bp+var_14]\n29105:                 assume es:nothing\n29106:                 mov     al, es:[bx]\n29107:                 mov     ah, 0\n29108:                 push    ax\n29109:                 call    TOUPPER         ; int toupper (int c);"
+  },
+  {
+    "line": 29115,
+    "match": "loc_F433:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+3C\u2191j",
+    "snippet": "29109:                 call    TOUPPER         ; int toupper (int c);\n29110:                 pop     cx\n29111:                 les     bx, [bp+var_14]\n29112:                 mov     es:[bx], al\n29113:                 inc     word ptr [bp+var_14]\n29114: \n29115: loc_F433:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+3C\u2191j\n29116:                 mov     ax, word ptr [bp+var_14]\n29117:                 or      ax, word ptr [bp+var_14+2]\n29118:                 jz      short loc_F444\n29119:                 les     bx, [bp+var_14]\n29120:                 cmp     byte ptr es:[bx], 0\n29121:                 jnz     short loc_F41B"
+  },
+  {
+    "line": 29123,
+    "match": "loc_F444:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+5F\u2191j",
+    "snippet": "29117:                 or      ax, word ptr [bp+var_14+2]\n29118:                 jz      short loc_F444\n29119:                 les     bx, [bp+var_14]\n29120:                 cmp     byte ptr es:[bx], 0\n29121:                 jnz     short loc_F41B\n29122: \n29123: loc_F444:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+5F\u2191j\n29124:                 les     bx, [bp+var_4]\n29125:                 push    word ptr es:[bx+6]\n29126:                 push    word ptr es:[bx+4]\n29127:                 call    _GET_KNOWN_MONSTER_DATA\n29128:                 add     sp, 4\n29129:                 mov     word ptr [bp+var_8+2], dx"
+  },
+  {
+    "line": 29137,
+    "match": "loc_F468:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+89\u2191j",
+    "snippet": "29131:                 mov     ax, word ptr [bp+var_8]\n29132:                 or      ax, word ptr [bp+var_8+2]\n29133:                 jnz     short loc_F468\n29134:                 jmp     loc_F7BD\n29135: ; ---------------------------------------------------------------------------\n29136: \n29137: loc_F468:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+89\u2191j\n29138:                 les     bx, [bp+var_8]\n29139:                 mov     ax, es:[bx+114h]\n29140:                 or      ax, es:[bx+116h]\n29141:                 jnz     short loc_F47A\n29142:                 jmp     loc_F78B\n29143: ; ---------------------------------------------------------------------------"
+  },
+  {
+    "line": 29145,
+    "match": "loc_F47A:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+9B\u2191j",
+    "snippet": "29139:                 mov     ax, es:[bx+114h]\n29140:                 or      ax, es:[bx+116h]\n29141:                 jnz     short loc_F47A\n29142:                 jmp     loc_F78B\n29143: ; ---------------------------------------------------------------------------\n29144: \n29145: loc_F47A:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+9B\u2191j\n29146:                 mov     ax, word ptr [bp+var_C]\n29147:                 or      ax, word ptr [bp+var_C+2]\n29148:                 jnz     short loc_F485\n29149:                 jmp     loc_F78B\n29150: ; ---------------------------------------------------------------------------\n29151: "
+  },
+  {
+    "line": 29152,
+    "match": "loc_F485:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+A6\u2191j",
+    "snippet": "29146:                 mov     ax, word ptr [bp+var_C]\n29147:                 or      ax, word ptr [bp+var_C+2]\n29148:                 jnz     short loc_F485\n29149:                 jmp     loc_F78B\n29150: ; ---------------------------------------------------------------------------\n29151: \n29152: loc_F485:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+A6\u2191j\n29153:                 push    word ptr [bp+var_C+2]\n29154:                 push    word ptr [bp+var_C]\n29155:                 push    0\n29156:                 les     bx, [bp+var_8]\n29157:                 push    word ptr es:[bx+116h]\n29158:                 push    word ptr es:[bx+114h]"
+  },
+  {
+    "line": 29166,
+    "match": "loc_F4A9:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+CA\u2191j",
+    "snippet": "29160:                 add     sp, 0Ah\n29161:                 or      al, al\n29162:                 jnz     short loc_F4A9\n29163:                 jmp     loc_F7BD\n29164: ; ---------------------------------------------------------------------------\n29165: \n29166: loc_F4A9:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+CA\u2191j\n29167:                 les     bx, [bp+var_C]\n29168:                 mov     dx, es:[bx+10h]\n29169:                 mov     ax, es:[bx+0Eh]\n29170:                 les     bx, [bp+var_8]\n29171:                 cmp     dx, es:[bx+116h]\n29172:                 jz      short loc_F4C1"
+  },
+  {
+    "line": 29176,
+    "match": "loc_F4C1:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+E2\u2191j",
+    "snippet": "29170:                 les     bx, [bp+var_8]\n29171:                 cmp     dx, es:[bx+116h]\n29172:                 jz      short loc_F4C1\n29173:                 jmp     loc_F7BD\n29174: ; ---------------------------------------------------------------------------\n29175: \n29176: loc_F4C1:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+E2\u2191j\n29177:                 cmp     ax, es:[bx+114h]\n29178:                 jz      short loc_F4CB\n29179:                 jmp     loc_F7BD\n29180: ; ---------------------------------------------------------------------------\n29181: \n29182: loc_F4CB:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+EC\u2191j"
+  },
+  {
+    "line": 29182,
+    "match": "loc_F4CB:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+EC\u2191j",
+    "snippet": "29176: loc_F4C1:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+E2\u2191j\n29177:                 cmp     ax, es:[bx+114h]\n29178:                 jz      short loc_F4CB\n29179:                 jmp     loc_F7BD\n29180: ; ---------------------------------------------------------------------------\n29181: \n29182: loc_F4CB:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+EC\u2191j\n29183:                 mov     ax, [bp+arg_4]\n29184:                 or      ax, [bp+arg_6]\n29185:                 jnz     short loc_F535\n29186:                 les     bx, [bp+var_C]\n29187:                 mov     ax, es:[bx+12h]\n29188:                 or      ax, es:[bx+14h]"
+  },
+  {
+    "line": 29211,
+    "match": "loc_F515:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+104\u2191j",
+    "snippet": "29205:                 push    word ptr es:USRNUM ; int usrnum;\n29206:                 call    _TELL_USER\n29207:                 pop     cx\n29208:                 jmp     loc_F7BD\n29209: ; ---------------------------------------------------------------------------\n29210: \n29211: loc_F515:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+104\u2191j\n29212:                 mov     ax, word ptr [bp+var_4]\n29213:                 add     ax, 8Eh\n29214:                 push    word ptr [bp+var_4+2]\n29215:                 push    ax\n29216:                 les     bx, [bp+var_C]\n29217:                 assume es:nothing"
+  },
+  {
+    "line": 29225,
+    "match": "loc_F535:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+F7\u2191j",
+    "snippet": "29219:                 push    word ptr es:[bx+12h]\n29220:                 call    _DISPLAY_LONG_TEXT\n29221:                 add     sp, 8\n29222:                 jmp     loc_F7BD\n29223: ; ---------------------------------------------------------------------------\n29224: \n29225: loc_F535:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+F7\u2191j\n29226:                 mov     dx, word ptr [bp+var_C+2]\n29227:                 mov     ax, word ptr [bp+var_C]\n29228:                 add     ax, 16h\n29229:                 mov     word ptr [bp+var_1C+2], dx\n29230:                 mov     word ptr [bp+var_1C], ax\n29231:                 mov     [bp+var_1E], 0"
+  },
+  {
+    "line": 29247,
+    "match": "loc_F573:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+194\u2191j",
+    "snippet": "29241:                 mov     ax, word ptr [bp+var_26]\n29242:                 or      ax, word ptr [bp+var_26+2]\n29243:                 jnz     short loc_F573\n29244:                 jmp     loc_F768\n29245: ; ---------------------------------------------------------------------------\n29246: \n29247: loc_F573:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+194\u2191j\n29248:                 les     bx, [bp+var_26]\n29249:                 cmp     byte ptr es:[bx], 0\n29250:                 jnz     short loc_F57F\n29251:                 jmp     loc_F768\n29252: ; ---------------------------------------------------------------------------\n29253: "
+  },
+  {
+    "line": 29254,
+    "match": "loc_F57F:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+1A0\u2191j",
+    "snippet": "29248:                 les     bx, [bp+var_26]\n29249:                 cmp     byte ptr es:[bx], 0\n29250:                 jnz     short loc_F57F\n29251:                 jmp     loc_F768\n29252: ; ---------------------------------------------------------------------------\n29253: \n29254: loc_F57F:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+1A0\u2191j\n29255:                 les     bx, [bp+var_26]\n29256:                 mov     byte ptr es:[bx], 0\n29257:                 inc     word ptr [bp+var_26]\n29258:                 mov     dx, word ptr [bp+var_1C+2]\n29259:                 mov     ax, word ptr [bp+var_1C]\n29260:                 mov     word ptr [bp+var_14+2], dx"
+  },
+  {
+    "line": 29265,
+    "match": "loc_F597:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+1E7\u2193j",
+    "snippet": "29259:                 mov     ax, word ptr [bp+var_1C]\n29260:                 mov     word ptr [bp+var_14+2], dx\n29261:                 mov     word ptr [bp+var_14], ax\n29262:                 jmp     short loc_F5AF\n29263: ; ---------------------------------------------------------------------------\n29264: \n29265: loc_F597:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+1E7\u2193j\n29266:                 les     bx, [bp+var_14]\n29267:                 mov     al, es:[bx]\n29268:                 mov     ah, 0\n29269:                 push    ax\n29270:                 call    TOUPPER         ; int toupper (int c);\n29271:                 pop     cx"
+  },
+  {
+    "line": 29276,
+    "match": "loc_F5AF:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+1BB\u2191j",
+    "snippet": "29270:                 call    TOUPPER         ; int toupper (int c);\n29271:                 pop     cx\n29272:                 les     bx, [bp+var_14]\n29273:                 mov     es:[bx], al\n29274:                 inc     word ptr [bp+var_14]\n29275: \n29276: loc_F5AF:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+1BB\u2191j\n29277:                 mov     ax, word ptr [bp+var_14]\n29278:                 or      ax, word ptr [bp+var_14+2]\n29279:                 jnz     short loc_F5BA\n29280:                 jmp     loc_F742\n29281: ; ---------------------------------------------------------------------------\n29282: "
+  },
+  {
+    "line": 29283,
+    "match": "loc_F5BA:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+1DB\u2191j",
+    "snippet": "29277:                 mov     ax, word ptr [bp+var_14]\n29278:                 or      ax, word ptr [bp+var_14+2]\n29279:                 jnz     short loc_F5BA\n29280:                 jmp     loc_F742\n29281: ; ---------------------------------------------------------------------------\n29282: \n29283: loc_F5BA:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+1DB\u2191j\n29284:                 les     bx, [bp+var_14]\n29285:                 cmp     byte ptr es:[bx], 0\n29286:                 jnz     short loc_F597\n29287:                 jmp     loc_F742\n29288: ; ---------------------------------------------------------------------------\n29289: "
+  },
+  {
+    "line": 29290,
+    "match": "loc_F5C6:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+398\u2193j",
+    "snippet": "29284:                 les     bx, [bp+var_14]\n29285:                 cmp     byte ptr es:[bx], 0\n29286:                 jnz     short loc_F597\n29287:                 jmp     loc_F742\n29288: ; ---------------------------------------------------------------------------\n29289: \n29290: loc_F5C6:                               ; CODE XREF: _ASK_MONSTER_A_QUESTION+398\u2193j\n29291:                 mov     ax, seg USRNUM\n29292:                 mov     es, ax\n29293:                 assume es:nothing\n29294:                 mov     ax, word ptr es:USRNUM ; int usrnum;\n29295:                 shl     ax, 3\n29296:                 mov     dx, seg dseg36"
+  }
+]

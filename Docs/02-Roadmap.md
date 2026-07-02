@@ -74,6 +74,8 @@ CodeUpdate-0052 preserves Build0027 current-state handoff evidence under `DataDe
 
 CodeUpdate-0053 replaces only repository `Data/` from the embedded Patch0068 `/Data` payload, preserves Patch0068 findings under `DataDecodeCheckpoints/Patch0068/`, preserves Handoff0074 under `DataDecodeCheckpoints/Handoff0074/`, and records Patch0071 as unreadable/unapplied. Duplicate `Docs/PatchHandoffs/` copies are intentionally not retained.
 
+CodeUpdate-0054 copies only repository-new files from Validation0013 and DocUpdate0024. It preserves the CodeUpdate-0053 `Data/` baseline by skipping all existing repository paths.
+
 All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
@@ -142,4 +144,4 @@ Milestone 2 should focus on engine modernization, host/world editor planning, se
 
 First implementation slice: CodeUpdate-0029 wires Server startup through existing Core configuration, logging, repository health, event bus, and startup diagnostics without adding gameplay systems.
 
-Current implementation slice: CodeUpdate-0053 records the Patch0068 embedded `Data/` replacement and Handoff0074/Patch0068 evidence intake. Next work should verify and reconcile the new `Data/` baseline before further server behavior or executable harness work.
+Current implementation slice: CodeUpdate-0054 records the Validation0013 and DocUpdate0024 new-file-only intake. Next work should build a focused verification index over Validation0013 evidence and current `Data/` before further server behavior or executable harness work.

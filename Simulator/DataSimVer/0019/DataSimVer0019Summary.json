@@ -1,0 +1,39 @@
+{
+  "pass": "DataSimVer0019",
+  "baseline": "DataSimVer0018",
+  "sequenceValidated": true,
+  "nextValidPass": "DataSimVer0020",
+  "dataChanged": false,
+  "topLevelCleaned": true,
+  "counts": {
+    "rooms": 1246,
+    "items": 1950,
+    "monsters": 1100,
+    "quests": 0,
+    "schedulerCandidateRows": 2132,
+    "nativeMessageClueRows": 128,
+    "itemPersistenceRows": 1950,
+    "roomVisibleHiddenRows": 371,
+    "worldResetTermClues": 10
+  },
+  "promotions": {
+    "roomEndpointsPromoted": false,
+    "specialExitSemanticsPromoted": false,
+    "cleanupSemanticsPromoted": false
+  },
+  "discoveries": [
+    "Cleaned cumulative package to required top-level structure only.",
+    "Cross-checked timer/reset/search/cleanup/event terms against native message text catalogs as clue-only evidence.",
+    "Built scheduler hypothesis map from direct table fields only.",
+    "No global world-reset schedule was promoted.",
+    "No cleanup delete-vs-hide semantic was promoted."
+  ],
+  "remainingUnknowns": [
+    "global world reset cadence",
+    "cleanup hide/delete/persist rules",
+    "Search stat formula and thresholds",
+    "monster respawn clock semantics",
+    "event scheduler queue and trigger model",
+    "quest persistence storage"
+  ]
+}

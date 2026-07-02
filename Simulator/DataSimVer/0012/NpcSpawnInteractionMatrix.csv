@@ -1,0 +1,963 @@
+room_number,room_name,monster_type,boss_type_id,respawn_minutes,max_area_cap,linked_spawn_room,monster_name,monster_level,interaction_model,confidence
+2,Lucky Strike Casino,6,0,5,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+8,Intersection of Estwall St. & Crown St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+10,Lucky Strike Casino,6,0,5,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+11,Lucky Strike Casino,6,789,5,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+21,Intersection of Guild St. & River St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+28,River Street,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+35,Intersection of River St. & Westwall St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+65,"Strange Mansion, Entrance",11,0,1,10,65,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+66,Intersection of Noble St. & Westwall St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+69,"Noble Street, Slum Gates",6,0,3,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+101,"Silver Street, Eastern End",5,784,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+102,Silver Street,5,40,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+103,Intersection of Silver St. & Bridge St.,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+104,Intersection of Silver St. & Park St.,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+105,Silver Street,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+106,Intersection of Silver St. & Brass St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+107,Silver Street,6,0,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+114,Oak Street,6,0,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+127,Park Street,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+130,Park,6,0,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+132,Oak Street,6,0,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+137,Park,6,0,2,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+159,Jael's Missile Weapons,0,247,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+184,Intersection of Bridge St. & Crown St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+206,Arena Practice Room,0,200,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+207,Brass Street,6,0,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+212,Intersection of Crown St. & Brass St.,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+218,Intersection of Guild St. & Crown St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+219,Guild Street,6,0,2,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+222,Guild Street,6,0,2,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+223,"Guild Street, Southern End",6,0,1,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+224,Town Square,5,784,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+225,"Sovereign Street, Northern End",6,0,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+226,Sovereign Street,6,0,5,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+228,Sovereign Street,6,0,3,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+229,Intersection of Sovereign St. & Oak St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+239,Dusty Shack,0,1053,5,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+245,Intersection of Stone St. and Crown St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+253,Silver Street,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+254,"Silver Street, Western End",5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+260,Sovereign Street,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+261,Sovereign Street,6,0,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+288,The Silver River,21,0,5,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+290,Sarkhee's Jewellery,2,43,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+297,Bank of Godfrey,5,784,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+301,"Temple Street, Eastern End",5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+302,Temple Street,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+303,Temple Street,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+305,"Skali's Fine Armour, Front Room",2,27,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+306,"Skali's Fine Armour, Showroom",2,26,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+307,Thuluk's Marvelous Axes,2,23,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+309,"Sentara's Clothing, Front Room",2,28,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+311,"The Homely Hearth, Common Room",6,248,2,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+313,"The Homely Hearth, Stairwell",5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+315,"The Homely Hearth, Common Room",6,249,1,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+318,Intersection of Stone St. & Oak St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+324,Intersection of Temple St. & Stone St.,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+325,Temple Street,5,0,3,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+332,Curio Shop,2,42,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+334,General Store,2,41,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+348,"Adventurer's Guild, Foyer",2,39,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+354,Colin's Maces,2,25,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+355,Helfgrim's Blades,2,24,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+373,Sheriff's Office,5,0,2,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+383,Dark Alley,6,0,1,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+390,"Guild Street, Northern End",6,0,1,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+391,Wailing Hound Tavern,6,248,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+398,Magic Shoppe,2,22,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+405,Small Alleyway,6,0,2,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+522,Temple Spell Store,2,46,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+525,Temple Chapel,2,45,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+527,Temple Healer,2,243,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+538,Dungeon Stairs,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+539,Dungeon Corridor,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+540,Dungeon Corridor,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+650,"Sewer Tunnel, Intersection",6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+713,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+714,"Sewer Tunnel, Intersection",6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+715,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+716,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+717,"Sewer Tunnel, Intersection",6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+718,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+719,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+720,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+730,Sewer Tunnel,6,0,5,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+731,"Sewer Tunnel, Intersection",6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+732,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+733,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+734,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+735,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+736,"Sewer Tunnel, Dead End",6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+751,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+752,"Sewer Tunnel, Intersection",6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+753,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+757,Sewer Tunnel,6,0,0,0,766,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+816,"Graveyard, Entry",7,0,1,100,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+817,"Graveyard, Southern Edge",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+818,"Graveyard, Southern Edge",7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+819,"Graveyard, Southern Edge",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+820,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+822,Graveyard,7,0,1,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+823,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+824,Graveyard,7,790,1,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+826,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+828,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+829,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+830,Graveyard,7,790,1,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+831,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+832,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+833,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+834,"Graveyard, Tomb Entrance",7,0,1,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+835,Crypt,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+836,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+837,"Graveyard, East of Tomb",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+838,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+839,"Graveyard, North of Tomb",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+840,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+842,"Graveyard, West of Tomb",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+848,Inn Second Floor,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+1072,Slum Entrance,5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+1073,Slum Street,6,0,0,6,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1074,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1075,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1076,"Slum Street, Crossroads",6,0,5,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1077,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1078,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1079,"Slum Street, Bend",6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1080,"Slum Street, Bend",6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1081,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1089,"Slum Street, Square",6,0,0,0,1083,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1120,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1121,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1122,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1123,"Slum Street, Intersection",6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1124,Slum Street,6,0,5,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1152,"Slum Street, Bend",6,0,0,0,1155,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1153,"Slum Street, Bend",6,0,0,0,1155,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1154,Slum Street,6,0,0,0,1155,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1155,"Slum Street, Intersection",6,0,5,9,1155,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1156,Slum Street,6,0,0,0,1083,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1157,Slum Street,6,0,0,0,1083,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1158,Slum Street,6,0,0,0,1083,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1159,Slum Street,6,0,0,0,1083,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1160,Slum Street,6,0,0,0,1083,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1161,Slum Street,6,0,5,0,1083,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1162,Slum Street,6,0,0,8,1162,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1163,Slum Street,6,0,0,0,1162,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1181,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1182,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1183,"Slum Street, Intersection",6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1184,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1185,"Slum Street, Bend",6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1186,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1187,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1188,Slum Street,6,0,0,0,1083,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1189,Slum Street,6,0,0,0,1155,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1190,Slum Street,6,0,0,0,1155,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1191,Slum Street,6,0,0,0,1155,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1205,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1206,"Slum Street, Intersection",6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1207,Slum Street,6,0,5,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1208,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1209,"Slum Street, Intersection",6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1210,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1211,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1212,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1213,Dark Alley,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1214,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1216,Slum Street,6,0,0,0,1073,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+1330,Darkwood Forest,11,0,5,100,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+1352,Dungeon Corridor,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+1355,Dungeon Corridor,5,0,5,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+1381,"Town Gates, Inner Bailey",5,0,0,0,0,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+1711,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1718,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1719,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1720,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1722,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1723,Darkwood Forest,10,0,5,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1724,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1725,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1726,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1727,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1728,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1729,Darkwood Forest,10,0,5,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1730,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1731,Darkwood Forest,10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+1813,Pier,2,61,0,1,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2141,"Newhaven, Weapons Shop",2,74,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2142,"Newhaven, Armour Shop",2,75,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2144,"Newhaven, Spell Shop",2,77,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2145,"Newhaven, General Store",2,76,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2147,"Newhaven, Adventurer's Guild",2,78,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2149,"Newhaven, Docks",0,81,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2190,"Newhaven, Healer",2,73,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2231,Large Tomb,0,83,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2236,Large Tomb,0,85,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2240,Large Tomb,0,87,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2241,Large Tomb,0,88,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2256,Large Tomb,0,91,5,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2258,Large Tomb,0,92,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2260,Large Tomb,0,93,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2262,Large Tomb,0,94,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2273,Large Tomb,0,96,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2275,Large Tomb,0,97,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2278,Large Tomb,0,98,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2300,Large Tomb,0,102,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2301,Large Tomb,0,103,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2302,Large Tomb,0,104,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2303,Large Tomb,0,105,0,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2304,"Darkwood Forest, Clearing",10,0,0,0,1709,thug,1,combat_spawn,expected_model_from_spawn_tables
+2305,"Darkwood Tree, Small House",10,106,0,0,0,thug,1,combat_spawn,expected_model_from_spawn_tables
+2306,"Small House, Attic",10,0,5,0,0,thug,1,combat_spawn,expected_model_from_spawn_tables
+2307,Spell Shop,6,0,0,0,0,orc rogue,1,combat_spawn,expected_model_from_spawn_tables
+2325,Small Dark Room,2,128,15,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2342,"The Silver River, Silvermere Docks",21,0,20,15,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2343,"The Silver River, North of Silvermere",21,0,0,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2344,"The Silver River, North of Silvermere",21,0,0,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2345,"The Silver River, North of Silvermere",21,0,0,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2346,"The Silver River, North of Silvermere",21,0,0,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2347,"The Silver River, North of Silvermere",21,0,0,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2363,"The Silver River, North of Silvermere",21,0,0,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2364,"The Silver River, North of Silvermere",21,0,5,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2365,"The Silver River, North of Silvermere",21,0,5,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2366,"The Silver River, North of Silvermere",21,0,5,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2367,"The Silver River, North of Silvermere",21,0,5,0,2342,half-ogre bodyguard,1,combat_spawn,expected_model_from_spawn_tables
+2418,Graveyard,7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2606,"Graveyard, Western Edge",7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2607,"Graveyard, Western Edge",7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2608,"Graveyard, Western Edge",7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2609,"Graveyard, Western Edge",7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2642,"Graveyard, South-East Corner",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2643,"Graveyard, Eastern Edge",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2644,"Graveyard, Eastern Edge",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2645,"Graveyard, Eastern Edge",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2646,"Graveyard, Eastern Edge",7,0,0,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+2680,Gold Mine Tunnel,24,0,5,0,2650,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+2783,Darkwood Forest,11,0,5,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2784,Darkwood Forest,11,0,5,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2785,Darkwood Forest,11,0,5,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2786,Darkwood Forest,11,0,2,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2787,Darkwood Forest,11,0,5,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2788,Darkwood Forest,11,0,5,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2789,Darkwood Forest,11,0,5,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2790,Darkwood Forest,11,0,5,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2791,Darkwood Forest,11,0,1,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2792,Darkwood Forest,11,0,5,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2793,Darkwood Forest,11,0,1,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2794,Darkwood Forest,11,0,1,0,1330,skeleton,1,combat_spawn,expected_model_from_spawn_tables
+2935,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2936,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2937,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2938,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2939,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2940,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2941,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2959,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2960,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2961,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2962,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2963,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2964,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2965,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2966,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2967,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2968,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2969,Darkwood Forest,14,0,2,200,2803,guardsman,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+3276,Graveyard,7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+3281,Graveyard,7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+3282,Graveyard,7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+3288,Graveyard,7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+3293,Graveyard,7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+3294,Graveyard,7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+3300,Graveyard,7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+3301,Graveyard,7,0,5,0,816,kobold thief,1,combat_spawn,expected_model_from_spawn_tables
+176,"Rocky Valley, Massive Doors",9,0,0,0,116,unresolved,,combat_spawn,expected_model_from_spawn_tables
+1173,Stone Tunnel,9,0,0,0,1123,unresolved,,combat_spawn,expected_model_from_spawn_tables
+1176,Stone Tunnel,9,0,0,0,1123,unresolved,,combat_spawn,expected_model_from_spawn_tables
+1177,Stone Tunnel,9,0,0,0,1123,unresolved,,combat_spawn,expected_model_from_spawn_tables
+1178,Stone Tunnel,9,0,0,0,1123,unresolved,,combat_spawn,expected_model_from_spawn_tables
+1179,Stone Tunnel,9,0,0,0,1123,unresolved,,combat_spawn,expected_model_from_spawn_tables
+1183,Stone Tunnel,9,0,0,0,1123,unresolved,,combat_spawn,expected_model_from_spawn_tables
+1808,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2519,"Rhudaur, Massive Doors",19,0,0,38,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2520,"Shadow Street, Northern End",19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2521,Shadow Street,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2522,"Shadow Street, Southern End",19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2523,Rhudaur Town Centre,19,0,2,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2524,"Dagger Street, Eastern End",19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2525,"Dagger Street, Western End",19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2526,"Flame Street, Western End",19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2527,"Flame Street, Eastern End",19,0,2,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2528,"Temple Street, Northern End",19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2529,"Temple Street, Southern End",19,0,1,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2530,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2531,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2534,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2535,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2536,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2537,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2538,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2539,Smelly Dump,26,0,5,0,2519,Skali,1,combat_spawn,expected_model_from_spawn_tables
+2540,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2541,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2544,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2545,Dark Alley,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2546,Dark Alley,19,0,1,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2547,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2548,Dark Park,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2549,Dark Park,19,0,1,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2550,The Drunken Demon Inn,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2551,The Drunken Demon Inn,19,0,60,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2552,"The Drunken Demon Inn, Stairwell",19,0,1,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2553,"The Drunken Demon Inn, Kitchen",19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2559,Ruined Mansion,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2560,Abandoned House,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2561,Thieve's Guild,19,253,0,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2562,Weapon Shop,19,0,60,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2563,Missile Weapon Shop,19,0,60,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2564,The Bloody Dagger Tavern,19,0,60,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2566,Exotic Weapons Shop,19,257,10,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2567,Armour Shop,19,0,60,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2568,Bank of Rhudaur,19,238,0,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2569,The Screaming Wench Tavern,19,0,60,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2570,Training Hall,19,256,0,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2571,Dark Temple,19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2572,"Dark Temple, Healing Room",19,255,0,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2573,"Dark Temple, Altar",19,0,0,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2574,Mystical Items Store,19,0,60,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2575,"Fine Mansion, Foyer",19,0,0,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2576,Fine Mansion,19,0,0,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2577,"Fine Mansion, Study",19,263,0,0,0,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2581,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2582,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2583,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2584,Dark Alley,19,0,2,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2585,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2586,Dark Alley,19,0,2,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2587,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2588,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2589,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2590,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2592,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2593,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2594,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2595,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2596,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2597,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2598,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2599,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2600,Dark Alley,19,0,5,0,2519,orc lieutenant,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+541,Common Area,5,0,10,0,525,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+542,Training Area,5,0,10,0,525,acid slime,1,combat_spawn,expected_model_from_spawn_tables
+117,Valley Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+118,Valley Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+119,Valley Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+120,"Valley Path, Near Inn",24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+121,"Valley Path, Outside Inn",24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+122,"Valley Path, Outside Inn",24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+123,Grassy Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+124,Gypsy Encampment,24,385,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+125,"Cozy Inn, Foyer",0,553,0,0,110,unresolved,,no_spawn,expected_model_from_spawn_tables
+126,Common Room,0,384,5,0,110,unresolved,,no_spawn,expected_model_from_spawn_tables
+134,Swampside Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+135,Swampside Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+136,Swampside Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+137,Swampside Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+234,Swampside Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+235,Swampside Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+236,Swampside Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+237,Swampside Path,24,0,5,0,110,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+238,Misty Swamp Path,24,0,5,125,238,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+239,Misty Swamp Path,24,0,5,0,238,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+240,Misty Swamp Path,24,0,5,0,238,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+548,Rocky Plain Path,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+549,"Gnome Village, Entrance",24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+550,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+551,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+552,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+553,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+554,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+555,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+556,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+557,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+558,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+559,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+560,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+561,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+562,Ascent to Khazarad,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+563,Small Cottage,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+564,Small Cottage,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+565,Eating Hall,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+566,General Store,24,399,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+567,Jeweler's Shop,24,399,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+568,Small Cottage,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+569,Small Cottage,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+570,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+571,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+572,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+573,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+578,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+579,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+580,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+581,Small Cottage,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+582,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+583,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+584,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+585,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+586,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+587,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+588,Small Cottage,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+610,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+611,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+612,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+613,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+614,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+615,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+616,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+617,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+618,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+619,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+621,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+622,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+625,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+628,Small Cottage,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+629,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+630,Small Cottage,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+631,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+632,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+633,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+634,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+635,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+636,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+637,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+638,Gnome Village,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+645,Alchemist's Hut,24,401,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+676,Tilled Fields,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+679,Tilled Fields,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+709,Rocky Path,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+710,Rocky Path,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+711,Rocky Path,24,0,5,0,540,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1244,Ascent to Khazarad,24,0,5,0,77,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1245,Gates of Khazarad,24,0,5,250,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1246,Entrance to Khazarad,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1247,Barracks,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1248,Barracks,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1249,"Khazarad, Entry Arch",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1250,"Khazarad, Mithril Way",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1251,"Khazarad, Mithril Way",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1252,"Khazarad, Mithril Way",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1253,"Khazarad, Mithril Way",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1254,"Khazarad, Mithril Way",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1255,"Khazarad, Garden Walk",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1256,"Khazarad, Garden Walk",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1257,"Khazarad, Garden Walk",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1258,"Khazarad, Garden Walk",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1259,"Khazarad, Garden Entrance",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1260,"Khazarad, Garden Walk",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1261,"Khazarad, Garden Walk",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1262,"Khazarad, Garden Walk",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1263,"Khazarad, Gate Wall",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1264,"Khazarad, Gate Wall",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1265,"Khazarad, Corner of Gate Wall and Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1266,"Khazarad, Gate Wall",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1267,"Khazarad, Gate Wall",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1268,"Khazarad, Corner of Gate Wall and Iron Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1269,"Khazarad, Iron Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1274,"Khazarad, Iron Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1275,"Khazarad, Junction of Iron Street and South Alley",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1276,"Khazarad, Iron Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1282,"Khazarad, Corner of Iron Street and Mine Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1283,"Khazarad, Mine Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1284,"Khazarad, Mine Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1285,"Khazarad, Junction of Mine Street and Craft Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1286,"Khazarad, Mine Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1287,"Khazarad, Mine Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1288,"Khazarad, Corner of Mine Street and Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1289,"Khazarad, Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1290,"Khazarad, Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1291,"Khazarad, Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1292,"Khazarad, Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1293,"Khazarad, Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1294,"Khazarad, Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1295,"Khazarad, Junction of Forge Street and South Alley",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1296,"Khazarad, Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1301,"Khazarad, Forge Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1302,"Khazarad, North Alley",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1303,"Khazarad, South Alley",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1304,"Khazarad, Craft Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1305,"Khazarad, Craft Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1306,"Khazarad, Craft Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1307,"Khazarad, Craft Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1308,"Khazarad, Craft Street",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1309,Stone Garden of Khazarad,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1314,Dwarven Home,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1316,Dwarven Home,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1317,Dwarven Home,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1328,Khazarad Inn,24,419,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1329,"Khazarad Inn, Stairwell",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1330,"Khazarad Inn, Hallway",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1331,"Khazarad Inn, Bedroom",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1332,Frothing Mug Tavern,24,423,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1333,Gambling Hall,24,1000,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1334,Bank of Khazarad,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1335,General Store,24,421,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1336,Axe of Fury Weapon Store,24,421,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1337,Martok's Battered Breastplate,24,421,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1339,Gaol of Khazarad,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1340,"Gaol of Khazarad, Hallway",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1341,Square Cell,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1342,Harkul's Haberdashery,24,421,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1343,Gurdal's Leather Goods,24,421,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1344,Drotha's Deadly Weaponry,24,421,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1345,Storage Room,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1346,Gorthun's Gemstones,24,421,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1347,Dwarven Temple,24,428,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1348,Dwarven Temple,24,429,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1349,Great Arena of Khazarad,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1352,Training Area,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1355,Forge Entrance,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1361,Ornate Passageway,24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1362,"Ornate Passageway, Stairwell",24,0,5,0,1245,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1567,Miner's Guild,24,0,5,15,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1568,Iron Mine Entrance,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1569,"Iron Mine, Cart Track",24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1570,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1571,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1572,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1573,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1574,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1576,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1577,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1578,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1579,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1580,Iron Mine Tunnel,24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1585,"Iron Mine, Cart Track",24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1586,"Iron Mine, Cart Track",24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1587,"Iron Mine, Cart Track",24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1588,"Iron Mine, Cart Track",24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+1589,"Iron Mine, Cart Track",24,0,5,0,1567,Helfgrim,1,combat_spawn,expected_model_from_spawn_tables
+780,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+781,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+782,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+783,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+784,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+785,"Cracked Plain, Black Chasm",27,0,5,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+786,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+787,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+788,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+789,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+790,"Cracked Plain, Black Chasm",27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+815,Cracked Plain,27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+816,Cracked Plain,27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+817,Cracked Plain,27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+818,Cracked Plain,27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+819,Cracked Plain,27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+830,Cracked Plain,27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+831,Cracked Plain,27,0,0,0,732,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+933,"Lava Fields, Cavern Wall",27,0,5,0,883,Gurbultis,1,combat_spawn,expected_model_from_spawn_tables
+1112,"Dark Valley, Iron Gate",26,0,5,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1113,Dreary Village,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1114,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1115,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1116,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1117,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1118,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1119,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1120,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1121,Dreary Village,26,0,5,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1122,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1123,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1124,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1125,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1126,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1127,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1128,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1129,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1130,"Dreary Village, Crossroads",26,0,5,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1131,"Dreary Village, Back Streets",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1132,Dreary Village,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1133,Dreary Village,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1134,Stone Barracks,26,0,8,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1135,Evil Chapel,26,0,5,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1136,Small Store,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1137,Dirt Road,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1138,Dirt Road,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1139,Dirt Road,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1140,Dirt Road,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1141,"Dirt Road, Black Fortress Gate",26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1142,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1143,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1144,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1145,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1146,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1147,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1149,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1150,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1151,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1152,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1153,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1154,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1155,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1156,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1157,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1163,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1164,Black Weed Fields,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1171,Ramshackle Barn,26,0,0,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+1529,Dark Valley,26,0,5,0,1107,Skali,1,combat_spawn,expected_model_from_spawn_tables
+460,Large Hole,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+461,Black Steel Gate,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+462,"Town Gates, Archway",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+463,"Dark Street, Junction",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+464,Back Road,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+465,Back Road,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+466,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+467,"Dark Street, Junction",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+468,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+469,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+470,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+471,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+472,"Dark Street, Junction",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+473,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+474,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+475,"Dark Street, Junction",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+476,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+477,"Dark Street, Junction",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+478,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+479,Back Road,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+480,Back Road,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+481,"City, Main Street",22,0,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+482,"Dark Street, Junction",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+483,Back Road,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+484,Back Road,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+485,"City, Main Street",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+486,Musty Store,22,348,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+487,Narrow Alley,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+488,Narrow Alley,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+491,Cobblestone Path,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+492,Royal Prison,22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+559,"Dark-Elf City, Moatside",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+560,"Dark-Elf Castle, Gatehouse",22,0,0,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+1041,Ethereal Prison,22,370,5,0,0,Aiken,1,combat_spellcaster_spawn,expected_model_from_spawn_tables
+268,"Rocky Trail, Bottleneck Pass",16,0,0,0,0,ghoul,1,combat_spawn,expected_model_from_spawn_tables
+269,"Rocky Trail, Bottleneck Pass",16,0,0,0,0,ghoul,1,combat_spawn,expected_model_from_spawn_tables
+270,"Ancient Keep, Entrance",16,0,0,0,0,ghoul,1,combat_spawn,expected_model_from_spawn_tables
+271,"Ancient Keep, Throne Room",2,186,0,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+306,Rocky Trail,16,0,5,0,0,ghoul,1,combat_spawn,expected_model_from_spawn_tables
+2,Dusty Village,20,0,5,50,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+3,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+4,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+5,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+6,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+7,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+8,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+9,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+10,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+12,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+13,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+14,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+15,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+16,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+17,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+18,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+19,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+20,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+21,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+22,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+23,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+24,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+25,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+26,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+27,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+28,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+29,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+31,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+32,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+33,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+34,Dusty Village,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+35,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+36,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+37,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+38,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+39,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+40,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+42,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+43,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+44,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+45,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+47,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+48,Canvas Tent,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+49,Village Store,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+50,Storage Room,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+51,Cloakroom,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+52,Common Room,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+53,Inn Stairwell,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+54,Kitchen,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+55,"Upper Floor, Landing",20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+56,Sleeping Chamber,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+57,Sleeping Chamber,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+58,Sleeping Chamber,20,0,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+59,Ornate Tent,20,554,5,0,2,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+714,Scorching Desert,20,0,5,0,135,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+861,Scorching Desert,20,0,5,0,135,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+1799,Deep Dark Pit,0,589,5,0,1521,unresolved,,no_spawn,expected_model_from_spawn_tables
+2249,Small Stone Chamber,20,0,5,0,1521,mercenary,1,combat_spawn,expected_model_from_spawn_tables
+2381,Platform of Stars,0,539,5,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+311,Temple Stairs,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+312,Temple Stairs,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+313,Temple Stairs,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+314,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+315,Market Street,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+316,Market Street,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+317,"Armour Shop, Front Room",31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+318,"Armour Shop, Back Room",31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+319,Market Street,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+320,Bank,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+321,Market Street,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+322,Corner of Market Street and Alley,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+323,Well Lit Alley,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+324,Well Lit Alley,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+325,"Well Lit Alley, Corner",31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+326,Well Lit Alley,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+327,Well Lit Alley,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+328,"Well Lit Alley, Dead End",31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+329,Hides Shop,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+330,"Weapons Shop, Front Room",31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+331,"Weapons Shop, Back Room",31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+332,Market Street,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+333,Barracks,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+334,Barracks,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+335,Barracks,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+336,Barracks,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+337,Barracks,31,0,5,80,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+357,Forest Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+358,Forest Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+359,"Forest Street, Intersection",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+360,Elder's Path,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+361,Elder's Path,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+375,Elder's Path,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+376,"Forest Street, Intersection",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+377,Forest Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+378,Forest Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+379,Elders' Council Chambers,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+380,"Elders' Council Chambers, Waiting Room",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+381,"Elders' Council Chambers, Private Quarters",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+382,"Elders' Council Chambers, Craftswoman's Room",31,695,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+383,"Elders' Council Chambers, Meeting Hall",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+384,"Elders' Council Chambers, Meeting Hall",31,656,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+385,Forest Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+412,Barracks,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+413,Barracks,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+414,Barracks,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+415,Barracks,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+416,Barracks,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+417,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+418,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+419,Corner of Market Street and Alley,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+420,Well Lit Alley,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+421,Well Lit Alley,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+422,"Well Lit Alley, Corner",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+423,Well Lit Alley,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+424,Well Lit Alley,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+427,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+428,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+429,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+430,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+431,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+432,"Magic Shop, Front Room",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+433,"Magic Shop, Back Room",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+434,Jewelry Shop,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+435,"General Store, Front Room",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+436,"General Store, Back Room",31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+437,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+438,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+439,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+440,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+441,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+442,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+443,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+444,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+445,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+446,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+447,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+448,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+449,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+450,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+451,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+452,Market Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+453,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+454,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+455,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+456,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+457,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+458,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+459,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+460,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+461,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+462,Central Street,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+463,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+464,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+465,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+466,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+467,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+468,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+474,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+475,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+476,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+477,Temple Stairs,31,694,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+478,Temple Stairs,31,0,5,50,311,mummy,1,combat_spawn,expected_model_from_spawn_tables
+479,Training Grounds,31,0,0,5,485,mummy,1,combat_spawn,expected_model_from_spawn_tables
+480,Training Grounds,31,0,0,5,485,mummy,1,combat_spawn,expected_model_from_spawn_tables
+486,Training Grounds,31,0,0,5,485,mummy,1,combat_spawn,expected_model_from_spawn_tables
+498,Training Grounds,31,0,0,5,485,mummy,1,combat_spawn,expected_model_from_spawn_tables
+526,Training Grounds,31,0,0,5,485,mummy,1,combat_spawn,expected_model_from_spawn_tables
+527,Training Grounds,31,0,0,5,485,mummy,1,combat_spawn,expected_model_from_spawn_tables
+528,Training Grounds,31,0,0,5,485,mummy,1,combat_spawn,expected_model_from_spawn_tables
+529,Training Grounds,31,0,0,5,485,mummy,1,combat_spawn,expected_model_from_spawn_tables
+624,"Lagoon, Reef",31,0,5,30,570,mummy,1,combat_spawn,expected_model_from_spawn_tables
+625,"Lagoon, Reef",31,0,5,30,570,mummy,1,combat_spawn,expected_model_from_spawn_tables
+626,"Lagoon, Reef",31,0,5,30,570,mummy,1,combat_spawn,expected_model_from_spawn_tables
+627,"Lagoon, Reef",31,0,5,30,570,mummy,1,combat_spawn,expected_model_from_spawn_tables
+628,"Lagoon, Reef",31,0,5,30,570,mummy,1,combat_spawn,expected_model_from_spawn_tables
+629,"Lagoon, Reef",31,0,5,30,570,mummy,1,combat_spawn,expected_model_from_spawn_tables
+630,"Lagoon, Reef",31,0,5,30,570,mummy,1,combat_spawn,expected_model_from_spawn_tables
+1521,"Earthen Catacombs, Spiral Staircase",31,0,5,0,0,mummy,1,combat_spawn,expected_model_from_spawn_tables
+2550,"Lagoon, Open Water",31,0,5,35,2550,mummy,1,combat_spawn,expected_model_from_spawn_tables
+2551,"Lagoon, Reef",31,0,5,35,2550,mummy,1,combat_spawn,expected_model_from_spawn_tables
+2659,"Floating Platform, Dock",31,0,5,0,0,mummy,1,combat_spawn,expected_model_from_spawn_tables
+2660,"Floating Platform, Dock",31,0,5,0,0,mummy,1,combat_spawn,expected_model_from_spawn_tables
+2661,"Floating Platform, Dock",31,0,5,0,0,mummy,1,combat_spawn,expected_model_from_spawn_tables
+2662,"Floating Platform, Dock",31,0,5,0,0,mummy,1,combat_spawn,expected_model_from_spawn_tables
+2663,"Floating Platform, Hut",31,722,5,0,0,mummy,1,combat_spawn,expected_model_from_spawn_tables
+633,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+634,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+635,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+636,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+637,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+638,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+639,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+640,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+641,"Blackwood Forest, Winding Trail",29,817,5,0,591,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+770,"Gypsy Encampment, Entrance",29,0,5,5,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+771,Gypsy Encampment,29,0,5,5,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+772,Gypsy Encampment,29,0,5,5,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+773,Gypsy Encampment,29,0,5,5,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+774,"Gypsy Encampment, Campfire",29,0,5,0,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+775,Gypsy Encampment,29,0,5,5,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+776,Gypsy Wagon,29,844,5,0,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+777,Gypsy Wagon,29,0,5,0,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+778,Gypsy Wagon,29,0,5,0,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+779,Gypsy Wagon,29,0,5,0,770,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2265,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2266,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2267,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2268,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2269,Town Square,29,854,5,60,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2270,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2271,Main Street,29,854,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2272,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2273,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2274,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2275,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2276,Main Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2277,"Arlysia, City Entrance",29,854,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2278,Stargazer's Lane,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2279,Stargazer's Lane,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2280,"Stargazer's Lane, Park Entrance",29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2281,Stargazer's Lane,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2287,Dock Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2288,Dock Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2289,Dock Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2290,Intersection of Dock Street & Haven Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2291,Dock Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2292,Dock Street,29,854,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2293,Dock Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2294,Dock Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2295,"Arlysia, City Entrance",29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2307,Long Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2352,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2353,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2354,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2355,Intersection of Seaside Way & Saint's Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2356,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2380,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2381,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2382,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2383,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2384,Seaside Way,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2387,Haven Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2388,Intersection of Haven Street & Long Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2389,Haven Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2390,Haven Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2391,Haven Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2392,Haven Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2393,Haven Street,29,852,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2397,Saint's Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2398,Saint's Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2399,Saint's Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2400,Saint's Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2401,Gryphon Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2402,Gryphon Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2403,Gryphon Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2404,Gryphon Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2405,Gryphon Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2406,Gryphon Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2433,Aeriana's Apothecary,0,911,5,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2436,Jandar's Missile Weapons,0,916,5,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2438,Lud's Smithy,0,862,5,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2440,The Goode Seamstress,0,914,5,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2441,Tavern,0,861,5,0,0,unresolved,,no_spawn,expected_model_from_spawn_tables
+2443,City Park,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2472,Dirt Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2473,Dirt Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2474,Dirt Street,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2490,Dirt Street Home,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2500,Town Hall,29,854,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2501,"Town Hall, Office of the Mayor",29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2502,Town Hall,29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2503,"Town Hall, Stairwell",29,0,5,0,2269,dark cultist,1,combat_spawn;high_follow_pressure,expected_model_from_spawn_tables
+2940,"Adventurer's Guild, Universal Trainer",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2982,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2991,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2992,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2993,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2994,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2995,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2996,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2997,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2998,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+2999,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3000,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3005,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3006,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3010,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3013,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3014,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3015,Grand Hallway,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3036,Shadowy Passage,2,1056,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3037,Shadowy Passage,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3038,Shadowy Passage,2,1054,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3039,Shadowy Passage,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3040,Shadowy Passage,2,1057,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3041,Shadowy Passage,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3056,"Marble Room, Black Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3057,"Marble Room, White Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3061,"Marble Room, White Square",2,999,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3062,"Marble Room, Black Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3063,"Marble Room, Black Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3064,"Marble Room, White Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3065,"Marble Room, Black Square",2,998,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3067,"Marble Room, Black Square",2,994,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3068,"Marble Room, White Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3069,"Marble Room, Black Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3070,"Marble Room, White Square",2,995,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3071,"Marble Room, Black Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3082,"Marble Room, Black Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3141,Amber Fortress,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3142,Amber Fortress,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3143,Amber Fortress,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3144,Amber Fortress,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3189,"Marble Room, Black Square",2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables
+3247,Grand Chamber,2,0,5,0,0,lashworm,1,combat_spawn,expected_model_from_spawn_tables

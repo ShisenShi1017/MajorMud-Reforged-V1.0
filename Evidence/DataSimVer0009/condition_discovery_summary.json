@@ -1,0 +1,20 @@
+{
+  "pass": "DataSimVer0009",
+  "title": "Quest Flag and Conditional State Discovery",
+  "timestamp_utc": "2026-07-02T16:27:33.429770+00:00",
+  "data_changed": false,
+  "nested_old_zips_included": false,
+  "room_endpoints_promoted": 0,
+  "special_exit_semantics_promoted": 0,
+  "rooms_analyzed": 1246,
+  "items_analyzed": 1950,
+  "monsters_analyzed": 1100,
+  "spells_analyzed": 1350,
+  "room_condition_clues": 610,
+  "item_condition_clues": 1950,
+  "npc_condition_clues": 1084,
+  "spell_condition_clues": 523,
+  "room_item_gate_hypotheses": 544,
+  "quests_table_records": 0,
+  "evidence_policy": "expected-model only; no original runtime proof; compare later against reverse-engineering/MBBSEmu findings"
+}

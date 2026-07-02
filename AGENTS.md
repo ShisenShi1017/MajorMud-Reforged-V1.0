@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0053
+## 10. Current project position after CodeUpdate-0054
 
-- Current Code Update: `0053`
+- Current Code Update: `0054`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0053, verify GitHub Actions green by user report, then run a focused verification/reconciliation pass over the new Patch0068-derived `Data/` baseline.
+- Current priority: push CodeUpdate-0054, verify GitHub Actions green by user report, then build a focused verification index over Validation0013 evidence and the current `Data/` baseline.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -179,6 +179,8 @@ CodeUpdate-0051 adds a report-only import staging readiness surface under `DataD
 CodeUpdate-0052 preserves the user-provided Build0027 current-state handoff under `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`. Build0027 records that static data/content recovery and entity/world/catalog recovery are effectively complete, but original runtime validation remains unavailable. Build0024 and Build0025 matrices remain `expected_model` until converted into actual executable simulator tests. Earlier chat pass/fail claims are not authoritative unless backed by artifact logs or locally generated test output.
 
 CodeUpdate-0053 replaces only repository `Data/` from the embedded Patch0068 `/Data` payload. Patch0068 findings are preserved once under `DataDecodeCheckpoints/Patch0068/`, Handoff0074 is preserved once under `DataDecodeCheckpoints/Handoff0074/`, and duplicate `Docs/PatchHandoffs/` copies are intentionally not retained. Patch0071 is unreadable by the built-in ZIP reader and was not applied. CodeUpdate-0053 does not apply non-`Data` Patch0068 files, implement Patch0074 master verification, change server behavior, or add gameplay.
+
+CodeUpdate-0054 copies only repository-new files from Validation0013 and DocUpdate0024. It adds validation/evidence/simulation/planning material, skips all existing repository paths, and does not overwrite the CodeUpdate-0053 `Data/` baseline.
 
 Server direction after CodeUpdate-0039: first real Server target is Classic baseline only. Keep architecture mode-ready, but do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loading until explicitly approved. `Data/` defines world/content; Server defines and enforces engine behavior; Editor should eventually edit data safely.
 

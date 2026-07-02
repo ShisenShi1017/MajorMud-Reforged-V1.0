@@ -1,0 +1,80 @@
+{
+  "pass": "DataSimVer0014",
+  "objective": "Measured inventory/economy/equipment state simulation from DataSimVer0013 cumulative baseline",
+  "data_status": "unchanged",
+  "items_analyzed": 1950,
+  "shops_analyzed": 178,
+  "shop_inventory_refs": 3550,
+  "resolved_shop_inventory_refs": 1204,
+  "missing_shop_inventory_refs": 2346,
+  "positive_cost_items": 1309,
+  "positive_weight_items": 1791,
+  "item_flags": {
+    "destroy_on_death": 417,
+    "gettable": 1497,
+    "weapon": 300,
+    "class_restricted": 207,
+    "str_required": 349,
+    "not_droppable": 92,
+    "armor": 370,
+    "limited_uses": 516,
+    "race_restricted": 2
+  },
+  "item_types": {
+    "misc": 639,
+    "weapon": 383,
+    "armor": 517,
+    "container": 36,
+    "key": 99,
+    "consumable": 213,
+    "food": 18,
+    "drink": 34,
+    "light_source": 11
+  },
+  "worn_on_slots": {
+    "0": 1418,
+    "6": 13,
+    "3": 47,
+    "2": 53,
+    "11": 129,
+    "9": 43,
+    "5": 37,
+    "13": 14,
+    "12": 48,
+    "16": 27,
+    "15": 9,
+    "8": 36,
+    "10": 20,
+    "4": 15,
+    "14": 13,
+    "7": 24,
+    "19": 4
+  },
+  "profiles": 6,
+  "action_attempts_logged": 10456,
+  "expected_model_successes": 3357,
+  "expected_model_failures": 7099,
+  "success_breakdown": {
+    "buy": 1616,
+    "sell": 1506,
+    "equip": 235
+  },
+  "failure_breakdown": {
+    "not_equippable_by_data": 828,
+    "insufficient_gold": 3271,
+    "zero_cost_or_noncommercial_item": 227,
+    "zero_sell_value_inferred": 110,
+    "shop_stock_empty": 1962,
+    "stat_requirement_not_met": 100,
+    "slot_occupied": 453,
+    "weight_limit_exceeded_inferred": 124,
+    "above_shop_max_level": 24
+  },
+  "room_endpoints_promoted": 0,
+  "special_exit_semantics_promoted": 0,
+  "data_changed": false,
+  "notes": [
+    "Sell value and max carry weight remain inferred expected-model rules and are not promoted as engine facts.",
+    "/DataExtensions custom content from 0013 was preserved as an overlay, not merged into /Data."
+  ]
+}

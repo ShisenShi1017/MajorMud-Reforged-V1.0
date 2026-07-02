@@ -1,0 +1,33 @@
+{
+  "pass": "DataSimVer0023",
+  "baseline": "DataSimVer0022",
+  "data_changed": false,
+  "objective": "Quest/boss monster persistence and room occupancy rules during respawn",
+  "classification": "hypothesis_only_expected_model",
+  "promotions": {
+    "room_endpoints": 0,
+    "special_exit_semantics": 0,
+    "cleanup_semantics": 0,
+    "monster_respawn_semantics": 0,
+    "quest_persistence_semantics": 0
+  },
+  "simulated_model": {
+    "normal_monsters": "eligible through global ~15 minute scheduler hypothesis",
+    "explicit_timed_monsters": "death-triggered timers continue through reset hypothesis",
+    "boss_unique_monsters": "candidate records should prefer explicit timers or quest gates; do not assume normal respawn",
+    "quest_monsters": "do not respawn if quest state prohibits it; exact flags unknown",
+    "room_occupancy": "respawn should check room/spawn occupancy before creating duplicate monsters; exact cap unknown"
+  },
+  "scan_statistics": {
+    "rooms_scanned": 1246,
+    "monsters_scanned": 1100,
+    "items_scanned": 1950,
+    "quests_scanned": 0,
+    "monster_timer_candidates": 0,
+    "boss_unique_monster_candidates": 132,
+    "quest_monster_candidates": 67,
+    "spawn_room_candidates": 1246,
+    "room_occupancy_candidates": 0,
+    "quest_item_persistence_candidates": 1950
+  }
+}

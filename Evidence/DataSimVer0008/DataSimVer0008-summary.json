@@ -1,0 +1,20 @@
+{
+  "pass": "DataSimVer0008",
+  "objective": "NPC/shop/trainer/service behavior discovery from data-driven Worldgroup-era model",
+  "data_changed": false,
+  "room_endpoints_promoted": 0,
+  "special_exit_semantics_promoted": 0,
+  "shops_analyzed": 178,
+  "shop_inventory_rows": 3550,
+  "invalid_shop_locations": 30,
+  "invalid_shop_inventory_refs": 2346,
+  "trainers_analyzed": 13,
+  "invalid_trainer_room_refs": 0,
+  "monsters_analyzed": 1100,
+  "monster_ability_rows": 2293,
+  "spawn_rooms": 962,
+  "spawn_rows": 962,
+  "invalid_monster_spawn_refs": 7,
+  "service_room_clues": 436,
+  "note": "Expected-model evidence only. No original runtime behavior promoted."
+}

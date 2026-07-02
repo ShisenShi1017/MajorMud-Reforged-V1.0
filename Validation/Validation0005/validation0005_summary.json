@@ -1,0 +1,22 @@
+{
+  "validation": "Validation0005",
+  "baseline": "Validation0004",
+  "data_changed": false,
+  "majormud_asm": "MBBSEmu.Disassemblies-main/MajorMUD/WCCMMUD.DLL.asm",
+  "procedures_total": 802,
+  "far_procedures": 800,
+  "near_procedures": 2,
+  "procedure_candidates_by_category": {
+    "cleanup_search_hidden": 88,
+    "respawn_reset_timer": 92,
+    "combat_attack_damage": 564,
+    "spell_status": 147,
+    "quest_persistence": 666,
+    "boss_unique_lifecycle": 66
+  },
+  "mbbsemu_candidate_files": 336,
+  "promotion_candidates_reviewed": 6,
+  "data_promotions_approved": 0,
+  "engine_promotions_approved": 2,
+  "classification": "Promotion review completed; selected behaviors may be promoted in EngineKnowledge/simulator documentation only, not /Data."
+}

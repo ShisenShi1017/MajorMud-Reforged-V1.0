@@ -1,0 +1,31 @@
+{
+  "datasimver": "0017",
+  "source_baseline": "MajorMUD-Reforged-DataSimVer0016-Cumulative.zip",
+  "timestamp_utc": "2026-07-02T17:40:08.973365+00:00",
+  "objective": "cleanup/search visibility and stat-gated hidden item expected model",
+  "rooms_analyzed": 1246,
+  "items_analyzed": 1950,
+  "rooms_with_visible_room_items": 82,
+  "visible_room_item_refs": 103,
+  "rooms_with_hidden_item_ids": 211,
+  "hidden_item_refs": 268,
+  "all_room_item_refs": 371,
+  "resolved_room_item_refs": 267,
+  "unresolved_room_item_refs": 104,
+  "search_skill_found": true,
+  "search_governing_attributes": [
+    "agi",
+    "int"
+  ],
+  "perception_skill_found": true,
+  "search_attempts_logged": 1340,
+  "cleanup_candidates_destroy_on_death": 417,
+  "cleanup_candidates_not_gettable_static": 77,
+  "cleanup_candidates_game_limited": 179,
+  "message_text_clues_hidden_find_search": 56,
+  "data_changed": false,
+  "room_endpoints_promoted": 0,
+  "special_exit_semantics_promoted": 0,
+  "cleanup_semantics_promoted": 0,
+  "behavior_promoted_to_data": false
+}

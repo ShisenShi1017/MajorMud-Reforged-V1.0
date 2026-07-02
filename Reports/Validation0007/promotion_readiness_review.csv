@@ -1,0 +1,9 @@
+behavior,level,status,reason
+Host nightly cleanup lifecycle exists,engine-doc,already promoted,"MBBSEmu host evidence and prior validation support architecture, but exact MajorMUD item flags remain unmapped."
+RTKICK one-shot scheduling exists,engine-doc,already promoted,Disassembly references and host callback mapping support one-shot scheduled routines.
+BEGIN_POLLING persistent polling exists,engine-doc,already promoted,Disassembly references and MBBSEmu host mapping support persistent background polling.
+Search/hidden discovery subsystem exists,engine-doc,already promoted,Search and hidden terms appear repeatedly in MajorMUD routines; exact formula remains unresolved.
+Exact destroy-on-cleanup vs hide-on-cleanup flags,data/engine,not promoted,No exact field/bit mapping to runtime item lifecycle found in this pass.
+Exact monster respawn scheduler and intervals,data/engine,not promoted,"Timer/spawn/reset evidence exists, but exact queue/interval behavior is not resolved to specific fields."
+Exact search success formula,engine,not promoted,"Search subsystem is validated, but formula operands/thresholds are not isolated."
+Quest persistence fields and transitions,data/engine,not promoted,Quest clues exist but storage fields and state transitions remain unmapped.

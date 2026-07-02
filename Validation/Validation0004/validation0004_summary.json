@@ -1,0 +1,138 @@
+{
+  "validation": "Validation0004",
+  "baseline": "Validation0003",
+  "data_changed": false,
+  "external_sources_scanned": 4,
+  "majormud_far_procedures": 800,
+  "majormud_near_procedures": 2,
+  "asm_term_counts": [
+    {
+      "term": "combat",
+      "hits": 438
+    },
+    {
+      "term": "attack",
+      "hits": 970
+    },
+    {
+      "term": "damage",
+      "hits": 73
+    },
+    {
+      "term": "quest",
+      "hits": 144
+    },
+    {
+      "term": "flag",
+      "hits": 103
+    },
+    {
+      "term": "player",
+      "hits": 1277
+    },
+    {
+      "term": "save",
+      "hits": 588
+    },
+    {
+      "term": "load",
+      "hits": 948
+    },
+    {
+      "term": "kill",
+      "hits": 366
+    },
+    {
+      "term": "death",
+      "hits": 20
+    },
+    {
+      "term": "experience",
+      "hits": 303
+    },
+    {
+      "term": "gold",
+      "hits": 124
+    },
+    {
+      "term": "spell",
+      "hits": 1604
+    },
+    {
+      "term": "hit",
+      "hits": 116
+    },
+    {
+      "term": "weapon",
+      "hits": 140
+    },
+    {
+      "term": "room",
+      "hits": 1889
+    },
+    {
+      "term": "monster",
+      "hits": 3261
+    }
+  ],
+  "emulator_term_counts": [
+    {
+      "term": "RTKICK",
+      "hits": 23,
+      "files": 5
+    },
+    {
+      "term": "BEGIN_POLLING",
+      "hits": 9,
+      "files": 4
+    },
+    {
+      "term": "Btrieve",
+      "hits": 1677,
+      "files": 37
+    },
+    {
+      "term": "timer",
+      "hits": 113,
+      "files": 15
+    },
+    {
+      "term": "Event",
+      "hits": 151,
+      "files": 17
+    },
+    {
+      "term": "Poll",
+      "hits": 35,
+      "files": 5
+    },
+    {
+      "term": "Save",
+      "hits": 81,
+      "files": 17
+    },
+    {
+      "term": "User",
+      "hits": 971,
+      "files": 50
+    },
+    {
+      "term": "Channel",
+      "hits": 1008,
+      "files": 37
+    },
+    {
+      "term": "Module",
+      "hits": 3520,
+      "files": 198
+    }
+  ],
+  "promotions": {
+    "combat": false,
+    "quest_persistence": false,
+    "player_persistence": false,
+    "cleanup": false,
+    "respawn": false
+  },
+  "classification": "External evidence mapped; promotion requires function-level control-flow confirmation and direct data-field binding."
+}

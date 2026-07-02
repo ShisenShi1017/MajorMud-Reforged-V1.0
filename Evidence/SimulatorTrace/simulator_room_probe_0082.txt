@@ -1,0 +1,24 @@
+$ python3 run_simulator.py room map1-room9
+room_key=map1-room9 | map_id=1 | room_number=9 | room_name=Estwall Street | monster_group_id=0 | group_monster_count=0 | group_monster_names= | boss_type_id=0 | boss_name= | room_respawn_minutes=0 | shop_number=0 | evidence_basis=WCC room JSON and codex-monster WCC JSON inherited from ImportedDatabases; runtime not observed
+
+---
+
+$ python3 run_simulator.py room map1-room65
+room_key=map1-room65 | map_id=1 | room_number=65 | room_name=Strange Mansion, Entrance | monster_group_id=11 | group_monster_count=25 | group_monster_names=astral shade;banshee;bugbear;bugbear berserker;bugbear captain;chest;dark goblin;dark goblin archer;death dog;gelatinous cube;giant snake;gigantic black ooze;guardian golem;huge tiger beetle;minotaur;minotaur champion;minotaur chieftain;moaning spirit;ogre;shadow spectre;skeletal warrior;spectral mage;stone golem;vision;wyvern | boss_type_id=0 | boss_name= | room_respawn_minutes=1 | shop_number=0 | evidence_basis=WCC room JSON and codex-monster WCC JSON inherited from ImportedDatabases; runtime not observed
+
+---
+
+$ python3 run_simulator.py room map1-room65
+room_key=map1-room65 | map_id=1 | room_number=65 | room_name=Strange Mansion, Entrance | monster_group_id=11 | group_monster_count=25 | group_monster_names=astral shade;banshee;bugbear;bugbear berserker;bugbear captain;chest;dark goblin;dark goblin archer;death dog;gelatinous cube;giant snake;gigantic black ooze;guardian golem;huge tiger beetle;minotaur;minotaur champion;minotaur chieftain;moaning spirit;ogre;shadow spectre;skeletal warrior;spectral mage;stone golem;vision;wyvern | boss_type_id=0 | boss_name= | room_respawn_minutes=1 | shop_number=0 | evidence_basis=WCC room JSON and codex-monster WCC JSON inherited from ImportedDatabases; runtime not observed
+
+---
+
+$ python3 run_simulator.py room map1-room66
+room_key=map1-room66 | map_id=1 | room_number=66 | room_name=Intersection of Noble St. & Westwall St. | monster_group_id=5 | group_monster_count=22 | group_monster_names=Champion Gudruk;elite guardsman;Ghost of Justice Darkbane;guardsman;ivory golem;ivory golem;Pastor Lander;Sheriff Lionheart;storm giant;storm giant commander;storm giant king;Templar;white doe;white hart;woodelf citizen;woodelf citizen;woodelf druid;woodelf guard;woodelf lord;woodelf ranger;woodelf wardancer;woodelf wardancer | boss_type_id=0 | boss_name= | room_respawn_minutes=5 | shop_number=0 | evidence_basis=WCC room JSON and codex-monster WCC JSON inherited from ImportedDatabases; runtime not observed
+
+---
+
+$ python3 run_simulator.py room map1-room83
+room_key=map1-room83 | map_id=1 | room_number=83 | room_name=Twisting Alley | monster_group_id=0 | group_monster_count=0 | group_monster_names= | boss_type_id=0 | boss_name= | room_respawn_minutes=0 | shop_number=0 | evidence_basis=WCC room JSON and codex-monster WCC JSON inherited from ImportedDatabases; runtime not observed
+
+---

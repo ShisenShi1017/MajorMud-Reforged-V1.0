@@ -1,0 +1,85 @@
+line,text
+28732,public _SEARCH_FOR_HIDDEN_EXITS
+28733,_SEARCH_FOR_HIDDEN_EXITS proc far       ; CODE XREF: _CMD_SEARCH+194↓P
+28759,loc_F17D:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+21↑j
+28776,loc_F1B0:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+54↑j
+28818,loc_F229:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+CD↑j
+28828,loc_F23F:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+E3↑j
+28843,loc_F261:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+103↑j
+28848,loc_F26C:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+108↑j
+28855,loc_F274:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+118↑j
+28867,"push    offset aYouFoundAnExit ; ""You found an exit upwards!\r"""
+28871,loc_F2A2:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+143↑j
+28875,"push    offset aYouFoundAnExit_0 ; ""You found an exit downwards!\r"""
+28877,loc_F2AC:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+149↑j
+28883,loc_F2B6:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+14F↑j
+28892,"push    offset aYouFoundAnExit_1 ; ""You found an exit to the %s!\r"""
+28896,loc_F2D7:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+15D↑j
+28911,loc_F2FC:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+11A↑j
+28917,loc_F305:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1A9↑j
+28923,loc_F30E:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1B2↑j
+28927,loc_F311:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+E5↑j
+28935,loc_F320:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1C4↑j
+28939,loc_F322:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+CF↑j
+28956,"push    offset aYouFoundATrapA ; ""You found a trap above you!\r"""
+28960,loc_F356:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1F7↑j
+28964,"push    offset aYouFoundATrapB ; ""You found a trap below you!\r"""
+28968,loc_F362:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+203↑j
+28977,"push    offset aYouFoundATrapT ; ""You found a trap to the %s!\r"""
+28981,loc_F37D:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1F1↑j
+28989,loc_F38B:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1DB↑j
+28993,loc_F391:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1AB↑j
+28994,; _SEARCH_FOR_HIDDEN_EXITS+1BE↑j ...
+28996,"push    offset aYouNoticeNothi ; ""You notice nothing different above you.""..."
+29000,loc_F397:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+238↑j
+29004,loc_F39D:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS:loc_F30E↑j
+29005,; _SEARCH_FOR_HIDDEN_EXITS:loc_F320↑j ...
+29007,"push    offset aYouNoticeNothi_0 ; ""You notice nothing different below you.""..."
+29009,loc_F3A1:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1FD↑j
+29010,; _SEARCH_FOR_HIDDEN_EXITS+209↑j ...
+29016,loc_F3AB:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1B4↑j
+29017,; _SEARCH_FOR_HIDDEN_EXITS+1C6↑j ...
+29025,"push    offset aYouNoticeNothi_1 ; ""You notice nothing different to the %s.""..."
+29027,loc_F3C4:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+224↑j
+29031,loc_F3CC:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+1A2↑j
+29032,; _SEARCH_FOR_HIDDEN_EXITS+252↑j
+29037,loc_F3D5:                               ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+23↑j
+29038,; _SEARCH_FOR_HIDDEN_EXITS+56↑j
+29045,_SEARCH_FOR_HIDDEN_EXITS endp
+59596,call    _CMD_SEARCH
+124551,; _CMD_SEARCH+D3↓P
+180117,_ADD_EXIT_TO_LIST proc far              ; CODE XREF: _SEARCH_FOR_HIDDEN_EXITS+19A↑P
+190877,public _CMD_SEARCH
+190878,_CMD_SEARCH     proc far                ; CODE XREF: _HANDLE_COMMANDS+7EE↑P
+190902,loc_5FB4D:                              ; CODE XREF: _CMD_SEARCH+17↑j
+190945,loc_5FBC9:                              ; CODE XREF: _CMD_SEARCH+68↑j
+190950,call    _ADD_DELAY
+190955,loc_5FBE0:                              ; CODE XREF: _CMD_SEARCH+7C↑j
+190963,loc_5FBF0:                              ; CODE XREF: _CMD_SEARCH+BC↑j
+190971,call    _DISPLAY_ITEMS_IN_ROOM
+191003,loc_5FC63:                              ; CODE XREF: _CMD_SEARCH+19C↓j
+191004,; _CMD_SEARCH+1BA↓j
+191010,call    _ADD_DELAY
+191016,loc_5FC7E:                              ; CODE XREF: _CMD_SEARCH+BE↑j
+191039,call    _SEARCH_FOR_HIDDEN_EXITS
+191044,loc_5FCCD:                              ; CODE XREF: _CMD_SEARCH+17F↑j
+191045,; _CMD_SEARCH+185↑j
+191058,loc_5FCEC:                              ; CODE XREF: _CMD_SEARCH+15A↑j
+191061,loc_5FCF1:                              ; CODE XREF: _CMD_SEARCH+AE↑j
+191062,; _CMD_SEARCH+14D↑j
+191065,loc_5FCF4:                              ; CODE XREF: _CMD_SEARCH+1B↑j
+191072,_CMD_SEARCH     endp
+273162,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+70↑o
+273164,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+146↑o
+273166,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+152↑o
+273168,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+175↑o
+273170,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+23B↑o
+273172,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+247↑o
+273174,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+26A↑o
+273176,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+1FA↑o
+273178,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+206↑o
+273180,; DATA XREF: _SEARCH_FOR_HIDDEN_EXITS+221↑o
+312119,; _CMD_SEARCH+DC↑o
+312307,; DATA XREF: _CMD_SEARCH+7F↑o
+312309,; DATA XREF: _CMD_SEARCH+F2↑o
+312311,; DATA XREF: _CMD_SEARCH+19F↑o

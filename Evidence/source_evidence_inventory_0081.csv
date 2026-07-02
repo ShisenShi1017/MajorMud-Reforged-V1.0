@@ -1,0 +1,7 @@
+source,path,used_for
+Patch0080 cumulative ZIP,/mnt/data/MajorMUD-Reforged-Patch0080-RoomExitSpecialExitRecovery-Cumulative.zip,Trusted baseline /Data and prior reports
+Uploaded repository ZIP,/mnt/data/MajorMud-Reforged-V1.0-main (1)(5).zip,Evidence search for source room JSON and runtime/decoder implementation clues
+Patch0080 Data/rooms.json,Data/rooms.json,"Room IDs, exits, raw exit fields, provenance"
+Patch0080 Data/room_graph.json,Data/room_graph.json,Direct graph edge and coordinate evidence
+Patch0080 remaining report,Reports/room_exit_endpoint_remaining_0080.csv,Patch0081 room endpoint worklist
+Patch0080 special-exit report,Reports/special_exit_candidate_rows_0080.csv,Patch0081 special-exit behavior worklist

@@ -1,0 +1,251 @@
+{
+  "datasimver": "0005",
+  "name": "Worldgroup Command Parser Behavior Discovery",
+  "baseline": "DataSimVer0004 cumulative",
+  "data_modified": false,
+  "total_rooms": 1246,
+  "total_items": 1950,
+  "parser_token_rows": 3042,
+  "command_clue_rows": 640,
+  "room_object_clue_rows": 994,
+  "exit_type_inventory_rows": 3022,
+  "unique_exit_type_values": 21,
+  "top_verbs": [
+    [
+      "look",
+      139
+    ],
+    [
+      "run",
+      104
+    ],
+    [
+      "open",
+      53
+    ],
+    [
+      "walk",
+      47
+    ],
+    [
+      "enter",
+      39
+    ],
+    [
+      "move",
+      34
+    ],
+    [
+      "read",
+      30
+    ],
+    [
+      "use",
+      28
+    ],
+    [
+      "cross",
+      27
+    ],
+    [
+      "turn",
+      23
+    ],
+    [
+      "go",
+      22
+    ],
+    [
+      "press",
+      22
+    ],
+    [
+      "say",
+      15
+    ],
+    [
+      "lock",
+      10
+    ],
+    [
+      "drink",
+      8
+    ],
+    [
+      "board",
+      8
+    ],
+    [
+      "climb",
+      7
+    ],
+    [
+      "push",
+      6
+    ],
+    [
+      "ring",
+      5
+    ],
+    [
+      "ascend",
+      4
+    ],
+    [
+      "descend",
+      4
+    ],
+    [
+      "jump",
+      2
+    ],
+    [
+      "touch",
+      1
+    ],
+    [
+      "pull",
+      1
+    ],
+    [
+      "swim",
+      1
+    ]
+  ],
+  "top_objects": [
+    [
+      "wall",
+      211
+    ],
+    [
+      "door",
+      85
+    ],
+    [
+      "tunnel",
+      84
+    ],
+    [
+      "well",
+      66
+    ],
+    [
+      "sign",
+      53
+    ],
+    [
+      "path",
+      46
+    ],
+    [
+      "passage",
+      38
+    ],
+    [
+      "gate",
+      32
+    ],
+    [
+      "statue",
+      29
+    ],
+    [
+      "pool",
+      24
+    ],
+    [
+      "window",
+      19
+    ],
+    [
+      "boat",
+      17
+    ],
+    [
+      "river",
+      11
+    ],
+    [
+      "tree",
+      10
+    ],
+    [
+      "curtain",
+      9
+    ],
+    [
+      "chest",
+      6
+    ],
+    [
+      "rope",
+      6
+    ],
+    [
+      "opening",
+      4
+    ],
+    [
+      "rune",
+      4
+    ],
+    [
+      "cave",
+      4
+    ],
+    [
+      "hole",
+      3
+    ],
+    [
+      "stairs",
+      3
+    ],
+    [
+      "lever",
+      3
+    ],
+    [
+      "bridge",
+      2
+    ],
+    [
+      "ladder",
+      2
+    ]
+  ],
+  "classification_counts": {
+    "command_token_seen_in_room_text": 640,
+    "object_candidate_near_command": 514,
+    "key_or_lock_text": 250,
+    "item_name_correlation": 524,
+    "special_text": 67,
+    "level_text": 6
+  },
+  "exit_type_counts": {
+    "19": 71,
+    "None": 2255,
+    "11": 26,
+    "0": 260,
+    "6": 89,
+    "15": 15,
+    "7": 137,
+    "8": 16,
+    "10": 31,
+    "16": 1,
+    "22": 22,
+    "3": 10,
+    "12": 6,
+    "20": 6,
+    "4": 2,
+    "13": 28,
+    "5": 31,
+    "2": 4,
+    "17": 1,
+    "9": 10,
+    "23": 1
+  },
+  "room_endpoint_promotions": 0,
+  "special_exit_semantics_promoted": 0,
+  "policy": "Expected-model behavior discovery only. No original runtime proof. No /Data changes."
+}

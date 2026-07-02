@@ -26,9 +26,9 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
 | Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0053 |
+| Current Code Update | 0054 |
 | Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0053-Patch0068-Data-Replacement-And-Handoff-Intake |
+| Last Update Name | CodeUpdate-0054-Validation0013-DocUpdate0024-New-Files-Intake |
 | Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
@@ -37,7 +37,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap and is green by user report. CodeUpdate-0043 classifies canonical Server data readiness and is green by user report. CodeUpdate-0044 adds the original reference capture/extractor tool. CodeUpdate-0045 integrates the DataDecode0043 checkpoint as the pre-mirror import-readiness baseline and is green by user report. CodeUpdate-0046 imports the OmniVerse/MudInfo capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub transition handoff so future decode passes work directly in the repository. CodeUpdate-0048 creates the unified decoded-data comparison folder and Android ChatGPT phone handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof and refreshes unified decoded-data inventory. CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, DataDecode0110 final static certification, RuntimePrep0001-0009 archives, and the expected-model simulator. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without promoting formulas or rewriting canonical `Data/`. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload, preserves Patch0068 and Handoff0074 evidence once under `DataDecodeCheckpoints/`, and records Patch0071 as unreadable/unapplied.
+Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap and is green by user report. CodeUpdate-0043 classifies canonical Server data readiness and is green by user report. CodeUpdate-0044 adds the original reference capture/extractor tool. CodeUpdate-0045 integrates the DataDecode0043 checkpoint as the pre-mirror import-readiness baseline and is green by user report. CodeUpdate-0046 imports the OmniVerse/MudInfo capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub transition handoff so future decode passes work directly in the repository. CodeUpdate-0048 creates the unified decoded-data comparison folder and Android ChatGPT phone handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof and refreshes unified decoded-data inventory. CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, DataDecode0110 final static certification, RuntimePrep0001-0009 archives, and the expected-model simulator. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without promoting formulas or rewriting canonical `Data/`. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload, preserves Patch0068 and Handoff0074 evidence once under `DataDecodeCheckpoints/`, and records Patch0071 as unreadable/unapplied. CodeUpdate-0054 copies only repository-new files from Validation0013 and DocUpdate0024 while skipping all existing paths.
 
 Do not add gameplay systems without explicit user approval.
 
@@ -94,6 +94,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 - CodeUpdate-0051 adds `DataDecodeCheckpoints/ImportStaging/` as a reviewed import staging surface and preserves Build0021 behavioral recovery evidence under `Docs/BehavioralRecovery/Build0021/`, `DataDecodeCheckpoints/SimulatorBuild0021/`, `Docs/CodeUpdates/CODEX_BUILD0021_REPO_UPDATE.md`, and `Core/Runtime/BehavioralRecovery/README.md`. Build0021 is evidence/catalog material only and does not certify live runtime behavior.
 - CodeUpdate-0052 adds `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`. Build0027 is a current-state handoff only. It records that original runtime validation remains unavailable and that Build0024/0025 matrices are `expected_model` until converted into real executable simulator tests.
 - CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload. Patch0068 findings are preserved once under `DataDecodeCheckpoints/Patch0068/`, Handoff0074 is preserved once under `DataDecodeCheckpoints/Handoff0074/`, and duplicate `Docs/PatchHandoffs/` copies are intentionally not retained.
+- CodeUpdate-0054 copies only repository-new files from Validation0013 and DocUpdate0024. Existing repository paths are skipped and not overwritten.
 - All WCC data, including WCC default installs, WCC-labeled WBB material, WSGSERVE-related files, and WCC-derived archives, is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Long-term cleanup goal: retire `ImportedDatabases/` from normal project work only after all needed source data has been decoded, imported, recreated as Reforged-native `Data/`, verified by reports, and explicitly approved for cleanup.
 
@@ -175,6 +176,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 
 | Code Update | Summary |
 |---|---|
+| 0054 | Copies only repository-new files from Validation0013 and DocUpdate0024; skips existing paths and preserves the 0053 `Data/` baseline. |
 | 0053 | Replaces repository `Data/` from the embedded Patch0068 `/Data` payload and preserves Patch0068/Handoff0074 evidence once under `DataDecodeCheckpoints/`; Patch0071 is unreadable/unapplied. |
 | 0052 | Preserves Build0027 current-state handoff evidence and records Build0028 real executable harness as the next recommended scope. |
 | 0051 | Adds report-only import staging readiness reports and preserves Build0021 behavioral recovery evidence without formula promotion. |
@@ -208,6 +210,46 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 | 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |
 | 0024B | Corrected CoreStartupDiagnostics to use the verified Write(LogSeverity.Information, ...) logger API. |
 | 0024 | Added Core verification diagnostics, event bus work, and smoke-test project. |
+
+## CodeUpdate-0054 Handoff
+
+CodeUpdate-0054 is a new-file-only evidence and planning intake update.
+
+Implemented:
+
+- Recorded CodeUpdate-0053 GitHub Actions as green by user report.
+- Opened and inventoried `MajorMUD-Reforged-Validation0013-Cumulative.zip`.
+- Recorded Validation0013 ZIP SHA-256 `5E8804557B371C526F48FEF2C7333F344A66316FF48ECE7C3E209FD260297AD1`.
+- Copied 437 repository-new files from Validation0013.
+- Skipped 86 existing repository paths from Validation0013 without overwriting them.
+- Opened and inventoried `DocUpdate-0024-Librarium-Calculation-Engine-Placeholder.zip`.
+- Recorded DocUpdate0024 ZIP SHA-256 `2022CF91CDF85D5E0136B7765DF9B8EE7D0F193C6E9FCCE4A2B2AF59C8DEED02`.
+- Copied 2 repository-new files from DocUpdate0024.
+- Added `Reports/CodeUpdates/CodeUpdate-0054/NewFilesCopied.csv`.
+- Added `Reports/CodeUpdates/CodeUpdate-0054/ExistingFilesSkipped.csv`.
+- Added `Reports/CodeUpdates/CodeUpdate-0054/Validation0013DocUpdate0024NewFilesIntakeReport.md`.
+
+Verification:
+
+- Copied JSON files parsed successfully: 72.
+- Copied CSV files were readable: 183.
+- `Tools/MDBExtractor/offline_mdb_text_extractor.py` passed Python bytecode compilation.
+
+Boundaries:
+
+- No existing repository file overwrite.
+- No replacement of the CodeUpdate-0053 `Data/` baseline.
+- No imported/reference deletion.
+- No server behavior change.
+- No gameplay systems.
+- No Patch0071 application.
+- No Patch0074 master verification implementation.
+- No live runtime validation claim.
+- Codex did not push to GitHub.
+
+Next-scope candidate:
+
+- Push CodeUpdate-0054 and wait for green GitHub Actions. Then build a focused verification index over Validation0013 evidence and the current `Data/` baseline. Promote or overwrite nothing until exact file/field differences are reviewed and approved.
 
 ## CodeUpdate-0053 Handoff
 
@@ -983,15 +1025,15 @@ Verified before creating CodeUpdate-0039:
 - Repository manifests recorded CodeUpdate-0038 and DatabaseVersion 0009.
 - User reported CodeUpdate-0038 GitHub Actions green.
 
-CodeUpdate-0053 is the current local update candidate.
+CodeUpdate-0054 is the current local update candidate.
 
-CodeUpdate-0052 GitHub Actions is green by user report. CodeUpdate-0053 should be pushed by the user after the final local commit is ready.
+CodeUpdate-0053 GitHub Actions is green by user report. CodeUpdate-0054 should be pushed by the user after the final local commit is ready.
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0053 after the final local commit is ready and report GitHub Actions status.
-2. After green Actions, verify and reconcile the new Patch0068-derived `Data/` baseline.
-3. Use Handoff0074 requirements, Patch0068 evidence, and any readable later Patch0071/Patch0073/Patch0074 materials as repository-tracked verification inputs.
+1. Push CodeUpdate-0054 after the final local commit is ready and report GitHub Actions status.
+2. After green Actions, build a focused verification index over Validation0013 evidence and the current `Data/` baseline.
+3. Plan reviewed reconciliation changes only where exact file and field differences are proven.
 4. Keep hidden/scripted exits, formulas, timers, scripts, AI, drops, quests, and other runtime-only behavior marked uncertain until controlled validation or executable hooks exist.
 5. Do not add gameplay systems without explicit approval.
 

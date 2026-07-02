@@ -1,0 +1,437 @@
+room_number,name,shop_number,hits
+10,Lucky Strike Casino,0,inn
+20,River Street,0,inn
+21,Intersection of Guild St. & River St.,0,guild
+23,Intersection of River St. & Mystic Alley,0,shop
+39,Junkyard,147,guild
+40,Junkyard,148,guild
+41,Bank Vault,8,bank
+67,Noble Street,0,inn
+107,Silver Street,0,shop;store
+113,Park,0,inn
+114,Oak Street,0,inn
+115,Park,0,inn
+125,Park Plaza,0,inn
+126,Park Plaza,0,inn
+127,Park Street,0,inn
+128,Park Plaza,0,inn
+130,Park,0,inn
+132,Oak Street,0,inn
+137,Park,0,inn
+138,Park Street,0,inn
+139,Park Street,0,inn
+159,Jael's Missile Weapons,76,shop
+164,Sysop Support Chamber,85,
+168,"Junkyard, Entrance",88,guild
+169,Junkyard,89,guild
+199,Thieves' Guild,0,guild
+200,Ninja Training Room,26,training
+201,Thief Training Room,25,training
+202,Thieves' Guild,0,guild
+205,"Arena Stands, Concession Store",153,store
+206,Arena Practice Room,0,spell
+215,Crown Street,0,store
+217,Guild Street,0,guild
+218,Intersection of Guild St. & Crown St.,0,guild
+219,Guild Street,0,guild
+220,Guild Street,0,guild
+221,Guild Street,0,guild
+222,Guild Street,0,shop;guild
+223,"Guild Street, Southern End",0,shop;guild
+224,Town Square,0,shop
+225,"Sovereign Street, Northern End",0,bank
+226,Sovereign Street,0,bank;inn
+227,Sovereign Street,0,shop;stable
+228,Sovereign Street,0,shop
+239,Dusty Shack,161,
+253,Silver Street,0,inn
+255,Guild Street,0,guild
+263,Junkyard,177,guild
+271,Junkyard,176,guild
+274,Warlock Training Room,22,training
+289,"Halls of Training, Entrance",39,training
+290,Sarkhee's Jewellery,33,shop
+291,Library,89,
+292,Stables,0,stable
+293,Stables,0,inn;stable
+297,Bank of Godfrey,8,bank
+301,"Temple Street, Eastern End",0,temple;bank
+302,Temple Street,0,temple
+303,Temple Street,0,temple
+305,"Skali's Fine Armour, Front Room",43,shop
+306,"Skali's Fine Armour, Showroom",6,shop
+307,Thuluk's Marvelous Axes,10,shop
+309,"Sentara's Clothing, Front Room",40,shop
+310,"Sentara's Clothing, Back Room",12,shop
+311,"The Homely Hearth, Common Room",164,
+312,Cloakroom,35,stable
+315,"The Homely Hearth, Common Room",164,
+324,Intersection of Temple St. & Stone St.,0,training;temple
+325,Temple Street,0,temple
+332,Curio Shop,42,shop
+333,"Back Room, Mystic Trainer",31,trainer
+334,General Store,3,store
+348,"Adventurer's Guild, Foyer",0,guild
+349,"Adventurer's Guild, Main Room",40,training;guild
+350,"Adventurer's Guild, South Corridor",0,training;guild
+351,"Adventurer's Guild, South Corridor",0,training;guild
+352,"Adventurer's Guild, North",0,guild
+353,"Adventurer's Guild, North",0,guild
+354,Colin's Maces,18,shop
+355,Helfgrim's Blades,5,shop
+372,Sheriff's Office,0,guild
+384,"Back Room, Gypsy Trainer",21,trainer
+390,"Guild Street, Northern End",0,guild
+391,Wailing Hound Tavern,0,shop;tavern
+396,Mystic Alley,0,shop
+398,Magic Shoppe,9,shop
+399,"Magic Shoppe, Back Room",28,shop;training
+481,"Adventurer's Guild, Halls of Training",0,training;guild
+482,"Adventurer's Guild, Halls of Training",0,training;guild
+483,"Adventurer's Guild, Arena Corridor",0,guild
+490,"Adventurer's Guild, Halls of Training",0,training;guild
+491,"Adventurer's Guild, Halls of Training",0,training;guild
+492,"Adventurer's Guild, Halls of Training",0,training;guild
+493,"Adventurer's Guild, Halls of Training",0,training;guild
+494,"Adventurer's Guild, Halls of Training",0,training;guild
+495,"Adventurer's Guild, Halls of Training",0,training;guild
+496,"Adventurer's Guild, Halls of Training",0,training;guild
+497,Warrior Training Room,14,training;trainer
+498,Witchunter Training Room,19,training
+499,Paladin Training Room,15,training
+500,Missionary Training Room,20,training
+501,Druid Training Room,23,training
+502,Ranger Training Room,24,training
+503,"Adventurer's Guild, Halls of Training",0,training;guild
+504,Druid's Training Room,23,training
+505,Ranger's Training Room,24,training
+516,Junkyard,175,guild
+520,Temple Hall,0,shop;temple;spell;healer
+521,Temple Hall,0,training;temple
+522,Temple Spell Store,32,store;temple;spell
+523,Clerical Training Room,30,training;temple
+525,Temple Chapel,68,temple
+526,Priestly Training Room,29,training;temple
+527,Temple Healer,4,temple;healer
+529,Junkyard,179,guild
+530,Junkyard,180,guild
+532,Junkyard,177,guild
+536,Junkyard,146,guild
+537,Junkyard,178,guild
+816,"Graveyard, Entry",0,inn
+847,"Inn Second Floor, Stairwell",0,inn
+848,Inn Second Floor,0,inn
+849,Inn Room,0,inn
+850,Inn Room,0,inn
+851,Bard's Room,37,
+852,Bard's Room,27,
+1075,Slum Street,0,shop
+1187,Slum Street,0,shop
+1188,Slum Street,0,shop
+1314,Hollow Tree,36,
+1376,"Adventurer's Guild, Universal Trainer",38,trainer;guild
+1381,"Town Gates, Inner Bailey",0,inn
+1809,Gang House,123,
+1813,Pier,86,
+2141,"Newhaven, Weapons Shop",45,shop
+2142,"Newhaven, Armour Shop",46,shop;store
+2143,"Newhaven, Narrow Path",0,shop;store
+2144,"Newhaven, Spell Shop",48,shop;spell
+2145,"Newhaven, General Store",47,shop;store
+2147,"Newhaven, Adventurer's Guild",38,guild
+2153,"Skali's Fine Armour, Back Room",41,shop
+2154,"Sentara's Clothing, Basement",16,
+2190,"Newhaven, Healer",4,healer
+2231,Large Tomb,49,
+2236,Large Tomb,50,
+2240,Large Tomb,51,
+2241,Large Tomb,52,
+2256,Large Tomb,53,
+2258,Large Tomb,54,
+2260,Large Tomb,55,
+2262,Large Tomb,56,
+2273,Large Tomb,57,
+2275,Large Tomb,58,
+2278,Large Tomb,59,
+2300,Large Tomb,60,
+2301,Large Tomb,61,
+2302,Large Tomb,62,
+2303,Large Tomb,63,
+2305,"Darkwood Tree, Small House",64,
+2306,"Small House, Attic",65,spell
+2307,Spell Shop,44,shop;store;spell
+2308,Curtained Alcove,66,
+2316,Temple Foyer,0,temple;inn
+2324,Grungy Shop,67,shop;store
+2325,Small Dark Room,38,training
+2328,"Blue Tower, Second Floor",70,
+2329,"Blue Tower, Third Floor",72,
+2330,"Blue Tower, Fourth Floor",71,
+2334,"Blue Tower, Top Floor",73,spell
+2337,Portal Room,88,
+2680,Gold Mine Tunnel,108,
+3302,"Blue Tower, Second Floor",170,
+3303,"Blue Tower, Second Floor",169,
+3304,"Blue Tower, Third Floor",167,
+3305,"Blue Tower, Third Floor",168,
+3306,"Blue Tower, Fourth Floor",171,
+3307,"Blue Tower, Fourth Floor",172,
+3308,"Blue Tower, Top Floor",173,spell
+3309,"Blue Tower, Top Floor",174,spell
+3336,Bank Vault,8,bank
+3337,Bank Vault,8,bank
+3338,Bank Vault,8,bank
+3339,Bank Vault,8,bank
+3340,Bank Vault,8,bank
+3343,Empty Room,85,
+3344,Empty Room,85,
+3345,Empty Room,85,
+3346,Empty Room,85,
+2522,"Shadow Street, Southern End",0,tavern
+2523,Rhudaur Town Centre,0,temple
+2525,"Dagger Street, Western End",0,shop
+2526,"Flame Street, Western End",0,tavern
+2527,"Flame Street, Eastern End",0,store
+2528,"Temple Street, Northern End",0,store;temple
+2529,"Temple Street, Southern End",0,shop;trainer;temple;tavern
+2550,The Drunken Demon Inn,0,inn;tavern
+2551,The Drunken Demon Inn,0,inn;tavern
+2552,"The Drunken Demon Inn, Stairwell",0,inn;tavern
+2553,"The Drunken Demon Inn, Kitchen",0,inn
+2561,Thieve's Guild,82,guild
+2562,Weapon Shop,77,shop
+2563,Missile Weapon Shop,81,shop
+2564,The Bloody Dagger Tavern,0,tavern
+2566,Exotic Weapons Shop,79,shop
+2567,Armour Shop,78,shop;temple
+2568,Bank of Rhudaur,83,bank
+2569,The Screaming Wench Tavern,0,temple;tavern
+2570,Training Hall,84,training
+2571,Dark Temple,0,temple
+2572,"Dark Temple, Healing Room",84,temple
+2573,"Dark Temple, Altar",0,temple
+2574,Mystical Items Store,80,shop;store
+541,Common Area,87,
+542,Training Area,74,training
+1,Silvermere Property Office,181,
+120,"Valley Path, Near Inn",0,inn
+121,"Valley Path, Outside Inn",0,inn
+122,"Valley Path, Outside Inn",0,inn
+124,Gypsy Encampment,94,
+125,"Cozy Inn, Foyer",0,inn
+126,Common Room,93,inn
+127,Kitchen,93,
+128,Stairwell,93,
+133,"Valley Path, Crossroads",0,inn
+553,Gnome Village,0,store
+554,Gnome Village,0,store
+566,General Store,97,shop;store
+567,Jeweler's Shop,96,shop
+645,Alchemist's Hut,95,
+1250,"Khazarad, Mithril Way",0,shop
+1251,"Khazarad, Mithril Way",0,shop
+1252,"Khazarad, Mithril Way",0,shop
+1253,"Khazarad, Mithril Way",0,shop
+1254,"Khazarad, Mithril Way",0,shop
+1255,"Khazarad, Garden Walk",0,inn
+1256,"Khazarad, Garden Walk",0,inn
+1257,"Khazarad, Garden Walk",0,inn
+1258,"Khazarad, Garden Walk",0,inn
+1259,"Khazarad, Garden Entrance",0,inn
+1260,"Khazarad, Garden Walk",0,inn
+1261,"Khazarad, Garden Walk",0,inn
+1262,"Khazarad, Garden Walk",0,inn
+1304,"Khazarad, Craft Street",0,shop;store
+1305,"Khazarad, Craft Street",0,shop
+1306,"Khazarad, Craft Street",0,shop;store
+1307,"Khazarad, Craft Street",0,shop
+1308,"Khazarad, Craft Street",0,shop
+1328,Khazarad Inn,105,inn
+1329,"Khazarad Inn, Stairwell",105,inn
+1330,"Khazarad Inn, Hallway",105,inn
+1331,"Khazarad Inn, Bedroom",105,inn
+1332,Frothing Mug Tavern,106,tavern
+1333,Gambling Hall,106,
+1334,Bank of Khazarad,8,bank
+1335,General Store,98,store
+1336,Axe of Fury Weapon Store,100,shop;store
+1337,Martok's Battered Breastplate,99,shop;store
+1342,Harkul's Haberdashery,102,shop;store
+1343,Gurdal's Leather Goods,103,shop
+1344,Drotha's Deadly Weaponry,101,shop;store
+1345,Storage Room,99,
+1346,Gorthun's Gemstones,104,shop
+1347,Dwarven Temple,0,temple;healer
+1348,Dwarven Temple,0,temple;healer
+1350,"Arena, Spectator Seats",0,training
+1352,Training Area,107,training;spell
+1567,Miner's Guild,163,guild
+1568,Iron Mine Entrance,108,guild
+1569,"Iron Mine, Cart Track",108,
+1570,Iron Mine Tunnel,108,
+1571,Iron Mine Tunnel,108,
+1572,Iron Mine Tunnel,108,
+1573,Iron Mine Tunnel,108,
+1574,Iron Mine Tunnel,108,
+1576,Iron Mine Tunnel,108,
+1577,Iron Mine Tunnel,108,
+1578,Iron Mine Tunnel,108,
+1579,Iron Mine Tunnel,108,
+1580,Iron Mine Tunnel,108,
+1585,"Iron Mine, Cart Track",108,
+1586,"Iron Mine, Cart Track",108,
+1587,"Iron Mine, Cart Track",108,
+1588,"Iron Mine, Cart Track",108,
+1589,"Iron Mine, Cart Track",108,
+1136,Small Store,69,shop;store
+1171,Ramshackle Barn,0,store
+486,Musty Store,91,shop;store
+1041,Ethereal Prison,90,
+271,"Ancient Keep, Throne Room",74,
+273,Large Stone Chamber,75,
+4,Dusty Village,0,shop
+35,Canvas Tent,0,store
+36,Canvas Tent,0,store
+37,Canvas Tent,0,store
+38,Canvas Tent,0,store
+39,Canvas Tent,0,store
+40,Canvas Tent,0,store
+42,Canvas Tent,0,store
+43,Canvas Tent,0,store
+44,Canvas Tent,0,store
+45,Canvas Tent,0,store
+47,Canvas Tent,0,store
+48,Canvas Tent,0,store
+49,Village Store,111,store
+50,Storage Room,111,shop
+51,Cloakroom,0,inn
+52,Common Room,112,inn
+53,Inn Stairwell,112,inn
+54,Kitchen,112,
+55,"Upper Floor, Landing",112,
+56,Sleeping Chamber,112,
+57,Sleeping Chamber,112,
+58,Sleeping Chamber,112,
+2249,Small Stone Chamber,113,temple
+2381,Platform of Stars,160,
+311,Temple Stairs,0,temple
+312,Temple Stairs,0,temple
+313,Temple Stairs,0,temple
+314,Temple Stairs,0,temple
+315,Market Street,0,temple
+316,Market Street,0,shop;temple
+317,"Armour Shop, Front Room",114,shop
+318,"Armour Shop, Back Room",115,shop
+319,Market Street,0,temple;bank
+320,Bank,116,bank
+322,Corner of Market Street and Alley,0,shop
+323,Well Lit Alley,0,shop
+324,Well Lit Alley,0,shop
+327,Well Lit Alley,0,shop
+328,"Well Lit Alley, Dead End",0,shop
+329,Hides Shop,119,shop;store
+330,"Weapons Shop, Front Room",117,shop
+331,"Weapons Shop, Back Room",118,shop
+332,Market Street,0,shop
+357,Forest Street,0,temple
+358,Forest Street,0,temple
+384,"Elders' Council Chambers, Meeting Hall",135,trainer
+385,Forest Street,0,temple
+417,Market Street,0,shop
+418,Market Street,0,store;temple
+419,Corner of Market Street and Alley,0,shop
+427,Market Street,0,shop;temple
+428,Market Street,0,shop;temple
+429,Market Street,0,temple
+430,Temple Stairs,0,temple
+431,Temple Stairs,0,temple
+432,"Magic Shop, Front Room",0,shop
+433,"Magic Shop, Back Room",0,shop
+434,Jewelry Shop,120,shop
+435,"General Store, Front Room",121,shop;store
+436,"General Store, Back Room",0,store
+437,Market Street,0,shop;temple
+438,Market Street,0,shop;temple
+439,Market Street,0,shop;temple
+440,Market Street,0,shop;temple
+441,Market Street,0,temple
+442,Market Street,0,shop;temple
+443,Market Street,0,shop;temple
+444,Temple Stairs,0,temple
+445,Temple Stairs,0,temple
+446,Market Street,0,shop;temple
+447,Market Street,0,shop;temple
+448,Market Street,0,temple
+449,Market Street,0,temple
+450,Market Street,0,temple
+451,Market Street,0,shop;temple
+452,Market Street,0,temple;bank
+463,Temple Stairs,0,temple
+464,Temple Stairs,0,temple
+465,Temple Stairs,0,temple
+466,Temple Stairs,0,temple
+467,Temple Stairs,0,temple
+468,Temple Stairs,0,temple
+474,Temple Stairs,0,temple
+475,Temple Stairs,0,temple
+476,Temple Stairs,0,temple
+477,Temple Stairs,0,temple
+478,Temple Stairs,0,temple
+479,Training Grounds,0,training
+480,Training Grounds,0,training
+486,Training Grounds,0,training
+498,Training Grounds,0,training
+526,Training Grounds,0,training
+527,Training Grounds,0,training
+528,Training Grounds,0,training
+529,Training Grounds,0,training
+624,"Lagoon, Reef",0,stable
+625,"Lagoon, Reef",0,stable
+626,"Lagoon, Reef",0,stable
+627,"Lagoon, Reef",0,stable
+628,"Lagoon, Reef",0,stable
+629,"Lagoon, Reef",0,stable
+630,"Lagoon, Reef",0,stable
+2551,"Lagoon, Reef",0,stable
+2663,"Floating Platform, Hut",122,
+776,Gypsy Wagon,159,
+2271,Main Street,0,store
+2287,Dock Street,0,tavern
+2288,Dock Street,0,tavern
+2289,Dock Street,0,bank;tavern
+2290,Intersection of Dock Street & Haven Street,0,bank;tavern
+2291,Dock Street,0,tavern
+2292,Dock Street,0,tavern
+2293,Dock Street,0,tavern
+2294,Dock Street,0,store;tavern
+2295,"Arlysia, City Entrance",0,shop
+2307,Long Street,0,guild;temple
+2387,Haven Street,0,guild;temple
+2388,Intersection of Haven Street & Long Street,0,temple
+2389,Haven Street,0,temple
+2390,Haven Street,0,temple
+2391,Haven Street,0,temple
+2392,Haven Street,0,temple
+2393,Haven Street,0,temple
+2397,Saint's Street,0,temple
+2398,Saint's Street,0,temple
+2399,Saint's Street,0,temple
+2400,Saint's Street,0,temple
+2426,Arena Practice Room,0,guild
+2433,Aeriana's Apothecary,154,
+2435,Bank of Arlysia,156,bank
+2436,Jandar's Missile Weapons,155,shop;guild
+2437,Abandoned Shop,0,shop;guild
+2438,Lud's Smithy,150,
+2439,Hap's General Store,152,store
+2440,The Goode Seamstress,151,shop
+2441,Tavern,158,tavern
+2442,Tavern,0,tavern
+2472,Dirt Street,0,guild
+2473,Dirt Street,0,guild
+2474,Dirt Street,0,guild
+2500,Town Hall,0,guild
+2502,Town Hall,0,guild
+2503,"Town Hall, Stairwell",0,guild
+2940,"Adventurer's Guild, Universal Trainer",162,trainer;guild
+3247,Grand Chamber,182,

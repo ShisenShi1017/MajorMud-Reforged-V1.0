@@ -1,0 +1,23 @@
+{
+  "patch": "0082",
+  "title": "Simulator Trace Evidence Recovery",
+  "baseline": "MajorMUD-Reforged-Patch0081-DirectDecoderRuntimeEvidence-Cumulative.zip",
+  "core_data_modified": false,
+  "recreated_data_included": true,
+  "old_zip_files_included": false,
+  "simulator_included": true,
+  "simulator_path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype",
+  "simulator_evidence_classification": "expected_model_simulator_trace; not original_runtime_verified",
+  "room_endpoint_gaps_input": 210,
+  "room_endpoint_gaps_resolved_by_original_runtime_or_decoder_evidence": 0,
+  "room_endpoint_gaps_remaining": 210,
+  "runtime_parity_issues_remaining": 366,
+  "special_exit_behavior_semantics_promoted": 0,
+  "special_exit_types_remaining_blocked": 13,
+  "simulator_unknown_trace_events": 27,
+  "notes": [
+    "Simulator source copied from uploaded main repo Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype.",
+    "Nested simulator SourceCheckpoints ZIP archives were excluded to comply with no-old-ZIPs rule.",
+    "Simulator README states it is not Worldgroup and does not certify live gameplay equivalence; no runtime promotion performed."
+  ]
+}

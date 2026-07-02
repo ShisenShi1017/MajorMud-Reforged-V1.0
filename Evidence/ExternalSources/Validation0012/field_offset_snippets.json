@@ -1,0 +1,402 @@
+[
+  {
+    "line": 78,
+    "match": "mov     bx, word ptr aIght1991Borlan+15h ; \"l.\"",
+    "snippet": "72:                 mov     es:word_1A4, seg dseg81\n73:                 pop     es\n74:                 assume es:nothing\n75:                 mov     ah, 30h ; '0'\n76:                 int     21h             ; DOS - GET DOS VERSION\n77:                                         ; Return: AL = major version number (00h for DOS 1.x)\n78:                 mov     bx, word ptr aIght1991Borlan+15h ; \"l.\"\n79:                 mov     ds, dx\n80:                 mov     word_AD321, ax\n81:                 mov     word_AD31F, es\n82:                 mov     word ptr dword_AD319+2, bx\n83:                 les     di, dword_AD319\n84:                 mov     ax, di"
+  },
+  {
+    "line": 82,
+    "match": "mov     word ptr dword_AD319+2, bx",
+    "snippet": "76:                 int     21h             ; DOS - GET DOS VERSION\n77:                                         ; Return: AL = major version number (00h for DOS 1.x)\n78:                 mov     bx, word ptr aIght1991Borlan+15h ; \"l.\"\n79:                 mov     ds, dx\n80:                 mov     word_AD321, ax\n81:                 mov     word_AD31F, es\n82:                 mov     word ptr dword_AD319+2, bx\n83:                 les     di, dword_AD319\n84:                 mov     ax, di\n85:                 mov     bx, ax\n86:                 mov     cx, 7FFFh\n87:                 cld\n88: "
+  },
+  {
+    "line": 97,
+    "match": "mov     word ptr dword_AD319, cx",
+    "snippet": "91:                 jcxz    short loc_79\n92:                 inc     bx\n93:                 cmp     es:[di], al\n94:                 jnz     short loc_55\n95:                 or      ch, 80h\n96:                 neg     cx\n97:                 mov     word ptr dword_AD319, cx\n98:                 mov     cx, 2\n99:                 shl     bx, cl\n100:                 add     bx, 10h\n101:                 and     bx, 0FFF0h\n102:                 mov     word_AD31D, bx\n103:                 jmp     short loc_7E"
+  },
+  {
+    "line": 132,
+    "match": "mov     byte ptr es:loc_155, 72h ; 'r'",
+    "snippet": "126:                 mov     di, 96h\n127:                 call    loc_143\n128:                 mov     ds, cs:word_1A4\n129:                 push    es\n130:                 mov     es, word_AD317\n131:                 assume es:cseg01\n132:                 mov     byte ptr es:loc_155, 72h ; 'r'\n133:                 mov     byte ptr es:loc_143+1, 0\n134:                 pop     es\n135:                 assume es:nothing\n136:                 mov     ax, 1\n137: \n138: loc_B6:                                 ; CODE XREF: cseg01:007C\u2191j"
+  },
+  {
+    "line": 133,
+    "match": "mov     byte ptr es:loc_143+1, 0",
+    "snippet": "127:                 call    loc_143\n128:                 mov     ds, cs:word_1A4\n129:                 push    es\n130:                 mov     es, word_AD317\n131:                 assume es:cseg01\n132:                 mov     byte ptr es:loc_155, 72h ; 'r'\n133:                 mov     byte ptr es:loc_143+1, 0\n134:                 pop     es\n135:                 assume es:nothing\n136:                 mov     ax, 1\n137: \n138: loc_B6:                                 ; CODE XREF: cseg01:007C\u2191j\n139:                 pop     di"
+  },
+  {
+    "line": 159,
+    "match": "mov     al, [bp+4]",
+    "snippet": "153:                 retf\n154: ; ---------------------------------------------------------------------------\n155:                 retf\n156: ; ---------------------------------------------------------------------------\n157:                 mov     bp, sp\n158:                 mov     ah, 4Ch ; 'L'\n159:                 mov     al, [bp+4]\n160:                 int     21h             ; DOS - 2+ - QUIT WITH EXIT CODE (EXIT)\n161:                                         ; AL = exit code\n162:                 mov     ax, seg dseg81\n163:                 mov     ds, ax\n164:                 mov     si, 96h\n165:                 mov     di, 96h"
+  },
+  {
+    "line": 168,
+    "match": "call    dword ptr ds:_EXITBUF ; void (*_exitbuf)(void);",
+    "snippet": "162:                 mov     ax, seg dseg81\n163:                 mov     ds, ax\n164:                 mov     si, 96h\n165:                 mov     di, 96h\n166:                 call    loc_143\n167:                 mov     ds, cs:word_1A4\n168:                 call    dword ptr ds:_EXITBUF ; void (*_exitbuf)(void);\n169:                 call    dword ptr ds:_EXITFOPEN ; void (*_exitfopen)(void)\n170:                 call    dword ptr ds:_EXITOPEN ; void (*_exitopen)(void)\n171:                 push    ax\n172: \n173: ; =============== S U B R O U T I N E =======================================\n174: "
+  },
+  {
+    "line": 169,
+    "match": "call    dword ptr ds:_EXITFOPEN ; void (*_exitfopen)(void)",
+    "snippet": "163:                 mov     ds, ax\n164:                 mov     si, 96h\n165:                 mov     di, 96h\n166:                 call    loc_143\n167:                 mov     ds, cs:word_1A4\n168:                 call    dword ptr ds:_EXITBUF ; void (*_exitbuf)(void);\n169:                 call    dword ptr ds:_EXITFOPEN ; void (*_exitfopen)(void)\n170:                 call    dword ptr ds:_EXITOPEN ; void (*_exitopen)(void)\n171:                 push    ax\n172: \n173: ; =============== S U B R O U T I N E =======================================\n174: \n175: "
+  },
+  {
+    "line": 170,
+    "match": "call    dword ptr ds:_EXITOPEN ; void (*_exitopen)(void)",
+    "snippet": "164:                 mov     si, 96h\n165:                 mov     di, 96h\n166:                 call    loc_143\n167:                 mov     ds, cs:word_1A4\n168:                 call    dword ptr ds:_EXITBUF ; void (*_exitbuf)(void);\n169:                 call    dword ptr ds:_EXITFOPEN ; void (*_exitfopen)(void)\n170:                 call    dword ptr ds:_EXITOPEN ; void (*_exitopen)(void)\n171:                 push    ax\n172: \n173: ; =============== S U B R O U T I N E =======================================\n174: \n175: \n176: sub_F8          proc near               ; CODE XREF: sub_F8+A9\u2193p"
+  },
+  {
+    "line": 185,
+    "match": "mov     al, [bp+4]",
+    "snippet": "179: \n180:                 mov     ds, cs:word_1A4\n181:                 push    cs\n182:                 call    near ptr sub_123\n183:                 mov     bp, sp\n184:                 mov     ah, 4Ch ; 'L'\n185:                 mov     al, [bp+4]\n186:                 int     21h             ; DOS - 2+ - QUIT WITH EXIT CODE (EXIT)\n187:                                         ; AL = exit code\n188: \n189: loc_10A:                                ; DATA XREF: cseg01:0116\u2193o\n190:                 mov     cx, 0Eh\n191:                 mov     dx, 2Fh ; '/'"
+  },
+  {
+    "line": 235,
+    "match": "cmp     byte ptr [bx], 0FFh",
+    "snippet": "229:                 mov     dx, di\n230:                 mov     bx, si\n231: \n232: loc_149:                                ; CODE XREF: cseg01:015F\u2193j\n233:                 cmp     bx, di\n234:                 jz      short loc_161\n235:                 cmp     byte ptr [bx], 0FFh\n236:                 jz      short loc_15C\n237:                 cmp     [bx+1], ah\n238: \n239: loc_155:                                ; DATA XREF: cseg01:00A6\u2191w\n240:                 ja      short loc_15C\n241:                 mov     ah, [bx+1]"
+  },
+  {
+    "line": 237,
+    "match": "cmp     [bx+1], ah",
+    "snippet": "231: \n232: loc_149:                                ; CODE XREF: cseg01:015F\u2193j\n233:                 cmp     bx, di\n234:                 jz      short loc_161\n235:                 cmp     byte ptr [bx], 0FFh\n236:                 jz      short loc_15C\n237:                 cmp     [bx+1], ah\n238: \n239: loc_155:                                ; DATA XREF: cseg01:00A6\u2191w\n240:                 ja      short loc_15C\n241:                 mov     ah, [bx+1]\n242:                 mov     dx, bx\n243: "
+  },
+  {
+    "line": 241,
+    "match": "mov     ah, [bx+1]",
+    "snippet": "235:                 cmp     byte ptr [bx], 0FFh\n236:                 jz      short loc_15C\n237:                 cmp     [bx+1], ah\n238: \n239: loc_155:                                ; DATA XREF: cseg01:00A6\u2191w\n240:                 ja      short loc_15C\n241:                 mov     ah, [bx+1]\n242:                 mov     dx, bx\n243: \n244: loc_15C:                                ; CODE XREF: cseg01:0150\u2191j\n245:                                         ; cseg01:loc_155\u2191j\n246:                 add     bx, 6\n247:                 jmp     short loc_149"
+  },
+  {
+    "line": 258,
+    "match": "cmp     byte ptr [bx], 0",
+    "snippet": "252:                 jz      short locret_185\n253:                 mov     bx, dx\n254:                 push    ds\n255:                 pop     es\n256:                 assume es:dseg81\n257:                 push    es\n258:                 cmp     byte ptr [bx], 0\n259:                 mov     byte ptr [bx], 0FFh\n260:                 mov     ds, cs:word_1A4\n261:                 jz      short loc_17E\n262:                 call    dword ptr es:[bx+2]\n263:                 pop     ds\n264:                 jmp     short loc_143"
+  },
+  {
+    "line": 259,
+    "match": "mov     byte ptr [bx], 0FFh",
+    "snippet": "253:                 mov     bx, dx\n254:                 push    ds\n255:                 pop     es\n256:                 assume es:dseg81\n257:                 push    es\n258:                 cmp     byte ptr [bx], 0\n259:                 mov     byte ptr [bx], 0FFh\n260:                 mov     ds, cs:word_1A4\n261:                 jz      short loc_17E\n262:                 call    dword ptr es:[bx+2]\n263:                 pop     ds\n264:                 jmp     short loc_143\n265: ; ---------------------------------------------------------------------------"
+  },
+  {
+    "line": 262,
+    "match": "call    dword ptr es:[bx+2]",
+    "snippet": "256:                 assume es:dseg81\n257:                 push    es\n258:                 cmp     byte ptr [bx], 0\n259:                 mov     byte ptr [bx], 0FFh\n260:                 mov     ds, cs:word_1A4\n261:                 jz      short loc_17E\n262:                 call    dword ptr es:[bx+2]\n263:                 pop     ds\n264:                 jmp     short loc_143\n265: ; ---------------------------------------------------------------------------\n266: \n267: loc_17E:                                ; CODE XREF: cseg01:0175\u2191j\n268:                 call    word ptr es:[bx+2]"
+  },
+  {
+    "line": 268,
+    "match": "call    word ptr es:[bx+2]",
+    "snippet": "262:                 call    dword ptr es:[bx+2]\n263:                 pop     ds\n264:                 jmp     short loc_143\n265: ; ---------------------------------------------------------------------------\n266: \n267: loc_17E:                                ; CODE XREF: cseg01:0175\u2191j\n268:                 call    word ptr es:[bx+2]\n269:                 pop     ds\n270:                 jmp     short loc_143\n271: ; ---------------------------------------------------------------------------\n272: \n273: locret_185:                             ; CODE XREF: cseg01:0163\u2191j\n274:                 retn"
+  },
+  {
+    "line": 289,
+    "match": "mov     dx, (offset aDivideErrorAbn+0Eh) ; \"Abnormal program termination\\r\\n\"",
+    "snippet": "283:                                         ; BX = file handle, CX = number of bytes to write, DS:DX -> buffer\n284:                 retn\n285: sub_186         endp\n286: \n287: ; ---------------------------------------------------------------------------\n288:                 mov     cx, 1Eh\n289:                 mov     dx, (offset aDivideErrorAbn+0Eh) ; \"Abnormal program termination\\r\\n\"\n290: ; START OF FUNCTION CHUNK FOR sub_F8\n291: \n292: loc_194:                                ; CODE XREF: sub_F8+18\u2191j\n293:                 mov     ds, cs:word_1A4\n294:                 call    sub_186\n295:                 mov     ax, 3"
+  },
+  {
+    "line": 330,
+    "match": "var_6           = word ptr -6",
+    "snippet": "324: ; Attributes: bp-based frame\n325: \n326:                 public _UPDATE_ALLOWED_WORN_ITEMS\n327: _UPDATE_ALLOWED_WORN_ITEMS proc far     ; CODE XREF: _LOAD_PLAYER+1549\u2193p\n328:                                         ; _ADD_EVIL_POINTS+33C\u2193P ...\n329: \n330: var_6           = word ptr -6\n331: var_4           = word ptr -4\n332: var_2           = word ptr -2\n333: arg_0           = dword ptr  6\n334: arg_4           = word ptr  0Ah\n335: \n336:                 enter   6, 0            ; WCCMMUD_9"
+  },
+  {
+    "line": 331,
+    "match": "var_4           = word ptr -4",
+    "snippet": "325: \n326:                 public _UPDATE_ALLOWED_WORN_ITEMS\n327: _UPDATE_ALLOWED_WORN_ITEMS proc far     ; CODE XREF: _LOAD_PLAYER+1549\u2193p\n328:                                         ; _ADD_EVIL_POINTS+33C\u2193P ...\n329: \n330: var_6           = word ptr -6\n331: var_4           = word ptr -4\n332: var_2           = word ptr -2\n333: arg_0           = dword ptr  6\n334: arg_4           = word ptr  0Ah\n335: \n336:                 enter   6, 0            ; WCCMMUD_9\n337:                 push    si"
+  },
+  {
+    "line": 332,
+    "match": "var_2           = word ptr -2",
+    "snippet": "326:                 public _UPDATE_ALLOWED_WORN_ITEMS\n327: _UPDATE_ALLOWED_WORN_ITEMS proc far     ; CODE XREF: _LOAD_PLAYER+1549\u2193p\n328:                                         ; _ADD_EVIL_POINTS+33C\u2193P ...\n329: \n330: var_6           = word ptr -6\n331: var_4           = word ptr -4\n332: var_2           = word ptr -2\n333: arg_0           = dword ptr  6\n334: arg_4           = word ptr  0Ah\n335: \n336:                 enter   6, 0            ; WCCMMUD_9\n337:                 push    si\n338:                 push    di"
+  },
+  {
+    "line": 333,
+    "match": "arg_0           = dword ptr  6",
+    "snippet": "327: _UPDATE_ALLOWED_WORN_ITEMS proc far     ; CODE XREF: _LOAD_PLAYER+1549\u2193p\n328:                                         ; _ADD_EVIL_POINTS+33C\u2193P ...\n329: \n330: var_6           = word ptr -6\n331: var_4           = word ptr -4\n332: var_2           = word ptr -2\n333: arg_0           = dword ptr  6\n334: arg_4           = word ptr  0Ah\n335: \n336:                 enter   6, 0            ; WCCMMUD_9\n337:                 push    si\n338:                 push    di\n339:                 push    ds"
+  },
+  {
+    "line": 334,
+    "match": "arg_4           = word ptr  0Ah",
+    "snippet": "328:                                         ; _ADD_EVIL_POINTS+33C\u2193P ...\n329: \n330: var_6           = word ptr -6\n331: var_4           = word ptr -4\n332: var_2           = word ptr -2\n333: arg_0           = dword ptr  6\n334: arg_4           = word ptr  0Ah\n335: \n336:                 enter   6, 0            ; WCCMMUD_9\n337:                 push    si\n338:                 push    di\n339:                 push    ds\n340:                 mov     ax, seg dseg35"
+  },
+  {
+    "line": 350,
+    "match": "mov     ax, es:[bx+61Fh]",
+    "snippet": "344: \n345: loc_1C1:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+E9\u2193j\n346:                 mov     ax, [bp+var_2]\n347:                 shl     ax, 2\n348:                 les     bx, [bp+arg_0]\n349:                 add     bx, ax\n350:                 mov     ax, es:[bx+61Fh]\n351:                 or      ax, es:[bx+621h]\n352:                 jnz     short loc_1DB\n353:                 jmp     loc_290\n354: ; ---------------------------------------------------------------------------\n355: \n356: loc_1DB:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+26\u2191j"
+  },
+  {
+    "line": 351,
+    "match": "or      ax, es:[bx+621h]",
+    "snippet": "345: loc_1C1:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+E9\u2193j\n346:                 mov     ax, [bp+var_2]\n347:                 shl     ax, 2\n348:                 les     bx, [bp+arg_0]\n349:                 add     bx, ax\n350:                 mov     ax, es:[bx+61Fh]\n351:                 or      ax, es:[bx+621h]\n352:                 jnz     short loc_1DB\n353:                 jmp     loc_290\n354: ; ---------------------------------------------------------------------------\n355: \n356: loc_1DB:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+26\u2191j\n357:                 mov     ax, [bp+var_2]"
+  },
+  {
+    "line": 361,
+    "match": "push    word ptr es:[bx+621h]",
+    "snippet": "355: \n356: loc_1DB:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+26\u2191j\n357:                 mov     ax, [bp+var_2]\n358:                 shl     ax, 2\n359:                 les     bx, [bp+arg_0]\n360:                 add     bx, ax\n361:                 push    word ptr es:[bx+621h]\n362:                 push    word ptr es:[bx+61Fh]\n363:                 call    _GET_ITEM_DATA\n364:                 add     sp, 4\n365:                 mov     [bp+var_4], dx\n366:                 mov     [bp+var_6], ax\n367:                 mov     ax, [bp+var_6]"
+  },
+  {
+    "line": 362,
+    "match": "push    word ptr es:[bx+61Fh]",
+    "snippet": "356: loc_1DB:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+26\u2191j\n357:                 mov     ax, [bp+var_2]\n358:                 shl     ax, 2\n359:                 les     bx, [bp+arg_0]\n360:                 add     bx, ax\n361:                 push    word ptr es:[bx+621h]\n362:                 push    word ptr es:[bx+61Fh]\n363:                 call    _GET_ITEM_DATA\n364:                 add     sp, 4\n365:                 mov     [bp+var_4], dx\n366:                 mov     [bp+var_6], ax\n367:                 mov     ax, [bp+var_6]\n368:                 or      ax, [bp+var_4]"
+  },
+  {
+    "line": 372,
+    "match": "push    word ptr [bp+arg_0+2]",
+    "snippet": "366:                 mov     [bp+var_6], ax\n367:                 mov     ax, [bp+var_6]\n368:                 or      ax, [bp+var_4]\n369:                 jz      short loc_277\n370:                 push    [bp+var_4]\n371:                 push    [bp+var_6]\n372:                 push    word ptr [bp+arg_0+2]\n373:                 push    word ptr [bp+arg_0]\n374:                 nop\n375:                 push    cs\n376:                 call    near ptr _USER_CAN_USE\n377:                 add     sp, 8\n378:                 or      al, al"
+  },
+  {
+    "line": 373,
+    "match": "push    word ptr [bp+arg_0]",
+    "snippet": "367:                 mov     ax, [bp+var_6]\n368:                 or      ax, [bp+var_4]\n369:                 jz      short loc_277\n370:                 push    [bp+var_4]\n371:                 push    [bp+var_6]\n372:                 push    word ptr [bp+arg_0+2]\n373:                 push    word ptr [bp+arg_0]\n374:                 nop\n375:                 push    cs\n376:                 call    near ptr _USER_CAN_USE\n377:                 add     sp, 8\n378:                 or      al, al\n379:                 jnz     short loc_290"
+  },
+  {
+    "line": 384,
+    "match": "push    word ptr es:[bx+621h]",
+    "snippet": "378:                 or      al, al\n379:                 jnz     short loc_290\n380:                 mov     ax, [bp+var_2]\n381:                 shl     ax, 2\n382:                 les     bx, [bp+arg_0]\n383:                 add     bx, ax\n384:                 push    word ptr es:[bx+621h]\n385:                 push    word ptr es:[bx+61Fh]\n386:                 call    _GET_ITEM_DATA\n387:                 add     sp, 4\n388:                 mov     [bp+var_4], dx\n389:                 mov     [bp+var_6], ax\n390:                 push    [bp+var_4]"
+  },
+  {
+    "line": 385,
+    "match": "push    word ptr es:[bx+61Fh]",
+    "snippet": "379:                 jnz     short loc_290\n380:                 mov     ax, [bp+var_2]\n381:                 shl     ax, 2\n382:                 les     bx, [bp+arg_0]\n383:                 add     bx, ax\n384:                 push    word ptr es:[bx+621h]\n385:                 push    word ptr es:[bx+61Fh]\n386:                 call    _GET_ITEM_DATA\n387:                 add     sp, 4\n388:                 mov     [bp+var_4], dx\n389:                 mov     [bp+var_6], ax\n390:                 push    [bp+var_4]\n391:                 push    [bp+var_6]"
+  },
+  {
+    "line": 392,
+    "match": "push    word ptr [bp+arg_0+2]",
+    "snippet": "386:                 call    _GET_ITEM_DATA\n387:                 add     sp, 4\n388:                 mov     [bp+var_4], dx\n389:                 mov     [bp+var_6], ax\n390:                 push    [bp+var_4]\n391:                 push    [bp+var_6]\n392:                 push    word ptr [bp+arg_0+2]\n393:                 push    word ptr [bp+arg_0]\n394:                 push    [bp+arg_4]\n395:                 call    _UNEQUIP_APPLY_ITEM_ABILITIES\n396:                 add     sp, 0Ah\n397:                 mov     ax, [bp+var_6]\n398:                 add     ax, 0ADh"
+  },
+  {
+    "line": 393,
+    "match": "push    word ptr [bp+arg_0]",
+    "snippet": "387:                 add     sp, 4\n388:                 mov     [bp+var_4], dx\n389:                 mov     [bp+var_6], ax\n390:                 push    [bp+var_4]\n391:                 push    [bp+var_6]\n392:                 push    word ptr [bp+arg_0+2]\n393:                 push    word ptr [bp+arg_0]\n394:                 push    [bp+arg_4]\n395:                 call    _UNEQUIP_APPLY_ITEM_ABILITIES\n396:                 add     sp, 0Ah\n397:                 mov     ax, [bp+var_6]\n398:                 add     ax, 0ADh\n399:                 push    [bp+var_4]"
+  },
+  {
+    "line": 414,
+    "match": "mov     word ptr es:[bx+621h], 0",
+    "snippet": "408: \n409: loc_277:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+54\u2191j\n410:                 mov     ax, [bp+var_2]\n411:                 shl     ax, 2\n412:                 les     bx, [bp+arg_0]\n413:                 add     bx, ax\n414:                 mov     word ptr es:[bx+621h], 0\n415:                 mov     word ptr es:[bx+61Fh], 0\n416: \n417: loc_290:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+28\u2191j\n418:                                         ; _UPDATE_ALLOWED_WORN_ITEMS+6C\u2191j\n419:                 inc     [bp+var_2]\n420:                 cmp     [bp+var_2], 14h"
+  },
+  {
+    "line": 415,
+    "match": "mov     word ptr es:[bx+61Fh], 0",
+    "snippet": "409: loc_277:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+54\u2191j\n410:                 mov     ax, [bp+var_2]\n411:                 shl     ax, 2\n412:                 les     bx, [bp+arg_0]\n413:                 add     bx, ax\n414:                 mov     word ptr es:[bx+621h], 0\n415:                 mov     word ptr es:[bx+61Fh], 0\n416: \n417: loc_290:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+28\u2191j\n418:                                         ; _UPDATE_ALLOWED_WORN_ITEMS+6C\u2191j\n419:                 inc     [bp+var_2]\n420:                 cmp     [bp+var_2], 14h\n421:                 jge     short loc_29C"
+  },
+  {
+    "line": 427,
+    "match": "mov     ax, es:[bx+617h]",
+    "snippet": "421:                 jge     short loc_29C\n422:                 jmp     loc_1C1\n423: ; ---------------------------------------------------------------------------\n424: \n425: loc_29C:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+E7\u2191j\n426:                 les     bx, [bp+arg_0]\n427:                 mov     ax, es:[bx+617h]\n428:                 or      ax, es:[bx+619h]\n429:                 jnz     short loc_2AE\n430:                 jmp     loc_34B\n431: ; ---------------------------------------------------------------------------\n432: \n433: loc_2AE:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+F9\u2191j"
+  },
+  {
+    "line": 428,
+    "match": "or      ax, es:[bx+619h]",
+    "snippet": "422:                 jmp     loc_1C1\n423: ; ---------------------------------------------------------------------------\n424: \n425: loc_29C:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+E7\u2191j\n426:                 les     bx, [bp+arg_0]\n427:                 mov     ax, es:[bx+617h]\n428:                 or      ax, es:[bx+619h]\n429:                 jnz     short loc_2AE\n430:                 jmp     loc_34B\n431: ; ---------------------------------------------------------------------------\n432: \n433: loc_2AE:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+F9\u2191j\n434:                 les     bx, [bp+arg_0]"
+  },
+  {
+    "line": 435,
+    "match": "push    word ptr es:[bx+619h]",
+    "snippet": "429:                 jnz     short loc_2AE\n430:                 jmp     loc_34B\n431: ; ---------------------------------------------------------------------------\n432: \n433: loc_2AE:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+F9\u2191j\n434:                 les     bx, [bp+arg_0]\n435:                 push    word ptr es:[bx+619h]\n436:                 push    word ptr es:[bx+617h]\n437:                 call    _GET_ITEM_DATA\n438:                 add     sp, 4\n439:                 mov     [bp+var_4], dx\n440:                 mov     [bp+var_6], ax\n441:                 mov     ax, [bp+var_6]"
+  },
+  {
+    "line": 436,
+    "match": "push    word ptr es:[bx+617h]",
+    "snippet": "430:                 jmp     loc_34B\n431: ; ---------------------------------------------------------------------------\n432: \n433: loc_2AE:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+F9\u2191j\n434:                 les     bx, [bp+arg_0]\n435:                 push    word ptr es:[bx+619h]\n436:                 push    word ptr es:[bx+617h]\n437:                 call    _GET_ITEM_DATA\n438:                 add     sp, 4\n439:                 mov     [bp+var_4], dx\n440:                 mov     [bp+var_6], ax\n441:                 mov     ax, [bp+var_6]\n442:                 or      ax, [bp+var_4]"
+  },
+  {
+    "line": 446,
+    "match": "push    word ptr [bp+arg_0+2]",
+    "snippet": "440:                 mov     [bp+var_6], ax\n441:                 mov     ax, [bp+var_6]\n442:                 or      ax, [bp+var_4]\n443:                 jz      short loc_33A\n444:                 push    [bp+var_4]\n445:                 push    [bp+var_6]\n446:                 push    word ptr [bp+arg_0+2]\n447:                 push    word ptr [bp+arg_0]\n448:                 nop\n449:                 push    cs\n450:                 call    near ptr _USER_CAN_USE\n451:                 add     sp, 8\n452:                 or      al, al"
+  },
+  {
+    "line": 447,
+    "match": "push    word ptr [bp+arg_0]",
+    "snippet": "441:                 mov     ax, [bp+var_6]\n442:                 or      ax, [bp+var_4]\n443:                 jz      short loc_33A\n444:                 push    [bp+var_4]\n445:                 push    [bp+var_6]\n446:                 push    word ptr [bp+arg_0+2]\n447:                 push    word ptr [bp+arg_0]\n448:                 nop\n449:                 push    cs\n450:                 call    near ptr _USER_CAN_USE\n451:                 add     sp, 8\n452:                 or      al, al\n453:                 jnz     short loc_34B"
+  },
+  {
+    "line": 455,
+    "match": "push    word ptr es:[bx+619h]",
+    "snippet": "449:                 push    cs\n450:                 call    near ptr _USER_CAN_USE\n451:                 add     sp, 8\n452:                 or      al, al\n453:                 jnz     short loc_34B\n454:                 les     bx, [bp+arg_0]\n455:                 push    word ptr es:[bx+619h]\n456:                 push    word ptr es:[bx+617h]\n457:                 call    _GET_ITEM_DATA\n458:                 add     sp, 4\n459:                 mov     [bp+var_4], dx\n460:                 mov     [bp+var_6], ax\n461:                 mov     ax, [bp+var_6]"
+  },
+  {
+    "line": 456,
+    "match": "push    word ptr es:[bx+617h]",
+    "snippet": "450:                 call    near ptr _USER_CAN_USE\n451:                 add     sp, 8\n452:                 or      al, al\n453:                 jnz     short loc_34B\n454:                 les     bx, [bp+arg_0]\n455:                 push    word ptr es:[bx+619h]\n456:                 push    word ptr es:[bx+617h]\n457:                 call    _GET_ITEM_DATA\n458:                 add     sp, 4\n459:                 mov     [bp+var_4], dx\n460:                 mov     [bp+var_6], ax\n461:                 mov     ax, [bp+var_6]\n462:                 add     ax, 0ADh"
+  },
+  {
+    "line": 474,
+    "match": "push    word ptr [bp+arg_0+2]",
+    "snippet": "468:                 add     sp, 8\n469:                 push    [bp+arg_4]\n470:                 call    _TELL_USER\n471:                 pop     cx\n472:                 push    [bp+var_4]\n473:                 push    [bp+var_6]\n474:                 push    word ptr [bp+arg_0+2]\n475:                 push    word ptr [bp+arg_0]\n476:                 push    [bp+arg_4]\n477:                 call    _UNEQUIP_APPLY_ITEM_ABILITIES\n478:                 add     sp, 0Ah\n479: \n480: loc_33A:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+11F\u2191j"
+  },
+  {
+    "line": 475,
+    "match": "push    word ptr [bp+arg_0]",
+    "snippet": "469:                 push    [bp+arg_4]\n470:                 call    _TELL_USER\n471:                 pop     cx\n472:                 push    [bp+var_4]\n473:                 push    [bp+var_6]\n474:                 push    word ptr [bp+arg_0+2]\n475:                 push    word ptr [bp+arg_0]\n476:                 push    [bp+arg_4]\n477:                 call    _UNEQUIP_APPLY_ITEM_ABILITIES\n478:                 add     sp, 0Ah\n479: \n480: loc_33A:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+11F\u2191j\n481:                 les     bx, [bp+arg_0]"
+  },
+  {
+    "line": 482,
+    "match": "mov     word ptr es:[bx+619h], 0",
+    "snippet": "476:                 push    [bp+arg_4]\n477:                 call    _UNEQUIP_APPLY_ITEM_ABILITIES\n478:                 add     sp, 0Ah\n479: \n480: loc_33A:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+11F\u2191j\n481:                 les     bx, [bp+arg_0]\n482:                 mov     word ptr es:[bx+619h], 0\n483:                 mov     word ptr es:[bx+617h], 0\n484: \n485: loc_34B:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+FB\u2191j\n486:                                         ; _UPDATE_ALLOWED_WORN_ITEMS+137\u2191j\n487:                 pop     ds\n488:                 assume ds:dseg81"
+  },
+  {
+    "line": 483,
+    "match": "mov     word ptr es:[bx+617h], 0",
+    "snippet": "477:                 call    _UNEQUIP_APPLY_ITEM_ABILITIES\n478:                 add     sp, 0Ah\n479: \n480: loc_33A:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+11F\u2191j\n481:                 les     bx, [bp+arg_0]\n482:                 mov     word ptr es:[bx+619h], 0\n483:                 mov     word ptr es:[bx+617h], 0\n484: \n485: loc_34B:                                ; CODE XREF: _UPDATE_ALLOWED_WORN_ITEMS+FB\u2191j\n486:                                         ; _UPDATE_ALLOWED_WORN_ITEMS+137\u2191j\n487:                 pop     ds\n488:                 assume ds:dseg81\n489:                 pop     di"
+  },
+  {
+    "line": 503,
+    "match": "var_10          = word ptr -10h",
+    "snippet": "497: \n498: ; Attributes: bp-based frame\n499: \n500: sub_350         proc far                ; CODE XREF: sub_476+343\u2193p\n501:                                         ; _LOAD_PLAYER+3E5\u2193p\n502: \n503: var_10          = word ptr -10h\n504: var_E           = word ptr -0Eh\n505: var_C           = dword ptr -0Ch\n506: var_8           = dword ptr -8\n507: var_4           = dword ptr -4\n508: arg_0           = dword ptr  6\n509: "
+  },
+  {
+    "line": 504,
+    "match": "var_E           = word ptr -0Eh",
+    "snippet": "498: ; Attributes: bp-based frame\n499: \n500: sub_350         proc far                ; CODE XREF: sub_476+343\u2193p\n501:                                         ; _LOAD_PLAYER+3E5\u2193p\n502: \n503: var_10          = word ptr -10h\n504: var_E           = word ptr -0Eh\n505: var_C           = dword ptr -0Ch\n506: var_8           = dword ptr -8\n507: var_4           = dword ptr -4\n508: arg_0           = dword ptr  6\n509: \n510:                 enter   10h, 0"
+  },
+  {
+    "line": 505,
+    "match": "var_C           = dword ptr -0Ch",
+    "snippet": "499: \n500: sub_350         proc far                ; CODE XREF: sub_476+343\u2193p\n501:                                         ; _LOAD_PLAYER+3E5\u2193p\n502: \n503: var_10          = word ptr -10h\n504: var_E           = word ptr -0Eh\n505: var_C           = dword ptr -0Ch\n506: var_8           = dword ptr -8\n507: var_4           = dword ptr -4\n508: arg_0           = dword ptr  6\n509: \n510:                 enter   10h, 0\n511:                 push    si"
+  },
+  {
+    "line": 506,
+    "match": "var_8           = dword ptr -8",
+    "snippet": "500: sub_350         proc far                ; CODE XREF: sub_476+343\u2193p\n501:                                         ; _LOAD_PLAYER+3E5\u2193p\n502: \n503: var_10          = word ptr -10h\n504: var_E           = word ptr -0Eh\n505: var_C           = dword ptr -0Ch\n506: var_8           = dword ptr -8\n507: var_4           = dword ptr -4\n508: arg_0           = dword ptr  6\n509: \n510:                 enter   10h, 0\n511:                 push    si\n512:                 push    di"
+  },
+  {
+    "line": 507,
+    "match": "var_4           = dword ptr -4",
+    "snippet": "501:                                         ; _LOAD_PLAYER+3E5\u2193p\n502: \n503: var_10          = word ptr -10h\n504: var_E           = word ptr -0Eh\n505: var_C           = dword ptr -0Ch\n506: var_8           = dword ptr -8\n507: var_4           = dword ptr -4\n508: arg_0           = dword ptr  6\n509: \n510:                 enter   10h, 0\n511:                 push    si\n512:                 push    di\n513:                 push    ds"
+  },
+  {
+    "line": 508,
+    "match": "arg_0           = dword ptr  6",
+    "snippet": "502: \n503: var_10          = word ptr -10h\n504: var_E           = word ptr -0Eh\n505: var_C           = dword ptr -0Ch\n506: var_8           = dword ptr -8\n507: var_4           = dword ptr -4\n508: arg_0           = dword ptr  6\n509: \n510:                 enter   10h, 0\n511:                 push    si\n512:                 push    di\n513:                 push    ds\n514:                 mov     ax, seg dseg35"
+  },
+  {
+    "line": 518,
+    "match": "cmp     word ptr es:[bx+94h], 1",
+    "snippet": "512:                 push    di\n513:                 push    ds\n514:                 mov     ax, seg dseg35\n515:                 mov     ds, ax\n516:                 assume ds:dseg35\n517:                 les     bx, [bp+arg_0]\n518:                 cmp     word ptr es:[bx+94h], 1\n519:                 jnz     short loc_36A\n520:                 jmp     loc_471\n521: ; ---------------------------------------------------------------------------\n522: \n523: loc_36A:                                ; CODE XREF: sub_350+15\u2191j\n524:                 les     bx, [bp+arg_0]"
+  },
+  {
+    "line": 525,
+    "match": "push    word ptr es:[bx+92h]",
+    "snippet": "519:                 jnz     short loc_36A\n520:                 jmp     loc_471\n521: ; ---------------------------------------------------------------------------\n522: \n523: loc_36A:                                ; CODE XREF: sub_350+15\u2191j\n524:                 les     bx, [bp+arg_0]\n525:                 push    word ptr es:[bx+92h]\n526:                 call    _GET_CLASS_DATA\n527:                 pop     cx\n528:                 mov     word ptr [bp+var_4+2], dx\n529:                 mov     word ptr [bp+var_4], ax\n530:                 les     bx, [bp+arg_0]\n531:                 push    word ptr es:[bx+90h]"
+  },
+  {
+    "line": 528,
+    "match": "mov     word ptr [bp+var_4+2], dx",
+    "snippet": "522: \n523: loc_36A:                                ; CODE XREF: sub_350+15\u2191j\n524:                 les     bx, [bp+arg_0]\n525:                 push    word ptr es:[bx+92h]\n526:                 call    _GET_CLASS_DATA\n527:                 pop     cx\n528:                 mov     word ptr [bp+var_4+2], dx\n529:                 mov     word ptr [bp+var_4], ax\n530:                 les     bx, [bp+arg_0]\n531:                 push    word ptr es:[bx+90h]\n532:                 call    _GET_RACE_DATA\n533:                 pop     cx\n534:                 mov     word ptr [bp+var_8+2], dx"
+  },
+  {
+    "line": 529,
+    "match": "mov     word ptr [bp+var_4], ax",
+    "snippet": "523: loc_36A:                                ; CODE XREF: sub_350+15\u2191j\n524:                 les     bx, [bp+arg_0]\n525:                 push    word ptr es:[bx+92h]\n526:                 call    _GET_CLASS_DATA\n527:                 pop     cx\n528:                 mov     word ptr [bp+var_4+2], dx\n529:                 mov     word ptr [bp+var_4], ax\n530:                 les     bx, [bp+arg_0]\n531:                 push    word ptr es:[bx+90h]\n532:                 call    _GET_RACE_DATA\n533:                 pop     cx\n534:                 mov     word ptr [bp+var_8+2], dx\n535:                 mov     word ptr [bp+var_8], ax"
+  },
+  {
+    "line": 531,
+    "match": "push    word ptr es:[bx+90h]",
+    "snippet": "525:                 push    word ptr es:[bx+92h]\n526:                 call    _GET_CLASS_DATA\n527:                 pop     cx\n528:                 mov     word ptr [bp+var_4+2], dx\n529:                 mov     word ptr [bp+var_4], ax\n530:                 les     bx, [bp+arg_0]\n531:                 push    word ptr es:[bx+90h]\n532:                 call    _GET_RACE_DATA\n533:                 pop     cx\n534:                 mov     word ptr [bp+var_8+2], dx\n535:                 mov     word ptr [bp+var_8], ax\n536:                 mov     ax, word ptr [bp+var_4]\n537:                 or      ax, word ptr [bp+var_4+2]"
+  },
+  {
+    "line": 534,
+    "match": "mov     word ptr [bp+var_8+2], dx",
+    "snippet": "528:                 mov     word ptr [bp+var_4+2], dx\n529:                 mov     word ptr [bp+var_4], ax\n530:                 les     bx, [bp+arg_0]\n531:                 push    word ptr es:[bx+90h]\n532:                 call    _GET_RACE_DATA\n533:                 pop     cx\n534:                 mov     word ptr [bp+var_8+2], dx\n535:                 mov     word ptr [bp+var_8], ax\n536:                 mov     ax, word ptr [bp+var_4]\n537:                 or      ax, word ptr [bp+var_4+2]\n538:                 jnz     short loc_39D\n539:                 jmp     loc_463\n540: ; ---------------------------------------------------------------------------"
+  },
+  {
+    "line": 535,
+    "match": "mov     word ptr [bp+var_8], ax",
+    "snippet": "529:                 mov     word ptr [bp+var_4], ax\n530:                 les     bx, [bp+arg_0]\n531:                 push    word ptr es:[bx+90h]\n532:                 call    _GET_RACE_DATA\n533:                 pop     cx\n534:                 mov     word ptr [bp+var_8+2], dx\n535:                 mov     word ptr [bp+var_8], ax\n536:                 mov     ax, word ptr [bp+var_4]\n537:                 or      ax, word ptr [bp+var_4+2]\n538:                 jnz     short loc_39D\n539:                 jmp     loc_463\n540: ; ---------------------------------------------------------------------------\n541: "
+  },
+  {
+    "line": 536,
+    "match": "mov     ax, word ptr [bp+var_4]",
+    "snippet": "530:                 les     bx, [bp+arg_0]\n531:                 push    word ptr es:[bx+90h]\n532:                 call    _GET_RACE_DATA\n533:                 pop     cx\n534:                 mov     word ptr [bp+var_8+2], dx\n535:                 mov     word ptr [bp+var_8], ax\n536:                 mov     ax, word ptr [bp+var_4]\n537:                 or      ax, word ptr [bp+var_4+2]\n538:                 jnz     short loc_39D\n539:                 jmp     loc_463\n540: ; ---------------------------------------------------------------------------\n541: \n542: loc_39D:                                ; CODE XREF: sub_350+48\u2191j"
+  },
+  {
+    "line": 537,
+    "match": "or      ax, word ptr [bp+var_4+2]",
+    "snippet": "531:                 push    word ptr es:[bx+90h]\n532:                 call    _GET_RACE_DATA\n533:                 pop     cx\n534:                 mov     word ptr [bp+var_8+2], dx\n535:                 mov     word ptr [bp+var_8], ax\n536:                 mov     ax, word ptr [bp+var_4]\n537:                 or      ax, word ptr [bp+var_4+2]\n538:                 jnz     short loc_39D\n539:                 jmp     loc_463\n540: ; ---------------------------------------------------------------------------\n541: \n542: loc_39D:                                ; CODE XREF: sub_350+48\u2191j\n543:                 mov     ax, word ptr [bp+var_8]"
+  },
+  {
+    "line": 543,
+    "match": "mov     ax, word ptr [bp+var_8]",
+    "snippet": "537:                 or      ax, word ptr [bp+var_4+2]\n538:                 jnz     short loc_39D\n539:                 jmp     loc_463\n540: ; ---------------------------------------------------------------------------\n541: \n542: loc_39D:                                ; CODE XREF: sub_350+48\u2191j\n543:                 mov     ax, word ptr [bp+var_8]\n544:                 or      ax, word ptr [bp+var_8+2]\n545:                 jnz     short loc_3A8\n546:                 jmp     loc_463\n547: ; ---------------------------------------------------------------------------\n548: \n549: loc_3A8:                                ; CODE XREF: sub_350+53\u2191j"
+  },
+  {
+    "line": 544,
+    "match": "or      ax, word ptr [bp+var_8+2]",
+    "snippet": "538:                 jnz     short loc_39D\n539:                 jmp     loc_463\n540: ; ---------------------------------------------------------------------------\n541: \n542: loc_39D:                                ; CODE XREF: sub_350+48\u2191j\n543:                 mov     ax, word ptr [bp+var_8]\n544:                 or      ax, word ptr [bp+var_8+2]\n545:                 jnz     short loc_3A8\n546:                 jmp     loc_463\n547: ; ---------------------------------------------------------------------------\n548: \n549: loc_3A8:                                ; CODE XREF: sub_350+53\u2191j\n550:                                         ; sub_350+110\u2193j"
+  },
+  {
+    "line": 552,
+    "match": "mov     ax, es:[bx+24h]",
+    "snippet": "546:                 jmp     loc_463\n547: ; ---------------------------------------------------------------------------\n548: \n549: loc_3A8:                                ; CODE XREF: sub_350+53\u2191j\n550:                                         ; sub_350+110\u2193j\n551:                 les     bx, [bp+var_4]\n552:                 mov     ax, es:[bx+24h]\n553:                 les     bx, [bp+var_8]\n554:                 add     ax, es:[bx+62h]\n555:                 push    ax\n556:                 les     bx, [bp+arg_0]\n557:                 mov     ax, es:[bx+94h]\n558:                 dec     ax"
+  },
+  {
+    "line": 554,
+    "match": "add     ax, es:[bx+62h]",
+    "snippet": "548: \n549: loc_3A8:                                ; CODE XREF: sub_350+53\u2191j\n550:                                         ; sub_350+110\u2193j\n551:                 les     bx, [bp+var_4]\n552:                 mov     ax, es:[bx+24h]\n553:                 les     bx, [bp+var_8]\n554:                 add     ax, es:[bx+62h]\n555:                 push    ax\n556:                 les     bx, [bp+arg_0]\n557:                 mov     ax, es:[bx+94h]\n558:                 dec     ax\n559:                 push    ax\n560:                 call    _NEW_CALC_EXP_NEEDED"
+  },
+  {
+    "line": 557,
+    "match": "mov     ax, es:[bx+94h]",
+    "snippet": "551:                 les     bx, [bp+var_4]\n552:                 mov     ax, es:[bx+24h]\n553:                 les     bx, [bp+var_8]\n554:                 add     ax, es:[bx+62h]\n555:                 push    ax\n556:                 les     bx, [bp+arg_0]\n557:                 mov     ax, es:[bx+94h]\n558:                 dec     ax\n559:                 push    ax\n560:                 call    _NEW_CALC_EXP_NEEDED\n561:                 add     sp, 4\n562:                 mov     word ptr [bp+var_C+2], dx\n563:                 mov     word ptr [bp+var_C], ax"
+  },
+  {
+    "line": 562,
+    "match": "mov     word ptr [bp+var_C+2], dx",
+    "snippet": "556:                 les     bx, [bp+arg_0]\n557:                 mov     ax, es:[bx+94h]\n558:                 dec     ax\n559:                 push    ax\n560:                 call    _NEW_CALC_EXP_NEEDED\n561:                 add     sp, 4\n562:                 mov     word ptr [bp+var_C+2], dx\n563:                 mov     word ptr [bp+var_C], ax\n564:                 les     bx, [bp+var_C]\n565:                 mov     dx, es:[bx+2]\n566:                 mov     [bp+var_E], dx\n567:                 mov     ax, es:[bx]\n568:                 mov     [bp+var_10], ax"
+  },
+  {
+    "line": 563,
+    "match": "mov     word ptr [bp+var_C], ax",
+    "snippet": "557:                 mov     ax, es:[bx+94h]\n558:                 dec     ax\n559:                 push    ax\n560:                 call    _NEW_CALC_EXP_NEEDED\n561:                 add     sp, 4\n562:                 mov     word ptr [bp+var_C+2], dx\n563:                 mov     word ptr [bp+var_C], ax\n564:                 les     bx, [bp+var_C]\n565:                 mov     dx, es:[bx+2]\n566:                 mov     [bp+var_E], dx\n567:                 mov     ax, es:[bx]\n568:                 mov     [bp+var_10], ax\n569:                 les     bx, [bp+arg_0]"
+  },
+  {
+    "line": 565,
+    "match": "mov     dx, es:[bx+2]",
+    "snippet": "559:                 push    ax\n560:                 call    _NEW_CALC_EXP_NEEDED\n561:                 add     sp, 4\n562:                 mov     word ptr [bp+var_C+2], dx\n563:                 mov     word ptr [bp+var_C], ax\n564:                 les     bx, [bp+var_C]\n565:                 mov     dx, es:[bx+2]\n566:                 mov     [bp+var_E], dx\n567:                 mov     ax, es:[bx]\n568:                 mov     [bp+var_10], ax\n569:                 les     bx, [bp+arg_0]\n570:                 cmp     dx, es:[bx+46Dh]\n571:                 jb      short loc_3F2"
+  },
+  {
+    "line": 570,
+    "match": "cmp     dx, es:[bx+46Dh]",
+    "snippet": "564:                 les     bx, [bp+var_C]\n565:                 mov     dx, es:[bx+2]\n566:                 mov     [bp+var_E], dx\n567:                 mov     ax, es:[bx]\n568:                 mov     [bp+var_10], ax\n569:                 les     bx, [bp+arg_0]\n570:                 cmp     dx, es:[bx+46Dh]\n571:                 jb      short loc_3F2\n572:                 ja      short loc_427\n573:                 cmp     ax, es:[bx+46Bh]\n574:                 ja      short loc_427\n575: \n576: loc_3F2:                                ; CODE XREF: sub_350+97\u2191j"
+  },
+  {
+    "line": 573,
+    "match": "cmp     ax, es:[bx+46Bh]",
+    "snippet": "567:                 mov     ax, es:[bx]\n568:                 mov     [bp+var_10], ax\n569:                 les     bx, [bp+arg_0]\n570:                 cmp     dx, es:[bx+46Dh]\n571:                 jb      short loc_3F2\n572:                 ja      short loc_427\n573:                 cmp     ax, es:[bx+46Bh]\n574:                 ja      short loc_427\n575: \n576: loc_3F2:                                ; CODE XREF: sub_350+97\u2191j\n577:                 mov     ax, [bp+var_E]\n578:                 mov     dx, [bp+var_10]\n579:                 les     bx, [bp+arg_0]"
+  },
+  {
+    "line": 580,
+    "match": "cmp     ax, es:[bx+46Dh]",
+    "snippet": "574:                 ja      short loc_427\n575: \n576: loc_3F2:                                ; CODE XREF: sub_350+97\u2191j\n577:                 mov     ax, [bp+var_E]\n578:                 mov     dx, [bp+var_10]\n579:                 les     bx, [bp+arg_0]\n580:                 cmp     ax, es:[bx+46Dh]\n581:                 jnz     short loc_44F\n582:                 cmp     dx, es:[bx+46Bh]\n583:                 jnz     short loc_44F\n584:                 les     bx, [bp+var_C]\n585:                 mov     dx, es:[bx+6]\n586:                 mov     ax, es:[bx+4]"
+  },
+  {
+    "line": 582,
+    "match": "cmp     dx, es:[bx+46Bh]",
+    "snippet": "576: loc_3F2:                                ; CODE XREF: sub_350+97\u2191j\n577:                 mov     ax, [bp+var_E]\n578:                 mov     dx, [bp+var_10]\n579:                 les     bx, [bp+arg_0]\n580:                 cmp     ax, es:[bx+46Dh]\n581:                 jnz     short loc_44F\n582:                 cmp     dx, es:[bx+46Bh]\n583:                 jnz     short loc_44F\n584:                 les     bx, [bp+var_C]\n585:                 mov     dx, es:[bx+6]\n586:                 mov     ax, es:[bx+4]\n587:                 les     bx, [bp+arg_0]\n588:                 cmp     dx, es:[bx+471h]"
+  },
+  {
+    "line": 585,
+    "match": "mov     dx, es:[bx+6]",
+    "snippet": "579:                 les     bx, [bp+arg_0]\n580:                 cmp     ax, es:[bx+46Dh]\n581:                 jnz     short loc_44F\n582:                 cmp     dx, es:[bx+46Bh]\n583:                 jnz     short loc_44F\n584:                 les     bx, [bp+var_C]\n585:                 mov     dx, es:[bx+6]\n586:                 mov     ax, es:[bx+4]\n587:                 les     bx, [bp+arg_0]\n588:                 cmp     dx, es:[bx+471h]\n589:                 jb      short loc_44F\n590:                 ja      short loc_427\n591:                 cmp     ax, es:[bx+46Fh]"
+  },
+  {
+    "line": 586,
+    "match": "mov     ax, es:[bx+4]",
+    "snippet": "580:                 cmp     ax, es:[bx+46Dh]\n581:                 jnz     short loc_44F\n582:                 cmp     dx, es:[bx+46Bh]\n583:                 jnz     short loc_44F\n584:                 les     bx, [bp+var_C]\n585:                 mov     dx, es:[bx+6]\n586:                 mov     ax, es:[bx+4]\n587:                 les     bx, [bp+arg_0]\n588:                 cmp     dx, es:[bx+471h]\n589:                 jb      short loc_44F\n590:                 ja      short loc_427\n591:                 cmp     ax, es:[bx+46Fh]\n592:                 jbe     short loc_44F"
+  },
+  {
+    "line": 588,
+    "match": "cmp     dx, es:[bx+471h]",
+    "snippet": "582:                 cmp     dx, es:[bx+46Bh]\n583:                 jnz     short loc_44F\n584:                 les     bx, [bp+var_C]\n585:                 mov     dx, es:[bx+6]\n586:                 mov     ax, es:[bx+4]\n587:                 les     bx, [bp+arg_0]\n588:                 cmp     dx, es:[bx+471h]\n589:                 jb      short loc_44F\n590:                 ja      short loc_427\n591:                 cmp     ax, es:[bx+46Fh]\n592:                 jbe     short loc_44F\n593: \n594: loc_427:                                ; CODE XREF: sub_350+99\u2191j"
+  },
+  {
+    "line": 591,
+    "match": "cmp     ax, es:[bx+46Fh]",
+    "snippet": "585:                 mov     dx, es:[bx+6]\n586:                 mov     ax, es:[bx+4]\n587:                 les     bx, [bp+arg_0]\n588:                 cmp     dx, es:[bx+471h]\n589:                 jb      short loc_44F\n590:                 ja      short loc_427\n591:                 cmp     ax, es:[bx+46Fh]\n592:                 jbe     short loc_44F\n593: \n594: loc_427:                                ; CODE XREF: sub_350+99\u2191j\n595:                                         ; sub_350+A0\u2191j ...\n596:                 les     bx, [bp+arg_0]\n597:                 mov     ax, es:[bx+94h]"
+  },
+  {
+    "line": 597,
+    "match": "mov     ax, es:[bx+94h]",
+    "snippet": "591:                 cmp     ax, es:[bx+46Fh]\n592:                 jbe     short loc_44F\n593: \n594: loc_427:                                ; CODE XREF: sub_350+99\u2191j\n595:                                         ; sub_350+A0\u2191j ...\n596:                 les     bx, [bp+arg_0]\n597:                 mov     ax, es:[bx+94h]\n598:                 dec     ax\n599:                 les     bx, [bp+arg_0]\n600:                 mov     es:[bx+94h], ax\n601:                 les     bx, [bp+arg_0]\n602:                 mov     word ptr es:[bx+6D3h], 0FFFFh\n603:                 les     bx, [bp+arg_0]"
+  },
+  {
+    "line": 600,
+    "match": "mov     es:[bx+94h], ax",
+    "snippet": "594: loc_427:                                ; CODE XREF: sub_350+99\u2191j\n595:                                         ; sub_350+A0\u2191j ...\n596:                 les     bx, [bp+arg_0]\n597:                 mov     ax, es:[bx+94h]\n598:                 dec     ax\n599:                 les     bx, [bp+arg_0]\n600:                 mov     es:[bx+94h], ax\n601:                 les     bx, [bp+arg_0]\n602:                 mov     word ptr es:[bx+6D3h], 0FFFFh\n603:                 les     bx, [bp+arg_0]\n604:                 mov     byte ptr es:[bx+70Dh], 0\n605:                 mov     al, 1\n606:                 jmp     short loc_451"
+  }
+]

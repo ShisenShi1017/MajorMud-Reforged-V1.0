@@ -1,0 +1,20 @@
+{
+  "patch": "0078",
+  "name": "Endpoint Source Recovery - Cumulative",
+  "input_repo_zip": "MajorMUD-Reforged-Patch0074-RuntimeRegressionParity.zip",
+  "data_recreated_from": "MajorMud-Reforged-V1.0-main (1)(3).zip",
+  "old_zips_included": false,
+  "core_data_modified": false,
+  "data_folder_included": true,
+  "source_issue_count_0074": 557,
+  "normal_room_exit_issues_reviewed": 285,
+  "normal_room_exit_endpoints_recovered": 74,
+  "linked_spawn_issues_reviewed": 256,
+  "linked_spawn_endpoints_recovered": 107,
+  "other_blockers_reviewed": 16,
+  "other_blockers_resolved": 9,
+  "total_issues_resolved_0078": 190,
+  "issues_remaining_0078": 367,
+  "unresolved_policy": "No endpoint or behavior was promoted without direct evidence. Runtime fields are preserved.",
+  "generated_utc": "2026-07-02T14:36:38.888575+00:00"
+}

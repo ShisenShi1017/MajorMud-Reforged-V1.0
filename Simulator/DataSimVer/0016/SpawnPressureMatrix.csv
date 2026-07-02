@@ -1,0 +1,935 @@
+room_id,room_number,room_name,monster_type,monster_name,monster_found,respawn_minutes,max_area_cap,linked_spawn_room,boss_type_id,confidence
+wcc_map1_room2,2,Lucky Strike Casino,6,orc rogue,True,5,0,0,0,evidence
+wcc_map1_room8,8,Intersection of Estwall St. & Crown St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room10,10,Lucky Strike Casino,6,orc rogue,True,5,0,0,0,evidence
+wcc_map1_room11,11,Lucky Strike Casino,6,orc rogue,True,5,0,0,789,evidence
+wcc_map1_room21,21,Intersection of Guild St. & River St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room28,28,River Street,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room35,35,Intersection of River St. & Westwall St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room65,65,"Strange Mansion, Entrance",11,skeleton,True,1,10,65,0,evidence
+wcc_map1_room66,66,Intersection of Noble St. & Westwall St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room69,69,"Noble Street, Slum Gates",6,orc rogue,True,3,0,0,0,evidence
+wcc_map1_room101,101,"Silver Street, Eastern End",5,acid slime,True,0,0,0,784,evidence
+wcc_map1_room102,102,Silver Street,5,acid slime,True,0,0,0,40,evidence
+wcc_map1_room103,103,Intersection of Silver St. & Bridge St.,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room104,104,Intersection of Silver St. & Park St.,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room105,105,Silver Street,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room106,106,Intersection of Silver St. & Brass St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room107,107,Silver Street,6,orc rogue,True,0,0,0,0,evidence
+wcc_map1_room114,114,Oak Street,6,orc rogue,True,0,0,0,0,evidence
+wcc_map1_room127,127,Park Street,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room130,130,Park,6,orc rogue,True,0,0,0,0,evidence
+wcc_map1_room132,132,Oak Street,6,orc rogue,True,0,0,0,0,evidence
+wcc_map1_room137,137,Park,6,orc rogue,True,2,0,0,0,evidence
+wcc_map1_room184,184,Intersection of Bridge St. & Crown St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room207,207,Brass Street,6,orc rogue,True,0,0,0,0,evidence
+wcc_map1_room212,212,Intersection of Crown St. & Brass St.,2,lashworm,True,5,0,0,0,evidence
+wcc_map1_room218,218,Intersection of Guild St. & Crown St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room219,219,Guild Street,6,orc rogue,True,2,0,0,0,evidence
+wcc_map1_room222,222,Guild Street,6,orc rogue,True,2,0,0,0,evidence
+wcc_map1_room223,223,"Guild Street, Southern End",6,orc rogue,True,1,0,0,0,evidence
+wcc_map1_room224,224,Town Square,5,acid slime,True,0,0,0,784,evidence
+wcc_map1_room225,225,"Sovereign Street, Northern End",6,orc rogue,True,0,0,0,0,evidence
+wcc_map1_room226,226,Sovereign Street,6,orc rogue,True,5,0,0,0,evidence
+wcc_map1_room228,228,Sovereign Street,6,orc rogue,True,3,0,0,0,evidence
+wcc_map1_room229,229,Intersection of Sovereign St. & Oak St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room245,245,Intersection of Stone St. and Crown St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room253,253,Silver Street,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room254,254,"Silver Street, Western End",5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room260,260,Sovereign Street,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room261,261,Sovereign Street,6,orc rogue,True,0,0,0,0,evidence
+wcc_map1_room288,288,The Silver River,21,half-ogre bodyguard,True,5,0,2342,0,evidence
+wcc_map1_room290,290,Sarkhee's Jewellery,2,lashworm,True,0,0,0,43,evidence
+wcc_map1_room297,297,Bank of Godfrey,5,acid slime,True,0,0,0,784,evidence
+wcc_map1_room301,301,"Temple Street, Eastern End",5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room302,302,Temple Street,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room303,303,Temple Street,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room305,305,"Skali's Fine Armour, Front Room",2,lashworm,True,0,0,0,27,evidence
+wcc_map1_room306,306,"Skali's Fine Armour, Showroom",2,lashworm,True,0,0,0,26,evidence
+wcc_map1_room307,307,Thuluk's Marvelous Axes,2,lashworm,True,0,0,0,23,evidence
+wcc_map1_room309,309,"Sentara's Clothing, Front Room",2,lashworm,True,0,0,0,28,evidence
+wcc_map1_room311,311,"The Homely Hearth, Common Room",6,orc rogue,True,2,0,0,248,evidence
+wcc_map1_room313,313,"The Homely Hearth, Stairwell",5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room315,315,"The Homely Hearth, Common Room",6,orc rogue,True,1,0,0,249,evidence
+wcc_map1_room318,318,Intersection of Stone St. & Oak St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room324,324,Intersection of Temple St. & Stone St.,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room325,325,Temple Street,5,acid slime,True,3,0,0,0,evidence
+wcc_map1_room332,332,Curio Shop,2,lashworm,True,0,0,0,42,evidence
+wcc_map1_room334,334,General Store,2,lashworm,True,0,0,0,41,evidence
+wcc_map1_room348,348,"Adventurer's Guild, Foyer",2,lashworm,True,0,0,0,39,evidence
+wcc_map1_room354,354,Colin's Maces,2,lashworm,True,0,0,0,25,evidence
+wcc_map1_room355,355,Helfgrim's Blades,2,lashworm,True,0,0,0,24,evidence
+wcc_map1_room373,373,Sheriff's Office,5,acid slime,True,2,0,0,0,evidence
+wcc_map1_room383,383,Dark Alley,6,orc rogue,True,1,0,0,0,evidence
+wcc_map1_room390,390,"Guild Street, Northern End",6,orc rogue,True,1,0,0,0,evidence
+wcc_map1_room391,391,Wailing Hound Tavern,6,orc rogue,True,0,0,0,248,evidence
+wcc_map1_room398,398,Magic Shoppe,2,lashworm,True,0,0,0,22,evidence
+wcc_map1_room405,405,Small Alleyway,6,orc rogue,True,2,0,0,0,evidence
+wcc_map1_room522,522,Temple Spell Store,2,lashworm,True,0,0,0,46,evidence
+wcc_map1_room525,525,Temple Chapel,2,lashworm,True,0,0,0,45,evidence
+wcc_map1_room527,527,Temple Healer,2,lashworm,True,0,0,0,243,evidence
+wcc_map1_room538,538,Dungeon Stairs,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room539,539,Dungeon Corridor,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room540,540,Dungeon Corridor,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room650,650,"Sewer Tunnel, Intersection",6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room713,713,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room714,714,"Sewer Tunnel, Intersection",6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room715,715,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room716,716,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room717,717,"Sewer Tunnel, Intersection",6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room718,718,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room719,719,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room720,720,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room730,730,Sewer Tunnel,6,orc rogue,True,5,0,766,0,evidence
+wcc_map1_room731,731,"Sewer Tunnel, Intersection",6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room732,732,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room733,733,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room734,734,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room735,735,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room736,736,"Sewer Tunnel, Dead End",6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room751,751,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room752,752,"Sewer Tunnel, Intersection",6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room753,753,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room757,757,Sewer Tunnel,6,orc rogue,True,0,0,766,0,evidence
+wcc_map1_room816,816,"Graveyard, Entry",7,kobold thief,True,1,100,816,0,evidence
+wcc_map1_room817,817,"Graveyard, Southern Edge",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room818,818,"Graveyard, Southern Edge",7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room819,819,"Graveyard, Southern Edge",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room820,820,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room822,822,Graveyard,7,kobold thief,True,1,0,816,0,evidence
+wcc_map1_room823,823,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room824,824,Graveyard,7,kobold thief,True,1,0,816,790,evidence
+wcc_map1_room826,826,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room828,828,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room829,829,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room830,830,Graveyard,7,kobold thief,True,1,0,816,790,evidence
+wcc_map1_room831,831,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room832,832,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room833,833,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room834,834,"Graveyard, Tomb Entrance",7,kobold thief,True,1,0,816,0,evidence
+wcc_map1_room835,835,Crypt,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room836,836,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room837,837,"Graveyard, East of Tomb",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room838,838,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room839,839,"Graveyard, North of Tomb",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room840,840,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room842,842,"Graveyard, West of Tomb",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room848,848,Inn Second Floor,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room1072,1072,Slum Entrance,5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room1073,1073,Slum Street,6,orc rogue,True,0,6,1073,0,evidence
+wcc_map1_room1074,1074,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1075,1075,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1076,1076,"Slum Street, Crossroads",6,orc rogue,True,5,0,1073,0,evidence
+wcc_map1_room1077,1077,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1078,1078,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1079,1079,"Slum Street, Bend",6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1080,1080,"Slum Street, Bend",6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1081,1081,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1089,1089,"Slum Street, Square",6,orc rogue,True,0,0,1083,0,evidence
+wcc_map1_room1120,1120,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1121,1121,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1122,1122,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1123,1123,"Slum Street, Intersection",6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1124,1124,Slum Street,6,orc rogue,True,5,0,1073,0,evidence
+wcc_map1_room1152,1152,"Slum Street, Bend",6,orc rogue,True,0,0,1155,0,evidence
+wcc_map1_room1153,1153,"Slum Street, Bend",6,orc rogue,True,0,0,1155,0,evidence
+wcc_map1_room1154,1154,Slum Street,6,orc rogue,True,0,0,1155,0,evidence
+wcc_map1_room1155,1155,"Slum Street, Intersection",6,orc rogue,True,5,9,1155,0,evidence
+wcc_map1_room1156,1156,Slum Street,6,orc rogue,True,0,0,1083,0,evidence
+wcc_map1_room1157,1157,Slum Street,6,orc rogue,True,0,0,1083,0,evidence
+wcc_map1_room1158,1158,Slum Street,6,orc rogue,True,0,0,1083,0,evidence
+wcc_map1_room1159,1159,Slum Street,6,orc rogue,True,0,0,1083,0,evidence
+wcc_map1_room1160,1160,Slum Street,6,orc rogue,True,0,0,1083,0,evidence
+wcc_map1_room1161,1161,Slum Street,6,orc rogue,True,5,0,1083,0,evidence
+wcc_map1_room1162,1162,Slum Street,6,orc rogue,True,0,8,1162,0,evidence
+wcc_map1_room1163,1163,Slum Street,6,orc rogue,True,0,0,1162,0,evidence
+wcc_map1_room1181,1181,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1182,1182,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1183,1183,"Slum Street, Intersection",6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1184,1184,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1185,1185,"Slum Street, Bend",6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1186,1186,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1187,1187,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1188,1188,Slum Street,6,orc rogue,True,0,0,1083,0,evidence
+wcc_map1_room1189,1189,Slum Street,6,orc rogue,True,0,0,1155,0,evidence
+wcc_map1_room1190,1190,Slum Street,6,orc rogue,True,0,0,1155,0,evidence
+wcc_map1_room1191,1191,Slum Street,6,orc rogue,True,0,0,1155,0,evidence
+wcc_map1_room1205,1205,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1206,1206,"Slum Street, Intersection",6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1207,1207,Slum Street,6,orc rogue,True,5,0,1073,0,evidence
+wcc_map1_room1208,1208,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1209,1209,"Slum Street, Intersection",6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1210,1210,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1211,1211,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1212,1212,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1213,1213,Dark Alley,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1214,1214,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1216,1216,Slum Street,6,orc rogue,True,0,0,1073,0,evidence
+wcc_map1_room1330,1330,Darkwood Forest,11,skeleton,True,5,100,1330,0,evidence
+wcc_map1_room1352,1352,Dungeon Corridor,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room1355,1355,Dungeon Corridor,5,acid slime,True,5,0,0,0,evidence
+wcc_map1_room1381,1381,"Town Gates, Inner Bailey",5,acid slime,True,0,0,0,0,evidence
+wcc_map1_room1711,1711,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1718,1718,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1719,1719,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1720,1720,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1722,1722,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1723,1723,Darkwood Forest,10,thug,True,5,0,1709,0,evidence
+wcc_map1_room1724,1724,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1725,1725,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1726,1726,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1727,1727,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1728,1728,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1729,1729,Darkwood Forest,10,thug,True,5,0,1709,0,evidence
+wcc_map1_room1730,1730,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1731,1731,Darkwood Forest,10,thug,True,0,0,1709,0,evidence
+wcc_map1_room1813,1813,Pier,2,lashworm,True,0,1,0,61,evidence
+wcc_map1_room2141,2141,"Newhaven, Weapons Shop",2,lashworm,True,0,0,0,74,evidence
+wcc_map1_room2142,2142,"Newhaven, Armour Shop",2,lashworm,True,0,0,0,75,evidence
+wcc_map1_room2144,2144,"Newhaven, Spell Shop",2,lashworm,True,0,0,0,77,evidence
+wcc_map1_room2145,2145,"Newhaven, General Store",2,lashworm,True,0,0,0,76,evidence
+wcc_map1_room2147,2147,"Newhaven, Adventurer's Guild",2,lashworm,True,0,0,0,78,evidence
+wcc_map1_room2190,2190,"Newhaven, Healer",2,lashworm,True,0,0,0,73,evidence
+wcc_map1_room2304,2304,"Darkwood Forest, Clearing",10,thug,True,0,0,1709,0,evidence
+wcc_map1_room2305,2305,"Darkwood Tree, Small House",10,thug,True,0,0,0,106,evidence
+wcc_map1_room2306,2306,"Small House, Attic",10,thug,True,5,0,0,0,evidence
+wcc_map1_room2307,2307,Spell Shop,6,orc rogue,True,0,0,0,0,evidence
+wcc_map1_room2325,2325,Small Dark Room,2,lashworm,True,15,0,0,128,evidence
+wcc_map1_room2342,2342,"The Silver River, Silvermere Docks",21,half-ogre bodyguard,True,20,15,2342,0,evidence
+wcc_map1_room2343,2343,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,0,0,2342,0,evidence
+wcc_map1_room2344,2344,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,0,0,2342,0,evidence
+wcc_map1_room2345,2345,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,0,0,2342,0,evidence
+wcc_map1_room2346,2346,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,0,0,2342,0,evidence
+wcc_map1_room2347,2347,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,0,0,2342,0,evidence
+wcc_map1_room2363,2363,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,0,0,2342,0,evidence
+wcc_map1_room2364,2364,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,5,0,2342,0,evidence
+wcc_map1_room2365,2365,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,5,0,2342,0,evidence
+wcc_map1_room2366,2366,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,5,0,2342,0,evidence
+wcc_map1_room2367,2367,"The Silver River, North of Silvermere",21,half-ogre bodyguard,True,5,0,2342,0,evidence
+wcc_map1_room2418,2418,Graveyard,7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room2606,2606,"Graveyard, Western Edge",7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room2607,2607,"Graveyard, Western Edge",7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room2608,2608,"Graveyard, Western Edge",7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room2609,2609,"Graveyard, Western Edge",7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room2642,2642,"Graveyard, South-East Corner",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room2643,2643,"Graveyard, Eastern Edge",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room2644,2644,"Graveyard, Eastern Edge",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room2645,2645,"Graveyard, Eastern Edge",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room2646,2646,"Graveyard, Eastern Edge",7,kobold thief,True,0,0,816,0,evidence
+wcc_map1_room2680,2680,Gold Mine Tunnel,24,Helfgrim,True,5,0,2650,0,evidence
+wcc_map1_room2783,2783,Darkwood Forest,11,skeleton,True,5,0,1330,0,evidence
+wcc_map1_room2784,2784,Darkwood Forest,11,skeleton,True,5,0,1330,0,evidence
+wcc_map1_room2785,2785,Darkwood Forest,11,skeleton,True,5,0,1330,0,evidence
+wcc_map1_room2786,2786,Darkwood Forest,11,skeleton,True,2,0,1330,0,evidence
+wcc_map1_room2787,2787,Darkwood Forest,11,skeleton,True,5,0,1330,0,evidence
+wcc_map1_room2788,2788,Darkwood Forest,11,skeleton,True,5,0,1330,0,evidence
+wcc_map1_room2789,2789,Darkwood Forest,11,skeleton,True,5,0,1330,0,evidence
+wcc_map1_room2790,2790,Darkwood Forest,11,skeleton,True,5,0,1330,0,evidence
+wcc_map1_room2791,2791,Darkwood Forest,11,skeleton,True,1,0,1330,0,evidence
+wcc_map1_room2792,2792,Darkwood Forest,11,skeleton,True,5,0,1330,0,evidence
+wcc_map1_room2793,2793,Darkwood Forest,11,skeleton,True,1,0,1330,0,evidence
+wcc_map1_room2794,2794,Darkwood Forest,11,skeleton,True,1,0,1330,0,evidence
+wcc_map1_room2935,2935,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2936,2936,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2937,2937,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2938,2938,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2939,2939,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2940,2940,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2941,2941,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2959,2959,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2960,2960,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2961,2961,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2962,2962,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2963,2963,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2964,2964,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2965,2965,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2966,2966,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2967,2967,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2968,2968,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room2969,2969,Darkwood Forest,14,guardsman,True,2,200,2803,0,evidence
+wcc_map1_room3276,3276,Graveyard,7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room3281,3281,Graveyard,7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room3282,3282,Graveyard,7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room3288,3288,Graveyard,7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room3293,3293,Graveyard,7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room3294,3294,Graveyard,7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room3300,3300,Graveyard,7,kobold thief,True,5,0,816,0,evidence
+wcc_map1_room3301,3301,Graveyard,7,kobold thief,True,5,0,816,0,evidence
+wcc_map2_room176,176,"Rocky Valley, Massive Doors",9,,False,0,0,116,0,unresolved_ref
+wcc_map2_room1173,1173,Stone Tunnel,9,,False,0,0,1123,0,unresolved_ref
+wcc_map2_room1176,1176,Stone Tunnel,9,,False,0,0,1123,0,unresolved_ref
+wcc_map2_room1177,1177,Stone Tunnel,9,,False,0,0,1123,0,unresolved_ref
+wcc_map2_room1178,1178,Stone Tunnel,9,,False,0,0,1123,0,unresolved_ref
+wcc_map2_room1179,1179,Stone Tunnel,9,,False,0,0,1123,0,unresolved_ref
+wcc_map2_room1183,1183,Stone Tunnel,9,,False,0,0,1123,0,unresolved_ref
+wcc_map2_room1808,1808,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2519,2519,"Rhudaur, Massive Doors",19,orc lieutenant,True,0,38,2519,0,evidence
+wcc_map2_room2520,2520,"Shadow Street, Northern End",19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2521,2521,Shadow Street,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2522,2522,"Shadow Street, Southern End",19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2523,2523,Rhudaur Town Centre,19,orc lieutenant,True,2,0,2519,0,evidence
+wcc_map2_room2524,2524,"Dagger Street, Eastern End",19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2525,2525,"Dagger Street, Western End",19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2526,2526,"Flame Street, Western End",19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2527,2527,"Flame Street, Eastern End",19,orc lieutenant,True,2,0,2519,0,evidence
+wcc_map2_room2528,2528,"Temple Street, Northern End",19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2529,2529,"Temple Street, Southern End",19,orc lieutenant,True,1,0,2519,0,evidence
+wcc_map2_room2530,2530,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2531,2531,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2534,2534,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2535,2535,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2536,2536,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2537,2537,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2538,2538,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2539,2539,Smelly Dump,26,Skali,True,5,0,2519,0,evidence
+wcc_map2_room2540,2540,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2541,2541,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2544,2544,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2545,2545,Dark Alley,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2546,2546,Dark Alley,19,orc lieutenant,True,1,0,2519,0,evidence
+wcc_map2_room2547,2547,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2548,2548,Dark Park,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2549,2549,Dark Park,19,orc lieutenant,True,1,0,2519,0,evidence
+wcc_map2_room2550,2550,The Drunken Demon Inn,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2551,2551,The Drunken Demon Inn,19,orc lieutenant,True,60,0,0,0,evidence
+wcc_map2_room2552,2552,"The Drunken Demon Inn, Stairwell",19,orc lieutenant,True,1,0,2519,0,evidence
+wcc_map2_room2553,2553,"The Drunken Demon Inn, Kitchen",19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2559,2559,Ruined Mansion,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2560,2560,Abandoned House,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2561,2561,Thieve's Guild,19,orc lieutenant,True,0,0,0,253,evidence
+wcc_map2_room2562,2562,Weapon Shop,19,orc lieutenant,True,60,0,0,0,evidence
+wcc_map2_room2563,2563,Missile Weapon Shop,19,orc lieutenant,True,60,0,0,0,evidence
+wcc_map2_room2564,2564,The Bloody Dagger Tavern,19,orc lieutenant,True,60,0,0,0,evidence
+wcc_map2_room2566,2566,Exotic Weapons Shop,19,orc lieutenant,True,10,0,0,257,evidence
+wcc_map2_room2567,2567,Armour Shop,19,orc lieutenant,True,60,0,0,0,evidence
+wcc_map2_room2568,2568,Bank of Rhudaur,19,orc lieutenant,True,0,0,0,238,evidence
+wcc_map2_room2569,2569,The Screaming Wench Tavern,19,orc lieutenant,True,60,0,0,0,evidence
+wcc_map2_room2570,2570,Training Hall,19,orc lieutenant,True,0,0,0,256,evidence
+wcc_map2_room2571,2571,Dark Temple,19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2572,2572,"Dark Temple, Healing Room",19,orc lieutenant,True,0,0,0,255,evidence
+wcc_map2_room2573,2573,"Dark Temple, Altar",19,orc lieutenant,True,0,0,2519,0,evidence
+wcc_map2_room2574,2574,Mystical Items Store,19,orc lieutenant,True,60,0,0,0,evidence
+wcc_map2_room2575,2575,"Fine Mansion, Foyer",19,orc lieutenant,True,0,0,0,0,evidence
+wcc_map2_room2576,2576,Fine Mansion,19,orc lieutenant,True,0,0,0,0,evidence
+wcc_map2_room2577,2577,"Fine Mansion, Study",19,orc lieutenant,True,0,0,0,263,evidence
+wcc_map2_room2581,2581,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2582,2582,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2583,2583,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2584,2584,Dark Alley,19,orc lieutenant,True,2,0,2519,0,evidence
+wcc_map2_room2585,2585,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2586,2586,Dark Alley,19,orc lieutenant,True,2,0,2519,0,evidence
+wcc_map2_room2587,2587,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2588,2588,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2589,2589,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2590,2590,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2592,2592,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2593,2593,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2594,2594,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2595,2595,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2596,2596,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2597,2597,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2598,2598,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2599,2599,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map2_room2600,2600,Dark Alley,19,orc lieutenant,True,5,0,2519,0,evidence
+wcc_map3_room541,541,Common Area,5,acid slime,True,10,0,525,0,evidence
+wcc_map3_room542,542,Training Area,5,acid slime,True,10,0,525,0,evidence
+wcc_map6_room117,117,Valley Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room118,118,Valley Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room119,119,Valley Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room120,120,"Valley Path, Near Inn",24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room121,121,"Valley Path, Outside Inn",24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room122,122,"Valley Path, Outside Inn",24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room123,123,Grassy Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room124,124,Gypsy Encampment,24,Helfgrim,True,5,0,110,385,evidence
+wcc_map6_room134,134,Swampside Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room135,135,Swampside Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room136,136,Swampside Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room137,137,Swampside Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room234,234,Swampside Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room235,235,Swampside Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room236,236,Swampside Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room237,237,Swampside Path,24,Helfgrim,True,5,0,110,0,evidence
+wcc_map6_room238,238,Misty Swamp Path,24,Helfgrim,True,5,125,238,0,evidence
+wcc_map6_room239,239,Misty Swamp Path,24,Helfgrim,True,5,0,238,0,evidence
+wcc_map6_room240,240,Misty Swamp Path,24,Helfgrim,True,5,0,238,0,evidence
+wcc_map6_room548,548,Rocky Plain Path,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room549,549,"Gnome Village, Entrance",24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room550,550,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room551,551,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room552,552,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room553,553,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room554,554,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room555,555,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room556,556,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room557,557,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room558,558,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room559,559,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room560,560,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room561,561,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room562,562,Ascent to Khazarad,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room563,563,Small Cottage,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room564,564,Small Cottage,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room565,565,Eating Hall,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room566,566,General Store,24,Helfgrim,True,5,0,540,399,evidence
+wcc_map6_room567,567,Jeweler's Shop,24,Helfgrim,True,5,0,540,399,evidence
+wcc_map6_room568,568,Small Cottage,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room569,569,Small Cottage,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room570,570,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room571,571,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room572,572,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room573,573,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room578,578,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room579,579,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room580,580,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room581,581,Small Cottage,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room582,582,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room583,583,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room584,584,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room585,585,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room586,586,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room587,587,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room588,588,Small Cottage,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room610,610,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room611,611,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room612,612,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room613,613,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room614,614,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room615,615,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room616,616,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room617,617,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room618,618,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room619,619,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room621,621,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room622,622,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room625,625,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room628,628,Small Cottage,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room629,629,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room630,630,Small Cottage,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room631,631,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room632,632,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room633,633,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room634,634,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room635,635,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room636,636,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room637,637,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room638,638,Gnome Village,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room645,645,Alchemist's Hut,24,Helfgrim,True,5,0,540,401,evidence
+wcc_map6_room676,676,Tilled Fields,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room679,679,Tilled Fields,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room709,709,Rocky Path,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room710,710,Rocky Path,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room711,711,Rocky Path,24,Helfgrim,True,5,0,540,0,evidence
+wcc_map6_room1244,1244,Ascent to Khazarad,24,Helfgrim,True,5,0,77,0,evidence
+wcc_map6_room1245,1245,Gates of Khazarad,24,Helfgrim,True,5,250,1245,0,evidence
+wcc_map6_room1246,1246,Entrance to Khazarad,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1247,1247,Barracks,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1248,1248,Barracks,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1249,1249,"Khazarad, Entry Arch",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1250,1250,"Khazarad, Mithril Way",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1251,1251,"Khazarad, Mithril Way",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1252,1252,"Khazarad, Mithril Way",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1253,1253,"Khazarad, Mithril Way",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1254,1254,"Khazarad, Mithril Way",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1255,1255,"Khazarad, Garden Walk",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1256,1256,"Khazarad, Garden Walk",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1257,1257,"Khazarad, Garden Walk",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1258,1258,"Khazarad, Garden Walk",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1259,1259,"Khazarad, Garden Entrance",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1260,1260,"Khazarad, Garden Walk",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1261,1261,"Khazarad, Garden Walk",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1262,1262,"Khazarad, Garden Walk",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1263,1263,"Khazarad, Gate Wall",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1264,1264,"Khazarad, Gate Wall",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1265,1265,"Khazarad, Corner of Gate Wall and Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1266,1266,"Khazarad, Gate Wall",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1267,1267,"Khazarad, Gate Wall",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1268,1268,"Khazarad, Corner of Gate Wall and Iron Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1269,1269,"Khazarad, Iron Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1274,1274,"Khazarad, Iron Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1275,1275,"Khazarad, Junction of Iron Street and South Alley",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1276,1276,"Khazarad, Iron Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1282,1282,"Khazarad, Corner of Iron Street and Mine Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1283,1283,"Khazarad, Mine Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1284,1284,"Khazarad, Mine Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1285,1285,"Khazarad, Junction of Mine Street and Craft Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1286,1286,"Khazarad, Mine Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1287,1287,"Khazarad, Mine Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1288,1288,"Khazarad, Corner of Mine Street and Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1289,1289,"Khazarad, Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1290,1290,"Khazarad, Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1291,1291,"Khazarad, Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1292,1292,"Khazarad, Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1293,1293,"Khazarad, Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1294,1294,"Khazarad, Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1295,1295,"Khazarad, Junction of Forge Street and South Alley",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1296,1296,"Khazarad, Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1301,1301,"Khazarad, Forge Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1302,1302,"Khazarad, North Alley",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1303,1303,"Khazarad, South Alley",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1304,1304,"Khazarad, Craft Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1305,1305,"Khazarad, Craft Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1306,1306,"Khazarad, Craft Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1307,1307,"Khazarad, Craft Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1308,1308,"Khazarad, Craft Street",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1309,1309,Stone Garden of Khazarad,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1314,1314,Dwarven Home,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1316,1316,Dwarven Home,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1317,1317,Dwarven Home,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1328,1328,Khazarad Inn,24,Helfgrim,True,5,0,1245,419,evidence
+wcc_map6_room1329,1329,"Khazarad Inn, Stairwell",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1330,1330,"Khazarad Inn, Hallway",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1331,1331,"Khazarad Inn, Bedroom",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1332,1332,Frothing Mug Tavern,24,Helfgrim,True,5,0,1245,423,evidence
+wcc_map6_room1333,1333,Gambling Hall,24,Helfgrim,True,5,0,1245,1000,evidence
+wcc_map6_room1334,1334,Bank of Khazarad,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1335,1335,General Store,24,Helfgrim,True,5,0,1245,421,evidence
+wcc_map6_room1336,1336,Axe of Fury Weapon Store,24,Helfgrim,True,5,0,1245,421,evidence
+wcc_map6_room1337,1337,Martok's Battered Breastplate,24,Helfgrim,True,5,0,1245,421,evidence
+wcc_map6_room1339,1339,Gaol of Khazarad,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1340,1340,"Gaol of Khazarad, Hallway",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1341,1341,Square Cell,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1342,1342,Harkul's Haberdashery,24,Helfgrim,True,5,0,1245,421,evidence
+wcc_map6_room1343,1343,Gurdal's Leather Goods,24,Helfgrim,True,5,0,1245,421,evidence
+wcc_map6_room1344,1344,Drotha's Deadly Weaponry,24,Helfgrim,True,5,0,1245,421,evidence
+wcc_map6_room1345,1345,Storage Room,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1346,1346,Gorthun's Gemstones,24,Helfgrim,True,5,0,1245,421,evidence
+wcc_map6_room1347,1347,Dwarven Temple,24,Helfgrim,True,5,0,1245,428,evidence
+wcc_map6_room1348,1348,Dwarven Temple,24,Helfgrim,True,5,0,1245,429,evidence
+wcc_map6_room1349,1349,Great Arena of Khazarad,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1352,1352,Training Area,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1355,1355,Forge Entrance,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1361,1361,Ornate Passageway,24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1362,1362,"Ornate Passageway, Stairwell",24,Helfgrim,True,5,0,1245,0,evidence
+wcc_map6_room1567,1567,Miner's Guild,24,Helfgrim,True,5,15,1567,0,evidence
+wcc_map6_room1568,1568,Iron Mine Entrance,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1569,1569,"Iron Mine, Cart Track",24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1570,1570,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1571,1571,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1572,1572,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1573,1573,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1574,1574,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1576,1576,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1577,1577,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1578,1578,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1579,1579,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1580,1580,Iron Mine Tunnel,24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1585,1585,"Iron Mine, Cart Track",24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1586,1586,"Iron Mine, Cart Track",24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1587,1587,"Iron Mine, Cart Track",24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1588,1588,"Iron Mine, Cart Track",24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map6_room1589,1589,"Iron Mine, Cart Track",24,Helfgrim,True,5,0,1567,0,evidence
+wcc_map7_room780,780,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room781,781,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room782,782,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room783,783,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room784,784,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room785,785,"Cracked Plain, Black Chasm",27,Gurbultis,True,5,0,732,0,evidence
+wcc_map7_room786,786,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room787,787,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room788,788,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room789,789,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room790,790,"Cracked Plain, Black Chasm",27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room815,815,Cracked Plain,27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room816,816,Cracked Plain,27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room817,817,Cracked Plain,27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room818,818,Cracked Plain,27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room819,819,Cracked Plain,27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room830,830,Cracked Plain,27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room831,831,Cracked Plain,27,Gurbultis,True,0,0,732,0,evidence
+wcc_map7_room933,933,"Lava Fields, Cavern Wall",27,Gurbultis,True,5,0,883,0,evidence
+wcc_map7_room1112,1112,"Dark Valley, Iron Gate",26,Skali,True,5,0,1107,0,evidence
+wcc_map7_room1113,1113,Dreary Village,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1114,1114,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1115,1115,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1116,1116,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1117,1117,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1118,1118,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1119,1119,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1120,1120,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1121,1121,Dreary Village,26,Skali,True,5,0,1107,0,evidence
+wcc_map7_room1122,1122,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1123,1123,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1124,1124,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1125,1125,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1126,1126,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1127,1127,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1128,1128,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1129,1129,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1130,1130,"Dreary Village, Crossroads",26,Skali,True,5,0,1107,0,evidence
+wcc_map7_room1131,1131,"Dreary Village, Back Streets",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1132,1132,Dreary Village,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1133,1133,Dreary Village,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1134,1134,Stone Barracks,26,Skali,True,8,0,1107,0,evidence
+wcc_map7_room1135,1135,Evil Chapel,26,Skali,True,5,0,1107,0,evidence
+wcc_map7_room1136,1136,Small Store,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1137,1137,Dirt Road,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1138,1138,Dirt Road,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1139,1139,Dirt Road,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1140,1140,Dirt Road,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1141,1141,"Dirt Road, Black Fortress Gate",26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1142,1142,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1143,1143,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1144,1144,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1145,1145,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1146,1146,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1147,1147,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1149,1149,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1150,1150,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1151,1151,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1152,1152,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1153,1153,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1154,1154,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1155,1155,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1156,1156,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1157,1157,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1163,1163,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1164,1164,Black Weed Fields,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1171,1171,Ramshackle Barn,26,Skali,True,0,0,1107,0,evidence
+wcc_map7_room1529,1529,Dark Valley,26,Skali,True,5,0,1107,0,evidence
+wcc_map8_room460,460,Large Hole,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room461,461,Black Steel Gate,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room462,462,"Town Gates, Archway",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room463,463,"Dark Street, Junction",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room464,464,Back Road,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room465,465,Back Road,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room466,466,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room467,467,"Dark Street, Junction",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room468,468,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room469,469,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room470,470,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room471,471,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room472,472,"Dark Street, Junction",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room473,473,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room474,474,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room475,475,"Dark Street, Junction",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room476,476,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room477,477,"Dark Street, Junction",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room478,478,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room479,479,Back Road,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room480,480,Back Road,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room481,481,"City, Main Street",22,Aiken,True,5,0,0,0,evidence
+wcc_map8_room482,482,"Dark Street, Junction",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room483,483,Back Road,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room484,484,Back Road,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room485,485,"City, Main Street",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room486,486,Musty Store,22,Aiken,True,0,0,0,348,evidence
+wcc_map8_room487,487,Narrow Alley,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room488,488,Narrow Alley,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room491,491,Cobblestone Path,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room492,492,Royal Prison,22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room559,559,"Dark-Elf City, Moatside",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room560,560,"Dark-Elf Castle, Gatehouse",22,Aiken,True,0,0,0,0,evidence
+wcc_map8_room1041,1041,Ethereal Prison,22,Aiken,True,5,0,0,370,evidence
+wcc_map10_room268,268,"Rocky Trail, Bottleneck Pass",16,ghoul,True,0,0,0,0,evidence
+wcc_map10_room269,269,"Rocky Trail, Bottleneck Pass",16,ghoul,True,0,0,0,0,evidence
+wcc_map10_room270,270,"Ancient Keep, Entrance",16,ghoul,True,0,0,0,0,evidence
+wcc_map10_room271,271,"Ancient Keep, Throne Room",2,lashworm,True,0,0,0,186,evidence
+wcc_map10_room306,306,Rocky Trail,16,ghoul,True,5,0,0,0,evidence
+wcc_map12_room2,2,Dusty Village,20,mercenary,True,5,50,2,0,evidence
+wcc_map12_room3,3,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room4,4,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room5,5,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room6,6,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room7,7,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room8,8,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room9,9,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room10,10,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room12,12,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room13,13,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room14,14,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room15,15,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room16,16,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room17,17,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room18,18,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room19,19,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room20,20,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room21,21,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room22,22,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room23,23,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room24,24,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room25,25,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room26,26,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room27,27,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room28,28,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room29,29,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room31,31,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room32,32,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room33,33,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room34,34,Dusty Village,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room35,35,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room36,36,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room37,37,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room38,38,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room39,39,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room40,40,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room42,42,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room43,43,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room44,44,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room45,45,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room47,47,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room48,48,Canvas Tent,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room49,49,Village Store,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room50,50,Storage Room,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room51,51,Cloakroom,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room52,52,Common Room,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room53,53,Inn Stairwell,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room54,54,Kitchen,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room55,55,"Upper Floor, Landing",20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room56,56,Sleeping Chamber,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room57,57,Sleeping Chamber,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room58,58,Sleeping Chamber,20,mercenary,True,5,0,2,0,evidence
+wcc_map12_room59,59,Ornate Tent,20,mercenary,True,5,0,2,554,evidence
+wcc_map12_room714,714,Scorching Desert,20,mercenary,True,5,0,135,0,evidence
+wcc_map12_room861,861,Scorching Desert,20,mercenary,True,5,0,135,0,evidence
+wcc_map12_room2249,2249,Small Stone Chamber,20,mercenary,True,5,0,1521,0,evidence
+wcc_map16_room311,311,Temple Stairs,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room312,312,Temple Stairs,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room313,313,Temple Stairs,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room314,314,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room315,315,Market Street,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room316,316,Market Street,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room317,317,"Armour Shop, Front Room",31,mummy,True,5,80,311,0,evidence
+wcc_map16_room318,318,"Armour Shop, Back Room",31,mummy,True,5,80,311,0,evidence
+wcc_map16_room319,319,Market Street,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room320,320,Bank,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room321,321,Market Street,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room322,322,Corner of Market Street and Alley,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room323,323,Well Lit Alley,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room324,324,Well Lit Alley,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room325,325,"Well Lit Alley, Corner",31,mummy,True,5,80,311,0,evidence
+wcc_map16_room326,326,Well Lit Alley,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room327,327,Well Lit Alley,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room328,328,"Well Lit Alley, Dead End",31,mummy,True,5,80,311,0,evidence
+wcc_map16_room329,329,Hides Shop,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room330,330,"Weapons Shop, Front Room",31,mummy,True,5,80,311,0,evidence
+wcc_map16_room331,331,"Weapons Shop, Back Room",31,mummy,True,5,80,311,0,evidence
+wcc_map16_room332,332,Market Street,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room333,333,Barracks,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room334,334,Barracks,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room335,335,Barracks,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room336,336,Barracks,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room337,337,Barracks,31,mummy,True,5,80,311,0,evidence
+wcc_map16_room357,357,Forest Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room358,358,Forest Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room359,359,"Forest Street, Intersection",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room360,360,Elder's Path,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room361,361,Elder's Path,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room375,375,Elder's Path,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room376,376,"Forest Street, Intersection",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room377,377,Forest Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room378,378,Forest Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room379,379,Elders' Council Chambers,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room380,380,"Elders' Council Chambers, Waiting Room",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room381,381,"Elders' Council Chambers, Private Quarters",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room382,382,"Elders' Council Chambers, Craftswoman's Room",31,mummy,True,5,50,311,695,evidence
+wcc_map16_room383,383,"Elders' Council Chambers, Meeting Hall",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room384,384,"Elders' Council Chambers, Meeting Hall",31,mummy,True,5,50,311,656,evidence
+wcc_map16_room385,385,Forest Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room412,412,Barracks,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room413,413,Barracks,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room414,414,Barracks,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room415,415,Barracks,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room416,416,Barracks,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room417,417,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room418,418,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room419,419,Corner of Market Street and Alley,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room420,420,Well Lit Alley,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room421,421,Well Lit Alley,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room422,422,"Well Lit Alley, Corner",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room423,423,Well Lit Alley,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room424,424,Well Lit Alley,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room427,427,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room428,428,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room429,429,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room430,430,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room431,431,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room432,432,"Magic Shop, Front Room",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room433,433,"Magic Shop, Back Room",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room434,434,Jewelry Shop,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room435,435,"General Store, Front Room",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room436,436,"General Store, Back Room",31,mummy,True,5,50,311,0,evidence
+wcc_map16_room437,437,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room438,438,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room439,439,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room440,440,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room441,441,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room442,442,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room443,443,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room444,444,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room445,445,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room446,446,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room447,447,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room448,448,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room449,449,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room450,450,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room451,451,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room452,452,Market Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room453,453,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room454,454,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room455,455,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room456,456,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room457,457,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room458,458,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room459,459,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room460,460,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room461,461,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room462,462,Central Street,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room463,463,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room464,464,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room465,465,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room466,466,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room467,467,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room468,468,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room474,474,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room475,475,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room476,476,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room477,477,Temple Stairs,31,mummy,True,5,50,311,694,evidence
+wcc_map16_room478,478,Temple Stairs,31,mummy,True,5,50,311,0,evidence
+wcc_map16_room479,479,Training Grounds,31,mummy,True,0,5,485,0,evidence
+wcc_map16_room480,480,Training Grounds,31,mummy,True,0,5,485,0,evidence
+wcc_map16_room486,486,Training Grounds,31,mummy,True,0,5,485,0,evidence
+wcc_map16_room498,498,Training Grounds,31,mummy,True,0,5,485,0,evidence
+wcc_map16_room526,526,Training Grounds,31,mummy,True,0,5,485,0,evidence
+wcc_map16_room527,527,Training Grounds,31,mummy,True,0,5,485,0,evidence
+wcc_map16_room528,528,Training Grounds,31,mummy,True,0,5,485,0,evidence
+wcc_map16_room529,529,Training Grounds,31,mummy,True,0,5,485,0,evidence
+wcc_map16_room624,624,"Lagoon, Reef",31,mummy,True,5,30,570,0,evidence
+wcc_map16_room625,625,"Lagoon, Reef",31,mummy,True,5,30,570,0,evidence
+wcc_map16_room626,626,"Lagoon, Reef",31,mummy,True,5,30,570,0,evidence
+wcc_map16_room627,627,"Lagoon, Reef",31,mummy,True,5,30,570,0,evidence
+wcc_map16_room628,628,"Lagoon, Reef",31,mummy,True,5,30,570,0,evidence
+wcc_map16_room629,629,"Lagoon, Reef",31,mummy,True,5,30,570,0,evidence
+wcc_map16_room630,630,"Lagoon, Reef",31,mummy,True,5,30,570,0,evidence
+wcc_map16_room1521,1521,"Earthen Catacombs, Spiral Staircase",31,mummy,True,5,0,0,0,evidence
+wcc_map16_room2550,2550,"Lagoon, Open Water",31,mummy,True,5,35,2550,0,evidence
+wcc_map16_room2551,2551,"Lagoon, Reef",31,mummy,True,5,35,2550,0,evidence
+wcc_map16_room2659,2659,"Floating Platform, Dock",31,mummy,True,5,0,0,0,evidence
+wcc_map16_room2660,2660,"Floating Platform, Dock",31,mummy,True,5,0,0,0,evidence
+wcc_map16_room2661,2661,"Floating Platform, Dock",31,mummy,True,5,0,0,0,evidence
+wcc_map16_room2662,2662,"Floating Platform, Dock",31,mummy,True,5,0,0,0,evidence
+wcc_map16_room2663,2663,"Floating Platform, Hut",31,mummy,True,5,0,0,722,evidence
+wcc_map17_room633,633,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room634,634,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room635,635,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room636,636,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room637,637,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room638,638,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room639,639,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room640,640,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room641,641,"Blackwood Forest, Winding Trail",29,dark cultist,True,5,0,591,817,evidence
+wcc_map17_room770,770,"Gypsy Encampment, Entrance",29,dark cultist,True,5,5,770,0,evidence
+wcc_map17_room771,771,Gypsy Encampment,29,dark cultist,True,5,5,770,0,evidence
+wcc_map17_room772,772,Gypsy Encampment,29,dark cultist,True,5,5,770,0,evidence
+wcc_map17_room773,773,Gypsy Encampment,29,dark cultist,True,5,5,770,0,evidence
+wcc_map17_room774,774,"Gypsy Encampment, Campfire",29,dark cultist,True,5,0,770,0,evidence
+wcc_map17_room775,775,Gypsy Encampment,29,dark cultist,True,5,5,770,0,evidence
+wcc_map17_room776,776,Gypsy Wagon,29,dark cultist,True,5,0,770,844,evidence
+wcc_map17_room777,777,Gypsy Wagon,29,dark cultist,True,5,0,770,0,evidence
+wcc_map17_room778,778,Gypsy Wagon,29,dark cultist,True,5,0,770,0,evidence
+wcc_map17_room779,779,Gypsy Wagon,29,dark cultist,True,5,0,770,0,evidence
+wcc_map17_room2265,2265,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2266,2266,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2267,2267,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2268,2268,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2269,2269,Town Square,29,dark cultist,True,5,60,2269,854,evidence
+wcc_map17_room2270,2270,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2271,2271,Main Street,29,dark cultist,True,5,0,2269,854,evidence
+wcc_map17_room2272,2272,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2273,2273,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2274,2274,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2275,2275,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2276,2276,Main Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2277,2277,"Arlysia, City Entrance",29,dark cultist,True,5,0,2269,854,evidence
+wcc_map17_room2278,2278,Stargazer's Lane,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2279,2279,Stargazer's Lane,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2280,2280,"Stargazer's Lane, Park Entrance",29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2281,2281,Stargazer's Lane,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2287,2287,Dock Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2288,2288,Dock Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2289,2289,Dock Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2290,2290,Intersection of Dock Street & Haven Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2291,2291,Dock Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2292,2292,Dock Street,29,dark cultist,True,5,0,2269,854,evidence
+wcc_map17_room2293,2293,Dock Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2294,2294,Dock Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2295,2295,"Arlysia, City Entrance",29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2307,2307,Long Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2352,2352,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2353,2353,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2354,2354,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2355,2355,Intersection of Seaside Way & Saint's Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2356,2356,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2380,2380,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2381,2381,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2382,2382,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2383,2383,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2384,2384,Seaside Way,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2387,2387,Haven Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2388,2388,Intersection of Haven Street & Long Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2389,2389,Haven Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2390,2390,Haven Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2391,2391,Haven Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2392,2392,Haven Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2393,2393,Haven Street,29,dark cultist,True,5,0,2269,852,evidence
+wcc_map17_room2397,2397,Saint's Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2398,2398,Saint's Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2399,2399,Saint's Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2400,2400,Saint's Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2401,2401,Gryphon Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2402,2402,Gryphon Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2403,2403,Gryphon Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2404,2404,Gryphon Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2405,2405,Gryphon Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2406,2406,Gryphon Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2443,2443,City Park,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2472,2472,Dirt Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2473,2473,Dirt Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2474,2474,Dirt Street,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2490,2490,Dirt Street Home,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2500,2500,Town Hall,29,dark cultist,True,5,0,2269,854,evidence
+wcc_map17_room2501,2501,"Town Hall, Office of the Mayor",29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2502,2502,Town Hall,29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2503,2503,"Town Hall, Stairwell",29,dark cultist,True,5,0,2269,0,evidence
+wcc_map17_room2940,2940,"Adventurer's Guild, Universal Trainer",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2982,2982,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2991,2991,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2992,2992,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2993,2993,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2994,2994,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2995,2995,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2996,2996,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2997,2997,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2998,2998,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room2999,2999,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3000,3000,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3005,3005,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3006,3006,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3010,3010,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3013,3013,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3014,3014,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3015,3015,Grand Hallway,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3036,3036,Shadowy Passage,2,lashworm,True,5,0,0,1056,evidence
+wcc_map17_room3037,3037,Shadowy Passage,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3038,3038,Shadowy Passage,2,lashworm,True,5,0,0,1054,evidence
+wcc_map17_room3039,3039,Shadowy Passage,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3040,3040,Shadowy Passage,2,lashworm,True,5,0,0,1057,evidence
+wcc_map17_room3041,3041,Shadowy Passage,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3056,3056,"Marble Room, Black Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3057,3057,"Marble Room, White Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3061,3061,"Marble Room, White Square",2,lashworm,True,5,0,0,999,evidence
+wcc_map17_room3062,3062,"Marble Room, Black Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3063,3063,"Marble Room, Black Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3064,3064,"Marble Room, White Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3065,3065,"Marble Room, Black Square",2,lashworm,True,5,0,0,998,evidence
+wcc_map17_room3067,3067,"Marble Room, Black Square",2,lashworm,True,5,0,0,994,evidence
+wcc_map17_room3068,3068,"Marble Room, White Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3069,3069,"Marble Room, Black Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3070,3070,"Marble Room, White Square",2,lashworm,True,5,0,0,995,evidence
+wcc_map17_room3071,3071,"Marble Room, Black Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3082,3082,"Marble Room, Black Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3141,3141,Amber Fortress,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3142,3142,Amber Fortress,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3143,3143,Amber Fortress,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3144,3144,Amber Fortress,2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3189,3189,"Marble Room, Black Square",2,lashworm,True,5,0,0,0,evidence
+wcc_map17_room3247,3247,Grand Chamber,2,lashworm,True,5,0,0,0,evidence

@@ -1,0 +1,19 @@
+{
+  "searched_uploaded_repo": true,
+  "searched_patch0080_data": true,
+  "patterns": [
+    "exit_type",
+    "exit type",
+    "SpecialExit",
+    "special exit",
+    "exit_para",
+    "to_room",
+    "RoomNumber"
+  ],
+  "endpoint_worklist_rows": 210,
+  "endpoint_direct_resolutions": 0,
+  "endpoint_remaining_blocked": 210,
+  "special_exit_candidate_rows": 48,
+  "special_exit_behavior_semantics_promoted": 0,
+  "finding": "No direct decoder/runtime implementation evidence mapping remaining endpoint IDs or special exit_type values to behavior semantics was found in the uploaded evidence set. Raw fields and provenance were preserved and documented."
+}
