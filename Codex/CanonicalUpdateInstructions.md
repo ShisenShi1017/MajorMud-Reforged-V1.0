@@ -1,0 +1,1 @@
+Update repository canonical status only for promoted subsystems. Do not promote remaining validated items.

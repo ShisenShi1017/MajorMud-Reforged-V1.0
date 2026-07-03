@@ -1,0 +1,1 @@
+/Data remains authoritative. Canonical Promotion 0001 is the verified baseline.
