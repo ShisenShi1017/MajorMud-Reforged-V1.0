@@ -65,8 +65,8 @@ Architecture should remain mode-ready without hardcoding Classic in a way that b
 
 Responsibility split:
 
-- `Data/` defines world/content.
-- Server defines and enforces engine behavior.
+- `Data/` defines world/content and game logic by default.
+- Server defines reusable engine behavior, validation, execution, and enforcement.
 - Editor should eventually edit data safely.
 
 Future intended evolution:
@@ -81,13 +81,13 @@ Future intended evolution:
 
 Classic is the first target, but the Server is an engine, not a Classic-only server.
 
-Favor reusable engine systems over feature-specific systems. Keep the engine generic whenever practical. Avoid naming or designing systems around Classic unless they truly are Classic-specific. World behavior should come from data whenever appropriate. Engine behavior should come from reusable systems rather than hardcoded game logic.
+Favor reusable engine systems over feature-specific systems. Keep the engine generic whenever practical. Avoid naming or designing systems around Classic unless they truly are Classic-specific. Game logic is data-driven by default: rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless a behavior is truly engine-internal. Engine behavior should come from reusable systems rather than hardcoded game-specific logic.
 
 Future gameplay systems should plug into the engine instead of replacing it.
 
 When designing new Server features, ask:
 
-1. Can this be data-driven?
+1. Is this implemented through data unless it is truly engine-internal?
 2. Can this be reused by future modes?
 3. Can this be exposed to the Editor later?
 4. Does this unnecessarily tie the engine to Classic?
@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0054`
+- Current Code Update: `0055`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0054, wait for user-reported green GitHub Actions, then build a focused verification index over Validation0013 evidence and the current `Data/` baseline.
+- Current priority: push CodeUpdate-0055, wait for user-reported green GitHub Actions, then choose one reviewed reconciliation slice from the current placeholder/blocker audit.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -154,6 +154,8 @@ CodeUpdate-0053 replaces only repository `Data/` from the embedded Patch0068 `/D
 
 CodeUpdate-0054 copies only repository-new files from the Validation0013 cumulative package and DocUpdate0024 Librarium planning package. It adds 437 new Validation0013 files and 2 new DocUpdate0024 files while skipping 86 existing Validation0013 paths without overwriting them. It does not replace the CodeUpdate-0053 `Data/` baseline, promote fields, add gameplay, or claim live runtime validation.
 
+CodeUpdate-0055 preserves curated current-pass Validation0043 and MegaMUD2 RE0021 evidence-only checkpoints under `DataDecodeCheckpoints/`, refreshes `DataDecodeCheckpoints/UnifiedDecodedData/`, and records the current placeholder/blocker audit. `Data/quests.json` is the only true empty canonical placeholder, and `world_rooms` is a server catalog projection gap from `Data/world.json`. Validation0043 contributes matched textblock action dispatcher/opcode evidence; MegaMUD2 RE0021 contributes route/client/protocol text-command evidence. No canonical `Data/` overlay, field promotion, gameplay system, server behavior change, raw packet inference, imported/reference deletion, or live runtime validation claim is included.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -197,6 +199,7 @@ Completed/started slices:
 - CodeUpdate-0052: Build0027 current-state handoff preservation.
 - CodeUpdate-0053: Patch0068 embedded `Data/` replacement and Handoff0074/Patch0068 evidence intake.
 - CodeUpdate-0054: Validation0013 and DocUpdate0024 new-file-only evidence/planning intake.
+- CodeUpdate-0055: Validation0043 and MegaMUD2 RE0021 evidence preservation, UnifiedDecodedData refresh, and current placeholder/blocker audit.
 
 Focus Areas:
 
@@ -220,12 +223,11 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0054:
+Next candidate after CodeUpdate-0055:
 
-- Build a focused verification index over Validation0013 evidence and current `Data/`.
-- Use Handoff0074 requirements, Patch0068 evidence, and Validation0013 reports as repository-tracked inputs.
-- Bring in readable later Patch0071/Patch0073/Patch0074 materials only after they can be verified.
-- Resume Build0028 executable harness work after the `Data/` baseline is verified enough for that scope.
+- Choose one reviewed reconciliation slice from the current placeholder/blocker audit.
+- Prefer either quest placeholder modeling or `world_rooms` projection before adding gameplay behavior.
+- Keep Validation0043 and MegaMUD2 RE0021 as evidence unless a separate reviewed reconciliation update promotes a specific field or behavior.
 - Keep live runtime behavior uncertified until controlled Worldgroup validation is available.
 - Preserve previous decode reports instead of overwriting historical analysis.
 - Promote no fields without binary evidence.

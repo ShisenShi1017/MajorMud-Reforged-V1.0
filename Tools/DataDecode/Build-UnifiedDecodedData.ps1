@@ -237,9 +237,9 @@ $summaryRows = @(
     [pscustomobject]@{ category = "abilities/skills"; canonicalCount = $skills.Count; nativeDecodeCount = ""; omniVerseCount = $omniAbilities.Count; matchMethod = "not equivalent"; matchedCount = ""; missingFromCanonical = ""; missingFromOmniVerse = ""; nameMismatches = ""; status = "canonical skills are not yet equivalent to OmniVerse legacy abilities" },
     [pscustomobject]@{ category = "items"; canonicalCount = $items.Count; nativeDecodeCount = $nativeItems.Count; omniVerseCount = $omniItems.Count; matchMethod = "normalized name only"; matchedCount = $matchedItems; missingFromCanonical = $omniItems.Count - $matchedItems; missingFromOmniVerse = ""; nameMismatches = ""; status = "partial; canonical items lack legacy_number" },
     [pscustomobject]@{ category = "spells"; canonicalCount = $spells.Count; nativeDecodeCount = $nativeSpells.Count; omniVerseCount = $omniSpells.Count; matchMethod = "sourceId to legacy_number"; matchedCount = $matchedSpells; missingFromCanonical = $omniSpells.Count - $matchedSpells; missingFromOmniVerse = $spells.Count - $matchedSpells; nameMismatches = $spellNameMismatches; status = "partial; canonical import has fewer spells than OmniVerse" },
-    [pscustomobject]@{ category = "shops"; canonicalCount = $shops.Count; nativeDecodeCount = $nativeShops.Count; omniVerseCount = $omniShops.Count; matchMethod = "count only"; matchedCount = ""; missingFromCanonical = $omniShops.Count; missingFromOmniVerse = ""; nameMismatches = ""; status = "canonical placeholder; decoded/native and OmniVerse evidence available" },
-    [pscustomobject]@{ category = "monsters"; canonicalCount = $monsters.Count; nativeDecodeCount = ""; omniVerseCount = $omniMonsters.Count; matchMethod = "normalized name only"; matchedCount = $matchedMonsters; missingFromCanonical = $omniMonsters.Count - $matchedMonsters; missingFromOmniVerse = ""; nameMismatches = ""; status = "canonical starter/sample data only" },
-    [pscustomobject]@{ category = "rooms"; canonicalCount = $rooms.Count; nativeDecodeCount = ""; omniVerseCount = $roomFiles.Count; matchMethod = "count only"; matchedCount = ""; missingFromCanonical = $roomFiles.Count; missingFromOmniVerse = ""; nameMismatches = ""; status = "canonical placeholder; OmniVerse room capture is partial/shop-seeded" },
+    [pscustomobject]@{ category = "shops"; canonicalCount = $shops.Count; nativeDecodeCount = $nativeShops.Count; omniVerseCount = $omniShops.Count; matchMethod = "count only"; matchedCount = ""; missingFromCanonical = ""; missingFromOmniVerse = ""; nameMismatches = ""; status = "canonical shops are populated; remaining relationship blockers require reviewed reconciliation" },
+    [pscustomobject]@{ category = "monsters"; canonicalCount = $monsters.Count; nativeDecodeCount = ""; omniVerseCount = $omniMonsters.Count; matchMethod = "normalized name only"; matchedCount = $matchedMonsters; missingFromCanonical = $omniMonsters.Count - $matchedMonsters; missingFromOmniVerse = ""; nameMismatches = ""; status = "canonical monsters are populated; name-only coverage is informational" },
+    [pscustomobject]@{ category = "rooms"; canonicalCount = $rooms.Count; nativeDecodeCount = ""; omniVerseCount = $roomFiles.Count; matchMethod = "count only"; matchedCount = ""; missingFromCanonical = ""; missingFromOmniVerse = ""; nameMismatches = ""; status = "canonical rooms are populated; remaining exit/spawn blockers require reviewed reconciliation" },
     [pscustomobject]@{ category = "roommaps"; canonicalCount = ""; nativeDecodeCount = ""; omniVerseCount = $roommapFiles.Count; matchMethod = "count only"; matchedCount = ""; missingFromCanonical = ""; missingFromOmniVerse = ""; nameMismatches = ""; status = "reference-only roommap evidence" }
 )
 Write-Csv -Rows $summaryRows -Path (Join-Path $summaryRoot "OmniVerseComparisonSummary.csv")
@@ -280,8 +280,10 @@ $manifest = [pscustomobject]@{
         "Classes and races have complete normalized-name coverage against OmniVerse.",
         "Canonical items are simplified and lack legacy_number; only name-level coverage is reported.",
         "Canonical spells have sourceId values and partially map to OmniVerse legacy_number.",
-        "Canonical rooms and shops are placeholders, while OmniVerse and native decoded evidence exists.",
-        "Canonical monsters are starter/sample records and are not a decoded parity dataset yet."
+        "Canonical rooms, shops, and monsters are populated in the current Data baseline.",
+        "Quests remain the only empty canonical placeholder file in the current Server bootstrap catalog.",
+        "world_rooms remains a server catalog loading gap because Data/world.json is not yet projected into runtime records.",
+        "Remaining room exit, linked-spawn, shop inventory, monster loot, and loot table blockers require reviewed reconciliation."
     )
 }
 

@@ -1,0 +1,42 @@
+opcode,category,asm_line_in_excerpt,native_calls_nearby,promotion_status,example_evidence
+price,condition/economy,95,near ptr sub_7D70B | _ADD_ITEM_TO_INVENTORY | _ALLOC_GET_SPELL_DATA | _CAST_NO_TARGET | _FREE_SPELL_DATA,promoted opcode string + dispatcher branch present,armor crafting copper cost.
+cast,action/spell,158,_ALLOC_GET_SPELL_DATA | _CAST_NO_TARGET | _FREE_SPELL_DATA,promoted opcode string + dispatcher branch present,beautiful woman Textblock 2596/2598 Cast fruit(703); Spell 703 shown in MMExplorer spell table.
+giveability,action/ability,236,_ADD_SPELL_TO_SPELLBOOK,promoted opcode string + dispatcher branch present,"wounded messenger GoodQuest, witchhunter MageBaneQuest, DaoLordQuest progression."
+addability,action/ability,405,sub_7A943 | near ptr sub_7DD47,promoted opcode string + dispatcher branch present,MageBaneQuest addability 50 1 in witchhunter branch.
+teleport,action/movement,488,near ptr sub_7DD47 | _PURGE_SPELL_FROM_SPELLBOOK | _GET_ROOM_DATA,promoted opcode string + dispatcher branch present,"barmaid Bard charm branch teleports to Inn Second Floor, Stairwell."
+removeability,action/ability,510,_PURGE_SPELL_FROM_SPELLBOOK | _GET_ROOM_DATA,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+nomonsters,condition/room,610,_GET_ROOM_DATA | near ptr sub_7D630 | _GET_ROOM_DATA,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+needmonster,condition/monster,806,near ptr sub_7E6A6 | _GENERATE_MONSTER | near ptr sub_7D630,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+summon,action/npc,828,_GENERATE_MONSTER | near ptr sub_7D630,native opcode string + dispatcher branch present; user example not yet captured,not shown in screenshots; native string present in dispatcher.
+message,action/output,897,near ptr sub_7D630 | _REMOVE_ITEM_FROM_INVENTORY | _ADD_ITEM_TO_INVENTORY,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+takeitem,action/inventory,941,_REMOVE_ITEM_FROM_INVENTORY | _ADD_ITEM_TO_INVENTORY | near ptr sub_7D630,promoted opcode string + dispatcher branch present,"black chitin/spider silk crafting, apple pie barter."
+addexp,action/character,1097,_ADD_QUEST_EXP | _ADD_ITEM_TO_INVENTORY | CLRPRF | _GET_ITEM_DATA | _ADD_ITEM_TO_ROOM,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+giveitem,action/inventory,1138,_ADD_ITEM_TO_INVENTORY | CLRPRF | _GET_ITEM_DATA | _ADD_ITEM_TO_ROOM | _GET_ITEM_DATA | _ADD_ITEM_TO_ROOM,promoted opcode string + dispatcher branch present,"Magebane sword, black chitin armor rewards, sunstone wristband, keys/parchments."
+hideitem,action/room-item,1225,_GET_ITEM_DATA | _ADD_ITEM_TO_ROOM | _USER_HAS_ABILITY,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+checkability,condition/ability,1296,_USER_HAS_ABILITY | _GET_USER_ABILITY_VALUE,promoted opcode string + dispatcher branch present,"quest state gates, DaoLordQuest 134/11 and 134/12, MageBaneQuest 50."
+class,condition/character,1411,,promoted opcode string + dispatcher branch present,witchhunter/guild class gates; barmaid class branches.
+race,condition/character,1462,near ptr sub_7D630,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+goodaligned,condition/alignment,1513,near ptr sub_7D630,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+evilaligned,condition/alignment,1606,near ptr sub_7D630,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+minlevel,condition/level,1699,near ptr sub_7D630,promoted opcode string + dispatcher branch present,witchhunter sword branch minlevel 15.
+maxlevel,condition/level,1792,near ptr sub_7D630,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+checkitem,condition/inventory,1885,near ptr sub_7D630,promoted opcode string + dispatcher branch present,black chitin/spider silk material checks.
+failitem,condition/inventory,2012,near ptr sub_7D630,promoted opcode string + dispatcher branch present,sunstone/chipped obsidian duplicate prevention.
+text,action/output,2139,_DISPLAY_LONG_TEXT | _DISPLAY_LONG_TEXT_TO_ROOM | _GET_ROOM_DATA,promoted opcode string + dispatcher branch present,command routes to Textblocks and output lines.
+roomtext,action/output-room,2183,_DISPLAY_LONG_TEXT_TO_ROOM | _GET_ROOM_DATA,native opcode string + dispatcher branch present; user example not yet captured,not shown in screenshots; native string present in dispatcher.
+roomitem,condition/room-item,2231,_GET_ROOM_DATA | near ptr sub_7D630,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+failroomitem,condition/room-item,2372,_GET_ROOM_DATA | near ptr sub_7D630,promoted opcode string + dispatcher branch present,sunstone room duplicate prevention.
+clearitem,action/room-item,2513,sub_7A544 | near ptr sub_7D630,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+addevil,action/alignment,2606,_USER_HAS_ABILITY | _GET_USER_ABILITY_VALUE,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+testability,condition/ability,2646,_USER_HAS_ABILITY | _GET_USER_ABILITY_VALUE,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+failability,condition/ability,2775,_USER_HAS_ABILITY | near ptr sub_7D630,promoted opcode string + dispatcher branch present,"quest exclusion/fail gates, Good/Neutral/Evil and MageBaneQuest."
+remoteaction,action/remote,2874,_GET_ROOM_DATA,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+random,flow/random,3036,near ptr sub_80A66 | near ptr sub_7D949,native opcode string + dispatcher branch present; user example not yet captured,not shown in screenshots; native string present in dispatcher.
+adddelay,flow/timing,3094,near ptr sub_7D949 | TOUPPER,native opcode string + dispatcher branch present; user example not yet captured,not shown in screenshots; native string present in dispatcher.
+testskill,condition/skill,3132,near ptr sub_7D949 | TOUPPER,promoted opcode string + dispatcher branch present,barmaid testskill charm 0 4389/4385.
+checkskill,condition/skill,3145,near ptr sub_7D949 | TOUPPER,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+givecoins,action/economy,3171,TOUPPER,promoted opcode string + dispatcher branch present,barmaid apple pie -> 10 silver.
+test_tournament,condition/event,3353,near ptr sub_7D83A | near ptr sub_7E22F | near ptr sub_7E528,promoted opcode string + dispatcher branch present,native opcode string + dispatcher branch present
+checkspell,condition/spell,3394,near ptr sub_7D83A | near ptr sub_7E22F | near ptr sub_7E528,native opcode string + dispatcher branch present; user example not yet captured,not shown in screenshots; native string present in dispatcher.
+flag,condition/flag,3416,near ptr sub_7E22F | near ptr sub_7E528,native opcode string + dispatcher branch present; user example not yet captured,not shown in screenshots; native string present in dispatcher.
+learnspell,action/spell,3438,near ptr sub_7E528,native opcode string + dispatcher branch present; user example not yet captured,not shown in screenshots; native string present in dispatcher.

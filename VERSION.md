@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0054
+- Current Code Update: 0055
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,7 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0054 - Validation0013 and DocUpdate0024 New-Files Intake
+- Current update: CodeUpdate-0055 - Validation0043, MegaMUD2 RE0021, and Placeholder Audit
 - Milestone 1 Core Framework is complete/frozen.
 - CodeUpdate-0031 added a non-gameplay Server bootstrap entry point, bootstrap validation, and smoke coverage.
 - CodeUpdate-0031 failed GitHub Actions in the test build due to invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`.
@@ -91,6 +91,12 @@
 - CodeUpdate-0054 copies only repository-new files from Validation0013 and DocUpdate0024.
 - CodeUpdate-0054 copies 437 new Validation0013 files, skips 86 existing Validation0013 paths, copies 2 new DocUpdate0024 files, and overwrites no existing repository files.
 - CodeUpdate-0054 preserves the CodeUpdate-0053 `Data/` baseline and does not apply any existing-path cumulative package overlay.
+- CodeUpdate-0055 preserves curated current-pass Validation0043 and MegaMUD2 RE0021 evidence-only checkpoints.
+- CodeUpdate-0055 records that Validation0043 package `Data` files hash-match the current repository `Data` baseline, so no canonical `Data` overlay was applied.
+- CodeUpdate-0055 refreshes `DataDecodeCheckpoints/UnifiedDecodedData/` after correcting stale placeholder wording.
+- CodeUpdate-0055 records `Data/quests.json` as the only true empty canonical placeholder and `world_rooms` as a loader projection gap.
+- CodeUpdate-0055 local manifest JSON parse, report CSV parse, `git diff --check`, sequential restore/build, core/server smoke tests, and Server bootstrap run passed.
+- CodeUpdate-0055 does not add gameplay, change server behavior, promote fields, infer raw binary packet layouts, or claim live runtime validation.
 
 ## Reference Data Policy
 

@@ -4,10 +4,10 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0054 - Validation0013 and DocUpdate0024 New-Files Intake`
+- **Current Code Update:** `CodeUpdate-0055 - Validation0043, MegaMUD2 RE0021, and Placeholder Audit`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0054, wait for green GitHub Actions, then build a focused verification index over Validation0013 evidence and the current `Data/` baseline.
+- **Current Priority:** Push CodeUpdate-0055, wait for green GitHub Actions, then choose one reviewed reconciliation slice from the current placeholder/blocker audit.
 
 This README is a required starting point for every new ChatGPT, Codex, or developer handoff session.
 
@@ -24,6 +24,20 @@ Every session must read these files before changing the repository:
 7. `ProjectManifest.json`
 8. `DEVELOPMENT_PRINCIPLES.md`
 9. Relevant source, test, and application documentation for the requested change
+
+## CodeUpdate-0055 Summary
+
+CodeUpdate-0055 preserves curated current-pass Validation0043 and MegaMUD2 RE0021 evidence-only checkpoints and refreshes the unified decoded-data reports against the current `Data/` baseline.
+
+Validation0043 current-pass evidence is preserved under `DataDecodeCheckpoints/Validation0043/`. Its 92 package `Data/` files hash-match the current repository `Data/`, so no canonical `Data/` overlay was applied.
+
+MegaMUD2 RE0021 current-pass evidence is preserved under `DataDecodeCheckpoints/MegaMUD2RE0021/`. It contributes MegaMUD 2.0 route/client/protocol evidence, including `.mp` command-token material and TRC session windows, but it does not prove raw binary packet layouts.
+
+`DataDecodeCheckpoints/UnifiedDecodedData/` was regenerated after correcting stale placeholder wording. Current `Data/` now records populated rooms, shops, monsters, items, and spells. `Data/quests.json` remains the only true empty canonical placeholder, while `world_rooms` is a loader projection gap from `Data/world.json`.
+
+Game logic should be treated as data-driven by default. The server supplies reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless a behavior is truly engine-internal.
+
+No canonical `Data/` overlay, field promotion, gameplay system, server behavior change, raw packet inference, imported/reference deletion, or live runtime validation claim is included.
 
 ## CodeUpdate-0054 Summary
 
@@ -339,7 +353,7 @@ The first real Server target is the Classic baseline. The Server should load and
 
 Reforged mode, Custom mode, AI systems, alternate gameplay rules, and advanced behavior are not approved yet. Server architecture should stay mode-ready, but only simple extension points needed for future mode/profile loading should be added before the Classic baseline is working.
 
-`Data/` defines world/content. Server defines and enforces engine behavior. The Editor should eventually edit data safely.
+`Data/` defines world/content and game logic by default. Server defines reusable engine behavior, validation, execution, and enforcement. The Editor should eventually edit data safely.
 
 Future intended evolution:
 
@@ -353,9 +367,9 @@ Future intended evolution:
 
 Classic is the first target, but the Server is an engine, not a Classic-only server.
 
-Favor reusable engine systems over feature-specific systems. Keep the engine generic whenever practical. Avoid naming or designing systems around Classic unless the behavior is truly Classic-specific.
+Favor reusable engine systems over feature-specific systems. Keep the engine generic whenever practical. Avoid naming or designing systems around Classic unless the behavior is truly Classic-specific. Rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless a behavior is truly engine-internal.
 
-When designing new Server features, ask whether the feature can be data-driven, reused by future modes, exposed to the Editor later, and implemented without unnecessarily tying the engine to Classic.
+When designing new Server features, start from the expectation that game logic is data-driven. Also ask whether the feature can be reused by future modes, exposed to the Editor later, and implemented without unnecessarily tying the engine to Classic.
 
 Classic, Reforged, custom worlds, future expansions, and additional rule sets should not require separate server codebases. Favor extensibility over shortcuts, but avoid premature complexity.
 
@@ -400,14 +414,14 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition. CodeUpdate-0048 adds unified decoded-data comparison reports and Android ChatGPT handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof. CodeUpdate-0050 preserves SimulatorBuild0002, RuntimePrep0001-0009 handoff evidence, and DataDecode0110 static certification. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without formula promotion. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload and preserves Patch0068/Handoff0074 evidence under `DataDecodeCheckpoints/`. CodeUpdate-0054 copies only repository-new Validation0013 and DocUpdate0024 files while skipping existing paths.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition. CodeUpdate-0048 adds unified decoded-data comparison reports and Android ChatGPT handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof. CodeUpdate-0050 preserves SimulatorBuild0002, RuntimePrep0001-0009 handoff evidence, and DataDecode0110 static certification. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without formula promotion. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload and preserves Patch0068/Handoff0074 evidence under `DataDecodeCheckpoints/`. CodeUpdate-0054 copies only repository-new Validation0013 and DocUpdate0024 files while skipping existing paths. CodeUpdate-0055 preserves Validation0043 and MegaMUD2 RE0021 evidence, refreshes UnifiedDecodedData, and records the current placeholder/blocker audit.
 
-Next safe work after CodeUpdate-0054:
+Next safe work after CodeUpdate-0055:
 
 1. Wait for user push and green GitHub Actions.
-2. Build a focused verification index over Validation0013 evidence and the current `Data/` baseline.
-3. Plan reviewed reconciliation changes only where exact file and field differences are proven.
-4. Resume executable harness work only after the data baseline is verified enough for that scope.
+2. Choose one reviewed reconciliation slice from the current placeholder/blocker audit.
+3. Prefer either quest placeholder modeling or `world_rooms` projection before gameplay behavior.
+4. Keep Validation0043 and MegaMUD2 RE0021 as evidence unless a separate reviewed reconciliation update promotes a specific field or behavior.
 5. Do not add gameplay systems without explicit user approval.
 
 ## Long-Term Roadmap

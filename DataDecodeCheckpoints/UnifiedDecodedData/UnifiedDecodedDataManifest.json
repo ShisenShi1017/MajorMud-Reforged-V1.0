@@ -1,18 +1,18 @@
 ﻿{
     "name":  "Unified decoded data and OmniVerse comparison index",
-    "codeUpdate":  "0050",
-    "generatedUtc":  "2026-07-01T22:48:52.1333351Z",
+    "codeUpdate":  "0055",
+    "generatedUtc":  "2026-07-03T15:46:32.1721642Z",
     "policy":  "Index and comparison reports only. Original MajorMUD binaries remain authoritative. OmniVerse/MudInfo data is validation/correlation evidence only.",
-    "sourceInventoryFileCount":  1725,
+    "sourceInventoryFileCount":  1818,
     "canonicalCounts":  {
                             "classes":  15,
                             "races":  13,
                             "skills":  46,
-                            "items":  1770,
-                            "spells":  1180,
-                            "monsters":  98,
-                            "shops":  0,
-                            "rooms":  0
+                            "items":  1950,
+                            "spells":  1350,
+                            "monsters":  1100,
+                            "shops":  178,
+                            "rooms":  1246
                         },
     "nativeDecodeCounts":  {
                                "WCCITEMS_records":  1336,
@@ -34,7 +34,9 @@
                         "Classes and races have complete normalized-name coverage against OmniVerse.",
                         "Canonical items are simplified and lack legacy_number; only name-level coverage is reported.",
                         "Canonical spells have sourceId values and partially map to OmniVerse legacy_number.",
-                        "Canonical rooms and shops are placeholders, while OmniVerse and native decoded evidence exists.",
-                        "Canonical monsters are starter/sample records and are not a decoded parity dataset yet."
+                        "Canonical rooms, shops, and monsters are populated in the current Data baseline.",
+                        "Quests remain the only empty canonical placeholder file in the current Server bootstrap catalog.",
+                        "world_rooms remains a server catalog loading gap because Data/world.json is not yet projected into runtime records.",
+                        "Remaining room exit, linked-spawn, shop inventory, monster loot, and loot table blockers require reviewed reconciliation."
                     ]
 }

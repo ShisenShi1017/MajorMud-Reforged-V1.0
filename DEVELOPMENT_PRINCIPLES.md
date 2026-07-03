@@ -15,6 +15,7 @@ This document describes how Reforged should be engineered. `AGENTS.md` describes
 9. Preserve `Saves/` and `ImportedDatabases/` unless the user explicitly approves otherwise.
 10. Documentation must change with the code so handoffs stay accurate.
 11. Treat all WCC data as reference-only unless the user explicitly approves a reviewed import or reconciliation update.
+12. Treat game logic as data-driven by default; keep rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior in data unless a behavior is truly engine-internal.
 
 ## Server development principles
 
@@ -23,6 +24,7 @@ This document describes how Reforged should be engineered. `AGENTS.md` describes
 - Do not add combat, character creation, world simulation, networking expansion, or live editor behavior without explicit approval.
 - Every server slice should add smoke-test coverage or explain why it cannot.
 - Startup should fail clearly when repository identity, configuration, data, or required folders are invalid.
+- Server code should provide reusable engine systems, validation, execution, and enforcement rather than hardcoded game-specific behavior.
 
 ## Update discipline
 
