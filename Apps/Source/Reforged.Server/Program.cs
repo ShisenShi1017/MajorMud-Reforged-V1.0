@@ -29,6 +29,19 @@ if (report.ServerDataCatalog is not null)
     }
 }
 
+if (report.GameModuleCatalog is not null)
+{
+    Console.WriteLine($"GameModules: {report.GameModuleCatalog.Status}; modules={report.GameModuleCatalog.ModuleCount}; gameplayEnabled={report.GameModuleCatalog.GameplayEnabledModuleCount}; gameplayDisabled={report.GameModuleCatalog.GameplayDisabledModuleCount}");
+    foreach (var module in report.GameModuleCatalog.Modules)
+    {
+        Console.WriteLine($"GameModule: {module.Id}; name={module.Name}; role={module.Role}; dataRoot={module.DataRoot}; gameplayEnabled={module.GameplayEnabled}; ruleProfiles={module.RuleProfiles.Count}");
+        foreach (var ruleProfile in module.RuleProfiles)
+        {
+            Console.WriteLine($"RuleProfile: {module.Id}/{ruleProfile.Id}; name={ruleProfile.Name}; status={ruleProfile.Status}; runtimeEnabled={ruleProfile.RuntimeEnabled}");
+        }
+    }
+}
+
 if (report.ClassicParityAudit is not null)
 {
     Console.WriteLine($"ClassicParity: {report.ClassicParityAudit.Status}; canonicalFiles={report.ClassicParityAudit.CanonicalFileCount}; importedReferenceFiles={report.ClassicParityAudit.ImportedReferenceFileCount}; exactNameMatches={report.ClassicParityAudit.ExactNameMatchCount}");

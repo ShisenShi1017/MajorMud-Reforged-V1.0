@@ -1,3 +1,30 @@
+# CodeUpdate-0057 - Modular Server Foundation
+
+This update repairs the continuity mismatch left after `CoreUpdate 0056` and begins server construction with a small non-gameplay module catalog.
+
+Highlights:
+
+- Verified local and GitHub remote branch identity before edits.
+- Recorded `CoreUpdate 0056` as present in Git history while main continuity files still recorded `CodeUpdate-0055`.
+- Added a read-only Server game module catalog.
+- Registered `majormud-classic` as the first disabled data-driven module baseline.
+- Added a disabled `classic` rule profile.
+- Added Server startup output and smoke coverage for module discovery.
+- Folded Server Build Session 0001 into `Docs/ServerBuild/Session0001/`.
+- Added interactive client map planning placeholder under `Docs/Architecture/InteractiveClientMap.md`.
+
+Verification:
+
+- ProjectManifest and UpdateManifest JSON parse passed.
+- `git diff --check` passed.
+- Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors.
+- Core/server smoke tests passed.
+- Server bootstrap passed and reported the `game-module-catalog` check, 1 disabled module, and 1 disabled rule profile.
+
+Known limitation:
+
+- This is a non-gameplay construction slice. It does not add combat, character creation, world simulation, networking expansion, live editor behavior, canonical data rewrites, imported/reference deletion, or runtime formula/timing promotion.
+
 # CodeUpdate-0055 - Validation0043, MegaMUD2 RE0021, and Placeholder Audit
 
 This update preserves curated current-pass evidence from the supplied Validation0043 and MegaMUD2 RE0021 cumulative packages, refreshes the unified decoded-data reports, and records the current placeholder/blocker state.

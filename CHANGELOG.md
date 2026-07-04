@@ -1,5 +1,19 @@
 # Changelog
 
+## CodeUpdate-0057 - Modular Server Foundation
+
+- Verified local `HEAD`, local `origin/main`, and remote `refs/heads/main` at `4277723ce284be6dbf689711d3ac6e93954dfb05` before edits.
+- Recorded that the verified commit was `CoreUpdate 0056` while continuity files still recorded `CodeUpdate-0055`.
+- Added a non-gameplay game module catalog to Server bootstrap.
+- Registered `majormud-classic` as the first disabled data-driven module baseline using `Data/`.
+- Added a disabled `classic` rule profile registration.
+- Printed game module and rule-profile status in Server bootstrap output.
+- Added smoke coverage for the Server module catalog.
+- Preserved Server Build Session 0001 handoff material under `Docs/ServerBuild/Session0001/`.
+- Added interactive client map planning placeholder under `Docs/Architecture/InteractiveClientMap.md`.
+- Updated continuity documents and manifests to `CodeUpdate-0057`.
+- No gameplay system, combat, character creation, world simulation loop, networking expansion, live editor behavior, canonical `Data` rewrite, imported/reference deletion, runtime formula promotion, or timing promotion is included.
+
 ## CodeUpdate-0055 - Validation0043, MegaMUD2 RE0021, and Placeholder Audit
 
 - Preserved 19 curated current-pass files from `MajorMUD-Reforged-Living-Validation0043-Cumulative.zip` under `DataDecodeCheckpoints/Validation0043/`.

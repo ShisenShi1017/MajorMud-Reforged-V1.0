@@ -32,6 +32,8 @@ public sealed class ServerBootstrapReport
 
     public ServerDataCatalogAuditReport? ServerDataCatalog { get; private set; }
 
+    public GameModuleCatalog? GameModuleCatalog { get; private set; }
+
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
 
     public int ExitCode => Passed ? 0 : 1;
@@ -81,6 +83,11 @@ public sealed class ServerBootstrapReport
     public void AttachServerDataCatalog(ServerDataCatalogAuditReport audit)
     {
         ServerDataCatalog = audit;
+    }
+
+    public void AttachGameModuleCatalog(GameModuleCatalog catalog)
+    {
+        GameModuleCatalog = catalog;
     }
 }
 

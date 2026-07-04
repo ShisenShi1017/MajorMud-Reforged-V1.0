@@ -8,6 +8,8 @@ This project explicitly references `Core/Source/Reforged.Core/Reforged.Core.cspr
 
 CodeUpdate-0029 added startup-only Server diagnostics. The diagnostics path wires the Server shell through existing Core configuration, logging, service registry, event bus, repository health, and startup diagnostics without starting gameplay systems.
 
+CodeUpdate-0057 adds a read-only game module catalog to the Server source bootstrap path. `majormud-classic` is registered as the first disabled data-driven module baseline, proving MajorMUD is a module hosted by the Server and not the whole Server.
+
 CodeUpdate-0030 updates this README to keep app documentation synchronized with the current GitHub truth.
 
 ## Runtime Rule

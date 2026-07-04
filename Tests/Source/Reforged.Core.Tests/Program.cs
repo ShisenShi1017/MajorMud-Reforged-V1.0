@@ -147,7 +147,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "server-data-catalog", "startup-diagnostics", "classic-parity-audit" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "server-data-catalog", "game-module-catalog", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -173,6 +173,24 @@ void ServerBootstrapSmoke()
     if (report.ClassicParityAudit is null || report.ClassicParityAudit.Categories.Count == 0)
     {
         throw new InvalidOperationException("Server bootstrap did not attach Classic parity audit inventory.");
+    }
+
+    if (report.GameModuleCatalog is null ||
+        report.GameModuleCatalog.ModuleCount != 1 ||
+        report.GameModuleCatalog.GameplayEnabledModuleCount != 0 ||
+        report.GameModuleCatalog.GameplayDisabledModuleCount != 1)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach the expected non-gameplay game module catalog.");
+    }
+
+    var majorMudModule = report.GameModuleCatalog.Modules.FirstOrDefault(module => module.Id == "majormud-classic");
+    if (majorMudModule is null ||
+        majorMudModule.GameplayEnabled ||
+        majorMudModule.DataRoot != "Data" ||
+        majorMudModule.RuleProfiles.Count != 1 ||
+        majorMudModule.RuleProfiles[0].RuntimeEnabled)
+    {
+        throw new InvalidOperationException("Server module catalog did not register MajorMUD Classic as a disabled data-driven module baseline.");
     }
 
     if (report.ExitCode != 0)
