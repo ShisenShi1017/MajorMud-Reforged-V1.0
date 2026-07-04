@@ -1,3 +1,19 @@
+# CodeUpdate-0061 - Host Lifecycle Readiness State
+
+This update adds read-only Server host lifecycle readiness diagnostics.
+
+Highlights:
+
+- Added `host-lifecycle` to Server bootstrap.
+- Reports initialized, configured, data-ready, world-projection-ready, module-ready, and runtime-disabled stages.
+- Reports current lifecycle status as `ready-runtime-disabled`.
+- Keeps gameplay, networking, world simulation, and runtime rule profiles disabled.
+- Adds smoke coverage for runtime-disabled lifecycle readiness.
+
+Known limitation:
+
+- This is diagnostics/readiness surface work only. It does not open sockets, start sessions, run gameplay, or activate runtime rules.
+
 # CodeUpdate-0060 - Host Configuration Surface
 
 This update adds read-only Server host configuration diagnostics.

@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0060",
+  "codeUpdate": "0061",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,18 +18,18 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0060",
+    "currentCodeUpdate": "0061",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained modular server construction and data-readiness work; gameplay systems remain disabled.",
-    "lastUpdateName": "CodeUpdate-0060-Host-Configuration-Surface",
+    "lastUpdateName": "CodeUpdate-0061-Host-Lifecycle-Readiness-State",
     "nextRecommendedWork": [
-      "CodeUpdate-0060 adds read-only host configuration diagnostics with gameplay, networking, and world simulation disabled.",
+      "CodeUpdate-0061 adds a read-only host lifecycle readiness state derived from host configuration, data catalog, world projection, module catalog, and module readiness diagnostics.",
       "Use the Server module catalog as the first non-gameplay construction seam: MajorMUD Classic is a disabled module baseline, not the whole Server.",
-      "Next safe server slice: add a non-gameplay host lifecycle/readiness state surface before runtime behavior.",
+      "Next safe server slice: add a guarded non-gameplay host lifecycle command/status surface before runtime behavior.",
       "Use DataDecodeCheckpoints/Validation0043 as preserved opcode/action-dispatch evidence only until branch semantics are decoded and reviewed.",
       "Use DataDecodeCheckpoints/MegaMUD2RE0021 as preserved MegaMUD 2.0 client/route/protocol evidence only; do not infer raw binary packet layouts from it.",
       "Use Reports/CodeUpdates/CodeUpdate-0055/CurrentDataPlaceholderAudit.csv as the historical placeholder snapshot. CodeUpdate-0058 resolves the world_rooms loader projection gap; quests remains the only true empty canonical placeholder.",
@@ -87,5 +87,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0060 records CodeUpdate-0059 as green by user report. It adds a read-only Server host configuration surface. ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0060, validation 0 issues, host-configuration check, HostConfiguration status configured-runtime-disabled, name=Reforged Local Host, bind=127.0.0.1, port=4000, maxSessions=64, worldTickMs=1000, combatTickMs=6000, gameplayEnabled=False, networkingEnabled=False, worldSimulationEnabled=False, and configFileExists=False. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0061 records CodeUpdate-0060 as green by user report. It adds a read-only Server host lifecycle readiness state. ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0061, validation 0 issues, host-lifecycle check, and HostLifecycle status ready-runtime-disabled with initialized=True, configured=True, dataReady=True, worldProjectionReady=True, moduleReady=True, runtimeDisabled=True, gameplayEnabled=False, networkingEnabled=False, and worldSimulationEnabled=False. GitHub Actions remains the official gate after user push."
 }

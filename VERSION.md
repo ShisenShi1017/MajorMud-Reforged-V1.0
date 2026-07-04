@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0060
+- Current Code Update: 0061
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,11 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0060 - Host Configuration Surface
+- Current update: CodeUpdate-0061 - Host Lifecycle Readiness State
+- CodeUpdate-0061 adds read-only Server host lifecycle readiness diagnostics and reports `ready-runtime-disabled`.
+- CodeUpdate-0061 verifies initialized, configured, data-ready, world-projection-ready, module-ready, and runtime-disabled stages without starting gameplay, networking, or world simulation.
+- CodeUpdate-0061 local JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run passed.
+- CodeUpdate-0060 GitHub Actions is green by user report.
 - CodeUpdate-0060 adds read-only Server host configuration diagnostics and reports runtime toggles disabled.
 - CodeUpdate-0060 default host settings are host `Reforged Local Host`, bind `127.0.0.1`, port `4000`, max sessions `64`, world tick `1000ms`, and combat tick `6000ms`.
 - CodeUpdate-0060 local JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run passed.

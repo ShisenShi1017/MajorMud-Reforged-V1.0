@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0061 - Host Lifecycle Readiness State
+
+- Recorded CodeUpdate-0060 GitHub Actions as green by user report.
+- Added read-only Server host lifecycle audit and report models.
+- Attached `host-lifecycle` to Server bootstrap.
+- Added Server startup output for lifecycle status and per-stage readiness.
+- Added smoke coverage that verifies the lifecycle remains `ready-runtime-disabled`.
+- Verified lifecycle stages derive from existing host configuration, data catalog, world projection, module catalog, and module readiness reports.
+- No sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, character creation, world simulation, networking expansion, live editor behavior, canonical `Data` rewrite, imported/reference deletion, runtime formula promotion, or timing promotion is included.
+
 ## CodeUpdate-0060 - Host Configuration Surface
 
 - Recorded CodeUpdate-0059 GitHub Actions as green by user report.

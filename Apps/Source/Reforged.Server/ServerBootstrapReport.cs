@@ -40,6 +40,8 @@ public sealed class ServerBootstrapReport
 
     public ServerModuleReadinessReport? ModuleReadiness { get; private set; }
 
+    public ServerHostLifecycleReport? HostLifecycle { get; private set; }
+
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
 
     public int ExitCode => Passed ? 0 : 1;
@@ -109,6 +111,11 @@ public sealed class ServerBootstrapReport
     public void AttachModuleReadiness(ServerModuleReadinessReport report)
     {
         ModuleReadiness = report;
+    }
+
+    public void AttachHostLifecycle(ServerHostLifecycleReport report)
+    {
+        HostLifecycle = report;
     }
 }
 

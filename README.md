@@ -4,10 +4,20 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0060 - Host Configuration Surface`
+- **Current Code Update:** `CodeUpdate-0061 - Host Lifecycle Readiness State`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0060 when ready, verify GitHub Actions green, then continue with one narrow non-gameplay Server construction slice.
+- **Current Priority:** Push CodeUpdate-0061 when ready, verify GitHub Actions green, then continue with one narrow non-gameplay Server construction slice.
+
+## CodeUpdate-0061 Summary
+
+CodeUpdate-0061 adds a read-only Server host lifecycle readiness state.
+
+The Server bootstrap now reports initialized, configured, data-ready, world-projection-ready, module-ready, and runtime-disabled lifecycle stages derived from existing bootstrap diagnostics.
+
+Current lifecycle status: `ready-runtime-disabled` with gameplay disabled, networking disabled, world simulation disabled, and runtime rule profiles disabled.
+
+Boundaries: no sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, or runtime formula/timing promotion.
 
 ## CodeUpdate-0060 Summary
 

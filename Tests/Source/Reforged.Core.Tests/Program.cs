@@ -20,6 +20,7 @@ var tests = new List<(string Name, Action Body)>
     ("server data catalog loads canonical data", ServerDataCatalogAuditSmoke),
     ("server world projection indexes canonical rooms", ServerWorldProjectionAuditSmoke),
     ("server module readiness keeps gameplay disabled", ServerModuleReadinessAuditSmoke),
+    ("server host lifecycle reports runtime-disabled readiness", ServerHostLifecycleAuditSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
 };
 
@@ -150,7 +151,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "host-configuration", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "startup-diagnostics", "classic-parity-audit" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "host-configuration", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "host-lifecycle", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -226,6 +227,23 @@ void ServerBootstrapSmoke()
         report.ModuleReadiness.RuntimeRuleProfileEnabledCount != 0)
     {
         throw new InvalidOperationException("Server bootstrap did not attach the expected module readiness report.");
+    }
+
+    if (report.HostLifecycle is null ||
+        report.HostLifecycle.Status != "ready-runtime-disabled" ||
+        !report.HostLifecycle.ReadyForRuntimePlanning ||
+        !report.HostLifecycle.Initialized ||
+        !report.HostLifecycle.Configured ||
+        !report.HostLifecycle.DataReady ||
+        !report.HostLifecycle.WorldProjectionReady ||
+        !report.HostLifecycle.ModuleReady ||
+        !report.HostLifecycle.RuntimeDisabled ||
+        report.HostLifecycle.GameplayEnabled ||
+        report.HostLifecycle.NetworkingEnabled ||
+        report.HostLifecycle.WorldSimulationEnabled ||
+        report.HostLifecycle.Stages.Count != 6)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-disabled host lifecycle report.");
     }
 
     if (report.ExitCode != 0)
@@ -425,6 +443,45 @@ void ServerModuleReadinessAuditSmoke()
         module.RuntimeRuleProfileEnabledCount != 0)
     {
         throw new InvalidOperationException("MajorMUD Classic module readiness did not preserve the expected non-gameplay boundary.");
+    }
+}
+
+void ServerHostLifecycleAuditSmoke()
+{
+    var validation = new Reforged.Core.Validation.ValidationResult();
+    var hostConfiguration = new ServerHostConfigurationAudit().Run(root, validation);
+    var dataCatalog = new ServerDataCatalogAudit().Run(root, validation);
+    var worldProjection = new ServerWorldProjectionAudit().Run(root, validation);
+    var moduleCatalog = new ServerGameModuleCatalog().Load();
+    var moduleReadiness = new ServerModuleReadinessAudit().Run(root, moduleCatalog, dataCatalog, worldProjection);
+    var report = new ServerHostLifecycleAudit().Run(root, hostConfiguration, dataCatalog, worldProjection, moduleCatalog, moduleReadiness);
+
+    if (validation.HasErrors)
+    {
+        throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    if (report.Status != "ready-runtime-disabled" ||
+        !report.ReadyForRuntimePlanning ||
+        !report.Initialized ||
+        !report.Configured ||
+        !report.DataReady ||
+        !report.WorldProjectionReady ||
+        !report.ModuleReady ||
+        !report.RuntimeDisabled ||
+        report.GameplayEnabled ||
+        report.NetworkingEnabled ||
+        report.WorldSimulationEnabled)
+    {
+        throw new InvalidOperationException("Server host lifecycle did not expose the expected runtime-disabled readiness state.");
+    }
+
+    foreach (var requiredStage in new[] { "initialized", "configured", "data-ready", "world-projection-ready", "module-ready", "runtime-disabled" })
+    {
+        if (!report.Stages.Any(stage => stage.Name == requiredStage && stage.Ready && !string.IsNullOrWhiteSpace(stage.Status)))
+        {
+            throw new InvalidOperationException($"Server host lifecycle did not expose expected stage: {requiredStage}");
+        }
     }
 }
 
