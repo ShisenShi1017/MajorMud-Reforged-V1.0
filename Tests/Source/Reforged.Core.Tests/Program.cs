@@ -21,6 +21,7 @@ var tests = new List<(string Name, Action Body)>
     ("server world projection indexes canonical rooms", ServerWorldProjectionAuditSmoke),
     ("server module readiness keeps gameplay disabled", ServerModuleReadinessAuditSmoke),
     ("server host lifecycle reports runtime-disabled readiness", ServerHostLifecycleAuditSmoke),
+    ("server scheduler bootstrap keeps channels disabled", ServerSchedulerBootstrapAuditSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
 };
 
@@ -151,7 +152,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "host-configuration", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "host-lifecycle", "startup-diagnostics", "classic-parity-audit" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "host-configuration", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "host-lifecycle", "scheduler-bootstrap", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -244,6 +245,19 @@ void ServerBootstrapSmoke()
         report.HostLifecycle.Stages.Count != 6)
     {
         throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-disabled host lifecycle report.");
+    }
+
+    if (report.SchedulerBootstrap is null ||
+        report.SchedulerBootstrap.Status != "scheduler-bootstrap-registered-runtime-disabled" ||
+        !report.SchedulerBootstrap.ReadyForPlanning ||
+        !report.SchedulerBootstrap.HostLifecycleReady ||
+        !report.SchedulerBootstrap.RuntimeDisabled ||
+        !report.SchedulerBootstrap.DiagnosticOnly ||
+        report.SchedulerBootstrap.ChannelCount != 10 ||
+        report.SchedulerBootstrap.RuntimeEnabledChannelCount != 0 ||
+        report.SchedulerBootstrap.RuntimeDisabledChannelCount != 10)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-disabled scheduler bootstrap report.");
     }
 
     if (report.ExitCode != 0)
@@ -481,6 +495,43 @@ void ServerHostLifecycleAuditSmoke()
         if (!report.Stages.Any(stage => stage.Name == requiredStage && stage.Ready && !string.IsNullOrWhiteSpace(stage.Status)))
         {
             throw new InvalidOperationException($"Server host lifecycle did not expose expected stage: {requiredStage}");
+        }
+    }
+}
+
+void ServerSchedulerBootstrapAuditSmoke()
+{
+    var validation = new Reforged.Core.Validation.ValidationResult();
+    var hostConfiguration = new ServerHostConfigurationAudit().Run(root, validation);
+    var dataCatalog = new ServerDataCatalogAudit().Run(root, validation);
+    var worldProjection = new ServerWorldProjectionAudit().Run(root, validation);
+    var moduleCatalog = new ServerGameModuleCatalog().Load();
+    var moduleReadiness = new ServerModuleReadinessAudit().Run(root, moduleCatalog, dataCatalog, worldProjection);
+    var hostLifecycle = new ServerHostLifecycleAudit().Run(root, hostConfiguration, dataCatalog, worldProjection, moduleCatalog, moduleReadiness);
+    var report = new ServerSchedulerBootstrapAudit().Run(root, hostLifecycle);
+
+    if (validation.HasErrors)
+    {
+        throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    if (report.Status != "scheduler-bootstrap-registered-runtime-disabled" ||
+        !report.ReadyForPlanning ||
+        !report.HostLifecycleReady ||
+        !report.RuntimeDisabled ||
+        !report.DiagnosticOnly ||
+        report.ChannelCount != 10 ||
+        report.RuntimeEnabledChannelCount != 0 ||
+        report.RuntimeDisabledChannelCount != 10)
+    {
+        throw new InvalidOperationException("Server scheduler bootstrap did not expose the expected disabled channel registration state.");
+    }
+
+    foreach (var requiredChannel in new[] { "PlayerState", "Movement", "CombatRound", "RegenHp", "RegenManaKai", "Spawn", "Cleanup", "StatusEffect", "ScriptEvent", "AI" })
+    {
+        if (!report.Channels.Any(channel => channel.Name == requiredChannel && !channel.RuntimeEnabled && channel.EvidenceSource == "ServerSim0036"))
+        {
+            throw new InvalidOperationException($"Server scheduler bootstrap did not expose expected disabled channel: {requiredChannel}");
         }
     }
 }

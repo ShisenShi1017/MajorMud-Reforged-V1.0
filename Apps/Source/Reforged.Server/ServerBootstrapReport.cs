@@ -42,6 +42,8 @@ public sealed class ServerBootstrapReport
 
     public ServerHostLifecycleReport? HostLifecycle { get; private set; }
 
+    public ServerSchedulerBootstrapReport? SchedulerBootstrap { get; private set; }
+
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
 
     public int ExitCode => Passed ? 0 : 1;
@@ -116,6 +118,11 @@ public sealed class ServerBootstrapReport
     public void AttachHostLifecycle(ServerHostLifecycleReport report)
     {
         HostLifecycle = report;
+    }
+
+    public void AttachSchedulerBootstrap(ServerSchedulerBootstrapReport report)
+    {
+        SchedulerBootstrap = report;
     }
 }
 

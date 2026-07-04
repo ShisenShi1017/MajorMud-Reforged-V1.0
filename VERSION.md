@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0061
+- Current Code Update: 0062
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,12 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0061 - Host Lifecycle Readiness State
+- Current update: CodeUpdate-0062 - Scheduler Bootstrap Diagnostics
+- CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics and reports `scheduler-bootstrap-registered-runtime-disabled`.
+- CodeUpdate-0062 registers 10 disabled scheduler channels: PlayerState, Movement, CombatRound, RegenHp, RegenManaKai, Spawn, Cleanup, StatusEffect, ScriptEvent, and AI.
+- CodeUpdate-0062 folds the ServerSim0036 planning-window handoff into curated planning/regression docs under `Docs/ServerSim/ServerSim0036/`.
+- CodeUpdate-0062 local JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run passed.
+- CodeUpdate-0061 GitHub Actions is green by user report.
 - CodeUpdate-0061 adds read-only Server host lifecycle readiness diagnostics and reports `ready-runtime-disabled`.
 - CodeUpdate-0061 verifies initialized, configured, data-ready, world-projection-ready, module-ready, and runtime-disabled stages without starting gameplay, networking, or world simulation.
 - CodeUpdate-0061 local JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run passed.

@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0061`
+- Current Code Update: `0062`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0061 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
+- Current priority: push CodeUpdate-0062 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -166,6 +166,8 @@ CodeUpdate-0060 adds read-only Server host configuration diagnostics. It reports
 
 CodeUpdate-0061 adds read-only Server host lifecycle readiness diagnostics. It derives initialized, configured, data-ready, world-projection-ready, module-ready, and runtime-disabled stages from existing bootstrap reports. No sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, or runtime formula/timing promotion is included.
 
+CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics. It registers ten disabled diagnostic channels and preserves curated ServerSim0036 planning evidence under `Docs/ServerSim/ServerSim0036/`. No scheduler ticking, sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, movement, spawning, status-effect ticking, script dispatch, AI, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, or runtime formula/timing promotion is included.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -215,6 +217,7 @@ Completed/started slices:
 - CodeUpdate-0059: module readiness report with gameplay/rule profiles disabled.
 - CodeUpdate-0060: host configuration surface with runtime toggles disabled.
 - CodeUpdate-0061: host lifecycle readiness state with runtime disabled.
+- CodeUpdate-0062: scheduler bootstrap diagnostics with runtime disabled.
 
 Focus Areas:
 
@@ -238,10 +241,10 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0061:
+Next candidate after CodeUpdate-0062:
 
 - Choose one narrow non-gameplay Server construction slice.
-- Prefer a guarded host lifecycle command/status surface before adding gameplay behavior.
+- Prefer a guarded scheduler status/command surface before adding gameplay behavior.
 - Keep Validation0043 and MegaMUD2 RE0021 as evidence unless a separate reviewed reconciliation update promotes a specific field or behavior.
 - Keep live runtime behavior uncertified until controlled Worldgroup validation is available.
 - Preserve previous decode reports instead of overwriting historical analysis.

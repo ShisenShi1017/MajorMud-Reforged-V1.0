@@ -1,3 +1,19 @@
+# CodeUpdate-0062 - Scheduler Bootstrap Diagnostics
+
+This update adds read-only Server scheduler bootstrap diagnostics.
+
+Highlights:
+
+- Added `scheduler-bootstrap` to Server bootstrap.
+- Registers ten disabled diagnostic scheduler channels.
+- Keeps scheduler execution, gameplay, networking, and world simulation disabled.
+- Preserves curated ServerSim0036 planning/regression evidence under `Docs/ServerSim/ServerSim0036/`.
+- Adds smoke coverage for runtime-disabled scheduler bootstrap registration.
+
+Known limitation:
+
+- This is diagnostics/readiness surface work only. It does not start a scheduler loop, sockets, sessions, gameplay, combat, spawning, status ticking, scripts, or AI.
+
 # CodeUpdate-0061 - Host Lifecycle Readiness State
 
 This update adds read-only Server host lifecycle readiness diagnostics.

@@ -1,8 +1,8 @@
 {
-  "codeUpdate": "0061",
-  "name": "CodeUpdate-0061-Host-Lifecycle-Readiness-State",
+  "codeUpdate": "0062",
+  "name": "CodeUpdate-0062-Scheduler-Bootstrap-Diagnostics",
   "packageType": "direct-repository-patch",
-  "purpose": "Add read-only Server host lifecycle readiness diagnostics while keeping gameplay, networking, and world simulation disabled.",
+  "purpose": "Add read-only Server scheduler bootstrap diagnostics while keeping gameplay, networking, world simulation, and scheduler execution disabled.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": true,
   "addsTooling": false,
@@ -11,7 +11,7 @@
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained modular server construction and data-readiness work before gameplay systems.",
-  "verificationStatus": "ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0061, validation 0 issues, host-lifecycle check, HostLifecycle status ready-runtime-disabled, initialized=True, configured=True, dataReady=True, worldProjectionReady=True, moduleReady=True, runtimeDisabled=True, gameplayEnabled=False, networkingEnabled=False, and worldSimulationEnabled=False.",
+  "verificationStatus": "ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0062, validation 0 issues, scheduler-bootstrap check, SchedulerBootstrap status scheduler-bootstrap-registered-runtime-disabled, channels=10, runtimeEnabled=0, runtimeDisabled=10, hostLifecycleReady=True, and diagnosticOnly=True.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
@@ -20,23 +20,26 @@
     "Apps/Source/Reforged.Server/ServerHostConfigurationAuditModels.cs",
     "Apps/Source/Reforged.Server/ServerHostLifecycleAudit.cs",
     "Apps/Source/Reforged.Server/ServerHostLifecycleAuditModels.cs",
+    "Apps/Source/Reforged.Server/ServerSchedulerBootstrapAudit.cs",
+    "Apps/Source/Reforged.Server/ServerSchedulerBootstrapAuditModels.cs",
     "Apps/Source/Reforged.Server/ServerBootstrap.cs",
     "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
     "Apps/Source/Reforged.Server/Program.cs",
     "Apps/Source/Reforged.Server/README.md",
     "Tests/Source/Reforged.Core.Tests/Program.cs",
-    "Docs/CodeUpdates/CodeUpdate-0061-Host-Lifecycle-Readiness-State.md",
+    "Docs/CodeUpdates/CodeUpdate-0062-Scheduler-Bootstrap-Diagnostics.md",
+    "Docs/ServerSim/ServerSim0036/",
     "Docs/Architecture/PROJECT_ROADMAP.md",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0061/",
+    "Reports/CodeUpdates/CodeUpdate-0062/",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "CodeUpdate-0060 is green by user report and local main was aligned with origin/main before CodeUpdate-0061 edits.",
+    "baselineStatus": "CodeUpdate-0061 is green by user report and local main was aligned with origin/main before CodeUpdate-0062 edits.",
     "officialGate": "GitHub Actions after user push."
   },
   "worldProjection": {
@@ -83,6 +86,26 @@
     "worldSimulationEnabled": false,
     "scope": "Read-only lifecycle diagnostics derived from existing bootstrap reports. No sockets, sessions, gameplay, networking, or world simulation."
   },
+  "schedulerBootstrap": {
+    "status": "scheduler-bootstrap-registered-runtime-disabled",
+    "channelCount": 10,
+    "runtimeEnabledChannelCount": 0,
+    "runtimeDisabledChannelCount": 10,
+    "diagnosticOnly": true,
+    "channels": [
+      "PlayerState",
+      "Movement",
+      "CombatRound",
+      "RegenHp",
+      "RegenManaKai",
+      "Spawn",
+      "Cleanup",
+      "StatusEffect",
+      "ScriptEvent",
+      "AI"
+    ],
+    "scope": "Read-only scheduler bootstrap diagnostics. No scheduler ticking, gameplay, networking, sessions, or world simulation."
+  },
   "currentPlaceholderState": {
     "trueEmptyCanonicalPlaceholder": "Data/quests.json",
     "loaderGap": "world_rooms projection gap resolved in CodeUpdate-0058",
@@ -94,8 +117,8 @@
     "jsonParse": "ProjectManifest.json and UpdateManifest.json parsed successfully.",
     "gitDiffCheck": "passed",
     "releaseBuilds": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests sequential Release builds passed with 0 warnings and 0 errors.",
-    "smokeTests": "Core/server smoke tests passed, including server host lifecycle reports runtime-disabled readiness.",
-    "serverBootstrap": "Server bootstrap passed and reported CodeUpdate 0061, validation 0 issues, host-lifecycle, HostLifecycle status ready-runtime-disabled, initialized=True, configured=True, dataReady=True, worldProjectionReady=True, moduleReady=True, runtimeDisabled=True, gameplayEnabled=False, networkingEnabled=False, and worldSimulationEnabled=False.",
+    "smokeTests": "Core/server smoke tests passed, including server scheduler bootstrap keeps channels disabled.",
+    "serverBootstrap": "Server bootstrap passed and reported CodeUpdate 0062, validation 0 issues, scheduler-bootstrap, SchedulerBootstrap status scheduler-bootstrap-registered-runtime-disabled, channels=10, runtimeEnabled=0, runtimeDisabled=10, hostLifecycleReady=True, and diagnosticOnly=True.",
     "status": "passed"
   },
   "boundaries": [
@@ -103,12 +126,13 @@
     "No imported/reference deletion",
     "No gameplay system",
     "No gameplay server behavior",
+    "No scheduler execution",
     "No field promotion",
     "No runtime timing or formula promotion",
     "No live runtime validation claim"
   ],
   "referenceDataPolicy": "Validation0043, MegaMUD2 RE0021, OmniVerse, MudInfo, WCC/WBB/WGSERVER files, MMExplorer evidence, website/community data, and tool-derived data are evidence or planning inputs only unless a reviewed reconciliation update explicitly changes canonical Data or runtime behavior.",
   "dataDrivenLogicPolicy": "Game logic is data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-internal.",
-  "recommendedNextUpdate": "After user push and green GitHub Actions, add the next narrow non-gameplay server slice: a guarded host lifecycle command/status surface.",
+  "recommendedNextUpdate": "After user push and green GitHub Actions, add the next narrow non-gameplay server slice: a guarded scheduler status/command surface.",
   "recommendedNextScopeRequiresUserApproval": true
 }

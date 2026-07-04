@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0062 - Scheduler Bootstrap Diagnostics
+
+- Recorded CodeUpdate-0061 GitHub Actions as green by user report.
+- Added read-only Server scheduler bootstrap audit and report models.
+- Attached `scheduler-bootstrap` to Server bootstrap.
+- Added Server startup output for scheduler bootstrap status and disabled channels.
+- Added smoke coverage that verifies scheduler channels remain runtime-disabled.
+- Registered disabled diagnostic channels for PlayerState, Movement, CombatRound, RegenHp, RegenManaKai, Spawn, Cleanup, StatusEffect, ScriptEvent, and AI.
+- Folded the planning-window ServerSim0036 handoff into curated evidence/planning docs under `Docs/ServerSim/ServerSim0036/`.
+- No scheduler ticking, sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, movement, spawning, status-effect ticking, script dispatch, AI execution, character creation, world simulation, networking expansion, live editor behavior, canonical `Data` rewrite, imported/reference deletion, runtime formula promotion, or timing promotion is included.
+
 ## CodeUpdate-0061 - Host Lifecycle Readiness State
 
 - Recorded CodeUpdate-0060 GitHub Actions as green by user report.

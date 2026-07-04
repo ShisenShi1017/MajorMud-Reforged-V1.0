@@ -70,6 +70,15 @@ if (report.HostLifecycle is not null)
     }
 }
 
+if (report.SchedulerBootstrap is not null)
+{
+    Console.WriteLine($"SchedulerBootstrap: {report.SchedulerBootstrap.Status}; channels={report.SchedulerBootstrap.ChannelCount}; runtimeEnabled={report.SchedulerBootstrap.RuntimeEnabledChannelCount}; runtimeDisabled={report.SchedulerBootstrap.RuntimeDisabledChannelCount}; hostLifecycleReady={report.SchedulerBootstrap.HostLifecycleReady}; diagnosticOnly={report.SchedulerBootstrap.DiagnosticOnly}");
+    foreach (var channel in report.SchedulerBootstrap.Channels)
+    {
+        Console.WriteLine($"SchedulerChannel: {channel.Order}; name={channel.Name}; runtimeEnabled={channel.RuntimeEnabled}; evidence={channel.EvidenceSource}; role={channel.Role}; note={channel.ReadinessNote}");
+    }
+}
+
 if (report.ClassicParityAudit is not null)
 {
     Console.WriteLine($"ClassicParity: {report.ClassicParityAudit.Status}; canonicalFiles={report.ClassicParityAudit.CanonicalFileCount}; importedReferenceFiles={report.ClassicParityAudit.ImportedReferenceFileCount}; exactNameMatches={report.ClassicParityAudit.ExactNameMatchCount}");
