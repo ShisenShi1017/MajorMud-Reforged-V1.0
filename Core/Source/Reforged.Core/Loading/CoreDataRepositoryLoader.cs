@@ -77,6 +77,14 @@ public sealed class CoreDataRepositoryLoader
                 {
                     yield return CreateRecord(element, descriptor, sourceFile, index);
                 }
+                else if (element.ValueKind == JsonValueKind.String)
+                {
+                    var stableId = element.GetString();
+                    if (!string.IsNullOrWhiteSpace(stableId))
+                    {
+                        yield return CreateScalarRecord(stableId, descriptor, sourceFile, index);
+                    }
+                }
 
                 index++;
             }
@@ -141,6 +149,19 @@ public sealed class CoreDataRepositoryLoader
             Name = TryGetText(element, "name") ?? stableId,
             UnknownFields = unknownFields,
             RawFields = rawFields
+        };
+    }
+
+    private static CanonicalDataRecord CreateScalarRecord(string stableId, DataCategoryDescriptor descriptor, string sourceFile, int index)
+    {
+        return new CanonicalDataRecord
+        {
+            Category = descriptor.Category,
+            SourceFile = sourceFile,
+            Index = index,
+            StableId = stableId,
+            LegacyId = index + 1,
+            Name = stableId
         };
     }
 

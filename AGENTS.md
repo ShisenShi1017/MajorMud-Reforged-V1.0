@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0057
+## 10. Current project position after CodeUpdate-0058
 
-- Current Code Update: `0057`
+- Current Code Update: `0058`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0057 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
+- Current priority: push CodeUpdate-0058 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -186,7 +186,9 @@ CodeUpdate-0055 preserves curated current-pass Validation0043 and MegaMUD2 RE002
 
 CodeUpdate-0057 repairs continuity after the GitHub/local `CoreUpdate 0056` commit left primary continuity files at CodeUpdate-0055. It adds the first non-gameplay modular Server foundation: a read-only game module catalog attached to Server bootstrap, with `majormud-classic` registered as a disabled data-driven module baseline and `classic` registered as a disabled rule profile. It folds Server Build Session 0001 into `Docs/ServerBuild/Session0001/` and adds `Docs/Architecture/InteractiveClientMap.md`. It does not add gameplay, combat, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrites, imported/reference deletion, or runtime formula/timing promotion.
 
-Server direction after CodeUpdate-0057: MajorMUD Classic is the first registered game module and data baseline, but MajorMUD is not the whole Server. Keep the Server generic and module-ready. Do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, active mode/profile loading, combat, character creation, world simulation, networking expansion, or live editor behavior until explicitly approved. `Data/` defines world/content and game logic by default; Server defines reusable engine behavior, validation, execution, and enforcement; Editor should eventually edit data safely.
+CodeUpdate-0058 closes the read-only `world_rooms` projection gap. `CoreDataRepositoryLoader` now loads scalar string-array collections as canonical records, and Server bootstrap attaches a read-only world projection audit. The current projection verifies 1,246 world room ids, 1,246 unique ids, 1,246 canonical rooms, 0 missing references, 0 duplicates, and start room `wcc_map1_room1` present. It does not rewrite `Data/`, start gameplay, simulate the world, add networking behavior, add live editor behavior, or promote runtime formulas/timers.
+
+Server direction after CodeUpdate-0058: MajorMUD Classic is the first registered game module and data baseline, but MajorMUD is not the whole Server. Keep the Server generic and module-ready. Do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, active mode/profile loading, combat, character creation, world simulation, networking expansion, or live editor behavior until explicitly approved. `Data/` defines world/content and game logic by default; Server defines reusable engine behavior, validation, execution, and enforcement; Editor should eventually edit data safely.
 
 Engine direction after CodeUpdate-0039: favor reusable engine systems over feature-specific systems. Avoid designing around Classic unless behavior is truly Classic-specific. Game logic is data-driven by default: rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless a behavior is truly engine-internal. The server supplies reusable engine systems, validation, execution, and enforcement. The WCC default install under `ImportedDatabases/WCCDefaultInstall/` is reference/import material only.
 

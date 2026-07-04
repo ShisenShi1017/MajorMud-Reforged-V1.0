@@ -1,3 +1,20 @@
+# CodeUpdate-0058 - World Projection Index
+
+This update closes the read-only `world_rooms` projection gap without rewriting canonical `Data/`.
+
+Highlights:
+
+- Added scalar string-array collection support to `CoreDataRepositoryLoader`.
+- Added read-only Server world projection diagnostics.
+- Attached `world-projection` to Server bootstrap.
+- Added smoke coverage for the projected world room index.
+- Verified `Data/world.json` projects to 1,246 world room records.
+- Verified all projected world room ids exist in `Data/rooms.json`.
+
+Known limitation:
+
+- This is indexing/diagnostics only. It does not start world simulation or gameplay.
+
 # CodeUpdate-0057 - Modular Server Foundation
 
 This update repairs the continuity mismatch left after `CoreUpdate 0056` and begins server construction with a small non-gameplay module catalog.

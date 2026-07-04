@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0057
+- Current Code Update: 0058
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,10 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0057 - Modular Server Foundation
+- Current update: CodeUpdate-0058 - World Projection Index
+- CodeUpdate-0058 closes the `world_rooms` loader projection gap with scalar string-array loading and read-only Server world projection diagnostics.
+- CodeUpdate-0058 verifies 1,246 world room ids, 1,246 unique ids, 1,246 canonical rooms, 0 missing references, 0 duplicates, and start room `wcc_map1_room1` present.
+- CodeUpdate-0058 local JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run passed.
 - CodeUpdate-0057 repairs continuity after GitHub/local `CoreUpdate 0056` left main continuity documents at CodeUpdate-0055.
 - CodeUpdate-0057 adds a non-gameplay Server game module catalog and registers MajorMUD Classic as the first disabled data-driven module baseline.
 - CodeUpdate-0057 folds Server Build Session 0001 into `Docs/ServerBuild/Session0001/` and adds the interactive client map planning placeholder under `Docs/Architecture/InteractiveClientMap.md`.

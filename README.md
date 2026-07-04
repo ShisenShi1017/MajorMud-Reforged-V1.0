@@ -4,10 +4,20 @@
 
 ## Current Project State
 
-- **Current Code Update:** `CodeUpdate-0057 - Modular Server Foundation`
+- **Current Code Update:** `CodeUpdate-0058 - World Projection Index`
 - **Current Database Version:** `DatabaseVersion-0009 - Server-Ready Data Baseline`
 - **Active Milestone:** `Milestone 2 - Engine Modernization / Host & World Editor Planning`
-- **Current Priority:** Push CodeUpdate-0057 when ready, verify GitHub Actions green, then continue with one narrow non-gameplay Server construction slice.
+- **Current Priority:** Push CodeUpdate-0058 when ready, verify GitHub Actions green, then continue with one narrow non-gameplay Server construction slice.
+
+## CodeUpdate-0058 Summary
+
+CodeUpdate-0058 closes the `world_rooms` loader projection gap without rewriting canonical `Data/`.
+
+The Core data loader now supports scalar string-array collections, allowing `Data/world.json` `rooms[]` entries to load as 1,246 `world_rooms` records. Server bootstrap also attaches a read-only world projection audit that verifies all projected world room ids exist in `Data/rooms.json`.
+
+Verified projection: 1,246 world room ids, 1,246 unique ids, 1,246 canonical rooms, 0 missing references, 0 duplicates, and start room `wcc_map1_room1` exists.
+
+Boundaries: no gameplay, combat, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, or runtime formula/timing promotion.
 
 ## CodeUpdate-0057 Summary
 
@@ -43,7 +53,7 @@ Validation0043 current-pass evidence is preserved under `DataDecodeCheckpoints/V
 
 MegaMUD2 RE0021 current-pass evidence is preserved under `DataDecodeCheckpoints/MegaMUD2RE0021/`. It contributes MegaMUD 2.0 route/client/protocol evidence, including `.mp` command-token material and TRC session windows, but it does not prove raw binary packet layouts.
 
-`DataDecodeCheckpoints/UnifiedDecodedData/` was regenerated after correcting stale placeholder wording. Current `Data/` now records populated rooms, shops, monsters, items, and spells. `Data/quests.json` remains the only true empty canonical placeholder, while `world_rooms` is a loader projection gap from `Data/world.json`.
+`DataDecodeCheckpoints/UnifiedDecodedData/` was regenerated after correcting stale placeholder wording. Current `Data/` now records populated rooms, shops, monsters, items, and spells. At the time of CodeUpdate-0055, `Data/quests.json` was the only true empty canonical placeholder while `world_rooms` was a loader projection gap from `Data/world.json`; CodeUpdate-0058 resolves the `world_rooms` projection gap.
 
 Game logic should be treated as data-driven by default. The server supplies reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless a behavior is truly engine-internal.
 
@@ -424,13 +434,13 @@ Milestone 1 established shared models, validation types, repository contracts, c
 
 Status: active.
 
-CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition. CodeUpdate-0048 adds unified decoded-data comparison reports and Android ChatGPT handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof. CodeUpdate-0050 preserves SimulatorBuild0002, RuntimePrep0001-0009 handoff evidence, and DataDecode0110 static certification. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without formula promotion. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload and preserves Patch0068/Handoff0074 evidence under `DataDecodeCheckpoints/`. CodeUpdate-0054 copies only repository-new Validation0013 and DocUpdate0024 files while skipping existing paths. CodeUpdate-0055 preserves Validation0043 and MegaMUD2 RE0021 evidence, refreshes UnifiedDecodedData, and records the current placeholder/blocker audit. CodeUpdate-0057 repairs 0056 continuity drift and adds a non-gameplay modular Server foundation.
+CodeUpdate-0029 started Milestone 2 implementation with startup-only Server diagnostics. CodeUpdate-0030 recorded permanent handoff and source-of-truth rules. CodeUpdate-0031 added the first non-gameplay Server bootstrap foundation around the existing diagnostics path. CodeUpdate-0031A corrects the 0031 smoke-test compile failure. CodeUpdate-0032 adds manifest identity output. CodeUpdate-0033 adds an explicit bootstrap exit-code contract. CodeUpdate-0034 adds the OmniVerse read-only reference audit policy. CodeUpdate-0035 adds bootstrap validation summary counts. CodeUpdate-0036 adds knowledge-base/design-decision documentation. CodeUpdate-0037 adds draft Software Design Specification planning records and repairs stale continuity. CodeUpdate-0038 adds required-directory status reporting to Server bootstrap. CodeUpdate-0039 adds host-tool readiness summary output. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation. CodeUpdate-0042 adds canonical Server data catalog loading and startup reporting. CodeUpdate-0043 adds runtime-readiness classification for canonical data categories. CodeUpdate-0044 adds the original reference capture/extractor tool for reviewed extraction evidence. CodeUpdate-0045 integrates the DataDecode0043 pre-mirror import-readiness checkpoint. CodeUpdate-0046 imports the current OmniVerse/MudInfo reference capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub repository transition. CodeUpdate-0048 adds unified decoded-data comparison reports and Android ChatGPT handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof. CodeUpdate-0050 preserves SimulatorBuild0002, RuntimePrep0001-0009 handoff evidence, and DataDecode0110 static certification. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without formula promotion. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload and preserves Patch0068/Handoff0074 evidence under `DataDecodeCheckpoints/`. CodeUpdate-0054 copies only repository-new Validation0013 and DocUpdate0024 files while skipping existing paths. CodeUpdate-0055 preserves Validation0043 and MegaMUD2 RE0021 evidence, refreshes UnifiedDecodedData, and records the current placeholder/blocker audit. CodeUpdate-0057 repairs 0056 continuity drift and adds a non-gameplay modular Server foundation. CodeUpdate-0058 closes the read-only `world_rooms` projection gap.
 
-Next safe work after CodeUpdate-0057:
+Next safe work after CodeUpdate-0058:
 
 1. Wait for user push and green GitHub Actions.
 2. Choose one narrow non-gameplay Server construction slice.
-3. Prefer either a read-only world projection/index or a module readiness report before gameplay behavior.
+3. Prefer either a module readiness report or first host configuration surface before gameplay behavior.
 4. Keep Validation0043 and MegaMUD2 RE0021 as evidence unless a separate reviewed reconciliation update promotes a specific field or behavior.
 5. Do not add gameplay systems without explicit user approval.
 

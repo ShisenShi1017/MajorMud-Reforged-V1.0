@@ -17,6 +17,7 @@ var tests = new List<(string Name, Action Body)>
     ("server startup diagnostics run", ServerStartupDiagnosticsSmoke),
     ("server bootstrap runs", ServerBootstrapSmoke),
     ("server data catalog loads canonical data", ServerDataCatalogAuditSmoke),
+    ("server world projection indexes canonical rooms", ServerWorldProjectionAuditSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
 };
 
@@ -147,7 +148,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "server-data-catalog", "game-module-catalog", "startup-diagnostics", "classic-parity-audit" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "server-data-catalog", "world-projection", "game-module-catalog", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -173,6 +174,17 @@ void ServerBootstrapSmoke()
     if (report.ClassicParityAudit is null || report.ClassicParityAudit.Categories.Count == 0)
     {
         throw new InvalidOperationException("Server bootstrap did not attach Classic parity audit inventory.");
+    }
+
+    if (report.WorldProjection is null ||
+        !report.WorldProjection.ProjectionReady ||
+        report.WorldProjection.WorldRoomCount == 0 ||
+        report.WorldProjection.WorldRoomCount != report.WorldProjection.CanonicalRoomCount ||
+        report.WorldProjection.MissingRoomCount != 0 ||
+        report.WorldProjection.DuplicateWorldRoomCount != 0 ||
+        !report.WorldProjection.StartRoomExists)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach the expected read-only world projection.");
     }
 
     if (report.GameModuleCatalog is null ||
@@ -304,6 +316,29 @@ void ServerDataCatalogAuditSmoke()
         {
             throw new InvalidOperationException($"Server data catalog did not classify expected placeholder category: {category}");
         }
+    }
+}
+
+void ServerWorldProjectionAuditSmoke()
+{
+    var validation = new Reforged.Core.Validation.ValidationResult();
+    var report = new ServerWorldProjectionAudit().Run(root, validation);
+    if (validation.HasErrors)
+    {
+        throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    if (!report.ProjectionReady ||
+        report.Status != "projection-ready" ||
+        report.WorldRoomCount != 1246 ||
+        report.UniqueWorldRoomCount != report.WorldRoomCount ||
+        report.CanonicalRoomCount != report.WorldRoomCount ||
+        report.MissingRoomCount != 0 ||
+        report.DuplicateWorldRoomCount != 0 ||
+        report.StartRoom != "wcc_map1_room1" ||
+        !report.StartRoomExists)
+    {
+        throw new InvalidOperationException("Server world projection did not expose the expected canonical world room index.");
     }
 }
 

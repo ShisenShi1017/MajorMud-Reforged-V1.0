@@ -32,6 +32,8 @@ public sealed class ServerBootstrapReport
 
     public ServerDataCatalogAuditReport? ServerDataCatalog { get; private set; }
 
+    public ServerWorldProjectionAuditReport? WorldProjection { get; private set; }
+
     public GameModuleCatalog? GameModuleCatalog { get; private set; }
 
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
@@ -83,6 +85,11 @@ public sealed class ServerBootstrapReport
     public void AttachServerDataCatalog(ServerDataCatalogAuditReport audit)
     {
         ServerDataCatalog = audit;
+    }
+
+    public void AttachWorldProjection(ServerWorldProjectionAuditReport audit)
+    {
+        WorldProjection = audit;
     }
 
     public void AttachGameModuleCatalog(GameModuleCatalog catalog)

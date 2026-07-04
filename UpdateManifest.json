@@ -1,8 +1,8 @@
 {
-  "codeUpdate": "0057",
-  "name": "CodeUpdate-0057-Modular-Server-Foundation",
+  "codeUpdate": "0058",
+  "name": "CodeUpdate-0058-World-Projection-Index",
   "packageType": "direct-repository-patch",
-  "purpose": "Repair continuity after the CoreUpdate 0056 mismatch and add the first non-gameplay modular Server foundation.",
+  "purpose": "Close the world_rooms loader projection gap and add read-only Server world projection diagnostics.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": true,
   "addsTooling": false,
@@ -11,52 +11,45 @@
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained modular server construction and data-readiness work before gameplay systems.",
-  "verificationStatus": "ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Initial no-restore builds failed because project.assets.json files were missing; Server and Core.Tests restore then passed. A parallel Server/Core.Tests build attempt hit a transient shared Core SourceLink obj file lock, while the Core.Tests build succeeded. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap run passed and reported CodeUpdate 0057, game-module-catalog check, 1 disabled module, 1 disabled rule profile, 11 runtime-ready categories, 2 runtime-blocked categories, and 1 placeholder.",
+  "verificationStatus": "ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0058, validation 0 issues, world-projection check, world_rooms records=1246, runtimeReady=True, runtimeReady categories=12, runtimeBlocked categories=1, placeholder categories=1, total loaded records=8189, worldRooms=1246, uniqueWorldRooms=1246, canonicalRooms=1246, missingRooms=0, duplicateWorldRooms=0, startRoom=wcc_map1_room1, and startRoomExists=True.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
     "CHANGELOG.md",
-    "Apps/Source/Reforged.Server/GameModuleCatalog.cs",
-    "Apps/Source/Reforged.Server/ServerGameModuleCatalog.cs",
+    "Core/Source/Reforged.Core/Loading/CoreDataRepositoryLoader.cs",
+    "Apps/Source/Reforged.Server/ServerWorldProjectionAudit.cs",
+    "Apps/Source/Reforged.Server/ServerWorldProjectionAuditModels.cs",
     "Apps/Source/Reforged.Server/ServerBootstrap.cs",
     "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
     "Apps/Source/Reforged.Server/Program.cs",
     "Tests/Source/Reforged.Core.Tests/Program.cs",
-    "Docs/Architecture/InteractiveClientMap.md",
-    "Docs/CodeUpdates/CodeUpdate-0057-Modular-Server-Foundation.md",
-    "Docs/ServerBuild/Session0001/README.md",
+    "Docs/CodeUpdates/CodeUpdate-0058-World-Projection-Index.md",
     "Docs/Architecture/PROJECT_ROADMAP.md",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0057/",
+    "Reports/CodeUpdates/CodeUpdate-0058/",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "Local HEAD, origin/main, and remote refs/heads/main were verified at CoreUpdate 0056 before CodeUpdate-0057 edits.",
+    "baselineStatus": "CodeUpdate-0057 is green by user report and local main was aligned with origin/main before CodeUpdate-0058 edits.",
     "officialGate": "GitHub Actions after user push."
   },
-  "handoffIntake": {
-    "serverBuildSession0001": {
-      "sourcePackage": "C:\\Users\\djkao\\Downloads\\ServerBuildSession0001-CodexHandoff-WorkOnly.zip",
-      "sourcePackageSha256": "823F61AC667A9F44A06B8527FFD8250F6BEF099B153485F004409A38A3376C25",
-      "entriesInspected": 6,
-      "preservedAt": "Docs/ServerBuild/Session0001",
-      "scope": "Work-only handoff material. Not a repository overlay."
-    },
-    "docUpdate0025": {
-      "sourcePackage": "C:\\Users\\djkao\\Downloads\\DocUpdate-0025-Interactive-Map-Placeholder.zip",
-      "sourcePackageSha256": "29F971CFB4800E72FDECD24323A7D5D08465B257C4950D505509F7D76466EB21",
-      "entriesInspected": 2,
-      "preservedAt": "Docs/Architecture/InteractiveClientMap.md",
-      "scope": "Planning placeholder. Does not implement client map behavior."
-    }
+  "worldProjection": {
+    "worldRoomCount": 1246,
+    "uniqueWorldRoomCount": 1246,
+    "canonicalRoomCount": 1246,
+    "missingRoomCount": 0,
+    "duplicateWorldRoomCount": 0,
+    "startRoom": "wcc_map1_room1",
+    "startRoomExists": true,
+    "scope": "Read-only server projection and loader support. No canonical Data rewrite."
   },
   "currentPlaceholderState": {
     "trueEmptyCanonicalPlaceholder": "Data/quests.json",
-    "loaderGap": "world_rooms from Data/world.json",
+    "loaderGap": "world_rooms projection gap resolved in CodeUpdate-0058",
     "runtimeParityBlockers": 367,
     "blockerSummary": "Reports/CodeUpdates/CodeUpdate-0055/RuntimeParityBlockerSummary.csv",
     "placeholderAudit": "Reports/CodeUpdates/CodeUpdate-0055/CurrentDataPlaceholderAudit.csv"
@@ -64,11 +57,9 @@
   "localVerification": {
     "jsonParse": "ProjectManifest.json and UpdateManifest.json parsed successfully.",
     "gitDiffCheck": "passed",
-    "restore": "Server, Core.Tests, Importer, Editor, Launcher, and Client restore passed after initial no-restore builds found missing project.assets.json files.",
     "releaseBuilds": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests sequential Release builds passed with 0 warnings and 0 errors.",
-    "parallelBuildNote": "A parallel Server/Core.Tests build attempt hit a transient shared Core SourceLink obj file lock; sequential rerun passed.",
     "smokeTests": "Core/server smoke tests passed.",
-    "serverBootstrap": "Server bootstrap passed and reported CodeUpdate 0057, checks including game-module-catalog, 1 disabled module, 1 disabled rule profile, 11 runtime-ready categories, 2 runtime-blocked categories, and 1 placeholder.",
+    "serverBootstrap": "Server bootstrap passed and reported CodeUpdate 0058, validation 0 issues, world-projection, world_rooms records=1246, runtimeReady=True, runtimeReady categories=12, runtimeBlocked categories=1, placeholder categories=1, total loaded records=8189, worldRooms=1246, uniqueWorldRooms=1246, canonicalRooms=1246, missingRooms=0, duplicateWorldRooms=0, startRoom=wcc_map1_room1, and startRoomExists=True.",
     "status": "passed"
   },
   "boundaries": [
@@ -82,6 +73,6 @@
   ],
   "referenceDataPolicy": "Validation0043, MegaMUD2 RE0021, OmniVerse, MudInfo, WCC/WBB/WGSERVER files, MMExplorer evidence, website/community data, and tool-derived data are evidence or planning inputs only unless a reviewed reconciliation update explicitly changes canonical Data or runtime behavior.",
   "dataDrivenLogicPolicy": "Game logic is data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-internal.",
-  "recommendedNextUpdate": "After user push and green GitHub Actions, add the next narrow non-gameplay server slice: a read-only world projection/index or a module readiness report.",
+  "recommendedNextUpdate": "After user push and green GitHub Actions, add the next narrow non-gameplay server slice: a module readiness report or first host configuration surface.",
   "recommendedNextScopeRequiresUserApproval": true
 }

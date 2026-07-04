@@ -1,5 +1,17 @@
 # Changelog
 
+## CodeUpdate-0058 - World Projection Index
+
+- Recorded CodeUpdate-0057 GitHub Actions as green by user report.
+- Added scalar string-array collection support to `CoreDataRepositoryLoader`.
+- Added read-only Server world projection audit and report models.
+- Attached `world-projection` to Server bootstrap.
+- Added Server startup output for world projection status.
+- Added smoke coverage for world projection indexing and bootstrap attachment.
+- Verified `world_rooms` now loads 1,246 records from `Data/world.json`.
+- Verified world projection has 1,246 unique room ids, 1,246 canonical rooms, 0 missing references, 0 duplicates, and start room `wcc_map1_room1` present.
+- No canonical `Data` rewrite, imported/reference deletion, gameplay, combat, character creation, world simulation, networking expansion, live editor behavior, runtime formula promotion, or timing promotion is included.
+
 ## CodeUpdate-0057 - Modular Server Foundation
 
 - Verified local `HEAD`, local `origin/main`, and remote `refs/heads/main` at `4277723ce284be6dbf689711d3ac6e93954dfb05` before edits.
