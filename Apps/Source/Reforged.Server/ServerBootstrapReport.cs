@@ -30,6 +30,8 @@ public sealed class ServerBootstrapReport
 
     public ClassicParityAuditReport? ClassicParityAudit { get; private set; }
 
+    public ServerHostConfigurationReport? HostConfiguration { get; private set; }
+
     public ServerDataCatalogAuditReport? ServerDataCatalog { get; private set; }
 
     public ServerWorldProjectionAuditReport? WorldProjection { get; private set; }
@@ -82,6 +84,11 @@ public sealed class ServerBootstrapReport
     public void AttachClassicParityAudit(ClassicParityAuditReport audit)
     {
         ClassicParityAudit = audit;
+    }
+
+    public void AttachHostConfiguration(ServerHostConfigurationReport report)
+    {
+        HostConfiguration = report;
     }
 
     public void AttachServerDataCatalog(ServerDataCatalogAuditReport audit)

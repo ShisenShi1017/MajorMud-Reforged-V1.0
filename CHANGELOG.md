@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0060 - Host Configuration Surface
+
+- Recorded CodeUpdate-0059 GitHub Actions as green by user report.
+- Added read-only Server host configuration audit and report models.
+- Attached `host-configuration` to Server bootstrap.
+- Added Server startup output for host configuration status.
+- Added smoke coverage that verifies runtime toggles remain disabled.
+- Verified defaults: host `Reforged Local Host`, bind `127.0.0.1`, port `4000`, max sessions `64`, world tick `1000ms`, combat tick `6000ms`, gameplay disabled, networking disabled, and world simulation disabled.
+- No sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, character creation, world simulation, networking expansion, live editor behavior, canonical `Data` rewrite, imported/reference deletion, runtime formula promotion, or timing promotion is included.
+
 ## CodeUpdate-0059 - Module Readiness Report
 
 - Recorded CodeUpdate-0058 GitHub Actions as green by user report.

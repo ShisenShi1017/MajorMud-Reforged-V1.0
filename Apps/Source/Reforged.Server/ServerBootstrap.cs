@@ -5,7 +5,7 @@ namespace Reforged.Server;
 
 /// <summary>
 /// Starts the Server application far enough to verify repository identity, required folders,
-/// manifest readability, canonical data loading, world projection, module discovery, module readiness, startup diagnostics, and read-only Classic parity inventory without starting gameplay systems.
+/// manifest readability, host configuration, canonical data loading, world projection, module discovery, module readiness, startup diagnostics, and read-only Classic parity inventory without starting gameplay systems.
 /// </summary>
 public sealed class ServerBootstrap
 {
@@ -31,6 +31,10 @@ public sealed class ServerBootstrap
         report.ProjectRoot = root;
         VerifyRequiredDirectories(root, report);
         VerifyProjectManifest(root, report);
+
+        report.AddCheck("host-configuration");
+        var hostConfiguration = new ServerHostConfigurationAudit().Run(root, report.Validation);
+        report.AttachHostConfiguration(hostConfiguration);
 
         report.AddCheck("server-data-catalog");
         var serverDataCatalog = new ServerDataCatalogAudit().Run(root, report.Validation);

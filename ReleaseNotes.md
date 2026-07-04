@@ -1,3 +1,18 @@
+# CodeUpdate-0060 - Host Configuration Surface
+
+This update adds read-only Server host configuration diagnostics.
+
+Highlights:
+
+- Added `host-configuration` to Server bootstrap.
+- Reports safe default host settings.
+- Keeps gameplay, networking, and world simulation disabled.
+- Adds smoke coverage for disabled runtime host configuration.
+
+Known limitation:
+
+- This is diagnostics/configuration surface work only. It does not open sockets, start sessions, or run gameplay.
+
 # CodeUpdate-0059 - Module Readiness Report
 
 This update adds read-only Server module readiness diagnostics.

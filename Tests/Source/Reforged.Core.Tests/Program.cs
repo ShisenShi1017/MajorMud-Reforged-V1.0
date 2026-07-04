@@ -16,6 +16,7 @@ var tests = new List<(string Name, Action Body)>
     ("startup diagnostics run", StartupDiagnosticsSmoke),
     ("server startup diagnostics run", ServerStartupDiagnosticsSmoke),
     ("server bootstrap runs", ServerBootstrapSmoke),
+    ("server host configuration keeps runtime disabled", ServerHostConfigurationAuditSmoke),
     ("server data catalog loads canonical data", ServerDataCatalogAuditSmoke),
     ("server world projection indexes canonical rooms", ServerWorldProjectionAuditSmoke),
     ("server module readiness keeps gameplay disabled", ServerModuleReadinessAuditSmoke),
@@ -149,7 +150,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "startup-diagnostics", "classic-parity-audit" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "host-configuration", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -160,6 +161,17 @@ void ServerBootstrapSmoke()
     if (report.StartupDiagnostics is null || !report.StartupDiagnostics.Checks.Contains("server-identity"))
     {
         throw new InvalidOperationException("Server bootstrap did not attach Server startup diagnostics.");
+    }
+
+    if (report.HostConfiguration is null ||
+        report.HostConfiguration.Status != "configured-runtime-disabled" ||
+        !report.HostConfiguration.RuntimeDisabled ||
+        report.HostConfiguration.Port != 4000 ||
+        report.HostConfiguration.MaxSessions != 64 ||
+        report.HostConfiguration.WorldTickMilliseconds != 1000 ||
+        report.HostConfiguration.CombatTickMilliseconds != 6000)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach expected non-gameplay host configuration.");
     }
 
     if (report.ServerDataCatalog is null ||
@@ -327,6 +339,31 @@ void ServerDataCatalogAuditSmoke()
         {
             throw new InvalidOperationException($"Server data catalog did not classify expected placeholder category: {category}");
         }
+    }
+}
+
+void ServerHostConfigurationAuditSmoke()
+{
+    var validation = new Reforged.Core.Validation.ValidationResult();
+    var report = new ServerHostConfigurationAudit().Run(root, validation);
+    if (validation.HasErrors)
+    {
+        throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    if (report.Status != "configured-runtime-disabled" ||
+        !report.RuntimeDisabled ||
+        report.HostName != "Reforged Local Host" ||
+        report.BindAddress != "127.0.0.1" ||
+        report.Port != 4000 ||
+        report.MaxSessions != 64 ||
+        report.WorldTickMilliseconds != 1000 ||
+        report.CombatTickMilliseconds != 6000 ||
+        report.GameplayEnabled ||
+        report.NetworkingEnabled ||
+        report.WorldSimulationEnabled)
+    {
+        throw new InvalidOperationException("Server host configuration did not expose the expected disabled runtime defaults.");
     }
 }
 

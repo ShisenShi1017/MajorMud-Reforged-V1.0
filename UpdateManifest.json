@@ -1,8 +1,8 @@
 {
-  "codeUpdate": "0059",
-  "name": "CodeUpdate-0059-Module-Readiness-Report",
+  "codeUpdate": "0060",
+  "name": "CodeUpdate-0060-Host-Configuration-Surface",
   "packageType": "direct-repository-patch",
-  "purpose": "Add read-only Server module readiness diagnostics while keeping gameplay disabled.",
+  "purpose": "Add read-only Server host configuration diagnostics while keeping gameplay, networking, and world simulation disabled.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": true,
   "addsTooling": false,
@@ -11,29 +11,29 @@
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained modular server construction and data-readiness work before gameplay systems.",
-  "verificationStatus": "ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0059, validation 0 issues, module-readiness check, ModuleReadiness status host-ready-gameplay-disabled, modules=1, hostReady=1, gameplayEnabled=0, runtimeRuleProfilesEnabled=0, worldRooms=1246, runtimeReadyCategories=12, runtimeBlockedCategories=1, and placeholders=1.",
+  "verificationStatus": "ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0060, validation 0 issues, host-configuration check, HostConfiguration status configured-runtime-disabled, name=Reforged Local Host, bind=127.0.0.1, port=4000, maxSessions=64, worldTickMs=1000, combatTickMs=6000, gameplayEnabled=False, networkingEnabled=False, worldSimulationEnabled=False, and configFileExists=False.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
     "CHANGELOG.md",
-    "Apps/Source/Reforged.Server/ServerModuleReadinessAudit.cs",
-    "Apps/Source/Reforged.Server/ServerModuleReadinessAuditModels.cs",
+    "Apps/Source/Reforged.Server/ServerHostConfigurationAudit.cs",
+    "Apps/Source/Reforged.Server/ServerHostConfigurationAuditModels.cs",
     "Apps/Source/Reforged.Server/ServerBootstrap.cs",
     "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
     "Apps/Source/Reforged.Server/Program.cs",
     "Tests/Source/Reforged.Core.Tests/Program.cs",
-    "Docs/CodeUpdates/CodeUpdate-0059-Module-Readiness-Report.md",
+    "Docs/CodeUpdates/CodeUpdate-0060-Host-Configuration-Surface.md",
     "Docs/Architecture/PROJECT_ROADMAP.md",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0059/",
+    "Reports/CodeUpdates/CodeUpdate-0060/",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "CodeUpdate-0058 is green by user report and local main was aligned with origin/main before CodeUpdate-0059 edits.",
+    "baselineStatus": "CodeUpdate-0059 is green by user report and local main was aligned with origin/main before CodeUpdate-0060 edits.",
     "officialGate": "GitHub Actions after user push."
   },
   "worldProjection": {
@@ -54,6 +54,19 @@
     "status": "host-ready-gameplay-disabled",
     "scope": "Read-only module readiness diagnostics. No gameplay or runtime rule activation."
   },
+  "hostConfiguration": {
+    "status": "configured-runtime-disabled",
+    "hostName": "Reforged Local Host",
+    "bindAddress": "127.0.0.1",
+    "port": 4000,
+    "maxSessions": 64,
+    "worldTickMilliseconds": 1000,
+    "combatTickMilliseconds": 6000,
+    "gameplayEnabled": false,
+    "networkingEnabled": false,
+    "worldSimulationEnabled": false,
+    "scope": "Read-only host configuration diagnostics. No sockets, sessions, gameplay, networking, or world simulation."
+  },
   "currentPlaceholderState": {
     "trueEmptyCanonicalPlaceholder": "Data/quests.json",
     "loaderGap": "world_rooms projection gap resolved in CodeUpdate-0058",
@@ -66,7 +79,7 @@
     "gitDiffCheck": "passed",
     "releaseBuilds": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests sequential Release builds passed with 0 warnings and 0 errors.",
     "smokeTests": "Core/server smoke tests passed.",
-    "serverBootstrap": "Server bootstrap passed and reported CodeUpdate 0059, validation 0 issues, module-readiness, ModuleReadiness status host-ready-gameplay-disabled, modules=1, hostReady=1, gameplayEnabled=0, runtimeRuleProfilesEnabled=0, worldRooms=1246, runtimeReadyCategories=12, runtimeBlockedCategories=1, and placeholders=1.",
+    "serverBootstrap": "Server bootstrap passed and reported CodeUpdate 0060, validation 0 issues, host-configuration, HostConfiguration status configured-runtime-disabled, name=Reforged Local Host, bind=127.0.0.1, port=4000, maxSessions=64, worldTickMs=1000, combatTickMs=6000, gameplayEnabled=False, networkingEnabled=False, worldSimulationEnabled=False, and configFileExists=False.",
     "status": "passed"
   },
   "boundaries": [
@@ -80,6 +93,6 @@
   ],
   "referenceDataPolicy": "Validation0043, MegaMUD2 RE0021, OmniVerse, MudInfo, WCC/WBB/WGSERVER files, MMExplorer evidence, website/community data, and tool-derived data are evidence or planning inputs only unless a reviewed reconciliation update explicitly changes canonical Data or runtime behavior.",
   "dataDrivenLogicPolicy": "Game logic is data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-internal.",
-  "recommendedNextUpdate": "After user push and green GitHub Actions, add the next narrow non-gameplay server slice: a first host configuration surface.",
+  "recommendedNextUpdate": "After user push and green GitHub Actions, add the next narrow non-gameplay server slice: a host lifecycle/readiness state surface.",
   "recommendedNextScopeRequiresUserApproval": true
 }

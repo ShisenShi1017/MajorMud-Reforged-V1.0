@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0059
+- Current Code Update: 0060
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,10 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0059 - Module Readiness Report
+- Current update: CodeUpdate-0060 - Host Configuration Surface
+- CodeUpdate-0060 adds read-only Server host configuration diagnostics and reports runtime toggles disabled.
+- CodeUpdate-0060 default host settings are host `Reforged Local Host`, bind `127.0.0.1`, port `4000`, max sessions `64`, world tick `1000ms`, and combat tick `6000ms`.
+- CodeUpdate-0060 local JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run passed.
 - CodeUpdate-0059 adds read-only Server module readiness diagnostics and reports `majormud-classic` as `host-ready-gameplay-disabled`.
 - CodeUpdate-0059 verifies 1 module, 1 host-ready module, 0 gameplay-enabled modules, and 0 runtime rule profiles enabled.
 - CodeUpdate-0059 local JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run passed.
