@@ -1,5 +1,16 @@
 # Changelog
 
+## CodeUpdate-0059 - Module Readiness Report
+
+- Recorded CodeUpdate-0058 GitHub Actions as green by user report.
+- Added read-only Server module readiness audit and report models.
+- Attached `module-readiness` to Server bootstrap.
+- Added Server startup output for module readiness status.
+- Added smoke coverage that verifies module readiness keeps gameplay disabled.
+- Verified `majormud-classic` reports `host-ready-gameplay-disabled`.
+- Verified 1 module, 1 host-ready module, 0 gameplay-enabled modules, 0 runtime rule profiles enabled, 12 runtime-ready data categories, 1 runtime-blocked category, 1 placeholder category, and 1,246 world rooms.
+- No gameplay, runtime rule execution, mode/profile activation, combat, character creation, world simulation, networking expansion, live editor behavior, canonical `Data` rewrite, imported/reference deletion, runtime formula promotion, or timing promotion is included.
+
 ## CodeUpdate-0058 - World Projection Index
 
 - Recorded CodeUpdate-0057 GitHub Actions as green by user report.

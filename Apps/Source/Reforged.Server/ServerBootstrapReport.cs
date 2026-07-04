@@ -36,6 +36,8 @@ public sealed class ServerBootstrapReport
 
     public GameModuleCatalog? GameModuleCatalog { get; private set; }
 
+    public ServerModuleReadinessReport? ModuleReadiness { get; private set; }
+
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
 
     public int ExitCode => Passed ? 0 : 1;
@@ -95,6 +97,11 @@ public sealed class ServerBootstrapReport
     public void AttachGameModuleCatalog(GameModuleCatalog catalog)
     {
         GameModuleCatalog = catalog;
+    }
+
+    public void AttachModuleReadiness(ServerModuleReadinessReport report)
+    {
+        ModuleReadiness = report;
     }
 }
 

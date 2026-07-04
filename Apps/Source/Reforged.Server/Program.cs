@@ -47,6 +47,15 @@ if (report.GameModuleCatalog is not null)
     }
 }
 
+if (report.ModuleReadiness is not null)
+{
+    Console.WriteLine($"ModuleReadiness: {report.ModuleReadiness.Status}; modules={report.ModuleReadiness.ModuleCount}; hostReady={report.ModuleReadiness.HostReadyModuleCount}; gameplayEnabled={report.ModuleReadiness.GameplayEnabledModuleCount}; runtimeRuleProfilesEnabled={report.ModuleReadiness.RuntimeRuleProfileEnabledCount}");
+    foreach (var module in report.ModuleReadiness.Modules)
+    {
+        Console.WriteLine($"ModuleReadinessItem: {module.ModuleId}; status={module.Status}; hostReady={module.HostReady}; dataRootExists={module.DataRootExists}; worldProjectionReady={module.WorldProjectionReady}; worldRooms={module.WorldRoomCount}; runtimeReadyCategories={module.RuntimeReadyCategoryCount}; runtimeBlockedCategories={module.RuntimeBlockedCategoryCount}; placeholders={module.EmptyPlaceholderCategoryCount}; gameplayEnabled={module.GameplayEnabled}; runtimeRuleProfilesEnabled={module.RuntimeRuleProfileEnabledCount}; note={module.ReadinessNote}");
+    }
+}
+
 if (report.ClassicParityAudit is not null)
 {
     Console.WriteLine($"ClassicParity: {report.ClassicParityAudit.Status}; canonicalFiles={report.ClassicParityAudit.CanonicalFileCount}; importedReferenceFiles={report.ClassicParityAudit.ImportedReferenceFileCount}; exactNameMatches={report.ClassicParityAudit.ExactNameMatchCount}");

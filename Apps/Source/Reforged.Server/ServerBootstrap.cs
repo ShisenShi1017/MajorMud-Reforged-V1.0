@@ -5,7 +5,7 @@ namespace Reforged.Server;
 
 /// <summary>
 /// Starts the Server application far enough to verify repository identity, required folders,
-/// manifest readability, canonical data loading, world projection, module discovery, startup diagnostics, and read-only Classic parity inventory without starting gameplay systems.
+/// manifest readability, canonical data loading, world projection, module discovery, module readiness, startup diagnostics, and read-only Classic parity inventory without starting gameplay systems.
 /// </summary>
 public sealed class ServerBootstrap
 {
@@ -43,6 +43,10 @@ public sealed class ServerBootstrap
         report.AddCheck("game-module-catalog");
         var gameModuleCatalog = new ServerGameModuleCatalog().Load();
         report.AttachGameModuleCatalog(gameModuleCatalog);
+
+        report.AddCheck("module-readiness");
+        var moduleReadiness = new ServerModuleReadinessAudit().Run(root, gameModuleCatalog, serverDataCatalog, worldProjection);
+        report.AttachModuleReadiness(moduleReadiness);
 
         report.AddCheck("startup-diagnostics");
         var diagnostics = new ServerStartupDiagnostics().Run(root);

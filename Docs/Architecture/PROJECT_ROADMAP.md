@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0058`
+- Current Code Update: `0059`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0058 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
+- Current priority: push CodeUpdate-0059 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -160,6 +160,8 @@ CodeUpdate-0057 repairs continuity after GitHub/local `CoreUpdate 0056` left pri
 
 CodeUpdate-0058 closes the read-only `world_rooms` projection gap. `CoreDataRepositoryLoader` now loads scalar string-array collections as canonical records, and Server bootstrap attaches a read-only world projection audit. The current projection verifies 1,246 world room ids, 1,246 unique ids, 1,246 canonical rooms, 0 missing references, 0 duplicates, and start room `wcc_map1_room1` present. No canonical `Data/` rewrite, gameplay, combat, character creation, world simulation, networking expansion, live editor behavior, imported/reference deletion, or runtime formula/timing promotion is included.
 
+CodeUpdate-0059 adds read-only Server module readiness diagnostics. `majormud-classic` reports `host-ready-gameplay-disabled` with 1 host-ready module, 0 gameplay-enabled modules, 0 runtime rule profiles enabled, 12 runtime-ready data categories, 1 runtime-blocked category, 1 placeholder category, and 1,246 world rooms. No gameplay, runtime rule execution, mode/profile activation, combat, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, or runtime formula/timing promotion is included.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -206,6 +208,7 @@ Completed/started slices:
 - CodeUpdate-0055: Validation0043 and MegaMUD2 RE0021 evidence preservation, UnifiedDecodedData refresh, and current placeholder/blocker audit.
 - CodeUpdate-0057: modular Server foundation and 0056 continuity repair.
 - CodeUpdate-0058: world projection index and scalar string-array loader support.
+- CodeUpdate-0059: module readiness report with gameplay/rule profiles disabled.
 
 Focus Areas:
 
@@ -229,10 +232,10 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0058:
+Next candidate after CodeUpdate-0059:
 
 - Choose one narrow non-gameplay Server construction slice.
-- Prefer either a module readiness report or first host configuration surface before adding gameplay behavior.
+- Prefer a first host configuration surface before adding gameplay behavior.
 - Keep Validation0043 and MegaMUD2 RE0021 as evidence unless a separate reviewed reconciliation update promotes a specific field or behavior.
 - Keep live runtime behavior uncertified until controlled Worldgroup validation is available.
 - Preserve previous decode reports instead of overwriting historical analysis.

@@ -18,6 +18,7 @@ var tests = new List<(string Name, Action Body)>
     ("server bootstrap runs", ServerBootstrapSmoke),
     ("server data catalog loads canonical data", ServerDataCatalogAuditSmoke),
     ("server world projection indexes canonical rooms", ServerWorldProjectionAuditSmoke),
+    ("server module readiness keeps gameplay disabled", ServerModuleReadinessAuditSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
 };
 
@@ -148,7 +149,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "server-data-catalog", "world-projection", "game-module-catalog", "startup-diagnostics", "classic-parity-audit" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -203,6 +204,16 @@ void ServerBootstrapSmoke()
         majorMudModule.RuleProfiles[0].RuntimeEnabled)
     {
         throw new InvalidOperationException("Server module catalog did not register MajorMUD Classic as a disabled data-driven module baseline.");
+    }
+
+    if (report.ModuleReadiness is null ||
+        report.ModuleReadiness.Status != "host-ready-gameplay-disabled" ||
+        report.ModuleReadiness.ModuleCount != 1 ||
+        report.ModuleReadiness.HostReadyModuleCount != 1 ||
+        report.ModuleReadiness.GameplayEnabledModuleCount != 0 ||
+        report.ModuleReadiness.RuntimeRuleProfileEnabledCount != 0)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach the expected module readiness report.");
     }
 
     if (report.ExitCode != 0)
@@ -339,6 +350,44 @@ void ServerWorldProjectionAuditSmoke()
         !report.StartRoomExists)
     {
         throw new InvalidOperationException("Server world projection did not expose the expected canonical world room index.");
+    }
+}
+
+void ServerModuleReadinessAuditSmoke()
+{
+    var validation = new Reforged.Core.Validation.ValidationResult();
+    var dataCatalog = new ServerDataCatalogAudit().Run(root, validation);
+    var worldProjection = new ServerWorldProjectionAudit().Run(root, validation);
+    var moduleCatalog = new ServerGameModuleCatalog().Load();
+    var report = new ServerModuleReadinessAudit().Run(root, moduleCatalog, dataCatalog, worldProjection);
+
+    if (validation.HasErrors)
+    {
+        throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    if (report.Status != "host-ready-gameplay-disabled" ||
+        report.ModuleCount != 1 ||
+        report.HostReadyModuleCount != 1 ||
+        report.GameplayEnabledModuleCount != 0 ||
+        report.RuntimeRuleProfileEnabledCount != 0)
+    {
+        throw new InvalidOperationException("Server module readiness did not expose the expected disabled host-ready module state.");
+    }
+
+    var module = report.Modules.FirstOrDefault(item => item.ModuleId == "majormud-classic");
+    if (module is null ||
+        !module.HostReady ||
+        !module.DataRootExists ||
+        !module.WorldProjectionReady ||
+        module.WorldRoomCount != 1246 ||
+        module.RuntimeBlockedCategoryCount != 1 ||
+        module.EmptyPlaceholderCategoryCount != 1 ||
+        module.GameplayEnabled ||
+        !module.RuleProfilesDisabled ||
+        module.RuntimeRuleProfileEnabledCount != 0)
+    {
+        throw new InvalidOperationException("MajorMUD Classic module readiness did not preserve the expected non-gameplay boundary.");
     }
 }
 

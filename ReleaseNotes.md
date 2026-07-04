@@ -1,3 +1,19 @@
+# CodeUpdate-0059 - Module Readiness Report
+
+This update adds read-only Server module readiness diagnostics.
+
+Highlights:
+
+- Added `module-readiness` to Server bootstrap.
+- Reports `majormud-classic` as `host-ready-gameplay-disabled`.
+- Confirms gameplay remains disabled.
+- Confirms runtime rule profiles remain disabled.
+- Adds smoke coverage for module readiness.
+
+Known limitation:
+
+- This is diagnostics/readiness only. It does not activate gameplay, mode/profile loading, or runtime rule execution.
+
 # CodeUpdate-0058 - World Projection Index
 
 This update closes the read-only `world_rooms` projection gap without rewriting canonical `Data/`.
