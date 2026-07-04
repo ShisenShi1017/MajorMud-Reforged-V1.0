@@ -527,7 +527,7 @@ void ServerSchedulerBootstrapAuditSmoke()
         throw new InvalidOperationException("Server scheduler bootstrap did not expose the expected disabled channel registration state.");
     }
 
-    foreach (var requiredChannel in new[] { "PlayerState", "Movement", "CombatRound", "RegenHp", "RegenManaKai", "Spawn", "Cleanup", "StatusEffect", "ScriptEvent", "AI" })
+    foreach (var requiredChannel in new[] { "Ingress", "Validation", "Planning", "Dispatch", "Mutation", "TimedWork", "EventWork", "Persistence", "Observation", "Maintenance" })
     {
         if (!report.Channels.Any(channel => channel.Name == requiredChannel && !channel.RuntimeEnabled && channel.EvidenceSource == "ServerSim0036"))
         {

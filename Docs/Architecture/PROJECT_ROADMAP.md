@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0062`
+- Current Code Update: `0063`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0062 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
+- Current priority: push CodeUpdate-0063 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -168,6 +168,8 @@ CodeUpdate-0061 adds read-only Server host lifecycle readiness diagnostics. It d
 
 CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics. It registers ten disabled diagnostic channels and preserves curated ServerSim0036 planning evidence under `Docs/ServerSim/ServerSim0036/`. No scheduler ticking, sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, movement, spawning, status-effect ticking, script dispatch, AI, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, or runtime formula/timing promotion is included.
 
+CodeUpdate-0063 corrects CodeUpdate-0062 scheduler bootstrap diagnostics to use generic execution channel names instead of gameplay-specific names, preserves curated DataSimVer0045 evidence-regression contract planning under `Docs/ServerSim/DataSimVer0045/`, and folds ServerRuntimeValidation0009 into the no-.NET simulator validation surface under `Docs/ServerSim/ServerRuntimeValidation0009/`. The generic channels are Ingress, Validation, Planning, Dispatch, Mutation, TimedWork, EventWork, Persistence, Observation, and Maintenance. No scheduler ticking, sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat services, movement execution, spawning services, status-effect ticking, script dispatch, AI, character creation, execution-event adapter, replay harness, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, live parity claim, or runtime formula/timing promotion is included.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -218,6 +220,7 @@ Completed/started slices:
 - CodeUpdate-0060: host configuration surface with runtime toggles disabled.
 - CodeUpdate-0061: host lifecycle readiness state with runtime disabled.
 - CodeUpdate-0062: scheduler bootstrap diagnostics with runtime disabled.
+- CodeUpdate-0063: generic scheduler execution channels with runtime disabled, plus no-.NET simulator lifecycle validation folded from ServerRuntimeValidation0009.
 
 Focus Areas:
 
@@ -241,7 +244,7 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0062:
+Next candidate after CodeUpdate-0063:
 
 - Choose one narrow non-gameplay Server construction slice.
 - Prefer a guarded scheduler status/command surface before adding gameplay behavior.

@@ -4,7 +4,7 @@
 
 CodeUpdate-0062 adds a read-only scheduler bootstrap diagnostics surface to Server bootstrap.
 
-The scheduler bootstrap report registers future scheduler channels for planning and diagnostics while keeping every channel runtime-disabled.
+The scheduler bootstrap report registers future scheduler channels for planning and diagnostics while keeping every channel runtime-disabled. CodeUpdate-0063 supersedes the original 0062 gameplay-facing channel names with generic execution channel names.
 
 ## Source Evidence
 

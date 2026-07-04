@@ -1,8 +1,8 @@
 {
-  "codeUpdate": "0062",
-  "name": "CodeUpdate-0062-Scheduler-Bootstrap-Diagnostics",
+  "codeUpdate": "0063",
+  "name": "CodeUpdate-0063-Generic-Scheduler-Execution-Channels",
   "packageType": "direct-repository-patch",
-  "purpose": "Add read-only Server scheduler bootstrap diagnostics while keeping gameplay, networking, world simulation, and scheduler execution disabled.",
+  "purpose": "Correct scheduler bootstrap diagnostics to use generic execution channel names and fold ServerRuntimeValidation0009 into the no-.NET simulator validation surface while keeping gameplay, networking, world simulation, and scheduler execution disabled.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": true,
   "addsTooling": false,
@@ -11,35 +11,32 @@
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained modular server construction and data-readiness work before gameplay systems.",
-  "verificationStatus": "ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0062, validation 0 issues, scheduler-bootstrap check, SchedulerBootstrap status scheduler-bootstrap-registered-runtime-disabled, channels=10, runtimeEnabled=0, runtimeDisabled=10, hostLifecycleReady=True, and diagnosticOnly=True.",
+  "verificationStatus": "Local verification passed for CodeUpdate-0063; GitHub Actions remains pending until user push.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
     "CHANGELOG.md",
-    "Apps/Source/Reforged.Server/ServerHostConfigurationAudit.cs",
-    "Apps/Source/Reforged.Server/ServerHostConfigurationAuditModels.cs",
-    "Apps/Source/Reforged.Server/ServerHostLifecycleAudit.cs",
-    "Apps/Source/Reforged.Server/ServerHostLifecycleAuditModels.cs",
     "Apps/Source/Reforged.Server/ServerSchedulerBootstrapAudit.cs",
-    "Apps/Source/Reforged.Server/ServerSchedulerBootstrapAuditModels.cs",
-    "Apps/Source/Reforged.Server/ServerBootstrap.cs",
-    "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
-    "Apps/Source/Reforged.Server/Program.cs",
     "Apps/Source/Reforged.Server/README.md",
     "Tests/Source/Reforged.Core.Tests/Program.cs",
+    "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/run_simulator.py",
     "Docs/CodeUpdates/CodeUpdate-0062-Scheduler-Bootstrap-Diagnostics.md",
+    "Docs/CodeUpdates/CodeUpdate-0063-Generic-Scheduler-Execution-Channels.md",
+    "Docs/ServerSim/DataSimVer0045/",
+    "Docs/ServerSim/ServerRuntimeValidation0009/",
     "Docs/ServerSim/ServerSim0036/",
     "Docs/Architecture/PROJECT_ROADMAP.md",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
     "Reports/CodeUpdates/CodeUpdate-0062/",
+    "Reports/CodeUpdates/CodeUpdate-0063/",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "CodeUpdate-0061 is green by user report and local main was aligned with origin/main before CodeUpdate-0062 edits.",
+    "baselineStatus": "CodeUpdate-0062 is green by user report and local main was aligned with origin/main before CodeUpdate-0063 edits.",
     "officialGate": "GitHub Actions after user push."
   },
   "worldProjection": {
@@ -93,18 +90,29 @@
     "runtimeDisabledChannelCount": 10,
     "diagnosticOnly": true,
     "channels": [
-      "PlayerState",
-      "Movement",
-      "CombatRound",
-      "RegenHp",
-      "RegenManaKai",
-      "Spawn",
-      "Cleanup",
-      "StatusEffect",
-      "ScriptEvent",
-      "AI"
+      "Ingress",
+      "Validation",
+      "Planning",
+      "Dispatch",
+      "Mutation",
+      "TimedWork",
+      "EventWork",
+      "Persistence",
+      "Observation",
+      "Maintenance"
     ],
     "scope": "Read-only scheduler bootstrap diagnostics. No scheduler ticking, gameplay, networking, sessions, or world simulation."
+  },
+  "serverRuntimeValidation0009": {
+    "sourcePackage": "ServerRuntimeValidation0009_NoDotNet_NpcLifecycleCombatStatePatch_Handoff.zip",
+    "status": "folded-into-no-dotnet-simulator-surface",
+    "scope": "Expected-model simulator lifecycle validation only. No Server gameplay, sockets, sessions, scheduler execution, world simulation, runtime AI, formulas, or live parity claims.",
+    "handoffReportedSmokeTest": "PASS",
+    "handoffReportedLifecycleChecks": 10,
+    "handoffReportedLifecyclePass": 10,
+    "handoffReportedLifecycleFail": 0,
+    "autonomousAggroImplemented": false,
+    "nextValidationCandidate": "Validation0010 autonomous NPC aggro / assist boundary evidence review"
   },
   "currentPlaceholderState": {
     "trueEmptyCanonicalPlaceholder": "Data/quests.json",
@@ -114,12 +122,14 @@
     "placeholderAudit": "Reports/CodeUpdates/CodeUpdate-0055/CurrentDataPlaceholderAudit.csv"
   },
   "localVerification": {
-    "jsonParse": "ProjectManifest.json and UpdateManifest.json parsed successfully.",
-    "gitDiffCheck": "passed",
-    "releaseBuilds": "Core, Server, Importer, Editor, Launcher, Client, and Core.Tests sequential Release builds passed with 0 warnings and 0 errors.",
-    "smokeTests": "Core/server smoke tests passed, including server scheduler bootstrap keeps channels disabled.",
-    "serverBootstrap": "Server bootstrap passed and reported CodeUpdate 0062, validation 0 issues, scheduler-bootstrap, SchedulerBootstrap status scheduler-bootstrap-registered-runtime-disabled, channels=10, runtimeEnabled=0, runtimeDisabled=10, hostLifecycleReady=True, and diagnosticOnly=True.",
-    "status": "passed"
+    "jsonParse": "Passed for ProjectManifest.json and UpdateManifest.json.",
+    "gitDiffCheck": "Passed.",
+    "releaseBuilds": "Passed for Core, Server, Importer, Editor, Launcher, Client, and Reforged.Core.Tests.",
+    "smokeTests": "Passed: dotnet core/server smoke tests.",
+    "serverBootstrap": "Passed: Server bootstrap completed successfully with gameplay, networking, scheduler execution, and world simulation disabled.",
+    "simulatorSmoke": "Passed by direct Python smoke-function calls because pytest is not installed locally.",
+    "simulatorLifecycleProbe": "Passed focused single-mob respawn room probe for *Combat Engaged*, *Combat Off*, and expected-model respawn due minute scheduling.",
+    "status": "passed-local"
   },
   "boundaries": [
     "No canonical Data overlay",
@@ -127,6 +137,7 @@
     "No gameplay system",
     "No gameplay server behavior",
     "No scheduler execution",
+    "No Server gameplay activation from simulator validation",
     "No field promotion",
     "No runtime timing or formula promotion",
     "No live runtime validation claim"

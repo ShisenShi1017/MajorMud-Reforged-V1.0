@@ -104,6 +104,7 @@ class MobInstance:
     damage_max: int = 3
     xp: int = 0
     gold: int = 0
+    currency: dict = field(default_factory=dict)
     defeated: bool = False
 
 
@@ -114,11 +115,15 @@ class PlayerState:
     hp: int = 50
     max_hp: int = 50
     gold: int = 0
+    currency: dict = field(default_factory=lambda: {"copper": 0, "silver": 0, "gold": 0, "platinum": 0, "runic": 0})
     xp: int = 0
     inventory: List[dict] = field(default_factory=list)
     room_mobs: List[MobInstance] = field(default_factory=list)
     minutes_elapsed: int = 0
     rng_seed: int = 111
+    next_respawn_due_minute: Optional[int] = None
+    combat_active: bool = False
+    combat_target: Optional[str] = None
 
 
 class SimData:
@@ -147,6 +152,11 @@ class SimData:
         self.equipment = csv_rows("EquipmentStatExpectationMatrix_RuntimePrep0007.csv")
         self.readiness = csv_rows("FinalSimulatorReadinessCertification_RuntimePrep0009.csv")
         self.validation_backlog = csv_rows("RuntimeValidationLaunchBacklog_RuntimePrep0009.csv")
+
+        self.canonical_monsters = self.load_canonical_monsters()
+        self.canonical_monster_by_legacy = {norm(m.get("legacyNumber")): m for m in self.canonical_monsters if norm(m.get("legacyNumber"))}
+        self.canonical_monster_by_source = {norm(m.get("sourceId")): m for m in self.canonical_monsters if norm(m.get("sourceId"))}
+        self.canonical_monster_by_name = {low(m.get("name")): m for m in self.canonical_monsters if norm(m.get("name"))}
 
         self.room_by_key = {norm(r.get("room_key")): r for r in self.room_rows if norm(r.get("room_key"))}
         self.room_by_number = defaultdict(list)
@@ -178,6 +188,39 @@ class SimData:
         for r in self.monster_drops:
             self.drop_by_monster[norm(r.get("monster_id"))].append(r)
         self.currency_by_monster = {norm(r.get("monster_id")): r for r in self.currency}
+
+    def load_canonical_monsters(self) -> List[dict]:
+        """Load canonical /Data/monsters.json as simulator fallback truth.
+
+        RuntimePrep combat matrices are evidence projections and are incomplete for some
+        spawned monsters. Canonical /Data remains the runtime source of truth, so the
+        simulator falls back to it only when matrix combat values are missing.
+        """
+        repo_root = ROOT.parents[2]
+        path = repo_root / "Data" / "monsters.json"
+        if not path.exists():
+            return []
+        with path.open(encoding="utf-8") as f:
+            data = json.load(f)
+        return data if isinstance(data, list) else []
+
+    def canonical_monster_for(self, monster_id: str, name: str = "") -> Optional[dict]:
+        mid = norm(monster_id).replace(".0", "")
+        if mid in self.canonical_monster_by_legacy:
+            return self.canonical_monster_by_legacy[mid]
+        if mid in self.canonical_monster_by_source:
+            return self.canonical_monster_by_source[mid]
+        lname = low(name)
+        if lname in self.canonical_monster_by_name:
+            return self.canonical_monster_by_name[lname]
+        # Spawn groups often carry names with adjectives such as large/fierce. Do
+        # not invent a new monster; only use a canonical base when the full name
+        # contains the canonical name as a clear token sequence.
+        if lname:
+            matches = [m for n, m in self.canonical_monster_by_name.items() if n and n in lname]
+            if len(matches) == 1:
+                return matches[0]
+        return None
 
     def room_label(self, key: str) -> str:
         row = self.room_by_key.get(key)
@@ -216,14 +259,40 @@ class SimData:
 
     def make_mob(self, monster_id: str, name: str, source: str) -> MobInstance:
         combat = self.combat_by_id.get(norm(monster_id)) or self.combat_by_name.get(low(name))
-        hp = parse_int(combat.get("hp") if combat else None, 10)
+        canonical = self.canonical_monster_for(monster_id, name)
+
+        # Canonical /Data is the simulator source of truth when a canonical
+        # monster can be resolved. RuntimePrep combat matrices remain imported
+        # evidence/projections only, so their placeholder values must not
+        # override promoted canonical HP, damage, XP, or currency.
+        attacks = (canonical or {}).get("attacks") or []
+        canonical_mins = [parse_int(a.get("min_hit"), 0) for a in attacks if parse_int(a.get("min_hit"), 0) > 0]
+        canonical_maxes = [parse_int(a.get("max_hit"), 0) for a in attacks if parse_int(a.get("max_hit"), 0) > 0]
+
+        if canonical:
+            hp = parse_int((canonical.get("stats") or {}).get("hp"), 0)
+            dmg_min = min(canonical_mins) if canonical_mins else 0
+            dmg_max = max(canonical_maxes) if canonical_maxes else 0
+            xp = parse_int(((canonical.get("experience") or {}).get("base")), 0)
+            canonical_currency = canonical.get("currencyDrops") or {}
+            currency = {coin: parse_int(canonical_currency.get(coin), 0) for coin in ["copper", "silver", "gold", "platinum", "runic"]}
+            gold = currency.get("gold", 0)
+        else:
+            hp = parse_int(combat.get("hp") if combat else None, 0)
+            dmg_min = parse_int(combat.get("damage_min") if combat else None, 0)
+            dmg_max = parse_int(combat.get("damage_max") if combat else None, 0)
+            xp = parse_int(combat.get("xp") if combat else None, 0)
+            gold = parse_int(combat.get("gold") if combat else None, 0)
+            currency = {"copper": 0, "silver": 0, "gold": gold, "platinum": 0, "runic": 0}
+
         if hp <= 0:
             hp = max(5, parse_int(combat.get("level") if combat else None, 1) * 5)
-        dmg_min = parse_int(combat.get("damage_min") if combat else None, 1)
-        dmg_max = parse_int(combat.get("damage_max") if combat else None, max(dmg_min, 3))
-        xp = parse_int(combat.get("xp") if combat else None, 0)
-        gold = parse_int(combat.get("gold") if combat else None, 0)
-        return MobInstance(norm(monster_id) or name, name or norm(monster_id), source, hp, hp, dmg_min, max(dmg_min, dmg_max), xp, gold)
+        if dmg_min <= 0:
+            dmg_min = 1
+        if dmg_max <= 0:
+            dmg_max = max(dmg_min, 3)
+
+        return MobInstance(norm(monster_id) or name, name or norm(monster_id), source, hp, hp, dmg_min, max(dmg_min, dmg_max), xp, gold, currency)
 
     def expected_room_mobs(self, room_row: dict) -> List[MobInstance]:
         mobs: List[MobInstance] = []
@@ -325,6 +394,9 @@ class SimulatorEngine:
             return f"No room found for {room_key_or_name}"
         self.state.location_room_key = norm(row.get("room_key"))
         self.state.room_mobs = self.data.expected_room_mobs(row)
+        self.state.next_respawn_due_minute = None
+        self.state.combat_active = False
+        self.state.combat_target = None
         return self.look()
 
     def look(self) -> str:
@@ -386,9 +458,10 @@ class SimulatorEngine:
         row = self.data.room_by_key.get(self.state.location_room_key or "")
         if not row:
             return f"Advanced {minutes} minutes. No room state available."
-        respawn = parse_int(row.get("room_respawn_minutes"), 0)
-        if respawn and self.state.minutes_elapsed % respawn == 0:
+        due = self.state.next_respawn_due_minute
+        if due is not None and self.state.minutes_elapsed >= due:
             self.state.room_mobs = self.data.expected_room_mobs(row)
+            self.state.next_respawn_due_minute = None
             return f"Advanced {minutes} minutes. Expected-model respawn refreshed for this room at {self.state.minutes_elapsed} minutes."
         return f"Advanced {minutes} minutes. Total elapsed: {self.state.minutes_elapsed}. No evidence-backed respawn event fired."
 
@@ -404,14 +477,34 @@ class SimulatorEngine:
                 break
         if target is None:
             target = alive[0]
+        combat_started = False
+        if not self.state.combat_active or self.state.combat_target != target.ident:
+            self.state.combat_active = True
+            self.state.combat_target = target.ident
+            combat_started = True
         player_damage = self.rng.randint(3, 8)
         target.hp -= player_damage
-        lines = [f"You hit {target.name} for {player_damage} damage."]
+        lines = []
+        if combat_started:
+            lines.append("*Combat Engaged*")
+        lines.append(f"You hit {target.name} for {player_damage} damage.")
         if target.hp <= 0:
             target.defeated = True
             self.state.xp += target.xp
-            self.state.gold += target.gold
-            lines.append(f"{target.name} is defeated. Awarded expected-model XP={target.xp}, gold={target.gold}.")
+            for coin, amount in (target.currency or {}).items():
+                self.state.currency[coin] = self.state.currency.get(coin, 0) + amount
+            self.state.gold = self.state.currency.get("gold", self.state.gold + target.gold)
+            row = self.data.room_by_key.get(self.state.location_room_key or "")
+            respawn = parse_int(row.get("room_respawn_minutes") if row else None, 0)
+            if respawn > 0 and not any(not mob.defeated for mob in self.state.room_mobs):
+                self.state.next_respawn_due_minute = self.state.minutes_elapsed + respawn
+            awarded_currency = ", ".join(f"{coin}={amount}" for coin, amount in (target.currency or {}).items() if amount) or "none"
+            lines.append(f"{target.name} is defeated. Awarded expected-model XP={target.xp}, currency={awarded_currency}.")
+            self.state.combat_active = False
+            self.state.combat_target = None
+            lines.append("*Combat Off*")
+            if self.state.next_respawn_due_minute is not None:
+                lines.append(f"Expected-model respawn scheduled for minute {self.state.next_respawn_due_minute}.")
             lines += self.roll_drops(target.ident, target.name)
             lines.append("Note: awards/drop rolls are simulator approximations from static evidence, not live runtime certification.")
             return "\n".join(lines)
@@ -484,7 +577,8 @@ class SimulatorEngine:
         return f"Added expected shop item to inventory: {item['item_id']}:{item['item_name']} (price/economy not certified)."
 
     def inventory(self) -> str:
-        lines = [f"HP {self.state.hp}/{self.state.max_hp} | XP {self.state.xp} | Gold {self.state.gold}"]
+        currency = ", ".join(f"{coin}={amount}" for coin, amount in self.state.currency.items() if amount) or "none"
+        lines = [f"HP {self.state.hp}/{self.state.max_hp} | XP {self.state.xp} | Currency {currency}"]
         if not self.state.inventory:
             lines.append("Inventory is empty.")
         else:

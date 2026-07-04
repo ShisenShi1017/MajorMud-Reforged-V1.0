@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0062
+## 10. Current project position after CodeUpdate-0063
 
-- Current Code Update: `0062`
+- Current Code Update: `0063`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0062 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
+- Current priority: push CodeUpdate-0063 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -194,9 +194,11 @@ CodeUpdate-0060 adds read-only Server host configuration diagnostics. It reports
 
 CodeUpdate-0061 adds a read-only Server host lifecycle readiness state. It derives initialized, configured, data-ready, world-projection-ready, module-ready, and runtime-disabled lifecycle stages from existing bootstrap reports. It does not open sockets, start sessions, run gameplay, activate rule profiles, simulate the world, add live editor behavior, rewrite `Data/`, delete imported/reference material, or promote runtime formulas/timers.
 
-CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics. It registers PlayerState, Movement, CombatRound, RegenHp, RegenManaKai, Spawn, Cleanup, StatusEffect, ScriptEvent, and AI as disabled diagnostic channels. It also preserves curated ServerSim0036 planning/regression evidence under `Docs/ServerSim/ServerSim0036/`. It does not start scheduler ticking, world loop, sockets, sessions, gameplay, combat, movement, spawning, status-effect ticking, script dispatch, AI, live editor behavior, `Data/` rewrites, imported/reference deletion, or runtime formula/timing promotion.
+CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics and preserves curated ServerSim0036 planning/regression evidence under `Docs/ServerSim/ServerSim0036/`. Its original gameplay-facing channel names are superseded by CodeUpdate-0063. It does not start scheduler ticking, world loop, sockets, sessions, gameplay, combat, movement, spawning, status-effect ticking, script dispatch, AI, live editor behavior, `Data/` rewrites, imported/reference deletion, or runtime formula/timing promotion.
 
-Server direction after CodeUpdate-0062: MajorMUD Classic is the first registered game module and data baseline, but MajorMUD is not the whole Server. Keep the Server generic and module-ready. Do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, active mode/profile loading, combat, character creation, world simulation, networking expansion, scheduler execution, or live editor behavior until explicitly approved. `Data/` defines world/content and game logic by default; Server defines reusable engine behavior, validation, execution, and enforcement; Editor should eventually edit data safely.
+CodeUpdate-0063 corrects the CodeUpdate-0062 scheduler bootstrap surface to use generic execution channel names: Ingress, Validation, Planning, Dispatch, Mutation, TimedWork, EventWork, Persistence, Observation, and Maintenance. It also folds ServerRuntimeValidation0009 into the no-.NET simulator validation surface as expected-model lifecycle validation only. It does not start scheduler ticking, world loop, sockets, sessions, Server gameplay, combat services, movement execution, spawning services, status-effect ticking, script dispatch, AI, live editor behavior, `Data/` rewrites, imported/reference deletion, live Worldgroup parity claims, or runtime formula/timing promotion.
+
+Server direction after CodeUpdate-0063: MajorMUD Classic is the first registered game module and data baseline, but MajorMUD is not the whole Server. Keep the Server generic and module-ready. Do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, active mode/profile loading, combat, character creation, world simulation, networking expansion, scheduler execution, or live editor behavior until explicitly approved. `Data/` defines world/content and game logic by default; Server defines reusable engine behavior, validation, execution, and enforcement; Editor should eventually edit data safely.
 
 Engine direction after CodeUpdate-0039: favor reusable engine systems over feature-specific systems. Avoid designing around Classic unless behavior is truly Classic-specific. Game logic is data-driven by default: rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless a behavior is truly engine-internal. The server supplies reusable engine systems, validation, execution, and enforcement. The WCC default install under `ImportedDatabases/WCCDefaultInstall/` is reference/import material only.
 

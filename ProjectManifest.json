@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0062",
+  "codeUpdate": "0063",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,16 +18,18 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0062",
+    "currentCodeUpdate": "0063",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained modular server construction and data-readiness work; gameplay systems remain disabled.",
-    "lastUpdateName": "CodeUpdate-0062-Scheduler-Bootstrap-Diagnostics",
+    "lastUpdateName": "CodeUpdate-0063-Generic-Scheduler-Execution-Channels",
     "nextRecommendedWork": [
-      "CodeUpdate-0062 adds read-only scheduler bootstrap diagnostics with ten disabled scheduler channels.",
+      "CodeUpdate-0063 corrects scheduler bootstrap diagnostics to use generic execution channel names instead of gameplay-specific channel names.",
+      "CodeUpdate-0063 folds ServerRuntimeValidation0009 into the no-.NET simulator surface as expected-model lifecycle validation only; Server gameplay remains disabled.",
+      "DataSimVer0045 evidence-regression contract planning is preserved under Docs/ServerSim/DataSimVer0045/ as evidence/planning material only.",
       "ServerSim0036 planning evidence is preserved under Docs/ServerSim/ServerSim0036/ as evidence/planning material only.",
       "Use the Server module catalog as the first non-gameplay construction seam: MajorMUD Classic is a disabled module baseline, not the whole Server.",
       "Next safe server slice: add a guarded non-gameplay scheduler status/command surface before runtime behavior.",
@@ -88,5 +90,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0062 records CodeUpdate-0061 as green by user report. It adds read-only Server scheduler bootstrap diagnostics. ProjectManifest.json and UpdateManifest.json parsed successfully. git diff --check passed. Sequential Release builds for Core, Server, Importer, Editor, Launcher, Client, and Core.Tests passed with 0 warnings and 0 errors. Core/server smoke tests passed. Server bootstrap passed and reported CodeUpdate 0062, validation 0 issues, scheduler-bootstrap check, SchedulerBootstrap status scheduler-bootstrap-registered-runtime-disabled, channels=10, runtimeEnabled=0, runtimeDisabled=10, hostLifecycleReady=True, and diagnosticOnly=True. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0063 records CodeUpdate-0062 as green by user report. It corrects scheduler bootstrap diagnostics to use generic execution channel names instead of gameplay-specific names and folds ServerRuntimeValidation0009 into the no-.NET simulator surface as expected-model validation only. Local verification passed: JSON parse, git diff --check, sequential Release build sweep for Core/Server/Importer/Editor/Launcher/Client/Tests, core/server smoke tests, Server bootstrap run, direct Python simulator smoke functions, and a focused simulator lifecycle marker probe. pytest is not installed locally, so pytest-based simulator execution was not run. GitHub Actions remains the official gate after user push."
 }

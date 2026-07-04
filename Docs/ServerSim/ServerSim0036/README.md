@@ -9,7 +9,7 @@ It is evidence and planning material only. It does not modify canonical `Data/`,
 - MajorMUD remains a game module hosted by a reusable Server.
 - `/Data` remains the runtime source of truth.
 - Future scheduler work should start as registered diagnostic channels before any ticking or gameplay.
-- Candidate scheduler channels: PlayerState, Movement, CombatRound, RegenHp, RegenManaKai, Spawn, Cleanup, StatusEffect, ScriptEvent, and AI.
+- ServerSim0036 suggested gameplay-facing scheduler concerns, but CodeUpdate-0063 keeps actual scheduler bootstrap channels generic to avoid hardcoding MajorMUD concepts into the reusable host.
 - Combat appears scheduler-driven rather than simple command-immediate execution.
 - XP credit should eventually be tracked per target/engagement set, not automatically by full party count.
 - Effective XP should eventually use evidence-backed base XP, multiplier, and override rules.
@@ -23,4 +23,3 @@ It is evidence and planning material only. It does not modify canonical `Data/`,
 CodeUpdate-0062 uses this handoff to justify a read-only scheduler bootstrap diagnostics surface only.
 
 No combat service, spawn manager, movement execution, status-effect ticking, AI, XP award logic, world loop, socket/session handling, or gameplay behavior is implemented from this handoff.
-

@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0062
+- Current Code Update: 0063
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,9 +9,14 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0062 - Scheduler Bootstrap Diagnostics
+- Current update: CodeUpdate-0063 - Generic Scheduler Execution Channels
+- CodeUpdate-0063 corrects scheduler bootstrap diagnostics to use generic execution channel names instead of gameplay-specific names.
+- CodeUpdate-0063 generic channels are Ingress, Validation, Planning, Dispatch, Mutation, TimedWork, EventWork, Persistence, Observation, and Maintenance.
+- CodeUpdate-0063 folds ServerRuntimeValidation0009 into the no-.NET simulator validation surface as expected-model lifecycle validation only.
+- CodeUpdate-0063 local verification passed: JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, Server bootstrap run, direct Python simulator smoke functions, and focused simulator lifecycle marker probe. `pytest` is not installed locally, so pytest-based simulator execution was not run.
+- CodeUpdate-0062 GitHub Actions is green by user report.
 - CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics and reports `scheduler-bootstrap-registered-runtime-disabled`.
-- CodeUpdate-0062 registers 10 disabled scheduler channels: PlayerState, Movement, CombatRound, RegenHp, RegenManaKai, Spawn, Cleanup, StatusEffect, ScriptEvent, and AI.
+- CodeUpdate-0062 registered 10 disabled scheduler channels; CodeUpdate-0063 supersedes the original gameplay-facing channel names with generic execution channels.
 - CodeUpdate-0062 folds the ServerSim0036 planning-window handoff into curated planning/regression docs under `Docs/ServerSim/ServerSim0036/`.
 - CodeUpdate-0062 local JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run passed.
 - CodeUpdate-0061 GitHub Actions is green by user report.

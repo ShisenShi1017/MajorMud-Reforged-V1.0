@@ -15,7 +15,11 @@ This update uses the planning-window ServerSim0036 handoff as evidence for chann
 - Added smoke coverage that verifies all scheduler channels remain runtime-disabled.
 - Preserved curated ServerSim0036 planning/regression material under `Docs/ServerSim/ServerSim0036/`.
 
-## Registered Channels
+## Registered Channels Superseded By 0063
+
+CodeUpdate-0062 registered gameplay-facing diagnostic channel names based on ServerSim0036. CodeUpdate-0063 supersedes those names with generic execution channels so the scheduler belongs to the reusable engine host rather than MajorMUD-specific systems.
+
+Historical 0062 channel names:
 
 - PlayerState.
 - Movement.

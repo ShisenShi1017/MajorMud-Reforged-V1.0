@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0063 - Generic Scheduler Execution Channels
+
+- Recorded CodeUpdate-0062 GitHub Actions as green by user report.
+- Corrected scheduler bootstrap channel names to generic execution channels.
+- Replaced gameplay-facing channel names with Ingress, Validation, Planning, Dispatch, Mutation, TimedWork, EventWork, Persistence, Observation, and Maintenance.
+- Folded ServerRuntimeValidation0009 into the no-.NET simulator validation surface with explicit expected-model combat lifecycle state and death-triggered respawn scheduling.
+- Updated smoke coverage to verify the generic channel set remains runtime-disabled.
+- Updated ServerSim0036 scheduler mapping to clarify gameplay-facing findings are evidence only and must not hardcode the reusable host scheduler.
+- No scheduler ticking, sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat services, movement execution, spawning services, status-effect ticking, script dispatch, AI execution, character creation, world simulation, networking expansion, live editor behavior, canonical `Data` rewrite, imported/reference deletion, live parity claim, runtime formula promotion, or timing promotion is included.
+
 ## CodeUpdate-0062 - Scheduler Bootstrap Diagnostics
 
 - Recorded CodeUpdate-0061 GitHub Actions as green by user report.
@@ -7,7 +17,7 @@
 - Attached `scheduler-bootstrap` to Server bootstrap.
 - Added Server startup output for scheduler bootstrap status and disabled channels.
 - Added smoke coverage that verifies scheduler channels remain runtime-disabled.
-- Registered disabled diagnostic channels for PlayerState, Movement, CombatRound, RegenHp, RegenManaKai, Spawn, Cleanup, StatusEffect, ScriptEvent, and AI.
+- Registered disabled diagnostic scheduler channels; CodeUpdate-0063 supersedes the original gameplay-facing names with generic execution names.
 - Folded the planning-window ServerSim0036 handoff into curated evidence/planning docs under `Docs/ServerSim/ServerSim0036/`.
 - No scheduler ticking, sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, movement, spawning, status-effect ticking, script dispatch, AI execution, character creation, world simulation, networking expansion, live editor behavior, canonical `Data` rewrite, imported/reference deletion, runtime formula promotion, or timing promotion is included.
 

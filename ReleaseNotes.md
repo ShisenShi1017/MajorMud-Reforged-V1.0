@@ -1,3 +1,21 @@
+# CodeUpdate-0063 - Generic Scheduler Execution Channels
+
+This update corrects scheduler bootstrap channel names so they remain generic engine execution concepts.
+
+It also folds ServerRuntimeValidation0009 into the no-.NET simulator validation surface as expected-model lifecycle validation only.
+
+Highlights:
+
+- Replaced gameplay-facing channel names with generic execution channel names.
+- Keeps all scheduler channels runtime-disabled.
+- Updates ServerSim0036 scheduler mapping to keep gameplay-specific findings as evidence only.
+- Adds no-.NET simulator combat lifecycle state and death-triggered respawn scheduling from ServerRuntimeValidation0009.
+- Adds smoke coverage for the corrected channel list.
+
+Known limitation:
+
+- This is a diagnostics naming/refinement and simulator-validation update only. It does not start scheduler execution, sockets, sessions, gameplay, combat services, spawning services, status ticking, scripts, or AI. ServerRuntimeValidation0009 does not certify autonomous NPC aggro, assist behavior, initiative, attack timing, targeting, party combat AI, formulas, or live Worldgroup parity.
+
 # CodeUpdate-0062 - Scheduler Bootstrap Diagnostics
 
 This update adds read-only Server scheduler bootstrap diagnostics.
