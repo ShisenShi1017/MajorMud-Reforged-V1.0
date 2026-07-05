@@ -5,7 +5,7 @@ namespace Reforged.Server;
 
 /// <summary>
 /// Starts the Server application far enough to verify repository identity, required folders,
-/// manifest readability, host configuration, canonical data loading, world projection, module discovery, module readiness, host lifecycle readiness, scheduler bootstrap diagnostics, startup diagnostics, and read-only Classic parity inventory without starting gameplay systems.
+/// manifest readability, host configuration, canonical data loading, world projection, module discovery, module readiness, host lifecycle readiness, scheduler bootstrap diagnostics, guarded scheduler/status command diagnostics, startup diagnostics, and read-only Classic parity inventory without starting gameplay systems.
 /// </summary>
 public sealed class ServerBootstrap
 {
@@ -59,6 +59,10 @@ public sealed class ServerBootstrap
         report.AddCheck("scheduler-bootstrap");
         var schedulerBootstrap = new ServerSchedulerBootstrapAudit().Run(root, hostLifecycle);
         report.AttachSchedulerBootstrap(schedulerBootstrap);
+
+        report.AddCheck("scheduler-status-commands");
+        var schedulerStatusCommands = new ServerSchedulerStatusCommandAudit().Run(root, schedulerBootstrap);
+        report.AttachSchedulerStatusCommands(schedulerStatusCommands);
 
         report.AddCheck("startup-diagnostics");
         var diagnostics = new ServerStartupDiagnostics().Run(root);

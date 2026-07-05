@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0064 - Guarded Scheduler Status Command Surface
+
+- Recorded CodeUpdate-0063 GitHub Actions as green by user report.
+- Added guarded scheduler/status command diagnostics to Server bootstrap.
+- Registered seven diagnostic commands: `status.overview`, `status.lifecycle`, `status.modules`, `status.scheduler`, `status.scheduler.channels`, `status.data`, and `status.validation`.
+- Kept all status commands guarded, runtime-disabled, and non-mutating.
+- Preserved ServerRuntimeValidation0013 movement/follow evidence under `Docs/ServerSim/ServerRuntimeValidation0013/`.
+- Recorded Validation0013 as partial-pass evidence only: 140 follow movement events parsed, 5 PASS, 135 REVIEW, 0 FAIL, and no canonical `Data` promotion.
+- No command parser, dispatcher, scheduler ticking, sockets, sessions, gameplay, movement execution, party-follow implementation, combat services, spawning services, status-effect ticking, script dispatch, AI execution, world simulation, canonical `Data` rewrite, imported/reference deletion, live parity claim, runtime formula promotion, or timing promotion is included.
+
 ## CodeUpdate-0063 - Generic Scheduler Execution Channels
 
 - Recorded CodeUpdate-0062 GitHub Actions as green by user report.

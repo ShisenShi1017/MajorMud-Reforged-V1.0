@@ -1,3 +1,18 @@
+# CodeUpdate-0064 - Guarded Scheduler Status Command Surface
+
+This update adds guarded scheduler/status command diagnostics without enabling command execution.
+
+Highlights:
+
+- Registers seven guarded status commands.
+- Keeps all commands runtime-disabled and non-mutating.
+- Adds smoke coverage for the guarded command surface.
+- Preserves ServerRuntimeValidation0013 movement/follow evidence as partial-pass evidence only.
+
+Known limitation:
+
+- This is a diagnostics command-surface update only. It does not add a parser, dispatcher, scheduler tick, sockets, sessions, gameplay, movement execution, party-follow behavior, combat services, spawning services, scripts, AI, world simulation, or canonical `Data` promotion.
+
 # CodeUpdate-0063 - Generic Scheduler Execution Channels
 
 This update corrects scheduler bootstrap channel names so they remain generic engine execution concepts.

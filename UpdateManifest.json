@@ -1,8 +1,8 @@
 {
-  "codeUpdate": "0063",
-  "name": "CodeUpdate-0063-Generic-Scheduler-Execution-Channels",
+  "codeUpdate": "0064",
+  "name": "CodeUpdate-0064-Guarded-Scheduler-Status-Command-Surface",
   "packageType": "direct-repository-patch",
-  "purpose": "Correct scheduler bootstrap diagnostics to use generic execution channel names and fold ServerRuntimeValidation0009 into the no-.NET simulator validation surface while keeping gameplay, networking, world simulation, and scheduler execution disabled.",
+  "purpose": "Add a guarded scheduler/status command surface and preserve ServerRuntimeValidation0013 movement/follow evidence while keeping gameplay, networking, world simulation, command execution, and scheduler execution disabled.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": true,
   "addsTooling": false,
@@ -11,32 +11,31 @@
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained modular server construction and data-readiness work before gameplay systems.",
-  "verificationStatus": "Local verification passed for CodeUpdate-0063; GitHub Actions remains pending until user push.",
+  "verificationStatus": "Local verification passed for CodeUpdate-0064; GitHub Actions remains pending until user push.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
     "CHANGELOG.md",
-    "Apps/Source/Reforged.Server/ServerSchedulerBootstrapAudit.cs",
+    "Apps/Source/Reforged.Server/Program.cs",
+    "Apps/Source/Reforged.Server/ServerBootstrap.cs",
+    "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
+    "Apps/Source/Reforged.Server/ServerSchedulerStatusCommandAudit.cs",
+    "Apps/Source/Reforged.Server/ServerSchedulerStatusCommandAuditModels.cs",
     "Apps/Source/Reforged.Server/README.md",
     "Tests/Source/Reforged.Core.Tests/Program.cs",
-    "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/run_simulator.py",
-    "Docs/CodeUpdates/CodeUpdate-0062-Scheduler-Bootstrap-Diagnostics.md",
-    "Docs/CodeUpdates/CodeUpdate-0063-Generic-Scheduler-Execution-Channels.md",
-    "Docs/ServerSim/DataSimVer0045/",
-    "Docs/ServerSim/ServerRuntimeValidation0009/",
-    "Docs/ServerSim/ServerSim0036/",
+    "Docs/CodeUpdates/CodeUpdate-0064-Guarded-Scheduler-Status-Command-Surface.md",
+    "Docs/ServerSim/ServerRuntimeValidation0013/",
     "Docs/Architecture/PROJECT_ROADMAP.md",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0062/",
-    "Reports/CodeUpdates/CodeUpdate-0063/",
+    "Reports/CodeUpdates/CodeUpdate-0064/",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "CodeUpdate-0062 is green by user report and local main was aligned with origin/main before CodeUpdate-0063 edits.",
+    "baselineStatus": "CodeUpdate-0063 is green by user report.",
     "officialGate": "GitHub Actions after user push."
   },
   "worldProjection": {
@@ -103,6 +102,25 @@
     ],
     "scope": "Read-only scheduler bootstrap diagnostics. No scheduler ticking, gameplay, networking, sessions, or world simulation."
   },
+  "schedulerStatusCommands": {
+    "status": "scheduler-status-commands-registered-runtime-disabled",
+    "commandCount": 7,
+    "runtimeEnabledCommandCount": 0,
+    "runtimeDisabledCommandCount": 7,
+    "guardedCommandCount": 7,
+    "stateMutatingCommandCount": 0,
+    "diagnosticOnly": true,
+    "commands": [
+      "status.overview",
+      "status.lifecycle",
+      "status.modules",
+      "status.scheduler",
+      "status.scheduler.channels",
+      "status.data",
+      "status.validation"
+    ],
+    "scope": "Read-only guarded status command registrations. No parser, dispatcher, command execution, scheduler ticking, gameplay, networking, sessions, or world simulation."
+  },
   "serverRuntimeValidation0009": {
     "sourcePackage": "ServerRuntimeValidation0009_NoDotNet_NpcLifecycleCombatStatePatch_Handoff.zip",
     "status": "folded-into-no-dotnet-simulator-surface",
@@ -113,6 +131,17 @@
     "handoffReportedLifecycleFail": 0,
     "autonomousAggroImplemented": false,
     "nextValidationCandidate": "Validation0010 autonomous NPC aggro / assist boundary evidence review"
+  },
+  "serverRuntimeValidation0013": {
+    "sourcePackage": "ServerRuntimeValidation0013_MovementFollow_Handoff.zip",
+    "status": "partial-pass-evidence-only",
+    "scope": "Movement-based party follow transitions compared against canonical Data room exits. No Data promotion and no movement execution.",
+    "totalFollowEvents": 140,
+    "pass": 5,
+    "review": 135,
+    "fail": 0,
+    "canonicalDataChanged": false,
+    "promotionDecision": "No canonical Data promotion. REVIEW rows require route/source disambiguation before any future reconciliation."
   },
   "currentPlaceholderState": {
     "trueEmptyCanonicalPlaceholder": "Data/quests.json",
@@ -125,10 +154,8 @@
     "jsonParse": "Passed for ProjectManifest.json and UpdateManifest.json.",
     "gitDiffCheck": "Passed.",
     "releaseBuilds": "Passed for Core, Server, Importer, Editor, Launcher, Client, and Reforged.Core.Tests.",
-    "smokeTests": "Passed: dotnet core/server smoke tests.",
-    "serverBootstrap": "Passed: Server bootstrap completed successfully with gameplay, networking, scheduler execution, and world simulation disabled.",
-    "simulatorSmoke": "Passed by direct Python smoke-function calls because pytest is not installed locally.",
-    "simulatorLifecycleProbe": "Passed focused single-mob respawn room probe for *Combat Engaged*, *Combat Off*, and expected-model respawn due minute scheduling.",
+    "smokeTests": "Passed: dotnet core/server smoke tests including guarded scheduler status commands.",
+    "serverBootstrap": "Passed: Server bootstrap completed successfully and reported scheduler-status-commands-registered-runtime-disabled.",
     "status": "passed-local"
   },
   "boundaries": [
@@ -137,6 +164,9 @@
     "No gameplay system",
     "No gameplay server behavior",
     "No scheduler execution",
+    "No command parser or dispatcher",
+    "No command execution",
+    "No movement execution or party-follow implementation",
     "No Server gameplay activation from simulator validation",
     "No field promotion",
     "No runtime timing or formula promotion",

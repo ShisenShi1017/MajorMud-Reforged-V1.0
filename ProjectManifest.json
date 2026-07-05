@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0063",
+  "codeUpdate": "0064",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,21 +18,23 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0063",
+    "currentCodeUpdate": "0064",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
     "milestone2Status": "Continuing with constrained modular server construction and data-readiness work; gameplay systems remain disabled.",
-    "lastUpdateName": "CodeUpdate-0063-Generic-Scheduler-Execution-Channels",
+    "lastUpdateName": "CodeUpdate-0064-Guarded-Scheduler-Status-Command-Surface",
     "nextRecommendedWork": [
+      "CodeUpdate-0064 adds a guarded scheduler/status command surface with seven diagnostic commands; every command is guarded, runtime-disabled, and non-mutating.",
+      "CodeUpdate-0064 preserves ServerRuntimeValidation0013 movement/follow evidence under Docs/ServerSim/ServerRuntimeValidation0013/ as evidence only with no Data promotion.",
       "CodeUpdate-0063 corrects scheduler bootstrap diagnostics to use generic execution channel names instead of gameplay-specific channel names.",
       "CodeUpdate-0063 folds ServerRuntimeValidation0009 into the no-.NET simulator surface as expected-model lifecycle validation only; Server gameplay remains disabled.",
       "DataSimVer0045 evidence-regression contract planning is preserved under Docs/ServerSim/DataSimVer0045/ as evidence/planning material only.",
       "ServerSim0036 planning evidence is preserved under Docs/ServerSim/ServerSim0036/ as evidence/planning material only.",
       "Use the Server module catalog as the first non-gameplay construction seam: MajorMUD Classic is a disabled module baseline, not the whole Server.",
-      "Next safe server slice: add a guarded non-gameplay scheduler status/command surface before runtime behavior.",
+      "Next safe server slice: add a read-only command output formatter or status query adapter without enabling command execution.",
       "Use DataDecodeCheckpoints/Validation0043 as preserved opcode/action-dispatch evidence only until branch semantics are decoded and reviewed.",
       "Use DataDecodeCheckpoints/MegaMUD2RE0021 as preserved MegaMUD 2.0 client/route/protocol evidence only; do not infer raw binary packet layouts from it.",
       "Use Reports/CodeUpdates/CodeUpdate-0055/CurrentDataPlaceholderAudit.csv as the historical placeholder snapshot. CodeUpdate-0058 resolves the world_rooms loader projection gap; quests remains the only true empty canonical placeholder.",
@@ -90,5 +92,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0063 records CodeUpdate-0062 as green by user report. It corrects scheduler bootstrap diagnostics to use generic execution channel names instead of gameplay-specific names and folds ServerRuntimeValidation0009 into the no-.NET simulator surface as expected-model validation only. Local verification passed: JSON parse, git diff --check, sequential Release build sweep for Core/Server/Importer/Editor/Launcher/Client/Tests, core/server smoke tests, Server bootstrap run, direct Python simulator smoke functions, and a focused simulator lifecycle marker probe. pytest is not installed locally, so pytest-based simulator execution was not run. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0064 records CodeUpdate-0063 as green by user report. It adds a guarded scheduler/status command surface and preserves ServerRuntimeValidation0013 movement/follow evidence as evidence only. Local verification passed: JSON parse, git diff --check, sequential Release build sweep for Core/Server/Importer/Editor/Launcher/Client/Tests, core/server smoke tests, and Server bootstrap run. GitHub Actions remains the official gate after user push."
 }

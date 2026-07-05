@@ -79,6 +79,15 @@ if (report.SchedulerBootstrap is not null)
     }
 }
 
+if (report.SchedulerStatusCommands is not null)
+{
+    Console.WriteLine($"SchedulerStatusCommands: {report.SchedulerStatusCommands.Status}; commands={report.SchedulerStatusCommands.CommandCount}; runtimeEnabled={report.SchedulerStatusCommands.RuntimeEnabledCommandCount}; runtimeDisabled={report.SchedulerStatusCommands.RuntimeDisabledCommandCount}; guarded={report.SchedulerStatusCommands.GuardedCommandCount}; mutating={report.SchedulerStatusCommands.StateMutatingCommandCount}; schedulerReady={report.SchedulerStatusCommands.SchedulerBootstrapReady}; diagnosticOnly={report.SchedulerStatusCommands.DiagnosticOnly}");
+    foreach (var command in report.SchedulerStatusCommands.Commands)
+    {
+        Console.WriteLine($"SchedulerStatusCommand: {command.Order}; name={command.Name}; category={command.Category}; runtimeEnabled={command.RuntimeEnabled}; guarded={command.Guarded}; mutatesState={command.MutatesState}; output={command.OutputContract}; note={command.ReadinessNote}");
+    }
+}
+
 if (report.ClassicParityAudit is not null)
 {
     Console.WriteLine($"ClassicParity: {report.ClassicParityAudit.Status}; canonicalFiles={report.ClassicParityAudit.CanonicalFileCount}; importedReferenceFiles={report.ClassicParityAudit.ImportedReferenceFileCount}; exactNameMatches={report.ClassicParityAudit.ExactNameMatchCount}");

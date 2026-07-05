@@ -44,6 +44,8 @@ public sealed class ServerBootstrapReport
 
     public ServerSchedulerBootstrapReport? SchedulerBootstrap { get; private set; }
 
+    public ServerSchedulerStatusCommandReport? SchedulerStatusCommands { get; private set; }
+
     public bool Passed => !Validation.HasErrors && (StartupDiagnostics?.Passed ?? true);
 
     public int ExitCode => Passed ? 0 : 1;
@@ -123,6 +125,11 @@ public sealed class ServerBootstrapReport
     public void AttachSchedulerBootstrap(ServerSchedulerBootstrapReport report)
     {
         SchedulerBootstrap = report;
+    }
+
+    public void AttachSchedulerStatusCommands(ServerSchedulerStatusCommandReport report)
+    {
+        SchedulerStatusCommands = report;
     }
 }
 

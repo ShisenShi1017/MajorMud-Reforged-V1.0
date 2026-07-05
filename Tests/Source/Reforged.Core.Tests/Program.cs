@@ -22,6 +22,7 @@ var tests = new List<(string Name, Action Body)>
     ("server module readiness keeps gameplay disabled", ServerModuleReadinessAuditSmoke),
     ("server host lifecycle reports runtime-disabled readiness", ServerHostLifecycleAuditSmoke),
     ("server scheduler bootstrap keeps channels disabled", ServerSchedulerBootstrapAuditSmoke),
+    ("server scheduler status commands stay guarded", ServerSchedulerStatusCommandAuditSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
 };
 
@@ -152,7 +153,7 @@ void ServerBootstrapSmoke()
         throw new InvalidOperationException(string.Join(" | ", report.Validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "host-configuration", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "host-lifecycle", "scheduler-bootstrap", "startup-diagnostics", "classic-parity-audit" })
+    foreach (var required in new[] { "project-root", "required-directories", "project-manifest", "host-configuration", "server-data-catalog", "world-projection", "game-module-catalog", "module-readiness", "host-lifecycle", "scheduler-bootstrap", "scheduler-status-commands", "startup-diagnostics", "classic-parity-audit" })
     {
         if (!report.Checks.Contains(required))
         {
@@ -258,6 +259,20 @@ void ServerBootstrapSmoke()
         report.SchedulerBootstrap.RuntimeDisabledChannelCount != 10)
     {
         throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-disabled scheduler bootstrap report.");
+    }
+
+    if (report.SchedulerStatusCommands is null ||
+        report.SchedulerStatusCommands.Status != "scheduler-status-commands-registered-runtime-disabled" ||
+        !report.SchedulerStatusCommands.ReadyForInspection ||
+        !report.SchedulerStatusCommands.SchedulerBootstrapReady ||
+        !report.SchedulerStatusCommands.RuntimeDisabled ||
+        !report.SchedulerStatusCommands.DiagnosticOnly ||
+        report.SchedulerStatusCommands.CommandCount != 7 ||
+        report.SchedulerStatusCommands.RuntimeEnabledCommandCount != 0 ||
+        report.SchedulerStatusCommands.StateMutatingCommandCount != 0 ||
+        report.SchedulerStatusCommands.GuardedCommandCount != 7)
+    {
+        throw new InvalidOperationException("Server bootstrap did not attach the expected guarded scheduler status command surface.");
     }
 
     if (report.ExitCode != 0)
@@ -532,6 +547,46 @@ void ServerSchedulerBootstrapAuditSmoke()
         if (!report.Channels.Any(channel => channel.Name == requiredChannel && !channel.RuntimeEnabled && channel.EvidenceSource == "ServerSim0036"))
         {
             throw new InvalidOperationException($"Server scheduler bootstrap did not expose expected disabled channel: {requiredChannel}");
+        }
+    }
+}
+
+void ServerSchedulerStatusCommandAuditSmoke()
+{
+    var validation = new Reforged.Core.Validation.ValidationResult();
+    var hostConfiguration = new ServerHostConfigurationAudit().Run(root, validation);
+    var dataCatalog = new ServerDataCatalogAudit().Run(root, validation);
+    var worldProjection = new ServerWorldProjectionAudit().Run(root, validation);
+    var moduleCatalog = new ServerGameModuleCatalog().Load();
+    var moduleReadiness = new ServerModuleReadinessAudit().Run(root, moduleCatalog, dataCatalog, worldProjection);
+    var hostLifecycle = new ServerHostLifecycleAudit().Run(root, hostConfiguration, dataCatalog, worldProjection, moduleCatalog, moduleReadiness);
+    var schedulerBootstrap = new ServerSchedulerBootstrapAudit().Run(root, hostLifecycle);
+    var report = new ServerSchedulerStatusCommandAudit().Run(root, schedulerBootstrap);
+
+    if (validation.HasErrors)
+    {
+        throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
+    }
+
+    if (report.Status != "scheduler-status-commands-registered-runtime-disabled" ||
+        !report.ReadyForInspection ||
+        !report.SchedulerBootstrapReady ||
+        !report.RuntimeDisabled ||
+        !report.DiagnosticOnly ||
+        report.CommandCount != 7 ||
+        report.RuntimeEnabledCommandCount != 0 ||
+        report.RuntimeDisabledCommandCount != 7 ||
+        report.StateMutatingCommandCount != 0 ||
+        report.GuardedCommandCount != 7)
+    {
+        throw new InvalidOperationException("Scheduler status command audit did not expose the expected guarded command registrations.");
+    }
+
+    foreach (var requiredCommand in new[] { "status.overview", "status.lifecycle", "status.modules", "status.scheduler", "status.scheduler.channels", "status.data", "status.validation" })
+    {
+        if (!report.Commands.Any(command => command.Name == requiredCommand && command.Guarded && !command.RuntimeEnabled && !command.MutatesState))
+        {
+            throw new InvalidOperationException($"Scheduler status command audit did not expose expected guarded command: {requiredCommand}");
         }
     }
 }

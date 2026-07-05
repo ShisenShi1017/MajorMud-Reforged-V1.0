@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0063
+- Current Code Update: 0064
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,12 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0063 - Generic Scheduler Execution Channels
+- Current update: CodeUpdate-0064 - Guarded Scheduler Status Command Surface
+- CodeUpdate-0064 adds a guarded scheduler/status command surface with seven diagnostic commands.
+- CodeUpdate-0064 keeps every status command guarded, runtime-disabled, and non-mutating.
+- CodeUpdate-0064 preserves ServerRuntimeValidation0013 movement/follow evidence as partial-pass evidence only with no canonical `Data` promotion.
+- CodeUpdate-0064 local verification passed: JSON parse, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run.
+- CodeUpdate-0063 GitHub Actions is green by user report.
 - CodeUpdate-0063 corrects scheduler bootstrap diagnostics to use generic execution channel names instead of gameplay-specific names.
 - CodeUpdate-0063 generic channels are Ingress, Validation, Planning, Dispatch, Mutation, TimedWork, EventWork, Persistence, Observation, and Maintenance.
 - CodeUpdate-0063 folds ServerRuntimeValidation0009 into the no-.NET simulator validation surface as expected-model lifecycle validation only.
