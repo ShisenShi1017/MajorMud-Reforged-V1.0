@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0064`
+- Current Code Update: `0065`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0064 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
+- Current priority: push CodeUpdate-0065 when ready, verify GitHub Actions green by user report, then continue with one narrow MMExplorer MDB canonical repair slice or one narrow non-gameplay Server construction slice.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -172,6 +172,8 @@ CodeUpdate-0063 corrects CodeUpdate-0062 scheduler bootstrap diagnostics to use 
 
 CodeUpdate-0064 adds guarded scheduler/status command diagnostics to Server bootstrap and preserves ServerRuntimeValidation0013 movement/follow evidence under `Docs/ServerSim/ServerRuntimeValidation0013/`. Registered status commands are `status.overview`, `status.lifecycle`, `status.modules`, `status.scheduler`, `status.scheduler.channels`, `status.data`, and `status.validation`. Every command is guarded, runtime-disabled, and non-mutating. No command parser, dispatcher, scheduler ticking, sockets, sessions, gameplay, movement execution, party-follow implementation, runtime rule execution, mode/profile activation, combat services, spawning services, status-effect ticking, script dispatch, AI, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, live parity claim, or runtime formula/timing promotion is included.
 
+CodeUpdate-0065 repairs canonical room/world data directly from `ImportedDatabases/data-v1.11n.mdb`. It adds `Data/StockGameRaw/MMExplorerMDB/`, adds `Tools/MDBExtractor/promote_mdb_rooms.py`, promotes rooms `wcc_map1_room2150` and `wcc_map1_room2156`, and raises canonical/world room count to `1248`. It promotes only direct MDB-backed fields and keeps undecoded byte fields, formulas, runtime behavior, gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, and live editor behavior out of scope.
+
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.
@@ -224,6 +226,7 @@ Completed/started slices:
 - CodeUpdate-0062: scheduler bootstrap diagnostics with runtime disabled.
 - CodeUpdate-0063: generic scheduler execution channels with runtime disabled, plus no-.NET simulator lifecycle validation folded from ServerRuntimeValidation0009.
 - CodeUpdate-0064: guarded scheduler/status command diagnostics with command execution disabled.
+- CodeUpdate-0065: MMExplorer MDB direct canonical room repair with world projection count raised to 1,248.
 
 Focus Areas:
 
@@ -247,10 +250,10 @@ Boundaries until approved:
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0064:
+Next candidate after CodeUpdate-0065:
 
-- Choose one narrow non-gameplay Server construction slice.
-- Prefer a read-only status output formatter or query adapter before adding gameplay behavior.
+- Choose one narrow MMExplorer MDB canonical repair slice, preferably shops or monsters, or one narrow non-gameplay Server construction slice.
+- Use direct MDB-backed fields only unless byte-level field positions are decoded and reviewed.
 - Keep Validation0043 and MegaMUD2 RE0021 as evidence unless a separate reviewed reconciliation update promotes a specific field or behavior.
 - Keep live runtime behavior uncertified until controlled Worldgroup validation is available.
 - Preserve previous decode reports instead of overwriting historical analysis.

@@ -425,7 +425,7 @@ void ServerWorldProjectionAuditSmoke()
 
     if (!report.ProjectionReady ||
         report.Status != "projection-ready" ||
-        report.WorldRoomCount != 1246 ||
+        report.WorldRoomCount != 1248 ||
         report.UniqueWorldRoomCount != report.WorldRoomCount ||
         report.CanonicalRoomCount != report.WorldRoomCount ||
         report.MissingRoomCount != 0 ||
@@ -464,7 +464,7 @@ void ServerModuleReadinessAuditSmoke()
         !module.HostReady ||
         !module.DataRootExists ||
         !module.WorldProjectionReady ||
-        module.WorldRoomCount != 1246 ||
+        module.WorldRoomCount != 1248 ||
         module.RuntimeBlockedCategoryCount != 1 ||
         module.EmptyPlaceholderCategoryCount != 1 ||
         module.GameplayEnabled ||

@@ -1,5 +1,18 @@
 # Changelog
 
+## CodeUpdate-0065 - MMExplorer MDB Canonical Repair
+
+- Recorded CodeUpdate-0064 GitHub Actions as green by user report.
+- Extended the repository MDB extractor so it can emit owner-table summaries and selected owner-table raw rows from `ImportedDatabases/data-v1.11n.mdb`.
+- Added `Data/StockGameRaw/MMExplorerMDB/` as the current MMExplorer MDB raw stock data surface for direct repair and follow-up decoding.
+- Added `Tools/MDBExtractor/promote_mdb_rooms.py` to promote direct MDB-backed room fields reproducibly.
+- Added canonical room `wcc_map1_room2150` as `Newhaven, Arena`.
+- Added canonical room `wcc_map1_room2156` as `Small Cavern`.
+- Added both rooms to `Data/world.json`, raising canonical/world room count from `1246` to `1248`.
+- Updated smoke-test expectations for the repaired world projection count.
+- Recorded owner table `1664` as the room/world row surface and owner tables `322`, `2566`, `15`, and `1660` as next repair candidates for monsters/NPCs, shops, classes, and races.
+- No gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, live editor behavior, runtime formula/timing promotion, imported/reference deletion, or unknown byte-field promotion is included.
+
 ## CodeUpdate-0064 - Guarded Scheduler Status Command Surface
 
 - Recorded CodeUpdate-0063 GitHub Actions as green by user report.

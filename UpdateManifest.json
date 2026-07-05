@@ -1,52 +1,51 @@
 {
-  "codeUpdate": "0064",
-  "name": "CodeUpdate-0064-Guarded-Scheduler-Status-Command-Surface",
+  "codeUpdate": "0065",
+  "name": "CodeUpdate-0065-MMExplorer-MDB-Canonical-Repair",
   "packageType": "direct-repository-patch",
-  "purpose": "Add a guarded scheduler/status command surface and preserve ServerRuntimeValidation0013 movement/follow evidence while keeping gameplay, networking, world simulation, command execution, and scheduler execution disabled.",
+  "purpose": "Repair direct canonical room/world data from ImportedDatabases/data-v1.11n.mdb using the repo MDB extractor and a reproducible promotion tool while keeping gameplay, networking, command execution, scheduler execution, and world simulation disabled.",
   "addsGameplayFeatures": false,
-  "addsImplementationCode": true,
-  "addsTooling": false,
+  "addsImplementationCode": false,
+  "addsTooling": true,
   "batInstallerCreated": false,
   "updateZipCreated": false,
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
-  "milestone2Status": "Continuing with constrained modular server construction and data-readiness work before gameplay systems.",
-  "verificationStatus": "Local verification passed for CodeUpdate-0064; GitHub Actions remains pending until user push.",
+  "milestone2Status": "Continuing with constrained modular server construction and reviewed data-repair work before gameplay systems.",
+  "verificationStatus": "Local verification passed for CodeUpdate-0065; GitHub Actions remains pending until user push.",
   "filesChanged": [
     "AGENTS.md",
     "AI_CONTEXT.md",
     "CHANGELOG.md",
-    "Apps/Source/Reforged.Server/Program.cs",
-    "Apps/Source/Reforged.Server/ServerBootstrap.cs",
-    "Apps/Source/Reforged.Server/ServerBootstrapReport.cs",
-    "Apps/Source/Reforged.Server/ServerSchedulerStatusCommandAudit.cs",
-    "Apps/Source/Reforged.Server/ServerSchedulerStatusCommandAuditModels.cs",
-    "Apps/Source/Reforged.Server/README.md",
-    "Tests/Source/Reforged.Core.Tests/Program.cs",
-    "Docs/CodeUpdates/CodeUpdate-0064-Guarded-Scheduler-Status-Command-Surface.md",
-    "Docs/ServerSim/ServerRuntimeValidation0013/",
+    "Data/rooms.json",
+    "Data/world.json",
+    "Data/StockGameRaw/MMExplorerMDB/",
+    "Data/Validation/mmexplorer_mdb_canonical_repair_0065.json",
     "Docs/Architecture/PROJECT_ROADMAP.md",
+    "Docs/CodeUpdates/CodeUpdate-0065-MMExplorer-MDB-Canonical-Repair.md",
     "ProjectManifest.json",
     "README.md",
     "ReleaseNotes.md",
-    "Reports/CodeUpdates/CodeUpdate-0064/",
+    "Reports/CodeUpdates/CodeUpdate-0065/",
+    "Tests/Source/Reforged.Core.Tests/Program.cs",
+    "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "Tools/MDBExtractor/promote_mdb_rooms.py",
     "UpdateManifest.json",
     "VERSION.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "CodeUpdate-0063 is green by user report.",
+    "baselineStatus": "CodeUpdate-0064 is green by user report.",
     "officialGate": "GitHub Actions after user push."
   },
   "worldProjection": {
-    "worldRoomCount": 1246,
-    "uniqueWorldRoomCount": 1246,
-    "canonicalRoomCount": 1246,
+    "worldRoomCount": 1248,
+    "uniqueWorldRoomCount": 1248,
+    "canonicalRoomCount": 1248,
     "missingRoomCount": 0,
     "duplicateWorldRoomCount": 0,
     "startRoom": "wcc_map1_room1",
     "startRoomExists": true,
-    "scope": "Read-only server projection and loader support. No canonical Data rewrite."
+    "scope": "Canonical/world room repair from MMExplorer MDB direct fields. No gameplay or runtime activation."
   },
   "moduleReadiness": {
     "moduleCount": 1,
@@ -151,29 +150,52 @@
     "placeholderAudit": "Reports/CodeUpdates/CodeUpdate-0055/CurrentDataPlaceholderAudit.csv"
   },
   "localVerification": {
-    "jsonParse": "Passed for ProjectManifest.json and UpdateManifest.json.",
-    "gitDiffCheck": "Passed.",
-    "releaseBuilds": "Passed for Core, Server, Importer, Editor, Launcher, Client, and Reforged.Core.Tests.",
-    "smokeTests": "Passed: dotnet core/server smoke tests including guarded scheduler status commands.",
-    "serverBootstrap": "Passed: Server bootstrap completed successfully and reported scheduler-status-commands-registered-runtime-disabled.",
+    "jsonParse": "Passed for ProjectManifest.json, UpdateManifest.json, Data/world.json, Data/rooms.json, and Data/Validation/mmexplorer_mdb_canonical_repair_0065.json.",
+    "pythonTools": "Passed py_compile for offline_mdb_text_extractor.py and promote_mdb_rooms.py.",
+    "gitDiffCheck": "Passed with Windows line-ending warnings only.",
+    "releaseBuilds": "Passed for Core, Server, Importer, Editor, Launcher, Client, and Reforged.Core.Tests with 0 warnings and 0 errors.",
+    "smokeTests": "Passed: dotnet core/server smoke tests including world projection at 1,248 rooms.",
+    "serverBootstrap": "Passed: Server bootstrap completed successfully, reported CodeUpdate 0065, rooms=1248, world_rooms=1248, and gameplay/networking/world simulation disabled.",
     "status": "passed-local"
   },
   "boundaries": [
-    "No canonical Data overlay",
-    "No imported/reference deletion",
     "No gameplay system",
     "No gameplay server behavior",
-    "No scheduler execution",
-    "No command parser or dispatcher",
     "No command execution",
-    "No movement execution or party-follow implementation",
-    "No Server gameplay activation from simulator validation",
-    "No field promotion",
+    "No scheduler execution",
+    "No sockets or sessions",
+    "No combat execution",
+    "No movement execution",
+    "No AI",
+    "No live editor behavior",
     "No runtime timing or formula promotion",
-    "No live runtime validation claim"
+    "No imported/reference deletion",
+    "No unknown byte-field promotion"
   ],
-  "referenceDataPolicy": "Validation0043, MegaMUD2 RE0021, OmniVerse, MudInfo, WCC/WBB/WGSERVER files, MMExplorer evidence, website/community data, and tool-derived data are evidence or planning inputs only unless a reviewed reconciliation update explicitly changes canonical Data or runtime behavior.",
+  "referenceDataPolicy": "MMExplorer MDB data in ImportedDatabases/data-v1.11n.mdb is approved for reviewed canonical repair where fields map directly. Unknown byte fields, formulas, timing, and runtime behavior still require decoding/proof before promotion.",
   "dataDrivenLogicPolicy": "Game logic is data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-internal.",
-  "recommendedNextUpdate": "After user push and green GitHub Actions, add the next narrow non-gameplay server slice: a guarded scheduler status/command surface.",
-  "recommendedNextScopeRequiresUserApproval": true
+  "recommendedNextUpdate": "After user push and green GitHub Actions, repair one additional high-confidence canonical category from MMExplorer MDB owner tables, preferably shops or monsters, with direct-field-only promotion and report coverage.",
+  "recommendedNextScopeRequiresUserApproval": true,
+  "mmExplorerMdbRepair": {
+    "source": "ImportedDatabases/data-v1.11n.mdb",
+    "stockDataSurface": "Data/StockGameRaw/MMExplorerMDB/",
+    "ownerTables": {
+      "1664": "room/world row surface",
+      "322": "monster/NPC row surface candidate",
+      "2566": "shop row surface candidate",
+      "15": "class row surface candidate",
+      "1660": "race row surface candidate"
+    },
+    "promotedRooms": [
+      "wcc_map1_room2150",
+      "wcc_map1_room2156"
+    ],
+    "directFieldsPromoted": [
+      "map id",
+      "room number",
+      "room name",
+      "raw printable exit references"
+    ],
+    "unknownFieldsPolicy": "Undecoded byte fields are not promoted. Unknown exit semantics are represented as exit_type -1 and exitTypeKnown false."
+  }
 }

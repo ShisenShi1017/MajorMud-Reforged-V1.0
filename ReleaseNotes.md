@@ -1,3 +1,21 @@
+# CodeUpdate-0065 - MMExplorer MDB Canonical Repair
+
+This update repairs canonical room/world data from `ImportedDatabases/data-v1.11n.mdb` using the repository MDB extractor and a reproducible promotion tool.
+
+Highlights:
+
+- Adds `Data/StockGameRaw/MMExplorerMDB/` as the current raw MMExplorer MDB stock data surface.
+- Extends `Tools/MDBExtractor/offline_mdb_text_extractor.py` with owner-table summary and selected owner-row export support.
+- Adds `Tools/MDBExtractor/promote_mdb_rooms.py` for direct MDB-backed room promotion.
+- Adds canonical room `wcc_map1_room2150` as `Newhaven, Arena`.
+- Adds canonical room `wcc_map1_room2156` as `Small Cavern`.
+- Adds both room ids to `Data/world.json`.
+- Updates smoke expectations from `1246` to `1248` canonical/world rooms.
+
+Known limitation:
+
+- This is a direct data-repair update only. It promotes map id, room number, room name, and raw printable exit references where directly mapped from the MDB. It does not promote unknown byte fields, formulas, timing, runtime behavior, gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, live editor behavior, or imported/reference deletion.
+
 # CodeUpdate-0064 - Guarded Scheduler Status Command Surface
 
 This update adds guarded scheduler/status command diagnostics without enabling command execution.

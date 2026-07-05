@@ -31459,6 +31459,76 @@
     }
   },
   {
+    "id": "wcc_map1_room2150",
+    "sourceId": {
+      "map": 1,
+      "room": 2150
+    },
+    "mapId": 1,
+    "roomNumber": 2150,
+    "name": "Newhaven, Arena",
+    "description": "",
+    "descriptionLines": [],
+    "exits": [
+      {
+        "dir": "MDB1",
+        "to_room": 2152,
+        "to_map": 1,
+        "exit_type": -1,
+        "exitTypeKnown": false,
+        "raw": "1/2152 (Door [any picklocks/strength])0"
+      },
+      {
+        "dir": "MDB2",
+        "to_room": 2146,
+        "to_map": 1,
+        "exit_type": -1,
+        "exitTypeKnown": false,
+        "raw": "1/21460"
+      }
+    ],
+    "rawExitFields": {
+      "mdb_segments": [
+        "1/2152 (Door [any picklocks/strength])0",
+        "1/21460"
+      ]
+    },
+    "roomType": 0,
+    "shopNumber": 0,
+    "lightLevel": 0,
+    "gangHouse": 0,
+    "roomItems": [],
+    "hiddenItemIds": [],
+    "groundCurrency": {
+      "copper": 0,
+      "silver": 0,
+      "gold": 0,
+      "platinum": 0,
+      "runic": 0
+    },
+    "spawn": {
+      "monsterType": 0,
+      "respawnMinutes": 0,
+      "maxAreaCap": 0,
+      "linkedSpawnRoom": 0,
+      "bossTypeId": 0
+    },
+    "behavior": {
+      "attributes": 0,
+      "deathRoomId": 0
+    },
+    "source": {
+      "kind": "ImportedDatabases/data-v1.11n.mdb owner_table_page 1664",
+      "file": "Data/StockGameRaw/MMExplorerMDB/owner_table_rows.json",
+      "promotedBy": "CodeUpdate-0065",
+      "ownerTablePage": 1664,
+      "page": 2378,
+      "rowIndexOnPage": 7,
+      "offset": 2892,
+      "confidence": "High for map, room, name, and raw printable edge references; other room fields remain conservative defaults pending byte-level field decode."
+    }
+  },
+  {
     "id": "wcc_map1_room2153",
     "sourceId": {
       "map": 1,
@@ -31613,6 +31683,68 @@
       "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
       "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room2154.json",
       "promotedBy": "Patch0068"
+    }
+  },
+  {
+    "id": "wcc_map1_room2156",
+    "sourceId": {
+      "map": 1,
+      "room": 2156
+    },
+    "mapId": 1,
+    "roomNumber": 2156,
+    "name": "Small Cavern",
+    "description": "",
+    "descriptionLines": [],
+    "exits": [
+      {
+        "dir": "MDB1",
+        "to_room": 2152,
+        "to_map": 1,
+        "exit_type": -1,
+        "exitTypeKnown": false,
+        "raw": "1/21520"
+      }
+    ],
+    "rawExitFields": {
+      "mdb_segments": [
+        "(Max 1): 80,[6-66-66-1]",
+        "1/21520"
+      ]
+    },
+    "roomType": 0,
+    "shopNumber": 0,
+    "lightLevel": 0,
+    "gangHouse": 0,
+    "roomItems": [],
+    "hiddenItemIds": [],
+    "groundCurrency": {
+      "copper": 0,
+      "silver": 0,
+      "gold": 0,
+      "platinum": 0,
+      "runic": 0
+    },
+    "spawn": {
+      "monsterType": 0,
+      "respawnMinutes": 0,
+      "maxAreaCap": 0,
+      "linkedSpawnRoom": 0,
+      "bossTypeId": 0
+    },
+    "behavior": {
+      "attributes": 0,
+      "deathRoomId": 0
+    },
+    "source": {
+      "kind": "ImportedDatabases/data-v1.11n.mdb owner_table_page 1664",
+      "file": "Data/StockGameRaw/MMExplorerMDB/owner_table_rows.json",
+      "promotedBy": "CodeUpdate-0065",
+      "ownerTablePage": 1664,
+      "page": 2379,
+      "rowIndexOnPage": 22,
+      "offset": 567,
+      "confidence": "High for map, room, name, and raw printable edge references; other room fields remain conservative defaults pending byte-level field decode."
     }
   },
   {

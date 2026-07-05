@@ -1,0 +1,40 @@
+{
+  "codeUpdate": "0065",
+  "source": "ImportedDatabases/data-v1.11n.mdb",
+  "stockDataSurface": "Data/StockGameRaw/MMExplorerMDB/",
+  "canonicalRepairs": [
+    {
+      "id": "wcc_map1_room2150",
+      "map": 1,
+      "room": 2150,
+      "name": "Newhaven, Arena",
+      "repair": "added canonical room and world room id",
+      "directFieldsPromoted": [
+        "map",
+        "room",
+        "name",
+        "raw printable exit references"
+      ]
+    },
+    {
+      "id": "wcc_map1_room2156",
+      "map": 1,
+      "room": 2156,
+      "name": "Small Cavern",
+      "repair": "added canonical room and world room id",
+      "directFieldsPromoted": [
+        "map",
+        "room",
+        "name",
+        "raw printable exit references"
+      ]
+    }
+  ],
+  "canonicalRoomCountAfterRepair": 1248,
+  "worldRoomCountAfterRepair": 1248,
+  "limitations": [
+    "Undecoded byte fields were not promoted.",
+    "Exit type semantics remain unknown and are represented as exit_type -1 with exitTypeKnown false.",
+    "Follow-up passes should use the same MDB path for monsters, shops, classes, races, and additional room fields."
+  ]
+}

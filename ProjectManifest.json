@@ -1,7 +1,7 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0064",
+  "codeUpdate": "0065",
   "databaseVersion": "0009",
   "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
   "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
@@ -18,54 +18,24 @@
   ],
   "developmentStatus": {
     "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0064",
+    "currentCodeUpdate": "0065",
     "currentDatabaseVersion": "0009",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "Continuing with constrained modular server construction and data-readiness work; gameplay systems remain disabled.",
-    "lastUpdateName": "CodeUpdate-0064-Guarded-Scheduler-Status-Command-Surface",
+    "milestone2Status": "Continuing with constrained modular server construction and reviewed data-repair work; gameplay systems remain disabled.",
+    "lastUpdateName": "CodeUpdate-0065-MMExplorer-MDB-Canonical-Repair",
     "nextRecommendedWork": [
-      "CodeUpdate-0064 adds a guarded scheduler/status command surface with seven diagnostic commands; every command is guarded, runtime-disabled, and non-mutating.",
-      "CodeUpdate-0064 preserves ServerRuntimeValidation0013 movement/follow evidence under Docs/ServerSim/ServerRuntimeValidation0013/ as evidence only with no Data promotion.",
-      "CodeUpdate-0063 corrects scheduler bootstrap diagnostics to use generic execution channel names instead of gameplay-specific channel names.",
-      "CodeUpdate-0063 folds ServerRuntimeValidation0009 into the no-.NET simulator surface as expected-model lifecycle validation only; Server gameplay remains disabled.",
-      "DataSimVer0045 evidence-regression contract planning is preserved under Docs/ServerSim/DataSimVer0045/ as evidence/planning material only.",
-      "ServerSim0036 planning evidence is preserved under Docs/ServerSim/ServerSim0036/ as evidence/planning material only.",
-      "Use the Server module catalog as the first non-gameplay construction seam: MajorMUD Classic is a disabled module baseline, not the whole Server.",
-      "Next safe server slice: add a read-only command output formatter or status query adapter without enabling command execution.",
-      "Use DataDecodeCheckpoints/Validation0043 as preserved opcode/action-dispatch evidence only until branch semantics are decoded and reviewed.",
-      "Use DataDecodeCheckpoints/MegaMUD2RE0021 as preserved MegaMUD 2.0 client/route/protocol evidence only; do not infer raw binary packet layouts from it.",
-      "Use Reports/CodeUpdates/CodeUpdate-0055/CurrentDataPlaceholderAudit.csv as the historical placeholder snapshot. CodeUpdate-0058 resolves the world_rooms loader projection gap; quests remains the only true empty canonical placeholder.",
+      "CodeUpdate-0065 records CodeUpdate-0064 as green by user report and repairs canonical room/world data from ImportedDatabases/data-v1.11n.mdb where fields map directly.",
+      "CodeUpdate-0065 adds Data/StockGameRaw/MMExplorerMDB as the current raw MMExplorer MDB extraction surface for direct canonical repair and follow-up decoding.",
+      "CodeUpdate-0065 adds wcc_map1_room2150 Newhaven, Arena and wcc_map1_room2156 Small Cavern to canonical rooms and world projection, raising room count to 1,248.",
+      "Use MMExplorer MDB owner table 1664 for reviewed room repair; use owner tables 322, 2566, 15, and 1660 as next candidates for monster/NPC, shop, class, and race reconciliation.",
+      "Promote only direct MDB-backed fields until byte-level field positions are decoded; exit semantics remain unknown where marked exit_type -1 and exitTypeKnown false.",
+      "Next safe data slice: repair one additional high-confidence canonical category from MMExplorer MDB owner tables, preferably shops or monsters, with a report and smoke verification.",
       "Treat game logic as data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules/content/progression/encounters/shops/quests/spawns/textblock actions/world behavior should live in data unless truly engine-internal.",
-      "Use the Validation0013 and DocUpdate0024 new-file intake as evidence/planning material only until reviewed reconciliation changes are approved.",
-      "Do not overwrite existing repository files from cumulative packages unless explicitly approved.",
-      "Use current Data as the Patch0068 embedded Data replacement baseline until a later reviewed reconciliation update changes it.",
-      "Use DataDecodeCheckpoints/Patch0068 as the single preserved Patch0068 evidence copy.",
-      "Use DataDecodeCheckpoints/Handoff0074 as the single preserved Handoff0074 evidence copy.",
-      "Treat Patch0071 as blocked/unapplied until a readable archive or extracted folder is supplied.",
-      "Use DataDecodeCheckpoints/CurrentStateBuild0027 and Docs/BehavioralRecovery/Build0027 as the preserved Build0027 current-state handoff.",
-      "Treat Build0024 and Build0025 matrices as expected_model until converted into actual executable simulator tests.",
-      "Do not treat prior chat pass/fail claims as authoritative unless backed by artifact logs or locally generated test output.",
-      "Plan the next update as a data verification/reconciliation pass over current Data before resuming executable harness work.",
-      "Use DataDecodeCheckpoints/ImportStaging as the reviewed import staging surface before rewriting any canonical Data file.",
-      "Start the first reviewed import diff with one high-confidence category, preferably rooms/navigation, while keeping hidden/scripted exits marked uncertain.",
-      "Use DataDecodeCheckpoints/SimulatorBuild0021 and Docs/BehavioralRecovery/Build0021 as Build0021 evidence/catalog material only.",
-      "Do not promote Build0021 strong_candidate or runtime_required formulas to certified original behavior.",
-      "Use DataDecodeCheckpoints/UnifiedDecodedData as the current decoded-data inventory and OmniVerse comparison surface.",
-      "Use DataDecodeCheckpoints/DataDecode0068 as the preserved Spell Engine Proof checkpoint.",
-      "Use DataDecodeCheckpoints/DataDecode0110 as the preserved final static ImportedDatabases certification checkpoint.",
-      "Use DataDecodeCheckpoints/SimulatorBuild0002 as the preserved simulator handoff and RuntimePrep evidence archive.",
-      "Use DataDecodeCheckpoints/ImportStaging/Queues/PhoneDecodeImportHandoffTemplate.csv for Android ChatGPT data handoffs.",
-      "Do not claim DataDecode0051 through DataDecode0067 are repository-preserved unless those packages are supplied and committed later.",
-      "Use Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md for phone-based ChatGPT decode handoffs.",
-      "Treat ZIPs as archival/checkpoint artifacts only; future decode passes update the repository directly.",
-      "Treat OmniVerse API captures and MudInfo maps as validation/correlation evidence only.",
-      "Treat SimulatorBuild0002 as expected-model evidence only until live Worldgroup runtime validation exists.",
-      "Do not import unknown/candidate fields until binary evidence plus corroborating proof supports them.",
-      "Do not assume public OmniVerse IDs equal binary row indexes.",
-      "Do not delete imported/reference data until Reforged-native Data is complete, verified, and explicitly approved for cleanup."
+      "Do not overwrite Saves or ImportedDatabases. Do not delete imported/reference data until Reforged-native Data is complete, verified, and explicitly approved for cleanup.",
+      "Do not add gameplay, command execution, scheduler execution, networking, combat, movement execution, AI, live editor behavior, live parity claims, or runtime formula/timing promotion without explicit approval."
     ]
   },
   "handoffPolicy": {
@@ -92,5 +62,5 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0064 records CodeUpdate-0063 as green by user report. It adds a guarded scheduler/status command surface and preserves ServerRuntimeValidation0013 movement/follow evidence as evidence only. Local verification passed: JSON parse, git diff --check, sequential Release build sweep for Core/Server/Importer/Editor/Launcher/Client/Tests, core/server smoke tests, and Server bootstrap run. GitHub Actions remains the official gate after user push."
+  "buildVerification": "CodeUpdate-0065 records CodeUpdate-0064 as green by user report. It repairs canonical room/world data from the MMExplorer MDB where fields map directly, adds the raw MDB stock data surface, and keeps gameplay/server execution disabled. Local verification passed: JSON parse, Python tool compile, git diff --check, sequential Release build sweep for Core/Server/Importer/Editor/Launcher/Client/Tests, core/server smoke tests, and Server bootstrap run. GitHub Actions remains the official gate after user push."
 }

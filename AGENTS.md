@@ -126,13 +126,13 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0064
+## 10. Current project position after CodeUpdate-0065
 
-- Current Code Update: `0064`
+- Current Code Update: `0065`
 - Current Database Version: `0009`
 - Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0064 when ready, verify GitHub Actions green by user report, then continue with one narrow non-gameplay Server construction slice.
+- Current priority: push CodeUpdate-0065 when ready, verify GitHub Actions green by user report, then continue with one narrow MMExplorer MDB canonical repair slice or one narrow non-gameplay Server construction slice.
 
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 
@@ -200,11 +200,13 @@ CodeUpdate-0063 corrects the CodeUpdate-0062 scheduler bootstrap surface to use 
 
 CodeUpdate-0064 adds a guarded scheduler/status command surface to Server bootstrap diagnostics and preserves ServerRuntimeValidation0013 movement/follow evidence under `Docs/ServerSim/ServerRuntimeValidation0013/`. It registers `status.overview`, `status.lifecycle`, `status.modules`, `status.scheduler`, `status.scheduler.channels`, `status.data`, and `status.validation` as guarded, runtime-disabled, non-mutating diagnostic command contracts. Validation0013 is partial-pass evidence only with 140 follow movement events parsed, 5 PASS, 135 REVIEW, 0 FAIL, and no canonical `Data` promotion. CodeUpdate-0064 does not add a command parser, dispatcher, scheduler ticking, world loop, sockets, sessions, Server gameplay, movement execution, party-follow implementation, combat services, spawning services, status-effect ticking, script dispatch, AI, live editor behavior, `Data/` rewrites, imported/reference deletion, live parity claims, or runtime formula/timing promotion.
 
-Server direction after CodeUpdate-0064: MajorMUD Classic is the first registered game module and data baseline, but MajorMUD is not the whole Server. Keep the Server generic and module-ready. Do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, active mode/profile loading, combat, character creation, world simulation, networking expansion, command execution, scheduler execution, movement execution, party follow, or live editor behavior until explicitly approved. `Data/` defines world/content and game logic by default; Server defines reusable engine behavior, validation, execution, and enforcement; Editor should eventually edit data safely.
+CodeUpdate-0065 repairs canonical room/world data directly from `ImportedDatabases/data-v1.11n.mdb` using the repository MDB extractor path. It adds `Data/StockGameRaw/MMExplorerMDB/`, promotes `wcc_map1_room2150` as `Newhaven, Arena`, promotes `wcc_map1_room2156` as `Small Cavern`, adds both rooms to `Data/world.json`, and raises canonical/world room count from `1246` to `1248`. It promotes only direct MDB-backed fields and does not promote unknown byte fields, formulas, timing, runtime behavior, gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, or live editor behavior.
+
+Server direction after CodeUpdate-0065: MajorMUD Classic is the first registered game module and data baseline, but MajorMUD is not the whole Server. Keep the Server generic and module-ready. Do not implement Reforged mode, Custom mode, AI systems, alternate gameplay rules, active mode/profile loading, combat, character creation, world simulation, networking expansion, command execution, scheduler execution, movement execution, party follow, or live editor behavior until explicitly approved. `Data/` defines world/content and game logic by default; Server defines reusable engine behavior, validation, execution, and enforcement; Editor should eventually edit data safely.
 
 Engine direction after CodeUpdate-0039: favor reusable engine systems over feature-specific systems. Avoid designing around Classic unless behavior is truly Classic-specific. Game logic is data-driven by default: rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless a behavior is truly engine-internal. The server supplies reusable engine systems, validation, execution, and enforcement. The WCC default install under `ImportedDatabases/WCCDefaultInstall/` is reference/import material only.
 
-All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update.
+All WCC data is reference-only unless the user explicitly approves a reviewed import/reconciliation update. MMExplorer MDB data in `ImportedDatabases/data-v1.11n.mdb` is approved for reviewed canonical repair where fields map directly, as performed in CodeUpdate-0065.
 
 Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 

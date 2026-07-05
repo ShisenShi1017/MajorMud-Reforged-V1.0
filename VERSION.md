@@ -1,7 +1,7 @@
 # Reforged Version
 
 - Project Version: 0.1.0
-- Current Code Update: 0064
+- Current Code Update: 0065
 - Current Database Version: 0009
 - Milestone: Milestone 2 - Engine Modernization / Host & World Editor Planning
 - Runtime Requirement: No .NET SDK required for normal runtime. Run from compiled/runtime-ready artifacts in `Bin/`.
@@ -9,7 +9,13 @@
 
 ## Verification Status
 
-- Current update: CodeUpdate-0064 - Guarded Scheduler Status Command Surface
+- Current update: CodeUpdate-0065 - MMExplorer MDB Canonical Repair
+- CodeUpdate-0065 repairs direct canonical room/world data from `ImportedDatabases/data-v1.11n.mdb`.
+- CodeUpdate-0065 adds `Data/StockGameRaw/MMExplorerMDB/` as the current MMExplorer MDB raw stock data surface.
+- CodeUpdate-0065 adds canonical rooms `wcc_map1_room2150` and `wcc_map1_room2156`, raising canonical/world room count from `1246` to `1248`.
+- CodeUpdate-0065 promotes only direct MDB-backed fields and leaves unknown byte fields unpromoted.
+- CodeUpdate-0065 local verification passed: JSON parse, Python tool compile, `git diff --check`, sequential Release build sweep, core/server smoke tests, and Server bootstrap run.
+- CodeUpdate-0064 GitHub Actions is green by user report.
 - CodeUpdate-0064 adds a guarded scheduler/status command surface with seven diagnostic commands.
 - CodeUpdate-0064 keeps every status command guarded, runtime-disabled, and non-mutating.
 - CodeUpdate-0064 preserves ServerRuntimeValidation0013 movement/follow evidence as partial-pass evidence only with no canonical `Data` promotion.

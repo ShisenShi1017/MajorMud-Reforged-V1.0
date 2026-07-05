@@ -102,10 +102,71 @@ def parse_ability_row(row):
     }
 
 
+def build_owner_summary(rows):
+    owners = {}
+    for row, raw in rows:
+        owner = raw['owner_table_page']
+        info = owners.setdefault(owner, {
+            'owner_table_page': owner,
+            'row_count': 0,
+            'pages': set(),
+            'sample_strings': [],
+            'min_row_length': None,
+            'max_row_length': 0,
+        })
+        info['row_count'] += 1
+        info['pages'].add(raw['page'])
+        length = raw['length']
+        info['min_row_length'] = length if info['min_row_length'] is None else min(info['min_row_length'], length)
+        info['max_row_length'] = max(info['max_row_length'], length)
+        for segment in raw['segments']:
+            if segment not in info['sample_strings']:
+                info['sample_strings'].append(segment)
+            if len(info['sample_strings']) >= 12:
+                break
+
+    summary = []
+    for info in owners.values():
+        page_numbers = sorted(info.pop('pages'))
+        info['page_count'] = len(page_numbers)
+        info['first_pages'] = page_numbers[:20]
+        summary.append(info)
+    summary.sort(key=lambda r: (-r['row_count'], r['owner_table_page']))
+    return summary
+
+
+def build_owner_rows(rows, selected_owners):
+    selected = set(selected_owners)
+    exported = []
+    for _row, raw in rows:
+        owner = raw['owner_table_page']
+        if owner not in selected:
+            continue
+        exported.append({
+            'owner_table_page': owner,
+            'page': raw['page'],
+            'row_index_on_page': raw['row_index_on_page'],
+            'offset': raw['offset'],
+            'length': raw['length'],
+            'hex_prefix': raw['hex_prefix'],
+            'hex_suffix': raw['hex_suffix'],
+            'segments': raw['segments'],
+            'record_status': 'raw-mdb-row',
+            'confidence': 'High for raw MDB row location and printable segments; field semantics require a table-specific decoder before canonical promotion.',
+        })
+    exported.sort(key=lambda r: (r['owner_table_page'], r['page'], r['row_index_on_page'], r['offset']))
+    return exported
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('mdb')
     ap.add_argument('--outdir', default='extracted')
+    ap.add_argument(
+        '--owner-export',
+        default='1664,322,2566,15,1660',
+        help='Comma-separated owner_table_page ids to export as raw stock rows.',
+    )
     args = ap.parse_args()
     path = Path(args.mdb)
     out = Path(args.outdir); out.mkdir(parents=True, exist_ok=True)
@@ -127,6 +188,8 @@ def main():
             raw = dict(row); raw.pop('blob')
             raw['segments'] = raw['segments'][:10]
             all_rows.append((row, raw))
+    selected_owners = [int(v.strip()) for v in args.owner_export.split(',') if v.strip()]
+    owner_rows = build_owner_rows(all_rows, selected_owners)
     ability_rows = []
     for row, raw in all_rows:
         # Table page 22 is the readable ability/attribute record store in this MDB.
@@ -135,9 +198,21 @@ def main():
             if parsed and parsed['name'] and row['blob'][:1] == b'\x06':
                 ability_rows.append(parsed)
     ability_rows.sort(key=lambda r: (r['ability_id'] is None, r['ability_id'], r['source_page'], r['source_offset']))
+    owner_summary = build_owner_summary(all_rows)
 
     (out/'mdb_page_inventory.json').write_text(json.dumps(pages, indent=2), encoding='utf-8')
     (out/'raw_data_rows.json').write_text(json.dumps([r for _, r in all_rows], indent=2), encoding='utf-8')
+    (out/'owner_table_summary.json').write_text(json.dumps(owner_summary, indent=2), encoding='utf-8')
+    (out/'owner_table_rows.json').write_text(json.dumps(owner_rows, indent=2), encoding='utf-8')
+    with (out/'owner_table_summary.csv').open('w', newline='', encoding='utf-8') as f:
+        fields = ['owner_table_page','row_count','page_count','min_row_length','max_row_length','first_pages','sample_strings']
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        for row in owner_summary:
+            out_row = dict(row)
+            out_row['first_pages'] = '|'.join(str(v) for v in out_row['first_pages'])
+            out_row['sample_strings'] = '|'.join(out_row['sample_strings'])
+            w.writerow(out_row)
     (out/'ability_rows.json').write_text(json.dumps(ability_rows, indent=2), encoding='utf-8')
     with (out/'ability_rows.csv').open('w', newline='', encoding='utf-8') as f:
         fields = ['ability_id','name','description','text_part_count','numeric_prefix_hex','source_page','source_offset','source_length','row_pointer_flags_hex','record_status','confidence']
