@@ -1,0 +1,1422 @@
+{
+  "combat": [
+    {
+      "id": "8449860483f4ea13",
+      "system": "combat",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 6,
+      "excerpt": "- Explicit-field equipment stat calculator.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "8475e6d6b1be6652",
+      "system": "combat",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 18,
+      "excerpt": "- Classic equipment formulas.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "9d781f6f80ed7fef",
+      "system": "combat",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 19,
+      "excerpt": "- Derived HP/mana/CP formulas.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "93b51fcd091c94d4",
+      "system": "combat",
+      "source_file": "CHANGELOG_RUNTIME_0004.md",
+      "line": 18,
+      "excerpt": "No classic formula claims were added.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0004.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "c23db38e436a11dc",
+      "system": "combat",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 6,
+      "excerpt": "\"summary\": \"Adds EXP and leveling calculator foundation with validation while preserving classic formula evidence boundaries.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "81c836dd20bf350e",
+      "system": "combat",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 15,
+      "excerpt": "\"classic_formula_claims_added\": false,",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "51c27ec9b9f35377",
+      "system": "combat",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 363,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "98a3ae479ebfb20a",
+      "system": "combat",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 495,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "20f6d5c77983f33a",
+      "system": "combat",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 531,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "1f0b501fd71ec972",
+      "system": "combat",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 591,
+      "excerpt": "\"path\": \"Sim/validators/__pycache__/validate_formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "experience_leveling": [
+    {
+      "id": "c9d3c1b84b981214",
+      "system": "experience_leveling",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 6,
+      "excerpt": "- Explicit-field equipment stat calculator.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "fcc6c34aa6a03779",
+      "system": "experience_leveling",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 18,
+      "excerpt": "- Classic equipment formulas.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "da236735fa05ec30",
+      "system": "experience_leveling",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 19,
+      "excerpt": "- Derived HP/mana/CP formulas.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "8008c46e76c8a32d",
+      "system": "experience_leveling",
+      "source_file": "CHANGELOG_RUNTIME_0004.md",
+      "line": 18,
+      "excerpt": "No classic formula claims were added.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0004.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "812d9b149c801fd7",
+      "system": "experience_leveling",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 6,
+      "excerpt": "\"summary\": \"Adds EXP and leveling calculator foundation with validation while preserving classic formula evidence boundaries.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "ec7470a2acf4f7c8",
+      "system": "experience_leveling",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 15,
+      "excerpt": "\"classic_formula_claims_added\": false,",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "d20442054b9842f7",
+      "system": "experience_leveling",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 363,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "55a0b9a7e65af039",
+      "system": "experience_leveling",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 495,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "1b0b2c8157869f98",
+      "system": "experience_leveling",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 531,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "15da52742e6316ce",
+      "system": "experience_leveling",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 591,
+      "excerpt": "\"path\": \"Sim/validators/__pycache__/validate_formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "spell": [
+    {
+      "id": "9ed7acb9c7135acc",
+      "system": "spell",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 6,
+      "excerpt": "- Explicit-field equipment stat calculator.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "f0ee0c3c9f641045",
+      "system": "spell",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 18,
+      "excerpt": "- Classic equipment formulas.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "e5cbc8054ef70edc",
+      "system": "spell",
+      "source_file": "CHANGELOG_RUNTIME_0003.md",
+      "line": 19,
+      "excerpt": "- Derived HP/mana/CP formulas.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0003.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "1c8628f2b9a07b13",
+      "system": "spell",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 6,
+      "excerpt": "\"summary\": \"Adds EXP and leveling calculator foundation with validation while preserving classic formula evidence boundaries.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "dd5af71d77d6d21a",
+      "system": "spell",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 15,
+      "excerpt": "\"classic_formula_claims_added\": false,",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "716dd49f6df8ad3f",
+      "system": "spell",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 363,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "6763648bb411120e",
+      "system": "spell",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 495,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "c8aa9040c7d5bc03",
+      "system": "spell",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 531,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "65131a0243ef49b0",
+      "system": "spell",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 591,
+      "excerpt": "\"path\": \"Sim/validators/__pycache__/validate_formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "a737c06d61f2ac30",
+      "system": "spell",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 619,
+      "excerpt": "\"path\": \"Sim/validators/validate_formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "ai": [
+    {
+      "id": "0dd169a840734312",
+      "system": "ai",
+      "source_file": "CHANGELOG_RUNTIME_0004.md",
+      "line": 18,
+      "excerpt": "No classic formula claims were added.",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0004.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "a72576a59c176aec",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 6,
+      "excerpt": "\"summary\": \"Adds EXP and leveling calculator foundation with validation while preserving classic formula evidence boundaries.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "3b267b7635b31cec",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 15,
+      "excerpt": "\"classic_formula_claims_added\": false,",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "7ef7ea4a2a69764f",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 363,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "780d9d7eeb591ca4",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 495,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "394d61350f1a3fa1",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 531,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "122ffbf8ee9adeae",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 591,
+      "excerpt": "\"path\": \"Sim/validators/__pycache__/validate_formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "d4fdd5d6669cb58b",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 619,
+      "excerpt": "\"path\": \"Sim/validators/validate_formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "73921ca7c05d4e7a",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 5,
+      "excerpt": "\"purpose\": \"Add HP/Mana/CP and regeneration calculator foundation to the cumulative runtime package.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "c86daa429d3c2c35",
+      "system": "ai",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 7,
+      "excerpt": "\"classic_formula_claims\": \"None. New formulas are Reforged formula mode and not classic claimed.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "loot": [
+    {
+      "id": "dedc30f8b69b04cf",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 6,
+      "excerpt": "\"summary\": \"Adds EXP and leveling calculator foundation with validation while preserving classic formula evidence boundaries.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "7763394c995853a1",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 15,
+      "excerpt": "\"classic_formula_claims_added\": false,",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "2b6b40fea1d8b25b",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 363,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "0e8984b0310250f8",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 495,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "e1f475585ee4d86c",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 531,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "5344908d59f74ca5",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 591,
+      "excerpt": "\"path\": \"Sim/validators/__pycache__/validate_formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "6207db4afb5da8d2",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 619,
+      "excerpt": "\"path\": \"Sim/validators/validate_formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "d52977e3589fa8cd",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 5,
+      "excerpt": "\"purpose\": \"Add HP/Mana/CP and regeneration calculator foundation to the cumulative runtime package.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "abc4c58708d76efa",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 7,
+      "excerpt": "\"classic_formula_claims\": \"None. New formulas are Reforged formula mode and not classic claimed.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "2352794626b9f37b",
+      "system": "loot",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 446,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "economy": [
+    {
+      "id": "1a65cb3b36060a07",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 6,
+      "excerpt": "\"summary\": \"Adds EXP and leveling calculator foundation with validation while preserving classic formula evidence boundaries.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "77f5daffeed7c66e",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 15,
+      "excerpt": "\"classic_formula_claims_added\": false,",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "a89fbd7ac608e2d6",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 363,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "f91e997bbda8ab7c",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 495,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "57b785645512ba64",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 531,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "e96f1a5a7fd971c4",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 591,
+      "excerpt": "\"path\": \"Sim/validators/__pycache__/validate_formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "4842564d68c5dcbe",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 619,
+      "excerpt": "\"path\": \"Sim/validators/validate_formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "105058d8afef3296",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 5,
+      "excerpt": "\"purpose\": \"Add HP/Mana/CP and regeneration calculator foundation to the cumulative runtime package.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "50435049e937039c",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 7,
+      "excerpt": "\"classic_formula_claims\": \"None. New formulas are Reforged formula mode and not classic claimed.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "b778ecd141d78e28",
+      "system": "economy",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 446,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "spawn": [
+    {
+      "id": "45cc3ab758e13909",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 6,
+      "excerpt": "\"summary\": \"Adds EXP and leveling calculator foundation with validation while preserving classic formula evidence boundaries.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "8c5aba9354d8e88e",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 15,
+      "excerpt": "\"classic_formula_claims_added\": false,",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "69c52f6f11edb55c",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 363,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "0fee577a975b7a74",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 495,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "9f4c6920d0dc3c67",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 531,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "080b6819f023714f",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 591,
+      "excerpt": "\"path\": \"Sim/validators/__pycache__/validate_formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "1091c3eec001ad70",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 619,
+      "excerpt": "\"path\": \"Sim/validators/validate_formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "58ce03825397a4fd",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 5,
+      "excerpt": "\"purpose\": \"Add HP/Mana/CP and regeneration calculator foundation to the cumulative runtime package.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "40e9897bcadf9c95",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 7,
+      "excerpt": "\"classic_formula_claims\": \"None. New formulas are Reforged formula mode and not classic claimed.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "3cfd59dc13af8527",
+      "system": "spawn",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 446,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "movement": [
+    {
+      "id": "7e19167cf491562d",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 6,
+      "excerpt": "\"summary\": \"Adds EXP and leveling calculator foundation with validation while preserving classic formula evidence boundaries.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "bafdc56e490a8e73",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 15,
+      "excerpt": "\"classic_formula_claims_added\": false,",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "d26e4e22bd8503f9",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 363,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "dd9906b0287fe0e7",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 495,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "be3fcba44f72db87",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 531,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "298fed8eea4adcc2",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 591,
+      "excerpt": "\"path\": \"Sim/validators/__pycache__/validate_formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "91c42c592916f265",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0004.json",
+      "line": 619,
+      "excerpt": "\"path\": \"Sim/validators/validate_formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0004.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "9a633e768b46bd79",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 5,
+      "excerpt": "\"purpose\": \"Add HP/Mana/CP and regeneration calculator foundation to the cumulative runtime package.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "2bf3600bc730b8e8",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 7,
+      "excerpt": "\"classic_formula_claims\": \"None. New formulas are Reforged formula mode and not classic claimed.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "c3cfe15ddf2896d9",
+      "system": "movement",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 446,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "regeneration": [
+    {
+      "id": "b0c531156510c836",
+      "system": "regeneration",
+      "source_file": "CHANGELOG_RUNTIME_0005.md",
+      "line": 5,
+      "excerpt": "- HP/Mana/CP calculator foundation",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0005.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "6d6fc5920b131653",
+      "system": "regeneration",
+      "source_file": "CHANGELOG_RUNTIME_0005.md",
+      "line": 6,
+      "excerpt": "- Regeneration tick calculator foundation",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0005.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "511847eaf85afc8c",
+      "system": "regeneration",
+      "source_file": "CHANGELOG_RUNTIME_0005.md",
+      "line": 18,
+      "excerpt": "- No exact classic formula was promoted",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/CHANGELOG_RUNTIME_0005.md"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "c426a5d72c8a5bf3",
+      "system": "regeneration",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 5,
+      "excerpt": "\"purpose\": \"Add HP/Mana/CP and regeneration calculator foundation to the cumulative runtime package.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "bb24495e618bf60c",
+      "system": "regeneration",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 7,
+      "excerpt": "\"classic_formula_claims\": \"None. New formulas are Reforged formula mode and not classic claimed.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "3e36b5ae36d67d92",
+      "system": "regeneration",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 446,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "d19cf2bc3427fe3b",
+      "system": "regeneration",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 626,
+      "excerpt": "\"path\": \"Runtime/formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "735668d69be19387",
+      "system": "regeneration",
+      "source_file": "MANIFEST_RUNTIME_0005.json",
+      "line": 681,
+      "excerpt": "\"path\": \"Sim/validators/validate_formula_engine.py\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0005.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "3a1a20d28f2ad334",
+      "system": "regeneration",
+      "source_file": "MANIFEST_RUNTIME_0006.json",
+      "line": 450,
+      "excerpt": "\"path\": \"Data/derived_stats.json\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0006.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "c61bf74d5a9ce452",
+      "system": "regeneration",
+      "source_file": "MANIFEST_RUNTIME_0006.json",
+      "line": 640,
+      "excerpt": "\"path\": \"Runtime/__pycache__/formula_engine.cpython-313.pyc\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/MANIFEST_RUNTIME_0006.json"
+      },
+      "promotionEligible": false
+    }
+  ],
+  "status": [
+    {
+      "id": "a0d5713f0562eaa3",
+      "system": "status",
+      "source_file": "manifest_runtime_0011.json",
+      "line": 24,
+      "excerpt": "\"classic_formula_policy\": \"Classic spell formulas remain UNKNOWN until evidence-backed.\"",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/manifest_runtime_0011.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "31e167b49b3a12d8",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 6,
+      "excerpt": "\"description\": \"Used in items to make a \\\"spell effect\\\" occur on a percent chance on each hit or crit. The spell cast is specified by the NEXT \\\"CastsSp\\\" attribute. See \\\"CastsSp\\\".\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "b649e022eb9ea58a",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 222,
+      "excerpt": "\"description\": \"increases or decreases the targets max HP\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "3731f15b746709ca",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 255,
+      "excerpt": "\"id\": \"ability_99_alterdrpercent\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "a30ba15056e00c7d",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 257,
+      "excerpt": "\"name\": \"AlterDRpercent\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "553a27a49da0a040",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 474,
+      "excerpt": "\"description\": \"Used in items (although I can see no reason why it couldn't be used in a spell) to specify the backstab accuracy for the weapon. A positive value increases the chance to hit, a negative value decreases the chance to hit.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "335ff053af23bc07",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 489,
+      "excerpt": "\"id\": \"ability_118_bsmaxdmg\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "07a9126e12c44e88",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 491,
+      "excerpt": "\"name\": \"BsMaxDmg\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "885a6fbe2c521464",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 492,
+      "excerpt": "\"description\": \"Used in items (although I can see no reason why it couldn't be used in a spell) to specify a higher (or lower) maximum backstab damage for the weapon when armed.\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    },
+    {
+      "id": "e72859ba1adb434e",
+      "system": "status",
+      "source_file": "Data/abilities.json",
+      "line": 507,
+      "excerpt": "\"id\": \"ability_117_bsmindmg\",",
+      "evidenceState": "Observed",
+      "confidence": 45,
+      "provenance": {
+        "sourceKind": "repository_text_scan",
+        "path": "/mnt/data/validation_0005_build/MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification/Data/abilities.json"
+      },
+      "promotionEligible": false
+    }
+  ]
+}

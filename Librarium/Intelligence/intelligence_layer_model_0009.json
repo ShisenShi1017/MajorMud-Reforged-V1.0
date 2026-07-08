@@ -1,0 +1,44 @@
+{
+  "generatedUtc": "2026-07-07T22:21:39Z",
+  "name": "Librarium Intelligence Layer",
+  "version": "0009",
+  "baseGraph": {
+    "nodes": 89213,
+    "relationships": 352691
+  },
+  "goals": [
+    "answer graph-backed questions",
+    "compare world overlays",
+    "trace impact/dependencies",
+    "support canonical promotion",
+    "generate docs and validations",
+    "serve runtime/server/editor consumers"
+  ],
+  "evidenceStates": [
+    "Verified",
+    "Derived",
+    "Observed",
+    "Hypothesis",
+    "WorldOverride",
+    "AIProposal"
+  ],
+  "serviceIds": [
+    "relationship_explorer",
+    "impact_analysis",
+    "world_diff",
+    "promotion_workflow",
+    "documentation_generator",
+    "validation_generator",
+    "runtime_consumer_api",
+    "natural_language_query_map"
+  ],
+  "consumerApis": [
+    "runtime",
+    "server",
+    "editor",
+    "validation",
+    "documentation",
+    "ai_worlds"
+  ],
+  "rule": "The Librarium is the source of truth. Consumers query services; they do not invent gameplay knowledge."
+}

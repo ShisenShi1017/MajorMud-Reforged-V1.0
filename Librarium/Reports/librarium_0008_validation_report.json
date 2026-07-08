@@ -1,0 +1,19 @@
+{
+  "milestone": "Librarium-0008",
+  "status": "PASS",
+  "generatedUtc": "2026-07-07T22:15:26.377918+00:00",
+  "nodeCount": 89213,
+  "relationshipCount": 352691,
+  "missingLinks": 0,
+  "duplicateRelationships": 0,
+  "behaviorActions": 16,
+  "behaviorStages": 97,
+  "statusEffectModels": 10,
+  "skillModels": 10,
+  "formulaDependencyModels": 10,
+  "runtimeEvents": 23,
+  "notes": [
+    "Behavior graph describes runtime action chains; it does not claim exact Classic formulas unless those formula records are verified.",
+    "Impact index is dependency-oriented and intended for Librarium queries and future editor/server consumers."
+  ]
+}

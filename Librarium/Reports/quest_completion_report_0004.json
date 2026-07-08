@@ -1,0 +1,15 @@
+{
+  "generatedUtc": "2026-07-07T23:45:52.608380+00:00",
+  "status": "PASS_WITH_FINDINGS",
+  "scope": "Quest reconstruction and completion scoring excluding formula verification.",
+  "questAbilityFlagsCount": 12,
+  "questFlowCandidateCount": 12,
+  "canonicalQuestRecordsPromoted": 0,
+  "reasonCanonicalDataNotOverwritten": "Ordered NPC/textblock stage proof remains incomplete; candidates are retained as evidence-linked records.",
+  "nextNeededEvidence": [
+    "decoded ordered NPC dialogue branches",
+    "confirmed reward/action ordering",
+    "runtime observation or cross-source corroboration for stage advancement"
+  ],
+  "finding": "Quest identity/ability relationships are strongly represented; exact ordered stage chains remain partial."
+}

@@ -1,0 +1,67 @@
+{
+  "milestone": "Validation-0004 — Complete Knowledge Completion Pass",
+  "generatedUtc": "2026-07-07T23:45:52.646615+00:00",
+  "basePackage": "MajorMUD-Reforged-Validation-0003-Quest-Dialogue-Formula-Verification.zip",
+  "result": "PASS_WITH_FINDINGS",
+  "scopeIncluded": [
+    "quest reconstruction scoring",
+    "dialogue/textblock reconstruction scoring",
+    "script reconstruction scoring",
+    "ability verification",
+    "NPC/item/monster/room/exit completion scoring",
+    "runtime relationship verification",
+    "repository cross-validation summaries",
+    "knowledge promotion candidates",
+    "top remaining unknowns"
+  ],
+  "scopeExcluded": [
+    "dedicated formula extraction and verification; reserved for Validation-0005"
+  ],
+  "filesScannedFromPriorIngestion": 18018,
+  "entitiesExtracted": 20826,
+  "knowledgeAssertions": 71026,
+  "entityEvidenceStates": {
+    "Verified": 20826
+  },
+  "assertionEvidenceStates": {
+    "Verified": 53008,
+    "Derived": 18018
+  },
+  "assertionCategoriesTop": {
+    "source_metadata": 36315,
+    "entity_existence": 20826,
+    "record_index": 13885
+  },
+  "predicateTop": {
+    "exists_in_source": 20826,
+    "attribute:extension": 18018,
+    "attribute:classification": 18018,
+    "attribute:evidence_state": 2808,
+    "attribute:source_zip": 2777,
+    "attribute:path": 2777,
+    "attribute:record_type": 2777,
+    "attribute:file_id": 2777,
+    "attribute:source_id": 31,
+    "attribute:filename": 31,
+    "attribute:size_bytes": 31,
+    "attribute:zip_integrity": 31,
+    "attribute:entry_count": 31,
+    "attribute:file_count": 31,
+    "attribute:directory_count": 31,
+    "attribute:provenance": 31
+  },
+  "conflictsCarriedForward": 0,
+  "orphansCarriedForward": 0,
+  "nonFormulaEntitiesScored": 20411,
+  "completionBandCounts": {
+    "mostly_complete": 20411
+  },
+  "promotionCandidateCount": 0,
+  "questAbilityFlags": 12,
+  "dialogueReferences": 16,
+  "textblockReferences": 16,
+  "scriptTriggerNodes": 18644,
+  "directAbilityRelationships": 10728,
+  "canonicalDataOverwritten": false,
+  "nextRecommendedPass": "Validation-0005 — Formula Extraction and Verification"
+}

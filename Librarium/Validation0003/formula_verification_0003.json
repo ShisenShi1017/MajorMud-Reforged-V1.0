@@ -1,0 +1,266 @@
+{
+  "generatedUtc": "2026-07-07T23:31:16.966331+00:00",
+  "status": "PASS_WITH_FINDINGS",
+  "formulaModelsEvaluated": 10,
+  "dependencyEdges": 45,
+  "mostCommonDependencies": [
+    [
+      "runtime:ability",
+      5
+    ],
+    [
+      "runtime:combat",
+      3
+    ],
+    [
+      "stat:intellect",
+      3
+    ],
+    [
+      "stat:willpower",
+      3
+    ],
+    [
+      "runtime:spellcasting",
+      3
+    ],
+    [
+      "runtime:regeneration",
+      3
+    ],
+    [
+      "runtime:tick_scheduler",
+      3
+    ],
+    [
+      "stat:strength",
+      2
+    ],
+    [
+      "runtime:equipment",
+      2
+    ],
+    [
+      "runtime:status_effects",
+      2
+    ],
+    [
+      "stat:agility",
+      1
+    ],
+    [
+      "stat:weapon_skill",
+      1
+    ],
+    [
+      "stat:weapon_damage",
+      1
+    ],
+    [
+      "stat:class_modifier",
+      1
+    ],
+    [
+      "stat:mana",
+      1
+    ],
+    [
+      "stat:health",
+      1
+    ],
+    [
+      "ability:ability_123_hpregen",
+      1
+    ],
+    [
+      "stat:level",
+      1
+    ],
+    [
+      "runtime:quest",
+      1
+    ],
+    [
+      "runtime:validation",
+      1
+    ],
+    [
+      "stat:charm",
+      1
+    ],
+    [
+      "runtime:economy",
+      1
+    ],
+    [
+      "runtime:npc_services",
+      1
+    ],
+    [
+      "time:spawn_interval",
+      1
+    ],
+    [
+      "runtime:spawn",
+      1
+    ]
+  ],
+  "formulas": [
+    {
+      "formulaId": "formula:melee_hit_resolution",
+      "name": "Melee Hit Resolution Dependency Model",
+      "dependencyCount": 6,
+      "dependencies": [
+        "stat:strength",
+        "stat:agility",
+        "stat:weapon_skill",
+        "runtime:equipment",
+        "runtime:ability",
+        "runtime:combat"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:melee_damage_resolution",
+      "name": "Melee Damage Resolution Dependency Model",
+      "dependencyCount": 6,
+      "dependencies": [
+        "stat:strength",
+        "stat:weapon_damage",
+        "stat:class_modifier",
+        "runtime:equipment",
+        "runtime:ability",
+        "runtime:combat"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:spell_success_resolution",
+      "name": "Spell Success Dependency Model",
+      "dependencyCount": 6,
+      "dependencies": [
+        "stat:intellect",
+        "stat:willpower",
+        "stat:mana",
+        "runtime:spellcasting",
+        "runtime:ability",
+        "runtime:status_effects"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:spell_damage_healing",
+      "name": "Spell Damage/Healing Dependency Model",
+      "dependencyCount": 5,
+      "dependencies": [
+        "stat:intellect",
+        "stat:willpower",
+        "runtime:spellcasting",
+        "runtime:ability",
+        "runtime:regeneration"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:hp_regeneration",
+      "name": "HP Regeneration Dependency Model",
+      "dependencyCount": 4,
+      "dependencies": [
+        "stat:health",
+        "ability:ability_123_hpregen",
+        "runtime:regeneration",
+        "runtime:tick_scheduler"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:mana_regeneration",
+      "name": "Mana Regeneration Dependency Model",
+      "dependencyCount": 4,
+      "dependencies": [
+        "stat:intellect",
+        "stat:willpower",
+        "runtime:regeneration",
+        "runtime:tick_scheduler"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:experience_award",
+      "name": "Experience Award Dependency Model",
+      "dependencyCount": 4,
+      "dependencies": [
+        "stat:level",
+        "runtime:combat",
+        "runtime:quest",
+        "runtime:validation"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:shop_pricing",
+      "name": "Shop Pricing Dependency Model",
+      "dependencyCount": 4,
+      "dependencies": [
+        "stat:charm",
+        "runtime:economy",
+        "runtime:npc_services",
+        "runtime:ability"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:spawn_timing",
+      "name": "Spawn Timing Dependency Model",
+      "dependencyCount": 3,
+      "dependencies": [
+        "time:spawn_interval",
+        "runtime:spawn",
+        "runtime:tick_scheduler"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    },
+    {
+      "formulaId": "formula:status_duration",
+      "name": "Status Duration Dependency Model",
+      "dependencyCount": 3,
+      "dependencies": [
+        "time:status_duration",
+        "runtime:status_effects",
+        "runtime:spellcasting"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "verificationStatus": "dependencies_graphed_exact_classic_formula_unproven",
+      "promotionBlockedBy": "Need numeric formula evidence from calculator/runtime/reference comparisons."
+    }
+  ],
+  "finding": "Formula dependency graph is usable, but exact classic formula math remains Derived until numeric evidence validates outputs."
+}

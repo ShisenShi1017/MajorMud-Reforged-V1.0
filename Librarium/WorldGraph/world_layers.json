@@ -1,0 +1,122 @@
+{
+  "milestone": "Librarium-0007",
+  "generatedUtc": "2026-07-07T22:09:28.754876+00:00",
+  "overlayRule": "Running world = Classic Base Graph + selected World Overlay Graph + Live Runtime State Overlay.",
+  "worldLayers": [
+    {
+      "nodeId": "world:classic_base",
+      "name": "Classic Base Graph",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "notes": "Authoritative base graph reconstructed from canonical data and evidence records."
+    },
+    {
+      "nodeId": "world:reforged_overlay",
+      "name": "Reforged Overlay Graph",
+      "evidenceState": "Derived",
+      "confidence": 85,
+      "notes": "Future Reforged rules/content overlay; does not mutate Classic base."
+    },
+    {
+      "nodeId": "world:custom_1_overlay",
+      "name": "Custom World 1 Overlay Graph",
+      "evidenceState": "Hypothesis",
+      "confidence": 40,
+      "notes": "Reserved overlay layer for host-created custom world 1."
+    },
+    {
+      "nodeId": "world:custom_2_overlay",
+      "name": "Custom World 2 Overlay Graph",
+      "evidenceState": "Hypothesis",
+      "confidence": 40,
+      "notes": "Reserved overlay layer for host-created custom world 2."
+    },
+    {
+      "nodeId": "world:ai_overlay",
+      "name": "AI World Overlay Graph",
+      "evidenceState": "Hypothesis",
+      "confidence": 40,
+      "notes": "Reserved overlay layer for AI-proposed/AI-managed content."
+    },
+    {
+      "nodeId": "world:test_realm_overlay",
+      "name": "Test Realm Overlay Graph",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "notes": "Reserved overlay layer for validation and experimental runtime tests."
+    },
+    {
+      "nodeId": "world:live_runtime_state",
+      "name": "Live Runtime State Overlay",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "notes": "Ephemeral running-world state such as active monsters, player state, timers, and corpses."
+    }
+  ],
+  "subgraphs": {
+    "world_graph:regions_zones": "Region/Zone Knowledge Graph",
+    "world_graph:travel_network": "Travel/Portal Knowledge Graph",
+    "world_graph:economy_regions": "Economy Region Knowledge Graph",
+    "world_graph:factions": "Faction Candidate Knowledge Graph",
+    "world_graph:guilds": "Guild Candidate Knowledge Graph",
+    "world_graph:deities_religion": "Deity/Religion Candidate Knowledge Graph",
+    "world_graph:cross_world": "Cross-World Relationship Model",
+    "world_graph:inheritance": "World Inheritance Model"
+  },
+  "liveRuntimeStateRecords": {
+    "live_state:players": "Live Players",
+    "live_state:active_monsters": "Active Monsters",
+    "live_state:ground_items": "Ground Items",
+    "live_state:corpses": "Corpses",
+    "live_state:spawn_timers": "Spawn Timers",
+    "live_state:combat_instances": "Combat Instances",
+    "live_state:quest_flags": "Quest/Ability Flags",
+    "live_state:shop_inventory": "Shop Inventory State",
+    "live_state:world_clock": "World Clock"
+  },
+  "baseGraphEntityCounts": {
+    "ability": 188,
+    "item": 1950,
+    "monster": 1100,
+    "room": 1248,
+    "shop": 178,
+    "class": 15,
+    "race": 13,
+    "skill": 1,
+    "loot_table": 420,
+    "trainer": 13,
+    "leveling": 1,
+    "progression": 1,
+    "world": 1,
+    "spell": 1350,
+    "quest_candidate": 12,
+    "exit": 3025,
+    "monster_attack": 2269,
+    "classification": 6,
+    "textblock_reference": 12,
+    "raw_owner_row": 2649,
+    "text_evidence": 16,
+    "quest_flow_candidate": 12,
+    "content_graph_root": 1,
+    "text_content": 11561,
+    "message_text": 3118,
+    "message_catalog_text": 3006,
+    "dialogue_reference": 16,
+    "script_trigger": 18644,
+    "world_object": 315,
+    "relationship_type": 43,
+    "relationship_record": 37683,
+    "runtime_system": 24,
+    "stat_dependency": 11,
+    "time_dependency": 7,
+    "formula_dependency_model": 10,
+    "runtime_event": 23,
+    "validation_report": 17,
+    "world_layer": 7,
+    "World Overlay Merge Model": 1,
+    "world_overlay_operation": 40,
+    "world_subgraph": 8,
+    "live_runtime_state_record": 9,
+    "World Graph Integrity Validation": 1
+  }
+}

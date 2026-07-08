@@ -1,0 +1,53 @@
+{
+  "version": "0001",
+  "generatedUtc": "2026-07-07T21:07:41.172805Z",
+  "nodeCounts": {
+    "ability": 188,
+    "item": 1950,
+    "monster": 1100,
+    "room": 1248,
+    "shop": 178,
+    "class": 15,
+    "race": 13,
+    "skill": 1,
+    "loot_table": 420,
+    "trainer": 13,
+    "leveling": 1,
+    "progression": 1,
+    "world": 1,
+    "spell": 1350,
+    "quest_candidate": 12
+  },
+  "edgeCounts": {
+    "HAS_ABILITY": 10748,
+    "ATTACK_CASTS_SPELL": 485,
+    "CAN_DROP_ITEM": 731,
+    "EXITS_TO": 46,
+    "SELLS_ITEM": 1204,
+    "RESISTED_BY_ABILITY": 4,
+    "OBSERVED_GRANTS_ABILITY": 1,
+    "USES_QUEST_FLAG": 12,
+    "OBSERVED_REWARDS_ITEM": 1
+  },
+  "totalNodes": 6491,
+  "totalEdges": 13232,
+  "whiteGoldRingMatches": [
+    {
+      "id": "item_642_white_gold_ring",
+      "legacyNumber": 642,
+      "name": "white gold ring"
+    }
+  ],
+  "ability123": {
+    "nodeId": "ability:ability_123_hpregen",
+    "classification": [
+      "functional_ability",
+      "spell_linked",
+      "quest_reward_linked",
+      "item_granted_observed",
+      "regeneration_modifier"
+    ]
+  },
+  "questCandidateCount": 12,
+  "dataPromotion": "Data/quests.json was not overwritten; quest candidates are stored in Librarium/Graph and Data/CanonicalCandidates until validated."
+}

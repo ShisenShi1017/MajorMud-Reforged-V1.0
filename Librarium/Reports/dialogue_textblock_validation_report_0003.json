@@ -1,0 +1,24 @@
+{
+  "generatedUtc": "2026-07-07T23:31:16.966331+00:00",
+  "status": "PASS_WITH_FINDINGS",
+  "textblockReferences": 16,
+  "dialogueReferences": 16,
+  "canonicalTextAbilityMentions": 16,
+  "rawOwnerTextAbilityMentions": 1000,
+  "orderedQuestStagesProven": 0,
+  "finding": "Textblock and dialogue references are indexed, but most records do not yet contain decoded branch ordering sufficient to verify exact ordered quest stages.",
+  "nextEvidenceNeeded": [
+    "decoded NPC dialogue branch order",
+    "textblock condition/action ordering",
+    "reward/requirement stage boundaries"
+  ],
+  "canonicalAbilityMentionBreakdown": {
+    "50": 2,
+    "123": 1,
+    "125": 1,
+    "129": 1,
+    "132": 5,
+    "133": 4,
+    "134": 2
+  }
+}

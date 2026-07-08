@@ -1,0 +1,182 @@
+[
+  {
+    "id": "formula_system:combat",
+    "type": "FormulaSystem",
+    "name": "combat",
+    "evidenceState": "Derived",
+    "confidence": 90,
+    "metrics": {
+      "sourceFiles": 162,
+      "assertions": 44652,
+      "functions": 12,
+      "equationCandidates": 31,
+      "derivedClusters": 0,
+      "hypothesisClusters": 31,
+      "conflicts": 5
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:experience_leveling",
+    "type": "FormulaSystem",
+    "name": "experience_leveling",
+    "evidenceState": "Derived",
+    "confidence": 68,
+    "metrics": {
+      "sourceFiles": 18,
+      "assertions": 4005,
+      "functions": 5,
+      "equationCandidates": 4,
+      "derivedClusters": 0,
+      "hypothesisClusters": 4,
+      "conflicts": 0
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:spell",
+    "type": "FormulaSystem",
+    "name": "spell",
+    "evidenceState": "Derived",
+    "confidence": 72,
+    "metrics": {
+      "sourceFiles": 22,
+      "assertions": 20359,
+      "functions": 3,
+      "equationCandidates": 5,
+      "derivedClusters": 0,
+      "hypothesisClusters": 5,
+      "conflicts": 0
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:ai",
+    "type": "FormulaSystem",
+    "name": "ai",
+    "evidenceState": "Derived",
+    "confidence": 90,
+    "metrics": {
+      "sourceFiles": 44,
+      "assertions": 772,
+      "functions": 0,
+      "equationCandidates": 12,
+      "derivedClusters": 0,
+      "hypothesisClusters": 11,
+      "conflicts": 2
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:loot",
+    "type": "FormulaSystem",
+    "name": "loot",
+    "evidenceState": "Derived",
+    "confidence": 52,
+    "metrics": {
+      "sourceFiles": 2,
+      "assertions": 486,
+      "functions": 0,
+      "equationCandidates": 3,
+      "derivedClusters": 0,
+      "hypothesisClusters": 3,
+      "conflicts": 0
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:economy",
+    "type": "FormulaSystem",
+    "name": "economy",
+    "evidenceState": "Derived",
+    "confidence": 54,
+    "metrics": {
+      "sourceFiles": 4,
+      "assertions": 22,
+      "functions": 3,
+      "equationCandidates": 7,
+      "derivedClusters": 0,
+      "hypothesisClusters": 7,
+      "conflicts": 2
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:spawn",
+    "type": "FormulaSystem",
+    "name": "spawn",
+    "evidenceState": "Derived",
+    "confidence": 55,
+    "metrics": {
+      "sourceFiles": 5,
+      "assertions": 18,
+      "functions": 0,
+      "equationCandidates": 2,
+      "derivedClusters": 0,
+      "hypothesisClusters": 2,
+      "conflicts": 0
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:movement",
+    "type": "FormulaSystem",
+    "name": "movement",
+    "evidenceState": "Derived",
+    "confidence": 75,
+    "metrics": {
+      "sourceFiles": 25,
+      "assertions": 4284,
+      "functions": 0,
+      "equationCandidates": 2,
+      "derivedClusters": 0,
+      "hypothesisClusters": 2,
+      "conflicts": 0
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:regeneration",
+    "type": "FormulaSystem",
+    "name": "regeneration",
+    "evidenceState": "Derived",
+    "confidence": 62,
+    "metrics": {
+      "sourceFiles": 12,
+      "assertions": 11076,
+      "functions": 5,
+      "equationCandidates": 9,
+      "derivedClusters": 0,
+      "hypothesisClusters": 9,
+      "conflicts": 0
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  },
+  {
+    "id": "formula_system:status",
+    "type": "FormulaSystem",
+    "name": "status",
+    "evidenceState": "Derived",
+    "confidence": 59,
+    "metrics": {
+      "sourceFiles": 9,
+      "assertions": 49,
+      "functions": 0,
+      "equationCandidates": 0,
+      "derivedClusters": 0,
+      "hypothesisClusters": 0,
+      "conflicts": 0
+    },
+    "exactClassicEquationVerified": false,
+    "canonicalStatus": "dependency_and_candidate_mapped_not_exact_verified"
+  }
+]

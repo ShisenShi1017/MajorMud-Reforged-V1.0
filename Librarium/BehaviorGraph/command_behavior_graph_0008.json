@@ -1,0 +1,195 @@
+{
+  "generatedUtc": "2026-07-07T22:15:26.377918+00:00",
+  "commands": [
+    {
+      "command": "look",
+      "behavior": "behavior:look",
+      "event": "event:look"
+    },
+    {
+      "command": "l",
+      "behavior": "behavior:look",
+      "event": "event:look"
+    },
+    {
+      "command": "north",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "south",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "east",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "west",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "up",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "down",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "n",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "s",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "e",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "w",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "u",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "d",
+      "behavior": "behavior:move",
+      "event": "event:player_move"
+    },
+    {
+      "command": "get",
+      "behavior": "behavior:get",
+      "event": "event:item_get"
+    },
+    {
+      "command": "take",
+      "behavior": "behavior:get",
+      "event": "event:item_get"
+    },
+    {
+      "command": "drop",
+      "behavior": "behavior:drop",
+      "event": "event:item_drop"
+    },
+    {
+      "command": "equip",
+      "behavior": "behavior:equip",
+      "event": "event:equip_item"
+    },
+    {
+      "command": "wear",
+      "behavior": "behavior:equip",
+      "event": "event:equip_item"
+    },
+    {
+      "command": "wield",
+      "behavior": "behavior:equip",
+      "event": "event:equip_item"
+    },
+    {
+      "command": "attack",
+      "behavior": "behavior:attack",
+      "event": "event:attack_resolved"
+    },
+    {
+      "command": "kill",
+      "behavior": "behavior:attack",
+      "event": "event:attack_resolved"
+    },
+    {
+      "command": "a",
+      "behavior": "behavior:attack",
+      "event": "event:attack_resolved"
+    },
+    {
+      "command": "cast",
+      "behavior": "behavior:cast",
+      "event": "event:spell_cast"
+    },
+    {
+      "command": "c",
+      "behavior": "behavior:cast",
+      "event": "event:spell_cast"
+    },
+    {
+      "command": "buy",
+      "behavior": "behavior:buy",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "sell",
+      "behavior": "behavior:sell",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "deposit",
+      "behavior": "behavior:bank",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "withdraw",
+      "behavior": "behavior:bank",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "balance",
+      "behavior": "behavior:bank",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "train",
+      "behavior": "behavior:train",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "learn",
+      "behavior": "behavior:train",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "heal",
+      "behavior": "behavior:heal",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "cure",
+      "behavior": "behavior:heal",
+      "event": "event:npc_service"
+    },
+    {
+      "command": "talk",
+      "behavior": "behavior:quest",
+      "event": "event:quest_flag_changed"
+    },
+    {
+      "command": "say",
+      "behavior": "behavior:quest",
+      "event": "event:quest_flag_changed"
+    },
+    {
+      "command": "give",
+      "behavior": "behavior:quest",
+      "event": "event:quest_flag_changed"
+    },
+    {
+      "command": "use",
+      "behavior": "behavior:quest",
+      "event": "event:quest_flag_changed"
+    }
+  ]
+}

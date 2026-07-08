@@ -1,0 +1,255 @@
+{
+  "world_id": "validation_runtime_0015",
+  "ticks_run": 12,
+  "commands_run": 6,
+  "events_before": 5,
+  "events_after": 38,
+  "players": 1,
+  "monsters": 3,
+  "corpses": 0,
+  "ground_items": 2,
+  "save_paths": [
+    "/mnt/data/runtime0017_work/MajorMUD-Reforged-Runtime-0017-Gameplay-Completion/Saves/worlds/validation_runtime_0015.json",
+    "/mnt/data/runtime0017_work/MajorMUD-Reforged-Runtime-0017-Gameplay-Completion/Saves/characters/player_runtime_tester.json",
+    "/mnt/data/runtime0017_work/MajorMUD-Reforged-Runtime-0017-Gameplay-Completion/Saves/snapshots/runtime_0015_offline_script.json"
+  ],
+  "command_results": [
+    {
+      "ok": true,
+      "message": "Room (1, 1). Monsters: Runtime Goblin, abomination, acid slime. Items: runtime coin, a statue of bard, a statue of cleric.",
+      "events": [],
+      "data": {
+        "room": [
+          1,
+          1
+        ],
+        "monsters": [
+          "Runtime Goblin",
+          "abomination",
+          "acid slime"
+        ],
+        "items": [
+          "runtime coin",
+          "a statue of bard",
+          "a statue of cleric"
+        ]
+      },
+      "raw": "look"
+    },
+    {
+      "ok": true,
+      "message": "You get runtime coin.",
+      "events": [],
+      "data": {
+        "item": "runtime_coin"
+      },
+      "raw": "get runtime"
+    },
+    {
+      "ok": true,
+      "message": "Runtime Tester hits Runtime Goblin for 6 damage.",
+      "events": [],
+      "data": {
+        "attack": {
+          "attacker_id": "player_runtime_tester",
+          "defender_id": "monster_runtime_goblin",
+          "hit": true,
+          "attack_roll": 26,
+          "hit_chance": 95.0,
+          "weapon_roll": 4,
+          "damage": 6,
+          "defender_hp_after": 12,
+          "traces": [
+            {
+              "formula_id": "reforged_hit_chance_v1",
+              "mode": "reforged_formula",
+              "inputs": {
+                "attacker": {
+                  "weapon_skill": 25,
+                  "accuracy_stat": 11,
+                  "level": 3,
+                  "item_accuracy_bonus": 0,
+                  "spell_accuracy_bonus": 0,
+                  "strength_bonus": 1,
+                  "weapon_bonus": 0,
+                  "skill_bonus": 1,
+                  "class_bonus": 0
+                },
+                "defender": {
+                  "defense": 0,
+                  "agility": 9,
+                  "level": 2,
+                  "armor_defense_bonus": 0,
+                  "spell_defense_bonus": 0,
+                  "damage_reduction": 0
+                }
+              },
+              "steps": [
+                {
+                  "name": "attack_score",
+                  "value": 42,
+                  "note": ""
+                },
+                {
+                  "name": "defense_score",
+                  "value": 13,
+                  "note": ""
+                },
+                {
+                  "name": "raw_hit_chance",
+                  "value": 108,
+                  "note": ""
+                },
+                {
+                  "name": "clamped_hit_chance",
+                  "value": 95,
+                  "note": ""
+                }
+              ],
+              "rolls": [],
+              "result": 95,
+              "classic_accuracy": "not_classic_claimed"
+            },
+            {
+              "formula_id": "reforged_damage_v1",
+              "mode": "reforged_formula",
+              "inputs": {
+                "attacker": {
+                  "weapon_skill": 25,
+                  "accuracy_stat": 11,
+                  "level": 3,
+                  "item_accuracy_bonus": 0,
+                  "spell_accuracy_bonus": 0,
+                  "strength_bonus": 1,
+                  "weapon_bonus": 0,
+                  "skill_bonus": 1,
+                  "class_bonus": 0
+                },
+                "defender": {
+                  "defense": 0,
+                  "agility": 9,
+                  "level": 2,
+                  "armor_defense_bonus": 0,
+                  "spell_defense_bonus": 0,
+                  "damage_reduction": 0
+                },
+                "weapon_roll": 4
+              },
+              "steps": [
+                {
+                  "name": "weapon_roll",
+                  "value": 4,
+                  "note": ""
+                },
+                {
+                  "name": "pre_minimum_damage",
+                  "value": 6,
+                  "note": ""
+                },
+                {
+                  "name": "final_damage",
+                  "value": 6,
+                  "note": ""
+                }
+              ],
+              "rolls": [],
+              "result": 6,
+              "classic_accuracy": "not_classic_claimed"
+            }
+          ],
+          "classic_accuracy": "not_classic_claimed"
+        }
+      },
+      "raw": "attack goblin"
+    },
+    {
+      "ok": true,
+      "message": "Cast heal: success.",
+      "events": [],
+      "data": {
+        "spell_result": {
+          "success": true,
+          "hp_delta": 10
+        }
+      },
+      "raw": "cast heal Runtime"
+    },
+    {
+      "ok": true,
+      "message": "You say, 'validation'",
+      "events": [],
+      "data": {},
+      "raw": "say validation"
+    },
+    {
+      "ok": true,
+      "message": "Players: Runtime Tester",
+      "events": [],
+      "data": {
+        "players": [
+          "Runtime Tester"
+        ]
+      },
+      "raw": "who"
+    }
+  ],
+  "trace": [
+    {
+      "event": "monsters_seeded",
+      "before": 1,
+      "after": 3
+    },
+    {
+      "event": "ground_items_seeded",
+      "count": 3
+    },
+    {
+      "event": "world_loaded",
+      "world_id": "validation_runtime_0015"
+    },
+    {
+      "event": "command_executed",
+      "actor_id": "player_runtime_tester",
+      "raw": "look",
+      "ok": true
+    },
+    {
+      "event": "command_executed",
+      "actor_id": "player_runtime_tester",
+      "raw": "get runtime",
+      "ok": true
+    },
+    {
+      "event": "command_executed",
+      "actor_id": "player_runtime_tester",
+      "raw": "attack goblin",
+      "ok": true
+    },
+    {
+      "event": "command_executed",
+      "actor_id": "player_runtime_tester",
+      "raw": "cast heal Runtime",
+      "ok": true
+    },
+    {
+      "event": "command_executed",
+      "actor_id": "player_runtime_tester",
+      "raw": "say validation",
+      "ok": true
+    },
+    {
+      "event": "command_executed",
+      "actor_id": "player_runtime_tester",
+      "raw": "who",
+      "ok": true
+    },
+    {
+      "event": "autosave_complete",
+      "paths": [
+        "/mnt/data/runtime0017_work/MajorMUD-Reforged-Runtime-0017-Gameplay-Completion/Saves/worlds/validation_runtime_0015.json",
+        "/mnt/data/runtime0017_work/MajorMUD-Reforged-Runtime-0017-Gameplay-Completion/Saves/characters/player_runtime_tester.json",
+        "/mnt/data/runtime0017_work/MajorMUD-Reforged-Runtime-0017-Gameplay-Completion/Saves/snapshots/runtime_0015_offline_script.json"
+      ]
+    }
+  ]
+}

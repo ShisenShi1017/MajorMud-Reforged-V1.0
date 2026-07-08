@@ -1,0 +1,43 @@
+{
+  "validation": "Validation-0007 Final Librarium Completion / Compiler Foundation",
+  "timestampUtc": "2026-07-08T00:09:22.784420Z",
+  "result": "PASS_WITH_FINDINGS",
+  "coreGraph": {
+    "nodes": 89213,
+    "relationships": 352691,
+    "missingSources": 0,
+    "missingTargets": 0,
+    "duplicateRelationships": 0
+  },
+  "repositoryIngestion": {
+    "filesIndexed": 18018,
+    "entitiesExtracted": 20826,
+    "knowledgeAssertions": 71026
+  },
+  "formulaStatus": {
+    "formulaAssertionsExtracted": 238039,
+    "candidateEquationsExtracted": 75,
+    "potentialConflicts": 9,
+    "exactClassicEquationsVerified": 0,
+    "status": "mapped_and_reconciled_candidates_present_no_exact_classic_equations_verified"
+  },
+  "contentStatus": {
+    "nonFormulaEntitiesScored": 20411,
+    "questAbilityFlags": 12,
+    "scriptTriggerNodes": 18644,
+    "canonicalQuestRecordsPromoted": "0 unless exact ordered quest stage evidence is present"
+  },
+  "architecturalDecisionsLocked": [
+    "Librarium is canonical.",
+    "/Data is generated runtime output, not master source.",
+    "Relationships and formulas are first-class knowledge records.",
+    "World overlays extend Classic without corrupting it.",
+    "Runtime/server/editor/client consume Librarium outputs."
+  ],
+  "remainingFindings": [
+    "Exact Classic formula equations still require direct proof or accepted reconciliation.",
+    "Some quest stages remain candidates until ordered NPC/textblock flow is decoded.",
+    "Dialogue branch ordering remains a validation target.",
+    "Generated runtime compiler/export tools are specified but not fully production implemented."
+  ]
+}

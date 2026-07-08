@@ -1,0 +1,66 @@
+{
+  "generatedUtc": "2026-07-07T22:21:39Z",
+  "apiVersion": "librarium-services-v0.1",
+  "endpoints": [
+    {
+      "name": "query_record",
+      "description": "Return a record, direct relationships, reverse relationships, evidence, and runtime consumers.",
+      "request": {
+        "recordId": "string",
+        "depth": "integer optional"
+      },
+      "response": [
+        "record",
+        "relationships",
+        "reverseRelationships",
+        "evidence",
+        "runtimeConsumers"
+      ]
+    },
+    {
+      "name": "impact",
+      "description": "Trace graph impact from a change.",
+      "request": {
+        "recordId": "string",
+        "changeType": "modify|remove|promote|override"
+      },
+      "response": [
+        "affectedRecords",
+        "affectedWorldLayers",
+        "runtimeConsumers",
+        "validationTargets",
+        "riskLevel"
+      ]
+    },
+    {
+      "name": "world_diff",
+      "description": "Compare two world graph layers.",
+      "request": {
+        "leftLayer": "string",
+        "rightLayer": "string"
+      },
+      "response": [
+        "added",
+        "removed",
+        "changed",
+        "conflicts",
+        "promotionCandidates"
+      ]
+    },
+    {
+      "name": "promote",
+      "description": "Create a promotion decision/audit record without losing source state.",
+      "request": {
+        "recordId": "string",
+        "targetState": "string",
+        "sources": "array"
+      },
+      "response": [
+        "decision",
+        "requiredEvidence",
+        "auditRecord"
+      ]
+    }
+  ],
+  "notes": "This is a local file/API contract foundation for future server/editor integration."
+}

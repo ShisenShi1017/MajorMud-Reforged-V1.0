@@ -1,0 +1,22 @@
+{
+  "generatedUtc": "2026-07-07T23:45:52.608417+00:00",
+  "status": "PASS_WITH_FINDINGS",
+  "scriptTriggerNodes": 18644,
+  "scriptFieldKinds": {
+    "behavior": 2348,
+    "uses": 1950,
+    "openRewards": 1950,
+    "deathDrop": 1950,
+    "properties": 1950,
+    "restrictions": 1950,
+    "spawn": 1248,
+    "rawExitFields": 1248,
+    "groundCurrency": 1248,
+    "currencyDrops": 1100,
+    "attacks": 980,
+    "loot": 420,
+    "spells": 302
+  },
+  "runtimeScriptsPromoted": 0,
+  "finding": "Script/trigger-containing fields are indexed and related; full condition/action semantic decode remains pending."
+}

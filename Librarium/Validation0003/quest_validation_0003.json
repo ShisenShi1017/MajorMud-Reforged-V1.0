@@ -1,0 +1,1846 @@
+{
+  "generatedUtc": "2026-07-07T23:31:16.966331+00:00",
+  "status": "PASS_WITH_FINDINGS",
+  "questAbilityFlags": [
+    50,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    156
+  ],
+  "watchedAbilities": [
+    50,
+    123,
+    125,
+    126,
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    156
+  ],
+  "abilitySupport": [
+    {
+      "abilityId": 50,
+      "abilityName": "MageBaneQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 2,
+        "rawTextMentions": 0,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [
+          {
+            "sourceNode": "item:item_646_magebane_sword",
+            "sourceType": "item",
+            "sourceId": "item_646_magebane_sword",
+            "sourceName": "Magebane sword",
+            "field": "descriptions",
+            "term": "magebane",
+            "abilityId": 50,
+            "abilityName": "MageBaneQuest",
+            "text": "This long, wickedly-sharp sword is crafted from the finest\nsteel possible. It is named the Magebane for its edge, which\nis covered in many small serrated points. The combination of\nthe sharpness and these tiny barbs cause painful, jagged\nwounds in the target, disrupting concentration (and thus\nspellcasting)."
+          },
+          {
+            "sourceNode": "monster:monster_257_huge_dwarven_witchunter",
+            "sourceType": "monster",
+            "sourceId": "monster_257_huge_dwarven_witchunter",
+            "sourceName": "huge dwarven witchunter",
+            "field": "name_attacks",
+            "term": "magebane",
+            "abilityId": 50,
+            "abilityName": "MageBaneQuest",
+            "text": "huge dwarven witchunter | slices | swings at | Magebane sword"
+          }
+        ],
+        "rawTextMentions": []
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 123,
+      "abilityName": "HPRegen",
+      "classification": [
+        "hybrid_functional_ability"
+      ],
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "supportCounts": {
+        "itemAbilityRefs": 25,
+        "spellAbilityRefs": 16,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 1,
+        "rawTextMentions": 56,
+        "priorQuestCandidateRecords": 0
+      },
+      "sampleSupports": {
+        "items": [
+          {
+            "itemId": 1038,
+            "itemName": "amethyst emblem",
+            "value": "5"
+          },
+          {
+            "itemId": 1642,
+            "itemName": "barbed circlet",
+            "value": "-50"
+          },
+          {
+            "itemId": 1481,
+            "itemName": "beastly claws",
+            "value": "-25"
+          },
+          {
+            "itemId": 645,
+            "itemName": "black and white serpent ring",
+            "value": "35"
+          },
+          {
+            "itemId": 1331,
+            "itemName": "black embroidered robes",
+            "value": "10"
+          },
+          {
+            "itemId": 1530,
+            "itemName": "Caladbolg",
+            "value": "50"
+          },
+          {
+            "itemId": 1579,
+            "itemName": "death shroud",
+            "value": "-50"
+          },
+          {
+            "itemId": 1071,
+            "itemName": "Demon's Maw",
+            "value": "-40"
+          },
+          {
+            "itemId": 1030,
+            "itemName": "emerald emblem",
+            "value": "10"
+          },
+          {
+            "itemId": 1442,
+            "itemName": "faded shawl",
+            "value": "-100"
+          },
+          {
+            "itemId": 1802,
+            "itemName": "Feyr",
+            "value": "35"
+          },
+          {
+            "itemId": 325,
+            "itemName": "hellblade",
+            "value": "-25"
+          },
+          {
+            "itemId": 1075,
+            "itemName": "ice crystal staff",
+            "value": "25"
+          },
+          {
+            "itemId": 1594,
+            "itemName": "jeweled dirk",
+            "value": "50"
+          },
+          {
+            "itemId": 1322,
+            "itemName": "mantle of the woodsman",
+            "value": "25"
+          },
+          {
+            "itemId": 1471,
+            "itemName": "nightblack scythe",
+            "value": "-100"
+          },
+          {
+            "itemId": 1042,
+            "itemName": "onyx emblem",
+            "value": "10"
+          },
+          {
+            "itemId": 1447,
+            "itemName": "platinum plate leggings",
+            "value": "20"
+          },
+          {
+            "itemId": 651,
+            "itemName": "ruby-eyed skull ring",
+            "value": "25"
+          },
+          {
+            "itemId": 1034,
+            "itemName": "sapphire emblem",
+            "value": "5"
+          }
+        ],
+        "spells": [
+          {
+            "spellId": 748,
+            "spellName": "chaos surge",
+            "value": "-150"
+          },
+          {
+            "spellId": 1261,
+            "spellName": "dirty pool",
+            "value": "0"
+          },
+          {
+            "spellId": 1112,
+            "spellName": "earthbind",
+            "value": "0"
+          },
+          {
+            "spellId": 858,
+            "spellName": "form of the dragon",
+            "value": "200"
+          },
+          {
+            "spellId": 1133,
+            "spellName": "frothing brown potion",
+            "value": "0"
+          },
+          {
+            "spellId": 859,
+            "spellName": "heros tabard",
+            "value": "0"
+          },
+          {
+            "spellId": 484,
+            "spellName": "inn rest",
+            "value": "200"
+          },
+          {
+            "spellId": 337,
+            "spellName": "pool",
+            "value": "200"
+          },
+          {
+            "spellId": 1378,
+            "spellName": "profane link",
+            "value": "-25"
+          },
+          {
+            "spellId": 876,
+            "spellName": "rapid healing",
+            "value": "100"
+          },
+          {
+            "spellId": 831,
+            "spellName": "rapid healing",
+            "value": "100"
+          },
+          {
+            "spellId": 138,
+            "spellName": "rapid healing",
+            "value": "100"
+          },
+          {
+            "spellId": 674,
+            "spellName": "rosewood rod",
+            "value": "0"
+          },
+          {
+            "spellId": 269,
+            "spellName": "song of life",
+            "value": "0"
+          },
+          {
+            "spellId": 803,
+            "spellName": "song of soothing",
+            "value": "75"
+          },
+          {
+            "spellId": 1127,
+            "spellName": "yellow potion",
+            "value": "50"
+          }
+        ],
+        "canonicalTextMentions": [
+          {
+            "sourceNode": "item:item_631_barkskin_scroll",
+            "sourceType": "item",
+            "sourceId": "item_631_barkskin_scroll",
+            "sourceName": "barkskin scroll",
+            "field": "descriptions",
+            "term": "regeneration",
+            "abilityId": 123,
+            "abilityName": "HPRegen",
+            "text": "This thick, weathered bark scroll is inscribed with many\npassages written in a bold, flowing hand. Upon scanning its\ncontents, you discover that it contains the secret methods\nof learning and casting the Regeneration spell! This\npowerful but short-lived spell rapidly heals the target's\nwounds."
+          }
+        ],
+        "rawTextMentions": [
+          {
+            "page": 394,
+            "row": 3,
+            "offset": 1381,
+            "term": "123",
+            "abilityId": 123,
+            "segments": [
+              "chest",
+              "rips you",
+              "None",
+              "None",
+              "None",
+              "None",
+              "Room 1/2123p"
+            ]
+          },
+          {
+            "page": 1667,
+            "row": 7,
+            "offset": 3101,
+            "term": "123",
+            "abilityId": 123,
+            "segments": [
+              "Stone Passage",
+              "(Max 1): 53,54,55,56,58,123,124,125,752,753,754,[10-10-15-1]",
+              "7/40",
+              "7/20"
+            ]
+          },
+          {
+            "page": 1718,
+            "row": 17,
+            "offset": 1738,
+            "term": "123",
+            "abilityId": 123,
+            "segments": [
+              "Ironwood Forest, Mossy Ravine",
+              "3/1230",
+              "3/1120"
+            ]
+          },
+          {
+            "page": 1721,
+            "row": 14,
+            "offset": 2154,
+            "term": "123",
+            "abilityId": 123,
+            "segments": [
+              "Black Cave, Glowing Tunnel",
+              "8/119",
+              "8/121",
+              "8/1230"
+            ]
+          },
+          {
+            "page": 1722,
+            "row": 3,
+            "offset": 3611,
+            "term": "123",
+            "abilityId": 123,
+            "segments": [
+              "Oak Street",
+              "1/123",
+              "1/121",
+              "1/145",
+              "1/1350"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 125,
+      "abilityName": "IceSorcQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 1,
+        "rawTextMentions": 57,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [
+          {
+            "sourceNode": "monster:monster_108_ice_sorceress",
+            "sourceType": "monster",
+            "sourceId": "monster_108_ice_sorceress",
+            "sourceName": "ice sorceress",
+            "field": "name_attacks",
+            "term": "ice sorc",
+            "abilityId": 125,
+            "abilityName": "IceSorcQuest",
+            "text": "ice sorceress"
+          }
+        ],
+        "rawTextMentions": [
+          {
+            "page": 407,
+            "row": 0,
+            "offset": 3426,
+            "term": "ice sorc",
+            "abilityId": 125,
+            "segments": [
+              "W@d",
+              "ice sorceress",
+              "ice blast",
+              "freeze",
+              "None",
+              "None",
+              "None",
+              "Room 10/245{"
+            ]
+          },
+          {
+            "page": 530,
+            "row": 0,
+            "offset": 3438,
+            "term": "125",
+            "abilityId": 125,
+            "segments": [
+              "333333",
+              "@R@",
+              "prisoner",
+              "None",
+              "None",
+              "None",
+              "None",
+              "None",
+              "Room 7/1251o"
+            ]
+          },
+          {
+            "page": 1667,
+            "row": 7,
+            "offset": 3101,
+            "term": "125",
+            "abilityId": 125,
+            "segments": [
+              "Stone Passage",
+              "(Max 1): 53,54,55,56,58,123,124,125,752,753,754,[10-10-15-1]",
+              "7/40",
+              "7/20"
+            ]
+          },
+          {
+            "page": 1710,
+            "row": 19,
+            "offset": 1544,
+            "term": "125",
+            "abilityId": 125,
+            "segments": [
+              "Elder Darkwood Grove, Fork",
+              "(Max 1): 115,116,117,118,119,120,121,[25-1-7-1]",
+              "7/1020",
+              "7/125",
+              "7/1040"
+            ]
+          },
+          {
+            "page": 1722,
+            "row": 6,
+            "offset": 3237,
+            "term": "125",
+            "abilityId": 125,
+            "segments": [
+              "Valley Path, Outside Inn",
+              "6/125",
+              "6/123",
+              "6/133",
+              "6/1210"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 126,
+      "abilityName": "GoodQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 80,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 0,
+        "rawTextMentions": 48,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [],
+        "rawTextMentions": [
+          {
+            "page": 1722,
+            "row": 24,
+            "offset": 918,
+            "term": "126",
+            "abilityId": 126,
+            "segments": [
+              "Orc Barracks",
+              "15/122",
+              "15/126",
+              "15/1240"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 8,
+            "offset": 2984,
+            "term": "126",
+            "abilityId": 126,
+            "segments": [
+              "Park Plaza",
+              "1/124",
+              "1/143",
+              "1/1260"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 9,
+            "offset": 2864,
+            "term": "126",
+            "abilityId": 126,
+            "segments": [
+              "Southwestern Road",
+              "2/1240",
+              "2/1260"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 10,
+            "offset": 2746,
+            "term": "126",
+            "abilityId": 126,
+            "segments": [
+              "Ironwood Forest",
+              "3/124",
+              "3/1260"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 11,
+            "offset": 2623,
+            "term": "126",
+            "abilityId": 126,
+            "segments": [
+              "Cozy Inn, Foyer",
+              "6/126",
+              "6/1220",
+              "6/1280"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 127,
+      "abilityName": "NeutralQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 80,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 0,
+        "rawTextMentions": 51,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [],
+        "rawTextMentions": [
+          {
+            "page": 1672,
+            "row": 27,
+            "offset": 365,
+            "term": "127",
+            "abilityId": 127,
+            "segments": [
+              "Slimy Sewer Tunnel",
+              "9/127 (Door [1000 picklocks/strength])",
+              "9/15",
+              "9/130",
+              "Action [on the S exit of this room]: pull lever, push lever, move lever0"
+            ]
+          },
+          {
+            "page": 1722,
+            "row": 29,
+            "offset": 307,
+            "term": "127",
+            "abilityId": 127,
+            "segments": [
+              "Ironwood Forest",
+              "3/123",
+              "3/1270",
+              "3/1250"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 20,
+            "offset": 1489,
+            "term": "127",
+            "abilityId": 127,
+            "segments": [
+              "Park Plaza",
+              "1/137",
+              "1/125",
+              "1/1270"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 21,
+            "offset": 1369,
+            "term": "127",
+            "abilityId": 127,
+            "segments": [
+              "Southwestern Road",
+              "2/1270",
+              "2/1250"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 23,
+            "offset": 1090,
+            "term": "127",
+            "abilityId": 127,
+            "segments": [
+              "Common Room",
+              "6/1250",
+              "6/1270"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 128,
+      "abilityName": "EvilQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 80,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 0,
+        "rawTextMentions": 56,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [],
+        "rawTextMentions": [
+          {
+            "page": 530,
+            "row": 1,
+            "offset": 2751,
+            "term": "128",
+            "abilityId": 128,
+            "segments": [
+              "333333U@",
+              "ffffff.@",
+              "master assassin",
+              "slashes you",
+              "all-out slashes you",
+              "None",
+              "None",
+              "None",
+              "Room 7/1283"
+            ]
+          },
+          {
+            "page": 1698,
+            "row": 20,
+            "offset": 1301,
+            "term": "128",
+            "abilityId": 128,
+            "segments": [
+              "Elder Darkwood Grove, Fork",
+              "(Max 1): 115,116,117,118,119,120,121,[25-1-7-1]",
+              "7/1280",
+              "7/94",
+              "7/920"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 11,
+            "offset": 2623,
+            "term": "128",
+            "abilityId": 128,
+            "segments": [
+              "Cozy Inn, Foyer",
+              "6/126",
+              "6/1220",
+              "6/1280"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 17,
+            "offset": 1873,
+            "term": "128",
+            "abilityId": 128,
+            "segments": [
+              "Orc Barracks",
+              "15/124",
+              "15/1280",
+              "15/1260"
+            ]
+          },
+          {
+            "page": 1723,
+            "row": 18,
+            "offset": 1745,
+            "term": "128",
+            "abilityId": 128,
+            "segments": [
+              "Underground River",
+              "16/1260",
+              "16/1240",
+              "16/1280"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 129,
+      "abilityName": "DarkDruidQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 1,
+        "rawTextMentions": 64,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [
+          {
+            "sourceNode": "monster:monster_121_dark_druid",
+            "sourceType": "monster",
+            "sourceId": "monster_121_dark_druid",
+            "sourceName": "dark druid",
+            "field": "name_attacks",
+            "term": "dark druid",
+            "abilityId": 129,
+            "abilityName": "DarkDruidQuest",
+            "text": "dark druid | smacks | swipes at | oaken staff"
+          }
+        ],
+        "rawTextMentions": [
+          {
+            "page": 422,
+            "row": 2,
+            "offset": 2089,
+            "term": "dark druid",
+            "abilityId": 129,
+            "segments": [
+              "0@ffffff)@",
+              "ffffffT@",
+              "+@P",
+              "ffffff",
+              "dark druid",
+              "smacks you",
+              "acid jet",
+              "swarm",
+              "None",
+              "None]"
+            ]
+          },
+          {
+            "page": 1702,
+            "row": 9,
+            "offset": 2765,
+            "term": "129",
+            "abilityId": 129,
+            "segments": [
+              "Strange Mansion, Entrance",
+              "1/64",
+              "1/1182 (Door [21 picklocks/strength])0",
+              "1/1290"
+            ]
+          },
+          {
+            "page": 1724,
+            "row": 14,
+            "offset": 2061,
+            "term": "129",
+            "abilityId": 129,
+            "segments": [
+              "Southwestern Road",
+              "2/127",
+              "2/129",
+              "2/985 (Text: go path, follow trail, go trail)0"
+            ]
+          },
+          {
+            "page": 1724,
+            "row": 15,
+            "offset": 1938,
+            "term": "129",
+            "abilityId": 129,
+            "segments": [
+              "Ironwood Forest",
+              "3/1290",
+              "3/138",
+              "3/1270"
+            ]
+          },
+          {
+            "page": 1724,
+            "row": 16,
+            "offset": 1809,
+            "term": "129",
+            "abilityId": 129,
+            "segments": [
+              "Stairwell",
+              "6/1270",
+              "6/1250",
+              "6/129 (Item: 924)0"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 130,
+      "abilityName": "BloodChampQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 80,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 0,
+        "rawTextMentions": 233,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [],
+        "rawTextMentions": [
+          {
+            "page": 922,
+            "row": 3,
+            "offset": 1357,
+            "term": "130",
+            "abilityId": 130,
+            "segments": [
+              ",b@ffffff",
+              "Champion Gudruk",
+              "chops you",
+              "chops you",
+              "all-out chops you",
+              "None",
+              "None",
+              "Textblock #1309"
+            ]
+          },
+          {
+            "page": 1630,
+            "row": 2,
+            "offset": 2018,
+            "term": "130",
+            "abilityId": 130,
+            "segments": [
+              "Y@P",
+              "massive hydra head",
+              "chomps you",
+              "None",
+              "None",
+              "None",
+              "None",
+              "Spell #1309"
+            ]
+          },
+          {
+            "page": 1670,
+            "row": 31,
+            "offset": 127,
+            "term": "130",
+            "abilityId": 130,
+            "segments": [
+              "Temple Hallway",
+              "13/11",
+              "13/9",
+              "13/17",
+              "13/130"
+            ]
+          },
+          {
+            "page": 1671,
+            "row": 21,
+            "offset": 1336,
+            "term": "130",
+            "abilityId": 130,
+            "segments": [
+              "Abandoned Warehouse",
+              "2/130",
+              "1/13270"
+            ]
+          },
+          {
+            "page": 1671,
+            "row": 26,
+            "offset": 734,
+            "term": "130",
+            "abilityId": 130,
+            "segments": [
+              "Black Cave, Glowing Tunnel",
+              "8/130",
+              "8/110"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 131,
+      "abilityName": "SheDragonQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 80,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 0,
+        "rawTextMentions": 59,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [],
+        "rawTextMentions": [
+          {
+            "page": 1718,
+            "row": 15,
+            "offset": 1985,
+            "term": "131",
+            "abilityId": 131,
+            "segments": [
+              "Park",
+              "1/112",
+              "1/114",
+              "1/1310"
+            ]
+          },
+          {
+            "page": 1720,
+            "row": 13,
+            "offset": 2322,
+            "term": "131",
+            "abilityId": 131,
+            "segments": [
+              "Underground River",
+              "16/1150",
+              "16/118",
+              "16/1310"
+            ]
+          },
+          {
+            "page": 1725,
+            "row": 8,
+            "offset": 2897,
+            "term": "131",
+            "abilityId": 131,
+            "segments": [
+              "Park",
+              "1/128",
+              "1/131",
+              "1/138",
+              "1/1120"
+            ]
+          },
+          {
+            "page": 1725,
+            "row": 9,
+            "offset": 2732,
+            "term": "131",
+            "abilityId": 131,
+            "segments": [
+              "Southwestern Road",
+              "2/1290",
+              "2/131",
+              "2/762 (Text: go path, follow trail, go trail)0"
+            ]
+          },
+          {
+            "page": 1725,
+            "row": 10,
+            "offset": 2614,
+            "term": "131",
+            "abilityId": 131,
+            "segments": [
+              "Ironwood Forest",
+              "3/1310",
+              "3/1290"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 132,
+      "abilityName": "WereratQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 5,
+        "rawTextMentions": 71,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [
+          {
+            "sourceNode": "monster:monster_358_wererat",
+            "sourceType": "monster",
+            "sourceId": "monster_358_wererat",
+            "sourceName": "wererat",
+            "field": "name_attacks",
+            "term": "wererat",
+            "abilityId": 132,
+            "abilityName": "WereratQuest",
+            "text": "wererat | slashes | swings at | bastard sword | slashes | swings at | bastard sword"
+          },
+          {
+            "sourceNode": "monster:monster_360_wererat_champion",
+            "sourceType": "monster",
+            "sourceId": "monster_360_wererat_champion",
+            "sourceName": "wererat champion",
+            "field": "name_attacks",
+            "term": "wererat",
+            "abilityId": 132,
+            "abilityName": "WereratQuest",
+            "text": "wererat champion | cleaves | swings at | greatsword | cleaves | swings at | greatsword | cleaves | swings at | greatsword"
+          },
+          {
+            "sourceNode": "monster:monster_364_wererat_emissary",
+            "sourceType": "monster",
+            "sourceId": "monster_364_wererat_emissary",
+            "sourceName": "wererat emissary",
+            "field": "name_attacks",
+            "term": "wererat",
+            "abilityId": 132,
+            "abilityName": "WereratQuest",
+            "text": "wererat emissary | cleaves | swings at | greatsword | cleaves | swings at | greatsword | cleaves | swings at | greatsword"
+          },
+          {
+            "sourceNode": "monster:monster_361_wererat_plague_crafter",
+            "sourceType": "monster",
+            "sourceId": "monster_361_wererat_plague_crafter",
+            "sourceName": "wererat plague-crafter",
+            "field": "name_attacks",
+            "term": "wererat",
+            "abilityId": 132,
+            "abilityName": "WereratQuest",
+            "text": "wererat plague-crafter | slashes | swings at | sickle | slashes | swings at | sickle"
+          },
+          {
+            "sourceNode": "monster:monster_359_wererat_shaman",
+            "sourceType": "monster",
+            "sourceId": "monster_359_wererat_shaman",
+            "sourceName": "wererat shaman",
+            "field": "name_attacks",
+            "term": "wererat",
+            "abilityId": 132,
+            "abilityName": "WereratQuest",
+            "text": "wererat shaman | smacks | swipes at | iron-capped staff | smacks | swipes at | iron-capped staff"
+          }
+        ],
+        "rawTextMentions": [
+          {
+            "page": 546,
+            "row": 4,
+            "offset": 798,
+            "term": "wererat",
+            "abilityId": 132,
+            "segments": [
+              "ffffff>@",
+              ":@333333",
+              "yV@",
+              "433333$@",
+              "wererat",
+              "slashes you",
+              "bites you",
+              "None",
+              "None",
+              "Noneb"
+            ]
+          },
+          {
+            "page": 546,
+            "row": 5,
+            "offset": 132,
+            "term": "wererat",
+            "abilityId": 132,
+            "segments": [
+              "<@333333/@ffffff*@A",
+              "33333sE@",
+              "gffff&G@",
+              "%@d",
+              "wererat shaman",
+              "smacks you",
+              "bites you",
+              "acid jet",
+              "None",
+              "Noneb"
+            ]
+          },
+          {
+            "page": 547,
+            "row": 0,
+            "offset": 3420,
+            "term": "wererat",
+            "abilityId": 132,
+            "segments": [
+              "fffff",
+              "fffff",
+              "gfffff3@",
+              "wererat champion",
+              "chops you",
+              "bites you",
+              "all-out chops you",
+              "None",
+              "Noneb"
+            ]
+          },
+          {
+            "page": 547,
+            "row": 1,
+            "offset": 2746,
+            "term": "wererat",
+            "abilityId": 132,
+            "segments": [
+              "fffff&G@",
+              "3@33333",
+              ":@A",
+              "@R@",
+              "33333SQ@",
+              "gfffff&@",
+              "$@d",
+              "ffffff\"@d",
+              "wererat plague-crafter",
+              "rips you"
+            ]
+          },
+          {
+            "page": 547,
+            "row": 4,
+            "offset": 744,
+            "term": "wererat",
+            "abilityId": 132,
+            "segments": [
+              "333333C@",
+              "YA@",
+              "L8@",
+              "wererat emissary",
+              "chops you",
+              "bites you",
+              "all-out chops you",
+              "None",
+              "None",
+              "Room 8/689"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 133,
+      "abilityName": "PhoenixQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 4,
+        "rawTextMentions": 124,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [
+          {
+            "sourceNode": "item:item_1383_gravestone",
+            "sourceType": "item",
+            "sourceId": "item_1383_gravestone",
+            "sourceName": "gravestone",
+            "field": "descriptions",
+            "term": "phoenix",
+            "abilityId": 133,
+            "abilityName": "PhoenixQuest",
+            "text": "Damien Xcelcier a friend, a foe, To whom honor ment the most\nHe stood with pride, but alas, he died.\nHe warned us about fear, he should have been more\nsincere. He warned of the wrath, but it was Dark Phoenix;\nwho got the last laugh. He will be remembered over many beer\nit is to him, that we say 'Cheers'"
+          },
+          {
+            "sourceNode": "item:item_1000_phoenix_feather",
+            "sourceType": "item",
+            "sourceId": "item_1000_phoenix_feather",
+            "sourceName": "phoenix feather",
+            "field": "descriptions",
+            "term": "phoenix",
+            "abilityId": 133,
+            "abilityName": "PhoenixQuest",
+            "text": "This brilliant golden feather burns with a fiery hue. Rare\nand priceless, feathers of the legendary phoenix are only\never found in the possession of those who have aided the\ncreature in some way."
+          },
+          {
+            "sourceNode": "monster:monster_700_dark_phoenix",
+            "sourceType": "monster",
+            "sourceId": "monster_700_dark_phoenix",
+            "sourceName": "dark phoenix",
+            "field": "name_attacks",
+            "term": "phoenix",
+            "abilityId": 133,
+            "abilityName": "PhoenixQuest",
+            "text": "dark phoenix"
+          },
+          {
+            "sourceNode": "monster:monster_1014_golden_phoenix",
+            "sourceType": "monster",
+            "sourceId": "monster_1014_golden_phoenix",
+            "sourceName": "Golden Phoenix",
+            "field": "name_attacks",
+            "term": "phoenix",
+            "abilityId": 133,
+            "abilityName": "PhoenixQuest",
+            "text": "Golden Phoenix"
+          }
+        ],
+        "rawTextMentions": [
+          {
+            "page": 664,
+            "row": 4,
+            "offset": 725,
+            "term": "133",
+            "abilityId": 133,
+            "segments": [
+              "+@ffffff",
+              "Chancellor Annora",
+              "None",
+              "None",
+              "None",
+              "None",
+              "None",
+              "Room 1/1333x"
+            ]
+          },
+          {
+            "page": 819,
+            "row": 0,
+            "offset": 3426,
+            "term": "133",
+            "abilityId": 133,
+            "segments": [
+              "3333334@3333334@",
+              "dwarven barkeep",
+              "chops you",
+              "None",
+              "None",
+              "None",
+              "None",
+              "Room 6/1332{"
+            ]
+          },
+          {
+            "page": 1157,
+            "row": 5,
+            "offset": 65,
+            "term": "phoenix",
+            "abilityId": 133,
+            "segments": [
+              "P~@33333",
+              "n@k#",
+              "F@F",
+              "6@-",
+              "@@d",
+              "dark phoenix",
+              "rips you with its beak",
+              "rips you with its talons",
+              "phoenixfire",
+              "None"
+            ]
+          },
+          {
+            "page": 1319,
+            "row": 2,
+            "offset": 1961,
+            "term": "133",
+            "abilityId": 133,
+            "segments": [
+              "fffff",
+              "ffffff=@",
+              "cloaked figure",
+              "slashes you",
+              "all-out slashes you",
+              "None",
+              "None",
+              "None",
+              "Spell #1330"
+            ]
+          },
+          {
+            "page": 1319,
+            "row": 4,
+            "offset": 522,
+            "term": "133",
+            "abilityId": 133,
+            "segments": [
+              "fffff",
+              "fffff",
+              "gffff",
+              "cloaked figure",
+              "hurls a throwing knife and strikes you",
+              "critically hurls a throwing knife and strikes you",
+              "dragonfire",
+              "None",
+              "None",
+              "Spell #1332"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 134,
+      "abilityName": "DaoLordQuest",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 2,
+        "rawTextMentions": 121,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [
+          {
+            "sourceNode": "monster:monster_597_dao_lord",
+            "sourceType": "monster",
+            "sourceId": "monster_597_dao_lord",
+            "sourceName": "Dao Lord",
+            "field": "name_attacks",
+            "term": "dao lord",
+            "abilityId": 134,
+            "abilityName": "DaoLordQuest",
+            "text": "Dao Lord"
+          },
+          {
+            "sourceNode": "monster:monster_1037_dao_lord",
+            "sourceType": "monster",
+            "sourceId": "monster_1037_dao_lord",
+            "sourceName": "Dao Lord",
+            "field": "name_attacks",
+            "term": "dao lord",
+            "abilityId": 134,
+            "abilityName": "DaoLordQuest",
+            "text": "Dao Lord"
+          }
+        ],
+        "rawTextMentions": [
+          {
+            "page": 819,
+            "row": 5,
+            "offset": 54,
+            "term": "134",
+            "abilityId": 134,
+            "segments": [
+              "dwarven healer",
+              "pounds you",
+              "None",
+              "None",
+              "None",
+              "None",
+              "Room 6/1347{"
+            ]
+          },
+          {
+            "page": 820,
+            "row": 0,
+            "offset": 3413,
+            "term": "134",
+            "abilityId": 134,
+            "segments": [
+              "Champion Gudruk",
+              "chops you",
+              "all-out chops you",
+              "None",
+              "None",
+              "None",
+              "Room 6/1348"
+            ]
+          },
+          {
+            "page": 1045,
+            "row": 5,
+            "offset": 51,
+            "term": "dao lord",
+            "abilityId": 134,
+            "segments": [
+              "Pd@",
+              "Z@fffff",
+              "K@|",
+              "fffff",
+              "333333",
+              "Dao Lord",
+              "pounds you",
+              "earthfist",
+              "None",
+              "None"
+            ]
+          },
+          {
+            "page": 1315,
+            "row": 0,
+            "offset": 3418,
+            "term": "dao lord",
+            "abilityId": 134,
+            "segments": [
+              "1s@",
+              "R@2",
+              ":@d",
+              "Dao Lord",
+              "pounds you",
+              "earthfist",
+              "None",
+              "None",
+              "None",
+              "Textblock #4176(10%)"
+            ]
+          },
+          {
+            "page": 1635,
+            "row": 2,
+            "offset": 2030,
+            "term": "134",
+            "abilityId": 134,
+            "segments": [
+              "q{@",
+              "q{@",
+              "Y@d",
+              "red sphere",
+              "magma blast",
+              "None",
+              "None",
+              "Unknown",
+              "None",
+              "Spell #1347, Spell #1348"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    },
+    {
+      "abilityId": 156,
+      "abilityName": "QuestItem",
+      "classification": [
+        "quest_flag"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 80,
+      "supportCounts": {
+        "itemAbilityRefs": 0,
+        "spellAbilityRefs": 0,
+        "monsterAbilityRefs": 0,
+        "canonicalTextMentions": 0,
+        "rawTextMentions": 60,
+        "priorQuestCandidateRecords": 1
+      },
+      "sampleSupports": {
+        "items": [],
+        "spells": [],
+        "canonicalTextMentions": [],
+        "rawTextMentions": [
+          {
+            "page": 894,
+            "row": 2,
+            "offset": 2083,
+            "term": "156",
+            "abilityId": 156,
+            "segments": [
+              "Kai Master",
+              "None",
+              "None",
+              "leaps into the air and kicks you",
+              "None",
+              "None",
+              "Room 6/1566"
+            ]
+          },
+          {
+            "page": 1714,
+            "row": 7,
+            "offset": 3020,
+            "term": "156",
+            "abilityId": 156,
+            "segments": [
+              "Orc Barracks",
+              "(Max 2): 727,728,729,730,[32-4-7-2]",
+              "15/176",
+              "15/178",
+              "15/1560"
+            ]
+          },
+          {
+            "page": 1733,
+            "row": 14,
+            "offset": 2130,
+            "term": "156",
+            "abilityId": 156,
+            "segments": [
+              "Scorching Desert",
+              "12/1510",
+              "12/149",
+              "12/1560"
+            ]
+          },
+          {
+            "page": 1735,
+            "row": 5,
+            "offset": 3200,
+            "term": "156",
+            "abilityId": 156,
+            "segments": [
+              "Floating Citadel, Platform",
+              "1/1560"
+            ]
+          },
+          {
+            "page": 1735,
+            "row": 6,
+            "offset": 3072,
+            "term": "156",
+            "abilityId": 156,
+            "segments": [
+              "Southwestern Road, Valley",
+              "2/1540",
+              "2/1560"
+            ]
+          }
+        ]
+      },
+      "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+    }
+  ],
+  "questFlowCandidatesCarriedForward": [
+    {
+      "quest": "MageBaneQuest",
+      "abilityId": 50,
+      "abilityNode": "ability:ability_50_magebanequest",
+      "flowNode": "quest_flow_candidate:magebanequest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 3,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 2,
+        "rawTextMentions": 0,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "IceSorcQuest",
+      "abilityId": 125,
+      "abilityNode": "ability:ability_125_icesorcquest",
+      "flowNode": "quest_flow_candidate:icesorcquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 320,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 1,
+        "rawTextMentions": 318,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "GoodQuest",
+      "abilityId": 126,
+      "abilityNode": "ability:ability_126_goodquest",
+      "flowNode": "quest_flow_candidate:goodquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 250,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 249,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "NeutralQuest",
+      "abilityId": 127,
+      "abilityNode": "ability:ability_127_neutralquest",
+      "flowNode": "quest_flow_candidate:neutralquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 232,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 231,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "EvilQuest",
+      "abilityId": 128,
+      "abilityNode": "ability:ability_128_evilquest",
+      "flowNode": "quest_flow_candidate:evilquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 244,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 243,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "DarkDruidQuest",
+      "abilityId": 129,
+      "abilityNode": "ability:ability_129_darkdruidquest",
+      "flowNode": "quest_flow_candidate:darkdruidquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 280,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 1,
+        "rawTextMentions": 278,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "BloodChampQuest",
+      "abilityId": 130,
+      "abilityNode": "ability:ability_130_bloodchampquest",
+      "flowNode": "quest_flow_candidate:bloodchampquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 642,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 641,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "SheDragonQuest",
+      "abilityId": 131,
+      "abilityNode": "ability:ability_131_shedragonquest",
+      "flowNode": "quest_flow_candidate:shedragonquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 261,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 260,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "WereratQuest",
+      "abilityId": 132,
+      "abilityNode": "ability:ability_132_wereratquest",
+      "flowNode": "quest_flow_candidate:wereratquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 276,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 5,
+        "rawTextMentions": 270,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "PhoenixQuest",
+      "abilityId": 133,
+      "abilityNode": "ability:ability_133_phoenixquest",
+      "flowNode": "quest_flow_candidate:phoenixquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 373,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 4,
+        "rawTextMentions": 368,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "DaoLordQuest",
+      "abilityId": 134,
+      "abilityNode": "ability:ability_134_daolordquest",
+      "flowNode": "quest_flow_candidate:daolordquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 321,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 2,
+        "rawTextMentions": 318,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    },
+    {
+      "quest": "QuestItem",
+      "abilityId": 156,
+      "abilityNode": "ability:ability_156_questitem",
+      "flowNode": "quest_flow_candidate:questitem",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 226,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 225,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps."
+    }
+  ],
+  "canonicalQuestRecordsPresent": 0,
+  "Data_quests_json_changed": false,
+  "finding": "Quest flags and supporting relationships are stronger, but ordered stages are not promoted until textblock/NPC branch order is proven."
+}

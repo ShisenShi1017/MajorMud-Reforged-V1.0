@@ -1,0 +1,32 @@
+{
+  "milestone": "Librarium-0011 — Repository Knowledge Extraction",
+  "created_utc": "2026-07-07T23:12:43.898732+00:00",
+  "base": "Librarium-0010 Repository Ingestion",
+  "phases_completed": [
+    "Extract source archive entities",
+    "Extract repository file entities",
+    "Extract record-set entities",
+    "Attach file-level provenance",
+    "Create knowledge assertions",
+    "Generate summary/conflict/orphan queues"
+  ],
+  "source_archives_indexed": 31,
+  "repository_files_indexed_from_0010_inventory": 18018,
+  "record_sets_indexed_from_0010_inventory": 2777,
+  "entities_extracted": 20826,
+  "assertions_extracted": 71026,
+  "conflict_candidates": 0,
+  "orphan_candidates_reported": 0,
+  "canonical_data_overwritten": false,
+  "evidence_states": [
+    [
+      "Verified",
+      53008
+    ],
+    [
+      "Derived",
+      18018
+    ]
+  ],
+  "note": "This fast pass converts the full 0010 repository inventory into a knowledge assertion layer. Deep record parsing is reserved for later validation passes to avoid brute-force archive expansion."
+}

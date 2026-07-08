@@ -1,0 +1,17 @@
+{
+  "generatedUtc": "2026-07-07T23:45:52.643795+00:00",
+  "status": "PASS",
+  "worldLayersPresent": [
+    "milestone",
+    "generatedUtc",
+    "overlayRule",
+    "worldLayers",
+    "subgraphs",
+    "liveRuntimeStateRecords",
+    "baseGraphEntityCounts"
+  ],
+  "regionZoneIndexType": "dict",
+  "roomEntitiesDetected": 0,
+  "exitEntitiesDetected": 0,
+  "finding": "World graph and overlay model are present; content completion scoring now applies to rooms/exits/world records."
+}

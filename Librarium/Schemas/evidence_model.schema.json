@@ -1,0 +1,40 @@
+{
+  "schemaName": "Librarium Core Knowledge Graph Schema",
+  "version": "0001",
+  "evidenceStates": [
+    "Verified",
+    "Derived",
+    "Observed",
+    "Hypothesis",
+    "WorldOverride",
+    "AIProposal"
+  ],
+  "nodeRequiredFields": [
+    "nodeId",
+    "recordId",
+    "type",
+    "name",
+    "evidenceState",
+    "confidence",
+    "provenance",
+    "runtimeConsumers",
+    "validationStatus"
+  ],
+  "edgeRequiredFields": [
+    "edgeId",
+    "source",
+    "relationship",
+    "target",
+    "evidenceState",
+    "confidence",
+    "provenance"
+  ],
+  "promotionRules": {
+    "Hypothesis": "A theory or unvalidated inference; never runtime truth without explicit opt-in.",
+    "Observed": "Seen in gameplay/runtime/user-confirmed observation but underlying data path may be incomplete.",
+    "Derived": "Supported by multiple data relationships or systematic extraction.",
+    "Verified": "Direct canonical source or validated agreement across authoritative evidence.",
+    "WorldOverride": "A running/custom/AI world overlay change; never mutates classic base graph.",
+    "AIProposal": "AI-generated candidate content pending host approval."
+  }
+}

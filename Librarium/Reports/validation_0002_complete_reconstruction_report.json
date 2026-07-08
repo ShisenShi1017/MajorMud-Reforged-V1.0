@@ -1,0 +1,128 @@
+{
+  "milestone": "Validation-0002",
+  "title": "Complete MajorMUD Reconstruction Pass",
+  "generatedUtc": "2026-07-07T23:24:58.808812+00:00",
+  "status": "PASS_WITH_FINDINGS",
+  "scope": [
+    "quest reconstruction",
+    "dialogue/textblock reconstruction",
+    "script reconstruction index",
+    "formula dependency reconstruction",
+    "ability verification",
+    "runtime dependency verification",
+    "world relationship verification"
+  ],
+  "computedMetrics": {
+    "abilities": 188,
+    "questAbilityCandidates": 13,
+    "items": 1950,
+    "itemAbilityRelationships": 4546,
+    "ability123ItemsObserved": 25,
+    "whiteGoldRingCandidates": 2,
+    "spells": 2,
+    "monsters": 1100,
+    "rooms": 1248,
+    "shops": 178,
+    "classes": 15,
+    "races": 13,
+    "skills": 2,
+    "questFlowCandidates": 12,
+    "textblockReferences": 16,
+    "dialogueReferences": 16,
+    "formulaModels": 10,
+    "assertions": 71026,
+    "runtimeReverseDependencyBuckets": 0,
+    "runtimeReverseDependencyLinks": 0
+  },
+  "evidenceStateDistribution": {
+    "Verified": 53008,
+    "Derived": 18018
+  },
+  "assertionCategoryTop20": [
+    [
+      "source_metadata",
+      36315
+    ],
+    [
+      "entity_existence",
+      20826
+    ],
+    [
+      "record_index",
+      13885
+    ]
+  ],
+  "predicateTop20": [
+    [
+      "exists_in_source",
+      20826
+    ],
+    [
+      "attribute:extension",
+      18018
+    ],
+    [
+      "attribute:classification",
+      18018
+    ],
+    [
+      "attribute:evidence_state",
+      2808
+    ],
+    [
+      "attribute:source_zip",
+      2777
+    ],
+    [
+      "attribute:path",
+      2777
+    ],
+    [
+      "attribute:record_type",
+      2777
+    ],
+    [
+      "attribute:file_id",
+      2777
+    ],
+    [
+      "attribute:source_id",
+      31
+    ],
+    [
+      "attribute:filename",
+      31
+    ],
+    [
+      "attribute:size_bytes",
+      31
+    ],
+    [
+      "attribute:zip_integrity",
+      31
+    ],
+    [
+      "attribute:entry_count",
+      31
+    ],
+    [
+      "attribute:file_count",
+      31
+    ],
+    [
+      "attribute:directory_count",
+      31
+    ],
+    [
+      "attribute:provenance",
+      31
+    ]
+  ],
+  "findings": [
+    "Quest ability identities are supported by ability records and graph references.",
+    "Quest flows remain candidate/derived until ordered NPC/textblock action sequences are decoded.",
+    "Formula dependency models exist, but formula exactness remains derived/hypothesis pending external/runtime comparison.",
+    "Dialogue/textblock references are indexed as observed fragments; ordered branching requires deeper textblock decoding.",
+    "Canonical /Data was not overwritten in this pass."
+  ]
+}

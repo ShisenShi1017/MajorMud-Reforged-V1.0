@@ -1,0 +1,17 @@
+{
+  "milestone": "Librarium-0008 \u2014 Complete Behavior & Dependency Graph",
+  "generatedUtc": "2026-07-07T22:15:26.377918+00:00",
+  "summary": "Adds behavior/action chains, command-to-behavior mapping, status/skill models, and impact/dependency index on top of the complete world/runtime graph.",
+  "validationStatus": "PASS",
+  "counts": {
+    "nodeCount": 89213,
+    "relationshipCount": 352691,
+    "behaviorActions": 16,
+    "behaviorStages": 97,
+    "statusEffectModels": 10,
+    "skillModels": 10,
+    "formulaDependencyModels": 10,
+    "runtimeEvents": 23
+  },
+  "nextMilestone": "Librarium-0009 \u2014 Intelligence Layer & Knowledge Services"
+}

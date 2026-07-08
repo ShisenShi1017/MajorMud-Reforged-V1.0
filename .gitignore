@@ -19,3 +19,14 @@ Bin/Windows/**/*.pdb
 /Core/Source/**/obj/
 /Tests/Source/**/bin/
 /Tests/Source/**/obj/
+
+# Librarium generated local artifacts (regeneratable; do not commit)
+.local-generated/
+Librarium/Graph/*.json
+Librarium/FormulaValidation/formula_assertions_*.json
+Generated/**/*.json
+Generated/**/*.db
+Generated/**/*.sqlite
+Generated/**/*.zip
+*.pyc
+__pycache__/

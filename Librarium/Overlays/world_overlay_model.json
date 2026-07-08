@@ -1,0 +1,25 @@
+{
+  "version": "0001",
+  "model": "Classic Base Graph + World Overlay Graph = Running World",
+  "overlayTypes": [
+    "Classic",
+    "Reforged",
+    "CustomWorld",
+    "AIWorld",
+    "TestRealm"
+  ],
+  "rules": [
+    "Base graph is immutable for Classic truth.",
+    "Custom and AI worlds add overlay nodes/edges or override records with WorldOverride/AIProposal evidence states.",
+    "Promotion from overlay to base requires explicit validation and provenance."
+  ],
+  "example": {
+    "worldId": "custom_1",
+    "baseNode": "monster:monster_315",
+    "change": {
+      "stats.hp": "+25"
+    },
+    "evidenceState": "WorldOverride",
+    "source": "Host editor"
+  }
+}

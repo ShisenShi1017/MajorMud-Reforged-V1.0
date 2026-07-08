@@ -1,0 +1,110 @@
+{
+  "validation": "Validation-0006 Formula Reconciliation Deep Pass",
+  "result": "PASS_WITH_FINDINGS",
+  "basePackage": "MajorMUD-Reforged-Validation-0005-Formula-Extraction-Verification.zip",
+  "timestamp": "2026-07-08T00:02:17.107838Z",
+  "filesScanned": 472,
+  "formulaSourceFiles": 303,
+  "formulaAssertionsObserved": 85723,
+  "formulaFunctionsObserved": 28,
+  "equationCandidatesExtracted": 75,
+  "equationCandidateClusters": 74,
+  "derivedEquationCandidateClusters": 0,
+  "hypothesisEquationCandidateClusters": 74,
+  "potentialFormulaConflicts": 9,
+  "exactClassicEquationsVerified": 0,
+  "systems": {
+    "combat": {
+      "sourceFiles": 162,
+      "assertions": 44652,
+      "functions": 12,
+      "equationCandidates": 31,
+      "derivedClusters": 0,
+      "hypothesisClusters": 31,
+      "conflicts": 5
+    },
+    "experience_leveling": {
+      "sourceFiles": 18,
+      "assertions": 4005,
+      "functions": 5,
+      "equationCandidates": 4,
+      "derivedClusters": 0,
+      "hypothesisClusters": 4,
+      "conflicts": 0
+    },
+    "spell": {
+      "sourceFiles": 22,
+      "assertions": 20359,
+      "functions": 3,
+      "equationCandidates": 5,
+      "derivedClusters": 0,
+      "hypothesisClusters": 5,
+      "conflicts": 0
+    },
+    "ai": {
+      "sourceFiles": 44,
+      "assertions": 772,
+      "functions": 0,
+      "equationCandidates": 12,
+      "derivedClusters": 0,
+      "hypothesisClusters": 11,
+      "conflicts": 2
+    },
+    "loot": {
+      "sourceFiles": 2,
+      "assertions": 486,
+      "functions": 0,
+      "equationCandidates": 3,
+      "derivedClusters": 0,
+      "hypothesisClusters": 3,
+      "conflicts": 0
+    },
+    "economy": {
+      "sourceFiles": 4,
+      "assertions": 22,
+      "functions": 3,
+      "equationCandidates": 7,
+      "derivedClusters": 0,
+      "hypothesisClusters": 7,
+      "conflicts": 2
+    },
+    "spawn": {
+      "sourceFiles": 5,
+      "assertions": 18,
+      "functions": 0,
+      "equationCandidates": 2,
+      "derivedClusters": 0,
+      "hypothesisClusters": 2,
+      "conflicts": 0
+    },
+    "movement": {
+      "sourceFiles": 25,
+      "assertions": 4284,
+      "functions": 0,
+      "equationCandidates": 2,
+      "derivedClusters": 0,
+      "hypothesisClusters": 2,
+      "conflicts": 0
+    },
+    "regeneration": {
+      "sourceFiles": 12,
+      "assertions": 11076,
+      "functions": 5,
+      "equationCandidates": 9,
+      "derivedClusters": 0,
+      "hypothesisClusters": 9,
+      "conflicts": 0
+    },
+    "status": {
+      "sourceFiles": 9,
+      "assertions": 49,
+      "functions": 0,
+      "equationCandidates": 0,
+      "derivedClusters": 0,
+      "hypothesisClusters": 0,
+      "conflicts": 0
+    }
+  },
+  "canonicalDataOverwritten": false,
+  "decision": "Librarium remains canonical; /Data is generated runtime output. Formula equations stay non-canonical until reconciled against implementation/runtime evidence."
+}

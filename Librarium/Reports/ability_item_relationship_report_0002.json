@@ -1,0 +1,589 @@
+{
+  "generatedUtc": "2026-07-07T23:24:58.808812+00:00",
+  "hpregenAbilityRecords": [
+    {
+      "id": "ability_123_hpregen",
+      "legacyNumber": 123,
+      "name": "HPRegen",
+      "description": "Used in any object to modify the targets HP regen rate. The Druid spell \"Rapid Healing\" and the module-1 quest rings use this attribute.",
+      "color": {
+        "red": 255,
+        "green": 255,
+        "blue": 255
+      },
+      "implementationStatus": "implemented",
+      "dllNotes": null,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    }
+  ],
+  "whiteGoldRingCandidates": [
+    {
+      "id": "item_1501_white_gold_flail",
+      "sourceId": 1501,
+      "legacyNumber": 1501,
+      "name": "white gold flail",
+      "type": "weapon",
+      "combat": {
+        "minHit": 20,
+        "maxHit": 37,
+        "accuracy": 0,
+        "speed": 2300
+      },
+      "defense": {
+        "armorClassBonus": 20,
+        "damageResistanceBonus": 0
+      },
+      "economy": {
+        "cost": 100,
+        "costType": 2,
+        "weight": 130,
+        "gameLimit": 0,
+        "currentInstances": 0
+      },
+      "restrictions": {
+        "classes": [
+          4
+        ],
+        "races": [],
+        "statRequirements": {
+          "str": 60
+        }
+      },
+      "properties": {
+        "negate": [],
+        "robable": false,
+        "worn_on": 0,
+        "gettable": true,
+        "is_armor": false,
+        "armor_type": 0,
+        "weapon_type": 0
+      },
+      "uses": {
+        "maxUses": -1,
+        "consumedOnUse": false,
+        "retainAfterUses": false
+      },
+      "deathDrop": {
+        "destroyOnDeath": false,
+        "notDroppable": false
+      },
+      "descriptions": [
+        "This great flail is made of the purest white metal. Silver",
+        "and gold symbols of holy power are etched into the four",
+        "spiked heads, each one bearing righteous wrath and fury upon",
+        "the unfaithful. Many a good soul must test their virtue each",
+        "day to use such a weapon."
+      ],
+      "openRewards": {
+        "gold": 0,
+        "runic": 0,
+        "copper": 0,
+        "silver": 0,
+        "platinum": 0
+      },
+      "abilities": [
+        {
+          "name": "MinLevel",
+          "value": "50",
+          "ability_id": 135
+        },
+        {
+          "name": "%Spell",
+          "value": "33",
+          "ability_id": 114
+        },
+        {
+          "name": "Magical",
+          "value": "5",
+          "ability_id": 28
+        },
+        {
+          "name": "CastsSp",
+          "value": "982",
+          "ability_id": 43
+        },
+        {
+          "name": "ProtEvil",
+          "value": "10",
+          "ability_id": 24
+        },
+        {
+          "name": "BSAccu",
+          "value": "0",
+          "ability_id": 116
+        },
+        {
+          "name": "LoyalItem",
+          "value": "0",
+          "ability_id": 100
+        },
+        {
+          "name": "Good",
+          "value": "0",
+          "ability_id": 97
+        }
+      ],
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-item-wcc.json",
+        "promotedBy": "Patch0067",
+        "runtimeSource": "Data/items.json"
+      }
+    },
+    {
+      "id": "item_642_white_gold_ring",
+      "sourceId": 642,
+      "legacyNumber": 642,
+      "name": "white gold ring",
+      "type": "armor",
+      "combat": {
+        "minHit": 0,
+        "maxHit": 0,
+        "accuracy": 0,
+        "speed": 0
+      },
+      "defense": {
+        "armorClassBonus": 20,
+        "damageResistanceBonus": 5
+      },
+      "economy": {
+        "cost": 100,
+        "costType": 2,
+        "weight": 25,
+        "gameLimit": 0,
+        "currentInstances": 0
+      },
+      "restrictions": {
+        "classes": [],
+        "races": [],
+        "statRequirements": {
+          "str": 0
+        }
+      },
+      "properties": {
+        "negate": [],
+        "robable": true,
+        "worn_on": 4,
+        "gettable": true,
+        "is_armor": false,
+        "armor_type": 0,
+        "weapon_type": 0
+      },
+      "uses": {
+        "maxUses": -1,
+        "consumedOnUse": false,
+        "retainAfterUses": false
+      },
+      "deathDrop": {
+        "destroyOnDeath": false,
+        "notDroppable": false
+      },
+      "descriptions": [
+        "This elegantly-crafted band is made of three intertwined",
+        "loops of the finest pale gold. Small diamonds set around its",
+        "perimeter glitter brightly, and a prayer is engraved in",
+        "small letters inside the band."
+      ],
+      "openRewards": {
+        "gold": 0,
+        "runic": 0,
+        "copper": 0,
+        "silver": 0,
+        "platinum": 0
+      },
+      "abilities": [
+        {
+          "name": "MinLevel",
+          "value": "10",
+          "ability_id": 135
+        },
+        {
+          "name": "Good",
+          "value": "0",
+          "ability_id": 97
+        },
+        {
+          "name": "LoyalItem",
+          "value": "0",
+          "ability_id": 100
+        },
+        {
+          "name": "HPRegen",
+          "value": "25",
+          "ability_id": 123
+        },
+        {
+          "name": "Dodge",
+          "value": "5",
+          "ability_id": 34
+        }
+      ],
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-item-wcc.json",
+        "promotedBy": "Patch0067",
+        "runtimeSource": "Data/items.json"
+      }
+    }
+  ],
+  "ability123ItemRelationships": [
+    {
+      "itemId": "item_1038_amethyst_emblem",
+      "itemLegacy": 1038,
+      "itemName": "amethyst emblem",
+      "ability": null,
+      "value": "5",
+      "raw": {
+        "name": "HPRegen",
+        "value": "5",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1642_barbed_circlet",
+      "itemLegacy": 1642,
+      "itemName": "barbed circlet",
+      "ability": null,
+      "value": "-50",
+      "raw": {
+        "name": "HPRegen",
+        "value": "-50",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1481_beastly_claws",
+      "itemLegacy": 1481,
+      "itemName": "beastly claws",
+      "ability": null,
+      "value": "-25",
+      "raw": {
+        "name": "HPRegen",
+        "value": "-25",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_645_black_and_white_serpent_ring",
+      "itemLegacy": 645,
+      "itemName": "black and white serpent ring",
+      "ability": null,
+      "value": "35",
+      "raw": {
+        "name": "HPRegen",
+        "value": "35",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1331_black_embroidered_robes",
+      "itemLegacy": 1331,
+      "itemName": "black embroidered robes",
+      "ability": null,
+      "value": "10",
+      "raw": {
+        "name": "HPRegen",
+        "value": "10",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1530_caladbolg",
+      "itemLegacy": 1530,
+      "itemName": "Caladbolg",
+      "ability": null,
+      "value": "50",
+      "raw": {
+        "name": "HPRegen",
+        "value": "50",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1579_death_shroud",
+      "itemLegacy": 1579,
+      "itemName": "death shroud",
+      "ability": null,
+      "value": "-50",
+      "raw": {
+        "name": "HPRegen",
+        "value": "-50",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1071_demon_s_maw",
+      "itemLegacy": 1071,
+      "itemName": "Demon's Maw",
+      "ability": null,
+      "value": "-40",
+      "raw": {
+        "name": "HPRegen",
+        "value": "-40",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1030_emerald_emblem",
+      "itemLegacy": 1030,
+      "itemName": "emerald emblem",
+      "ability": null,
+      "value": "10",
+      "raw": {
+        "name": "HPRegen",
+        "value": "10",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1442_faded_shawl",
+      "itemLegacy": 1442,
+      "itemName": "faded shawl",
+      "ability": null,
+      "value": "-100",
+      "raw": {
+        "name": "HPRegen",
+        "value": "-100",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1802_feyr",
+      "itemLegacy": 1802,
+      "itemName": "Feyr",
+      "ability": null,
+      "value": "35",
+      "raw": {
+        "name": "HPRegen",
+        "value": "35",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_325_hellblade",
+      "itemLegacy": 325,
+      "itemName": "hellblade",
+      "ability": null,
+      "value": "-25",
+      "raw": {
+        "name": "HPRegen",
+        "value": "-25",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1075_ice_crystal_staff",
+      "itemLegacy": 1075,
+      "itemName": "ice crystal staff",
+      "ability": null,
+      "value": "25",
+      "raw": {
+        "name": "HPRegen",
+        "value": "25",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1594_jeweled_dirk",
+      "itemLegacy": 1594,
+      "itemName": "jeweled dirk",
+      "ability": null,
+      "value": "50",
+      "raw": {
+        "name": "HPRegen",
+        "value": "50",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1322_mantle_of_the_woodsman",
+      "itemLegacy": 1322,
+      "itemName": "mantle of the woodsman",
+      "ability": null,
+      "value": "25",
+      "raw": {
+        "name": "HPRegen",
+        "value": "25",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1471_nightblack_scythe",
+      "itemLegacy": 1471,
+      "itemName": "nightblack scythe",
+      "ability": null,
+      "value": "-100",
+      "raw": {
+        "name": "HPRegen",
+        "value": "-100",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1042_onyx_emblem",
+      "itemLegacy": 1042,
+      "itemName": "onyx emblem",
+      "ability": null,
+      "value": "10",
+      "raw": {
+        "name": "HPRegen",
+        "value": "10",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1447_platinum_plate_leggings",
+      "itemLegacy": 1447,
+      "itemName": "platinum plate leggings",
+      "ability": null,
+      "value": "20",
+      "raw": {
+        "name": "HPRegen",
+        "value": "20",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_651_ruby_eyed_skull_ring",
+      "itemLegacy": 651,
+      "itemName": "ruby-eyed skull ring",
+      "ability": null,
+      "value": "25",
+      "raw": {
+        "name": "HPRegen",
+        "value": "25",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1034_sapphire_emblem",
+      "itemLegacy": 1034,
+      "itemName": "sapphire emblem",
+      "ability": null,
+      "value": "5",
+      "raw": {
+        "name": "HPRegen",
+        "value": "5",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1242_sparkling_pendant",
+      "itemLegacy": 1242,
+      "itemName": "sparkling pendant",
+      "ability": null,
+      "value": "20",
+      "raw": {
+        "name": "HPRegen",
+        "value": "20",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1216_storm_crown",
+      "itemLegacy": 1216,
+      "itemName": "storm crown",
+      "ability": null,
+      "value": "25",
+      "raw": {
+        "name": "HPRegen",
+        "value": "25",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1487_sword_of_ozrinom",
+      "itemLegacy": 1487,
+      "itemName": "Sword of Ozrinom",
+      "ability": null,
+      "value": "-200",
+      "raw": {
+        "name": "HPRegen",
+        "value": "-200",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_1232_trollskin_boots",
+      "itemLegacy": 1232,
+      "itemName": "trollskin boots",
+      "ability": null,
+      "value": "10",
+      "raw": {
+        "name": "HPRegen",
+        "value": "10",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    },
+    {
+      "itemId": "item_642_white_gold_ring",
+      "itemLegacy": 642,
+      "itemName": "white gold ring",
+      "ability": null,
+      "value": "25",
+      "raw": {
+        "name": "HPRegen",
+        "value": "25",
+        "ability_id": 123
+      },
+      "evidenceState": "Verified",
+      "confidence": 100
+    }
+  ],
+  "allItemAbilityRelationshipCount": 4546,
+  "promotionNotes": [
+    "White Gold Ring / HPRegen relationship remains supported where present in item/candidate data; exact quest reward source still requires ordered quest proof."
+  ]
+}

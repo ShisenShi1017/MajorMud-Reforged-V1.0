@@ -1,0 +1,15 @@
+{
+  "questionsSupported": [
+    "What uses Ability 123?",
+    "Which shops sell item X?",
+    "Which spells use ability Y?",
+    "Which quest candidates use ability flag Z?",
+    "Which world overlays modify a base record?"
+  ],
+  "simpleLookups": {
+    "nodeById": "nodeId exact match",
+    "edgesFrom": "source exact match",
+    "edgesTo": "target exact match",
+    "byEvidenceState": "filter nodes/edges by evidenceState"
+  }
+}

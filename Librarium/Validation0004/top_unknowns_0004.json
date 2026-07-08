@@ -1,0 +1,21 @@
+{
+  "generatedUtc": "2026-07-07T23:45:52.723573+00:00",
+  "unknowns": [
+    {
+      "domain": "quests",
+      "reason": "Ordered quest stages not yet promoted; need decoded NPC/textblock sequence evidence."
+    },
+    {
+      "domain": "dialogue/textblocks",
+      "reason": "References are graphed; branch ordering and player choices still incomplete."
+    },
+    {
+      "domain": "scripts/triggers",
+      "reason": "Fields are indexed; semantic condition/action decoding remains incomplete."
+    },
+    {
+      "domain": "formulas",
+      "reason": "Excluded from Validation-0004 and scheduled for Validation-0005."
+    }
+  ]
+}

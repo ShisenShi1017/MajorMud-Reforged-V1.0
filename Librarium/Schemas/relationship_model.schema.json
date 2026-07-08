@@ -1,0 +1,17 @@
+{
+  "version": "0001",
+  "relationshipTypes": {
+    "HAS_ABILITY": 10748,
+    "ATTACK_CASTS_SPELL": 485,
+    "CAN_DROP_ITEM": 731,
+    "EXITS_TO": 46,
+    "SELLS_ITEM": 1204,
+    "RESISTED_BY_ABILITY": 4,
+    "OBSERVED_GRANTS_ABILITY": 1,
+    "USES_QUEST_FLAG": 12,
+    "OBSERVED_REWARDS_ITEM": 1
+  },
+  "notes": [
+    "Relationships are directed. All relationships carry evidence state and provenance."
+  ]
+}

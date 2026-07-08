@@ -1,0 +1,275 @@
+{
+  "generatedUtc": "2026-07-07T23:45:52.643782+00:00",
+  "status": "PASS",
+  "relationshipRecordCount": 37726,
+  "topRelationshipTypes": [
+    {
+      "nodeId": "relationship_type:has_ability",
+      "relationship": "HAS_ABILITY",
+      "edgeCount": 10658
+    },
+    {
+      "nodeId": "relationship_type:attack_casts_spell",
+      "relationship": "ATTACK_CASTS_SPELL",
+      "edgeCount": 485
+    },
+    {
+      "nodeId": "relationship_type:can_drop_item",
+      "relationship": "CAN_DROP_ITEM",
+      "edgeCount": 1428
+    },
+    {
+      "nodeId": "relationship_type:exits_to",
+      "relationship": "EXITS_TO",
+      "edgeCount": 46
+    },
+    {
+      "nodeId": "relationship_type:sells_item",
+      "relationship": "SELLS_ITEM",
+      "edgeCount": 1203
+    },
+    {
+      "nodeId": "relationship_type:resisted_by_ability",
+      "relationship": "RESISTED_BY_ABILITY",
+      "edgeCount": 4
+    },
+    {
+      "nodeId": "relationship_type:observed_grants_ability",
+      "relationship": "OBSERVED_GRANTS_ABILITY",
+      "edgeCount": 1
+    },
+    {
+      "nodeId": "relationship_type:uses_quest_flag",
+      "relationship": "USES_QUEST_FLAG",
+      "edgeCount": 12
+    },
+    {
+      "nodeId": "relationship_type:observed_rewards_item",
+      "relationship": "OBSERVED_REWARDS_ITEM",
+      "edgeCount": 1
+    },
+    {
+      "nodeId": "relationship_type:grants_or_modifies_ability",
+      "relationship": "GRANTS_OR_MODIFIES_ABILITY",
+      "edgeCount": 4536
+    },
+    {
+      "nodeId": "relationship_type:verified_grants_ability",
+      "relationship": "VERIFIED_GRANTS_ABILITY",
+      "edgeCount": 2
+    },
+    {
+      "nodeId": "relationship_type:text_or_field_references_ability",
+      "relationship": "TEXT_OR_FIELD_REFERENCES_ABILITY",
+      "edgeCount": 5658
+    },
+    {
+      "nodeId": "relationship_type:observed_or_derived_rewards_item",
+      "relationship": "OBSERVED_OR_DERIVED_REWARDS_ITEM",
+      "edgeCount": 1
+    },
+    {
+      "nodeId": "relationship_type:indirectly_rewards_ability",
+      "relationship": "INDIRECTLY_REWARDS_ABILITY",
+      "edgeCount": 1
+    },
+    {
+      "nodeId": "relationship_type:has_exit",
+      "relationship": "HAS_EXIT",
+      "edgeCount": 3025
+    },
+    {
+      "nodeId": "relationship_type:leads_to",
+      "relationship": "LEADS_TO",
+      "edgeCount": 2814
+    },
+    {
+      "nodeId": "relationship_type:contains_item",
+      "relationship": "CONTAINS_ITEM",
+      "edgeCount": 103
+    },
+    {
+      "nodeId": "relationship_type:spawns_monster",
+      "relationship": "SPAWNS_MONSTER",
+      "edgeCount": 955
+    },
+    {
+      "nodeId": "relationship_type:hides_item",
+      "relationship": "HIDES_ITEM",
+      "edgeCount": 267
+    },
+    {
+      "nodeId": "relationship_type:has_shop",
+      "relationship": "HAS_SHOP",
+      "edgeCount": 201
+    },
+    {
+      "nodeId": "relationship_type:uses_loot_table",
+      "relationship": "USES_LOOT_TABLE",
+      "edgeCount": 420
+    },
+    {
+      "nodeId": "relationship_type:has_attack",
+      "relationship": "HAS_ATTACK",
+      "edgeCount": 2269
+    },
+    {
+      "nodeId": "relationship_type:casts_on_hit",
+      "relationship": "CASTS_ON_HIT",
+      "edgeCount": 485
+    },
+    {
+      "nodeId": "relationship_type:classified_as",
+      "relationship": "CLASSIFIED_AS",
+      "edgeCount": 271
+    },
+    {
+      "nodeId": "relationship_type:references_textblock",
+      "relationship": "REFERENCES_TEXTBLOCK",
+      "edgeCount": 32
+    },
+    {
+      "nodeId": "relationship_type:has_raw_textblock_reference",
+      "relationship": "HAS_RAW_TEXTBLOCK_REFERENCE",
+      "edgeCount": 19
+    },
+    {
+      "nodeId": "relationship_type:likely_record_for",
+      "relationship": "LIKELY_RECORD_FOR",
+      "edgeCount": 18
+    },
+    {
+      "nodeId": "relationship_type:has_text_evidence",
+      "relationship": "HAS_TEXT_EVIDENCE",
+      "edgeCount": 16
+    },
+    {
+      "nodeId": "relationship_type:text_mentions_ability_term",
+      "relationship": "TEXT_MENTIONS_ABILITY_TERM",
+      "edgeCount": 16
+    },
+    {
+      "nodeId": "relationship_type:raw_text_mentions_ability_term",
+      "relationship": "RAW_TEXT_MENTIONS_ABILITY_TERM",
+      "edgeCount": 3656
+    },
+    {
+      "nodeId": "relationship_type:flow_uses_ability",
+      "relationship": "FLOW_USES_ABILITY",
+      "edgeCount": 12
+    },
+    {
+      "nodeId": "relationship_type:has_flow_candidate",
+      "relationship": "HAS_FLOW_CANDIDATE",
+      "edgeCount": 12
+    },
+    {
+      "nodeId": "relationship_type:has_text_mention_source",
+      "relationship": "HAS_TEXT_MENTION_SOURCE",
+      "edgeCount": 15
+    },
+    {
+      "nodeId": "relationship_type:has_raw_text_mention_source",
+      "relationship": "HAS_RAW_TEXT_MENTION_SOURCE",
+      "edgeCount": 1100
+    },
+    {
+      "nodeId": "relationship_type:observed_rewards_item_candidate",
+      "relationship": "OBSERVED_REWARDS_ITEM_CANDIDATE",
+      "edgeCount": 1
+    },
+    {
+      "nodeId": "relationship_type:indirectly_rewards_ability_via_item",
+      "relationship": "INDIRECTLY_REWARDS_ABILITY_VIA_ITEM",
+      "edgeCount": 1
+    },
+    {
+      "nodeId": "relationship_type:has_content_text",
+      "relationship": "HAS_CONTENT_TEXT",
+      "edgeCount": 23122
+    },
+    {
+      "nodeId": "relationship_type:has_message_text",
+      "relationship": "HAS_MESSAGE_TEXT",
+      "edgeCount": 6124
+    },
+    {
+      "nodeId": "relationship_type:has_dialogue_reference",
+      "relationship": "HAS_DIALOGUE_REFERENCE",
+      "edgeCount": 44
+    },
+    {
+      "nodeId": "relationship_type:likely_dialogue_for",
+      "relationship": "LIKELY_DIALOGUE_FOR",
+      "edgeCount": 28
+    },
+    {
+      "nodeId": "relationship_type:has_script_trigger",
+      "relationship": "HAS_SCRIPT_TRIGGER",
+      "edgeCount": 37288
+    },
+    {
+      "nodeId": "relationship_type:has_world_object",
+      "relationship": "HAS_WORLD_OBJECT",
+      "edgeCount": 315
+    },
+    {
+      "nodeId": "relationship_type:represents_world_object",
+      "relationship": "REPRESENTS_WORLD_OBJECT",
+      "edgeCount": 315
+    },
+    {
+      "nodeId": "relationship_record:edge_17661",
+      "edgeId": "edge:17661",
+      "relationship": "VERIFIED_GRANTS_ABILITY",
+      "source": "item:item_642_white_gold_ring",
+      "target": "ability:ability_123_hpregen"
+    },
+    {
+      "nodeId": "relationship_record:edge_34846",
+      "edgeId": "edge:34846",
+      "relationship": "REFERENCES_TEXTBLOCK",
+      "source": "raw_owner_row:763_4_649",
+      "target": "textblock_ref:863"
+    },
+    {
+      "nodeId": "relationship_record:edge_34849",
+      "edgeId": "edge:34849",
+      "relationship": "REFERENCES_TEXTBLOCK",
+      "source": "raw_owner_row:922_3_1357",
+      "target": "textblock_ref:1309"
+    },
+    {
+      "nodeId": "relationship_record:edge_34852",
+      "edgeId": "edge:34852",
+      "relationship": "REFERENCES_TEXTBLOCK",
+      "source": "raw_owner_row:965_5_66",
+      "target": "textblock_ref:9680"
+    },
+    {
+      "nodeId": "relationship_record:edge_34855",
+      "edgeId": "edge:34855",
+      "relationship": "REFERENCES_TEXTBLOCK",
+      "source": "raw_owner_row:1045_3_1386",
+      "target": "textblock_ref:2679"
+    },
+    {
+      "nodeId": "relationship_record:edge_34858",
+      "edgeId": "edge:34858",
+      "relationship": "REFERENCES_TEXTBLOCK",
+      "source": "raw_owner_row:1045_4_721",
+      "target": "textblock_ref:2679"
+    },
+    {
+      "nodeId": "relationship_record:edge_34861",
+      "edgeId": "edge:34861",
+      "relationship": "REFERENCES_TEXTBLOCK",
+      "source": "raw_owner_row:1047_3_1391",
+      "target": "textblock_ref:2700"
+    }
+  ],
+  "behaviorActionCount": 2,
+  "statusEffectGraphCount": 2,
+  "skillGraphCount": 2,
+  "finding": "Runtime/content relationships are present and traversable; exact formulas are intentionally excluded for Validation-0005."
+}

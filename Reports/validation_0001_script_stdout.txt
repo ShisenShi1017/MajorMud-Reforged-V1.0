@@ -1,0 +1,16 @@
+PASS: Validation-0001 report present
+{
+  "status": "PASS_WITH_FINDINGS",
+  "files_scanned": 167,
+  "entities": 20826,
+  "assertions": 71026,
+  "promotion_candidates": 0,
+  "integrity": {
+    "duplicate_assertion_keys": 0,
+    "possible_conflicts": 0,
+    "assertions_missing_required_fields": 50200,
+    "orphan_entities": 0
+  }
+}
+
+STDERR:

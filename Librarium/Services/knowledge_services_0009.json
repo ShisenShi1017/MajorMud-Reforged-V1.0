@@ -1,0 +1,132 @@
+{
+  "generatedUtc": "2026-07-07T22:21:39Z",
+  "milestone": "Librarium-0009",
+  "services": [
+    {
+      "serviceId": "relationship_explorer",
+      "name": "Relationship Explorer",
+      "purpose": "Traverse direct and reverse links for any knowledge record.",
+      "inputs": [
+        "nodeId",
+        "relationshipType",
+        "depth"
+      ],
+      "outputs": [
+        "neighbors",
+        "relationships",
+        "evidenceSummary"
+      ],
+      "status": "implemented_foundation"
+    },
+    {
+      "serviceId": "impact_analysis",
+      "name": "Impact Analysis",
+      "purpose": "Estimate what records, systems, formulas, validations, and worlds are affected by changing a record.",
+      "inputs": [
+        "nodeId",
+        "changeType"
+      ],
+      "outputs": [
+        "affectedRecords",
+        "runtimeConsumers",
+        "riskLevel",
+        "validationTargets"
+      ],
+      "status": "implemented_foundation"
+    },
+    {
+      "serviceId": "world_diff",
+      "name": "World Diff / Comparison",
+      "purpose": "Compare Classic Base, Reforged, Custom, AI, Test, and Live Runtime overlay layers.",
+      "inputs": [
+        "leftWorldLayer",
+        "rightWorldLayer"
+      ],
+      "outputs": [
+        "added",
+        "removed",
+        "overridden",
+        "promoted",
+        "conflicts"
+      ],
+      "status": "implemented_foundation"
+    },
+    {
+      "serviceId": "promotion_workflow",
+      "name": "Canonical Promotion Workflow",
+      "purpose": "Move records and relationships through Hypothesis, Observed, Derived, Verified, WorldOverride, and AIProposal states while preserving provenance.",
+      "inputs": [
+        "recordId",
+        "targetEvidenceState",
+        "supportingSources"
+      ],
+      "outputs": [
+        "promotionDecision",
+        "requiredEvidence",
+        "auditRecord"
+      ],
+      "status": "implemented_foundation"
+    },
+    {
+      "serviceId": "documentation_generator",
+      "name": "Documentation Generator",
+      "purpose": "Generate Librarium pages from graph records and relationships instead of hand-written disconnected notes.",
+      "inputs": [
+        "recordId",
+        "scope"
+      ],
+      "outputs": [
+        "markdownPage",
+        "relationshipSummary",
+        "evidenceSummary"
+      ],
+      "status": "implemented_foundation"
+    },
+    {
+      "serviceId": "validation_generator",
+      "name": "Validation Generator",
+      "purpose": "Generate validation targets from graph dependencies, evidence gaps, and runtime consumers.",
+      "inputs": [
+        "scope",
+        "evidenceFilter"
+      ],
+      "outputs": [
+        "validationPlan",
+        "testTargets",
+        "knownUnknowns"
+      ],
+      "status": "implemented_foundation"
+    },
+    {
+      "serviceId": "runtime_consumer_api",
+      "name": "Runtime Consumer API",
+      "purpose": "Stable service boundary for runtime/server/editor clients to query graph-backed game knowledge.",
+      "inputs": [
+        "queryType",
+        "payload"
+      ],
+      "outputs": [
+        "records",
+        "relationships",
+        "evidence",
+        "runtimeInstructions"
+      ],
+      "status": "implemented_foundation"
+    },
+    {
+      "serviceId": "natural_language_query_map",
+      "name": "Natural Language Query Map",
+      "purpose": "Map plain-English questions to deterministic graph query templates.",
+      "inputs": [
+        "question"
+      ],
+      "outputs": [
+        "intent",
+        "queryTemplate",
+        "parameters",
+        "resultShape"
+      ],
+      "status": "implemented_foundation"
+    }
+  ]
+}

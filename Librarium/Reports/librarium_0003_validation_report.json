@@ -1,0 +1,49 @@
+{
+  "milestone": "Librarium-0003",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "zip/base unpacked",
+      "status": "PASS"
+    },
+    {
+      "name": "graph nodes present",
+      "status": "PASS",
+      "count": 11791
+    },
+    {
+      "name": "graph relationships present",
+      "status": "PASS",
+      "count": 34845
+    },
+    {
+      "name": "no missing edge sources",
+      "status": "PASS",
+      "count": 0
+    },
+    {
+      "name": "no missing edge targets",
+      "status": "PASS",
+      "count": 0
+    },
+    {
+      "name": "no duplicate relationship keys",
+      "status": "PASS",
+      "count": 0
+    },
+    {
+      "name": "ability catalog generated",
+      "status": "PASS",
+      "count": 188
+    },
+    {
+      "name": "quest flow candidates generated",
+      "status": "PASS",
+      "count": 13
+    }
+  ],
+  "unknownByDesign": [
+    "Full NPC/textblock execution flow remains pending until explicit NPC/textblock source records are mapped.",
+    "Some engine behavior remains outside pure data and must stay evidence-state tracked."
+  ]
+}

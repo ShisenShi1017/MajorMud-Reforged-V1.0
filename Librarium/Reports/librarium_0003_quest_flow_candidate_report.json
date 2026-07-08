@@ -1,0 +1,244 @@
+{
+  "questFlows": [
+    {
+      "questAbilityId": 50,
+      "questAbilityName": "MageBaneQuest",
+      "nodeId": "ability:ability_50_magebanequest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 123,
+      "questAbilityName": "HPRegen",
+      "nodeId": "ability:ability_123_hpregen",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [
+        "0",
+        "5",
+        "10",
+        "20",
+        "25",
+        "35",
+        "50",
+        "75",
+        "-25",
+        "-40",
+        "-50",
+        "100",
+        "200",
+        "-100",
+        "-150",
+        "-200"
+      ],
+      "referencesBySourceType": {
+        "item": 52,
+        "quest": 1,
+        "spell": 32
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 125,
+      "questAbilityName": "IceSorcQuest",
+      "nodeId": "ability:ability_125_icesorcquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 126,
+      "questAbilityName": "GoodQuest",
+      "nodeId": "ability:ability_126_goodquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 127,
+      "questAbilityName": "NeutralQuest",
+      "nodeId": "ability:ability_127_neutralquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 128,
+      "questAbilityName": "EvilQuest",
+      "nodeId": "ability:ability_128_evilquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 129,
+      "questAbilityName": "DarkDruidQuest",
+      "nodeId": "ability:ability_129_darkdruidquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 130,
+      "questAbilityName": "BloodChampQuest",
+      "nodeId": "ability:ability_130_bloodchampquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 131,
+      "questAbilityName": "SheDragonQuest",
+      "nodeId": "ability:ability_131_shedragonquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 132,
+      "questAbilityName": "WereratQuest",
+      "nodeId": "ability:ability_132_wereratquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 133,
+      "questAbilityName": "PhoenixQuest",
+      "nodeId": "ability:ability_133_phoenixquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 134,
+      "questAbilityName": "DaoLordQuest",
+      "nodeId": "ability:ability_134_daolordquest",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    },
+    {
+      "questAbilityId": 156,
+      "questAbilityName": "QuestItem",
+      "nodeId": "ability:ability_156_questitem",
+      "evidenceState": "Derived",
+      "confidence": 75,
+      "observedValues": [],
+      "referencesBySourceType": {
+        "quest": 1
+      },
+      "candidateFlowBasis": "relationship graph references only; sysop/editor command availability not used as runtime proof",
+      "nextValidationNeeded": [
+        "map NPC/textblock records to ability checks/grants",
+        "map item rewards and requirements",
+        "map room/exit gates by ability value"
+      ]
+    }
+  ]
+}

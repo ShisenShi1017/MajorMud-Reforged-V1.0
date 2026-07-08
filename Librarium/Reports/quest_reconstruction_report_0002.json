@@ -1,0 +1,453 @@
+{
+  "generatedUtc": "2026-07-07T23:24:58.808812+00:00",
+  "questAbilityCandidates": [
+    {
+      "legacyNumber": 130,
+      "id": "ability_130_bloodchampquest",
+      "name": "BloodChampQuest",
+      "description": "This is the progress the player has made with the Blood Champion quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 134,
+      "id": "ability_134_daolordquest",
+      "name": "DaoLordQuest",
+      "description": "This is the progress the player has made with the DaoLord quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 129,
+      "id": "ability_129_darkdruidquest",
+      "name": "DarkDruidQuest",
+      "description": "This is the progress the player has made with the Dark Druid quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 128,
+      "id": "ability_128_evilquest",
+      "name": "EvilQuest",
+      "description": "This is the progress the player has made with the EVIL quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 126,
+      "id": "ability_126_goodquest",
+      "name": "GoodQuest",
+      "description": "This is the progress the player has made with the GOOD quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 123,
+      "id": "ability_123_hpregen",
+      "name": "HPRegen",
+      "description": "Used in any object to modify the targets HP regen rate. The Druid spell \"Rapid Healing\" and the module-1 quest rings use this attribute.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 125,
+      "id": "ability_125_icesorcquest",
+      "name": "IceSorcQuest",
+      "description": "This is the progress the player has made with the Ice Sorceress quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 50,
+      "id": "ability_50_magebanequest",
+      "name": "MageBaneQuest",
+      "description": "This Determines if the player has completed the MageBane quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 127,
+      "id": "ability_127_neutralquest",
+      "name": "NeutralQuest",
+      "description": "This is the progress the player has made with the NEUTRAL quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 133,
+      "id": "ability_133_phoenixquest",
+      "name": "PhoenixQuest",
+      "description": "This is the progress the player has made with the Phoenix feather quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 156,
+      "id": "ability_156_questitem",
+      "name": "QuestItem",
+      "description": "Makes the item a quest item",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 131,
+      "id": "ability_131_shedragonquest",
+      "name": "SheDragonQuest",
+      "description": "This is the progress the player has made with the SheDragon quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "legacyNumber": 132,
+      "id": "ability_132_wereratquest",
+      "name": "WereratQuest",
+      "description": "This is the progress the player has made with the Wererat quest.",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+        "file": "codex-ability-wcc.json",
+        "promotedBy": "Patch0068"
+      }
+    }
+  ],
+  "questFlowCandidates": [
+    {
+      "quest": "MageBaneQuest",
+      "abilityId": 50,
+      "abilityNode": "ability:ability_50_magebanequest",
+      "flowNode": "quest_flow_candidate:magebanequest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 3,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 2,
+        "rawTextMentions": 0,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 5,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "IceSorcQuest",
+      "abilityId": 125,
+      "abilityNode": "ability:ability_125_icesorcquest",
+      "flowNode": "quest_flow_candidate:icesorcquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 320,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 1,
+        "rawTextMentions": 318,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 639,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "GoodQuest",
+      "abilityId": 126,
+      "abilityNode": "ability:ability_126_goodquest",
+      "flowNode": "quest_flow_candidate:goodquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 250,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 249,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 499,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "NeutralQuest",
+      "abilityId": 127,
+      "abilityNode": "ability:ability_127_neutralquest",
+      "flowNode": "quest_flow_candidate:neutralquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 232,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 231,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 463,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "EvilQuest",
+      "abilityId": 128,
+      "abilityNode": "ability:ability_128_evilquest",
+      "flowNode": "quest_flow_candidate:evilquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 244,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 243,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 487,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "DarkDruidQuest",
+      "abilityId": 129,
+      "abilityNode": "ability:ability_129_darkdruidquest",
+      "flowNode": "quest_flow_candidate:darkdruidquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 280,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 1,
+        "rawTextMentions": 278,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 559,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "BloodChampQuest",
+      "abilityId": 130,
+      "abilityNode": "ability:ability_130_bloodchampquest",
+      "flowNode": "quest_flow_candidate:bloodchampquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 642,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 641,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 1283,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "SheDragonQuest",
+      "abilityId": 131,
+      "abilityNode": "ability:ability_131_shedragonquest",
+      "flowNode": "quest_flow_candidate:shedragonquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 261,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 260,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 521,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "WereratQuest",
+      "abilityId": 132,
+      "abilityNode": "ability:ability_132_wereratquest",
+      "flowNode": "quest_flow_candidate:wereratquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 276,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 5,
+        "rawTextMentions": 270,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 551,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "PhoenixQuest",
+      "abilityId": 133,
+      "abilityNode": "ability:ability_133_phoenixquest",
+      "flowNode": "quest_flow_candidate:phoenixquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 373,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 4,
+        "rawTextMentions": 368,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 745,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "DaoLordQuest",
+      "abilityId": 134,
+      "abilityNode": "ability:ability_134_daolordquest",
+      "flowNode": "quest_flow_candidate:daolordquest",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 321,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 2,
+        "rawTextMentions": 318,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 641,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    },
+    {
+      "quest": "QuestItem",
+      "abilityId": 156,
+      "abilityNode": "ability:ability_156_questitem",
+      "flowNode": "quest_flow_candidate:questitem",
+      "evidenceState": "Derived",
+      "confidence": 70,
+      "supportCounts": {
+        "incomingAbilityEdges": 226,
+        "itemRefs": 0,
+        "roomOrExitRefs": 0,
+        "gateRefs": 0,
+        "textMentions": 0,
+        "rawTextMentions": 225,
+        "observedStageValues": []
+      },
+      "promotionStatus": "candidate_only_not_promoted_to_Data/quests.json",
+      "notes": "Need decoded NPC/textblock content to order exact steps.",
+      "computedSupportScore": 451,
+      "reconstructionState": "Derived",
+      "orderedStagesVerified": false,
+      "remainingNeed": "decoded NPC/textblock ordering and reward/action source records"
+    }
+  ],
+  "promotionDecision": "No Data/quests.json promotion; exact ordered stages remain unverified."
+}

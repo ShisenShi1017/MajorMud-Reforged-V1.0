@@ -1,0 +1,13 @@
+CLASSIC_PROVEN = "classic_proven"
+CLASSIC_HYPOTHESIS = "classic_hypothesis"
+MMEXPLORER_DERIVED = "mmexplorer_derived"
+REFORGED_FORMULA = "reforged_formula"
+EXPERIMENTAL = "experimental"
+
+ALLOWED_MODES = {
+    CLASSIC_PROVEN,
+    CLASSIC_HYPOTHESIS,
+    MMEXPLORER_DERIVED,
+    REFORGED_FORMULA,
+    EXPERIMENTAL,
+}

@@ -1,66 +1,80 @@
 {
-  "project": "Reforged",
-  "projectVersion": "0.1.0",
-  "codeUpdate": "0065",
-  "databaseVersion": "0009",
-  "milestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-  "sourceOfTruth": "GitHub repository ShisenShi1017/MajorMud-Reforged-V1.0",
-  "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
-  "updatePolicy": "ChatGPT CodeUpdate ZIPs are patch-only packages unless explicitly requested otherwise; each ZIP must contain exactly one top-level update folder with Apply-CodeUpdate-XXXX.bat and UpdateManifest.json, and the BAT applies changed/new files into the main repository folder.",
-  "modePolicy": "Each assistant must identify mode first. Codex updates local only and waits for user push plus stated green GitHub Actions before continuing. ChatGPT uses verified patch ZIPs for local application unless explicitly instructed otherwise.",
-  "neverGuessPolicy": "Never guess when creating, fixing, reviewing, packaging, or reporting updates. Verify before claiming success; if something cannot be verified, state that clearly.",
-  "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
-  "referenceDataPolicy": "All WCC data, WCC-labeled data, WSGSERVE-related data, imported archives, website data, and community/tool data are reference-only unless the user explicitly approves a reviewed import or reconciliation update.",
-  "importedDataRetirementPolicy": "ImportedDatabases may be retired from normal project work only after all needed source data has been decoded, imported, recreated as Reforged-native Data, verified by reports, and explicitly approved for cleanup.",
-  "preserve": [
-    "Saves",
-    "ImportedDatabases"
+  "name": "MajorMUD-Reforged Full PC Replacement - Librarium Canonical",
+  "generated_utc": "2026-07-08T01:05:06.120753Z",
+  "source_repo_zip": "MajorMud-Reforged-V1.0-main(22).zip",
+  "librarium_validation_baseline_zip": "MajorMUD-Reforged-Validation-0007-Final-Librarium-Completion-Compiler-Foundation.zip",
+  "canonical_source": "/Librarium",
+  "generated_runtime_output": [
+    "/Generated/RuntimeData",
+    "/Data"
   ],
-  "developmentStatus": {
-    "currentMilestone": "Milestone 2 - Engine Modernization / Host & World Editor Planning",
-    "currentCodeUpdate": "0065",
-    "currentDatabaseVersion": "0009",
-    "completedMilestones": [
-      "Milestone 1 - Core Framework"
-    ],
-    "milestone1Status": "Complete/frozen",
-    "milestone2Status": "Continuing with constrained modular server construction and reviewed data-repair work; gameplay systems remain disabled.",
-    "lastUpdateName": "CodeUpdate-0065-MMExplorer-MDB-Canonical-Repair",
-    "nextRecommendedWork": [
-      "CodeUpdate-0065 records CodeUpdate-0064 as green by user report and repairs canonical room/world data from ImportedDatabases/data-v1.11n.mdb where fields map directly.",
-      "CodeUpdate-0065 adds Data/StockGameRaw/MMExplorerMDB as the current raw MMExplorer MDB extraction surface for direct canonical repair and follow-up decoding.",
-      "CodeUpdate-0065 adds wcc_map1_room2150 Newhaven, Arena and wcc_map1_room2156 Small Cavern to canonical rooms and world projection, raising room count to 1,248.",
-      "Use MMExplorer MDB owner table 1664 for reviewed room repair; use owner tables 322, 2566, 15, and 1660 as next candidates for monster/NPC, shop, class, and race reconciliation.",
-      "Promote only direct MDB-backed fields until byte-level field positions are decoded; exit semantics remain unknown where marked exit_type -1 and exitTypeKnown false.",
-      "Next safe data slice: repair one additional high-confidence canonical category from MMExplorer MDB owner tables, preferably shops or monsters, with a report and smoke verification.",
-      "Treat game logic as data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules/content/progression/encounters/shops/quests/spawns/textblock actions/world behavior should live in data unless truly engine-internal.",
-      "Do not overwrite Saves or ImportedDatabases. Do not delete imported/reference data until Reforged-native Data is complete, verified, and explicitly approved for cleanup.",
-      "Do not add gameplay, command execution, scheduler execution, networking, combat, movement execution, AI, live editor behavior, live parity claims, or runtime formula/timing promotion without explicit approval."
-    ]
-  },
-  "handoffPolicy": {
-    "agentFile": "AGENTS.md",
-    "handoffDocument": "AI_CONTEXT.md",
-    "engineeringPrinciples": "DEVELOPMENT_PRINCIPLES.md",
-    "mustUpdateEveryCodeUpdate": true,
-    "mustUpdateRelevantDocs": true,
-    "requiredStartupOrder": [
-      "AGENTS.md",
-      "AI_CONTEXT.md",
-      "Docs/Architecture/PROJECT_ROADMAP.md",
-      "README.md",
-      "VERSION.md",
-      "CHANGELOG.md",
-      "ProjectManifest.json",
-      "DEVELOPMENT_PRINCIPLES.md"
-    ]
-  },
-  "updateZipPolicy": {
-    "patchOnly": true,
-    "oneTopLevelFolder": true,
-    "requiresApplyBat": true,
-    "requiresManifest": true,
-    "requiresVerificationBeforeAnnouncement": true
-  },
-  "buildVerification": "CodeUpdate-0065 records CodeUpdate-0064 as green by user report. It repairs canonical room/world data from the MMExplorer MDB where fields map directly, adds the raw MDB stock data surface, and keeps gameplay/server execution disabled. Local verification passed: JSON parse, Python tool compile, git diff --check, sequential Release build sweep for Core/Server/Importer/Editor/Launcher/Client/Tests, core/server smoke tests, and Server bootstrap run. GitHub Actions remains the official gate after user push."
+  "file_count": 5545,
+  "top_level": [
+    ".gitattributes",
+    ".github",
+    ".gitignore",
+    "AGENTS.md",
+    "AI_CONTEXT.md",
+    "Apps",
+    "Bin",
+    "CHANGELOG.md",
+    "CODEX_HANDOFF.md",
+    "CanonicalPromotion",
+    "Codex",
+    "Core",
+    "DEVELOPMENT_PRINCIPLES.md",
+    "Data",
+    "DataDecodeCheckpoints",
+    "Docs",
+    "Documentation",
+    "EngineKnowledge.md",
+    "Evidence",
+    "GOVERNING_PRINCIPLES.md",
+    "Generated",
+    "GitHubActions",
+    "ImportedDatabases",
+    "KnowledgeBase",
+    "Legacy",
+    "Librarium",
+    "MIGRATION_REPORT.md",
+    "ProjectManifest.json",
+    "README.md",
+    "README.txt",
+    "ReleaseNotes.md",
+    "Reports",
+    "Runtime",
+    "Sim",
+    "Simulator",
+    "SourceData",
+    "Tests",
+    "Tools",
+    "UpdateManifest.json",
+    "VERSION.md",
+    "Validation"
+  ],
+  "excluded_local_clutter": [
+    "Backups",
+    "Logs",
+    "Saves",
+    "Updates",
+    "__pycache__",
+    "*.pyc"
+  ],
+  "validation": {
+    "status": "PASS",
+    "required": {
+      "Librarium": true,
+      "Generated": true,
+      "Data": true,
+      "Apps": true,
+      "Core": true,
+      "Tools": true,
+      "Validation": true,
+      "Documentation": true,
+      "README.md": true,
+      "GOVERNING_PRINCIPLES.md": true,
+      "CODEX_HANDOFF.md": true
+    },
+    "missing": []
+  }
 }

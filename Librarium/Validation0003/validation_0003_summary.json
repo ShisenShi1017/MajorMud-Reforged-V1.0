@@ -1,0 +1,65 @@
+{
+  "milestone": "Validation-0003 — Quest, Dialogue, and Formula Verification",
+  "generatedUtc": "2026-07-07T23:31:16.966331+00:00",
+  "result": "PASS_WITH_FINDINGS",
+  "basePackage": "MajorMUD-Reforged-Validation-0002-Complete-MajorMUD-Reconstruction.zip",
+  "scope": [
+    "quest validation",
+    "dialogue/textblock reconstruction",
+    "formula verification"
+  ],
+  "computedMetrics": {
+    "abilities": 188,
+    "questOrQuestItemAbilities": 12,
+    "specialHybridAbilitiesWatched": 1,
+    "items": 1950,
+    "itemAbilityRelationships": 4546,
+    "spells": 1350,
+    "spellAbilityRelationships": 3889,
+    "monsters": 1100,
+    "monsterAbilityRelationships": 2293,
+    "questCandidatesCarriedForward": 12,
+    "canonicalQuestRecords": 0,
+    "textblockReferences": 16,
+    "dialogueReferences": 16,
+    "canonicalTextAbilityMentions": 16,
+    "rawOwnerTextAbilityMentions": 1000,
+    "formulaModelsEvaluated": 10,
+    "formulaDependencyEdges": 45,
+    "verifiedDirectRelationships": 10728
+  },
+  "promotionResults": {
+    "canonicalDataOverwritten": false,
+    "Data_quests_json_changed": false,
+    "directAbilityRelationshipsEligibleForCanonicalRelationships": 10728,
+    "orderedQuestStagesPromoted": 0,
+    "formulaModelsPromotedToVerifiedExactMath": 0,
+    "reason": "Direct relationships were verified; ordered quest stages and exact formula math remain blocked by missing ordering/numeric proof."
+  },
+  "findings": [
+    "Quest ability flags and hybrid ability 123 are indexed with direct support counts.",
+    "Item/spell/monster ability relationships can be used as canonical relationship facts with provenance.",
+    "Dialogue/textblock references are indexed but not sufficiently ordered for full quest-stage promotion.",
+    "Formula dependencies are graphed; exact classic formula math remains Derived pending numeric verification."
+  ],
+  "topUnknowns": [
+    {
+      "domain": "quests/dialogue",
+      "issue": "ordered quest stages not proven",
+      "priority": "high",
+      "reason": "quest flags and references exist, but branch/stage order is not decoded enough to promote Data/quests.json"
+    },
+    {
+      "domain": "formulas",
+      "issue": "exact classic numeric formulas unverified",
+      "priority": "high",
+      "reason": "dependencies are known, but classic calculations still require numeric proof"
+    },
+    {
+      "domain": "canonical quests",
+      "issue": "Data/quests.json empty",
+      "priority": "medium",
+      "reason": "candidate graph exists but canonical quest records should wait for ordered stage proof"
+    }
+  ]
+}

@@ -1,0 +1,3452 @@
+[
+  {
+    "system": "combat",
+    "variable": "path",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "encoding",
+    "distinctObservedRHS": 29,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "data",
+    "distinctObservedRHS": 30,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "value",
+    "distinctObservedRHS": 19,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "str",
+    "distinctObservedRHS": 35,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "trace",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "raw",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "result",
+    "distinctObservedRHS": 27,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "engine",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "out",
+    "distinctObservedRHS": 16,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "int",
+    "distinctObservedRHS": 31,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "level",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "stats",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "runtime_id",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "name",
+    "distinctObservedRHS": 63,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "class_id",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "current",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "skills",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "flags",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "provenance",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "item",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "abilities",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "classic_accuracy",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "base",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "required",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "target",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "notes",
+    "distinctObservedRHS": 24,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "classes",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "races",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "max_hp",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "status",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "rooms",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "room_ref",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "key",
+    "distinctObservedRHS": 20,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "low",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "root",
+    "distinctObservedRHS": 19,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "indent",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "items",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "missing",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "report",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "runtime",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "passed",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "count",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "repo_root",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "summary",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "hp",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "state",
+    "distinctObservedRHS": 20,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "monsters",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "shops",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "spells",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "names",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "event",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "world",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "item_id",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "world_id",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "val",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "rid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "num",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "kind",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "amount",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "cost",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "effect_type",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "aliases",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "help",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "message",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "if name",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "entities",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "payload",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "json map",
+    "distinctObservedRHS": 211,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "json linkedspawnroom",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "work",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "nodes",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "nid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "eid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "src",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "aid",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "sid",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "node_ids",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "manifest",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "bad",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "old",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "text",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "base_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "build",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "out_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "core",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "it",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "evidence",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "rel",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "assertions",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "vals",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "sources",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "combat",
+    "variable": "cat",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "path",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "encoding",
+    "distinctObservedRHS": 23,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "data",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "value",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "int",
+    "distinctObservedRHS": 16,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "str",
+    "distinctObservedRHS": 23,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "abilities",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "classic_accuracy",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "base",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "trace",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "result",
+    "distinctObservedRHS": 16,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "target",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "notes",
+    "distinctObservedRHS": 21,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "level",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "classes",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "races",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "stats",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "max_hp",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "status",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "rooms",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "name",
+    "distinctObservedRHS": 25,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "key",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "low",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "items",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "passed",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "missing",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "repo_root",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "summary",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "hp",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "state",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "out",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "indent",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "root",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "world",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "val",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "rid",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "kind",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "effect_type",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "provenance",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "payload",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "nodes",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "nid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "eid",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "src",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "sid",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "node_ids",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "report",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "manifest",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "bad",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "old",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "text",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "build",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "out_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "core",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "count",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "evidence",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "if name",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "rel",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "experience_leveling",
+    "variable": "cat",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "path",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "encoding",
+    "distinctObservedRHS": 26,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "data",
+    "distinctObservedRHS": 28,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "value",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "str",
+    "distinctObservedRHS": 26,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "trace",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "raw",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "result",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "out",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "int",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "level",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "stats",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "runtime_id",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "name",
+    "distinctObservedRHS": 56,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "current",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "skills",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "flags",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "provenance",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "item",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "abilities",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "classic_accuracy",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "classes",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "races",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "max_hp",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "notes",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "key",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "low",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "items",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "runtime",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "passed",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "count",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "repo_root",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "status",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "hp",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "state",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "spells",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "monsters",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "target",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "names",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "summary",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "world",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "room_ref",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "item_id",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "world_id",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "indent",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "val",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "rid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "num",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "kind",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "effect_type",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "aliases",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "help",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "message",
+    "distinctObservedRHS": 16,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "if name",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "payload",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "root",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "json map",
+    "distinctObservedRHS": 211,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "json linkedspawnroom",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "work",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "nodes",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "nid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "eid",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "src",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "aid",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "sid",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "node_ids",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "report",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "manifest",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "bad",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "old",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "rooms",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "text",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "base_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "build",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "out_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "core",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "it",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "evidence",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "rel",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "assertions",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "vals",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spell",
+    "variable": "cat",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "path",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "encoding",
+    "distinctObservedRHS": 24,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "data",
+    "distinctObservedRHS": 26,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "value",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "result",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "items",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "passed",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "notes",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "status",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "out",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "monsters",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "shops",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "names",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "summary",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "val",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "rid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "name",
+    "distinctObservedRHS": 46,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "num",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "item_id",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "int",
+    "distinctObservedRHS": 21,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "str",
+    "distinctObservedRHS": 16,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "base",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "amount",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "cost",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "aliases",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "help",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "target",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "room_ref",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "message",
+    "distinctObservedRHS": 16,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "if name",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "state",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "world",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "indent",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "world_id",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "payload",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "root",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "json map",
+    "distinctObservedRHS": 211,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "json linkedspawnroom",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "work",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "nodes",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "nid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "provenance",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "eid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "src",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "aid",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "sid",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "node_ids",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "report",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "manifest",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "bad",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "old",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "key",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "rooms",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "text",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "low",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "build",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "out_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "core",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "it",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "count",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "evidence",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "rel",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "assertions",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "vals",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "loot",
+    "variable": "cat",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "path",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "encoding",
+    "distinctObservedRHS": 22,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "data",
+    "distinctObservedRHS": 20,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "value",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "str",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "int",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "name",
+    "distinctObservedRHS": 46,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "result",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "items",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "passed",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "notes",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "count",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "status",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "out",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "monsters",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "shops",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "names",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "summary",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "val",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "rid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "num",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "amount",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "cost",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "aliases",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "help",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "target",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "message",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "if name",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "state",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "indent",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "json map",
+    "distinctObservedRHS": 211,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "json linkedspawnroom",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "root",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "nid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "provenance",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "eid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "src",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "aid",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "sid",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "node_ids",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "report",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "manifest",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "bad",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "build",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "out_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "core",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "key",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "rooms",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "it",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "old",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "evidence",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "low",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "text",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "rel",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "assertions",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "vals",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "economy",
+    "variable": "cat",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "path",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "encoding",
+    "distinctObservedRHS": 30,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "data",
+    "distinctObservedRHS": 32,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "value",
+    "distinctObservedRHS": 20,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "str",
+    "distinctObservedRHS": 34,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "trace",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "raw",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "result",
+    "distinctObservedRHS": 28,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "engine",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "out",
+    "distinctObservedRHS": 16,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "int",
+    "distinctObservedRHS": 29,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "level",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "stats",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "runtime_id",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "name",
+    "distinctObservedRHS": 63,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "class_id",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "current",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "skills",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "flags",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "provenance",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "item",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "abilities",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "classic_accuracy",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "base",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "required",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "target",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "notes",
+    "distinctObservedRHS": 25,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "classes",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "races",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "max_hp",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "status",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "rooms",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "room_ref",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "key",
+    "distinctObservedRHS": 19,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "low",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "root",
+    "distinctObservedRHS": 20,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "indent",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "report",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "items",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "graph",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "nodes",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "node_ids",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "missing",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "runtime",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "passed",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "count",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "repo_root",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "summary",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "hp",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "state",
+    "distinctObservedRHS": 20,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "monsters",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "shops",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "spells",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "names",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "event",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "world",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "item_id",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "world_id",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "val",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "rid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "num",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "kind",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "amount",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "cost",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "effect_type",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "help",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "message",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "aliases",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "if name",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "entities",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "payload",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "json map",
+    "distinctObservedRHS": 285,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "json linkedspawnroom",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "work",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "nid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "eid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "src",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "aid",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "sid",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "manifest",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "bad",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "old",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "text",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "base_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "build",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "out_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "core",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "it",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "evidence",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "rel",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "assertions",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "vals",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "sources",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "ai",
+    "variable": "cat",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "int",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "result",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "notes",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "encoding",
+    "distinctObservedRHS": 20,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "passed",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "name",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "val",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "rid",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "cost",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "data",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "indent",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "work",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "root",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "out",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "nodes",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "nid",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "state",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "provenance",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "sid",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "key",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "if name",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "rel",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "regeneration",
+    "variable": "vals",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "status",
+    "variable": "value",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "status",
+    "variable": "effect_type",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "status",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "status",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "value",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "rooms",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "target",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "root",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "result",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "report",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "indent",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "items",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "nodes",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "encoding",
+    "distinctObservedRHS": 24,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "node_ids",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "data",
+    "distinctObservedRHS": 23,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "summary",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "notes",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "passed",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "val",
+    "distinctObservedRHS": 12,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "rid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "name",
+    "distinctObservedRHS": 41,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "path",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "aliases",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "help",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "message",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "names",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "if name",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "state",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "int",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "json map",
+    "distinctObservedRHS": 285,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "json linkedspawnroom",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "work",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "out",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "nid",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "provenance",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "eid",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "src",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "aid",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "sid",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "manifest",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "bad",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "old",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "key",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "text",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "low",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "build",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "out_zip",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "core",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "it",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "count",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "evidence",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "rel",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "kind",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "assertions",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "vals",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "sources",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "movement",
+    "variable": "cat",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "int",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "str",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "value",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "room_ref",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "name",
+    "distinctObservedRHS": 15,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "key",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "low",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "stats",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "result",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "notes",
+    "distinctObservedRHS": 14,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "passed",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "world",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "data",
+    "distinctObservedRHS": 17,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "world_id",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "indent",
+    "distinctObservedRHS": 10,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "message",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "payload",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "root",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "path",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "encoding",
+    "distinctObservedRHS": 18,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "json linkedspawnroom",
+    "distinctObservedRHS": 19,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "json map",
+    "distinctObservedRHS": 211,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "out",
+    "distinctObservedRHS": 8,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "nid",
+    "distinctObservedRHS": 11,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "state",
+    "distinctObservedRHS": 9,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "provenance",
+    "distinctObservedRHS": 13,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "src",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "sid",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "node_ids",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "build",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "core",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "rooms",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "evidence",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "text",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "num",
+    "distinctObservedRHS": 7,
+    "evidenceState": "NeedsReview"
+  },
+  {
+    "system": "spawn",
+    "variable": "consumers",
+    "distinctObservedRHS": 6,
+    "evidenceState": "NeedsReview"
+  }
+]

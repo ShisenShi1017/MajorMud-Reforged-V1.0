@@ -1,0 +1,30 @@
+{
+  "generatedUtc": "2026-07-07T23:24:58.808812+00:00",
+  "unknowns": [
+    {
+      "priority": 1,
+      "area": "Ordered quest stages",
+      "reason": "Quest ability flags are known, but exact stage ordering/rewards/actions need decoded NPC/textblock flow."
+    },
+    {
+      "priority": 2,
+      "area": "Textblock/dialogue decode",
+      "reason": "Only references/fragments are indexed; complete branching and choice semantics are not verified."
+    },
+    {
+      "priority": 3,
+      "area": "Formula exactness",
+      "reason": "Dependencies are graphed, but exact classic calculations need external/runtime proof."
+    },
+    {
+      "priority": 4,
+      "area": "Script/trigger semantics",
+      "reason": "Runtime content references are indexed; exact condition/action order needs further decoding."
+    },
+    {
+      "priority": 5,
+      "area": "Quest reward source links",
+      "reason": "Item/ability relationships can be verified separately; quest reward acquisition requires ordered quest source evidence."
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "milestone": "Runtime-0002",
+  "title": "Schema Adapters",
+  "counts": {
+    "rooms": 1248,
+    "items": 1950,
+    "monsters": 1100,
+    "spells": 1350,
+    "shops": 178,
+    "loot_tables": 420,
+    "issues": 332
+  },
+  "issue_summary": {
+    "warning": 212,
+    "info": 120,
+    "error": 0
+  },
+  "first_25_issues": [
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room9",
+      "message": "Exit target room number 1013 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room65",
+      "message": "Exit target room number 64 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room65",
+      "message": "Exit target room number 129 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room66",
+      "message": "Exit target room number 61 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room83",
+      "message": "Exit target room number 84 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room100",
+      "message": "Exit target room number 99 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room113",
+      "message": "Exit target room number 112 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room113",
+      "message": "Exit target room number 131 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room125",
+      "message": "Exit target room number 143 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room130",
+      "message": "Exit target room number 112 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room130",
+      "message": "Exit target room number 131 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room132",
+      "message": "Exit target room number 131 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room132",
+      "message": "Exit target room number 140 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room139",
+      "message": "Exit target room number 131 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room139",
+      "message": "Exit target room number 140 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room164",
+      "message": "Exit target room number 2779 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room164",
+      "message": "Exit target room number 3437 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room170",
+      "message": "Exit target room number 185 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room170",
+      "message": "Exit target room number 2666 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room178",
+      "message": "Exit target room number 177 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room184",
+      "message": "Exit target room number 182 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room184",
+      "message": "Exit target room number 185 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room211",
+      "message": "Exit target room number 2676 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room212",
+      "message": "Exit target room number 213 not found in rooms.json."
+    },
+    {
+      "severity": "warning",
+      "category": "unresolved_exit",
+      "record_type": "room",
+      "record_id": "wcc_map1_room224",
+      "message": "Exit target room number 766 not found in rooms.json."
+    }
+  ],
+  "status": "PASS with warnings documented; no formula accuracy claimed."
+}

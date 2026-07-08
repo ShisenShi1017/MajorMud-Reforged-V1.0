@@ -1,0 +1,21 @@
+{
+  "contract": "Librarium Consumer Contract",
+  "version": "0007",
+  "requiredConsumerBehavior": [
+    "Read canonical knowledge from Librarium records.",
+    "Request generated runtime views instead of parsing raw evidence archives.",
+    "Preserve evidence state and provenance in debug/validation output.",
+    "Never hardcode gameplay truth that is absent from Librarium.",
+    "Report missing behavior back as Librarium unknowns rather than silently filling with guesses."
+  ],
+  "primaryConsumers": [
+    "Runtime",
+    "Server",
+    "Editor",
+    "Client",
+    "Validation",
+    "AIWorlds",
+    "DocumentationGenerator"
+  ],
+  "notes": "This contract is intentionally implementation-neutral so Codex can adapt existing repo code without changing the canonical architecture."
+}

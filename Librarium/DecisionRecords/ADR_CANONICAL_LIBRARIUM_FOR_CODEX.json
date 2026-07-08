@@ -1,0 +1,50 @@
+{
+  "title": "Reforged Librarium Canonical Architecture Decisions for Codex",
+  "version": "Validation-0005",
+  "date": "2026-07-07T23:55:12.390929Z",
+  "decisions": [
+    {
+      "id": "ADR-001",
+      "decision": "The Librarium is the canonical source of truth.",
+      "implication": "Runtime, server, editor, AI worlds, documentation, validation, and generated data consume the Librarium rather than inventing rules."
+    },
+    {
+      "id": "ADR-002",
+      "decision": "/Data is no longer the master source once the Librarium compiler is active.",
+      "implication": "/Data becomes generated RuntimeData compiled from Librarium knowledge records and world overlays."
+    },
+    {
+      "id": "ADR-003",
+      "decision": "Every knowledge record and relationship carries evidence state, confidence, provenance, and validation history.",
+      "states": [
+        "Verified",
+        "Derived",
+        "Observed",
+        "Hypothesis",
+        "WorldOverride",
+        "AIProposal"
+      ]
+    },
+    {
+      "id": "ADR-004",
+      "decision": "Formula records are stored as knowledge records with inputs, outputs, dependencies, evidence, and exact-equation status.",
+      "implication": "Do not hardcode or promote exact classic equations without source reconciliation."
+    },
+    {
+      "id": "ADR-005",
+      "decision": "Worlds are graph overlays.",
+      "implication": "Classic Base + Reforged/Custom/AI/Test/Live overlay = running world. Custom/AI changes do not corrupt Classic canon."
+    },
+    {
+      "id": "ADR-006",
+      "decision": "Codex should update the repository by preserving cumulative milestone structure and adding generated artifacts, not deleting evidence.",
+      "implication": "All future patches must keep provenance and confidence."
+    }
+  ],
+  "next_for_codex": [
+    "Treat MajorMUD-Reforged-Validation-0005 as the latest authoritative handoff.",
+    "Add Librarium compiler/export layer before treating /Data as final runtime input.",
+    "Keep canonical /Data unchanged unless generated from verified Librarium records.",
+    "Continue formula reconciliation using MMExplorer/MBBSEmu/reference/runtime traces."
+  ]
+}

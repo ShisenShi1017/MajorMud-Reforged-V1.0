@@ -1,0 +1,94 @@
+{
+  "generatedUtc": "2026-07-07T22:21:39Z",
+  "templates": [
+    {
+      "intent": "what_grants_ability",
+      "examples": [
+        "What grants Ability 123?",
+        "Show me everything that gives HPRegen."
+      ],
+      "template": {
+        "targetType": "Ability",
+        "relationshipTypes": [
+          "grants",
+          "requires",
+          "consumes",
+          "references"
+        ],
+        "direction": "both"
+      }
+    },
+    {
+      "intent": "what_uses_record",
+      "examples": [
+        "What uses White Gold Ring?",
+        "Where is this item referenced?"
+      ],
+      "template": {
+        "direction": "both",
+        "includeRuntimeConsumers": true,
+        "includeEvidence": true
+      }
+    },
+    {
+      "intent": "quest_dependencies",
+      "examples": [
+        "What is connected to GoodQuest?",
+        "Which NPCs reference PhoenixQuest?"
+      ],
+      "template": {
+        "targetType": "QuestCandidate",
+        "include": [
+          "npc",
+          "textblock",
+          "ability",
+          "item",
+          "room",
+          "exit"
+        ]
+      }
+    },
+    {
+      "intent": "impact_change",
+      "examples": [
+        "What breaks if I change Ability 123?",
+        "What is affected if I remove this NPC?"
+      ],
+      "template": {
+        "service": "impact_analysis",
+        "depth": 3,
+        "includeWorldOverlays": true
+      }
+    },
+    {
+      "intent": "compare_worlds",
+      "examples": [
+        "Compare Classic and Custom World 1.",
+        "What did the AI world change?"
+      ],
+      "template": {
+        "service": "world_diff",
+        "includeEvidenceStates": [
+          "WorldOverride",
+          "AIProposal",
+          "Verified"
+        ]
+      }
+    },
+    {
+      "intent": "evidence_gaps",
+      "examples": [
+        "What is still hypothesis?",
+        "Show records that need validation."
+      ],
+      "template": {
+        "evidenceState": [
+          "Hypothesis",
+          "Observed",
+          "Derived"
+        ],
+        "sortBy": "risk"
+      }
+    }
+  ]
+}

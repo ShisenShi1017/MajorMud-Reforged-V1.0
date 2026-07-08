@@ -1,0 +1,23 @@
+{
+  "milestone": "Librarium-0007",
+  "title": "Complete World Knowledge Graph Validation Report",
+  "generatedUtc": "2026-07-07T22:09:28.754876+00:00",
+  "status": "PASS",
+  "nodes": 89025,
+  "relationships": 352173,
+  "missingLinks": 0,
+  "duplicateRelationships": 0,
+  "duplicatesRemovedFromBase": 620,
+  "worldLayers": 7,
+  "worldOverlayOperations": 40,
+  "worldSubgraphs": 8,
+  "liveRuntimeStateRecords": 9,
+  "roomCountForDerivedGeography": 1248,
+  "derivedRegions": 73,
+  "derivedZones": 153,
+  "notes": [
+    "World overlay graph added and base graph duplicate edges deduplicated.",
+    "Classic graph remains the base truth; overlays record custom/reforged/AI/test changes.",
+    "Derived geography is an index only, not a promoted Classic map structure."
+  ]
+}

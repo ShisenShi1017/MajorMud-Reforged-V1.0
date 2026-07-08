@@ -1,0 +1,81 @@
+{
+  "milestone": "Validation-0001 — Complete Knowledge Verification",
+  "timestamp": "2026-07-07T23:20:32.773268+00:00",
+  "base_package": "MajorMUD-Reforged-Librarium-0011-Repository-Knowledge-Extraction.zip",
+  "status": "PASS_WITH_FINDINGS",
+  "computed_not_estimated": true,
+  "files_scanned": 167,
+  "json_load_errors": 1,
+  "canonical_counts": {
+    "abilities": 188,
+    "classes": 15,
+    "items": 1950,
+    "loot_tables": 420,
+    "monsters": 1100,
+    "quests": 2,
+    "races": 13,
+    "rooms": 1248,
+    "shops": 178,
+    "skills": 2,
+    "spells": 2
+  },
+  "record_total_from_json_files": 801076,
+  "entities_extracted": 20826,
+  "knowledge_assertions": 71026,
+  "entity_type_counts_top": {
+    "unknown": 20826
+  },
+  "assertion_type_counts_top": {
+    "exists_in_source": 20826,
+    "attribute:extension": 18018,
+    "attribute:classification": 18018,
+    "attribute:evidence_state": 2808,
+    "attribute:source_zip": 2777,
+    "attribute:path": 2777,
+    "attribute:record_type": 2777,
+    "attribute:file_id": 2777,
+    "attribute:source_id": 31,
+    "attribute:filename": 31,
+    "attribute:size_bytes": 31,
+    "attribute:zip_integrity": 31,
+    "attribute:entry_count": 31,
+    "attribute:file_count": 31,
+    "attribute:directory_count": 31,
+    "attribute:provenance": 31
+  },
+  "evidence_distribution": {
+    "Verified": 54449,
+    "Derived": 18057,
+    "Observed": 80
+  },
+  "confidence": {
+    "records_with_numeric_confidence": 1128,
+    "average": 99.07,
+    "min": 60,
+    "max": 100
+  },
+  "integrity": {
+    "duplicate_assertion_keys": 0,
+    "possible_conflicts": 0,
+    "assertions_missing_required_fields": 50200,
+    "orphan_entities": 0
+  },
+  "promotion_candidates": 0,
+  "top_unknowns": [
+    {
+      "area": "formulas",
+      "priority": "high",
+      "issue": "Formula dependency graph exists, but exact classic formulas still require evidence promotion."
+    },
+    {
+      "area": "dialogue/textblocks",
+      "priority": "high",
+      "issue": "Textblock/dialogue references exist, but ordered dialogue/quest-stage reconstruction remains partial."
+    },
+    {
+      "area": "assertions",
+      "priority": "medium",
+      "issue": "50200 assertions are missing subject/predicate/target fields."
+    }
+  ]
+}

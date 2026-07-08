@@ -1,0 +1,20 @@
+{
+  "policy": "Classic records are never overwritten by custom, Reforged, AI, or test worlds. Changes are overlay records with evidence state and provenance.",
+  "states": [
+    "Verified",
+    "Derived",
+    "Observed",
+    "Hypothesis",
+    "WorldOverride",
+    "AIProposal"
+  ],
+  "worlds": [
+    "classic_base",
+    "reforged_overlay",
+    "custom_1_overlay",
+    "custom_2_overlay",
+    "ai_overlay",
+    "test_realm_overlay",
+    "live_runtime_state"
+  ]
+}

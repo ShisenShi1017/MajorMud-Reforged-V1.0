@@ -1,0 +1,67 @@
+{
+  "generatedUtc": "2026-07-07T23:45:52.643736+00:00",
+  "status": "PASS_WITH_FINDINGS",
+  "totalNonFormulaEntitiesScored": 20411,
+  "completionBandCounts": {
+    "mostly_complete": 20411
+  },
+  "kindCompletion": {
+    "source_archive": {
+      "count": 31,
+      "averageCompletion": 85.0,
+      "min": 85,
+      "max": 85
+    },
+    "repository_file": {
+      "count": 17698,
+      "averageCompletion": 85.0,
+      "min": 85,
+      "max": 85
+    },
+    "record_set": {
+      "count": 2682,
+      "averageCompletion": 85.0,
+      "min": 85,
+      "max": 85
+    }
+  },
+  "domainSummaries": [
+    {
+      "domain": "NPC",
+      "count": 0,
+      "averageCompletion": 0,
+      "complete": 0,
+      "partialOrLower": 0
+    },
+    {
+      "domain": "Item",
+      "count": 0,
+      "averageCompletion": 0,
+      "complete": 0,
+      "partialOrLower": 0
+    },
+    {
+      "domain": "Monster",
+      "count": 0,
+      "averageCompletion": 0,
+      "complete": 0,
+      "partialOrLower": 0
+    },
+    {
+      "domain": "Room",
+      "count": 0,
+      "averageCompletion": 0,
+      "complete": 0,
+      "partialOrLower": 0
+    },
+    {
+      "domain": "Exit",
+      "count": 0,
+      "averageCompletion": 0,
+      "complete": 0,
+      "partialOrLower": 0
+    }
+  ],
+  "lowCompletionSample": [],
+  "scoringNote": "Scores are computed from evidence state, confidence, source count, and graph degree. They are completion indicators, not proof of classic gameplay correctness."
+}

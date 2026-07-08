@@ -1,0 +1,242 @@
+[
+  {
+    "formulaId": "formula::combat",
+    "name": "Combat",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 30091,
+    "sourceFileCount": 275,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::regeneration",
+    "name": "Regeneration",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 23516,
+    "sourceFileCount": 101,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::experience_leveling",
+    "name": "Experience Leveling",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 17493,
+    "sourceFileCount": 148,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::spell",
+    "name": "Spell",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 27473,
+    "sourceFileCount": 182,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::loot",
+    "name": "Loot",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 27265,
+    "sourceFileCount": 140,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::economy",
+    "name": "Economy",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 27034,
+    "sourceFileCount": 126,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::spawn",
+    "name": "Spawn",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 15502,
+    "sourceFileCount": 84,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::movement",
+    "name": "Movement",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 25672,
+    "sourceFileCount": 129,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::ai",
+    "name": "Ai",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 29773,
+    "sourceFileCount": 261,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  },
+  {
+    "formulaId": "formula::status",
+    "name": "Status",
+    "category": "FormulaKnowledgeRecord",
+    "evidenceState": "Derived",
+    "confidence": 85,
+    "assertionCount": 14220,
+    "sourceFileCount": 47,
+    "classicExactEquationVerified": false,
+    "status": "dependency_and_source_evidence_extracted",
+    "decision": "Do not promote an exact classic equation until reconciled against implementation/runtime evidence.",
+    "runtimePolicy": "Runtime/server consume Librarium formula records; generated /Data or RuntimeData is compiled output, not source of truth.",
+    "inputsKnown": true,
+    "outputsKnown": true,
+    "needs": [
+      "exact equation reconciliation",
+      "implementation comparison",
+      "runtime trace validation"
+    ],
+    "provenance": {
+      "validationPass": "Validation-0005",
+      "sources": "Repository text scan + existing Librarium formula dependency graph + prior validation reports"
+    }
+  }
+]

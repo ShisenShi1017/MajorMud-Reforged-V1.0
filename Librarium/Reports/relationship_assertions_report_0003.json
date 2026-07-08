@@ -1,0 +1,399 @@
+{
+  "generatedUtc": "2026-07-07T23:31:16.966331+00:00",
+  "status": "PASS",
+  "itemAbilityRelationships": 4546,
+  "spellAbilityRelationships": 3889,
+  "monsterAbilityRelationships": 2293,
+  "ability123": {
+    "abilityId": 123,
+    "abilityName": "HPRegen",
+    "classification": [
+      "hybrid_functional_ability"
+    ],
+    "evidenceState": "Verified",
+    "confidence": 100,
+    "supportCounts": {
+      "itemAbilityRefs": 25,
+      "spellAbilityRefs": 16,
+      "monsterAbilityRefs": 0,
+      "canonicalTextMentions": 1,
+      "rawTextMentions": 56,
+      "priorQuestCandidateRecords": 0
+    },
+    "sampleSupports": {
+      "items": [
+        {
+          "itemId": 1038,
+          "itemName": "amethyst emblem",
+          "value": "5"
+        },
+        {
+          "itemId": 1642,
+          "itemName": "barbed circlet",
+          "value": "-50"
+        },
+        {
+          "itemId": 1481,
+          "itemName": "beastly claws",
+          "value": "-25"
+        },
+        {
+          "itemId": 645,
+          "itemName": "black and white serpent ring",
+          "value": "35"
+        },
+        {
+          "itemId": 1331,
+          "itemName": "black embroidered robes",
+          "value": "10"
+        },
+        {
+          "itemId": 1530,
+          "itemName": "Caladbolg",
+          "value": "50"
+        },
+        {
+          "itemId": 1579,
+          "itemName": "death shroud",
+          "value": "-50"
+        },
+        {
+          "itemId": 1071,
+          "itemName": "Demon's Maw",
+          "value": "-40"
+        },
+        {
+          "itemId": 1030,
+          "itemName": "emerald emblem",
+          "value": "10"
+        },
+        {
+          "itemId": 1442,
+          "itemName": "faded shawl",
+          "value": "-100"
+        },
+        {
+          "itemId": 1802,
+          "itemName": "Feyr",
+          "value": "35"
+        },
+        {
+          "itemId": 325,
+          "itemName": "hellblade",
+          "value": "-25"
+        },
+        {
+          "itemId": 1075,
+          "itemName": "ice crystal staff",
+          "value": "25"
+        },
+        {
+          "itemId": 1594,
+          "itemName": "jeweled dirk",
+          "value": "50"
+        },
+        {
+          "itemId": 1322,
+          "itemName": "mantle of the woodsman",
+          "value": "25"
+        },
+        {
+          "itemId": 1471,
+          "itemName": "nightblack scythe",
+          "value": "-100"
+        },
+        {
+          "itemId": 1042,
+          "itemName": "onyx emblem",
+          "value": "10"
+        },
+        {
+          "itemId": 1447,
+          "itemName": "platinum plate leggings",
+          "value": "20"
+        },
+        {
+          "itemId": 651,
+          "itemName": "ruby-eyed skull ring",
+          "value": "25"
+        },
+        {
+          "itemId": 1034,
+          "itemName": "sapphire emblem",
+          "value": "5"
+        }
+      ],
+      "spells": [
+        {
+          "spellId": 748,
+          "spellName": "chaos surge",
+          "value": "-150"
+        },
+        {
+          "spellId": 1261,
+          "spellName": "dirty pool",
+          "value": "0"
+        },
+        {
+          "spellId": 1112,
+          "spellName": "earthbind",
+          "value": "0"
+        },
+        {
+          "spellId": 858,
+          "spellName": "form of the dragon",
+          "value": "200"
+        },
+        {
+          "spellId": 1133,
+          "spellName": "frothing brown potion",
+          "value": "0"
+        },
+        {
+          "spellId": 859,
+          "spellName": "heros tabard",
+          "value": "0"
+        },
+        {
+          "spellId": 484,
+          "spellName": "inn rest",
+          "value": "200"
+        },
+        {
+          "spellId": 337,
+          "spellName": "pool",
+          "value": "200"
+        },
+        {
+          "spellId": 1378,
+          "spellName": "profane link",
+          "value": "-25"
+        },
+        {
+          "spellId": 876,
+          "spellName": "rapid healing",
+          "value": "100"
+        },
+        {
+          "spellId": 831,
+          "spellName": "rapid healing",
+          "value": "100"
+        },
+        {
+          "spellId": 138,
+          "spellName": "rapid healing",
+          "value": "100"
+        },
+        {
+          "spellId": 674,
+          "spellName": "rosewood rod",
+          "value": "0"
+        },
+        {
+          "spellId": 269,
+          "spellName": "song of life",
+          "value": "0"
+        },
+        {
+          "spellId": 803,
+          "spellName": "song of soothing",
+          "value": "75"
+        },
+        {
+          "spellId": 1127,
+          "spellName": "yellow potion",
+          "value": "50"
+        }
+      ],
+      "canonicalTextMentions": [
+        {
+          "sourceNode": "item:item_631_barkskin_scroll",
+          "sourceType": "item",
+          "sourceId": "item_631_barkskin_scroll",
+          "sourceName": "barkskin scroll",
+          "field": "descriptions",
+          "term": "regeneration",
+          "abilityId": 123,
+          "abilityName": "HPRegen",
+          "text": "This thick, weathered bark scroll is inscribed with many\npassages written in a bold, flowing hand. Upon scanning its\ncontents, you discover that it contains the secret methods\nof learning and casting the Regeneration spell! This\npowerful but short-lived spell rapidly heals the target's\nwounds."
+        }
+      ],
+      "rawTextMentions": [
+        {
+          "page": 394,
+          "row": 3,
+          "offset": 1381,
+          "term": "123",
+          "abilityId": 123,
+          "segments": [
+            "chest",
+            "rips you",
+            "None",
+            "None",
+            "None",
+            "None",
+            "Room 1/2123p"
+          ]
+        },
+        {
+          "page": 1667,
+          "row": 7,
+          "offset": 3101,
+          "term": "123",
+          "abilityId": 123,
+          "segments": [
+            "Stone Passage",
+            "(Max 1): 53,54,55,56,58,123,124,125,752,753,754,[10-10-15-1]",
+            "7/40",
+            "7/20"
+          ]
+        },
+        {
+          "page": 1718,
+          "row": 17,
+          "offset": 1738,
+          "term": "123",
+          "abilityId": 123,
+          "segments": [
+            "Ironwood Forest, Mossy Ravine",
+            "3/1230",
+            "3/1120"
+          ]
+        },
+        {
+          "page": 1721,
+          "row": 14,
+          "offset": 2154,
+          "term": "123",
+          "abilityId": 123,
+          "segments": [
+            "Black Cave, Glowing Tunnel",
+            "8/119",
+            "8/121",
+            "8/1230"
+          ]
+        },
+        {
+          "page": 1722,
+          "row": 3,
+          "offset": 3611,
+          "term": "123",
+          "abilityId": 123,
+          "segments": [
+            "Oak Street",
+            "1/123",
+            "1/121",
+            "1/145",
+            "1/1350"
+          ]
+        }
+      ]
+    },
+    "promotionNote": "Direct relationships can support canonical relationship records. Ordered quest stages still require dialogue/textblock ordering proof."
+  },
+  "whiteGoldRingMatches": [
+    {
+      "subject": "item:item_642_white_gold_ring",
+      "predicate": "grants_or_has_ability",
+      "object": "ability:135",
+      "itemId": 642,
+      "itemName": "white gold ring",
+      "abilityId": 135,
+      "abilityName": "MinLevel",
+      "value": "10",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "provenance": [
+        {
+          "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+          "file": "codex-item-wcc.json",
+          "promotedBy": "Patch0067",
+          "runtimeSource": "Data/items.json"
+        }
+      ]
+    },
+    {
+      "subject": "item:item_642_white_gold_ring",
+      "predicate": "grants_or_has_ability",
+      "object": "ability:97",
+      "itemId": 642,
+      "itemName": "white gold ring",
+      "abilityId": 97,
+      "abilityName": "Good",
+      "value": "0",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "provenance": [
+        {
+          "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+          "file": "codex-item-wcc.json",
+          "promotedBy": "Patch0067",
+          "runtimeSource": "Data/items.json"
+        }
+      ]
+    },
+    {
+      "subject": "item:item_642_white_gold_ring",
+      "predicate": "grants_or_has_ability",
+      "object": "ability:100",
+      "itemId": 642,
+      "itemName": "white gold ring",
+      "abilityId": 100,
+      "abilityName": "LoyalItem",
+      "value": "0",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "provenance": [
+        {
+          "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+          "file": "codex-item-wcc.json",
+          "promotedBy": "Patch0067",
+          "runtimeSource": "Data/items.json"
+        }
+      ]
+    },
+    {
+      "subject": "item:item_642_white_gold_ring",
+      "predicate": "grants_or_has_ability",
+      "object": "ability:123",
+      "itemId": 642,
+      "itemName": "white gold ring",
+      "abilityId": 123,
+      "abilityName": "HPRegen",
+      "value": "25",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "provenance": [
+        {
+          "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+          "file": "codex-item-wcc.json",
+          "promotedBy": "Patch0067",
+          "runtimeSource": "Data/items.json"
+        }
+      ]
+    },
+    {
+      "subject": "item:item_642_white_gold_ring",
+      "predicate": "grants_or_has_ability",
+      "object": "ability:34",
+      "itemId": 642,
+      "itemName": "white gold ring",
+      "abilityId": 34,
+      "abilityName": "Dodge",
+      "value": "5",
+      "evidenceState": "Verified",
+      "confidence": 100,
+      "provenance": [
+        {
+          "kind": "ImportedDatabases/OmniVerseReference/WCC codex",
+          "file": "codex-item-wcc.json",
+          "promotedBy": "Patch0067",
+          "runtimeSource": "Data/items.json"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Relationship facts were written as validation outputs, not promoted by rewriting canonical /Data."
+  ]
+}

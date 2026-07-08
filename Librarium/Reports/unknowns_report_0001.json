@@ -1,0 +1,20 @@
+{
+  "count": 3,
+  "unknowns": [
+    {
+      "area": "formulas",
+      "priority": "high",
+      "issue": "Formula dependency graph exists, but exact classic formulas still require evidence promotion."
+    },
+    {
+      "area": "dialogue/textblocks",
+      "priority": "high",
+      "issue": "Textblock/dialogue references exist, but ordered dialogue/quest-stage reconstruction remains partial."
+    },
+    {
+      "area": "assertions",
+      "priority": "medium",
+      "issue": "50200 assertions are missing subject/predicate/target fields."
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "milestone": "Librarium-0003 Graph Validation Expansion",
+  "generatedUtc": "2026-07-07T21:17:02.396979Z",
+  "nodes": 11791,
+  "relationships": 34845,
+  "added": {
+    "exit_nodes": 3025,
+    "room_has_exit": 3025,
+    "exit_leads_to": 2814,
+    "room_items": 103,
+    "room_spawns": 955,
+    "hidden_items": 267,
+    "room_shops": 201,
+    "monster_loot_table": 420,
+    "loot_drops": 714,
+    "attack_nodes": 2269,
+    "monster_attacks": 2269,
+    "attack_spell": 485,
+    "ability_classification": 271
+  },
+  "nodeTypes": {
+    "ability": 188,
+    "item": 1950,
+    "monster": 1100,
+    "room": 1248,
+    "shop": 178,
+    "class": 15,
+    "race": 13,
+    "skill": 1,
+    "loot_table": 420,
+    "trainer": 13,
+    "leveling": 1,
+    "progression": 1,
+    "world": 1,
+    "spell": 1350,
+    "quest_candidate": 12,
+    "exit": 3025,
+    "monster_attack": 2269,
+    "classification": 6
+  },
+  "relationshipTypes": {
+    "HAS_ABILITY": 10658,
+    "ATTACK_CASTS_SPELL": 485,
+    "CAN_DROP_ITEM": 1428,
+    "EXITS_TO": 46,
+    "SELLS_ITEM": 1203,
+    "RESISTED_BY_ABILITY": 4,
+    "OBSERVED_GRANTS_ABILITY": 1,
+    "USES_QUEST_FLAG": 12,
+    "OBSERVED_REWARDS_ITEM": 1,
+    "GRANTS_OR_MODIFIES_ABILITY": 4536,
+    "VERIFIED_GRANTS_ABILITY": 1,
+    "TEXT_OR_FIELD_REFERENCES_ABILITY": 5658,
+    "OBSERVED_OR_DERIVED_REWARDS_ITEM": 1,
+    "INDIRECTLY_REWARDS_ABILITY": 1,
+    "HAS_EXIT": 3025,
+    "LEADS_TO": 2814,
+    "CONTAINS_ITEM": 103,
+    "SPAWNS_MONSTER": 955,
+    "HIDES_ITEM": 267,
+    "HAS_SHOP": 201,
+    "USES_LOOT_TABLE": 420,
+    "HAS_ATTACK": 2269,
+    "CASTS_ON_HIT": 485,
+    "CLASSIFIED_AS": 271
+  },
+  "evidenceStates": {
+    "Verified": 11773,
+    "Derived": 18
+  },
+  "relationshipEvidenceStates": {
+    "Verified": 28900,
+    "Observed": 3,
+    "Derived": 5942
+  },
+  "integrity": {
+    "missingSources": 0,
+    "missingTargets": 0,
+    "duplicateEdges": 0,
+    "deduplicatedEdgesRemoved": 108
+  },
+  "coverage": {
+    "isolatedNodes": 351,
+    "byType": {
+      "ability": {
+        "count": 188,
+        "isolated": 0,
+        "withRelationships": 188
+      },
+      "class": {
+        "count": 15,
+        "isolated": 15,
+        "withRelationships": 0
+      },
+      "classification": {
+        "count": 6,
+        "isolated": 0,
+        "withRelationships": 6
+      },
+      "exit": {
+        "count": 3025,
+        "isolated": 0,
+        "withRelationships": 3025
+      },
+      "item": {
+        "count": 1950,
+        "isolated": 260,
+        "withRelationships": 1690
+      },
+      "leveling": {
+        "count": 1,
+        "isolated": 1,
+        "withRelationships": 0
+      },
+      "loot_table": {
+        "count": 420,
+        "isolated": 0,
+        "withRelationships": 420
+      },
+      "monster": {
+        "count": 1100,
+        "isolated": 22,
+        "withRelationships": 1078
+      },
+      "monster_attack": {
+        "count": 2269,
+        "isolated": 0,
+        "withRelationships": 2269
+      },
+      "progression": {
+        "count": 1,
+        "isolated": 1,
+        "withRelationships": 0
+      },
+      "quest_candidate": {
+        "count": 12,
+        "isolated": 0,
+        "withRelationships": 12
+      },
+      "race": {
+        "count": 13,
+        "isolated": 12,
+        "withRelationships": 1
+      },
+      "room": {
+        "count": 1248,
+        "isolated": 0,
+        "withRelationships": 1248
+      },
+      "shop": {
+        "count": 178,
+        "isolated": 25,
+        "withRelationships": 153
+      },
+      "skill": {
+        "count": 1,
+        "isolated": 1,
+        "withRelationships": 0
+      },
+      "spell": {
+        "count": 1350,
+        "isolated": 0,
+        "withRelationships": 1350
+      },
+      "trainer": {
+        "count": 13,
+        "isolated": 13,
+        "withRelationships": 0
+      },
+      "world": {
+        "count": 1,
+        "isolated": 1,
+        "withRelationships": 0
+      }
+    }
+  },
+  "questAbilityCount": 13,
+  "abilityCatalogCount": 188
+}

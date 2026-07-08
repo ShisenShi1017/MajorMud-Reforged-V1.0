@@ -1,0 +1,41 @@
+{
+  "compilerName": "Librarium Compiler Export Foundation",
+  "status": "FOUNDATION_READY_WITH_FINDINGS",
+  "canonicalSource": "Librarium knowledge graph",
+  "generatedOutputs": [
+    "/RuntimeData",
+    "/Generated/Data",
+    "/Generated/Docs",
+    "/Generated/ValidationIndexes",
+    "/Generated/ServerContracts",
+    "/Generated/EditorIndexes"
+  ],
+  "sourceOfTruthRule": "Generated output must be reproducible from Librarium records and must not be manually promoted back into canon without evidence.",
+  "minimumRecordMetadata": [
+    "id",
+    "type",
+    "name",
+    "evidenceState",
+    "confidence",
+    "provenance",
+    "relationships",
+    "runtimeConsumers",
+    "validationStatus",
+    "worldLayer"
+  ],
+  "worldLayers": [
+    "ClassicBase",
+    "ReforgedOverlay",
+    "CustomWorld1",
+    "CustomWorld2",
+    "AIWorld",
+    "TestRealm",
+    "LiveRuntimeState"
+  ],
+  "exportPolicy": {
+    "ClassicBase": "export only Verified or explicitly accepted Derived records",
+    "ReforgedOverlay": "export Verified, Derived, and approved WorldOverride records",
+    "AIWorld": "export AIProposal only after host/world approval",
+    "Hypothesis": "never export to production runtime data by default"
+  }
+}

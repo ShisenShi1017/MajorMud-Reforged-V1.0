@@ -1,0 +1,950 @@
+{
+  "generatedUtc": "2026-07-07T22:15:26.377918+00:00",
+  "behaviors": [
+    {
+      "behaviorId": "behavior:look",
+      "name": "Look / Visibility",
+      "commands": [
+        "look",
+        "l"
+      ],
+      "event": "event:look",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:look_visibility",
+        "runtime:quest",
+        "runtime:ability"
+      ],
+      "inputs": [
+        "room",
+        "item",
+        "monster",
+        "npc",
+        "exit",
+        "world_object",
+        "ability"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:look:01_parse_command",
+          "order": 1,
+          "name": "parse_command"
+        },
+        {
+          "stageId": "behavior_stage:look:02_resolve_player_room",
+          "order": 2,
+          "name": "resolve_player_room"
+        },
+        {
+          "stageId": "behavior_stage:look:03_collect_visible_entities",
+          "order": 3,
+          "name": "collect_visible_entities"
+        },
+        {
+          "stageId": "behavior_stage:look:04_apply_visibility_rules",
+          "order": 4,
+          "name": "apply_visibility_rules"
+        },
+        {
+          "stageId": "behavior_stage:look:05_apply_ability_gates",
+          "order": 5,
+          "name": "apply_ability_gates"
+        },
+        {
+          "stageId": "behavior_stage:look:06_render_output",
+          "order": 6,
+          "name": "render_output"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:move",
+      "name": "Movement",
+      "commands": [
+        "north",
+        "south",
+        "east",
+        "west",
+        "up",
+        "down",
+        "n",
+        "s",
+        "e",
+        "w",
+        "u",
+        "d"
+      ],
+      "event": "event:player_move",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:movement",
+        "runtime:look_visibility",
+        "runtime:monster_ai",
+        "runtime:quest",
+        "runtime:ability",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "room",
+        "exit",
+        "world_object",
+        "ability",
+        "item"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:move:01_parse_direction",
+          "order": 1,
+          "name": "parse_direction"
+        },
+        {
+          "stageId": "behavior_stage:move:02_resolve_exit",
+          "order": 2,
+          "name": "resolve_exit"
+        },
+        {
+          "stageId": "behavior_stage:move:03_validate_exit_requirements",
+          "order": 3,
+          "name": "validate_exit_requirements"
+        },
+        {
+          "stageId": "behavior_stage:move:04_move_player",
+          "order": 4,
+          "name": "move_player"
+        },
+        {
+          "stageId": "behavior_stage:move:05_trigger_room_entry",
+          "order": 5,
+          "name": "trigger_room_entry"
+        },
+        {
+          "stageId": "behavior_stage:move:06_update_ai_awareness",
+          "order": 6,
+          "name": "update_ai_awareness"
+        },
+        {
+          "stageId": "behavior_stage:move:07_render_destination",
+          "order": 7,
+          "name": "render_destination"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:get",
+      "name": "Get Item",
+      "commands": [
+        "get",
+        "take"
+      ],
+      "event": "event:item_get",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:inventory",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "room",
+        "item",
+        "world_object"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:get:01_parse_target",
+          "order": 1,
+          "name": "parse_target"
+        },
+        {
+          "stageId": "behavior_stage:get:02_resolve_ground_item",
+          "order": 2,
+          "name": "resolve_ground_item"
+        },
+        {
+          "stageId": "behavior_stage:get:03_validate_capacity",
+          "order": 3,
+          "name": "validate_capacity"
+        },
+        {
+          "stageId": "behavior_stage:get:04_transfer_to_inventory",
+          "order": 4,
+          "name": "transfer_to_inventory"
+        },
+        {
+          "stageId": "behavior_stage:get:05_persist_state",
+          "order": 5,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:drop",
+      "name": "Drop Item",
+      "commands": [
+        "drop"
+      ],
+      "event": "event:item_drop",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:inventory",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "room",
+        "item"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:drop:01_parse_target",
+          "order": 1,
+          "name": "parse_target"
+        },
+        {
+          "stageId": "behavior_stage:drop:02_resolve_inventory_item",
+          "order": 2,
+          "name": "resolve_inventory_item"
+        },
+        {
+          "stageId": "behavior_stage:drop:03_transfer_to_room",
+          "order": 3,
+          "name": "transfer_to_room"
+        },
+        {
+          "stageId": "behavior_stage:drop:04_persist_state",
+          "order": 4,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:equip",
+      "name": "Equip Item",
+      "commands": [
+        "equip",
+        "wear",
+        "wield"
+      ],
+      "event": "event:equip_item",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:equipment",
+        "runtime:ability",
+        "runtime:class_race",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "item",
+        "ability",
+        "class",
+        "race"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:equip:01_parse_target",
+          "order": 1,
+          "name": "parse_target"
+        },
+        {
+          "stageId": "behavior_stage:equip:02_resolve_inventory_item",
+          "order": 2,
+          "name": "resolve_inventory_item"
+        },
+        {
+          "stageId": "behavior_stage:equip:03_check_slot",
+          "order": 3,
+          "name": "check_slot"
+        },
+        {
+          "stageId": "behavior_stage:equip:04_check_restrictions",
+          "order": 4,
+          "name": "check_restrictions"
+        },
+        {
+          "stageId": "behavior_stage:equip:05_apply_stat_modifiers",
+          "order": 5,
+          "name": "apply_stat_modifiers"
+        },
+        {
+          "stageId": "behavior_stage:equip:06_apply_ability_grants",
+          "order": 6,
+          "name": "apply_ability_grants"
+        },
+        {
+          "stageId": "behavior_stage:equip:07_persist_state",
+          "order": 7,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:attack",
+      "name": "Attack / Melee Combat",
+      "commands": [
+        "attack",
+        "kill",
+        "a"
+      ],
+      "event": "event:attack_resolved",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:combat",
+        "runtime:equipment",
+        "runtime:ability",
+        "runtime:monster_ai",
+        "runtime:loot",
+        "runtime:quest",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "monster",
+        "item",
+        "ability",
+        "class",
+        "race",
+        "loot_table"
+      ],
+      "formulas": [
+        "formula:melee_hit_resolution",
+        "formula:melee_damage_resolution",
+        "formula:experience_award"
+      ],
+      "stages": [
+        {
+          "stageId": "behavior_stage:attack:01_parse_target",
+          "order": 1,
+          "name": "parse_target"
+        },
+        {
+          "stageId": "behavior_stage:attack:02_resolve_combat_target",
+          "order": 2,
+          "name": "resolve_combat_target"
+        },
+        {
+          "stageId": "behavior_stage:attack:03_build_combat_snapshot",
+          "order": 3,
+          "name": "build_combat_snapshot"
+        },
+        {
+          "stageId": "behavior_stage:attack:04_resolve_hit",
+          "order": 4,
+          "name": "resolve_hit"
+        },
+        {
+          "stageId": "behavior_stage:attack:05_resolve_damage",
+          "order": 5,
+          "name": "resolve_damage"
+        },
+        {
+          "stageId": "behavior_stage:attack:06_apply_damage",
+          "order": 6,
+          "name": "apply_damage"
+        },
+        {
+          "stageId": "behavior_stage:attack:07_check_death",
+          "order": 7,
+          "name": "check_death"
+        },
+        {
+          "stageId": "behavior_stage:attack:08_generate_loot",
+          "order": 8,
+          "name": "generate_loot"
+        },
+        {
+          "stageId": "behavior_stage:attack:09_award_experience",
+          "order": 9,
+          "name": "award_experience"
+        },
+        {
+          "stageId": "behavior_stage:attack:10_persist_state",
+          "order": 10,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:cast",
+      "name": "Cast Spell",
+      "commands": [
+        "cast",
+        "c"
+      ],
+      "event": "event:spell_cast",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:spellcasting",
+        "runtime:status_effects",
+        "runtime:ability",
+        "runtime:combat",
+        "runtime:regeneration",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "spell",
+        "ability",
+        "monster",
+        "item",
+        "class",
+        "race"
+      ],
+      "formulas": [
+        "formula:spell_success_resolution",
+        "formula:spell_damage_healing",
+        "formula:status_duration"
+      ],
+      "stages": [
+        {
+          "stageId": "behavior_stage:cast:01_parse_spell",
+          "order": 1,
+          "name": "parse_spell"
+        },
+        {
+          "stageId": "behavior_stage:cast:02_check_spell_requirements",
+          "order": 2,
+          "name": "check_spell_requirements"
+        },
+        {
+          "stageId": "behavior_stage:cast:03_resolve_target",
+          "order": 3,
+          "name": "resolve_target"
+        },
+        {
+          "stageId": "behavior_stage:cast:04_pay_cost",
+          "order": 4,
+          "name": "pay_cost"
+        },
+        {
+          "stageId": "behavior_stage:cast:05_resolve_success",
+          "order": 5,
+          "name": "resolve_success"
+        },
+        {
+          "stageId": "behavior_stage:cast:06_apply_spell_effect",
+          "order": 6,
+          "name": "apply_spell_effect"
+        },
+        {
+          "stageId": "behavior_stage:cast:07_apply_status_effects",
+          "order": 7,
+          "name": "apply_status_effects"
+        },
+        {
+          "stageId": "behavior_stage:cast:08_persist_state",
+          "order": 8,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:buy",
+      "name": "Buy from Shop",
+      "commands": [
+        "buy"
+      ],
+      "event": "event:npc_service",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:economy",
+        "runtime:npc_services",
+        "runtime:inventory",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "shop",
+        "item",
+        "ability"
+      ],
+      "formulas": [
+        "formula:shop_pricing"
+      ],
+      "stages": [
+        {
+          "stageId": "behavior_stage:buy:01_parse_item",
+          "order": 1,
+          "name": "parse_item"
+        },
+        {
+          "stageId": "behavior_stage:buy:02_resolve_shop_inventory",
+          "order": 2,
+          "name": "resolve_shop_inventory"
+        },
+        {
+          "stageId": "behavior_stage:buy:03_calculate_price",
+          "order": 3,
+          "name": "calculate_price"
+        },
+        {
+          "stageId": "behavior_stage:buy:04_check_funds",
+          "order": 4,
+          "name": "check_funds"
+        },
+        {
+          "stageId": "behavior_stage:buy:05_transfer_item",
+          "order": 5,
+          "name": "transfer_item"
+        },
+        {
+          "stageId": "behavior_stage:buy:06_transfer_gold",
+          "order": 6,
+          "name": "transfer_gold"
+        },
+        {
+          "stageId": "behavior_stage:buy:07_persist_state",
+          "order": 7,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:sell",
+      "name": "Sell to Shop",
+      "commands": [
+        "sell"
+      ],
+      "event": "event:npc_service",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:economy",
+        "runtime:npc_services",
+        "runtime:inventory",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "shop",
+        "item",
+        "ability"
+      ],
+      "formulas": [
+        "formula:shop_pricing"
+      ],
+      "stages": [
+        {
+          "stageId": "behavior_stage:sell:01_parse_item",
+          "order": 1,
+          "name": "parse_item"
+        },
+        {
+          "stageId": "behavior_stage:sell:02_resolve_inventory_item",
+          "order": 2,
+          "name": "resolve_inventory_item"
+        },
+        {
+          "stageId": "behavior_stage:sell:03_calculate_offer",
+          "order": 3,
+          "name": "calculate_offer"
+        },
+        {
+          "stageId": "behavior_stage:sell:04_transfer_item",
+          "order": 4,
+          "name": "transfer_item"
+        },
+        {
+          "stageId": "behavior_stage:sell:05_transfer_gold",
+          "order": 5,
+          "name": "transfer_gold"
+        },
+        {
+          "stageId": "behavior_stage:sell:06_persist_state",
+          "order": 6,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:bank",
+      "name": "Bank Deposit/Withdraw",
+      "commands": [
+        "deposit",
+        "withdraw",
+        "balance"
+      ],
+      "event": "event:npc_service",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:economy",
+        "runtime:npc_services",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "shop",
+        "npc"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:bank:01_parse_amount",
+          "order": 1,
+          "name": "parse_amount"
+        },
+        {
+          "stageId": "behavior_stage:bank:02_resolve_bank_service",
+          "order": 2,
+          "name": "resolve_bank_service"
+        },
+        {
+          "stageId": "behavior_stage:bank:03_validate_amount",
+          "order": 3,
+          "name": "validate_amount"
+        },
+        {
+          "stageId": "behavior_stage:bank:04_update_balance",
+          "order": 4,
+          "name": "update_balance"
+        },
+        {
+          "stageId": "behavior_stage:bank:05_persist_state",
+          "order": 5,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:train",
+      "name": "Train / Learn",
+      "commands": [
+        "train",
+        "learn"
+      ],
+      "event": "event:npc_service",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:npc_services",
+        "runtime:class_race",
+        "runtime:ability",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "npc",
+        "class",
+        "race",
+        "skill",
+        "ability"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:train:01_parse_training_request",
+          "order": 1,
+          "name": "parse_training_request"
+        },
+        {
+          "stageId": "behavior_stage:train:02_resolve_trainer",
+          "order": 2,
+          "name": "resolve_trainer"
+        },
+        {
+          "stageId": "behavior_stage:train:03_check_requirements",
+          "order": 3,
+          "name": "check_requirements"
+        },
+        {
+          "stageId": "behavior_stage:train:04_grant_skill_or_ability",
+          "order": 4,
+          "name": "grant_skill_or_ability"
+        },
+        {
+          "stageId": "behavior_stage:train:05_persist_state",
+          "order": 5,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:heal",
+      "name": "Healer Service",
+      "commands": [
+        "heal",
+        "cure"
+      ],
+      "event": "event:npc_service",
+      "runtimeSystems": [
+        "runtime:command",
+        "runtime:npc_services",
+        "runtime:status_effects",
+        "runtime:regeneration",
+        "runtime:economy",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "npc",
+        "ability",
+        "spell"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:heal:01_parse_service",
+          "order": 1,
+          "name": "parse_service"
+        },
+        {
+          "stageId": "behavior_stage:heal:02_resolve_healer",
+          "order": 2,
+          "name": "resolve_healer"
+        },
+        {
+          "stageId": "behavior_stage:heal:03_calculate_cost",
+          "order": 3,
+          "name": "calculate_cost"
+        },
+        {
+          "stageId": "behavior_stage:heal:04_remove_status_or_restore_hp",
+          "order": 4,
+          "name": "remove_status_or_restore_hp"
+        },
+        {
+          "stageId": "behavior_stage:heal:05_persist_state",
+          "order": 5,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:quest",
+      "name": "Quest Progression",
+      "commands": [
+        "talk",
+        "say",
+        "give",
+        "use"
+      ],
+      "event": "event:quest_flag_changed",
+      "runtimeSystems": [
+        "runtime:quest",
+        "runtime:ability",
+        "runtime:npc_services",
+        "runtime:event_queue",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "quest_candidate",
+        "ability",
+        "npc",
+        "item",
+        "room",
+        "script_trigger",
+        "world_object"
+      ],
+      "formulas": [],
+      "stages": [
+        {
+          "stageId": "behavior_stage:quest:01_resolve_interaction",
+          "order": 1,
+          "name": "resolve_interaction"
+        },
+        {
+          "stageId": "behavior_stage:quest:02_check_requirements",
+          "order": 2,
+          "name": "check_requirements"
+        },
+        {
+          "stageId": "behavior_stage:quest:03_evaluate_state",
+          "order": 3,
+          "name": "evaluate_state"
+        },
+        {
+          "stageId": "behavior_stage:quest:04_apply_reward_or_flag",
+          "order": 4,
+          "name": "apply_reward_or_flag"
+        },
+        {
+          "stageId": "behavior_stage:quest:05_persist_state",
+          "order": 5,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:death",
+      "name": "Death and Corpse Resolution",
+      "commands": [],
+      "event": "event:death",
+      "runtimeSystems": [
+        "runtime:combat",
+        "runtime:loot",
+        "runtime:quest",
+        "runtime:spawn",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "monster",
+        "item",
+        "loot_table",
+        "quest_candidate",
+        "ability"
+      ],
+      "formulas": [
+        "formula:experience_award"
+      ],
+      "stages": [
+        {
+          "stageId": "behavior_stage:death:01_detect_zero_hp",
+          "order": 1,
+          "name": "detect_zero_hp"
+        },
+        {
+          "stageId": "behavior_stage:death:02_stop_combat",
+          "order": 2,
+          "name": "stop_combat"
+        },
+        {
+          "stageId": "behavior_stage:death:03_generate_corpse",
+          "order": 3,
+          "name": "generate_corpse"
+        },
+        {
+          "stageId": "behavior_stage:death:04_generate_loot",
+          "order": 4,
+          "name": "generate_loot"
+        },
+        {
+          "stageId": "behavior_stage:death:05_award_or_remove_experience",
+          "order": 5,
+          "name": "award_or_remove_experience"
+        },
+        {
+          "stageId": "behavior_stage:death:06_notify_spawn_system",
+          "order": 6,
+          "name": "notify_spawn_system"
+        },
+        {
+          "stageId": "behavior_stage:death:07_persist_state",
+          "order": 7,
+          "name": "persist_state"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:regen_tick",
+      "name": "Regeneration Tick",
+      "commands": [],
+      "event": "event:regen_tick",
+      "runtimeSystems": [
+        "runtime:regeneration",
+        "runtime:status_effects",
+        "runtime:ability",
+        "runtime:tick_scheduler",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "ability",
+        "spell",
+        "item",
+        "race"
+      ],
+      "formulas": [
+        "formula:hp_regeneration",
+        "formula:mana_regeneration"
+      ],
+      "stages": [
+        {
+          "stageId": "behavior_stage:regen_tick:01_tick_due",
+          "order": 1,
+          "name": "tick_due"
+        },
+        {
+          "stageId": "behavior_stage:regen_tick:02_collect_regen_modifiers",
+          "order": 2,
+          "name": "collect_regen_modifiers"
+        },
+        {
+          "stageId": "behavior_stage:regen_tick:03_apply_hp_regen",
+          "order": 3,
+          "name": "apply_hp_regen"
+        },
+        {
+          "stageId": "behavior_stage:regen_tick:04_apply_mana_regen",
+          "order": 4,
+          "name": "apply_mana_regen"
+        },
+        {
+          "stageId": "behavior_stage:regen_tick:05_persist_if_needed",
+          "order": 5,
+          "name": "persist_if_needed"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    },
+    {
+      "behaviorId": "behavior:spawn_tick",
+      "name": "Spawn Tick",
+      "commands": [],
+      "event": "event:spawn_tick",
+      "runtimeSystems": [
+        "runtime:spawn",
+        "runtime:monster_ai",
+        "runtime:tick_scheduler",
+        "runtime:persistence"
+      ],
+      "inputs": [
+        "room",
+        "monster",
+        "spawn",
+        "time_dependency"
+      ],
+      "formulas": [
+        "formula:spawn_timing"
+      ],
+      "stages": [
+        {
+          "stageId": "behavior_stage:spawn_tick:01_tick_due",
+          "order": 1,
+          "name": "tick_due"
+        },
+        {
+          "stageId": "behavior_stage:spawn_tick:02_evaluate_spawn_timers",
+          "order": 2,
+          "name": "evaluate_spawn_timers"
+        },
+        {
+          "stageId": "behavior_stage:spawn_tick:03_instantiate_monsters",
+          "order": 3,
+          "name": "instantiate_monsters"
+        },
+        {
+          "stageId": "behavior_stage:spawn_tick:04_link_room_state",
+          "order": 4,
+          "name": "link_room_state"
+        },
+        {
+          "stageId": "behavior_stage:spawn_tick:05_persist_if_needed",
+          "order": 5,
+          "name": "persist_if_needed"
+        }
+      ],
+      "evidenceState": "Derived",
+      "confidence": 86
+    }
+  ]
+}

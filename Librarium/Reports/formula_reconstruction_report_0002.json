@@ -1,0 +1,66 @@
+{
+  "generatedUtc": "2026-07-07T23:24:58.808812+00:00",
+  "formulaModels": [
+    {
+      "formulaId": "formula:melee_hit_resolution",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:melee_damage_resolution",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:spell_success_resolution",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:spell_damage_healing",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:hp_regeneration",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:mana_regeneration",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:experience_award",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:shop_pricing",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:spawn_timing",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    },
+    {
+      "formulaId": "formula:status_duration",
+      "dependencyCount": 0,
+      "dependencies": [],
+      "evidenceState": "Derived"
+    }
+  ],
+  "reconstructionState": "Dependency graph present; exact formulas require validation evidence before Verified promotion."
+}

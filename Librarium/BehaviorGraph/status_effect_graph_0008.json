@@ -1,0 +1,105 @@
+{
+  "generatedUtc": "2026-07-07T22:15:26.377918+00:00",
+  "statusEffectModels": [
+    {
+      "statusId": "status:buff",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:debuff",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:poison",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:disease",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:blind",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:stun",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:fear",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:slow",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:damage_over_time",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    },
+    {
+      "statusId": "status:healing_over_time",
+      "runtimeConsumers": [
+        "runtime:status_effects",
+        "runtime:spellcasting",
+        "runtime:persistence"
+      ],
+      "evidenceState": "Derived",
+      "confidence": 78
+    }
+  ]
+}

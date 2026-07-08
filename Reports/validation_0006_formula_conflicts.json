@@ -1,0 +1,248 @@
+[
+  {
+    "system": "combat",
+    "lhsKey": "str",
+    "variantCount": 5,
+    "occurrences": 5,
+    "sampleVariants": [
+      {
+        "rhs": "\"reforged_formula\") -> FormulaTrace:",
+        "source": "Runtime/formula_engine.py",
+        "line": 65
+      },
+      {
+        "rhs": "\"Data\") -> EquipmentStatTrace:",
+        "source": "Runtime/equipment_stats.py",
+        "line": 44
+      },
+      {
+        "rhs": "\"classic_unverified\") -> None:",
+        "source": "Runtime/monster_ai.py",
+        "line": 49
+      },
+      {
+        "rhs": "\"reforged_formula\") -> AttackResult:",
+        "source": "Runtime/combat/combat_runtime.py",
+        "line": 175
+      },
+      {
+        "rhs": "\"reforged_formula\") -> List[AttackResult]:",
+        "source": "Runtime/combat/combat_runtime.py",
+        "line": 214
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  },
+  {
+    "system": "combat",
+    "lhsKey": "result",
+    "variantCount": 2,
+    "occurrences": 2,
+    "sampleVariants": [
+      {
+        "rhs": "max(1, damage)",
+        "source": "Runtime/formula_engine.py",
+        "line": 75
+      },
+      {
+        "rhs": "resolve_attack(cstate, p2.runtime_id, m2.runtime_id, __import__('random').Random(1))",
+        "source": "Sim/validators/validate_combat.py",
+        "line": 74
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  },
+  {
+    "system": "combat",
+    "lhsKey": "equipment_totals",
+    "variantCount": 4,
+    "occurrences": 4,
+    "sampleVariants": [
+      {
+        "rhs": "{\"min_hit\": 4, \"max_hit\": 9, \"armor_class_bonus\": 8, \"damage_resistance_bonus\": 1, \"speed\": 1800},",
+        "source": "Sim/validators/validate_combat.py",
+        "line": 37
+      },
+      {
+        "rhs": "equipment_totals or {\"min_hit\": 2, \"max_hit\": 6, \"armor_class_bonus\": 0, \"damage_resistance_bonus\": 0},",
+        "source": "Runtime/combat/combat_runtime.py",
+        "line": 139
+      },
+      {
+        "rhs": "{\"min_hit\": min_hit, \"max_hit\": max_hit, \"armor_class_bonus\": ac, \"damage_resistance_bonus\": first_int(\"dr\", \"DR\", default=0)},",
+        "source": "Runtime/combat/combat_runtime.py",
+        "line": 170
+      },
+      {
+        "rhs": "{\"min_hit\": 1, \"max_hit\": 3 + idx, \"armor_class_bonus\": 0, \"damage_resistance_bonus\": 0},",
+        "source": "Runtime/world_integration/world_runtime.py",
+        "line": 153
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  },
+  {
+    "system": "combat",
+    "lhsKey": "flags",
+    "variantCount": 2,
+    "occurrences": 2,
+    "sampleVariants": [
+      {
+        "rhs": "{\"natural_min_hit\": min_hit, \"natural_max_hit\": max_hit},",
+        "source": "Runtime/combat/combat_runtime.py",
+        "line": 171
+      },
+      {
+        "rhs": "{\"source\": \"Data/monsters.json\", \"source_id\": self._record_id(rec, str(idx)), \"classicAccuracy\": \"data_backed_identity_runtime_formula_unverified\"},",
+        "source": "Runtime/world_integration/world_runtime.py",
+        "line": 154
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  },
+  {
+    "system": "economy",
+    "lhsKey": "int",
+    "variantCount": 3,
+    "occurrences": 3,
+    "sampleVariants": [
+      {
+        "rhs": "125, charm_modifier_percent: int = 100) -> EconomyEvent:",
+        "source": "Runtime/economy/economy_runtime.py",
+        "line": 45
+      },
+      {
+        "rhs": "50, charm_modifier_percent: int = 100) -> EconomyEvent:",
+        "source": "Runtime/economy/economy_runtime.py",
+        "line": 51
+      },
+      {
+        "rhs": "10) -> EconomyEvent:",
+        "source": "Runtime/economy/economy_runtime.py",
+        "line": 71
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  },
+  {
+    "system": "economy",
+    "lhsKey": "price",
+    "variantCount": 3,
+    "occurrences": 3,
+    "sampleVariants": [
+      {
+        "rhs": "(base * max(0, markup_percent) * max(0, charm_modifier_percent)) // 10000",
+        "source": "Runtime/economy/economy_runtime.py",
+        "line": 47
+      },
+      {
+        "rhs": "(base * max(0, buyback_percent) * max(0, charm_modifier_percent)) // 10000",
+        "source": "Runtime/economy/economy_runtime.py",
+        "line": 53
+      },
+      {
+        "rhs": "(base * max(0, durability_missing) * max(0, repair_percent)) // 10000",
+        "source": "Runtime/economy/economy_runtime.py",
+        "line": 73
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  },
+  {
+    "system": "ai",
+    "lhsKey": "cost",
+    "variantCount": 7,
+    "occurrences": 7,
+    "sampleVariants": [
+      {
+        "rhs": "max(0, int(missing_hp)) * max(0, int(gold_per_hp))",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 17
+      },
+      {
+        "rhs": "cost, effect={\"heal_hp\": max(0, int(missing_hp))}, notes=[\"Healer price is foundation default until classic evidence is promoted.\"])",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 18
+      },
+      {
+        "rhs": "max(0, int(base_cost)) * max(1, int(level))",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 21
+      },
+      {
+        "rhs": "cost, effect={\"rest\": True, \"regen_tick_bonus\": \"full_rest_foundation\"}, notes=[\"Inn/rest effect is scaffolded, not classic claimed.\"])",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 22
+      },
+      {
+        "rhs": "max(0, int(base_cost)) * max(1, int(level)) * (max(0, int(skill_rank)) + 1)",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 25
+      },
+      {
+        "rhs": "max(0, int(base_cost)), effect={\"service\": service_name}, notes=[\"Guild service hook exists; concrete rules are future evidence work.\"])",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 29
+      },
+      {
+        "rhs": "max(0, int(base_cost)), effect={\"destination_room_id\": destination_room_id}, notes=[\"Travel/teleport service hook exists; route rules are future evidence work.\"])",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 32
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  },
+  {
+    "system": "ai",
+    "lhsKey": "int",
+    "variantCount": 3,
+    "occurrences": 4,
+    "sampleVariants": [
+      {
+        "rhs": "10) -> ServiceEvent:",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 20
+      },
+      {
+        "rhs": "0, base_cost: int = 100) -> ServiceEvent:",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 24
+      },
+      {
+        "rhs": "0) -> ServiceEvent:",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 28
+      },
+      {
+        "rhs": "0) -> ServiceEvent:",
+        "source": "Runtime/npc_services/npc_services_runtime.py",
+        "line": 31
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  },
+  {
+    "system": "combat",
+    "lhsKey": "passed",
+    "variantCount": 3,
+    "occurrences": 3,
+    "sampleVariants": [
+      {
+        "rhs": "2, unknown=1, notes=[\"Inventory/equipment surfaces execute.\", \"Full equip/unequip restrictions remain formula/evidence-gated.\"], details={\"before\": before, \"after\": after, \"get_res",
+        "source": "Runtime/test_harness/full_game_test_harness.py",
+        "line": 206
+      },
+      {
+        "rhs": "int(bool(attack.get(\"ok\"))) + int(bool(cast.get(\"ok\"))), unknown=1, notes=[\"Combat/spell command paths execute where valid targets exist.\", \"Exact classic hit/damage/resist formula",
+        "source": "Runtime/test_harness/full_game_test_harness.py",
+        "line": 214
+      },
+      {
+        "rhs": "1, unknown=1, notes=[\"Formula traces retain mode/provenance where implemented.\", \"Classic formula parity remains UNKNOWN until MMExplorer/MBBSEmu evidence verifies exact formulas.\"",
+        "source": "Runtime/test_harness/full_game_test_harness.py",
+        "line": 259
+      }
+    ],
+    "status": "needs_human_or_runtime_reconciliation"
+  }
+]
