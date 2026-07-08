@@ -1,80 +1,62 @@
 {
-  "name": "MajorMUD-Reforged Full PC Replacement - Librarium Canonical",
-  "generated_utc": "2026-07-08T01:05:06.120753Z",
-  "source_repo_zip": "MajorMud-Reforged-V1.0-main(22).zip",
-  "librarium_validation_baseline_zip": "MajorMUD-Reforged-Validation-0007-Final-Librarium-Completion-Compiler-Foundation.zip",
-  "canonical_source": "/Librarium",
-  "generated_runtime_output": [
-    "/Generated/RuntimeData",
-    "/Data"
-  ],
-  "file_count": 5545,
-  "top_level": [
-    ".gitattributes",
-    ".github",
-    ".gitignore",
-    "AGENTS.md",
-    "AI_CONTEXT.md",
-    "Apps",
-    "Bin",
-    "CHANGELOG.md",
-    "CODEX_HANDOFF.md",
-    "CanonicalPromotion",
-    "Codex",
-    "Core",
-    "DEVELOPMENT_PRINCIPLES.md",
-    "Data",
-    "DataDecodeCheckpoints",
-    "Docs",
-    "Documentation",
-    "EngineKnowledge.md",
-    "Evidence",
-    "GOVERNING_PRINCIPLES.md",
-    "Generated",
-    "GitHubActions",
-    "ImportedDatabases",
-    "KnowledgeBase",
-    "Legacy",
-    "Librarium",
-    "MIGRATION_REPORT.md",
-    "ProjectManifest.json",
-    "README.md",
-    "README.txt",
-    "ReleaseNotes.md",
-    "Reports",
-    "Runtime",
-    "Sim",
-    "Simulator",
-    "SourceData",
-    "Tests",
-    "Tools",
-    "UpdateManifest.json",
-    "VERSION.md",
-    "Validation"
-  ],
-  "excluded_local_clutter": [
-    "Backups",
-    "Logs",
+  "project": "Reforged",
+  "projectVersion": "0.1.0",
+  "codeUpdate": "0066",
+  "databaseVersion": "0010",
+  "milestone": "Librarium Canonical Baseline",
+  "sourceOfTruth": "Librarium canonical knowledge graph; /Data and /Generated are generated runtime outputs.",
+  "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
+  "updatePolicy": "ChatGPT CodeUpdate ZIPs are patch-only packages unless explicitly requested otherwise; each ZIP must contain exactly one top-level update folder with Apply-CodeUpdate-XXXX.bat and UpdateManifest.json, and the BAT applies changed/new files into the main repository folder.",
+  "modePolicy": "Each assistant must identify mode first. Codex updates local only and waits for user push plus stated green GitHub Actions before continuing. ChatGPT uses verified patch ZIPs for local application unless explicitly instructed otherwise.",
+  "neverGuessPolicy": "Never guess when creating, fixing, reviewing, packaging, or reporting updates. Verify before claiming success; if something cannot be verified, state that clearly.",
+  "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
+  "referenceDataPolicy": "All WCC data, WCC-labeled data, WSGSERVE-related data, imported archives, website data, and community/tool data are reference-only unless the user explicitly approves a reviewed import or reconciliation update.",
+  "importedDataRetirementPolicy": "ImportedDatabases may be retired from normal project work only after all needed source data has been decoded, imported, recreated as Reforged-native Data, verified by reports, and explicitly approved for cleanup.",
+  "preserve": [
     "Saves",
-    "Updates",
-    "__pycache__",
-    "*.pyc"
+    "ImportedDatabases"
   ],
-  "validation": {
-    "status": "PASS",
-    "required": {
-      "Librarium": true,
-      "Generated": true,
-      "Data": true,
-      "Apps": true,
-      "Core": true,
-      "Tools": true,
-      "Validation": true,
-      "Documentation": true,
-      "README.md": true,
-      "GOVERNING_PRINCIPLES.md": true,
-      "CODEX_HANDOFF.md": true
-    },
-    "missing": []
-  }
+  "developmentStatus": {
+    "currentMilestone": "Librarium Canonical Baseline",
+    "currentCodeUpdate": "0066",
+    "currentDatabaseVersion": "0010",
+    "completedMilestones": [
+      "Milestone 1 - Core Framework"
+    ],
+    "milestone1Status": "Complete/frozen",
+    "milestone2Status": "Continuing with constrained modular server construction and reviewed data-repair work; gameplay systems remain disabled.",
+    "lastUpdateName": "CodeUpdate-0066-Librarium-Canonical-Baseline",
+    "nextRecommendedWork": [
+      "Treat Librarium as the canonical source of truth.",
+      "Treat /Data and /Generated as generated runtime outputs, not hand-edited canonical sources.",
+      "Keep ProjectManifest.json compatibility fields for existing GitHub Actions and bootstrap tests.",
+      "Use LibrariumManifest.json for Librarium-specific metadata, graph policy, generated-output policy, and consumer contracts.",
+      "Do not promote runtime/server/editor behavior unless it exists as a Librarium knowledge record with evidence state, confidence, and provenance."
+    ]
+  },
+  "handoffPolicy": {
+    "agentFile": "AGENTS.md",
+    "handoffDocument": "AI_CONTEXT.md",
+    "engineeringPrinciples": "DEVELOPMENT_PRINCIPLES.md",
+    "mustUpdateEveryCodeUpdate": true,
+    "mustUpdateRelevantDocs": true,
+    "requiredStartupOrder": [
+      "AGENTS.md",
+      "AI_CONTEXT.md",
+      "Docs/Architecture/PROJECT_ROADMAP.md",
+      "README.md",
+      "VERSION.md",
+      "CHANGELOG.md",
+      "ProjectManifest.json",
+      "DEVELOPMENT_PRINCIPLES.md"
+    ]
+  },
+  "updateZipPolicy": {
+    "patchOnly": true,
+    "oneTopLevelFolder": true,
+    "requiresApplyBat": true,
+    "requiresManifest": true,
+    "requiresVerificationBeforeAnnouncement": true
+  },
+  "buildVerification": "CodeUpdate-0066 establishes the Librarium canonical repository baseline while preserving ProjectManifest compatibility for existing bootstrap and smoke tests. Librarium is the canonical source of truth; /Data and /Generated are generated runtime outputs. Existing gameplay/server execution remains governed by current project guards until explicitly advanced."
 }
