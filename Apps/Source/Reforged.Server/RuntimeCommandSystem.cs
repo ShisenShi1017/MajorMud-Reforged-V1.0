@@ -6,6 +6,11 @@ public sealed class RuntimeCommandDispatcher
     private readonly RuntimeSessionManager? _sessions;
     private readonly RuntimeStateStore? _state;
     private readonly RuntimeEventDispatcher? _events;
+    private readonly RuntimeEntityRegistry? _entities;
+    private readonly IRuntimeCharacterRepository? _characters;
+    private readonly MagicCastPipelineFoundation? _magicPipeline;
+    private readonly NpcLifecycleFoundation? _npcLifecycle;
+    private readonly CombatLoopFoundation? _combatLoop;
 
     public RuntimeCommandDispatcher()
         : this(() => new Dictionary<string, RuntimeWorld>(StringComparer.OrdinalIgnoreCase), null, null, null)
@@ -16,12 +21,22 @@ public sealed class RuntimeCommandDispatcher
         Func<IReadOnlyDictionary<string, RuntimeWorld>> worldProvider,
         RuntimeSessionManager? sessions,
         RuntimeStateStore? state,
-        RuntimeEventDispatcher? events)
+        RuntimeEventDispatcher? events,
+        RuntimeEntityRegistry? entities = null,
+        IRuntimeCharacterRepository? characters = null,
+        MagicCastPipelineFoundation? magicPipeline = null,
+        NpcLifecycleFoundation? npcLifecycle = null,
+        CombatLoopFoundation? combatLoop = null)
     {
         _worldProvider = worldProvider;
         _sessions = sessions;
         _state = state;
         _events = events;
+        _entities = entities;
+        _characters = characters;
+        _magicPipeline = magicPipeline;
+        _npcLifecycle = npcLifecycle;
+        _combatLoop = combatLoop;
     }
 
     public string Dispatch(RuntimeSession session, string input)
@@ -39,7 +54,14 @@ public sealed class RuntimeCommandDispatcher
             var moved = session.TryMove(command.Name, out var movementResult);
             if (moved)
             {
+                var updatedCharacter = _characters?.UpdateLocation(session.Character, session.CurrentRoom);
+                if (updatedCharacter is not null)
+                {
+                    session.UpdateCharacter(updatedCharacter);
+                }
+
                 _state?.UpdateSessionLocation(session);
+                _entities?.MoveEntity(session.CharacterId, session.World.Definition.Id, previousRoom.Id, session.CurrentRoom.Id);
                 _events?.Publish("movement", "completed", session.World.Definition.Id, session.Id, session.CharacterId, $"{previousRoom.Id}->{session.CurrentRoom.Id}");
             }
             else
@@ -60,9 +82,49 @@ public sealed class RuntimeCommandDispatcher
             "sessions" => _sessions?.RenderStatus() ?? "Session manager is not attached.",
             "state" => _state?.RenderStatus() ?? "Runtime state store is not attached.",
             "events" => _events?.RenderStatus() ?? "Runtime event dispatcher is not attached.",
-            "help" => "Commands: look, where, world, worlds, sessions, state, events, north/south/east/west or n/s/e/w, quit",
+            "entities" => _entities?.RenderStatus() ?? "Runtime entity registry is not attached.",
+            "occupants" => RenderOccupants(session),
+            "slots" => RenderSlots(session),
+            "npc" => _npcLifecycle?.RenderStatus() ?? "NPC lifecycle foundation is not attached.",
+            "combat" => _combatLoop?.RenderStatus() ?? "Combat loop foundation is not attached.",
+            "cast" => RenderCastFoundation(session, input),
+            "help" => "Commands: look, where, world, worlds, sessions, state, events, entities, occupants, slots, npc, combat, cast, north/south/east/west or n/s/e/w, quit",
             _ => $"Unknown command '{command.Name}'. Type 'help' for available runtime commands."
         };
+    }
+
+    private string RenderOccupants(RuntimeSession session)
+    {
+        var occupants = _entities?.GetRoomOccupants(session.World.Definition.Id, session.CurrentRoom.Id) ?? Array.Empty<RuntimeEntity>();
+        if (occupants.Count == 0)
+        {
+            return "No tracked entities are registered in this room.";
+        }
+
+        return string.Join(Environment.NewLine, occupants.Select(entity => $"{entity.EntityType}: {entity.DisplayName} [{entity.Lifecycle}] id={entity.EntityId}"));
+    }
+
+    private string RenderSlots(RuntimeSession session)
+    {
+        var slots = _characters?.ListSaveSlots(session.Account.AccountId, session.World.Definition.Id) ?? Array.Empty<RuntimeSaveSlot>();
+        if (slots.Count == 0)
+        {
+            return "Save slot repository is not attached.";
+        }
+
+        return string.Join(Environment.NewLine, slots.Select(slot => $"Slot {slot.SlotNumber}: {slot.Status}{(slot.CharacterId is null ? string.Empty : $" character={slot.CharacterId}")}"));
+    }
+
+    private string RenderCastFoundation(RuntimeSession session, string input)
+    {
+        var request = _magicPipeline?.CreateRejectedRequest(session, input);
+        if (request is null)
+        {
+            return "Magic/cast pipeline foundation is not attached.";
+        }
+
+        _events?.Publish("magic", "cast-request-rejected", session.World.Definition.Id, session.Id, session.CharacterId, $"request={request.RequestId}; reason=unsupported-foundation-only");
+        return "Magic/cast pipeline foundation is registered, but spell execution is disabled until the magic runtime milestone.";
     }
 
     private string RenderWorlds()

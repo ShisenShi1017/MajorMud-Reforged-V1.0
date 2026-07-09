@@ -7,15 +7,17 @@ public sealed class RuntimeSessionManager
     private readonly ConcurrentDictionary<string, RuntimeSession> _sessions = new(StringComparer.OrdinalIgnoreCase);
     private readonly RuntimeStateStore? _state;
     private readonly RuntimeEventDispatcher? _events;
+    private readonly RuntimeEntityRegistry? _entities;
 
     public RuntimeSessionManager()
     {
     }
 
-    public RuntimeSessionManager(RuntimeStateStore state, RuntimeEventDispatcher events)
+    public RuntimeSessionManager(RuntimeStateStore state, RuntimeEventDispatcher events, RuntimeEntityRegistry? entities = null)
     {
         _state = state;
         _events = events;
+        _entities = entities;
     }
 
     public IReadOnlyCollection<RuntimeSession> ActiveSessions => _sessions.Values.ToArray();
@@ -36,7 +38,8 @@ public sealed class RuntimeSessionManager
         }
 
         _state?.TrackSession(session);
-        _events?.Publish("session", "started", session.World.Definition.Id, session.Id, session.CharacterId, $"player={session.PlayerName}");
+        _entities?.RegisterCharacter(session);
+        _events?.Publish("session", "started", session.World.Definition.Id, session.Id, session.CharacterId, $"player={session.PlayerName}; account={session.Account.AccountId}; saveSlot={session.Character.SaveSlot}");
         message = "accepted";
         return true;
     }
@@ -49,6 +52,7 @@ public sealed class RuntimeSessionManager
         }
 
         _state?.RemoveSession(sessionId);
+        _entities?.RemoveEntity(session.CharacterId);
         _events?.Publish("session", "ended", session.World.Definition.Id, session.Id, session.CharacterId, $"player={session.PlayerName}");
         return true;
     }
@@ -62,6 +66,6 @@ public sealed class RuntimeSessionManager
 
         return string.Join(Environment.NewLine, _sessions.Values
             .OrderBy(session => session.ConnectedAtUtc)
-            .Select(session => $"{session.Id}: player={session.PlayerName}; world={session.World.Definition.Id}; room={session.CurrentRoom.Id}; connectedUtc={session.ConnectedAtUtc:O}"));
+            .Select(session => $"{session.Id}: player={session.PlayerName}; account={session.Account.AccountId}; character={session.CharacterId}; slot={session.Character.SaveSlot}; world={session.World.Definition.Id}; room={session.CurrentRoom.Id}; connectedUtc={session.ConnectedAtUtc:O}"));
     }
 }

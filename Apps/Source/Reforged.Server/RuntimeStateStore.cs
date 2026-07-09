@@ -31,8 +31,10 @@ public sealed class RuntimeStateStore
         var now = DateTimeOffset.UtcNow;
         var character = new RuntimeCharacterState(
             session.CharacterId,
+            session.Account.AccountId,
             session.PlayerName,
             session.World.Definition.Id,
+            session.Character.SaveSlot,
             session.CurrentRoom.Id,
             session.CurrentRoom.RoomNumber,
             now,
@@ -40,9 +42,11 @@ public sealed class RuntimeStateStore
 
         var sessionState = new RuntimeSessionState(
             session.Id,
+            session.Account.AccountId,
             session.PlayerName,
             session.CharacterId,
             session.World.Definition.Id,
+            session.Character.SaveSlot,
             session.CurrentRoom.Id,
             session.CurrentRoom.RoomNumber,
             session.ConnectedAtUtc,
@@ -59,9 +63,11 @@ public sealed class RuntimeStateStore
         var now = DateTimeOffset.UtcNow;
         _sessions[session.Id] = new RuntimeSessionState(
             session.Id,
+            session.Account.AccountId,
             session.PlayerName,
             session.CharacterId,
             session.World.Definition.Id,
+            session.Character.SaveSlot,
             session.CurrentRoom.Id,
             session.CurrentRoom.RoomNumber,
             session.ConnectedAtUtc,
@@ -70,8 +76,10 @@ public sealed class RuntimeStateStore
 
         _characters[session.CharacterId] = new RuntimeCharacterState(
             session.CharacterId,
+            session.Account.AccountId,
             session.PlayerName,
             session.World.Definition.Id,
+            session.Character.SaveSlot,
             session.CurrentRoom.Id,
             session.CurrentRoom.RoomNumber,
             _characters.TryGetValue(session.CharacterId, out var existing) ? existing.CreatedAtUtc : now,
@@ -105,9 +113,11 @@ public sealed record RuntimeWorldState(
 
 public sealed record RuntimeSessionState(
     string SessionId,
+    string AccountId,
     string PlayerName,
     string CharacterId,
     string WorldId,
+    int SaveSlot,
     string RoomId,
     int RoomNumber,
     DateTimeOffset ConnectedAtUtc,
@@ -116,8 +126,10 @@ public sealed record RuntimeSessionState(
 
 public sealed record RuntimeCharacterState(
     string CharacterId,
+    string AccountId,
     string DisplayName,
     string WorldId,
+    int SaveSlot,
     string RoomId,
     int RoomNumber,
     DateTimeOffset CreatedAtUtc,

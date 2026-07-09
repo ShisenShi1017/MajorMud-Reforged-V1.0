@@ -3,18 +3,29 @@ namespace Reforged.Server;
 public sealed class RuntimeSession
 {
     public RuntimeSession(string id, RuntimeWorld world, string? playerName = null)
+        : this(id, world,
+            new RuntimeAccountIdentity($"account:{RuntimeIdentity.NormalizeToken(playerName ?? id, "player")}", string.IsNullOrWhiteSpace(playerName) ? id : playerName.Trim(), DateTimeOffset.UtcNow, DateTimeOffset.UtcNow),
+            new RuntimeCharacterIdentity(RuntimeIdentity.CreateCharacterId($"account:{RuntimeIdentity.NormalizeToken(playerName ?? id, "player")}", world.Definition.Id, 1), $"account:{RuntimeIdentity.NormalizeToken(playerName ?? id, "player")}", world.Definition.Id, 1, string.IsNullOrWhiteSpace(playerName) ? id : playerName.Trim(), world.GetStartRoom().Id, world.GetStartRoom().RoomNumber, DateTimeOffset.UtcNow, DateTimeOffset.UtcNow))
+    {
+    }
+
+    public RuntimeSession(string id, RuntimeWorld world, RuntimeAccountIdentity account, RuntimeCharacterIdentity character)
     {
         Id = id;
         World = world;
-        PlayerName = string.IsNullOrWhiteSpace(playerName) ? id : playerName.Trim();
-        CharacterId = CreateCharacterId(World.Definition.Id, PlayerName);
-        CurrentRoom = world.GetStartRoom();
+        Account = account;
+        Character = character;
+        PlayerName = string.IsNullOrWhiteSpace(character.DisplayName) ? account.DisplayName : character.DisplayName;
+        CharacterId = character.CharacterId;
+        CurrentRoom = world.FindRoomByNumber(character.CurrentRoomNumber) ?? world.GetStartRoom();
         ConnectedAtUtc = DateTimeOffset.UtcNow;
         LastCommandAtUtc = ConnectedAtUtc;
     }
 
     public string Id { get; }
     public string PlayerName { get; }
+    public RuntimeAccountIdentity Account { get; private set; }
+    public RuntimeCharacterIdentity Character { get; private set; }
     public string CharacterId { get; private set; }
     public RuntimeWorld World { get; private set; }
     public RuntimeRoom CurrentRoom { get; private set; }
@@ -29,8 +40,22 @@ public sealed class RuntimeSession
     public void MoveToWorld(RuntimeWorld world)
     {
         World = world;
-        CharacterId = CreateCharacterId(World.Definition.Id, PlayerName);
+        Character = Character with
+        {
+            WorldId = world.Definition.Id,
+            CurrentRoomId = world.GetStartRoom().Id,
+            CurrentRoomNumber = world.GetStartRoom().RoomNumber,
+            UpdatedAtUtc = DateTimeOffset.UtcNow
+        };
+        CharacterId = Character.CharacterId;
         CurrentRoom = world.GetStartRoom();
+        Touch();
+    }
+
+    public void UpdateCharacter(RuntimeCharacterIdentity character)
+    {
+        Character = character;
+        CharacterId = character.CharacterId;
         Touch();
     }
 
@@ -53,6 +78,12 @@ public sealed class RuntimeSession
         }
 
         CurrentRoom = target;
+        Character = Character with
+        {
+            CurrentRoomId = CurrentRoom.Id,
+            CurrentRoomNumber = CurrentRoom.RoomNumber,
+            UpdatedAtUtc = DateTimeOffset.UtcNow
+        };
         message = RoomRenderer.Render(CurrentRoom);
         return true;
     }
@@ -75,17 +106,6 @@ public sealed class RuntimeSession
         };
     }
 
-    private static string CreateCharacterId(string worldId, string playerName)
-    {
-        var safeName = new string(playerName
-            .Trim()
-            .ToLowerInvariant()
-            .Select(character => char.IsLetterOrDigit(character) ? character : '-')
-            .ToArray())
-            .Trim('-');
-
-        return $"{worldId}:{(safeName.Length == 0 ? "player" : safeName)}";
-    }
 }
 
 public static class RoomRenderer

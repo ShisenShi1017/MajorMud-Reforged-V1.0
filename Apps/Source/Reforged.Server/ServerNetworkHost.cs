@@ -10,17 +10,23 @@ public sealed class ServerNetworkHost
     private readonly Func<IReadOnlyDictionary<string, RuntimeWorld>> _worldProvider;
     private readonly RuntimeCommandDispatcher _commands;
     private readonly RuntimeSessionManager _sessions;
+    private readonly IRuntimeAccountRepository _accounts;
+    private readonly IRuntimeCharacterRepository _characters;
 
     public ServerNetworkHost(
         ServerRuntimeOptions options,
         Func<IReadOnlyDictionary<string, RuntimeWorld>> worldProvider,
         RuntimeCommandDispatcher commands,
-        RuntimeSessionManager sessions)
+        RuntimeSessionManager sessions,
+        IRuntimeAccountRepository accounts,
+        IRuntimeCharacterRepository characters)
     {
         _options = options;
         _worldProvider = worldProvider;
         _commands = commands;
         _sessions = sessions;
+        _accounts = accounts;
+        _characters = characters;
     }
 
     public async Task RunTelnetAsync(CancellationToken cancellationToken)
@@ -77,7 +83,9 @@ public sealed class ServerNetworkHost
                 return;
             }
 
-            var session = new RuntimeSession(sessionId, selectedWorld, playerName);
+            var account = _accounts.GetOrCreateAccount(playerName);
+            var character = _characters.GetOrCreateCharacter(account, selectedWorld, 1, playerName);
+            var session = new RuntimeSession(sessionId, selectedWorld, account, character);
             if (!_sessions.TryAdd(session, Math.Max(1, _options.Network.MaxSessions), out var message))
             {
                 await writer.WriteLineAsync($"Connection refused: {message}").ConfigureAwait(false);

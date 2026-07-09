@@ -664,3 +664,7 @@ One narrow quest flag data-presence record was promoted. No gameplay quest mecha
 - Added runtime network configuration.
 - Added GitHub Actions, global.json, and Codespaces devcontainer support.
 - Delivered as update-only package with cumulative server payload.
+
+## CodeUpdate 0116 - Runtime Milestone 2 Core Backbone
+
+- Added account/character persistence contracts, world-isolated save-slot contracts, entity registry, room occupancy, and foundation scheduler hooks for spawn/events/NPC/combat/magic without enabling gameplay formulas or durable save writes.
