@@ -61,6 +61,13 @@ Librarium = authoritative source of truth
 
 # Changelog
 
+## CodeUpdate-0127A - Server Bootstrap Bin Placeholder Repair
+
+- Added a tracked `Bin/.gitkeep` placeholder so the required runtime-artifact directory exists in clean GitHub Actions checkouts.
+- Updated `.gitignore` to keep generated `Bin/` contents ignored while allowing only the placeholder.
+- Recorded this as a corrective build/bootstrap fix for the CodeUpdate-0127 cleanup.
+- No gameplay systems, data imports, runtime formulas, generated world content, or imported/reference data were changed.
+
 ## CodeUpdate-0127 - World Overlay Compiler Completion
 
 - Applied the user-provided 0127 full repository snapshot locally.

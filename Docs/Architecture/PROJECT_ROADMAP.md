@@ -96,11 +96,13 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0115`
+- Current Code Update: `0127A`
 - Current Database Version: `0010`
-- Current Milestone: `Runtime Milestone 2 - State and Event Dispatcher Foundation`
+- Current Milestone: `Librarium World Overlay Compiler Completion`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0115, verify GitHub Actions green by user report, then approve one narrow Runtime Milestone 2 slice built on the host-owned state/event backbone.
+- Current priority: push CodeUpdate-0127A, verify GitHub Actions green by user report, then approve one narrow runtime/compiler validation slice built on the 0127 generated-world baseline.
+
+CodeUpdate-0127A corrects the CodeUpdate-0127 clean-checkout Server bootstrap failure by tracking `Bin/.gitkeep` while keeping generated `Bin/` contents ignored. No gameplay, generated data change, runtime formula promotion, or imported/reference deletion is included.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 

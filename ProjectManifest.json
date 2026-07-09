@@ -1,7 +1,7 @@
 {
     "project":  "Reforged",
     "projectVersion":  "0.1.0",
-    "codeUpdate":  "0127",
+    "codeUpdate":  "0127A",
     "databaseVersion":  "0010",
     "milestone":  "Librarium World Overlay Compiler Completion",
     "sourceOfTruth":  "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Generated graph/index/database artifacts are local generated outputs and ignored by Git.",
@@ -18,19 +18,18 @@
                  ],
     "developmentStatus":  {
                               "currentMilestone":  "Librarium World Overlay Compiler Completion",
-                              "currentCodeUpdate":  "0127",
+                              "currentCodeUpdate":  "0127A",
                               "currentDatabaseVersion":  "0010",
                               "completedMilestones":  [
                                                           "Milestone 1 - Core Framework"
                                                       ],
                               "milestone1Status":  "Complete/frozen",
-                              "milestone2Status":  "CodeUpdate 0127 completes the current world overlay/compiler pass: Classic, CustomTemplate, and AIFromClassic overlays compile to deterministic generated world outputs. Runtime gameplay remains unchanged.",
-                              "lastUpdateName":  "CodeUpdate-0127-WorldOverlayCompilerCompletion",
+                              "milestone2Status":  "CodeUpdate 0127A corrects the 0127 clean-checkout Server bootstrap failure by preserving a tracked Bin/.gitkeep placeholder while keeping generated Bin contents ignored. Runtime gameplay remains unchanged.",
+                              "lastUpdateName":  "CodeUpdate-0127A-ServerBootstrapBinPlaceholderRepair",
                               "nextRecommendedWork":  [
-                                                          "Verify CodeUpdate-0127 in GitHub Actions after user push.",
-                                                          "Use Librarium and generated world outputs as the canonical compiler-driven baseline.",
-                                                          "Do not hand-edit /Data as canonical source; update Librarium/overlays and regenerate.",
-                                                          "Continue with one narrow runtime slice only after 0127 is green."
+                                                          "Push CodeUpdate-0127A and verify GitHub Actions green.",
+                                                          "After green Actions, continue with one narrow runtime/compiler validation slice from the 0127 generated-world baseline.",
+                                                          "Do not hand-edit /Data as canonical source; update Librarium/overlays and regenerate."
                                                       ]
                           },
     "handoffPolicy":  {
@@ -57,9 +56,9 @@
                             "requiresManifest":  true,
                             "requiresVerificationBeforeAnnouncement":  true
                         },
-    "buildVerification":  "LOCAL_PASS; 0127 full-repo snapshot applied, old tracked files absent from the snapshot cleaned up, stale 0118/0126 manifest fields repaired, server restore/build passed, Core/server smoke tests passed, compiler restore/build/tests passed, and Python 0127 world-output validation passed. GitHub Actions remains pending until user push.",
-    "current_codeupdate":  "0127",
-    "last_update":  "World Overlay Compiler Completion",
+    "buildVerification":  "LOCAL_PASS; 0127A tracks Bin/.gitkeep and updates .gitignore so clean GitHub Actions checkouts satisfy the required Bin directory check. Exact failing server bootstrap command passed with exit code 0. Server build passed after rerunning sequentially due to an initial parallel Core obj file lock. Core/server smoke tests passed, compiler tests passed, and Python 0127 world-output validation passed. GitHub Actions remains pending until user push.",
+    "current_codeupdate":  "0127A",
+    "last_update":  "Server Bootstrap Bin Placeholder Repair",
     "subsystems_completed":  [
                                  "Server Runtime Milestone 1",
                                  "Runtime state/event foundation",
@@ -79,8 +78,8 @@
                                       "NightmareRedux",
                                       "MajorMUD-PHP-Monster-Sim"
                                   ],
-    "baseline":  "CodeUpdate 0127 - World Overlay Compiler Completion",
-    "updatedUtc":  "2026-07-09T21:52:10Z",
+    "baseline":  "CodeUpdate 0127A - Server Bootstrap Bin Placeholder Repair",
+    "updatedUtc":  "2026-07-09T22:08:23Z",
     "dataPolicy":  "/Data is generated output per world and should not be hand-edited as canonical source.",
     "hostClientPolicy":  "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

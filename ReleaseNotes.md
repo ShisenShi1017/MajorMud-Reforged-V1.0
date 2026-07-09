@@ -1,3 +1,17 @@
+# CodeUpdate-0127A - Server Bootstrap Bin Placeholder Repair
+
+This corrective patch fixes the clean-checkout Server bootstrap failure caused by the required `Bin/` directory being absent after the 0127 cleanup.
+
+Highlights:
+
+- Adds tracked `Bin/.gitkeep`.
+- Keeps generated/runtime files under `Bin/` ignored.
+- Preserves the CodeUpdate-0127 world overlay/compiler baseline.
+
+Known limitation:
+
+- This is a bootstrap/package-layout repair only. It does not wire generated exits into runtime movement and does not add gameplay systems.
+
 # Release Notes - CodeUpdate 0116
 
 Librarium Runtime Conversion: Librarium is authoritative; `/Data` is generated per world; repository cleaned of old generated/import clutter.

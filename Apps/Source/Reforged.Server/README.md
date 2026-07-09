@@ -23,6 +23,7 @@ This project explicitly references `Core/Source/Reforged.Core/Reforged.Core.cspr
 - CodeUpdate-0062 adds read-only scheduler bootstrap diagnostics while keeping scheduler execution, gameplay, networking, and world simulation disabled.
 - CodeUpdate-0063 corrects scheduler bootstrap channels to generic engine execution names while keeping scheduler execution, gameplay, networking, and world simulation disabled. It also folds ServerRuntimeValidation0009 into the no-.NET simulator validation surface only.
 - CodeUpdate-0064 adds guarded scheduler/status command diagnostics while keeping command execution, scheduler execution, gameplay, networking, and world simulation disabled.
+- CodeUpdate-0127A restores the tracked `Bin/.gitkeep` placeholder so clean checkouts satisfy the required runtime-artifact directory check while generated `Bin/` contents remain ignored.
 
 The bootstrap path verifies repository root discovery, required project folders, ProjectManifest identity, host configuration, canonical Server data catalog loading, world projection loading, game module catalog loading, module readiness, host lifecycle readiness, scheduler bootstrap diagnostics, existing Server startup diagnostics, and read-only Classic parity inventory. It also captures the manifest project, CodeUpdate, database version, and milestone for startup output. It does not start gameplay systems.
 

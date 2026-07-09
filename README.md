@@ -1,8 +1,8 @@
-# MajorMUD Reforged — CodeUpdate 0120
+# MajorMUD Reforged - CodeUpdate 0127A
 
 ## Current Baseline
 
-CodeUpdate 0120 is the corrected Librarium object-graph baseline. It supersedes CodeUpdate 0119 by fixing repository metrics and adding repository invariants.
+CodeUpdate 0127A is the current corrective local baseline. It preserves the CodeUpdate 0127 world overlay/compiler completion work and repairs the clean-checkout Server bootstrap failure by tracking `Bin/.gitkeep` while keeping generated `Bin/` contents ignored.
 
 Official rule set:
 

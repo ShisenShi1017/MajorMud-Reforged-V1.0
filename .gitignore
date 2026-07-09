@@ -8,6 +8,9 @@
 TestResults/
 *.user
 *.suo
+!/Bin/
+/Bin/*
+!/Bin/.gitkeep
 
 # Local graph/database outputs
 Generated/Librarium/

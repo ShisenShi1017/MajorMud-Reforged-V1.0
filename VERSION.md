@@ -1,5 +1,5 @@
 # MajorMUD Reforged Version
 
-Current repository baseline: **CodeUpdate 0127 - World Overlay Compiler Completion**
+Current repository baseline: **CodeUpdate 0127A - Server Bootstrap Bin Placeholder Repair**
 
-Status: full-repo overlay applied locally; stale 0118/0126 manifest fields repaired; old tracked files absent from the 0127 snapshot cleaned up; server/Core smoke verification passed; compiler build/test passed; Python 0127 world-output validation passed; GitHub Actions pending user push.
+Status: corrective local patch after the 0127 full-repo overlay. `Bin/.gitkeep` is tracked so the required runtime-artifact directory exists during GitHub Actions bootstrap validation; generated/runtime files under `Bin/` remain ignored. Server bootstrap, Server build, Core/server smoke verification, compiler tests, and Python 0127 world-output validation passed locally for 0127A. GitHub Actions remains pending until user push.
