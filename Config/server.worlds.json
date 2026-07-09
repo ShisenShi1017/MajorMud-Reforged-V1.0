@@ -1,0 +1,41 @@
+{
+  "hostName": "Reforged Realms Host",
+  "defaultWorldId": "classic",
+  "worldTickMilliseconds": 1000,
+  "worlds": [
+    {
+      "id": "classic",
+      "name": "Classic World",
+      "type": "Classic",
+      "rulesProfile": "classic",
+      "dataRoot": "Data",
+      "roomsFile": "rooms.json",
+      "startRoom": "wcc_map1_room1",
+      "aiMode": "Off",
+      "runtimeEnabled": true,
+      "transfersAllowed": false,
+      "classicProtected": true,
+      "description": "Protected Classic world. Runtime Milestone 1 hosts Classic first and blocks transfers/AI contamination.",
+      "motd": "Welcome to MajorMUD Reforged Classic. This host is authoritative and Classic remains protected.",
+      "loginBanner": "Classic World"
+    }
+  ],
+  "futureWorldTypes": [
+    "ReforgedCustom",
+    "PureAI"
+  ],
+  "notes": [
+    "0113 is Classic-first. Additional worlds are added by configuration and module/runtime services, not host rewrites.",
+    "Classic remains protected: no transfers, no AI mode, no formula invention.",
+    "The Host remains authoritative for world state, character state, combat, items, NPCs, quests, economy, timers, resets, and permissions.",
+    "Runtime Milestone 1 adds opt-in telnet networking and multiple sessions while keeping Classic as the only enabled world."
+  ],
+  "network": {
+    "enabled": false,
+    "bindAddress": "127.0.0.1",
+    "telnetPort": 4000,
+    "maxSessions": 32,
+    "loginTimeoutSeconds": 120,
+    "allowWorldSelection": true
+  }
+}

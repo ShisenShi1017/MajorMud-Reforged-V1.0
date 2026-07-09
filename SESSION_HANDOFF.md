@@ -1,28 +1,43 @@
-# Session Handoff — CodeUpdate 0112 Master Consolidation
+# Session Handoff - CodeUpdate 0113 Server Runtime Bootstrap
 
-Baseline: CodeUpdate 0111 Librarium Distribution & SDK
-Current: CodeUpdate 0112 Master Consolidation & Repository Integration
-Status: PASS_WITH_WARNINGS
+## Baseline
 
-Completed phases:
+Started from `MajorMUD-Reforged-CodeUpdate0112-NormalizedDropInBaseline-Cumulative.zip`.
 
-1. Repository audit
-2. Librarium/distribution artifact audit
-3. Relationship/probe/subsystem surface audit
-4. JSON identifier and evidence-state scan
-5. Distribution builder execution
-6. SQLite/query workflow validation
-7. Master file inventory generation
-8. Repository integration report generation
+## Completed
 
-Important note: 0112 is a consolidation baseline. It does not claim every Classic gameplay mechanic is verified. It preserves confidence states and unresolved gaps.
+- Transitioned from reconstruction to runtime implementation.
+- Extended existing `Reforged.Server`; no duplicate server was created.
+- Added config-driven host/world runtime surface.
+- Implemented Classic-first local runtime bootstrap.
+- Added runtime world loader over canonical `Data/rooms.json`.
+- Added single-player local console session.
+- Added safe command parser and dispatcher.
+- Added room rendering and canonical exit movement.
+- Added scheduler shell.
+- Added Classic protection checks.
 
-Next recommended action: review warnings in the JSON audit, then stage a GitHub import from this archive or run a final manual repository review before commit.
+## Current Runtime Command
 
+```bash
+dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj -- --run-local
+```
 
-## CodeUpdate 0112.1 — Normalized Drop-In Baseline
+## Important Boundaries
 
-- Added root `.gitignore` to keep generated graphs, indexes, and SQLite/database outputs out of GitHub.
-- Refreshed manifests for a self-contained drop-in replacement baseline.
-- Added repository normalization audit and master inventory.
-- Result: PASS_WITH_WARNINGS.
+- Classic only for now.
+- Custom worlds come after Classic runtime stability.
+- AI worlds come after Custom-world extensibility and permission boundaries.
+- Host remains authoritative.
+- Client must not mutate state directly.
+- No invented gameplay behavior.
+
+## Next Recommended Work
+
+1. Run .NET build verification on a machine with .NET 8 SDK.
+2. Run `--run-local` and confirm local movement from Town Gates.
+3. Add automated tests for config loading, Classic boundary checks, room rendering, and movement.
+4. Proceed to 0114 networking after 0113 is build/run green.
+## Current Handoff — CodeUpdate 0114 Runtime Milestone 1
+
+Runtime Milestone 1 implemented network/telnet hosting, multiple sessions, login name prompt, world selection foundation, and build automation. The package is update-only with a cumulative server payload.

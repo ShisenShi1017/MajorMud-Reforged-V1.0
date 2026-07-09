@@ -1,8 +1,8 @@
 using Reforged.Server;
 
+var startDirectory = args.FirstOrDefault(arg => !arg.StartsWith("--", StringComparison.Ordinal));
 var bootstrap = new ServerBootstrap();
-var startDirectory = args.Length > 0 ? args[0] : Directory.GetCurrentDirectory();
-var report = bootstrap.Run(startDirectory);
+var report = bootstrap.Run(startDirectory ?? Directory.GetCurrentDirectory());
 
 Console.WriteLine("Reforged Server Bootstrap");
 Console.WriteLine($"ProjectRoot: {report.ProjectRoot ?? "<not found>"}");
@@ -28,10 +28,6 @@ if (report.HostConfiguration is not null)
 if (report.ServerDataCatalog is not null)
 {
     Console.WriteLine($"ServerDataCatalog: {report.ServerDataCatalog.Status}; categories={report.ServerDataCatalog.PresentCategoryCount}/{report.ServerDataCatalog.CategoryCount}; runtimeReady={report.ServerDataCatalog.RuntimeReadyCategoryCount}; runtimeBlocked={report.ServerDataCatalog.RuntimeBlockedCategoryCount}; placeholders={report.ServerDataCatalog.EmptyPlaceholderCategoryCount}; records={report.ServerDataCatalog.LoadedRecordCount}");
-    foreach (var category in report.ServerDataCatalog.Categories)
-    {
-        Console.WriteLine($"ServerDataCategory: {category.Category}; status={category.Status}; runtimeReady={category.RuntimeReady}; placeholder={category.IsPlaceholder}; records={category.RecordCount}; file={category.RelativePath}; bytes={category.FileSizeBytes}; note={category.ReadinessNote}");
-    }
 }
 
 if (report.WorldProjection is not null)
@@ -42,59 +38,31 @@ if (report.WorldProjection is not null)
 if (report.GameModuleCatalog is not null)
 {
     Console.WriteLine($"GameModules: {report.GameModuleCatalog.Status}; modules={report.GameModuleCatalog.ModuleCount}; gameplayEnabled={report.GameModuleCatalog.GameplayEnabledModuleCount}; gameplayDisabled={report.GameModuleCatalog.GameplayDisabledModuleCount}");
-    foreach (var module in report.GameModuleCatalog.Modules)
-    {
-        Console.WriteLine($"GameModule: {module.Id}; name={module.Name}; role={module.Role}; dataRoot={module.DataRoot}; gameplayEnabled={module.GameplayEnabled}; ruleProfiles={module.RuleProfiles.Count}");
-        foreach (var ruleProfile in module.RuleProfiles)
-        {
-            Console.WriteLine($"RuleProfile: {module.Id}/{ruleProfile.Id}; name={ruleProfile.Name}; status={ruleProfile.Status}; runtimeEnabled={ruleProfile.RuntimeEnabled}");
-        }
-    }
 }
 
 if (report.ModuleReadiness is not null)
 {
     Console.WriteLine($"ModuleReadiness: {report.ModuleReadiness.Status}; modules={report.ModuleReadiness.ModuleCount}; hostReady={report.ModuleReadiness.HostReadyModuleCount}; gameplayEnabled={report.ModuleReadiness.GameplayEnabledModuleCount}; runtimeRuleProfilesEnabled={report.ModuleReadiness.RuntimeRuleProfileEnabledCount}");
-    foreach (var module in report.ModuleReadiness.Modules)
-    {
-        Console.WriteLine($"ModuleReadinessItem: {module.ModuleId}; status={module.Status}; hostReady={module.HostReady}; dataRootExists={module.DataRootExists}; worldProjectionReady={module.WorldProjectionReady}; worldRooms={module.WorldRoomCount}; runtimeReadyCategories={module.RuntimeReadyCategoryCount}; runtimeBlockedCategories={module.RuntimeBlockedCategoryCount}; placeholders={module.EmptyPlaceholderCategoryCount}; gameplayEnabled={module.GameplayEnabled}; runtimeRuleProfilesEnabled={module.RuntimeRuleProfileEnabledCount}; note={module.ReadinessNote}");
-    }
 }
 
 if (report.HostLifecycle is not null)
 {
     Console.WriteLine($"HostLifecycle: {report.HostLifecycle.Status}; initialized={report.HostLifecycle.Initialized}; configured={report.HostLifecycle.Configured}; dataReady={report.HostLifecycle.DataReady}; worldProjectionReady={report.HostLifecycle.WorldProjectionReady}; moduleReady={report.HostLifecycle.ModuleReady}; runtimeDisabled={report.HostLifecycle.RuntimeDisabled}; gameplayEnabled={report.HostLifecycle.GameplayEnabled}; networkingEnabled={report.HostLifecycle.NetworkingEnabled}; worldSimulationEnabled={report.HostLifecycle.WorldSimulationEnabled}");
-    foreach (var stage in report.HostLifecycle.Stages)
-    {
-        Console.WriteLine($"HostLifecycleStage: {stage.Name}; ready={stage.Ready}; status={stage.Status}; note={stage.Note}");
-    }
 }
 
 if (report.SchedulerBootstrap is not null)
 {
     Console.WriteLine($"SchedulerBootstrap: {report.SchedulerBootstrap.Status}; channels={report.SchedulerBootstrap.ChannelCount}; runtimeEnabled={report.SchedulerBootstrap.RuntimeEnabledChannelCount}; runtimeDisabled={report.SchedulerBootstrap.RuntimeDisabledChannelCount}; hostLifecycleReady={report.SchedulerBootstrap.HostLifecycleReady}; diagnosticOnly={report.SchedulerBootstrap.DiagnosticOnly}");
-    foreach (var channel in report.SchedulerBootstrap.Channels)
-    {
-        Console.WriteLine($"SchedulerChannel: {channel.Order}; name={channel.Name}; runtimeEnabled={channel.RuntimeEnabled}; evidence={channel.EvidenceSource}; role={channel.Role}; note={channel.ReadinessNote}");
-    }
 }
 
 if (report.SchedulerStatusCommands is not null)
 {
     Console.WriteLine($"SchedulerStatusCommands: {report.SchedulerStatusCommands.Status}; commands={report.SchedulerStatusCommands.CommandCount}; runtimeEnabled={report.SchedulerStatusCommands.RuntimeEnabledCommandCount}; runtimeDisabled={report.SchedulerStatusCommands.RuntimeDisabledCommandCount}; guarded={report.SchedulerStatusCommands.GuardedCommandCount}; mutating={report.SchedulerStatusCommands.StateMutatingCommandCount}; schedulerReady={report.SchedulerStatusCommands.SchedulerBootstrapReady}; diagnosticOnly={report.SchedulerStatusCommands.DiagnosticOnly}");
-    foreach (var command in report.SchedulerStatusCommands.Commands)
-    {
-        Console.WriteLine($"SchedulerStatusCommand: {command.Order}; name={command.Name}; category={command.Category}; runtimeEnabled={command.RuntimeEnabled}; guarded={command.Guarded}; mutatesState={command.MutatesState}; output={command.OutputContract}; note={command.ReadinessNote}");
-    }
 }
 
 if (report.ClassicParityAudit is not null)
 {
     Console.WriteLine($"ClassicParity: {report.ClassicParityAudit.Status}; canonicalFiles={report.ClassicParityAudit.CanonicalFileCount}; importedReferenceFiles={report.ClassicParityAudit.ImportedReferenceFileCount}; exactNameMatches={report.ClassicParityAudit.ExactNameMatchCount}");
-    foreach (var category in report.ClassicParityAudit.Categories)
-    {
-        Console.WriteLine($"ClassicParityCategory: {category.Category}; canonical={category.CanonicalFileCount}; imported={category.ImportedReferenceFileCount}; matches={category.ExactNameMatchCount}; status={category.Status}");
-    }
 }
 
 foreach (var issue in report.Validation.Issues)
@@ -108,5 +76,35 @@ if (!report.Passed)
     return report.ExitCode;
 }
 
-Console.WriteLine("Server bootstrap completed successfully. Gameplay, networking, and world simulation remain intentionally disabled.");
+if (args.Any(arg => string.Equals(arg, "--run-local", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot start runtime because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var host = new ServerRuntimeHost(report.ProjectRoot, options);
+    host.Bootstrap();
+    await host.RunLocalConsoleAsync(CancellationToken.None).ConfigureAwait(false);
+    return 0;
+}
+
+if (args.Any(arg => string.Equals(arg, "--run-network", StringComparison.OrdinalIgnoreCase) || string.Equals(arg, "--run-telnet", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot start runtime because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var host = new ServerRuntimeHost(report.ProjectRoot, options);
+    host.Bootstrap();
+    await host.RunNetworkAsync(CancellationToken.None).ConfigureAwait(false);
+    return 0;
+}
+
+Console.WriteLine("Server bootstrap completed successfully. Runtime remains opt-in; pass --run-local for console or --run-network for the Milestone 1 telnet host.");
 return report.ExitCode;

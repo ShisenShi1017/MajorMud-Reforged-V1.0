@@ -25,11 +25,11 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
-| Current Milestone | Milestone 2 - Engine Modernization / Host & World Editor Planning |
-| Current Code Update | 0065 |
-| Current Database Version | 0009 |
-| Last Update Name | CodeUpdate-0065-MMExplorer-MDB-Canonical-Repair |
-| Milestone Estimate | Milestone 1 frozen; Milestone 2 implementation continues in small verified host/server slices |
+| Current Milestone | Runtime Milestone 1 |
+| Current Code Update | 0114 |
+| Current Database Version | 0010 |
+| Last Update Name | CodeUpdate-0114-RuntimeMilestone1 |
+| Milestone Estimate | Runtime Milestone 1 local verification passed; GitHub Actions verification pending user push |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | ChatGPT Packaging Policy | Patch-only ZIP with exactly one top-level update folder, included Apply-CodeUpdate BAT, and UpdateManifest.json |
@@ -40,6 +40,15 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap and is green by user report. CodeUpdate-0043 classifies canonical Server data readiness and is green by user report. CodeUpdate-0044 adds the original reference capture/extractor tool. CodeUpdate-0045 integrates the DataDecode0043 checkpoint as the pre-mirror import-readiness baseline and is green by user report. CodeUpdate-0046 imports the OmniVerse/MudInfo capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub transition handoff so future decode passes work directly in the repository. CodeUpdate-0048 creates the unified decoded-data comparison folder and Android ChatGPT phone handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof and refreshes unified decoded-data inventory. CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, DataDecode0110 final static certification, RuntimePrep0001-0009 archives, and the expected-model simulator. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without promoting formulas or rewriting canonical `Data/`. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload, preserves Patch0068 and Handoff0074 evidence once under `DataDecodeCheckpoints/`, and records Patch0071 as unreadable/unapplied. CodeUpdate-0054 copies only repository-new files from Validation0013 and DocUpdate0024 while skipping all existing paths. CodeUpdate-0055 preserves Validation0043 and MegaMUD2 RE0021 as evidence-only checkpoints, refreshes UnifiedDecodedData after correcting stale placeholder wording, and records the current placeholder/blocker audit. CodeUpdate-0057 repairs continuity after `CoreUpdate 0056` left manifests/docs at 0055, folds in Server Build Session 0001 and DocUpdate0025 planning material, and adds the first non-gameplay modular Server foundation with MajorMUD Classic registered as a disabled data-driven module baseline. CodeUpdate-0058 closes the `world_rooms` projection gap with scalar string-array loading and read-only Server world projection diagnostics. CodeUpdate-0059 adds read-only Server module readiness diagnostics. CodeUpdate-0060 adds read-only Server host configuration diagnostics. CodeUpdate-0061 adds read-only Server host lifecycle readiness diagnostics. CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics and folds in curated ServerSim0036 planning evidence. CodeUpdate-0063 corrects scheduler bootstrap diagnostics to generic execution channel names, preserves curated DataSimVer0045 evidence-regression contract planning, and folds ServerRuntimeValidation0009 into the no-.NET simulator validation surface as expected-model lifecycle validation only. CodeUpdate-0064 adds guarded scheduler/status command diagnostics and preserves ServerRuntimeValidation0013 movement/follow evidence as partial-pass evidence only. CodeUpdate-0065 repairs canonical room/world data from `ImportedDatabases/data-v1.11n.mdb` where fields map directly, adds `Data/StockGameRaw/MMExplorerMDB/` as the raw stock data surface, and raises canonical/world room count to 1,248 without enabling gameplay.
 
 Do not add gameplay systems without explicit user approval.
+## CodeUpdate 0114 Runtime Milestone 1
+
+CodeUpdate 0114 applies the Runtime Milestone 1 server payload locally. It adds opt-in Classic-first local console runtime, opt-in telnet/network hosting, multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, scheduler shell, `Config/server.worlds.json`, Codespaces support, and restored GitHub Actions server build automation.
+
+The workflow `.github/workflows/dotnet-server.yml` is configured to run on every branch push, every pull request, and manual dispatch so future pushes should produce an Actions result. GitHub Actions remains the official gate after the user pushes.
+
+Local verification for 0114 passed with .NET 8.0.422: server restore, Release build, and server bootstrap diagnostics all succeeded. The local bootstrap reports CodeUpdate 0114 after ProjectManifest continuity repair.
+
+0114 does not add combat runtime, persistent accounts/characters, saves, AI worlds, custom worlds, formula changes, imported/reference deletion, or non-Classic gameplay expansion.
 
 ## Modular Server Direction
 
@@ -119,7 +128,7 @@ Future gameplay systems should plug into the engine instead of replacing it. Cla
 - If something cannot be verified, state that clearly.
 - Do not claim code, builds, packages, executables, or GitHub Actions results exist unless verified.
 - The repository layout is frozen unless the user explicitly approves a structural change.
-- `Data/` is the authoritative game database after import.
+- The Librarium is canonical. `/Data` is retained as generated/compatibility runtime output unless a reviewed workflow says otherwise.
 - `ImportedDatabases/` is archive/reference only, except when the user explicitly approves a reviewed reconciliation update such as CodeUpdate-0065 MMExplorer MDB direct-field repair.
 - All WCC data is reference-only unless the user explicitly approves otherwise for a reviewed update. MMExplorer MDB direct fields are approved for CodeUpdate-0065 canonical repair where they map cleanly.
 - Do not delete imported/reference material until Reforged-native `Data/` is complete and verified and the user explicitly approves cleanup.

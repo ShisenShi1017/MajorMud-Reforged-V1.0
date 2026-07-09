@@ -1,0 +1,92 @@
+namespace Reforged.Server;
+
+public sealed class RuntimeCommandDispatcher
+{
+    private readonly Func<IReadOnlyDictionary<string, RuntimeWorld>> _worldProvider;
+    private readonly RuntimeSessionManager? _sessions;
+
+    public RuntimeCommandDispatcher()
+        : this(() => new Dictionary<string, RuntimeWorld>(StringComparer.OrdinalIgnoreCase), null)
+    {
+    }
+
+    public RuntimeCommandDispatcher(Func<IReadOnlyDictionary<string, RuntimeWorld>> worldProvider, RuntimeSessionManager? sessions)
+    {
+        _worldProvider = worldProvider;
+        _sessions = sessions;
+    }
+
+    public string Dispatch(RuntimeSession session, string input)
+    {
+        var command = RuntimeCommand.Parse(input);
+        session.Touch();
+        if (command.Name.Length == 0)
+        {
+            return string.Empty;
+        }
+
+        if (command.IsMovement)
+        {
+            session.TryMove(command.Name, out var movementResult);
+            return movementResult;
+        }
+
+        return command.Name switch
+        {
+            "look" or "l" => RoomRenderer.Render(session.CurrentRoom),
+            "where" => $"World={session.World.Definition.Id}; Room={session.CurrentRoom.Id}; Map={session.CurrentRoom.MapId}; Number={session.CurrentRoom.RoomNumber}",
+            "world" => RenderWorld(session.World),
+            "worlds" => RenderWorlds(),
+            "sessions" => _sessions?.RenderStatus() ?? "Session manager is not attached.",
+            "help" => "Commands: look, where, world, worlds, sessions, north/south/east/west or n/s/e/w, quit",
+            _ => $"Unknown command '{command.Name}'. Type 'help' for available runtime commands."
+        };
+    }
+
+    private string RenderWorlds()
+    {
+        var worlds = _worldProvider();
+        if (worlds.Count == 0)
+        {
+            return "No worlds are loaded.";
+        }
+
+        return string.Join(Environment.NewLine, worlds.Values
+            .OrderBy(world => world.Definition.Id)
+            .Select(world => $"{world.Definition.Id}: {world.Definition.Name} [{world.Definition.Type}] rooms={world.RoomCount}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}; protected={world.Definition.ClassicProtected}"));
+    }
+
+    private static string RenderWorld(RuntimeWorld world)
+    {
+        return $"{world.Definition.Name} ({world.Definition.Type}) rooms={world.RoomCount}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}; classicProtected={world.Definition.ClassicProtected}; transfersAllowed={world.Definition.TransfersAllowed}; evidence={world.EvidencePath}";
+    }
+}
+
+public sealed class RuntimeCommand
+{
+    private static readonly HashSet<string> MovementCommands = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "n", "s", "e", "w", "ne", "nw", "se", "sw", "u", "d",
+        "north", "south", "east", "west", "northeast", "northwest", "southeast", "southwest", "up", "down"
+    };
+
+    private RuntimeCommand(string name)
+    {
+        Name = name;
+    }
+
+    public string Name { get; }
+    public bool IsMovement => MovementCommands.Contains(Name);
+
+    public static RuntimeCommand Parse(string input)
+    {
+        var trimmed = input.Trim();
+        if (trimmed.Length == 0)
+        {
+            return new RuntimeCommand(string.Empty);
+        }
+
+        var firstToken = trimmed.Split(' ', StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
+        return new RuntimeCommand(firstToken);
+    }
+}

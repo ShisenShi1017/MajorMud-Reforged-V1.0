@@ -1,29 +1,34 @@
 {
-  "codeUpdate": "0112",
-  "name": "CodeUpdate-0112-MasterConsolidation-RepositoryIntegration-Normalized",
-  "packageType": "cumulative-drop-in-replacement",
-  "purpose": "Provide a clean self-contained baseline that can replace an old local checkout by extraction, with manifests updated and generated graphs/indexes/databases protected by .gitignore.",
+  "codeUpdate": "0114",
+  "name": "CodeUpdate-0114-RuntimeMilestone1",
+  "packageType": "local-repository-update",
+  "purpose": "Apply Runtime Milestone 1 server files, restore GitHub Actions server build automation, and verify local server build/bootstrap readiness.",
   "addsGameplayFeatures": false,
-  "addsImplementationCode": false,
+  "addsImplementationCode": true,
   "addsTooling": true,
   "batInstallerCreated": false,
   "updateZipCreated": true,
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained modular server construction and reviewed data-repair work before gameplay systems.",
-  "verificationStatus": "PASS_WITH_WARNINGS; duplicate JSON IDs not detected; generated graph/index/database artifacts ignored for GitHub import.",
+  "verificationStatus": "LOCAL_PASS; server restore/build/bootstrap plus Core test restore/build/smoke tests passed locally. GitHub Actions remains pending until user push.",
   "filesChanged": [
-    ".gitignore",
+    ".devcontainer/devcontainer.json",
+    ".github/workflows/dotnet-server.yml",
+    "Apps/Source/Reforged.Server/",
+    "Config/server.worlds.json",
+    "Docs/Runtime/RuntimeMilestone1-Networking.md",
+    "Reports/RuntimeMilestone1-ImplementationReport.md",
     "ProjectManifest.json",
     "UpdateManifest.json",
-    "manifest_codeupdate_0112_master_consolidation.json",
-    "Manifests/master_file_inventory_0112_normalized.csv",
-    "Reports/CodeUpdate0112_RepositoryNormalization/NORMALIZATION_REPORT_0112_1.md",
-    "Validation/CodeUpdate0112_RepositoryNormalization/repository_normalization_audit_0112_1.json"
+    "Validation/RuntimeMilestone1-ValidationPlan.md",
+    "VERSION.md",
+    "CHANGELOG.md",
+    "ReleaseNotes.md"
   ],
   "githubTruth": {
     "repository": "ShisenShi1017/MajorMud-Reforged-V1.0",
-    "baselineStatus": "CodeUpdate-0064 is green by user report.",
+    "baselineStatus": "CodeUpdate-0112 was the local baseline before applying the user-provided CodeUpdate-0114 runtime package.",
     "officialGate": "GitHub Actions after user push."
   },
   "worldProjection": {
@@ -163,7 +168,7 @@
   ],
   "referenceDataPolicy": "MMExplorer MDB data in ImportedDatabases/data-v1.11n.mdb is approved for reviewed canonical repair where fields map directly. Unknown byte fields, formulas, timing, and runtime behavior still require decoding/proof before promotion.",
   "dataDrivenLogicPolicy": "Game logic is data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-internal.",
-  "recommendedNextUpdate": "After user push and green GitHub Actions, repair one additional high-confidence canonical category from MMExplorer MDB owner tables, preferably shops or monsters, with direct-field-only promotion and report coverage.",
+  "recommendedNextUpdate": "After user push and green GitHub Actions, continue Runtime Milestone 2 with a narrow account/character/session persistence slice before combat runtime.",
   "recommendedNextScopeRequiresUserApproval": true,
   "mmExplorerMdbRepair": {
     "source": "ImportedDatabases/data-v1.11n.mdb",
@@ -187,13 +192,13 @@
     ],
     "unknownFieldsPolicy": "Undecoded byte fields are not promoted. Unknown exit semantics are represented as exit_type -1 and exitTypeKnown false."
   },
-  "currentCodeUpdate": "0083",
+  "currentCodeUpdate": "0114",
   "codeUpdates": [
     {
-      "id": "0083",
-      "name": "TimingInternalEvidenceExtraction",
-      "status": "PASS_WITH_FINDINGS",
-      "runtimeChanges": false,
+      "id": "0114",
+      "name": "RuntimeMilestone1",
+      "status": "LOCAL_PASS_PENDING_GITHUB_ACTIONS",
+      "runtimeChanges": true,
       "formulaPromotions": 0,
       "runtimeReplacements": 0
     }
@@ -209,12 +214,13 @@
     "fiveSecondCombatRound": "derived_candidate_mmud_explorer_model",
     "tickClipping": "hypothesis"
   },
-  "current_codeupdate": "0109",
-  "last_update": "Dialogue / Text Reconstruction",
+  "current_codeupdate": "0114",
+  "last_update": "Runtime Milestone 1",
   "subsystems_completed": [
-    "Dialogue / Text"
+    "Server Runtime Milestone 1",
+    "GitHub Actions server workflow"
   ],
   "normalizationReport": "Reports/CodeUpdate0112_RepositoryNormalization/NORMALIZATION_REPORT_0112_1.md",
-  "validationReport": "Validation/CodeUpdate0112_RepositoryNormalization/repository_normalization_audit_0112_1.json",
-  "updatedAt": "2026-07-09T01:13:35Z"
+  "validationReport": "Validation/RuntimeMilestone1-ValidationPlan.md",
+  "updatedAt": "2026-07-09T00:00:00Z"
 }

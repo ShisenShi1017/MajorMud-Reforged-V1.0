@@ -1,0 +1,31 @@
+name: Reforged Server Runtime
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  build-server:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore Reforged.Server
+        run: dotnet restore Apps/Source/Reforged.Server/Reforged.Server.csproj
+
+      - name: Build Reforged.Server
+        run: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore
+
+      - name: Bootstrap diagnostics
+        run: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- .

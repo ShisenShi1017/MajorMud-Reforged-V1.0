@@ -43,6 +43,14 @@ MajorMUD Reforged is now organized around the **Librarium**: an evidence-driven 
 
 This replacement repository was generated from the uploaded repo `MajorMud-Reforged-V1.0-main(22).zip` plus the latest Librarium/Validation baseline through Validation-0007.
 
+## Current Runtime Status
+
+CodeUpdate 0114 applies Runtime Milestone 1. The server now has an opt-in Classic-first runtime path with local console mode, telnet/network mode, multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, and scheduler shell.
+
+GitHub Actions server build automation has been restored under `.github/workflows/dotnet-server.yml` and is configured to run on every branch push, every pull request, and manual dispatch. The official gate remains GitHub Actions after the user pushes local changes.
+
+Runtime Milestone 1 does not add combat runtime, persistent accounts/characters, saves, AI worlds, custom worlds, formula changes, or non-Classic gameplay expansion.
+
 
 ## CodeUpdate 0082 — Timing Constant Verification
 

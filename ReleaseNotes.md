@@ -1,3 +1,26 @@
+# CodeUpdate-0114 - Runtime Milestone 1
+
+This update applies the Runtime Milestone 1 server payload and restores GitHub Actions build automation for server pushes.
+
+Highlights:
+
+- Adds opt-in Classic-first runtime hosting through local console and telnet/network paths.
+- Adds multi-session tracking, login name prompt, world selection foundation, runtime world loading, command dispatch, and scheduler shell.
+- Adds `Config/server.worlds.json` for the Classic protected runtime world.
+- Restores `.github/workflows/dotnet-server.yml` and widens it to run on every branch push, every pull request, and manual dispatch.
+- Adds Codespaces/devcontainer support.
+
+Verification:
+
+- `dotnet restore Apps/Source/Reforged.Server/Reforged.Server.csproj` passed locally.
+- `dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore` passed locally with 0 warnings and 0 errors.
+- `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- .` passed locally.
+- GitHub Actions remains pending until the user pushes this local update.
+
+Known limitation:
+
+- Runtime remains Classic-first and opt-in. Combat runtime, persistent accounts/characters, saves, gameplay expansion, AI worlds, custom worlds, and formula changes are not included.
+
 # CodeUpdate-0065 - MMExplorer MDB Canonical Repair
 
 This update repairs canonical room/world data from `ImportedDatabases/data-v1.11n.mdb` using the repository MDB extractor and a reproducible promotion tool.

@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0065`
-- Current Database Version: `0009`
-- Current Milestone: `Milestone 2 - Engine Modernization / Host & World Editor Planning`
+- Current Code Update: `0114`
+- Current Database Version: `0010`
+- Current Milestone: `Runtime Milestone 1`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0065 when ready, verify GitHub Actions green by user report, then continue with one narrow MMExplorer MDB canonical repair slice or one narrow non-gameplay Server construction slice.
+- Current priority: push CodeUpdate-0114, verify GitHub Actions green by user report, then approve one narrow Runtime Milestone 2 server slice focused on account/character/session persistence before combat runtime.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -174,6 +174,15 @@ CodeUpdate-0064 adds guarded scheduler/status command diagnostics to Server boot
 
 CodeUpdate-0065 repairs canonical room/world data directly from `ImportedDatabases/data-v1.11n.mdb`. It adds `Data/StockGameRaw/MMExplorerMDB/`, adds `Tools/MDBExtractor/promote_mdb_rooms.py`, promotes rooms `wcc_map1_room2150` and `wcc_map1_room2156`, and raises canonical/world room count to `1248`. It promotes only direct MDB-backed fields and keeps undecoded byte fields, formulas, runtime behavior, gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, and live editor behavior out of scope.
 
+## CodeUpdate-0114 - Runtime Milestone 1
+
+CodeUpdate-0114 applies the Runtime Milestone 1 server payload. It adds opt-in Classic-first local console runtime, opt-in telnet/network hosting, multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, scheduler shell, `Config/server.worlds.json`, Codespaces support, and restored GitHub Actions server build automation.
+
+The restored workflow `.github/workflows/dotnet-server.yml` runs on every branch push, every pull request, and manual dispatch. This is intended to restore an Actions signal for normal uploads/pushes.
+
+Local verification passed with .NET 8.0.422: server restore, Release build, and server bootstrap diagnostics all succeeded. GitHub Actions remains pending until user push.
+
+Boundaries: no combat runtime, persistent accounts/characters, saves, AI worlds, custom worlds, formula changes, imported/reference deletion, or non-Classic gameplay expansion.
 ## Milestone 1 - Core Framework (Frozen)
 
 Goal: Build the shared foundation that every application depends on.

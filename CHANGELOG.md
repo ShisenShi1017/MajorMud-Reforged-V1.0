@@ -1,3 +1,15 @@
+# Changelog
+
+## CodeUpdate-0114 - Runtime Milestone 1
+
+- Applied the user-provided Runtime Milestone 1 server payload to the local repository.
+- Added opt-in Classic-first local console runtime and opt-in telnet/network runtime paths.
+- Added multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, and scheduler shell.
+- Added `Config/server.worlds.json` for the protected Classic runtime world.
+- Restored `.github/workflows/dotnet-server.yml` and widened triggers to every branch push, every pull request, and manual dispatch so future pushes should produce GitHub Actions runs.
+- Added Codespaces/devcontainer support and Runtime Milestone 1 planning/validation documents.
+- Local verification passed: .NET 8.0.422 server restore, Release build, and bootstrap diagnostics.
+- No combat runtime, persistent accounts/characters, saves, AI worlds, custom worlds, formula changes, imported/reference deletion, or non-Classic gameplay expansion is included.
 # CHANGELOG — CodeUpdate 0108 Guild / Social Reconstruction (Redo)
 
 - Raw guild/social evidence hits: 426,549
@@ -621,3 +633,24 @@ One narrow quest flag data-presence record was promoted. No gameplay quest mecha
 - Refreshed manifests for a self-contained drop-in replacement baseline.
 - Added repository normalization audit and master inventory.
 - Result: PASS_WITH_WARNINGS.
+
+## CodeUpdate 0113 - Server Runtime Bootstrap
+
+- Began runtime implementation inside the existing `Reforged.Server` project.
+- Added config-driven runtime world definitions through `Config/server.worlds.json`.
+- Added Classic-first runtime host shell without hardcoding the host to Classic-only forever.
+- Added opt-in `--run-local` local console runtime path.
+- Added canonical room loading from `Data/rooms.json`.
+- Added single local console session, room rendering, basic command parsing, and movement through reconstructed exits.
+- Added Classic protections: no transfers, AI off, protected flag required.
+- Added scheduler execution shell for future runtime channels.
+- Preserved networking, combat, magic, NPCs, quests, dialogue, and scripting as deferred phases.
+- Static validation completed; .NET build/run verification remains pending because the current environment does not include the .NET SDK.
+## CodeUpdate 0114 — Runtime Milestone 1
+
+- Added Classic-first telnet/network host foundation.
+- Added multi-session session manager.
+- Added login name prompt and world selection foundation.
+- Added runtime network configuration.
+- Added GitHub Actions, global.json, and Codespaces devcontainer support.
+- Delivered as update-only package with cumulative server payload.
