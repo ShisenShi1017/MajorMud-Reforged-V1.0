@@ -1,44 +1,48 @@
 {
-    "codeUpdate":  "0130",
-    "name":  "CodeUpdate0130-CombatFormulaResolution-ServerClassicTestReadiness",
-    "packageType":  "full-replacement-repository-zip",
+    "codeUpdate":  "0131",
+    "name":  "CodeUpdate0131-LibrariumGapAudit-ServerSmokePrep",
+    "packageType":  "full-replacement-repository-zip-with-local-continuity-repair",
     "librariumAuthoritative":  true,
     "dataGeneratedOnly":  true,
     "importedDatabasesRetained":  true,
     "runtimeGameplayChanged":  false,
-    "serverSourceChanged":  true,
-    "purpose":  "Resolve the remaining combat formula conflicts with DLL-derived evidence and prepare the server to validate generated Data/Classic for tomorrow night\u0027s Classic test.",
-    "combatConflictsResolved":  [
-                                    "Physical Damage Reduction",
-                                    "Dodge Order",
-                                    "Special/Backstab Defense Order"
-                                ],
-    "newServerCommands":  [
-                              "--smoke-generated-data",
-                              "--validate-generated-data"
-                          ],
+    "serverSourceChanged":  false,
+    "purpose":  "Audit generated Classic Librarium gaps and prepare Data/Classic for Server smoke testing without changing runtime gameplay code.",
+    "generatedDataChanges":  [
+                                 "Added missing formula records used by NPC and spell generated records.",
+                                 "Normalized Data/Classic room spawn references from authoritative Data/Classic spawns room_ref values.",
+                                 "Refreshed generated-data manifest metadata to CodeUpdate0131."
+                             ],
+    "newTools":  [
+                     "Tools/Librarium/librarium_gap_audit_0131.py"
+                 ],
     "validationStatus":  "LOCAL_PASS",
     "dotnetSdkAvailableHere":  true,
     "requiredCodexCommands":  [
+                                  "python Tools/Librarium/librarium_gap_audit_0131.py",
                                   "dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj",
                                   "dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data",
-                                  "dotnet run --project Apps/Source/Reforged.Server -- --validate-generated-data",
                                   "dotnet run --project Apps/Source/Reforged.Server -- --run-local"
                               ],
     "reports":  [
-                    "Reports/CodeUpdates/CodeUpdate0130/CODEUPDATE0130_COMBAT_AND_SERVER_READINESS.md",
-                    "Reports/CodeUpdates/CodeUpdate0130/server_classic_readiness_validation_0130.json"
+                    "Reports/CodeUpdate0131/LIBRARIUM_GAP_AUDIT_0131.md",
+                    "Reports/CodeUpdate0131/librarium_gap_audit_0131.json",
+                    "Codex/CodeUpdate0131_LibrariumGapAuditServerSmokePrep/HANDOFF_CODEUPDATE0131.md",
+                    "Documentation/CodeUpdates/CODEUPDATE0131_SERVER_SMOKE_PREP.md"
                 ],
-    "updatedUtc":  "2026-07-09T23:08:30Z",
-    "verificationStatus":  "LOCAL_PASS; CodeUpdate0130 full-repo overlay applied locally with Saves and ImportedDatabases preserved. Server Debug build passed, Server Release build passed, --smoke-generated-data passed, --validate-generated-data passed, Python 0130 readiness validator passed, scripted --run-local startup exited 0, Core/server Release smoke tests passed, Compiler Release build passed, and Compiler.Tests run passed. Compiler.Tests build had one transient PDB file-lock warning during parallel build but the standalone compiler test run passed. GitHub Actions remains pending until user push.",
+    "knownLimitations":  [
+                             "This update does not prove full gameplay.",
+                             "Runtime Classic start-room naming and exits must be verified by local server smoke output.",
+                             "GitHub Actions remains pending until user push and green report."
+                         ],
+    "updatedUtc":  "2026-07-09T23:33:29Z",
+    "verificationStatus":  "LOCAL_PASS; CodeUpdate0131 full-repo overlay applied locally with Saves and ImportedDatabases preserved. Python Librarium gap audit passed, Server Debug build passed, Server Release build passed, generated-data smoke passed, scripted --run-local exited 0, Core/server Release build passed, and Core/server smoke tests passed. Known limitation: local runtime still displays Unknown Room/no exits and the exits command is not implemented; generated Data/Classic smoke passes but runtime room/exits wiring remains the next narrow server slice. GitHub Actions remains pending until user push.",
     "localVerification":  {
-                              "serverDebugBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj",
-                              "serverReleaseBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore",
-                              "generatedDataSmoke":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data",
-                              "generatedDataValidate":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --validate-generated-data",
-                              "pythonReadiness":  "PASS: python Tools/Validation/validate_codeupdate0130_server_classic_readiness.py",
-                              "runLocal":  "PASS: scripted --run-local startup exited 0; known limitation remains Unknown Room/no exits in generated runtime loader.",
-                              "coreServerSmoke":  "PASS: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build",
-                              "compiler":  "PASS: compiler Release build and Compiler.Tests no-build run passed; parallel test build emitted one transient PDB file-lock warning."
+                              "librariumGapAudit":  "PASS: python Tools/Librarium/librarium_gap_audit_0131.py; 35 families, 11201 records, 0 missing relationships, 0 warnings, 0 errors.",
+                              "serverDebugBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj; 0 warnings, 0 errors.",
+                              "serverReleaseBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore; 0 warnings, 0 errors.",
+                              "generatedDataSmoke":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data; Classic world loaded with 951 rooms, 11 families, 8635 generated records.",
+                              "runLocal":  "PASS_WITH_LIMITATION: scripted --run-local exited 0, but runtime still displays Unknown Room/no exits and exits command is not implemented.",
+                              "coreServerSmoke":  "PASS: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build."
                           }
 }

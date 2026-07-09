@@ -1,5 +1,11 @@
 # MajorMUD Reforged Version
 
-Current repository baseline: **CodeUpdate 0130 - Combat Formula Resolution and Server Classic Test Readiness**
+Current repository baseline: **CodeUpdate 0131 - Librarium Gap Audit and Server Smoke Prep**
 
-Status: full replacement repository ZIP applied locally and verified by Codex. Librarium remains the authoritative source of truth; ImportedDatabases are retained; /Data remains generated runtime output. CodeUpdate0130 resolves the remaining documented combat-order conflicts with DLL-derived evidence and adds server generated-data validation commands. Local server build, generated-data smoke/validation, scripted run-local startup, Core/server smoke tests, Python readiness validation, and compiler tests passed. GitHub Actions remains pending until user push.
+Status: 0131 full replacement repository ZIP applied locally with `Saves/` and `ImportedDatabases/` preserved, root continuity repaired, and local Codex verification passed.
+
+Scope: no-runtime Librarium generated-data gap audit, missing generated formula records, normalized `Data/Classic/rooms.json` spawn references, refreshed generated-data metadata, and Server smoke-test preparation. Runtime gameplay code is unchanged.
+
+Local verification passed: Python 0131 Librarium gap audit, Server Debug build, Server Release build, generated-data smoke, scripted `--run-local` exit, Core/server Release build, and Core/server smoke tests. Known limitation: runtime still displays `Unknown Room`/no exits and `exits` is not implemented, so runtime room/exits wiring remains the next narrow server slice.
+
+GitHub Actions remains pending until user push and green report.

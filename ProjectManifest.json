@@ -1,9 +1,9 @@
 {
     "project":  "Reforged",
     "projectVersion":  "0.1.0",
-    "codeUpdate":  "0130",
+    "codeUpdate":  "0131",
     "databaseVersion":  "0010",
-    "milestone":  "Librarium World Overlay Compiler Completion",
+    "milestone":  "Server Classic Test Readiness",
     "sourceOfTruth":  "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Generated graph/index/database artifacts are local generated outputs and ignored by Git.",
     "runtimePolicy":  "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
     "updatePolicy":  "Cumulative replacement packages are self-contained. User may delete old local folder and extract the latest normalized ZIP. Generated graphs/indexes/databases must be rebuilt locally and not committed.",
@@ -18,19 +18,19 @@
                  ],
     "developmentStatus":  {
                               "currentMilestone":  "Server Classic Test Readiness",
-                              "currentCodeUpdate":  "0130",
+                              "currentCodeUpdate":  "0131",
                               "currentDatabaseVersion":  "0010",
                               "completedMilestones":  [
                                                           "Milestone 1 - Core Framework"
                                                       ],
                               "milestone1Status":  "Complete/frozen",
-                              "milestone2Status":  "CodeUpdate 0130 resolves the remaining documented combat-order conflicts with DLL-derived evidence and adds Server generated Data/Classic validation commands. Runtime gameplay implementation is not claimed complete.",
-                              "lastUpdateName":  "CodeUpdate-0130-CombatFormulaResolution-ServerClassicTestReadiness",
+                              "milestone2Status":  "CodeUpdate 0131 adds a no-runtime Librarium generated-data gap audit and prepares Data/Classic for server smoke testing. Runtime gameplay implementation is not claimed complete.",
+                              "lastUpdateName":  "CodeUpdate-0131-LibrariumGapAudit-ServerSmokePrep",
                               "nextRecommendedWork":  [
-                                                          "Run dotnet build for Apps/Source/Reforged.Server/Reforged.Server.csproj.",
-                                                          "Run dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data.",
-                                                          "Run dotnet run --project Apps/Source/Reforged.Server -- --validate-generated-data.",
-                                                          "Run dotnet run --project Apps/Source/Reforged.Server -- --run-local for Classic smoke-test readiness after build validation passes."
+                                                          "Push CodeUpdate0131 after local verification passes.",
+                                                          "Wait for user-reported green GitHub Actions before starting the next update.",
+                                                          "Next narrow server slice should wire runtime Classic room display and exits from generated Data/Classic, because scripted --run-local still shows Unknown Room/no exits.",
+                                                          "Keep runtime gameplay claims limited until interactive room/exits smoke behavior is verified."
                                                       ]
                           },
     "handoffPolicy":  {
@@ -57,20 +57,22 @@
                             "requiresManifest":  true,
                             "requiresVerificationBeforeAnnouncement":  true
                         },
-    "buildVerification":  "LOCAL_PASS; CodeUpdate0130 full-repo overlay applied locally with Saves and ImportedDatabases preserved. Server Debug build passed, Server Release build passed, --smoke-generated-data passed, --validate-generated-data passed, Python 0130 readiness validator passed, scripted --run-local startup exited 0, Core/server Release smoke tests passed, Compiler Release build passed, and Compiler.Tests run passed. Compiler.Tests build had one transient PDB file-lock warning during parallel build but the standalone compiler test run passed. GitHub Actions remains pending until user push.",
-    "current_codeupdate":  "0130",
-    "last_update":  "Combat Formula Resolution and Server Classic Test Readiness",
+    "buildVerification":  "LOCAL_PASS; CodeUpdate0131 full-repo overlay applied locally with Saves and ImportedDatabases preserved. Python Librarium gap audit passed, Server Debug build passed, Server Release build passed, generated-data smoke passed, scripted --run-local exited 0, Core/server Release build passed, and Core/server smoke tests passed. Known limitation: local runtime still displays Unknown Room/no exits and the exits command is not implemented; generated Data/Classic smoke passes but runtime room/exits wiring remains the next narrow server slice. GitHub Actions remains pending until user push.",
+    "current_codeupdate":  "0131",
+    "last_update":  "Librarium Gap Audit and Server Smoke Prep",
     "subsystems_completed":  [
                                  "Server Runtime Milestone 1",
                                  "Runtime state/event foundation",
                                  "Librarium compiler v1",
                                  "World overlay compiler completion",
                                  "Combat formula conflict resolution",
-                                 "Generated Data/Classic server smoke validation source"
+                                 "Generated Data/Classic server smoke validation source",
+                                 "Librarium gap audit",
+                                 "Server Classic smoke prep"
                              ],
     "gitIgnorePolicy":  "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
     "lastNormalizedAt":  "2026-07-09T01:13:35Z",
-    "current_milestone":  "Librarium World Overlay Compiler Completion",
+    "current_milestone":  "Server Classic Test Readiness",
     "librarium_authoritative":  true,
     "data_generated_from_librarium":  true,
     "librariumAuthority":  "Librarium is the source of truth; /Data is generated runtime output.",
@@ -81,8 +83,8 @@
                                       "NightmareRedux",
                                       "MajorMUD-PHP-Monster-Sim"
                                   ],
-    "baseline":  "CodeUpdate 0130 - Combat Formula Resolution and Server Classic Test Readiness",
-    "updatedUtc":  "2026-07-09T23:08:30Z",
+    "baseline":  "CodeUpdate 0131 - Librarium Gap Audit and Server Smoke Prep",
+    "updatedUtc":  "2026-07-09T23:33:29Z",
     "dataPolicy":  "/Data is generated output per world and should not be hand-edited as canonical source.",
     "hostClientPolicy":  "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

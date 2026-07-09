@@ -1,6 +1,8 @@
 {
   "base_world": null,
-  "code_update": "0127",
+  "code_update": "0131",
+  "compiler_code_update": "0131",
+  "generated_data_audit": "Reports/CodeUpdate0131/librarium_gap_audit_0131.json",
   "locked": true,
   "object_families_compiled": 32,
   "objects_compiled": 11189,
@@ -8,6 +10,7 @@
   "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
   "runtime_loader_contract": "Librarium/RuntimeContracts/generated_world_loader_contract_0127.json",
   "schema": "generated_world_manifest_v1",
+  "status": "server_smoke_test_prep_ready",
   "world_id": "Classic",
   "world_type": "classic"
 }

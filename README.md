@@ -1,8 +1,8 @@
-# MajorMUD Reforged - CodeUpdate 0127A
+# MajorMUD Reforged - CodeUpdate 0131
 
 ## Current Baseline
 
-CodeUpdate 0127A is the current corrective local baseline. It preserves the CodeUpdate 0127 world overlay/compiler completion work and repairs the clean-checkout Server bootstrap failure by tracking `Bin/.gitkeep` while keeping generated `Bin/` contents ignored.
+CodeUpdate 0131 is the current local baseline. It adds a no-runtime Librarium gap audit and prepares generated `Data/Classic` for Server smoke testing while keeping Librarium authoritative and preserving protected imported/reference material.
 
 Official rule set:
 

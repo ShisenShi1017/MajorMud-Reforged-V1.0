@@ -1,3 +1,17 @@
+# CodeUpdate-0131 - Librarium Gap Audit and Server Smoke Prep
+
+This update prepares generated Classic data for Server smoke testing without changing runtime gameplay code.
+
+Highlights:
+
+- Adds `Tools/Librarium/librarium_gap_audit_0131.py`.
+- Records a passing no-runtime generated-data audit: 35 families, 11,201 records, 10,374 relationship references checked, 0 missing references, 0 warnings, and 0 errors.
+- Adds missing generated formula records and normalizes generated room spawn references.
+- Repairs stale root continuity/version files from the ChatGPT package handoff.
+
+Known limitation:
+
+- This does not prove full gameplay. Local Codex server build/smoke verification passed. User-reported green GitHub Actions is still required before the next update.
 # CodeUpdate-0127A - Server Bootstrap Bin Placeholder Repair
 
 This corrective patch fixes the clean-checkout Server bootstrap failure caused by the required `Bin/` directory being absent after the 0127 cleanup.

@@ -1,14 +1,14 @@
 # AI Context for Reforged
 
 
-## Current Baseline - CodeUpdate 0127A
+## Current Baseline - CodeUpdate 0131
 
 - Librarium is the authoritative source of truth.
 - `/Data` is generated runtime output per world.
 - `/ImportedDatabases` must be retained until the Librarium is 100% complete and the user explicitly approves retirement.
 - Host/server/editor modifies Librarium world definitions and overlays.
 - Client is read-only and receives data for the active connected world.
-- CodeUpdate 0127A repairs the CodeUpdate-0127 clean-checkout bootstrap failure by tracking `Bin/.gitkeep` while generated `Bin/` contents remain ignored.
+- CodeUpdate 0131 adds a no-runtime Librarium generated-data gap audit and prepares `Data/Classic` for Server smoke testing; runtime gameplay code remains unchanged.
 - Keep docs, handoffs, evidence, and decision records aligned with this model.
 
 
@@ -37,11 +37,11 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
-| Current Milestone | Librarium World Overlay Compiler Completion |
-| Current Code Update | 0127A |
+| Current Milestone | Server Classic Test Readiness |
+| Current Code Update | 0131 |
 | Current Database Version | 0010 |
-| Last Update Name | CodeUpdate-0127A-ServerBootstrapBinPlaceholderRepair |
-| Milestone Estimate | 0127 generated-world baseline repaired for clean-checkout bootstrap; GitHub Actions verification pending user push |
+| Last Update Name | CodeUpdate-0131-LibrariumGapAudit-ServerSmokePrep |
+| Milestone Estimate | 0131 generated Classic data audit/server smoke prep applied locally; GitHub Actions verification pending user push |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | ChatGPT Packaging Policy | Patch-only ZIP with exactly one top-level update folder, included Apply-CodeUpdate BAT, and UpdateManifest.json |

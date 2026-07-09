@@ -1,3 +1,14 @@
+# Changelog
+
+## CodeUpdate-0131 - Librarium Gap Audit and Server Smoke Prep
+
+- Applied the user-provided CodeUpdate0131 full repository snapshot locally while preserving `Saves/` and `ImportedDatabases/`.
+- Added no-runtime Librarium gap audit tooling and reports for generated `Data/Classic`.
+- Added missing generated formula records used by NPC and spell records.
+- Normalized generated room spawn references from authoritative generated spawn `room_ref` values.
+- Refreshed generated-data manifest metadata to CodeUpdate0131.
+- Repaired stale root continuity files that still reported older ChatGPT package version fields.
+- Runtime gameplay code remains unchanged; GitHub Actions remains pending until user push.
 
 ## CodeUpdate 0119 - Librarium Steps 1-3 Runtime Object Graph Baseline
 - Added Librarium machine-readable object schema.

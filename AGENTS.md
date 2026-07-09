@@ -1,14 +1,14 @@
 # Reforged Agent Instructions
 
 
-## Current Baseline - CodeUpdate 0127A
+## Current Baseline - CodeUpdate 0131
 
 - Librarium is the authoritative source of truth.
 - `/Data` is generated runtime output per world.
 - `/ImportedDatabases` must be retained until the Librarium is 100% complete and the user explicitly approves retirement.
 - Host/server/editor modifies Librarium world definitions and overlays.
 - Client is read-only and receives data for the active connected world.
-- CodeUpdate 0127A repairs the CodeUpdate-0127 clean-checkout bootstrap failure by tracking `Bin/.gitkeep` while generated `Bin/` contents remain ignored.
+- CodeUpdate 0131 adds a no-runtime Librarium generated-data gap audit and prepares `Data/Classic` for Server smoke testing; runtime gameplay code remains unchanged.
 - Keep docs, handoffs, evidence, and decision records aligned with this model.
 
 
