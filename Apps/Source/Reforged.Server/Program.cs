@@ -76,6 +76,23 @@ if (!report.Passed)
     return report.ExitCode;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-generated-data", StringComparison.OrdinalIgnoreCase) || string.Equals(arg, "--validate-generated-data", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot validate generated data because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var host = new ServerRuntimeHost(report.ProjectRoot, options);
+    host.Bootstrap();
+    var smoke = host.CreateSmokeReport();
+    Console.WriteLine("Generated World Smoke Report");
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 3;
+}
+
 if (args.Any(arg => string.Equals(arg, "--run-local", StringComparison.OrdinalIgnoreCase)))
 {
     if (report.ProjectRoot is null)

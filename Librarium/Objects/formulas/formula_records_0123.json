@@ -1,5 +1,5 @@
 {
-  "code_update": "0124",
+  "code_update": "0130",
   "librarium_authority": "source_of_truth",
   "runtime_export": "Data remains generated from Librarium; runtime gameplay code unchanged in 0123.",
   "source_priority": [
@@ -11,7 +11,7 @@
   ],
   "object_type": "formula",
   "source": "Simulator probe definitions + conflict registry",
-  "record_count": 32,
+  "record_count": 36,
   "records": [
     {
       "id": "formula.probe.combat_0101_hit_dex_delta",
@@ -2554,7 +2554,294 @@
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
       }
+    },
+    {
+      "id": "formula.combat.physical_dr",
+      "name": "Physical damage reduction application",
+      "object_type": "formula",
+      "world_scope": [
+        "classic",
+        "custom",
+        "ai"
+      ],
+      "classification": "dll_verified_combat_formula",
+      "confidence": "verified_original_runtime_dll_derived",
+      "definition": "DR is flat subtraction after the raw damage roll and before dodge: damage = rolled_damage - (defender_dr_x10 / 10). Net effect is subtract defender DR once per landed hit. If damage is reduced to <= 0 after a hit, the outcome is glance, not miss or dodge.",
+      "inputs": [
+        "rolled_damage",
+        "defender.damage_resistance_x10",
+        "defender.damage_resistance"
+      ],
+      "outputs": [
+        "post_dr_damage",
+        "glance_when_post_dr_damage_le_0"
+      ],
+      "conflict_status": "resolved",
+      "resolved_in_code_update": "0130",
+      "evidence": [
+        {
+          "id": "evidence.dll.calculate_attack.0130",
+          "source_type": "dll_reverse_engineered_sql_port_note",
+          "title": "Combat Resolution & Defense Order",
+          "path": "Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "librarium_path": "Librarium/Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "sha256": "42cc3bd7501c0bb76b7bf82a94daaaef64847eb12e02a12bb513be1730b0619b",
+          "dll_functions": [
+            "wccmmud.dll calculate_attack @0x0042b800",
+            "attack_user_monster @0x0042cfab",
+            "cmd_backstab @0x0045156f"
+          ],
+          "sql_port": "sql/phase4_combat-BBS.sql calculate_attack(...) suggested by uploaded evidence",
+          "authoritative_weight": "original_runtime_dll_derived",
+          "code_update": "0130"
+        }
+      ],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/formulas.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "verified_definition_ready_for_runtime"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/formulas.json",
+        "hot_reload_candidate": true,
+        "output_collection": "formulas",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic",
+          "custom",
+          "ai"
+        ]
+      },
+      "validation_rules_0130": [
+        "dll_evidence_required_for_classic_combat_formula",
+        "conflict_log_must_be_closed",
+        "runtime_smoke_required_before_playable_claim"
+      ],
+      "version_history_0130": {
+        "code_update": "0130",
+        "operation": "combat_formula_conflict_resolution",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.combat.dodge_order",
+      "name": "Dodge/evasion placement in combat order",
+      "object_type": "formula",
+      "world_scope": [
+        "classic",
+        "custom",
+        "ai"
+      ],
+      "classification": "dll_verified_combat_formula",
+      "confidence": "verified_original_runtime_dll_derived",
+      "definition": "Dodge is evaluated after hit chance succeeds and after damage roll plus DR are computed. A successful dodge sets damage to 0 and returns dodged outcome. Dodge is not parallel with AC and does not replace the hit chance gate.",
+      "inputs": [
+        "attacker.AV",
+        "defender.dodge_bn",
+        "attack_type"
+      ],
+      "outputs": [
+        "dodge_chance",
+        "dodged_outcome"
+      ],
+      "conflict_status": "resolved",
+      "resolved_in_code_update": "0130",
+      "evidence": [
+        {
+          "id": "evidence.dll.calculate_attack.0130",
+          "source_type": "dll_reverse_engineered_sql_port_note",
+          "title": "Combat Resolution & Defense Order",
+          "path": "Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "librarium_path": "Librarium/Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "sha256": "42cc3bd7501c0bb76b7bf82a94daaaef64847eb12e02a12bb513be1730b0619b",
+          "dll_functions": [
+            "wccmmud.dll calculate_attack @0x0042b800",
+            "attack_user_monster @0x0042cfab",
+            "cmd_backstab @0x0045156f"
+          ],
+          "sql_port": "sql/phase4_combat-BBS.sql calculate_attack(...) suggested by uploaded evidence",
+          "authoritative_weight": "original_runtime_dll_derived",
+          "code_update": "0130"
+        }
+      ],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/formulas.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "verified_definition_ready_for_runtime"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/formulas.json",
+        "hot_reload_candidate": true,
+        "output_collection": "formulas",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic",
+          "custom",
+          "ai"
+        ]
+      },
+      "validation_rules_0130": [
+        "dll_evidence_required_for_classic_combat_formula",
+        "conflict_log_must_be_closed",
+        "runtime_smoke_required_before_playable_claim"
+      ],
+      "version_history_0130": {
+        "code_update": "0130",
+        "operation": "combat_formula_conflict_resolution",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.combat.special_defense_order",
+      "name": "Special attack/backstab defense order",
+      "object_type": "formula",
+      "world_scope": [
+        "classic",
+        "custom",
+        "ai"
+      ],
+      "classification": "dll_verified_combat_formula",
+      "confidence": "verified_original_runtime_dll_derived",
+      "definition": "Special attacks use the same two-gate defense order: hit chance first, dodge last. Bash/smash adjust accuracy and damage; backstab uses AV-DV hit chance, ignores AC, and divides dodge chance by 5. No extra special-defense layer is inserted.",
+      "inputs": [
+        "attack_type",
+        "AV",
+        "DV",
+        "AC",
+        "dodge_bn",
+        "accuracy_modifier"
+      ],
+      "outputs": [
+        "hit_chance",
+        "dodge_chance",
+        "special_damage_multiplier"
+      ],
+      "conflict_status": "resolved",
+      "resolved_in_code_update": "0130",
+      "evidence": [
+        {
+          "id": "evidence.dll.calculate_attack.0130",
+          "source_type": "dll_reverse_engineered_sql_port_note",
+          "title": "Combat Resolution & Defense Order",
+          "path": "Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "librarium_path": "Librarium/Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "sha256": "42cc3bd7501c0bb76b7bf82a94daaaef64847eb12e02a12bb513be1730b0619b",
+          "dll_functions": [
+            "wccmmud.dll calculate_attack @0x0042b800",
+            "attack_user_monster @0x0042cfab",
+            "cmd_backstab @0x0045156f"
+          ],
+          "sql_port": "sql/phase4_combat-BBS.sql calculate_attack(...) suggested by uploaded evidence",
+          "authoritative_weight": "original_runtime_dll_derived",
+          "code_update": "0130"
+        }
+      ],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/formulas.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "verified_definition_ready_for_runtime"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/formulas.json",
+        "hot_reload_candidate": true,
+        "output_collection": "formulas",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic",
+          "custom",
+          "ai"
+        ]
+      },
+      "validation_rules_0130": [
+        "dll_evidence_required_for_classic_combat_formula",
+        "conflict_log_must_be_closed",
+        "runtime_smoke_required_before_playable_claim"
+      ],
+      "version_history_0130": {
+        "code_update": "0130",
+        "operation": "combat_formula_conflict_resolution",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.combat.hit_vs_ac",
+      "name": "NPC/player physical hit versus armor class",
+      "object_type": "formula",
+      "world_scope": [
+        "classic",
+        "custom",
+        "ai"
+      ],
+      "classification": "dll_verified_combat_formula",
+      "confidence": "verified_original_runtime_dll_derived",
+      "definition": "Normal hit chance uses attacker AV plus attack accuracy modifier against defender DV + AC. hit_rating = (AV + acc_mod)^2 / 140; hit_chance = 100 - (DV + AC)^2 / hit_rating, clamped 10..99. Roll genrdn(1,100); hit when roll < hit_chance. Backstab uses AV-DV path instead.",
+      "inputs": [
+        "AV",
+        "DV",
+        "AC",
+        "acc_mod",
+        "attack_type"
+      ],
+      "outputs": [
+        "hit_chance",
+        "miss_or_continue"
+      ],
+      "conflict_status": "resolved",
+      "resolved_in_code_update": "0130",
+      "evidence": [
+        {
+          "id": "evidence.dll.calculate_attack.0130",
+          "source_type": "dll_reverse_engineered_sql_port_note",
+          "title": "Combat Resolution & Defense Order",
+          "path": "Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "librarium_path": "Librarium/Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "sha256": "42cc3bd7501c0bb76b7bf82a94daaaef64847eb12e02a12bb513be1730b0619b",
+          "dll_functions": [
+            "wccmmud.dll calculate_attack @0x0042b800",
+            "attack_user_monster @0x0042cfab",
+            "cmd_backstab @0x0045156f"
+          ],
+          "sql_port": "sql/phase4_combat-BBS.sql calculate_attack(...) suggested by uploaded evidence",
+          "authoritative_weight": "original_runtime_dll_derived",
+          "code_update": "0130"
+        }
+      ],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/formulas.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "verified_definition_ready_for_runtime"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/formulas.json",
+        "hot_reload_candidate": true,
+        "output_collection": "formulas",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic",
+          "custom",
+          "ai"
+        ]
+      },
+      "validation_rules_0130": [
+        "dll_evidence_required_for_classic_combat_formula",
+        "conflict_log_must_be_closed",
+        "runtime_smoke_required_before_playable_claim"
+      ],
+      "version_history_0130": {
+        "code_update": "0130",
+        "operation": "combat_formula_conflict_resolution",
+        "date": "2026-07-09"
+      }
     }
   ],
-  "enrichment_status_0124": "enriched_pass_1"
+  "enrichment_status_0124": "enriched_pass_1",
+  "combat_conflicts_resolved_0130": true
 }

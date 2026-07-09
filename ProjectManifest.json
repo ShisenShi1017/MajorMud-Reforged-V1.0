@@ -1,7 +1,7 @@
 {
     "project":  "Reforged",
     "projectVersion":  "0.1.0",
-    "codeUpdate":  "0127A",
+    "codeUpdate":  "0130",
     "databaseVersion":  "0010",
     "milestone":  "Librarium World Overlay Compiler Completion",
     "sourceOfTruth":  "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Generated graph/index/database artifacts are local generated outputs and ignored by Git.",
@@ -17,19 +17,20 @@
                      "ImportedDatabases"
                  ],
     "developmentStatus":  {
-                              "currentMilestone":  "Librarium World Overlay Compiler Completion",
-                              "currentCodeUpdate":  "0127A",
+                              "currentMilestone":  "Server Classic Test Readiness",
+                              "currentCodeUpdate":  "0130",
                               "currentDatabaseVersion":  "0010",
                               "completedMilestones":  [
                                                           "Milestone 1 - Core Framework"
                                                       ],
                               "milestone1Status":  "Complete/frozen",
-                              "milestone2Status":  "CodeUpdate 0127A corrects the 0127 clean-checkout Server bootstrap failure by preserving a tracked Bin/.gitkeep placeholder while keeping generated Bin contents ignored. Runtime gameplay remains unchanged.",
-                              "lastUpdateName":  "CodeUpdate-0127A-ServerBootstrapBinPlaceholderRepair",
+                              "milestone2Status":  "CodeUpdate 0130 resolves the remaining documented combat-order conflicts with DLL-derived evidence and adds Server generated Data/Classic validation commands. Runtime gameplay implementation is not claimed complete.",
+                              "lastUpdateName":  "CodeUpdate-0130-CombatFormulaResolution-ServerClassicTestReadiness",
                               "nextRecommendedWork":  [
-                                                          "Push CodeUpdate-0127A and verify GitHub Actions green.",
-                                                          "After green Actions, continue with one narrow runtime/compiler validation slice from the 0127 generated-world baseline.",
-                                                          "Do not hand-edit /Data as canonical source; update Librarium/overlays and regenerate."
+                                                          "Run dotnet build for Apps/Source/Reforged.Server/Reforged.Server.csproj.",
+                                                          "Run dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data.",
+                                                          "Run dotnet run --project Apps/Source/Reforged.Server -- --validate-generated-data.",
+                                                          "Run dotnet run --project Apps/Source/Reforged.Server -- --run-local for Classic smoke-test readiness after build validation passes."
                                                       ]
                           },
     "handoffPolicy":  {
@@ -56,14 +57,16 @@
                             "requiresManifest":  true,
                             "requiresVerificationBeforeAnnouncement":  true
                         },
-    "buildVerification":  "LOCAL_PASS; 0127A tracks Bin/.gitkeep and updates .gitignore so clean GitHub Actions checkouts satisfy the required Bin directory check. Exact failing server bootstrap command passed with exit code 0. Server build passed after rerunning sequentially due to an initial parallel Core obj file lock. Core/server smoke tests passed, compiler tests passed, and Python 0127 world-output validation passed. GitHub Actions remains pending until user push.",
-    "current_codeupdate":  "0127A",
-    "last_update":  "Server Bootstrap Bin Placeholder Repair",
+    "buildVerification":  "LOCAL_PASS; CodeUpdate0130 full-repo overlay applied locally with Saves and ImportedDatabases preserved. Server Debug build passed, Server Release build passed, --smoke-generated-data passed, --validate-generated-data passed, Python 0130 readiness validator passed, scripted --run-local startup exited 0, Core/server Release smoke tests passed, Compiler Release build passed, and Compiler.Tests run passed. Compiler.Tests build had one transient PDB file-lock warning during parallel build but the standalone compiler test run passed. GitHub Actions remains pending until user push.",
+    "current_codeupdate":  "0130",
+    "last_update":  "Combat Formula Resolution and Server Classic Test Readiness",
     "subsystems_completed":  [
                                  "Server Runtime Milestone 1",
                                  "Runtime state/event foundation",
                                  "Librarium compiler v1",
-                                 "World overlay compiler completion"
+                                 "World overlay compiler completion",
+                                 "Combat formula conflict resolution",
+                                 "Generated Data/Classic server smoke validation source"
                              ],
     "gitIgnorePolicy":  "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
     "lastNormalizedAt":  "2026-07-09T01:13:35Z",
@@ -78,8 +81,8 @@
                                       "NightmareRedux",
                                       "MajorMUD-PHP-Monster-Sim"
                                   ],
-    "baseline":  "CodeUpdate 0127A - Server Bootstrap Bin Placeholder Repair",
-    "updatedUtc":  "2026-07-09T22:08:23Z",
+    "baseline":  "CodeUpdate 0130 - Combat Formula Resolution and Server Classic Test Readiness",
+    "updatedUtc":  "2026-07-09T23:08:30Z",
     "dataPolicy":  "/Data is generated output per world and should not be hand-edited as canonical source.",
     "hostClientPolicy":  "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

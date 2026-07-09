@@ -1,6 +1,6 @@
 {
   "base_world": null,
-  "compiler_code_update": "0127",
+  "compiler_code_update": "0130",
   "family": "conflicts",
   "generated_by": "MajorMud.Reforged.Compiler",
   "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
@@ -165,7 +165,7 @@
           "source": "MBBSEmu"
         }
       ],
-      "evidence_total": 3,
+      "evidence_total": 0,
       "export_mapping": {
         "generated": true,
         "target": "Data/<world>/conflicts"
@@ -174,26 +174,7 @@
       "librarium_source_file": "Librarium/Objects/conflicts/conflict_catalog_0121.json",
       "name": "Conflict Catalog",
       "object_type": "conflict",
-      "open_conflicts": [
-        {
-          "id": "conflict.combat.physical_damage_reduction",
-          "name": "Physical Damage Reduction",
-          "status": "open",
-          "summary": "Nightmare Redux current interpretation leads; older Monster Sim differs. Keep open until runtime observation or stronger corroboration resolves."
-        },
-        {
-          "id": "conflict.combat.dodge_order",
-          "name": "Dodge Order",
-          "status": "open",
-          "summary": "Dodge placement relative to AC/special defenses remains unresolved."
-        },
-        {
-          "id": "conflict.combat.special_backstab_defense_order",
-          "name": "Special Attack/Backstab Defense Order",
-          "status": "open",
-          "summary": "Order of defense checks for special/backstab cases remains unresolved."
-        }
-      ],
+      "open_conflicts": [],
       "relationships": [],
       "runtime_mapping": {
         "runtime_reads_generated_data": true,
@@ -207,14 +188,46 @@
         "NightmareRedux": 2,
         "OriginalRuntimeObservation": 1
       },
-      "status": "complete_for_current_evidence_corpus",
+      "status": "resolved_for_combat_conflicts_0130",
       "validation_rules": [
         "object_must_have_id",
         "object_must_have_world_scope",
         "classic_changes_require_evidence",
         "custom_ai_changes_require_validation"
       ],
-      "world_scope": "classic/custom/ai"
+      "world_scope": "classic/custom/ai",
+      "resolved_conflicts_0130": [
+        {
+          "id": "conflict.combat.physical_damage_reduction",
+          "resolution": "DR is flat subtract defender DR after damage roll and before dodge; glance if <=0."
+        },
+        {
+          "id": "conflict.combat.dodge_order",
+          "resolution": "Dodge is the last defense roll after hit, critical, damage roll, and DR."
+        },
+        {
+          "id": "conflict.combat.special_backstab_defense_order",
+          "resolution": "Specials use same hit-then-dodge defense gates; backstab uses AV-DV and dodge/5."
+        }
+      ],
+      "evidence_refs_0130": [
+        {
+          "id": "evidence.dll.calculate_attack.0130",
+          "source_type": "dll_reverse_engineered_sql_port_note",
+          "title": "Combat Resolution & Defense Order",
+          "path": "Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "librarium_path": "Librarium/Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+          "sha256": "42cc3bd7501c0bb76b7bf82a94daaaef64847eb12e02a12bb513be1730b0619b",
+          "dll_functions": [
+            "wccmmud.dll calculate_attack @0x0042b800",
+            "attack_user_monster @0x0042cfab",
+            "cmd_backstab @0x0045156f"
+          ],
+          "sql_port": "sql/phase4_combat-BBS.sql calculate_attack(...) suggested by uploaded evidence",
+          "authoritative_weight": "original_runtime_dll_derived",
+          "code_update": "0130"
+        }
+      ]
     }
   ],
   "source_file": "Librarium/Objects/conflicts/conflict_catalog_0121.json",

@@ -1,0 +1,501 @@
+{
+  "source": "ImportedDatabases/data-v1.11n.mdb",
+  "recordCount": 15,
+  "records": [
+    {
+      "id": "mmud_sql_class_1",
+      "type": "class",
+      "name": "Warrior",
+      "sourceNumbers": {
+        "number": 1
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 0,
+        "offset": 3959,
+        "length": 137,
+        "hexPrefix": "1e00010000000600000004000000000000000000000000000000080000000900",
+        "hexSuffix": "617272696f727f0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Warrior"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_2",
+      "type": "class",
+      "name": "Witchunter",
+      "sourceNumbers": {
+        "number": 2
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 1,
+        "offset": 3819,
+        "length": 140,
+        "hexPrefix": "1e000200000006000000040000001e0000000000000000000000080000000800",
+        "hexSuffix": "68756e746572820076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Witchunter"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_3",
+      "type": "class",
+      "name": "Paladin",
+      "sourceNumbers": {
+        "number": 3
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 2,
+        "offset": 3682,
+        "length": 137,
+        "hexPrefix": "1e00030000000500000004000000780000000200000001000000080000000900",
+        "hexSuffix": "616c6164696e7f0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Paladin"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_4",
+      "type": "class",
+      "name": "Cleric~",
+      "sourceNumbers": {
+        "number": 4
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 3,
+        "offset": 3546,
+        "length": 136,
+        "hexPrefix": "1e00040000000400000004000000780000000200000002000000070000000900",
+        "hexSuffix": "436c657269637e0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Cleric~"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_5",
+      "type": "class",
+      "name": "Priest~",
+      "sourceNumbers": {
+        "number": 5
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 4,
+        "offset": 3410,
+        "length": 136,
+        "hexPrefix": "1e00050000000300000003000000280000000200000003000000070000000100",
+        "hexSuffix": "5072696573747e0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Priest~"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_6",
+      "type": "class",
+      "name": "Missionary",
+      "sourceNumbers": {
+        "number": 6
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 5,
+        "offset": 3270,
+        "length": 140,
+        "hexPrefix": "1e00060000000400000003000000780000000200000002000000040000000600",
+        "hexSuffix": "696f6e617279820076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Missionary"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_7",
+      "type": "class",
+      "name": "Ninja}",
+      "sourceNumbers": {
+        "number": 7
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 6,
+        "offset": 3135,
+        "length": 135,
+        "hexPrefix": "1e00070000000400000004000000550000000000000000000000080000000200",
+        "hexSuffix": "fe4e696e6a617d0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Ninja}"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_8",
+      "type": "class",
+      "name": "Thief}",
+      "sourceNumbers": {
+        "number": 8
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 7,
+        "offset": 3000,
+        "length": 135,
+        "hexPrefix": "1e00080000000400000003000000ecffffff0000000000000000040000000600",
+        "hexSuffix": "fe54686965667d0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Thief}"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_9",
+      "type": "class",
+      "name": "Bard|",
+      "sourceNumbers": {
+        "number": 9
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 8,
+        "offset": 2866,
+        "length": 134,
+        "hexPrefix": "1e000900000004000000030000006e0000000400000002000000040000000600",
+        "hexSuffix": "fffe426172647c0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Bard|"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_10",
+      "type": "class",
+      "name": "Gypsy}",
+      "sourceNumbers": {
+        "number": 10
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 9,
+        "offset": 2731,
+        "length": 135,
+        "hexPrefix": "1e000a0000000400000003000000780000000100000002000000040000000600",
+        "hexSuffix": "fe47797073797d0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Gypsy}"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_11",
+      "type": "class",
+      "name": "Warlock",
+      "sourceNumbers": {
+        "number": 11
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 10,
+        "offset": 2594,
+        "length": 137,
+        "hexPrefix": "1e000b0000000400000004000000550000000100000002000000040000000700",
+        "hexSuffix": "61726c6f636b7f0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Warlock"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_12",
+      "type": "class",
+      "name": "Mage|",
+      "sourceNumbers": {
+        "number": 12
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 11,
+        "offset": 2460,
+        "length": 134,
+        "hexPrefix": "1e000c0000000300000003000000280000000100000003000000090000000100",
+        "hexSuffix": "fffe4d6167657c0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Mage|"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_13",
+      "type": "class",
+      "name": "Druid}",
+      "sourceNumbers": {
+        "number": 13
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 12,
+        "offset": 2325,
+        "length": 135,
+        "hexPrefix": "1e000d00000004000000030000005a0000000300000003000000070000000600",
+        "hexSuffix": "fe44727569647d0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Druid}"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_14",
+      "type": "class",
+      "name": "Ranger~",
+      "sourceNumbers": {
+        "number": 14
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 13,
+        "offset": 2189,
+        "length": 136,
+        "hexPrefix": "1e000e0000000500000004000000960000000300000001000000080000000600",
+        "hexSuffix": "52616e6765727e0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Ranger~"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    },
+    {
+      "id": "mmud_sql_class_15",
+      "type": "class",
+      "name": "Mystic~",
+      "sourceNumbers": {
+        "number": 15
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 14,
+        "offset": 2053,
+        "length": 136,
+        "hexPrefix": "1e000f0000000400000004000000960000000500000001000000090000000100",
+        "hexSuffix": "4d79737469637e0076000100ffffff3f"
+      },
+      "printableSegments": [
+        "Mystic~"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
+    }
+  ]
+}

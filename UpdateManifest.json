@@ -1,237 +1,44 @@
 {
-    "codeUpdate":  "0127A",
-    "name":  "CodeUpdate-0127A-ServerBootstrapBinPlaceholderRepair",
-    "packageType":  "corrective-local-patch",
-    "purpose":  "Repair the CodeUpdate 0127 clean-checkout Server bootstrap failure by tracking Bin/.gitkeep while keeping generated Bin contents ignored.",
-    "addsGameplayFeatures":  false,
-    "addsImplementationCode":  true,
-    "addsTooling":  true,
-    "batInstallerCreated":  false,
-    "updateZipCreated":  true,
-    "gitHubPushCreatedByCodex":  false,
-    "milestone1Status":  "Frozen",
-    "milestone2Status":  "Continuing with constrained modular server construction and reviewed data-repair work before gameplay systems.",
-    "verificationStatus":  "LOCAL_PASS; 0127A tracks Bin/.gitkeep and updates .gitignore so clean GitHub Actions checkouts satisfy the required Bin directory check. Exact failing server bootstrap command passed with exit code 0. Server build passed after rerunning sequentially due to an initial parallel Core obj file lock. Core/server smoke tests passed, compiler tests passed, and Python 0127 world-output validation passed. GitHub Actions remains pending until user push.",
-    "filesChanged":  [
-                         "Bin/.gitkeep",
-                         ".gitignore",
-                         "ProjectManifest.json",
-                         "UpdateManifest.json",
-                         "VERSION.md",
-                         "CHANGELOG.md",
-                         "ReleaseNotes.md",
-                         "Apps/Source/Reforged.Server/README.md",
-                         "continuity documents"
-                     ],
-    "githubTruth":  {
-                        "repository":  "ShisenShi1017/MajorMud-Reforged-V1.0",
-                        "baselineStatus":  "CodeUpdate-0112 was the local baseline before applying the user-provided CodeUpdate-0114 runtime package.",
-                        "officialGate":  "GitHub Actions after user push."
-                    },
-    "worldProjection":  {
-                            "worldRoomCount":  1248,
-                            "uniqueWorldRoomCount":  1248,
-                            "canonicalRoomCount":  1248,
-                            "missingRoomCount":  0,
-                            "duplicateWorldRoomCount":  0,
-                            "startRoom":  "wcc_map1_room1",
-                            "startRoomExists":  true,
-                            "scope":  "Canonical/world room repair from MMExplorer MDB direct fields. No gameplay or runtime activation."
-                        },
-    "moduleReadiness":  {
-                            "moduleCount":  1,
-                            "hostReadyModuleCount":  1,
-                            "gameplayEnabledModuleCount":  0,
-                            "runtimeRuleProfileEnabledCount":  0,
-                            "status":  "host-ready-gameplay-disabled",
-                            "scope":  "Read-only module readiness diagnostics. No gameplay or runtime rule activation."
-                        },
-    "hostConfiguration":  {
-                              "status":  "configured-runtime-disabled",
-                              "hostName":  "Reforged Local Host",
-                              "bindAddress":  "127.0.0.1",
-                              "port":  4000,
-                              "maxSessions":  64,
-                              "worldTickMilliseconds":  1000,
-                              "combatTickMilliseconds":  6000,
-                              "gameplayEnabled":  false,
-                              "networkingEnabled":  false,
-                              "worldSimulationEnabled":  false,
-                              "scope":  "Read-only host configuration diagnostics. No sockets, sessions, gameplay, networking, or world simulation."
-                          },
-    "hostLifecycle":  {
-                          "status":  "ready-runtime-disabled",
-                          "initialized":  true,
-                          "configured":  true,
-                          "dataReady":  true,
-                          "worldProjectionReady":  true,
-                          "moduleReady":  true,
-                          "runtimeDisabled":  true,
-                          "gameplayEnabled":  false,
-                          "networkingEnabled":  false,
-                          "worldSimulationEnabled":  false,
-                          "scope":  "Read-only lifecycle diagnostics derived from existing bootstrap reports. No sockets, sessions, gameplay, networking, or world simulation."
-                      },
-    "schedulerBootstrap":  {
-                               "status":  "scheduler-bootstrap-registered-runtime-disabled",
-                               "channelCount":  10,
-                               "runtimeEnabledChannelCount":  0,
-                               "runtimeDisabledChannelCount":  10,
-                               "diagnosticOnly":  true,
-                               "channels":  [
-                                                "Ingress",
-                                                "Validation",
-                                                "Planning",
-                                                "Dispatch",
-                                                "Mutation",
-                                                "TimedWork",
-                                                "EventWork",
-                                                "Persistence",
-                                                "Observation",
-                                                "Maintenance"
-                                            ],
-                               "scope":  "Read-only scheduler bootstrap diagnostics. No scheduler ticking, gameplay, networking, sessions, or world simulation."
-                           },
-    "schedulerStatusCommands":  {
-                                    "status":  "scheduler-status-commands-registered-runtime-disabled",
-                                    "commandCount":  7,
-                                    "runtimeEnabledCommandCount":  0,
-                                    "runtimeDisabledCommandCount":  7,
-                                    "guardedCommandCount":  7,
-                                    "stateMutatingCommandCount":  0,
-                                    "diagnosticOnly":  true,
-                                    "commands":  [
-                                                     "status.overview",
-                                                     "status.lifecycle",
-                                                     "status.modules",
-                                                     "status.scheduler",
-                                                     "status.scheduler.channels",
-                                                     "status.data",
-                                                     "status.validation"
-                                                 ],
-                                    "scope":  "Read-only guarded status command registrations. No parser, dispatcher, command execution, scheduler ticking, gameplay, networking, sessions, or world simulation."
-                                },
-    "serverRuntimeValidation0009":  {
-                                        "sourcePackage":  "ServerRuntimeValidation0009_NoDotNet_NpcLifecycleCombatStatePatch_Handoff.zip",
-                                        "status":  "folded-into-no-dotnet-simulator-surface",
-                                        "scope":  "Expected-model simulator lifecycle validation only. No Server gameplay, sockets, sessions, scheduler execution, world simulation, runtime AI, formulas, or live parity claims.",
-                                        "handoffReportedSmokeTest":  "PASS",
-                                        "handoffReportedLifecycleChecks":  10,
-                                        "handoffReportedLifecyclePass":  10,
-                                        "handoffReportedLifecycleFail":  0,
-                                        "autonomousAggroImplemented":  false,
-                                        "nextValidationCandidate":  "Validation0010 autonomous NPC aggro / assist boundary evidence review"
-                                    },
-    "serverRuntimeValidation0013":  {
-                                        "sourcePackage":  "ServerRuntimeValidation0013_MovementFollow_Handoff.zip",
-                                        "status":  "partial-pass-evidence-only",
-                                        "scope":  "Movement-based party follow transitions compared against canonical Data room exits. No Data promotion and no movement execution.",
-                                        "totalFollowEvents":  140,
-                                        "pass":  5,
-                                        "review":  135,
-                                        "fail":  0,
-                                        "canonicalDataChanged":  false,
-                                        "promotionDecision":  "No canonical Data promotion. REVIEW rows require route/source disambiguation before any future reconciliation."
-                                    },
-    "currentPlaceholderState":  {
-                                    "trueEmptyCanonicalPlaceholder":  "Data/quests.json",
-                                    "loaderGap":  "world_rooms projection gap resolved in CodeUpdate-0058",
-                                    "runtimeParityBlockers":  367,
-                                    "blockerSummary":  "Reports/CodeUpdates/CodeUpdate-0055/RuntimeParityBlockerSummary.csv",
-                                    "placeholderAudit":  "Reports/CodeUpdates/CodeUpdate-0055/CurrentDataPlaceholderAudit.csv"
-                                },
+    "codeUpdate":  "0130",
+    "name":  "CodeUpdate0130-CombatFormulaResolution-ServerClassicTestReadiness",
+    "packageType":  "full-replacement-repository-zip",
+    "librariumAuthoritative":  true,
+    "dataGeneratedOnly":  true,
+    "importedDatabasesRetained":  true,
+    "runtimeGameplayChanged":  false,
+    "serverSourceChanged":  true,
+    "purpose":  "Resolve the remaining combat formula conflicts with DLL-derived evidence and prepare the server to validate generated Data/Classic for tomorrow night\u0027s Classic test.",
+    "combatConflictsResolved":  [
+                                    "Physical Damage Reduction",
+                                    "Dodge Order",
+                                    "Special/Backstab Defense Order"
+                                ],
+    "newServerCommands":  [
+                              "--smoke-generated-data",
+                              "--validate-generated-data"
+                          ],
+    "validationStatus":  "LOCAL_PASS",
+    "dotnetSdkAvailableHere":  true,
+    "requiredCodexCommands":  [
+                                  "dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj",
+                                  "dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data",
+                                  "dotnet run --project Apps/Source/Reforged.Server -- --validate-generated-data",
+                                  "dotnet run --project Apps/Source/Reforged.Server -- --run-local"
+                              ],
+    "reports":  [
+                    "Reports/CodeUpdates/CodeUpdate0130/CODEUPDATE0130_COMBAT_AND_SERVER_READINESS.md",
+                    "Reports/CodeUpdates/CodeUpdate0130/server_classic_readiness_validation_0130.json"
+                ],
+    "updatedUtc":  "2026-07-09T23:08:30Z",
+    "verificationStatus":  "LOCAL_PASS; CodeUpdate0130 full-repo overlay applied locally with Saves and ImportedDatabases preserved. Server Debug build passed, Server Release build passed, --smoke-generated-data passed, --validate-generated-data passed, Python 0130 readiness validator passed, scripted --run-local startup exited 0, Core/server Release smoke tests passed, Compiler Release build passed, and Compiler.Tests run passed. Compiler.Tests build had one transient PDB file-lock warning during parallel build but the standalone compiler test run passed. GitHub Actions remains pending until user push.",
     "localVerification":  {
-                              "jsonParse":  "Passed for ProjectManifest.json, UpdateManifest.json, Data/world.json, Data/rooms.json, and Data/Validation/mmexplorer_mdb_canonical_repair_0065.json.",
-                              "pythonTools":  "Passed py_compile for offline_mdb_text_extractor.py and promote_mdb_rooms.py.",
-                              "gitDiffCheck":  "Passed with Windows line-ending warnings only.",
-                              "releaseBuilds":  "Passed for Server after sequential rerun, Core.Tests, Compiler, and existing Compiler.Tests no-build validation; initial parallel Server build hit a transient Core obj file lock.",
-                              "smokeTests":  "Passed: dotnet core/server smoke tests.",
-                              "serverBootstrap":  "Passed: exact GitHub Actions failure command dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- . exited 0 with Bin present.",
-                              "status":  "passed-local"
-                          },
-    "boundaries":  [
-                       "No gameplay system",
-                       "No gameplay server behavior",
-                       "No command execution",
-                       "No scheduler execution",
-                       "No sockets or sessions",
-                       "No combat execution",
-                       "No movement execution",
-                       "No AI",
-                       "No live editor behavior",
-                       "No runtime timing or formula promotion",
-                       "No imported/reference deletion",
-                       "No unknown byte-field promotion"
-                   ],
-    "referenceDataPolicy":  "MMExplorer MDB data in ImportedDatabases/data-v1.11n.mdb is approved for reviewed canonical repair where fields map directly. Unknown byte fields, formulas, timing, and runtime behavior still require decoding/proof before promotion.",
-    "dataDrivenLogicPolicy":  "Game logic is data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-internal.",
-    "recommendedNextUpdate":  "After user push and green GitHub Actions for 0127A, continue with one narrow runtime/compiler validation slice from the 0127 Librarium/generated-world baseline.",
-    "recommendedNextScopeRequiresUserApproval":  true,
-    "mmExplorerMdbRepair":  {
-                                "source":  "ImportedDatabases/data-v1.11n.mdb",
-                                "stockDataSurface":  "Data/StockGameRaw/MMExplorerMDB/",
-                                "ownerTables":  {
-                                                    "1664":  "room/world row surface",
-                                                    "322":  "monster/NPC row surface candidate",
-                                                    "2566":  "shop row surface candidate",
-                                                    "15":  "class row surface candidate",
-                                                    "1660":  "race row surface candidate"
-                                                },
-                                "promotedRooms":  [
-                                                      "wcc_map1_room2150",
-                                                      "wcc_map1_room2156"
-                                                  ],
-                                "directFieldsPromoted":  [
-                                                             "map id",
-                                                             "room number",
-                                                             "room name",
-                                                             "raw printable exit references"
-                                                         ],
-                                "unknownFieldsPolicy":  "Undecoded byte fields are not promoted. Unknown exit semantics are represented as exit_type -1 and exitTypeKnown false."
-                            },
-    "currentCodeUpdate":  "0127A",
-    "codeUpdates":  [
-                        {
-                            "id":  "0115",
-                            "name":  "RuntimeStateAndEventDispatcherFoundation",
-                            "status":  "LOCAL_PASS_PENDING_GITHUB_ACTIONS",
-                            "runtimeChanges":  true,
-                            "formulaPromotions":  0,
-                            "runtimeReplacements":  0
-                        }
-                    ],
-    "timingEvidence0083":  {
-                               "hostModuleDriven":  "observed",
-                               "rtkickSecondsDelay":  "observed",
-                               "rtihdlr18Hz":  "observed_mbbsemu_model",
-                               "gsblTickerOneSecond":  "observed_mbbsemu_model",
-                               "wccThreeSecondGlobalMessageWindow":  "observed_primary_wcc_doc",
-                               "threeSecondRecoveryTick":  "derived_candidate",
-                               "onePointFiveSecondCombatRound":  "conflicting_candidate_needs_provenance",
-                               "fiveSecondCombatRound":  "derived_candidate_mmud_explorer_model",
-                               "tickClipping":  "hypothesis"
-                           },
-    "current_codeupdate":  "0127A",
-    "last_update":  "Server Bootstrap Bin Placeholder Repair",
-    "subsystems_completed":  [
-                                 "Librarium compiler v1",
-                                 "World overlay compiler completion",
-                                 "Classic generated world output",
-                                 "CustomTemplate generated world output",
-                                 "AIFromClassic generated world output"
-                             ],
-    "normalizationReport":  "Reports/CodeUpdate0112_RepositoryNormalization/NORMALIZATION_REPORT_0112_1.md",
-    "validationReport":  "Validation/RuntimeMilestone1-ValidationPlan.md",
-    "updatedAt":  "2026-07-09T22:08:23Z",
-    "baseline":  "CodeUpdate 0127A - Server Bootstrap Bin Placeholder Repair",
-    "updatedUtc":  "2026-07-09T22:08:23Z",
-    "librariumAuthority":  "Librarium is the source of truth; /Data is generated runtime output.",
-    "importedDatabasesPolicy":  "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
-    "dataPolicy":  "/Data is generated output per world and should not be hand-edited as canonical source.",
-    "hostClientPolicy":  "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world.",
-    "code_update":  "0119",
-    "librarium_source_of_truth":  true,
-    "data_generated_only":  true,
-    "imported_databases_retained":  true,
-    "runtime_modified":  false
+                              "serverDebugBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj",
+                              "serverReleaseBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore",
+                              "generatedDataSmoke":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data",
+                              "generatedDataValidate":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --validate-generated-data",
+                              "pythonReadiness":  "PASS: python Tools/Validation/validate_codeupdate0130_server_classic_readiness.py",
+                              "runLocal":  "PASS: scripted --run-local startup exited 0; known limitation remains Unknown Room/no exits in generated runtime loader.",
+                              "coreServerSmoke":  "PASS: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build",
+                              "compiler":  "PASS: compiler Release build and Compiler.Tests no-build run passed; parallel test build emitted one transient PDB file-lock warning."
+                          }
 }

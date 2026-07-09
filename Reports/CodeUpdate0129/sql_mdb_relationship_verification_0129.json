@@ -1,0 +1,1426 @@
+{
+  "brokenEdges": 63444,
+  "brokenRelationshipSamples": [
+    {
+      "kind": "room",
+      "raw": "1/100",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room1",
+      "targetId": "mmud_sql_room_map1_room100"
+    },
+    {
+      "kind": "room",
+      "raw": "1/1381",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room1",
+      "targetId": "mmud_sql_room_map1_room1381"
+    },
+    {
+      "kind": "room",
+      "raw": "1/1010",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room1",
+      "targetId": "mmud_sql_room_map1_room1010"
+    },
+    {
+      "kind": "room",
+      "raw": "2/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room2",
+      "targetId": "mmud_sql_room_map2_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "3/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room3",
+      "targetId": "mmud_sql_room_map3_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "1/2362Z",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room3",
+      "targetId": "mmud_sql_room_map1_room2362"
+    },
+    {
+      "kind": "room",
+      "raw": "5/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room5",
+      "targetId": "mmud_sql_room_map5_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "2/6450",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room6",
+      "targetId": "mmud_sql_room_map2_room6450"
+    },
+    {
+      "kind": "room",
+      "raw": "7/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room7",
+      "targetId": "mmud_sql_room_map7_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "1/17680",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room7",
+      "targetId": "mmud_sql_room_map1_room17680"
+    },
+    {
+      "kind": "room",
+      "raw": "8/9000",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room8",
+      "targetId": "mmud_sql_room_map8_room9000"
+    },
+    {
+      "kind": "room",
+      "raw": "8/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room8",
+      "targetId": "mmud_sql_room_map8_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "1/24380",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room9",
+      "targetId": "mmud_sql_room_map1_room24380"
+    },
+    {
+      "kind": "room",
+      "raw": "1/23150",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room10",
+      "targetId": "mmud_sql_room_map1_room23150"
+    },
+    {
+      "kind": "room",
+      "raw": "11/35",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room11",
+      "targetId": "mmud_sql_room_map11_room35"
+    },
+    {
+      "kind": "room",
+      "raw": "11/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room11",
+      "targetId": "mmud_sql_room_map11_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "6/31580",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room12",
+      "targetId": "mmud_sql_room_map6_room31580"
+    },
+    {
+      "kind": "room",
+      "raw": "1/1000",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room13",
+      "targetId": "mmud_sql_room_map1_room1000"
+    },
+    {
+      "kind": "room",
+      "raw": "13/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room13",
+      "targetId": "mmud_sql_room_map13_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "14/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room14",
+      "targetId": "mmud_sql_room_map14_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "1/24060",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room14",
+      "targetId": "mmud_sql_room_map1_room24060"
+    },
+    {
+      "kind": "room",
+      "raw": "7/1363",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room15",
+      "targetId": "mmud_sql_room_map7_room1363"
+    },
+    {
+      "kind": "room",
+      "raw": "15/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room15",
+      "targetId": "mmud_sql_room_map15_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "16/14380",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room16",
+      "targetId": "mmud_sql_room_map16_room14380"
+    },
+    {
+      "kind": "room",
+      "raw": "16/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room16",
+      "targetId": "mmud_sql_room_map16_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "17/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room17",
+      "targetId": "mmud_sql_room_map17_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "1/26930",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map1_room17",
+      "targetId": "mmud_sql_room_map1_room26930"
+    },
+    {
+      "kind": "room",
+      "raw": "1/303",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room1",
+      "targetId": "mmud_sql_room_map1_room303"
+    },
+    {
+      "kind": "room",
+      "raw": "1/100",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room1",
+      "targetId": "mmud_sql_room_map1_room100"
+    },
+    {
+      "kind": "room",
+      "raw": "2/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room2",
+      "targetId": "mmud_sql_room_map2_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "3/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room3",
+      "targetId": "mmud_sql_room_map3_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "3/120",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room3",
+      "targetId": "mmud_sql_room_map3_room120"
+    },
+    {
+      "kind": "room",
+      "raw": "1/3960",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room4",
+      "targetId": "mmud_sql_room_map1_room3960"
+    },
+    {
+      "kind": "room",
+      "raw": "7/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room7",
+      "targetId": "mmud_sql_room_map7_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "8/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room8",
+      "targetId": "mmud_sql_room_map8_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "9/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room9",
+      "targetId": "mmud_sql_room_map9_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "11/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room11",
+      "targetId": "mmud_sql_room_map11_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "13/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room13",
+      "targetId": "mmud_sql_room_map13_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "14/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room14",
+      "targetId": "mmud_sql_room_map14_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "15/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map2_room15",
+      "targetId": "mmud_sql_room_map15_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "1/4",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room1",
+      "targetId": "mmud_sql_room_map1_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "2/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room2",
+      "targetId": "mmud_sql_room_map2_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "2/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room2",
+      "targetId": "mmud_sql_room_map2_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "3/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room3",
+      "targetId": "mmud_sql_room_map3_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "3/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room3",
+      "targetId": "mmud_sql_room_map3_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "1/2150",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room4",
+      "targetId": "mmud_sql_room_map1_room2150"
+    },
+    {
+      "kind": "room",
+      "raw": "5/4",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room5",
+      "targetId": "mmud_sql_room_map5_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "5/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room5",
+      "targetId": "mmud_sql_room_map5_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "6/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room6",
+      "targetId": "mmud_sql_room_map6_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "6/4",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room6",
+      "targetId": "mmud_sql_room_map6_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "6/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room6",
+      "targetId": "mmud_sql_room_map6_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "7/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room7",
+      "targetId": "mmud_sql_room_map7_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "7/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room7",
+      "targetId": "mmud_sql_room_map7_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "8/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room8",
+      "targetId": "mmud_sql_room_map8_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "8/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room8",
+      "targetId": "mmud_sql_room_map8_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "9/4",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room9",
+      "targetId": "mmud_sql_room_map9_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "9/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room9",
+      "targetId": "mmud_sql_room_map9_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "10/4",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room10",
+      "targetId": "mmud_sql_room_map10_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "10/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room10",
+      "targetId": "mmud_sql_room_map10_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "11/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room11",
+      "targetId": "mmud_sql_room_map11_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "12/21",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room12",
+      "targetId": "mmud_sql_room_map12_room21"
+    },
+    {
+      "kind": "room",
+      "raw": "12/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room12",
+      "targetId": "mmud_sql_room_map12_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "12/4",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room12",
+      "targetId": "mmud_sql_room_map12_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "13/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room13",
+      "targetId": "mmud_sql_room_map13_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "13/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room13",
+      "targetId": "mmud_sql_room_map13_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "13/160",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room13",
+      "targetId": "mmud_sql_room_map13_room160"
+    },
+    {
+      "kind": "room",
+      "raw": "14/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room14",
+      "targetId": "mmud_sql_room_map14_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "14/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room14",
+      "targetId": "mmud_sql_room_map14_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "15/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room15",
+      "targetId": "mmud_sql_room_map15_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "16/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room16",
+      "targetId": "mmud_sql_room_map16_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "16/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room16",
+      "targetId": "mmud_sql_room_map16_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "17/20",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room17",
+      "targetId": "mmud_sql_room_map17_room20"
+    },
+    {
+      "kind": "room",
+      "raw": "17/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map3_room17",
+      "targetId": "mmud_sql_room_map17_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "1/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room1",
+      "targetId": "mmud_sql_room_map1_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "2/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room2",
+      "targetId": "mmud_sql_room_map2_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "2/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room2",
+      "targetId": "mmud_sql_room_map2_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "3/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room3",
+      "targetId": "mmud_sql_room_map3_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "5/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room5",
+      "targetId": "mmud_sql_room_map5_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "6/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room6",
+      "targetId": "mmud_sql_room_map6_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "6/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room6",
+      "targetId": "mmud_sql_room_map6_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "7/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room7",
+      "targetId": "mmud_sql_room_map7_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "8/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room8",
+      "targetId": "mmud_sql_room_map8_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "8/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room8",
+      "targetId": "mmud_sql_room_map8_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "9/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room9",
+      "targetId": "mmud_sql_room_map9_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "10/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room10",
+      "targetId": "mmud_sql_room_map10_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "11/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room11",
+      "targetId": "mmud_sql_room_map11_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "11/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room11",
+      "targetId": "mmud_sql_room_map11_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "12/490",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room12",
+      "targetId": "mmud_sql_room_map12_room490"
+    },
+    {
+      "kind": "room",
+      "raw": "12/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room12",
+      "targetId": "mmud_sql_room_map12_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "13/160",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room13",
+      "targetId": "mmud_sql_room_map13_room160"
+    },
+    {
+      "kind": "room",
+      "raw": "14/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room14",
+      "targetId": "mmud_sql_room_map14_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "15/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room15",
+      "targetId": "mmud_sql_room_map15_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "16/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room16",
+      "targetId": "mmud_sql_room_map16_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "17/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map4_room17",
+      "targetId": "mmud_sql_room_map17_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "1/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room1",
+      "targetId": "mmud_sql_room_map1_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "1/1980",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room1",
+      "targetId": "mmud_sql_room_map1_room1980"
+    },
+    {
+      "kind": "room",
+      "raw": "2/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room2",
+      "targetId": "mmud_sql_room_map2_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "2/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room2",
+      "targetId": "mmud_sql_room_map2_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "3/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room3",
+      "targetId": "mmud_sql_room_map3_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "3/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room3",
+      "targetId": "mmud_sql_room_map3_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "5/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room5",
+      "targetId": "mmud_sql_room_map5_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "6/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room6",
+      "targetId": "mmud_sql_room_map6_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "6/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room6",
+      "targetId": "mmud_sql_room_map6_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "7/80",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room7",
+      "targetId": "mmud_sql_room_map7_room80"
+    },
+    {
+      "kind": "room",
+      "raw": "7/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room7",
+      "targetId": "mmud_sql_room_map7_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "8/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room8",
+      "targetId": "mmud_sql_room_map8_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "9/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room9",
+      "targetId": "mmud_sql_room_map9_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "10/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room10",
+      "targetId": "mmud_sql_room_map10_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "10/4m",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room10",
+      "targetId": "mmud_sql_room_map10_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "11/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room11",
+      "targetId": "mmud_sql_room_map11_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "11/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room11",
+      "targetId": "mmud_sql_room_map11_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "12/27",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room12",
+      "targetId": "mmud_sql_room_map12_room27"
+    },
+    {
+      "kind": "room",
+      "raw": "12/51",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room12",
+      "targetId": "mmud_sql_room_map12_room51"
+    },
+    {
+      "kind": "room",
+      "raw": "12/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room12",
+      "targetId": "mmud_sql_room_map12_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "13/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room13",
+      "targetId": "mmud_sql_room_map13_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "13/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room13",
+      "targetId": "mmud_sql_room_map13_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "14/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room14",
+      "targetId": "mmud_sql_room_map14_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "14/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room14",
+      "targetId": "mmud_sql_room_map14_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "15/4",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room15",
+      "targetId": "mmud_sql_room_map15_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "15/49",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room15",
+      "targetId": "mmud_sql_room_map15_room49"
+    },
+    {
+      "kind": "room",
+      "raw": "15/51",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room15",
+      "targetId": "mmud_sql_room_map15_room51"
+    },
+    {
+      "kind": "room",
+      "raw": "15/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room15",
+      "targetId": "mmud_sql_room_map15_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "16/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room16",
+      "targetId": "mmud_sql_room_map16_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "17/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room17",
+      "targetId": "mmud_sql_room_map17_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "17/100",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room17",
+      "targetId": "mmud_sql_room_map17_room100"
+    },
+    {
+      "kind": "room",
+      "raw": "17/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map5_room17",
+      "targetId": "mmud_sql_room_map17_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "1/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room1",
+      "targetId": "mmud_sql_room_map1_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "2/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room2",
+      "targetId": "mmud_sql_room_map2_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "2/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room2",
+      "targetId": "mmud_sql_room_map2_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "3/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room3",
+      "targetId": "mmud_sql_room_map3_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "5/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room5",
+      "targetId": "mmud_sql_room_map5_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "6/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room6",
+      "targetId": "mmud_sql_room_map6_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "8/80",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room8",
+      "targetId": "mmud_sql_room_map8_room80"
+    },
+    {
+      "kind": "room",
+      "raw": "9/115",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room9",
+      "targetId": "mmud_sql_room_map9_room115"
+    },
+    {
+      "kind": "room",
+      "raw": "9/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room9",
+      "targetId": "mmud_sql_room_map9_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "10/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room10",
+      "targetId": "mmud_sql_room_map10_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "11/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room11",
+      "targetId": "mmud_sql_room_map11_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "12/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room12",
+      "targetId": "mmud_sql_room_map12_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "13/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room13",
+      "targetId": "mmud_sql_room_map13_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "14/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room14",
+      "targetId": "mmud_sql_room_map14_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "15/31",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room15",
+      "targetId": "mmud_sql_room_map15_room31"
+    },
+    {
+      "kind": "room",
+      "raw": "15/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room15",
+      "targetId": "mmud_sql_room_map15_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "16/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room16",
+      "targetId": "mmud_sql_room_map16_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "16/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room16",
+      "targetId": "mmud_sql_room_map16_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "17/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room17",
+      "targetId": "mmud_sql_room_map17_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "17/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map6_room17",
+      "targetId": "mmud_sql_room_map17_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "1/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room1",
+      "targetId": "mmud_sql_room_map1_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "2/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room2",
+      "targetId": "mmud_sql_room_map2_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "3/31",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room3",
+      "targetId": "mmud_sql_room_map3_room31"
+    },
+    {
+      "kind": "room",
+      "raw": "3/80",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room3",
+      "targetId": "mmud_sql_room_map3_room80"
+    },
+    {
+      "kind": "room",
+      "raw": "3/40",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room3",
+      "targetId": "mmud_sql_room_map3_room40"
+    },
+    {
+      "kind": "room",
+      "raw": "5/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room5",
+      "targetId": "mmud_sql_room_map5_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "6/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room6",
+      "targetId": "mmud_sql_room_map6_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "6/100",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room6",
+      "targetId": "mmud_sql_room_map6_room100"
+    },
+    {
+      "kind": "room",
+      "raw": "6/80",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room6",
+      "targetId": "mmud_sql_room_map6_room80"
+    },
+    {
+      "kind": "room",
+      "raw": "8/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room8",
+      "targetId": "mmud_sql_room_map8_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "9/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room9",
+      "targetId": "mmud_sql_room_map9_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "10/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room10",
+      "targetId": "mmud_sql_room_map10_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "11/80",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room11",
+      "targetId": "mmud_sql_room_map11_room80"
+    },
+    {
+      "kind": "room",
+      "raw": "11/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room11",
+      "targetId": "mmud_sql_room_map11_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "12/340",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room12",
+      "targetId": "mmud_sql_room_map12_room340"
+    },
+    {
+      "kind": "room",
+      "raw": "12/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room12",
+      "targetId": "mmud_sql_room_map12_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "13/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room13",
+      "targetId": "mmud_sql_room_map13_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "14/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room14",
+      "targetId": "mmud_sql_room_map14_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "14/80",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room14",
+      "targetId": "mmud_sql_room_map14_room80"
+    },
+    {
+      "kind": "room",
+      "raw": "15/30",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room15",
+      "targetId": "mmud_sql_room_map15_room30"
+    },
+    {
+      "kind": "room",
+      "raw": "15/80",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room15",
+      "targetId": "mmud_sql_room_map15_room80"
+    },
+    {
+      "kind": "room",
+      "raw": "16/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room16",
+      "targetId": "mmud_sql_room_map16_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "17/80",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room17",
+      "targetId": "mmud_sql_room_map17_room80"
+    },
+    {
+      "kind": "room",
+      "raw": "17/2180",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room17",
+      "targetId": "mmud_sql_room_map17_room2180"
+    },
+    {
+      "kind": "room",
+      "raw": "17/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map7_room17",
+      "targetId": "mmud_sql_room_map17_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "1/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room1",
+      "targetId": "mmud_sql_room_map1_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "1/1700",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room1",
+      "targetId": "mmud_sql_room_map1_room1700"
+    },
+    {
+      "kind": "room",
+      "raw": "2/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room2",
+      "targetId": "mmud_sql_room_map2_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "2/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room2",
+      "targetId": "mmud_sql_room_map2_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "3/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room3",
+      "targetId": "mmud_sql_room_map3_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "3/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room3",
+      "targetId": "mmud_sql_room_map3_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "5/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room5",
+      "targetId": "mmud_sql_room_map5_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "6/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room6",
+      "targetId": "mmud_sql_room_map6_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "6/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room6",
+      "targetId": "mmud_sql_room_map6_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "7/50",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room7",
+      "targetId": "mmud_sql_room_map7_room50"
+    },
+    {
+      "kind": "room",
+      "raw": "8/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room8",
+      "targetId": "mmud_sql_room_map8_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "8/60",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room8",
+      "targetId": "mmud_sql_room_map8_room60"
+    },
+    {
+      "kind": "room",
+      "raw": "8/160",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room8",
+      "targetId": "mmud_sql_room_map8_room160"
+    },
+    {
+      "kind": "room",
+      "raw": "9/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room9",
+      "targetId": "mmud_sql_room_map9_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "10/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room10",
+      "targetId": "mmud_sql_room_map10_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "11/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room11",
+      "targetId": "mmud_sql_room_map11_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "11/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room11",
+      "targetId": "mmud_sql_room_map11_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "12/1047",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room12",
+      "targetId": "mmud_sql_room_map12_room1047"
+    },
+    {
+      "kind": "room",
+      "raw": "12/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room12",
+      "targetId": "mmud_sql_room_map12_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "13/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room13",
+      "targetId": "mmud_sql_room_map13_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "13/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room13",
+      "targetId": "mmud_sql_room_map13_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "14/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room14",
+      "targetId": "mmud_sql_room_map14_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "14/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room14",
+      "targetId": "mmud_sql_room_map14_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "15/21",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room15",
+      "targetId": "mmud_sql_room_map15_room21"
+    },
+    {
+      "kind": "room",
+      "raw": "15/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room15",
+      "targetId": "mmud_sql_room_map15_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "16/4",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room16",
+      "targetId": "mmud_sql_room_map16_room4"
+    },
+    {
+      "kind": "room",
+      "raw": "16/90",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room16",
+      "targetId": "mmud_sql_room_map16_room90"
+    },
+    {
+      "kind": "room",
+      "raw": "17/70",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map8_room17",
+      "targetId": "mmud_sql_room_map17_room70"
+    },
+    {
+      "kind": "room",
+      "raw": "1/1013",
+      "sourceFamily": "rooms",
+      "sourceId": "mmud_sql_room_map9_room1",
+      "targetId": "mmud_sql_room_map1_room1013"
+    }
+  ],
+  "codeUpdate": "0129",
+  "edgeHash": "1ee70af36c5ce67f6e57ef6f1bd8699f04fd87ef62dabe04a583e87193593263",
+  "edgesByKind": {
+    "item": 517,
+    "npc": 1648,
+    "room": 63078,
+    "shop": 432,
+    "textblock": 621
+  },
+  "edgesBySourceFamily": {
+    "classes": 0,
+    "items": 1496,
+    "npcs": 221,
+    "races": 0,
+    "rooms": 61992,
+    "shops": 182,
+    "spells": 2405
+  },
+  "title": "Librarium SQL/MDB Relationship Verification",
+  "totalEdges": 66296,
+  "validEdges": 2852
+}

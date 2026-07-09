@@ -42,7 +42,13 @@ public sealed class RuntimeWorldLoader
             throw new InvalidOperationException($"Configured start room '{definition.StartRoom}' was not found for world '{definition.Id}'.");
         }
 
-        return new RuntimeWorld(definition, rooms, roomsByNumber, roomsPath);
+        var catalog = GeneratedWorldDataCatalog.Validate(projectRoot, definition);
+        if (!catalog.Passed)
+        {
+            throw new InvalidOperationException($"Generated world data validation failed for world '{definition.Id}': {string.Join("; ", catalog.Diagnostics)}");
+        }
+
+        return new RuntimeWorld(definition, rooms, roomsByNumber, roomsPath, catalog);
     }
 }
 
@@ -51,16 +57,18 @@ public sealed class RuntimeWorld
     private readonly IReadOnlyDictionary<string, RuntimeRoom> _rooms;
     private readonly IReadOnlyDictionary<int, RuntimeRoom> _roomsByNumber;
 
-    public RuntimeWorld(WorldRuntimeDefinition definition, IReadOnlyDictionary<string, RuntimeRoom> rooms, IReadOnlyDictionary<int, RuntimeRoom> roomsByNumber, string evidencePath)
+    public RuntimeWorld(WorldRuntimeDefinition definition, IReadOnlyDictionary<string, RuntimeRoom> rooms, IReadOnlyDictionary<int, RuntimeRoom> roomsByNumber, string evidencePath, GeneratedWorldDataCatalog dataCatalog)
     {
         Definition = definition;
         _rooms = rooms;
         _roomsByNumber = roomsByNumber;
         EvidencePath = evidencePath;
+        DataCatalog = dataCatalog;
     }
 
     public WorldRuntimeDefinition Definition { get; }
     public string EvidencePath { get; }
+    public GeneratedWorldDataCatalog DataCatalog { get; }
     public int RoomCount => _rooms.Count;
 
     public RuntimeRoom GetStartRoom()

@@ -873,3 +873,7 @@ Added evidence-backed timing-constant claim records for 3.0s system/spell tick, 
 ## CodeUpdate 0088 — Timing / Execution Promotion Review
 
 Promoted architecture and symbol-presence records with strict scope limits. No gameplay timing constants or formulas were promoted. Runtime remains unchanged.
+
+# CodeUpdate0130 Local Verification
+
+Codex local verification passed for Server build, generated-data smoke/validation commands, scripted run-local startup, Core/server smoke tests, Python readiness validation, and compiler tests. GitHub Actions remains pending until user push.

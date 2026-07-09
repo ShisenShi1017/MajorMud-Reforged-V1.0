@@ -1,5 +1,5 @@
 # MajorMUD Reforged Version
 
-Current repository baseline: **CodeUpdate 0127A - Server Bootstrap Bin Placeholder Repair**
+Current repository baseline: **CodeUpdate 0130 - Combat Formula Resolution and Server Classic Test Readiness**
 
-Status: corrective local patch after the 0127 full-repo overlay. `Bin/.gitkeep` is tracked so the required runtime-artifact directory exists during GitHub Actions bootstrap validation; generated/runtime files under `Bin/` remain ignored. Server bootstrap, Server build, Core/server smoke verification, compiler tests, and Python 0127 world-output validation passed locally for 0127A. GitHub Actions remains pending until user push.
+Status: full replacement repository ZIP applied locally and verified by Codex. Librarium remains the authoritative source of truth; ImportedDatabases are retained; /Data remains generated runtime output. CodeUpdate0130 resolves the remaining documented combat-order conflicts with DLL-derived evidence and adds server generated-data validation commands. Local server build, generated-data smoke/validation, scripted run-local startup, Core/server smoke tests, Python readiness validation, and compiler tests passed. GitHub Actions remains pending until user push.

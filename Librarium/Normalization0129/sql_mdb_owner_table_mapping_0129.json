@@ -1,0 +1,134 @@
+{
+  "codeUpdate": "0129",
+  "mappingPolicy": "Gameplay families imported into Librarium object records; supporting raw tables remain evidence until decoded or intentionally excluded.",
+  "ownerTables": [
+    {
+      "classification": "imported_gameplay_family",
+      "mappedFamily": "rooms",
+      "ownerTablePage": 1664,
+      "rowCount": 26666,
+      "sampleStrings": [
+        "Town Gates",
+        "1/3",
+        "1/100",
+        "1/1381 (Door)",
+        "1/1010",
+        "Mountain Stair",
+        "2/20",
+        "10/16R",
+        "Mossy Cave, Waterfall",
+        "3/20"
+      ]
+    },
+    {
+      "classification": "imported_gameplay_family",
+      "mappedFamily": "items",
+      "ownerTablePage": 22,
+      "rowCount": 2017,
+      "sampleStrings": [
+        "scroll of shockshield",
+        "Shop #9",
+        "scroll of prot. from evil",
+        "Shop #32",
+        "scroll of prot. from good",
+        "Shop #44, Shop #80",
+        "scroll of cure blindness",
+        "scroll of blight",
+        "Shop #44",
+        "scroll of poison bolt"
+      ]
+    },
+    {
+      "classification": "imported_gameplay_family",
+      "mappedFamily": "spells",
+      "ownerTablePage": 2650,
+      "rowCount": 1458,
+      "sampleStrings": [
+        "hold person",
+        "hold",
+        "Item #326",
+        "Monster #128, Monster #143, Monster #144, Monster #214, Monster #335, Monster #368, Monster #383, Monster #417, Monster #428, Monster #577, Monster #585, Monster #604, Monster #770, Monster #906, Monster #972, Monster #787, Monster #893",
+        "(*)",
+        "divine disfavour",
+        "disf",
+        "Item #195",
+        "mute",
+        "Item #376"
+      ]
+    },
+    {
+      "classification": "imported_gameplay_family",
+      "mappedFamily": "npcs",
+      "ownerTablePage": 322,
+      "rowCount": 1126,
+      "sampleStrings": [
+        "giant rat",
+        "bites you",
+        "None",
+        "Unknown",
+        "NoneB2",
+        "333333",
+        "@333333",
+        "lashworm",
+        "darts forward and bites you",
+        "filthbug"
+      ]
+    },
+    {
+      "classification": "imported_gameplay_family",
+      "mappedFamily": "shops",
+      "ownerTablePage": 2566,
+      "rowCount": 178,
+      "sampleStrings": [
+        "Leave this blank",
+        "Room 1/315, Room 1/391, Room 1/392, Room 6/565, Room 1/1356, Room 1/1807, Room 2/2550, Room 2/2551, Room 2/2564, Room 2/2569>",
+        "General Store",
+        "Room 1/334",
+        "Temple",
+        "Room 1/2190",
+        "Sword Shop",
+        "Room 1/355",
+        "Armour Shop, Torso/Legs",
+        "Room 1/306"
+      ]
+    },
+    {
+      "classification": "imported_gameplay_family",
+      "mappedFamily": "classes",
+      "ownerTablePage": 15,
+      "rowCount": 15,
+      "sampleStrings": [
+        "Warrior",
+        "Witchunter",
+        "Paladin",
+        "Cleric~",
+        "Priest~",
+        "Missionary",
+        "Ninja}",
+        "Thief}",
+        "Bard|",
+        "Gypsy}"
+      ]
+    },
+    {
+      "classification": "imported_gameplay_family",
+      "mappedFamily": "races",
+      "ownerTablePage": 1660,
+      "rowCount": 13,
+      "sampleStrings": [
+        "Human",
+        "Dwarf",
+        "Gnome",
+        "Halfling",
+        "Elf",
+        "Half-Elf",
+        "Dark-Elf",
+        "Half-Orc",
+        "Goblin",
+        "Half-Ogre"
+      ]
+    }
+  ],
+  "ownerTablesFound": 7,
+  "title": "SQL/MDB Owner Table Mapping"
+}

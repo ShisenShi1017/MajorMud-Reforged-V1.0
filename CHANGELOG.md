@@ -751,3 +751,13 @@ Completed Librarium object model foundation and current evidence-corpus populati
 ## CodeUpdate 0124 - Librarium Enrichment Pass 1
 
 Enriched populated Librarium records with evidence summary, runtime/generator mapping, validation rules, override policy, and version metadata. Runtime unchanged. ImportedDatabases retained. /Data remains generated-only.
+
+## CodeUpdate 0129 - Librarium Normalization & Verification
+
+- Redid 0129 as a real audit pass instead of a broad placeholder population step.
+- Verified seven SQL/MDB imported families against CodeUpdate0128 metrics.
+- Indexed 31,473 SQL/MDB Librarium records and 42,306 total Librarium record IDs.
+- Indexed 66,296 relationship edges and reported unresolved edges for follow-up semantic decoding.
+- Verified evidence/confidence/runtime mapping metadata coverage for imported SQL/MDB records.
+- Added reports under `Librarium/Normalization0129/` and `Reports/CodeUpdate0129/`.
+- Runtime gameplay code unchanged.

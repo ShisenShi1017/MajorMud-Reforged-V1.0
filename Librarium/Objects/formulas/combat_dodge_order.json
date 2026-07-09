@@ -8,9 +8,13 @@
     "custom",
     "ai"
   ],
-  "librarium_status": "open_conflict",
+  "librarium_status": "verified_dll_resolved",
   "sources": [
+    "OriginalRuntimeDLLObservation",
+    "SQLPhase4CombatPort",
     "NightmareRedux",
+    "MMUD-Explorer",
+    "MBBSEmu",
     "MajorMUD-PHP-Monster-Sim"
   ],
   "source_priority": [
@@ -20,19 +24,46 @@
     "MMUD-Explorer",
     "MajorMUD-PHP-Monster-Sim"
   ],
-  "definition": "See linked evidence and conflict records; runtime implementation not changed in CodeUpdate0119.",
-  "inputs": [],
-  "outputs": [],
-  "runtime_binding": null,
+  "definition": "Dodge is evaluated after hit chance succeeds and after damage roll plus DR are computed. A successful dodge sets damage to 0 and returns dodged outcome. Dodge is not parallel with AC and does not replace the hit chance gate.",
+  "inputs": [
+    "attacker.AV",
+    "defender.dodge_bn",
+    "attack_type"
+  ],
+  "outputs": [
+    "dodge_chance",
+    "dodged_outcome"
+  ],
+  "runtime_binding": "Reforged.Server generated-data combat loader contract; gameplay implementation pending runtime integration",
   "tests": {
-    "status": "pending_or_existing_no_runtime_static_only"
+    "status": "server_classic_smoke_pending_dotnet_sdk",
+    "required": "Codex dotnet build/test plus classic combat scenario tests"
   },
   "runtime_export": {
     "exports_to_data": true,
-    "status": "definition_record_created"
+    "path": "Data/<world>/formulas.json",
+    "status": "verified_definition_ready_for_runtime"
   },
   "client_visibility": "read_only_world_scoped",
   "evidence_refs": [
-    "ImportedDatabases retained for full traceability"
-  ]
+    {
+      "id": "evidence.dll.calculate_attack.0130",
+      "source_type": "dll_reverse_engineered_sql_port_note",
+      "title": "Combat Resolution & Defense Order",
+      "path": "Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+      "librarium_path": "Librarium/Evidence/Combat/DLLCombatResolutionOrder_0130.md",
+      "sha256": "42cc3bd7501c0bb76b7bf82a94daaaef64847eb12e02a12bb513be1730b0619b",
+      "dll_functions": [
+        "wccmmud.dll calculate_attack @0x0042b800",
+        "attack_user_monster @0x0042cfab",
+        "cmd_backstab @0x0045156f"
+      ],
+      "sql_port": "sql/phase4_combat-BBS.sql calculate_attack(...) suggested by uploaded evidence",
+      "authoritative_weight": "original_runtime_dll_derived",
+      "code_update": "0130"
+    }
+  ],
+  "conflict_status": "resolved",
+  "resolved_in_code_update": "0130",
+  "sequence_index": 8
 }

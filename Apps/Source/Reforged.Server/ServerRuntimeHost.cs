@@ -25,6 +25,25 @@ public sealed class ServerRuntimeHost
     public RuntimeStateStore State => _state;
     public RuntimeEventDispatcher Events => _events;
 
+    public GeneratedWorldSmokeReport CreateSmokeReport()
+    {
+        return new GeneratedWorldSmokeReport
+        {
+            WorldCount = _worlds.Count,
+            Worlds = _worlds.Values.Select(world => new GeneratedWorldSmokeWorld
+            {
+                Id = world.Definition.Id,
+                Name = world.Definition.Name,
+                Type = world.Definition.Type,
+                RoomCount = world.RoomCount,
+                DataRoot = world.DataCatalog.DataRoot,
+                FamilyCount = world.DataCatalog.Families.Count,
+                TotalGeneratedRecords = world.DataCatalog.Families.Values.Sum(family => Math.Max(0, family.RecordCount)),
+                Diagnostics = world.DataCatalog.Diagnostics.ToArray()
+            }).ToArray()
+        };
+    }
+
     public void Bootstrap()
     {
         foreach (var worldDefinition in _options.Worlds.Where(world => world.RuntimeEnabled))
@@ -33,7 +52,7 @@ public sealed class ServerRuntimeHost
             var world = _worldLoader.Load(_projectRoot, worldDefinition);
             _worlds[worldDefinition.Id] = world;
             _state.EnsureWorld(world);
-            _events.Publish("world", "loaded", world.Definition.Id, null, null, $"rooms={world.RoomCount}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}");
+            _events.Publish("world", "loaded", world.Definition.Id, null, null, $"rooms={world.RoomCount}; generatedFamilies={world.DataCatalog.Families.Count}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}");
         }
 
         if (_worlds.Count == 0)
