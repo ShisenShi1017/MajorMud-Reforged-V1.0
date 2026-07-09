@@ -4,16 +4,24 @@ public sealed class RuntimeCommandDispatcher
 {
     private readonly Func<IReadOnlyDictionary<string, RuntimeWorld>> _worldProvider;
     private readonly RuntimeSessionManager? _sessions;
+    private readonly RuntimeStateStore? _state;
+    private readonly RuntimeEventDispatcher? _events;
 
     public RuntimeCommandDispatcher()
-        : this(() => new Dictionary<string, RuntimeWorld>(StringComparer.OrdinalIgnoreCase), null)
+        : this(() => new Dictionary<string, RuntimeWorld>(StringComparer.OrdinalIgnoreCase), null, null, null)
     {
     }
 
-    public RuntimeCommandDispatcher(Func<IReadOnlyDictionary<string, RuntimeWorld>> worldProvider, RuntimeSessionManager? sessions)
+    public RuntimeCommandDispatcher(
+        Func<IReadOnlyDictionary<string, RuntimeWorld>> worldProvider,
+        RuntimeSessionManager? sessions,
+        RuntimeStateStore? state,
+        RuntimeEventDispatcher? events)
     {
         _worldProvider = worldProvider;
         _sessions = sessions;
+        _state = state;
+        _events = events;
     }
 
     public string Dispatch(RuntimeSession session, string input)
@@ -27,10 +35,22 @@ public sealed class RuntimeCommandDispatcher
 
         if (command.IsMovement)
         {
-            session.TryMove(command.Name, out var movementResult);
+            var previousRoom = session.CurrentRoom;
+            var moved = session.TryMove(command.Name, out var movementResult);
+            if (moved)
+            {
+                _state?.UpdateSessionLocation(session);
+                _events?.Publish("movement", "completed", session.World.Definition.Id, session.Id, session.CharacterId, $"{previousRoom.Id}->{session.CurrentRoom.Id}");
+            }
+            else
+            {
+                _events?.Publish("movement", "blocked", session.World.Definition.Id, session.Id, session.CharacterId, movementResult);
+            }
+
             return movementResult;
         }
 
+        _events?.Publish("command", "received", session.World.Definition.Id, session.Id, session.CharacterId, command.Name);
         return command.Name switch
         {
             "look" or "l" => RoomRenderer.Render(session.CurrentRoom),
@@ -38,7 +58,9 @@ public sealed class RuntimeCommandDispatcher
             "world" => RenderWorld(session.World),
             "worlds" => RenderWorlds(),
             "sessions" => _sessions?.RenderStatus() ?? "Session manager is not attached.",
-            "help" => "Commands: look, where, world, worlds, sessions, north/south/east/west or n/s/e/w, quit",
+            "state" => _state?.RenderStatus() ?? "Runtime state store is not attached.",
+            "events" => _events?.RenderStatus() ?? "Runtime event dispatcher is not attached.",
+            "help" => "Commands: look, where, world, worlds, sessions, state, events, north/south/east/west or n/s/e/w, quit",
             _ => $"Unknown command '{command.Name}'. Type 'help' for available runtime commands."
         };
     }

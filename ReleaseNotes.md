@@ -1,3 +1,19 @@
+# CodeUpdate-0115 - Runtime State and Event Dispatcher Foundation
+
+This update starts Runtime Milestone 2 with a host-owned state and event backbone.
+
+Highlights:
+
+- Adds `RuntimeStateStore` for loaded worlds, sessions, and character shell state.
+- Adds `RuntimeEventDispatcher` for world/session/command/movement events.
+- Adds runtime inspection commands `state` and `events`.
+- Records Host Vision V1 in `Docs/Architecture/HOST_VISION_V1.md`.
+- Adds smoke coverage for state/event tracking.
+
+Known limitation:
+
+- This is a foundation slice. Combat, magic, NPC AI, spawns, quests, dialogue, scripts, guilds, economy integration, durable account saves, cluster runtime, maintenance mode, dashboard, formula changes, and imported/reference deletion remain future gated work.
+
 # CodeUpdate-0114 - Runtime Milestone 1
 
 This update applies the Runtime Milestone 1 server payload and restores GitHub Actions build automation for server pushes.

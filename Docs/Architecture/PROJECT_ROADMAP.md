@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0114`
+- Current Code Update: `0115`
 - Current Database Version: `0010`
-- Current Milestone: `Runtime Milestone 1`
+- Current Milestone: `Runtime Milestone 2 - State and Event Dispatcher Foundation`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0114, verify GitHub Actions green by user report, then approve one narrow Runtime Milestone 2 server slice focused on account/character/session persistence before combat runtime.
+- Current priority: push CodeUpdate-0115, verify GitHub Actions green by user report, then approve one narrow Runtime Milestone 2 slice built on the host-owned state/event backbone.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -174,6 +174,19 @@ CodeUpdate-0064 adds guarded scheduler/status command diagnostics to Server boot
 
 CodeUpdate-0065 repairs canonical room/world data directly from `ImportedDatabases/data-v1.11n.mdb`. It adds `Data/StockGameRaw/MMExplorerMDB/`, adds `Tools/MDBExtractor/promote_mdb_rooms.py`, promotes rooms `wcc_map1_room2150` and `wcc_map1_room2156`, and raises canonical/world room count to `1248`. It promotes only direct MDB-backed fields and keeps undecoded byte fields, formulas, runtime behavior, gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, and live editor behavior out of scope.
 
+## CodeUpdate-0115 - Runtime State and Event Dispatcher Foundation
+
+CodeUpdate-0115 starts Runtime Milestone 2 with the host-owned runtime state and event dispatcher backbone required by later combat, magic, NPC AI, spawn, quest, dialogue, script, guild, and economy systems.
+
+Implemented foundation:
+
+- `RuntimeStateStore` tracks loaded worlds, active/disconnected sessions, and character shell state.
+- `RuntimeEventDispatcher` records runtime events for world load, session start/end, command receipt, movement completion, and movement blocking.
+- Runtime commands `state` and `events` expose the current host-owned state/event surface for inspection.
+- Smoke coverage verifies that state and events update when a session connects, moves, inspects state/events, and disconnects.
+- `Docs/Architecture/HOST_VISION_V1.md` records the approved multi-world host vision, including Classic, Reforged Custom, Pure AI, test realms, publishing, import wizard, world identity, transfer rules, reset system, permissions, networking, scripting boundaries, future cluster support, maintenance mode, and world health dashboard.
+
+Boundaries: no combat, magic, NPC AI, spawn logic, quests, dialogue, scripts, guilds, economy integration, durable account save files, cluster runtime, maintenance mode, dashboard, formula changes, or imported/reference deletion.
 ## CodeUpdate-0114 - Runtime Milestone 1
 
 CodeUpdate-0114 applies the Runtime Milestone 1 server payload. It adds opt-in Classic-first local console runtime, opt-in telnet/network hosting, multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, scheduler shell, `Config/server.worlds.json`, Codespaces support, and restored GitHub Actions server build automation.

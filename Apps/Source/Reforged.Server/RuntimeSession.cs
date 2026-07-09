@@ -7,6 +7,7 @@ public sealed class RuntimeSession
         Id = id;
         World = world;
         PlayerName = string.IsNullOrWhiteSpace(playerName) ? id : playerName.Trim();
+        CharacterId = CreateCharacterId(World.Definition.Id, PlayerName);
         CurrentRoom = world.GetStartRoom();
         ConnectedAtUtc = DateTimeOffset.UtcNow;
         LastCommandAtUtc = ConnectedAtUtc;
@@ -14,6 +15,7 @@ public sealed class RuntimeSession
 
     public string Id { get; }
     public string PlayerName { get; }
+    public string CharacterId { get; private set; }
     public RuntimeWorld World { get; private set; }
     public RuntimeRoom CurrentRoom { get; private set; }
     public DateTimeOffset ConnectedAtUtc { get; }
@@ -27,6 +29,7 @@ public sealed class RuntimeSession
     public void MoveToWorld(RuntimeWorld world)
     {
         World = world;
+        CharacterId = CreateCharacterId(World.Definition.Id, PlayerName);
         CurrentRoom = world.GetStartRoom();
         Touch();
     }
@@ -70,6 +73,18 @@ public sealed class RuntimeSession
             "DOWN" => "D",
             _ => direction.Trim().ToUpperInvariant()
         };
+    }
+
+    private static string CreateCharacterId(string worldId, string playerName)
+    {
+        var safeName = new string(playerName
+            .Trim()
+            .ToLowerInvariant()
+            .Select(character => char.IsLetterOrDigit(character) ? character : '-')
+            .ToArray())
+            .Trim('-');
+
+        return $"{worldId}:{(safeName.Length == 0 ? "player" : safeName)}";
     }
 }
 

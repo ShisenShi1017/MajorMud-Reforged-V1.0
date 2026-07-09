@@ -126,14 +126,15 @@ Every ChatGPT-created Code Update ZIP must:
 
 `DEVELOPMENT_PRINCIPLES.md` defines the long-term engineering standards for Reforged. Read it when making architecture, runtime, or code quality decisions.
 
-## 10. Current project position after CodeUpdate-0114
+## 10. Current project position after CodeUpdate-0115
 
-- Current Code Update: `0114`
+- Current Code Update: `0115`
 - Current Database Version: `0010`
-- Current Milestone: `Runtime Milestone 1`
+- Current Milestone: `Runtime Milestone 2 - State and Event Dispatcher Foundation`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0114, verify GitHub Actions green by user report, then approve one narrow Runtime Milestone 2 server slice focused on accounts/characters/session persistence before combat runtime.
+- Current priority: push CodeUpdate-0115, verify GitHub Actions green by user report, then approve one narrow Runtime Milestone 2 server slice built on the state/event backbone.
 
+CodeUpdate-0115 starts Runtime Milestone 2 with host-owned runtime state and a generic runtime event dispatcher. It adds `RuntimeStateStore`, `RuntimeEventDispatcher`, `state` and `events` runtime inspection commands, smoke coverage for state/event tracking, and `Docs/Architecture/HOST_VISION_V1.md`. Vision1 records the approved multi-world host direction: Classic, Reforged Custom, Pure AI, test realms, publishing, import wizard, world identity, transfer rules, reset system, permissions, networking, scripting boundaries, future cluster support, maintenance mode, and world health dashboard. CodeUpdate-0115 does not add combat, magic, NPC AI, spawn logic, quests, dialogue, scripts, guilds, economy integration, durable account saves, cluster runtime, maintenance mode, dashboard, formula changes, or imported/reference deletion.
 CodeUpdate-0114 applies Runtime Milestone 1 server files. It adds opt-in Classic-first local console runtime, opt-in telnet/network hosting, multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, scheduler shell, `Config/server.worlds.json`, Codespaces support, and restored GitHub Actions server build automation. `.github/workflows/dotnet-server.yml` now runs on every branch push, every pull request, and manual dispatch. Local .NET 8.0.422 server restore/build/bootstrap verification passed; GitHub Actions remains pending until the user pushes and reports green. It does not add combat runtime, persistent accounts/characters, saves, AI worlds, custom worlds, formula changes, imported/reference deletion, or non-Classic gameplay expansion.
 CodeUpdate-0031A is a corrective build-fix patch for CodeUpdate-0031. It fixes invalid C# string escaping in `Tests/Source/Reforged.Core.Tests/Program.cs`. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed. It does not add gameplay features, networking, combat, character creation, or world simulation.
 

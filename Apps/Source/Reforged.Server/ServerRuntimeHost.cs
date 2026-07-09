@@ -6,7 +6,9 @@ public sealed class ServerRuntimeHost
     private readonly ServerRuntimeOptions _options;
     private readonly RuntimeWorldLoader _worldLoader = new();
     private readonly Dictionary<string, RuntimeWorld> _worlds = new(StringComparer.OrdinalIgnoreCase);
-    private readonly RuntimeSessionManager _sessions = new();
+    private readonly RuntimeStateStore _state = new();
+    private readonly RuntimeEventDispatcher _events = new();
+    private readonly RuntimeSessionManager _sessions;
     private readonly ServerTickScheduler _scheduler = new();
     private RuntimeCommandDispatcher _commands;
 
@@ -14,11 +16,14 @@ public sealed class ServerRuntimeHost
     {
         _projectRoot = projectRoot;
         _options = options;
-        _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions);
+        _sessions = new RuntimeSessionManager(_state, _events);
+        _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions, _state, _events);
     }
 
     public IReadOnlyDictionary<string, RuntimeWorld> Worlds => _worlds;
     public RuntimeSessionManager Sessions => _sessions;
+    public RuntimeStateStore State => _state;
+    public RuntimeEventDispatcher Events => _events;
 
     public void Bootstrap()
     {
@@ -27,6 +32,8 @@ public sealed class ServerRuntimeHost
             EnforceClassicBoundaries(worldDefinition);
             var world = _worldLoader.Load(_projectRoot, worldDefinition);
             _worlds[worldDefinition.Id] = world;
+            _state.EnsureWorld(world);
+            _events.Publish("world", "loaded", world.Definition.Id, null, null, $"rooms={world.RoomCount}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}");
         }
 
         if (_worlds.Count == 0)
@@ -47,6 +54,7 @@ public sealed class ServerRuntimeHost
 
         var session = new RuntimeSession("local-console", world, "LocalConsole");
         _sessions.TryAdd(session, int.MaxValue, out _);
+        _events.Publish("runtime", "local-console-started", world.Definition.Id, session.Id, session.CharacterId, "host=authoritative");
         Console.WriteLine(_options.HostName);
         Console.WriteLine($"World: {world.Definition.Name} [{world.Definition.Type}] rules={world.Definition.RulesProfile} ai={world.Definition.AiMode}");
         Console.WriteLine("Local console session. Host is authoritative. Type 'help' or 'quit'.");

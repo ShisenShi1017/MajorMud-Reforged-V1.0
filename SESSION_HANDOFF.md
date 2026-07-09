@@ -1,4 +1,27 @@
-# Session Handoff - CodeUpdate 0113 Server Runtime Bootstrap
+# Session Handoff - CodeUpdate 0115 Runtime State and Event Dispatcher Foundation
+
+## Current Handoff
+
+CodeUpdate 0115 starts Runtime Milestone 2. It adds host-owned runtime state, a generic runtime event dispatcher, `state` and `events` inspection commands, and Host Vision V1 documentation.
+
+Completed:
+
+- `RuntimeStateStore` tracks loaded worlds, session state, and character shell state.
+- `RuntimeEventDispatcher` records runtime events for world load, session start/end, command receipt, movement completion, and movement blocking.
+- `RuntimeCommandDispatcher` exposes `state` and `events`.
+- Smoke coverage verifies state/event updates across session start, movement, inspection, and disconnect.
+- `Docs/Architecture/HOST_VISION_V1.md` records the approved multi-world Host direction.
+
+Boundaries:
+
+- No combat, magic, NPC AI, spawn logic, quests, dialogue, scripts, guilds, economy integration, durable account saves, clusters, maintenance mode, dashboard, formula changes, or imported/reference deletion.
+
+Next recommended slice after GitHub Actions green:
+
+1. Durable account/character persistence contracts, or
+2. Spawn/event scheduling foundation using the 0115 state/event backbone.
+
+# Previous Handoff - CodeUpdate 0113 Server Runtime Bootstrap
 
 ## Baseline
 

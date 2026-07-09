@@ -1,9 +1,9 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0114",
+  "codeUpdate": "0115",
   "databaseVersion": "0010",
-  "milestone": "Runtime Milestone 1",
+  "milestone": "Runtime Milestone 2 - State and Event Dispatcher Foundation",
   "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Generated graph/index/database artifacts are local generated outputs and ignored by Git.",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
   "updatePolicy": "Cumulative replacement packages are self-contained. User may delete old local folder and extract the latest normalized ZIP. Generated graphs/indexes/databases must be rebuilt locally and not committed.",
@@ -17,22 +17,22 @@
     "ImportedDatabases"
   ],
   "developmentStatus": {
-    "currentMilestone": "Runtime Milestone 1",
-    "currentCodeUpdate": "0114",
+    "currentMilestone": "Runtime Milestone 2 - State and Event Dispatcher Foundation",
+    "currentCodeUpdate": "0115",
     "currentDatabaseVersion": "0010",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "Runtime Milestone 1 applied locally: Classic-first runtime host, opt-in local console, opt-in telnet/network host, multi-session tracking, world selection foundation, and restored GitHub Actions workflow. Gameplay expansion remains constrained and data-driven.",
-    "lastUpdateName": "CodeUpdate-0114-RuntimeMilestone1",
+    "milestone2Status": "Runtime Milestone 2 started with host-owned runtime state and a generic runtime event dispatcher. Combat, magic, NPC AI, spawns, quests, dialogue, scripts, guilds, and economy remain future gated slices.",
+    "lastUpdateName": "CodeUpdate-0115-RuntimeStateAndEventDispatcherFoundation",
     "nextRecommendedWork": [
       "Treat Librarium as the canonical source of truth.",
       "Treat /Data and /Generated as generated runtime outputs, not hand-edited canonical sources.",
       "Keep ProjectManifest.json compatibility fields for existing GitHub Actions and bootstrap tests.",
       "Use LibrariumManifest.json for Librarium-specific metadata, graph policy, generated-output policy, and consumer contracts.",
-      "Verify CodeUpdate-0114 in GitHub Actions after user push.",
-      "Continue runtime work with a narrow Runtime Milestone 2 scope: persistent accounts/characters, real login flow, save slots, and character/world session state before combat runtime."
+      "Verify CodeUpdate-0115 in GitHub Actions after user push.",
+      "Continue Runtime Milestone 2 with one narrow gated slice, preferably durable account/character persistence or spawn/event scheduling built on the 0115 state/event backbone."
     ]
   },
   "handoffPolicy": {
@@ -59,12 +59,14 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0114 restored server runtime build automation and passed local .NET 8.0.422 server restore, Release build, server bootstrap diagnostics, Core test restore/build, and Core/server smoke tests. GitHub Actions remains the official gate after user push.",
-  "current_codeupdate": "0114",
-  "last_update": "Runtime Milestone 1",
+  "buildVerification": "CodeUpdate-0115 added host-owned runtime state and a generic runtime event dispatcher. Local .NET 8.0.422 server build, Core/server smoke verification, and --run-local state/events command verification passed. GitHub Actions remains the official gate after user push.",
+  "current_codeupdate": "0115",
+  "last_update": "Runtime State and Event Dispatcher Foundation",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
-    "GitHub Actions server workflow"
+    "GitHub Actions server workflow",
+    "Runtime state foundation",
+    "Runtime event dispatcher foundation"
   ],
   "gitIgnorePolicy": "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
   "lastNormalizedAt": "2026-07-09T01:13:35Z"

@@ -45,6 +45,12 @@ This replacement repository was generated from the uploaded repo `MajorMud-Refor
 
 ## Current Runtime Status
 
+CodeUpdate 0115 starts Runtime Milestone 2 with host-owned runtime state and a generic runtime event dispatcher. The server now tracks loaded world state, session state, and character shell state, and publishes runtime events for world load, session start/end, command receipt, and movement outcomes. Runtime inspection commands `state` and `events` expose this backbone.
+
+`Docs/Architecture/HOST_VISION_V1.md` records the approved multi-world Host vision: Classic, Reforged Custom, Pure AI, test realms, publishing, import wizard, world identity, transfer rules, reset system, permissions, networking, scripting boundaries, and future cluster/maintenance/dashboard direction.
+
+CodeUpdate 0115 does not add combat, magic, NPC AI, spawn logic, quests, dialogue, scripts, guilds, economy integration, durable account saves, formula changes, or non-Classic gameplay expansion.
+
 CodeUpdate 0114 applies Runtime Milestone 1. The server now has an opt-in Classic-first runtime path with local console mode, telnet/network mode, multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, and scheduler shell.
 
 GitHub Actions server build automation has been restored under `.github/workflows/dotnet-server.yml` and is configured to run on every branch push, every pull request, and manual dispatch. The official gate remains GitHub Actions after the user pushes local changes.

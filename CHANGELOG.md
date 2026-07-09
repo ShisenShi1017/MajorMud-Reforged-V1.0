@@ -1,5 +1,15 @@
 # Changelog
 
+## CodeUpdate-0115 - Runtime State and Event Dispatcher Foundation
+
+- Recorded the approved Host Vision V1 multi-world direction under `Docs/Architecture/HOST_VISION_V1.md`.
+- Added `RuntimeStateStore` for host-owned world, session, and character shell state.
+- Added `RuntimeEventDispatcher` for generic runtime event publication and inspection.
+- Published runtime events for world load, session start/end, command receipt, movement completion, and movement blocking.
+- Added runtime inspection commands `state` and `events`.
+- Added smoke coverage proving host-owned state and event records update during session start, movement, inspection, and disconnect.
+- No combat, magic, NPC AI, spawn logic, quests, dialogue, scripts, guilds, economy integration, durable account saves, cluster runtime, maintenance mode, dashboard, formula changes, or imported/reference deletion is included.
+
 ## CodeUpdate-0114 - Runtime Milestone 1
 
 - Applied the user-provided Runtime Milestone 1 server payload to the local repository.

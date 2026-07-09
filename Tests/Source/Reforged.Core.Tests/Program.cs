@@ -23,6 +23,7 @@ var tests = new List<(string Name, Action Body)>
     ("server host lifecycle reports runtime-disabled readiness", ServerHostLifecycleAuditSmoke),
     ("server scheduler bootstrap keeps channels disabled", ServerSchedulerBootstrapAuditSmoke),
     ("server scheduler status commands stay guarded", ServerSchedulerStatusCommandAuditSmoke),
+    ("server runtime state and event dispatcher track host-owned changes", ServerRuntimeStateAndEventsSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
 };
 
@@ -588,6 +589,59 @@ void ServerSchedulerStatusCommandAuditSmoke()
         {
             throw new InvalidOperationException($"Scheduler status command audit did not expose expected guarded command: {requiredCommand}");
         }
+    }
+}
+
+void ServerRuntimeStateAndEventsSmoke()
+{
+    var options = ServerRuntimeOptions.Load(root);
+    var host = new ServerRuntimeHost(root, options);
+    host.Bootstrap();
+
+    if (host.State.Worlds.Count != 1 ||
+        host.State.Worlds.First().WorldId != "classic" ||
+        host.Events.EventCount == 0 ||
+        !host.Events.Events.Any(item => item.Category == "world" && item.Name == "loaded"))
+    {
+        throw new InvalidOperationException("Runtime host did not publish world-loaded state/event records.");
+    }
+
+    var world = host.Worlds["classic"];
+    var session = new RuntimeSession("smoke-session", world, "Smoke Tester");
+    if (!host.Sessions.TryAdd(session, 4, out var addMessage) || addMessage != "accepted")
+    {
+        throw new InvalidOperationException($"Runtime session was not accepted: {addMessage}");
+    }
+
+    var dispatcher = new RuntimeCommandDispatcher(() => host.Worlds, host.Sessions, host.State, host.Events);
+    var where = dispatcher.Dispatch(session, "where");
+    if (!where.Contains("World=classic", StringComparison.Ordinal) ||
+        !where.Contains("Room=wcc_map1_room1", StringComparison.Ordinal))
+    {
+        throw new InvalidOperationException("Runtime command dispatcher did not report the expected starting location.");
+    }
+
+    var move = dispatcher.Dispatch(session, "west");
+    if (!move.Contains("Silver", StringComparison.OrdinalIgnoreCase) ||
+        host.State.Characters.First(character => character.CharacterId == session.CharacterId).RoomNumber == 1)
+    {
+        throw new InvalidOperationException("Runtime movement did not update host-owned character state.");
+    }
+
+    var state = dispatcher.Dispatch(session, "state");
+    var events = dispatcher.Dispatch(session, "events");
+    if (!state.Contains("Worlds=1", StringComparison.Ordinal) ||
+        !state.Contains("Sessions=1", StringComparison.Ordinal) ||
+        !state.Contains("Characters=1", StringComparison.Ordinal) ||
+        !events.Contains("movement.completed", StringComparison.Ordinal))
+    {
+        throw new InvalidOperationException("Runtime state/events inspection commands did not expose expected host-owned records.");
+    }
+
+    if (!host.Sessions.Remove(session.Id) ||
+        !host.Events.Events.Any(item => item.Category == "session" && item.Name == "ended"))
+    {
+        throw new InvalidOperationException("Runtime session removal did not publish session-ended event.");
     }
 }
 

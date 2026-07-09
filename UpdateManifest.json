@@ -1,8 +1,8 @@
 {
-  "codeUpdate": "0114",
-  "name": "CodeUpdate-0114-RuntimeMilestone1",
+  "codeUpdate": "0115",
+  "name": "CodeUpdate-0115-RuntimeStateAndEventDispatcherFoundation",
   "packageType": "local-repository-update",
-  "purpose": "Apply Runtime Milestone 1 server files, restore GitHub Actions server build automation, and verify local server build/bootstrap readiness.",
+  "purpose": "Start Runtime Milestone 2 with host-owned runtime state, generic runtime event dispatching, and Host Vision V1 documentation.",
   "addsGameplayFeatures": false,
   "addsImplementationCode": true,
   "addsTooling": true,
@@ -11,13 +11,14 @@
   "gitHubPushCreatedByCodex": false,
   "milestone1Status": "Frozen",
   "milestone2Status": "Continuing with constrained modular server construction and reviewed data-repair work before gameplay systems.",
-  "verificationStatus": "LOCAL_PASS; server restore/build/bootstrap plus Core test restore/build/smoke tests passed locally. GitHub Actions remains pending until user push.",
+  "verificationStatus": "LOCAL_PASS; server build, Core/server smoke tests, and --run-local state/events command verification passed locally. GitHub Actions remains pending until user push.",
   "filesChanged": [
     ".devcontainer/devcontainer.json",
     ".github/workflows/dotnet-server.yml",
     "Apps/Source/Reforged.Server/",
     "Config/server.worlds.json",
     "Docs/Runtime/RuntimeMilestone1-Networking.md",
+    "Docs/Architecture/HOST_VISION_V1.md",
     "Reports/RuntimeMilestone1-ImplementationReport.md",
     "ProjectManifest.json",
     "UpdateManifest.json",
@@ -168,7 +169,7 @@
   ],
   "referenceDataPolicy": "MMExplorer MDB data in ImportedDatabases/data-v1.11n.mdb is approved for reviewed canonical repair where fields map directly. Unknown byte fields, formulas, timing, and runtime behavior still require decoding/proof before promotion.",
   "dataDrivenLogicPolicy": "Game logic is data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-internal.",
-  "recommendedNextUpdate": "After user push and green GitHub Actions, continue Runtime Milestone 2 with a narrow account/character/session persistence slice before combat runtime.",
+  "recommendedNextUpdate": "After user push and green GitHub Actions, continue Runtime Milestone 2 with one narrow gated slice built on the 0115 state/event backbone.",
   "recommendedNextScopeRequiresUserApproval": true,
   "mmExplorerMdbRepair": {
     "source": "ImportedDatabases/data-v1.11n.mdb",
@@ -192,11 +193,11 @@
     ],
     "unknownFieldsPolicy": "Undecoded byte fields are not promoted. Unknown exit semantics are represented as exit_type -1 and exitTypeKnown false."
   },
-  "currentCodeUpdate": "0114",
+  "currentCodeUpdate": "0115",
   "codeUpdates": [
     {
-      "id": "0114",
-      "name": "RuntimeMilestone1",
+      "id": "0115",
+      "name": "RuntimeStateAndEventDispatcherFoundation",
       "status": "LOCAL_PASS_PENDING_GITHUB_ACTIONS",
       "runtimeChanges": true,
       "formulaPromotions": 0,
@@ -214,11 +215,13 @@
     "fiveSecondCombatRound": "derived_candidate_mmud_explorer_model",
     "tickClipping": "hypothesis"
   },
-  "current_codeupdate": "0114",
-  "last_update": "Runtime Milestone 1",
+  "current_codeupdate": "0115",
+  "last_update": "Runtime State and Event Dispatcher Foundation",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
-    "GitHub Actions server workflow"
+    "GitHub Actions server workflow",
+    "Runtime state foundation",
+    "Runtime event dispatcher foundation"
   ],
   "normalizationReport": "Reports/CodeUpdate0112_RepositoryNormalization/NORMALIZATION_REPORT_0112_1.md",
   "validationReport": "Validation/RuntimeMilestone1-ValidationPlan.md",
