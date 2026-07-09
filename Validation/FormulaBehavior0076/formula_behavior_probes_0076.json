@@ -1,0 +1,20 @@
+[
+  {
+    "state": "no_flag",
+    "input": "npc_dialogue",
+    "expected_shape": "intro or eligibility text",
+    "assertion": "ordering/conditions unknown"
+  },
+  {
+    "state": "has_start_flag",
+    "input": "turn_in_item",
+    "expected_shape": "grant reward/ability and completion flag if conditions met",
+    "assertion": "exact stages unknown"
+  },
+  {
+    "state": "missing_required_item",
+    "input": "turn_in_attempt",
+    "expected_shape": "failure or reminder text",
+    "assertion": "failure dialogue unknown"
+  }
+]

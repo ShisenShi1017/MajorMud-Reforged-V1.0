@@ -1,0 +1,392 @@
+{
+  "codeupdate": "0073",
+  "title": "Regeneration and Time Behavior Verification",
+  "generated_utc": "2026-07-08T20:19:53.517175+00:00",
+  "candidate_references_considered": 250,
+  "behavior_records_created": 4,
+  "deterministic_probe_count": 4,
+  "verified_promotions": 0,
+  "runtime_formula_replacements": 0,
+  "status": "PASS_WITH_LIMITATIONS",
+  "limitation": "Probes are behavior-shape probes, not Classic-equation proof. No promotion without corroborating runtime/reference evidence.",
+  "records": [
+    {
+      "behavior_id": "FB0073-PERIODIC_TICK_CADENCE",
+      "codeupdate": "0073",
+      "title": "periodic tick cadence",
+      "subsystem": "regen_time",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-ff0ecebee9f0",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 81,
+          "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)"
+        },
+        {
+          "candidate_id": "FR0068-5f98a05bcc3c",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 7,
+          "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)"
+        },
+        {
+          "candidate_id": "FR0068-b55bcc8e4e3f",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 78,
+          "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)"
+        },
+        {
+          "candidate_id": "FR0068-a58ffc77780f",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 2226,
+          "text": "nLocalHealRoundsOOM = CalcRoundsToOOM(nLocalHealCost + nLocalAttackSpellCost + (val(frmMain.lblCharBless.Caption) / 6), _"
+        },
+        {
+          "candidate_id": "FR0068-a1a3fb7bd287",
+          "source": "MMUD Explorer",
+          "path": "modMMudFunc.bas",
+          "line": 1004,
+          "text": "CalculateSpellCast.nOOM = CalcRoundsToOOM(CalculateSpellCast.nManaCost + tCharStats.nSpellOverhead, tCharStats.nMaxMana, tCharStats.nManaRegen, nCastChance, nSpellDuration)"
+        },
+        {
+          "candidate_id": "FR0068-27355789cee3",
+          "source": "MMUD Explorer",
+          "path": "modMMudFunc.bas",
+          "line": 1016,
+          "text": "sAvgRound = sCastLVL & IIf(nSpellDuration > 1, nSpellAvgCast, CalculateSpellCast.nAvgRoundDmg) & \" damage + \" & CalculateSpellCast.nAvgRoundHeals & \" heals\""
+        },
+        {
+          "candidate_id": "FR0068-a0e5442594ad",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 531,
+          "text": "nGlobalAttackHealCost = Round(tHealSpell.nManaCost / nGlobalAttackHealRounds, 2)"
+        },
+        {
+          "candidate_id": "FR0068-86cf0b137c3b",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5496,
+          "text": "nSpellDamage = Round(tSpellcast.nAvgRoundHeals / nManaCost, 1)"
+        },
+        {
+          "candidate_id": "FR0068-81175ec31c97",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 2222,
+          "text": "nLocalHealCost = Round(tHealSpell.nManaCost / nLocalHealRounds, 2)"
+        },
+        {
+          "candidate_id": "FR0068-1df6d267d5d6",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 2288,
+          "text": "lblHealMANAPerRound.Caption = nLocalHealCost & \" mana/rnd\""
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0073-HP_MANA_MOVE_REGENERATION",
+      "codeupdate": "0073",
+      "title": "hp mana move regeneration",
+      "subsystem": "regen_time",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-f5c4b059f83f",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 251,
+          "text": "-UP: Adding healing average and healing/mana colums like there were already for damage"
+        },
+        {
+          "candidate_id": "FR0068-a5dfde16439c",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 3282,
+          "text": "'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \"/round (manual)\", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"
+        },
+        {
+          "candidate_id": "FR0068-25d65a6c8e2c",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 266,
+          "text": "-FIX: Damage column on spell lists will now properly calculate damage for spells that cast 6 times a round"
+        },
+        {
+          "candidate_id": "FR0068-44271bf8cd8f",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 172,
+          "text": "-FIX: Damage column on spell lists will now properly calculate damage for spells that cast 6 times a round"
+        },
+        {
+          "candidate_id": "FR0068-c34a3916b28c",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 254,
+          "text": "-FIX: Damage column on spell lists will now properly calculate damage for spells that cast 6 times a round"
+        },
+        {
+          "candidate_id": "FR0068-acfdc669fb29",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1720,
+          "text": "sAttackAll = AutoAppend(sAttackAll, Round(tmpExpInfo.nAttackTime * 100) & \"%\", \"/\")"
+        },
+        {
+          "candidate_id": "FR0068-87d93a80566c",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1722,
+          "text": "sRecoverAllHP = AutoAppend(sRecoverAllHP, Round(tmpExpInfo.nHitpointRecovery * 100) & \"%\", \"/\")"
+        },
+        {
+          "candidate_id": "FR0068-83865e79e1d7",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 747,
+          "text": "'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"
+        },
+        {
+          "candidate_id": "FR0068-e156eeeef5be",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 1451,
+          "text": "nSpawnChance = nSpawnChance + Round(1 - (1 - (1 / tLairInfo.nMobs)) ^ nMaxRegen, 2)"
+        },
+        {
+          "candidate_id": "FR0068-cecbca6507ac",
+          "source": "MMUD Explorer",
+          "path": "modMMudFunc.bas",
+          "line": 1018,
+          "text": "sAvgRound = sCastLVL & IIf(nSpellDuration > 1, nSpellAvgCast, CalculateSpellCast.nAvgRoundDmg) & \" damage\""
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0073-DURATION_EXPIRATION",
+      "codeupdate": "0073",
+      "title": "duration expiration",
+      "subsystem": "regen_time",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-f127d22c67d5",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 4034,
+          "text": "hpLossPerRound = MaxDbl(0#, dmgPerRoundCore - nDamageThreshold)"
+        },
+        {
+          "candidate_id": "FR0068-6719ee8010cd",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 4052,
+          "text": "hpLossPerLoop = hpLossPerRound * rtcForDamage * nTotalLairs"
+        },
+        {
+          "candidate_id": "FR0068-78c2df338bd0",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 4081,
+          "text": "passiveHP = (nCharHPRegen * passiveCoef * lightHitTrim) * SafeDiv(regenEnvelope, SEC_PER_REGEN_TICK)"
+        },
+        {
+          "candidate_id": "FR0068-91f1f1c550d8",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 4544,
+          "text": "spawnInterval = SafeDiv(nRegenTime * 60#, nTotalLairs)"
+        },
+        {
+          "candidate_id": "FR0068-ea723f8d927e",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 280,
+          "text": "GetLairAveragesFromLocs.nMaxRegen = Round(tmp_nMaxRegen / nLairs, 1)"
+        },
+        {
+          "candidate_id": "FR0068-631833c26727",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 1802,
+          "text": "GetItemShopRegenPCT = Round(GetItemShopRegenPCT, 2)"
+        },
+        {
+          "candidate_id": "FR0068-9d1b72c09fb9",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 4481,
+          "text": "PullSpellEQ = PullSpellEQ & \" times/round\""
+        },
+        {
+          "candidate_id": "FR0068-1c4d798a850e",
+          "source": "MMUD Explorer",
+          "path": "modMMudFunc.bas",
+          "line": 187,
+          "text": "CalcCombatRounds.nRTK = Round(nMobHP / nDamageOut, 2)"
+        },
+        {
+          "candidate_id": "FR0068-474a7e917249",
+          "source": "MMUD Explorer",
+          "path": "modMMudFunc.bas",
+          "line": 193,
+          "text": "If CalcCombatRounds.nRTK >= (nMobHPRegenRounds * 0.9) Then"
+        },
+        {
+          "candidate_id": "FR0068-176ff9bfa5da",
+          "source": "MMUD Explorer",
+          "path": "modMMudFunc.bas",
+          "line": 196,
+          "text": "Do While (CalcCombatRounds.nRTK - (nTest * nMobHPRegenRounds)) / nMobHPRegenRounds >= 0.9"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0073-ONGOING_EFFECT_TICK_ORDER",
+      "codeupdate": "0073",
+      "title": "ongoing effect tick order",
+      "subsystem": "regen_time",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-7b781a15ca3a",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 599,
+          "text": "Call AddToCombatLog(\"[\" & m_sBetweenRoundName(x) & \", between spell tick] for \" & nActiveBetweenSpells_Value(x) _"
+        },
+        {
+          "candidate_id": "FR0068-4def7fc774ec",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 615,
+          "text": "Call AddToCombatLog(\"ROUND \" & nRound & \" / Energy: \" _"
+        },
+        {
+          "candidate_id": "FR0068-5791185b1a5e",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 616,
+          "text": "& nRemainingEnergy & \" + \" & m_nEnergyPerRound & \" = \" & (nRemainingEnergy + m_nEnergyPerRound))"
+        },
+        {
+          "candidate_id": "FR0068-93b6008800c3",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 620,
+          "text": "nRemainingEnergy = nRemainingEnergy + m_nEnergyPerRound"
+        },
+        {
+          "candidate_id": "FR0068-bbf1748d12c5",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1076,
+          "text": "Call AddToCombatLog(\"[\" & m_sBetweenRoundName(x) & \", between spell tick] for \" & nActiveBetweenSpells_Value(x) _"
+        },
+        {
+          "candidate_id": "FR0068-c642cc81dcdd",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1090,
+          "text": "Call AddToCombatLog(\"Damage for round: \" & nRoundDamage, \"Energy Remaining: \" & nRemainingEnergy)"
+        },
+        {
+          "candidate_id": "FR0068-c3b72b5de957",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 36,
+          "text": "-UP: Monster regen time reduced from 1m30s to 30s for [GreaterMUD]"
+        },
+        {
+          "candidate_id": "FR0068-61d87cf94b85",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 293,
+          "text": "-NEW: damage/mana efficiency column"
+        },
+        {
+          "candidate_id": "FR0068-1621d0c93bbc",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 558,
+          "text": "-NEW: Mana & Mana Regen Calculators ++"
+        },
+        {
+          "candidate_id": "FR0068-89e511b86517",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 28,
+          "text": "-UP: NMR import/export will now import to and export carried items from the inventory manager"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    }
+  ],
+  "probes": [
+    {
+      "tick_seconds_candidate": 3,
+      "ticks_per_minute": 20.0,
+      "assertion": "candidate cadence only; Classic tick proof required"
+    },
+    {
+      "tick_seconds_candidate": 5,
+      "ticks_per_minute": 12.0,
+      "assertion": "candidate cadence only; Classic tick proof required"
+    },
+    {
+      "tick_seconds_candidate": 6,
+      "ticks_per_minute": 10.0,
+      "assertion": "candidate cadence only; Classic tick proof required"
+    },
+    {
+      "tick_seconds_candidate": 10,
+      "ticks_per_minute": 6.0,
+      "assertion": "candidate cadence only; Classic tick proof required"
+    }
+  ]
+}

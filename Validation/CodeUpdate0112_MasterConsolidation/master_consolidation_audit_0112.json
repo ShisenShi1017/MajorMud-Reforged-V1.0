@@ -1,0 +1,2150 @@
+{
+  "codeupdate": "0112",
+  "title": "Master Consolidation and Repository Integration Full Audit",
+  "status": "PASS_WITH_WARNINGS",
+  "elapsed_seconds": 20.36,
+  "inventory": {
+    "file_count": 5883,
+    "directory_count": 583,
+    "total_size_bytes": 759668461,
+    "extensions": {
+      ".json": 1964,
+      ".mp": 1957,
+      ".md": 737,
+      ".csv": 394,
+      ".hse": 180,
+      ".cs": 135,
+      ".py": 115,
+      ".html": 94,
+      ".dat": 47,
+      ".sta": 28,
+      ".txt": 23,
+      ".emb": 20,
+      ".ban": 20,
+      ".jpg": 17,
+      ".tsv": 15,
+      ".sto": 14,
+      ".ad": 14,
+      ".log": 8,
+      ".msg": 8,
+      ".h": 8,
+      ".mcv": 8,
+      ".gif": 8,
+      ".csproj": 7,
+      ".bin": 6,
+      ".bat": 5,
+      ".ps1": 4,
+      ".sys": 4,
+      ".doc": 4,
+      ".rel": 4,
+      ".not": 4,
+      ".mdf": 4,
+      ".dll": 4,
+      ".mht": 2,
+      ".ndjson": 2,
+      ".ans": 2,
+      ".lic": 2,
+      ".rln": 2,
+      ".uic": 2,
+      ".exe": 2,
+      ".nu1": 2,
+      ".sh": 1,
+      ".yml": 1,
+      ".mdb": 1,
+      ".sql": 1,
+      ".asm": 1,
+      ".ini": 1,
+      ".sqlite": 1
+    },
+    "top_level_file_counts": {
+      "ImportedDatabases": 3890,
+      "Reports": 196,
+      "DataDecodeCheckpoints": 184,
+      "Docs": 180,
+      "Librarium": 180,
+      "Tools": 167,
+      "Evidence": 153,
+      "Documentation": 145,
+      "Validation": 137,
+      "Core": 123,
+      "Data": 102,
+      "Simulator": 90,
+      "Codex": 65,
+      "Runtime": 49,
+      "Apps": 45,
+      "Sim": 28,
+      "Generated": 23,
+      "Archive": 10,
+      "Bin": 7,
+      "CanonicalPromotion": 5,
+      "Tests": 3,
+      "KnowledgeBase": 3,
+      "Build": 2,
+      "GitHubActions": 2,
+      "Saves": 2,
+      "AGENTS.md": 1,
+      "AI_CONTEXT.md": 1,
+      "CODEX_HANDOFF.md": 1,
+      "DEVELOPMENT_PRINCIPLES.md": 1,
+      "EngineKnowledge.md": 1,
+      "GOVERNING_PRINCIPLES.md": 1,
+      "LibrariumManifest.json": 1,
+      "MIGRATION_REPORT.md": 1,
+      "ProjectManifest.json": 1,
+      "README.md": 1,
+      "README.txt": 1,
+      "ReleaseNotes.md": 1,
+      "UpdateManifest.json": 1,
+      "VALIDATION_REPLACEMENT_REPO.json": 1,
+      "UpdateManifest0067.json": 1,
+      "CHANGELOG_CODEUPDATE_0068.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0068.md": 1,
+      "UpdateManifest0068.json": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0069.md": 1,
+      "CHANGELOG_CODEUPDATE_0069.md": 1,
+      "UpdateManifest0069.json": 1,
+      "CHANGELOG_CODEUPDATE_0070.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0070.md": 1,
+      "manifest_codeupdate_0070.json": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0071_0076.md": 1,
+      "CHANGELOG_CODEUPDATE_0071_0076.md": 1,
+      "manifest_codeupdate_0071_0076.json": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0077.md": 1,
+      "CHANGELOG_CODEUPDATE_0077.md": 1,
+      "manifest_codeupdate_0077.json": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0078.md": 1,
+      "CHANGELOG_CODEUPDATE_0078.md": 1,
+      "manifest_codeupdate_0078.json": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0079.md": 1,
+      "CHANGELOG_CODEUPDATE_0079.md": 1,
+      "manifest_codeupdate_0079.json": 1,
+      "CHANGELOG_CODEUPDATE_0080.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0080.md": 1,
+      "manifest_codeupdate_0080.json": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0081.md": 1,
+      "CHANGELOG_CODEUPDATE_0081.md": 1,
+      "manifest_codeupdate_0081.json": 1,
+      "CHANGELOG_CODEUPDATE_0082.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0082.md": 1,
+      "manifest_codeupdate_0082.json": 1,
+      "CHANGELOG_CODEUPDATE_0083.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0083.md": 1,
+      "CHANGELOG_CODEUPDATE_0084_0087.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0084_0087.md": 1,
+      "manifest_codeupdate_0084_0087.json": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0088.md": 1,
+      "CHANGELOG_CODEUPDATE_0088.md": 1,
+      "manifest_codeupdate_0088.json": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0089_0092.md": 1,
+      "CHANGELOG_CODEUPDATE_0089_0092.md": 1,
+      "manifest_codeupdate_0089_0092.json": 1,
+      "CHANGELOG_CODEUPDATE_0093_0100.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0093_0100.md": 1,
+      "CHANGELOG_CODEUPDATE_0101_COMBAT.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0101_COMBAT.md": 1,
+      "CHANGELOG_CODEUPDATE_0102_MAGIC.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0102_MAGIC.md": 1,
+      "CHANGELOG_CODEUPDATE_0103_PROGRESSION.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md": 1,
+      "CHANGELOG_CODEUPDATE_0104_NPC.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md": 1,
+      "CHANGELOG_CODEUPDATE_0105_WORLD.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0105_WORLD.md": 1,
+      "CHANGELOG_CODEUPDATE_0106_ECONOMY.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0106_ECONOMY.md": 1,
+      "CHANGELOG_CODEUPDATE_0107_QUEST.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0107_QUEST.md": 1,
+      "CHANGELOG_CODEUPDATE_0108_GUILD_SOCIAL.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0108_GUILD_SOCIAL.md": 1,
+      "manifest_codeupdate_0107_quest.json": 1,
+      "CHANGELOG_CODEUPDATE_0109_DIALOGUE_TEXT.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0109_DIALOGUE_TEXT.md": 1,
+      "CHANGELOG_CODEUPDATE_0110_SCRIPTING_EVENTS.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0110_SCRIPTING_EVENTS.md": 1,
+      "manifest_codeupdate_0110_scripting_events.json": 1,
+      "manifest_codeupdate_0111_librarium_distribution_sdk.json": 1,
+      "CHANGELOG_CODEUPDATE_0111_LIBRARIUM_DISTRIBUTION_SDK.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0111_LIBRARIUM_DISTRIBUTION_SDK.md": 1,
+      "CHANGELOG.md": 1,
+      "SESSION_HANDOFF.md": 1,
+      "VERSION.md": 1,
+      "SESSION_HANDOFF_CODEUPDATE_0112_MASTER_CONSOLIDATION.md": 1,
+      "CHANGELOG_CODEUPDATE_0112_MASTER_CONSOLIDATION.md": 1,
+      "manifest_codeupdate_0112_master_consolidation.json": 1,
+      "Legacy": 1,
+      "SourceData": 1,
+      "Manifests": 1
+    },
+    "top_level_size_bytes": {
+      "AGENTS.md": 24310,
+      "AI_CONTEXT.md": 68496,
+      "Apps": 93370,
+      "Archive": 606701,
+      "Bin": 4217,
+      "Build": 494,
+      "CHANGELOG.md": 45114,
+      "CHANGELOG_CODEUPDATE_0068.md": 413,
+      "CHANGELOG_CODEUPDATE_0069.md": 254,
+      "CHANGELOG_CODEUPDATE_0070.md": 322,
+      "CHANGELOG_CODEUPDATE_0071_0076.md": 877,
+      "CHANGELOG_CODEUPDATE_0077.md": 565,
+      "CHANGELOG_CODEUPDATE_0078.md": 645,
+      "CHANGELOG_CODEUPDATE_0079.md": 531,
+      "CHANGELOG_CODEUPDATE_0080.md": 593,
+      "CHANGELOG_CODEUPDATE_0081.md": 304,
+      "CHANGELOG_CODEUPDATE_0082.md": 491,
+      "CHANGELOG_CODEUPDATE_0083.md": 545,
+      "CHANGELOG_CODEUPDATE_0084_0087.md": 397,
+      "CHANGELOG_CODEUPDATE_0088.md": 484,
+      "CHANGELOG_CODEUPDATE_0089_0092.md": 420,
+      "CHANGELOG_CODEUPDATE_0093_0100.md": 525,
+      "CHANGELOG_CODEUPDATE_0101_COMBAT.md": 446,
+      "CHANGELOG_CODEUPDATE_0102_MAGIC.md": 372,
+      "CHANGELOG_CODEUPDATE_0103_PROGRESSION.md": 423,
+      "CHANGELOG_CODEUPDATE_0104_NPC.md": 391,
+      "CHANGELOG_CODEUPDATE_0105_WORLD.md": 654,
+      "CHANGELOG_CODEUPDATE_0106_ECONOMY.md": 370,
+      "CHANGELOG_CODEUPDATE_0107_QUEST.md": 508,
+      "CHANGELOG_CODEUPDATE_0108_GUILD_SOCIAL.md": 420,
+      "CHANGELOG_CODEUPDATE_0109_DIALOGUE_TEXT.md": 451,
+      "CHANGELOG_CODEUPDATE_0110_SCRIPTING_EVENTS.md": 371,
+      "CHANGELOG_CODEUPDATE_0111_LIBRARIUM_DISTRIBUTION_SDK.md": 525,
+      "CHANGELOG_CODEUPDATE_0112_MASTER_CONSOLIDATION.md": 797,
+      "CODEX_HANDOFF.md": 1090,
+      "CanonicalPromotion": 1053,
+      "Codex": 46355,
+      "Core": 115964,
+      "DEVELOPMENT_PRINCIPLES.md": 2353,
+      "Data": 61672216,
+      "DataDecodeCheckpoints": 12504527,
+      "Docs": 450880,
+      "Documentation": 885998,
+      "EngineKnowledge.md": 16954,
+      "Evidence": 54792185,
+      "GOVERNING_PRINCIPLES.md": 1977,
+      "Generated": 63673257,
+      "GitHubActions": 2596,
+      "ImportedDatabases": 437640167,
+      "KnowledgeBase": 9439,
+      "Legacy": 350,
+      "Librarium": 65675954,
+      "LibrariumManifest.json": 2989,
+      "MIGRATION_REPORT.md": 1287,
+      "Manifests": 809579,
+      "ProjectManifest.json": 4085,
+      "README.md": 2911,
+      "README.txt": 61,
+      "ReleaseNotes.md": 35223,
+      "Reports": 4587904,
+      "Runtime": 198838,
+      "SESSION_HANDOFF.md": 860,
+      "SESSION_HANDOFF_CODEUPDATE_0068.md": 679,
+      "SESSION_HANDOFF_CODEUPDATE_0069.md": 745,
+      "SESSION_HANDOFF_CODEUPDATE_0070.md": 675,
+      "SESSION_HANDOFF_CODEUPDATE_0071_0076.md": 1350,
+      "SESSION_HANDOFF_CODEUPDATE_0077.md": 998,
+      "SESSION_HANDOFF_CODEUPDATE_0078.md": 1310,
+      "SESSION_HANDOFF_CODEUPDATE_0079.md": 1415,
+      "SESSION_HANDOFF_CODEUPDATE_0080.md": 844,
+      "SESSION_HANDOFF_CODEUPDATE_0081.md": 702,
+      "SESSION_HANDOFF_CODEUPDATE_0082.md": 894,
+      "SESSION_HANDOFF_CODEUPDATE_0083.md": 1153,
+      "SESSION_HANDOFF_CODEUPDATE_0084_0087.md": 727,
+      "SESSION_HANDOFF_CODEUPDATE_0088.md": 1427,
+      "SESSION_HANDOFF_CODEUPDATE_0089_0092.md": 748,
+      "SESSION_HANDOFF_CODEUPDATE_0093_0100.md": 1322,
+      "SESSION_HANDOFF_CODEUPDATE_0101_COMBAT.md": 1474,
+      "SESSION_HANDOFF_CODEUPDATE_0102_MAGIC.md": 1283,
+      "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md": 1389,
+      "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md": 679,
+      "SESSION_HANDOFF_CODEUPDATE_0105_WORLD.md": 786,
+      "SESSION_HANDOFF_CODEUPDATE_0106_ECONOMY.md": 573,
+      "SESSION_HANDOFF_CODEUPDATE_0107_QUEST.md": 381,
+      "SESSION_HANDOFF_CODEUPDATE_0108_GUILD_SOCIAL.md": 720,
+      "SESSION_HANDOFF_CODEUPDATE_0109_DIALOGUE_TEXT.md": 718,
+      "SESSION_HANDOFF_CODEUPDATE_0110_SCRIPTING_EVENTS.md": 587,
+      "SESSION_HANDOFF_CODEUPDATE_0111_LIBRARIUM_DISTRIBUTION_SDK.md": 1217,
+      "SESSION_HANDOFF_CODEUPDATE_0112_MASTER_CONSOLIDATION.md": 860,
+      "Saves": 2669,
+      "Sim": 59441,
+      "Simulator": 22388432,
+      "SourceData": 390,
+      "Tests": 28916,
+      "Tools": 18613489,
+      "UpdateManifest.json": 10006,
+      "UpdateManifest0067.json": 665,
+      "UpdateManifest0068.json": 1523,
+      "UpdateManifest0069.json": 421,
+      "VALIDATION_REPLACEMENT_REPO.json": 319,
+      "VERSION.md": 107,
+      "Validation": 14521055,
+      "manifest_codeupdate_0070.json": 524,
+      "manifest_codeupdate_0071_0076.json": 686,
+      "manifest_codeupdate_0077.json": 1247,
+      "manifest_codeupdate_0078.json": 1075,
+      "manifest_codeupdate_0079.json": 882,
+      "manifest_codeupdate_0080.json": 1082,
+      "manifest_codeupdate_0081.json": 655,
+      "manifest_codeupdate_0082.json": 536,
+      "manifest_codeupdate_0084_0087.json": 790,
+      "manifest_codeupdate_0088.json": 721,
+      "manifest_codeupdate_0089_0092.json": 613,
+      "manifest_codeupdate_0107_quest.json": 172,
+      "manifest_codeupdate_0110_scripting_events.json": 592,
+      "manifest_codeupdate_0111_librarium_distribution_sdk.json": 1821,
+      "manifest_codeupdate_0112_master_consolidation.json": 654
+    }
+  },
+  "required_directories": {
+    "Librarium": true,
+    "Evidence": true,
+    "Validation": true,
+    "Reports": true,
+    "Documentation": true,
+    "Codex": true,
+    "Data": true,
+    "Generated": true,
+    "Runtime": true,
+    "Tools": true,
+    "ImportedDatabases": true
+  },
+  "lineage": [
+    {
+      "update": "0068",
+      "changelog_count": 3,
+      "handoff_count": 2,
+      "manifest_count": 4,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0068.md",
+        "DataDecodeCheckpoints/DataDecode0068/CHANGELOG_DataDecode0068_Append.md",
+        "DataDecodeCheckpoints/Patch0068/CHANGELOG_0068.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0068.md",
+        "DataDecodeCheckpoints/Patch0068/SESSION_HANDOFF_0068.md"
+      ],
+      "manifests": [
+        "UpdateManifest0068.json",
+        "DataDecodeCheckpoints/DataDecode0068/DataDecode0068_Manifest.csv",
+        "DataDecodeCheckpoints/Patch0068/PATCH_0068_MANIFEST.csv",
+        "DataDecodeCheckpoints/Patch0068/PATCH_0068_MANIFEST.md"
+      ]
+    },
+    {
+      "update": "0069",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0069.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0069.md"
+      ],
+      "manifests": [
+        "UpdateManifest0069.json"
+      ]
+    },
+    {
+      "update": "0070",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0070.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0070.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0070.json"
+      ]
+    },
+    {
+      "update": "0071_0076",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0071_0076.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0071_0076.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0071_0076.json"
+      ]
+    },
+    {
+      "update": "0077",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0077.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0077.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0077.json"
+      ]
+    },
+    {
+      "update": "0078",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0078.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0078.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0078.json"
+      ]
+    },
+    {
+      "update": "0079",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0079.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0079.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0079.json"
+      ]
+    },
+    {
+      "update": "0080",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0080.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0080.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0080.json"
+      ]
+    },
+    {
+      "update": "0081",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0081.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0081.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0081.json"
+      ]
+    },
+    {
+      "update": "0082",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0082.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0082.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0082.json"
+      ]
+    },
+    {
+      "update": "0083",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0083.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0083.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0084_0087",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0084_0087.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0084_0087.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0084_0087.json"
+      ]
+    },
+    {
+      "update": "0088",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0088.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0088.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0088.json"
+      ]
+    },
+    {
+      "update": "0089_0092",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0089_0092.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0089_0092.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0089_0092.json"
+      ]
+    },
+    {
+      "update": "0093_0100",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0093_0100.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0093_0100.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0101_COMBAT",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0101_COMBAT.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0101_COMBAT.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0102_MAGIC",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0102_MAGIC.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0102_MAGIC.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0103_PROGRESSION",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0103_PROGRESSION.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0104_NPC",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0104_NPC.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0105_WORLD",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0105_WORLD.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0105_WORLD.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0106_ECONOMY",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0106_ECONOMY.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0106_ECONOMY.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0107_QUEST",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0107_QUEST.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0107_QUEST.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0107_quest.json"
+      ]
+    },
+    {
+      "update": "0108_GUILD_SOCIAL",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0108_GUILD_SOCIAL.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0108_GUILD_SOCIAL.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0109_DIALOGUE_TEXT",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 0,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0109_DIALOGUE_TEXT.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0109_DIALOGUE_TEXT.md"
+      ],
+      "manifests": []
+    },
+    {
+      "update": "0110_SCRIPTING_EVENTS",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0110_SCRIPTING_EVENTS.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0110_SCRIPTING_EVENTS.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0110_scripting_events.json"
+      ]
+    },
+    {
+      "update": "0111_LIBRARIUM_DISTRIBUTION_SDK",
+      "changelog_count": 1,
+      "handoff_count": 1,
+      "manifest_count": 1,
+      "changelogs": [
+        "CHANGELOG_CODEUPDATE_0111_LIBRARIUM_DISTRIBUTION_SDK.md"
+      ],
+      "handoffs": [
+        "SESSION_HANDOFF_CODEUPDATE_0111_LIBRARIUM_DISTRIBUTION_SDK.md"
+      ],
+      "manifests": [
+        "manifest_codeupdate_0111_librarium_distribution_sdk.json"
+      ]
+    }
+  ],
+  "nested_archives": [],
+  "json_audit": {
+    "total_json_files": 1964,
+    "valid": 1964,
+    "invalid": 0,
+    "invalid_files": [],
+    "ids_total": 49777,
+    "duplicate_ids": [
+      {
+        "id": "ability_130_bloodchampquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_134_daolordquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_129_darkdruidquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_128_evilquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_126_goodquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_123_hpregen",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/ability_item_relationship_report_0002.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "ability_125_icesorcquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_50_magebanequest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_127_neutralquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_133_phoenixquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_156_questitem",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_131_shedragonquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ability_132_wereratquest",
+        "locations": [
+          "Data/abilities.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/quest_reconstruction_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "warrior",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "gypsy",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "warlock",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "mage",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "druid",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "bard",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ranger",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "mystic",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "witchunter",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "paladin",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "cleric",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "priest",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "missionary",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "ninja",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "thief",
+        "locations": [
+          "Data/classes.json",
+          "Reports/class_race_engine_report_0013.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "item_1501_white_gold_flail",
+        "locations": [
+          "Data/items.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/ability_item_relationship_report_0002.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "item_642_white_gold_ring",
+        "locations": [
+          "Data/items.json",
+          "Reports/librarium_0002_relationship_expansion_report.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Librarium/Reports/ability_item_relationship_report_0002.json",
+          "Librarium/Reports/librarium_0001_graph_summary.json",
+          "Librarium/Reports/librarium_0002_relationship_expansion_report.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "wcc_map1_room1",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room2",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room3",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room4",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room5",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room6",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room7",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room8",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room9",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room10",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room2150",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Data/Validation/mmexplorer_mdb_canonical_repair_0065.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "wcc_map1_room2156",
+        "locations": [
+          "Data/rooms.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+          "Data/Validation/mmexplorer_mdb_canonical_repair_0065.json"
+        ],
+        "count": 3
+      },
+      {
+        "id": "809",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "1862",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "1860",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "525",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "1942",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "1948",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "584",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "1899",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "1077",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "1566",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 6
+      },
+      {
+        "id": "327",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1007",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1568",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1693",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1124",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1932",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1699",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "631",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "987",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1422",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "645",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1100",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "179",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "1040",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "2027",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 5
+      },
+      {
+        "id": "899",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "472",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "840",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1841",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1842",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1790",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "593",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "172",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1877",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1816",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1257",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "204",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "807",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1032",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "2025",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "177",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "360",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1896",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1894",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1989",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "413",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "567",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1560",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1264",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "746",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "346",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1276",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1099",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "421",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1947",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "490",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1940",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      },
+      {
+        "id": "1333",
+        "locations": [
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/DataSimVer0010/DataSimVer0010_Coverage.json",
+          "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json"
+        ],
+        "count": 4
+      }
+    ],
+    "records_with_evidence_state": 81974,
+    "evidence_state_counts": {
+      "Derived": 10149,
+      "Verified": 39366,
+      "Observed": 7083,
+      "1031": 1,
+      "Hypothesis": 27,
+      "Derived/Hypothesis": 21,
+      "{'type': 'string', 'enum': ['Observed', 'Derived', 'Hypothesis']}": 1,
+      "Observed for MBBSEmu host implementation; Corroborated for WCC/WBB exported symbol presence; not promoted to Verified Classic behavior": 1,
+      "Corroborated": 1,
+      "observed_candidate": 24591,
+      "unknown": 451,
+      "observed": 24,
+      "world override": 1,
+      "verified": 103,
+      "GAP": 8,
+      "gap": 65,
+      "OBSERVED": 4,
+      "DERIVED": 4,
+      "VERIFIED": 2,
+      "Gap": 18,
+      "CORROBORATED": 1,
+      "derived": 22,
+      "hypothesis": 27,
+      "corroborated": 2,
+      "Observed when captured": 1
+    },
+    "unique_ids": 39406,
+    "duplicate_id_count": 10172,
+    "reference_key_counts": {
+      "source": 132406,
+      "sources": 20110,
+      "consumers": 92,
+      "target": 11046
+    }
+  },
+  "markdown_missing_links_sample": [],
+  "distribution_build": {
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"ok\",\n  \"database\": \"/mnt/data/final0112/Generated/Librarium/librarium.sqlite\",\n  \"nodes\": 851,\n  \"edges\": 622,\n  \"files\": 851\n}\n",
+    "stderr": ""
+  },
+  "distribution_database": {
+    "exists": true,
+    "tables": [
+      "build_manifest",
+      "evidence",
+      "records",
+      "relationships",
+      "sqlite_sequence"
+    ],
+    "counts": {
+      "build_manifest": 5,
+      "evidence": 143,
+      "records": 851,
+      "relationships": 622,
+      "sqlite_sequence": 1
+    },
+    "query_samples": {
+      "combat": {
+        "returncode": 0,
+        "stdout": "3f92a98354140988\tcombat\tformula_system_records_validation_0006.json\tLibrarium/formula_system_records_validation_0006.json\tDerived\neb3f74359c5e4617\tcombat\tformula_conflict_candidates_0005.json\tLibrarium/FormulaValidation/formula_conflict_candidates_0005.json\tObserved\nc966aa4172ea1744\tcombat\tformula_examples_by_system_0005.json\tLibrarium/FormulaValidation/formula_examples_by_system_0005.json\tObserved\n420ca63f54096219\tcombat\tformula_records_0005.json\tLibrarium/FormulaValidation/formula_records_0005.json\tDerived\n2e83563e64a06a36\tcombat\tformula_verification_report_0003.json\tLibrarium/Reports/formula_verification_report_0003.json\tDerived\na2500ae8c641b370\tcombat\tformula_verification_0003.json\tLibrarium/Validation0003/formula_verification_0003.json\tDerived\n38993ad9d1e0f9ff\tcombat\tformula_gap_registry_0068.json\tLibrarium/GapRegistry/formula_gap_registry_0068.json\tgap\n31991f844da02d98\tcombat\tformula_behavior_gap_registry_0071_0076.json\tLibrarium/GapRegistry/formula_behavior_gap_registry_0071_007",
+        "stderr": ""
+      },
+      "magic": {
+        "returncode": 0,
+        "stdout": "cfbd0c9bbfd7b4a5\tmagic\tmonster_ability_relationships_verified_0003.json\tLibrarium/Validation0003/monster_ability_relationships_verified_0003.json\tVerified\nd779f7c0a044fa24\tcombat\tMonsterCombatEvidenceExtract.csv\tEvidence/DataSimVer0015/MonsterCombatEvidenceExtract.csv\tunknown\n88aa2ed38ed342d9\tcombat\tSpellAbilityFrequency.csv\tEvidence/DataSimVer0015/SpellAbilityFrequency.csv\tunknown\n260174f0a4ee40e7\tcombat\tcandidate_references_0071.json\tEvidence/FormulaBehavior0071/candidate_references_0071.json\tDerived\n36e3318de39e0df8\tcombat\tresolution_candidate_references_0077.json\tEvidence/FormulaGapResolution0077/resolution_candidate_references_0077.json\tDerived\n63050cf91705b715\tcombat\tmagic_evidence_hits.csv\tEvidence/CodeUpdate0102_MagicReconstruction/magic_evidence_hits.csv\tunknown\n8bd101a8eab1cd8e\tcombat\tmagic_evidence_hits.json\tEvidence/CodeUpdate0102_MagicReconstruction/magic_evidence_hits.json\tunknown\n87bd5d6a944a488b\tmagic\tmagic_source_file_summary.csv\tEvidence/CodeUpdate0102_MagicReconstruc",
+        "stderr": ""
+      },
+      "quest": {
+        "returncode": 0,
+        "stdout": "2f7ab56dd8ee772e\tquest\tlibrarium_consumer_contract_0007.json\tLibrarium/Contracts/librarium_consumer_contract_0007.json\tunknown\n6b45dec8ed98f339\tmagic\tLIBRARIUM_0002_RELATIONSHIP_EXPANSION.md\tLibrarium/Documentation/LIBRARIUM_0002_RELATIONSHIP_EXPANSION.md\tVerified\n32c2baa7b1e7dc96\tprogression\tLIBRARIUM_0004_NPC_TEXTBLOCK_QUEST_FLOW.md\tLibrarium/Documentation/LIBRARIUM_0004_NPC_TEXTBLOCK_QUEST_FLOW.md\tobserved\n66e76fe01784624b\tmagic\tVALIDATION_0003_QUEST_DIALOGUE_FORMULA.md\tLibrarium/Documentation/VALIDATION_0003_QUEST_DIALOGUE_FORMULA.md\tverified\n9a07bd9365a1e931\tprogression\tintelligence_layer_model_0009.json\tLibrarium/Intelligence/intelligence_layer_model_0009.json\tVerified\n832e88f6cc980f34\tmagic\tquery_examples.json\tLibrarium/Queries/query_examples.json\tunknown\nc1a39f43689a32a1\tcombat\tcoverage_report_0001.json\tLibrarium/Reports/coverage_report_0001.json\tunknown\n3531771e184ad844\tprogression\tdialogue_textblock_validation_report_0003.json\tLibrarium/Reports/dialogue_textblock_validation_r",
+        "stderr": ""
+      },
+      "dialogue": {
+        "returncode": 0,
+        "stdout": "636cb4d2aee31bdd\tcombat\tLIBRARIUM_0005_COMPLETE_CONTENT_GRAPH.md\tLibrarium/Documentation/LIBRARIUM_0005_COMPLETE_CONTENT_GRAPH.md\tObserved\n66e76fe01784624b\tmagic\tVALIDATION_0003_QUEST_DIALOGUE_FORMULA.md\tLibrarium/Documentation/VALIDATION_0003_QUEST_DIALOGUE_FORMULA.md\tverified\n669df11bf2ff364c\tdialogue_text\tdialogue_textblock_completion_report_0004.json\tLibrarium/Reports/dialogue_textblock_completion_report_0004.json\tunknown\n9775f2685130e98c\tprogression\tdialogue_textblock_reconstruction_report_0002.json\tLibrarium/Reports/dialogue_textblock_reconstruction_report_0002.json\tObserved\n3531771e184ad844\tprogression\tdialogue_textblock_validation_report_0003.json\tLibrarium/Reports/dialogue_textblock_validation_report_0003.json\tunknown\n7372defa1a9a3c1a\tcombat\tlibrarium_0005_complete_content_graph_report.json\tLibrarium/Reports/librarium_0005_complete_content_graph_report.json\tObserved\n0507d46f2f98a8b4\tdialogue_text\tlibrarium_0005_validation_report.json\tLibrarium/Reports/librarium_0005_validation",
+        "stderr": ""
+      },
+      "script": {
+        "returncode": 0,
+        "stdout": "b01721f6f271285d\tcombat\tability_item_relationship_report_0002.json\tLibrarium/Reports/ability_item_relationship_report_0002.json\tunknown\n669df11bf2ff364c\tdialogue_text\tdialogue_textblock_completion_report_0004.json\tLibrarium/Reports/dialogue_textblock_completion_report_0004.json\tunknown\n7372defa1a9a3c1a\tcombat\tlibrarium_0005_complete_content_graph_report.json\tLibrarium/Reports/librarium_0005_complete_content_graph_report.json\tObserved\n0507d46f2f98a8b4\tdialogue_text\tlibrarium_0005_validation_report.json\tLibrarium/Reports/librarium_0005_validation_report.json\tunknown\n206a3db1f76177aa\tmagic\tquest_reconstruction_report_0002.json\tLibrarium/Reports/quest_reconstruction_report_0002.json\tVerified\n992bc9e125ea3c4a\tcombat\tscript_trigger_completion_report_0004.json\tLibrarium/Reports/script_trigger_completion_report_0004.json\tunknown\n4b9ef96f8b23effb\tprogression\tservice_api_contract_0009.json\tLibrarium/Services/service_api_contract_0009.json\tunknown\n2562cee989a9e9f4\tdialogue_text\tdialogue_textblock",
+        "stderr": ""
+      },
+      "economy": {
+        "returncode": 0,
+        "stdout": "368cfcd2bdc84b7c\tworld\ttravel_economy_summary.json\tLibrarium/WorldGraph/travel_economy_summary.json\tunknown\n6efbe64567459ddf\tnpc\teconomy_evidence_state_records.json\tLibrarium/EconomyReconstruction/economy_evidence_state_records.json\tverified\n43acb37ebd12f858\tcombat\tItemEconomyEvidenceExtract.csv\tEvidence/DataSimVer0014/ItemEconomyEvidenceExtract.csv\tunknown\na17f8c69b9b05fa4\tcombat\tShopInventoryEconomyEvidence.csv\tEvidence/DataSimVer0014/ShopInventoryEconomyEvidence.csv\tunknown\n3f4ef30452a58409\tmagic\teconomy_source_scan_summary.json\tEvidence/CodeUpdate0106_EconomyReconstruction/economy_source_scan_summary.json\tgap\nca58071d127b4006\tcombat\teconomy_prioritized_evidence_hits.json\tEvidence/CodeUpdate0106_EconomyReconstruction/economy_prioritized_evidence_hits.json\tunknown\n361d8aea555d26b9\tcombat\tfield_inventory_from_runtime_data.csv\tEvidence/ExternalSources/Validation0012/field_inventory_from_runtime_data.csv\tunknown\n66afcb76743c2ec0\tcombat\tcore_game_system_reconstruction_validation.json\tVal",
+        "stderr": ""
+      },
+      "npc": {
+        "returncode": 0,
+        "stdout": "32c2baa7b1e7dc96\tprogression\tLIBRARIUM_0004_NPC_TEXTBLOCK_QUEST_FLOW.md\tLibrarium/Documentation/LIBRARIUM_0004_NPC_TEXTBLOCK_QUEST_FLOW.md\tobserved\n8e67dcd07aaa7770\tnpc\tlibrarium_0004_npc_textblock_quest_flow_report.json\tLibrarium/Reports/librarium_0004_npc_textblock_quest_flow_report.json\tObserved\ndb8b7356fd7a6bd9\tprogression\tmajor_unknowns_prioritized_0002.json\tLibrarium/Reports/major_unknowns_prioritized_0002.json\tverified\n7e18593e74b2f3aa\tnpc\ttop_unknowns_0004.json\tLibrarium/Validation0004/top_unknowns_0004.json\tunknown\nb9d84abf283381ca\tcombat\tformula_behavior_index_0075.json\tLibrarium/FormulaBehavior/formula_behavior_index_0075.json\tverified\nfa824b9acd271124\tprogression\tDataSimVer0008-summary.json\tEvidence/DataSimVer0008/DataSimVer0008-summary.json\tunknown\n803d5e744bc0d85a\tcombat\tNpcSpawnEvidenceExtract.csv\tEvidence/DataSimVer0012/NpcSpawnEvidenceExtract.csv\tunknown\na5e65d289c3c7b2c\tcombat\tnpc_evidence_hits.json\tEvidence/CodeUpdate0104_NPCReconstruction/npc_evidence_hits.json\tunkn",
+        "stderr": ""
+      },
+      "world": {
+        "returncode": 0,
+        "stdout": "055821127b6bde25\tprogression\tWORLD_OVERLAY_GRAPH_STRATEGY.md\tLibrarium/Documentation/WORLD_OVERLAY_GRAPH_STRATEGY.md\tunknown\n9a07bd9365a1e931\tprogression\tintelligence_layer_model_0009.json\tLibrarium/Intelligence/intelligence_layer_model_0009.json\tVerified\n51b8ead96be53c55\tprogression\tworld_overlay_model.json\tLibrarium/Overlays/world_overlay_model.json\tunknown\n832e88f6cc980f34\tmagic\tquery_examples.json\tLibrarium/Queries/query_examples.json\tunknown\n0507d46f2f98a8b4\tdialogue_text\tlibrarium_0005_validation_report.json\tLibrarium/Reports/librarium_0005_validation_report.json\tunknown\n4258ab84ce6d8092\tprogression\tlibrarium_0009_validation_report.json\tLibrarium/Reports/librarium_0009_validation_report.json\tunknown\n974b7ed062ec7ac2\tmagic\tevidence_model.schema.json\tLibrarium/Schemas/evidence_model.schema.json\tVerified\n5906cbe6076fd177\tworld\tworld_completion_0004.json\tLibrarium/Validation0004/world_completion_0004.json\tunknown\n72120a2d9578dbf3\tworld\tderived_regions_zones.json\tLibrarium/WorldGraph/",
+        "stderr": ""
+      }
+    }
+  },
+  "probe_file_count": 41,
+  "probe_files_sample": [
+    "Tools/Importer/dat_deep_probe_v0007.py",
+    "Tools/Importer/native_dat_probe.py",
+    "Tools/FormulaBehavior/formula_behavior_probe_0070.py",
+    "Tools/RuntimeConvergence/run_deterministic_probe_dry_run.py",
+    "Simulator/Regression0089_0092/deterministic_probe_registry_0091.json",
+    "Simulator/Regression0089_0092/deterministic_probe_dry_run_summary.json",
+    "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.json",
+    "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.csv",
+    "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.json",
+    "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+    "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.json",
+    "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+    "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.json",
+    "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+    "Simulator/CodeUpdate0105_WorldMovementReconstruction/world_movement_probe_definitions.json",
+    "Simulator/CodeUpdate0106_EconomyReconstruction/economy_probe_definitions.json",
+    "Simulator/CodeUpdate0108_GuildSocialReconstruction/guild_social_probe_definitions.json",
+    "Simulator/CodeUpdate0109_DialogueTextReconstruction/dialogue_text_probe_definitions.json",
+    "Simulator/Probes/CodeUpdate0093_0100/core_game_system_probe_catalog.json",
+    "DataDecodeCheckpoints/DataDecode0068/WGSERVER_SpellConstantProbes_DataDecode0068.csv",
+    "Validation/FormulaBehavior0070/formula_behavior_probes_0070.json",
+    "Validation/FormulaBehavior0070/formula_behavior_probe_run_0070.json",
+    "Validation/FormulaBehavior0071/formula_behavior_probes_0071.json",
+    "Validation/FormulaBehavior0072/formula_behavior_probes_0072.json",
+    "Validation/FormulaBehavior0073/formula_behavior_probes_0073.json",
+    "Validation/FormulaBehavior0074/formula_behavior_probes_0074.json",
+    "Validation/FormulaBehavior0075/formula_behavior_probes_0075.json",
+    "Validation/FormulaBehavior0076/formula_behavior_probes_0076.json",
+    "Validation/FormulaGapResolution0077/behavior_gap_resolution_probes_0077.json",
+    "Validation/HostLifecycle0079/host_lifecycle_probe_plan_0079.json",
+    "Validation/TimingConstants0082/timing_constant_probe_requirements_0082.json",
+    "Validation/CodeUpdate0101_CombatReconstruction/combat_probe_execution_results.json",
+    "Validation/CodeUpdate0102_MagicReconstruction/magic_probe_execution_results.json",
+    "Validation/CodeUpdate0103_ProgressionReconstruction/progression_probe_execution_results.json",
+    "Validation/CodeUpdate0104_NPCReconstruction/npc_probe_execution_results.json",
+    "Sim/Probes/Quest/quest_probe_definitions_0107.json",
+    "Sim/Probes/ScriptingEvents/scripting_event_probe_definitions.json",
+    "Reports/CodeUpdate0080/CodeUpdate0080_RuntimeTraceProbeHarness_Report.md",
+    "Librarium/RuntimeTraceHarness/runtime_trace_probe_catalog_0080.json",
+    "Librarium/RuntimeTraceHarness/gap_to_probe_mapping_0080.json",
+    "Evidence/SimulatorTrace/simulator_room_probe_0082.txt"
+  ],
+  "subsystem_artifact_audit": {
+    "Combat": {
+      "matching_file_count": 40,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0101_COMBAT.md",
+        "SESSION_HANDOFF_CODEUPDATE_0101_COMBAT.md",
+        "Documentation/COMBAT_STRATEGY_0009.md",
+        "Reports/DataSimVer0015-CombatStatusSpellSimulation.md",
+        "Validation/DataSimVer0015_CombatStatusValidation.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/RuntimePrep0007_Handoff.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/RuntimePrep0007_Report.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/ClassProgressionExpectationMatrix_RuntimePrep0007.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/CombatSystemRuntimeChecklist_RuntimePrep0007.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/EquipmentStatExpectationMatrix_RuntimePrep0007.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/InputArtifactVerification_RuntimePrep0007.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/MonsterCombatExpectationMatrix_RuntimePrep0007.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/RuntimePrep0007_DecisionRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/RuntimePrep0007_FileManifest.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/RuntimePrep0007_IssueRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/RuntimePrep0007_Metrics.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/RuntimePrep0007_ZipVerification.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/SkillSystemExpectationMatrix_RuntimePrep0007.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/SpellSystemExpectationMatrix_RuntimePrep0007.csv",
+        "Simulator/DataSimVer0015/CombatEncounterSimulationLog.csv",
+        "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.json",
+        "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.csv",
+        "Validation/CodeUpdate0101_CombatReconstruction/combat_probe_execution_results.json",
+        "Validation/CodeUpdate0101_CombatReconstruction/combat_gap_registry_0101.json",
+        "Validation/CodeUpdate0101_CombatReconstruction/combat_promotion_decisions_0101.json",
+        "Sim/validators/validate_combat.py",
+        "Runtime/combat/__init__.py",
+        "Runtime/combat/combat_runtime.py",
+        "Reports/CodeUpdate0101_CombatReconstruction/combat_reconstruction_metrics.json",
+        "Reports/CodeUpdate0101_CombatReconstruction/CombatReconstruction0101_Report.md"
+      ]
+    },
+    "Magic": {
+      "matching_file_count": 14,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0102_MAGIC.md",
+        "SESSION_HANDOFF_CODEUPDATE_0102_MAGIC.md",
+        "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.json",
+        "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+        "Validation/CodeUpdate0102_MagicReconstruction/magic_probe_execution_results.json",
+        "Validation/CodeUpdate0102_MagicReconstruction/magic_gap_registry_0102.json",
+        "Validation/CodeUpdate0102_MagicReconstruction/magic_promotion_decisions_0102.json",
+        "Reports/CodeUpdate0102_MagicReconstruction/magic_reconstruction_metrics.json",
+        "Reports/CodeUpdate0102_MagicReconstruction/MagicReconstruction0102_Report.md",
+        "Generated/MagicReconstruction/magic_relationship_index.json",
+        "Evidence/CodeUpdate0102_MagicReconstruction/magic_evidence_hits.csv",
+        "Evidence/CodeUpdate0102_MagicReconstruction/magic_evidence_hits.json",
+        "Evidence/CodeUpdate0102_MagicReconstruction/magic_source_file_summary.csv",
+        "Codex/CodeUpdate0102_MagicReconstruction/magic_reconstruction_manifest.json"
+      ]
+    },
+    "Progression": {
+      "matching_file_count": 16,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0103_PROGRESSION.md",
+        "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md",
+        "Data/progression.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/ClassProgressionExpectationMatrix_RuntimePrep0007.csv",
+        "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.json",
+        "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+        "Validation/CodeUpdate0103_ProgressionReconstruction/progression_probe_execution_results.json",
+        "Validation/CodeUpdate0103_ProgressionReconstruction/progression_gap_registry_0103.json",
+        "Validation/CodeUpdate0103_ProgressionReconstruction/progression_promotion_decisions_0103.json",
+        "Reports/CodeUpdate0103_ProgressionReconstruction/progression_reconstruction_metrics.json",
+        "Reports/CodeUpdate0103_ProgressionReconstruction/ProgressionReconstruction0103_Report.md",
+        "Generated/ProgressionReconstruction/progression_relationship_index.json",
+        "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_evidence_hits.csv",
+        "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_evidence_hits.json",
+        "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_source_file_summary.csv",
+        "Codex/CodeUpdate0103_ProgressionReconstruction/progression_reconstruction_manifest.json"
+      ]
+    },
+    "NPC": {
+      "matching_file_count": 41,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0104_NPC.md",
+        "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md",
+        "Documentation/DataSimVer0012_ServiceNPCInteractionResolution.md",
+        "Documentation/Runtime-0010-Loot-Economy-NPC.md",
+        "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+        "Reports/librarium_0004_npc_textblock_quest_flow_report.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Handoff.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Report.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/InputArtifactVerification_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_DecisionRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_FileManifest.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_IssueRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_Metrics.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_ZipVerification.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageDefinitionMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBTextResourceInventory_RuntimePrep0006.csv",
+        "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.json",
+        "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+        "Simulator/DataSimVer/0009/NpcConditionClues.csv",
+        "Simulator/DataSimVer/0012/NpcSpawnInteractionMatrix.csv",
+        "Validation/CodeUpdate0104_NPCReconstruction/npc_probe_execution_results.json",
+        "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+        "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+        "Sim/validators/validate_loot_economy_npc.py",
+        "Runtime/npc_services/__init__.py",
+        "Runtime/npc_services/npc_services_runtime.py"
+      ]
+    },
+    "WorldMovement": {
+      "matching_file_count": 84,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0105_WORLD.md",
+        "SESSION_HANDOFF_CODEUPDATE_0105_WORLD.md",
+        "Data/world.json",
+        "Documentation/Librarium-0007-Complete-World-Knowledge-Graph.md",
+        "Documentation/MOVEMENT_STRATEGY_0006.md",
+        "Documentation/Runtime-0015-World-Integration.md",
+        "Documentation/Worldgroup_MajorMUD_DataDriven_Findings.md",
+        "Reports/DataSimVer0020-DailyWorldgroupCleanupResetModel.md",
+        "Reports/Librarium-0007-WorldGraphValidation.json",
+        "Reports/world_integration_report_0015.json",
+        "Runtime/movement.py",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/mmudsim/world.py",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/RuntimePrep0002_Handoff.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/RuntimePrep0002_Report.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/RuntimePrep0008_Handoff.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/RuntimePrep0008_Report.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/CumulativeRuntimePrepFileIndex_RuntimePrep0008.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/CumulativeRuntimePrepMetrics_RuntimePrep0008.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/InputArtifactVerification_RuntimePrep0008.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/IntegratedRuntimeWorldLayerMatrix_RuntimePrep0008.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/RuntimePrep0008_DecisionRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/RuntimePrep0008_FileManifest.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/RuntimePrep0008_IssueRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/RuntimePrep0008_Metrics.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/RuntimePrep0008_ZipVerification.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/RuntimeValidationBacklog_RuntimePrep0008.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/SimulatorReadinessMatrix_RuntimePrep0008.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/BossRespawnMatrix_RuntimePrep0002.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/InputArtifactVerification_RuntimePrep0002.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/LinkedSpawnRoomMatrix_RuntimePrep0002.csv"
+      ]
+    },
+    "Economy": {
+      "matching_file_count": 23,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0106_ECONOMY.md",
+        "SESSION_HANDOFF_CODEUPDATE_0106_ECONOMY.md",
+        "Documentation/Runtime-0010-Loot-Economy-NPC.md",
+        "Reports/DataSimVer0014-InventoryEconomySimulation.md",
+        "Simulator/CodeUpdate0106_EconomyReconstruction/economy_probe_definitions.json",
+        "Simulator/DataSimVer/0014/InventoryEconomyActionLog.csv",
+        "Validation/CodeUpdate0106_EconomyReconstruction/economy_gap_registry_0106.json",
+        "Sim/validators/validate_loot_economy_npc.py",
+        "Runtime/economy/__init__.py",
+        "Runtime/economy/economy_runtime.py",
+        "Reports/CodeUpdate0106_EconomyReconstruction/economy_reconstruction_metrics.json",
+        "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+        "Reports/CodeUpdate0106_EconomyReconstruction/EconomyReconstruction0106_Report.md",
+        "Librarium/WorldGraph/travel_economy_summary.json",
+        "Librarium/EconomyReconstruction/economy_evidence_state_records.json",
+        "Generated/EconomyReconstruction/economy_relationship_edges.json",
+        "Generated/EconomyReconstruction/economy_merchant_shop_inventory.json",
+        "Evidence/DataSimVer0014/ItemEconomyEvidenceExtract.csv",
+        "Evidence/DataSimVer0014/ShopInventoryEconomyEvidence.csv",
+        "Evidence/CodeUpdate0106_EconomyReconstruction/economy_source_scan_summary.json",
+        "Evidence/CodeUpdate0106_EconomyReconstruction/economy_prioritized_evidence_hits.json",
+        "Documentation/CodeUpdate0106_EconomyReconstruction/ECONOMY_RECONSTRUCTION_0106.md",
+        "Codex/CodeUpdate0106_EconomyReconstruction/economy_reconstruction_manifest.json"
+      ]
+    },
+    "Quest": {
+      "matching_file_count": 62,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0107_QUEST.md",
+        "SESSION_HANDOFF_CODEUPDATE_0107_QUEST.md",
+        "manifest_codeupdate_0107_quest.json",
+        "Data/quests.json",
+        "Documentation/QUEST_VALIDATION_PLAN_0017.md",
+        "Documentation/Runtime-0013C-Quest-Engine.md",
+        "Documentation/Validation0013_QuestGateTrace.md",
+        "Evidence/DataSimVer0013-UserRequestedCustomContent.md",
+        "Reports/VALIDATION0011_CleanupQuestFieldMapping.md",
+        "Reports/VALIDATION0013_QuestGateSinglePathTrace.md",
+        "Reports/librarium_0004_npc_textblock_quest_flow_report.json",
+        "Reports/quest_validation_readiness_0017.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Handoff.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Report.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/InputArtifactVerification_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_DecisionRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_FileManifest.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_IssueRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_Metrics.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_ZipVerification.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageDefinitionMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBTextResourceInventory_RuntimePrep0006.csv",
+        "Simulator/DataSimVer0023/quest_boss_respawn_occupancy_expected_model.json",
+        "Simulator/DataSimVer/0018/QuestPersistenceClues.csv",
+        "DataDecodeCheckpoints/DataDecode0050/QuestEventBridgeCandidates_DataDecode0050.csv",
+        "DataDecodeCheckpoints/SimulatorBuild0002/supporting_docs/MajorMUD - Quests - Wiki#U00b3.mht"
+      ]
+    },
+    "GuildSocial": {
+      "matching_file_count": 15,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0108_GUILD_SOCIAL.md",
+        "SESSION_HANDOFF_CODEUPDATE_0108_GUILD_SOCIAL.md",
+        "Simulator/CodeUpdate0108_GuildSocialReconstruction/guild_social_probe_definitions.json",
+        "Validation/CodeUpdate0108_GuildSocialReconstruction/guild_social_gap_registry_0108.json",
+        "Reports/CodeUpdate0108_GuildSocialReconstruction/guild_social_reconstruction_metrics.json",
+        "Reports/CodeUpdate0108_GuildSocialReconstruction/guild_social_inventory_summary.json",
+        "Reports/CodeUpdate0108_GuildSocialReconstruction/GuildSocialReconstruction0108_Report.md",
+        "Librarium/GuildSocialReconstruction/guild_social_evidence_state_records.json",
+        "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/adventurer's_guild.html",
+        "Generated/GuildSocialReconstruction/guild_social_relationship_edges.json",
+        "Generated/GuildSocialReconstruction/guild_social_candidate_records.json",
+        "Evidence/CodeUpdate0108_GuildSocialReconstruction/guild_social_source_scan_summary.json",
+        "Evidence/CodeUpdate0108_GuildSocialReconstruction/guild_social_prioritized_evidence_hits.json",
+        "Documentation/CodeUpdate0108_GuildSocialReconstruction/GUILD_SOCIAL_RECONSTRUCTION_0108.md",
+        "Codex/CodeUpdate0108_GuildSocialReconstruction/guild_social_reconstruction_manifest.json"
+      ]
+    },
+    "DialogueText": {
+      "matching_file_count": 79,
+      "sample_files": [
+        "AI_CONTEXT.md",
+        "CHANGELOG_CODEUPDATE_0109_DIALOGUE_TEXT.md",
+        "SESSION_HANDOFF_CODEUPDATE_0109_DIALOGUE_TEXT.md",
+        "Data/message_text_catalogs.json",
+        "Evidence/DataSimVer0017-HiddenSearchTextClues.csv",
+        "Reports/librarium_0004_npc_textblock_quest_flow_report.json",
+        "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/RuntimePrep0003_Handoff.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/RuntimePrep0003_Report.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Handoff.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Report.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/InputArtifactVerification_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_DecisionRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_FileManifest.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_IssueRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_Metrics.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_ZipVerification.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageDefinitionMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBTextResourceInventory_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/AreaTransitionMatrix_RuntimePrep0003.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/InputArtifactVerification_RuntimePrep0003.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/NavigationCommandSummary_RuntimePrep0003.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/NavigationEdgeMatrix_RuntimePrep0003.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/NavigationRuntimeChecklist_RuntimePrep0003.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/OneWayExitCandidateMatrix_RuntimePrep0003.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/RuntimePrep0003_DecisionRegister.csv"
+      ]
+    },
+    "ScriptingEvent": {
+      "matching_file_count": 53,
+      "sample_files": [
+        "CHANGELOG_CODEUPDATE_0110_SCRIPTING_EVENTS.md",
+        "SESSION_HANDOFF_CODEUPDATE_0110_SCRIPTING_EVENTS.md",
+        "manifest_codeupdate_0110_scripting_events.json",
+        "Reports/validation_0001_script_stdout.txt",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Handoff.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Report.md",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/InputArtifactVerification_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_DecisionRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_FileManifest.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_IssueRegister.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_Metrics.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_ZipVerification.json",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageDefinitionMatrix_RuntimePrep0006.csv",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBTextResourceInventory_RuntimePrep0006.csv",
+        "Simulator/DataSimVer/0018/EventSchedulingClues.csv",
+        "DataDecodeCheckpoints/DataDecode0049/WGSERVER_RecordDescriptorCandidates_DataDecode0049.csv",
+        "DataDecodeCheckpoints/DataDecode0050/EventValue_CrossFileU16Candidates_DataDecode0050.csv",
+        "DataDecodeCheckpoints/DataDecode0050/Prior0049_EventDispatcherBridge_DataDecode0050.csv",
+        "DataDecodeCheckpoints/DataDecode0050/QuestEventBridgeCandidates_DataDecode0050.csv",
+        "DataDecodeCheckpoints/DataDecode0050/WGSERVER_EventDispatcherPriority_DataDecode0050.csv",
+        "DataDecodeCheckpoints/DataDecode0050/WGSERVER_EventMessageStringCatalog_DataDecode0050.csv",
+        "DataDecodeCheckpoints/MegaMUD2RE0021/Evidence/RE0021_TRC_PROTOCOL_EVENT_TIMELINE.csv",
+        "Validation/CodeUpdate0110_ScriptingEventReconstruction/gap_registry.json",
+        "Validation/CodeUpdate0110_ScriptingEventReconstruction/validation_summary.json",
+        "Sim/Probes/ScriptingEvents/scripting_event_probe_definitions.json",
+        "Runtime/game_loop/event_queue.py"
+      ]
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "10172 duplicate JSON id values detected; may include legitimate repeated manifests but require review"
+  ],
+  "interpretation": {
+    "mechanic_promotion_policy": "0112 does not promote gameplay mechanics; it validates package integrity, distribution readiness, and evidence lineage surfaces.",
+    "generated_artifact_policy": "Generated graphs and indexes remain local/generated artifacts, not canonical Git source truth.",
+    "github_import_readiness": "Ready for staged repository import only after warnings are reviewed; no runtime behavior replacements were made."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "code_update": "0088",
+  "name": "TimingExecutionPromotionReview",
+  "baseline": "0084_0087",
+  "status": "PASS_WITH_LIMITATIONS",
+  "runtime_changed": false,
+  "formulas_promoted": 0,
+  "runtime_formulas_replaced": 0,
+  "verified_promotions": 3,
+  "corroborated_promotions": 2,
+  "artifacts": [
+    "Librarium/PromotionReview0088/timing_execution_promotion_review_0088.json",
+    "Evidence/CodeUpdate0088/promotion_decision_records_0088.json",
+    "Reports/CodeUpdate0088/CodeUpdate0088_TimingExecutionPromotionReview_Report.md",
+    "Validation/CodeUpdate0088/validation_0088.json",
+    "SESSION_HANDOFF_CODEUPDATE_0088.md",
+    "CHANGELOG_CODEUPDATE_0088.md",
+    "Codex/CodeUpdate0088/CODEX_HANDOFF_0088.md"
+  ]
+}

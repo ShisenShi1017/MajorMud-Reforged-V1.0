@@ -1,0 +1,34 @@
+[
+  {
+    "id": "quest_acceptance_gate_probe",
+    "purpose": "Validate quest acceptance prerequisites."
+  },
+  {
+    "id": "quest_stage_order_probe",
+    "purpose": "Verify ordered stage advancement."
+  },
+  {
+    "id": "quest_reward_delivery_probe",
+    "purpose": "Validate reward delivery and ordering."
+  },
+  {
+    "id": "quest_failure_path_probe",
+    "purpose": "Capture failure/decline semantics."
+  },
+  {
+    "id": "quest_repeatability_probe",
+    "purpose": "Verify repeat/lockout behavior."
+  },
+  {
+    "id": "quest_item_handin_probe",
+    "purpose": "Trace item consumption and flag updates."
+  },
+  {
+    "id": "quest_dialogue_branch_probe",
+    "purpose": "Reconstruct dialogue branch selection."
+  },
+  {
+    "id": "quest_room_trigger_probe",
+    "purpose": "Validate room-triggered quest advancement."
+  }
+]

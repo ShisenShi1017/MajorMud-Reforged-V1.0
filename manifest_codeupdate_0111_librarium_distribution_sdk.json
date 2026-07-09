@@ -1,0 +1,53 @@
+{
+  "codeupdate": "0111",
+  "title": "Librarium Distribution & SDK",
+  "date": "2026-07-08",
+  "baseline": "CodeUpdate0110 Scripting & Event Reconstruction cumulative",
+  "status": "PASS_WITH_LIMITATIONS",
+  "purpose": "Make the Librarium consumable without committing generated graph/index artifacts to GitHub.",
+  "principles": [
+    "/Librarium remains canonical",
+    "Generated graph/index/database files are local artifacts, not source truth",
+    "Consumers use the generated SDK/database interface instead of parsing ad hoc files",
+    "No gameplay mechanics or formulas are promoted by distribution tooling alone"
+  ],
+  "source_zip_entries": 5860,
+  "source_folder_counts": {
+    "Librarium": 180,
+    "Evidence": 153,
+    "Validation": 135,
+    "Reports": 192,
+    "Runtime": 49,
+    "Data": 102,
+    "Generated": 18,
+    "Tools": 163,
+    "Sim": 28,
+    "Simulator": 90,
+    "Documentation": 144,
+    "Codex": 65,
+    "ImportedDatabases": 3890
+  },
+  "new_artifacts": [
+    "Tools/LibrariumDistribution/build_librarium_distribution.py",
+    "Tools/LibrariumDistribution/librarium_query.py",
+    "Tools/LibrariumDistribution/sdk_schema.sql",
+    "Tools/LibrariumDistribution/README.md",
+    "Documentation/LibrariumDistributionSDK.md",
+    "Reports/CodeUpdate0111_LibrariumDistributionReport.md",
+    "Validation/CodeUpdate0111_DistributionValidation.json",
+    "manifest_codeupdate_0111_librarium_distribution_sdk.json"
+  ],
+  "generated_outputs_when_run_locally": [
+    "Generated/Librarium/librarium.sqlite",
+    "Generated/Librarium/core_graph.json",
+    "Generated/Librarium/query_index.json",
+    "Generated/Librarium/runtime_index.json",
+    "Generated/Librarium/evidence_index.json"
+  ],
+  "promotions": {
+    "data_presence": 0,
+    "mechanics": 0,
+    "formulas": 0
+  },
+  "runtime_replacements": 0
+}

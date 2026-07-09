@@ -1,0 +1,224 @@
+{
+  "codeupdate": "0089-0092",
+  "package": "Runtime Convergence",
+  "policy": "Librarium remains canonical; Runtime/Data/Generated are generated or consuming outputs and must not introduce independent game truth.",
+  "baseline": "CodeUpdate0088 TimingExecutionPromotionReview cumulative",
+  "counts": {
+    "Librarium": 170,
+    "Runtime": 49,
+    "Generated": 6,
+    "Simulator": 75,
+    "Sim": 26,
+    "Data": 102,
+    "Validation": 114,
+    "Reports": 164,
+    "Documentation": 137,
+    "Codex": 54
+  },
+  "runtime_systems": {
+    "__init__.py": 1,
+    "character_snapshot.py": 1,
+    "class_race_engine.py": 1,
+    "data_runtime.py": 1,
+    "equipment_stats.py": 1,
+    "formula_engine.py": 1,
+    "leveling.py": 1,
+    "monster_ai.py": 1,
+    "movement.py": 1,
+    "regeneration.py": 1,
+    "runtime_modes.py": 1,
+    "spawn.py": 1,
+    "abilities": 2,
+    "adapters": 2,
+    "combat": 2,
+    "command": 7,
+    "economy": 2,
+    "game_loop": 4,
+    "loot": 2,
+    "npc_services": 2,
+    "persistence": 2,
+    "quests": 2,
+    "schemas": 2,
+    "spells": 2,
+    "test_harness": 2,
+    "world": 2,
+    "world_integration": 2
+  },
+  "compiler_integration_status": {
+    "librarium_records_indexed": 170,
+    "runtime_files_indexed": 49,
+    "runtime_files_with_explicit_librarium_or_provenance_markers": 40,
+    "status": "PASS_WITH_LIMITATIONS",
+    "limitation": "Runtime files do not yet consistently expose direct Librarium record IDs in source; this package adds the coverage/audit scaffolding rather than freezing runtime behavior."
+  },
+  "integration_rules": [
+    "Runtime behavior must resolve to a Librarium source record, generated output record, or explicit tracked gap.",
+    "Handwritten runtime logic is allowed only as an adapter when linked to a Librarium record or canonical runtime decision.",
+    "Generated artifacts are reproducible outputs and not canonical truth.",
+    "Unmapped runtime logic remains a coverage gap until linked or retired."
+  ],
+  "sample_runtime_provenance_hits": [
+    {
+      "file": "Runtime/character_snapshot.py",
+      "markers": [
+        "provenance",
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/class_race_engine.py",
+      "markers": [
+        "provenance",
+        "canonical",
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/data_runtime.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/equipment_stats.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/leveling.py",
+      "markers": [
+        "canonical",
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/monster_ai.py",
+      "markers": [
+        "canonical",
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/movement.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/regeneration.py",
+      "markers": [
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/spawn.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/abilities/ability_engine.py",
+      "markers": [
+        "provenance"
+      ]
+    },
+    {
+      "file": "Runtime/adapters/schema_loader.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/combat/combat_runtime.py",
+      "markers": [
+        "provenance"
+      ]
+    },
+    {
+      "file": "Runtime/economy/economy_runtime.py",
+      "markers": [
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/game_loop/runtime_kernel.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/loot/loot_runtime.py",
+      "markers": [
+        "provenance",
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/npc_services/npc_services_runtime.py",
+      "markers": [
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/persistence/persistence_runtime.py",
+      "markers": [
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/schemas/__init__.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/schemas/canonical.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Runtime/spells/spell_runtime.py",
+      "markers": [
+        "provenance",
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/test_harness/full_game_test_harness.py",
+      "markers": [
+        "provenance",
+        "canonical",
+        "evidence"
+      ]
+    },
+    {
+      "file": "Runtime/world_integration/world_runtime.py",
+      "markers": [
+        "canonical",
+        "evidence"
+      ]
+    },
+    {
+      "file": "Sim/validators/validate_ability_quest_engine.py",
+      "markers": [
+        "canonical"
+      ]
+    },
+    {
+      "file": "Sim/validators/validate_class_race_engine.py",
+      "markers": [
+        "canonical",
+        "evidence"
+      ]
+    },
+    {
+      "file": "Sim/validators/validate_combat.py",
+      "markers": [
+        "provenance",
+        "evidence"
+      ]
+    }
+  ]
+}

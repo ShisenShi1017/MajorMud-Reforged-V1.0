@@ -1,0 +1,68 @@
+[
+  {
+    "id": "GAP-0078-TICK-SOURCE",
+    "title": "Exact Classic MajorMUD tick source",
+    "priority": "critical",
+    "evidence_state": "Hypothesis",
+    "current_confidence": "medium",
+    "hypothesis": "Tick/timing behavior is host-driven by MajorBBS/Worldgroup mechanisms such as TICKER, RTKICK, STSROU, SYSCYC, BEGIN_POLLING rather than client-side simulation or modem ping itself.",
+    "evidence_needed": [
+      "MajorMUD module routine names mapped to host callback types",
+      "Runtime trace of repeated regen/spawn/combat updates",
+      "Confirmation of whether Classic uses TICKER comparisons or RTKICK/STSROU callbacks"
+    ],
+    "consumers": [
+      "combat",
+      "regen",
+      "spawn",
+      "AI",
+      "timed effects",
+      "quests"
+    ],
+    "promotion_requirements": [
+      "At least one MajorMUD-specific execution trace or source routine mapping",
+      "Cadence observed over multiple cycles",
+      "Ordering relative to input and output established"
+    ]
+  },
+  {
+    "id": "GAP-0078-OUTPUT-FLUSH",
+    "title": "Output flush boundary after module state mutation",
+    "priority": "high",
+    "evidence_state": "Hypothesis",
+    "current_confidence": "medium-low",
+    "hypothesis": "Player sees updates when host/session flushes output after module processing; modem latency affects delivery but not authoritative state changes.",
+    "evidence_needed": [
+      "Host session output routine trace",
+      "MajorMUD output routine mapping",
+      "Observed timing logs"
+    ],
+    "consumers": [
+      "combat messaging",
+      "quest dialogue",
+      "regen messages",
+      "spawn/room state visibility"
+    ],
+    "promotion_requirements": [
+      "Trace showing state mutation before output delivery"
+    ]
+  },
+  {
+    "id": "GAP-0078-SUBSYSTEM-CALLBACK-MAP",
+    "title": "Subsystem to callback mapping",
+    "priority": "critical",
+    "evidence_state": "Derived",
+    "current_confidence": "medium",
+    "hypothesis": "Different subsystems may use different host callbacks rather than a single universal gameplay tick.",
+    "evidence_needed": [
+      "Map combat/regen/spawn/AI/quest routines to STTROU/STSROU/SYSCYC/RTKICK/etc.",
+      "Candidate routine disassembly/source references"
+    ],
+    "consumers": [
+      "all behavior verification tracks"
+    ],
+    "promotion_requirements": [
+      "Per-subsystem callback evidence and deterministic probe confirmation"
+    ]
+  }
+]

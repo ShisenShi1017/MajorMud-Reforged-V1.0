@@ -1,3 +1,16 @@
+# CHANGELOG — CodeUpdate 0108 Guild / Social Reconstruction (Redo)
+
+- Raw guild/social evidence hits: 426,549
+- Files with guild/social hits: 2,375
+- Prioritized evidence references: 1,600
+- Relationship edges: 13,522
+- Guild/social candidate records: 2,348
+- Probes defined: 6
+- Gaps recorded: 8
+- Promoted one scope-limited data-presence record only.
+- Gameplay mechanics promoted: 0
+- Runtime behaviors replaced: 0
+
 # Changelog
 
 ## CodeUpdate-0065 - MMExplorer MDB Canonical Repair
@@ -425,3 +438,186 @@
 ## Earlier History
 
 Earlier CodeUpdate history is preserved in repository reports and handoff documents. Current sessions should continue from the latest verified Code Update recorded at the top of this file.
+
+
+## CodeUpdate-0067 — Librarium 0012–0014 Combined
+
+- Added local graph builder tooling and generated local graph/index artifacts.
+- Added minimal query engine over generated Librarium graph.
+- Added Knowledge Gap Registry with tracked unknowns and promotion requirements.
+- Registered MMUD Explorer and MBBSEmu as external evidence repositories only.
+- Preserved Librarium-first canonical rule and did not replace runtime formulas.
+
+## CodeUpdate 0069 — Formula Conflict Resolution
+- Reviewed actual 0068 conflict artifacts.
+- Resolved 2 raw-lhs conflict buckets as false-positive parser buckets (`Text`, `Index`).
+- Confirmed 0 runtime formula replacements and 0 Verified promotions.
+
+## CodeUpdate-0070 - Formula Behavior Verification
+
+- Added formula behavior records/probes and gap registry.
+- Preserved Librarium canonical truth.
+- No formula promotions or runtime replacements.
+
+## CodeUpdate-0077 - Multi-System Formula Gap Resolution
+
+- Added five-track formula gap resolution across combat, backstab/crit/specials, XP/leveling, regen/ticks, and loot/spawn.
+- Prioritized 400 candidate references and created 15 deterministic probe definitions.
+- Updated gap registry with partial resolution status.
+- Preserved Librarium canonical state; no formulas promoted or runtime formulas replaced.
+
+
+# CHANGELOG — CodeUpdate 0079
+
+## Added
+
+- Host lifecycle evidence inventory from MBBSEmu.
+- Host lifecycle model and timing state machine.
+- Host lifecycle gap registry.
+- Runtime trace probe plan for future verification.
+- Query helper for 0079 host lifecycle artifacts.
+
+## Changed
+
+- Refined tick hypothesis: authoritative timing is host/module-driven; modem latency is observational unless proven otherwise.
+
+## Not Changed
+
+- No runtime formulas replaced.
+- No formulas promoted to Verified.
+- No repository restructuring.
+
+## CodeUpdate 0080 — Runtime Trace Probe Harness
+
+- Added trace probe catalog, schema, gap mapping, runner script, example template, validation, report, Codex handoff, and session handoff.
+- No formulas promoted and no runtime formulas replaced.
+
+
+# CHANGELOG — CodeUpdate 0093-0100
+
+## Core Game System Reconstruction
+
+- Added subsystem reconstruction index for combat, progression, magic, world/movement, NPCs, economy, quests, and guild/social systems.
+- Added runtime projection matrix for core systems.
+- Added core game gap registry update.
+- Added deterministic probe catalog for subsystem traceability and deterministic outcomes.
+- Added validation and coverage reports.
+- No formulas promoted.
+- No runtime formulas replaced.
+- Canonical freeze remains blocked.
+
+
+## CodeUpdate 0101 — Combat Reconstruction
+
+See `CHANGELOG_CODEUPDATE_0101_COMBAT.md`. No runtime formulas promoted or replaced.
+
+
+## CodeUpdate 0102 — Magic Reconstruction
+
+See `CHANGELOG_CODEUPDATE_0102_MAGIC.md`. No magic formulas or runtime behaviors promoted or replaced.
+
+
+## CodeUpdate 0103 — Progression Reconstruction
+
+See `CHANGELOG_CODEUPDATE_0103_PROGRESSION.md`. No progression formulas or runtime behaviors promoted or replaced.
+
+
+## CodeUpdate 0104 — NPC Reconstruction
+
+See `CHANGELOG_CODEUPDATE_0104_NPC.md`. No NPC runtime behaviors promoted or replaced.
+
+
+# CHANGELOG CodeUpdate 0105 — World / Movement Reconstruction
+
+Date: 2026-07-08T23:34:20Z
+
+- Added World / Movement subsystem reconstruction artifacts.
+- Inventoried imported rooms, world metadata, and generated room graph.
+- Scanned uploaded MBBSEmu and MMUD Explorer repositories for room, exit, door, lock, teleport, pathing, trigger, and environmental evidence.
+- Added prioritized evidence index, relationship edges, gap registry, probe definitions, and subsystem report.
+- Promoted only one narrow architecture/data-presence record to Verified.
+- Promoted zero world mechanics and replaced zero runtime behaviors.
+
+Status: PASS_WITH_LIMITATIONS.
+
+
+# CHANGELOG — CodeUpdate 0106 Economy Reconstruction (Redo)
+
+- Raw economy evidence hits: 935,655
+- Prioritized evidence references: 1,750
+- Relationship edges: 11,262
+- Merchant/shop/service candidate records: 2,419
+- Probes defined: 6
+- Gaps recorded: 8
+- Mechanics promoted: 0
+- Runtime behaviors replaced: 0
+- Promoted one scope-limited data-presence record only.
+
+
+# CodeUpdate 0107 — Quest Reconstruction
+
+Generated: 2026-07-09T00:15:08.358779+00:00
+
+Status: **PASS_WITH_FINDINGS**
+
+- Raw quest evidence hits: **315,114**
+- Files with quest hits: **1,767**
+- Prioritized evidence references: **1,767**
+- Relationship edges: **1,037**
+- Quest ability candidates: **13**
+- Quest flow candidates: **12**
+- Probe definitions: **8**
+- Gap records: **9**
+
+One narrow quest flag data-presence record was promoted. No gameplay quest mechanics or runtime behavior were replaced.
+
+
+## CodeUpdate 0109 — Dialogue / Text Reconstruction
+
+- Performed full dialogue/text subsystem reconstruction from 0108 baseline.
+- Indexed 2,894,446 raw dialogue/text evidence hits across 3,995 files.
+- Prioritized 2,050 evidence references and generated 14,873 relationship edges.
+- Created 8 simulator probes and 9 gap records.
+- Promoted one narrow data-presence record only; no conversation mechanics or runtime behavior were promoted/replaced.
+
+
+# CHANGELOG — CodeUpdate 0110 Scripting & Event Reconstruction
+
+- Completed scripting/event subsystem reconstruction.
+- Added evidence inventory, relationship edges, Librarium domain records, validation summary, gap registry, and simulator probe definitions.
+- Promoted one narrow data-presence record.
+- Promoted no gameplay mechanics.
+- Replaced no runtime behavior.
+
+## CodeUpdate 0111 — Librarium Distribution & SDK
+
+- Added local graph/database generation workflow.
+- Added `Tools/LibrariumDistribution/build_librarium_distribution.py`.
+- Added `Tools/LibrariumDistribution/librarium_query.py`.
+- Added SQLite schema for local Librarium consumption.
+- Added distribution documentation explaining how developers regenerate graph/index artifacts locally instead of committing them.
+- Preserved Librarium as canonical source.
+- Promoted 0 gameplay mechanics.
+- Replaced 0 runtime behaviors.
+
+# Changelog — CodeUpdate 0112 Master Consolidation
+
+- Performed full file inventory and SHA-256 manifest generation.
+- Audited cumulative changelog/handoff/manifest lineage through 0111.
+- Audited required top-level project directories.
+- Ran Librarium Distribution builder and verified SQLite generation.
+- Sampled local query workflow across major subsystems.
+- Scanned JSON files for validity, ids, duplicate ids, and evidence state surfaces.
+- Scanned Markdown relative links for possible broken references.
+- Generated master consolidation, subsystem coverage, and repository integration reports.
+- Preserved generated graph/index policy: generated artifacts are local reproducible outputs, not canonical Git source truth.
+- No gameplay mechanics promoted.
+- No runtime behaviors replaced.
+
+
+## CodeUpdate 0112.1 — Repository Normalization
+
+- Added root `.gitignore` to keep generated graphs, indexes, and SQLite/database outputs out of GitHub.
+- Refreshed manifests for a self-contained drop-in replacement baseline.
+- Added repository normalization audit and master inventory.
+- Result: PASS_WITH_WARNINGS.

@@ -1,0 +1,102 @@
+{
+  "codeupdate": "0082",
+  "title": "Timing Constant Verification",
+  "generated_utc": "2026-07-08T21:00:05Z",
+  "principle": "Librarium is canonical; external repos and screenshots are evidence only.",
+  "claims": [
+    {
+      "id": "timing_claim_system_tick_3s",
+      "claim": "MajorMUD uses a 3.0-second system/spell tick for regen, buffs, debuffs, or spell duration processing.",
+      "status_after_0082": "DERIVED_CANDIDATE_NOT_VERIFIED",
+      "support": [
+        {
+          "source": "MMUD Explorer docs/changelog.archive.txt",
+          "detail": "Changelog states bless calculations were changed to use 3-second round ticks instead of 5.",
+          "path": "external:MMUD-Explorer-master/docs/changelog.archive.txt:7"
+        },
+        {
+          "source": "MMUD Explorer clsMonsterAttackSim.cls",
+          "detail": "Simulator code rotates spell duration tick counters through a repeating 1..3 cadence and decrements spell duration on tick processing.",
+          "path": "external:MMUD-Explorer-master/clsMonsterAttackSim.cls:1017-1083"
+        },
+        {
+          "source": "User-provided Google AI screenshots",
+          "detail": "Screenshots claim 1 System Tick = 3.0 seconds and describe a global heartbeat/tick clipping model.",
+          "path": "Evidence/UserProvided/TimingConstants0082/*.jpg"
+        }
+      ],
+      "limitations": [
+        "No primary MajorMUD/Worldgroup SDK page was provided in this package.",
+        "MBBSEmu exposes host seconds/TIMER/TICKER behavior but does not itself prove a MajorMUD 3-second gameplay tick.",
+        "MMUD Explorer is reverse-engineering/tooling evidence, not canonical Classic truth."
+      ],
+      "promotion_decision": "Do not promote to Verified; keep as derived candidate with high priority for trace/runtime confirmation."
+    },
+    {
+      "id": "timing_claim_combat_round_1_5s",
+      "claim": "MajorMUD uses a 1.5-second combat round and 1 tick = 2 combat rounds.",
+      "status_after_0082": "CONFLICTING_CANDIDATE_NOT_VERIFIED",
+      "support": [
+        {
+          "source": "User-provided Google AI screenshots",
+          "detail": "Screenshots claim 1 Combat Round = 1.5 seconds and 1 Tick = 2 Rounds.",
+          "path": "Evidence/UserProvided/TimingConstants0082/6479.jpg and 6489.jpg"
+        }
+      ],
+      "conflicting_or_nonconfirming_evidence": [
+        {
+          "source": "MMUD Explorer clsMonsterAttackSim.cls",
+          "detail": "Comment says SPELL ROUND = 3s, COMBAT ROUND 5s, every 3 rounds = extra spell round; adjacent comments refer to 15 seconds at three ticks.",
+          "path": "external:MMUD-Explorer-master/clsMonsterAttackSim.cls:540-582"
+        },
+        {
+          "source": "MBBSEmu",
+          "detail": "MBBSEmu confirms host timer mechanisms and seconds counters but no attached source line confirms 1.5-second MajorMUD combat rounds.",
+          "path": "external:MBBSEmu-master/MBBSEmu/HostProcess and ExportedModules/Galgsbl.cs"
+        }
+      ],
+      "promotion_decision": "Do not promote; create explicit conflict/gap requiring MegaMUD source, Classic logs, SDK documentation, or direct gameplay trace."
+    },
+    {
+      "id": "timing_claim_tick_clipping",
+      "claim": "Spell/buff true duration clips against a hidden global heartbeat depending on cast time relative to the next tick.",
+      "status_after_0082": "PLAUSIBLE_HYPOTHESIS_NOT_VERIFIED",
+      "support": [
+        {
+          "source": "User-provided Google AI screenshots",
+          "detail": "Screenshots describe maximum/minimum duration windows based on global tick position.",
+          "path": "Evidence/UserProvided/TimingConstants0082/6487.jpg"
+        }
+      ],
+      "limitations": [
+        "No primary source or executable trace in the current package proves cast-time clipping.",
+        "Needs a probe with timestamped cast event, global tick event, duration decrement, and expiration."
+      ],
+      "promotion_decision": "Do not promote; add runtime trace probe requirement."
+    },
+    {
+      "id": "timing_claim_host_driven_seconds",
+      "claim": "MBBSEmu host exposes second-based and timer-based scheduling primitives that support host-driven timing rather than client/modem-driven simulation.",
+      "status_after_0082": "OBSERVED_FOR_MBBSEMU_NOT_CLASSIC_VERIFIED",
+      "support": [
+        {
+          "source": "MBBSEmu Galgsbl.cs",
+          "detail": "TICKER variable is allocated and updated from elapsed seconds once per second.",
+          "path": "external:MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Galgsbl.cs:66-72,90-102"
+        },
+        {
+          "source": "MBBSEmu MbbsHost.cs",
+          "detail": "Host has Timer.Hertz-driven timer events, in-module STSROU/STTROU/polling handling, and real-time processing calls RTKICK/RTIHDLR/SYSCYC/Tasks.",
+          "path": "external:MBBSEmu-master/MBBSEmu/HostProcess/MbbsHost.cs:124-202,394-442,739-756"
+        }
+      ],
+      "promotion_decision": "Keep as observed MBBSEmu host behavior; not enough to verify Classic MajorMUD constants."
+    }
+  ],
+  "overall_decision": {
+    "verified_promotions": 0,
+    "runtime_formula_replacements": 0,
+    "new_gaps": 4,
+    "updated_gaps": 4
+  }
+}

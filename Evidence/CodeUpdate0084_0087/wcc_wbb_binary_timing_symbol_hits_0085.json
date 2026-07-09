@@ -1,0 +1,1172 @@
+[
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_begin_polling",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_rtkick",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_syscyc",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_my_rtkick",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_majormud_syscyc",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_fast",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_medium",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_slow",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_energy",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_inactivity",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_monster_create",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_other",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_save_buffers",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_update_exits",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_do_autocombat",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_do_autocombat_for_user",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_restart_autocombat",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_delay_done",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_add_delay",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_add_delayed_command",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_ljngame_stsrou",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_ljngame_sttrou",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "You may not enter that room while in combat.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s is dragging you around.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "You look around stupidly and do nothing!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s looks around stupidly and foams at the mouth!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "RESTING - REST REGEN %d.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "MEDITATE - MANA REGEN %d.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Delay",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "The copper farthings look like they've been around forever.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Auto-Combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s %s drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s platinum drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s gold drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s silver drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s copper drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s looks around stupidly and foams at the mouth!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Such an attack would result in a very unbalanced combat round.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "*Combat Engaged*",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "You smashed %s to the ground!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "You are smashed to the ground!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s is smashed to the ground defenseless!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "DEBUG : Restarting Auto-Combat. Energy below max.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "DEBUG : LOST MONSTER DURING COMBAT.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Please note: Recovery mode in progress.  Some monsters may not regenerate.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Treat this room as you would any other combat zone.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "quite attractive and pleasant to be around",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Following: '%s' (%s), Inactive for: %d rounds",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Room Max: %d  Current: %d  Last Killed: %s Delay: %d",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s drops to the ground!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "*Combat Engaged*",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "You have already %s this round!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Such an attack would result in a very unbalanced combat round.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "If this wasn't a combat arena then you would have shattered %s's %s",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Your %s would have been shattered if this was not a combat arena!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Evil in Combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Alter Mana Regeneration",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "*Combat Off*",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s breaks off combat.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Magery Group: %15.15s-%-5d  Combat Value:    %-5d",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Exp/Level: %-5d  Max HP: %-5d  Max Energy: %-5d  Regen Rate: %-5d",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s %s %s %d rounds to go.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "DEBUG : COULD NOT RESTART AUTOCOMBAT.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "%s is looking around the room.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Why would you want to drag yourself around?",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "PVP Combat will be displayed as normal messages.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "PVP Combat will now interrupt your typing and output.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "You may not be in autocombat when you do that.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Arena rooms are in combat mode (death DOES count)",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Arena rooms are now in combat mode (death DOES count)",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Arena rooms are already in combat mode.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Syntax: SYSOP ARENA [status/normal/combat]",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Minutes before regenerating: %d minutes",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "Delay: %d",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "adddelay",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_begin_polling",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_rtkick",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_stop_polling",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_syscyc",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_add_delay",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_add_delayed_command",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_automatic_update_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_energy",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_fast",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_inactivity",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_medium",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_monster_create",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_other",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_save_buffers",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_slow",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_background_update_exits",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_clear_autocombat_info",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_delay_done",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_display_autocombat_broken",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_do_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_do_autocombat_for_user",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_engage_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_init_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_is_combatting_monster",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_is_combatting_user",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_is_in_pvp_combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_is_inside_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_kill_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_kill_autocombat_against",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_kill_autocombat_against_monster",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_ljngame_user_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_ljngame_validate_name_polling",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_majormud_syscyc",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_match_combat_target",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_my_rtkick",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_refresh_items_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_restart_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_update_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_validate_auto_combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_xref_users_items_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+    "symbol": "_xref_users_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_begin_polling",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_rtkick",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_syscyc",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_my_rtkick",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_majormud_syscyc",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_fast",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_medium",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_slow",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_energy",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_inactivity",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_monster_create",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_other",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_save_buffers",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_update_exits",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_do_autocombat",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_do_autocombat_for_user",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_restart_autocombat",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_delay_done",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_add_delay",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_add_delayed_command",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_ljngame_stsrou",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_ljngame_sttrou",
+    "match_type": "strings"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "You may not enter that room while in combat.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s is dragging you around.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "You look around stupidly and do nothing!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s looks around stupidly and foams at the mouth!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "RESTING - REST REGEN %d.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "MEDITATE - MANA REGEN %d.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Delay",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "The copper farthings look like they've been around forever.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Auto-Combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s %s drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s platinum drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s gold drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s silver drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s copper drop to the ground.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s looks around stupidly and foams at the mouth!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Such an attack would result in a very unbalanced combat round.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "*Combat Engaged*",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "You smashed %s to the ground!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "You are smashed to the ground!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s is smashed to the ground defenseless!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "DEBUG : Restarting Auto-Combat. Energy below max.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "DEBUG : LOST MONSTER DURING COMBAT.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Please note: Recovery mode in progress.  Some monsters may not regenerate.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Treat this room as you would any other combat zone.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "quite attractive and pleasant to be around",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Following: '%s' (%s), Inactive for: %d rounds",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Room Max: %d  Current: %d  Last Killed: %s Delay: %d",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s drops to the ground!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "*Combat Engaged*",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "You have already %s this round!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Such an attack would result in a very unbalanced combat round.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "If this wasn't a combat arena then you would have shattered %s's %s",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Your %s would have been shattered if this was not a combat arena!",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Evil in Combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Alter Mana Regeneration",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "*Combat Off*",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s breaks off combat.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Magery Group: %15.15s-%-5d  Combat Value:    %-5d",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Exp/Level: %-5d  Max HP: %-5d  Max Energy: %-5d  Regen Rate: %-5d",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s %s %s %d rounds to go.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "DEBUG : COULD NOT RESTART AUTOCOMBAT.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "%s is looking around the room.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Why would you want to drag yourself around?",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "PVP Combat will be displayed as normal messages.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "PVP Combat will now interrupt your typing and output.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "You may not be in autocombat when you do that.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Arena rooms are in combat mode (death DOES count)",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Arena rooms are now in combat mode (death DOES count)",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Arena rooms are already in combat mode.",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Syntax: SYSOP ARENA [status/normal/combat]",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Minutes before regenerating: %d minutes",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "Delay: %d",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "adddelay",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_begin_polling",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_rtkick",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_stop_polling",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_syscyc",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_add_delay",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_add_delayed_command",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_automatic_update_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_energy",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_fast",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_inactivity",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_medium",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_monster_create",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_other",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_save_buffers",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_slow",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_background_update_exits",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_clear_autocombat_info",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_delay_done",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_display_autocombat_broken",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_do_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_do_autocombat_for_user",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_engage_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_init_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_is_combatting_monster",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_is_combatting_user",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_is_in_pvp_combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_is_inside_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_kill_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_kill_autocombat_against",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_kill_autocombat_against_monster",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_ljngame_user_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_ljngame_validate_name_polling",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_majormud_syscyc",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_match_combat_target",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_my_rtkick",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_refresh_items_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_restart_autocombat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_update_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_validate_auto_combat",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_xref_users_items_polling_routine",
+    "match_type": "context_string"
+  },
+  {
+    "file": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+    "symbol": "_xref_users_polling_routine",
+    "match_type": "context_string"
+  }
+]

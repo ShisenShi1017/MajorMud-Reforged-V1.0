@@ -1,0 +1,149 @@
+{
+  "codeupdate": "0093-0100",
+  "gaps_created_or_refined": [
+    {
+      "gap_id": "CGSR-COMBAT-TRACEABILITY",
+      "subsystem": "combat",
+      "priority": "high",
+      "current_state": "mapped_with_gaps",
+      "evidence_needed": [
+        "explicit Librarium record IDs in runtime adapters",
+        "deterministic simulator expected outcomes",
+        "source-to-runtime diff confirmation"
+      ],
+      "promotion_requirement": "Only promote mechanics after evidence chain links Librarium record, imported data/source evidence, generated runtime output, and deterministic observation.",
+      "consumer_impact": [
+        "runtime",
+        "simulator",
+        "documentation",
+        "validation"
+      ]
+    },
+    {
+      "gap_id": "CGSR-PROGRESSION-TRACEABILITY",
+      "subsystem": "progression",
+      "priority": "high",
+      "current_state": "mapped_with_gaps",
+      "evidence_needed": [
+        "explicit Librarium record IDs in runtime adapters",
+        "deterministic simulator expected outcomes",
+        "source-to-runtime diff confirmation"
+      ],
+      "promotion_requirement": "Only promote mechanics after evidence chain links Librarium record, imported data/source evidence, generated runtime output, and deterministic observation.",
+      "consumer_impact": [
+        "runtime",
+        "simulator",
+        "documentation",
+        "validation"
+      ]
+    },
+    {
+      "gap_id": "CGSR-MAGIC-TRACEABILITY",
+      "subsystem": "magic",
+      "priority": "high",
+      "current_state": "mapped_with_gaps",
+      "evidence_needed": [
+        "explicit Librarium record IDs in runtime adapters",
+        "deterministic simulator expected outcomes",
+        "source-to-runtime diff confirmation"
+      ],
+      "promotion_requirement": "Only promote mechanics after evidence chain links Librarium record, imported data/source evidence, generated runtime output, and deterministic observation.",
+      "consumer_impact": [
+        "runtime",
+        "simulator",
+        "documentation",
+        "validation"
+      ]
+    },
+    {
+      "gap_id": "CGSR-WORLD_MOVEMENT-TRACEABILITY",
+      "subsystem": "world_movement",
+      "priority": "medium",
+      "current_state": "mapped_with_gaps",
+      "evidence_needed": [
+        "explicit Librarium record IDs in runtime adapters",
+        "deterministic simulator expected outcomes",
+        "source-to-runtime diff confirmation"
+      ],
+      "promotion_requirement": "Only promote mechanics after evidence chain links Librarium record, imported data/source evidence, generated runtime output, and deterministic observation.",
+      "consumer_impact": [
+        "runtime",
+        "simulator",
+        "documentation",
+        "validation"
+      ]
+    },
+    {
+      "gap_id": "CGSR-NPCS-TRACEABILITY",
+      "subsystem": "npcs",
+      "priority": "high",
+      "current_state": "mapped_with_gaps",
+      "evidence_needed": [
+        "explicit Librarium record IDs in runtime adapters",
+        "deterministic simulator expected outcomes",
+        "source-to-runtime diff confirmation"
+      ],
+      "promotion_requirement": "Only promote mechanics after evidence chain links Librarium record, imported data/source evidence, generated runtime output, and deterministic observation.",
+      "consumer_impact": [
+        "runtime",
+        "simulator",
+        "documentation",
+        "validation"
+      ]
+    },
+    {
+      "gap_id": "CGSR-ECONOMY-TRACEABILITY",
+      "subsystem": "economy",
+      "priority": "medium",
+      "current_state": "mapped_with_gaps",
+      "evidence_needed": [
+        "explicit Librarium record IDs in runtime adapters",
+        "deterministic simulator expected outcomes",
+        "source-to-runtime diff confirmation"
+      ],
+      "promotion_requirement": "Only promote mechanics after evidence chain links Librarium record, imported data/source evidence, generated runtime output, and deterministic observation.",
+      "consumer_impact": [
+        "runtime",
+        "simulator",
+        "documentation",
+        "validation"
+      ]
+    },
+    {
+      "gap_id": "CGSR-QUESTS-TRACEABILITY",
+      "subsystem": "quests",
+      "priority": "high",
+      "current_state": "mapped_with_gaps",
+      "evidence_needed": [
+        "explicit Librarium record IDs in runtime adapters",
+        "deterministic simulator expected outcomes",
+        "source-to-runtime diff confirmation"
+      ],
+      "promotion_requirement": "Only promote mechanics after evidence chain links Librarium record, imported data/source evidence, generated runtime output, and deterministic observation.",
+      "consumer_impact": [
+        "runtime",
+        "simulator",
+        "documentation",
+        "validation"
+      ]
+    },
+    {
+      "gap_id": "CGSR-GUILDS_SOCIAL-TRACEABILITY",
+      "subsystem": "guilds_social",
+      "priority": "medium",
+      "current_state": "mapped_with_gaps",
+      "evidence_needed": [
+        "explicit Librarium record IDs in runtime adapters",
+        "deterministic simulator expected outcomes",
+        "source-to-runtime diff confirmation"
+      ],
+      "promotion_requirement": "Only promote mechanics after evidence chain links Librarium record, imported data/source evidence, generated runtime output, and deterministic observation.",
+      "consumer_impact": [
+        "runtime",
+        "simulator",
+        "documentation",
+        "validation"
+      ]
+    }
+  ]
+}

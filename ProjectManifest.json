@@ -1,12 +1,12 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0066",
+  "codeUpdate": "0112",
   "databaseVersion": "0010",
-  "milestone": "Librarium Canonical Baseline",
-  "sourceOfTruth": "Librarium canonical knowledge graph; /Data and /Generated are generated runtime outputs.",
+  "milestone": "Master Consolidation Normalized Drop-In Baseline",
+  "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Generated graph/index/database artifacts are local generated outputs and ignored by Git.",
   "runtimePolicy": "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
-  "updatePolicy": "ChatGPT CodeUpdate ZIPs are patch-only packages unless explicitly requested otherwise; each ZIP must contain exactly one top-level update folder with Apply-CodeUpdate-XXXX.bat and UpdateManifest.json, and the BAT applies changed/new files into the main repository folder.",
+  "updatePolicy": "Cumulative replacement packages are self-contained. User may delete old local folder and extract the latest normalized ZIP. Generated graphs/indexes/databases must be rebuilt locally and not committed.",
   "modePolicy": "Each assistant must identify mode first. Codex updates local only and waits for user push plus stated green GitHub Actions before continuing. ChatGPT uses verified patch ZIPs for local application unless explicitly instructed otherwise.",
   "neverGuessPolicy": "Never guess when creating, fixing, reviewing, packaging, or reporting updates. Verify before claiming success; if something cannot be verified, state that clearly.",
   "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
@@ -58,5 +58,12 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "CodeUpdate-0066 establishes the Librarium canonical repository baseline while preserving ProjectManifest compatibility for existing bootstrap and smoke tests. Librarium is the canonical source of truth; /Data and /Generated are generated runtime outputs. Existing gameplay/server execution remains governed by current project guards until explicitly advanced."
+  "buildVerification": "CodeUpdate-0066 establishes the Librarium canonical repository baseline while preserving ProjectManifest compatibility for existing bootstrap and smoke tests. Librarium is the canonical source of truth; /Data and /Generated are generated runtime outputs. Existing gameplay/server execution remains governed by current project guards until explicitly advanced.",
+  "current_codeupdate": "0109",
+  "last_update": "Dialogue / Text Reconstruction",
+  "subsystems_completed": [
+    "Dialogue / Text"
+  ],
+  "gitIgnorePolicy": "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
+  "lastNormalizedAt": "2026-07-09T01:13:35Z"
 }

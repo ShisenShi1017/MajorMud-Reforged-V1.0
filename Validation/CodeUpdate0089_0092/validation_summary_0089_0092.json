@@ -1,0 +1,23 @@
+{
+  "codeupdate": "0089-0092",
+  "status": "PASS_WITH_LIMITATIONS",
+  "completed": [
+    "0089 compiler integration scaffolding",
+    "0090 runtime coverage audit",
+    "0091 deterministic simulator scaffold",
+    "0092 full knowledge diff inventory"
+  ],
+  "not_completed": [
+    "0093 canonical runtime freeze",
+    "gameplay formula promotion",
+    "runtime formula replacement"
+  ],
+  "formulas_promoted": 0,
+  "runtime_formulas_replaced": 0,
+  "canonical_freeze_ready": false,
+  "blocking_gaps": [
+    "runtime source lacks explicit Librarium IDs",
+    "Classic expected observations for deterministic probes absent",
+    "Data/Generated role tagging incomplete"
+  ]
+}

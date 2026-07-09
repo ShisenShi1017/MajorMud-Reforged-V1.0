@@ -1,0 +1,47 @@
+[
+  {
+    "id": "quest_ordered_stage_chain",
+    "title": "Exact ordered quest stage chains",
+    "priority": "High"
+  },
+  {
+    "id": "quest_dialogue_branch_conditions",
+    "title": "Dialogue branch conditions",
+    "priority": "High"
+  },
+  {
+    "id": "quest_reward_ordering",
+    "title": "Reward/action ordering",
+    "priority": "High"
+  },
+  {
+    "id": "quest_failure_reset_behavior",
+    "title": "Quest failure/reset semantics",
+    "priority": "Medium"
+  },
+  {
+    "id": "quest_repeatability",
+    "title": "Repeatable vs one-time semantics",
+    "priority": "Medium"
+  },
+  {
+    "id": "quest_item_consumption_order",
+    "title": "Item hand-in consumption ordering",
+    "priority": "High"
+  },
+  {
+    "id": "quest_room_trigger_semantics",
+    "title": "Room-triggered quest advancement",
+    "priority": "Medium"
+  },
+  {
+    "id": "quest_party_credit",
+    "title": "Party/shared quest credit behavior",
+    "priority": "Low"
+  },
+  {
+    "id": "quest_death_disconnect_persistence",
+    "title": "Quest persistence across death/disconnect",
+    "priority": "Medium"
+  }
+]

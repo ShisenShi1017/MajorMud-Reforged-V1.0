@@ -1,0 +1,36 @@
+{
+  "codeupdate": "0106",
+  "subsystem": "Economy Reconstruction Redo",
+  "baseline": "CodeUpdate0105 World/Movement cumulative ZIP",
+  "generated_at_utc": "2026-07-08T23:44:38.657079+00:00",
+  "raw_economy_evidence_hits": 935655,
+  "scanned_files_with_economy_hits": 3570,
+  "prioritized_evidence_hits": 1750,
+  "relationship_edges": 11262,
+  "merchant_shop_records": 2419,
+  "economy_probes_defined": 6,
+  "economy_gaps_recorded": 8,
+  "records_promoted": "1 narrow data-presence record",
+  "mechanics_promoted": 0,
+  "runtime_behaviors_replaced": 0,
+  "source_counts": {
+    "Repository": 257179,
+    "Evidence": 203166,
+    "MMUD Explorer": 6222,
+    "Runtime/Server": 996,
+    "Documentation": 1419,
+    "Librarium": 229676,
+    "Imported/Runtime Data": 231891,
+    "MBBSEmu": 5106
+  },
+  "category_sample_counts": {
+    "currency": 2231,
+    "banking": 261,
+    "merchant_shop": 2725,
+    "pricing_value": 1972,
+    "services": 943,
+    "loot_treasure": 831,
+    "gambling_trade": 381,
+    "inventory": 536
+  }
+}

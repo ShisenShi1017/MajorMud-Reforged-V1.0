@@ -1,0 +1,1111 @@
+[
+  {
+    "behavior_id": "FB0070-RANDOM_ROUND_RANGE",
+    "name": "random_range_round",
+    "evidence_state": "Derived",
+    "confidence": "candidate_behavior_not_classic_verified",
+    "description": "Candidate behavior: sample a random value from min/max inputs then round result. Requires Classic RNG and rounding semantics before promotion.",
+    "tags": [
+      "combat",
+      "spell_skill",
+      "rounding",
+      "rng"
+    ],
+    "supporting_candidate_count": 1,
+    "supporting_candidates": [
+      {
+        "candidate_id": "FR0068-eb7b577fa3b8",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 792,
+        "text": "nHitSpellDamage = Round(Me.RandomNumber(m_nAtkHitSpellMin(nAttack), m_nAtkHitSpellMax(nAttack)))",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      }
+    ],
+    "promotion_requirements": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "runtime_formula_replacement": "none"
+  },
+  {
+    "behavior_id": "FB0070-RESIST_PIPELINE",
+    "name": "resist_reduction_pipeline",
+    "evidence_state": "Derived",
+    "confidence": "candidate_behavior_not_classic_verified",
+    "description": "Candidate behavior: raw spell/hitspell damage may be reduced by magic resistance/anti-magic and later by resistance before accumulated as resisted damage. Requires exact CalcResistedDamage proof.",
+    "tags": [
+      "combat",
+      "spell_skill",
+      "resistance",
+      "damage_rounding"
+    ],
+    "supporting_candidate_count": 25,
+    "supporting_candidates": [
+      {
+        "candidate_id": "FR0068-fc5daf775313",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 796,
+        "text": "nMR_Reduction = Round(CalcResistedDamage(nHitSpellDamage, m_nUserMR, m_nUserAntiMagic))",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-0909a27683df",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 798,
+        "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nHitSpellDamage - nMR_Reduction)",
+        "subsystems": [
+          "combat",
+          "spell_skill",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-edc5ada47410",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 815,
+        "text": "nHitSpellDamage = Round(nHitSpellDamage - nResist_Reduction)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-1f8ea0ecfd39",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 805,
+        "text": "Case 0: If m_nUserRCOL > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRCOL / 100))  'col",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-151983411486",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 806,
+        "text": "Case 1: If m_nUserRFIR > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRFIR / 100))  'fir",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-ea42739eaeef",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 807,
+        "text": "Case 2: If m_nUserRSTO > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRSTO / 100))  'sto",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-7ceb74e5181e",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 808,
+        "text": "Case 3: If m_nUserRLIT > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRLIT / 100))  'lit",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-747ef7013fb2",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 809,
+        "text": "Case 5: If m_nUserRWAT > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRWAT / 100))  'wat",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-15d21849af14",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 721,
+        "text": "nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-20740742f168",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 723,
+        "text": "'    m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nDamage - nMR_Reduction)",
+        "subsystems": [
+          "combat",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-9ef8d53b0b01",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 736,
+        "text": "If nResist_Reduction <> 0 Then nDamage = Round(nDamage - nResist_Reduction)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-2eeef4a0260e",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 813,
+        "text": "m_nStatAtkDmgResisted(nAttack) = Round(m_nStatAtkDmgResisted(nAttack) + nResist_Reduction)",
+        "subsystems": [
+          "combat",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-a25d1192605f",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 954,
+        "text": "nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-6ec002af288d",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 966,
+        "text": "If nResist_Reduction <> 0 Then nDamage = Round(nDamage - nResist_Reduction)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-0f018a75b178",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 730,
+        "text": "Case 0: If m_nUserRCOL > 0 Then nResist_Reduction = (nDamage * (m_nUserRCOL / 100))  'col",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-210b9dd6c03f",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 731,
+        "text": "Case 1: If m_nUserRFIR > 0 Then nResist_Reduction = (nDamage * (m_nUserRFIR / 100))  'fir",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-b7c74ecccbb6",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 732,
+        "text": "Case 2: If m_nUserRSTO > 0 Then nResist_Reduction = (nDamage * (m_nUserRSTO / 100))  'sto",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-c5903b32ec5a",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 733,
+        "text": "Case 3: If m_nUserRLIT > 0 Then nResist_Reduction = (nDamage * (m_nUserRLIT / 100))  'lit",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-018e92f80480",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 734,
+        "text": "Case 5: If m_nUserRWAT > 0 Then nResist_Reduction = (nDamage * (m_nUserRWAT / 100))  'wat",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-bedad3d09e0b",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 960,
+        "text": "Case 0: If m_nUserRCOL > 0 Then nResist_Reduction = (nDamage * (m_nUserRCOL / 100))  'col",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-277d5aeaa672",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 961,
+        "text": "Case 1: If m_nUserRFIR > 0 Then nResist_Reduction = (nDamage * (m_nUserRFIR / 100))  'fir",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-59b8dc0f3c1c",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 962,
+        "text": "Case 2: If m_nUserRSTO > 0 Then nResist_Reduction = (nDamage * (m_nUserRSTO / 100))  'sto",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-193af8784ebb",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 963,
+        "text": "Case 3: If m_nUserRLIT > 0 Then nResist_Reduction = (nDamage * (m_nUserRLIT / 100))  'lit",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-aec5e29101c0",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 964,
+        "text": "Case 5: If m_nUserRWAT > 0 Then nResist_Reduction = (nDamage * (m_nUserRWAT / 100))  'wat",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-4df056764875",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 1220,
+        "text": "CalcResistedDamage = nDamage - (nDamage * nPercentReduction)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      }
+    ],
+    "promotion_requirements": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "runtime_formula_replacement": "none"
+  },
+  {
+    "behavior_id": "FB0070-DURATION_EXTRA_TICK",
+    "name": "duration_extra_damage",
+    "evidence_state": "Derived",
+    "confidence": "candidate_behavior_not_classic_verified",
+    "description": "Candidate behavior: attack/spell duration greater than two can add another max hitspell/duration contribution. Requires Classic tick duration interpretation.",
+    "tags": [
+      "combat",
+      "spell_skill",
+      "tick_timing"
+    ],
+    "supporting_candidate_count": 3,
+    "supporting_candidates": [
+      {
+        "candidate_id": "FR0068-4976e3543f37",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 446,
+        "text": "If m_nAtkDuration(nAttack) > 2 Then GetMaxDamage = GetMaxDamage + m_nAtkHitSpellMax(nAttack)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-116b1ae1ac1d",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 442,
+        "text": "'add spell/hitspell duration ticks",
+        "subsystems": [
+          "combat",
+          "spawn",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-6d8adb54d449",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 449,
+        "text": "If m_nAtkDuration(nAttack) > 2 Then GetMaxDamage = GetMaxDamage + m_nAtkMax(nAttack)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      }
+    ],
+    "promotion_requirements": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "runtime_formula_replacement": "none"
+  },
+  {
+    "behavior_id": "FB0070-PER_ROUND_SUM",
+    "name": "per_round_damage_sum",
+    "evidence_state": "Derived",
+    "confidence": "candidate_behavior_not_classic_verified",
+    "description": "Candidate behavior: displayed damage-per-round sums local attack damage and local spell value. UI-derived; not a gameplay equation by itself.",
+    "tags": [
+      "combat",
+      "display",
+      "derived_only"
+    ],
+    "supporting_candidate_count": 45,
+    "supporting_candidates": [
+      {
+        "candidate_id": "FR0068-6b7d9189cf28",
+        "source": "MMUD Explorer",
+        "path": "frmPopUpOptions.frm",
+        "line": 2302,
+        "text": "lblAttackDMGPerRound.Caption = (nLocalAttackDamage + nLocalAttackSpellValue) & \" dmg/rnd\"",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-f1f68fe1ae02",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 421,
+        "text": "nDamage = nDamage + m_nAtkHitSpellMax(nAttack)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-f3b3350f4d0f",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 445,
+        "text": "GetMaxDamage = GetMaxDamage + m_nAtkHitSpellMax(nAttack)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-4976e3543f37",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 446,
+        "text": "If m_nAtkDuration(nAttack) > 2 Then GetMaxDamage = GetMaxDamage + m_nAtkHitSpellMax(nAttack)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-6563a276fa07",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 868,
+        "text": "nRoundDamage = nRoundDamage + nDamage + nHitSpellDamage",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-9bb2b3f9d010",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 880,
+        "text": "m_nStatAtkTotalDamage(nAttack) = m_nStatAtkTotalDamage(nAttack) + nDamage + nHitSpellDamage",
+        "subsystems": [
+          "combat",
+          "spell_skill",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-67fa3c3cae28",
+        "source": "MMUD Explorer",
+        "path": "modMain.bas",
+        "line": 5142,
+        "text": "'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nFirstRoundDamage = nFirstRoundDamage + tAttack.nAvgExtraHit",
+        "subsystems": [
+          "combat",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-6b18648ccda3",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 548,
+        "text": "nRoundDamage = nRoundDamage + nActiveAtkSpells_Value(x)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-6dbf3665ac5c",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 584,
+        "text": "nRoundDamage = nRoundDamage + nActiveBetweenSpells_Value(x)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-fb3634b38d75",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 869,
+        "text": "m_nTotalDamage = m_nTotalDamage + nDamage + nHitSpellDamage",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-0c11f7f0151b",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 1024,
+        "text": "nRoundDamage = nRoundDamage + nActiveAtkSpells_Value(x)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-0a94c8d20e5b",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 1061,
+        "text": "nRoundDamage = nRoundDamage + nActiveBetweenSpells_Value(x)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-8ea2477b303a",
+        "source": "MMUD Explorer",
+        "path": "frmMonsterAttackSim.frm",
+        "line": 1868,
+        "text": "lblResultsAvgDmg.Caption = \"AVG Dmg/Rnd: \" & Round(clsMonAtkSimThisForm.nTotalDamage / clsMonAtkSimThisForm.nNumberOfRounds, 1)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-aa27c35edd35",
+        "source": "MMUD Explorer",
+        "path": "modMMudDatabase.bas",
+        "line": 4597,
+        "text": "GetSpellMinDamage = GetSpellMinDamage + GetSpellMinDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+        "subsystems": [
+          "combat",
+          "xp",
+          "regen",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-7fa52fcd8722",
+        "source": "MMUD Explorer",
+        "path": "modMMudDatabase.bas",
+        "line": 4679,
+        "text": "GetSpellMaxDamage = GetSpellMaxDamage + GetSpellMaxDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+        "subsystems": [
+          "combat",
+          "xp",
+          "regen",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-27355789cee3",
+        "source": "MMUD Explorer",
+        "path": "modMMudFunc.bas",
+        "line": 1016,
+        "text": "sAvgRound = sCastLVL & IIf(nSpellDuration > 1, nSpellAvgCast, CalculateSpellCast.nAvgRoundDmg) & \" damage + \" & CalculateSpellCast.nAvgRoundHeals & \" heals\"",
+        "subsystems": [
+          "combat",
+          "regen",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-99e85dec6a1e",
+        "source": "MMUD Explorer",
+        "path": "modMain.bas",
+        "line": 5024,
+        "text": "nAverageDamage = nAverageDamage + tAttack.nRoundTotal",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-c2c3be18622d",
+        "source": "MMUD Explorer",
+        "path": "README.md",
+        "line": 177,
+        "text": "-UP: Current attack damage + swings/casts shown on equipment tab",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-7a4c2384ac8d",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 448,
+        "text": "GetMaxDamage = GetMaxDamage + m_nAtkMax(nAttack)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-6d8adb54d449",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 449,
+        "text": "If m_nAtkDuration(nAttack) > 2 Then GetMaxDamage = GetMaxDamage + m_nAtkMax(nAttack)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-b38dbd004dfc",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 465,
+        "text": "GetMaxDamage = GetMaxDamage + m_nBetweenRoundMax(x)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-8d21960ddb18",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 466,
+        "text": "If m_nBetweenRoundDuration(x) > 2 Then GetMaxDamage = GetMaxDamage + m_nBetweenRoundMax(x)",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-4509c718c0c9",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 549,
+        "text": "m_nTotalDamage = m_nTotalDamage + nActiveAtkSpells_Value(x)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-d92562c2ff41",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 585,
+        "text": "m_nTotalDamage = m_nTotalDamage + nActiveBetweenSpells_Value(x)",
+        "subsystems": [
+          "combat",
+          "spell_skill"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-3881a9facfe4",
+        "source": "MMUD Explorer",
+        "path": "clsMonsterAttackSim.cls",
+        "line": 1007,
+        "text": "nRoundDamage = nRoundDamage + nDamage",
+        "subsystems": [
+          "combat"
+        ],
+        "evidence_state": "Derived"
+      }
+    ],
+    "promotion_requirements": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "runtime_formula_replacement": "none"
+  },
+  {
+    "behavior_id": "FB0070-SPAWN_COMPLEMENT",
+    "name": "spawn_probability_complement",
+    "evidence_state": "Derived",
+    "confidence": "candidate_behavior_not_classic_verified",
+    "description": "Candidate behavior: lair spawn probability modeled as complement probability over max regen attempts. Requires server/runtime spawn evidence.",
+    "tags": [
+      "spawn",
+      "probability",
+      "regen"
+    ],
+    "supporting_candidate_count": 2,
+    "supporting_candidates": [
+      {
+        "candidate_id": "FR0068-e156eeeef5be",
+        "source": "MMUD Explorer",
+        "path": "modMMudDatabase.bas",
+        "line": 1451,
+        "text": "nSpawnChance = nSpawnChance + Round(1 - (1 - (1 / tLairInfo.nMobs)) ^ nMaxRegen, 2)",
+        "subsystems": [
+          "regen",
+          "spawn",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-625b587b9688",
+        "source": "MMUD Explorer",
+        "path": "modMain.bas",
+        "line": 6984,
+        "text": "nSpawnChance = Round(1 - (1 - (1 / tLairInfo.nMobs)) ^ nMaxRegen, 2) * 100",
+        "subsystems": [
+          "regen",
+          "spawn",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      }
+    ],
+    "promotion_requirements": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "runtime_formula_replacement": "none"
+  },
+  {
+    "behavior_id": "FB0070-EXP_PER_REGEN_TIME",
+    "name": "exp_per_time",
+    "evidence_state": "Derived",
+    "confidence": "candidate_behavior_not_classic_verified",
+    "description": "Candidate behavior: experience/hour model scales experience by inverse regen time. Tool/model behavior; requires Classic runtime timing proof.",
+    "tags": [
+      "xp",
+      "regen",
+      "timing"
+    ],
+    "supporting_candidate_count": 17,
+    "supporting_candidates": [
+      {
+        "candidate_id": "FR0068-0d9c6b84b818",
+        "source": "MMUD Explorer",
+        "path": "modExpPerHour.bas",
+        "line": 3735,
+        "text": "ceph_ModelB.nExpPerHour = Round(nExp * (1 / nRegenTime))",
+        "subsystems": [
+          "xp",
+          "regen"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-4a8dbeb33551",
+        "source": "MMUD Explorer",
+        "path": "CLAUDE.md",
+        "line": 77,
+        "text": "- `modExpPerHour.bas` \u2014 exp/hr prediction models: four selectable models (A/B/C/D); D is a round-by-round sim and the recommended one. See `docs/exp-per-hour-models.md` for game mechanics, the calibration harness, and how to add a model.",
+        "subsystems": [
+          "xp",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-2ab0d432cbec",
+        "source": "MMUD Explorer",
+        "path": "docs/exp-per-hour-models.md",
+        "line": 3,
+        "text": "`CalcExpPerHour()` estimates effective experience/hour for a lair-style farming",
+        "subsystems": [
+          "xp"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-f8ff25cd28b9",
+        "source": "MMUD Explorer",
+        "path": "docs/exp-per-hour-models.md",
+        "line": 5,
+        "text": "Output is a `tExpPerHourInfo` (exp/hr plus attack / move / HP-rest / mana-rest /",
+        "subsystems": [
+          "combat",
+          "xp",
+          "regen"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-35548e0852eb",
+        "source": "MMUD Explorer",
+        "path": "modExpPerHour.bas",
+        "line": 1730,
+        "text": "tRet.nExpPerHour = Round(tRet.nExpPerHour / nCount)",
+        "subsystems": [
+          "xp"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-f529d43b3815",
+        "source": "MMUD Explorer",
+        "path": "modExpPerHour.bas",
+        "line": 2370,
+        "text": "If bDebugExpPerHour Then DebugLogPrint \"flag set = basic damage only, no recovery\"",
+        "subsystems": [
+          "combat",
+          "xp",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-951236d1f76a",
+        "source": "MMUD Explorer",
+        "path": "modExpPerHour.bas",
+        "line": 2561,
+        "text": "ceph_ModelA.nExpPerHour = Round(nExp * effClearsPerHour) '* nGlobal_cephXP_Knob",
+        "subsystems": [
+          "xp"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-4ae805b1534e",
+        "source": "MMUD Explorer",
+        "path": "modExpPerHour.bas",
+        "line": 2935,
+        "text": "If bDebugExpPerHour Then DebugLogPrint \"basic damage only, skipping walk-credit\"",
+        "subsystems": [
+          "combat",
+          "xp",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-1fd72836f6a1",
+        "source": "MMUD Explorer",
+        "path": "modExpPerHour.bas",
+        "line": 3332,
+        "text": "ceph_ModelA.nExpPerHour = Round(nExp * effClearsPerHour) * nGlobal_cephXP_Knob",
+        "subsystems": [
+          "xp"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-19e1a4df1be7",
+        "source": "MMUD Explorer",
+        "path": "modExpPerHour.bas",
+        "line": 3711,
+        "text": "If bDebugExpPerHour Then cephB_DebugLog \"flag set = basic damage only, no recovery\"",
+        "subsystems": [
+          "combat",
+          "xp"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-17459283d6f9",
+        "source": "MMUD Explorer",
+        "path": "modExpPerHour.bas",
+        "line": 4021,
+        "text": "If bDebugExpPerHour Then cephB_DebugLog \"flag set = basic damage only, skipping recovery\"",
+        "subsystems": [
+          "combat",
+          "xp"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-fdd4b46b4d2a",
+        "source": "MMUD Explorer",
+        "path": "modMain.bas",
+        "line": 3363,
+        "text": "nExpPerHourEA = Round(nExpPerHour / tCharProfile.nParty, 1)",
+        "subsystems": [
+          "xp",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-4b41dc413d17",
+        "source": "MMUD Explorer",
+        "path": "modMain.bas",
+        "line": 5967,
+        "text": "nExpPerHour = Round(nExpPerHour / nParty)",
+        "subsystems": [
+          "xp"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-cc7ff4604d3e",
+        "source": "MMUD Explorer",
+        "path": "docs/exp-per-hour-models.md",
+        "line": 1,
+        "text": "# Exp/Hour Prediction Models (`modExpPerHour.bas`)",
+        "subsystems": [
+          "xp",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-387cd2f9a325",
+        "source": "MMUD Explorer",
+        "path": "docs/exp-per-hour-models.md",
+        "line": 59,
+        "text": "`RunAllSimulations` (in `modExpPerHour.bas`) runs ~18 real in-game observations",
+        "subsystems": [
+          "xp",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-2801bad378ab",
+        "source": "MMUD Explorer",
+        "path": "docs/exp-per-hour-models.md",
+        "line": 62,
+        "text": "`bDebugExpPerHour` (and `DEVELOPMENT_MODE`) for per-sim detail and a `D:`-style",
+        "subsystems": [
+          "xp"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-ad66c1c68e6b",
+        "source": "MMUD Explorer",
+        "path": "docs/exp-per-hour-models.md",
+        "line": 81,
+        "text": "`modExpPerHour.bas` and the `.frm` files are Windows-1252 + CRLF with high-byte",
+        "subsystems": [
+          "xp",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      }
+    ],
+    "promotion_requirements": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "runtime_formula_replacement": "none"
+  },
+  {
+    "behavior_id": "FB0070-OOM_ROUNDS",
+    "name": "rounds_to_oom",
+    "evidence_state": "Derived",
+    "confidence": "candidate_behavior_not_classic_verified",
+    "description": "Candidate behavior: out-of-mana rounds incorporate heal cost, attack spell cost, and bless cost/tick. Requires exact tick/cost semantics.",
+    "tags": [
+      "regen",
+      "mana",
+      "spell_skill",
+      "tick_timing"
+    ],
+    "supporting_candidate_count": 2,
+    "supporting_candidates": [
+      {
+        "candidate_id": "FR0068-a58ffc77780f",
+        "source": "MMUD Explorer",
+        "path": "frmPopUpOptions.frm",
+        "line": 2226,
+        "text": "nLocalHealRoundsOOM = CalcRoundsToOOM(nLocalHealCost + nLocalAttackSpellCost + (val(frmMain.lblCharBless.Caption) / 6), _",
+        "subsystems": [
+          "combat",
+          "regen",
+          "spell_skill",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-a1a3fb7bd287",
+        "source": "MMUD Explorer",
+        "path": "modMMudFunc.bas",
+        "line": 1004,
+        "text": "CalculateSpellCast.nOOM = CalcRoundsToOOM(CalculateSpellCast.nManaCost + tCharStats.nSpellOverhead, tCharStats.nMaxMana, tCharStats.nManaRegen, nCastChance, nSpellDuration)",
+        "subsystems": [
+          "combat",
+          "regen",
+          "spell_skill",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      }
+    ],
+    "promotion_requirements": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "runtime_formula_replacement": "none"
+  },
+  {
+    "behavior_id": "FB0070-THREE_SECOND_TICK",
+    "name": "three_second_tick",
+    "evidence_state": "Derived",
+    "confidence": "candidate_behavior_not_classic_verified",
+    "description": "Candidate behavior evidence states some bless calculations use 3-second round ticks instead of 5. Requires Classic tick timing confirmation.",
+    "tags": [
+      "tick_timing",
+      "regen",
+      "spell_skill"
+    ],
+    "supporting_candidate_count": 3,
+    "supporting_candidates": [
+      {
+        "candidate_id": "FR0068-ff0ecebee9f0",
+        "source": "MMUD Explorer",
+        "path": "README.md",
+        "line": 81,
+        "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)",
+        "subsystems": [
+          "combat",
+          "regen",
+          "spawn",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-5f98a05bcc3c",
+        "source": "MMUD Explorer",
+        "path": "docs/changelog.archive.txt",
+        "line": 7,
+        "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)",
+        "subsystems": [
+          "combat",
+          "regen",
+          "spawn",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      },
+      {
+        "candidate_id": "FR0068-b55bcc8e4e3f",
+        "source": "MMUD Explorer",
+        "path": "docs/changelog.txt",
+        "line": 78,
+        "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)",
+        "subsystems": [
+          "combat",
+          "regen",
+          "spawn",
+          "stats"
+        ],
+        "evidence_state": "Derived"
+      }
+    ],
+    "promotion_requirements": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "runtime_formula_replacement": "none"
+  }
+]

@@ -1,0 +1,491 @@
+{
+  "codeupdate": "0075",
+  "title": "NPC AI Behavior Verification",
+  "generated_utc": "2026-07-08T20:19:53.517175+00:00",
+  "candidate_references_considered": 250,
+  "behavior_records_created": 5,
+  "deterministic_probe_count": 3,
+  "verified_promotions": 0,
+  "runtime_formula_replacements": 0,
+  "status": "PASS_WITH_LIMITATIONS",
+  "limitation": "Probes are behavior-shape probes, not Classic-equation proof. No promotion without corroborating runtime/reference evidence.",
+  "records": [
+    {
+      "behavior_id": "FB0075-TARGET_SELECTION_PRIORITY",
+      "codeupdate": "0075",
+      "title": "target selection priority",
+      "subsystem": "npc_ai",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-14e09cff7c96",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 2860,
+          "text": "oLI.ListSubItems.Add (1), \"Detail\", \"This is an invalid spell and will not be cast (area attack spells from regular monster casts must use ability 17, Damage-MR).\""
+        },
+        {
+          "candidate_id": "FR0068-a5dfde16439c",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 3282,
+          "text": "'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \"/round (manual)\", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"
+        },
+        {
+          "candidate_id": "FR0068-e1135eea7179",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 5497,
+          "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+        },
+        {
+          "candidate_id": "FR0068-0e83519613d6",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 528,
+          "text": "nGlobalAttackHealValue = Round(tHealSpell.nAvgCast / nGlobalAttackHealRounds, 2)"
+        },
+        {
+          "candidate_id": "FR0068-da23e8c4aaef",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 232,
+          "text": "-UP: Added highlights in monster detail for fear, poison, confusion, and area attack spells, as well as those with Illu <= -999"
+        },
+        {
+          "candidate_id": "FR0068-cff7b19c3c30",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 138,
+          "text": "-UP: Added highlights in monster detail for fear, poison, confusion, and area attack spells, as well as those with Illu <= -999"
+        },
+        {
+          "candidate_id": "FR0068-a0afbf69beb3",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 220,
+          "text": "-UP: Added highlights in monster detail for fear, poison, confusion, and area attack spells, as well as those with Illu <= -999"
+        },
+        {
+          "candidate_id": "FR0068-2f0a55fc1747",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 21718,
+          "text": "Case 9: GoTo skip: 'GetSpellTargetsEnum = \"Divided Attack Area\""
+        },
+        {
+          "candidate_id": "FR0068-6ea772070e53",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 21721,
+          "text": "Case 12: GoTo skip: ' GetSpellTargetsEnum = \"Full Attack Area\""
+        },
+        {
+          "candidate_id": "FR0068-5cc7e176ffaa",
+          "source": "MMUD Explorer",
+          "path": "frmMonsterAttackSim.frm",
+          "line": 1874,
+          "text": "txtStatTrueCast(x).Text = Round(clsMonAtkSimThisForm.nStatAtkAttempted(x) / clsMonAtkSimThisForm.nTotalAttacks, 3) * 100"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0075-OFFENSIVE_ACTION_SELECTION",
+      "codeupdate": "0075",
+      "title": "offensive action selection",
+      "subsystem": "npc_ai",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-0a94c8d20e5b",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1061,
+          "text": "nRoundDamage = nRoundDamage + nActiveBetweenSpells_Value(x)"
+        },
+        {
+          "candidate_id": "FR0068-7a7d1441de8d",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1067,
+          "text": "m_nStatBetweenRound_AtkTotalDamage(x) = m_nStatBetweenRound_AtkTotalDamage(x) + nActiveBetweenSpells_Value(x)"
+        },
+        {
+          "candidate_id": "FR0068-1349f38a758d",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1136,
+          "text": "m_nAverageDamageSpell = Round(m_nTotalDamageSpell / nRound, 1)"
+        },
+        {
+          "candidate_id": "FR0068-a7c64c1c7fd2",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 318,
+          "text": "-UP: monster attack spells now ignore min/max level caps on the spells themselves (as mmud handles it)"
+        },
+        {
+          "candidate_id": "FR0068-989fd892623d",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 17,
+          "text": "-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks"
+        },
+        {
+          "candidate_id": "FR0068-a3d371a8e3f0",
+          "source": "MMUD Explorer",
+          "path": "frmMonsterAttackSim.frm",
+          "line": 1870,
+          "text": "lblResultsAttBreakdown.Caption = \"(Physical/Spell: \" & Round(clsMonAtkSimThisForm.nAverageDamagePhys) & \"/\" & Round(clsMonAtkSimThisForm.nAverageDamageSpell) & \")\""
+        },
+        {
+          "candidate_id": "FR0068-a58ffc77780f",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 2226,
+          "text": "nLocalHealRoundsOOM = CalcRoundsToOOM(nLocalHealCost + nLocalAttackSpellCost + (val(frmMain.lblCharBless.Caption) / 6), _"
+        },
+        {
+          "candidate_id": "FR0068-d7fa0cd0e138",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 637,
+          "text": "mpDrainAttack = effSpellPerRound * combat.RTC_Lair"
+        },
+        {
+          "candidate_id": "FR0068-aa27c35edd35",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 4597,
+          "text": "GetSpellMinDamage = GetSpellMinDamage + GetSpellMinDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)"
+        },
+        {
+          "candidate_id": "FR0068-7fa52fcd8722",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 4679,
+          "text": "GetSpellMaxDamage = GetSpellMaxDamage + GetSpellMaxDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0075-FLEE_OR_RETREAT_THRESHOLD",
+      "codeupdate": "0075",
+      "title": "flee or retreat threshold",
+      "subsystem": "npc_ai",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-b98d060e5dc2",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1027,
+          "text": "m_nStatAtkTotalDamage(x) = m_nStatAtkTotalDamage(x) + nActiveAtkSpells_Value(x)"
+        },
+        {
+          "candidate_id": "FR0068-d5da12f9553c",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1031,
+          "text": "m_nStatHitSpell_AtkDmgResisted(x) = m_nStatHitSpell_AtkDmgResisted(x) + (nActiveAtkSpells_ValueOriginal(x) - nActiveAtkSpells_Value(x))"
+        },
+        {
+          "candidate_id": "FR0068-7132c8b3ec10",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1062,
+          "text": "m_nTotalDamage = m_nTotalDamage + nActiveBetweenSpells_Value(x)"
+        },
+        {
+          "candidate_id": "FR0068-4bebf3178f86",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1063,
+          "text": "m_nTotalDamageSpell = m_nTotalDamageSpell + nActiveBetweenSpells_Value(x)"
+        },
+        {
+          "candidate_id": "FR0068-5231a652e79d",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 1066,
+          "text": "m_nStatBetweenRound_AtkDmgResisted(x) = m_nStatBetweenRound_AtkDmgResisted(x) + (nActiveBetweenSpells_ValueOriginal(x) - nActiveBetweenSpells_Value(x))"
+        },
+        {
+          "candidate_id": "FR0068-2884440d93cd",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 19,
+          "text": "-UP: Spell detail columns will now show cast @lvl cap instead of @req level when global filter is off"
+        },
+        {
+          "candidate_id": "FR0068-be94d23d5485",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 37,
+          "text": "-FIX: Indication of level spell was casted (calculated) at in spell detail"
+        },
+        {
+          "candidate_id": "FR0068-234243d43524",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 47,
+          "text": "-UP: Attack/Combat setup screen will now only show spells you have learned or could cast"
+        },
+        {
+          "candidate_id": "FR0068-7c72f308a0e8",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 84,
+          "text": "-UP: Current attack damage + swings/casts shown on equipment tab"
+        },
+        {
+          "candidate_id": "FR0068-e2d865bc97fb",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 132,
+          "text": "-NEW: Output damage based on selected attack shown in monster detail"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0075-PATHING_AND_PURSUIT",
+      "codeupdate": "0075",
+      "title": "pathing and pursuit",
+      "subsystem": "npc_ai",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-4414395ff9fe",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 3192,
+          "text": "'3-spell any: GetSpellShort(nGlobalAttackSpellNum) & \" @ \" & nGlobalAttackSpellLVL"
+        },
+        {
+          "candidate_id": "FR0068-bb354e13d000",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 4301,
+          "text": "sSpellDetail = AutoAppend(sSpellDetail, \"Attack Type: \" & SpellAttackTypeEnum(tabSpells.Fields(\"AttType\")))"
+        },
+        {
+          "candidate_id": "FR0068-f5bfcb70ae25",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 4395,
+          "text": "' Instant / non-aura spell, cast on the 5-second combat round"
+        },
+        {
+          "candidate_id": "FR0068-c6dfac6d2fd4",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5062,
+          "text": "'3-spell any: GetSpellShort(nGlobalAttackSpellNum) & \" @ \" & nGlobalAttackSpellLVL"
+        },
+        {
+          "candidate_id": "FR0068-ef8b68f0d4c5",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5230,
+          "text": "tChar.nSpellOverhead = nGlobalAttackHealCost + (val(frmMain.lblCharBless.Caption) / 6)"
+        },
+        {
+          "candidate_id": "FR0068-9c73c5a29146",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5232,
+          "text": "If (nGlobalAttackTypeMME = a2_Spell Or nGlobalAttackTypeMME = a3_SpellAny) And nGlobalAttackSpellNum > 0 Then   'spell attack"
+        },
+        {
+          "candidate_id": "FR0068-7aae4c10bdfc",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5349,
+          "text": "If (nGlobalAttackTypeMME = a2_Spell Or nGlobalAttackTypeMME = a3_SpellAny) And nGlobalAttackSpellNum > 0 Then   'spell attack"
+        },
+        {
+          "candidate_id": "FR0068-0d9efd501fe1",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5466,
+          "text": "nUseVal = Round(((tSpellcast.nMinCast * tSpellcast.nDuration) + (tSpellcast.nMaxCast * tSpellcast.nDuration)) / 2)"
+        },
+        {
+          "candidate_id": "FR0068-9cbd040b3244",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5468,
+          "text": "nUseVal = Round(tSpellcast.nAvgRoundDmg * tSpellcast.nDuration)"
+        },
+        {
+          "candidate_id": "FR0068-f7366161aea0",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5486,
+          "text": "nUseVal = Round(((tSpellcast.nMinCast * tSpellcast.nDuration) + (tSpellcast.nMaxCast * tSpellcast.nDuration)) / 2)"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0075-SPECIAL_ABILITY_WEIGHTING",
+      "codeupdate": "0075",
+      "title": "special ability weighting",
+      "subsystem": "npc_ai",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-bfd97fbf12ac",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 18749,
+          "text": "Caption         =   \"What casts this spell?\""
+        },
+        {
+          "candidate_id": "FR0068-e4e1f3b1906f",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 18805,
+          "text": "Caption         =   \"Set Spell Combat Calc. to Mob\""
+        },
+        {
+          "candidate_id": "FR0068-ec5aa557b250",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 20306,
+          "text": "Call frmProgressBar.SetRange((tabRooms.RecordCount + tabSpells.RecordCount + tabMonsters.RecordCount) / 5)"
+        },
+        {
+          "candidate_id": "FR0068-0a35302559e8",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 22258,
+          "text": "Case 2: nTargetFrame = 2: nTargetButton = 2 'spell"
+        },
+        {
+          "candidate_id": "FR0068-f24c18fdcba3",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 24328,
+          "text": "'Mana: *  84/126   Spellcasting: 174    Traps:           0"
+        },
+        {
+          "candidate_id": "FR0068-860700721fcd",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 24361,
+          "text": "str = str & \"Spellcasting: \" & lblCharSC.Tag & String(7 - Len(lblCharSC.Tag), \" \")"
+        },
+        {
+          "candidate_id": "FR0068-3d083c893f9d",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 24989,
+          "text": "lvSpells.ColumnHeaders(7).Text = \"Cast\""
+        },
+        {
+          "candidate_id": "FR0068-9237b79e2ae0",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 25731,
+          "text": "x = MsgBox(\"You do not appear to have the required skill for those attacks.\" & vbCrLf & vbCrLf & \"Calculate anyway at +1 skill?\", vbYesNo + vbInformation)"
+        },
+        {
+          "candidate_id": "FR0068-6b7d9189cf28",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 2302,
+          "text": "lblAttackDMGPerRound.Caption = (nLocalAttackDamage + nLocalAttackSpellValue) & \" dmg/rnd\""
+        },
+        {
+          "candidate_id": "FR0068-244a5d9fb003",
+          "source": "MMUD Explorer",
+          "path": "frmPasteChar.frm",
+          "line": 2153,
+          "text": "sRegexPattern = \"(?:(Armour Class|Hits|Mana|Encumbrance):\\s*\\*?\\s*(-?\\d+)\\/(\\d+)|(MagicRes|Level|Spellcasting|Strength|Agility|Willpower|Charm|Intellect|Health):\\s*\\*?\\s*(\\d+)|(Name|Race|Class):\\s*([^\\s:]+(?:\\s[^\\s:]+)?))\""
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    }
+  ],
+  "probes": [
+    {
+      "scenario": "low_hp_flee",
+      "inputs": {
+        "hp_pct": 10,
+        "enemy_count": 1,
+        "has_spell": false
+      },
+      "expected_behavior_shape": "select highest weighted valid action",
+      "assertion": "priority/weights unknown; needs source/runtime proof"
+    },
+    {
+      "scenario": "caster_attack",
+      "inputs": {
+        "hp_pct": 80,
+        "enemy_count": 1,
+        "has_spell": true
+      },
+      "expected_behavior_shape": "select highest weighted valid action",
+      "assertion": "priority/weights unknown; needs source/runtime proof"
+    },
+    {
+      "scenario": "outnumbered",
+      "inputs": {
+        "hp_pct": 60,
+        "enemy_count": 4,
+        "has_spell": true
+      },
+      "expected_behavior_shape": "select highest weighted valid action",
+      "assertion": "priority/weights unknown; needs source/runtime proof"
+    }
+  ]
+}

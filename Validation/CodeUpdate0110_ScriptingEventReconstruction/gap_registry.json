@@ -1,0 +1,112 @@
+[
+  {
+    "id": "gap.scripting.exact_event_dispatch_order",
+    "description": "Exact event dispatch order",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.trigger_condition_grammar",
+    "description": "Trigger condition grammar",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.quest_stage_transition_order",
+    "description": "Quest stage transition order",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.dialogue_branch_conditions",
+    "description": "Dialogue branch conditions",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.timer_callback_cadence",
+    "description": "Timer callback cadence",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.npc_special_procedure_priority",
+    "description": "NPC special-procedure priority",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.room_enter_exit_reentrancy",
+    "description": "Room enter/exit reentrancy",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.item_use_give_take_pipeline",
+    "description": "Item use/give/take pipeline",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.spell_effect_hook_and_expiry_ordering",
+    "description": "Spell effect hook and expiry ordering",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  },
+  {
+    "id": "gap.scripting.script_failure_error_behavior",
+    "description": "Script failure/error behavior",
+    "priority": "high",
+    "status": "open",
+    "evidence_needed": [
+      "direct implementation evidence",
+      "runtime trace",
+      "simulator reproduction"
+    ]
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "files": {
+    "evidence": "Evidence/CodeUpdate0104_NPCReconstruction",
+    "reports": "Reports/CodeUpdate0104_NPCReconstruction",
+    "validation": "Validation/CodeUpdate0104_NPCReconstruction",
+    "codex": "Codex/CodeUpdate0104_NPCReconstruction",
+    "docs": "Documentation/CodeUpdate0104_NPCReconstruction",
+    "sim": "Simulator/CodeUpdate0104_NPCReconstruction",
+    "generated": "Generated/NPCReconstruction"
+  },
+  "metrics": {
+    "codeupdate": "0104",
+    "branch": "NPC Reconstruction",
+    "timestamp_utc": "2026-07-08T23:11:19.272212Z",
+    "source_files_with_hits": 1630,
+    "prioritized_evidence_hits": 1600,
+    "raw_evidence_hits": 90448,
+    "hits_by_source": {
+      "repo_strings": 1398,
+      "repo": 197,
+      "mmud_explorer": 5
+    },
+    "hits_by_category": {
+      "ai_behavior": 1361,
+      "combat_caps": 374,
+      "dialogue_interaction": 78,
+      "faction_alignment": 295,
+      "loot_drops": 713,
+      "merchant_trainer": 1519,
+      "npc_entities": 1123,
+      "quest_links": 219,
+      "room_world_links": 1416,
+      "spawn_respawn": 671
+    },
+    "relationship_edges": 7769,
+    "probe_definitions": 8,
+    "probe_results": [
+      {
+        "probe_id": "NPC-0104-RUNTIME-MODULE-DISCOVERY",
+        "status": "executed",
+        "candidate_count": 3,
+        "npc_runtime_file_candidates": [
+          "Core/Configuration/ProjectPaths.cs",
+          "Core/Utilities/PathSafety.cs",
+          "Core/Source/Reforged.Core/Configuration/ProjectPaths.cs"
+        ],
+        "classic_accuracy": "not_classic_claimed"
+      },
+      {
+        "probe_id": "NPC-0104-PROBE-HARNESS-STATUS",
+        "status": "scaffold_created",
+        "executed_runtime_behavior": "no authoritative NPC runtime execution was promoted",
+        "classic_accuracy": "unverified"
+      }
+    ],
+    "gap_records": 8,
+    "promotions_to_verified": 0,
+    "runtime_replacements": 0,
+    "status": "PASS_WITH_LIMITATIONS"
+  }
+}

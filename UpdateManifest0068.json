@@ -1,0 +1,52 @@
+{
+  "codeupdate": "0068",
+  "name": "Formula Reconciliation",
+  "baseline": "0067",
+  "librarium_canonical": true,
+  "runtime_formula_replacements": 0,
+  "files_added": [
+    "Evidence/FormulaReconciliation0068",
+    "Librarium/FormulaReconciliation",
+    "Librarium/GapRegistry/formula_gap_registry_0068.json",
+    "Validation/FormulaReconciliation0068",
+    "Reports/CodeUpdate0068",
+    "Documentation/CODEUPDATE_0068_FORMULA_RECONCILIATION.md",
+    "CHANGELOG_CODEUPDATE_0068.md",
+    "SESSION_HANDOFF_CODEUPDATE_0068.md"
+  ],
+  "summary": {
+    "codeupdate": "0068",
+    "title": "Formula Reconciliation",
+    "generated_utc": "2026-07-08T19:39:58.234830Z",
+    "baseline": "CodeUpdate-0067 Librarium0012-0014 cumulative",
+    "librarium_canonical": true,
+    "external_sources": {
+      "MMUD Explorer": {
+        "files_scanned": 51,
+        "candidate_lines": 7936
+      },
+      "MBBSEmu": {
+        "files_scanned": 487,
+        "candidate_lines": 2605
+      }
+    },
+    "selected_candidates": 1500,
+    "subsystem_counts": {
+      "combat": 860,
+      "spell_skill": 479,
+      "regen": 248,
+      "stats": 414,
+      "xp": 403,
+      "spawn": 53,
+      "unclassified": 40,
+      "loot": 10
+    },
+    "potential_conflicts": 2,
+    "runtime_formula_replacements": 0,
+    "promotion_summary": {
+      "verified_promotions": 0,
+      "derived_candidates_added": 1500,
+      "reason": "External repositories are evidence-only; no independent source was sufficient to verify original Classic equations."
+    }
+  }
+}

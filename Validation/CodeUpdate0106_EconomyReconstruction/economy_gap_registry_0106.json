@@ -1,0 +1,50 @@
+[
+  {
+    "id": "economy_gap_buy_sell_formula",
+    "title": "Exact buy/sell price formulas and rounding",
+    "state": "gap",
+    "priority": "high"
+  },
+  {
+    "id": "economy_gap_merchant_acceptance_rules",
+    "title": "Merchant item acceptance/rejection rules",
+    "state": "gap",
+    "priority": "high"
+  },
+  {
+    "id": "economy_gap_repair_formula",
+    "title": "Repair cost formula and durability semantics",
+    "state": "gap",
+    "priority": "medium"
+  },
+  {
+    "id": "economy_gap_bank_persistence",
+    "title": "Bank balance persistence and limits",
+    "state": "gap",
+    "priority": "medium"
+  },
+  {
+    "id": "economy_gap_loot_value_generation",
+    "title": "Gold/item treasure generation and value preservation",
+    "state": "gap",
+    "priority": "high"
+  },
+  {
+    "id": "economy_gap_service_fees",
+    "title": "Service fee constants for identify/appraise/train/tolls",
+    "state": "gap",
+    "priority": "medium"
+  },
+  {
+    "id": "economy_gap_gambling_odds",
+    "title": "Gambling/casino odds and payout rules",
+    "state": "gap",
+    "priority": "low"
+  },
+  {
+    "id": "economy_gap_currency_overflow",
+    "title": "Currency caps, overflow, and negative-value guards",
+    "state": "gap",
+    "priority": "high"
+  }
+]

@@ -1,0 +1,4514 @@
+{
+  "merchant_shop_records": [
+    {
+      "path": "DataDecodeCheckpoints/MegaMUD2RE0021/Documentation/RE0021_Packet_Evidence_Expansion_Notes.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/00-ProjectVision.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/02-Roadmap.md",
+      "source": "Documentation",
+      "hits": 7,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/04-SessionHandoff.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/05-Suggestions.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/08-DatabaseFormat.md",
+      "source": "Documentation",
+      "hits": 5,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/13-AppPlatformVision.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/19-CoreContractsFoundation.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/20-CoreUpdate0008-GovernanceAndCoreServices.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/22-CoreUpdate0012-Data-Validation-And-Service-Completion.md",
+      "source": "Documentation",
+      "hits": 5,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/25-CoreUpdate0015-Data-Cross-Reference-Validation.md",
+      "source": "Documentation",
+      "hits": 5,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Docs/26-CoreUpdate0016-Repository-Backed-Data-Loaders.md",
+      "source": "Documentation",
+      "hits": 6,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/Architecture/AI_DEVELOPMENT_GUIDE.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/Architecture/ARCHITECTURE.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/Architecture/GITHUB_ACTIONS_VERIFICATION.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/Architecture/InteractiveClientMap.md",
+      "source": "Documentation",
+      "hits": 4,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/Architecture/PROJECT_ROADMAP.md",
+      "source": "Documentation",
+      "hits": 21,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0021/BehavioralFormulaCatalog_Build0021.csv",
+      "source": "Documentation",
+      "hits": 49,
+      "categories": [
+        "currency",
+        "inventory",
+        "loot_treasure",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0021/EvidenceSourceCoverage_Build0021.csv",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0021/RuntimeRequiredMatrix_Build0021.csv",
+      "source": "Documentation",
+      "hits": 6,
+      "categories": [
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0021/SIMULATOR_BUILD0021_METRICS.json",
+      "source": "Documentation",
+      "hits": 5,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0021/SIMULATOR_BUILD0021_REPORT.md",
+      "source": "Documentation",
+      "hits": 13,
+      "categories": [
+        "banking",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0027/BEHAVIOR_STATUS.md",
+      "source": "Documentation",
+      "hits": 6,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0027/RUNTIME_REQUIRED_REGISTER.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "banking",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0027/SIMULATOR_TESTING_POLICY.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/BehavioralRecovery/Build0027/codex_tasks/REPO_UPDATE_TASKS.md",
+      "source": "Documentation",
+      "hits": 8,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CODEX_BUILD0021_REPO_UPDATE.md",
+      "source": "Documentation",
+      "hits": 8,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0024-Core-Verification.md",
+      "source": "Documentation",
+      "hits": 5,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0025-Rebrand-Completion.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0026-Milestone-1-Finalization.md",
+      "source": "Documentation",
+      "hits": 4,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0026B-Baseline-Cleanup.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0027-Milestone-1-Baseline-Freeze.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0028-Milestone-2-Scope-Plan.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0029-Host-Server-Startup-Diagnostics.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0032-Server-Bootstrap-Manifest-Identity.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0033-Server-Bootstrap-Exit-Code-Contract.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0034-OmniVerse-Reference-Audit-Plan.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0035-Server-Bootstrap-Validation-Summary.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0036-Knowledge-Base-And-Design-Decisions.md",
+      "source": "Documentation",
+      "hits": 6,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0037-Software-Design-Specification.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0041-Classic-Parity-Audit-Foundation.md",
+      "source": "Documentation",
+      "hits": 7,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0042-Server-Data-Catalog-Bootstrap.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0043-Server-Data-Readiness-Classification.md",
+      "source": "Documentation",
+      "hits": 4,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0046-OmniVerse-Capture-Checkpoint.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0057-Modular-Server-Foundation.md",
+      "source": "Documentation",
+      "hits": 4,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0064-Guarded-Scheduler-Status-Command-Surface.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/CodeUpdates/CodeUpdate-0065-MMExplorer-MDB-Canonical-Repair.md",
+      "source": "Documentation",
+      "hits": 6,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/DATDecoding/AndroidChatGPTDecodeWorkflow.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/DATDecoding/NativeDATDecodeStatus.md",
+      "source": "Documentation",
+      "hits": 4,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/DataSources/Classic-Parity-Audit.md",
+      "source": "Documentation",
+      "hits": 6,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/DataSources/OmniVerse-Reference-Audit.md",
+      "source": "Documentation",
+      "hits": 17,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/DataSources/WCC-Default-Install-Reference.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/DatabaseAudit/DatabaseVersion-0003.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/DatabaseAudit/DatabaseVersion-0004.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/DatabaseAudit/DatabaseVersion-0005.md",
+      "source": "Documentation",
+      "hits": 13,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/DatabaseAudit/DatabaseVersion-0006-DAT-Decode-Correction.md",
+      "source": "Documentation",
+      "hits": 12,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Docs/DatabaseAudit/DatabaseVersion-0007.md",
+      "source": "Documentation",
+      "hits": 12,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Docs/DatabaseAudit/column_semantics_warnings.json",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/DatabaseAudit/csv_dat_name_alignment.json",
+      "source": "Documentation",
+      "hits": 82,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Docs/NativeDAT/NativeDatDecodeStatus.md",
+      "source": "Documentation",
+      "hits": 5,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/ReleaseNotes/DatabaseVersion-0006.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Docs/SDS/Explorer-System.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/ServerBuild/Session0001/README.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/ServerSim/DataSimVer0045/README.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "inventory",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Docs/ServerSim/ServerRuntimeValidation0009/README.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/ServerSim/ServerRuntimeValidation0013/simulator_summary_0013.txt",
+      "source": "Documentation",
+      "hits": 12,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Docs/ServerSim/ServerSim0036/README.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Docs/ServerSim/ServerSim0036/RegressionCandidates.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Documentation/COMBAT_STRATEGY_0009.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/DataSimVer0011_ActionResolution_Model.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Documentation/DataSimVer0012_ServiceNPCInteractionResolution.md",
+      "source": "Documentation",
+      "hits": 31,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/DataSimVer0016_ItemCleanupSearchVisibility_Model.md",
+      "source": "Documentation",
+      "hits": 5,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/EngineKnowledge.md",
+      "source": "Documentation",
+      "hits": 15,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/EngineSpec.md",
+      "source": "Documentation",
+      "hits": 14,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/HANDOFF_RUNTIME_0001.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Documentation/HANDOFF_RUNTIME_0002.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/SESSION_HANDOFF_VALIDATION0004.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/SESSION_HANDOFF_VALIDATION0013.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0001_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 57,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0002_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 57,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0003_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 58,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0004_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 59,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0005_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 59,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0006_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 59,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0007_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 59,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0008_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 59,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0009_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 59,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0010_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 59,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0011_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 60,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0012_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 61,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/HistoricalValidation/VALIDATION0013_MANIFEST.csv",
+      "source": "Documentation",
+      "hits": 61,
+      "categories": [
+        "banking",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Documentation/LIBRARIUM_0008_BEHAVIOR_DEPENDENCY_GRAPH.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/LIBRARIUM_0077_MULTI_SYSTEM_GAP_RESOLUTION.md",
+      "source": "Documentation",
+      "hits": 8,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Documentation/QUEST_VALIDATION_PLAN_0017.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Documentation/RepositoryMigration/MIGRATION_VERIFICATION_REPORT.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Documentation/RepositoryMigration/repo_comparison.json",
+      "source": "Documentation",
+      "hits": 15,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/Runtime-0010-Loot-Economy-NPC.md",
+      "source": "Documentation",
+      "hits": 33,
+      "categories": [
+        "banking",
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/Runtime-0011-Spells-Status.md",
+      "source": "Documentation",
+      "hits": 4,
+      "categories": [
+        "loot_treasure",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/Runtime-0012-Command-GameLoop.md",
+      "source": "Documentation",
+      "hits": 6,
+      "categories": [
+        "banking",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/Runtime-0013A-Class-Race-Engine.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/Runtime-0013B-Ability-Engine.md",
+      "source": "Documentation",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/Runtime-0014-Persistence-SaveLoad.md",
+      "source": "Documentation",
+      "hits": 4,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Documentation/Runtime-0016-Full-Game-Test-Harness.md",
+      "source": "Documentation",
+      "hits": 4,
+      "categories": [
+        "banking",
+        "inventory",
+        "loot_treasure",
+        "services"
+      ]
+    },
+    {
+      "path": "Documentation/SNAPSHOT_EQUIPMENT_STRATEGY_0003.md",
+      "source": "Documentation",
+      "hits": 3,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Documentation/Validation0004/Promotion_Readiness_Review.md",
+      "source": "Documentation",
+      "hits": 2,
+      "categories": [
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "DataDecodeCheckpoints/MegaMUD2RE0021/Evidence/RE0021_BBS_PROTOCOL_PROFILE_KEYS.csv",
+      "source": "Evidence",
+      "hits": 385,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "DataDecodeCheckpoints/MegaMUD2RE0021/Evidence/RE0021_TRC_PROTOCOL_EVENT_TIMELINE.csv",
+      "source": "Evidence",
+      "hits": 3127,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0083/timing_evidence_claims_0083.json",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0083/timing_symbol_scan_0083.csv",
+      "source": "Evidence",
+      "hits": 1,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0088/promotion_decision_records_0088.json",
+      "source": "Evidence",
+      "hits": 4,
+      "categories": [
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0101_CombatReconstruction/combat_source_file_summary.csv",
+      "source": "Evidence",
+      "hits": 48,
+      "categories": [
+        "currency",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0102_MagicReconstruction/magic_source_file_summary.csv",
+      "source": "Evidence",
+      "hits": 50,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_evidence_hits.csv",
+      "source": "Evidence",
+      "hits": 1354,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_evidence_hits.json",
+      "source": "Evidence",
+      "hits": 1354,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_source_file_summary.csv",
+      "source": "Evidence",
+      "hits": 40,
+      "categories": [
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0104_NPCReconstruction/npc_evidence_hits.csv",
+      "source": "Evidence",
+      "hits": 6870,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0104_NPCReconstruction/npc_evidence_hits.json",
+      "source": "Evidence",
+      "hits": 6870,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0104_NPCReconstruction/npc_source_file_summary.csv",
+      "source": "Evidence",
+      "hits": 31,
+      "categories": [
+        "loot_treasure",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/CodeUpdate0105_WorldMovementReconstruction/world_prioritized_evidence_hits.json",
+      "source": "Evidence",
+      "hits": 903,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/DataSimVer0008/DataSimVer0008-summary.json",
+      "source": "Evidence",
+      "hits": 12,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/DataSimVer0010/PlayerStateTraversalEvidence.csv",
+      "source": "Evidence",
+      "hits": 631,
+      "categories": [
+        "gambling_trade",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
+      "source": "Evidence",
+      "hits": 630,
+      "categories": [
+        "banking",
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/DataSimVer0014/MissingShopItemReferences.json",
+      "source": "Evidence",
+      "hits": 5998,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/DataSimVer0014/ShopInventoryEconomyEvidence.csv",
+      "source": "Evidence",
+      "hits": 645,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Evidence/DataSimVer0015/MonsterCombatEvidenceExtract.csv",
+      "source": "Evidence",
+      "hits": 38,
+      "categories": [
+        "currency",
+        "gambling_trade",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/DataSimVer0020/MonsterTimerPopulationFieldInventory.csv",
+      "source": "Evidence",
+      "hits": 35,
+      "categories": [
+        "gambling_trade",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/DataSimVer0024/evidence_summary.json",
+      "source": "Evidence",
+      "hits": 5,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalRepositories/external_repository_inventory_0067.json",
+      "source": "Evidence",
+      "hits": 13,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0005/all_procedure_signal_map.csv",
+      "source": "Evidence",
+      "hits": 70,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0005/high_signal_procedure_snippets.csv",
+      "source": "Evidence",
+      "hits": 13,
+      "categories": [
+        "banking",
+        "currency",
+        "inventory",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0005/mbbsemu_host_candidate_files.csv",
+      "source": "Evidence",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0005/procedure_candidates_boss_unique_lifecycle.csv",
+      "source": "Evidence",
+      "hits": 5,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0005/procedure_candidates_cleanup_search_hidden.csv",
+      "source": "Evidence",
+      "hits": 7,
+      "categories": [
+        "currency",
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0005/procedure_candidates_quest_persistence.csv",
+      "source": "Evidence",
+      "hits": 6,
+      "categories": [
+        "banking",
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0005/procedure_candidates_spell_status.csv",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0007/disassembly_target_routines.csv",
+      "source": "Evidence",
+      "hits": 27,
+      "categories": [
+        "banking",
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0007/mbbsemu_target_files.csv",
+      "source": "Evidence",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/ExternalSources/Validation0012/major_mud_relevant_procedures.csv",
+      "source": "Evidence",
+      "hits": 17,
+      "categories": [
+        "currency",
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/FormulaBehavior0072/candidate_references_0072.json",
+      "source": "Evidence",
+      "hits": 50,
+      "categories": [
+        "currency",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/HostLifecycle0079/host_lifecycle_evidence_sources_0079.json",
+      "source": "Evidence",
+      "hits": 43,
+      "categories": [
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Evidence/RuntimeTraceHarness/runtime_trace_evidence_sources_0080.json",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Evidence/SimulatorTrace/simulator_room_probe_0082.txt",
+      "source": "Evidence",
+      "hits": 7,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/SimulatorTrace/simulator_summary_0082.txt",
+      "source": "Evidence",
+      "hits": 12,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/SimulatorTrace/simulator_unknown_simulation_0082.txt",
+      "source": "Evidence",
+      "hits": 17,
+      "categories": [
+        "currency",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/SimulatorTrace/simulator_unknowns_0082.txt",
+      "source": "Evidence",
+      "hits": 21,
+      "categories": [
+        "currency",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/Validation0009/respawn_scheduler_disassembly_snippets.md",
+      "source": "Evidence",
+      "hits": 1,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Evidence/Validation0009/respawn_scheduler_evidence.json",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/ExpectedRuntimeCrossReferenceSummary_RuntimePrep0001.csv",
+      "source": "Evidence",
+      "hits": 1493,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/ExpectedRuntimeEntitySummary_RuntimePrep0001.csv",
+      "source": "Evidence",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/ExpectedRuntimeModelEdges_RuntimePrep0001.csv",
+      "source": "Evidence",
+      "hits": 38338,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/InheritedOwnershipSummary_RuntimePrep0001.csv",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/WorldPopulationCandidateEdges_RuntimePrep0001.csv",
+      "source": "Evidence",
+      "hits": 15358,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/RuntimePrep0001_Handoff.md",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/RuntimePrep0001_Report.md",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/BossRespawnMatrix_RuntimePrep0002.csv",
+      "source": "Evidence",
+      "hits": 295,
+      "categories": [
+        "currency",
+        "gambling_trade",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/LinkedSpawnRoomMatrix_RuntimePrep0002.csv",
+      "source": "Evidence",
+      "hits": 1361,
+      "categories": [
+        "gambling_trade",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/RoomPopulationMatrix_RuntimePrep0002.csv",
+      "source": "Evidence",
+      "hits": 1975,
+      "categories": [
+        "currency",
+        "gambling_trade",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/SpawnGroupSummary_RuntimePrep0002.csv",
+      "source": "Evidence",
+      "hits": 25,
+      "categories": [
+        "gambling_trade",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/AreaTransitionMatrix_RuntimePrep0003.csv",
+      "source": "Evidence",
+      "hits": 35,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/NavigationCommandSummary_RuntimePrep0003.csv",
+      "source": "Evidence",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/NavigationEdgeMatrix_RuntimePrep0003.csv",
+      "source": "Evidence",
+      "hits": 562,
+      "categories": [
+        "banking",
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/OneWayExitCandidateMatrix_RuntimePrep0003.csv",
+      "source": "Evidence",
+      "hits": 65,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/SpecialNavigationCandidateMatrix_RuntimePrep0003.csv",
+      "source": "Evidence",
+      "hits": 85,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/RuntimePrep0003_Handoff.md",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/RuntimePrep0003_Report.md",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/InputArtifactVerification_RuntimePrep0004.csv",
+      "source": "Evidence",
+      "hits": 6,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ItemShopAvailabilityMatrix_RuntimePrep0004.csv",
+      "source": "Evidence",
+      "hits": 636,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_DecisionRegister.csv",
+      "source": "Evidence",
+      "hits": 3,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_FileManifest.csv",
+      "source": "Evidence",
+      "hits": 8,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_Metrics.csv",
+      "source": "Evidence",
+      "hits": 9,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_ZipVerification.json",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopCatalog_RuntimePrep0004.csv",
+      "source": "Evidence",
+      "hits": 514,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopInventoryMatrix_RuntimePrep0004.csv",
+      "source": "Evidence",
+      "hits": 3514,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopRuntimeChecklist_RuntimePrep0004.csv",
+      "source": "Evidence",
+      "hits": 1045,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/WCCShopBinaryCorroboration_RuntimePrep0004.csv",
+      "source": "Evidence",
+      "hits": 104,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/WCCShopNameCrosscheck_RuntimePrep0004.csv",
+      "source": "Evidence",
+      "hits": 101,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/RuntimePrep0004_Handoff.md",
+      "source": "Evidence",
+      "hits": 24,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/RuntimePrep0004_Report.md",
+      "source": "Evidence",
+      "hits": 24,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/InputArtifactVerification_RuntimePrep0005.csv",
+      "source": "Evidence",
+      "hits": 5,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/RuntimePrep0005_Handoff.md",
+      "source": "Evidence",
+      "hits": 21,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/RuntimePrep0005_Report.md",
+      "source": "Evidence",
+      "hits": 21,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv",
+      "source": "Evidence",
+      "hits": 334,
+      "categories": [
+        "banking",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv",
+      "source": "Evidence",
+      "hits": 152,
+      "categories": [
+        "banking",
+        "currency",
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_Metrics.csv",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv",
+      "source": "Evidence",
+      "hits": 53,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv",
+      "source": "Evidence",
+      "hits": 334,
+      "categories": [
+        "banking",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageDefinitionMatrix_RuntimePrep0006.csv",
+      "source": "Evidence",
+      "hits": 6,
+      "categories": [
+        "banking",
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Handoff.md",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Report.md",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/RuntimePrep0007_Handoff.md",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/CumulativeRuntimePrepFileIndex_RuntimePrep0008.csv",
+      "source": "Evidence",
+      "hits": 69,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/CumulativeRuntimePrepMetrics_RuntimePrep0008.csv",
+      "source": "Evidence",
+      "hits": 37,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/InputArtifactVerification_RuntimePrep0008.csv",
+      "source": "Evidence",
+      "hits": 5,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/IntegratedRuntimeWorldLayerMatrix_RuntimePrep0008.csv",
+      "source": "Evidence",
+      "hits": 24,
+      "categories": [
+        "currency",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/RuntimeValidationBacklog_RuntimePrep0008.csv",
+      "source": "Evidence",
+      "hits": 8,
+      "categories": [
+        "currency",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/Payload/RuntimePrep0008/SimulatorReadinessMatrix_RuntimePrep0008.csv",
+      "source": "Evidence",
+      "hits": 6,
+      "categories": [
+        "currency",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/RuntimePrep0008_Handoff.md",
+      "source": "Evidence",
+      "hits": 11,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0008-ExpectedRuntimeWorldIntegration/RuntimePrep0008_Report.md",
+      "source": "Evidence",
+      "hits": 11,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/Payload/RuntimePrep0009/FinalSimulatorReadinessCertification_RuntimePrep0009.csv",
+      "source": "Evidence",
+      "hits": 8,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/Payload/RuntimePrep0009/RuntimeValidationLaunchBacklog_RuntimePrep0009.csv",
+      "source": "Evidence",
+      "hits": 7,
+      "categories": [
+        "currency",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/RuntimePrep0009_Handoff.md",
+      "source": "Evidence",
+      "hits": 2,
+      "categories": [
+        "gambling_trade",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/RuntimePrep0009_Report.md",
+      "source": "Evidence",
+      "hits": 7,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/BehavioralRuntime/behavioral_runtime_evidence.json",
+      "source": "Imported/Runtime Data",
+      "hits": 71,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/BehavioralRuntime/worldgroup_runtime_evidence_0062_0064.json",
+      "source": "Imported/Runtime Data",
+      "hits": 2106,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/IMPORT_REPORT_v3.6.txt",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/NativeDatDecode/Reports/csv_name_match_v0007.json",
+      "source": "Imported/Runtime Data",
+      "hits": 62,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/NativeDatDecode/Reports/fixed_slot_hypotheses_v0007.json",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/NativeDatDecodeReports/WCCKNMSR.strings.json",
+      "source": "Imported/Runtime Data",
+      "hits": 271,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/NativeDatDecodeReports/WCCSHOPS.csv-crosscheck.json",
+      "source": "Imported/Runtime Data",
+      "hits": 111,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/NativeDatDecodeReports/WCCSHOPS.records.json",
+      "source": "Imported/Runtime Data",
+      "hits": 104,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/NativeDatDecodeReports/WCCSHOPS.strings.json",
+      "source": "Imported/Runtime Data",
+      "hits": 104,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/NativeDatDecodeReports/WCCTEXT.strings.json",
+      "source": "Imported/Runtime Data",
+      "hits": 27,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/NativeDecodeReports/Samples/WCCSHOPS_block_samples_128.json",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCKNMSR_strings.tsv",
+      "source": "Imported/Runtime Data",
+      "hits": 235,
+      "categories": [
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCSHOPS_strings.tsv",
+      "source": "Imported/Runtime Data",
+      "hits": 104,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCTEXT_strings.tsv",
+      "source": "Imported/Runtime Data",
+      "hits": 27,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/NativeDecodeReports/csv_name_offset_crosscheck.json",
+      "source": "Imported/Runtime Data",
+      "hits": 30,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/NativeRuntimeCatalog/SourceFileCatalog.json",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/Provenance/previous_world_before_0067.json",
+      "source": "Imported/Runtime Data",
+      "hits": 535,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Data/StockGameRaw/MMExplorerMDB/README.md",
+      "source": "Imported/Runtime Data",
+      "hits": 10,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/StockGameRaw/MMExplorerMDB/mdb_page_inventory.json",
+      "source": "Imported/Runtime Data",
+      "hits": 1055,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/StockGameRaw/MMExplorerMDB/owner_table_rows.json",
+      "source": "Imported/Runtime Data",
+      "hits": 1916,
+      "categories": [
+        "gambling_trade",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/StockGameRaw/MMExplorerMDB/owner_table_summary.csv",
+      "source": "Imported/Runtime Data",
+      "hits": 1315,
+      "categories": [
+        "banking",
+        "currency",
+        "gambling_trade",
+        "inventory",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/StockGameRaw/MMExplorerMDB/owner_table_summary.json",
+      "source": "Imported/Runtime Data",
+      "hits": 1315,
+      "categories": [
+        "currency",
+        "gambling_trade",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/StockGameRaw/MMExplorerMDB/raw_data_rows.json",
+      "source": "Imported/Runtime Data",
+      "hits": 3937,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/Validation/mmexplorer_mdb_canonical_repair_0065.json",
+      "source": "Imported/Runtime Data",
+      "hits": 8,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/Validation/patch0079_targeted_blocker_summary.json",
+      "source": "Imported/Runtime Data",
+      "hits": 7,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/Validation/runtime_parity_blockers_remaining_0078.json",
+      "source": "Imported/Runtime Data",
+      "hits": 31,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/Validation/runtime_parity_issues_remaining_0079.json",
+      "source": "Imported/Runtime Data",
+      "hits": 32,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/messages.json",
+      "source": "Imported/Runtime Data",
+      "hits": 154,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/room_graph.json",
+      "source": "Imported/Runtime Data",
+      "hits": 4483,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "Data/rooms.json",
+      "source": "Imported/Runtime Data",
+      "hits": 9145,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Data/shops.json",
+      "source": "Imported/Runtime Data",
+      "hits": 1167,
+      "categories": [
+        "inventory",
+        "merchant_shop",
+        "pricing_value"
+      ]
+    },
+    {
+      "path": "Data/skills.json",
+      "source": "Imported/Runtime Data",
+      "hits": 10,
+      "categories": [
+        "currency",
+        "gambling_trade",
+        "loot_treasure",
+        "merchant_shop",
+        "pricing_value",
+        "services"
+      ]
+    },
+    {
+      "path": "Data/trainers.json",
+      "source": "Imported/Runtime Data",
+      "hits": 39,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "Data/world.json",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "DataDecodeCheckpoints/MegaMUD2RE0021/Data/RE0021_MP_COMMAND_LEDGER.csv",
+      "source": "Imported/Runtime Data",
+      "hits": 96044,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "DataDecodeCheckpoints/MegaMUD2RE0021/Data/RE0021_MP_COMMAND_TOKEN_COUNTS.csv",
+      "source": "Imported/Runtime Data",
+      "hits": 316,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "DataDecodeCheckpoints/MegaMUD2RE0021/Data/RE0021_TRC_SESSION_WINDOWS.csv",
+      "source": "Imported/Runtime Data",
+      "hits": 438,
+      "categories": [
+        "inventory",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ACCDARFL.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ACCDARHG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/AFGCSDAJ.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/AFJ1AFGC.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARCHSLEZ.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARGSARHG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARHGACCD.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARHGARGS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARHGARJM.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARHGARLS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARHGARTA.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARHGIDAH.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARJDARHG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARJMARHG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARLSARHG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/AROWARHG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/ARTAARHG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Agesaget.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Agetages.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Agetrck2.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Arctslez.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/BARXGYTE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/BOSPDVVS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Barsbart.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Bartbars.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Bartsovn.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/CLEXGYTE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Captslez.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Cas2slez.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Cletstmp.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Cry3qest.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DCARSLEZ.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DCFGSLEZ.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DCMSSLEZ.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DCNADCTG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DCSQLOOP.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DCSQSLEZ.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DCTGDCNA.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DCTGLOOP.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/DFOHFTRE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Dechslez.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Dreadres.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Dresdrea.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Drusdrut.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Drutdrus.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Drutsadg.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Dvvsdvea.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Eshpetre.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Etraetre.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Etreeshp.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Etreetra.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/FALATIME.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/FTREDFOH.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Fbisfrt1.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Frt1fbis.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/GCSSHCTA.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/GYPXGYTE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Ggengvil.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Gjewgvil.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Grngslmg.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Guilstsq.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Gvilggen.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Gvilgjew.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Gyptsgen.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCESHCTA.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCESOBES.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCNELOOP.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCNEOBES.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCNTHCWS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCNTLOO2.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCNTLOOP.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCTAGCSS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCTAHCES.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCTAHCWS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCTALOO2.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCTALOO3.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCTALOOP.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCTASLMA.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCWSHCNT.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCWSHCTA.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCWSLOO2.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCWSLOOP.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HCWSOBWS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/HYDRRBFH.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/IDAHARHG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/KBNKKGEN.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/KGENKBNK.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Kaxekhaz.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Kgenkhaz.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Khazkaxe.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Khazkgen.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Khazktra.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Ktrakhaz.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/LCWFLCHS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcablcaf.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcaflcab.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcaflcba.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcbalcaf.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcbalcm1.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcbalcwf.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcbmlcwr.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcdelcjs.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcgblcgf.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcgflcgb.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcgflcjs.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcgflct2.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lchslcwf.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcjslcde.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcjslcgf.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcjslcm1.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcjslct1.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcm1lcba.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcm1lcjs.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcm1lcm2.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcm2lcm1.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lct1lcjs.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lct2lcgf.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcwblcwf.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcwflcba.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcwflcwb.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Lcwrlcbm.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRBLMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRBL.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRGR.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRSG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRSK.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRSO.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRSR.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRSS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRSV.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRSW.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRDGMRSY.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRGRMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRSGMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRSKMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRSOMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRSRMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRSSMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRSVMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRSWMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MRSYMRDG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/MYSXGYTE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Magsmagt.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Magssrst.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Meiamyst.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Meiastsq.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Mistsadg.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Mystmeia.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/NINTTHFT.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/NINXGYTE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Narmnewh.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "gambling_trade",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Newhnarm.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "gambling_trade",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Newhnwep.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Ngennewh.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Nguinewh.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Ninsnint.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Nintnins.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Nsplnewh.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Nwepnewh.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/OBESHCES.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/OBESHCNE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/OBWSHCWS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/PRIXGYTE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Paltsadg.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Pritstmp.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestbarx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestclex.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestdrux.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestgypx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestmagx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestmisx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestmysx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestninx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestpalx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestprix.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestranx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestthix.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestwalx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestwarx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Qestwitx.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/RANXGYTE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/RBFHHYDR.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/RDSHTRAT.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rantsadg.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rarmrhuc.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rck2aget.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rhucrarm.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rhucrmis.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rhucrmys.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rhucrtra.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rhucrwep.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rmisrhuc.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rmysrhuc.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rtrarhuc.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Rweprhuc.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/SLEZDCAR.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/SLEZDCFG.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/SLEZDCMS.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/SLEZDCSQ.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/SLEZLOO2.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/SLMAHCTA.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/SLMCLOO2.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/SLMCLOO4.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sadgdrut.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sadgmist.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sadgpalt.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sadgrant.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sadgthft.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sadgwart.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sadgwitt.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sgengypt.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sgenstsq.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Slezarct.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Slezcapt.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Slezdech.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sleztort.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Slmcloop.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Slmggrng.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Slmssnob.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Snobslms.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Sovnbart.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Srstmags.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stmbstmp.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stmpclet.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stmpprit.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stmpstmb.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stmpstms.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stmsstmp.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stsqguil.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stsqmeia.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stsqsgen.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Stsqunit.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/TGHDLCBA.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "banking",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/TGHDLCGB.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "merchant_shop",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/THFTNINT.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/TIMENPPV.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/TRATRDSH.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Thftsadg.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Tortslez.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Unitstsq.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/WALTSRST.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/WITXGYTE.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 1,
+      "categories": [
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Wartsadg.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/MegaMudMP/Wittsadg.mp",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "currency",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/black_fortress.html",
+      "source": "Imported/Runtime Data",
+      "hits": 3,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/darkwood_forest.html",
+      "source": "Imported/Runtime Data",
+      "hits": 6,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/dreary_village.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_black.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_blue.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_gold.html",
+      "source": "Imported/Runtime Data",
+      "hits": 9,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_orange.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_silver.html",
+      "source": "Imported/Runtime Data",
+      "hits": 8,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_violet.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_white.html",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/gang_house_yellow.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/khazarad.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/lagoon_beach_cliffs.html",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "currency",
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/limestone_scorched_caverns.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "services"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/misty_valley.html",
+      "source": "Imported/Runtime Data",
+      "hits": 2,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/mod9_major.html",
+      "source": "Imported/Runtime Data",
+      "hits": 4,
+      "categories": [
+        "loot_treasure",
+        "merchant_shop"
+      ]
+    },
+    {
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/MudInfoMaps/Extracted/maps/northern_forests.html",
+      "source": "Imported/Runtime Data",
+      "hits": 8,
+      "categories": [
+        "currency",
+        "merchant_shop"
+      ]
+    }
+  ],
+  "source_counts": {
+    "Repository": 257179,
+    "Evidence": 203166,
+    "MMUD Explorer": 6222,
+    "Runtime/Server": 996,
+    "Documentation": 1419,
+    "Librarium": 229676,
+    "Imported/Runtime Data": 231891,
+    "MBBSEmu": 5106
+  },
+  "category_sample_counts": {
+    "currency": 2231,
+    "banking": 261,
+    "merchant_shop": 2725,
+    "pricing_value": 1972,
+    "services": 943,
+    "loot_treasure": 831,
+    "gambling_trade": 381,
+    "inventory": 536
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "codeupdate": "0079",
+  "title": "Host Lifecycle Evidence Lockdown",
+  "status": "PASS_WITH_LIMITATIONS",
+  "canonical_rule": "Librarium remains canonical. MBBSEmu is external evidence only; it informs host timing but does not become game truth.",
+  "confirmed_evidence_level": "Derived/Observed from MBBSEmu implementation evidence; Classic MajorBBS parity still requires historical/runtime corroboration.",
+  "host_lifecycle_order": [
+    "WaitForNextTick gate (configurable Timer.Hertz when idle; immediate when input/output/status work exists)",
+    "ProcessNightlyCleanup",
+    "ProcessIncomingSessions",
+    "ProcessDisconnects",
+    "For each channel: ProcessDataFromClient",
+    "GSBL input chain",
+    "Character processing",
+    "Global command handling",
+    "Session-state processing",
+    "If InModule: STSROU/status events",
+    "If InModule: STTROU command events",
+    "If InModule: BEGIN_POLLING routine",
+    "Mark channel DataToProcess false",
+    "After all channels: RTKICK",
+    "RTIHDLR",
+    "SYSCYC",
+    "INITASK/ProcessTasks",
+    "dequeue pending channel status"
+  ],
+  "timing_findings": {
+    "not_client_side": true,
+    "not_modem_ping_driven_confirmed": true,
+    "modem_latency_effect": "Affects visible delivery/latency but not shown as gameplay clock source in MBBSEmu evidence.",
+    "one_second_clock": "GALGSBL TICKER increments once per second.",
+    "idle_loop_gate": "Timer.Hertz controls idle WorkerThread wakeups when no pending session work exists.",
+    "busy_loop": "Pending client input, outgoing data, or DataToProcess bypasses the wait and causes immediate processing.",
+    "fast_real_time": "RTIHDLR approximately 18Hz if module registers it.",
+    "one_shot_delays": "RTKICK uses seconds-based delay.",
+    "polling": "BEGIN_POLLING is per-channel and called as often as possible while registered."
+  },
+  "promotion_decision": {
+    "promoted_to_verified": 0,
+    "reason": "MBBSEmu confirms its host lifecycle implementation and strongly supports host-driven timing, but exact Classic MajorBBS/Worldgroup timing parity still needs corroborating historical/runtime evidence."
+  }
+}

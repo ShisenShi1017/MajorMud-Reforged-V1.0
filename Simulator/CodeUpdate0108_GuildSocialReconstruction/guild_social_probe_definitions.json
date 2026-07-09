@@ -1,0 +1,38 @@
+[
+  {
+    "id": "guildsocial.probe.guild_membership_gate",
+    "title": "Guild membership gate",
+    "goal": "Verify member/non-member access to guild-only content and services.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "guildsocial.probe.guild_rank_permission",
+    "title": "Guild rank permission",
+    "goal": "Verify rank or role changes access to guild actions, rooms, or services.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "guildsocial.probe.party_invite_join_leave",
+    "title": "Party invite/join/leave flow",
+    "goal": "Verify party lifecycle state transitions and messaging.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "guildsocial.probe.party_reward_sharing",
+    "title": "Party reward sharing",
+    "goal": "Verify XP/loot sharing behavior and party-size modifiers.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "guildsocial.probe.communication_visibility",
+    "title": "Communication visibility",
+    "goal": "Verify say/tell/shout/channel scope and recipients.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "guildsocial.probe.alignment_reputation_gate",
+    "title": "Alignment/reputation gate",
+    "goal": "Verify alignment or faction restrictions on NPCs, rooms, quests, shops, or guilds.",
+    "status": "defined_not_executed"
+  }
+]

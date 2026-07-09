@@ -1,0 +1,84 @@
+{
+  "codeupdate": "0089-0092",
+  "probes": [
+    {
+      "probe_id": "RC-0091-001",
+      "name": "combat_repeatability_seeded",
+      "system": "Combat",
+      "description": "Same combat inputs and RNG seed must produce identical hit/damage event sequence.",
+      "status": "defined_not_executed_against_classic",
+      "requires": [
+        "Librarium source record IDs",
+        "Generated runtime fixture",
+        "Seeded RNG control",
+        "Expected observation file"
+      ]
+    },
+    {
+      "probe_id": "RC-0091-002",
+      "name": "xp_award_repeatability",
+      "system": "XP",
+      "description": "Same kill/party inputs must produce identical XP awards and level deltas.",
+      "status": "defined_not_executed_against_classic",
+      "requires": [
+        "Librarium source record IDs",
+        "Generated runtime fixture",
+        "Seeded RNG control",
+        "Expected observation file"
+      ]
+    },
+    {
+      "probe_id": "RC-0091-003",
+      "name": "regen_tick_repeatability",
+      "system": "RegenTime",
+      "description": "Same host tick sequence must produce identical HP/MP/move regen events.",
+      "status": "defined_not_executed_against_classic",
+      "requires": [
+        "Librarium source record IDs",
+        "Generated runtime fixture",
+        "Seeded RNG control",
+        "Expected observation file"
+      ]
+    },
+    {
+      "probe_id": "RC-0091-004",
+      "name": "loot_spawn_repeatability",
+      "system": "LootSpawn",
+      "description": "Same loot table/spawn seed must produce identical selected drops and respawn schedule.",
+      "status": "defined_not_executed_against_classic",
+      "requires": [
+        "Librarium source record IDs",
+        "Generated runtime fixture",
+        "Seeded RNG control",
+        "Expected observation file"
+      ]
+    },
+    {
+      "probe_id": "RC-0091-005",
+      "name": "quest_flag_repeatability",
+      "system": "QuestRuntime",
+      "description": "Same event sequence must produce identical quest flag/stage transitions.",
+      "status": "defined_not_executed_against_classic",
+      "requires": [
+        "Librarium source record IDs",
+        "Generated runtime fixture",
+        "Seeded RNG control",
+        "Expected observation file"
+      ]
+    },
+    {
+      "probe_id": "RC-0091-006",
+      "name": "npc_ai_repeatability",
+      "system": "NpcAI",
+      "description": "Same world state and seed must produce identical target/action choices.",
+      "status": "defined_not_executed_against_classic",
+      "requires": [
+        "Librarium source record IDs",
+        "Generated runtime fixture",
+        "Seeded RNG control",
+        "Expected observation file"
+      ]
+    }
+  ],
+  "execution_status": "harness_defined; classic verification not executed"
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "HOST-PROBE-0079-001",
+    "name": "Trace MajorMUD callback registration",
+    "objective": "Determine which host callbacks MajorMUD registers at startup and per session.",
+    "method": "Instrument MBBSEmu exports REGISTER_MODULE, BEGIN_POLLING, RTKICK, RTIHDLR, SYSCYC assignment, INITASK and record module/routine/channel/timestamp.",
+    "expected_output": "callback_registration_trace.json"
+  },
+  {
+    "id": "HOST-PROBE-0079-002",
+    "name": "Measure idle vs busy loop cadence",
+    "objective": "Determine effective host processing cadence under no-input and active-output conditions.",
+    "method": "Run instrumented MBBSEmu with Timer.Hertz values 0, 18, 36, 100 and record WorkerThread phase timestamps.",
+    "expected_output": "host_loop_cadence_trace.json"
+  },
+  {
+    "id": "HOST-PROBE-0079-003",
+    "name": "Output drain ordering",
+    "objective": "Determine whether gameplay state updates are observed before/after OUTPUT_BUFFER_EMPTY status processing.",
+    "method": "Log SendToClient enqueue time, DataToClient drain time, OUTPUT_BUFFER_EMPTY enqueue/process time, STSROU calls.",
+    "expected_output": "output_flush_order_trace.json"
+  },
+  {
+    "id": "HOST-PROBE-0079-004",
+    "name": "RTKICK/RTIHDLR/SYSCYC ordering",
+    "objective": "Confirm timed routine order and delay behavior under active channel load.",
+    "method": "Register mock module routines for each timed callback and compare execution order/timestamp across repeated runs.",
+    "expected_output": "timed_callback_order_trace.json"
+  }
+]

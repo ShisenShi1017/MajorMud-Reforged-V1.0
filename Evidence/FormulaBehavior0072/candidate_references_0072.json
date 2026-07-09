@@ -1,0 +1,5108 @@
+[
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 35136,
+    "text": "sClipBoardText = sClipBoardText & \"Experience:\" & (CalcExpNeededByRaceClass(nLevel, nClass, nRace) + 1) & vbCrLf",
+    "lhs": "sClipBoardText",
+    "rhs": "sClipBoardText & \"Experience:\" & (CalcExpNeededByRaceClass(nLevel, nClass, nRace) + 1) & vbCrLf",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-7f847055594f",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 409,
+    "text": "-NEW: filtering capabilities: cash, hp, damage, regen, experience",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-2d92150ab1d1",
+    "librarium_keyword_hits": [
+      "damage",
+      "experience",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 316,
+    "text": "-NEW: filtering capabilities: cash, hp, damage, regen, experience",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-c4dc590bc92d",
+    "librarium_keyword_hits": [
+      "damage",
+      "experience",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 2153,
+    "text": "sRegexPattern = \"(?:(Armour Class|Hits|Mana|Encumbrance):\\s*\\*?\\s*(-?\\d+)\\/(\\d+)|(MagicRes|Level|Spellcasting|Strength|Agility|Willpower|Charm|Intellect|Health):\\s*\\*?\\s*(\\d+)|(Name|Race|Class):\\s*([^\\s:]+(?:\\s[^\\s:]+)?))\"",
+    "lhs": "sRegexPattern",
+    "rhs": "\"(?:(Armour Class|Hits|Mana|Encumbrance):\\s*\\*?\\s*(-?\\d+)\\/(\\d+)|(MagicRes|Level|Spellcasting|Strength|Agility|Willpower|Charm|Intellect|Health):\\s*\\*?\\s*(\\d+)|(Name|Race|Class):\\s*([^\\s:]+(?:\\s[^\\s:]+)?))\"",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-244a5d9fb003",
+    "librarium_keyword_hits": [
+      "agility",
+      "charm",
+      "class",
+      "health",
+      "intellect",
+      "level",
+      "mana",
+      "name",
+      "race",
+      "spellcasting",
+      "strength",
+      "willpower"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "CLAUDE.md",
+    "line": 98,
+    "text": "- `AllowUnsafeBlocks` is enabled — unsafe code is expected for low-level memory/CPU emulation.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-e36d3a5984ac",
+    "librarium_keyword_hits": [
+      "code",
+      "expected",
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu/CLAUDE.md",
+    "line": 9,
+    "text": "The project uses `AllowUnsafeBlocks` and `LangVersion=latest`. Unsafe code is expected and normal for low-level memory and CPU emulation.",
+    "lhs": "LangVersion",
+    "rhs": "latest`. Unsafe code is expected and normal for low-level memory and CPU emulation.",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-bf09905d6853",
+    "librarium_keyword_hits": [
+      "code",
+      "expected",
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu/CPU/CLAUDE.md",
+    "line": 15,
+    "text": "| `RegistersStructs.cs` | 558 | Low-level register storage: `CpuRegistersStruct` (explicit layout struct) + `FpuRegistersStruct` |",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-7d03811a87eb",
+    "librarium_keyword_hits": [
+      "explicit",
+      "level",
+      "struct"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 196,
+    "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-d60c0fcddade",
+    "librarium_keyword_hits": [
+      "experience",
+      "need"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 102,
+    "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-8751151a992c",
+    "librarium_keyword_hits": [
+      "experience",
+      "need"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 184,
+    "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-a85326c3e29d",
+    "librarium_keyword_hits": [
+      "experience",
+      "need"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/exp-per-hour-models.md",
+    "line": 3,
+    "text": "`CalcExpPerHour()` estimates effective experience/hour for a lair-style farming",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-2ab0d432cbec",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 25604,
+    "text": "nExp = Round(nExp / tChar.nParty)",
+    "lhs": "nExp",
+    "rhs": "Round(nExp / tChar.nParty)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-2d457de6a846",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 118,
+    "text": "ExpPerCycle     As Double   'Experience gained in one lair-clear \"cycle\"",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-4a539eeae5e7",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 591,
+    "text": "roamSecsPerLair = 0#   'spawn-wait/roam handled at per-hour level in ceph_ModelC",
+    "lhs": "roamSecsPerLair",
+    "rhs": "0#   'spawn-wait/roam handled at per-hour level in ceph_ModelC",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-cd1c56bed803",
+    "librarium_keyword_hits": [
+      "level",
+      "spawn",
+      "wait"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1556,
+    "text": "'nExp = Exp per CLEAR of each lair (as in, total for killing all monsters in each ROOM/LAIR) ... ((nExp / nNumMobs) == per mob experience)",
+    "lhs": "nExp",
+    "rhs": "Exp per CLEAR of each lair (as in, total for killing all monsters in each ROOM/LAIR) ... ((nExp / nNumMobs) == per mob experience)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-d38587b1113e",
+    "librarium_keyword_hits": [
+      "experience",
+      "monsters",
+      "room"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3806,
+    "text": "negPenalty = MaxDbl(0#, 1# - roundsPerSurp) * regenAtten",
+    "lhs": "negPenalty",
+    "rhs": "MaxDbl(0#, 1# - roundsPerSurp) * regenAtten",
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-cfb4c4ac227d",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 2178,
+    "text": "oLI.Text = \"Experience\"",
+    "lhs": "oLI.Text",
+    "rhs": "\"Experience\"",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-74c639caf919",
+    "librarium_keyword_hits": [
+      "experience",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3363,
+    "text": "nExpPerHourEA = Round(nExpPerHour / tCharProfile.nParty, 1)",
+    "lhs": "nExpPerHourEA",
+    "rhs": "Round(nExpPerHour / tCharProfile.nParty, 1)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-fdd4b46b4d2a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5967,
+    "text": "nExpPerHour = Round(nExpPerHour / nParty)",
+    "lhs": "nExpPerHour",
+    "rhs": "Round(nExpPerHour / nParty)",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-4b41dc413d17",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "scripts/mmud_edit.py",
+    "line": 10,
+    "text": "parser.add_argument('--experience', help='Experience value to set', type=int)",
+    "lhs": "help",
+    "rhs": "'Experience value to set', type=int)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-543ed4a6a72e",
+    "librarium_keyword_hits": [
+      "experience",
+      "help",
+      "type"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "scripts/mmud_edit.py",
+    "line": 33,
+    "text": "b[0x46F] = args.experience & 0xFF   # low byte is validated",
+    "lhs": "b[0x46F]",
+    "rhs": "args.experience & 0xFF   # low byte is validated",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-14774dce7b57",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "scripts/mmud_edit.py",
+    "line": 34,
+    "text": "b[0x470] = ((args.experience >> 8) & 0xFF)",
+    "lhs": "b[0x470]",
+    "rhs": "((args.experience >> 8) & 0xFF)",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-5ae450f72ce6",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "scripts/mmud_edit.py",
+    "line": 35,
+    "text": "b[0x471] = ((args.experience >> 16) & 0xFF)",
+    "lhs": "b[0x471]",
+    "rhs": "((args.experience >> 16) & 0xFF)",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-9c7a27e8a5c5",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "scripts/mmud_edit.py",
+    "line": 36,
+    "text": "b[0x472] = ((args.experience >> 24) & 0xFF)",
+    "lhs": "b[0x472]",
+    "rhs": "((args.experience >> 24) & 0xFF)",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-e9177e3eb0f2",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "scripts/readme.md",
+    "line": 12,
+    "text": "mmud_edit.py --username=USERNAME [--experience=EXPERIENCE]",
+    "lhs": "username",
+    "rhs": "USERNAME [--experience=EXPERIENCE]",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-98a640e1db9c",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu.Tests/ExportedModules/Majorbbs/prf_Tests.cs",
+    "line": 26,
+    "text": "[InlineData(\"Level: %-5d\", \"Level: 3    \", (ushort)3)]",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-b7429a203ffe",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu.Tests/ExportedModules/Majorbbs/prf_Tests.cs",
+    "line": 28,
+    "text": "[InlineData(\"Level: %-5.5d\", \"Level: 00003\", (ushort)3)]",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-29be92480931",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+    "line": 26,
+    "text": "[InlineData(\"Level: %-5d\", \"Level: 3    \", (ushort)3)]",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-aaab8da91626",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+    "line": 28,
+    "text": "[InlineData(\"Level: %-5.5d\", \"Level: 00003\", (ushort)3)]",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-1ceecb2bda20",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+    "line": 259,
+    "text": "- `gforac` — get forum access level (stub)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-1d9146b488c7",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+    "line": 851,
+    "text": "///     the specified ANSI Support Level.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-decccdfafd3b",
+    "librarium_keyword_hits": [
+      "level",
+      "support"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu/HostProcess/ExportedModules/Galme.cs",
+    "line": 111,
+    "text": "///     Returns standard access level code",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-27cb2f3d00dd",
+    "librarium_keyword_hits": [
+      "code",
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+    "line": 5889,
+    "text": "///     'Profanity Level' of the Input (from configuration)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-52831aa3f9e9",
+    "librarium_keyword_hits": [
+      "from",
+      "input",
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+    "line": 7574,
+    "text": "///     Determines the profanity level of a string",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-9e993eb15226",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 168,
+    "text": "-FIX: Trainer sorting by level",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-1a83948ec6ee",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 330,
+    "text": "-added a trainer filter to shops - shows where you can train based on character/level",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-6b19092e3a03",
+    "librarium_keyword_hits": [
+      "added",
+      "level",
+      "shops"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "_outputsmashuptemp.txt",
+    "line": 134,
+    "text": "You gain 1500 experience.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-75fef2c01f52",
+    "librarium_keyword_hits": [
+      "experience",
+      "gain"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "_outputsmashuptemp.txt",
+    "line": 217,
+    "text": "You gain 2250 experience.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-2091f8214b2f",
+    "librarium_keyword_hits": [
+      "experience",
+      "gain"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "_outputsmashuptemp.txt",
+    "line": 438,
+    "text": "You gain 2576 experience.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-c8b61e97cd77",
+    "librarium_keyword_hits": [
+      "experience",
+      "gain"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 76,
+    "text": "-FIX: Trainer sorting by level",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-5fffa26b8434",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 237,
+    "text": "-added a trainer filter to shops - shows where you can train based on character/level",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-8556cbb2b2cc",
+    "librarium_keyword_hits": [
+      "added",
+      "level",
+      "shops"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 158,
+    "text": "-FIX: Trainer sorting by level",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-56cddee265f7",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmExpCalc.frm",
+    "line": 119,
+    "text": "Caption         =   \"Level Range:\"",
+    "lhs": "Caption",
+    "rhs": "\"Level Range:\"",
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-964e1ae5705a",
+    "librarium_keyword_hits": [
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmExpCalc.frm",
+    "line": 351,
+    "text": "lvCalcExp.ColumnHeaders.Add , , \"Experience\", 2800",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-5bff57aefa23",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmExpCalc.frm",
+    "line": 354,
+    "text": "lvCalcExp.ColumnHeaders.Add , , \"Experience\", 1800",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-bf823eb6a3be",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "scripts/mmud_edit.py",
+    "line": 31,
+    "text": "if args.experience is not None:",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-728d4f851c86",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MBBSEmu",
+    "path": "scripts/mmud_edit.py",
+    "line": 32,
+    "text": "#print('Experience is {}'.format(args.experience))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-87882730713e",
+    "librarium_keyword_hits": [
+      "experience"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 2
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 411,
+    "text": "-UP: monster attack spells now ignore min/max level caps on the spells themselves (as mmud handles it)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-e6e513ac181f",
+    "librarium_keyword_hits": [
+      "ignore",
+      "level",
+      "monster",
+      "spells"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 413,
+    "text": "-FIX: min/max spell damage was sometimes incorrect if the cast level was outside the spell's min/max level caps",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-5747eb255eca",
+    "librarium_keyword_hits": [
+      "cast",
+      "damage",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 318,
+    "text": "-UP: monster attack spells now ignore min/max level caps on the spells themselves (as mmud handles it)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a7c64c1c7fd2",
+    "librarium_keyword_hits": [
+      "ignore",
+      "level",
+      "monster",
+      "spells"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 320,
+    "text": "-FIX: min/max spell damage was sometimes incorrect if the cast level was outside the spell's min/max level caps",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a81fc97165dc",
+    "librarium_keyword_hits": [
+      "cast",
+      "damage",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23149,
+    "text": "MsgBox \"The chosen attack will effect the script value or exp/hr calculation, depending on mode, where the damage output will have an effect on kill time.\" _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-4e50dd6a26bf",
+    "librarium_keyword_hits": [
+      "calculation",
+      "damage",
+      "effect",
+      "kill",
+      "mode",
+      "output",
+      "time",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23150,
+    "text": "& vbCrLf & vbCrLf & \"When party size > 1, enter the *average* damage output of each party member's per-round physical and spell damage output.\" _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-f8383391cf24",
+    "librarium_keyword_hits": [
+      "damage",
+      "output",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23151,
+    "text": "& vbCrLf & \"Party physical damage per round = ((phys_damage * party_size) - (defense_DR * swings)) - [defenses from ac+accuracy+dodge]\" _",
+    "lhs": "round",
+    "rhs": "((phys_damage * party_size) - (defense_DR * swings)) - [defenses from ac+accuracy+dodge]\" _",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-6a630100a7e7",
+    "librarium_keyword_hits": [
+      "accuracy",
+      "damage",
+      "from"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 1811,
+    "text": "cmbAttackSpell(1).AddItem tabSpells.Fields(\"Name\") & \" (\" & tabSpells.Fields(\"Number\") & \") - LVL \" & tabSpells.Fields(\"ReqLevel\") & \" \" & GetMageryEnum(tabSpells.Fields(\"Magery\"), tabSpells.Fields(\"MageryLVL\"))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-683510a1ceac",
+    "librarium_keyword_hits": [
+      "name"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 212,
+    "text": "'   - Includes first-round damage, surprise/backstab, and min-damage tails.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-4a578e36fdbe",
+    "librarium_keyword_hits": [
+      "damage",
+      "includes"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 328,
+    "text": "' Extra-round probability from min-damage tail",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ed1220069a3a",
+    "librarium_keyword_hits": [
+      "damage",
+      "extra",
+      "from"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 637,
+    "text": "mpDrainAttack = effSpellPerRound * combat.RTC_Lair",
+    "lhs": "mpDrainAttack",
+    "rhs": "effSpellPerRound * combat.RTC_Lair",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d7fa0cd0e138",
+    "librarium_keyword_hits": [
+      "combat"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1720,
+    "text": "sAttackAll = AutoAppend(sAttackAll, Round(tmpExpInfo.nAttackTime * 100) & \"%\", \"/\")",
+    "lhs": "sAttackAll",
+    "rhs": "AutoAppend(sAttackAll, Round(tmpExpInfo.nAttackTime * 100) & \"%\", \"/\")",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-acfdc669fb29",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1722,
+    "text": "sRecoverAllHP = AutoAppend(sRecoverAllHP, Round(tmpExpInfo.nHitpointRecovery * 100) & \"%\", \"/\")",
+    "lhs": "sRecoverAllHP",
+    "rhs": "AutoAppend(sRecoverAllHP, Round(tmpExpInfo.nHitpointRecovery * 100) & \"%\", \"/\")",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen",
+      "stats"
+    ],
+    "candidate_id": "FR0068-87d93a80566c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3735,
+    "text": "ceph_ModelB.nExpPerHour = Round(nExp * (1 / nRegenTime))",
+    "lhs": "ceph_ModelB.nExpPerHour",
+    "rhs": "Round(nExp * (1 / nRegenTime))",
+    "weight": 4,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-0d9c6b84b818",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4581,
+    "text": "GetSpellMinDamage = tabSpells.Fields(\"MinBase\") + Fix((tabSpells.Fields(\"MinInc\") / tabSpells.Fields(\"MinIncLVLs\")) * nCastLevel)",
+    "lhs": "GetSpellMinDamage",
+    "rhs": "tabSpells.Fields(\"MinBase\") + Fix((tabSpells.Fields(\"MinInc\") / tabSpells.Fields(\"MinIncLVLs\")) * nCastLevel)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d511d6ca281f",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4597,
+    "text": "GetSpellMinDamage = GetSpellMinDamage + GetSpellMinDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+    "lhs": "GetSpellMinDamage",
+    "rhs": "GetSpellMinDamage + GetSpellMinDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-aa27c35edd35",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4663,
+    "text": "GetSpellMaxDamage = tabSpells.Fields(\"MaxBase\") + Fix((tabSpells.Fields(\"MaxInc\") / tabSpells.Fields(\"MaxIncLVLs\")) * nCastLevel)",
+    "lhs": "GetSpellMaxDamage",
+    "rhs": "tabSpells.Fields(\"MaxBase\") + Fix((tabSpells.Fields(\"MaxInc\") / tabSpells.Fields(\"MaxIncLVLs\")) * nCastLevel)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ed4b2c4e12a1",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4679,
+    "text": "GetSpellMaxDamage = GetSpellMaxDamage + GetSpellMaxDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+    "lhs": "GetSpellMaxDamage",
+    "rhs": "GetSpellMaxDamage + GetSpellMaxDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7fa52fcd8722",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3191,
+    "text": "'2-spell learned: GetSpellShort(nGlobalAttackSpellNum) & \" @ \" & Val(txtGlobalLevel(0).Text)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-cf4a6175aa04",
+    "librarium_keyword_hits": [
+      "spell",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3683,
+    "text": "oLI.ListSubItems.Add (1), \"Detail\", PutCommas(tabMonsters.Fields(\"AvgLairExp\")) & \"  (\" & PutCommas(Round(tabMonsters.Fields(\"AvgLairExp\") / tAvgLairInfo.nMaxRegen)) & \"/mob)\"",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-6d3dbd8dba36",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5061,
+    "text": "'2-spell learned: GetSpellShort(nGlobalAttackSpellNum) & \" @ \" & Val(txtGlobalLevel(0).Text)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-c721949e6592",
+    "librarium_keyword_hits": [
+      "spell",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "CLAUDE.md",
+    "line": 77,
+    "text": "- `modExpPerHour.bas` — exp/hr prediction models: four selectable models (A/B/C/D); D is a round-by-round sim and the recommended one. See `docs/exp-per-hour-models.md` for game mechanics, the calibration harness, and how to add a model.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-4a8dbeb33551",
+    "librarium_keyword_hits": [
+      "model",
+      "models"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "CLAUDE.md",
+    "line": 78,
+    "text": "- `clsMonsterAttackSim.cls` — monster attack/combat simulation (exposes `bGreaterMUD` property).",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-b4d813a29c0b",
+    "librarium_keyword_hits": [
+      "combat",
+      "monster"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 9,
+    "text": "-UP: Added a new optional exp/hr model (D) by Claude - a round-by-round combat & recovery simulation (selectable in settings)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-9e2b29531096",
+    "librarium_keyword_hits": [
+      "added",
+      "combat",
+      "model"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 21,
+    "text": "This could greatly hinder accurate exp/hr predictions for many versus mobs that have +hitmagic requirements.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-1dde15ea884c",
+    "librarium_keyword_hits": [
+      "this"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 106,
+    "text": "-UP: Spell detail columns will now show cast @lvl cap instead of @req level when global filter is off",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-9db8e08b41d9",
+    "librarium_keyword_hits": [
+      "cast",
+      "level",
+      "spell",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 121,
+    "text": "-UP: Tweak to one of the exp/hr models regarding mana regen",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-3bd1e79a5a02",
+    "librarium_keyword_hits": [
+      "mana",
+      "models",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 125,
+    "text": "-FIX: Indication of level spell was casted (calculated) at in spell detail",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a788ffd14e53",
+    "librarium_keyword_hits": [
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 138,
+    "text": "-UP: Duration healing spells now properly supported when set as heal spell for exp/hr calculations",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-4e06e053db8d",
+    "librarium_keyword_hits": [
+      "calculations",
+      "duration",
+      "heal",
+      "healing",
+      "spell",
+      "spells"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 335,
+    "text": "-monster tab references now show how many spawn in each lair (requires database exported with nmr v1.8.2+)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-b462d9be6113",
+    "librarium_keyword_hits": [
+      "monster",
+      "references",
+      "spawn",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 384,
+    "text": "-NEW: new field (from NMR v1.8+ exports) for displaying if a spell is resistible by no one, anyone, and anti-magic",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-0ce7dc7c2343",
+    "librarium_keyword_hits": [
+      "exports",
+      "field",
+      "from",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 407,
+    "text": "-NEW: new field (from NMR v1.7.1+ exports) for reporting and evaluating monster energy & attacks accurately",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-55e87a07a741",
+    "librarium_keyword_hits": [
+      "exports",
+      "field",
+      "from",
+      "monster"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 408,
+    "text": "-NEW: columns on monster list: added \"# lairs (% average lairs)\", (and for NMR v1.8+ exports): average damage and \"scripting value\" which is the number of lairs for the monster compared to the average lairs for the database multiplied by (EXP/(DMG+HP))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-05cc8fd88faf",
+    "librarium_keyword_hits": [
+      "added",
+      "damage",
+      "exports",
+      "monster"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 455,
+    "text": "-FIX: endcast'ed spell display when not testing against level",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-5cd164dc7cb1",
+    "librarium_keyword_hits": [
+      "against",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 556,
+    "text": "-UP: expanded width of bless spell dropdown",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "loot",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-14af49fa4bff",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 631,
+    "text": "-UP: ability to copy the exp calc results to the clipboard",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a5ed75cb297c",
+    "librarium_keyword_hits": [
+      "ability",
+      "calc",
+      "results"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 19,
+    "text": "-UP: Spell detail columns will now show cast @lvl cap instead of @req level when global filter is off",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-2884440d93cd",
+    "librarium_keyword_hits": [
+      "cast",
+      "level",
+      "spell",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 33,
+    "text": "-UP: Tweak to one of the exp/hr models regarding mana regen",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-34bf5518f196",
+    "librarium_keyword_hits": [
+      "mana",
+      "models",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 37,
+    "text": "-FIX: Indication of level spell was casted (calculated) at in spell detail",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-be94d23d5485",
+    "librarium_keyword_hits": [
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 49,
+    "text": "-UP: Duration healing spells now properly supported when set as heal spell for exp/hr calculations",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a6df43691a06",
+    "librarium_keyword_hits": [
+      "calculations",
+      "duration",
+      "heal",
+      "healing",
+      "spell",
+      "spells"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 242,
+    "text": "-monster tab references now show how many spawn in each lair (requires database exported with nmr v1.8.2+)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-3a435d9c78e5",
+    "librarium_keyword_hits": [
+      "monster",
+      "references",
+      "spawn",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 291,
+    "text": "-NEW: new field (from NMR v1.8+ exports) for displaying if a spell is resistible by no one, anyone, and anti-magic",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-612101bea385",
+    "librarium_keyword_hits": [
+      "exports",
+      "field",
+      "from",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 314,
+    "text": "-NEW: new field (from NMR v1.7.1+ exports) for reporting and evaluating monster energy & attacks accurately",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-da6046e14ba7",
+    "librarium_keyword_hits": [
+      "exports",
+      "field",
+      "from",
+      "monster"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 315,
+    "text": "-NEW: columns on monster list: added \"# lairs (% average lairs)\", (and for NMR v1.8+ exports): average damage and \"scripting value\" which is the number of lairs for the monster compared to the average lairs for the database multiplied by (EXP/(DMG+HP))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-e677591b23da",
+    "librarium_keyword_hits": [
+      "added",
+      "damage",
+      "exports",
+      "monster"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 362,
+    "text": "-FIX: endcast'ed spell display when not testing against level",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-2dad3319df83",
+    "librarium_keyword_hits": [
+      "against",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 463,
+    "text": "-UP: expanded width of bless spell dropdown",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "loot",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-94f79ad81225",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 538,
+    "text": "-UP: ability to copy the exp calc results to the clipboard",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d1535b046ab8",
+    "librarium_keyword_hits": [
+      "ability",
+      "calc",
+      "results"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 19,
+    "text": "This could greatly hinder accurate exp/hr predictions for many versus mobs that have +hitmagic requirements.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-453899959023",
+    "librarium_keyword_hits": [
+      "this"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 101,
+    "text": "-UP: Spell detail columns will now show cast @lvl cap instead of @req level when global filter is off",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-466cf59e6f7a",
+    "librarium_keyword_hits": [
+      "cast",
+      "level",
+      "spell",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 115,
+    "text": "-UP: Tweak to one of the exp/hr models regarding mana regen",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-caaefaaf119e",
+    "librarium_keyword_hits": [
+      "mana",
+      "models",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 119,
+    "text": "-FIX: Indication of level spell was casted (calculated) at in spell detail",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-565982ba7f42",
+    "librarium_keyword_hits": [
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 131,
+    "text": "-UP: Duration healing spells now properly supported when set as heal spell for exp/hr calculations",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-23520e74ab70",
+    "librarium_keyword_hits": [
+      "calculations",
+      "duration",
+      "heal",
+      "healing",
+      "spell",
+      "spells"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/exp-per-hour-models.md",
+    "line": 5,
+    "text": "Output is a `tExpPerHourInfo` (exp/hr plus attack / move / HP-rest / mana-rest /",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-f8ff25cd28b9",
+    "librarium_keyword_hits": [
+      "mana",
+      "move",
+      "output",
+      "plus"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/exp-per-hour-models.md",
+    "line": 27,
+    "text": "- Round-by-round incoming damage with true multi-mob ramp-down and a **per-round**",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-918003f090f1",
+    "librarium_keyword_hits": [
+      "damage",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/exp-per-hour-models.md",
+    "line": 51,
+    "text": "to recover clean per-mob/round damage.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-ce1dc62f75d1",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/exp-per-hour-models.md",
+    "line": 52,
+    "text": "- Tick constants: round 5s, rest 20s, regen 30s, meditate 10s. Mob HP-regen",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn",
+      "stats"
+    ],
+    "candidate_id": "FR0068-bf1d4e4033ca",
+    "librarium_keyword_hits": [
+      "regen",
+      "tick"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/exp-per-hour-models.md",
+    "line": 98,
+    "text": "4. **Mob-HP-regen gate hardcoded `RTK>=6`** vs canonical `0.9 x regenRounds`",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-c183dd807392",
+    "librarium_keyword_hits": [
+      "canonical",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 18072,
+    "text": "ToolTipText     =   \"Party physical damage output/round @ 50/0 AC/DR\"",
+    "lhs": "ToolTipText",
+    "rhs": "\"Party physical damage output/round @ 50/0 AC/DR\"",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-c0b836a8d4b1",
+    "librarium_keyword_hits": [
+      "damage",
+      "output"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 18085,
+    "text": "ToolTipText     =   \"Party magic damage output/round @ 50 MR\"",
+    "lhs": "ToolTipText",
+    "rhs": "\"Party magic damage output/round @ 50 MR\"",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-6216c0880471",
+    "librarium_keyword_hits": [
+      "damage",
+      "output"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23136,
+    "text": "& vbCrLf & vbCrLf & \"e.g. A mob in a lair that spawns 3 mobs per lair will have the damage and HP of those 3 mobs combined and the Exp will be displayed as theoretical max per hour of those lairs.\" _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-05826b62b5ba",
+    "librarium_keyword_hits": [
+      "combined",
+      "damage",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23162,
+    "text": "'            & vbCrLf & vbCrLf & \"Enter a zero (0) here to utilize a computed in-combat hp regen rate and calculate against character/party defenses\" & vbCrLf & \"(i.e. no additional healing).\", vbInformation",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen",
+      "stats"
+    ],
+    "candidate_id": "FR0068-3c9552f4b697",
+    "librarium_keyword_hits": [
+      "against",
+      "combat",
+      "computed",
+      "healing",
+      "rate",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23167,
+    "text": "& \"Note that the damage output entered above should be the average per round damage of each character from the party, without consideration of swings.\", vbInformation + vbOKOnly",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-7ba998688c7e",
+    "librarium_keyword_hits": [
+      "damage",
+      "from",
+      "note",
+      "output",
+      "should"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 25286,
+    "text": "x = MsgBox(\"RE-Calculate Monster Damage vs Party Defenses first?\", vbYesNoCancel + vbQuestion + vbDefaultButton1, \"RE-Calculate Damage vs Party?\")",
+    "lhs": "x",
+    "rhs": "MsgBox(\"RE-Calculate Monster Damage vs Party Defenses first?\", vbYesNoCancel + vbQuestion + vbDefaultButton1, \"RE-Calculate Damage vs Party?\")",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-492826cec1d5",
+    "librarium_keyword_hits": [
+      "damage",
+      "monster"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 25294,
+    "text": "x = MsgBox(\"Calculate Monster Damage vs Party Defenses first?\", vbYesNoCancel + vbQuestion + vbDefaultButton1, \"Calculate Damage vs Party?\")",
+    "lhs": "x",
+    "rhs": "MsgBox(\"Calculate Monster Damage vs Party Defenses first?\", vbYesNoCancel + vbQuestion + vbDefaultButton1, \"Calculate Damage vs Party?\")",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-d65d0a37ec7e",
+    "librarium_keyword_hits": [
+      "damage",
+      "monster"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 33419,
+    "text": "sLairInfo = \"Lair Exp: \" & PutCommas(tLairInfo.nAvgExp * tLairInfo.nMaxRegen)",
+    "lhs": "sLairInfo",
+    "rhs": "\"Lair Exp: \" & PutCommas(tLairInfo.nAvgExp * tLairInfo.nMaxRegen)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-83757f293d81",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 34767,
+    "text": "& \"- Exp/Hour and killtime with area attacks (rooming)\" & vbCrLf _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-b05a84fd58ae",
+    "librarium_keyword_hits": [
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 35769,
+    "text": "sRegexPattern = \"class \" & cmbGlobalClass(0).ItemData(cmbGlobalClass(0).ListIndex) & \":[^\\r\\n]+addability \\d+[^\\r\\n]*$\"",
+    "lhs": "sRegexPattern",
+    "rhs": "\"class \" & cmbGlobalClass(0).ItemData(cmbGlobalClass(0).ListIndex) & \":[^\\r\\n]+addability \\d+[^\\r\\n]*$\"",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-310f57ec4d74",
+    "librarium_keyword_hits": [
+      "class"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 36380,
+    "text": "sTemp = InputBox(\"Cast spell at a certain level?\" & vbCrLf & \"0 or cancel == no\", , 0)",
+    "lhs": "sTemp",
+    "rhs": "InputBox(\"Cast spell at a certain level?\" & vbCrLf & \"0 or cancel == no\", , 0)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d7c404cb4820",
+    "librarium_keyword_hits": [
+      "cast",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 37289,
+    "text": "ElseIf Not InStr(1, LCase(sText), \"level mana short spell name\") = 0 Then",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-7ffc08680812",
+    "librarium_keyword_hits": [
+      "level",
+      "mana",
+      "name",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 37291,
+    "text": "ElseIf Not InStr(1, LCase(sText), \"level kai  short spell name\") = 0 Then",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-b926d5d5623a",
+    "librarium_keyword_hits": [
+      "level",
+      "name",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMap.frm",
+    "line": 44724,
+    "text": "sLairInfo = \"Lair Exp: \" & PutCommas(tLairInfo.nAvgExp * tLairInfo.nMaxRegen)",
+    "lhs": "sLairInfo",
+    "rhs": "\"Lair Exp: \" & PutCommas(tLairInfo.nAvgExp * tLairInfo.nMaxRegen)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-6c474d13fda9",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMapLegend.frm",
+    "line": 208,
+    "text": "Caption         =   \"Class / Race / Level / Alignment / Ability\"",
+    "lhs": "Caption",
+    "rhs": "\"Class / Race / Level / Alignment / Ability\"",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-2a7355b5c97a",
+    "librarium_keyword_hits": [
+      "ability",
+      "class",
+      "level",
+      "race"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 1995,
+    "text": "nHealing = Round(val(txtPastePartyRegenHP(0).Text) / 2) + Round(val(txtPastePartyRestHP(0).Text) / 3)",
+    "lhs": "nHealing",
+    "rhs": "Round(val(txtPastePartyRegenHP(0).Text) / 2) + Round(val(txtPastePartyRestHP(0).Text) / 3)",
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-3bd90b643b5b",
+    "librarium_keyword_hits": [
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 1997,
+    "text": "nHealing = Round(val(txtPastePartyRegenHP(0).Text) / 6) + val(txtPastePartyHeals(0).Text)",
+    "lhs": "nHealing",
+    "rhs": "Round(val(txtPastePartyRegenHP(0).Text) / 6) + val(txtPastePartyHeals(0).Text)",
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-82ce9e6026f0",
+    "librarium_keyword_hits": [
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 2754,
+    "text": "If nCount > 0 Then txtPastePartyHitpoints(0).Text = Round(nTotal / nCount)",
+    "lhs": "Text",
+    "rhs": "Round(nTotal / nCount)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-2eaa754476b9",
+    "librarium_keyword_hits": [
+      "ncount",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 2766,
+    "text": "If nCount > 0 Then txtPastePartyRegenHP(0).Text = Round(nTotal / (nCount + IIf(bAtkLast, 1, 0)))",
+    "lhs": "Text",
+    "rhs": "Round(nTotal / (nCount + IIf(bAtkLast, 1, 0)))",
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-b7256299bea5",
+    "librarium_keyword_hits": [
+      "ncount",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 2836,
+    "text": "If nCount > 0 Then txtPastePartySpellDMG(0).Text = Round(nTotal / nCount)",
+    "lhs": "Text",
+    "rhs": "Round(nTotal / nCount)",
+    "weight": 3,
+    "subsystems": [
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-1c9dbda1a723",
+    "librarium_keyword_hits": [
+      "ncount",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 2945,
+    "text": "sRegexPattern = \"Round:[^\\r\\n]+Avg:(\\d+)\"",
+    "lhs": "sRegexPattern",
+    "rhs": "\"Round:[^\\r\\n]+Avg:(\\d+)\"",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-d715668e29be",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 2948,
+    "text": "sRegexPattern = \"Pre[^\\r\\n]+(?:\\r|\\n)+[^\\r\\n]+Avg:(\\d+)[^\\r\\n]*(?:\\r|\\n)+Round\"",
+    "lhs": "sRegexPattern",
+    "rhs": "\"Pre[^\\r\\n]+(?:\\r|\\n)+[^\\r\\n]+Avg:(\\d+)[^\\r\\n]*(?:\\r|\\n)+Round\"",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-38dfc0507fa5",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 3001,
+    "text": "& vbCrLf & vbCrLf & \"Enter the damage as if it were VS 50 MR so that the damage can be appropriately calculated against mob/lair defenses. All party magic damage is reduced by MR defense.\", vbInformation",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-d1f1f540a395",
+    "librarium_keyword_hits": [
+      "against",
+      "damage",
+      "were"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 3005,
+    "text": "& \"Note that the damage output entered should be the total average per round damage of each character from the party, without consideration of swings.\", vbInformation + vbOKOnly",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-a5e97ced05f7",
+    "librarium_keyword_hits": [
+      "damage",
+      "from",
+      "note",
+      "output",
+      "should"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 232,
+    "text": "Caption         =   \"A Learned Spell @ Current Level:\"",
+    "lhs": "Caption",
+    "rhs": "\"A Learned Spell @ Current Level:\"",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-43bd72194591",
+    "librarium_keyword_hits": [
+      "current",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 250,
+    "text": "Caption         =   \"Any Spell @ Specified Level:\"",
+    "lhs": "Caption",
+    "rhs": "\"Any Spell @ Specified Level:\"",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-f994e93d19fd",
+    "librarium_keyword_hits": [
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 717,
+    "text": "Caption         =   \"Any Spell @ Specified Level:\"",
+    "lhs": "Caption",
+    "rhs": "\"Any Spell @ Specified Level:\"",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-1b4d4d5f7e15",
+    "librarium_keyword_hits": [
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 735,
+    "text": "Caption         =   \"A Learned Spell @ Current Level:\"",
+    "lhs": "Caption",
+    "rhs": "\"A Learned Spell @ Current Level:\"",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-10d26b082112",
+    "librarium_keyword_hits": [
+      "current",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 1383,
+    "text": "& \"it will not one-shot an entire room. i.e. 3 mobs would take 3 rounds and exp would be calculated \" _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-958c5090e249",
+    "librarium_keyword_hits": [
+      "room",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 1816,
+    "text": "cmbHealingSpell(1).AddItem tabSpells.Fields(\"Name\") & \" (\" & tabSpells.Fields(\"Number\") & \") - LVL \" & tabSpells.Fields(\"ReqLevel\") & \" \" & GetMageryEnum(tabSpells.Fields(\"Magery\"), tabSpells.Fields(\"MageryLVL\"))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-182ad15e1f46",
+    "librarium_keyword_hits": [
+      "name"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 92,
+    "text": "Private Const cephC_Slack_KNOB As Double = 0.2  'Fraction of attackSecs as non-rest overhead when there is no explicit rest",
+    "lhs": "Double",
+    "rhs": "0.2  'Fraction of attackSecs as non-rest overhead when there is no explicit rest",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-81e4bf00c9d1",
+    "librarium_keyword_hits": [
+      "const",
+      "explicit"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 215,
+    "text": "'       wasted damage on the FINAL round / damage dealt in that round.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-90a96eae0521",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 275,
+    "text": "' First-round and subsequent damage for normal combat",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-db034b099aaf",
+    "librarium_keyword_hits": [
+      "combat",
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 292,
+    "text": "'Per-mob HP regen per tick and per round",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-97c942bd66dc",
+    "librarium_keyword_hits": [
+      "regen",
+      "tick"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 295,
+    "text": "'regenPerRound = perMobRegenTick * (SEC_PER_ROUND / SEC_PER_REGEN_TICK)",
+    "lhs": "regenPerRound",
+    "rhs": "perMobRegenTick * (SEC_PER_ROUND / SEC_PER_REGEN_TICK)",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-86e04b2d7806",
+    "librarium_keyword_hits": [
+      "regen",
+      "tick"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 297,
+    "text": "regenPerRound = perMobRegenTick * (SEC_PER_ROUND / (GMUD_MOB_HPREGEN_ROUNDS * SEC_PER_ROUND))",
+    "lhs": "regenPerRound",
+    "rhs": "perMobRegenTick * (SEC_PER_ROUND / (GMUD_MOB_HPREGEN_ROUNDS * SEC_PER_ROUND))",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-29ea5a5a1d1a",
+    "librarium_keyword_hits": [
+      "hpregen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 299,
+    "text": "regenPerRound = perMobRegenTick * (SEC_PER_ROUND / (STOCK_MOB_HPREGEN_ROUNDS * SEC_PER_ROUND))",
+    "lhs": "regenPerRound",
+    "rhs": "perMobRegenTick * (SEC_PER_ROUND / (STOCK_MOB_HPREGEN_ROUNDS * SEC_PER_ROUND))",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-d8097b258bfe",
+    "librarium_keyword_hits": [
+      "hpregen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 305,
+    "text": "avgDmgForSeq = avgDmgNorm - regenPerRound",
+    "lhs": "avgDmgForSeq",
+    "rhs": "avgDmgNorm - regenPerRound",
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-296d3a10bb2a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 357,
+    "text": "' Extra-round probability after a successful surprise",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-951f175866a5",
+    "librarium_keyword_hits": [
+      "extra"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 374,
+    "text": "RTK_first = pBackstab * RTK_surpriseHit + (1# - pBackstab) * RTK_surpriseMiss",
+    "lhs": "RTK_first",
+    "rhs": "pBackstab * RTK_surpriseHit + (1# - pBackstab) * RTK_surpriseMiss",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-a237637ed9c2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 388,
+    "text": "'   overkill = (damage on final round - HP remaining before that round)",
+    "lhs": "overkill",
+    "rhs": "(damage on final round - HP remaining before that round)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-6643bc545f4f",
+    "librarium_keyword_hits": [
+      "before",
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 389,
+    "text": "'              / damage on final round",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-8366fa286a54",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 400,
+    "text": "'First round, then some number of avg-damage rounds",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-5bac2febb96f",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 429,
+    "text": "' Slowdown = fraction of attack time beyond 1 round per mob",
+    "lhs": "Slowdown",
+    "rhs": "fraction of attack time beyond 1 round per mob",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-59e999d2f921",
+    "librarium_keyword_hits": [
+      "time"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 458,
+    "text": "'   - AttackSecs = RTC * SEC_PER_ROUND",
+    "lhs": "AttackSecs",
+    "rhs": "RTC * SEC_PER_ROUND",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-2902533cec7e",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 546,
+    "text": "attackSecsPerLair = combat.RTC_Lair * SEC_PER_ROUND",
+    "lhs": "attackSecsPerLair",
+    "rhs": "combat.RTC_Lair * SEC_PER_ROUND",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-00789616af5f",
+    "librarium_keyword_hits": [
+      "combat"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 562,
+    "text": "c.roamSecs = regenSecs - attackSecsPerLair",
+    "lhs": "c.roamSecs",
+    "rhs": "regenSecs - attackSecsPerLair",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-41116adca38e",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 629,
+    "text": "effDmgAfterThreshold = effMobDmgPerRound - CDbl(nDamageThreshold)",
+    "lhs": "effDmgAfterThreshold",
+    "rhs": "effMobDmgPerRound - CDbl(nDamageThreshold)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-8500551cebba",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 634,
+    "text": "effSpellPerRound = (CDbl(nSpellCost) + nSpellOverhead) * nGlobal_cephMana_Knob",
+    "lhs": "effSpellPerRound",
+    "rhs": "(CDbl(nSpellCost) + nSpellOverhead) * nGlobal_cephMana_Knob",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7b4dd8499e62",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 926,
+    "text": "' Boss-style lair: single spawn on a long timer (nRegenTime is HOURS here).",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-2937ebc32198",
+    "librarium_keyword_hits": [
+      "spawn"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 983,
+    "text": "'   - Spawn supply (if lairs>0 & regen>0): nTotalLairs * (60 / nRegenTime).",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-27412282ef60",
+    "librarium_keyword_hits": [
+      "regen",
+      "spawn"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1067,
+    "text": "effDmgAfterThreshold = effMobDmgPerRound - CDbl(nDamageThreshold)",
+    "lhs": "effDmgAfterThreshold",
+    "rhs": "effMobDmgPerRound - CDbl(nDamageThreshold)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-c34db5b92074",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1070,
+    "text": "effSpellPerRound = (CDbl(nSpellCost) + nSpellOverhead) * nGlobal_cephMana_Knob",
+    "lhs": "effSpellPerRound",
+    "rhs": "(CDbl(nSpellCost) + nSpellOverhead) * nGlobal_cephMana_Knob",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-31e09e163291",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1079,
+    "text": "netMPDrainPerLair = (effSpellPerRound * combat.RTC_Lair) - (mpNatPerSec * activeSecsPerLair)",
+    "lhs": "netMPDrainPerLair",
+    "rhs": "(effSpellPerRound * combat.RTC_Lair) - (mpNatPerSec * activeSecsPerLair)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-9f0261cf12e0",
+    "librarium_keyword_hits": [
+      "combat"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1118,
+    "text": "' If surprise round damage is worse than normal average damage, mark AttackTime negative.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-a4ede946cf12",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1151,
+    "text": "' final killing round / damage dealt that round. Derived directly from",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-f9e44c9fceff",
+    "librarium_keyword_hits": [
+      "damage",
+      "derived",
+      "from"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1152,
+    "text": "' per-mob HP vs damage (independent of RTK rounding). Fixes the Model C",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-7eade4bbba90",
+    "librarium_keyword_hits": [
+      "damage",
+      "model"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1196,
+    "text": "'  - Round-by-round incoming damage with true multi-mob ramp-down and a",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-ce11f3cd070c",
+    "librarium_keyword_hits": [
+      "damage",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1197,
+    "text": "'    per-round damage threshold (in-combat heal/mitigation applied each round,",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-760366bc1076",
+    "librarium_keyword_hits": [
+      "combat",
+      "damage",
+      "heal"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1279,
+    "text": "' 0.5-round rule, surprise credit and engine-correct mob-HP-regen). Same",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-2d8d6f70db73",
+    "librarium_keyword_hits": [
+      "engine",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1293,
+    "text": "attackSecs = RTC * SEC_PER_ROUND",
+    "lhs": "attackSecs",
+    "rhs": "RTC * SEC_PER_ROUND",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-6f70ac3470d6",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1297,
+    "text": "' Reconstruct clean per-mob, per-round incoming damage.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-bb8a5f3fb2ae",
+    "librarium_keyword_hits": [
+      "damage",
+      "reconstruct"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1301,
+    "text": "' loop can re-derive total exposure with a true per-round threshold.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-7c2b27b0049f",
+    "librarium_keyword_hits": [
+      "derive",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1335,
+    "text": "' MP spent per lair (spell cast + per-round upkeep, every round)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-be9f2f483732",
+    "librarium_keyword_hits": [
+      "cast",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1337,
+    "text": "effSpellPerRound = (CDbl(nSpellCost) + nSpellOverhead) * nGlobal_cephMana_Knob",
+    "lhs": "effSpellPerRound",
+    "rhs": "(CDbl(nSpellCost) + nSpellOverhead) * nGlobal_cephMana_Knob",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-254c959078e8",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1342,
+    "text": "mpSpentPerLair = effSpellPerRound * RTC",
+    "lhs": "mpSpentPerLair",
+    "rhs": "effSpellPerRound * RTC",
+    "weight": 3,
+    "subsystems": [
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-3601aa1b424c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1560,
+    "text": "'nPossSpawns = Total number of plain, non-monster-spawning rooms around the lairs. This is one of two indicators to help determine the density of the lairs and how much walking there may be between lairs.",
+    "lhs": "nPossSpawns",
+    "rhs": "Total number of plain, non-monster-spawning rooms around the lairs. This is one of two indicators to help determine the density of the lairs and how much walking there may be between lairs.",
+    "weight": 3,
+    "subsystems": [
+      "spawn"
+    ],
+    "candidate_id": "FR0068-e83b589519da",
+    "librarium_keyword_hits": [
+      "help",
+      "monster",
+      "rooms",
+      "this"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1565,
+    "text": "'nMobDmg = Average per-round damage output from the ROOM/LAIR as a whole against the character over the course of clearing the room.  Meaning, ((nMobDmg / nNumMobs) == per mob dmg/round)",
+    "lhs": "nMobDmg",
+    "rhs": "Average per-round damage output from the ROOM/LAIR as a whole against the character over the course of clearing the room.  Meaning, ((nMobDmg / nNumMobs) == per mob dmg/round)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-748d6ec8b583",
+    "librarium_keyword_hits": [
+      "against",
+      "damage",
+      "from",
+      "output",
+      "over",
+      "room"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1567,
+    "text": "'nMobHPRegen = ROOM/LAIR hitpoint regeneration rate (every [constant:SEC_PER_REGEN_TICK] seconds) ... ((nMobHPRegen / nNumMobs) == per mob regen)",
+    "lhs": "nMobHPRegen",
+    "rhs": "ROOM/LAIR hitpoint regeneration rate (every [constant:SEC_PER_REGEN_TICK] seconds) ... ((nMobHPRegen / nNumMobs) == per mob regen)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spawn",
+      "stats"
+    ],
+    "candidate_id": "FR0068-ef0aafc703f7",
+    "librarium_keyword_hits": [
+      "rate",
+      "regen",
+      "regeneration",
+      "room",
+      "tick"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1568,
+    "text": "'nDamageThreshold = Damage the player can withstand per round.  Meaning, if a value of 10 was specified, then the player should be able to sustain up to 10 damage per round without every needing to rest.",
+    "lhs": "nDamageThreshold",
+    "rhs": "Damage the player can withstand per round.  Meaning, if a value of 10 was specified, then the player should be able to sustain up to 10 damage per round without every needing to rest.",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-25866871a4ea",
+    "librarium_keyword_hits": [
+      "able",
+      "damage",
+      "should"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1569,
+    "text": "'nSpellCost = Cost of the main spell attack, if applicable",
+    "lhs": "nSpellCost",
+    "rhs": "Cost of the main spell attack, if applicable",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-9607ab8eac44",
+    "librarium_keyword_hits": [
+      "cost",
+      "main",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1570,
+    "text": "'nSpellOverhead = Cost of any per-round spell upkeep from bless spells and/or healing spells",
+    "lhs": "nSpellOverhead",
+    "rhs": "Cost of any per-round spell upkeep from bless spells and/or healing spells",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-9a179d93c45f",
+    "librarium_keyword_hits": [
+      "cost",
+      "from",
+      "healing",
+      "spell",
+      "spells"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1576,
+    "text": "'nSurpriseDMG = 1st round surprise damage",
+    "lhs": "nSurpriseDMG",
+    "rhs": "1st round surprise damage",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-bb10a2f552b0",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1577,
+    "text": "'nSurpriseMinDMG = Minimum surprise round damage",
+    "lhs": "nSurpriseMinDMG",
+    "rhs": "Minimum surprise round damage",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-db953651de32",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1579,
+    "text": "'nCharFirstRoundDMG = First round (not including a surprise round) character damage output against EACH monster",
+    "lhs": "nCharFirstRoundDMG",
+    "rhs": "First round (not including a surprise round) character damage output against EACH monster",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-cb08965d1205",
+    "librarium_keyword_hits": [
+      "against",
+      "damage",
+      "monster",
+      "output"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1580,
+    "text": "'nMinRoundDMG = Minimum round damage",
+    "lhs": "nMinRoundDMG",
+    "rhs": "Minimum round damage",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-98165dd0dd0c",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1690,
+    "text": "tRet.nHitpointRecovery = (tRet.nHitpointRecovery + tmpExpInfo.nHitpointRecovery)",
+    "lhs": "tRet.nHitpointRecovery",
+    "rhs": "(tRet.nHitpointRecovery + tmpExpInfo.nHitpointRecovery)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-16608de7eb46",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1698,
+    "text": "tRet.nAttackTime = (tRet.nAttackTime + tmpExpInfo.nAttackTime)",
+    "lhs": "tRet.nAttackTime",
+    "rhs": "(tRet.nAttackTime + tmpExpInfo.nAttackTime)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-19d334668fda",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1721,
+    "text": "sRecoverAll = AutoAppend(sRecoverAll, Round(tmpExpInfo.nTimeRecovering * 100) & \"%\", \"/\")",
+    "lhs": "sRecoverAll",
+    "rhs": "AutoAppend(sRecoverAll, Round(tmpExpInfo.nTimeRecovering * 100) & \"%\", \"/\")",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spawn"
+    ],
+    "candidate_id": "FR0068-730315fa8009",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1723,
+    "text": "sRecoveryAllMana = AutoAppend(sRecoveryAllMana, Round(tmpExpInfo.nManaRecovery * 100) & \"%\", \"/\")",
+    "lhs": "sRecoveryAllMana",
+    "rhs": "AutoAppend(sRecoveryAllMana, Round(tmpExpInfo.nManaRecovery * 100) & \"%\", \"/\")",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-72533afb061a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1724,
+    "text": "sMoveAll = AutoAppend(sMoveAll, Round(tmpExpInfo.nMove * 100) & \"%\", \"/\")",
+    "lhs": "sMoveAll",
+    "rhs": "AutoAppend(sMoveAll, Round(tmpExpInfo.nMove * 100) & \"%\", \"/\")",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-241cfdc441df",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1730,
+    "text": "tRet.nExpPerHour = Round(tRet.nExpPerHour / nCount)",
+    "lhs": "tRet.nExpPerHour",
+    "rhs": "Round(tRet.nExpPerHour / nCount)",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-35548e0852eb",
+    "librarium_keyword_hits": [
+      "ncount"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1731,
+    "text": "tRet.nHitpointRecovery = Round(tRet.nHitpointRecovery / nCount, 2)",
+    "lhs": "tRet.nHitpointRecovery",
+    "rhs": "Round(tRet.nHitpointRecovery / nCount, 2)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-97995c0b9aa2",
+    "librarium_keyword_hits": [
+      "ncount"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1739,
+    "text": "tRet.nAttackTime = Round(tRet.nAttackTime / nCount, 2)",
+    "lhs": "tRet.nAttackTime",
+    "rhs": "Round(tRet.nAttackTime / nCount, 2)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-1220e136f8c1",
+    "librarium_keyword_hits": [
+      "ncount"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1759,
+    "text": "If tRet.nAttackTime > 0 And tRet.nAttackTime < 1 Then tRet.sRTCText = Round(tRet.nAttackTime * 100) & \"% time spent attacking\" & sAttackAll",
+    "lhs": "tRet.sRTCText",
+    "rhs": "Round(tRet.nAttackTime * 100) & \"% time spent attacking\" & sAttackAll",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-18deb9a5bc35",
+    "librarium_keyword_hits": [
+      "time"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1764,
+    "text": "If tRet.nHitpointRecovery > 0.01 Then tRet.sHitpointRecovery = Round(tRet.nHitpointRecovery * 100) & \"% reduction due to HP recovery\" & sRecoverAllHP",
+    "lhs": "tRet.sHitpointRecovery",
+    "rhs": "Round(tRet.nHitpointRecovery * 100) & \"% reduction due to HP recovery\" & sRecoverAllHP",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen",
+      "stats"
+    ],
+    "candidate_id": "FR0068-3323c5fe4140",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 1771,
+    "text": "If bSurpriseLess Then tRet.sRTCText = AutoAppend(tRet.sRTCText, \"[backstab is worse than attack]\", \" \")",
+    "lhs": "tRet.sRTCText",
+    "rhs": "AutoAppend(tRet.sRTCText, \"[backstab is worse than attack]\", \" \")",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-f3c70461a184",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2176,
+    "text": "'       Attack time (rounds-to-kill across all mobs in a pull/room)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-a4353ecd2a77",
+    "librarium_keyword_hits": [
+      "kill",
+      "room",
+      "time"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2187,
+    "text": "'       - Overkill heuristic (overshootFrac) for wasted damage on the last hit.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-381cac8e9b0f",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2192,
+    "text": "'       - Convert net damage ? rest rounds; apply q-elasticity:",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-241351bece46",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2370,
+    "text": "If bDebugExpPerHour Then DebugLogPrint \"flag set = basic damage only, no recovery\"",
+    "lhs": "set",
+    "rhs": "basic damage only, no recovery\"",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-f529d43b3815",
+    "librarium_keyword_hits": [
+      "damage",
+      "flag"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2499,
+    "text": "regenPerRound = nMobHPRegen / nMobHPRegenRounds",
+    "lhs": "regenPerRound",
+    "rhs": "nMobHPRegen / nMobHPRegenRounds",
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-0740e1c94f40",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2500,
+    "text": "regenRatio = IIf(nCharDMG > 0#, regenPerRound / nCharDMG, 0#)",
+    "lhs": "regenRatio",
+    "rhs": "IIf(nCharDMG > 0#, regenPerRound / nCharDMG, 0#)",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "stats"
+    ],
+    "candidate_id": "FR0068-6a65e3ca035b",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2561,
+    "text": "ceph_ModelA.nExpPerHour = Round(nExp * effClearsPerHour) '* nGlobal_cephXP_Knob",
+    "lhs": "ceph_ModelA.nExpPerHour",
+    "rhs": "Round(nExp * effClearsPerHour) '* nGlobal_cephXP_Knob",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-951236d1f76a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2568,
+    "text": "'  -- attack time & over-damage -----------------------------------",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-7b17ede0e417",
+    "librarium_keyword_hits": [
+      "damage",
+      "over",
+      "time"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2599,
+    "text": "' --- interpret nMobDmgUse as damage per *round* across the lair ---",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-ee9da69122b1",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2603,
+    "text": "' Apply in-combat HP sustain (nDamageThreshold = heal/mitigate per round)",
+    "lhs": "nDamageThreshold",
+    "rhs": "heal/mitigate per round)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-40317486e565",
+    "librarium_keyword_hits": [
+      "combat",
+      "heal"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2611,
+    "text": "' qRatio = HP regen / net incoming damage (used only for local slack)",
+    "lhs": "qRatio",
+    "rhs": "HP regen / net incoming damage (used only for local slack)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-add932a0f1dc",
+    "librarium_keyword_hits": [
+      "damage",
+      "local",
+      "regen",
+      "used"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2615,
+    "text": "qRatio = 9999#      ' effectively \"regen >> damage\"",
+    "lhs": "qRatio",
+    "rhs": "9999#      ' effectively \"regen >> damage\"",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-b35b93865b7a",
+    "librarium_keyword_hits": [
+      "damage",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2627,
+    "text": "' For threshold/heal builds, when net damage per round is tiny relative",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-8140a2d4e4d1",
+    "librarium_keyword_hits": [
+      "damage",
+      "heal"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2628,
+    "text": "' to regen, treat HP as effectively self-sustained (no explicit rest).",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-5de170b91747",
+    "librarium_keyword_hits": [
+      "explicit",
+      "regen",
+      "treat"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2637,
+    "text": "' Threshold + regen keep HP afloat; do not model any explicit rest.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-4424025362ab",
+    "librarium_keyword_hits": [
+      "explicit",
+      "model",
+      "regen"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2661,
+    "text": "nHitpointRecoveryTimeSec = roundsHitpoints * SEC_PER_ROUND",
+    "lhs": "nHitpointRecoveryTimeSec",
+    "rhs": "roundsHitpoints * SEC_PER_ROUND",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-f4e82e47c662",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 2935,
+    "text": "If bDebugExpPerHour Then DebugLogPrint \"basic damage only, skipping walk-credit\"",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "stats"
+    ],
+    "candidate_id": "FR0068-4ae805b1534e",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3015,
+    "text": "' If per-clear rest rounds collapsed to ~0, estimate sustained drip damage over",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-f51ed9dc4cdc",
+    "librarium_keyword_hits": [
+      "damage",
+      "over"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3016,
+    "text": "' the loop to avoid under-rest on long chains with small per-round hits.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-c5428c62fb26",
+    "librarium_keyword_hits": [
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3025,
+    "text": "' Net incoming damage per round after in-combat heals",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-5d1e2385c036",
+    "librarium_keyword_hits": [
+      "combat",
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3029,
+    "text": "dmgPerRound_HP = dmgPerRound_HP - nDamageThreshold",
+    "lhs": "dmgPerRound_HP",
+    "rhs": "dmgPerRound_HP - nDamageThreshold",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-38bf36e361f9",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3076,
+    "text": "T_HP0 = MaxDbl(nHitpointRecoveryTimeSec, roundsHitpoints * SEC_PER_ROUND)",
+    "lhs": "T_HP0",
+    "rhs": "MaxDbl(nHitpointRecoveryTimeSec, roundsHitpoints * SEC_PER_ROUND)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen",
+      "stats"
+    ],
+    "candidate_id": "FR0068-a9f634baf2c0",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3198,
+    "text": "dmgPerRoundCore_A = dmgPerRoundCore_A - nDamageThreshold",
+    "lhs": "dmgPerRoundCore_A",
+    "rhs": "dmgPerRoundCore_A - nDamageThreshold",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-b83eb309ff5b",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3263,
+    "text": "If nTotalLairs > 0 And nRegenTime > 0 Then spawnInterval = (nRegenTime * 60#) / nTotalLairs",
+    "lhs": "spawnInterval",
+    "rhs": "(nRegenTime * 60#) / nTotalLairs",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn",
+      "stats"
+    ],
+    "candidate_id": "FR0068-dbedff85f4e6",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3295,
+    "text": "'timeLoss = Round((fillerSec / spawnInterval) * 100)",
+    "lhs": "timeLoss",
+    "rhs": "Round((fillerSec / spawnInterval) * 100)",
+    "weight": 3,
+    "subsystems": [
+      "spawn",
+      "stats"
+    ],
+    "candidate_id": "FR0068-c389caa43deb",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3332,
+    "text": "ceph_ModelA.nExpPerHour = Round(nExp * effClearsPerHour) * nGlobal_cephXP_Knob",
+    "lhs": "ceph_ModelA.nExpPerHour",
+    "rhs": "Round(nExp * effClearsPerHour) * nGlobal_cephXP_Knob",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-1fd72836f6a1",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3438,
+    "text": "' q = incoming damage per round / rest heal per round (while resting)",
+    "lhs": "q",
+    "rhs": "incoming damage per round / rest heal per round (while resting)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-e6595a99e16e",
+    "librarium_keyword_hits": [
+      "damage",
+      "heal",
+      "while"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3477,
+    "text": "DebugLogPrint \"  Attack: R=\" & F6(r) & \" rounds; combatSecs=\" & F1(combatSecs)",
+    "lhs": "R",
+    "rhs": "\" & F6(r) & \" rounds; combatSecs=\" & F1(combatSecs)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-541253ea63fe",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3529,
+    "text": "'       Attack time from effective rounds-to-kill (effRTK) with overkill time",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-b51614926312",
+    "librarium_keyword_hits": [
+      "from",
+      "kill",
+      "time",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3541,
+    "text": "'            Casters (spellCost>0): effRTK = clamp(min(nRTK*0.78, RoundUp(nRTK)), 0.74, 8).",
+    "lhs": "effRTK",
+    "rhs": "clamp(min(nRTK*0.78, RoundUp(nRTK)), 0.74, 8).",
+    "weight": 3,
+    "subsystems": [
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-f98994d0fb0e",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3573,
+    "text": "'       - Damage per round: hpLossPerRound = max(0, nMobDmg - nDamageThreshold),",
+    "lhs": "hpLossPerRound",
+    "rhs": "max(0, nMobDmg - nDamageThreshold),",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-edf331f59b76",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3592,
+    "text": "'       - Direct mana attacks bill (nSpellCost + nSpellOverhead) every combat",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-fef59affcc25",
+    "librarium_keyword_hits": [
+      "combat",
+      "direct",
+      "mana"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3593,
+    "text": "'         round; overhead-only upkeep uses nSpellOverhead * inCombatMPFrac.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7f0d608ba9e2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3711,
+    "text": "If bDebugExpPerHour Then cephB_DebugLog \"flag set = basic damage only, no recovery\"",
+    "lhs": "set",
+    "rhs": "basic damage only, no recovery\"",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-19e1a4df1be7",
+    "librarium_keyword_hits": [
+      "damage",
+      "flag"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3799,
+    "text": "regenPerRound = nMobHPRegen / nMobHPRegenRounds",
+    "lhs": "regenPerRound",
+    "rhs": "nMobHPRegen / nMobHPRegenRounds",
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-d02b45451186",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 3805,
+    "text": "posSaved = MaxDbl(0#, roundsPerSurp - 1#) * regenAtten",
+    "lhs": "posSaved",
+    "rhs": "MaxDbl(0#, roundsPerSurp - 1#) * regenAtten",
+    "weight": 3,
+    "subsystems": [
+      "regen"
+    ],
+    "candidate_id": "FR0068-5f9911d9560d",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4021,
+    "text": "If bDebugExpPerHour Then cephB_DebugLog \"flag set = basic damage only, skipping recovery\"",
+    "lhs": "set",
+    "rhs": "basic damage only, skipping recovery\"",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-17459283d6f9",
+    "librarium_keyword_hits": [
+      "damage",
+      "flag"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4034,
+    "text": "hpLossPerRound = MaxDbl(0#, dmgPerRoundCore - nDamageThreshold)",
+    "lhs": "hpLossPerRound",
+    "rhs": "MaxDbl(0#, dmgPerRoundCore - nDamageThreshold)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-f127d22c67d5",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4052,
+    "text": "hpLossPerLoop = hpLossPerRound * rtcForDamage * nTotalLairs",
+    "lhs": "hpLossPerLoop",
+    "rhs": "hpLossPerRound * rtcForDamage * nTotalLairs",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-6719ee8010cd",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4055,
+    "text": "' Crowd/light-hit exposure: under low per-mob hits with several mobs,",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-eea141399112",
+    "librarium_keyword_hits": [
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4081,
+    "text": "passiveHP = (nCharHPRegen * passiveCoef * lightHitTrim) * SafeDiv(regenEnvelope, SEC_PER_REGEN_TICK)",
+    "lhs": "passiveHP",
+    "rhs": "(nCharHPRegen * passiveCoef * lightHitTrim) * SafeDiv(regenEnvelope, SEC_PER_REGEN_TICK)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spawn",
+      "stats"
+    ],
+    "candidate_id": "FR0068-78c2df338bd0",
+    "librarium_keyword_hits": [
+      "regen",
+      "tick"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4098,
+    "text": "dmgPerRound = MaxDbl(0#, dmgPerRoundCore - nDamageThreshold)",
+    "lhs": "dmgPerRound",
+    "rhs": "MaxDbl(0#, dmgPerRoundCore - nDamageThreshold)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-548ef81b0e4b",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4210,
+    "text": "' Spell cost is paid per combat round; overhead/upkeep is only paid",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-93c37b1d7377",
+    "librarium_keyword_hits": [
+      "combat",
+      "cost",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4320,
+    "text": "manaCostLoop = (CDbl(nSpellCost) * totalRounds) + _",
+    "lhs": "manaCostLoop",
+    "rhs": "(CDbl(nSpellCost) * totalRounds) + _",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d748ee786c5c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4321,
+    "text": "(nSpellOverhead * totalRounds * mpUseFrac_B)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-6dff2955fd7f",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 4544,
+    "text": "spawnInterval = SafeDiv(nRegenTime * 60#, nTotalLairs)",
+    "lhs": "spawnInterval",
+    "rhs": "SafeDiv(nRegenTime * 60#, nTotalLairs)",
+    "weight": 3,
+    "subsystems": [
+      "regen",
+      "spawn",
+      "stats"
+    ],
+    "candidate_id": "FR0068-91f1f1c550d8",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 215,
+    "text": "tmp_nAvgExp = tmp_nAvgExp + (tLairInfo.nAvgExp * tLairInfo.nMaxRegen)",
+    "lhs": "tmp_nAvgExp",
+    "rhs": "tmp_nAvgExp + (tLairInfo.nAvgExp * tLairInfo.nMaxRegen)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-dd75234dd775",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 266,
+    "text": "GetLairAveragesFromLocs.nAvgExp = Round(tmp_nAvgExp / nLairs)",
+    "lhs": "GetLairAveragesFromLocs.nAvgExp",
+    "rhs": "Round(tmp_nAvgExp / nLairs)",
+    "weight": 3,
+    "subsystems": [
+      "xp"
+    ],
+    "candidate_id": "FR0068-f9b4ef90bacb",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 1179,
+    "text": "' If no spell-immune field was present at all, that mob is level 0",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-3bd7d180663b",
+    "librarium_keyword_hits": [
+      "field",
+      "level",
+      "present",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4722,
+    "text": "GetSpellDuration = tabSpells.Fields(\"Dur\") + Fix((tabSpells.Fields(\"DurInc\") / tabSpells.Fields(\"DurIncLVLs\")) * nCastLevel)",
+    "lhs": "GetSpellDuration",
+    "rhs": "tabSpells.Fields(\"Dur\") + Fix((tabSpells.Fields(\"DurInc\") / tabSpells.Fields(\"DurIncLVLs\")) * nCastLevel)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7f241b110599",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1797,
+    "text": "sRegexPattern = \"\\[(?:[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)[^\\]]*), (\\d+)%\\]\"",
+    "lhs": "sRegexPattern",
+    "rhs": "\"\\[(?:[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)[^\\]]*), (\\d+)%\\]\"",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-f1503b2956ca",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1802,
+    "text": "'    sRegexPattern = sRegexPattern & \"[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)[^\\]]*\"",
+    "lhs": "sRegexPattern",
+    "rhs": "sRegexPattern & \"[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)[^\\]]*\"",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-e17e42399ee8",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1804,
+    "text": "'    sRegexPattern = sRegexPattern & \"|, EndCast ))(?:\\[[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)(?:\\]|, EndCast ))?(?:\\[[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)(?:\\]|, EndCast ))?(?:\\[[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)(?:\\]|, EndCast ))?(?:\\[[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)(?:\\]|, EndCast ))?(?:\\[[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (",
+    "lhs": "sRegexPattern",
+    "rhs": "sRegexPattern & \"|, EndCast ))(?:\\[[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)(?:\\]|, EndCast ))?(?:\\[[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLife) (-?\\d+) to (-?\\d+)(?:\\]|, EndCast ))?(?:\\[[^\\[\\{\\}\\]]+, (Damage(?:\\(-MR\\))?|DrainLi",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-4b6821bec379",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 4113,
+    "text": "'function  CalcHPRegen(Level, HEA: integer; HPRegen: integer = 0; Resting: boolean = False): integer;",
+    "lhs": "integer",
+    "rhs": "0; Resting: boolean = False): integer;",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen",
+      "stats"
+    ],
+    "candidate_id": "FR0068-e47d866dbe67",
+    "librarium_keyword_hits": [
+      "function",
+      "hpregen",
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 4149,
+    "text": "nHPRegen = Fix(((nLevel + 20) * nHealth) / 500)",
+    "lhs": "nHPRegen",
+    "rhs": "Fix(((nLevel + 20) * nHealth) / 500)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-9ac35a23fbd0",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 4151,
+    "text": "nHPRegen = Fix(((nLevel + 20) * nHealth) / 750)",
+    "lhs": "nHPRegen",
+    "rhs": "Fix(((nLevel + 20) * nHealth) / 750)",
+    "weight": 3,
+    "subsystems": [
+      "xp",
+      "regen"
+    ],
+    "candidate_id": "FR0068-48cab310b65c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 4176,
+    "text": "'{ Calculates Backstab damage for a given Level, Stealth, Dmg, BsDmgMod and",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-71d90b008e3b",
+    "librarium_keyword_hits": [
+      "damage",
+      "level"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 4196,
+    "text": "CalcBSDamage = (nLevel * 2) + Fix(nStealth / 10) + (nDmg * 2) + nBsDmgMod",
+    "lhs": "CalcBSDamage",
+    "rhs": "(nLevel * 2) + Fix(nStealth / 10) + (nDmg * 2) + nBsDmgMod",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-40f5bc308cad",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 4198,
+    "text": "If bClassStealth Or Not bGreaterMUD Then CalcBSDamage = Fix(((nLevel + 100) * CalcBSDamage) / 100)",
+    "lhs": "CalcBSDamage",
+    "rhs": "Fix(((nLevel + 100) * CalcBSDamage) / 100)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-91ec0d2fff0f",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 1
+  }
+]

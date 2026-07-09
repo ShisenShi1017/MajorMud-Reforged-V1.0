@@ -804,3 +804,13 @@ This update is a corrective build-fix patch for CodeUpdate-0031.
 - The ChatGPT packaging container did not include the .NET SDK, so local restore/build/test could not be run during ZIP creation.
 - The user later reported CodeUpdate-0031A GitHub Actions green.
 - Codex local .NET 8.0.422 sequential restore/build/smoke verification passed after the patch was applied locally.
+
+
+## CodeUpdate 0082 — Timing Constant Verification
+
+Added evidence-backed timing-constant claim records for 3.0s system/spell tick, 1.5s combat round, tick/round ratio, and tick clipping. No promotions or runtime replacements. Status: PASS_WITH_LIMITATIONS.
+
+
+## CodeUpdate 0088 — Timing / Execution Promotion Review
+
+Promoted architecture and symbol-presence records with strict scope limits. No gameplay timing constants or formulas were promoted. Runtime remains unchanged.

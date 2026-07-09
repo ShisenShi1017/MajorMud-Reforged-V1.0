@@ -1,0 +1,50 @@
+[
+  {
+    "id": "dialogue.probe.npc_greeting_default",
+    "title": "NPC default greeting",
+    "goal": "Verify default NPC speech text selection when no quest or service condition applies.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "dialogue.probe.quest_accept_complete",
+    "title": "Quest accept/complete dialogue",
+    "goal": "Verify quest state changes select the correct acceptance, progress, and completion text.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "dialogue.probe.merchant_trainer_text",
+    "title": "Merchant/trainer service text",
+    "goal": "Verify shop/trainer interactions select correct service prompts, denial text, and transaction messages.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "dialogue.probe.room_look_read",
+    "title": "Room look/read text",
+    "goal": "Verify room descriptions, signs, readable objects, and special examine text are emitted by the correct commands.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "dialogue.probe.triggered_message_order",
+    "title": "Triggered message order",
+    "goal": "Verify event/script-triggered text ordering relative to state mutation and output flush.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "dialogue.probe.variable_substitution",
+    "title": "Variable substitution",
+    "goal": "Verify player/item/NPC/number placeholders and formatting tokens render correctly.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "dialogue.probe.combat_spell_messages",
+    "title": "Combat and spell message text",
+    "goal": "Verify combat, spell, status, and death messages align with resolved mechanics and visible recipients.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "dialogue.probe.help_system_messages",
+    "title": "Help/system command text",
+    "goal": "Verify invalid command, help, permission, welcome, and system messages.",
+    "status": "defined_not_executed"
+  }
+]

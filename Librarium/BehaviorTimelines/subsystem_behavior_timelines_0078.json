@@ -1,0 +1,266 @@
+[
+  {
+    "id": "BT-0078-combat",
+    "name": "Combat",
+    "evidence_state": "Derived/Hypothesis",
+    "summary": "Command/status-cycle driven; damage/hit resolution likely occurs synchronously when attack command or combat tick is processed.",
+    "candidate_host_cadence": "STTROU/STSROU/SYSCYC candidate",
+    "timeline": [
+      {
+        "order": 1,
+        "event": "Host/session invokes relevant module routine."
+      },
+      {
+        "order": 2,
+        "event": "Module consumes canonical/generated game state."
+      },
+      {
+        "order": 3,
+        "event": "Module applies state mutation."
+      },
+      {
+        "order": 4,
+        "event": "Module emits output/events."
+      },
+      {
+        "order": 5,
+        "event": "Host/session eventually delivers output to connected user."
+      }
+    ],
+    "remaining_unknowns": [
+      "Exact attack round timing, weapon speed integration, and output flush order remain unknown."
+    ],
+    "promotion_requirement": "Requires MajorMUD-specific source trace or simulator/observed runtime trace showing routine, cadence, ordering, and repeated deterministic behavior."
+  },
+  {
+    "id": "BT-0078-regen_time",
+    "name": "Regeneration and Timing",
+    "evidence_state": "Derived/Hypothesis",
+    "summary": "Periodic; likely compares current host time/TICKER or scheduled callbacks against last regen timestamp.",
+    "candidate_host_cadence": "TICKER/RTKICK/STSROU candidate",
+    "timeline": [
+      {
+        "order": 1,
+        "event": "Host/session invokes relevant module routine."
+      },
+      {
+        "order": 2,
+        "event": "Module consumes canonical/generated game state."
+      },
+      {
+        "order": 3,
+        "event": "Module applies state mutation."
+      },
+      {
+        "order": 4,
+        "event": "Module emits output/events."
+      },
+      {
+        "order": 5,
+        "event": "Host/session eventually delivers output to connected user."
+      }
+    ],
+    "remaining_unknowns": [
+      "Exact interval, HP/mana/move ordering, rounding, and interrupt conditions unknown."
+    ],
+    "promotion_requirement": "Requires MajorMUD-specific source trace or simulator/observed runtime trace showing routine, cadence, ordering, and repeated deterministic behavior."
+  },
+  {
+    "id": "BT-0078-poison_disease_effects",
+    "name": "Poison/Disease/Timed Effects",
+    "evidence_state": "Derived/Hypothesis",
+    "summary": "Periodic status effects likely update on the same timing substrate as regen or delayed callbacks.",
+    "candidate_host_cadence": "TICKER/RTKICK/SYSCYC candidate",
+    "timeline": [
+      {
+        "order": 1,
+        "event": "Host/session invokes relevant module routine."
+      },
+      {
+        "order": 2,
+        "event": "Module consumes canonical/generated game state."
+      },
+      {
+        "order": 3,
+        "event": "Module applies state mutation."
+      },
+      {
+        "order": 4,
+        "event": "Module emits output/events."
+      },
+      {
+        "order": 5,
+        "event": "Host/session eventually delivers output to connected user."
+      }
+    ],
+    "remaining_unknowns": [
+      "Damage interval, stacking, cure/remove ordering unknown."
+    ],
+    "promotion_requirement": "Requires MajorMUD-specific source trace or simulator/observed runtime trace showing routine, cadence, ordering, and repeated deterministic behavior."
+  },
+  {
+    "id": "BT-0078-npc_ai",
+    "name": "NPC AI",
+    "evidence_state": "Derived/Hypothesis",
+    "summary": "Likely cycle-driven background processing after/around session work; may use SYSCYC/STSROU/task mechanisms.",
+    "candidate_host_cadence": "SYSCYC/INITASK/STSROU candidate",
+    "timeline": [
+      {
+        "order": 1,
+        "event": "Host/session invokes relevant module routine."
+      },
+      {
+        "order": 2,
+        "event": "Module consumes canonical/generated game state."
+      },
+      {
+        "order": 3,
+        "event": "Module applies state mutation."
+      },
+      {
+        "order": 4,
+        "event": "Module emits output/events."
+      },
+      {
+        "order": 5,
+        "event": "Host/session eventually delivers output to connected user."
+      }
+    ],
+    "remaining_unknowns": [
+      "Targeting cadence, spell priority, flee checks unknown."
+    ],
+    "promotion_requirement": "Requires MajorMUD-specific source trace or simulator/observed runtime trace showing routine, cadence, ordering, and repeated deterministic behavior."
+  },
+  {
+    "id": "BT-0078-loot_spawn",
+    "name": "Loot and Spawn",
+    "evidence_state": "Derived/Hypothesis",
+    "summary": "Spawn timers likely one-second or delayed-callback based; loot generation likely event-driven at death.",
+    "candidate_host_cadence": "TICKER/RTKICK for spawn; STTROU/combat resolution for loot",
+    "timeline": [
+      {
+        "order": 1,
+        "event": "Host/session invokes relevant module routine."
+      },
+      {
+        "order": 2,
+        "event": "Module consumes canonical/generated game state."
+      },
+      {
+        "order": 3,
+        "event": "Module applies state mutation."
+      },
+      {
+        "order": 4,
+        "event": "Module emits output/events."
+      },
+      {
+        "order": 5,
+        "event": "Host/session eventually delivers output to connected user."
+      }
+    ],
+    "remaining_unknowns": [
+      "Respawn interval source, rare roll order, table resolution unknown."
+    ],
+    "promotion_requirement": "Requires MajorMUD-specific source trace or simulator/observed runtime trace showing routine, cadence, ordering, and repeated deterministic behavior."
+  },
+  {
+    "id": "BT-0078-xp_leveling",
+    "name": "XP and Leveling",
+    "evidence_state": "Derived/Hypothesis",
+    "summary": "Event-driven on kill/quest completion, likely synchronous with reward event.",
+    "candidate_host_cadence": "STTROU/combat/quest completion routines",
+    "timeline": [
+      {
+        "order": 1,
+        "event": "Host/session invokes relevant module routine."
+      },
+      {
+        "order": 2,
+        "event": "Module consumes canonical/generated game state."
+      },
+      {
+        "order": 3,
+        "event": "Module applies state mutation."
+      },
+      {
+        "order": 4,
+        "event": "Module emits output/events."
+      },
+      {
+        "order": 5,
+        "event": "Host/session eventually delivers output to connected user."
+      }
+    ],
+    "remaining_unknowns": [
+      "Party share timing, penalties, caps unknown."
+    ],
+    "promotion_requirement": "Requires MajorMUD-specific source trace or simulator/observed runtime trace showing routine, cadence, ordering, and repeated deterministic behavior."
+  },
+  {
+    "id": "BT-0078-quest_runtime",
+    "name": "Quest Runtime",
+    "evidence_state": "Derived/Hypothesis",
+    "summary": "Command/dialogue triggered plus possible deferred checks; canonical ordering still needs script semantics.",
+    "candidate_host_cadence": "STTROU/STSROU/dialogue handlers candidate",
+    "timeline": [
+      {
+        "order": 1,
+        "event": "Host/session invokes relevant module routine."
+      },
+      {
+        "order": 2,
+        "event": "Module consumes canonical/generated game state."
+      },
+      {
+        "order": 3,
+        "event": "Module applies state mutation."
+      },
+      {
+        "order": 4,
+        "event": "Module emits output/events."
+      },
+      {
+        "order": 5,
+        "event": "Host/session eventually delivers output to connected user."
+      }
+    ],
+    "remaining_unknowns": [
+      "Stage order, branching, failure states, textblock sequencing unknown."
+    ],
+    "promotion_requirement": "Requires MajorMUD-specific source trace or simulator/observed runtime trace showing routine, cadence, ordering, and repeated deterministic behavior."
+  },
+  {
+    "id": "BT-0078-output_flush",
+    "name": "Output Flush / Player Visibility",
+    "evidence_state": "Derived/Hypothesis",
+    "summary": "Host/session sends module-produced output after routines; modem latency changes delivery timing, not necessarily authoritative state.",
+    "candidate_host_cadence": "Session output/status handling",
+    "timeline": [
+      {
+        "order": 1,
+        "event": "Host/session invokes relevant module routine."
+      },
+      {
+        "order": 2,
+        "event": "Module consumes canonical/generated game state."
+      },
+      {
+        "order": 3,
+        "event": "Module applies state mutation."
+      },
+      {
+        "order": 4,
+        "event": "Module emits output/events."
+      },
+      {
+        "order": 5,
+        "event": "Host/session eventually delivers output to connected user."
+      }
+    ],
+    "remaining_unknowns": [
+      "Exact flush point needs trace."
+    ],
+    "promotion_requirement": "Requires MajorMUD-specific source trace or simulator/observed runtime trace showing routine, cadence, ordering, and repeated deterministic behavior."
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "code_update": "0085",
+  "title": "WCC/WBB Binary Correlation",
+  "binary_pairs": [
+    {
+      "wcc": "ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll",
+      "wbb": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll",
+      "finding": "The same timing and gameplay symbols were found in both files during strings extraction.",
+      "shared_symbols": [
+        "_begin_polling", "_rtkick", "_syscyc", "_my_rtkick", "_majormud_syscyc",
+        "_background_fast", "_background_medium", "_background_slow", "_background_energy",
+        "_background_inactivity", "_background_monster_create", "_background_other",
+        "_background_save_buffers", "_background_update_exits", "_do_autocombat",
+        "_do_autocombat_for_user", "_restart_autocombat", "_delay_done",
+        "_add_delay", "_add_delayed_command", "_ljngame_stsrou", "_ljngame_sttrou"
+      ],
+      "interpretation": "The user's WCC/WBB equivalence claim is supported at the symbol level for timing-relevant MajorMUD DLL content. This does not prove binary identity or cadence constants."
+    }
+  ],
+  "timing_strings": [
+    "RESTING - REST REGEN %d.",
+    "MEDITATE - MANA REGEN %d.",
+    "Such an attack would result in a very unbalanced combat round.",
+    "You have already %s this round!",
+    "Following: '%s' (%s), Inactive for: %d rounds",
+    "Room Max: %d  Current: %d  Last Killed: %s Delay: %d",
+    "Minutes before regenerating: %d minutes",
+    "DEBUG : Restarting Auto-Combat. Energy below max.",
+    "DEBUG : LOST MONSTER DURING COMBAT."
+  ],
+  "evidence_files": [
+    "Evidence/CodeUpdate0084_0087/wcc_wbb_binary_timing_symbol_hits_0085.json"
+  ],
+  "status": "PASS_WITH_LIMITATIONS"
+}

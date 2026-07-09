@@ -1,0 +1,2775 @@
+{
+  "metrics": {
+    "codeupdate": "0109",
+    "subsystem": "Dialogue / Text Reconstruction",
+    "status": "PASS_WITH_LIMITATIONS",
+    "baseline": "CodeUpdate0108 Guild/Social Reconstruction cumulative",
+    "raw_evidence_hits": 2894446,
+    "files_with_dialogue_text_hits": 3995,
+    "prioritized_evidence_references": 2050,
+    "relationship_edges": 14873,
+    "candidate_records": 3995,
+    "probes_defined": 8,
+    "gaps_recorded": 9,
+    "data_presence_records_promoted": 1,
+    "conversation_mechanics_promoted": 0,
+    "runtime_behaviors_replaced": 0,
+    "category_counts": {
+      "dialogue": 7925,
+      "textblock": 27017,
+      "quest_text": 245906,
+      "npc_text": 455197,
+      "room_text": 647672,
+      "system_text": 17717,
+      "formatting": 105732,
+      "trigger_text": 134034,
+      "combat_magic_text": 237338
+    }
+  },
+  "top_files": [
+    {
+      "source": "baseline",
+      "path": "Generated/LibrariumLocal/core_graph.json",
+      "hits": 264312,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/RoomDropAvailabilityMatrix_RuntimePrep0005.csv",
+      "hits": 219943,
+      "categories": [
+        "npc_text",
+        "quest_text",
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Assertions/knowledge_assertions_0011.json",
+      "hits": 195597,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/room_graph.json",
+      "hits": 134083,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Assertions/knowledge_entities_0011.json",
+      "hits": 109636,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Ingestion/file_inventory_0010.json",
+      "hits": 94602,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0011/VirtualActionLog.csv",
+      "hits": 91578,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0011/StateTransitionGraph.csv",
+      "hits": 66012,
+      "categories": [
+        "formatting",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/NPCReconstruction/npc_relationship_index.json",
+      "hits": 62620,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/WorldMovementReconstruction/world_relationship_edges.json",
+      "hits": 62582,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/StockGameRaw/MMExplorerMDB/raw_data_rows.json",
+      "hits": 56503,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/ProgressionReconstruction/progression_relationship_index.json",
+      "hits": 52969,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0106_EconomyReconstruction/economy_source_scan_summary.json",
+      "hits": 50198,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/BehavioralRuntime/worldgroup_runtime_evidence_0062_0064.json",
+      "hits": 50062,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/rooms.json",
+      "hits": 45360,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/monsters.json",
+      "hits": 34801,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0007/CharacterAccessMatrix.csv",
+      "hits": 34072,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0007/CharacterAccessMatrix.csv",
+      "hits": 34072,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-monster-wcc.json",
+      "hits": 33634,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/MagicReconstruction/magic_relationship_index.json",
+      "hits": 33306,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/ExpectedRuntimeModelEdges_RuntimePrep0001.csv",
+      "hits": 32628,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/StockGameRaw/MMExplorerMDB/owner_table_rows.json",
+      "hits": 32604,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/EconomyReconstruction/economy_relationship_edges.json",
+      "hits": 30306,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0010/PlayerStateTraversalEvidence.csv",
+      "hits": 27541,
+      "categories": [
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Validation0003/spell_ability_relationships_verified_0003.json",
+      "hits": 27337,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/GuildSocialReconstruction/guild_social_relationship_edges.json",
+      "hits": 24313,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0105_WorldMovementReconstruction/world_prioritized_evidence_hits.json",
+      "hits": 24238,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/validation_0006_formula_assertions_sample.json",
+      "hits": 23158,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0004/GatedExitClassification.csv",
+      "hits": 22588,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0004/GatedExitClassification.csv",
+      "hits": 22588,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0106_EconomyReconstruction/economy_prioritized_evidence_hits.json",
+      "hits": 22088,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0104_NPCReconstruction/npc_evidence_hits.json",
+      "hits": 21432,
+      "categories": [
+        "combat_magic_text",
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0005/ExitTypeParameterInventory.csv",
+      "hits": 20593,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0005/ExitTypeParameterInventory.csv",
+      "hits": 20593,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0104_NPCReconstruction/npc_evidence_hits.csv",
+      "hits": 19833,
+      "categories": [
+        "combat_magic_text",
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_evidence_hits.json",
+      "hits": 19692,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/items.json",
+      "hits": 18530,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0005/ParserTokenInventory.csv",
+      "hits": 18214,
+      "categories": [
+        "formatting"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0005/ParserTokenInventory.csv",
+      "hits": 18214,
+      "categories": [
+        "formatting"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_evidence_hits.csv",
+      "hits": 18193,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0014/InventoryEconomyActionLog.csv",
+      "hits": 16543,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/spells.json",
+      "hits": 14779,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Validation0003/monster_ability_relationships_verified_0003.json",
+      "hits": 14678,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmMain.frm",
+      "hits": 14658,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/WorldPopulationCandidateEdges_RuntimePrep0001.csv",
+      "hits": 14194,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/RoomPopulationMatrix_RuntimePrep0002.csv",
+      "hits": 13539,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmMap.frm",
+      "hits": 12555,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-item-wcc.json",
+      "hits": 12300,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-spell-wcc.json",
+      "hits": 11894,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/EconomyReconstruction/economy_merchant_shop_inventory.json",
+      "hits": 10845,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0102_MagicReconstruction/magic_evidence_hits.json",
+      "hits": 10567,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaReconciliation0068/formula_candidate_inventory_0068.json",
+      "hits": 9898,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/CombatReconstruction/combat_relationship_index.json",
+      "hits": 9389,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0102_MagicReconstruction/magic_evidence_hits.csv",
+      "hits": 9168,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0009/NpcConditionClues.csv",
+      "hits": 8351,
+      "categories": [
+        "npc_text",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/LinkedSpawnRoomMatrix_RuntimePrep0002.csv",
+      "hits": 8271,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0005/CommandClueHarvest.csv",
+      "hits": 7905,
+      "categories": [
+        "system_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0005/CommandClueHarvest.csv",
+      "hits": 7905,
+      "categories": [
+        "system_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0019/SchedulerHypothesisMap.csv",
+      "hits": 7638,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0012/ServiceInteractionLog.csv",
+      "hits": 7402,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/LibrariumLocal/runtime_index.json",
+      "hits": 7334,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Ingestion/record_index_0010.json",
+      "hits": 7245,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/StockGameRaw/MMExplorerMDB/owner_table_summary.json",
+      "hits": 7235,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/StockGameRaw/MMExplorerMDB/owner_table_summary.csv",
+      "hits": 7221,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/StockGameRaw/MMExplorerMDB/mdb_page_inventory.json",
+      "hits": 7138,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0018/EventSchedulingClues.csv",
+      "hits": 6941,
+      "categories": [
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Validation0003/item_ability_relationships_verified_0003.json",
+      "hits": 6680,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/room-capture-summary-wcc.json",
+      "hits": 6613,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Generated/GuildSocialReconstruction/guild_social_candidate_records.json",
+      "hits": 6431,
+      "categories": [
+        "combat_magic_text",
+        "dialogue",
+        "formatting",
+        "npc_text",
+        "quest_text",
+        "room_text",
+        "system_text",
+        "textblock",
+        "trigger_text"
+      ],
+      "lines": 1423
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0022-MonsterRespawnSchedulingEvidence.csv",
+      "hits": 6271,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/ReferenceCaptureManifest.json",
+      "hits": 6223,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/ReferenceCaptureInventory.csv",
+      "hits": 6210,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/SpellSystemExpectationMatrix_RuntimePrep0007.csv",
+      "hits": 6075,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/room_exit_endpoint_remaining_0081.csv",
+      "hits": 5463,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/room_exit_endpoint_direct_evidence_0081.csv",
+      "hits": 5463,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0101_CombatReconstruction/combat_evidence_hits.json",
+      "hits": 5443,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0009/ItemConditionClues.csv",
+      "hits": 5400,
+      "categories": [
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/BehaviorGraph/impact_dependency_index_0008.json",
+      "hits": 5385,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer0020/DailyCleanupResetRoomLifecycleModel.csv",
+      "hits": 5085,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0021/room_spawn_timer_field_candidates.csv",
+      "hits": 5081,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/world.json",
+      "hits": 5028,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/Validation/normal_room_exit_endpoint_recovery_0078.json",
+      "hits": 4712,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/runtime_parity_issues_0080.csv",
+      "hits": 4689,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/runtime_parity_issues_remaining_0081.csv",
+      "hits": 4676,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/runtime_parity_issues_remaining_0080.csv",
+      "hits": 4675,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0015/SpellStatusEvidenceExtract.csv",
+      "hits": 4658,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0108_GuildSocialReconstruction/guild_social_prioritized_evidence_hits.json",
+      "hits": 4551,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/modMain.bas",
+      "hits": 4519,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/room_exit_endpoint_recovery_0080.csv",
+      "hits": 4447,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/room_exit_endpoint_remaining_0080.csv",
+      "hits": 4413,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/Provenance/previous_world_before_0067.json",
+      "hits": 4389,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0104_NPCReconstruction/npc_source_file_summary.csv",
+      "hits": 4366,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0101_CombatReconstruction/combat_evidence_hits.csv",
+      "hits": 4244,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/Validation/runtime_parity_issues_remaining_0079.json",
+      "hits": 3954,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/WorldPopulationRuntimeChecklist_RuntimePrep0002.csv",
+      "hits": 3835,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0009/RoomConditionClues.csv",
+      "hits": 3756,
+      "categories": [
+        "room_text",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0020/ItemCleanupPersistenceFieldInventory.csv",
+      "hits": 3566,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/ItemRewardRuntimeChecklist_RuntimePrep0005.csv",
+      "hits": 3493,
+      "categories": [
+        "npc_text",
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0004/RoomTextGateClues.csv",
+      "hits": 3453,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0004/RoomTextGateClues.csv",
+      "hits": 3453,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/Validation/runtime_parity_blockers_remaining_0078.json",
+      "hits": 3434,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0107_QuestReconstruction/prioritized_quest_evidence_0107.json",
+      "hits": 3399,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0005/RoomObjectClues.csv",
+      "hits": 3378,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0005/RoomObjectClues.csv",
+      "hits": 3378,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0018/WorldResetAndTimerEvidence.csv",
+      "hits": 3366,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 3249,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/ExpectedRuntimeCrossReferenceSummary_RuntimePrep0001.csv",
+      "hits": 3038,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0103_ProgressionReconstruction/progression_source_file_summary.csv",
+      "hits": 2884,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/CodeUpdate0108_GuildSocialReconstruction/guild_social_inventory_summary.json",
+      "hits": 2878,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/messages.json",
+      "hits": 2854,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/room-detail-inventory-wcc.csv",
+      "hits": 2823,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaGapResolution0077/resolution_candidate_references_0077.json",
+      "hits": 2721,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0023/quest_item_persistence_candidates.csv",
+      "hits": 2710,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCITEMS.records.json",
+      "hits": 2654,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0009/SpellConditionClues.csv",
+      "hits": 2566,
+      "categories": [
+        "combat_magic_text",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaBehavior0075/candidate_references_0075.json",
+      "hits": 2537,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv",
+      "hits": 2532,
+      "categories": [
+        "dialogue",
+        "npc_text",
+        "quest_text",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/Validation/linked_spawn_endpoint_recovery_0078.json",
+      "hits": 2518,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaBehavior0071/candidate_references_0071.json",
+      "hits": 2492,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "hits": 2419,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/modMMudFunc.bas",
+      "hits": 2288,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv",
+      "hits": 2243,
+      "categories": [
+        "dialogue",
+        "npc_text",
+        "quest_text",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Subsystems/Quest/quest_relationship_edges_0107.json",
+      "hits": 2217,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv",
+      "hits": 2204,
+      "categories": [
+        "dialogue",
+        "npc_text",
+        "quest_text",
+        "textblock",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/loot_tables.json",
+      "hits": 2177,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCUPDAT.strings.json",
+      "hits": 2018,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/message_text_catalogs.json",
+      "hits": 2006,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCMSG.strings.json",
+      "hits": 1984,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0016/EncounterRoutingMatrix.csv",
+      "hits": 1934,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0016/DeathResolutionExpectedModel.csv",
+      "hits": 1934,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0016/SpawnPressureMatrix.csv",
+      "hits": 1933,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0004/MissingDestinations.csv",
+      "hits": 1896,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0004/MissingDestinations.csv",
+      "hits": 1896,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaBehavior0073/candidate_references_0073.json",
+      "hits": 1889,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0018/CleanupLifecycleCandidateMatrix.csv",
+      "hits": 1878,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaBehavior0074/candidate_references_0074.json",
+      "hits": 1779,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/ExternalSources/Validation0005/all_procedure_signal_map.csv",
+      "hits": 1686,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0002-WorldPopulationExtraction/Payload/RuntimePrep0002/BossRespawnMatrix_RuntimePrep0002.csv",
+      "hits": 1660,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0107_QuestReconstruction/quest_evidence_samples_0107.json",
+      "hits": 1648,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/shops.json",
+      "hits": 1631,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-shop-wcc.json",
+      "hits": 1529,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer0020/DailyCleanupObjectStateTransitionModel.csv",
+      "hits": 1528,
+      "categories": [
+        "formatting",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaBehavior0072/candidate_references_0072.json",
+      "hits": 1518,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCMP001.strings.json",
+      "hits": 1493,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCSPELS.records.json",
+      "hits": 1453,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/modExpPerHour.bas",
+      "hits": 1384,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/special_exit_behavior_direct_evidence_0081.csv",
+      "hits": 1359,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.NOT",
+      "hits": 1348,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbMMUD.NOT",
+      "hits": 1348,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCMP001_strings.tsv",
+      "hits": 1342,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/FormulaValidation/formula_conflict_candidates_0005.json",
+      "hits": 1307,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/codex-ability-wcc.json",
+      "hits": 1241,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0008/ShopInventoryItemRefs.csv",
+      "hits": 1240,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/NavigationRuntimeChecklist_RuntimePrep0003.csv",
+      "hits": 1188,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0019/ItemPersistenceCleanupClasses.csv",
+      "hits": 1178,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMHLP.MSG",
+      "hits": 1176,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbMMHLP.MSG",
+      "hits": 1176,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0015/MonsterCombatEvidenceExtract.csv",
+      "hits": 1173,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json",
+      "hits": 1168,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/InheritedOwnershipSummary_RuntimePrep0001.csv",
+      "hits": 1164,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCITEMS.strings.json",
+      "hits": 1144,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "hits": 1076,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+      "hits": 1047,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmPopUpOptions.frm",
+      "hits": 1012,
+      "categories": [
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Reports/integrity_report_0001.json",
+      "hits": 1006,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCUPDAT_strings.tsv",
+      "hits": 1006,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCMSG_strings.tsv",
+      "hits": 998,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0014/MissingShopItemReferences.json",
+      "hits": 986,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmMegaMUDPathing.frm",
+      "hits": 954,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0018/PersistentWorldObjectCandidates.csv",
+      "hits": 945,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/abilities.json",
+      "hits": 917,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0019/RoomVisibleHiddenObjectMatrix.csv",
+      "hits": 903,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/MonsterDropMatrix_RuntimePrep0005.csv",
+      "hits": 883,
+      "categories": [
+        "npc_text",
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaBehavior0076/candidate_references_0076.json",
+      "hits": 863,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0007/RoomStateClues.csv",
+      "hits": 852,
+      "categories": [
+        "room_text",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/modListViewExt.bas",
+      "hits": 832,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/modItemParse.bas",
+      "hits": 819,
+      "categories": [
+        "formatting"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmResults.frm",
+      "hits": 810,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0017/CleanupCandidateClassification.csv",
+      "hits": 799,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv",
+      "hits": 779,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopInventoryMatrix_RuntimePrep0004.csv",
+      "hits": 757,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.RLN",
+      "hits": 735,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbMMUD.RLN",
+      "hits": 735,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0017/SearchStatExpectedModel.csv",
+      "hits": 703,
+      "categories": [
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/run_simulator.py",
+      "hits": 693,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCITEMS_strings.tsv",
+      "hits": 687,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/roommap-inventory-wcc.csv",
+      "hits": 675,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0001-MDBCSVWBBWCCExpectedRuntimeModel/Payload/RuntimePrep0001/ExpectedRuntimeEntitySummary_RuntimePrep0001.csv",
+      "hits": 674,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCKNMSR.strings.json",
+      "hits": 670,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/validation_0006_equation_candidate_clusters.json",
+      "hits": 628,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0108_GuildSocialReconstruction/guild_social_source_scan_summary.json",
+      "hits": 626,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "hits": 603,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0018/HiddenDeletedSearchEvidenceMatrix.csv",
+      "hits": 600,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCKNMSR_strings.tsv",
+      "hits": 580,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0003-NavigationExitExtraction/Payload/RuntimePrep0003/NavigationEdgeMatrix_RuntimePrep0003.csv",
+      "hits": 570,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "hits": 563,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmHitCalc.frm",
+      "hits": 557,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmPasteChar.frm",
+      "hits": 550,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/modSyntaxsFunc.bas",
+      "hits": 546,
+      "categories": [
+        "system_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/HostExecutionModel0078/host_execution_evidence_sources_0078.json",
+      "hits": 545,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/README.md",
+      "hits": 525,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCSPELS.strings.json",
+      "hits": 523,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/FormulaBehavior0070/formula_behavior_records_0070.json",
+      "hits": 521,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0014/ShopInventoryEconomyEvidence.csv",
+      "hits": 498,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDecodeReports/StringCatalogs/WCCSPELS_strings.tsv",
+      "hits": 494,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/special_exit_candidate_rows_0080.csv",
+      "hits": 493,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmMonsterAttackSim.frm",
+      "hits": 458,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCITEMS.csv-crosscheck.json",
+      "hits": 455,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv",
+      "hits": 453,
+      "categories": [
+        "dialogue",
+        "npc_text",
+        "quest_text",
+        "textblock",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Validation0003/quest_validation_0003.json",
+      "hits": 450,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Reports/quest_validation_report_0003.json",
+      "hits": 450,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/docs/changelog.archive.txt",
+      "hits": 440,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/native_dat_manifest.json",
+      "hits": 439,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ItemShopAvailabilityMatrix_RuntimePrep0004.csv",
+      "hits": 438,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0019/NativeMessageTimerSearchClues.csv",
+      "hits": 422,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/validation_0006_equation_candidates.json",
+      "hits": 422,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.log",
+      "hits": 412,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/ExternalSources/Validation0007/disassembly_target_routines.csv",
+      "hits": 394,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Docs/DatabaseAudit/column_semantics_warnings.json",
+      "hits": 391,
+      "categories": [
+        "system_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmSwingCalc.frm",
+      "hits": 388,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/MonsterCurrencyDropMatrix_RuntimePrep0005.csv",
+      "hits": 385,
+      "categories": [
+        "npc_text",
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0014/ItemEconomyEvidenceExtract.csv",
+      "hits": 380,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/ITEMS.TXT",
+      "hits": 378,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/HostProcess/HostRoutines/MenuRoutines.cs",
+      "hits": 375,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+      "hits": 362,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/HostProcess/GlobalRoutines/SysopGlobal.cs",
+      "hits": 361,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/Validation0009/respawn_scheduler_evidence.json",
+      "hits": 359,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMSYS.NOT",
+      "hits": 349,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbMMSYS.NOT",
+      "hits": 349,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/HostProcess/MbbsHost.cs",
+      "hits": 348,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/Module/MsgFile.cs",
+      "hits": 342,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu.Tests/CPU/SUB_Tests.cs",
+      "hits": 340,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "hits": 323,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmSpellBook.frm",
+      "hits": 317,
+      "categories": [
+        "combat_magic_text",
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu.Tests/Module/MsgFile_Tests.cs",
+      "hits": 317,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/EquipmentStatExpectationMatrix_RuntimePrep0007.csv",
+      "hits": 312,
+      "categories": [
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0084_0087/wcc_wbb_binary_timing_symbol_hits_0085.json",
+      "hits": 300,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/FormulaBehavior/formula_behavior_index_0071.json",
+      "hits": 293,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/validation_0006_formula_sources.json",
+      "hits": 293,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Runtime/command/core_commands.py",
+      "hits": 290,
+      "categories": [
+        "system_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/file_Tests.cs",
+      "hits": 289,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/HostProcess/HostRoutines/FsdRoutines.cs",
+      "hits": 282,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu.Tests/CPU/ADD_Tests.cs",
+      "hits": 281,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/BehaviorGraph/behavior_actions_0008.json",
+      "hits": 279,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/CodeUpdate0102_MagicReconstruction/magic_source_file_summary.csv",
+      "hits": 277,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/FormulaBehavior/formula_behavior_index_0075.json",
+      "hits": 266,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json",
+      "hits": 261,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/Reports/quest_reconstruction_report_0002.json",
+      "hits": 261,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmSettings.frm",
+      "hits": 259,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/DOS/Interrupts/Int7Bh.cs",
+      "hits": 258,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0013_MANIFEST.csv",
+      "hits": 255,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/sscanf_Tests.cs",
+      "hits": 255,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu.Tests/CPU/XOR_Tests.cs",
+      "hits": 255,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu.Tests/CPU/OR_Tests.cs",
+      "hits": 255,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "hits": 255,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Runtime/movement.py",
+      "hits": 251,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/docs/changelog.txt",
+      "hits": 250,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer/0017/ItemVisibilityStateMatrix.csv",
+      "hits": 249,
+      "categories": [
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0012_MANIFEST.csv",
+      "hits": 247,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0011_MANIFEST.csv",
+      "hits": 243,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0010_MANIFEST.csv",
+      "hits": 241,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/clsRegistryRoutines.cls",
+      "hits": 240,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0009_MANIFEST.csv",
+      "hits": 238,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0008_MANIFEST.csv",
+      "hits": 237,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMPLS.REL",
+      "hits": 237,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbMMPLS.REL",
+      "hits": 237,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0007_MANIFEST.csv",
+      "hits": 234,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0006_MANIFEST.csv",
+      "hits": 233,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0005_MANIFEST.csv",
+      "hits": 233,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/schema_adapter_report_0002.json",
+      "hits": 231,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCSPELS.csv-crosscheck.json",
+      "hits": 231,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/DOS/Interrupts/Int21h.cs",
+      "hits": 230,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/DataSimVer0020/NativeCleanupResetSearchMessageClues.csv",
+      "hits": 229,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Simulator/DataSimVer0015/SpellCastStateSimulationLog.csv",
+      "hits": 227,
+      "categories": [
+        "combat_magic_text",
+        "trigger_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Librarium/FormulaValidation/formula_examples_by_system_0005.json",
+      "hits": 227,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "hits": 226,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Runtime/test_harness/full_game_test_harness.py",
+      "hits": 225,
+      "categories": [
+        "combat_magic_text",
+        "formatting",
+        "npc_text",
+        "quest_text",
+        "room_text",
+        "system_text",
+        "textblock",
+        "trigger_text"
+      ],
+      "lines": 96
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0004_MANIFEST.csv",
+      "hits": 225,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0003_MANIFEST.csv",
+      "hits": 223,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/Validation0010_FieldReverseMapping_Evidence.csv",
+      "hits": 223,
+      "categories": [
+        "room_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0002_MANIFEST.csv",
+      "hits": 221,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Documentation/HistoricalValidation/VALIDATION0001_MANIFEST.csv",
+      "hits": 219,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/Program.cs",
+      "hits": 218,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/ExternalSources/Validation0012/quest_btrieve_snippets.json",
+      "hits": 217,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/full_game_test_harness_validation_0016.json",
+      "hits": 214,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/MonsterCombatExpectationMatrix_RuntimePrep0007.csv",
+      "hits": 213,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/full_game_test_harness_0016.json",
+      "hits": 213,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMPLS.msg",
+      "hits": 212,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "ImportedDatabases/WCCLabeledWBB/Extracted/wbbMMPLS.msg",
+      "hits": 212,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/BehavioralRuntime/behavioral_runtime_evidence.json",
+      "hits": 211,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmMonsterFilters.frm",
+      "hits": 209,
+      "categories": [
+        "npc_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUD-Explorer-master/frmBSCalc.frm",
+      "hits": 209,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/ExternalSources/Validation0005/procedure_candidates_spell_status.csv",
+      "hits": 204,
+      "categories": [
+        "combat_magic_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Runtime/quests/quest_engine.py",
+      "hits": 203,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Tools/ReferenceCapture/Capture-OriginalReferenceData.ps1",
+      "hits": 201,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/ExternalSources/Validation0013/quest_related_callrefs.csv",
+      "hits": 201,
+      "categories": [
+        "quest_text"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Evidence/HostLifecycle0079/host_lifecycle_evidence_sources_0079.json",
+      "hits": 201,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Data/NativeDatDecodeReports/WCCSHOPS.records.json",
+      "hits": 200,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "baseline",
+      "path": "Reports/CodeUpdates/CodeUpdate-0054/NewFilesCopied.csv",
+      "hits": 199,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu-master/MBBSEmu/UI/Setup/SetupView.cs",
+      "hits": 199,
+      "categories": [
+        "textblock"
+      ],
+      "lines": 0
+    }
+  ]
+}

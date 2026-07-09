@@ -1,0 +1,60 @@
+{
+  "files": {
+    "evidence": "Evidence/CodeUpdate0101_CombatReconstruction",
+    "reports": "Reports/CodeUpdate0101_CombatReconstruction",
+    "validation": "Validation/CodeUpdate0101_CombatReconstruction",
+    "codex": "Codex/CodeUpdate0101_CombatReconstruction",
+    "docs": "Documentation/CodeUpdate0101_CombatReconstruction",
+    "sim": "Simulator/CodeUpdate0101_CombatReconstruction",
+    "generated": "Generated/CombatReconstruction"
+  },
+  "metrics": {
+    "codeupdate": "0101",
+    "branch": "Combat Reconstruction",
+    "timestamp_utc": "2026-07-08T21:58:18.999416Z",
+    "source_files_with_hits": 630,
+    "prioritized_evidence_hits": 1200,
+    "raw_evidence_hits": 44050,
+    "hits_by_source": {
+      "mmud_explorer": 314,
+      "repo": 90,
+      "repo_strings": 796
+    },
+    "hits_by_category": {
+      "attack_hit": 358,
+      "combat": 421,
+      "critical_backstab": 315,
+      "damage": 697,
+      "armor_defense": 148,
+      "weapon_skill": 404,
+      "death_xp": 363,
+      "status_effects": 65
+    },
+    "relationship_edges": 2771,
+    "probe_definitions": 6,
+    "probe_results": [
+      {
+        "probe_id": "COMBAT-0101-RUNTIME-ATTACK-TRACE",
+        "status": "executed",
+        "classic_accuracy": "not_classic_claimed",
+        "hit": true,
+        "attack_roll": 18,
+        "hit_chance": 95.0,
+        "damage": 9,
+        "trace_count": 2
+      },
+      {
+        "probe_id": "COMBAT-0101-RUNTIME-DUEL-DETERMINISM",
+        "status": "executed",
+        "classic_accuracy": "not_classic_claimed",
+        "rounds": 2,
+        "event_count": 6,
+        "mode": "reforged_formula"
+      }
+    ],
+    "gap_records": 7,
+    "promotions_to_verified": 0,
+    "runtime_replacements": 0,
+    "status": "PASS_WITH_LIMITATIONS"
+  }
+}

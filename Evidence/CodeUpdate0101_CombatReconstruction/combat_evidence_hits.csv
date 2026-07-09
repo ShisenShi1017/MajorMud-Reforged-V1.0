@@ -1,0 +1,1201 @@
+source,file,line,categories,score,snippet
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2306,attack_hit;combat;critical_backstab;damage,14,"If nLocalBackstabDamage <> 0 Then lblAttackDMGPerRound.Caption = AutoAppend(lblAttackDMGPerRound.Caption, nLocalBackstabDamage & "" bs dmg"", vbCrLf)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3148,armor_defense;attack_hit;critical_backstab;damage;weapon_skill,14,"tBackStab = CalculateAttack(tBackStabProfile, a4_Surprise, nTemp, False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge, , , , , nBSdefense)"
+repo,SESSION_HANDOFF_CODEUPDATE_0068.md,20,armor_defense;combat;critical_backstab;damage;death_xp,14,"CodeUpdate-0069 — targeted simulator/reference verification for combat, hit/defense, backstab, damage rounding, and XP candidates."
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2276,attack_hit;combat;critical_backstab;damage,13,nLocalBackstabDamage = tMeleeAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modMMudDatabase.bas,747,attack_hit;combat;damage;death_xp,13,"'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,309,attack_hit;combat;damage;death_xp,13,"""text"": ""'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,350,attack_hit;combat;damage;death_xp,13,"""text"": ""'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,1008,attack_hit;combat;damage;death_xp,13,"""text"": ""'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0073.json,166,attack_hit;combat;damage;death_xp,13,"""text"": ""'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"""
+repo,Validation/FormulaBehavior0071/validation_0071.json,309,attack_hit;combat;damage;death_xp,13,"""text"": ""'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,362,attack_hit;combat;damage;death_xp,13,"""text"": ""'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,1160,attack_hit;combat;damage;death_xp,13,"""text"": ""'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"""
+repo,Validation/FormulaBehavior0073/validation_0073.json,166,attack_hit;combat;damage;death_xp,13,"""text"": ""'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined"""
+mmud_explorer,MMUD-Explorer-master/modMMudDatabase.bas,5662,attack_hit;combat;damage,12,"Public Function CalculateMonsterAvgDmg(ByVal nMonster As Long, Optional nNumRounds As Long = 500) As MonAttackSimReturn"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3186,attack_hit;combat;critical_backstab;damage,12,"Call AddMonsterDamageOutText(DetailLV, sHeader, nDamageOut & ""/round ("" & tAttack.sAttackDesc & "")"" & sImmuTXT & sBackstabText, tAttack.sAttackDetail, _"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3188,attack_hit;combat;critical_backstab;damage,12,"nSurpriseDamageOut, tBackStab.sAttackDetail, nFirstRoundDamageOut)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3251,attack_hit;combat;critical_backstab;damage,12,"nSurpriseDamageOut, tBackStab.sAttackDetail, nFirstRoundDamageOut)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3275,attack_hit;combat;critical_backstab;damage,12,"Call AddMonsterDamageOutText(DetailLV, sHeader, nDamageOut & ""/round ("" & tAttack.sAttackDesc & "")"" & sImmuTXT & sBackstabText, tAttack.sAttackDetail, _"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3277,attack_hit;combat;critical_backstab;damage,12,"nSurpriseDamageOut, tBackStab.sAttackDetail, nFirstRoundDamageOut)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5142,attack_hit;combat;damage,12,'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nFirstRoundDamage = nFirstRoundDamage + tAttack.nAvgExtraHit
+repo,Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json,134,attack_hit;combat;damage,12,"""text"": ""'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nFirstRoundDamage = nFirstRoundDamage + tAttack.nAvgExtraHit"","
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,792,attack_hit;combat;damage,11,"nHitSpellDamage = Round(Me.RandomNumber(m_nAtkHitSpellMin(nAttack), m_nAtkHitSpellMax(nAttack)))"
+mmud_explorer,MMUD-Explorer-master/frmHitCalc.frm,1173,attack_hit;critical_backstab;weapon_skill,11,ElseIf Not bGlobalAttackBackstab Or nGlobalAttackBackstabWeapon = 0 Then
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,23151,armor_defense;attack_hit;combat;damage,11,"& vbCrLf & ""Party physical damage per round = ((phys_damage * party_size) - (defense_DR * swings)) - [defenses from ac+accuracy+dodge]"" _"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1910,attack_hit;combat;critical_backstab,11,"sAttackDetail = ""Backstab: "" & tRet.nRoundTotal & "" avg @ "" & tRet.nHitChance & ""% hit """
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1810,attack_hit;combat;damage;weapon_skill,11,"sWeaponDmg = sWeaponDmg & tWeaponDmg.nRoundTotal & ""/round @ "" & Truncate(tWeaponDmg.nSwings, 1) & "" swings w/"" & tWeaponDmg.nHitChance & ""% hit chance"""
+mmud_explorer,MMUD-Explorer-master/modMain.bas,2116,armor_defense;attack_hit;critical_backstab;damage,11,"Dim nDamageOut As Long, sDefenseDesc As String, tBackStab As tAttackDamage, nSurpriseMinDamage As Long"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3086,combat;critical_backstab;damage,11,"If nSurpriseDamageOut > 0 Then sBackstabText = "" + "" & CStr(nSurpriseDamageOut) & "" surprise round"""
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3282,armor_defense;attack_hit;combat;damage,11,"'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & ""/round (manual)"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4765,attack_hit;combat;damage;weapon_skill,11,If nAttackTypeMUD <> a4_Surprise And nSpeed > 0 And tWeaponDmg.nRoundTotal > 0 And tWeaponDmg.nSwings > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4840,attack_hit;critical_backstab;damage;weapon_skill,11,"Dim tBackStab As tAttackDamage, nTemp2 As Long, nWeaponMagic As Long, nBackstabWeaponMagic As Long"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5002,armor_defense;attack_hit;critical_backstab;weapon_skill,11,"tBackStab = CalculateAttack(tCharacter, a4_Surprise, nTemp, False, nSpeedAdj, nVSAC, nVSDR, nVSDodge, , , , , nVSBSDefense)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5930,attack_hit;critical_backstab;damage,11,If nDamageOut = -9999 Or (tChar.nParty = 1 And nSurpriseDamageOut = -9999 And nGlobalAttackTypeMME > a0_oneshot And bGlobalAttackBackstab = True) Then
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,966,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,1678,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0073.json,124,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0075.json,35,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"""
+repo,Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json,54,attack_hit;combat;damage,11,"""text"": ""nHitSpellDamage = Round(Me.RandomNumber(m_nAtkHitSpellMin(nAttack), m_nAtkHitSpellMax(nAttack)))"","
+repo,Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json,102,armor_defense;attack_hit;combat;damage,11,"""text"": ""& vbCrLf & \""Party physical damage per round = ((phys_damage * party_size) - (defense_DR * swings)) - [defenses from ac+accuracy+dodge]\"" _"","
+repo,Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json,126,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"","
+repo,Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json,272,combat;critical_backstab;damage,11,"""text"": ""If nSurpriseDamageOut > 0 Then sBackstabText = \"" + \"" & CStr(nSurpriseDamageOut) & \"" surprise round\"""","
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,1118,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,1954,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"""
+repo,Validation/FormulaBehavior0073/validation_0073.json,124,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"""
+repo,Validation/FormulaBehavior0075/validation_0075.json,35,armor_defense;attack_hit;combat;damage,11,"""text"": ""'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \""/round (manual)\"", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)"""
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,874,armor_defense;combat;weapon_skill,11,"is a well-rounded weapon, providing adequate defense and"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,4825,attack_hit;combat;damage,11,"effects of Frenzy are to increase combat accuracy, damage,"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,5590,combat;damage;weapon_skill,11,"elegant weapon in combat, but it deals massive damage."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,7184,armor_defense;death_xp;weapon_skill,11,"armour, but only by a skilled craftsman."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,8587,combat;death_xp;weapon_skill,11,used to test combat skills and weapons. It is mildly
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,207,combat;status_effects;weapon_skill,11,scuttles around with blinding speed.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,1892,attack_hit;death_xp;status_effects,11,"deadly poison. Killer Bees are known to attack unprovoked, and"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2498,armor_defense;death_xp;weapon_skill,11,"armour, and wields a heavy greatsword with ease and skill. It leers"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2523,armor_defense;death_xp;weapon_skill,11,"armour, and wields a heavy greatsword with ease and skill. It leers"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,4282,combat;death_xp;weapon_skill,11,"beating, it is used to test combat and spellcasting skills. This"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7157,combat;critical_backstab;damage,11,The %s circles around behind you and backstabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7159,combat;critical_backstab;damage,11,The %s circles around behind %s and backstabs for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,630,armor_defense;combat;weapon_skill,11,"is a well-rounded weapon, providing adequate defense and"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,4388,combat;damage;weapon_skill,11,"elegant weapon in combat, but it deals massive damage."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,5607,armor_defense;death_xp;weapon_skill,11,"armour, but only by a skilled craftsman."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,6674,combat;death_xp;weapon_skill,11,used to test combat skills and weapons. It is mildly
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,10598,armor_defense;combat;weapon_skill,11,"is a well-rounded weapon, providing adequate defense and"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,151,combat;status_effects;weapon_skill,11,scuttles around with blinding speed.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,295,combat;death_xp;weapon_skill,11,"beating, it is used to test combat and spellcasting skills. This"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1247,attack_hit;death_xp;status_effects,11,"deadly poison. Killer Bees are known to attack unprovoked, and"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1735,armor_defense;death_xp;weapon_skill,11,"armour, and wields a heavy greatsword with ease and skill. It leers"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1756,armor_defense;death_xp;weapon_skill,11,"armour, and wields a heavy greatsword with ease and skill. It leers"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2608,armor_defense;attack_hit;weapon_skill,11,"Half of his armour seems missing or incomplete, and his weapon"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,3766,combat;death_xp;weapon_skill,11,"beating, it is used to test combat and spellcasting skills. This"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,5410,combat;death_xp;weapon_skill,11,"beating, it is used to test combat and spellcasting skills. This"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,5459,combat;status_effects;weapon_skill,11,scuttles around with blinding speed.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,5635,combat;death_xp;weapon_skill,11,"beating, it is used to test combat and spellcasting skills. This"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,4007,armor_defense;attack_hit;damage,11,Accuracy: %-5d          Damage Resistance: %-5d Armour Rating: %-5d
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7565,combat;critical_backstab;damage,11,%s circles around behind you and backstabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7567,combat;critical_backstab;damage,11,%s circles around behind %s and backstabs for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18416,armor_defense;critical_backstab;damage,11,The armour spikes stabs %s for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18418,armor_defense;critical_backstab;damage,11,The armour spikes stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18420,armor_defense;critical_backstab;damage,11,The armour spikes stabs %s for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,2342,combat;death_xp;weapon_skill,11,increasing your combat skills.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,679,armor_defense;combat;weapon_skill,11,"is a well-rounded weapon, providing adequate defense and"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,4331,armor_defense;death_xp;weapon_skill,11,"armour, but only by a skilled craftsman."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,4498,combat;damage;weapon_skill,11,"elegant weapon in combat, but it deals massive damage."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,6810,combat;death_xp;weapon_skill,11,used to test combat skills and weapons. It is mildly
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,10730,armor_defense;combat;weapon_skill,11,"is a well-rounded weapon, providing adequate defense and"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,352,armor_defense;death_xp;weapon_skill,11,"armour, and wields a heavy greatsword with ease and skill. It leers"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1378,attack_hit;death_xp;status_effects,11,"deadly poison. Killer Bees are known to attack unprovoked, and"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1813,armor_defense;death_xp;weapon_skill,11,"armour, and wields a heavy greatsword with ease and skill. It leers"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1834,armor_defense;death_xp;weapon_skill,11,"armour, and wields a heavy greatsword with ease and skill. It leers"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1993,armor_defense;attack_hit;weapon_skill,11,"Half of his armour seems missing or incomplete, and his weapon"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2692,armor_defense;attack_hit;weapon_skill,11,"Half of his armour seems missing or incomplete, and his weapon"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2978,combat;death_xp;weapon_skill,11,"beating, it is used to test combat and spellcasting skills. This"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,5497,combat;status_effects;weapon_skill,11,scuttles around with blinding speed.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,5566,combat;death_xp;weapon_skill,11,"beating, it is used to test combat and spellcasting skills. This"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,6327,combat;death_xp;weapon_skill,11,"beating, it is used to test combat and spellcasting skills. This"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4618,combat;critical_backstab;damage,11,%s circles around behind you and backstabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4620,combat;critical_backstab;damage,11,%s circles around behind %s and backstabs for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,18619,armor_defense;critical_backstab;damage,11,The armour spikes stabs %s for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,18621,armor_defense;critical_backstab;damage,11,The armour spikes stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,18623,armor_defense;critical_backstab;damage,11,The armour spikes stabs %s for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,2503,combat;death_xp;weapon_skill,11,increasing your combat skills.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,4007,armor_defense;attack_hit;damage,11,Accuracy: %-5d          Damage Resistance: %-5d Armour Rating: %-5d
+mmud_explorer,MMUD-Explorer-master/README.md,3,armor_defense;combat;death_xp;weapon_skill,10,"MMUD Explorer is a database viewer for the game MajorMUD(r) created by syntax53. It has a unique comparing feature which allows you to easily compare weapons, armour, and spells. It also has a graphical room explorer in which you can 'walk' around the realm. Other features include an inventory calcu"
+mmud_explorer,MMUD-Explorer-master/frmHitCalc.frm,1171,attack_hit;critical_backstab;weapon_skill,10,If bGlobalAttackBackstab And nGlobalAttackBackstabWeapon > 0 Then
+mmud_explorer,MMUD-Explorer-master/frmHitCalc.frm,1172,attack_hit;critical_backstab;weapon_skill,10,nBSWep = nGlobalAttackBackstabWeapon
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25835,attack_hit;combat;damage;weapon_skill,10,"oLI.ListSubItems.Add (14), ""Dmg/Spd"", Round(tWeaponDmg.nRoundTotal / tWeaponDmg.nSwings / tWeaponDmg.nAttackSpeed)"
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,30027,attack_hit;critical_backstab;weapon_skill,10,If Not ItemIsWeapon(nGlobalAttackBackstabWeapon) Then nGlobalAttackBackstabWeapon = 0
+mmud_explorer,MMUD-Explorer-master/frmPasteChar.frm,2630,attack_hit;combat;damage,10,nPhysDamage(iChar) = tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2243,attack_hit;combat;damage,10,nLocalAttackDamage = tMeleeAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2302,attack_hit;combat;damage,10,"lblAttackDMGPerRound.Caption = (nLocalAttackDamage + nLocalAttackSpellValue) & "" dmg/rnd"""
+mmud_explorer,MMUD-Explorer-master/frmSwingCalc.frm,2090,attack_hit;combat;damage,10,lblSwingDamage(0).Caption = tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1118,attack_hit;combat;damage,10,"' If surprise round damage is worse than normal average damage, mark AttackTime negative."
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1392,attack_hit;death_xp;weapon_skill,10,"Case 37: If nAttackTypeMUD = a1_Punch Then nMAPlusSkill(1) = nMAPlusSkill(1) + tabItems.Fields(""AbilVal-"" & x) 'pu"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1395,attack_hit;death_xp;weapon_skill,10,"Case 38: If nAttackTypeMUD = a2_Kick Then nMAPlusSkill(2) = nMAPlusSkill(2) + tabItems.Fields(""AbilVal-"" & x) 'kick"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1398,attack_hit;death_xp;weapon_skill,10,"Case 39: If nAttackTypeMUD = a3_Jumpkick Then nMAPlusSkill(3) = nMAPlusSkill(3) + tabItems.Fields(""AbilVal-"" & x) 'jk"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1467,attack_hit;death_xp;weapon_skill,10,If nMAPlusSkill(nAttackTypeMUD) <= 0 Then Exit Function
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1507,attack_hit;damage;death_xp;weapon_skill,10,nDmgMin = nTemp + nMAPlusSkill(nAttackTypeMUD)
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1533,attack_hit;damage;death_xp;weapon_skill,10,nDmgMax = nTemp + nMAPlusSkill(nAttackTypeMUD)
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1538,attack_hit;damage;death_xp;weapon_skill,10,nDmgMin = nMAPlusSkill(nAttackTypeMUD) * nTemp
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1544,attack_hit;damage;death_xp;weapon_skill,10,nDmgMax = nMAPlusSkill(nAttackTypeMUD) * (nTemp + 3)
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1548,attack_hit;damage;death_xp;weapon_skill,10,nDmgMax = nMAPlusSkill(nAttackTypeMUD) * nTemp
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1551,attack_hit;damage;death_xp;weapon_skill,10,nDmgMax = nMAPlusSkill(nAttackTypeMUD) * nTemp
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1904,combat;critical_backstab;damage,10,tRet.nFirstRoundDamage = Round((((1 - nPercent) * nAvgHit) + (nPercent * nAvgCrit)) * Fix(nSwings) * nHitChance) + Round(nExtraAvgSwing * Fix(nSwings) * nHitChance)
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1905,combat;critical_backstab;damage,10,tRet.nMinRoundDamage = Round((((1 - nPercent) * nDmgMin) + (nPercent * nMinCrit)) * Fix(nSwings) * nHitChance)
+mmud_explorer,MMUD-Explorer-master/modMain.bas,651,attack_hit;critical_backstab;weapon_skill,10,"If nGlobalAttackTypeMME > a0_oneshot And bGlobalAttackBackstab Then sConfig = sConfig & ""_BS"" & CStr(nGlobalAttackBackstabWeapon)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,941,attack_hit;combat;damage;weapon_skill,10,"Dim tWeaponDmg As tAttackDamage, sWeaponDmg As String, nSpeedAdj As Integer, bCalcCombat As Boolean, bUseCharacter As Boolean"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1802,critical_backstab;damage;weapon_skill,10,"Case 4: sWeaponDmg = ""Backstab Damage"""
+mmud_explorer,MMUD-Explorer-master/modMain.bas,2967,attack_hit;critical_backstab;weapon_skill,10,If nGlobalAttackBackstabWeapon = 0 Then nTemp = nGlobalCharWeaponNumber(0)
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3109,attack_hit;critical_backstab;weapon_skill,10,'            If tCharProfile.nParty = 1 And nCalcMagicLVL > 0 And bGlobalAttackBackstab And nGlobalAttackBackstabWeapon > 0 _
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3118,combat;critical_backstab;damage,10,"sBackstabText = "" + "" & CStr(nSurpriseDamageOut) & "" surprise round"""
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3143,attack_hit;critical_backstab;weapon_skill,10,ElseIf nGlobalAttackBackstabWeapon = 0 And nGlobalCharWeaponNumber(0) > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3152,combat;critical_backstab;damage,10,"sBackstabText = "" + "" & CStr(nSurpriseDamageOut) & "" surprise round"""
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3179,attack_hit;combat;damage,10,nDamageOut = tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3180,attack_hit;combat;damage,10,nFirstRoundDamageOut = tAttack.nFirstRoundDamage
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3181,attack_hit;combat;damage,10,nMinDamageOut = tAttack.nMinRoundDamage
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3271,attack_hit;combat;damage,10,nDamageOut = tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3272,attack_hit;combat;damage,10,nFirstRoundDamageOut = tAttack.nFirstRoundDamage 'tAttack.nMinDmg * Fix(tAttack.nSwings)
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3273,attack_hit;combat;damage,10,nMinDamageOut = tAttack.nMinRoundDamage
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4678,attack_hit;combat;damage;weapon_skill,10,"Dim tWeaponDmg As tAttackDamage, nSpeedAdj As Integer, bUseCharacter As Boolean, bCalcCombat As Boolean, nNumber As Long"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4960,attack_hit;critical_backstab;weapon_skill,10,ElseIf nGlobalAttackBackstabWeapon = 0 And nGlobalCharWeaponNumber(0) > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5024,attack_hit;combat;damage,10,nAverageDamage = nAverageDamage + tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5051,attack_hit;combat;damage,10,nAverageDamage = tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5053,attack_hit;combat;damage,10,nMinRoundDamage = tAttack.nMinRoundDamage
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5119,attack_hit;combat;damage,10,nAverageDamage = tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5120,attack_hit;combat;damage,10,nMinRoundDamage = tAttack.nMinRoundDamage
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5124,attack_hit;combat;damage,10,nAverageDamage = tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5125,attack_hit;combat;damage,10,nMinRoundDamage = tAttack.nMinRoundDamage
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5129,attack_hit;combat;damage,10,nAverageDamage = tAttack.nRoundTotal
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5130,attack_hit;combat;damage,10,nMinRoundDamage = tAttack.nMinRoundDamage
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5141,attack_hit;combat;damage,10,'nFirstRoundDamage = tAttack.nMinDmg
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5143,attack_hit;combat;damage,10,'nFirstRoundDamage = nFirstRoundDamage * Fix(tAttack.nSwings)
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5144,attack_hit;combat;damage,10,nFirstRoundDamage = tAttack.nFirstRoundDamage
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5257,attack_hit;critical_backstab;weapon_skill,10,ElseIf Not bGlobalAttackBackstab Or nGlobalAttackBackstabWeapon = 0 Then
+repo,EngineKnowledge.md,150,attack_hit;combat;damage;death_xp,10,"- MajorMUD disassembly contains candidate neighborhoods for combat, attack, damage, quest, save/load, monster, room, gold, experience, and spell logic."
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,213,critical_backstab;damage;weapon_skill,10,"""text"": ""Case 4: sWeaponDmg = \""Backstab Damage\"""""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,254,critical_backstab;damage;weapon_skill,10,"""text"": ""Case 4: sWeaponDmg = \""Backstab Damage\"""""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,1425,combat;critical_backstab;damage,10,"""text"": ""tRet.nFirstRoundDamage = Round((((1 - nPercent) * nAvgHit) + (nPercent * nAvgCrit)) * Fix(nSwings) * nHitChance) + Round(nExtraAvgSwing * Fix(nSwings) * nHitChance)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,1432,combat;critical_backstab;damage,10,"""text"": ""tRet.nMinRoundDamage = Round((((1 - nPercent) * nDmgMin) + (nPercent * nMinCrit)) * Fix(nSwings) * nHitChance)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,2083,attack_hit;combat;damage,10,"""text"": ""lblAttackDMGPerRound.Caption = (nLocalAttackDamage + nLocalAttackSpellValue) & \"" dmg/rnd\"""""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0074.json,227,combat;critical_backstab;damage,10,"""text"": ""tRet.nFirstRoundDamage = Round((((1 - nPercent) * nAvgHit) + (nPercent * nAvgCrit)) * Fix(nSwings) * nHitChance) + Round(nExtraAvgSwing * Fix(nSwings) * nHitChance)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0074.json,234,combat;critical_backstab;damage,10,"""text"": ""tRet.nMinRoundDamage = Round((((1 - nPercent) * nDmgMin) + (nPercent * nMinCrit)) * Fix(nSwings) * nHitChance)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0075.json,440,attack_hit;combat;damage,10,"""text"": ""lblAttackDMGPerRound.Caption = (nLocalAttackDamage + nLocalAttackSpellValue) & \"" dmg/rnd\"""""
+repo,Tools/FormulaBehavior/formula_behavior_probe_0070.py,12,attack_hit;combat;damage,10,"def damage_per_round(attack_damage:float, spell_value:float)->float:"
+repo,Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv,1007,combat;critical_backstab;death_xp;weapon_skill,10,║ [0mHealth    [0;31m30[0m-[0;32m90  [0;34m║ [0mCritical Hits+1 [0;34m║ [0mDark-Elves are more skilled in combat [0;34m║
+repo,Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv,7,attack_hit;combat;damage;death_xp,10,"combat.playerKill,combat,playerKill,canonical_runtime_message_resource,C95_static_canonical_repository,no,dialogue_or_user_message_candidate;quest_or_progression_interaction_candidate,You attack {target} for {damage} damage and defeat it."
+repo,Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv,1007,combat;critical_backstab;death_xp;weapon_skill,10,║ [0mHealth    [0;31m30[0m-[0;32m90  [0;34m║ [0mCritical Hits+1 [0;34m║ [0mDark-Elves are more skilled in combat [0;34m║
+repo,Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0007-CombatSystemBehaviorModel/Payload/RuntimePrep0007/SkillSystemExpectationMatrix_RuntimePrep0007.csv,10,combat;critical_backstab;death_xp;weapon_skill,10,"critical,Critical Hit,combat,100,str;agi,Data-driven hook; server will increasingly use this skill in checks.,skill checks and progression rates require runtime validation"
+repo,Validation/FormulaBehavior0071/validation_0071.json,213,critical_backstab;damage;weapon_skill,10,"""text"": ""Case 4: sWeaponDmg = \""Backstab Damage\"""""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,266,critical_backstab;damage;weapon_skill,10,"""text"": ""Case 4: sWeaponDmg = \""Backstab Damage\"""""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,1613,combat;critical_backstab;damage,10,"""text"": ""tRet.nFirstRoundDamage = Round((((1 - nPercent) * nAvgHit) + (nPercent * nAvgCrit)) * Fix(nSwings) * nHitChance) + Round(nExtraAvgSwing * Fix(nSwings) * nHitChance)"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,1620,combat;critical_backstab;damage,10,"""text"": ""tRet.nMinRoundDamage = Round((((1 - nPercent) * nDmgMin) + (nPercent * nMinCrit)) * Fix(nSwings) * nHitChance)"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,2359,attack_hit;combat;damage,10,"""text"": ""lblAttackDMGPerRound.Caption = (nLocalAttackDamage + nLocalAttackSpellValue) & \"" dmg/rnd\"""""
+repo,Validation/FormulaBehavior0074/validation_0074.json,227,combat;critical_backstab;damage,10,"""text"": ""tRet.nFirstRoundDamage = Round((((1 - nPercent) * nAvgHit) + (nPercent * nAvgCrit)) * Fix(nSwings) * nHitChance) + Round(nExtraAvgSwing * Fix(nSwings) * nHitChance)"""
+repo,Validation/FormulaBehavior0074/validation_0074.json,234,combat;critical_backstab;damage,10,"""text"": ""tRet.nMinRoundDamage = Round((((1 - nPercent) * nDmgMin) + (nPercent * nMinCrit)) * Fix(nSwings) * nHitChance)"""
+repo,Validation/FormulaBehavior0075/validation_0075.json,440,attack_hit;combat;damage,10,"""text"": ""lblAttackDMGPerRound.Caption = (nLocalAttackDamage + nLocalAttackSpellValue) & \"" dmg/rnd\"""""
+repo,Validation/FormulaGapResolution0077/behavior_gap_resolution_probes_0077.json,47,attack_hit;combat;critical_backstab,10,"""description"": ""Controlled rounding_boundary probe for Backstab, critical, and special attack behavior."","
+mmud_explorer,MMUD-Explorer-master/README.md,19,attack_hit;damage;weapon_skill,9,-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks
+mmud_explorer,MMUD-Explorer-master/README.md,242,attack_hit;critical_backstab;damage;weapon_skill,9,"-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,446,attack_hit;damage,9,If m_nAtkDuration(nAttack) > 2 Then GetMaxDamage = GetMaxDamage + m_nAtkHitSpellMax(nAttack)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,466,combat;damage,9,If m_nBetweenRoundDuration(x) > 2 Then GetMaxDamage = GetMaxDamage + m_nBetweenRoundMax(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,736,combat;damage,9,If nResist_Reduction <> 0 Then nDamage = Round(nDamage - nResist_Reduction)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,795,attack_hit;damage,9,If m_nAtkMRdmgResist(nAttack) = 1 And nHitSpellDamage > 0 Then
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,796,combat;damage,9,"nMR_Reduction = Round(CalcResistedDamage(nHitSpellDamage, m_nUserMR, m_nUserAntiMagic))"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,813,attack_hit;combat;damage,9,m_nStatAtkDmgResisted(nAttack) = Round(m_nStatAtkDmgResisted(nAttack) + nResist_Reduction)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,815,combat;damage,9,nHitSpellDamage = Round(nHitSpellDamage - nResist_Reduction)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,868,combat;damage,9,nRoundDamage = nRoundDamage + nDamage + nHitSpellDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,886,attack_hit;combat;damage,9,"Call AddToCombatLog(m_sAtkName(nAttack) & "" for "" & Round(nDamage) _"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,953,combat;damage,9,If m_nBetweenRoundResistDmgMR(x) = 1 And nDamage > 0 Then
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,966,combat;damage,9,If nResist_Reduction <> 0 Then nDamage = Round(nDamage - nResist_Reduction)
+mmud_explorer,MMUD-Explorer-master/docs/changelog.archive.txt,148,attack_hit;critical_backstab;damage;weapon_skill,9,"-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+mmud_explorer,MMUD-Explorer-master/docs/changelog.txt,17,attack_hit;damage;weapon_skill,9,-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks
+mmud_explorer,MMUD-Explorer-master/docs/changelog.txt,230,attack_hit;critical_backstab;damage;weapon_skill,9,"-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,23268,attack_hit;critical_backstab;weapon_skill,9,nGlobalAttackBackstabWeapon = 0
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,23270,attack_hit;critical_backstab;weapon_skill,9,nGlobalAttackBackstabWeapon = -1
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,23273,attack_hit;critical_backstab;weapon_skill,9,nGlobalAttackBackstabWeapon = frmPopUpOptions.cmbBackstabWeapon.ItemData(frmPopUpOptions.cmbBackstabWeapon.ListIndex)
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25331,attack_hit;critical_backstab;weapon_skill,9,'        nTemp = nGlobalAttackBackstabWeapon
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25841,combat;damage;weapon_skill,9,"oLI.ListSubItems(19).Tag = tWeaponDmg.nFirstRoundDamage + Round(tWeaponDmg.nRoundTotal / 100, 2)"
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,30025,attack_hit;critical_backstab;weapon_skill,9,"nGlobalAttackBackstabWeapon = val(ReadINI(sSectionName, ""nGlobalAttackBackstabWeapon"", sFile))"
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,30026,attack_hit;critical_backstab;weapon_skill,9,If nGlobalAttackBackstabWeapon > 0 Then
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,34700,attack_hit;critical_backstab;weapon_skill,9,"DebugLogPrint ""nGlobalAttackBackstabWeapon="" & nGlobalAttackBackstabWeapon"
+mmud_explorer,MMUD-Explorer-master/frmMonsterAttackSim.frm,1878,combat;damage,9,txtStatAvgRound(x).Text = Round(clsMonAtkSimThisForm.nStatAtkTotalDamage(x) / clsMonAtkSimThisForm.nStatAtkHits(x))
+mmud_explorer,MMUD-Explorer-master/frmPasteChar.frm,2582,attack_hit;death_xp;weapon_skill,9,ElseIf (nAttackTypeMUD = a1_Punch And tCharacter(iChar).nMAPlusSkill(1) = 0) _
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1503,attack_hit;critical_backstab;weapon_skill,9,If nGlobalAttackBackstabWeapon > 0 Or nGotoBackstab > 0 Then
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1507,attack_hit;critical_backstab;weapon_skill,9,nFindItem = nGlobalAttackBackstabWeapon
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1516,attack_hit;critical_backstab;weapon_skill,9,ElseIf bGlobalAttackBackstab And nGlobalAttackBackstabWeapon < 0 Then
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1951,attack_hit;combat;damage,9,'lblAttackDMGPerRound.Visible = False
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1952,attack_hit;combat;damage,9,'lblAttackDMGPerRound.ForeColor = &H80000012
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1989,attack_hit;combat;damage,9,'lblAttackDMGPerRound.Visible = True
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1990,attack_hit;combat;damage,9,'lblAttackDMGPerRound.ForeColor = &HC000C0
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1997,attack_hit;combat;damage,9,'lblAttackDMGPerRound.Visible = True
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1998,attack_hit;combat;damage,9,'lblAttackDMGPerRound.ForeColor = &HC000C0
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2253,attack_hit;combat;damage,9,nLocalAttackSpellValue = tAttackSpell.nAvgRoundDmg
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2275,attack_hit;critical_backstab;weapon_skill,9,"tMeleeAttack = CalculateAttack(tCharBS, a4_Surprise, nBackstabWeapon)"
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2304,attack_hit;combat;damage,9,"lblAttackDMGPerRound.Caption = lblAttackDMGPerRound.Caption & "" (lvl "" & tAttackSpell.nCastLevel & "")"""
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,212,combat;critical_backstab;damage,9,"'   - Includes first-round damage, surprise/backstab, and min-damage tails."
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,367,attack_hit;combat;damage;death_xp,9,"' On miss: lose 1 round (0 dmg), then do a normal kill"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,388,combat;damage;death_xp,9,'   overkill = (damage on final round - HP remaining before that round)
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1720,attack_hit;combat;death_xp,9,"sAttackAll = AutoAppend(sAttackAll, Round(tmpExpInfo.nAttackTime * 100) & ""%"", ""/"")"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1760,combat;death_xp;weapon_skill,9,"If tRet.nSlowdownTime > 0.01 And tRet.nSlowdownTime < 1 Then tRet.sRTCText = AutoAppend(tRet.sRTCText, Round(tRet.nSlowdownTime * 100) & ""% slower kill speed"")"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1761,combat;damage;death_xp,9,"If tRet.nOverkill > 0.01 And nCharDMG < 9999999 Then tRet.sRTCText = AutoAppend(tRet.sRTCText, Round(tRet.nOverkill * 100) & ""% wasted overkill"")"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,165,combat;damage,9,"Public Function CalcCombatRounds(Optional ByVal nDamageOut As Long = -9999, Optional ByVal nMobHealth As Long, _"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1183,attack_hit;damage;death_xp;weapon_skill,9,"Dim nDmgMin As Long, nDmgMax As Long, nAttackSpeed As Integer, nMAPlusAccy(1 To 3) As Long, nMAPlusDmg(1 To 3) As Long, nMAPlusSkill(1 To 3) As Integer"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1222,attack_hit;death_xp;weapon_skill,9,If nAttackTypeMUD >= a1_Punch And nAttackTypeMUD <= a3_Jumpkick Then nMAPlusSkill(nAttackTypeMUD) = 1
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1268,attack_hit;death_xp;weapon_skill,9,If nMAPlusSkill(nAttackTypeMUD) < 1 Then nMAPlusSkill(nAttackTypeMUD) = 1
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1876,combat;damage,9,If nDurCount > 0 Then nExtraAvgHit = nExtraAvgHit + Round(((nDurDamage / nDurCount)) / nSwings)
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1811,attack_hit;damage;weapon_skill,9,"If nAttackTypeMUD = 4 And bForceCalc Then sWeaponDmg = sWeaponDmg & "" (forced race stealth)"""
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1829,combat;damage;weapon_skill,9,If tWeaponDmg.nRoundTotal > 0 And tWeaponDmg.nRoundTotal <> tWeaponDmg.nFirstRoundDamage And tWeaponDmg.nSwings <> Fix(tWeaponDmg.nSwings) Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1830,combat;damage;weapon_skill,9,"sWeaponDmg = sWeaponDmg & "" - 1st Round: "" & tWeaponDmg.nFirstRoundDamage & "" dmg @ "" & Fix(tWeaponDmg.nSwings) & "" swings"""
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1839,armor_defense;combat;damage,9,"sTemp1 = sTemp1 & "", AC/DR: "" & RoundUp(tabItems.Fields(""ArmourClass"") / 10) & ""/"" & (tabItems.Fields(""DamageResist"") / 10)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1859,armor_defense;combat;damage,9,"sTemp1 = sTemp1 & "", AC/DR: "" & RoundUp(tabItems.Fields(""ArmourClass"") / 10) & ""/"" & (tabItems.Fields(""DamageResist"") / 10)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,2111,attack_hit;damage;death_xp,9,"Dim oLI As ListItem, nExp As Currency, nLocalMonsterDamage As MonAttackSimReturn, nMonsterEnergy As Long"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,2966,attack_hit;critical_backstab;weapon_skill,9,nTemp = nGlobalAttackBackstabWeapon
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3141,attack_hit;critical_backstab;weapon_skill,9,If nGlobalAttackBackstabWeapon > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3142,attack_hit;critical_backstab;weapon_skill,9,nTemp = nGlobalAttackBackstabWeapon
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3165,attack_hit;damage;weapon_skill,9,"tAttack = CalculateAttack(tForcedCharProfile, a6_Bash, nGlobalCharWeaponNumber(0), False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3167,attack_hit;damage;weapon_skill,9,"tAttack = CalculateAttack(tForcedCharProfile, a7_Smash, nGlobalCharWeaponNumber(0), False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3169,attack_hit;damage;weapon_skill,9,"tAttack = CalculateAttack(tForcedCharProfile, a5_Normal, nGlobalCharWeaponNumber(0), False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3182,attack_hit;damage,9,'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nMinDamageOut = nMinDamageOut + tAttack.nAvgExtraHit
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3257,attack_hit;damage;weapon_skill,9,"tAttack = CalculateAttack(tForcedCharProfile, a2_Kick, , False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3259,attack_hit;damage;weapon_skill,9,"tAttack = CalculateAttack(tForcedCharProfile, a3_Jumpkick, , False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3261,attack_hit;damage;weapon_skill,9,"tAttack = CalculateAttack(tForcedCharProfile, a1_Punch, , False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3711,armor_defense;attack_hit;critical_backstab,9,If tAvgLairInfo.nAvgBSDefense <> 0 And bGlobalAttackBackstab Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4781,combat;damage;weapon_skill,9,"oLI.ListSubItems(19).Tag = tWeaponDmg.nFirstRoundDamage + Round(tWeaponDmg.nRoundTotal / 100, 2)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4958,attack_hit;critical_backstab;weapon_skill,9,If nGlobalAttackBackstabWeapon > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4959,attack_hit;critical_backstab;weapon_skill,9,nTemp = nGlobalAttackBackstabWeapon
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5003,critical_backstab;damage,9,nReturnSurpriseDamage = tBackStab.nAvgHit + tBackStab.nAvgExtraHit
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5031,combat;damage,9,If nReturnSwings < 1 And (nFirstRoundDamage + nAverageDamage) > 0 Then nReturnSwings = 1
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5255,attack_hit;critical_backstab;weapon_skill,9,ElseIf bGlobalAttackBackstab And nGlobalAttackBackstabWeapon > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5256,attack_hit;critical_backstab;weapon_skill,9,nWeapon = nGlobalAttackBackstabWeapon
+mmud_explorer,MMUD-Explorer-master/modMain.bas,8281,attack_hit;combat,9,"Public Sub SetupMonsterAttackSimWithCharStats(Optional ByVal nRounds As Integer = 50, Optional ByVal bDynamic As Boolean = True, Optional ByVal bPartyInstead As Boolean = False, Optional ByVal nPartyAntiMagic As Integer = 0)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,8608,attack_hit;critical_backstab;weapon_skill,9,If bForceAttackDesc And nGlobalAttackBackstabWeapon > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,8614,attack_hit;critical_backstab;weapon_skill,9,If nGlobalAttackBackstabWeapon > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,8616,attack_hit;critical_backstab;weapon_skill,9,"GetCurrentAttackName = GetCurrentAttackName & "" w/"" & GetItemName(nGlobalAttackBackstabWeapon, bHideRecordNumbers)"
+repo,Librarium/BehaviorTimelines/subsystem_behavior_timelines_0078.json,6,attack_hit;combat;damage,9,"""summary"": ""Command/status-cycle driven; damage/hit resolution likely occurs synchronously when attack command or combat tick is processed."","
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,166,attack_hit;damage,9,"""text"": ""'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nMinDamageOut = nMinDamageOut + tAttack.nAvgExtraHit"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,173,critical_backstab;damage,9,"""text"": ""nReturnSurpriseDamage = tBackStab.nAvgHit + tBackStab.nAvgExtraHit"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,419,attack_hit;combat;damage,9,"""text"": ""m_nStatAtkDmgResisted(nAttack) = Round(m_nStatAtkDmgResisted(nAttack) + nResist_Reduction)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,447,attack_hit;combat;damage,9,"""text"": ""Call AddToCombatLog(m_sAtkName(nAttack) & \"" for \"" & Round(nDamage) _"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,207,attack_hit;damage,9,"""text"": ""'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nMinDamageOut = nMinDamageOut + tAttack.nAvgExtraHit"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,214,critical_backstab;damage,9,"""text"": ""nReturnSurpriseDamage = tBackStab.nAvgHit + tBackStab.nAvgExtraHit"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,460,attack_hit;combat;damage,9,"""text"": ""m_nStatAtkDmgResisted(nAttack) = Round(m_nStatAtkDmgResisted(nAttack) + nResist_Reduction)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,488,attack_hit;combat;damage,9,"""text"": ""Call AddToCombatLog(m_sAtkName(nAttack) & \"" for \"" & Round(nDamage) _"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,994,attack_hit;combat;death_xp,9,"""text"": ""sAttackAll = AutoAppend(sAttackAll, Round(tmpExpInfo.nAttackTime * 100) & \""%\"", \""/\"")"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,1788,attack_hit;damage;weapon_skill,9,"""text"": ""-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0073.json,152,attack_hit;combat;death_xp,9,"""text"": ""sAttackAll = AutoAppend(sAttackAll, Round(tmpExpInfo.nAttackTime * 100) & \""%\"", \""/\"")"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0075.json,145,attack_hit;damage;weapon_skill,9,"""text"": ""-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks"""
+repo,Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json,46,attack_hit;damage;weapon_skill,9,"""text"": ""-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks"","
+repo,Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json,94,attack_hit;damage;weapon_skill,9,"""text"": ""-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks"","
+repo,Librarium/FormulaGapResolution/formula_gap_resolution_index_0077.json,240,combat;critical_backstab;damage,9,"""text"": ""'   - Includes first-round damage, surprise/backstab, and min-damage tails."","
+repo,Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv,9,attack_hit;critical_backstab;weapon_skill,9,"RP0006-00008,wbbMMHLP.MSG,HL1B2,message/control text exists in WBB message resource; exact runtime owner/trigger must be confirmed at runtime unless already linked by static message ownership,yes,quest_or_progression_interaction_candidate;script_trigger_or_prompt_candidate,""[0m[2J[1;33mAttack    "
+repo,Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv,39,attack_hit;combat;damage,9,"RP0006-00038,wbbMMHLP.MSG,HL1B18B,message/control text exists in WBB message resource; exact runtime owner/trigger must be confirmed at runtime unless already linked by static message ownership,yes,quest_or_progression_interaction_candidate;script_trigger_or_prompt_candidate,""[0m [1;33mSTRENGTH (S"
+repo,Validation/FormulaBehavior0071/validation_0071.json,166,attack_hit;damage,9,"""text"": ""'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nMinDamageOut = nMinDamageOut + tAttack.nAvgExtraHit"""
+repo,Validation/FormulaBehavior0071/validation_0071.json,173,critical_backstab;damage,9,"""text"": ""nReturnSurpriseDamage = tBackStab.nAvgHit + tBackStab.nAvgExtraHit"""
+repo,Validation/FormulaBehavior0071/validation_0071.json,419,attack_hit;combat;damage,9,"""text"": ""m_nStatAtkDmgResisted(nAttack) = Round(m_nStatAtkDmgResisted(nAttack) + nResist_Reduction)"""
+repo,Validation/FormulaBehavior0071/validation_0071.json,447,attack_hit;combat;damage,9,"""text"": ""Call AddToCombatLog(m_sAtkName(nAttack) & \"" for \"" & Round(nDamage) _"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,219,attack_hit;damage,9,"""text"": ""'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nMinDamageOut = nMinDamageOut + tAttack.nAvgExtraHit"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,226,critical_backstab;damage,9,"""text"": ""nReturnSurpriseDamage = tBackStab.nAvgHit + tBackStab.nAvgExtraHit"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,472,attack_hit;combat;damage,9,"""text"": ""m_nStatAtkDmgResisted(nAttack) = Round(m_nStatAtkDmgResisted(nAttack) + nResist_Reduction)"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,500,attack_hit;combat;damage,9,"""text"": ""Call AddToCombatLog(m_sAtkName(nAttack) & \"" for \"" & Round(nDamage) _"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,1146,attack_hit;combat;death_xp,9,"""text"": ""sAttackAll = AutoAppend(sAttackAll, Round(tmpExpInfo.nAttackTime * 100) & \""%\"", \""/\"")"""
+repo,Validation/FormulaBehavior0071_0076/validation_0071_0076.json,2064,attack_hit;damage;weapon_skill,9,"""text"": ""-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks"""
+repo,Validation/FormulaBehavior0073/validation_0073.json,152,attack_hit;combat;death_xp,9,"""text"": ""sAttackAll = AutoAppend(sAttackAll, Round(tmpExpInfo.nAttackTime * 100) & \""%\"", \""/\"")"""
+repo,Validation/FormulaBehavior0075/validation_0075.json,145,attack_hit;damage;weapon_skill,9,"""text"": ""-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks"""
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,139,armor_defense;attack_hit,9,"when in use, but provides very good defense against attack."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,508,armor_defense;attack_hit,9,defense against attack.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,677,combat;damage,9,"is large and heavy, and does considerable damage in combat."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,704,armor_defense;damage,9,damage. It is completely useless against most heavy armours.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,759,attack_hit;weapon_skill,9,"It is bladed only on one side, and attacks with this weapon"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,875,attack_hit;weapon_skill,9,attack. This is the weapon of choice for Priests and the
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,900,damage;weapon_skill,9,"weapon, doing decent damage but being comparatively slow."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,920,armor_defense;damage,9,damage against unarmored foes as the nails rip through them.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,937,damage;weapon_skill,9,It does good damage and is a fairly good weapon.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,947,combat;damage,9,"the damage it does in combat must be incredible, although it"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,957,armor_defense;damage,9,"very much damage, but provides good defense as it is quite"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,1073,death_xp;weapon_skill,9,intricate carving of a rearing griffon. The skill of the
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,1510,damage;status_effects,9,o cause severe burning damage to to its poisonous
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,2287,death_xp;weapon_skill,9,hunting skills or who don't have the inclination to hunt for
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,2951,armor_defense;attack_hit,9,"provides a virtual wall of defense against attack, but gets"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,3192,death_xp;weapon_skill,9,necessary skill to craft such works of art.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,3237,death_xp;weapon_skill,9,"marvellous skill, and the serpents' eyes are small rubies."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,3481,armor_defense;damage,9,"and unwieldly, but would do great damage to unarmoured"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,3762,death_xp;weapon_skill,9,"exquisite skill, its open mouth filled with needle-sharp"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,4276,combat;weapon_skill,9,"combat, this weapon is used mostly by thieves and horsemen."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,4755,armor_defense;weapon_skill,9,as broken pieces of weapons and armour.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,4826,armor_defense;weapon_skill,9,"and speed, while reducing all defenses."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,5304,death_xp;weapon_skill,9,such is the skill of the craftsman!
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,6095,death_xp;weapon_skill,9,hands of a skilled fighter.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,6648,death_xp;weapon_skill,9,"known to have the skill to fashion mithril, and such exotic"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,6705,death_xp;weapon_skill,9,"skill of the dwarves. Made of two thin layers of tiny, but"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,6736,attack_hit;weapon_skill,9,thrusting weapons room to attack through.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,6923,combat;damage,9,would cause great damage in combat. Its thick wooden haft
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,9217,combat;damage,9,"is large and heavy, and does considerable damage in combat."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,10306,death_xp;weapon_skill,9,hands of a skilled fighter.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,10455,death_xp;status_effects,9,upon the corpses of those killed by poison. Tukata root
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,10519,combat;death_xp,9,looking for a honorable duel to the death. Tales of clashes
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,10648,death_xp;weapon_skill,9,bracelet was crafted by someone of great skill. Each emerald
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,10853,combat;weapon_skill,9,This weapon is surrounded by a faint holy aura. Made
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,10982,combat;weapon_skill,9,weapon in combat.
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,11202,death_xp;status_effects,9,"But got ambushed by killer bees, their poison did burn,"
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,11222,attack_hit;death_xp,9,"deed. Unavenged goes her death, and she will be missed."
+repo_strings,ImportedDatabases/NativeRuntime/WCCITEMS.DAT,11543,death_xp;weapon_skill,9,skilled in the ways of working wood.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,86,death_xp;weapon_skill,9,skills.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,90,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,443,critical_backstab;status_effects,9,"stab of fear into your heart, and you are uncertain whether or not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,851,combat;damage,9,gait. Its heavy arms could cause considerable damage in combat.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,1302,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,1350,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,1971,death_xp;weapon_skill,9,"strong and quick, and extremely skilled with its horn. Although"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,1981,death_xp;weapon_skill,9,"broad-bladed war spear with skill, and stalks about the forest"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2013,death_xp;weapon_skill,9,"skill, and is vigilant in his pursual of trespassers and creatures of"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2233,death_xp;weapon_skill,9,"inch long fangs. Speeding towards you, it drools expectantly!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2473,death_xp;weapon_skill,9,the long sword at his hip with remarkable skill.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2500,armor_defense;weapon_skill,9,speed despite the heavy armour.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2525,armor_defense;weapon_skill,9,speed despite the heavy armour.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2587,armor_defense;combat,9,a metallic sheen. Heavy armour plates around its head protect a
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2750,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2758,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2828,death_xp;weapon_skill,9,"both hands with some small skill, as the mountain kobolds are tougher"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2922,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2930,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2960,death_xp;weapon_skill,9,"one hand he carries a heavy pickaxe, which he wields with skill."
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,2998,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3039,armor_defense;weapon_skill,9,everything about metals and the forging of weapons and armour.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3080,death_xp;weapon_skill,9,achieved this position by use of force and skill.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3140,death_xp;weapon_skill,9,"one hand he carries a heavy pickaxe, which he wields with skill."
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3147,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3187,death_xp;weapon_skill,9,"heavy steel hammer, which it wields with skill."
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3230,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3238,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3246,death_xp;weapon_skill,9,"in, then controlling the corpse with uncanny skill."
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3603,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,3811,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,4054,armor_defense;status_effects,9,powerful jaws that enable it to pierce armour to deliver its poison.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,4176,death_xp;weapon_skill,9,warrior as well as a skilled spellcaster.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,4397,death_xp;weapon_skill,9,terrifying skill this creature possesses is its silent movement.
+repo_strings,ImportedDatabases/NativeRuntime/WCCKNMSR.DAT,4960,armor_defense;weapon_skill,9,fashioned many a weapon or piece of armour in her long life. She puts
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,240,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,242,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,1024,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,1026,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,1104,armor_defense;damage,9,"The %s smacks you, but %syour armour absorbs the damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,1106,armor_defense;damage,9,"The %s %scrushes %s, but %s armour absorbs the damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,2741,damage;death_xp,9,"The fireball explodes, %scausing %d damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,2743,damage;death_xp,9,You take %d damage from the explosion!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,2745,damage;death_xp,9,An explosion rocks %sthe room for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,3101,damage;death_xp,9,A massive explosion rocks %sthe room for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,3103,damage;death_xp,9,A massive explosion blasts you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,3105,damage;death_xp,9,A massive explosion rocks %sthe room for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,3983,damage;death_xp,9,"The %s throws a %s, which explodes for %d damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,4027,combat;death_xp,9,"The cyclops topples to the ground, and explodes in greenish fire!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,4039,combat;damage,9,The %s picks you up and slams you on the ground for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,4041,combat;damage,9,The %s slams %s on the ground for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,4089,damage;death_xp,9,"The violet spore explodes, causing you %d damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,4331,critical_backstab;damage,9,The %s critically slices you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,4333,critical_backstab;damage,9,The %s critically slices %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,4783,critical_backstab;damage,9,The %s critically chops you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,4785,critical_backstab;damage,9,The %s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,5372,damage;death_xp,9,%s takes %d damage from the explosion of power!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,5374,damage;death_xp,9,You take %d damage from the explosion of power!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,5376,damage;death_xp,9,%s takes %s damage from the explosion of power!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,5458,combat;damage,9,The %s smashes %s against the ground for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,5693,damage;death_xp,9,"The flask explodes, causing %d damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,5695,damage;death_xp,9,"he flask explodes, %scausing %s damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,5814,combat;damage,9,"You fall to the ground with a thud, taking %d damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,5816,combat;damage,9,"%s falls to the ground with a thud, taking %s damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,6514,critical_backstab;damage,9,%s critically chops you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,6516,critical_backstab;damage,9,%s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,6742,death_xp;weapon_skill,9,"The huge dwarven witchunter shouts, ""Ye are too unskilled, ye pansy!"""
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,6771,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,6773,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7168,critical_backstab;damage,9,The %s stabs you with its stinger for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7170,critical_backstab;damage,9,The %s stabs %s with its stinger for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7205,combat;death_xp,9,"The killer bee falls to the ground, lifeless and oozing."
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7367,critical_backstab;damage,9,The %s critically stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7369,critical_backstab;damage,9,The %s critically stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7378,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7380,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7479,critical_backstab;damage,9,The %s spins and critically skewers you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7481,critical_backstab;damage,9,The %s spins and critically skewers %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,7759,combat;damage,9,The %s surrounds everyone and %s their life for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,8662,combat;damage,9,"The %s skewers %s, who is slammed into the ground for %s damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9137,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9139,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9155,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9157,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9184,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9186,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9206,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9208,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9258,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9260,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9272,critical_backstab;damage,9,The %s critically lashes you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9274,critical_backstab;damage,9,The %s critically lashes %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,9656,damage;death_xp,9,You take %d damage from the explosion!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10027,damage;status_effects,9,You take %d damage from the poisonous swamp!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10029,damage;status_effects,9,%s takes %s damage from the poisonous swamp!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10052,combat;death_xp,9,"%s runs about in agony, then drops to the ground, withered to death!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10229,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10231,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10270,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10272,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10759,death_xp;weapon_skill,9,Only the skilled dwarven miners of Khazarad can successfully mine mithril.
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10827,damage;death_xp,9,"he obsidian talisman explodes, causing you %d damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10828,damage;death_xp,9,"The obsidian talisman explodes, causing %s %s damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,10967,damage;death_xp,9,An explosion rocks you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,11139,critical_backstab;damage,9,%s critically chops you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,11141,critical_backstab;damage,9,%s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,11202,damage;status_effects,9,You are poisoned for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,11204,damage;status_effects,9,%s is poisoned for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,11336,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,11338,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,12017,damage;status_effects,9,You take %d damage from poison!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,12020,damage;status_effects,9,"You resist the poison, and take only partial damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,12022,damage;status_effects,9,"ou resist the poison, and take only partial damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,12985,combat;death_xp,9,"With a gasp, the pharaoh slumps to the ground, defeated!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13027,critical_backstab;damage,9,The collar spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13029,critical_backstab;damage,9,The collar spikes stab you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13031,critical_backstab;damage,9,The collar spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13391,critical_backstab;damage,9,"The %s casts %s, stabbing you for %d damage!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13405,combat;damage,9,The %s %s you into the ground for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13407,combat;damage,9,The %s %s %s into the ground for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13513,critical_backstab;damage,9,You feel a stabbing pain for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13579,combat;damage,9,The %s %s you into the ground for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,13581,combat;damage,9,The %s %s %s into the ground for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,14127,armor_defense;combat,9,"The %s %shovers around you, but your armour protects you!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,14129,armor_defense;combat,9,"The %s %shovers around %s, but %s's armour protects them!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,15217,critical_backstab;damage,9,%s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,15219,critical_backstab;damage,9,%s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,15566,critical_backstab;status_effects,9,"A bolt of darkness stabs at your eyes, blinding you!"
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,16309,critical_backstab;damage,9,%s critically hurls his chakram at you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,16311,critical_backstab;damage,9,%s critically hurls his chakram at %s for %s damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,16334,damage;death_xp,9,A magma explosion hits you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,16336,damage;death_xp,9,A magma explosion hits you for %d damage!
+repo_strings,ImportedDatabases/NativeRuntime/WCCMSG.DAT,16339,death_xp;weapon_skill,9,With immense skill he grafts the fang to the tail...
+repo_strings,ImportedDatabases/NativeRuntime/WCCSHOPS.DAT,368,attack_hit;weapon_skill,9,Jael's Missile Weapons
+repo_strings,ImportedDatabases/NativeRuntime/WCCSHOPS.DAT,399,attack_hit;weapon_skill,9,Rhudaur Missile Weapons
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,21,armor_defense;attack_hit,9,increasing defense against attack.
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,39,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,67,attack_hit;damage,9,damage you take from Fire attacks.
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,671,attack_hit;death_xp,9,Confusion attack for death dogs
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,1800,combat;weapon_skill,9,This song makes your target speedy in combat.
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,1812,combat;status_effects,9,This spell stuns your foe for a round.
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,2204,armor_defense;attack_hit,9,"increasing all attack power, but lowering defense."
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,3338,attack_hit;status_effects,9,(poison attack for rotting monstrosity)
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,4724,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,4733,attack_hit;damage,9,damage you take from Fire attacks.
+repo_strings,ImportedDatabases/NativeRuntime/WCCSPELS.DAT,4794,armor_defense;attack_hit,9,"increasing all attack power, but lowering defense."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,39,armor_defense;attack_hit,9,"when in use, but provides very good defense against attack."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,376,armor_defense;attack_hit,9,defense against attack.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,505,armor_defense;damage,9,damage. It is completely useless against most heavy armours.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,564,attack_hit;weapon_skill,9,"It is bladed only on one side, and attacks with this weapon"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,570,combat;damage,9,"is large and heavy, and does considerable damage in combat."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,631,attack_hit;weapon_skill,9,attack. This is the weapon of choice for Priests and the
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,649,damage;weapon_skill,9,"weapon, doing decent damage but being comparatively slow."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,663,armor_defense;damage,9,damage against unarmored foes as the nails rip through them.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,676,damage;weapon_skill,9,It does good damage and is a fairly good weapon.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,682,armor_defense;damage,9,"very much damage, but provides good defense as it is quite"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,1052,combat;damage,9,"the damage it does in combat must be incredible, although it"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,1490,death_xp;weapon_skill,9,The minotaur's eyes are much more skillfully crafted than
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,1662,death_xp;weapon_skill,9,hunting skills or who don't have the inclination to hunt for
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,2167,armor_defense;attack_hit,9,"provides a virtual wall of defense against attack, but gets"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,2443,death_xp;weapon_skill,9,necessary skill to craft such works of art.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,2483,death_xp;weapon_skill,9,"marvellous skill, and the serpents' eyes are small rubies."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,2703,armor_defense;damage,9,"and unwieldy, but would do great damage to unarmoured"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,2977,death_xp;weapon_skill,9,"exquisite skill, its open mouth filled with needle-sharp"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,3743,armor_defense;weapon_skill,9,as broken pieces of weapons and armour.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,4169,death_xp;weapon_skill,9,such was the skill of the craftsman!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,4744,death_xp;weapon_skill,9,hands of a skilled fighter.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,5103,death_xp;weapon_skill,9,"known to have the skill to fashion mithril, and such exotic"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,5141,death_xp;weapon_skill,9,"skill of the dwarves. Made of two thin layers of tiny, but"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,5165,attack_hit;weapon_skill,9,or other thrusting weapons have room to attack.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,5309,combat;damage,9,would cause great damage in combat. Its thick wooden haft
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,7131,combat;damage,9,"is large and heavy, and does considerable damage in combat."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8027,death_xp;status_effects,9,upon the corpses of those killed by poison. Tukata root
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8085,combat;death_xp,9,looking for a honorable duel to the death. Tales of clashes
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8187,death_xp;weapon_skill,9,bracelet was crafted by someone of great skill. Each emerald
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8348,combat;weapon_skill,9,This weapon is surrounded by a faint holy aura. Made
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8445,combat;weapon_skill,9,face such a weapon in combat.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8605,death_xp;status_effects,9,"But got ambushed by killer bees, their poison did burn,"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8619,attack_hit;death_xp,9,"deed. Unavenged goes her death, and she will be missed."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8847,death_xp;weapon_skill,9,skilled in the ways of working wood.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8896,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,8905,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,9517,status_effects;weapon_skill,9,"the sun. Three feet in length, it moves with blinding speed,"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,9670,combat;status_effects,9,the holder a fearsome look in combat.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,9894,death_xp;weapon_skill,9,repaired by skilled hands.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,10307,status_effects;weapon_skill,9,Fashioned by evil hands this weapon would strike fear in the
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,10401,combat;weapon_skill,9,this weapon of cruelty. Jagged ridges surround the head of
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,10599,attack_hit;weapon_skill,9,attack. This is the weapon of choice for those of the
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,10607,armor_defense;damage,9,damage. It is completely useless against most heavy armours.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,11050,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,11059,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,11103,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,11112,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,11156,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,11165,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,11196,death_xp;weapon_skill,9,Whoever created this staff had great crafting skill. It is
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,12044,death_xp;weapon_skill,9,"poor skill, they lack any form of comfort but offer"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,12045,armor_defense;attack_hit,9,"good defense against attack. A harsh, crimson rune has been"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,12326,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,12346,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccitem2.dat,12548,death_xp;weapon_skill,9,"Carved with a skilled hand, this plaque stands upon a"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,78,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,566,combat;damage,9,gait. Its heavy arms could cause considerable damage in combat.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,604,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,926,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,968,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1356,death_xp;weapon_skill,9,"strong and quick, and extremely skilled with its horn. Although"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1362,death_xp;weapon_skill,9,"broad-bladed war spear with skill, and stalks about the forest"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1380,death_xp;weapon_skill,9,"skill, and is vigilant in his pursual of trespassers and creatures of"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1560,death_xp;weapon_skill,9,"inch long fangs. Speeding towards you, it drools expectantly!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1717,death_xp;weapon_skill,9,the long sword at his hip with remarkable skill.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1737,armor_defense;weapon_skill,9,speed despite the heavy armour.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1758,armor_defense;weapon_skill,9,speed despite the heavy armour.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1804,armor_defense;combat,9,a metallic sheen. Heavy armour plates around its head protect a
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1895,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1900,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,1951,death_xp;weapon_skill,9,"both hands with some small skill, as the mountain kobolds are tougher"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2008,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2043,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2053,death_xp;weapon_skill,9,"one hand he carries a heavy pickaxe, which he wields with skill."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2073,armor_defense;weapon_skill,9,everything about metals and the forging of weapons and armour.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2100,death_xp;weapon_skill,9,achieved this position by use of force and skill.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2138,death_xp;weapon_skill,9,"one hand he carries a heavy pickaxe, which he wields with skill."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2142,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2169,death_xp;weapon_skill,9,"heavy steel hammer, which it wields with skill."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2238,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2243,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2249,death_xp;weapon_skill,9,"in, then controlling the corpse with uncanny skill."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2444,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2588,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2758,armor_defense;status_effects,9,powerful jaws that enable it to pierce armour to deliver its poison.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2865,death_xp;weapon_skill,9,warrior as well as a skilled spellcaster.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2908,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2934,combat;status_effects,9,is blind. His long fingers wrap around a long bluish staff.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2954,combat;status_effects,9,is blind. His long fingers wrap around a long bluish staff.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,2979,death_xp;weapon_skill,9,terrifying skill this creature possesses is its silent movement.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,3354,armor_defense;weapon_skill,9,fashioned many a weapon or piece of armour in her long life. She puts
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,3972,combat;death_xp,9,the mist cloud and the smell of death taints the air around you. With
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,3982,attack_hit;death_xp,9,undeath its only mission is to bring strife and murder to all things
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,4145,combat;death_xp,9,"pure death. An aura of cold surrounds you, chilling your marrow."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,4384,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,4420,death_xp;weapon_skill,9,carry a wisdom much longer then that. With skilled hand she guides a
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,4536,death_xp;weapon_skill,9,"they were some type of lion like biped, wielding weapons of death."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,4586,critical_backstab;status_effects,9,"stab of fear into your heart, and you are uncertain whether or not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,4651,combat;weapon_skill,9,"This is a strange black spectre, floating around at rapid speed from"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,4740,death_xp;weapon_skill,9,"strong and quick, and extremely skilled with its horn. Although"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,5395,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,5570,critical_backstab;status_effects,9,"stab of fear into your heart, and you are uncertain whether or not"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccknms2.dat,5850,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,2433,death_xp;weapon_skill,9,Your tracking skills fail you this time.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,2484,death_xp;weapon_skill,9,Your skills fail as you try to rob %s.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,2912,attack_hit;combat,9,Such an attack would result in a very unbalanced combat round.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,2937,armor_defense;combat,9,%s is smashed to the ground defenseless!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3584,death_xp;weapon_skill,9,Room Max: %d  Current: %d  Last Killed: %s Delay: %d
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3683,attack_hit;combat,9,Such an attack would result in a very unbalanced combat round.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3774,armor_defense;damage,9,Inflict Damage Ignoring Armour
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3776,attack_hit;damage,9,Alter Cold Attack Damage (Defence)
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3777,attack_hit;damage,9,Alter Damage (Attacking)
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3778,attack_hit;damage,9,Alter Hot Attack Damage (Defence)
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3790,armor_defense;damage,9,Inflict Damage on Armour
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3830,attack_hit;critical_backstab,9,Alter Critical Hit Chance
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3888,attack_hit;critical_backstab,9,Alter Backstab Attack Value
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3889,critical_backstab;damage,9,Alter Backstab Min. Damage
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3890,critical_backstab;damage,9,Alter Backstab Max. Damage
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3965,critical_backstab;weapon_skill,9,You cannot backstab with this weapon.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,3991,armor_defense;weapon_skill,9,Max Weapon Type: %15.15s  Max Armour Type: %15.15s
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,4009,armor_defense;weapon_skill,9,Weapon Type: %-15.15s   Armour Type: %-15.15s
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,4125,critical_backstab;weapon_skill,9,You cannot backstab with this weapon.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,4174,death_xp;weapon_skill,9,Your tracking skills fail you this time.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,4255,death_xp;weapon_skill,9,Your skill fails you this time.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,4717,combat;death_xp,9,Arena rooms are in combat mode (death DOES count)
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,4723,combat;death_xp,9,Arena rooms are now in combat mode (death DOES count)
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,5194,death_xp;weapon_skill,9,testskill
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,5195,death_xp;weapon_skill,9,checkskill
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,5627,attack_hit;critical_backstab,9,_clear_backstab_attack_type
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,5928,combat;death_xp,9,_kill_autocombat
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,5929,combat;death_xp,9,_kill_autocombat_against
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmmud.dll,5930,combat;death_xp,9,_kill_autocombat_against_monster
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,312,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,314,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,1355,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,1357,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,1435,armor_defense;damage,9,"The %s smacks you, but %syour armour absorbs the damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,1437,armor_defense;damage,9,"The %s %scrushes %s, but %s armour absorbs the damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,2253,damage;death_xp,9,A massive explosion rocks %sthe room for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,2255,damage;death_xp,9,A massive explosion blasts you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,2257,damage;death_xp,9,A massive explosion rocks %sthe room for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,3291,damage;death_xp,9,"The fireball explodes, %scausing %d damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,3293,damage;death_xp,9,You take %d damage from the explosion!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,3295,damage;death_xp,9,An explosion rocks %sthe room for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,3376,damage;death_xp,9,"The violet spore explodes, causing you %d damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,4092,damage;death_xp,9,"The flask explodes, causing %d damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,4094,damage;death_xp,9,"he flask explodes, %scausing %s damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,4540,damage;death_xp,9,"The %s throws a %s, which explodes for %d damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,4820,combat;death_xp,9,"The cyclops topples to the ground, and explodes in greenish fire!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,4832,combat;damage,9,The %s picks you up and slams you on the ground for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,4834,combat;damage,9,The %s slams %s on the ground for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,4886,critical_backstab;damage,9,The %s critically slices you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,4888,critical_backstab;damage,9,The %s critically slices %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,5103,critical_backstab;damage,9,The %s critically chops you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,5105,critical_backstab;damage,9,The %s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,5230,combat;damage,9,"You fall to the ground with a thud, taking %d damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,5232,combat;damage,9,"%s falls to the ground with a thud, taking %s damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,5674,damage;death_xp,9,%s takes %d damage from the explosion of power!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,5676,damage;death_xp,9,You take %d damage from the explosion of power!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,5678,damage;death_xp,9,%s takes %s damage from the explosion of power!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,6007,combat;damage,9,The %s smashes %s against the ground for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,6630,critical_backstab;damage,9,The %s critically stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,6632,critical_backstab;damage,9,The %s critically stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,6641,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,6643,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,6898,critical_backstab;damage,9,The %s spins and critically skewers you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,6900,critical_backstab;damage,9,The %s spins and critically skewers %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7140,critical_backstab;damage,9,%s critically chops you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7142,critical_backstab;damage,9,%s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7240,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7242,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7361,combat;death_xp,9,"The killer bee falls to the ground, lifeless and oozing."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7576,critical_backstab;damage,9,The %s stabs you with its stinger for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7578,critical_backstab;damage,9,The %s stabs %s with its stinger for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7692,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7694,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7706,critical_backstab;damage,9,The %s critically lashes you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7708,critical_backstab;damage,9,The %s critically lashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,7982,combat;damage,9,The %s surrounds everyone and %s their life for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8553,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8555,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8571,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8573,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8600,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8602,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8622,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8624,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,8906,combat;damage,9,"The %s skewers %s, who is slammed into the ground for %s damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,9078,damage;death_xp,9,You take %d damage from the explosion!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,9473,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,9475,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,9672,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,9674,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,10208,death_xp;weapon_skill,9,Only the skilled dwarven miners of Khazarad can successfully mine mithril.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,10276,damage;death_xp,9,"he obsidian talisman explodes, causing you %d damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,10277,damage;death_xp,9,"The obsidian talisman explodes, causing %s %s damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,10408,damage;status_effects,9,You take %d damage from the poisonous swamp!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,10410,damage;status_effects,9,%s takes %s damage from the poisonous swamp!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,10433,combat;death_xp,9,"%s runs about in agony, then drops to the ground, withered to death!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,10514,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,10516,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,11197,damage;death_xp,9,An explosion rocks you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,11757,critical_backstab;damage,9,%s critically chops you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,11759,critical_backstab;damage,9,%s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,11820,damage;status_effects,9,You are poisoned for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,11822,damage;status_effects,9,%s is poisoned for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,12086,critical_backstab;damage,9,"The %s casts %s, stabbing you for %d damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,12387,damage;status_effects,9,You take %d damage from poison!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,12390,damage;status_effects,9,"You resist the poison, and take only partial damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,12392,damage;status_effects,9,"ou resist the poison, and take only partial damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,13315,combat;death_xp,9,"With a gasp, the pharaoh slumps to the ground, defeated!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,13357,critical_backstab;damage,9,The collar spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,13359,critical_backstab;damage,9,The collar spikes stab you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,13361,critical_backstab;damage,9,The collar spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,13590,critical_backstab;damage,9,You feel a stabbing pain for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,13973,combat;damage,9,%s %s you into the ground for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,13975,combat;damage,9,%s %s %s into the ground for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,14192,armor_defense;combat,9,"The %s %shovers around you, but your armour protects you!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,14194,armor_defense;combat,9,"The %s %shovers around %s, but %s's armour protects them!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,15561,critical_backstab;damage,9,%s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,15563,critical_backstab;damage,9,%s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,15674,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,15676,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,15680,combat;damage,9,The %s swirls around you sucking your life for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,15848,critical_backstab;status_effects,9,"A bolt of darkness stabs at your eyes, blinding you!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,16458,critical_backstab;damage,9,%s critically hurls his chakram at you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,16460,critical_backstab;damage,9,%s critically hurls his chakram at %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,16483,damage;death_xp,9,A magma explosion hits you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,16485,damage;death_xp,9,A magma explosion hits you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,16488,death_xp;weapon_skill,9,With immense skill he grafts the fang to the tail...
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,17234,critical_backstab;damage,9,"The %s disappears, then reappears and backstabs you for %d damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,17236,critical_backstab;damage,9,"The %s disappears, then reappears and backstabs %s for %s damage!"
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,17395,critical_backstab;damage,9,You are stabbed by spikes for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18301,damage;death_xp,9,An explosion of spikes pierces your foes for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18303,damage;death_xp,9,An explosion of spikes pierces you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18422,critical_backstab;damage,9,The shield spike stabs %s for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18424,critical_backstab;damage,9,The shield spike stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18426,critical_backstab;damage,9,The shield spike stabs %s for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18768,critical_backstab;damage,9,The shield spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18770,critical_backstab;damage,9,The shield spikes stab you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18772,critical_backstab;damage,9,The shield spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18887,death_xp;weapon_skill,9,With great skill and force Martok works the hides into a shape...
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,18911,death_xp;weapon_skill,9,With masterful skill the nomad forces the hides into a shape...
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19002,combat;death_xp,9,%s causes the room to explode around him!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19004,combat;death_xp,9,%s causes the room to explode around him!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19006,combat;death_xp,9,%s causes the room to explode around him!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19103,death_xp;status_effects,9,"Annora shakes her head, ""I fear it would be the death of you."""
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19436,critical_backstab;damage,9,The %s critically hurls a throwing knife and strikes you for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19437,critical_backstab;damage,9,The %s critically hurls a throwing knife and strikes %s for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19480,death_xp;weapon_skill,9,"Using your skills, you disarm the pedestals trap."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19512,combat;damage,9,%s picks you up and slams you on the ground for %d damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccmsg2.dat,19514,combat;damage,9,%s picks up %s and slams them on the ground for %s damage!
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccshop2.dat,366,attack_hit;weapon_skill,9,Jael's Missile Weapons
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccshop2.dat,396,attack_hit;weapon_skill,9,Rhudaur Missile Weapons
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccshop2.dat,815,attack_hit;weapon_skill,9,Arlysia Missile Weapons
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,194,armor_defense;attack_hit,9,increasing defense against attack.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,212,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,239,attack_hit;damage,9,damage you take from Fire attacks.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,873,attack_hit;death_xp,9,Confusion attack for death dogs
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,1170,armor_defense;attack_hit,9,"increasing all attack power, but lowering defense."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,1175,armor_defense;attack_hit,9,"increasing attack power, but lowering defense."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,1975,combat;weapon_skill,9,This song makes your target speedy in combat.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,1987,combat;status_effects,9,This spell stuns your foe for a round.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,2532,attack_hit;status_effects,9,(poison attack for rotting monstrosity)
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,4767,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,4776,attack_hit;damage,9,damage you take from fire attacks.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,5062,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,5147,attack_hit;damage,9,damage you take from Fire attacks.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,5211,armor_defense;attack_hit,9,"increasing all attack power, but lowering defense."
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,5596,attack_hit;damage,9,damage you take from Stone attacks.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,6755,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCDefaultInstall/wcc default/wccspel2.dat,6764,attack_hit;damage,9,damage you take from Fire attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,120,armor_defense;attack_hit,9,"when in use, but provides very good defense against attack."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,425,armor_defense;attack_hit,9,defense against attack.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,554,armor_defense;damage,9,damage. It is completely useless against most heavy armours.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,613,attack_hit;weapon_skill,9,"It is bladed only on one side, and attacks with this weapon"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,619,combat;damage,9,"is large and heavy, and does considerable damage in combat."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,680,attack_hit;weapon_skill,9,attack. This is the weapon of choice for Priests and the
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,698,damage;weapon_skill,9,"weapon, doing decent damage but being comparatively slow."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,712,armor_defense;damage,9,damage against unarmored foes as the nails rip through them.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,725,damage;weapon_skill,9,It does good damage and is a fairly good weapon.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,731,armor_defense;damage,9,"very much damage, but provides good defense as it is quite"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,1142,combat;damage,9,"the damage it does in combat must be incredible, although it"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,1524,death_xp;weapon_skill,9,The minotaur's eyes are much more skillfully crafted than
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,1738,death_xp;weapon_skill,9,hunting skills or who don't have the inclination to hunt for
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,2262,armor_defense;attack_hit,9,"provides a virtual wall of defense against attack, but gets"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,2547,death_xp;weapon_skill,9,necessary skill to craft such works of art.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,2587,death_xp;weapon_skill,9,"marvellous skill, and the serpents' eyes are small rubies."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,3100,death_xp;weapon_skill,9,"exquisite skill, its open mouth filled with needle-sharp"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,3904,armor_defense;weapon_skill,9,as broken pieces of weapons and armour.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,4847,death_xp;weapon_skill,9,hands of a skilled fighter.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,5213,death_xp;weapon_skill,9,"known to have the skill to fashion mithril, and such exotic"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,5251,death_xp;weapon_skill,9,"skill of the dwarves. Made of two thin layers of tiny, but"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,5275,attack_hit;weapon_skill,9,or other thrusting weapons have room to attack.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,5419,combat;damage,9,would cause great damage in combat. Its thick wooden haft
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,6359,death_xp;weapon_skill,9,such was the skill of the craftsman!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,7174,armor_defense;damage,9,"and unwieldy, but would do great damage to unarmoured"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,7279,combat;damage,9,"is large and heavy, and does considerable damage in combat."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,7320,death_xp;weapon_skill,9,such was the skill of the craftsman!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,8141,death_xp;status_effects,9,upon the corpses of those killed by poison. Tukata root
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,8236,combat;death_xp,9,looking for a honorable duel to the death. Tales of clashes
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,8394,combat;weapon_skill,9,This weapon is surrounded by a faint holy aura. Made
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,8603,combat;weapon_skill,9,face such a weapon in combat.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,8763,death_xp;status_effects,9,"But got ambushed by killer bees, their poison did burn,"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,8777,attack_hit;death_xp,9,"deed. Unavenged goes her death, and she will be missed."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,9005,death_xp;weapon_skill,9,skilled in the ways of working wood.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,9054,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,9063,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,9661,status_effects;weapon_skill,9,"the sun. Three feet in length, it moves with blinding speed,"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,9814,combat;status_effects,9,the holder a fearsome look in combat.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,10103,death_xp;weapon_skill,9,repaired by skilled hands.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,10434,status_effects;weapon_skill,9,Fashioned by evil hands this weapon would strike fear in the
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,10528,combat;weapon_skill,9,this weapon of cruelty. Jagged ridges surround the head of
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,10731,attack_hit;weapon_skill,9,attack. This is the weapon of choice for those of the
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,10739,armor_defense;damage,9,damage. It is completely useless against most heavy armours.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,11155,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,11164,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,11208,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,11217,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,11261,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,11270,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,11301,death_xp;weapon_skill,9,Whoever created this staff had great crafting skill. It is
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,12103,death_xp;weapon_skill,9,"poor skill, they lack any form of comfort but offer"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,12104,armor_defense;attack_hit,9,"good defense against attack. A harsh, crimson rune has been"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,12375,death_xp;weapon_skill,9,superb skill. You see it has extra padding so it may protect
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,12395,death_xp;weapon_skill,9,"This is a pair of skillfully crafted boots, made from the"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,12597,death_xp;weapon_skill,9,"Carved with a skilled hand, this plaque stands upon a"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,13989,death_xp;weapon_skill,9,bracelet was crafted by someone of great skill. Each emerald
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,14117,armor_defense;damage,9,"and unwieldy, but would do great damage to unarmoured"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBITEM2.DAT,14672,combat;weapon_skill,9,This weapon is surrounded by a faint holy aura. Made
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,96,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,253,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,354,armor_defense;weapon_skill,9,speed despite the heavy armour.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,396,armor_defense;combat,9,a metallic sheen. Heavy armour plates around its head protect a
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,452,armor_defense;weapon_skill,9,fashioned many a weapon or piece of armour in her long life. She puts
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,526,combat;status_effects,9,is blind. His long fingers wrap around a long bluish staff.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,530,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,602,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,629,combat;damage,9,gait. Its heavy arms could cause considerable damage in combat.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,698,death_xp;weapon_skill,9,the long sword at his hip with remarkable skill.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1431,death_xp;weapon_skill,9,"strong and quick, and extremely skilled with its horn. Although"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1437,death_xp;weapon_skill,9,"broad-bladed war spear with skill, and stalks about the forest"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1455,death_xp;weapon_skill,9,"skill, and is vigilant in his pursual of trespassers and creatures of"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1752,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1815,armor_defense;weapon_skill,9,speed despite the heavy armour.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1836,armor_defense;weapon_skill,9,speed despite the heavy armour.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1854,critical_backstab;status_effects,9,"stab of fear into your heart, and you are uncertain whether or not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1878,armor_defense;combat,9,a metallic sheen. Heavy armour plates around its head protect a
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,1983,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2058,death_xp;weapon_skill,9,"both hands with some small skill, as the mountain kobolds are tougher"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2116,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2167,death_xp;weapon_skill,9,achieved this position by use of force and skill.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2206,death_xp;weapon_skill,9,"one hand he carries a heavy pickaxe, which he wields with skill."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2222,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2228,death_xp;weapon_skill,9,"in, then controlling the corpse with uncanny skill."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2279,death_xp;weapon_skill,9,"heavy steel hammer, which it wields with skill."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2527,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2580,death_xp;weapon_skill,9,warrior as well as a skilled spellcaster.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2634,death_xp;weapon_skill,9,terrifying skill this creature possesses is its silent movement.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2672,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2839,armor_defense;status_effects,9,powerful jaws that enable it to pierce armour to deliver its poison.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,2987,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,3002,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,3023,combat;status_effects,9,is blind. His long fingers wrap around a long bluish staff.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,3044,combat;status_effects,9,is blind. His long fingers wrap around a long bluish staff.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,3089,death_xp;weapon_skill,9,terrifying skill this creature possesses is its silent movement.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,3446,armor_defense;weapon_skill,9,fashioned many a weapon or piece of armour in her long life. She puts
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,4072,combat;death_xp,9,the mist cloud and the smell of death taints the air around you. With
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,4113,attack_hit;death_xp,9,undeath its only mission is to bring strife and murder to all things
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,4168,combat;death_xp,9,"pure death. An aura of cold surrounds you, chilling your marrow."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,4474,armor_defense;combat,9,"carries a round shield, and his well-polished chainmail armour gleams"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,4499,death_xp;weapon_skill,9,carry a wisdom much longer then that. With skilled hand she guides a
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,4636,death_xp;weapon_skill,9,"they were some type of lion like biped, wielding weapons of death."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,4667,combat;weapon_skill,9,"This is a strange black spectre, floating around at rapid speed from"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,4811,death_xp;weapon_skill,9,"strong and quick, and extremely skilled with its horn. Although"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,5466,death_xp;weapon_skill,9,warrior as well as a skilled spellcaster.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,5547,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,5637,death_xp;weapon_skill,9,"inch long fangs. Speeding towards you, it drools expectantly!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,5770,combat;weapon_skill,9,"beating, it is used for combat practice and to test weapons."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,5912,death_xp;weapon_skill,9,"one hand he carries a heavy pickaxe, which he wields with skill."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,6041,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,6102,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,6172,armor_defense;weapon_skill,9,everything about metals and the forging of weapons and armour.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,6186,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBKNMS2.DAT,6438,death_xp;weapon_skill,9,"Skilled and powerful warriors, the dwarven folk of Khazarad are not"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,43,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,45,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,578,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,580,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,1598,armor_defense;damage,9,"The %s smacks you, but %syour armour absorbs the damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,1600,armor_defense;damage,9,"The %s %scrushes %s, but %s armour absorbs the damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,2178,damage;death_xp,9,A massive explosion rocks %sthe room for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,2180,damage;death_xp,9,A massive explosion blasts you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,2182,damage;death_xp,9,A massive explosion rocks %sthe room for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,3439,damage;death_xp,9,"The fireball explodes, %scausing %d damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,3441,damage;death_xp,9,You take %d damage from the explosion!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,3443,damage;death_xp,9,An explosion rocks %sthe room for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,3922,damage;death_xp,9,"The violet spore explodes, causing you %d damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4629,critical_backstab;damage,9,The %s stabs you with its stinger for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4631,critical_backstab;damage,9,The %s stabs %s with its stinger for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4671,combat;death_xp,9,"The cyclops topples to the ground, and explodes in greenish fire!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4683,combat;damage,9,The %s picks you up and slams you on the ground for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4685,combat;damage,9,The %s slams %s on the ground for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4808,critical_backstab;damage,9,The %s critically slices you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,4810,critical_backstab;damage,9,The %s critically slices %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5103,critical_backstab;damage,9,The %s critically chops you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5105,critical_backstab;damage,9,The %s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5237,damage;death_xp,9,"The %s throws a %s, which explodes for %d damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5366,damage;death_xp,9,%s takes %d damage from the explosion of power!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5368,damage;death_xp,9,You take %d damage from the explosion of power!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5370,damage;death_xp,9,%s takes %s damage from the explosion of power!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5451,combat;damage,9,The %s smashes %s against the ground for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5517,damage;death_xp,9,"The flask explodes, causing %d damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5519,damage;death_xp,9,"he flask explodes, %scausing %s damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5637,combat;damage,9,"You fall to the ground with a thud, taking %d damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5639,combat;damage,9,"%s falls to the ground with a thud, taking %s damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5943,critical_backstab;damage,9,The %s spins and critically skewers you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,5945,critical_backstab;damage,9,The %s spins and critically skewers %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,6500,critical_backstab;damage,9,%s critically chops you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,6502,critical_backstab;damage,9,%s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,6877,combat;death_xp,9,"The killer bee falls to the ground, lifeless and oozing."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,7283,critical_backstab;damage,9,The %s critically stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,7285,critical_backstab;damage,9,The %s critically stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,7294,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,7296,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,7488,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,7490,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8284,combat;damage,9,The %s surrounds everyone and %s their life for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8775,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8777,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8793,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8795,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8822,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8824,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8844,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8846,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8894,critical_backstab;damage,9,The %s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8896,critical_backstab;damage,9,The %s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8908,critical_backstab;damage,9,The %s critically lashes you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,8910,critical_backstab;damage,9,The %s critically lashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,9374,combat;damage,9,"The %s skewers %s, who is slammed into the ground for %s damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,9759,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,9761,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,9885,damage;death_xp,9,You take %d damage from the explosion!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10104,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10106,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10523,death_xp;weapon_skill,9,Only the skilled dwarven miners of Khazarad can successfully mine mithril.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10808,damage;death_xp,9,"he obsidian talisman explodes, causing you %d damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10809,damage;death_xp,9,"The obsidian talisman explodes, causing %s %s damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10861,damage;status_effects,9,You take %d damage from the poisonous swamp!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10863,damage;status_effects,9,%s takes %s damage from the poisonous swamp!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10886,combat;death_xp,9,"%s runs about in agony, then drops to the ground, withered to death!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10983,critical_backstab;damage,9,%s critically chops you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,10985,critical_backstab;damage,9,%s critically chops %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,11046,damage;status_effects,9,You are poisoned for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,11048,damage;status_effects,9,%s is poisoned for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,11481,damage;death_xp,9,An explosion rocks you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,11576,damage;status_effects,9,You take %d damage from poison!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,11579,damage;status_effects,9,"You resist the poison, and take only partial damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,11581,damage;status_effects,9,"ou resist the poison, and take only partial damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,11923,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,11925,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,12415,critical_backstab;damage,9,"The %s casts %s, stabbing you for %d damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,12789,combat;death_xp,9,"With a gasp, the pharaoh slumps to the ground, defeated!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,12831,critical_backstab;damage,9,The collar spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,12833,critical_backstab;damage,9,The collar spikes stab you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,12835,critical_backstab;damage,9,The collar spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,13421,combat;damage,9,%s %s you into the ground for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,13423,combat;damage,9,%s %s %s into the ground for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,13790,armor_defense;combat,9,"The %s %shovers around you, but your armour protects you!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,13792,armor_defense;combat,9,"The %s %shovers around %s, but %s's armour protects them!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,14061,critical_backstab;damage,9,You feel a stabbing pain for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,14659,critical_backstab;damage,9,%s critically slashes you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,14661,critical_backstab;damage,9,%s critically slashes %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,15852,critical_backstab;status_effects,9,"A bolt of darkness stabs at your eyes, blinding you!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,16911,critical_backstab;damage,9,The %s stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,16913,critical_backstab;damage,9,The %s stabs %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,16917,combat;damage,9,The %s swirls around you sucking your life for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,17007,critical_backstab;damage,9,%s critically hurls his chakram at you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,17009,critical_backstab;damage,9,%s critically hurls his chakram at %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,17032,damage;death_xp,9,A magma explosion hits you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,17034,damage;death_xp,9,A magma explosion hits you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,17037,death_xp;weapon_skill,9,With immense skill he grafts the fang to the tail...
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,17621,critical_backstab;damage,9,You are stabbed by spikes for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,18441,critical_backstab;damage,9,"The %s disappears, then reappears and backstabs you for %d damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,18443,critical_backstab;damage,9,"The %s disappears, then reappears and backstabs %s for %s damage!"
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,18625,critical_backstab;damage,9,The shield spike stabs %s for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,18627,critical_backstab;damage,9,The shield spike stabs you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,18629,critical_backstab;damage,9,The shield spike stabs %s for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19042,critical_backstab;damage,9,The shield spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19044,critical_backstab;damage,9,The shield spikes stab you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19046,critical_backstab;damage,9,The shield spikes stab %s for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19131,death_xp;weapon_skill,9,"Using your skills, you disarm the pedestals trap."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19163,combat;damage,9,%s picks you up and slams you on the ground for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19165,combat;damage,9,%s picks up %s and slams them on the ground for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19213,combat;death_xp,9,%s causes the room to explode around him!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19215,combat;death_xp,9,%s causes the room to explode around him!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19217,combat;death_xp,9,%s causes the room to explode around him!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19269,damage;death_xp,9,An explosion of spikes pierces your foes for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19271,damage;death_xp,9,An explosion of spikes pierces you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19388,death_xp;weapon_skill,9,With great skill and force Martok works the hides into a shape...
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19412,death_xp;weapon_skill,9,With masterful skill the nomad forces the hides into a shape...
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19598,death_xp;status_effects,9,"Annora shakes her head, ""I fear it would be the death of you."""
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19650,critical_backstab;damage,9,The %s critically hurls a throwing knife and strikes you for %d damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBMSG2.DAT,19651,critical_backstab;damage,9,The %s critically hurls a throwing knife and strikes %s for %s damage!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSHOP2.DAT,366,attack_hit;weapon_skill,9,Jael's Missile Weapons
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSHOP2.DAT,396,attack_hit;weapon_skill,9,Rhudaur Missile Weapons
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSHOP2.DAT,821,attack_hit;weapon_skill,9,Arlysia Missile Weapons
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,173,armor_defense;attack_hit,9,increasing defense against attack.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,191,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,218,attack_hit;damage,9,damage you take from Fire attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,917,combat;weapon_skill,9,This song makes your target speedy in combat.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,929,combat;status_effects,9,This spell stuns your foe for a round.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,983,attack_hit;death_xp,9,Confusion attack for death dogs
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,1630,armor_defense;attack_hit,9,"increasing all attack power, but lowering defense."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,1635,armor_defense;attack_hit,9,"increasing attack power, but lowering defense."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,3323,attack_hit;status_effects,9,(poison attack for rotting monstrosity)
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,4543,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,4719,attack_hit;damage,9,damage you take from Stone attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,5247,attack_hit;damage,9,damage you take from Fire attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,5311,armor_defense;attack_hit,9,"increasing all attack power, but lowering defense."
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,6678,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,6687,attack_hit;damage,9,damage you take from Fire attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,7381,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,7390,attack_hit;damage,9,damage you take from fire attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,7643,attack_hit;damage,9,damage you take from cold attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/WBBSPEL2.DAT,7652,attack_hit;damage,9,damage you take from fire attacks.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,2433,death_xp;weapon_skill,9,Your tracking skills fail you this time.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,2484,death_xp;weapon_skill,9,Your skills fail as you try to rob %s.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,2912,attack_hit;combat,9,Such an attack would result in a very unbalanced combat round.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,2937,armor_defense;combat,9,%s is smashed to the ground defenseless!
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3584,death_xp;weapon_skill,9,Room Max: %d  Current: %d  Last Killed: %s Delay: %d
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3683,attack_hit;combat,9,Such an attack would result in a very unbalanced combat round.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3774,armor_defense;damage,9,Inflict Damage Ignoring Armour
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3776,attack_hit;damage,9,Alter Cold Attack Damage (Defence)
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3777,attack_hit;damage,9,Alter Damage (Attacking)
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3778,attack_hit;damage,9,Alter Hot Attack Damage (Defence)
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3790,armor_defense;damage,9,Inflict Damage on Armour
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3830,attack_hit;critical_backstab,9,Alter Critical Hit Chance
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3888,attack_hit;critical_backstab,9,Alter Backstab Attack Value
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3889,critical_backstab;damage,9,Alter Backstab Min. Damage
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3890,critical_backstab;damage,9,Alter Backstab Max. Damage
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3965,critical_backstab;weapon_skill,9,You cannot backstab with this weapon.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,3991,armor_defense;weapon_skill,9,Max Weapon Type: %15.15s  Max Armour Type: %15.15s
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,4009,armor_defense;weapon_skill,9,Weapon Type: %-15.15s   Armour Type: %-15.15s
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,4125,critical_backstab;weapon_skill,9,You cannot backstab with this weapon.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,4174,death_xp;weapon_skill,9,Your tracking skills fail you this time.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,4255,death_xp;weapon_skill,9,Your skill fails you this time.
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,4717,combat;death_xp,9,Arena rooms are in combat mode (death DOES count)
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,4723,combat;death_xp,9,Arena rooms are now in combat mode (death DOES count)
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,5194,death_xp;weapon_skill,9,testskill
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,5195,death_xp;weapon_skill,9,checkskill
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,5627,attack_hit;critical_backstab,9,_clear_backstab_attack_type
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,5928,combat;death_xp,9,_kill_autocombat
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,5929,combat;death_xp,9,_kill_autocombat_against
+repo_strings,ImportedDatabases/WCCLabeledWBB/Extracted/wbbmmud.dll,5930,combat;death_xp,9,_kill_autocombat_against_monster
+mmud_explorer,MMUD-Explorer-master/README.md,14,attack_hit;damage;weapon_skill,8,-FIX: Martial arts attacks on weapon tab not sorting damage properly
+mmud_explorer,MMUD-Explorer-master/README.md,135,attack_hit;combat;damage,8,-UP: Attack/Combat setup screen will now show melee attack damage too
+mmud_explorer,MMUD-Explorer-master/README.md,176,combat;damage;weapon_skill,8,-UP: Added weapon swings and 1st round damage columns to weapon tab
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,45,combat;damage,8,Private m_nStatBetweenRound_AtkTotalDamage(0 To 4) As Currency
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,68,combat;damage,8,Private m_nMaxRoundDamage As Currency
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,287,combat;damage,8,Public Property Get nMaxRoundDamage() As Long
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,288,combat;damage,8,nMaxRoundDamage = m_nMaxRoundDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,421,attack_hit;damage,8,nDamage = nDamage + m_nAtkHitSpellMax(nAttack)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,445,attack_hit;damage,8,GetMaxDamage = GetMaxDamage + m_nAtkHitSpellMax(nAttack)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,449,attack_hit;damage,8,If m_nAtkDuration(nAttack) > 2 Then GetMaxDamage = GetMaxDamage + m_nAtkMax(nAttack)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,457,combat;damage,8,nDamage = m_nBetweenRoundMax(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,465,combat;damage,8,GetMaxDamage = GetMaxDamage + m_nBetweenRoundMax(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,486,combat;damage,8,"Dim nDamage As Currency, nHitSpellDamage As Currency, nRoundDamage As Long, nOriginalDamage As Currency"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,501,combat;damage,8,m_nMaxRoundDamage = 0
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,533,combat;damage,8,nRoundDamage = 0
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,548,combat;damage,8,nRoundDamage = nRoundDamage + nActiveAtkSpells_Value(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,584,combat;damage,8,nRoundDamage = nRoundDamage + nActiveBetweenSpells_Value(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,590,combat;damage,8,m_nStatBetweenRound_AtkTotalDamage(x) = m_nStatBetweenRound_AtkTotalDamage(x) + nActiveBetweenSpells_Value(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,720,attack_hit;damage,8,If m_nAtkMRdmgResist(nAttack) = 1 And nDamage > 0 Then
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,721,combat;damage,8,"nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,793,attack_hit;damage,8,nActiveAtkSpells_ValueOriginal(nAttack) = nHitSpellDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,798,attack_hit;damage,8,m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nHitSpellDamage - nMR_Reduction)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,805,damage,8,Case 0: If m_nUserRCOL > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRCOL / 100))  'col
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,806,damage,8,Case 1: If m_nUserRFIR > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRFIR / 100))  'fir
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,807,damage,8,Case 2: If m_nUserRSTO > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRSTO / 100))  'sto
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,808,damage,8,Case 3: If m_nUserRLIT > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRLIT / 100))  'lit
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,809,damage,8,Case 5: If m_nUserRWAT > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRWAT / 100))  'wat
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,820,attack_hit;damage,8,If nActiveAtkSpells_DurationLeft(nAttack) < 1 Or nActiveAtkSpells_Value(nAttack) <> nHitSpellDamage Then
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,824,attack_hit;damage,8,m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nHitSpellDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,833,attack_hit;damage,8,nActiveAtkSpells_Value(nAttack) = nHitSpellDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,843,attack_hit;damage,8,m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nHitSpellDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,864,attack_hit;damage,8,If nOriginalDamage <> nDamage And m_nAtkType(nAttack) = 2 And m_nAtkDuration(nAttack) < 1 Then 'spell
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,880,attack_hit;damage,8,m_nStatAtkTotalDamage(nAttack) = m_nStatAtkTotalDamage(nAttack) + nDamage + nHitSpellDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,896,combat;damage,8,"Call AddToCombatLog("" -"" & sHitSpellName & "" "" & IIf(bResisted, ""(resist)"", ""for "" & Round(nHitSpellDamage)))"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,948,attack_hit;combat,8,If nRoll_AttackChance <= m_nBetweenRoundChance(x) Then
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,950,combat;damage,8,"nDamage = Me.RandomNumber(m_nBetweenRoundMin(x), m_nBetweenRoundMax(x))"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,954,combat;damage,8,"nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1007,combat;damage,8,nRoundDamage = nRoundDamage + nDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1010,combat;damage,8,m_nStatBetweenRound_AtkTotalDamage(x) = m_nStatBetweenRound_AtkTotalDamage(x) + nDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1024,combat;damage,8,nRoundDamage = nRoundDamage + nActiveAtkSpells_Value(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1061,combat;damage,8,nRoundDamage = nRoundDamage + nActiveBetweenSpells_Value(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1067,combat;damage,8,m_nStatBetweenRound_AtkTotalDamage(x) = m_nStatBetweenRound_AtkTotalDamage(x) + nActiveBetweenSpells_Value(x)
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1094,combat;damage,8,If nRoundDamage > m_nMaxRoundDamage Then
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1096,combat;damage,8,m_nMaxRoundDamage = nRoundDamage
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1108,combat;damage,8,"nCurrentAverageDamage = Round(m_nTotalDamage / nRound, 3)"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1115,combat;damage,8,"nDifference = Abs(1 - (Round(m_nTotalDamage / nRound, 3) / nCurrentAverageDamage))"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1120,combat;damage,8,"nCurrentAverageDamage = Round(m_nTotalDamage / nRound, 3)"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1134,combat;damage,8,"m_nAverageDamage = Round(m_nTotalDamage / nRound, 1)"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1135,combat;damage,8,"m_nAverageDamagePhys = Round(m_nTotalDamagePhys / nRound, 1)"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1136,combat;damage,8,"m_nAverageDamageSpell = Round(m_nTotalDamageSpell / nRound, 1)"
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1328,combat;damage,8,m_nMaxRoundDamage = 0
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1358,combat;damage,8,m_nStatBetweenRound_AtkTotalDamage(x) = 0
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1519,combat;damage,8,Public Property Get nStatBetweenRound_AtkTotalDamage(ByVal Index As Integer) As Currency
+mmud_explorer,MMUD-Explorer-master/clsMonsterAttackSim.cls,1520,combat;damage,8,nStatBetweenRound_AtkTotalDamage = m_nStatBetweenRound_AtkTotalDamage(Index)
+mmud_explorer,MMUD-Explorer-master/docs/changelog.archive.txt,46,attack_hit;combat;damage,8,-UP: Attack/Combat setup screen will now show melee attack damage too
+mmud_explorer,MMUD-Explorer-master/docs/changelog.archive.txt,83,combat;damage;weapon_skill,8,-UP: Added weapon swings and 1st round damage columns to weapon tab
+mmud_explorer,MMUD-Explorer-master/docs/changelog.txt,13,attack_hit;damage;weapon_skill,8,- FIX: Martial arts attacks on weapon tab not sorting damage properly
+mmud_explorer,MMUD-Explorer-master/docs/changelog.txt,128,attack_hit;combat;damage,8,-UP: Attack/Combat setup screen will now show melee attack damage too
+mmud_explorer,MMUD-Explorer-master/docs/changelog.txt,165,combat;damage;weapon_skill,8,-UP: Added weapon swings and 1st round damage columns to weapon tab
+mmud_explorer,MMUD-Explorer-master/docs/exp-per-hour-models.md,102,combat;damage;status_effects,8,Calibration blind spots that hid #2/#4/#5: all 18 SIM rows have `MinRoundDMG==CharDMG`
+mmud_explorer,MMUD-Explorer-master/frmHitCalc.frm,1094,armor_defense;critical_backstab,8,'        If optHitCalcType(1).Value = True Then 'backstab - bs defense
+mmud_explorer,MMUD-Explorer-master/frmHitCalc.frm,1169,attack_hit;critical_backstab,8,If bBackstab And bCharAttack And Not bMonsterOnly Then 'bs + current character
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,18725,combat;critical_backstab;weapon_skill,8,"Caption         =   ""Set Combat Backstab Weapon"""
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,23149,attack_hit;damage;death_xp,8,"MsgBox ""The chosen attack will effect the script value or exp/hr calculation, depending on mode, where the damage output will have an effect on kill time."" _"
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,23326,attack_hit;combat,8,If nGlobalAttackHealRounds < 1 Then nGlobalAttackHealRounds = 1
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,23327,attack_hit;combat,8,If nGlobalAttackHealRounds > 50 Then nGlobalAttackHealRounds = 50
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25330,attack_hit;critical_backstab,8,'    If nGlobalAttackTypeMME > a0_oneshot And bGlobalAttackBackstab = True Then
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25712,attack_hit;damage;weapon_skill,8,"Dim sArr() As String, iMatch As Integer, tWeaponDmg As tAttackDamage, bUseCharacter As Boolean, bForceCalc As Boolean"
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25731,attack_hit;death_xp;weapon_skill,8,"x = MsgBox(""You do not appear to have the required skill for those attacks."" & vbCrLf & vbCrLf & ""Calculate anyway at +1 skill?"", vbYesNo + vbInformation)"
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25807,attack_hit;damage;weapon_skill,8,tWeaponDmg = CalculateAttack( _
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25840,combat;damage;weapon_skill,8,"oLI.ListSubItems.Add (19), ""Dmg/1st"", tWeaponDmg.nFirstRoundDamage"
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25987,attack_hit;damage;weapon_skill,8,tWeaponDmg = CalculateAttack( _
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,25998,combat;damage;weapon_skill,8,If tWeaponDmg.nRoundTotal < val(txtWeaponExtras(1).Text) Then GoTo max_effort_skip:
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,26016,attack_hit;damage;weapon_skill,8,tWeaponDmg = CalculateAttack( _
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,26027,combat;damage;weapon_skill,8,If tWeaponDmg.nRoundTotal < val(txtWeaponExtras(1).Text) Then GoTo skip:
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,26043,attack_hit;critical_backstab,8,If nAttackTypeMUD = a4_Surprise Or (bMaximumEffort And bDoBackstab) Then 'add punch
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,30067,attack_hit;combat,8,If nGlobalAttackHealRounds < 1 Then nGlobalAttackHealRounds = 1
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,30068,attack_hit;combat,8,If nGlobalAttackHealRounds > 50 Then nGlobalAttackHealRounds = 50
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,37195,attack_hit;combat,8,If nStat > 0 Then frmMonsterAttackSim.txtUserDR = Round(nStat)
+mmud_explorer,MMUD-Explorer-master/frmMain.frm,38782,attack_hit;critical_backstab;weapon_skill,8,"Call WriteINI(sSectionName, ""nGlobalAttackBackstabWeapon"", nGlobalAttackBackstabWeapon, sFile)"
+mmud_explorer,MMUD-Explorer-master/frmMonsterAttackSim.frm,1868,combat;damage,8,"lblResultsAvgDmg.Caption = ""AVG Dmg/Rnd: "" & Round(clsMonAtkSimThisForm.nTotalDamage / clsMonAtkSimThisForm.nNumberOfRounds, 1)"
+mmud_explorer,MMUD-Explorer-master/frmMonsterAttackSim.frm,1869,combat;damage,8,"lblResultsMaxRound.Caption = ""Max/Seen: "" & clsMonAtkSimThisForm.GetMaxDamage & ""/"" & clsMonAtkSimThisForm.nMaxRoundDamage"
+mmud_explorer,MMUD-Explorer-master/frmMonsterAttackSim.frm,1870,combat;damage,8,"lblResultsAttBreakdown.Caption = ""(Physical/Spell: "" & Round(clsMonAtkSimThisForm.nAverageDamagePhys) & ""/"" & Round(clsMonAtkSimThisForm.nAverageDamageSpell) & "")"""
+mmud_explorer,MMUD-Explorer-master/frmPasteChar.frm,2569,attack_hit;critical_backstab,8,"Case ""bs"", ""backstab"": nAttackTypeMUD = a4_Surprise"
+mmud_explorer,MMUD-Explorer-master/frmPasteChar.frm,2583,attack_hit;death_xp;weapon_skill,8,Or (nAttackTypeMUD = a2_Kick And tCharacter(iChar).nMAPlusSkill(2) = 0) _
+mmud_explorer,MMUD-Explorer-master/frmPasteChar.frm,2584,attack_hit;death_xp;weapon_skill,8,Or (nAttackTypeMUD = a3_Jumpkick And tCharacter(iChar).nMAPlusSkill(3) = 0) Then
+mmud_explorer,MMUD-Explorer-master/frmPasteChar.frm,2613,attack_hit;critical_backstab,8,"If nAttackTypeMUD = a4_Surprise Or nAttackTypeMUD = a7_Smash Then 'backstab, smash"
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,876,attack_hit;combat;damage,8,Begin VB.Label lblAttackDMGPerRound
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,1445,attack_hit;critical_backstab,8,"Public Sub SetupChooseAttack(Optional ByVal nGotoBackstab As Long, Optional ByVal nGotoSpell As Long)"
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2083,critical_backstab;damage;weapon_skill,8,"Dim nLocalBackstabDamage As Currency, nBackstabWeapon As Long, nDur As Long"
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2260,attack_hit;critical_backstab,8,If nLocalAttackType > 0 And chkBackstab.Value = 1 Then
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2281,attack_hit;damage,8,If nLocalAttackDamage < 0 Then nLocalAttackDamage = 0
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2282,attack_hit;damage,8,If nLocalAttackDamage > 999999 Then nLocalAttackDamage = 999999
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2283,critical_backstab;damage,8,If nLocalBackstabDamage < 0 Then nLocalBackstabDamage = 0
+mmud_explorer,MMUD-Explorer-master/frmPopUpOptions.frm,2284,critical_backstab;damage,8,If nLocalBackstabDamage > 999999 Then nLocalBackstabDamage = 999999
+mmud_explorer,MMUD-Explorer-master/frmSettings.frm,614,attack_hit;combat;damage,8,"& ""Model C adds more input variables, such as first round damage and min round damage, to provide more accuracy over just using an average."" & vbCrLf & vbCrLf _"
+mmud_explorer,MMUD-Explorer-master/frmSettings.frm,616,attack_hit;damage;death_xp,8,"& ""No Recovery: average all chosen models for movement and kill time, based on chosen attack (damage out), but provide just the standard filter for incoming damage.  e.g. No recovery time will be accounted for."" & vbCrLf & vbCrLf _"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,111,combat;damage;death_xp,8,OverkillFrac        As Double   'Fraction of damage wasted on final round
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,419,combat;damage;death_xp,8,c.OverkillFrac = spill / lastRoundDmg
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,632,attack_hit;combat;damage,8,hpDrainAttack = effDmgAfterThreshold * combat.RTC_Lair
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,854,combat;damage;death_xp,8,"Optional ByVal nCharFirstRoundDMG As Double = 0#, Optional ByVal nMinRoundDMG As Double = 0#) As tExpPerHourInfo"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1151,combat;damage;death_xp,8,' final killing round / damage dealt that round. Derived directly from
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1214,combat;damage;death_xp,8,"Optional ByVal nCharFirstRoundDMG As Double = 0#, Optional ByVal nMinRoundDMG As Double = 0#) As tExpPerHourInfo"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1516,combat;damage;death_xp,8,"tRet.nOverkill = cephD_OverkillFrac(perMobHP, nCharDMG, nCharFirstRoundDMG)"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1568,combat;damage,8,"'nDamageThreshold = Damage the player can withstand per round.  Meaning, if a value of 10 was specified, then the player should be able to sustain up to 10 damage per round without every needing to rest."
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1759,attack_hit;combat,8,"If tRet.nAttackTime > 0 And tRet.nAttackTime < 1 Then tRet.sRTCText = Round(tRet.nAttackTime * 100) & ""% time spent attacking"" & sAttackAll"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,1771,attack_hit;critical_backstab,8,"If bSurpriseLess Then tRet.sRTCText = AutoAppend(tRet.sRTCText, ""[backstab is worse than attack]"", "" "")"
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,2176,attack_hit;combat;death_xp,8,'       Attack time (rounds-to-kill across all mobs in a pull/room)
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,3017,combat;damage,8,If bHPFullySustained = False And roundsHitpoints <= 0# And nMobDmgUse > 0# And nTotalLairs > 0 Then
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,3529,attack_hit;combat;death_xp,8,'       Attack time from effective rounds-to-kill (effRTK) with overkill time
+mmud_explorer,MMUD-Explorer-master/modExpPerHour.bas,4658,attack_hit;critical_backstab,8,If bBackstabLess Then r.nAttackTime = r.nAttackTime * -1
+mmud_explorer,MMUD-Explorer-master/modMMudDatabase.bas,587,armor_defense;combat;damage,8,"Dim nDmgOut As tDamageOutput, nFirstRoundDamageOut As Long, DF_Flags As eDefenseFlags"
+mmud_explorer,MMUD-Explorer-master/modMMudDatabase.bas,713,combat;damage,8,If nFirstRoundDamageOut <= -9990 Then nFirstRoundDamageOut = 0
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,173,combat;damage,8,"If nMobDamage > 0 And nCharHealth > 0 Then CalcCombatRounds.nRTD = Round(nCharHealth / nMobDamage, 1)  'was (nMobDamage / nNumMobs) 2025.08.18"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,204,combat;damage,8,If CalcCombatRounds.nRTK = 1 And nFirstRoundDamageOut >= 0 And nFirstRoundDamageOut < nDamageOut And nFirstRoundDamageOut < nMobHP Then
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,267,combat;damage,8,ElseIf (CalcCombatRounds.nRTD = 0 Or CalcCombatRounds.nRTD >= 200) And nMobDamage >= 0 And nCharHealth > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1032,combat;damage,8,"If CalculateSpellCast.nDamageResisted <> 0 Then sAvgRound = sAvgRound & "" after "" & CalculateSpellCast.nDamageResisted & ""% damage resisted"""
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1039,combat;damage,8,"If CalculateSpellCast.nDamageResisted <> 0 Then sAvgRound = sAvgRound & "", "" & CalculateSpellCast.nDamageResisted & ""% damage resisted"""
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1175,armor_defense;attack_hit;damage,8,Optional ByVal nBSdefense As Long) As tAttackDamage
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1186,armor_defense;attack_hit;damage,8,"Dim tStatIndex As tAbilityToStatSlot, tRet As tAttackDamage, nDefense() As Long, sSpellAbil As String ', accTemp As Long"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1214,attack_hit;weapon_skill,8,If nWeaponNumber = 0 And nAttackTypeMUD > a5_Normal Then Exit Function 'bash/smash
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1394,attack_hit;damage,8,"Case 34: If nAttackTypeMUD = a1_Punch Then nMAPlusDmg(1) = nMAPlusDmg(1) + tabItems.Fields(""AbilVal-"" & x) 'pu"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1397,attack_hit;damage,8,"Case 35: If nAttackTypeMUD = a2_Kick Then nMAPlusDmg(2) = nMAPlusDmg(2) + tabItems.Fields(""AbilVal-"" & x) 'kick"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1400,attack_hit;damage,8,"Case 36: If nAttackTypeMUD = a3_Jumpkick Then nMAPlusDmg(3) = nMAPlusDmg(3) + tabItems.Fields(""AbilVal-"" & x) 'jk"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1539,damage;death_xp;weapon_skill,8,"If nDmgMin < 0 Then nDmgMin = nDmgMin + 7 'it's in the dll... not sure why as this would only happen is skill was < 0, but just in case."
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1545,damage;death_xp;weapon_skill,8,"If nDmgMax < 0 Then nDmgMax = nDmgMax + 3 'it's in the dll... not sure why as this would only happen is skill was < 0, but just in case."
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1562,attack_hit;critical_backstab,8,"If nAttackTypeMUD = a4_Surprise Or nAttackTypeMUD = a7_Smash Then 'backstab, smash"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,1566,attack_hit;combat;weapon_skill,8,"nEnergy = CalcEnergyUsed(nCombat, nLevel, nAttackSpeed, nAgility, nStrength, nEncumPCT, nStrReq, nSpeedAdj, IIf(nAttackTypeMUD = a4_Surprise, True, False))"
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,4674,attack_hit;combat;weapon_skill,8,'CalcEnergyUsed = Fix((nAttackSpeed * 1000) / Fix(((((nLevel * (nCombat + 2)) + 45) * (nAGL + 150)) * 1500) / 9000))
+mmud_explorer,MMUD-Explorer-master/modMMudFunc.bas,4677,attack_hit;combat;weapon_skill,8,CalcEnergyUsed = Fix((nAttackSpeed * 1000) / Fix((((nLevel * (nCombat + 2)) + 45) * (nAGL + 150)) / 6))
+mmud_explorer,MMUD-Explorer-master/modMain.bas,135,attack_hit;critical_backstab;weapon_skill,8,Global nGlobalAttackBackstabWeapon As Long
+mmud_explorer,MMUD-Explorer-master/modMain.bas,510,attack_hit;combat,8,If nGlobalAttackHealRounds < 1 Then nGlobalAttackHealRounds = 1
+mmud_explorer,MMUD-Explorer-master/modMain.bas,511,attack_hit;combat,8,If nGlobalAttackHealRounds > 50 Then nGlobalAttackHealRounds = 50
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1741,combat;damage,8,"If tabItems.Fields(""DamageResist"") <> 0 Then sStr = AutoAppend(sStr, ""DR: "" & IIf(tabItems.Fields(""DamageResist"") > 0, ""+"", """") & Round(tabItems.Fields(""DamageResist"") / 10, 1))"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,1784,attack_hit;damage;weapon_skill,8,tWeaponDmg = CalculateAttack( _
+mmud_explorer,MMUD-Explorer-master/modMain.bas,2122,critical_backstab;damage;weapon_skill,8,"Dim nDmgOut As tDamageOutput, nSpeedAdj As Integer, sBackstabText As String, nOverrideRTK As Double, sImmuTXT As String"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,2883,attack_hit;damage,8,If bMobPrintCharDamageOutFirst And nNMRVer >= 1.83 And frmMain.optMonsterFilter(1).Value = True Then GoTo done_attacks:
+mmud_explorer,MMUD-Explorer-master/modMain.bas,2965,attack_hit;critical_backstab,8,If nGlobalAttackTypeMME > a0_oneshot And bGlobalAttackBackstab = True Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,2979,critical_backstab;weapon_skill,8,If tCharProfile.nHitMagicNonWeapon > nBackstabWeaponMagic Then nBackstabWeaponMagic = tCharProfile.nHitMagicNonWeapon
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3110,attack_hit;critical_backstab;weapon_skill,8,'                And nGlobalAttackTypeMME > a0_oneshot And nBackstabWeaponMagic < nCalcMagicLVL Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3135,attack_hit;critical_backstab,8,If tCharProfile.nParty = 1 And nGlobalAttackTypeMME > a0_oneshot And bGlobalAttackBackstab Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3149,critical_backstab;damage,8,nSurpriseDamageOut = tBackStab.nAvgHit + tBackStab.nAvgExtraHit
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3494,combat;damage;death_xp,8,"nExpDmgHP = Round(nExp / ((nAvgDmg * 2) + tabMonsters.Fields(""HP"")), 2) * 100"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3541,combat;damage;death_xp,8,"nExpDmgHP = Round(nExp / (((nAvgDmg * 2) + tabMonsters.Fields(""HP"")) * nPossyPCT), 2) * 100"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3752,attack_hit;critical_backstab,8,If nGlobalAttackTypeMME > a0_oneshot And bGlobalAttackBackstab = True Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,3868,attack_hit;damage,8,If bMobPrintCharDamageOutFirst And nNMRVer >= 1.83 And frmMain.optMonsterFilter(1).Value = True Then GoTo mob_attacks:
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4708,attack_hit;damage;weapon_skill,8,tWeaponDmg = CalculateAttack( _
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4724,attack_hit;damage;weapon_skill,8,If tWeaponDmg.nAttackSpeed > 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4732,armor_defense;combat;damage,8,"oLI.ListSubItems.Add (9), ""AC"", IIf(nNumber > 0, RoundUp(tabItems.Fields(""ArmourClass"") / 10) & ""/"" & (tabItems.Fields(""DamageResist"") / 10), ""0/0"")"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4773,attack_hit;critical_backstab,8,If nAttackTypeMUD = 4 Then 'backstab
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4780,combat;damage;weapon_skill,8,"oLI.ListSubItems.Add (19), ""Dmg/1st"", tWeaponDmg.nFirstRoundDamage"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4897,attack_hit;damage,8,If sCharDamageVsMonsterConfig = sGlobalAttackConfig Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4898,combat;damage,8,If nCharDamageVsMonster(nSingleMonster) >= 0 And nCharFirstRoundDamageVsMonster(nSingleMonster) >= 0 Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4956,attack_hit;critical_backstab,8,If nParty = 1 And nGlobalAttackTypeMME > a0_oneshot And bGlobalAttackBackstab = True Then
+mmud_explorer,MMUD-Explorer-master/modMain.bas,4979,critical_backstab;weapon_skill,8,If tCharacter.nHitMagicNonWeapon > nBackstabWeaponMagic Then nBackstabWeaponMagic = tCharacter.nHitMagicNonWeapon
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5005,critical_backstab;damage,8,nSurpriseDamageChance = tBackStab.nHitChance
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5638,combat;damage;death_xp,8,nRoundsToKill = nMobHP / nCharDMG
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5652,combat;damage;death_xp,8,nRoundsToKill = nMobHP / nEffDmg
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5672,combat;damage;death_xp,8,nRoundsToDeath = nCharTotalHP / nMobDmg
+mmud_explorer,MMUD-Explorer-master/modMain.bas,5958,combat;damage;weapon_skill,8,"0, tChar.nWalkSpeed, nSurpriseDamageOut, nSurpriseMinDMG, nSurpriseChance, nFirstRoundDMG, nMinRoundDMG)"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,6004,combat;damage;death_xp,8,"nExpDmgHP = Round(nExp / ((nAvgDmg * 2) + nHP), 2) * 100"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,6052,combat;damage;death_xp,8,"nExpDmgHP = Round(nExp / (((nAvgDmg * 2) + nHP) * nPossyPCT), 2) * 100"
+mmud_explorer,MMUD-Explorer-master/modMain.bas,8637,attack_hit;combat,8,"'If nGlobalAttackHealRounds > 1 And nGlobalAttackTypeMME <> a3_SpellAny And nGlobalAttackHealType <> 3 Then GetCurrentAttackName = GetCurrentAttackName & ""/"" & nGlobalAttackHealRounds & ""r"""
+repo,Librarium/BehaviorTimelines/subsystem_behavior_timelines_0078.json,31,attack_hit;combat;weapon_skill,8,"""Exact attack round timing, weapon speed integration, and output flush order remain unknown."""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,28,combat;damage,8,"""text"": ""nMR_Reduction = Round(CalcResistedDamage(nHitSpellDamage, m_nUserMR, m_nUserAntiMagic))"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,35,attack_hit;damage,8,"""text"": ""m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nHitSpellDamage - nMR_Reduction)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,42,combat;damage,8,"""text"": ""nHitSpellDamage = Round(nHitSpellDamage - nResist_Reduction)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,49,attack_hit;damage,8,"""text"": ""m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nHitSpellDamage"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,56,attack_hit;damage,8,"""text"": ""m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nHitSpellDamage"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,124,combat;damage,8,"""text"": ""txtStatAvgRound(x).Text = Round(clsMonAtkSimThisForm.nStatAtkTotalDamage(x) / clsMonAtkSimThisForm.nStatAtkHits(x))"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,145,combat;damage,8,"""text"": ""If CalculateSpellCast.nDamageResisted <> 0 Then sAvgRound = sAvgRound & \"" after \"" & CalculateSpellCast.nDamageResisted & \""% damage resisted\"""""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,152,combat;damage,8,"""text"": ""If CalculateSpellCast.nDamageResisted <> 0 Then sAvgRound = sAvgRound & \"", \"" & CalculateSpellCast.nDamageResisted & \""% damage resisted\"""""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,159,critical_backstab;damage,8,"""text"": ""nSurpriseDamageOut = tBackStab.nAvgHit + tBackStab.nAvgExtraHit"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,180,attack_hit;damage;weapon_skill,8,"""text"": ""-FIX: Martial arts attacks on weapon tab not sorting damage properly"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071.json,384,combat;damage,8,"""text"": ""If m_nBetweenRoundDuration(x) > 2 Then GetMaxDamage = GetMaxDamage + m_nBetweenRoundMax(x)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,69,combat;damage,8,"""text"": ""nMR_Reduction = Round(CalcResistedDamage(nHitSpellDamage, m_nUserMR, m_nUserAntiMagic))"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,76,attack_hit;damage,8,"""text"": ""m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nHitSpellDamage - nMR_Reduction)"""
+repo,Librarium/FormulaBehavior/formula_behavior_index_0071_0076.json,83,combat;damage,8,"""text"": ""nHitSpellDamage = Round(nHitSpellDamage - nResist_Reduction)"""

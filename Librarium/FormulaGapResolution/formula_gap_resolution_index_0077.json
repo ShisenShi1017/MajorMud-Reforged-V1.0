@@ -1,0 +1,716 @@
+{
+  "summary": {
+    "codeupdate": "0077",
+    "title": "Multi-System Gap Resolution",
+    "generated_utc": "2026-07-08T20:23:37.784251+00:00",
+    "baseline": "CodeUpdate-0071-0076 combined behavior verification",
+    "tracks": 5,
+    "prioritized_candidate_references": 400,
+    "verified_promotions": 0,
+    "runtime_formula_replacements": 0,
+    "status": "PASS_WITH_LIMITATIONS"
+  },
+  "records": [
+    {
+      "resolution_id": "0077-COMBAT-HIT-DAMAGE",
+      "title": "Combat hit and damage math",
+      "subsystem": "combat",
+      "linked_behavior_ids": [
+        "FB0071-HIT_RESOLUTION_ORDER",
+        "FB0071-DAMAGE_RANGE_AND_ROUNDING",
+        "FB0071-ARMOR_OR_RESIST_MITIGATION",
+        "FB0071-WEAPON_SPEED_TICK_INTERACTION"
+      ],
+      "candidate_pool_count": 1032,
+      "prioritized_candidate_count": 80,
+      "source_counts": {
+        "MMUD Explorer": 986,
+        "MBBSEmu": 46
+      },
+      "subsystem_counts": {
+        "combat": 860,
+        "stats": 299,
+        "spell_skill": 298,
+        "regen": 161,
+        "spawn": 39,
+        "xp": 138,
+        "loot": 2,
+        "unclassified": 24
+      },
+      "representative_candidates": [
+        {
+          "candidate_id": "FR0068-9bc7b63e7529",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 19,
+          "text": "-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-eb7b577fa3b8",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 792,
+          "text": "nHitSpellDamage = Round(Me.RandomNumber(m_nAtkHitSpellMin(nAttack), m_nAtkHitSpellMax(nAttack)))",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-fc5daf775313",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 796,
+          "text": "nMR_Reduction = Round(CalcResistedDamage(nHitSpellDamage, m_nUserMR, m_nUserAntiMagic))",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-edc5ada47410",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 815,
+          "text": "nHitSpellDamage = Round(nHitSpellDamage - nResist_Reduction)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-6563a276fa07",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 868,
+          "text": "nRoundDamage = nRoundDamage + nDamage + nHitSpellDamage",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-f9181d2141f7",
+          "source": "MMUD Explorer",
+          "path": "clsMonsterAttackSim.cls",
+          "line": 896,
+          "text": "Call AddToCombatLog(\" -\" & sHitSpellName & \" \" & IIf(bResisted, \"(resist)\", \"for \" & Round(nHitSpellDamage)))",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-989fd892623d",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 17,
+          "text": "-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-6a630100a7e7",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 23151,
+          "text": "& vbCrLf & \"Party physical damage per round = ((phys_damage * party_size) - (defense_DR * swings)) - [defenses from ac+accuracy+dodge]\" _",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-c11a72723fb0",
+          "source": "MMUD Explorer",
+          "path": "frmMonsterAttackSim.frm",
+          "line": 1878,
+          "text": "txtStatAvgRound(x).Text = Round(clsMonAtkSimThisForm.nStatAtkTotalDamage(x) / clsMonAtkSimThisForm.nStatAtkHits(x))",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-3cda967cce3b",
+          "source": "MMUD Explorer",
+          "path": "frmMonsterAttackSim.frm",
+          "line": 1903,
+          "text": "'txtStatResistDodge(x).Text = Round(clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x) / (clsMonAtkSimThisForm.nStatAtkHits(x) + clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x)), 3) * 100",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-a5dfde16439c",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 3282,
+          "text": "'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \"/round (manual)\", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-67fa3c3cae28",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5142,
+          "text": "'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nFirstRoundDamage = nFirstRoundDamage + tAttack.nAvgExtraHit",
+          "evidence_state": "Derived"
+        }
+      ],
+      "behavior_resolution": {
+        "status": "partial_behavior_shape_only",
+        "finding": "Candidate evidence clusters the behavior area and identifies likely inputs/consumers, but does not prove exact Classic equation, RNG bounds, ordering, rounding, or timing.",
+        "verified_promotion": "no",
+        "runtime_formula_replacement": "no"
+      },
+      "evidence_requirements_to_promote": [
+        "corroborating Classic/reference/runtime observation or simulator trace",
+        "exact equation or ordered decision table",
+        "RNG inclusive/exclusive bounds where random is involved",
+        "integer rounding direction and clamp/min/max behavior",
+        "edge cases for zero/negative/overflow/boundary stats",
+        "runtime consumer tied back to a Librarium record"
+      ],
+      "created_by": "CodeUpdate-0077 Multi-System Gap Resolution",
+      "generated_utc": "2026-07-08T20:23:37.784251+00:00"
+    },
+    {
+      "resolution_id": "0077-BACKSTAB-CRIT-SPECIAL",
+      "title": "Backstab, critical, and special attack behavior",
+      "subsystem": "combat",
+      "linked_behavior_ids": [
+        "FB0071-BACKSTAB_OR_SPECIAL_ATTACK_MODIFIERS"
+      ],
+      "candidate_pool_count": 870,
+      "prioritized_candidate_count": 80,
+      "source_counts": {
+        "MMUD Explorer": 839,
+        "MBBSEmu": 31
+      },
+      "subsystem_counts": {
+        "combat": 860,
+        "stats": 258,
+        "spell_skill": 256,
+        "xp": 108,
+        "regen": 99,
+        "spawn": 21,
+        "loot": 2,
+        "unclassified": 3
+      },
+      "representative_candidates": [
+        {
+          "candidate_id": "FR0068-840341edc7ef",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 78,
+          "text": "-FIX: Surprise punch showing on weapon tab when hitmagic filter applied and filter criteria not met",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-45c21e39c8fb",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 187,
+          "text": "-NEW: Critical Hit Chance formula discovered and now calculated automatically",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-292843b686ff",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 93,
+          "text": "-NEW: Critical Hit Chance formula discovered and now calculated automatically",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-e8cfce60c263",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 75,
+          "text": "-FIX: Surprise punch showing on weapon tab when hitmagic filter applied and filter criteria not met",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-9700688848b6",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 175,
+          "text": "-NEW: Critical Hit Chance formula discovered and now calculated automatically",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-491beeca09e7",
+          "source": "MMUD Explorer",
+          "path": "frmPasteChar.frm",
+          "line": 2569,
+          "text": "Case \"bs\", \"backstab\": nAttackTypeMUD = a4_Surprise",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-5298a38040a8",
+          "source": "MMUD Explorer",
+          "path": "frmPasteChar.frm",
+          "line": 2613,
+          "text": "If nAttackTypeMUD = a4_Surprise Or nAttackTypeMUD = a7_Smash Then 'backstab, smash",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-4a578e36fdbe",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 212,
+          "text": "'   - Includes first-round damage, surprise/backstab, and min-damage tails.",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-a237637ed9c2",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 374,
+          "text": "RTK_first = pBackstab * RTK_surpriseHit + (1# - pBackstab) * RTK_surpriseMiss",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-f3c70461a184",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1771,
+          "text": "If bSurpriseLess Then tRet.sRTCText = AutoAppend(tRet.sRTCText, \"[backstab is worse than attack]\", \" \")",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-b9043c38f531",
+          "source": "MMUD Explorer",
+          "path": "modMMudFunc.bas",
+          "line": 1562,
+          "text": "If nAttackTypeMUD = a4_Surprise Or nAttackTypeMUD = a7_Smash Then 'backstab, smash",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-2055999cdc54",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 3086,
+          "text": "If nSurpriseDamageOut > 0 Then sBackstabText = \" + \" & CStr(nSurpriseDamageOut) & \" surprise round\"",
+          "evidence_state": "Derived"
+        }
+      ],
+      "behavior_resolution": {
+        "status": "partial_behavior_shape_only",
+        "finding": "Candidate evidence clusters the behavior area and identifies likely inputs/consumers, but does not prove exact Classic equation, RNG bounds, ordering, rounding, or timing.",
+        "verified_promotion": "no",
+        "runtime_formula_replacement": "no"
+      },
+      "evidence_requirements_to_promote": [
+        "corroborating Classic/reference/runtime observation or simulator trace",
+        "exact equation or ordered decision table",
+        "RNG inclusive/exclusive bounds where random is involved",
+        "integer rounding direction and clamp/min/max behavior",
+        "edge cases for zero/negative/overflow/boundary stats",
+        "runtime consumer tied back to a Librarium record"
+      ],
+      "created_by": "CodeUpdate-0077 Multi-System Gap Resolution",
+      "generated_utc": "2026-07-08T20:23:37.784251+00:00"
+    },
+    {
+      "resolution_id": "0077-XP-LEVEL",
+      "title": "Experience and level progression",
+      "subsystem": "xp",
+      "linked_behavior_ids": [
+        "FB0072-EXPERIENCE_AWARD_SOURCE",
+        "FB0072-PARTY_XP_DISTRIBUTION",
+        "FB0072-LEVEL_THRESHOLD_CHECK",
+        "FB0072-DEATH_OR_PENALTY_APPLICATION"
+      ],
+      "candidate_pool_count": 556,
+      "prioritized_candidate_count": 80,
+      "source_counts": {
+        "MMUD Explorer": 415,
+        "MBBSEmu": 141
+      },
+      "subsystem_counts": {
+        "combat": 200,
+        "xp": 403,
+        "stats": 149,
+        "regen": 112,
+        "spell_skill": 90,
+        "spawn": 25,
+        "loot": 5,
+        "unclassified": 9
+      },
+      "representative_candidates": [
+        {
+          "candidate_id": "FR0068-7f847055594f",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 35136,
+          "text": "sClipBoardText = sClipBoardText & \"Experience:\" & (CalcExpNeededByRaceClass(nLevel, nClass, nRace) + 1) & vbCrLf",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-e36d3a5984ac",
+          "source": "MBBSEmu",
+          "path": "CLAUDE.md",
+          "line": 98,
+          "text": "- `AllowUnsafeBlocks` is enabled \u2014 unsafe code is expected for low-level memory/CPU emulation.",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-b7429a203ffe",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu.Tests/ExportedModules/Majorbbs/prf_Tests.cs",
+          "line": 26,
+          "text": "[InlineData(\"Level: %-5d\", \"Level: 3    \", (ushort)3)]",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-29be92480931",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu.Tests/ExportedModules/Majorbbs/prf_Tests.cs",
+          "line": 28,
+          "text": "[InlineData(\"Level: %-5.5d\", \"Level: 00003\", (ushort)3)]",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-aaab8da91626",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+          "line": 26,
+          "text": "[InlineData(\"Level: %-5d\", \"Level: 3    \", (ushort)3)]",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-1ceecb2bda20",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+          "line": 28,
+          "text": "[InlineData(\"Level: %-5.5d\", \"Level: 00003\", (ushort)3)]",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-bf09905d6853",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/CLAUDE.md",
+          "line": 9,
+          "text": "The project uses `AllowUnsafeBlocks` and `LangVersion=latest`. Unsafe code is expected and normal for low-level memory and CPU emulation.",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-7d03811a87eb",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/CPU/CLAUDE.md",
+          "line": 15,
+          "text": "| `RegistersStructs.cs` | 558 | Low-level register storage: `CpuRegistersStruct` (explicit layout struct) + `FpuRegistersStruct` |",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-1d9146b488c7",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+          "line": 259,
+          "text": "- `gforac` \u2014 get forum access level (stub)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-decccdfafd3b",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+          "line": 851,
+          "text": "///     the specified ANSI Support Level.",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-27cb2f3d00dd",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/HostProcess/ExportedModules/Galme.cs",
+          "line": 111,
+          "text": "///     Returns standard access level code",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-52831aa3f9e9",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+          "line": 5889,
+          "text": "///     'Profanity Level' of the Input (from configuration)",
+          "evidence_state": "Derived"
+        }
+      ],
+      "behavior_resolution": {
+        "status": "partial_behavior_shape_only",
+        "finding": "Candidate evidence clusters the behavior area and identifies likely inputs/consumers, but does not prove exact Classic equation, RNG bounds, ordering, rounding, or timing.",
+        "verified_promotion": "no",
+        "runtime_formula_replacement": "no"
+      },
+      "evidence_requirements_to_promote": [
+        "corroborating Classic/reference/runtime observation or simulator trace",
+        "exact equation or ordered decision table",
+        "RNG inclusive/exclusive bounds where random is involved",
+        "integer rounding direction and clamp/min/max behavior",
+        "edge cases for zero/negative/overflow/boundary stats",
+        "runtime consumer tied back to a Librarium record"
+      ],
+      "created_by": "CodeUpdate-0077 Multi-System Gap Resolution",
+      "generated_utc": "2026-07-08T20:23:37.784251+00:00"
+    },
+    {
+      "resolution_id": "0077-REGEN-TICKS",
+      "title": "Regeneration and tick timing",
+      "subsystem": "regen",
+      "linked_behavior_ids": [
+        "FB0073-PERIODIC_TICK_CADENCE",
+        "FB0073-HP_MANA_MOVE_REGENERATION",
+        "FB0073-DURATION_EXPIRATION",
+        "FB0073-ONGOING_EFFECT_TICK_ORDER"
+      ],
+      "candidate_pool_count": 572,
+      "prioritized_candidate_count": 80,
+      "source_counts": {
+        "MMUD Explorer": 548,
+        "MBBSEmu": 24
+      },
+      "subsystem_counts": {
+        "regen": 248,
+        "spawn": 47,
+        "stats": 160,
+        "combat": 316,
+        "spell_skill": 144,
+        "xp": 83,
+        "unclassified": 26
+      },
+      "representative_candidates": [
+        {
+          "candidate_id": "FR0068-dff7910ab287",
+          "source": "MMUD Explorer",
+          "path": "docs/exp-per-hour-models.md",
+          "line": 15,
+          "text": "| D (`ceph_ModelD`) | **Round-by-round simulation** in real game ticks. Uses the **canonical `nRTK`** (from `CalcCombatRounds` via `GetLairInfo`, same input A/B use), then simulates HP/MP drain + recovery + movement. | **Recommended.** Opt-in, off by default. |",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-bf1d4e4033ca",
+          "source": "MMUD Explorer",
+          "path": "docs/exp-per-hour-models.md",
+          "line": 52,
+          "text": "- Tick constants: round 5s, rest 20s, regen 30s, meditate 10s. Mob HP-regen",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-97c942bd66dc",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 292,
+          "text": "'Per-mob HP regen per tick and per round",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-29ea5a5a1d1a",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 297,
+          "text": "regenPerRound = perMobRegenTick * (SEC_PER_ROUND / (GMUD_MOB_HPREGEN_ROUNDS * SEC_PER_ROUND))",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-d8097b258bfe",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 299,
+          "text": "regenPerRound = perMobRegenTick * (SEC_PER_ROUND / (STOCK_MOB_HPREGEN_ROUNDS * SEC_PER_ROUND))",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-ef0aafc703f7",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1567,
+          "text": "'nMobHPRegen = ROOM/LAIR hitpoint regeneration rate (every [constant:SEC_PER_REGEN_TICK] seconds) ... ((nMobHPRegen / nNumMobs) == per mob regen)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-a1a3fb7bd287",
+          "source": "MMUD Explorer",
+          "path": "modMMudFunc.bas",
+          "line": 1004,
+          "text": "CalculateSpellCast.nOOM = CalcRoundsToOOM(CalculateSpellCast.nManaCost + tCharStats.nSpellOverhead, tCharStats.nMaxMana, tCharStats.nManaRegen, nCastChance, nSpellDuration)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-cf968d500725",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/CLAUDE.md",
+          "line": 276,
+          "text": "Custom DI wrapper around `Microsoft.Extensions.DependencyInjection`. Registers singletons for nearly everything (MbbsHost, LogFactory, AppSettingsManager, repositories, clock, etc.) and transients for per-request items (FsdUtility, SocketServer). Supports constructor overrides for testing.",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-883f721d992e",
+          "source": "MMUD Explorer",
+          "path": "CLAUDE.md",
+          "line": 73,
+          "text": "GreaterMUD/Paramud branch and which data-version threshold gates it. Two recovery facts that affect any regen/rest formula: `nCharHPRegen` is handled in *resting-rate* form (already x3, so passive HP = HPRegen/3 per 30s, rest = HPRegen per 20s), and a character can rest (HP) **or** meditate (MP) but never both and never in combat (passive always ticks).",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-ff0ecebee9f0",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 81,
+          "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-5f98a05bcc3c",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 7,
+          "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-b55bcc8e4e3f",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 78,
+          "text": "-FIX: Blesses now calculated based on 3-second round ticks instead of 5 (effects total damage/heals and OOM calculations)",
+          "evidence_state": "Derived"
+        }
+      ],
+      "behavior_resolution": {
+        "status": "partial_behavior_shape_only",
+        "finding": "Candidate evidence clusters the behavior area and identifies likely inputs/consumers, but does not prove exact Classic equation, RNG bounds, ordering, rounding, or timing.",
+        "verified_promotion": "no",
+        "runtime_formula_replacement": "no"
+      },
+      "evidence_requirements_to_promote": [
+        "corroborating Classic/reference/runtime observation or simulator trace",
+        "exact equation or ordered decision table",
+        "RNG inclusive/exclusive bounds where random is involved",
+        "integer rounding direction and clamp/min/max behavior",
+        "edge cases for zero/negative/overflow/boundary stats",
+        "runtime consumer tied back to a Librarium record"
+      ],
+      "created_by": "CodeUpdate-0077 Multi-System Gap Resolution",
+      "generated_utc": "2026-07-08T20:23:37.784251+00:00"
+    },
+    {
+      "resolution_id": "0077-LOOT-SPAWN",
+      "title": "Loot and spawn timing",
+      "subsystem": "loot_spawn",
+      "linked_behavior_ids": [
+        "FB0074-SPAWN_PROBABILITY_MODEL",
+        "FB0074-RESPAWN_ATTEMPT_WINDOW",
+        "FB0074-LOOT_TABLE_SELECTION",
+        "FB0074-RARE_DROP_PROBABILITY",
+        "FB0074-GOLD_OR_ITEM_REWARD_GENERATION"
+      ],
+      "candidate_pool_count": 94,
+      "prioritized_candidate_count": 80,
+      "source_counts": {
+        "MMUD Explorer": 89,
+        "MBBSEmu": 5
+      },
+      "subsystem_counts": {
+        "loot": 10,
+        "spell_skill": 30,
+        "spawn": 53,
+        "combat": 50,
+        "xp": 15,
+        "regen": 25,
+        "stats": 53
+      },
+      "representative_candidates": [
+        {
+          "candidate_id": "FR0068-abe488a1f4f1",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 73,
+          "text": "-UP: NoFirstKillDrop ability will now show the item name in [GreaterMUD]",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-b4e144cfc068",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 155,
+          "text": "-UP: Added a filter option to the bless spell dropdowns",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-c3931ac375d5",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 273,
+          "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-a0ac56b8bcfc",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 403,
+          "text": "-UP: increased magic level dropdown on weapons from 6+ to 10+",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-14af49fa4bff",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 556,
+          "text": "-UP: expanded width of bless spell dropdown",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-516bbb4be714",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 63,
+          "text": "-UP: Added a filter option to the bless spell dropdowns",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-4d601fc3ace9",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 179,
+          "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-d2ccfd896605",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 310,
+          "text": "-UP: increased magic level dropdown on weapons from 6+ to 10+",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-94f79ad81225",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 463,
+          "text": "-UP: expanded width of bless spell dropdown",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-1b2f2f9f5eda",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 70,
+          "text": "-UP: NoFirstKillDrop ability will now show the item name in [GreaterMUD]",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-df523e05178d",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 145,
+          "text": "-UP: Added a filter option to the bless spell dropdowns",
+          "evidence_state": "Derived"
+        },
+        {
+          "candidate_id": "FR0068-7a874fe73825",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 261,
+          "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)",
+          "evidence_state": "Derived"
+        }
+      ],
+      "behavior_resolution": {
+        "status": "partial_behavior_shape_only",
+        "finding": "Candidate evidence clusters the behavior area and identifies likely inputs/consumers, but does not prove exact Classic equation, RNG bounds, ordering, rounding, or timing.",
+        "verified_promotion": "no",
+        "runtime_formula_replacement": "no"
+      },
+      "evidence_requirements_to_promote": [
+        "corroborating Classic/reference/runtime observation or simulator trace",
+        "exact equation or ordered decision table",
+        "RNG inclusive/exclusive bounds where random is involved",
+        "integer rounding direction and clamp/min/max behavior",
+        "edge cases for zero/negative/overflow/boundary stats",
+        "runtime consumer tied back to a Librarium record"
+      ],
+      "created_by": "CodeUpdate-0077 Multi-System Gap Resolution",
+      "generated_utc": "2026-07-08T20:23:37.784251+00:00"
+    }
+  ]
+}

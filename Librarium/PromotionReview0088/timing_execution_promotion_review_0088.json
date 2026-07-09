@@ -1,0 +1,112 @@
+{
+  "code_update": "0088",
+  "title": "Timing / Execution Verification Promotion Review",
+  "canonical_rule": "Librarium remains canonical. Runtime/generated data remain consumers and are not sources of independent game truth.",
+  "summary": {
+    "records_reviewed": 13,
+    "verified_promotions": 3,
+    "corroborated_promotions": 2,
+    "observed_retained": 3,
+    "not_promoted": 5,
+    "runtime_changed": false,
+    "formulas_promoted": 0,
+    "runtime_formulas_replaced": 0
+  },
+  "verified_promotions": [
+    {
+      "id": "timing.arch.major_mud_hosted_module",
+      "new_state": "Verified",
+      "scope_limit": "Architecture only: verifies MajorMUD is a host-managed MajorBBS/Worldgroup module. Does not verify gameplay cadence constants.",
+      "decision": "Promote",
+      "rationale": "The repository contains original WCC/WBB MajorMUD module artifacts and docs identifying MajorMUD as hosted under Worldgroup/MajorBBS; MBBSEmu exposes the corresponding module dispatch model.",
+      "evidence_chain": [
+        "ImportedDatabases/WCCDefaultInstall/wcc default/WCCMMUD.DOC identifies WCCMMUD as the Worldgroup/MajorMUD module documentation.",
+        "Librarium/HostCallGraph0084/host_module_call_graph_0084.json records STTROU/STSROU/BEGIN_POLLING host-module dispatch points.",
+        "Evidence/CodeUpdate0084_0087/wcc_wbb_binary_timing_symbol_hits_0085.json shows _ljngame_sttrou, _ljngame_stsrou, and _begin_polling symbols in imported module DLLs.",
+        "MBBSEmu HostProcess/MbbsHost.cs models host-managed module state dispatch, polling, RTKICK, RTIHDLR, and SYSCYC processing."
+      ]
+    },
+    {
+      "id": "timing.binary.wcc_wbb_timing_symbol_equivalence",
+      "new_state": "Verified",
+      "scope_limit": "Verifies symbol-level equivalence for the inspected WCC/WBB DLLs only; does not prove binary identity or cadence values.",
+      "decision": "Promote",
+      "rationale": "The imported WCC and WBB MajorMUD DLLs both expose the same timing-relevant symbol set in the repository scan.",
+      "evidence_chain": [
+        "Librarium/BinaryCorrelation0085/wcc_wbb_binary_correlation_0085.json records the shared symbol list.",
+        "Evidence/CodeUpdate0084_0087/wcc_wbb_binary_timing_symbol_hits_0085.json contains 234 timing/gameplay symbol hits across the inspected DLLs.",
+        "Reports/CodeUpdate0084_0087/CodeUpdate0084_0087_CallGraphBinaryMegaMUDEndToEndTiming_Report.md summarizes shared WCC/WBB timing symbols."
+      ]
+    },
+    {
+      "id": "timing.binary.major_mud_background_and_delay_symbols_present",
+      "new_state": "Verified",
+      "scope_limit": "Verifies presence of background, autocombat, delay, and cycle-related symbols in original imported DLLs; does not verify their exact cadence or ordering.",
+      "decision": "Promote",
+      "rationale": "Both imported DLLs expose MajorMUD-specific background buckets, autocombat routines, delay routines, and system-cycle symbols.",
+      "evidence_chain": [
+        "Librarium/BinaryCorrelation0085/wcc_wbb_binary_correlation_0085.json lists _background_fast, _background_medium, _background_slow, _background_energy, _background_inactivity, _do_autocombat, _restart_autocombat, _delay_done, _add_delay, _add_delayed_command, _syscyc, and _majormud_syscyc.",
+        "Evidence/CodeUpdate0084_0087/wcc_wbb_binary_timing_symbol_hits_0085.json records symbol hits in both WCC and WBB DLLs."
+      ]
+    }
+  ],
+  "corroborated_promotions": [
+    {
+      "id": "timing.model.host_driven_scheduling",
+      "new_state": "Corroborated",
+      "scope_limit": "Corroborated model: host-driven scheduling is the best supported execution model. Exact Classic order/cadence remains unverified.",
+      "decision": "Promote",
+      "rationale": "MBBSEmu provides readable host-loop behavior, and WCC/WBB binaries expose module callbacks and scheduler-facing symbols.",
+      "evidence_chain": [
+        "Librarium/EndToEndTimingModel0087/end_to_end_timing_model_0087.json steps 1-5.",
+        "Librarium/HostCallGraph0084/host_module_call_graph_0084.json host main processing loop order.",
+        "Evidence/CodeUpdate0083/timing_evidence_claims_0083.json: timing.host_rtkick_seconds, timing.host_rtihdlr_18hz, timing.gsbl_ticker_1s."
+      ]
+    },
+    {
+      "id": "timing.model.delayed_work_via_rtkick_api",
+      "new_state": "Corroborated",
+      "scope_limit": "Corroborates that MajorMUD interfaces with host delayed scheduling. Seconds semantics are observed in MBBSEmu; original DLL cadence values are still unresolved.",
+      "decision": "Promote",
+      "rationale": "RTKICK is implemented as host delayed scheduling in MBBSEmu and _rtkick/_my_rtkick are present in both imported MajorMUD DLLs.",
+      "evidence_chain": [
+        "Evidence/CodeUpdate0083/timing_evidence_claims_0083.json: timing.host_rtkick_seconds.",
+        "Librarium/HostCallGraph0084/host_module_call_graph_0084.json RTKICK node.",
+        "Librarium/BinaryCorrelation0085/wcc_wbb_binary_correlation_0085.json shared symbols _rtkick and _my_rtkick."
+      ]
+    }
+  ],
+  "not_promoted": [
+    {
+      "id": "timing.constant.combat_round_1500ms",
+      "current_state": "Candidate / needs provenance",
+      "reason": "The user-provided MegaMUD-style excerpt is relevant, but no original MegaMUD config/source file containing CommandDelay, CombatPulse, or TickSyncBuffer was found in the repository pass. MMUD Explorer also has ROUND_SECS=5 in its model, so the 1.5s claim cannot be promoted."
+    },
+    {
+      "id": "timing.constant.system_or_spell_tick_3000ms",
+      "current_state": "Derived / observed for one WCC global-message/page interval",
+      "reason": "WCC documentation supports a 3-second page/global-message window, but this does not prove HP/mana/spell/recovery tick cadence."
+    },
+    {
+      "id": "timing.behavior.tick_clipping",
+      "current_state": "Hypothesis",
+      "reason": "Tick clipping follows logically from a global decrement model, but no primary documentation or runtime trace proves the behavior."
+    },
+    {
+      "id": "timing.cadence.background_fast_medium_slow",
+      "current_state": "Observed symbols only",
+      "reason": "Symbols exist in WCC/WBB DLLs, but cadence constants and callers need disassembly/runtime trace evidence."
+    },
+    {
+      "id": "timing.order.output_flush_granularity",
+      "current_state": "Open gap",
+      "reason": "Host/session architecture implies output is host mediated, but exact original flushing granularity is not proven."
+    }
+  ],
+  "next_work": [
+    "Disassemble/cross-reference _majormud_syscyc and _background_* to recover cadence constants.",
+    "Cross-reference _do_autocombat/_restart_autocombat/_add_delay to determine combat scheduling values.",
+    "Locate original MegaMUD timing configuration/source provenance or remove the 1500ms claim from promotion candidates.",
+    "Use runtime traces to validate whether 3-second global-message interval also maps to regen/spell ticks."
+  ]
+}

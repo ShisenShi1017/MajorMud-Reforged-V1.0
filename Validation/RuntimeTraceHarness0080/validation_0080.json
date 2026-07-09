@@ -1,0 +1,27 @@
+{
+  "codeupdate": "0080",
+  "title": "Runtime Trace Probe Harness Validation",
+  "status": "PASS_WITH_LIMITATIONS",
+  "checks": [
+    {"id": "VAL-0080-001", "name": "Probe catalog created", "status": "PASS"},
+    {"id": "VAL-0080-002", "name": "Trace event schema created", "status": "PASS"},
+    {"id": "VAL-0080-003", "name": "Gap-to-probe mapping created", "status": "PASS"},
+    {"id": "VAL-0080-004", "name": "Trace runner script validates example NDJSON", "status": "PASS"},
+    {"id": "VAL-0080-005", "name": "Runtime probes executed against Classic/MBBSEmu runtime", "status": "NOT_EXECUTED"},
+    {"id": "VAL-0080-006", "name": "Formula promotions", "status": "NONE"},
+    {"id": "VAL-0080-007", "name": "Runtime formula replacements", "status": "NONE"}
+  ],
+  "summary": {
+    "probe_definitions": 5,
+    "mapped_host_lifecycle_gaps": 4,
+    "runner_scripts": 1,
+    "example_events": 2,
+    "formulas_promoted": 0,
+    "runtime_formulas_replaced": 0
+  },
+  "limitations": [
+    "Harness has not yet been run against a live/instrumented MajorMUD module path.",
+    "Trace data must be collected before evidence states can be promoted.",
+    "Classic MajorBBS cadence remains unverified."
+  ]
+}

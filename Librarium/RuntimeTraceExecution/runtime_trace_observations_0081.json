@@ -1,0 +1,80 @@
+{
+  "codeupdate": "0081",
+  "title": "Execute Trace Harness Against Available Evidence",
+  "baseline": "CodeUpdate-0080 RuntimeTraceProbeHarness",
+  "execution_mode": "static_source_trace_against_MBBSEmu_GitHub_source; no live Classic runtime or instrumented MBBSEmu process executed",
+  "canonical_rule": "Librarium remains canonical. MBBSEmu observations are evidence only.",
+  "observations": [
+    {
+      "probe_id": "TRACE-0080-001",
+      "name": "Scheduler Cadence Probe",
+      "status": "partially_observed_from_source",
+      "conclusion": "MBBSEmu uses a Timer.Hertz gate when idle; default Timer.Hertz resolves to 36 if unset/invalid. WaitForNextTick returns immediately when sessions have pending inbound/outbound/process data, so busy conditions are event-driven rather than purely fixed-frequency.",
+      "evidence": [
+        "MBBSEmu/HostProcess/MbbsHost.cs: _tickTimer uses TimeSpan.FromMilliseconds(1000 / configuration.TimerHertz)",
+        "MBBSEmu/AppSettingsManager.cs: Timer.Hertz default 36",
+        "MBBSEmu/HostProcess/MbbsHost.cs: WaitForNextTick returns if DataFromClient/DataToClient/DataToProcess is pending"
+      ],
+      "gap_status": "reduced_not_closed",
+      "promotion": "none"
+    },
+    {
+      "probe_id": "TRACE-0080-002",
+      "name": "Callback Registration Probe",
+      "status": "partially_observed_from_source",
+      "conclusion": "Host-visible callback surfaces are confirmed in MBBSEmu: STTROU, STSROU, BEGIN_POLLING, RTKICK, RTIHDLR, SYSCYC, INITASK. Which of these the original MajorMUD module registers still requires module-specific trace or binary evidence.",
+      "evidence": [
+        "MBBSEmu/HostProcess/ExportedModules/Ordinals.cs ordinals include BEGIN_POLLING, RTIHDLR, RTKICK, SYSCYC",
+        "MBBSEmu/HostProcess/MbbsHost.cs invokes STTROU/STSROU/polling/timed callbacks"
+      ],
+      "gap_status": "reduced_not_closed",
+      "promotion": "none"
+    },
+    {
+      "probe_id": "TRACE-0080-003",
+      "name": "Timed Callback Ordering Probe",
+      "status": "observed_from_source_for_MBBSEmu_order",
+      "conclusion": "In the MBBSEmu worker loop, per-session processing completes before timed/real-time events. After sessions are processed, host order is ProcessRTKICK, then ProcessRTIHDLR, then ProcessSYSCYC, then ProcessTasks. RTIHDLR itself is gated to roughly 55ms elapsed.",
+      "evidence": [
+        "MBBSEmu/HostProcess/MbbsHost.cs WorkerThread calls ProcessRTKICK(); ProcessRTIHDLR(); ProcessSYSCYC(); ProcessTasks(); in that order",
+        "MBBSEmu/HostProcess/MbbsHost.cs ProcessRTIHDLR returns if elapsed <= 55ms"
+      ],
+      "gap_status": "closed_for_MBBSEmu_source_order_not_classic_verified",
+      "promotion": "observed_mbbsemu_only"
+    },
+    {
+      "probe_id": "TRACE-0080-004",
+      "name": "Output Flush Ordering Probe",
+      "status": "partially_observed_from_source",
+      "conclusion": "Output is enqueued with SendToClient/DataToClient from host/module services. Worker wake-up considers DataToClient pending, so outbound data can drive additional processing. Exact socket flush order relative to every module state update needs live trace instrumentation.",
+      "evidence": [
+        "MBBSEmu/HostProcess/MbbsHost.cs WaitForNextTick checks DataToClient.Count",
+        "MBBSEmu source shows many ChannelDictionary[channel].SendToClient(...) call sites",
+        "MBBSEmu/DOS/ExeRuntime.cs uses BlockingCollectionWriterStream(sessionBase.DataToClient)"
+      ],
+      "gap_status": "reduced_not_closed",
+      "promotion": "none"
+    },
+    {
+      "probe_id": "TRACE-0080-005",
+      "name": "World Iteration Probe",
+      "status": "partially_observed_from_source",
+      "conclusion": "The host iterates sessions serially in _channelDictionary.Values, processing input, GSBL events, module entry/login/in-module callbacks, status routines, STTROU, and polling before timed events. Internal MajorMUD ordering of NPCs, rooms, combat, regen, quests, and spawns is not proven by host source alone.",
+      "evidence": [
+        "MBBSEmu/HostProcess/MbbsHost.cs foreach session in _channelDictionary.Values",
+        "MBBSEmu/HostProcess/MbbsHost.cs session states EnteringModule/LoginRoutines/InModule and polling routine path"
+      ],
+      "gap_status": "reduced_not_closed",
+      "promotion": "none"
+    }
+  ],
+  "summary": {
+    "probes_executed_against_source": 5,
+    "gaps_closed": 0,
+    "gaps_reduced": 4,
+    "host_behaviors_promoted_to_observed_mbbsemu_only": 1,
+    "formulas_promoted": 0,
+    "runtime_formulas_replaced": 0,
+    "status": "PASS_WITH_LIMITATIONS"
+  }
+}

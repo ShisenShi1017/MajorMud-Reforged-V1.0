@@ -1,0 +1,35 @@
+{
+  "codeupdate": "0081",
+  "sources": [
+    {
+      "id": "MBBSEMU-HOST-0081-001",
+      "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+      "lines": "Timer setup / WaitForNextTick / WorkerThread",
+      "supports": "Timer.Hertz-gated worker loop with pending-data bypass"
+    },
+    {
+      "id": "MBBSEMU-HOST-0081-002",
+      "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+      "lines": "WorkerThread session loop",
+      "supports": "Serial session processing before timed callbacks"
+    },
+    {
+      "id": "MBBSEMU-HOST-0081-003",
+      "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+      "lines": "ProcessRTKICK / ProcessRTIHDLR / ProcessSYSCYC / ProcessTasks",
+      "supports": "Timed callback ordering in MBBSEmu"
+    },
+    {
+      "id": "MBBSEMU-HOST-0081-004",
+      "file": "MBBSEmu/HostProcess/ExportedModules/Galgsbl.cs",
+      "lines": "TICKER allocation/timer callback",
+      "supports": "GSBL TICKER increments once per second"
+    },
+    {
+      "id": "MBBSEMU-HOST-0081-005",
+      "file": "MBBSEmu/HostProcess/ExportedModules/Ordinals.cs",
+      "lines": "BEGIN_POLLING, RTIHDLR, RTKICK, SYSCYC ordinals",
+      "supports": "Host callback API surfaces"
+    }
+  ]
+}

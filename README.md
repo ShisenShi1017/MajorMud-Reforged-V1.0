@@ -42,3 +42,12 @@ MajorMUD Reforged is now organized around the **Librarium**: an evidence-driven 
 ## Baseline
 
 This replacement repository was generated from the uploaded repo `MajorMud-Reforged-V1.0-main(22).zip` plus the latest Librarium/Validation baseline through Validation-0007.
+
+
+## CodeUpdate 0082 — Timing Constant Verification
+
+Added evidence-backed timing-constant claim records for 3.0s system/spell tick, 1.5s combat round, tick/round ratio, and tick clipping. No promotions or runtime replacements. Status: PASS_WITH_LIMITATIONS.
+
+## CodeUpdate 0083
+
+Performed internal timing evidence extraction across WCC/WBB imports, imported disassembly evidence, MMUD Explorer, and MBBSEmu. Host/module-driven timing is now internally corroborated. Exact Classic HP/mana/buff tick and combat-round constants remain unverified; MMUD Explorer introduces a conflicting 5-second combat-round modeling constant. No runtime formulas were replaced.

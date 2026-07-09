@@ -1,0 +1,34 @@
+{
+  "codeupdate": "0069",
+  "resolved_conflicts": [
+    {
+      "conflict_id": "FC0069-0001",
+      "lhs": "text",
+      "resolution": "parser_bucket_false_positive_not_source_disagreement",
+      "candidate_count": 32
+    },
+    {
+      "conflict_id": "FC0069-0002",
+      "lhs": "index",
+      "resolution": "parser_bucket_false_positive_not_source_disagreement",
+      "candidate_count": 6
+    }
+  ],
+  "remaining_formula_gap_focus": [
+    "combat equations",
+    "hit defense",
+    "damage rounding",
+    "regen equations",
+    "XP equations",
+    "spawn timing",
+    "tick timing",
+    "loot equations",
+    "AI weighting"
+  ],
+  "no_verified_promotions_reason": [
+    "MMUD Explorer and MBBSEmu are external evidence-only sources under the Librarium-first rule.",
+    "The two reported 0068 conflicts were not exact formula disagreements after manual review; they were broad parser buckets based on generic lhs names (Text and Index).",
+    "No candidate was tied to independent Classic runtime observation or reference-pack proof of the exact equation, rounding, timing, and edge-case behavior.",
+    "Candidate lines remain useful as Derived evidence and gap targets, but not sufficient for Verified promotion."
+  ]
+}

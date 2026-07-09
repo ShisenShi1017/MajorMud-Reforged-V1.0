@@ -1,0 +1,149 @@
+{
+  "codeupdate": "0093-0100",
+  "probes": [
+    {
+      "probe_id": "CGSR-COMBAT-01",
+      "subsystem": "combat",
+      "theme": "source_traceability",
+      "purpose": "Verify runtime output can be traced to Librarium records.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-COMBAT-02",
+      "subsystem": "combat",
+      "theme": "deterministic_outcome",
+      "purpose": "Verify same input produces stable output across repeated simulator runs.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-PROGRESSION-01",
+      "subsystem": "progression",
+      "theme": "source_traceability",
+      "purpose": "Verify runtime output can be traced to Librarium records.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-PROGRESSION-02",
+      "subsystem": "progression",
+      "theme": "deterministic_outcome",
+      "purpose": "Verify same input produces stable output across repeated simulator runs.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-MAGIC-01",
+      "subsystem": "magic",
+      "theme": "source_traceability",
+      "purpose": "Verify runtime output can be traced to Librarium records.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-MAGIC-02",
+      "subsystem": "magic",
+      "theme": "deterministic_outcome",
+      "purpose": "Verify same input produces stable output across repeated simulator runs.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-WORLD_MOVEMENT-01",
+      "subsystem": "world_movement",
+      "theme": "source_traceability",
+      "purpose": "Verify runtime output can be traced to Librarium records.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-WORLD_MOVEMENT-02",
+      "subsystem": "world_movement",
+      "theme": "deterministic_outcome",
+      "purpose": "Verify same input produces stable output across repeated simulator runs.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-NPCS-01",
+      "subsystem": "npcs",
+      "theme": "source_traceability",
+      "purpose": "Verify runtime output can be traced to Librarium records.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-NPCS-02",
+      "subsystem": "npcs",
+      "theme": "deterministic_outcome",
+      "purpose": "Verify same input produces stable output across repeated simulator runs.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-ECONOMY-01",
+      "subsystem": "economy",
+      "theme": "source_traceability",
+      "purpose": "Verify runtime output can be traced to Librarium records.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-ECONOMY-02",
+      "subsystem": "economy",
+      "theme": "deterministic_outcome",
+      "purpose": "Verify same input produces stable output across repeated simulator runs.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-QUESTS-01",
+      "subsystem": "quests",
+      "theme": "source_traceability",
+      "purpose": "Verify runtime output can be traced to Librarium records.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-QUESTS-02",
+      "subsystem": "quests",
+      "theme": "deterministic_outcome",
+      "purpose": "Verify same input produces stable output across repeated simulator runs.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-GUILDS_SOCIAL-01",
+      "subsystem": "guilds_social",
+      "theme": "source_traceability",
+      "purpose": "Verify runtime output can be traced to Librarium records.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    },
+    {
+      "probe_id": "CGSR-GUILDS_SOCIAL-02",
+      "subsystem": "guilds_social",
+      "theme": "deterministic_outcome",
+      "purpose": "Verify same input produces stable output across repeated simulator runs.",
+      "status": "defined_not_executed",
+      "expected_observation_required": true,
+      "promotion_allowed_from_probe_alone": false
+    }
+  ]
+}

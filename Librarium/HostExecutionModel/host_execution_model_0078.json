@@ -1,0 +1,126 @@
+{
+  "code_update": "0078",
+  "title": "Host Execution Model and World Loop Reconstruction",
+  "evidence_state": "Derived",
+  "confidence": "medium-high for MBBSEmu host behavior; medium for Classic MajorMUD equivalence",
+  "canonical_rule": "Librarium remains canonical. MBBSEmu and MMUD Explorer are external evidence only.",
+  "core_findings": [
+    {
+      "id": "HEM-001",
+      "claim": "Player-visible module processing is host-driven, not client-side. Sessions in module state are serviced by host session loop callbacks such as STTROU, STSROU, and optional polling routines.",
+      "evidence": [
+        "mbbsemu_host_loop",
+        "mbbsemu_host_routines"
+      ],
+      "state": "Derived"
+    },
+    {
+      "id": "HEM-002",
+      "claim": "BEGIN_POLLING registers a per-channel routine that the host calls as often as possible until STOP_POLLING. This is a host polling mechanism, not modem latency itself.",
+      "evidence": [
+        "mbbsemu_begin_polling",
+        "mbbsemu_host_routines"
+      ],
+      "state": "Derived"
+    },
+    {
+      "id": "HEM-003",
+      "claim": "TICKER is a shared exported global that increments once per second and is a plausible source for module time comparisons.",
+      "evidence": [
+        "mbbsemu_ticker"
+      ],
+      "state": "Derived"
+    },
+    {
+      "id": "HEM-004",
+      "claim": "RTKICK callbacks are delayed by seconds and then executed once. RTIHDLR callbacks are approximately 18 Hz / ~55 ms. SYSCYC and INITASK provide additional repeated host-level callbacks.",
+      "evidence": [
+        "mbbsemu_host_routines"
+      ],
+      "state": "Derived"
+    },
+    {
+      "id": "HEM-005",
+      "claim": "Telnet/modem connection timing affects when bytes are received/flushed, but current evidence does not support treating network ping/latency as the authoritative gameplay tick.",
+      "evidence": [
+        "mbbsemu_telnet_keepalive",
+        "mbbsemu_host_loop"
+      ],
+      "state": "Hypothesis constrained by evidence"
+    }
+  ],
+  "timing_primitives": [
+    {
+      "name": "Session loop",
+      "cadence": "Host iteration / data processing availability",
+      "likely_consumers": [
+        "input handling",
+        "command processing",
+        "deferred status processing",
+        "polling routines"
+      ]
+    },
+    {
+      "name": "STSROU",
+      "cadence": "Status change or deferred processing; status code 240 or 5 per MBBSEmu comments",
+      "likely_consumers": [
+        "module deferred actions",
+        "rapid interval actions"
+      ]
+    },
+    {
+      "name": "BEGIN_POLLING",
+      "cadence": "As fast/often as possible while registered",
+      "likely_consumers": [
+        "per-channel event polling",
+        "module-specific wait loops"
+      ]
+    },
+    {
+      "name": "TICKER",
+      "cadence": "1 second global counter",
+      "likely_consumers": [
+        "time comparisons",
+        "regen timers",
+        "spawn timers",
+        "cooldowns"
+      ]
+    },
+    {
+      "name": "RTKICK",
+      "cadence": "one-shot seconds-delayed callbacks",
+      "likely_consumers": [
+        "delayed events",
+        "timers",
+        "respawn callbacks"
+      ]
+    },
+    {
+      "name": "RTIHDLR",
+      "cadence": "~18 Hz / 55 ms",
+      "likely_consumers": [
+        "interrupt-level real-time handlers; not yet proven for MajorMUD gameplay"
+      ]
+    },
+    {
+      "name": "SYSCYC",
+      "cadence": "host cycle callback if module pointer set",
+      "likely_consumers": [
+        "module cycle processing"
+      ]
+    },
+    {
+      "name": "INITASK",
+      "cadence": "very fast/as often as possible",
+      "likely_consumers": [
+        "background tasks"
+      ]
+    }
+  ],
+  "not_proven": [
+    "Exact Classic MajorMUD tick interval.",
+    "Whether MajorMUD uses TICKER, RTKICK, STSROU, SYSCYC, RTIHDLR, BEGIN_POLLING, or a combination for each gameplay subsystem.",
+    "Exact output flush ordering relative to combat/regen/AI/quest updates.",
+    "That modem ping directly drives gameplay state changes."
+  ]
+}

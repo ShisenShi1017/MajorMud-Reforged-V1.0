@@ -1,0 +1,61 @@
+{
+  "codeupdate": "0079",
+  "host_timing_state_machine": [
+    {
+      "state": "idle_wait",
+      "entry_condition": "No input/output/DataToProcess and Timer.Hertz configured",
+      "next": "session_work_or_timer_event"
+    },
+    {
+      "state": "session_intake",
+      "actions": [
+        "new sessions",
+        "disconnects",
+        "one-byte client processing",
+        "GSBL chain",
+        "character processing"
+      ]
+    },
+    {
+      "state": "module_command_phase",
+      "actions": [
+        "globals",
+        "STTROU for command available"
+      ]
+    },
+    {
+      "state": "module_status_phase",
+      "actions": [
+        "STSROU for CYCLE/OUTPUT_BUFFER_EMPTY/deferred status"
+      ]
+    },
+    {
+      "state": "module_poll_phase",
+      "actions": [
+        "BEGIN_POLLING routine if registered"
+      ]
+    },
+    {
+      "state": "timed_routine_phase",
+      "actions": [
+        "RTKICK one-shot seconds callbacks",
+        "RTIHDLR ~18Hz callbacks",
+        "SYSCYC pointer",
+        "INITASK/ProcessTasks"
+      ]
+    },
+    {
+      "state": "output_delivery",
+      "actions": [
+        "module output queued through SessionBase",
+        "socket/local sender drains queue",
+        "heartbeat/negotiation only on idle send path"
+      ]
+    }
+  ],
+  "behavior_implications": [
+    "Player-visible timing should be modeled as server/host scheduled plus output delivery latency.",
+    "Regen, AI, combat, spawns, and quests should declare which host callback phase they depend on before formula promotion.",
+    "The modem path should be modeled as observation latency, not the authoritative game clock, unless future evidence proves otherwise."
+  ]
+}

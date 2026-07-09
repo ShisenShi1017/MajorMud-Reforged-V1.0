@@ -1,0 +1,102 @@
+[
+  {
+    "probe_id": "PROG-0103-XP-THRESHOLD-CURVE",
+    "question": "Do XP thresholds produce expected level transitions at boundaries?",
+    "inputs": [
+      "class",
+      "race",
+      "current xp",
+      "threshold table",
+      "level before"
+    ],
+    "expected_observation": "Boundary behavior is deterministic in generated runtime; Classic threshold table/formula remains unverified unless original table provenance is found",
+    "promotion_target": "xp_level_progression"
+  },
+  {
+    "probe_id": "PROG-0103-XP-AWARD-PARTY",
+    "question": "How are XP awards shared or modified by party, level, and kill contribution?",
+    "inputs": [
+      "base xp",
+      "party members",
+      "levels",
+      "contribution",
+      "modifiers"
+    ],
+    "expected_observation": "Probe defines share scenarios; Classic party XP rules remain unresolved",
+    "promotion_target": "xp_level_progression"
+  },
+  {
+    "probe_id": "PROG-0103-LEVELUP-STAT-GAINS",
+    "question": "Which stats/resources change on level-up and in what order?",
+    "inputs": [
+      "class",
+      "race",
+      "level before",
+      "stats before",
+      "seed/rules"
+    ],
+    "expected_observation": "Generated stat deltas can be traced; Classic formulas/tables need confirmation",
+    "promotion_target": "attribute_stat_model"
+  },
+  {
+    "probe_id": "PROG-0103-RACE-CLASS-MODIFIERS",
+    "question": "Do race/class modifiers alter base attributes, max caps, skills, or resources?",
+    "inputs": [
+      "race",
+      "class",
+      "base stat table",
+      "level"
+    ],
+    "expected_observation": "Differences should be attributable to Librarium records; exact Classic caps/modifiers need proof",
+    "promotion_target": "race_class_progression"
+  },
+  {
+    "probe_id": "PROG-0103-SKILL-ABILITY-GRANTS",
+    "question": "When are skills/abilities granted, trained, capped, or gated?",
+    "inputs": [
+      "class",
+      "level",
+      "trainer/quest flag",
+      "skill state"
+    ],
+    "expected_observation": "Trace ability grant/gate paths; Classic ordering and prerequisites remain gaps",
+    "promotion_target": "skill_ability_training"
+  },
+  {
+    "probe_id": "PROG-0103-RESOURCE-GROWTH",
+    "question": "How do HP, mana, and movement grow by level, class, race, and attributes?",
+    "inputs": [
+      "class",
+      "race",
+      "level",
+      "attributes",
+      "previous resource values"
+    ],
+    "expected_observation": "Generated resource changes are deterministic; Classic dice/table/rounding unknown",
+    "promotion_target": "resource_growth_hp_mana_move"
+  },
+  {
+    "probe_id": "PROG-0103-DEATH-PENALTY",
+    "question": "Does death reduce XP, level, stats, or resources, and how are boundaries handled?",
+    "inputs": [
+      "level",
+      "xp",
+      "death event",
+      "resurrection/recovery state"
+    ],
+    "expected_observation": "Scenario enumerated; Classic penalty behavior unresolved",
+    "promotion_target": "death_penalty_progression"
+  },
+  {
+    "probe_id": "PROG-0103-ADVANCEMENT-REWARDS",
+    "question": "Do level/quest/training rewards grant spells, titles, abilities, or caps in a defined order?",
+    "inputs": [
+      "advancement trigger",
+      "current grants",
+      "class/race",
+      "quest flags"
+    ],
+    "expected_observation": "Reward ordering is traced as a gap until original behavior is proven",
+    "promotion_target": "advancement_rewards_grants"
+  }
+]

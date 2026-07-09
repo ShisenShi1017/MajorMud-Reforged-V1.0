@@ -1,0 +1,18 @@
+[
+  {
+    "path": "docs/changelog.archive.txt:7",
+    "finding": "Explicit 3-second round tick claim for bless calculations."
+  },
+  {
+    "path": "clsMonsterAttackSim.cls:546,582",
+    "finding": "Duration tick triggers when active spell tick counter equals 3, with comments describing 15 seconds passed."
+  },
+  {
+    "path": "clsMonsterAttackSim.cls:1017-1083",
+    "finding": "All spell duration ticks decrement duration and rotate active spell tick counters 1..3."
+  },
+  {
+    "path": "clsMonsterAttackSim.cls comment block around 540",
+    "finding": "Conflicting timing vocabulary: comment says SPELL ROUND = 3s, COMBAT ROUND 5s, every 3 rounds = extra spell round."
+  }
+]

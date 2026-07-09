@@ -1,0 +1,45 @@
+{
+  "codeUpdate": "0107",
+  "subsystem": "Quest Reconstruction",
+  "generatedUtc": "2026-07-09T00:15:08.358779+00:00",
+  "status": "PASS_WITH_FINDINGS",
+  "rawQuestEvidenceHits": 315114,
+  "filesWithQuestHits": 1767,
+  "bySource": {
+    "cumulative": 1723,
+    "MMUDExplorer": 44
+  },
+  "questAbilityCandidateCount": 13,
+  "questFlowCandidateCount": 12,
+  "prioritizedEvidenceReferences": 1767,
+  "relationshipEdges": 1037,
+  "probeDefinitions": 8,
+  "gapRecords": 9,
+  "promotions": [
+    {
+      "record": "quest.flag.identity.set",
+      "from": "Observed/Derived",
+      "to": "Verified",
+      "scope": "data_presence_only",
+      "rationale": "Existing Librarium quest ability candidates are verified from imported WCC codex; does not promote ordered flow or mechanics.",
+      "abilityIds": [
+        50,
+        123,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        156
+      ]
+    }
+  ],
+  "gameplayMechanicsPromoted": 0,
+  "runtimeBehaviorsReplaced": 0,
+  "conclusion": "Quest flags/identity are strongly evidenced; ordered stages, branch conditions, reward ordering, and script semantics remain gaps."
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "probe_id": "PROG-0103-RUNTIME-MODULE-DISCOVERY",
+    "status": "executed",
+    "progression_runtime_file_candidates": [
+      "Core/Logging/LogLevel.cs",
+      "Apps/Source/Reforged.Server/ClassicParityAudit.cs",
+      "Apps/Source/Reforged.Server/ClassicParityAuditModels.cs",
+      "Runtime/leveling.py",
+      "Sim/validators/validate_exp_leveling.py",
+      "Sim/validators/validate_exp_leveling.py"
+    ],
+    "candidate_count": 6,
+    "classic_accuracy": "not_classic_claimed"
+  },
+  {
+    "probe_id": "PROG-0103-PROBE-HARNESS-STATUS",
+    "status": "scaffold_created",
+    "executed_runtime_behavior": "no authoritative progression runtime execution was promoted",
+    "classic_accuracy": "unverified"
+  }
+]

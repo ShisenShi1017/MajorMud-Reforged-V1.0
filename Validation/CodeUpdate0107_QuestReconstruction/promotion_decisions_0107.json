@@ -1,0 +1,34 @@
+{
+  "generatedUtc": "2026-07-09T00:15:08.358779+00:00",
+  "promotions": [
+    {
+      "record": "quest.flag.identity.set",
+      "from": "Observed/Derived",
+      "to": "Verified",
+      "scope": "data_presence_only",
+      "rationale": "Existing Librarium quest ability candidates are verified from imported WCC codex; does not promote ordered flow or mechanics.",
+      "abilityIds": [
+        50,
+        123,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        156
+      ]
+    }
+  ],
+  "nonPromotions": [
+    "ordered_flow",
+    "reward_order",
+    "dialogue_branching",
+    "repeatability",
+    "script_semantics"
+  ]
+}

@@ -1,0 +1,126 @@
+[
+  {
+    "gap_id": "WORLD-0105-GAP-001",
+    "title": "Exact exit restriction encoding",
+    "priority": "high",
+    "confidence": "derived",
+    "evidence_needed": [
+      "WCC/WBB exit restriction field map",
+      "runtime trace for blocked exits"
+    ],
+    "consumers": [
+      "runtime movement",
+      "editor",
+      "simulator",
+      "pathing"
+    ]
+  },
+  {
+    "gap_id": "WORLD-0105-GAP-002",
+    "title": "Door state transition rules",
+    "priority": "high",
+    "confidence": "derived",
+    "evidence_needed": [
+      "door/lock/key field map",
+      "runtime trace for open/close/lock/unlock"
+    ],
+    "consumers": [
+      "runtime movement",
+      "quests",
+      "simulator"
+    ]
+  },
+  {
+    "gap_id": "WORLD-0105-GAP-003",
+    "title": "Teleport and recall target resolution",
+    "priority": "high",
+    "confidence": "observed",
+    "evidence_needed": [
+      "room spell/textblock command decoding",
+      "runtime trace for teleport effects"
+    ],
+    "consumers": [
+      "spells",
+      "movement",
+      "quests",
+      "NPC scripts"
+    ]
+  },
+  {
+    "gap_id": "WORLD-0105-GAP-004",
+    "title": "Room trigger execution order",
+    "priority": "high",
+    "confidence": "derived",
+    "evidence_needed": [
+      "script/textblock ordering evidence",
+      "host callback trace on room entry"
+    ],
+    "consumers": [
+      "quests",
+      "NPCs",
+      "magic",
+      "movement"
+    ]
+  },
+  {
+    "gap_id": "WORLD-0105-GAP-005",
+    "title": "Environmental damage/effect timing",
+    "priority": "medium",
+    "confidence": "hypothesis",
+    "evidence_needed": [
+      "room flag meaning map",
+      "runtime timing trace"
+    ],
+    "consumers": [
+      "combat",
+      "magic",
+      "movement",
+      "simulator"
+    ]
+  },
+  {
+    "gap_id": "WORLD-0105-GAP-006",
+    "title": "Hidden/secret exit discovery rules",
+    "priority": "medium",
+    "confidence": "derived",
+    "evidence_needed": [
+      "hidden exit field mapping",
+      "search/discovery observations"
+    ],
+    "consumers": [
+      "movement",
+      "skills",
+      "pathing"
+    ]
+  },
+  {
+    "gap_id": "WORLD-0105-GAP-007",
+    "title": "MegaMUD path checksum compatibility",
+    "priority": "medium",
+    "confidence": "observed",
+    "evidence_needed": [
+      "MegaMUD path checksum implementation",
+      "MMUD Explorer path export comparison"
+    ],
+    "consumers": [
+      "client tooling",
+      "path export",
+      "world graph"
+    ]
+  },
+  {
+    "gap_id": "WORLD-0105-GAP-008",
+    "title": "Room coordinate duplicate/labyrinth handling",
+    "priority": "medium",
+    "confidence": "observed",
+    "evidence_needed": [
+      "coordinate generation proof",
+      "labyrinth/special map validation"
+    ],
+    "consumers": [
+      "map viewer",
+      "editor",
+      "simulator"
+    ]
+  }
+]

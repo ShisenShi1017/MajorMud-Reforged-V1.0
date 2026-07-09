@@ -1,0 +1,4960 @@
+[
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 796,
+    "text": "nMR_Reduction = Round(CalcResistedDamage(nHitSpellDamage, m_nUserMR, m_nUserAntiMagic))",
+    "lhs": "nMR_Reduction",
+    "rhs": "Round(CalcResistedDamage(nHitSpellDamage, m_nUserMR, m_nUserAntiMagic))",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-fc5daf775313",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 798,
+    "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nHitSpellDamage - nMR_Reduction)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-0909a27683df",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 815,
+    "text": "nHitSpellDamage = Round(nHitSpellDamage - nResist_Reduction)",
+    "lhs": "nHitSpellDamage",
+    "rhs": "Round(nHitSpellDamage - nResist_Reduction)",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-edc5ada47410",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 824,
+    "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nHitSpellDamage",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-7c834bcb9e14",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 843,
+    "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nHitSpellDamage",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-2b03bd8a2ee1",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 896,
+    "text": "Call AddToCombatLog(\" -\" & sHitSpellName & \" \" & IIf(bResisted, \"(resist)\", \"for \" & Round(nHitSpellDamage)))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-f9181d2141f7",
+    "librarium_keyword_hits": [
+      "call"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 805,
+    "text": "Case 0: If m_nUserRCOL > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRCOL / 100))  'col",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nHitSpellDamage * (m_nUserRCOL / 100))  'col",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-1f8ea0ecfd39",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 806,
+    "text": "Case 1: If m_nUserRFIR > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRFIR / 100))  'fir",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nHitSpellDamage * (m_nUserRFIR / 100))  'fir",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-151983411486",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 807,
+    "text": "Case 2: If m_nUserRSTO > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRSTO / 100))  'sto",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nHitSpellDamage * (m_nUserRSTO / 100))  'sto",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ea42739eaeef",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 808,
+    "text": "Case 3: If m_nUserRLIT > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRLIT / 100))  'lit",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nHitSpellDamage * (m_nUserRLIT / 100))  'lit",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7ceb74e5181e",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 809,
+    "text": "Case 5: If m_nUserRWAT > 0 Then nResist_Reduction = (nHitSpellDamage * (m_nUserRWAT / 100))  'wat",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nHitSpellDamage * (m_nUserRWAT / 100))  'wat",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-747ef7013fb2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 6
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 792,
+    "text": "nHitSpellDamage = Round(Me.RandomNumber(m_nAtkHitSpellMin(nAttack), m_nAtkHitSpellMax(nAttack)))",
+    "lhs": "nHitSpellDamage",
+    "rhs": "Round(Me.RandomNumber(m_nAtkHitSpellMin(nAttack), m_nAtkHitSpellMax(nAttack)))",
+    "weight": 7,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-eb7b577fa3b8",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 421,
+    "text": "nDamage = nDamage + m_nAtkHitSpellMax(nAttack)",
+    "lhs": "nDamage",
+    "rhs": "nDamage + m_nAtkHitSpellMax(nAttack)",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-f1f68fe1ae02",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 445,
+    "text": "GetMaxDamage = GetMaxDamage + m_nAtkHitSpellMax(nAttack)",
+    "lhs": "GetMaxDamage",
+    "rhs": "GetMaxDamage + m_nAtkHitSpellMax(nAttack)",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-f3b3350f4d0f",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 446,
+    "text": "If m_nAtkDuration(nAttack) > 2 Then GetMaxDamage = GetMaxDamage + m_nAtkHitSpellMax(nAttack)",
+    "lhs": "GetMaxDamage",
+    "rhs": "GetMaxDamage + m_nAtkHitSpellMax(nAttack)",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-4976e3543f37",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 868,
+    "text": "nRoundDamage = nRoundDamage + nDamage + nHitSpellDamage",
+    "lhs": "nRoundDamage",
+    "rhs": "nRoundDamage + nDamage + nHitSpellDamage",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-6563a276fa07",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 880,
+    "text": "m_nStatAtkTotalDamage(nAttack) = m_nStatAtkTotalDamage(nAttack) + nDamage + nHitSpellDamage",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-9bb2b3f9d010",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 19,
+    "text": "-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-9bc7b63e7529",
+    "librarium_keyword_hits": [
+      "calculations",
+      "damage",
+      "melee",
+      "output",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 556,
+    "text": "m_nStatHitSpell_AtkTotalDamage(x) = m_nStatHitSpell_AtkTotalDamage(x) + nActiveAtkSpells_Value(x)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-7ccbf6273b7c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 869,
+    "text": "m_nTotalDamage = m_nTotalDamage + nDamage + nHitSpellDamage",
+    "lhs": "m_nTotalDamage",
+    "rhs": "m_nTotalDamage + nDamage + nHitSpellDamage",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-fb3634b38d75",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 870,
+    "text": "m_nTotalDamageSpell = m_nTotalDamageSpell + nHitSpellDamage",
+    "lhs": "m_nTotalDamageSpell",
+    "rhs": "m_nTotalDamageSpell + nHitSpellDamage",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-1cf90a2cf181",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1032,
+    "text": "m_nStatHitSpell_AtkTotalDamage(x) = m_nStatHitSpell_AtkTotalDamage(x) + nActiveAtkSpells_Value(x)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-bef8f53c377a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 17,
+    "text": "-FIX: Weapon +hitmagic was not being considered in vs mob/lair damage output calculations for regular melee attacks",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-989fd892623d",
+    "librarium_keyword_hits": [
+      "calculations",
+      "damage",
+      "melee",
+      "output",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 555,
+    "text": "m_nStatHitSpell_AtkDmgResisted(x) = m_nStatHitSpell_AtkDmgResisted(x) + (nActiveAtkSpells_ValueOriginal(x) - nActiveAtkSpells_Value(x))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-d4131bedc4ac",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1031,
+    "text": "m_nStatHitSpell_AtkDmgResisted(x) = m_nStatHitSpell_AtkDmgResisted(x) + (nActiveAtkSpells_ValueOriginal(x) - nActiveAtkSpells_Value(x))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-d5da12f9553c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 5
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 2302,
+    "text": "lblAttackDMGPerRound.Caption = (nLocalAttackDamage + nLocalAttackSpellValue) & \" dmg/rnd\"",
+    "lhs": "lblAttackDMGPerRound.Caption",
+    "rhs": "(nLocalAttackDamage + nLocalAttackSpellValue) & \" dmg/rnd\"",
+    "weight": 6,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-6b7d9189cf28",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3282,
+    "text": "'Call AddMonsterDamageOutText(DetailLV, sHeader, nGlobalAttackManualP & \"/round (manual)\", , nDamageOut, nCalcDamageHP, nCalcDamageHPRegen, nAvgDmg, tCharProfile.nHP, sDefenseDesc, nCalcDamageNumMobs)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 6,
+    "subsystems": [
+      "combat",
+      "regen",
+      "stats"
+    ],
+    "candidate_id": "FR0068-a5dfde16439c",
+    "librarium_keyword_hits": [
+      "call"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 5496,
+    "text": "'MsgBox \"Attack #\" & (x + 1) & \" (\" & txtAtkName(x).Text & \") has an area attack spell in a regular attack slot using ability 1 (damage) instead of 17 (damage-MR). \" _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ba0590d5f436",
+    "librarium_keyword_hits": [
+      "ability",
+      "damage",
+      "spell",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 5497,
+    "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-e1135eea7179",
+    "librarium_keyword_hits": [
+      "ability",
+      "cast",
+      "cost",
+      "damage",
+      "spells",
+      "this",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1910,
+    "text": "sAttackDetail = \"Backstab: \" & tRet.nRoundTotal & \" avg @ \" & tRet.nHitChance & \"% hit \"",
+    "lhs": "sAttackDetail",
+    "rhs": "\"Backstab: \" & tRet.nRoundTotal & \" avg @ \" & tRet.nHitChance & \"% hit \"",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-217c8aa01087",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 2860,
+    "text": "oLI.ListSubItems.Add (1), \"Detail\", \"This is an invalid spell and will not be cast (area attack spells from regular monster casts must use ability 17, Damage-MR).\"",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-14e09cff7c96",
+    "librarium_keyword_hits": [
+      "ability",
+      "cast",
+      "damage",
+      "from",
+      "monster",
+      "spell",
+      "spells",
+      "this",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3186,
+    "text": "Call AddMonsterDamageOutText(DetailLV, sHeader, nDamageOut & \"/round (\" & tAttack.sAttackDesc & \")\" & sImmuTXT & sBackstabText, tAttack.sAttackDetail, _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-ff747c398e41",
+    "librarium_keyword_hits": [
+      "call"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3275,
+    "text": "Call AddMonsterDamageOutText(DetailLV, sHeader, nDamageOut & \"/round (\" & tAttack.sAttackDesc & \")\" & sImmuTXT & sBackstabText, tAttack.sAttackDetail, _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 5,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-32967a457ea5",
+    "librarium_keyword_hits": [
+      "call"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5142,
+    "text": "'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nFirstRoundDamage = nFirstRoundDamage + tAttack.nAvgExtraHit",
+    "lhs": "tAttack.nAvgExtraHit",
+    "rhs": "tAttack.nAvgExtraSwing Then nFirstRoundDamage = nFirstRoundDamage + tAttack.nAvgExtraHit",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-67fa3c3cae28",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 261,
+    "text": "-NEW: Ability to calculate spell damage / resist based on the defender MR rating",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-b214e2c4887c",
+    "librarium_keyword_hits": [
+      "ability",
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 548,
+    "text": "nRoundDamage = nRoundDamage + nActiveAtkSpells_Value(x)",
+    "lhs": "nRoundDamage",
+    "rhs": "nRoundDamage + nActiveAtkSpells_Value(x)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-6b18648ccda3",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 569,
+    "text": "sHitSpellName = IIf(Len(m_sAtkHitSpellName(x)) = 0, \"attack \" & (x + 1), m_sAtkHitSpellName(x))",
+    "lhs": "sHitSpellName",
+    "rhs": "IIf(Len(m_sAtkHitSpellName(x)) = 0, \"attack \" & (x + 1), m_sAtkHitSpellName(x))",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d299ea139353",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 584,
+    "text": "nRoundDamage = nRoundDamage + nActiveBetweenSpells_Value(x)",
+    "lhs": "nRoundDamage",
+    "rhs": "nRoundDamage + nActiveBetweenSpells_Value(x)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-6dbf3665ac5c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 590,
+    "text": "m_nStatBetweenRound_AtkTotalDamage(x) = m_nStatBetweenRound_AtkTotalDamage(x) + nActiveBetweenSpells_Value(x)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-9e4cf4ac17c6",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 803,
+    "text": "If m_nAtkHitSpellType(nAttack) <> 4 And m_nAtkHitSpellType(nAttack) <> 6 Then 'normal-4 & poison-6",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-db86602ba7b2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 864,
+    "text": "If nOriginalDamage <> nDamage And m_nAtkType(nAttack) = 2 And m_nAtkDuration(nAttack) < 1 Then 'spell",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-638fe1128862",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 895,
+    "text": "sHitSpellName = IIf(Len(m_sAtkHitSpellName(nAttack)) = 0, \"attack \" & (x + 1), m_sAtkHitSpellName(nAttack))",
+    "lhs": "sHitSpellName",
+    "rhs": "IIf(Len(m_sAtkHitSpellName(nAttack)) = 0, \"attack \" & (x + 1), m_sAtkHitSpellName(nAttack))",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-78ac6c471605",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1024,
+    "text": "nRoundDamage = nRoundDamage + nActiveAtkSpells_Value(x)",
+    "lhs": "nRoundDamage",
+    "rhs": "nRoundDamage + nActiveAtkSpells_Value(x)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-0c11f7f0151b",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1045,
+    "text": "sHitSpellName = IIf(Len(m_sAtkHitSpellName(x)) = 0, \"attack \" & (x + 1), m_sAtkHitSpellName(x))",
+    "lhs": "sHitSpellName",
+    "rhs": "IIf(Len(m_sAtkHitSpellName(x)) = 0, \"attack \" & (x + 1), m_sAtkHitSpellName(x))",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-34dea748703d",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1061,
+    "text": "nRoundDamage = nRoundDamage + nActiveBetweenSpells_Value(x)",
+    "lhs": "nRoundDamage",
+    "rhs": "nRoundDamage + nActiveBetweenSpells_Value(x)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-0a94c8d20e5b",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1067,
+    "text": "m_nStatBetweenRound_AtkTotalDamage(x) = m_nStatBetweenRound_AtkTotalDamage(x) + nActiveBetweenSpells_Value(x)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-7a7d1441de8d",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1136,
+    "text": "m_nAverageDamageSpell = Round(m_nTotalDamageSpell / nRound, 1)",
+    "lhs": "m_nAverageDamageSpell",
+    "rhs": "Round(m_nTotalDamageSpell / nRound, 1)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-1349f38a758d",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 167,
+    "text": "-NEW: Ability to calculate spell damage / resist based on the defender MR rating",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a10abb09f18f",
+    "librarium_keyword_hits": [
+      "ability",
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 249,
+    "text": "-NEW: Ability to calculate spell damage / resist based on the defender MR rating",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a4c2ef34e1cd",
+    "librarium_keyword_hits": [
+      "ability",
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmHitCalc.frm",
+    "line": 1094,
+    "text": "'        If optHitCalcType(1).Value = True Then 'backstab - bs defense",
+    "lhs": "Value",
+    "rhs": "True Then 'backstab - bs defense",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-322c8b121794",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMonsterAttackSim.frm",
+    "line": 1870,
+    "text": "lblResultsAttBreakdown.Caption = \"(Physical/Spell: \" & Round(clsMonAtkSimThisForm.nAverageDamagePhys) & \"/\" & Round(clsMonAtkSimThisForm.nAverageDamageSpell) & \")\"",
+    "lhs": "lblResultsAttBreakdown.Caption",
+    "rhs": "\"(Physical/Spell: \" & Round(clsMonAtkSimThisForm.nAverageDamagePhys) & \"/\" & Round(clsMonAtkSimThisForm.nAverageDamageSpell) & \")\"",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a3d371a8e3f0",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMonsterAttackSim.frm",
+    "line": 1878,
+    "text": "txtStatAvgRound(x).Text = Round(clsMonAtkSimThisForm.nStatAtkTotalDamage(x) / clsMonAtkSimThisForm.nStatAtkHits(x))",
+    "lhs": "Text",
+    "rhs": "Round(clsMonAtkSimThisForm.nStatAtkTotalDamage(x) / clsMonAtkSimThisForm.nStatAtkHits(x))",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-c11a72723fb0",
+    "librarium_keyword_hits": [
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 997,
+    "text": "CalculateSpellCast.nAvgRoundDmg = Round(((nDamage * nCasts) * (nCastChance / 100#)) * (1# - (nFullResistChance / 100#)))",
+    "lhs": "CalculateSpellCast.nAvgRoundDmg",
+    "rhs": "Round(((nDamage * nCasts) * (nCastChance / 100#)) * (1# - (nFullResistChance / 100#)))",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-0f38b97d0368",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 998,
+    "text": "CalculateSpellCast.nMinRoundDMG = Round(((nMinDamage * nCasts) * (nCastChance / 100#)) * (1# - (nFullResistChance / 100#)))",
+    "lhs": "CalculateSpellCast.nMinRoundDMG",
+    "rhs": "Round(((nMinDamage * nCasts) * (nCastChance / 100#)) * (1# - (nFullResistChance / 100#)))",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-05570405f4dc",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1032,
+    "text": "If CalculateSpellCast.nDamageResisted <> 0 Then sAvgRound = sAvgRound & \" after \" & CalculateSpellCast.nDamageResisted & \"% damage resisted\"",
+    "lhs": "sAvgRound",
+    "rhs": "sAvgRound & \" after \" & CalculateSpellCast.nDamageResisted & \"% damage resisted\"",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a2c75f32c240",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1039,
+    "text": "If CalculateSpellCast.nDamageResisted <> 0 Then sAvgRound = sAvgRound & \", \" & CalculateSpellCast.nDamageResisted & \"% damage resisted\"",
+    "lhs": "sAvgRound",
+    "rhs": "sAvgRound & \", \" & CalculateSpellCast.nDamageResisted & \"% damage resisted\"",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-8e5d1455f922",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3149,
+    "text": "nSurpriseDamageOut = tBackStab.nAvgHit + tBackStab.nAvgExtraHit",
+    "lhs": "nSurpriseDamageOut",
+    "rhs": "tBackStab.nAvgHit + tBackStab.nAvgExtraHit",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-6f1ead54772e",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3182,
+    "text": "'If tAttack.nAvgExtraHit > 0 And tAttack.nAvgExtraHit = tAttack.nAvgExtraSwing Then nMinDamageOut = nMinDamageOut + tAttack.nAvgExtraHit",
+    "lhs": "tAttack.nAvgExtraHit",
+    "rhs": "tAttack.nAvgExtraSwing Then nMinDamageOut = nMinDamageOut + tAttack.nAvgExtraHit",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-847fb53893a1",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5003,
+    "text": "nReturnSurpriseDamage = tBackStab.nAvgHit + tBackStab.nAvgExtraHit",
+    "lhs": "nReturnSurpriseDamage",
+    "rhs": "tBackStab.nAvgHit + tBackStab.nAvgExtraHit",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-8cc6828655dd",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 14,
+    "text": "-FIX: Martial arts attacks on weapon tab not sorting damage properly",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-a1e7ad93e233",
+    "librarium_keyword_hits": [
+      "damage",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 177,
+    "text": "-UP: Current attack damage + swings/casts shown on equipment tab",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-c2c3be18622d",
+    "librarium_keyword_hits": [
+      "current",
+      "damage",
+      "equipment"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 392,
+    "text": "-NEW: filter weapons and armor by ability value and negate spell",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-e4a1d6d78234",
+    "librarium_keyword_hits": [
+      "ability",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 442,
+    "text": "'add spell/hitspell duration ticks",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spawn",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-116b1ae1ac1d",
+    "librarium_keyword_hits": [
+      "duration",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 543,
+    "text": "' regular attack spell duration and hit spell duration",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-6a4f332050ea",
+    "librarium_keyword_hits": [
+      "duration",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 549,
+    "text": "m_nTotalDamage = m_nTotalDamage + nActiveAtkSpells_Value(x)",
+    "lhs": "m_nTotalDamage",
+    "rhs": "m_nTotalDamage + nActiveAtkSpells_Value(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-4509c718c0c9",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 550,
+    "text": "m_nTotalDamageSpell = m_nTotalDamageSpell + nActiveAtkSpells_Value(x)",
+    "lhs": "m_nTotalDamageSpell",
+    "rhs": "m_nTotalDamageSpell + nActiveAtkSpells_Value(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a44b58a456c9",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 551,
+    "text": "m_nStatAtkTotalDamage(x) = m_nStatAtkTotalDamage(x) + nActiveAtkSpells_Value(x)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-598f831088b1",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 585,
+    "text": "m_nTotalDamage = m_nTotalDamage + nActiveBetweenSpells_Value(x)",
+    "lhs": "m_nTotalDamage",
+    "rhs": "m_nTotalDamage + nActiveBetweenSpells_Value(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d92562c2ff41",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 586,
+    "text": "m_nTotalDamageSpell = m_nTotalDamageSpell + nActiveBetweenSpells_Value(x)",
+    "lhs": "m_nTotalDamageSpell",
+    "rhs": "m_nTotalDamageSpell + nActiveBetweenSpells_Value(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-578e17f0aeac",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 589,
+    "text": "m_nStatBetweenRound_AtkDmgResisted(x) = m_nStatBetweenRound_AtkDmgResisted(x) + (nActiveBetweenSpells_ValueOriginal(x) - nActiveBetweenSpells_Value(x))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-323edbb061b2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 721,
+    "text": "nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))",
+    "lhs": "nMR_Reduction",
+    "rhs": "Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-15d21849af14",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 723,
+    "text": "'    m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nDamage - nMR_Reduction)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-20740742f168",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 736,
+    "text": "If nResist_Reduction <> 0 Then nDamage = Round(nDamage - nResist_Reduction)",
+    "lhs": "nDamage",
+    "rhs": "Round(nDamage - nResist_Reduction)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-9ef8d53b0b01",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 768,
+    "text": "'m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nDamage",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-ba35eba335b4",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 784,
+    "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nDR_DamageResisted",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-f4c3849e78e6",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 865,
+    "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nOriginalDamage - nDamage)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-d7dfdde43917",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 872,
+    "text": "m_nTotalDamageSpell = m_nTotalDamageSpell + nDamage",
+    "lhs": "m_nTotalDamageSpell",
+    "rhs": "m_nTotalDamageSpell + nDamage",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-162a91db369a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 954,
+    "text": "nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))",
+    "lhs": "nMR_Reduction",
+    "rhs": "Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-a25d1192605f",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 966,
+    "text": "If nResist_Reduction <> 0 Then nDamage = Round(nDamage - nResist_Reduction)",
+    "lhs": "nDamage",
+    "rhs": "Round(nDamage - nResist_Reduction)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-6ec002af288d",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1009,
+    "text": "m_nTotalDamageSpell = m_nTotalDamageSpell + nDamage",
+    "lhs": "m_nTotalDamageSpell",
+    "rhs": "m_nTotalDamageSpell + nDamage",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-07b15b734889",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1025,
+    "text": "m_nTotalDamage = m_nTotalDamage + nActiveAtkSpells_Value(x)",
+    "lhs": "m_nTotalDamage",
+    "rhs": "m_nTotalDamage + nActiveAtkSpells_Value(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7c14470498fa",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1026,
+    "text": "m_nTotalDamageSpell = m_nTotalDamageSpell + nActiveAtkSpells_Value(x)",
+    "lhs": "m_nTotalDamageSpell",
+    "rhs": "m_nTotalDamageSpell + nActiveAtkSpells_Value(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-9ed096cb6667",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1027,
+    "text": "m_nStatAtkTotalDamage(x) = m_nStatAtkTotalDamage(x) + nActiveAtkSpells_Value(x)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-b98d060e5dc2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1062,
+    "text": "m_nTotalDamage = m_nTotalDamage + nActiveBetweenSpells_Value(x)",
+    "lhs": "m_nTotalDamage",
+    "rhs": "m_nTotalDamage + nActiveBetweenSpells_Value(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7132c8b3ec10",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1063,
+    "text": "m_nTotalDamageSpell = m_nTotalDamageSpell + nActiveBetweenSpells_Value(x)",
+    "lhs": "m_nTotalDamageSpell",
+    "rhs": "m_nTotalDamageSpell + nActiveBetweenSpells_Value(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-4bebf3178f86",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1066,
+    "text": "m_nStatBetweenRound_AtkDmgResisted(x) = m_nStatBetweenRound_AtkDmgResisted(x) + (nActiveBetweenSpells_ValueOriginal(x) - nActiveBetweenSpells_Value(x))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-5231a652e79d",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 84,
+    "text": "-UP: Current attack damage + swings/casts shown on equipment tab",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7c72f308a0e8",
+    "librarium_keyword_hits": [
+      "current",
+      "damage",
+      "equipment"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 299,
+    "text": "-NEW: filter weapons and armor by ability value and negate spell",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-9ef2b8698f11",
+    "librarium_keyword_hits": [
+      "ability",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 13,
+    "text": "- FIX: Martial arts attacks on weapon tab not sorting damage properly",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-1709808acdb8",
+    "librarium_keyword_hits": [
+      "damage",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 166,
+    "text": "-UP: Current attack damage + swings/casts shown on equipment tab",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-0f5a22fb0e50",
+    "librarium_keyword_hits": [
+      "current",
+      "damage",
+      "equipment"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmHitCalc.frm",
+    "line": 1169,
+    "text": "If bBackstab And bCharAttack And Not bMonsterOnly Then 'bs + current character",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-ccb8d36422bf",
+    "librarium_keyword_hits": [
+      "current"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 25842,
+    "text": "oLI.ListSubItems.Add (20), \"Ability\", tWeaponDmg.nHitChance & \"% hit, Avg/Max Crit: \" & tWeaponDmg.nAvgCrit & \"/\" & tWeaponDmg.nMaxCrit",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-51a87ee58568",
+    "librarium_keyword_hits": [
+      "ability"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMonsterAttackSim.frm",
+    "line": 1891,
+    "text": "Round(clsMonAtkSimThisForm.nStatAtkDmgResisted(x) / (clsMonAtkSimThisForm.nStatAtkDmgResisted(x) + clsMonAtkSimThisForm.nStatAtkTotalDamage(x)), 3) * 100)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-f9a7abac0a76",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMonsterAttackSim.frm",
+    "line": 1903,
+    "text": "'txtStatResistDodge(x).Text = Round(clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x) / (clsMonAtkSimThisForm.nStatAtkHits(x) + clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x)), 3) * 100",
+    "lhs": "Text",
+    "rhs": "Round(clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x) / (clsMonAtkSimThisForm.nStatAtkHits(x) + clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x)), 3) * 100",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-3cda967cce3b",
+    "librarium_keyword_hits": [
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 374,
+    "text": "RTK_first = pBackstab * RTK_surpriseHit + (1# - pBackstab) * RTK_surpriseMiss",
+    "lhs": "RTK_first",
+    "rhs": "pBackstab * RTK_surpriseHit + (1# - pBackstab) * RTK_surpriseMiss",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-a237637ed9c2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 881,
+    "text": "CalculateSpellCast.nDamageResisted = CalculateSpellCast.nDamageResisted + nTemp2",
+    "lhs": "CalculateSpellCast.nDamageResisted",
+    "rhs": "CalculateSpellCast.nDamageResisted + nTemp2",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a970685f485c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 912,
+    "text": "CalculateSpellCast.nDamageResisted = CalculateSpellCast.nDamageResisted + (nTemp - nTemp2)",
+    "lhs": "CalculateSpellCast.nDamageResisted",
+    "rhs": "CalculateSpellCast.nDamageResisted + (nTemp - nTemp2)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a0743fb3a62a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 927,
+    "text": "CalculateSpellCast.nDamageResisted = CalculateSpellCast.nDamageResisted + nTemp2",
+    "lhs": "CalculateSpellCast.nDamageResisted",
+    "rhs": "CalculateSpellCast.nDamageResisted + nTemp2",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-35cac9d8563c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 964,
+    "text": "nAvgDamageBeforeResistance = Round((nMinCast + nMaxCast) / 2)",
+    "lhs": "nAvgDamageBeforeResistance",
+    "rhs": "Round((nMinCast + nMaxCast) / 2)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-5c224346b905",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 4735,
+    "text": "'bDamageResistable = false:ability1 (damage) or true:ability17 (Damage-MR), basically",
+    "lhs": "bDamageResistable",
+    "rhs": "false:ability1 (damage) or true:ability17 (Damage-MR), basically",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a921c849dc66",
+    "librarium_keyword_hits": [
+      "ability",
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 132,
+    "text": "Global nGlobalAttackTypeMME As eAttackTypeMME '0-none, 1-weapon, 2/3-spell, 4-MA, 5-manual",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-120a8cfe489a",
+    "librarium_keyword_hits": [
+      "spell",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 1802,
+    "text": "Case 4: sWeaponDmg = \"Backstab Damage\"",
+    "lhs": "sWeaponDmg",
+    "rhs": "\"Backstab Damage\"",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-307abf00d652",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 2981,
+    "text": "nBackstabWeaponMagic = nBackstabWeaponMagic + tCharProfile.nHitMagicNonWeapon",
+    "lhs": "nBackstabWeaponMagic",
+    "rhs": "nBackstabWeaponMagic + tCharProfile.nHitMagicNonWeapon",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-0c478358ed80",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3132,
+    "text": "'nGlobalAttackTypeMME (from frmPopUpOptions): 0-none/one-shot, 1-weapon, 2-spell user, 3-spell any, 4-MA, 5-manual, 6-bash, 7-smash",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-20f1db708082",
+    "librarium_keyword_hits": [
+      "from",
+      "spell",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 4981,
+    "text": "nBackstabWeaponMagic = nBackstabWeaponMagic + tCharacter.nHitMagicNonWeapon",
+    "lhs": "nBackstabWeaponMagic",
+    "rhs": "nBackstabWeaponMagic + tCharacter.nHitMagicNonWeapon",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-654b65ae8f97",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5027,
+    "text": "nAverageDamage = nAverageDamage + CalculateResistDamage(nDMG_Spell, nVSMR, , True, False, (DF_Flags And DFIAM_IsAntiMag) <> 0)",
+    "lhs": "nAverageDamage",
+    "rhs": "nAverageDamage + CalculateResistDamage(nDMG_Spell, nVSMR, , True, False, (DF_Flags And DFIAM_IsAntiMag) <> 0)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-1f443a46b808",
+    "librarium_keyword_hits": [
+      "flags",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 552,
+    "text": "m_nStatAtkDmgResisted(x) = m_nStatAtkDmgResisted(x) + (nActiveAtkSpells_ValueOriginal(x) - nActiveAtkSpells_Value(x))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-6fc8b07da8ec",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 570,
+    "text": "Call AddToCombatLog(\"[\" & sHitSpellName & \", hit spell tick] for \" & nActiveAtkSpells_Value(x) _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "spawn",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-5ab61319d7d5",
+    "librarium_keyword_hits": [
+      "call",
+      "spell",
+      "tick"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 648,
+    "text": "' CHANCE TO HIT / CAST",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-89be698a1c98",
+    "librarium_keyword_hits": [
+      "cast"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 730,
+    "text": "Case 0: If m_nUserRCOL > 0 Then nResist_Reduction = (nDamage * (m_nUserRCOL / 100))  'col",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRCOL / 100))  'col",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-0f018a75b178",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 731,
+    "text": "Case 1: If m_nUserRFIR > 0 Then nResist_Reduction = (nDamage * (m_nUserRFIR / 100))  'fir",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRFIR / 100))  'fir",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-210b9dd6c03f",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 732,
+    "text": "Case 2: If m_nUserRSTO > 0 Then nResist_Reduction = (nDamage * (m_nUserRSTO / 100))  'sto",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRSTO / 100))  'sto",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-b7c74ecccbb6",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 733,
+    "text": "Case 3: If m_nUserRLIT > 0 Then nResist_Reduction = (nDamage * (m_nUserRLIT / 100))  'lit",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRLIT / 100))  'lit",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-c5903b32ec5a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 734,
+    "text": "Case 5: If m_nUserRWAT > 0 Then nResist_Reduction = (nDamage * (m_nUserRWAT / 100))  'wat",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRWAT / 100))  'wat",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-018e92f80480",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 782,
+    "text": "nDR_DamageResisted = m_nUserDR '(m_nUserDR / 2)",
+    "lhs": "nDR_DamageResisted",
+    "rhs": "m_nUserDR '(m_nUserDR / 2)",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-40364783dc9c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 785,
+    "text": "nDamage = nDamage - nDR_DamageResisted",
+    "lhs": "nDamage",
+    "rhs": "nDamage - nDR_DamageResisted",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-3d2af860b216",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 788,
+    "text": "' HIT SPELL APPLICATION CHECK",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-731fe5cd82a1",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 960,
+    "text": "Case 0: If m_nUserRCOL > 0 Then nResist_Reduction = (nDamage * (m_nUserRCOL / 100))  'col",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRCOL / 100))  'col",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-bedad3d09e0b",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 961,
+    "text": "Case 1: If m_nUserRFIR > 0 Then nResist_Reduction = (nDamage * (m_nUserRFIR / 100))  'fir",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRFIR / 100))  'fir",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-277d5aeaa672",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 962,
+    "text": "Case 2: If m_nUserRSTO > 0 Then nResist_Reduction = (nDamage * (m_nUserRSTO / 100))  'sto",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRSTO / 100))  'sto",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-59b8dc0f3c1c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 963,
+    "text": "Case 3: If m_nUserRLIT > 0 Then nResist_Reduction = (nDamage * (m_nUserRLIT / 100))  'lit",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRLIT / 100))  'lit",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-193af8784ebb",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 964,
+    "text": "Case 5: If m_nUserRWAT > 0 Then nResist_Reduction = (nDamage * (m_nUserRWAT / 100))  'wat",
+    "lhs": "nResist_Reduction",
+    "rhs": "(nDamage * (m_nUserRWAT / 100))  'wat",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-aec5e29101c0",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1028,
+    "text": "m_nStatAtkDmgResisted(x) = m_nStatAtkDmgResisted(x) + (nActiveAtkSpells_ValueOriginal(x) - nActiveAtkSpells_Value(x))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-ba1764383acd",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1046,
+    "text": "Call AddToCombatLog(\"[\" & sHitSpellName & \", hit spell tick] for \" & nActiveAtkSpells_Value(x) _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 2,
+    "subsystems": [
+      "combat",
+      "spawn",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-c10530e0b8b8",
+    "librarium_keyword_hits": [
+      "call",
+      "spell",
+      "tick"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1220,
+    "text": "CalcResistedDamage = nDamage - (nDamage * nPercentReduction)",
+    "lhs": "CalcResistedDamage",
+    "rhs": "nDamage - (nDamage * nPercentReduction)",
+    "weight": 2,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-4df056764875",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 4
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 2153,
+    "text": "sRegexPattern = \"(?:(Armour Class|Hits|Mana|Encumbrance):\\s*\\*?\\s*(-?\\d+)\\/(\\d+)|(MagicRes|Level|Spellcasting|Strength|Agility|Willpower|Charm|Intellect|Health):\\s*\\*?\\s*(\\d+)|(Name|Race|Class):\\s*([^\\s:]+(?:\\s[^\\s:]+)?))\"",
+    "lhs": "sRegexPattern",
+    "rhs": "\"(?:(Armour Class|Hits|Mana|Encumbrance):\\s*\\*?\\s*(-?\\d+)\\/(\\d+)|(MagicRes|Level|Spellcasting|Strength|Agility|Willpower|Charm|Intellect|Health):\\s*\\*?\\s*(\\d+)|(Name|Race|Class):\\s*([^\\s:]+(?:\\s[^\\s:]+)?))\"",
+    "weight": 5,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-244a5d9fb003",
+    "librarium_keyword_hits": [
+      "agility",
+      "charm",
+      "class",
+      "health",
+      "intellect",
+      "level",
+      "mana",
+      "name",
+      "race",
+      "spellcasting",
+      "strength",
+      "willpower"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 87,
+    "text": "-FIX: Spells with ability 144-NonMagicalSpell (hidden in MME due to prevalence) will no longer show as Damage(-MR)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a03e2d68237a",
+    "librarium_keyword_hits": [
+      "ability",
+      "damage",
+      "spells",
+      "will",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 266,
+    "text": "-FIX: Damage column on spell lists will now properly calculate damage for spells that cast 6 times a round",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-25d65a6c8e2c",
+    "librarium_keyword_hits": [
+      "cast",
+      "damage",
+      "spell",
+      "spells",
+      "times",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 411,
+    "text": "-UP: monster attack spells now ignore min/max level caps on the spells themselves (as mmud handles it)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-e6e513ac181f",
+    "librarium_keyword_hits": [
+      "ignore",
+      "level",
+      "monster",
+      "spells"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 413,
+    "text": "-FIX: min/max spell damage was sometimes incorrect if the cast level was outside the spell's min/max level caps",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-5747eb255eca",
+    "librarium_keyword_hits": [
+      "cast",
+      "damage",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 8,
+    "text": "-FIX: Spells with ability 144-NonMagicalSpell (hidden in MME due to prevalence) will no longer show as Damage(-MR)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-296ea339d980",
+    "librarium_keyword_hits": [
+      "ability",
+      "damage",
+      "spells",
+      "will",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 172,
+    "text": "-FIX: Damage column on spell lists will now properly calculate damage for spells that cast 6 times a round",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-44271bf8cd8f",
+    "librarium_keyword_hits": [
+      "cast",
+      "damage",
+      "spell",
+      "spells",
+      "times",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 318,
+    "text": "-UP: monster attack spells now ignore min/max level caps on the spells themselves (as mmud handles it)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a7c64c1c7fd2",
+    "librarium_keyword_hits": [
+      "ignore",
+      "level",
+      "monster",
+      "spells"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 320,
+    "text": "-FIX: min/max spell damage was sometimes incorrect if the cast level was outside the spell's min/max level caps",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a81fc97165dc",
+    "librarium_keyword_hits": [
+      "cast",
+      "damage",
+      "level",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 84,
+    "text": "-FIX: Spells with ability 144-NonMagicalSpell (hidden in MME due to prevalence) will no longer show as Damage(-MR)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-5b413d6b3cc1",
+    "librarium_keyword_hits": [
+      "ability",
+      "damage",
+      "spells",
+      "will",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 254,
+    "text": "-FIX: Damage column on spell lists will now properly calculate damage for spells that cast 6 times a round",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-c34a3916b28c",
+    "librarium_keyword_hits": [
+      "cast",
+      "damage",
+      "spell",
+      "spells",
+      "times",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23149,
+    "text": "MsgBox \"The chosen attack will effect the script value or exp/hr calculation, depending on mode, where the damage output will have an effect on kill time.\" _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp"
+    ],
+    "candidate_id": "FR0068-4e50dd6a26bf",
+    "librarium_keyword_hits": [
+      "calculation",
+      "damage",
+      "effect",
+      "kill",
+      "mode",
+      "output",
+      "time",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23150,
+    "text": "& vbCrLf & vbCrLf & \"When party size > 1, enter the *average* damage output of each party member's per-round physical and spell damage output.\" _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-f8383391cf24",
+    "librarium_keyword_hits": [
+      "damage",
+      "output",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 23151,
+    "text": "& vbCrLf & \"Party physical damage per round = ((phys_damage * party_size) - (defense_DR * swings)) - [defenses from ac+accuracy+dodge]\" _",
+    "lhs": "round",
+    "rhs": "((phys_damage * party_size) - (defense_DR * swings)) - [defenses from ac+accuracy+dodge]\" _",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-6a630100a7e7",
+    "librarium_keyword_hits": [
+      "accuracy",
+      "damage",
+      "from"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 37509,
+    "text": "mnuAuxPopUpItem(5).Visible = False  'copy chest / calculate damage / negate spell",
+    "lhs": "Visible",
+    "rhs": "False  'copy chest / calculate damage / negate spell",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-8a1ef99e97bd",
+    "librarium_keyword_hits": [
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 37522,
+    "text": "mnuAuxPopUpItem(5).Visible = True   'copy chest / calculate damage / negate spell",
+    "lhs": "Visible",
+    "rhs": "True   'copy chest / calculate damage / negate spell",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-39ea12bee108",
+    "librarium_keyword_hits": [
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 37538,
+    "text": "mnuAuxPopUpItem(5).Visible = False  'copy chest / calculate damage / negate spell",
+    "lhs": "Visible",
+    "rhs": "False  'copy chest / calculate damage / negate spell",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-18b981319929",
+    "librarium_keyword_hits": [
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 37555,
+    "text": "mnuAuxPopUpItem(5).Visible = False  'copy chest / calculate damage / negate spell",
+    "lhs": "Visible",
+    "rhs": "False  'copy chest / calculate damage / negate spell",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-619b605554bf",
+    "librarium_keyword_hits": [
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 37567,
+    "text": "mnuAuxPopUpItem(5).Visible = True   'copy chest / calculate damage / negate spell",
+    "lhs": "Visible",
+    "rhs": "True   'copy chest / calculate damage / negate spell",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-0102a300a0ba",
+    "librarium_keyword_hits": [
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 37579,
+    "text": "mnuAuxPopUpItem(5).Visible = False  'copy chest / calculate damage / negate spell",
+    "lhs": "Visible",
+    "rhs": "False  'copy chest / calculate damage / negate spell",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d6e01d19b700",
+    "librarium_keyword_hits": [
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMonsterAttackSim.frm",
+    "line": 1868,
+    "text": "lblResultsAvgDmg.Caption = \"AVG Dmg/Rnd: \" & Round(clsMonAtkSimThisForm.nTotalDamage / clsMonAtkSimThisForm.nNumberOfRounds, 1)",
+    "lhs": "lblResultsAvgDmg.Caption",
+    "rhs": "\"AVG Dmg/Rnd: \" & Round(clsMonAtkSimThisForm.nTotalDamage / clsMonAtkSimThisForm.nNumberOfRounds, 1)",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-8ea2477b303a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPasteChar.frm",
+    "line": 2998,
+    "text": "MsgBox \"Enter each character's average per-round MAGIC/SPELL damage output.\" _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-5e417f6840ea",
+    "librarium_keyword_hits": [
+      "damage",
+      "output",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 1811,
+    "text": "cmbAttackSpell(1).AddItem tabSpells.Fields(\"Name\") & \" (\" & tabSpells.Fields(\"Number\") & \") - LVL \" & tabSpells.Fields(\"ReqLevel\") & \" \" & GetMageryEnum(tabSpells.Fields(\"Magery\"), tabSpells.Fields(\"MageryLVL\"))",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-683510a1ceac",
+    "librarium_keyword_hits": [
+      "name"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmPopUpOptions.frm",
+    "line": 2226,
+    "text": "nLocalHealRoundsOOM = CalcRoundsToOOM(nLocalHealCost + nLocalAttackSpellCost + (val(frmMain.lblCharBless.Caption) / 6), _",
+    "lhs": "nLocalHealRoundsOOM",
+    "rhs": "CalcRoundsToOOM(nLocalHealCost + nLocalAttackSpellCost + (val(frmMain.lblCharBless.Caption) / 6), _",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-a58ffc77780f",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 212,
+    "text": "'   - Includes first-round damage, surprise/backstab, and min-damage tails.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-4a578e36fdbe",
+    "librarium_keyword_hits": [
+      "damage",
+      "includes"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 328,
+    "text": "' Extra-round probability from min-damage tail",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ed1220069a3a",
+    "librarium_keyword_hits": [
+      "damage",
+      "extra",
+      "from"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modExpPerHour.bas",
+    "line": 637,
+    "text": "mpDrainAttack = effSpellPerRound * combat.RTC_Lair",
+    "lhs": "mpDrainAttack",
+    "rhs": "effSpellPerRound * combat.RTC_Lair",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d7fa0cd0e138",
+    "librarium_keyword_hits": [
+      "combat"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 747,
+    "text": "'unless rooming or attacking different mobs, >1 mobs = more than one round to kill, even if damage out > all mob HP combined",
+    "lhs": "mobs",
+    "rhs": "more than one round to kill, even if damage out > all mob HP combined",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen"
+    ],
+    "candidate_id": "FR0068-83865e79e1d7",
+    "librarium_keyword_hits": [
+      "combined",
+      "damage",
+      "even",
+      "kill"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4581,
+    "text": "GetSpellMinDamage = tabSpells.Fields(\"MinBase\") + Fix((tabSpells.Fields(\"MinInc\") / tabSpells.Fields(\"MinIncLVLs\")) * nCastLevel)",
+    "lhs": "GetSpellMinDamage",
+    "rhs": "tabSpells.Fields(\"MinBase\") + Fix((tabSpells.Fields(\"MinInc\") / tabSpells.Fields(\"MinIncLVLs\")) * nCastLevel)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d511d6ca281f",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4597,
+    "text": "GetSpellMinDamage = GetSpellMinDamage + GetSpellMinDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+    "lhs": "GetSpellMinDamage",
+    "rhs": "GetSpellMinDamage + GetSpellMinDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-aa27c35edd35",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4663,
+    "text": "GetSpellMaxDamage = tabSpells.Fields(\"MaxBase\") + Fix((tabSpells.Fields(\"MaxInc\") / tabSpells.Fields(\"MaxIncLVLs\")) * nCastLevel)",
+    "lhs": "GetSpellMaxDamage",
+    "rhs": "tabSpells.Fields(\"MaxBase\") + Fix((tabSpells.Fields(\"MaxInc\") / tabSpells.Fields(\"MaxIncLVLs\")) * nCastLevel)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ed4b2c4e12a1",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 4679,
+    "text": "GetSpellMaxDamage = GetSpellMaxDamage + GetSpellMaxDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+    "lhs": "GetSpellMaxDamage",
+    "rhs": "GetSpellMaxDamage + GetSpellMaxDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-7fa52fcd8722",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 5494,
+    "text": "nTest = SpellHasAbility(tabMonsters.Fields(\"AttAcc-\" & x), 1) '1=damage",
+    "lhs": "nTest",
+    "rhs": "SpellHasAbility(tabMonsters.Fields(\"AttAcc-\" & x), 1) '1=damage",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-3d85e87d73c5",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 5514,
+    "text": "nTest = SpellHasAbility(tabMonsters.Fields(\"AttAcc-\" & x), 1) '1=damage",
+    "lhs": "nTest",
+    "rhs": "SpellHasAbility(tabMonsters.Fields(\"AttAcc-\" & x), 1) '1=damage",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-357252437d8d",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 5526,
+    "text": "nTest = SpellHasAbility(tabMonsters.Fields(\"AttAcc-\" & x), 17) '17=damage",
+    "lhs": "nTest",
+    "rhs": "SpellHasAbility(tabMonsters.Fields(\"AttAcc-\" & x), 17) '17=damage",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-aefe595845fb",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 5604,
+    "text": "nTest = SpellHasAbility(tabMonsters.Fields(\"MidSpell-\" & x), 1) '1=damage",
+    "lhs": "nTest",
+    "rhs": "SpellHasAbility(tabMonsters.Fields(\"MidSpell-\" & x), 1) '1=damage",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-4bd496c221f0",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudDatabase.bas",
+    "line": 5616,
+    "text": "nTest = SpellHasAbility(tabMonsters.Fields(\"MidSpell-\" & x), 17) '17=damage-mr",
+    "lhs": "nTest",
+    "rhs": "SpellHasAbility(tabMonsters.Fields(\"MidSpell-\" & x), 17) '17=damage-mr",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-eefeee70753c",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1016,
+    "text": "sAvgRound = sCastLVL & IIf(nSpellDuration > 1, nSpellAvgCast, CalculateSpellCast.nAvgRoundDmg) & \" damage + \" & CalculateSpellCast.nAvgRoundHeals & \" heals\"",
+    "lhs": "sAvgRound",
+    "rhs": "sCastLVL & IIf(nSpellDuration > 1, nSpellAvgCast, CalculateSpellCast.nAvgRoundDmg) & \" damage + \" & CalculateSpellCast.nAvgRoundHeals & \" heals\"",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-27355789cee3",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1018,
+    "text": "sAvgRound = sCastLVL & IIf(nSpellDuration > 1, nSpellAvgCast, CalculateSpellCast.nAvgRoundDmg) & \" damage\"",
+    "lhs": "sAvgRound",
+    "rhs": "sCastLVL & IIf(nSpellDuration > 1, nSpellAvgCast, CalculateSpellCast.nAvgRoundDmg) & \" damage\"",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-cecbca6507ac",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1876,
+    "text": "If nDurCount > 0 Then nExtraAvgHit = nExtraAvgHit + Round(((nDurDamage / nDurCount)) / nSwings)",
+    "lhs": "nExtraAvgHit",
+    "rhs": "nExtraAvgHit + Round(((nDurDamage / nDurCount)) / nSwings)",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-e6ad489cced2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1904,
+    "text": "tRet.nFirstRoundDamage = Round((((1 - nPercent) * nAvgHit) + (nPercent * nAvgCrit)) * Fix(nSwings) * nHitChance) + Round(nExtraAvgSwing * Fix(nSwings) * nHitChance)",
+    "lhs": "tRet.nFirstRoundDamage",
+    "rhs": "Round((((1 - nPercent) * nAvgHit) + (nPercent * nAvgCrit)) * Fix(nSwings) * nHitChance) + Round(nExtraAvgSwing * Fix(nSwings) * nHitChance)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-81b782c04b66",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMMudFunc.bas",
+    "line": 1905,
+    "text": "tRet.nMinRoundDamage = Round((((1 - nPercent) * nDmgMin) + (nPercent * nMinCrit)) * Fix(nSwings) * nHitChance)",
+    "lhs": "tRet.nMinRoundDamage",
+    "rhs": "Round((((1 - nPercent) * nDmgMin) + (nPercent * nMinCrit)) * Fix(nSwings) * nHitChance)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-5a48eb15bc6c",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 528,
+    "text": "nGlobalAttackHealValue = Round(tHealSpell.nAvgCast / nGlobalAttackHealRounds, 2)",
+    "lhs": "nGlobalAttackHealValue",
+    "rhs": "Round(tHealSpell.nAvgCast / nGlobalAttackHealRounds, 2)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-0e83519613d6",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 531,
+    "text": "nGlobalAttackHealCost = Round(tHealSpell.nManaCost / nGlobalAttackHealRounds, 2)",
+    "lhs": "nGlobalAttackHealCost",
+    "rhs": "Round(tHealSpell.nManaCost / nGlobalAttackHealRounds, 2)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-a0e5442594ad",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 2855,
+    "text": "nTemp = SpellHasAbility(tabMonsters.Fields(\"AttAcc-\" & x), 1) '1=damage",
+    "lhs": "nTemp",
+    "rhs": "SpellHasAbility(tabMonsters.Fields(\"AttAcc-\" & x), 1) '1=damage",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-16ed95ea5fb8",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3086,
+    "text": "If nSurpriseDamageOut > 0 Then sBackstabText = \" + \" & CStr(nSurpriseDamageOut) & \" surprise round\"",
+    "lhs": "sBackstabText",
+    "rhs": "\" + \" & CStr(nSurpriseDamageOut) & \" surprise round\"",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-2055999cdc54",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3118,
+    "text": "sBackstabText = \" + \" & CStr(nSurpriseDamageOut) & \" surprise round\"",
+    "lhs": "sBackstabText",
+    "rhs": "\" + \" & CStr(nSurpriseDamageOut) & \" surprise round\"",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-fcac4bc497bd",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3152,
+    "text": "sBackstabText = \" + \" & CStr(nSurpriseDamageOut) & \" surprise round\"",
+    "lhs": "sBackstabText",
+    "rhs": "\" + \" & CStr(nSurpriseDamageOut) & \" surprise round\"",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-fe80e3465aa0",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3191,
+    "text": "'2-spell learned: GetSpellShort(nGlobalAttackSpellNum) & \" @ \" & Val(txtGlobalLevel(0).Text)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-cf4a6175aa04",
+    "librarium_keyword_hits": [
+      "spell",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3249,
+    "text": "IIf(sImmuTXT = \"\", tSpellcast.sAvgRound, 0) & \"/round (\" & tSpellcast.sSpellName & \")\" & sImmuTXT & sBackstabText, tSpellcast.sMMA, _",
+    "lhs": "sImmuTXT",
+    "rhs": "\"\", tSpellcast.sAvgRound, 0) & \"/round (\" & tSpellcast.sSpellName & \")\" & sImmuTXT & sBackstabText, tSpellcast.sMMA, _",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-b3b631a794c3",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 3272,
+    "text": "nFirstRoundDamageOut = tAttack.nFirstRoundDamage 'tAttack.nMinDmg * Fix(tAttack.nSwings)",
+    "lhs": "nFirstRoundDamageOut",
+    "rhs": "tAttack.nFirstRoundDamage 'tAttack.nMinDmg * Fix(tAttack.nSwings)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-2fffbad326e5",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5024,
+    "text": "nAverageDamage = nAverageDamage + tAttack.nRoundTotal",
+    "lhs": "nAverageDamage",
+    "rhs": "nAverageDamage + tAttack.nRoundTotal",
+    "weight": 4,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-99e85dec6a1e",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5061,
+    "text": "'2-spell learned: GetSpellShort(nGlobalAttackSpellNum) & \" @ \" & Val(txtGlobalLevel(0).Text)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "xp",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-c721949e6592",
+    "librarium_keyword_hits": [
+      "spell",
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5143,
+    "text": "'nFirstRoundDamage = nFirstRoundDamage * Fix(tAttack.nSwings)",
+    "lhs": "nFirstRoundDamage",
+    "rhs": "nFirstRoundDamage * Fix(tAttack.nSwings)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-4fe8d277d6b2",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5146,
+    "text": "'nFirstRoundDamage = tSpellcast.nMinCast * tSpellcast.nNumCasts",
+    "lhs": "nFirstRoundDamage",
+    "rhs": "tSpellcast.nMinCast * tSpellcast.nNumCasts",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-24c5779fd791",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5476,
+    "text": "nSpellDamage = Round(tSpellcast.nAvgRoundDmg / nManaCost, 1)",
+    "lhs": "nSpellDamage",
+    "rhs": "Round(tSpellcast.nAvgRoundDmg / nManaCost, 1)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-4a0bf5418d58",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5478,
+    "text": "nSpellDamage = Round(nUseVal / tabSpells.Fields(\"ManaCost\"), 1)",
+    "lhs": "nSpellDamage",
+    "rhs": "Round(nUseVal / tabSpells.Fields(\"ManaCost\"), 1)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-073119f2010a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5496,
+    "text": "nSpellDamage = Round(tSpellcast.nAvgRoundHeals / nManaCost, 1)",
+    "lhs": "nSpellDamage",
+    "rhs": "Round(tSpellcast.nAvgRoundHeals / nManaCost, 1)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-86cf0b137c3b",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "modMain.bas",
+    "line": 5498,
+    "text": "nSpellDamage = Round(nUseVal / tabSpells.Fields(\"ManaCost\"), 1)",
+    "lhs": "nSpellDamage",
+    "rhs": "Round(nUseVal / tabSpells.Fields(\"ManaCost\"), 1)",
+    "weight": 4,
+    "subsystems": [
+      "combat",
+      "regen",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-79424955a630",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 135,
+    "text": "-UP: Attack/Combat setup screen will now show melee attack damage too",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-5639ba5a9841",
+    "librarium_keyword_hits": [
+      "combat",
+      "damage",
+      "melee",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 136,
+    "text": "-UP: Attack/Combat setup screen will now only show spells you have learned or could cast",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-d4e474470229",
+    "librarium_keyword_hits": [
+      "cast",
+      "combat",
+      "spells",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 137,
+    "text": "-UP: Attack text on Equipment tab will now show regular and BS damage separately",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-1427d9acb19d",
+    "librarium_keyword_hits": [
+      "damage",
+      "equipment",
+      "text",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 176,
+    "text": "-UP: Added weapon swings and 1st round damage columns to weapon tab",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-ec4b0316c4cf",
+    "librarium_keyword_hits": [
+      "added",
+      "damage",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 226,
+    "text": "-NEW: Output damage based on selected attack shown in monster detail",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-e0073b8c96dc",
+    "librarium_keyword_hits": [
+      "damage",
+      "monster",
+      "output"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 231,
+    "text": "-UP: Regular filter (by mob) will now filter based on calculated damage vs character defenses if the global filter is on",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-713bd2afb1b0",
+    "librarium_keyword_hits": [
+      "damage",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 232,
+    "text": "-UP: Added highlights in monster detail for fear, poison, confusion, and area attack spells, as well as those with Illu <= -999",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-da23e8c4aaef",
+    "librarium_keyword_hits": [
+      "added",
+      "monster",
+      "spells",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 238,
+    "text": "-UP: \"BadAttk\" ability renamed to \"NoAttack\" and now displays associated item (used to stop mobs from attacking players)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-5fecb6c5d082",
+    "librarium_keyword_hits": [
+      "ability",
+      "from",
+      "item",
+      "used"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 243,
+    "text": "-NEW: Full damage calculation of all martial arts attacks",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-f35608e3bff7",
+    "librarium_keyword_hits": [
+      "calculation",
+      "damage",
+      "full"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 247,
+    "text": "-UP: updated values/columns to more accurately reflect damage based on character and selected attack",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-eafb1558af78",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 337,
+    "text": "-you can now right click on a selection of monsters and do a damage calculation against current defenses.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-28858b7c2667",
+    "librarium_keyword_hits": [
+      "against",
+      "calculation",
+      "current",
+      "damage",
+      "monsters"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "README.md",
+    "line": 338,
+    "text": "-new setting to auto-calculate mon damage vs currect char defenses on the fly when clicking on monsters.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-9cb9eae7b4bb",
+    "librarium_keyword_hits": [
+      "char",
+      "damage",
+      "monsters"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 373,
+    "text": "If m_nAtkType(nAttack) = 2 Then 'spell",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ac7f5b294d20",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 448,
+    "text": "GetMaxDamage = GetMaxDamage + m_nAtkMax(nAttack)",
+    "lhs": "GetMaxDamage",
+    "rhs": "GetMaxDamage + m_nAtkMax(nAttack)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-7a4c2384ac8d",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 449,
+    "text": "If m_nAtkDuration(nAttack) > 2 Then GetMaxDamage = GetMaxDamage + m_nAtkMax(nAttack)",
+    "lhs": "GetMaxDamage",
+    "rhs": "GetMaxDamage + m_nAtkMax(nAttack)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-6d8adb54d449",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 465,
+    "text": "GetMaxDamage = GetMaxDamage + m_nBetweenRoundMax(x)",
+    "lhs": "GetMaxDamage",
+    "rhs": "GetMaxDamage + m_nBetweenRoundMax(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-b38dbd004dfc",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 466,
+    "text": "If m_nBetweenRoundDuration(x) > 2 Then GetMaxDamage = GetMaxDamage + m_nBetweenRoundMax(x)",
+    "lhs": "GetMaxDamage",
+    "rhs": "GetMaxDamage + m_nBetweenRoundMax(x)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-8d21960ddb18",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 538,
+    "text": "' (SPELL ROUND = 3s, COMBAT ROUND 5s ... EVERY 3 ROUNDS = EXTRA SPELL ROUND)",
+    "lhs": "ROUND",
+    "rhs": "3s, COMBAT ROUND 5s ... EVERY 3 ROUNDS = EXTRA SPELL ROUND)",
+    "weight": 3,
+    "subsystems": [
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-3ea6cd897b4b",
+    "librarium_keyword_hits": [
+      "combat",
+      "extra",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 662,
+    "text": "'PHYSICAL ATTACKS = 9% MIN HIT CHANCE, 99% MAX (stock)",
+    "lhs": "ATTACKS",
+    "rhs": "9% MIN HIT CHANCE, 99% MAX (stock)",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-ecbcfa913867",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 716,
+    "text": "If m_nAtkType(nAttack) = 2 Then 'spell",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-18fe4af0205b",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 728,
+    "text": "If m_nAtkSpellType(nAttack) <> 4 And m_nAtkSpellType(nAttack) <> 6 Then 'normal-4 & poison-6",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-622d679b2095",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 813,
+    "text": "m_nStatAtkDmgResisted(nAttack) = Round(m_nStatAtkDmgResisted(nAttack) + nResist_Reduction)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-2eeef4a0260e",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 871,
+    "text": "If m_nAtkType(nAttack) = 2 Then 'spell",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-f8e8e6cffdd3",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 879,
+    "text": "m_nStatAtkHits(nAttack) = m_nStatAtkHits(nAttack) + 1",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-df39c36a716e",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 882,
+    "text": "If m_nAtkType(nAttack) = 2 And m_nAtkDuration(nAttack) > 0 Then 'duration spell",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-6b08a3c0427d",
+    "librarium_keyword_hits": [
+      "duration",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 886,
+    "text": "Call AddToCombatLog(m_sAtkName(nAttack) & \" for \" & Round(nDamage) _",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-9a43cc859e56",
+    "librarium_keyword_hits": [
+      "call"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 893,
+    "text": "Call AddToCombatLog(\" - duration spell applied (\" & nActiveAtkSpells_Value(nAttack) & \")\")",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-6b1dd8659614",
+    "librarium_keyword_hits": [
+      "call",
+      "duration",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 903,
+    "text": "If m_nAtkType(nAttack) = 2 Then 'spell",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-b544bcb45262",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 931,
+    "text": "If nLastAttackType = 1 Then 'spell",
+    "lhs": "nLastAttackType",
+    "rhs": "1 Then 'spell",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-fc2ce686f642",
+    "librarium_keyword_hits": [
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1000,
+    "text": "Call AddToCombatLog(\"[between round] \" & m_sBetweenRoundName(x) & \" - duration spell applied (\" & nActiveBetweenSpells_Value(x) & \")\")",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ded5ffdfbf9c",
+    "librarium_keyword_hits": [
+      "call",
+      "duration",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1007,
+    "text": "nRoundDamage = nRoundDamage + nDamage",
+    "lhs": "nRoundDamage",
+    "rhs": "nRoundDamage + nDamage",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-3881a9facfe4",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1010,
+    "text": "m_nStatBetweenRound_AtkTotalDamage(x) = m_nStatBetweenRound_AtkTotalDamage(x) + nDamage",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-af7878976073",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1108,
+    "text": "nCurrentAverageDamage = Round(m_nTotalDamage / nRound, 3)",
+    "lhs": "nCurrentAverageDamage",
+    "rhs": "Round(m_nTotalDamage / nRound, 3)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-29708e88732a",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1115,
+    "text": "nDifference = Abs(1 - (Round(m_nTotalDamage / nRound, 3) / nCurrentAverageDamage))",
+    "lhs": "nDifference",
+    "rhs": "Abs(1 - (Round(m_nTotalDamage / nRound, 3) / nCurrentAverageDamage))",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-55df5b8451fc",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1120,
+    "text": "nCurrentAverageDamage = Round(m_nTotalDamage / nRound, 3)",
+    "lhs": "nCurrentAverageDamage",
+    "rhs": "Round(m_nTotalDamage / nRound, 3)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-7a49b4e93da9",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1134,
+    "text": "m_nAverageDamage = Round(m_nTotalDamage / nRound, 1)",
+    "lhs": "m_nAverageDamage",
+    "rhs": "Round(m_nTotalDamage / nRound, 1)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-cf451c4e1e26",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "clsMonsterAttackSim.cls",
+    "line": 1135,
+    "text": "m_nAverageDamagePhys = Round(m_nTotalDamagePhys / nRound, 1)",
+    "lhs": "m_nAverageDamagePhys",
+    "rhs": "Round(m_nTotalDamagePhys / nRound, 1)",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-7fe0cc080d20",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 46,
+    "text": "-UP: Attack/Combat setup screen will now show melee attack damage too",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-a3e5fdd7967b",
+    "librarium_keyword_hits": [
+      "combat",
+      "damage",
+      "melee",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 47,
+    "text": "-UP: Attack/Combat setup screen will now only show spells you have learned or could cast",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-234243d43524",
+    "librarium_keyword_hits": [
+      "cast",
+      "combat",
+      "spells",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 48,
+    "text": "-UP: Attack text on Equipment tab will now show regular and BS damage separately",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-8bed367918b1",
+    "librarium_keyword_hits": [
+      "damage",
+      "equipment",
+      "text",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 83,
+    "text": "-UP: Added weapon swings and 1st round damage columns to weapon tab",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-b441983aac86",
+    "librarium_keyword_hits": [
+      "added",
+      "damage",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 132,
+    "text": "-NEW: Output damage based on selected attack shown in monster detail",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-e2d865bc97fb",
+    "librarium_keyword_hits": [
+      "damage",
+      "monster",
+      "output"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 137,
+    "text": "-UP: Regular filter (by mob) will now filter based on calculated damage vs character defenses if the global filter is on",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-dfb6dbfa775c",
+    "librarium_keyword_hits": [
+      "damage",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 138,
+    "text": "-UP: Added highlights in monster detail for fear, poison, confusion, and area attack spells, as well as those with Illu <= -999",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-cff7b19c3c30",
+    "librarium_keyword_hits": [
+      "added",
+      "monster",
+      "spells",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 144,
+    "text": "-UP: \"BadAttk\" ability renamed to \"NoAttack\" and now displays associated item (used to stop mobs from attacking players)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-496eac8de40e",
+    "librarium_keyword_hits": [
+      "ability",
+      "from",
+      "item",
+      "used"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 149,
+    "text": "-NEW: Full damage calculation of all martial arts attacks",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-5f6fe020036f",
+    "librarium_keyword_hits": [
+      "calculation",
+      "damage",
+      "full"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 153,
+    "text": "-UP: updated values/columns to more accurately reflect damage based on character and selected attack",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-b7b15626c40b",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 244,
+    "text": "-you can now right click on a selection of monsters and do a damage calculation against current defenses.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-ade28a01cd45",
+    "librarium_keyword_hits": [
+      "against",
+      "calculation",
+      "current",
+      "damage",
+      "monsters"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.archive.txt",
+    "line": 245,
+    "text": "-new setting to auto-calculate mon damage vs currect char defenses on the fly when clicking on monsters.",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-3337c777d7b5",
+    "librarium_keyword_hits": [
+      "char",
+      "damage",
+      "monsters"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 128,
+    "text": "-UP: Attack/Combat setup screen will now show melee attack damage too",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-82ce46a69a89",
+    "librarium_keyword_hits": [
+      "combat",
+      "damage",
+      "melee",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 129,
+    "text": "-UP: Attack/Combat setup screen will now only show spells you have learned or could cast",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-88aba5ab003f",
+    "librarium_keyword_hits": [
+      "cast",
+      "combat",
+      "spells",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 130,
+    "text": "-UP: Attack text on Equipment tab will now show regular and BS damage separately",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-a07dfef68737",
+    "librarium_keyword_hits": [
+      "damage",
+      "equipment",
+      "text",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 165,
+    "text": "-UP: Added weapon swings and 1st round damage columns to weapon tab",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-d0f7cb451049",
+    "librarium_keyword_hits": [
+      "added",
+      "damage",
+      "weapon"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 214,
+    "text": "-NEW: Output damage based on selected attack shown in monster detail",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-74397f370831",
+    "librarium_keyword_hits": [
+      "damage",
+      "monster",
+      "output"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 219,
+    "text": "-UP: Regular filter (by mob) will now filter based on calculated damage vs character defenses if the global filter is on",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-c3226eb3b281",
+    "librarium_keyword_hits": [
+      "damage",
+      "will"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 220,
+    "text": "-UP: Added highlights in monster detail for fear, poison, confusion, and area attack spells, as well as those with Illu <= -999",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill",
+      "stats"
+    ],
+    "candidate_id": "FR0068-a0afbf69beb3",
+    "librarium_keyword_hits": [
+      "added",
+      "monster",
+      "spells",
+      "with"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 226,
+    "text": "-UP: \"BadAttk\" ability renamed to \"NoAttack\" and now displays associated item (used to stop mobs from attacking players)",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-ccbe3ef4ff85",
+    "librarium_keyword_hits": [
+      "ability",
+      "from",
+      "item",
+      "used"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 231,
+    "text": "-NEW: Full damage calculation of all martial arts attacks",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-afb8429f847d",
+    "librarium_keyword_hits": [
+      "calculation",
+      "damage",
+      "full"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "docs/changelog.txt",
+    "line": 235,
+    "text": "-UP: updated values/columns to more accurately reflect damage based on character and selected attack",
+    "lhs": null,
+    "rhs": null,
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "stats"
+    ],
+    "candidate_id": "FR0068-56f7bd87655d",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmHitCalc.frm",
+    "line": 1201,
+    "text": "txtHitCalc(0).Text = val(txtHitCalc(0).Text) + nGlobalAttackAccyAdj",
+    "lhs": "Text",
+    "rhs": "val(txtHitCalc(0).Text) + nGlobalAttackAccyAdj",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-0e5aab98c2b9",
+    "librarium_keyword_hits": [
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmHitCalc.frm",
+    "line": 1204,
+    "text": "txtHitCalc(0).Text = val(txtHitCalc(0).Text) + nGlobalAttackAccyAdj",
+    "lhs": "Text",
+    "rhs": "val(txtHitCalc(0).Text) + nGlobalAttackAccyAdj",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-df86238eff2f",
+    "librarium_keyword_hits": [
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmHitCalc.frm",
+    "line": 1208,
+    "text": "txtHitCalc(0).Text = val(txtHitCalc(0).Text) + nGlobalAttackAccyAdj",
+    "lhs": "Text",
+    "rhs": "val(txtHitCalc(0).Text) + nGlobalAttackAccyAdj",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-613117d402eb",
+    "librarium_keyword_hits": [
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmHitCalc.frm",
+    "line": 1211,
+    "text": "txtHitCalc(0).Text = val(txtHitCalc(0).Text) + nGlobalAttackAccyAdj",
+    "lhs": "Text",
+    "rhs": "val(txtHitCalc(0).Text) + nGlobalAttackAccyAdj",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-325ce95cac3f",
+    "librarium_keyword_hits": [
+      "text"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmHitCalc.frm",
+    "line": 1700,
+    "text": "If optHitCalcType(1).Value = True Then 'if backstab",
+    "lhs": "Value",
+    "rhs": "True Then 'if backstab",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-e6ae52fdc582",
+    "librarium_keyword_hits": [],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 12930,
+    "text": "Caption         =   \"Spell Damage:\"",
+    "lhs": "Caption",
+    "rhs": "\"Spell Damage:\"",
+    "weight": 3,
+    "subsystems": [
+      "combat",
+      "spell_skill"
+    ],
+    "candidate_id": "FR0068-52aef6c9b186",
+    "librarium_keyword_hits": [
+      "damage",
+      "spell"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  },
+  {
+    "source": "MMUD Explorer",
+    "path": "frmMain.frm",
+    "line": 18721,
+    "text": "Caption         =   \"Calculate Backstab Damage\"",
+    "lhs": "Caption",
+    "rhs": "\"Calculate Backstab Damage\"",
+    "weight": 3,
+    "subsystems": [
+      "combat"
+    ],
+    "candidate_id": "FR0068-f8ea66b5b8df",
+    "librarium_keyword_hits": [
+      "damage"
+    ],
+    "evidence_state": "Derived",
+    "promotion": "Do not promote to Verified until corroborated by canonical reference/simulator/runtime observation.",
+    "match_score_0071_0076": 3
+  }
+]

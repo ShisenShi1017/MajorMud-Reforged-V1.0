@@ -1,0 +1,56 @@
+[
+  {
+    "attack_score": 25,
+    "defense_score": 25,
+    "modeled_hit_percent_placeholder": 50,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  },
+  {
+    "attack_score": 25,
+    "defense_score": 50,
+    "modeled_hit_percent_placeholder": 25,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  },
+  {
+    "attack_score": 25,
+    "defense_score": 75,
+    "modeled_hit_percent_placeholder": 5,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  },
+  {
+    "attack_score": 50,
+    "defense_score": 25,
+    "modeled_hit_percent_placeholder": 75,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  },
+  {
+    "attack_score": 50,
+    "defense_score": 50,
+    "modeled_hit_percent_placeholder": 50,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  },
+  {
+    "attack_score": 50,
+    "defense_score": 75,
+    "modeled_hit_percent_placeholder": 25,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  },
+  {
+    "attack_score": 75,
+    "defense_score": 25,
+    "modeled_hit_percent_placeholder": 95,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  },
+  {
+    "attack_score": 75,
+    "defense_score": 50,
+    "modeled_hit_percent_placeholder": 75,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  },
+  {
+    "attack_score": 75,
+    "defense_score": 75,
+    "modeled_hit_percent_placeholder": 50,
+    "assertion": "monotonic attack up/defense down only; not Classic equation"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "economy.data_presence.merchant_shop_references",
+    "type": "data_presence",
+    "state": "verified_scope_limited",
+    "confidence": "high",
+    "promotion_scope": "data presence only",
+    "evidence_count": 2419
+  },
+  {
+    "id": "economy.behavior.buy_sell_pricing",
+    "type": "behavior",
+    "state": "derived",
+    "confidence": "medium"
+  },
+  {
+    "id": "economy.behavior.banking",
+    "type": "behavior",
+    "state": "observed",
+    "confidence": "low"
+  },
+  {
+    "id": "economy.behavior.loot_treasure_value",
+    "type": "behavior",
+    "state": "derived",
+    "confidence": "medium"
+  }
+]

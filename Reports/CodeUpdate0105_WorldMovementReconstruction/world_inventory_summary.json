@@ -1,0 +1,820 @@
+{
+  "rooms_by_map": {
+    "1": 532,
+    "6": 192,
+    "17": 148,
+    "16": 126,
+    "2": 76,
+    "7": 68,
+    "12": 62,
+    "8": 34,
+    "10": 7,
+    "3": 2,
+    "4": 1
+  },
+  "obvious_exit_mentions": {
+    "north": 355,
+    "south": 346,
+    "west": 322,
+    "east": 322,
+    "down": 111,
+    "northwest": 3,
+    "southwest": 4,
+    "up": 198,
+    "northeast": 6,
+    "southeast": 4
+  },
+  "special_room_term_mentions": {
+    "gate": 43,
+    "casino": 4,
+    "door": 118,
+    "dark": 234,
+    "shop": 95,
+    "locked": 9,
+    "trap": 16,
+    "bank": 18,
+    "teleport": 1,
+    "temple": 79,
+    "toll": 1,
+    "portal": 16,
+    "key": 3
+  },
+  "sample_rooms": [
+    {
+      "id": "wcc_map1_room1",
+      "sourceId": {
+        "map": 1,
+        "room": 1
+      },
+      "mapId": 1,
+      "roomNumber": 1,
+      "name": "Town Gates",
+      "description": "You are before the massive town gates of Silvermere. They stand over\nfifteen feet high, and are made of three foot thick, steel-banded\nhardwood. Guard towers flank the gates on either side, and you can see\nthe town militia patrolling overtop on the walls. Estwall street runs\nto the north and south, following the city wall. To the west, Silver\nstreet runs to the heart of the city, ending at the town square.",
+      "descriptionLines": [
+        "You are before the massive town gates of Silvermere. They stand over",
+        "fifteen feet high, and are made of three foot thick, steel-banded",
+        "hardwood. Guard towers flank the gates on either side, and you can see",
+        "the town militia patrolling overtop on the walls. Estwall street runs",
+        "to the north and south, following the city wall. To the west, Silver",
+        "street runs to the heart of the city, ending at the town square."
+      ],
+      "exits": [
+        {
+          "dir": "N",
+          "to_room": 3,
+          "exit_type": 19
+        },
+        {
+          "dir": "S",
+          "to_room": 100,
+          "exit_type": 19
+        },
+        {
+          "dir": "W",
+          "to_room": 101,
+          "exit_type": null
+        },
+        {
+          "dir": "E",
+          "to_room": 1381,
+          "exit_type": 11
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          3,
+          100,
+          1381,
+          101
+        ],
+        "exit_type": [
+          19,
+          19,
+          11
+        ],
+        "exit_para1": [
+          1,
+          1,
+          2,
+          8
+        ],
+        "exit_para2": [
+          0,
+          0,
+          0,
+          2
+        ],
+        "exit_para3": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "exit_para4": []
+      },
+      "roomType": 0,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 0,
+        "respawnMinutes": 5,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 2,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room1.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room2",
+      "sourceId": {
+        "map": 1,
+        "room": 2
+      },
+      "mapId": 1,
+      "roomNumber": 2,
+      "name": "Lucky Strike Casino",
+      "description": "Decadance flows through the room like an over filled wine goblet. Fine\nsilk curtains cover the entrances north and south. Tables inlaid with\ngold stand around waiting to be played on. A play on the lights almost\nshow tiny little golden flickers dancing around in glee. Machines with\nslots and levers line the walls as if to salute to an anthem to the\nLady of Luck, sung by the jingle of coins won and lost.",
+      "descriptionLines": [
+        "Decadance flows through the room like an over filled wine goblet. Fine",
+        "silk curtains cover the entrances north and south. Tables inlaid with",
+        "gold stand around waiting to be played on. A play on the lights almost",
+        "show tiny little golden flickers dancing around in glee. Machines with",
+        "slots and levers line the walls as if to salute to an anthem to the",
+        "Lady of Luck, sung by the jingle of coins won and lost."
+      ],
+      "exits": [
+        {
+          "dir": "S",
+          "to_room": 10,
+          "exit_type": null
+        },
+        {
+          "dir": "N",
+          "to_room": 303,
+          "exit_type": null
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          303,
+          10
+        ],
+        "exit_type": [],
+        "exit_para1": [
+          0,
+          1010
+        ],
+        "exit_para2": [],
+        "exit_para3": [],
+        "exit_para4": []
+      },
+      "roomType": 3,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [
+        {
+          "itemId": 939,
+          "count": null
+        }
+      ],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 6,
+        "respawnMinutes": 5,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 0,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room2.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room3",
+      "sourceId": {
+        "map": 1,
+        "room": 3
+      },
+      "mapId": 1,
+      "roomNumber": 3,
+      "name": "Estwall Street",
+      "description": "This is a cobblestoned street. It is dimly lit by guttering lanterns\nhung from tall posts. The city wall is to the east, towering over\ntwenty feet above you. Estwall street is quiet and untraveled here,\nand runs to the north and south. The reinforced door to a guard tower\nis to the east, and you can see the entrance to the city off to the\nsouth.",
+      "descriptionLines": [
+        "This is a cobblestoned street. It is dimly lit by guttering lanterns",
+        "hung from tall posts. The city wall is to the east, towering over",
+        "twenty feet above you. Estwall street is quiet and untraveled here,",
+        "and runs to the north and south. The reinforced door to a guard tower",
+        "is to the east, and you can see the entrance to the city off to the",
+        "south."
+      ],
+      "exits": [
+        {
+          "dir": "S",
+          "to_room": 1,
+          "exit_type": 19
+        },
+        {
+          "dir": "N",
+          "to_room": 4,
+          "exit_type": 0
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          4,
+          1
+        ],
+        "exit_type": [
+          0,
+          19
+        ],
+        "exit_para1": [],
+        "exit_para2": [],
+        "exit_para3": [],
+        "exit_para4": []
+      },
+      "roomType": 0,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 0,
+        "respawnMinutes": 0,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 2,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room3.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room4",
+      "sourceId": {
+        "map": 1,
+        "room": 4
+      },
+      "mapId": 1,
+      "roomNumber": 4,
+      "name": "Estwall Street",
+      "description": "This is a cobblestoned street. It is dimly lit by guttering lanterns\nhung from tall posts. The city wall is to the east, towering over\ntwenty feet above you. Estwall street is quiet and untraveled here,\nand runs to the north and south.",
+      "descriptionLines": [
+        "This is a cobblestoned street. It is dimly lit by guttering lanterns",
+        "hung from tall posts. The city wall is to the east, towering over",
+        "twenty feet above you. Estwall street is quiet and untraveled here,",
+        "and runs to the north and south."
+      ],
+      "exits": [
+        {
+          "dir": "S",
+          "to_room": 3,
+          "exit_type": null
+        },
+        {
+          "dir": "N",
+          "to_room": 5,
+          "exit_type": null
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          5,
+          3
+        ],
+        "exit_type": [],
+        "exit_para1": [],
+        "exit_para2": [],
+        "exit_para3": [],
+        "exit_para4": []
+      },
+      "roomType": 0,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 0,
+        "respawnMinutes": 0,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 2,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room4.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room5",
+      "sourceId": {
+        "map": 1,
+        "room": 5
+      },
+      "mapId": 1,
+      "roomNumber": 5,
+      "name": "Estwall Street",
+      "description": "This is a cobblestoned street. It is dimly lit by guttering lanterns\nhung from tall posts. The city wall is to the east, towering over\ntwenty feet above you. Estwall street is quiet and untraveled here,\nand runs to the north and south. There is a narrow, dark alleyway to\nthe west.",
+      "descriptionLines": [
+        "This is a cobblestoned street. It is dimly lit by guttering lanterns",
+        "hung from tall posts. The city wall is to the east, towering over",
+        "twenty feet above you. Estwall street is quiet and untraveled here,",
+        "and runs to the north and south. There is a narrow, dark alleyway to",
+        "the west."
+      ],
+      "exits": [
+        {
+          "dir": "S",
+          "to_room": 4,
+          "exit_type": null
+        },
+        {
+          "dir": "N",
+          "to_room": 6,
+          "exit_type": null
+        },
+        {
+          "dir": "W",
+          "to_room": 198,
+          "exit_type": null
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          6,
+          4,
+          0,
+          198
+        ],
+        "exit_type": [],
+        "exit_para1": [],
+        "exit_para2": [],
+        "exit_para3": [],
+        "exit_para4": []
+      },
+      "roomType": 0,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 0,
+        "respawnMinutes": 0,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 2,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room5.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room6",
+      "sourceId": {
+        "map": 1,
+        "room": 6
+      },
+      "mapId": 1,
+      "roomNumber": 6,
+      "name": "Estwall Street",
+      "description": "This is a cobblestoned street. It is dimly lit by guttering lanterns\nhung from tall posts. The city wall is to the east, towering over\ntwenty feet above you. Estwall street is quiet and untraveled here,\nand runs to the north and south.",
+      "descriptionLines": [
+        "This is a cobblestoned street. It is dimly lit by guttering lanterns",
+        "hung from tall posts. The city wall is to the east, towering over",
+        "twenty feet above you. Estwall street is quiet and untraveled here,",
+        "and runs to the north and south."
+      ],
+      "exits": [
+        {
+          "dir": "S",
+          "to_room": 5,
+          "exit_type": null
+        },
+        {
+          "dir": "N",
+          "to_room": 7,
+          "exit_type": null
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          7,
+          5
+        ],
+        "exit_type": [],
+        "exit_para1": [],
+        "exit_para2": [],
+        "exit_para3": [],
+        "exit_para4": []
+      },
+      "roomType": 0,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 0,
+        "respawnMinutes": 0,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 2,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room6.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room7",
+      "sourceId": {
+        "map": 1,
+        "room": 7
+      },
+      "mapId": 1,
+      "roomNumber": 7,
+      "name": "Estwall Street",
+      "description": "This is a cobblestoned street. It is dimly lit by guttering lanterns\nhung from tall posts. The city wall is to the east, towering over\ntwenty feet above you. Estwall street is quiet and untraveled here,\nand runs to the north and south.",
+      "descriptionLines": [
+        "This is a cobblestoned street. It is dimly lit by guttering lanterns",
+        "hung from tall posts. The city wall is to the east, towering over",
+        "twenty feet above you. Estwall street is quiet and untraveled here,",
+        "and runs to the north and south."
+      ],
+      "exits": [
+        {
+          "dir": "S",
+          "to_room": 6,
+          "exit_type": null
+        },
+        {
+          "dir": "N",
+          "to_room": 8,
+          "exit_type": null
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          8,
+          6
+        ],
+        "exit_type": [],
+        "exit_para1": [],
+        "exit_para2": [],
+        "exit_para3": [],
+        "exit_para4": []
+      },
+      "roomType": 0,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 0,
+        "respawnMinutes": 0,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 2,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room7.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room8",
+      "sourceId": {
+        "map": 1,
+        "room": 8
+      },
+      "mapId": 1,
+      "roomNumber": 8,
+      "name": "Intersection of Estwall St. & Crown St.",
+      "description": "This is a cobblestoned street. It is dimly lit by guttering lanterns\nhung from tall posts. The city wall is to the east, towering over\ntwenty feet above you. Estwall street is quiet and untraveled here,\nand runs to the north and south. Crown street branches off to the\nwest.",
+      "descriptionLines": [
+        "This is a cobblestoned street. It is dimly lit by guttering lanterns",
+        "hung from tall posts. The city wall is to the east, towering over",
+        "twenty feet above you. Estwall street is quiet and untraveled here,",
+        "and runs to the north and south. Crown street branches off to the",
+        "west."
+      ],
+      "exits": [
+        {
+          "dir": "S",
+          "to_room": 7,
+          "exit_type": null
+        },
+        {
+          "dir": "N",
+          "to_room": 9,
+          "exit_type": null
+        },
+        {
+          "dir": "W",
+          "to_room": 170,
+          "exit_type": null
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          9,
+          7,
+          0,
+          170
+        ],
+        "exit_type": [],
+        "exit_para1": [],
+        "exit_para2": [],
+        "exit_para3": [],
+        "exit_para4": []
+      },
+      "roomType": 3,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 5,
+        "respawnMinutes": 5,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 2,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room8.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room9",
+      "sourceId": {
+        "map": 1,
+        "room": 9
+      },
+      "mapId": 1,
+      "roomNumber": 9,
+      "name": "Estwall Street",
+      "description": "This is a cobblestoned street. It is dimly lit by guttering lanterns\nhung from tall posts. The city wall is to the east, towering over\ntwenty feet above you. Estwall street is quiet and untraveled here,\nand runs to the north and south.",
+      "descriptionLines": [
+        "This is a cobblestoned street. It is dimly lit by guttering lanterns",
+        "hung from tall posts. The city wall is to the east, towering over",
+        "twenty feet above you. Estwall street is quiet and untraveled here,",
+        "and runs to the north and south."
+      ],
+      "exits": [
+        {
+          "dir": "S",
+          "to_room": 8,
+          "exit_type": null
+        },
+        {
+          "dir": "N",
+          "to_room": 1013,
+          "exit_type": 19
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          1013,
+          8
+        ],
+        "exit_type": [
+          19
+        ],
+        "exit_para1": [],
+        "exit_para2": [],
+        "exit_para3": [],
+        "exit_para4": []
+      },
+      "roomType": 0,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 0,
+        "respawnMinutes": 0,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 2,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room9.json",
+        "promotedBy": "Patch0068"
+      }
+    },
+    {
+      "id": "wcc_map1_room10",
+      "sourceId": {
+        "map": 1,
+        "room": 10
+      },
+      "mapId": 1,
+      "roomNumber": 10,
+      "name": "Lucky Strike Casino",
+      "description": "Decadance flows through the room like an over filled wine goblet. Fine\nsilk curtains cover the entrances north and west. You see card tables\nmade of cedar and silver scattered accross the room. Gathered around\nare lucky winners and drunken losers, both looking for that next big\nlucky streak, but only one seeming to find it and the other wishing\nthe day had never begun and drowning more in their sorrow and drink.",
+      "descriptionLines": [
+        "Decadance flows through the room like an over filled wine goblet. Fine",
+        "silk curtains cover the entrances north and west. You see card tables",
+        "made of cedar and silver scattered accross the room. Gathered around",
+        "are lucky winners and drunken losers, both looking for that next big",
+        "lucky streak, but only one seeming to find it and the other wishing",
+        "the day had never begun and drowning more in their sorrow and drink."
+      ],
+      "exits": [
+        {
+          "dir": "N",
+          "to_room": 2,
+          "exit_type": 0
+        },
+        {
+          "dir": "W",
+          "to_room": 11,
+          "exit_type": null
+        }
+      ],
+      "rawExitFields": {
+        "exit_to_room": [
+          2,
+          0,
+          0,
+          11
+        ],
+        "exit_type": [
+          0,
+          7
+        ],
+        "exit_para1": [
+          1010,
+          2
+        ],
+        "exit_para2": [],
+        "exit_para3": [
+          0,
+          1
+        ],
+        "exit_para4": []
+      },
+      "roomType": 3,
+      "shopNumber": 0,
+      "lightLevel": 0,
+      "gangHouse": 0,
+      "roomItems": [
+        {
+          "itemId": 1418,
+          "count": null
+        }
+      ],
+      "hiddenItemIds": [],
+      "groundCurrency": {
+        "copper": 0,
+        "silver": 0,
+        "gold": 0,
+        "platinum": 0,
+        "runic": 0
+      },
+      "spawn": {
+        "monsterType": 6,
+        "respawnMinutes": 5,
+        "maxAreaCap": 0,
+        "linkedSpawnRoom": 0,
+        "bossTypeId": 0
+      },
+      "behavior": {
+        "attributes": 0,
+        "deathRoomId": 0
+      },
+      "source": {
+        "kind": "ImportedDatabases/OmniVerseReference/WCC room detail",
+        "file": "ImportedDatabases/OmniVerseReference/CodeUpdate0046/OmniVerseCodexApi/wcc/rooms/room-wcc-map1-room10.json",
+        "promotedBy": "Patch0068"
+      }
+    }
+  ],
+  "room_graph_version": "0068-promoted-wcc-roommap-links",
+  "world_version": "0065-mmexplorer-mdb-room-repair"
+}

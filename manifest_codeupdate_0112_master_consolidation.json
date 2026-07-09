@@ -1,0 +1,23 @@
+{
+  "codeupdate": "0112",
+  "name": "Master Consolidation, Repository Integration, and Normalized Drop-In Baseline",
+  "status": "PASS_WITH_WARNINGS",
+  "generated_reports": [
+    "Reports/CodeUpdate0112_MasterConsolidation/MASTER_CONSOLIDATION_REPORT_0112.md",
+    "Reports/CodeUpdate0112_MasterConsolidation/REPOSITORY_INTEGRATION_REPORT_0112.md",
+    "Reports/CodeUpdate0112_MasterConsolidation/SUBSYSTEM_COVERAGE_SUMMARY_0112.md",
+    "Validation/CodeUpdate0112_MasterConsolidation/master_consolidation_audit_0112.json",
+    "Manifests/master_file_inventory_0112.csv",
+    "Reports/CodeUpdate0112_RepositoryNormalization/NORMALIZATION_REPORT_0112_1.md",
+    "Validation/CodeUpdate0112_RepositoryNormalization/repository_normalization_audit_0112_1.json",
+    "Manifests/master_file_inventory_0112_normalized.csv",
+    ".gitignore"
+  ],
+  "no_runtime_replacements": true,
+  "no_gameplay_promotions": true,
+  "source_baseline": "CodeUpdate 0111",
+  "normalizedDropInBaseline": true,
+  "normalizationUpdate": "0112.1",
+  "gitignorePolicy": "Generated graph, index, and SQLite/database artifacts are local-only and ignored by Git.",
+  "updatedAt": "2026-07-09T01:13:35Z"
+}

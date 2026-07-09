@@ -1,0 +1,42 @@
+{
+  "codeupdate": "0089-0092",
+  "diff_scope": [
+    "ImportedDatabases",
+    "Librarium",
+    "Generated",
+    "Runtime",
+    "Data"
+  ],
+  "inventory_counts": {
+    "Librarium": 170,
+    "Runtime": 49,
+    "Generated": 6,
+    "Simulator": 75,
+    "Sim": 26,
+    "Data": 102,
+    "Validation": 114,
+    "Reports": 164,
+    "Documentation": 137,
+    "Codex": 54
+  },
+  "known_drift_classes": [
+    {
+      "class": "generated_without_runtime_consumer",
+      "description": "Generated/Librarium artifacts not yet consumed by Runtime adapters."
+    },
+    {
+      "class": "runtime_without_librarium_record_id",
+      "description": "Runtime source exists but lacks explicit canonical Librarium ID/provenance marker."
+    },
+    {
+      "class": "data_generated_or_legacy_unclear",
+      "description": "Data artifacts need generated-vs-imported role tagging before freeze."
+    },
+    {
+      "class": "simulator_probe_without_classic_expected",
+      "description": "Probe defined but lacks Classic expected observation."
+    }
+  ],
+  "freeze_readiness": "NOT_READY",
+  "reason": "0093 should wait until runtime adapters have explicit Librarium source IDs and deterministic probes have expected observations."
+}

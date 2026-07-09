@@ -1,0 +1,1009 @@
+{
+  "metadata": {
+    "codeupdate": "0067",
+    "librarium_pass": "0014",
+    "generated_at": "2026-07-08T00:00:00-07:00",
+    "canonical_policy": "Gaps are Librarium records. Generated indexes are not canonical."
+  },
+  "gap_count": 46,
+  "gaps": [
+    {
+      "gap_id": "gap:0067:0001",
+      "name": "combat equations",
+      "priority": "High",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [
+        "formula::combat"
+      ],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0002",
+      "name": "XP equations",
+      "priority": "High",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [
+        "formula::experience_leveling"
+      ],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0003",
+      "name": "regen equations",
+      "priority": "High",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [
+        "formula::regeneration"
+      ],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0004",
+      "name": "loot equations",
+      "priority": "High",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [
+        "formula::loot"
+      ],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0005",
+      "name": "spawn timing",
+      "priority": "High",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [
+        "formula::spawn"
+      ],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0006",
+      "name": "AI weighting",
+      "priority": "High",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [
+        "formula::combat",
+        "formula::regeneration",
+        "formula::experience_leveling",
+        "formula::spell",
+        "formula::loot",
+        "formula::economy",
+        "formula::spawn",
+        "formula::movement",
+        "formula::ai",
+        "formula::status"
+      ],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0007",
+      "name": "damage rounding",
+      "priority": "High",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0008",
+      "name": "tick timing",
+      "priority": "High",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0009",
+      "name": "quest ordered stages",
+      "priority": "Medium",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0010",
+      "name": "quest branching",
+      "priority": "Medium",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0011",
+      "name": "quest failure states",
+      "priority": "Medium",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0012",
+      "name": "dialogue ordering",
+      "priority": "Medium",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0013",
+      "name": "dialogue conditions",
+      "priority": "Medium",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0014",
+      "name": "conversation trees",
+      "priority": "Medium",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0015",
+      "name": "script semantics",
+      "priority": "Medium",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:0067:0016",
+      "name": "runtime timing",
+      "priority": "Medium",
+      "evidence_state": "Hypothesis",
+      "confidence": 0,
+      "evidence_needed": [
+        "Librarium reconciliation",
+        "MMUD Explorer comparison",
+        "MBBSEmu/runtime comparison",
+        "simulator trace or observed classic behavior"
+      ],
+      "current_consumers": [
+        "formula::combat",
+        "formula::regeneration",
+        "formula::experience_leveling",
+        "formula::spell",
+        "formula::loot",
+        "formula::economy",
+        "formula::spawn",
+        "formula::movement",
+        "formula::ai",
+        "formula::status"
+      ],
+      "promotion_requirements": [
+        "At least one precise implementation candidate",
+        "Provenance preserved",
+        "Simulator or runtime trace reproduces behavior",
+        "No unresolved contradiction with canonical Librarium records"
+      ],
+      "status": "tracked_unknown"
+    },
+    {
+      "gap_id": "gap:formula:65065a9fe050",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::combat"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:3a76b811778d",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::combat"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:371e5fbdc999",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::combat"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:23a5a5f5daf2",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::regeneration"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:9400069d83c6",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::regeneration"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:c81ec859cd3f",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::regeneration"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:fddbc6ab09e9",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::experience_leveling"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:2a758ad0424d",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::experience_leveling"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:09249fe8aa2e",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::experience_leveling"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:1a666745bea5",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::spell"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:fda45b1fa502",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::spell"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:784935f4ca6f",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::spell"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:eabc8f27c281",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::loot"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:d2745ffe392f",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::loot"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:559c8032201b",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::loot"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:dfef16056d08",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::economy"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:ebd4357113c7",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::economy"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:1228eaf0c015",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::economy"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:6e2fe21b004a",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::spawn"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:235b2b0ef8c7",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::spawn"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:95b3bf2c06c7",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::spawn"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:38ed01087d3e",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::movement"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:3ed024866a90",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::movement"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:0abef8dbba3d",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::movement"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:e6470b3474e8",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::ai"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:e6361b0662aa",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::ai"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:3c02d8b73b7c",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::ai"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:1388d9b94cf4",
+      "name": "exact equation reconciliation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::status"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:c463e38b8b6c",
+      "name": "implementation comparison",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::status"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    },
+    {
+      "gap_id": "gap:formula:fecd2b66687c",
+      "name": "runtime trace validation",
+      "priority": "High",
+      "evidence_state": "Derived",
+      "confidence": 85,
+      "evidence_needed": [
+        "Exact equation reconciliation",
+        "Implementation comparison",
+        "Runtime trace validation"
+      ],
+      "current_consumers": [
+        "formula::status"
+      ],
+      "promotion_requirements": [
+        "Equation source identified",
+        "Inputs/outputs confirmed",
+        "Rounding/tick behavior confirmed"
+      ],
+      "status": "formula_gap"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+[
+  {
+    "id": "HOST-TIMING-GAP-0079-001",
+    "title": "Classic Timer.Hertz / idle scheduler frequency",
+    "priority": "critical",
+    "evidence_state": "Derived",
+    "confidence": "medium",
+    "known": "MBBSEmu supports configurable Timer.Hertz idle loop gating.",
+    "unknown": "Classic MajorBBS/Worldgroup default frequency and whether MajorMUD depended on a specific configured rate.",
+    "evidence_needed": [
+      "Worldgroup/MajorBBS docs",
+      "Classic config samples",
+      "runtime observation logs"
+    ],
+    "consumers": [
+      "combat timing",
+      "polling behavior",
+      "AI timing",
+      "regen timing"
+    ]
+  },
+  {
+    "id": "HOST-TIMING-GAP-0079-002",
+    "title": "MajorMUD registered callbacks",
+    "priority": "critical",
+    "evidence_state": "Hypothesis",
+    "confidence": "low",
+    "known": "Host supports STSROU, STTROU, BEGIN_POLLING, RTKICK, RTIHDLR, SYSCYC, INITASK.",
+    "unknown": "Which callbacks the original MajorMUD module actually registered and used for each subsystem.",
+    "evidence_needed": [
+      "MajorMUD binary symbol/routine mapping",
+      "MBBSEmu runtime trace while loading MajorMUD",
+      "disassembly or exported routine registration logs"
+    ],
+    "consumers": [
+      "world loop",
+      "quests",
+      "NPC AI",
+      "regen",
+      "spawns"
+    ]
+  },
+  {
+    "id": "HOST-TIMING-GAP-0079-003",
+    "title": "Output flush and perceived tick timing",
+    "priority": "high",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "known": "MBBSEmu queues output and socket sender drains asynchronously; idle heartbeat exists separately.",
+    "unknown": "Classic modem/server flush cadence and buffering behavior as observed by players.",
+    "evidence_needed": [
+      "Classic session logs",
+      "terminal capture comparison",
+      "modem/BBS output buffering docs"
+    ],
+    "consumers": [
+      "player-visible combat sequence",
+      "message ordering",
+      "timing probes"
+    ]
+  },
+  {
+    "id": "HOST-TIMING-GAP-0079-004",
+    "title": "RTIHDLR usage by MajorMUD",
+    "priority": "high",
+    "evidence_state": "Hypothesis",
+    "confidence": "low",
+    "known": "MBBSEmu implements RTIHDLR at approx 18Hz.",
+    "unknown": "Whether MajorMUD used RTIHDLR for any gameplay subsystem, and whether that affects ticks.",
+    "evidence_needed": [
+      "registration trace",
+      "module analysis",
+      "runtime debug logs"
+    ],
+    "consumers": [
+      "fast timers",
+      "animations/effects",
+      "combat cadence"
+    ]
+  }
+]

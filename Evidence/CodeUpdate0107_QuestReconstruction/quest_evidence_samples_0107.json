@@ -1,0 +1,3002 @@
+[
+  {
+    "source": "cumulative",
+    "path": "GOVERNING_PRINCIPLES.md",
+    "line": "17",
+    "text": "A relationship is not just a link. It is a knowledge record with its own evidence, confidence, provenance, world applicability, and runtime consumers."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0082.md",
+    "line": "18",
+    "text": "CodeUpdate 0083 \u2014 Timing Primary Source Hunt / Runtime Trace Acquisition. Focus on MegaMUD timing scripts, Worldgroup/MajorBBS SDK/module docs, Reference Pack timing notes, and timestamped runtime traces."
+  },
+  {
+    "source": "cumulative",
+    "path": "UpdateManifest.json",
+    "line": "124",
+    "text": "    \"sourcePackage\": \"ServerRuntimeValidation0009_NoDotNet_NpcLifecycleCombatStatePatch_Handoff.zip\","
+  },
+  {
+    "source": "cumulative",
+    "path": "UpdateManifest.json",
+    "line": "132",
+    "text": "    \"nextValidationCandidate\": \"Validation0010 autonomous NPC aggro / assist boundary evidence review\""
+  },
+  {
+    "source": "cumulative",
+    "path": "UpdateManifest.json",
+    "line": "146",
+    "text": "    \"trueEmptyCanonicalPlaceholder\": \"Data/quests.json\","
+  },
+  {
+    "source": "cumulative",
+    "path": "UpdateManifest.json",
+    "line": "158",
+    "text": "    \"serverBootstrap\": \"Passed: Server bootstrap completed successfully, reported CodeUpdate 0065, rooms=1248, world_rooms=1248, and gameplay/networking/world simulation disabled.\","
+  },
+  {
+    "source": "cumulative",
+    "path": "UpdateManifest.json",
+    "line": "176",
+    "text": "  \"dataDrivenLogicPolicy\": \"Game logic is data-driven by default. The server provides reusable engine systems, validation, execution, and enforcement; rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-interna"
+  },
+  {
+    "source": "cumulative",
+    "path": "UpdateManifest.json",
+    "line": "184",
+    "text": "      \"322\": \"monster/NPC row surface candidate\","
+  },
+  {
+    "source": "cumulative",
+    "path": "ProjectManifest.json",
+    "line": "9",
+    "text": "  \"updatePolicy\": \"ChatGPT CodeUpdate ZIPs are patch-only packages unless explicitly requested otherwise; each ZIP must contain exactly one top-level update folder with Apply-CodeUpdate-XXXX.bat and UpdateManifest.json, and the BAT applies changed/new files into the main repository folder.\","
+  },
+  {
+    "source": "cumulative",
+    "path": "ProjectManifest.json",
+    "line": "23",
+    "text": "    \"completedMilestones\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "ProjectManifest.json",
+    "line": "26",
+    "text": "    \"milestone1Status\": \"Complete/frozen\","
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0106_ECONOMY.md",
+    "line": "5",
+    "text": "Completed branches: Combat, Magic, Progression, NPC, World/Movement, Economy."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0106_ECONOMY.md",
+    "line": "13",
+    "text": "Next recommended branch: **CodeUpdate 0107 \u2014 Quest Reconstruction**."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "15",
+    "text": "## DataSimVer0012 \u2014 Service/NPC Interaction Expected Model"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "16",
+    "text": "- Service and NPC behavior is still treated as an expected model, not proof of original runtime behavior."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "23",
+    "text": "User-requested custom content was registered as overlays, not legacy `/Data`: a sysop/GM-only Synopsis Room and command `code_of_twinks_78`. Possible sysop/GM placeholder rooms are tracked as a hypothesis only until original engine or MBBSEmu evidence is available."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "30",
+    "text": "- Expected-model transaction successes: 3357; failures: 7099."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "44",
+    "text": "Rooms contain spawn records that can be mapped to monster legacy identifiers. The simulator can model expected reward/death rows from monster XP, currency, and loot tables, but exact runtime death, corpse, respawn, linked-spawn, and loot-roll semantics remain unverified. `/Data` was not changed."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "72",
+    "text": "User runtime knowledge recorded: normal creatures respawn on approximately a 15-minute global cycle. Monsters configured with an explicit respawn timer start that timer on death, and the timer continues through daily reset/cleanup rather than being restarted by reset. The simulator now distinguishes"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "79",
+    "text": "## DataSimVer0023 \u2014 Quest/Boss Respawn and Occupancy Hypothesis"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "81",
+    "text": "The simulator now documents boss/unique monster and quest monster respawn as a separate uncertainty area. Boss or unique monsters should not automatically be treated as normal ~15-minute respawn creatures; they may use explicit timers, quest gates, or special persistence rules. Room occupancy / spaw"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "85",
+    "text": "## DataSimVer0024 \u2014 Quest/Boss Persistence and Occupancy Model"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "87",
+    "text": "- Added documented-only separation of quest persistence, boss/unique respawn, room occupancy, cleanup, and respawn timers."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "121",
+    "text": "## Validation0003 \u2014 MDB Extractor Tool Intake"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "127",
+    "text": "Status: completed."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "139",
+    "text": "- Exact data flag offsets and field mappings for cleanup behavior."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "143",
+    "text": "- Exact boss/unique/quest persistence behavior."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "147",
+    "text": "## Validation0004 \u2014 Combat, Quest, Persistence External Evidence"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "150",
+    "text": "- MajorMUD disassembly contains candidate neighborhoods for combat, attack, damage, quest, save/load, monster, room, gold, experience, and spell logic."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "151",
+    "text": "- No exact combat formula, quest persistence rule, or save-layout rule is promoted yet. Function-level mapping remains required."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "158",
+    "text": "- No `/Data` promotion is approved. Exact field binding remains required for cleanup flags, respawn timers, quest persistence, boss uniqueness, and combat formulas."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "169",
+    "text": "- MajorMUD has a search/hidden-discovery subsystem: `_CMD_SEARCH`, `_CLEAR_SEARCH_FLAGS`, hidden/hide references."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "172",
+    "text": "- Item cleanup flags remain unmapped."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "175",
+    "text": "- Quest persistence fields and transitions remain unmapped."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "183",
+    "text": "Validation0007 performed a focused routine/term review of remaining promotion blockers. It found stronger targeting evidence for cleanup, search/hidden discovery, respawn/reset/timer, and quest persistence routines, but did not isolate exact data fields, bit flags, or formulas."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "185",
+    "text": "Promotion state remains unchanged from Validation0006: host cleanup lifecycle, RTKICK one-shot scheduling, BEGIN_POLLING persistent polling, and search/hidden-discovery subsystem are validated at engine-documentation level only. Exact cleanup flags, exact monster respawn scheduler behavior, exact se"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "191",
+    "text": "- Hidden-exit discovery uses a random roll, room exit state/flags, and player-derived thresholds."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "198",
+    "text": "Status: completed after rerun; earlier quick Validation0009/Validation0010 summaries are discarded."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "213",
+    "text": "- Quest/boss-specific respawn flags."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "218",
+    "text": "- `_CMD_SEARCH` and `_SEARCH_FOR_HIDDEN_EXITS` now have offset-level control-flow validation. Hidden-exit search uses a dedicated directional command path, `GENRDN(0,100)`, a player offset threshold at `+5EDh` adjusted by `-15` with a minimum of `3`, room exit type `6`, and hidden flag bit `0x02` at"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "223",
+    "text": "- Cleanup destroy/hide flags, exact quest persistence fields, and exact named monster timer fields remain unresolved."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "225",
+    "text": "## Validation0011 \u2014 Cleanup and Quest Field-Level Blockers"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "227",
+    "text": "Validation0011 refined the remaining cleanup and quest persistence questions into field-level mapping blockers."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "231",
+    "text": "- Cleanup lifecycle remains verified at architecture level, but exact item flag encoding is unresolved."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "232",
+    "text": "- Quest persistence remains verified at architecture level, but exact Btrieve/player-state fields are unresolved."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "239",
+    "text": "Validation0012 produced a conservative candidate target set for cleanup flag encoding and quest persistence field mapping."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "243",
+    "text": "- Cleanup and quest validation have moved from architecture-level questions to field/offset reverse-mapping targets."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "248",
+    "text": "## Validation0013 \u2014 Quest Gate Single-Path Trace"
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "252",
+    "text": "- A load-time player status/quest gate exists and can emit the message requiring the player to complete a quest to regain Saint status."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "254",
+    "text": "The pass also traced `_ASK_MONSTER_A_QUESTION` as a concrete interactive monster/question text path."
+  },
+  {
+    "source": "cumulative",
+    "path": "EngineKnowledge.md",
+    "line": "256",
+    "text": "No `/Data` changes were made. Exact quest persistence fields and offset names remain unresolved."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "32",
+    "text": "- This is a diagnostics command-surface update only. It does not add a parser, dispatcher, scheduler tick, sockets, sessions, gameplay, movement execution, party-follow behavior, combat services, spawning services, scripts, AI, world simulation, or canonical `Data` promotion."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "45",
+    "text": "- Adds no-.NET simulator combat lifecycle state and death-triggered respawn scheduling from ServerRuntimeValidation0009."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "50",
+    "text": "- This is a diagnostics naming/refinement and simulator-validation update only. It does not start scheduler execution, sockets, sessions, gameplay, combat services, spawning services, status ticking, scripts, or AI. ServerRuntimeValidation0009 does not certify autonomous NPC aggro, assist behavior, "
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "66",
+    "text": "- This is diagnostics/readiness surface work only. It does not start a scheduler loop, sockets, sessions, gameplay, combat, spawning, status ticking, scripts, or AI."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "75",
+    "text": "- Reports initialized, configured, data-ready, world-projection-ready, module-ready, and runtime-disabled stages."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "138",
+    "text": "- Verified local and GitHub remote branch identity before edits."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "170",
+    "text": "- Recorded `Data/quests.json` as the only true empty canonical placeholder."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "178",
+    "text": "- Current placeholder audit records quests as the only true empty canonical placeholder."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "186",
+    "text": "# CodeUpdate-0054 - Validation0013 and DocUpdate0024 New-Files Intake"
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "199",
+    "text": "- Added copy/skip inventories and intake report under `Reports/CodeUpdates/CodeUpdate-0054/`."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "212",
+    "text": "- This is a new-file intake only. Existing repository files were not overwritten, and no reconciliation, field promotion, runtime validation, or gameplay behavior is claimed."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "214",
+    "text": "# CodeUpdate-0053 - Patch0068 Data Replacement and Handoff Intake"
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "226",
+    "text": "- Added `Reports/CodeUpdates/CodeUpdate-0053/Handoff0074Patch0071Patch0068IntakeReport.md`."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "505",
+    "text": "- Recorded the eventual goal to retire imported/reference data after Reforged-native data is complete and verified."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "539",
+    "text": "- Empty placeholder categories remain visible: loot tables, quests, rooms, shops, and trainers."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "676",
+    "text": "- Smoke tests verify issue-count behavior for success and failure paths."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "732",
+    "text": "- Server startup returns the report exit code on success and failure."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "733",
+    "text": "- Smoke tests verify success returns exit code 0 and failure returns exit code 1."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "764",
+    "text": "Future updates should include a short next-scope candidate and explicit boundaries separately from completed work. This makes handoff safer without starting unapproved work."
+  },
+  {
+    "source": "cumulative",
+    "path": "ReleaseNotes.md",
+    "line": "802",
+    "text": "- The user-provided GitHub Actions failure output was matched to the current GitHub file."
+  },
+  {
+    "source": "cumulative",
+    "path": "DEVELOPMENT_PRINCIPLES.md",
+    "line": "18",
+    "text": "12. Treat game logic as data-driven by default; keep rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior in data unless a behavior is truly engine-internal."
+  },
+  {
+    "source": "cumulative",
+    "path": "DEVELOPMENT_PRINCIPLES.md",
+    "line": "39",
+    "text": "Favor clear, maintainable, boring code over clever code. Reforged is a long-term software project, so future readability and safe handoff are more important than speed."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0105_WORLD.md",
+    "line": "3",
+    "text": "Current branch complete: **World / Movement Reconstruction**."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0105_WORLD.md",
+    "line": "5",
+    "text": "Baseline used: uploaded CodeUpdate 0104 NPC cumulative ZIP."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0105_WORLD.md",
+    "line": "19",
+    "text": "## Remaining branches"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0105_WORLD.md",
+    "line": "21",
+    "text": "2. CodeUpdate 0107 \u2014 Quest Reconstruction"
+  },
+  {
+    "source": "cumulative",
+    "path": "LibrariumManifest.json",
+    "line": "7",
+    "text": "  \"librarium_validation_baseline_zip\": \"MajorMUD-Reforged-Validation-0007-Final-Librarium-Completion-Compiler-Foundation.zip\","
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0071_0076.md",
+    "line": "7",
+    "text": "- Combined formula behavior verification records for combat, XP/leveling, regeneration/time, loot/spawn, NPC AI, and quest runtime."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0071_0076.md",
+    "line": "10",
+    "text": "- Combined Knowledge Gap Registry entries for unresolved behavior questions."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0079.md",
+    "line": "7",
+    "text": "## Completed"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0079.md",
+    "line": "25",
+    "text": "Objectives:"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0105_WORLD.md",
+    "line": "7",
+    "text": "- Scanned uploaded MBBSEmu and MMUD Explorer repositories for room, exit, door, lock, teleport, pathing, trigger, and environmental evidence."
+  },
+  {
+    "source": "cumulative",
+    "path": "CODEX_HANDOFF.md",
+    "line": "5",
+    "text": "Work from this repository as a complete PC replacement baseline. The project is now Librarium-first."
+  },
+  {
+    "source": "cumulative",
+    "path": "CODEX_HANDOFF.md",
+    "line": "25",
+    "text": "3. Continue formula reconciliation and quest/dialogue ordering validation."
+  },
+  {
+    "source": "cumulative",
+    "path": "CODEX_HANDOFF.md",
+    "line": "31",
+    "text": "- Latest knowledge baseline: `Validation-0007 Final Librarium Completion / Compiler Foundation`"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0081.md",
+    "line": "5",
+    "text": "Completed: Executed/applied all 0080 probes against available MBBSEmu source evidence. Generated source-derived trace, observations, gap updates, evidence index, validation summary, and report."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0069.md",
+    "line": "5",
+    "text": "Completed:"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0071_0076.md",
+    "line": "11",
+    "text": "## Completed Together"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0071_0076.md",
+    "line": "17",
+    "text": "- 0075 NPC AI Behavior Verification"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0071_0076.md",
+    "line": "18",
+    "text": "- 0076 Quest Runtime Behavior Verification"
+  },
+  {
+    "source": "cumulative",
+    "path": "manifest_codeupdate_0078.json",
+    "line": "6",
+    "text": "  \"completed_phases\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "manifest_codeupdate_0080.json",
+    "line": "22",
+    "text": "    \"runner_scripts\": 1,"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "13",
+    "text": "- Recorded owner table `1664` as the room/world row surface and owner tables `322`, `2566`, `15`, and `1660` as next repair candidates for monsters/NPCs, shops, classes, and races."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "24",
+    "text": "- No command parser, dispatcher, scheduler ticking, sockets, sessions, gameplay, movement execution, party-follow implementation, combat services, spawning services, status-effect ticking, script dispatch, AI execution, world simulation, canonical `Data` rewrite, imported/reference deletion, live pa"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "31",
+    "text": "- Folded ServerRuntimeValidation0009 into the no-.NET simulator validation surface with explicit expected-model combat lifecycle state and death-triggered respawn scheduling."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "34",
+    "text": "- No scheduler ticking, sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat services, movement execution, spawning services, status-effect ticking, script dispatch, AI execution, character creation, world simulation, networking expansion, live editor behavior, canoni"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "45",
+    "text": "- No scheduler ticking, sockets, sessions, gameplay, runtime rule execution, mode/profile activation, combat, movement, spawning, status-effect ticking, script dispatch, AI execution, character creation, world simulation, networking expansion, live editor behavior, canonical `Data` rewrite, imported"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "52",
+    "text": "- Added Server startup output for lifecycle status and per-stage readiness."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "54",
+    "text": "- Verified lifecycle stages derive from existing host configuration, data catalog, world projection, module catalog, and module readiness reports."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "115",
+    "text": "- Added `Reports/CodeUpdates/CodeUpdate-0055/PackageIntakeInventory.csv`."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "117",
+    "text": "- Recorded `Data/quests.json` as the only true empty canonical placeholder and `world_rooms` as a loader projection gap."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "122",
+    "text": "## CodeUpdate-0054 - Validation0013 and DocUpdate0024 New-Files Intake"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "133",
+    "text": "- Added `Reports/CodeUpdates/CodeUpdate-0054/Validation0013DocUpdate0024NewFilesIntakeReport.md`."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "139",
+    "text": "## CodeUpdate-0053 - Patch0068 Data Replacement and Handoff Intake"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "149",
+    "text": "- Recorded that exactly 86 embedded Patch0068 `Data/` files were staged and copied."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "153",
+    "text": "- Added `Reports/CodeUpdates/CodeUpdate-0053/Handoff0074Patch0071Patch0068IntakeReport.md`."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "165",
+    "text": "- Recorded that static data/content recovery and entity/world/catalog recovery are effectively complete by handoff statement, while original runtime validation remains unavailable."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "179",
+    "text": "- Recorded import staging counts: 1,246 evidence-backed room records, 178 shops, 732 monster item drop edges, 125 quest/progression candidates, 46 skill/trainer-related rows, 1,770 item/equipment records, 1,180 spell records, and 1,100 expected monster records."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "210",
+    "text": "- Recorded comparison findings: classes/races have full normalized-name coverage, spells have partial `sourceId` coverage, items are name-only correlation, and shops/rooms/monsters remain incomplete as Reforged-native canonical data."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "256",
+    "text": "- Recorded the long-term goal to retire `ImportedDatabases/` only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "271",
+    "text": "- Added broad category summaries for rooms, monsters, items, spells, shops, quests, classes/races, ganghouses, maps/paths, and raw legacy databases."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "287",
+    "text": "- Added readiness flags for project root, required directories, manifest identity, startup diagnostics, and host-tool readiness."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "313",
+    "text": "- Added draft `Docs/SDS/` Software Design Specification planning records for future AI, combat, quest, explorer, discovery map, launcher, host editor, loot, networking, plugin, expansion, data-format, gameplay-flag, and ganghouse systems."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "322",
+    "text": "- Added `KnowledgeBase/DesignDecisions/DesignDecisionIndex.md` to track accepted/proposed design decisions."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "334",
+    "text": "- Smoke tests verify success and failure bootstrap paths expose expected validation issue counts."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "355",
+    "text": "- Server startup now returns the bootstrap report exit code instead of duplicating success/failure code values."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "356",
+    "text": "- Smoke tests now verify bootstrap success exposes exit code 0 and bootstrap failure exposes exit code 1."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "368",
+    "text": "- Added a handoff improvement: future updates should record a short next-scope candidate and explicit boundaries separately from completed work."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "376",
+    "text": "- Fixed the GitHub Actions test build failure reported at `Program.cs#L59` with `Syntax error, ',' expected`."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "479",
+    "text": "- Added trace probe catalog, schema, gap mapping, runner script, example template, validation, report, Codex handoff, and session handoff."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "487",
+    "text": "- Added subsystem reconstruction index for combat, progression, magic, world/movement, NPCs, economy, quests, and guild/social systems."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "490",
+    "text": "- Added deterministic probe catalog for subsystem traceability and deterministic outcomes."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "512",
+    "text": "## CodeUpdate 0104 \u2014 NPC Reconstruction"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "514",
+    "text": "See `CHANGELOG_CODEUPDATE_0104_NPC.md`. No NPC runtime behaviors promoted or replaced."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG.md",
+    "line": "523",
+    "text": "- Scanned uploaded MBBSEmu and MMUD Explorer repositories for room, exit, door, lock, teleport, pathing, trigger, and environmental evidence."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0078.md",
+    "line": "7",
+    "text": "- Subsystem behavior timelines for combat, regen/time, timed effects, NPC AI, loot/spawn, XP/leveling, quests, and output visibility."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0068.md",
+    "line": "12",
+    "text": "Completed:"
+  },
+  {
+    "source": "cumulative",
+    "path": "CanonicalPromotion/Promotion-0001.md",
+    "line": "7",
+    "text": "- NPC Definitions"
+  },
+  {
+    "source": "cumulative",
+    "path": "CanonicalPromotion/Promotion-0001.md",
+    "line": "9",
+    "text": "- Textblocks"
+  },
+  {
+    "source": "cumulative",
+    "path": "CanonicalPromotion/Promotion-0001.md",
+    "line": "10",
+    "text": "- Quest data structures"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0080.md",
+    "line": "5",
+    "text": "Current focus: host lifecycle traceability."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0080.md",
+    "line": "7",
+    "text": "Completed in 0080:"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0070.md",
+    "line": "7",
+    "text": "Completed:"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0078.md",
+    "line": "6",
+    "text": "Completed in this update:"
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "12",
+    "text": "2. Read `AI_CONTEXT.md` completely."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "40",
+    "text": "Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure "
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "74",
+    "text": "Favor reusable engine systems over feature-specific systems. Avoid naming or designing systems around Classic unless they truly are Classic-specific. Game logic is data-driven by default: rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should liv"
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "104",
+    "text": "- CodeUpdate-0055 preserves curated current-pass Validation0043 evidence under `DataDecodeCheckpoints/Validation0043/` and curated current-pass MegaMUD2 RE0021 evidence under `DataDecodeCheckpoints/MegaMUD2RE0021/`. Validation0043 contributes matched textblock action dispatcher/opcode evidence; Mega"
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "108",
+    "text": "- CodeUpdate-0063 preserves ServerRuntimeValidation0009 under `Docs/ServerSim/ServerRuntimeValidation0009/` and applies its compatible no-.NET simulator lifecycle patch. This is expected-model validation only; it does not certify autonomous NPC aggro, assist behavior, initiative, attack timing, targ"
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "125",
+    "text": "- Do not delete imported/reference material until Reforged-native `Data/` is complete and verified and the user explicitly approves cleanup."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "156",
+    "text": "| Event system | Frozen | Smoke test verifies publish and subscription disposal behavior. |"
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "218",
+    "text": "| 0033 | Adds an explicit Server bootstrap report exit-code contract and smoke coverage for success/failure exit codes. |"
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "228",
+    "text": "| 0025 | Completed active rebrand audit, removed obsolete duplicate MajorMud-named importer utility, and confirmed no gameplay changes. |"
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "247",
+    "text": "- Added `Reports/CodeUpdates/CodeUpdate-0055/PackageIntakeInventory.csv`."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "249",
+    "text": "- Recorded that game logic is data-driven by default: rules, content, progression, encounters, shops, quests, spawns, textblock actions, and world behavior should live in data unless truly engine-internal."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "253",
+    "text": "- `Data/quests.json` is the only true empty canonical placeholder."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "283",
+    "text": "CodeUpdate-0054 is a new-file-only evidence and planning intake update."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "297",
+    "text": "- Added `Reports/CodeUpdates/CodeUpdate-0054/Validation0013DocUpdate0024NewFilesIntakeReport.md`."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "323",
+    "text": "CodeUpdate-0053 is a data-baseline and evidence-intake update."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "337",
+    "text": "- Added `Reports/CodeUpdates/CodeUpdate-0053/Handoff0074Patch0071Patch0068IntakeReport.md`."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "345",
+    "text": "- Repository `Data/` was replaced from exactly 86 staged Patch0068 `/Data` files."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "387",
+    "text": "- Static data/content recovery is effectively complete by handoff statement."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "388",
+    "text": "- Entity/world/catalog recovery is effectively complete by handoff statement."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "449",
+    "text": "- `Data/quests.json`: 0 canonical records; 125 quest/progression candidates."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "495",
+    "text": "- Static certification complete: yes, for `ImportedDatabases` scope only."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "515",
+    "text": "- No exact combat, timer, script, AI, drop-rate, shop, or quest behavior certification."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "613",
+    "text": "- Recorded DataDecode0049 findings: 15 NativeRuntime DAT datasets profiled, 5,916 executable strings, 9,574 record constant hits, 29 string-address xrefs, 29 record-access candidate windows, 15 descriptor candidates, 93 canonical term hits, and 0 field promotions."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "631",
+    "text": "- After user push and green Actions, continue with DataDecode0051 Combat Routine Correlation from the GitHub repository working copy. Focus on damage, armor, spell, resistance, and ability calculations. Promote no fields without binary evidence."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "742",
+    "text": "- Recorded the long-term goal to retire `ImportedDatabases/` only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "748",
+    "text": "- 5 runtime-blocked placeholder categories: loot tables, quests, rooms, shops, and trainers."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "789",
+    "text": "- 5 empty placeholder categories remain visible: loot tables, quests, rooms, shops, and trainers."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "818",
+    "text": "- Added broad category summaries for rooms, monsters, items, spells, shops, quests, classes/races, ganghouses, maps/paths, and raw legacy databases."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "849",
+    "text": "- Added readiness flags for project root, required directories, manifest identity, startup diagnostics, and host-tool readiness."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "999",
+    "text": "- CodeUpdate-0035 should be approved by the user before implementation. A safe candidate is a read-only local audit report template or offline comparison script that does not modify `Data/`."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "1008",
+    "text": "- Updated Server startup to return `report.ExitCode` for both success and failure."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "1009",
+    "text": "- Added smoke-test coverage for success exit code 0 and failure exit code 1."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "1038",
+    "text": "- Added a handoff improvement rule: future updates should record a concise next-scope candidate and explicit boundaries separately from completed work."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "1104",
+    "text": "4. Keep hidden/scripted exits, formulas, timers, scripts, AI, drops, quests, and other runtime-only behavior marked uncertain until controlled validation or executable hooks exist."
+  },
+  {
+    "source": "cumulative",
+    "path": "AI_CONTEXT.md",
+    "line": "1109",
+    "text": "If this is a new ChatGPT or Codex session, do not ask the user to restate project history. Read `AGENTS.md`, this file, the roadmap, README, VERSION, CHANGELOG, ProjectManifest, and `DEVELOPMENT_PRINCIPLES.md`, inspect GitHub truth, then continue from the next recommended work unless the user gives "
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/EconomyReconstruction0106_Report.md",
+    "line": "21",
+    "text": "One narrow data-presence record was promoted: `economy.data_presence.merchant_shop_references`. This verifies traceable merchant/shop/economy data presence only. It does not verify pricing formulas, merchant acceptance, repair math, banking persistence, loot value generation, or gambling behavior."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/EconomyReconstruction0106_Report.md",
+    "line": "26",
+    "text": "- Merchant item acceptance/rejection rules"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/EconomyReconstruction0106_Report.md",
+    "line": "27",
+    "text": "- Repair costs and durability semantics"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/EconomyReconstruction0106_Report.md",
+    "line": "34",
+    "text": "## Next branch"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/EconomyReconstruction0106_Report.md",
+    "line": "36",
+    "text": "Proceed to **CodeUpdate 0107 \u2014 Quest Reconstruction** after review."
+  },
+  {
+    "source": "cumulative",
+    "path": "UpdateManifest0067.json",
+    "line": "5",
+    "text": "  \"completed\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/promote_mdb_rooms.py",
+    "line": "79",
+    "text": "            'description': '',"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/promote_mdb_rooms.py",
+    "line": "80",
+    "text": "            'descriptionLines': [],"
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0106_EconomyReconstruction/economy_gap_registry_0106.json",
+    "line": "9",
+    "text": "    \"id\": \"economy_gap_merchant_acceptance_rules\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0106_EconomyReconstruction/economy_gap_registry_0106.json",
+    "line": "10",
+    "text": "    \"title\": \"Merchant item acceptance/rejection rules\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0106_EconomyReconstruction/economy_gap_registry_0106.json",
+    "line": "16",
+    "text": "    \"title\": \"Repair cost formula and durability semantics\","
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0080.md",
+    "line": "8",
+    "text": "- Runtime trace runner script."
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "71",
+    "text": "9. Relevant app/source/test files for the requested change"
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "108",
+    "text": "- Do not say an update is complete until the required local/package verification has been done."
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "109",
+    "text": "- Do not say a pushed update is accepted until the user or GitHub status confirms green Actions for that push."
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "141",
+    "text": "CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract. Future updates should continue recording completed work, boundaries, verification status, and next-scope candidates separately."
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "169",
+    "text": "CodeUpdate-0047 preserves the user-provided DataDecode0049 WGSERVER record access / structure correlation checkpoint under `DataDecodeCheckpoints/DataDecode0049/` and records the DataDecode0050 GitHub transition handoff under `DataDecodeCheckpoints/DataDecode0050/`. DataDecode0049 reports 15 NativeR"
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "179",
+    "text": "CodeUpdate-0052 preserves the user-provided Build0027 current-state handoff under `DataDecodeCheckpoints/CurrentStateBuild0027/` and `Docs/BehavioralRecovery/Build0027/`. Build0027 records that static data/content recovery and entity/world/catalog recovery are effectively complete, but original runt"
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "185",
+    "text": "CodeUpdate-0055 preserves curated current-pass Validation0043 and MegaMUD2 RE0021 evidence-only checkpoints under `DataDecodeCheckpoints/`, refreshes `DataDecodeCheckpoints/UnifiedDecodedData/`, and records the current placeholder/blocker audit. `Data/quests.json` is the only true empty canonical pl"
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "195",
+    "text": "CodeUpdate-0061 adds a read-only Server host lifecycle readiness state. It derives initialized, configured, data-ready, world-projection-ready, module-ready, and runtime-disabled lifecycle stages from existing bootstrap reports. It does not open sockets, start sessions, run gameplay, activate rule p"
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "197",
+    "text": "CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics and preserves curated ServerSim0036 planning/regression evidence under `Docs/ServerSim/ServerSim0036/`. Its original gameplay-facing channel names are superseded by CodeUpdate-0063. It does not start scheduler ticking, world loop,"
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "199",
+    "text": "CodeUpdate-0063 corrects the CodeUpdate-0062 scheduler bootstrap surface to use generic execution channel names: Ingress, Validation, Planning, Dispatch, Mutation, TimedWork, EventWork, Persistence, Observation, and Maintenance. It also folds ServerRuntimeValidation0009 into the no-.NET simulator va"
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "201",
+    "text": "CodeUpdate-0064 adds a guarded scheduler/status command surface to Server bootstrap diagnostics and preserves ServerRuntimeValidation0013 movement/follow evidence under `Docs/ServerSim/ServerRuntimeValidation0013/`. It registers `status.overview`, `status.lifecycle`, `status.modules`, `status.schedu"
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "207",
+    "text": "Engine direction after CodeUpdate-0039: favor reusable engine systems over feature-specific systems. Avoid designing around Classic unless behavior is truly Classic-specific. Game logic is data-driven by default: rules, content, progression, encounters, shops, quests, spawns, textblock actions, and "
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "211",
+    "text": "Imported/reference data may eventually be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup."
+  },
+  {
+    "source": "cumulative",
+    "path": "AGENTS.md",
+    "line": "213",
+    "text": "Future extraction work should remain staged as capture, decode, compare, and reviewed apply steps. Capture and decode outputs are evidence only until a separate approved reconciliation update changes canonical `Data/`."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF.md",
+    "line": "5",
+    "text": "Completed branches: Combat, Magic, Progression, NPC, World/Movement, Economy."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF.md",
+    "line": "13",
+    "text": "Next recommended branch: **CodeUpdate 0107 \u2014 Quest Reconstruction**."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "3",
+    "text": "Evidence-oriented offline MDB extractor for Nightmare Redux ability.mdb."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "6",
+    "text": "readable Jet data pages used by Nightmare Redux's ability.mdb. It never uses"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "44",
+    "text": "            'row_pointer_flags_hex': hex(raw_ptr & 0xF000),"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "55",
+    "text": "def parse_ability_row(row):"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "60",
+    "text": "    # Ability rows observed in Nightmare Redux begin with a 6 byte fixed prefix."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "61",
+    "text": "    ability_id = int.from_bytes(blob[2:4], 'little') if len(blob) >= 4 else None"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "76",
+    "text": "        # <description_length> 00 <name_length> 00 0c 00 02 00 3f"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "86",
+    "text": "        description = parts[0] if parts else ''"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "89",
+    "text": "        description = parts[1] if len(parts) > 1 else ''"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "91",
+    "text": "        'ability_id': ability_id,"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "93",
+    "text": "        'description': description,"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "99",
+    "text": "        'row_pointer_flags_hex': row['row_pointer_flags_hex'],"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "100",
+    "text": "        'record_status': 'base/active-candidate' if row['row_pointer_raw'] < 0x4000 else 'flagged/supplemental-candidate',"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "101",
+    "text": "        'confidence': 'High for id/name/description extraction; Medium for unidentified numeric prefix bytes',"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "193",
+    "text": "    ability_rows = []"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "195",
+    "text": "        # Table page 22 is the readable ability/attribute record store in this MDB."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "197",
+    "text": "            parsed = parse_ability_row(row)"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "199",
+    "text": "                ability_rows.append(parsed)"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "200",
+    "text": "    ability_rows.sort(key=lambda r: (r['ability_id'] is None, r['ability_id'], r['source_page'], r['source_offset']))"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "216",
+    "text": "    (out/'ability_rows.json').write_text(json.dumps(ability_rows, indent=2), encoding='utf-8')"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "217",
+    "text": "    with (out/'ability_rows.csv').open('w', newline='', encoding='utf-8') as f:"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "218",
+    "text": "        fields = ['ability_id','name','description','text_part_count','numeric_prefix_hex','source_page','source_offset','source_length','row_pointer_flags_hex','record_status','confidence']"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "219",
+    "text": "        w=csv.DictWriter(f, fieldnames=fields); w.writeheader(); w.writerows(ability_rows)"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/MDBExtractor/offline_mdb_text_extractor.py",
+    "line": "220",
+    "text": "    print(json.dumps({'mdb': str(path), 'pages': len(pages), 'raw_rows': len(all_rows), 'ability_rows': len(ability_rows)}, indent=2))"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0077.md",
+    "line": "8",
+    "text": "## Completed"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/RuntimeTraceHarness/runtime_trace_runner.py",
+    "line": "98",
+    "text": "    parser = argparse.ArgumentParser(description=\"Validate and summarize MajorMUD runtime trace NDJSON logs.\")"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "79",
+    "text": "      \"path\": \"Docs/22-CoreUpdate0012-Data-Validation-And-Service-Completion.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "261",
+    "text": "      \"path\": \"Docs/CodeUpdates/CodeUpdate-0025-Rebrand-Completion.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "642",
+    "text": "      \"path\": \"Documentation/DataSimVer0012_ServiceNPCInteractionResolution.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "870",
+    "text": "      \"path\": \"Documentation/QUEST_VALIDATION_PLAN_0017.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "897",
+    "text": "      \"path\": \"Documentation/Runtime-0010-Loot-Economy-NPC.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "939",
+    "text": "      \"path\": \"Documentation/Runtime-0013B-Ability-Engine.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1085",
+    "text": "      \"path\": \"Evidence/CodeUpdate0104_NPCReconstruction/npc_evidence_hits.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1097",
+    "text": "      \"path\": \"Evidence/CodeUpdate0104_NPCReconstruction/npc_evidence_hits.json\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1108",
+    "text": "      \"path\": \"Evidence/CodeUpdate0104_NPCReconstruction/npc_source_file_summary.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1266",
+    "text": "      \"path\": \"Evidence/ExternalSources/Validation0005/procedure_candidates_quest_persistence.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1567",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/InputArtifactVerification_RuntimePrep0004.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1575",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ItemShopAvailabilityMatrix_RuntimePrep0004.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1583",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_DecisionRegister.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1592",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_FileManifest.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1601",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_Metrics.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1611",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_ZipVerification.json\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1620",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopCatalog_RuntimePrep0004.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1631",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopInventoryMatrix_RuntimePrep0004.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1640",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopRuntimeChecklist_RuntimePrep0004.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1651",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/WCCShopBinaryCorroboration_RuntimePrep0004.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1660",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/WCCShopNameCrosscheck_RuntimePrep0004.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1669",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/RuntimePrep0004_Handoff.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1678",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/RuntimePrep0004_Report.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1687",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/InputArtifactVerification_RuntimePrep0005.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1697",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/RuntimePrep0005_Handoff.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1707",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/RuntimePrep0005_Report.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1717",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1728",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1739",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_Metrics.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1748",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1759",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1770",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageDefinitionMatrix_RuntimePrep0006.csv\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1780",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Handoff.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0106_EconomyReconstruction/economy_inventory_summary.json",
+    "line": "1788",
+    "text": "      \"path\": \"Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Report.md\","
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0089_0092.md",
+    "line": "5",
+    "text": "Completed 0089-0092 together."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0089_0092.md",
+    "line": "15",
+    "text": "Objectives:"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0084_0087.md",
+    "line": "3",
+    "text": "Repository status: cumulative update complete."
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "29",
+    "text": "      \"quests\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "39",
+    "text": "      \"room spell/textblock command decoding\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "45",
+    "text": "      \"quests\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "46",
+    "text": "      \"NPC scripts\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "51",
+    "text": "    \"title\": \"Room trigger execution order\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "55",
+    "text": "      \"script/textblock ordering evidence\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "59",
+    "text": "      \"quests\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "60",
+    "text": "      \"NPCs\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0105_WorldMovementReconstruction/world_gap_registry_0105.json",
+    "line": "71",
+    "text": "      \"room flag meaning map\","
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0103_PROGRESSION.md",
+    "line": "3",
+    "text": "- Added complete Progression subsystem reconstruction artifacts."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0103_PROGRESSION.md",
+    "line": "4",
+    "text": "- Indexed XP/level/stat/race/class/skill/ability evidence across repository, MMUD Explorer, and MBBSEmu."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md",
+    "line": "1",
+    "text": "# Session Handoff \u2014 CodeUpdate 0104 NPC Reconstruction"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md",
+    "line": "3",
+    "text": "Current baseline after this package: **CodeUpdate 0104 NPC Reconstruction Branch**."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md",
+    "line": "7",
+    "text": "- Raw NPC evidence hits: 90448."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md",
+    "line": "17",
+    "text": "NPC evidence is broad but not yet strong enough to prove exact Classic AI ordering, spawn/respawn timing, spell/special weighting, merchant/trainer services, dialogue/quest branching, loot probability, or movement/pathing cadence."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0104_NPC.md",
+    "line": "19",
+    "text": "## Recommended next branch"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0088.md",
+    "line": "5",
+    "text": "CodeUpdate 0088 completed the timing/execution promotion review."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0101_COMBAT.md",
+    "line": "3",
+    "text": "- Added complete Combat subsystem reconstruction artifacts."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0102_MAGIC.md",
+    "line": "3",
+    "text": "Current baseline after this package: **CodeUpdate 0102 Magic Reconstruction Branch**."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0102_MAGIC.md",
+    "line": "5",
+    "text": "## Completed"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0102_MAGIC.md",
+    "line": "7",
+    "text": "- Full magic branch pass: inventory, mapping, reconciliation, formula/behavior review, probes, runtime traceability, promotion review, documentation."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0102_MAGIC.md",
+    "line": "27",
+    "text": "## Recommended next branch"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0093_0100.md",
+    "line": "5",
+    "text": "- Added subsystem reconstruction index for combat, progression, magic, world/movement, NPCs, economy, quests, and guild/social systems."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0093_0100.md",
+    "line": "8",
+    "text": "- Added deterministic probe catalog for subsystem traceability and deterministic outcomes."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0104_NPC.md",
+    "line": "1",
+    "text": "# Changelog \u2014 CodeUpdate 0104 NPC Reconstruction"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0104_NPC.md",
+    "line": "3",
+    "text": "- Added complete NPC subsystem reconstruction artifacts."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0104_NPC.md",
+    "line": "4",
+    "text": "- Indexed NPC/entity/AI/spawn/merchant/trainer/dialogue/loot evidence across repository, MMUD Explorer, and MBBSEmu."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0104_NPC.md",
+    "line": "5",
+    "text": "- Added NPC relationship index, gap registry, promotion decisions, and probe definitions."
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0104_NPC.md",
+    "line": "6",
+    "text": "- Preserved all runtime behaviors; no Classic NPC mechanics were promoted."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0101_COMBAT.md",
+    "line": "3",
+    "text": "Current baseline after this package: **CodeUpdate 0101 Combat Reconstruction Branch**."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0101_COMBAT.md",
+    "line": "5",
+    "text": "## Completed"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0101_COMBAT.md",
+    "line": "7",
+    "text": "- Full combat branch pass: inventory, mapping, reconciliation, formula/behavior review, probes, runtime traceability, promotion review, documentation."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0101_COMBAT.md",
+    "line": "27",
+    "text": "## Recommended next branch"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0093_0100.md",
+    "line": "5",
+    "text": "Completed: Core Game System Reconstruction across eight major subsystems."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0093_0100.md",
+    "line": "29",
+    "text": "Objectives:"
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+    "line": "3",
+    "text": "    \"record\": \"npc_entity_catalog\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+    "line": "8",
+    "text": "    \"record\": \"npc_ai_behavior\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+    "line": "13",
+    "text": "    \"record\": \"npc_spawn_respawn\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+    "line": "18",
+    "text": "    \"record\": \"npc_combat_capabilities\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+    "line": "23",
+    "text": "    \"record\": \"npc_dialogue_interaction\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+    "line": "28",
+    "text": "    \"record\": \"npc_merchant_trainer_services\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+    "line": "33",
+    "text": "    \"record\": \"npc_loot_drop_model\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_promotion_decisions_0104.json",
+    "line": "38",
+    "text": "    \"record\": \"npc_room_world_placement\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Importer/README.md",
+    "line": "17",
+    "text": "Future database versions should add actual decoders one file type at a time and verify decoded records against the CSV/reference data before marking them complete."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md",
+    "line": "3",
+    "text": "Current baseline after this package: **CodeUpdate 0103 Progression Reconstruction Branch**."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md",
+    "line": "5",
+    "text": "## Completed"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md",
+    "line": "7",
+    "text": "- Full progression branch pass: inventory, mapping, reconciliation, formula/behavior review, probes, runtime traceability, promotion review, documentation."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md",
+    "line": "25",
+    "text": "Progression evidence is broad but not yet strong enough to prove exact Classic XP thresholds/awards, level-up order, stat/resource growth, race/class caps, skill/ability training gates, death penalty behavior, or reward ordering."
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md",
+    "line": "27",
+    "text": "## Recommended next branch"
+  },
+  {
+    "source": "cumulative",
+    "path": "SESSION_HANDOFF_CODEUPDATE_0103_PROGRESSION.md",
+    "line": "29",
+    "text": "Continue with **NPC Reconstruction**."
+  },
+  {
+    "source": "cumulative",
+    "path": "Bin/Windows/Server/README.md",
+    "line": "9",
+    "text": "No executable is required for Milestone 1 source-framework completion. Build verification should be performed by GitHub Actions using `.github/workflows/dotnet-build.yml`, then future release packaging can place compiled artifacts here so normal users do not need the .NET SDK locally."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/WorldMovementReconstruction0105_Report.md",
+    "line": "7",
+    "text": "World / Movement reconstruction was run against the uploaded 0104 NPC cumulative baseline, plus the uploaded MBBSEmu and MMUD Explorer source trees."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/WorldMovementReconstruction0105_Report.md",
+    "line": "14",
+    "text": "- Rooms with descriptions: **1241**"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/WorldMovementReconstruction0105_Report.md",
+    "line": "35",
+    "text": "  \"room_flags_environment\": 1421,"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/WorldMovementReconstruction0105_Report.md",
+    "line": "36",
+    "text": "  \"triggers_commands\": 442,"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/WorldMovementReconstruction0105_Report.md",
+    "line": "52",
+    "text": "4. Door/lock/key behavior, restricted exits, teleport resolution, trigger ordering, and environmental effects remain explicit gaps."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/WorldMovementReconstruction0105_Report.md",
+    "line": "54",
+    "text": "## Next branch"
+  },
+  {
+    "source": "cumulative",
+    "path": "CHANGELOG_CODEUPDATE_0102_MAGIC.md",
+    "line": "3",
+    "text": "- Added complete Magic subsystem reconstruction artifacts."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/Payload/RuntimePrep0009/RuntimeValidationLaunchBacklog_RuntimePrep0009.csv",
+    "line": "6",
+    "text": "RuntimeValidation0005,NPCs and Quests,\"Dialogue triggers, quest state mutation, rewards\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/ReferenceCapture/README.md",
+    "line": "17",
+    "text": "- Adds category hints for rooms, items, monsters, shops, spells, classes, races, quests, trainers, messages, ganghouses, raw legacy databases, configuration, and executable runtime files."
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "3",
+    "text": "    \"gap_id\": \"NPC-GAP-0104-ENTITY-FIELD-PROVENANCE\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "4",
+    "text": "    \"subsystem\": \"npc_entity_catalog\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "7",
+    "text": "    \"missing_evidence\": \"Complete provenance for NPC stats, flags, inventory, spells, location, services, and special behavior.\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "10",
+    "text": "    \"gap_id\": \"NPC-GAP-0104-AI-TARGETING-ORDER\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "11",
+    "text": "    \"subsystem\": \"npc_ai_behavior\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "17",
+    "text": "    \"gap_id\": \"NPC-GAP-0104-SPAWN-RESPAWN-TIMING\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "18",
+    "text": "    \"subsystem\": \"npc_spawn_respawn\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "24",
+    "text": "    \"gap_id\": \"NPC-GAP-0104-SPELL-SPECIAL-WEIGHTING\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "25",
+    "text": "    \"subsystem\": \"npc_combat_capabilities\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "28",
+    "text": "    \"missing_evidence\": \"NPC spell/special selection priority, cooldowns, resources, and combat timing order.\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "31",
+    "text": "    \"gap_id\": \"NPC-GAP-0104-MERCHANT-TRAINER-SERVICES\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "32",
+    "text": "    \"subsystem\": \"npc_merchant_trainer_services\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "35",
+    "text": "    \"missing_evidence\": \"Exact merchant/trainer flags, prices, inventory refresh, repairs, training gates.\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "38",
+    "text": "    \"gap_id\": \"NPC-GAP-0104-DIALOGUE-QUEST-BRANCHING\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "39",
+    "text": "    \"subsystem\": \"npc_dialogue_interaction\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "42",
+    "text": "    \"missing_evidence\": \"Dialogue keyword ordering, quest checks, reward order, textblock branches, repeat/failure states.\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "45",
+    "text": "    \"gap_id\": \"NPC-GAP-0104-LOOT-DROP-PROBABILITY\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "46",
+    "text": "    \"subsystem\": \"npc_loot_drop_model\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "49",
+    "text": "    \"missing_evidence\": \"Loot table probability, gold formula, rare drops, corpse timing, equipped item behavior.\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "52",
+    "text": "    \"gap_id\": \"NPC-GAP-0104-MOVEMENT-PATHING-CADENCE\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_gap_registry_0104.json",
+    "line": "53",
+    "text": "    \"subsystem\": \"npc_room_world_placement\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Importer/README-NativeDAT.md",
+    "line": "15",
+    "text": "Database Version 0004 uses this tool as the foundation for full native decoding. It currently produces file catalogs, string catalogs, and binary block samples. Future database versions will add complete field maps one file type at a time."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0016-MonsterEcologyEncounterLoot.md",
+    "line": "3",
+    "text": "## Objective"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0016-MonsterEcologyEncounterLoot.md",
+    "line": "4",
+    "text": "Measure monster ecology and encounter/reward pressure from the actual cumulative package. This pass does not execute the original engine; it builds an expected behavior model from `/Data`."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0016-MonsterEcologyEncounterLoot.md",
+    "line": "14",
+    "text": "- Monster reward records: XP, currency, attack count, spell presence, loot table entries."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0016-MonsterEcologyEncounterLoot.md",
+    "line": "19",
+    "text": "- Death/reward handling can be modeled as a generic reward lookup, but corpse handling, rollback, and exact loot rolls remain unverified runtime rules."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0016-MonsterEcologyEncounterLoot.md",
+    "line": "52",
+    "text": "DataSimVer0018 should reconcile quest/flag/event progression with combat/economy state, or DataSimVer0016 can be recreated as the missing intermediate pass if strict numbering continuity is desired."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate-0013-Duplicate-Model-Enforcement-Report.md",
+    "line": "21",
+    "text": "The update adds duplicate model enforcement so application projects can be checked against Core-owned shared models. This directly supports the Milestone 1 completion requirement: no duplicated models across applications."
+  },
+  {
+    "source": "cumulative",
+    "path": "Bin/Windows/Client/README.md",
+    "line": "9",
+    "text": "No executable is required for Milestone 1 source-framework completion. Build verification should be performed by GitHub Actions using `.github/workflows/dotnet-build.yml`, then future release packaging can place compiled artifacts here so normal users do not need the .NET SDK locally."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "52",
+    "text": "      \"description\": \"You are before the massive town gates of Silvermere. They stand over\\nfifteen feet high, and are made of three foot thick, steel-banded\\nhardwood. Guard towers flank the gates on either side, and you can see\\nthe town militia patrolling overtop on the walls. Estwall street runs"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "53",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "154",
+    "text": "      \"description\": \"Decadance flows through the room like an over filled wine goblet. Fine\\nsilk curtains cover the entrances north and south. Tables inlaid with\\ngold stand around waiting to be played on. A play on the lights almost\\nshow tiny little golden flickers dancing around in glee. Machin"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "155",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "233",
+    "text": "      \"description\": \"This is a cobblestoned street. It is dimly lit by guttering lanterns\\nhung from tall posts. The city wall is to the east, towering over\\ntwenty feet above you. Estwall street is quiet and untraveled here,\\nand runs to the north and south. The reinforced door to a guard tower\\ni"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "234",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "307",
+    "text": "      \"description\": \"This is a cobblestoned street. It is dimly lit by guttering lanterns\\nhung from tall posts. The city wall is to the east, towering over\\ntwenty feet above you. Estwall street is quiet and untraveled here,\\nand runs to the north and south.\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "308",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "376",
+    "text": "      \"description\": \"This is a cobblestoned street. It is dimly lit by guttering lanterns\\nhung from tall posts. The city wall is to the east, towering over\\ntwenty feet above you. Estwall street is quiet and untraveled here,\\nand runs to the north and south. There is a narrow, dark alleyway to\\nth"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "377",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "453",
+    "text": "      \"description\": \"This is a cobblestoned street. It is dimly lit by guttering lanterns\\nhung from tall posts. The city wall is to the east, towering over\\ntwenty feet above you. Estwall street is quiet and untraveled here,\\nand runs to the north and south.\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "454",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "522",
+    "text": "      \"description\": \"This is a cobblestoned street. It is dimly lit by guttering lanterns\\nhung from tall posts. The city wall is to the east, towering over\\ntwenty feet above you. Estwall street is quiet and untraveled here,\\nand runs to the north and south.\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "523",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "591",
+    "text": "      \"description\": \"This is a cobblestoned street. It is dimly lit by guttering lanterns\\nhung from tall posts. The city wall is to the east, towering over\\ntwenty feet above you. Estwall street is quiet and untraveled here,\\nand runs to the north and south. Crown street branches off to the\\nwest."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "592",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "596",
+    "text": "        \"and runs to the north and south. Crown street branches off to the\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "668",
+    "text": "      \"description\": \"This is a cobblestoned street. It is dimly lit by guttering lanterns\\nhung from tall posts. The city wall is to the east, towering over\\ntwenty feet above you. Estwall street is quiet and untraveled here,\\nand runs to the north and south.\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "669",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "739",
+    "text": "      \"description\": \"Decadance flows through the room like an over filled wine goblet. Fine\\nsilk curtains cover the entrances north and west. You see card tables\\nmade of cedar and silver scattered accross the room. Gathered around\\nare lucky winners and drunken losers, both looking for that next "
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_inventory_summary.json",
+    "line": "740",
+    "text": "      \"descriptionLines\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "1",
+    "text": "unknown_id,category,source,record_id,description,status,severity,linked_entity,suggested_handling,runtime_required,evidence_rule"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "3",
+    "text": "UNK-0002,issue_register,RuntimePrep0006_IssueRegister.csv,RP0006-ISSUE-001:repository_quests_json_empty,Repository Data/quests.json is empty; no canonical quest object table was available from repository JSON in this pass. Quest candidates were preserved from WBB/message text only.,preserved_unresol"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "8",
+    "text": "UNK-0007,issue_register,RuntimePrep0008_IssueRegister.csv,RP0008-ISSUE-002,\"Quest MHT is supporting documentation, not authoritative over MDB/CSV/WBB/WCC evidence.\",preserved_unresolved,unresolved,,placeholder_and_trace,unknown,do_not_infer; preserve unresolved until corroborated"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "11",
+    "text": "UNK-0010,issue_register,RuntimePrep0009_IssueRegister.csv,RP0009-I002,NPC/quest trigger order and state mutation are not certified.,OPEN,unresolved,,placeholder_and_trace,unknown,do_not_infer; preserve unresolved until corroborated"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "14",
+    "text": "UNK-0013,runtime_validation_backlog,RuntimeValidationBacklog_RuntimePrep0008.csv,RuntimeValidation0002,navigation: hidden/scripted exits and special transitions require engine behavior,open_runtime_required,runtime-only,navigation,defer_to_runtime_validation,yes,do_not_infer; preserve unresolved unt"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "15",
+    "text": "UNK-0014,runtime_validation_backlog,RuntimeValidationBacklog_RuntimePrep0008.csv,RuntimeValidation0003,\"shops_items: transactions, restock, access restrictions, and shop scripts are runtime behavior\",open_runtime_required,runtime-only,shops_items,defer_to_runtime_validation,yes,do_not_infer; preserv"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "16",
+    "text": "UNK-0015,runtime_validation_backlog,RuntimeValidationBacklog_RuntimePrep0008.csv,RuntimeValidation0004,\"drops_rewards: RNG, drop frequency, container behavior, and live awards are runtime behavior\",open_runtime_required,runtime-only,drops_rewards,defer_to_runtime_validation,yes,do_not_infer; preserv"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "17",
+    "text": "UNK-0016,runtime_validation_backlog,RuntimeValidationBacklog_RuntimePrep0008.csv,RuntimeValidation0005,\"npc_quests: dialogue trigger order, quest state transitions, and NPC interaction scripts require runtime\",open_runtime_required,runtime-only,npc_quests,defer_to_runtime_validation,yes,do_not_infer"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "23",
+    "text": "UNK-0022,runtime_validation_backlog,RuntimeValidationLaunchBacklog_RuntimePrep0009.csv,RuntimeValidation0005,\"NPCs and Quests: Dialogue triggers, quest state mutation, rewards\",open_runtime_required,runtime-only,NPCs and Quests,defer_to_runtime_validation,yes,do_not_infer; preserve unresolved until "
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "27",
+    "text": "UNK-0026,placeholder_behavior,SimulatorBuild0002,UnknownNPCTrigger,Quest trigger order and state mutation require live runtime validation.,placeholder_active,runtime-only,UnknownNPCTrigger,simulate_as_placeholder_and_log,yes,do_not_infer; preserve unresolved until corroborated"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/unknowns/UNRESOLVED_QUEUE.csv",
+    "line": "28",
+    "text": "UNK-0027,placeholder_behavior,SimulatorBuild0002,UnknownNavigationBehavior,\"Hidden/scripted exits, teleports, and special transitions require live movement tests.\",placeholder_active,runtime-only,UnknownNavigationBehavior,simulate_as_placeholder_and_log,yes,do_not_infer; preserve unresolved until co"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/ReferenceCapture/Capture-OriginalReferenceData.ps1",
+    "line": "117",
+    "text": "        @{ Category = \"monsters\"; Tokens = @(\"monster\", \"monsters\", \"mob\", \"mobs\", \"npc\", \"wccknmsr\"); Extensions = @(\".mon\", \".mob\", \".npc\") },"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/ReferenceCapture/Capture-OriginalReferenceData.ps1",
+    "line": "119",
+    "text": "        @{ Category = \"spells\"; Tokens = @(\"spell\", \"spells\", \"skill\", \"skills\", \"ability\", \"wccspels\"); Extensions = @(\".spl\", \".spell\") },"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/ReferenceCapture/Capture-OriginalReferenceData.ps1",
+    "line": "122",
+    "text": "        @{ Category = \"quests\"; Tokens = @(\"quest\", \"quests\", \"mission\"); Extensions = @(\".qst\", \".quest\") },"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/ReferenceCapture/Capture-OriginalReferenceData.ps1",
+    "line": "431",
+    "text": "Write-Host \"Reference capture complete.\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_probe_execution_results.json",
+    "line": "3",
+    "text": "    \"probe_id\": \"NPC-0104-RUNTIME-MODULE-DISCOVERY\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_probe_execution_results.json",
+    "line": "6",
+    "text": "    \"npc_runtime_file_candidates\": ["
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_probe_execution_results.json",
+    "line": "14",
+    "text": "    \"probe_id\": \"NPC-0104-PROBE-HARNESS-STATUS\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0104_NPCReconstruction/npc_probe_execution_results.json",
+    "line": "16",
+    "text": "    \"executed_runtime_behavior\": \"no authoritative NPC runtime execution was promoted\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Bin/Windows/Launcher/README.md",
+    "line": "9",
+    "text": "No executable is required for Milestone 1 source-framework completion. Build verification should be performed by GitHub Actions using `.github/workflows/dotnet-build.yml`, then future release packaging can place compiled artifacts here so normal users do not need the .NET SDK locally."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate-0007-Core-Contracts-Foundation.md",
+    "line": "20",
+    "text": "- Verified package contains no `SDK launch/build` runtime launch scripts."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0015-CombatStatusSpellSimulation.md",
+    "line": "3",
+    "text": "## Objective"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0015-CombatStatusSpellSimulation.md",
+    "line": "4",
+    "text": "Build an evidence-based expected behavior model for combat encounters, monster attacks, spell-triggered hit effects, and timed/status spell state using the authoritative DataSimVer0014 cumulative package."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0015-CombatStatusSpellSimulation.md",
+    "line": "31",
+    "text": "- Expected-model combat failures: **67**."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0015-CombatStatusSpellSimulation.md",
+    "line": "34",
+    "text": "- Expected-model spell failures: **4**."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0015-CombatStatusSpellSimulation.md",
+    "line": "47",
+    "text": "- Whether some spell rows are player-castable, monster-only, item-triggered, or system-only."
+  },
+  {
+    "source": "cumulative",
+    "path": "Bin/Windows/Importer/README.md",
+    "line": "9",
+    "text": "No executable is required for Milestone 1 source-framework completion. Build verification should be performed by GitHub Actions using `.github/workflows/dotnet-build.yml`, then future release packaging can place compiled artifacts here so normal users do not need the .NET SDK locally."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/Payload/RuntimePrep0009/RuntimePrep0009_Metrics.csv",
+    "line": "2",
+    "text": "static_decode_status,complete,DataDecode0101-0110 inherited from certified chain"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/Payload/RuntimePrep0009/RuntimePrep0009_Metrics.csv",
+    "line": "3",
+    "text": "runtime_prep_completed_passes,9,RuntimePrep0001 through RuntimePrep0009 now complete"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/Payload/RuntimePrep0009/RuntimePrep0009_Metrics.csv",
+    "line": "8",
+    "text": "authoritative_data_source,MDB plus verified mdbtools CSV chain,WBB/WCC corroborating; quest wiki supporting only"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_NOTES.md",
+    "line": "12",
+    "text": "- NPC/dialogue/script candidate search"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_NOTES.md",
+    "line": "20",
+    "text": "This remains an expected-model simulator only. It does not run Worldgroup scripts, certify AI behavior, certify combat formulas, or prove live spawn timing."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_reconstruction_metrics.json",
+    "line": "3",
+    "text": "  \"branch\": \"World / Movement Reconstruction\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_reconstruction_metrics.json",
+    "line": "9",
+    "text": "  \"rooms_with_descriptions\": 1241,"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_reconstruction_metrics.json",
+    "line": "21",
+    "text": "    \"room_flags_environment\": 1421,"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/CodeUpdate0105_WorldMovementReconstruction/world_reconstruction_metrics.json",
+    "line": "22",
+    "text": "    \"triggers_commands\": 442,"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0007-Summary.md",
+    "line": "3",
+    "text": "## Objective"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0007-Summary.md",
+    "line": "12",
+    "text": "- Diagnostic all-flags character"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0007-Summary.md",
+    "line": "26",
+    "text": "- Some access failures should be classified as conditional behavior, not missing data."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0007-Summary.md",
+    "line": "27",
+    "text": "- Inventory, level, command text, and diagnostic flags need separate simulation profiles."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0007-Summary.md",
+    "line": "38",
+    "text": "- Quest flag, class, race, alignment, spell, and timed-event evaluation."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Importer/Analyze-DatFiles.py",
+    "line": "3",
+    "text": "This is an investigative decoder, not a complete binary importer yet."
+  },
+  {
+    "source": "cumulative",
+    "path": "Apps/Source/Reforged.Server/ServerWorldProjectionAudit.cs",
+    "line": "80",
+    "text": "            foreach (var missingRoomId in missingRoomIds.Take(20))"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0014-InventoryEconomySimulation.md",
+    "line": "3",
+    "text": "## Objective"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0014-InventoryEconomySimulation.md",
+    "line": "25",
+    "text": "- Expected-model failures: 7099"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0014-InventoryEconomySimulation.md",
+    "line": "32",
+    "text": "## Failure categories"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0014-InventoryEconomySimulation.md",
+    "line": "44",
+    "text": "- Shop inventory, item cost, item weight, wear slots, armor flags, weapon types, uses, and restrictions are present as data fields and can drive a generic transaction/equipment model."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0014-InventoryEconomySimulation.md",
+    "line": "46",
+    "text": "- Many failures are prerequisite failures: not enough gold, inferred carry limit, non-equippable items, or occupied equipment slots."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0014-InventoryEconomySimulation.md",
+    "line": "52",
+    "text": "- Added `/Simulator/DataSimVer/0014/FailureReasonCatalog.json`."
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_promotion_decisions_0103.json",
+    "line": "3",
+    "text": "    \"record\": \"progression_runtime_traceability\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_promotion_decisions_0103.json",
+    "line": "23",
+    "text": "    \"record\": \"skill_ability_training\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_promotion_decisions_0103.json",
+    "line": "25",
+    "text": "    \"reason\": \"Skill/ability grant, training and prerequisite semantics are not yet proven end-to-end.\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/Evidence/RuntimePrep0009-FinalRuntimePrepSimulatorReadinessCertification/Payload/RuntimePrep0009/RuntimePrep0009_IssueRegister.csv",
+    "line": "3",
+    "text": "RP0009-I002,OPEN,NPC/quest trigger order and state mutation are not certified.,Simulator may model expected references but must flag runtime-only behaviors."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "40",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/InputArtifactVerification_RuntimePrep0004.csv,1354,a0a796301248839546e258735fd5f6c008e914beed9c0417b82bc200ce1b2d6a"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "41",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ItemShopAvailabilityMatrix_RuntimePrep0004.csv,56358,adaeb3f91dd80521f79ec46c8d8766210dd61c90b7ebf2fc751203c922e2a32e"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "42",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_DecisionRegister.csv,427,38000286c3a437e2ffeb59ee2cec36cee65dde377e6dfe908f8d64db5b26373a"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "43",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_FileManifest.csv,1559,a9dfbde6cfbebee3b8f8f4dd1bef9608eb240d50ded18d05528e2d901085bff9"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "44",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_IssueRegister.csv,1,01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "45",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_Metrics.csv,301,c41c1b6633f8a278ee4df90b9fbad30b2486633a4feeb95ac742764142a1557d"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "46",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_ZipVerification.json,224,cd26364dfadf7a6114945f924375d3b8d695a10fd70afb294c3556d82c4f2ef5"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "47",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopCatalog_RuntimePrep0004.csv,27828,45630093cd32460cb548580523f9129539c68cf293610eda463f39320479e687"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "48",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopInventoryMatrix_RuntimePrep0004.csv,152500,cb73dcbde7e750dd37c7826e3fa16533009541d8c3c1ff6d56737d0ad05de432"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "49",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ShopRuntimeChecklist_RuntimePrep0004.csv,36815,ed22595a927bc528ee113f885975d156b912551520bc3537e6cb4807da7cb889"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "50",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/WCCShopBinaryCorroboration_RuntimePrep0004.csv,4894,072fb055477fe01072c416c0fdee6ab9924fd35dfac59c50051f24662c4203c7"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "51",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/WCCShopNameCrosscheck_RuntimePrep0004.csv,3793,91113f3e821f5e89477222057e157263c76aad39d299eb000f5f189472353a7e"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "52",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/RuntimePrep0004_Handoff.md,1460,60f98cc89c15d03ffbc5f584adaff3aac1b951d2412ec3f001a89370fd4fa48a"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "53",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/RuntimePrep0004_Report.md,1460,60f98cc89c15d03ffbc5f584adaff3aac1b951d2412ec3f001a89370fd4fa48a"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "54",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/ContainerOpenRewardMatrix_RuntimePrep0005.csv,2760,2e7f0e1d3f7b5fc41276914f4016238c0973878ddf776bbcf968636b880e1e8e"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "55",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/InputArtifactVerification_RuntimePrep0005.csv,1309,eb86121c2bebcd7a9b587232fdcee124c5d12ec03d0a872cce3e9a28b64d2652"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "56",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/ItemRewardRuntimeChecklist_RuntimePrep0005.csv,263921,e47aa0e59a3adbbf1b7f78f5c021ee394a568309fd2175b94d3386c22368fdc9"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "57",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/MonsterCurrencyDropMatrix_RuntimePrep0005.csv,32129,17f869cf352422cb492f430d2229be4b9b29ceb40e18508dbca4333d814a4bcd"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "58",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/MonsterDropMatrix_RuntimePrep0005.csv,109548,575ec795fdfa2d10ebeda6e63225178240f5008c7613f9dfc06db540b8ec3c05"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "59",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/RoomDropAvailabilityMatrix_RuntimePrep0005.csv,7037922,9da678072168cacc402bdff80a74a090bc757624d5384b9fe03d048773701445"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "60",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/RuntimePrep0005_DecisionRegister.csv,621,53a3114aaf7b78a6252139274bed10b8fdbf7872fe1529270df44d718cf1c373"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "61",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/RuntimePrep0005_FileManifest.csv,1576,7937bc90963b8277b2b47b54f5e0bd97271441852d79842ecc76e71e66cd2c89"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "62",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/RuntimePrep0005_IssueRegister.csv,119,e8a80618a4124c5dac66e5772674b55d0c22c3e2dce402641beed62362aceb6a"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "63",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/RuntimePrep0005_Metrics.csv,370,5e5688924deec02839904dcbeffd37bc1c396c7a74ec2552b31af2f2149fffde"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "64",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/Payload/RuntimePrep0005/RuntimePrep0005_ZipVerification.json,218,6812a699dbf4f9e2b72b232641b532e59c3a1358cf4f9bfed0cd35754f87bc34"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "65",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/RuntimePrep0005_Handoff.md,1382,477322ce25dc8dc0a4fb714ae25d2501a43ad1cb4c80bce5d4a04c28db2ebc77"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "66",
+    "text": "Evidence/RuntimePrep0005-MonsterDropsItemRewardExtraction/RuntimePrep0005_Report.md,1382,477322ce25dc8dc0a4fb714ae25d2501a43ad1cb4c80bce5d4a04c28db2ebc77"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "67",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/DialogueScriptQuestCandidateMatrix_RuntimePrep0006.csv,189508,e8b018a31bc38d3966134624326eaad78c322bebd19f99b75a153cc405e47c12"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "68",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/InputArtifactVerification_RuntimePrep0006.csv,559,cc5f1da4273db2d416461064e97b784c47af673ac11643fa51023f7c6c950d38"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "69",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/NPCQuestRuntimeChecklist_RuntimePrep0006.csv,105019,351447f34aec7c8e422cda3c75a4fd821399f7e8b043c6f75d40fd3e81001e70"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "70",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_DecisionRegister.csv,687,5a96db0b5858dbeeab7cc6ae3fbffb363854f46bb99039c559face1545c42eb2"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "71",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_FileManifest.csv,1426,2b65a6b68c2a2fce5e7a8fe9ce890b85ae227cfb8964cf2c02126340316245e4"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "72",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_IssueRegister.csv,429,265637aba7592642bf6ab80a05f88e52556400ad4a893c4a5fdaba3133d7a410"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "73",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_Metrics.csv,803,abd45eadd4fd1beb4191bc8b2eaf64e6a02756d29ba99a6b38130676dcae1212"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "74",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/RuntimePrep0006_ZipVerification.json,221,21f344318916b3bb2ec3c1cc317211b7d7a26bed5e6fa58a81d57fbc88eb50fb"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "75",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/StaticMessageOwnershipRuntimeProjection_RuntimePrep0006.csv,17258,c5e09bb315c1313b98379561e2586ed7058a8b5a47b57e9607784a8b1dfa3d67"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "76",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageBlockMatrix_RuntimePrep0006.csv,179489,f1d701ac16fe710a053588e24e9493561c31126b4f1449a56efdfc680917f230"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "77",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBMessageDefinitionMatrix_RuntimePrep0006.csv,10848,2353ddaa06698dd7353169e2b44fe5f14e454b86884ae4a60845f7e3adeed66c"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "78",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/Payload/RuntimePrep0006/WBBTextResourceInventory_RuntimePrep0006.csv,4900,26d076b7b8f649acbd2d5fbfd8c4853a80981c27826809041eefc2a24a5f70e5"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "79",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Handoff.md,1419,d85cd94568c2cba1561441d27b5debdceae9475bf3b188fe4bc2d13143888159"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "80",
+    "text": "Evidence/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction/RuntimePrep0006_Report.md,1419,d85cd94568c2cba1561441d27b5debdceae9475bf3b188fe4bc2d13143888159"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "126",
+    "text": "SourceCheckpoints/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction.zip,53451,430bf81ab2e9c37952ee61fe6556f36cc9955ad6c38402a2060a352755628520"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "127",
+    "text": "SourceCheckpoints/RuntimePrep0005-MonsterDropsItemRewardExtraction.zip,237862,dd99d6d65f8cc6e65d0bc667ab5ce29499d19b3df29e34ca64b21121819b3109"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_IMPLEMENTATION_MANIFEST.csv",
+    "line": "128",
+    "text": "SourceCheckpoints/RuntimePrep0006-NPCDialogueScriptTriggerQuestInteractionExtraction.zip,124193,5d36c14d086c96ddbf08c01be018527d77279458ec2f36c09086334a5f467e05"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0013-CustomContentRegistration.md",
+    "line": "3",
+    "text": "## Objective"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0013-CustomContentRegistration.md",
+    "line": "4",
+    "text": "Add the user-requested sysop/GM-only Synopsis Room and the custom command `code_of_twinks_78` without modifying legacy `/Data`."
+  },
+  {
+    "source": "cumulative",
+    "path": "Apps/Source/Reforged.Server/ServerStartupDiagnostics.cs",
+    "line": "62",
+    "text": "            report.Validation.Add(ValidationSeverity.Error, \"SERVER_EVENT_SYSTEM\", \"Server startup event bus check did not publish and dispose subscriptions cleanly.\");"
+  },
+  {
+    "source": "cumulative",
+    "path": "Bin/Windows/Editor/README.md",
+    "line": "9",
+    "text": "No executable is required for Milestone 1 source-framework completion. Build verification should be performed by GitHub Actions using `.github/workflows/dotnet-build.yml`, then future release packaging can place compiled artifacts here so normal users do not need the .NET SDK locally."
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_gap_registry_0103.json",
+    "line": "38",
+    "text": "    \"gap_id\": \"PROG-GAP-0103-SKILL-ABILITY-TRAINING\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_gap_registry_0103.json",
+    "line": "39",
+    "text": "    \"subsystem\": \"skill_ability_training\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_gap_registry_0103.json",
+    "line": "42",
+    "text": "    \"missing_evidence\": \"Skill/ability prerequisites, level gates, trainers, costs, caps, quest/flag interactions, training order\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_gap_registry_0103.json",
+    "line": "52",
+    "text": "    \"gap_id\": \"PROG-GAP-0103-ADVANCEMENT-REWARD-ORDER\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_gap_registry_0103.json",
+    "line": "53",
+    "text": "    \"subsystem\": \"advancement_rewards_grants\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Validation/CodeUpdate0103_ProgressionReconstruction/progression_gap_registry_0103.json",
+    "line": "56",
+    "text": "    \"missing_evidence\": \"Ordering of stat/resource gains, ability/spell grants, titles, messages, quest reward progression and output\""
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "1",
+    "text": "# DataSimVer0012 \u2014 Service/NPC Interaction Resolution"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "3",
+    "text": "## Objective"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "4",
+    "text": "Resolve expected service and NPC interaction behavior using only existing `/Data`-derived evidence and prior DataSimVer0008 inventories."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "7",
+    "text": "Virtual profiles attempted `talk`, `buy`, `train`, and spell-learning/service interactions against extracted shop/service records. Spawn records were converted into an NPC interaction matrix so combat-facing and spellcaster-facing rooms can be separated from economic/service rooms."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "14",
+    "text": "- Spawn/NPC room references analyzed: 962"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "18",
+    "text": "- Expected-model failures: 1470"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "20",
+    "text": "## Failure categories"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "25",
+    "text": "- transaction_verb_required_not_dialogue: 15"
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "30",
+    "text": "- Added `/Simulator/DataSimVer/0012/NpcSpawnInteractionMatrix.csv`."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "42",
+    "text": "- Dialogue text and service verbs may be generic parser behavior rather than per-NPC script behavior."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0012_ServiceNPCInteractionResolution.md",
+    "line": "46",
+    "text": "DataSimVer0013 should focus on inventory, economy, and item transaction simulation: buy/sell/carry/equip constraints, shop restock rules, and item usability."
+  },
+  {
+    "source": "cumulative",
+    "path": "Reports/DataSimVer0003-Summary.md",
+    "line": "42",
+    "text": "DataSimVer0003 completed as a bounded standard-exit validation pass. It documents direct compass exits, missing or ambiguous destinations, room-graph support, and reciprocal link status without changing `/Data`."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/DataDecode/Build-UnifiedDecodedData.ps1",
+    "line": "132",
+    "text": "$omniAbilities = Get-ArrayFromJson -Json (Read-JsonFile (Join-Path $omniRoot \"codex-ability-wcc.json\"))"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/DataDecode/Build-UnifiedDecodedData.ps1",
+    "line": "280",
+    "text": "        \"Classes and races have complete normalized-name coverage against OmniVerse.\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/DataDecode/Build-UnifiedDecodedData.ps1",
+    "line": "284",
+    "text": "        \"Quests remain the only empty canonical placeholder file in the current Server bootstrap catalog.\","
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/DataDecode/Build-UnifiedDecodedData.ps1",
+    "line": "297",
+    "text": "It does not move or overwrite historical reports. Historical decode outputs remain preserved at their original paths. This folder gives future decode passes one place to find the current inventory, generated comparison summaries, and coverage reports."
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_FILE_MANIFEST.csv",
+    "line": "40",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/InputArtifactVerification_RuntimePrep0004.csv,1354,a0a796301248839546e258735fd5f6c008e914beed9c0417b82bc200ce1b2d6a"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_FILE_MANIFEST.csv",
+    "line": "41",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/ItemShopAvailabilityMatrix_RuntimePrep0004.csv,56358,adaeb3f91dd80521f79ec46c8d8766210dd61c90b7ebf2fc751203c922e2a32e"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_FILE_MANIFEST.csv",
+    "line": "42",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_DecisionRegister.csv,427,38000286c3a437e2ffeb59ee2cec36cee65dde377e6dfe908f8d64db5b26373a"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_FILE_MANIFEST.csv",
+    "line": "43",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_FileManifest.csv,1559,a9dfbde6cfbebee3b8f8f4dd1bef9608eb240d50ded18d05528e2d901085bff9"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_FILE_MANIFEST.csv",
+    "line": "44",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_IssueRegister.csv,1,01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+  },
+  {
+    "source": "cumulative",
+    "path": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/SIMULATOR_FILE_MANIFEST.csv",
+    "line": "45",
+    "text": "Evidence/RuntimePrep0004-ShopInventoryItemAvailabilityExtraction/Payload/RuntimePrep0004/RuntimePrep0004_Metrics.csv,301,c41c1b6633f8a278ee4df90b9fbad30b2486633a4feeb95ac742764142a1557d"
+  }
+]

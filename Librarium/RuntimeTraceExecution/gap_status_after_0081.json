@@ -1,0 +1,44 @@
+{
+  "codeupdate": "0081",
+  "mappings": [
+    {
+      "gap_id": "HOST-TIMING-GAP-0079-001",
+      "gap": "Classic Timer.Hertz / idle scheduler frequency",
+      "probes": [
+        "TRACE-0080-001",
+        "TRACE-0080-003"
+      ],
+      "status": "probe_defined_not_executed",
+      "status_0081": "reduced_by_source_evidence_timer_hertz_and_pending_data_bypass"
+    },
+    {
+      "gap_id": "HOST-TIMING-GAP-0079-002",
+      "gap": "MajorMUD registered callbacks",
+      "probes": [
+        "TRACE-0080-002",
+        "TRACE-0080-005"
+      ],
+      "status": "probe_defined_not_executed",
+      "status_0081": "reduced_by_source_evidence_host_callback_surfaces_confirmed_module_specific_usage_unproven"
+    },
+    {
+      "gap_id": "HOST-TIMING-GAP-0079-003",
+      "gap": "Output flush and perceived tick timing",
+      "probes": [
+        "TRACE-0080-004"
+      ],
+      "status": "probe_defined_not_executed",
+      "status_0081": "reduced_by_source_evidence_DataToClient_wakeup_confirmed_flush_order_unproven"
+    },
+    {
+      "gap_id": "HOST-TIMING-GAP-0079-004",
+      "gap": "RTIHDLR usage by MajorMUD",
+      "probes": [
+        "TRACE-0080-002",
+        "TRACE-0080-003"
+      ],
+      "status": "probe_defined_not_executed",
+      "status_0081": "reduced_by_source_evidence_RTIHDLR_surface_and_55ms_gate_confirmed_major_mud_usage_unproven"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "world.rooms.imported_room_catalog",
+    "title": "Imported room catalog exists",
+    "state": "Verified",
+    "scope": "Architecture/data presence",
+    "evidence": [
+      "Data/rooms.json present with room records",
+      "Data/world.json present",
+      "Data/room_graph.json present"
+    ],
+    "not_claimed": "Does not verify each Classic movement mechanic."
+  },
+  {
+    "id": "world.graph.generated_room_connections",
+    "title": "Generated room graph exists",
+    "state": "Corroborated",
+    "scope": "Generated connectivity",
+    "evidence": [
+      "Data/room_graph.json contains graph data",
+      "MMUD Explorer documents room explorer/pathing"
+    ],
+    "not_claimed": "Runtime restrictions and side effects remain unverified."
+  },
+  {
+    "id": "world.mmud_explorer.pathing_support",
+    "title": "MMUD Explorer supports map/pathing and MegaMUD path concepts",
+    "state": "Observed",
+    "scope": "External implementation evidence",
+    "evidence": [
+      "MMUD Explorer README/source references room explorer, pathing, restricted exits, teleports, room commands, trap/path annotations"
+    ],
+    "not_claimed": "Client pathing is not canonical server behavior."
+  },
+  {
+    "id": "world.teleport_backlinks_candidate",
+    "title": "Teleport backlink behavior is recognized in external tooling",
+    "state": "Observed",
+    "scope": "Client/reference behavior",
+    "evidence": [
+      "MMUD Explorer references what-leads-here, room spells, monster greet teleports"
+    ],
+    "not_claimed": "Exact teleport order not verified."
+  }
+]

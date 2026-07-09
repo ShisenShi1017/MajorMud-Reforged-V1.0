@@ -1,0 +1,39 @@
+{
+  "codeupdate": "0108",
+  "name": "Guild / Social Reconstruction",
+  "baseline": "CodeUpdate0107 Quest Reconstruction cumulative",
+  "status": "PASS_WITH_LIMITATIONS",
+  "artifacts": {
+    "reports": "Reports/CodeUpdate0108_GuildSocialReconstruction",
+    "evidence": "Evidence/CodeUpdate0108_GuildSocialReconstruction",
+    "generated": "Generated/GuildSocialReconstruction",
+    "librarium": "Librarium/GuildSocialReconstruction",
+    "validation": "Validation/CodeUpdate0108_GuildSocialReconstruction",
+    "sim": "Simulator/CodeUpdate0108_GuildSocialReconstruction",
+    "docs": "Documentation/CodeUpdate0108_GuildSocialReconstruction",
+    "codex": "Codex/CodeUpdate0108_GuildSocialReconstruction"
+  },
+  "metrics": {
+    "codeupdate": "0108",
+    "subsystem": "Guild / Social Reconstruction",
+    "status": "PASS_WITH_LIMITATIONS",
+    "raw_evidence_hits": 426549,
+    "files_scanned": "rg_text_scan",
+    "files_with_hits": 2375,
+    "prioritized_evidence_references": 1600,
+    "relationship_edges": 13522,
+    "candidate_records": 2348,
+    "probes_defined": 6,
+    "gaps_recorded": 8,
+    "data_presence_records_promoted": 1,
+    "gameplay_mechanics_promoted": 0,
+    "runtime_behaviors_replaced": 0,
+    "category_counts": {
+      "guild": 9960,
+      "party": 112364,
+      "alignment": 10712,
+      "communication": 256012,
+      "player_social": 37501
+    }
+  }
+}

@@ -1,0 +1,173 @@
+[
+  {
+    "gap_id": "KG0070-RANDOM_ROUND_RANGE",
+    "source_behavior_id": "FB0070-RANDOM_ROUND_RANGE",
+    "title": "Verify formula behavior: random_range_round",
+    "priority": "high",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "consumers": [
+      "combat",
+      "spell_skill",
+      "rounding",
+      "rng"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0070 Formula Behavior Verification"
+  },
+  {
+    "gap_id": "KG0070-RESIST_PIPELINE",
+    "source_behavior_id": "FB0070-RESIST_PIPELINE",
+    "title": "Verify formula behavior: resist_reduction_pipeline",
+    "priority": "high",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "consumers": [
+      "combat",
+      "spell_skill",
+      "resistance",
+      "damage_rounding"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0070 Formula Behavior Verification"
+  },
+  {
+    "gap_id": "KG0070-DURATION_EXTRA_TICK",
+    "source_behavior_id": "FB0070-DURATION_EXTRA_TICK",
+    "title": "Verify formula behavior: duration_extra_damage",
+    "priority": "high",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "consumers": [
+      "combat",
+      "spell_skill",
+      "tick_timing"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0070 Formula Behavior Verification"
+  },
+  {
+    "gap_id": "KG0070-PER_ROUND_SUM",
+    "source_behavior_id": "FB0070-PER_ROUND_SUM",
+    "title": "Verify formula behavior: per_round_damage_sum",
+    "priority": "high",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "consumers": [
+      "combat",
+      "display",
+      "derived_only"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0070 Formula Behavior Verification"
+  },
+  {
+    "gap_id": "KG0070-SPAWN_COMPLEMENT",
+    "source_behavior_id": "FB0070-SPAWN_COMPLEMENT",
+    "title": "Verify formula behavior: spawn_probability_complement",
+    "priority": "high",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "consumers": [
+      "spawn",
+      "probability",
+      "regen"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0070 Formula Behavior Verification"
+  },
+  {
+    "gap_id": "KG0070-EXP_PER_REGEN_TIME",
+    "source_behavior_id": "FB0070-EXP_PER_REGEN_TIME",
+    "title": "Verify formula behavior: exp_per_time",
+    "priority": "medium",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "consumers": [
+      "xp",
+      "regen",
+      "timing"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0070 Formula Behavior Verification"
+  },
+  {
+    "gap_id": "KG0070-OOM_ROUNDS",
+    "source_behavior_id": "FB0070-OOM_ROUNDS",
+    "title": "Verify formula behavior: rounds_to_oom",
+    "priority": "high",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "consumers": [
+      "regen",
+      "mana",
+      "spell_skill",
+      "tick_timing"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0070 Formula Behavior Verification"
+  },
+  {
+    "gap_id": "KG0070-THREE_SECOND_TICK",
+    "source_behavior_id": "FB0070-THREE_SECOND_TICK",
+    "title": "Verify formula behavior: three_second_tick",
+    "priority": "high",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "Tie behavior to a canonical Librarium record/runtime consumer.",
+      "Reproduce with simulator or observed Classic runtime output.",
+      "Resolve exact rounding, tick timing, RNG bounds, and edge cases.",
+      "Document provenance before any Generated/Runtime formula change."
+    ],
+    "consumers": [
+      "tick_timing",
+      "regen",
+      "spell_skill"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0070 Formula Behavior Verification"
+  }
+]

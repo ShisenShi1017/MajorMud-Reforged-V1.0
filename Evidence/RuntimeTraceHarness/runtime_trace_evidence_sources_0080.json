@@ -1,0 +1,23 @@
+{
+  "codeupdate": "0080",
+  "sources": [
+    {
+      "source": "MBBSEmu GitHub repository upload",
+      "role": "host timing and scheduling evidence source",
+      "evidence_state": "Derived",
+      "use_policy": "May define instrumentation targets; does not become canonical truth."
+    },
+    {
+      "source": "CodeUpdate-0079 host lifecycle evidence records",
+      "role": "baseline probe definitions and host timing gaps",
+      "evidence_state": "Derived",
+      "use_policy": "Feeds 0080 trace harness definitions."
+    },
+    {
+      "source": "Future runtime traces",
+      "role": "observed evidence for promotion review",
+      "evidence_state": "Observed when captured",
+      "use_policy": "Must be stored, summarized, and reconciled before promotion."
+    }
+  ]
+}

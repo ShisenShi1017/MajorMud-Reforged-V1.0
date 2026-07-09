@@ -1,0 +1,38 @@
+[
+  {
+    "id": "guildsocial.data_presence.guild_party_social_references",
+    "type": "data_presence",
+    "evidence_state": "Verified",
+    "scope": "Narrow: confirms traceable guild/party/social/communication references exist in the cumulative repository and external evidence sources; does not verify gameplay mechanics.",
+    "sources": [
+      "baseline",
+      "MBBSEmu",
+      "MMUDExplorer"
+    ],
+    "promotion_rationale": "Presence-only promotion based on indexed evidence hits and relationship records."
+  },
+  {
+    "id": "guildsocial.behavior.guild_membership",
+    "type": "behavior",
+    "evidence_state": "Observed",
+    "scope": "Guild membership behavior is represented in candidate references but requires runtime validation."
+  },
+  {
+    "id": "guildsocial.behavior.party_membership",
+    "type": "behavior",
+    "evidence_state": "Observed",
+    "scope": "Party membership behavior is represented in candidate references but sharing/edge cases remain gaps."
+  },
+  {
+    "id": "guildsocial.behavior.communication",
+    "type": "behavior",
+    "evidence_state": "Observed",
+    "scope": "Communication commands/messages are present in source evidence; recipient/visibility semantics remain unresolved."
+  },
+  {
+    "id": "guildsocial.behavior.alignment_reputation",
+    "type": "behavior",
+    "evidence_state": "Derived",
+    "scope": "Alignment/reputation/faction links are inferred from names and references; exact mechanics are gaps."
+  }
+]

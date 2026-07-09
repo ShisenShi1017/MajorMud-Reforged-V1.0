@@ -1,0 +1,38 @@
+[
+  {
+    "id": "economy_probe_merchant_buy_price",
+    "title": "Merchant buy price determinism",
+    "purpose": "Verify displayed purchase price, currency deduction, and item transfer.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "economy_probe_merchant_sell_price",
+    "title": "Merchant sell price determinism",
+    "purpose": "Verify player sale value, merchant acceptance, and rounding.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "economy_probe_repair_cost",
+    "title": "Repair service cost and item condition",
+    "purpose": "Verify repair cost calculation and condition restoration.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "economy_probe_bank_deposit_withdraw",
+    "title": "Bank deposit/withdraw consistency",
+    "purpose": "Verify bank balance, carried currency, and persistence.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "economy_probe_loot_value_reward",
+    "title": "Loot and reward economy flow",
+    "purpose": "Verify generated gold/items, values, and ownership semantics.",
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "economy_probe_gambling_resolution",
+    "title": "Gambling wager resolution",
+    "purpose": "Verify accepted wagers, outcomes, odds, and payouts.",
+    "status": "defined_not_executed"
+  }
+]

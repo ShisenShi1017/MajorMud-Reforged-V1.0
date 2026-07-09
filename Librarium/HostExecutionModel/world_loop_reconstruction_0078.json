@@ -1,0 +1,73 @@
+{
+  "code_update": "0078",
+  "title": "Derived World Loop Reconstruction",
+  "evidence_state": "Derived/Hypothesis",
+  "confidence": "medium",
+  "loop_order": [
+    {
+      "step": 1,
+      "name": "Accept/collect user input",
+      "host_evidence": "Session status CR_TERMINATED_STRING_AVAILABLE leads to STTROU in MBBSEmu host loop.",
+      "verified": "Derived"
+    },
+    {
+      "step": 2,
+      "name": "Process global commands",
+      "host_evidence": "Internal and module global command handlers are checked before in-module state dispatch.",
+      "verified": "Derived"
+    },
+    {
+      "step": 3,
+      "name": "Enter/login/module transition routines",
+      "host_evidence": "EnteringModule, LoginRoutines, and RloginEnteringModule state handlers invoke entry/login routines.",
+      "verified": "Derived"
+    },
+    {
+      "step": 4,
+      "name": "In-module command routine",
+      "host_evidence": "InModule + CR_TERMINATED_STRING_AVAILABLE invokes STTROU.",
+      "verified": "Derived"
+    },
+    {
+      "step": 5,
+      "name": "Deferred/status routine",
+      "host_evidence": "CYCLE or OUTPUT_BUFFER_EMPTY invokes STSROU.",
+      "verified": "Derived"
+    },
+    {
+      "step": 6,
+      "name": "Optional per-channel polling",
+      "host_evidence": "BEGIN_POLLING routine runs if registered for the session.",
+      "verified": "Derived"
+    },
+    {
+      "step": 7,
+      "name": "Mark channel data complete",
+      "host_evidence": "session.DataToProcess=false after session processing.",
+      "verified": "Derived"
+    },
+    {
+      "step": 8,
+      "name": "Process timed/global events",
+      "host_evidence": "Host processes RTKICK, RTIHDLR, SYSCYC, INITASK after sessions.",
+      "verified": "Derived"
+    },
+    {
+      "step": 9,
+      "name": "Dequeue pending statuses",
+      "host_evidence": "Host dequeues remaining status entries at loop end.",
+      "verified": "Derived"
+    },
+    {
+      "step": 10,
+      "name": "Output visible to modem/client",
+      "host_evidence": "Implied by session output state and host/session design; exact flush boundary still requires source/runtime trace.",
+      "verified": "Hypothesis"
+    }
+  ],
+  "major_mud_projection": [
+    "Movement/combat/quest commands likely enter through STTROU or equivalent in-module command routine.",
+    "Regeneration, AI, spawn, poison, disease, and other periodic systems likely depend on TICKER/RTKICK/STSROU/SYSCYC-style host callbacks rather than client simulation.",
+    "Player output is a result of module-owned state changes and host session flushing, not local client prediction."
+  ]
+}

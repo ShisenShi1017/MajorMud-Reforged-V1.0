@@ -1,0 +1,56 @@
+[
+  {
+    "id": "probe.scripting.room_enter_trigger_order",
+    "description": "room enter trigger order",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "probe.scripting.quest_flag_transition",
+    "description": "quest flag transition",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "probe.scripting.npc_special_procedure_invocation",
+    "description": "npc special procedure invocation",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "probe.scripting.dialogue_condition_branch",
+    "description": "dialogue condition branch",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "probe.scripting.timer_callback_sequence",
+    "description": "timer callback sequence",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "probe.scripting.item_use/give_pipeline",
+    "description": "item use/give pipeline",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "probe.scripting.spell_event_hook",
+    "description": "spell event hook",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "probe.scripting.merchant_interaction_event",
+    "description": "merchant interaction event",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  },
+  {
+    "id": "probe.scripting.script_failure_path",
+    "description": "script failure path",
+    "deterministic": true,
+    "status": "defined_not_executed"
+  }
+]

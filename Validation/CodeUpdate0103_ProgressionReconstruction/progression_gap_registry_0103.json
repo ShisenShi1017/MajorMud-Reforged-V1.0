@@ -1,0 +1,58 @@
+[
+  {
+    "gap_id": "PROG-GAP-0103-XP-THRESHOLDS",
+    "subsystem": "xp_level_progression",
+    "state": "gap",
+    "priority": "critical",
+    "missing_evidence": "Exact Classic XP threshold table/formula, per-class/per-race differences, boundary behavior, caps, overflow handling"
+  },
+  {
+    "gap_id": "PROG-GAP-0103-XP-AWARDS-SHARING",
+    "subsystem": "xp_level_progression",
+    "state": "gap",
+    "priority": "critical",
+    "missing_evidence": "Kill XP award formula, party sharing, level range modifiers, contribution rules, penalties/bonuses"
+  },
+  {
+    "gap_id": "PROG-GAP-0103-STAT-GROWTH",
+    "subsystem": "attribute_stat_model",
+    "state": "gap",
+    "priority": "critical",
+    "missing_evidence": "Attribute gain formulas/tables, random/dice use, racial/class caps, ordering and rounding"
+  },
+  {
+    "gap_id": "PROG-GAP-0103-HP-MANA-MOVE-GROWTH",
+    "subsystem": "resource_growth_hp_mana_move",
+    "state": "gap",
+    "priority": "high",
+    "missing_evidence": "HP/mana/movement growth per level/class/race/stat, dice/table constants, caps and rounding"
+  },
+  {
+    "gap_id": "PROG-GAP-0103-RACE-CLASS-CAPS",
+    "subsystem": "race_class_progression",
+    "state": "gap",
+    "priority": "high",
+    "missing_evidence": "Exact race/class base modifiers, caps, allowed combinations, advancement restrictions, special cases"
+  },
+  {
+    "gap_id": "PROG-GAP-0103-SKILL-ABILITY-TRAINING",
+    "subsystem": "skill_ability_training",
+    "state": "gap",
+    "priority": "high",
+    "missing_evidence": "Skill/ability prerequisites, level gates, trainers, costs, caps, quest/flag interactions, training order"
+  },
+  {
+    "gap_id": "PROG-GAP-0103-DEATH-PENALTY",
+    "subsystem": "death_penalty_progression",
+    "state": "gap",
+    "priority": "medium",
+    "missing_evidence": "Death XP loss, level loss, recovery/resurrection behavior, floor/cap edge cases"
+  },
+  {
+    "gap_id": "PROG-GAP-0103-ADVANCEMENT-REWARD-ORDER",
+    "subsystem": "advancement_rewards_grants",
+    "state": "gap",
+    "priority": "medium",
+    "missing_evidence": "Ordering of stat/resource gains, ability/spell grants, titles, messages, quest reward progression and output"
+  }
+]

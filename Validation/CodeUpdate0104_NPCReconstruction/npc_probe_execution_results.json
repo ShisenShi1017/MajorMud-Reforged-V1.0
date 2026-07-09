@@ -1,0 +1,19 @@
+[
+  {
+    "probe_id": "NPC-0104-RUNTIME-MODULE-DISCOVERY",
+    "status": "executed",
+    "candidate_count": 3,
+    "npc_runtime_file_candidates": [
+      "Core/Configuration/ProjectPaths.cs",
+      "Core/Utilities/PathSafety.cs",
+      "Core/Source/Reforged.Core/Configuration/ProjectPaths.cs"
+    ],
+    "classic_accuracy": "not_classic_claimed"
+  },
+  {
+    "probe_id": "NPC-0104-PROBE-HARNESS-STATUS",
+    "status": "scaffold_created",
+    "executed_runtime_behavior": "no authoritative NPC runtime execution was promoted",
+    "classic_accuracy": "unverified"
+  }
+]

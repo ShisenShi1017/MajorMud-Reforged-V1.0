@@ -1,0 +1,426 @@
+{
+  "codeupdate": "0072",
+  "title": "Experience and Leveling Behavior Verification",
+  "generated_utc": "2026-07-08T20:19:53.517175+00:00",
+  "candidate_references_considered": 250,
+  "behavior_records_created": 4,
+  "deterministic_probe_count": 9,
+  "verified_promotions": 0,
+  "runtime_formula_replacements": 0,
+  "status": "PASS_WITH_LIMITATIONS",
+  "limitation": "Probes are behavior-shape probes, not Classic-equation proof. No promotion without corroborating runtime/reference evidence.",
+  "records": [
+    {
+      "behavior_id": "FB0072-EXPERIENCE_AWARD_SOURCE",
+      "codeupdate": "0072",
+      "title": "experience award source",
+      "subsystem": "xp_level",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-7f847055594f",
+          "source": "MMUD Explorer",
+          "path": "frmMain.frm",
+          "line": 35136,
+          "text": "sClipBoardText = sClipBoardText & \"Experience:\" & (CalcExpNeededByRaceClass(nLevel, nClass, nRace) + 1) & vbCrLf"
+        },
+        {
+          "candidate_id": "FR0068-2d92150ab1d1",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 409,
+          "text": "-NEW: filtering capabilities: cash, hp, damage, regen, experience"
+        },
+        {
+          "candidate_id": "FR0068-c4dc590bc92d",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 316,
+          "text": "-NEW: filtering capabilities: cash, hp, damage, regen, experience"
+        },
+        {
+          "candidate_id": "FR0068-244a5d9fb003",
+          "source": "MMUD Explorer",
+          "path": "frmPasteChar.frm",
+          "line": 2153,
+          "text": "sRegexPattern = \"(?:(Armour Class|Hits|Mana|Encumbrance):\\s*\\*?\\s*(-?\\d+)\\/(\\d+)|(MagicRes|Level|Spellcasting|Strength|Agility|Willpower|Charm|Intellect|Health):\\s*\\*?\\s*(\\d+)|(Name|Race|Class):\\s*([^\\s:]+(?:\\s[^\\s:]+)?))\""
+        },
+        {
+          "candidate_id": "FR0068-e36d3a5984ac",
+          "source": "MBBSEmu",
+          "path": "CLAUDE.md",
+          "line": 98,
+          "text": "- `AllowUnsafeBlocks` is enabled — unsafe code is expected for low-level memory/CPU emulation."
+        },
+        {
+          "candidate_id": "FR0068-bf09905d6853",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/CLAUDE.md",
+          "line": 9,
+          "text": "The project uses `AllowUnsafeBlocks` and `LangVersion=latest`. Unsafe code is expected and normal for low-level memory and CPU emulation."
+        },
+        {
+          "candidate_id": "FR0068-7d03811a87eb",
+          "source": "MBBSEmu",
+          "path": "MBBSEmu/CPU/CLAUDE.md",
+          "line": 15,
+          "text": "| `RegistersStructs.cs` | 558 | Low-level register storage: `CpuRegistersStruct` (explicit layout struct) + `FpuRegistersStruct` |"
+        },
+        {
+          "candidate_id": "FR0068-d60c0fcddade",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 196,
+          "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll"
+        },
+        {
+          "candidate_id": "FR0068-8751151a992c",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.archive.txt",
+          "line": 102,
+          "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll"
+        },
+        {
+          "candidate_id": "FR0068-a85326c3e29d",
+          "source": "MMUD Explorer",
+          "path": "docs/changelog.txt",
+          "line": 184,
+          "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0072-PARTY_XP_DISTRIBUTION",
+      "codeupdate": "0072",
+      "title": "party xp distribution",
+      "subsystem": "xp_level",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-aa27c35edd35",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 4597,
+          "text": "GetSpellMinDamage = GetSpellMinDamage + GetSpellMinDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)"
+        },
+        {
+          "candidate_id": "FR0068-ed4b2c4e12a1",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 4663,
+          "text": "GetSpellMaxDamage = tabSpells.Fields(\"MaxBase\") + Fix((tabSpells.Fields(\"MaxInc\") / tabSpells.Fields(\"MaxIncLVLs\")) * nCastLevel)"
+        },
+        {
+          "candidate_id": "FR0068-7fa52fcd8722",
+          "source": "MMUD Explorer",
+          "path": "modMMudDatabase.bas",
+          "line": 4679,
+          "text": "GetSpellMaxDamage = GetSpellMaxDamage + GetSpellMaxDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)"
+        },
+        {
+          "candidate_id": "FR0068-cf4a6175aa04",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 3191,
+          "text": "'2-spell learned: GetSpellShort(nGlobalAttackSpellNum) & \" @ \" & Val(txtGlobalLevel(0).Text)"
+        },
+        {
+          "candidate_id": "FR0068-6d3dbd8dba36",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 3683,
+          "text": "oLI.ListSubItems.Add (1), \"Detail\", PutCommas(tabMonsters.Fields(\"AvgLairExp\")) & \"  (\" & PutCommas(Round(tabMonsters.Fields(\"AvgLairExp\") / tAvgLairInfo.nMaxRegen)) & \"/mob)\""
+        },
+        {
+          "candidate_id": "FR0068-c721949e6592",
+          "source": "MMUD Explorer",
+          "path": "modMain.bas",
+          "line": 5061,
+          "text": "'2-spell learned: GetSpellShort(nGlobalAttackSpellNum) & \" @ \" & Val(txtGlobalLevel(0).Text)"
+        },
+        {
+          "candidate_id": "FR0068-4a8dbeb33551",
+          "source": "MMUD Explorer",
+          "path": "CLAUDE.md",
+          "line": 77,
+          "text": "- `modExpPerHour.bas` — exp/hr prediction models: four selectable models (A/B/C/D); D is a round-by-round sim and the recommended one. See `docs/exp-per-hour-models.md` for game mechanics, the calibration harness, and how to add a model."
+        },
+        {
+          "candidate_id": "FR0068-b4d813a29c0b",
+          "source": "MMUD Explorer",
+          "path": "CLAUDE.md",
+          "line": 78,
+          "text": "- `clsMonsterAttackSim.cls` — monster attack/combat simulation (exposes `bGreaterMUD` property)."
+        },
+        {
+          "candidate_id": "FR0068-9e2b29531096",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 9,
+          "text": "-UP: Added a new optional exp/hr model (D) by Claude - a round-by-round combat & recovery simulation (selectable in settings)"
+        },
+        {
+          "candidate_id": "FR0068-1dde15ea884c",
+          "source": "MMUD Explorer",
+          "path": "README.md",
+          "line": 21,
+          "text": "This could greatly hinder accurate exp/hr predictions for many versus mobs that have +hitmagic requirements."
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0072-LEVEL_THRESHOLD_CHECK",
+      "codeupdate": "0072",
+      "title": "level threshold check",
+      "subsystem": "xp_level",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-d715668e29be",
+          "source": "MMUD Explorer",
+          "path": "frmPasteChar.frm",
+          "line": 2945,
+          "text": "sRegexPattern = \"Round:[^\\r\\n]+Avg:(\\d+)\""
+        },
+        {
+          "candidate_id": "FR0068-38dfc0507fa5",
+          "source": "MMUD Explorer",
+          "path": "frmPasteChar.frm",
+          "line": 2948,
+          "text": "sRegexPattern = \"Pre[^\\r\\n]+(?:\\r|\\n)+[^\\r\\n]+Avg:(\\d+)[^\\r\\n]*(?:\\r|\\n)+Round\""
+        },
+        {
+          "candidate_id": "FR0068-d1f1f540a395",
+          "source": "MMUD Explorer",
+          "path": "frmPasteChar.frm",
+          "line": 3001,
+          "text": "& vbCrLf & vbCrLf & \"Enter the damage as if it were VS 50 MR so that the damage can be appropriately calculated against mob/lair defenses. All party magic damage is reduced by MR defense.\", vbInformation"
+        },
+        {
+          "candidate_id": "FR0068-a5e97ced05f7",
+          "source": "MMUD Explorer",
+          "path": "frmPasteChar.frm",
+          "line": 3005,
+          "text": "& \"Note that the damage output entered should be the total average per round damage of each character from the party, without consideration of swings.\", vbInformation + vbOKOnly"
+        },
+        {
+          "candidate_id": "FR0068-43bd72194591",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 232,
+          "text": "Caption         =   \"A Learned Spell @ Current Level:\""
+        },
+        {
+          "candidate_id": "FR0068-f994e93d19fd",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 250,
+          "text": "Caption         =   \"Any Spell @ Specified Level:\""
+        },
+        {
+          "candidate_id": "FR0068-1b4d4d5f7e15",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 717,
+          "text": "Caption         =   \"Any Spell @ Specified Level:\""
+        },
+        {
+          "candidate_id": "FR0068-10d26b082112",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 735,
+          "text": "Caption         =   \"A Learned Spell @ Current Level:\""
+        },
+        {
+          "candidate_id": "FR0068-958c5090e249",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 1383,
+          "text": "& \"it will not one-shot an entire room. i.e. 3 mobs would take 3 rounds and exp would be calculated \" _"
+        },
+        {
+          "candidate_id": "FR0068-182ad15e1f46",
+          "source": "MMUD Explorer",
+          "path": "frmPopUpOptions.frm",
+          "line": 1816,
+          "text": "cmbHealingSpell(1).AddItem tabSpells.Fields(\"Name\") & \" (\" & tabSpells.Fields(\"Number\") & \") - LVL \" & tabSpells.Fields(\"ReqLevel\") & \" \" & GetMageryEnum(tabSpells.Fields(\"Magery\"), tabSpells.Fields(\"MageryLVL\"))"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    },
+    {
+      "behavior_id": "FB0072-DEATH_OR_PENALTY_APPLICATION",
+      "codeupdate": "0072",
+      "title": "death or penalty application",
+      "subsystem": "xp_level",
+      "evidence_state": "Derived",
+      "confidence": "behavior_shape_candidate_not_classic_verified",
+      "canonical_rule": "Librarium remains source of truth; external sources are evidence only.",
+      "supporting_candidate_count": 25,
+      "supporting_candidates": [
+        {
+          "candidate_id": "FR0068-97995c0b9aa2",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1731,
+          "text": "tRet.nHitpointRecovery = Round(tRet.nHitpointRecovery / nCount, 2)"
+        },
+        {
+          "candidate_id": "FR0068-1220e136f8c1",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1739,
+          "text": "tRet.nAttackTime = Round(tRet.nAttackTime / nCount, 2)"
+        },
+        {
+          "candidate_id": "FR0068-18deb9a5bc35",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1759,
+          "text": "If tRet.nAttackTime > 0 And tRet.nAttackTime < 1 Then tRet.sRTCText = Round(tRet.nAttackTime * 100) & \"% time spent attacking\" & sAttackAll"
+        },
+        {
+          "candidate_id": "FR0068-3323c5fe4140",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1764,
+          "text": "If tRet.nHitpointRecovery > 0.01 Then tRet.sHitpointRecovery = Round(tRet.nHitpointRecovery * 100) & \"% reduction due to HP recovery\" & sRecoverAllHP"
+        },
+        {
+          "candidate_id": "FR0068-f3c70461a184",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 1771,
+          "text": "If bSurpriseLess Then tRet.sRTCText = AutoAppend(tRet.sRTCText, \"[backstab is worse than attack]\", \" \")"
+        },
+        {
+          "candidate_id": "FR0068-a4353ecd2a77",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 2176,
+          "text": "'       Attack time (rounds-to-kill across all mobs in a pull/room)"
+        },
+        {
+          "candidate_id": "FR0068-381cac8e9b0f",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 2187,
+          "text": "'       - Overkill heuristic (overshootFrac) for wasted damage on the last hit."
+        },
+        {
+          "candidate_id": "FR0068-241351bece46",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 2192,
+          "text": "'       - Convert net damage ? rest rounds; apply q-elasticity:"
+        },
+        {
+          "candidate_id": "FR0068-f529d43b3815",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 2370,
+          "text": "If bDebugExpPerHour Then DebugLogPrint \"flag set = basic damage only, no recovery\""
+        },
+        {
+          "candidate_id": "FR0068-0740e1c94f40",
+          "source": "MMUD Explorer",
+          "path": "modExpPerHour.bas",
+          "line": 2499,
+          "text": "regenPerRound = nMobHPRegen / nMobHPRegenRounds"
+        }
+      ],
+      "required_for_promotion": [
+        "corroborating Classic/reference/runtime/simulator evidence",
+        "exact equation or ordering where applicable",
+        "rounding/RNG/tick/edge cases resolved",
+        "runtime consumer tied to Librarium record"
+      ],
+      "runtime_formula_replacement": "none"
+    }
+  ],
+  "probes": [
+    {
+      "base_xp": 100,
+      "party_size": 1,
+      "placeholder_even_split": 100.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    },
+    {
+      "base_xp": 100,
+      "party_size": 2,
+      "placeholder_even_split": 50.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    },
+    {
+      "base_xp": 100,
+      "party_size": 4,
+      "placeholder_even_split": 25.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    },
+    {
+      "base_xp": 500,
+      "party_size": 1,
+      "placeholder_even_split": 500.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    },
+    {
+      "base_xp": 500,
+      "party_size": 2,
+      "placeholder_even_split": 250.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    },
+    {
+      "base_xp": 500,
+      "party_size": 4,
+      "placeholder_even_split": 125.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    },
+    {
+      "base_xp": 1000,
+      "party_size": 1,
+      "placeholder_even_split": 1000.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    },
+    {
+      "base_xp": 1000,
+      "party_size": 2,
+      "placeholder_even_split": 500.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    },
+    {
+      "base_xp": 1000,
+      "party_size": 4,
+      "placeholder_even_split": 250.0,
+      "assertion": "distribution placeholder; Classic party modifiers unknown"
+    }
+  ]
+}

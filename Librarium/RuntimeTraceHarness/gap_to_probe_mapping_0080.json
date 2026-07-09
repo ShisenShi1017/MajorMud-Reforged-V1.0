@@ -1,0 +1,10 @@
+{
+  "codeupdate": "0080",
+  "mappings": [
+    {"gap_id": "HOST-TIMING-GAP-0079-001", "gap": "Classic Timer.Hertz / idle scheduler frequency", "probes": ["TRACE-0080-001", "TRACE-0080-003"], "status": "probe_defined_not_executed"},
+    {"gap_id": "HOST-TIMING-GAP-0079-002", "gap": "MajorMUD registered callbacks", "probes": ["TRACE-0080-002", "TRACE-0080-005"], "status": "probe_defined_not_executed"},
+    {"gap_id": "HOST-TIMING-GAP-0079-003", "gap": "Output flush and perceived tick timing", "probes": ["TRACE-0080-004"], "status": "probe_defined_not_executed"},
+    {"gap_id": "HOST-TIMING-GAP-0079-004", "gap": "RTIHDLR usage by MajorMUD", "probes": ["TRACE-0080-002", "TRACE-0080-003"], "status": "probe_defined_not_executed"}
+  ],
+  "promotion_policy": "Probe definitions do not promote knowledge. Only captured traces, reconciled against provenance and repeatability requirements, may change evidence state."
+}

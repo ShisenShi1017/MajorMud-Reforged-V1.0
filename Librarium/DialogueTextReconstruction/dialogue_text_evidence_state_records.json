@@ -1,0 +1,38 @@
+[
+  {
+    "id": "dialogue.data_presence.text_assets_and_references",
+    "type": "data_presence",
+    "evidence_state": "Verified",
+    "scope": "Narrow: confirms traceable dialogue/text/message references exist in the cumulative repository and external evidence sources; does not verify conversation mechanics.",
+    "sources": [
+      "baseline",
+      "MBBSEmu",
+      "MMUDExplorer"
+    ],
+    "promotion_rationale": "Presence-only promotion based on indexed evidence hits and generated relationship records."
+  },
+  {
+    "id": "dialogue.behavior.npc_dialogue_references",
+    "type": "behavior",
+    "evidence_state": "Observed",
+    "scope": "NPC dialogue and speech references are present; ordering and condition evaluation remain gaps."
+  },
+  {
+    "id": "dialogue.behavior.quest_dialogue_references",
+    "type": "behavior",
+    "evidence_state": "Observed",
+    "scope": "Quest-related text references are present; state-based dialogue selection remains unresolved."
+  },
+  {
+    "id": "dialogue.behavior.room_text_references",
+    "type": "behavior",
+    "evidence_state": "Observed",
+    "scope": "Room/sign/readable text references are present; command matrix remains unresolved."
+  },
+  {
+    "id": "dialogue.behavior.text_formatting",
+    "type": "behavior",
+    "evidence_state": "Derived",
+    "scope": "Formatting/substitution behavior is inferred from references but needs runtime verification."
+  }
+]

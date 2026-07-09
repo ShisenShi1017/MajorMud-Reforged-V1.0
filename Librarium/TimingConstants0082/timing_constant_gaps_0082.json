@@ -1,0 +1,49 @@
+[
+  {
+    "gap_id": "gap_timing_3s_system_tick_primary_proof",
+    "claim_id": "timing_claim_system_tick_3s",
+    "priority": "critical",
+    "current_confidence": "medium-derived",
+    "evidence_needed": [
+      "Primary MajorMUD/Worldgroup SDK text",
+      "Classic runtime trace with global tick events",
+      "Reproducible emulator trace linking MajorMUD regen/buff decrement to 3.0s cadence"
+    ],
+    "promotion_requirement": "At least one primary or executable Classic-equivalent trace plus corroborating secondary/tooling evidence."
+  },
+  {
+    "gap_id": "gap_timing_1_5s_combat_round",
+    "claim_id": "timing_claim_combat_round_1_5s",
+    "priority": "critical",
+    "current_confidence": "low-conflicting",
+    "evidence_needed": [
+      "MegaMUD source/scripts showing 1.5s hardcoded combat cadence",
+      "Classic combat transcript with timestamped swings",
+      "Reference/SDK docs naming combat round duration"
+    ],
+    "promotion_requirement": "Resolve conflict with MMUD Explorer 5s combat-round comment before any promotion."
+  },
+  {
+    "gap_id": "gap_timing_tick_round_ratio",
+    "claim_id": "timing_claim_combat_round_1_5s",
+    "priority": "high",
+    "current_confidence": "low",
+    "evidence_needed": [
+      "Independent proof of both tick and combat round constants",
+      "Proof that 1 tick = exactly 2 rounds in Classic logic"
+    ],
+    "promotion_requirement": "Cannot be verified until both component constants are verified."
+  },
+  {
+    "gap_id": "gap_timing_tick_clipping",
+    "claim_id": "timing_claim_tick_clipping",
+    "priority": "high",
+    "current_confidence": "hypothesis",
+    "evidence_needed": [
+      "Trace of effect applied at known offset from global tick",
+      "Trace of duration decrement/expiration",
+      "Repeated tests across offsets"
+    ],
+    "promotion_requirement": "Observed cast-before/after-tick duration variance consistent with global tick clipping."
+  }
+]

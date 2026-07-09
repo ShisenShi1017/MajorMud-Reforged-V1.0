@@ -1,0 +1,34 @@
+{
+  "codeupdate": "0067",
+  "status": "PASS_WITH_TRACKED_GAPS",
+  "checks": [
+    {
+      "name": "canonical_librarium_preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "generated_artifacts_marked_not_canonical",
+      "status": "PASS"
+    },
+    {
+      "name": "external_repositories_registered_as_evidence_only",
+      "status": "PASS"
+    },
+    {
+      "name": "knowledge_gap_registry_created",
+      "status": "PASS"
+    },
+    {
+      "name": "runtime_formulas_not_replaced_without_verification",
+      "status": "PASS"
+    }
+  ],
+  "counts": {
+    "entities": 20826,
+    "assertions": 71026,
+    "formulas": 10,
+    "graph_nodes": 20838,
+    "graph_edges": 71056,
+    "gaps": 46
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "codeupdate": "0111",
+  "status": "PASS_WITH_LIMITATIONS",
+  "checks": [
+    {
+      "name": "baseline_zip_present",
+      "status": "PASS"
+    },
+    {
+      "name": "no_generated_graphs_required_in_git",
+      "status": "PASS"
+    },
+    {
+      "name": "local_builder_added",
+      "status": "PASS"
+    },
+    {
+      "name": "sqlite_schema_added",
+      "status": "PASS"
+    },
+    {
+      "name": "query_cli_added",
+      "status": "PASS"
+    },
+    {
+      "name": "mechanics_promoted",
+      "status": "PASS",
+      "count": 0
+    },
+    {
+      "name": "runtime_replacements",
+      "status": "PASS",
+      "count": 0
+    }
+  ],
+  "limitations": [
+    "Local artifacts must be generated after clone; generated graphs/databases are not canonical."
+  ]
+}

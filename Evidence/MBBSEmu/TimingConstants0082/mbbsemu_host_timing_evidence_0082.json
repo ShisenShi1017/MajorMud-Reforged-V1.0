@@ -1,0 +1,18 @@
+[
+  {
+    "path": "Galgsbl.cs:66-72,90-102",
+    "finding": "TICKER increments once per second."
+  },
+  {
+    "path": "MbbsHost.cs:124-202",
+    "finding": "Timer.Hertz config drives a host timer event."
+  },
+  {
+    "path": "MbbsHost.cs:394-442",
+    "finding": "Host processes in-module status/input/polling before real-time events."
+  },
+  {
+    "path": "MbbsHost.cs:739-756",
+    "finding": "BEGIN_POLLING and RTKICK semantics are host provided; RTKICK delay is in seconds."
+  }
+]

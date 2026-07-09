@@ -1,32 +1,69 @@
-# Reforged generated/runtime files
-Logs/*
-!Logs/README.md
-Reports/*.tmp
-Reports/*.log
-Backups/*
-!Backups/README.md
-Bin/Windows/**/publish/
-Bin/Windows/**/*.pdb
+# MajorMUD Reforged local/generated artifacts
+# Canonical source of truth is Librarium records, evidence, assertions, manifests, and tools.
+# Generated graphs/indexes/databases are rebuilt locally and should not be committed.
+
+# .NET / build outputs
+[Bb]in/
+[Oo]bj/
+TestResults/
 *.user
 *.suo
-.vs/
 
-# Keep source data and saves visible intentionally unless the project owner decides otherwise.
-# .NET source project build outputs
-/Apps/Source/**/bin/
-/Apps/Source/**/obj/
-/Core/Source/**/bin/
-/Core/Source/**/obj/
-/Tests/Source/**/bin/
-/Tests/Source/**/obj/
-
-# Librarium generated local artifacts (regeneratable; do not commit)
-.local-generated/
-Librarium/Graph/*.json
-Librarium/FormulaValidation/formula_assertions_*.json
-Generated/**/*.json
-Generated/**/*.db
+# Local graph/database outputs
+Generated/Librarium/
+Generated/LibrariumLocal/
+Generated/**/core_graph.json
+Generated/**/relationship_graph.json
+Generated/**/query_index.json
+Generated/**/runtime_index.json
+Generated/**/evidence_index.json
+Generated/**/formula_index.json
 Generated/**/*.sqlite
-Generated/**/*.zip
-*.pyc
-__pycache__/
+Generated/**/*.sqlite3
+Generated/**/*.db
+Generated/**/*.db3
+LocalGenerated/
+Dist/
+.local/
+.cache/
+
+# Generated graph/index artifacts anywhere in the tree
+*graph*.json
+*Graph*.json
+*_index.json
+*Index.json
+core_graph.json
+relationship_graph.json
+query_index.json
+runtime_index.json
+evidence_index.json
+formula_index.json
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+
+# Generated graph directories
+Librarium/Graph/
+Librarium/WorldGraph/
+Librarium/BehaviorGraph/
+Librarium/HostCallGraph*/
+
+# Local/generated manifests and report inventories
+Manifests/master_file_inventory*.csv
+Documentation/local_generated_artifacts_manifest.json
+
+# Archives / nested packages
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+
+# OS/editor noise
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

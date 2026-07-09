@@ -1,0 +1,58 @@
+[
+  {
+    "gap_id": "MAGIC-GAP-0102-SPELL-CAST-ORDER",
+    "subsystem": "spell_cast_resolution",
+    "state": "gap",
+    "priority": "critical",
+    "missing_evidence": "Classic order for target validation, mana consumption, fizzle/interruption, resistance, effect application, and output emission"
+  },
+  {
+    "gap_id": "MAGIC-GAP-0102-MANA-COSTS",
+    "subsystem": "mana_cost_and_recovery",
+    "state": "gap",
+    "priority": "critical",
+    "missing_evidence": "Exact mana costs or formulas per spell, class/race modifiers, failure cost rules, rounding"
+  },
+  {
+    "gap_id": "MAGIC-GAP-0102-RESIST-SAVES",
+    "subsystem": "resistance_save_resolution",
+    "state": "gap",
+    "priority": "high",
+    "missing_evidence": "Resistance/save equation, random range, stat/level weights, immunity ordering, partial resist rules"
+  },
+  {
+    "gap_id": "MAGIC-GAP-0102-DAMAGE-HEALING",
+    "subsystem": "spell_damage_healing",
+    "state": "gap",
+    "priority": "high",
+    "missing_evidence": "Damage/healing formulas, caster scaling, target mitigation, caps/floors, rounding"
+  },
+  {
+    "gap_id": "MAGIC-GAP-0102-DURATION-TICKS",
+    "subsystem": "duration_effect_stack_order",
+    "state": "gap",
+    "priority": "high",
+    "missing_evidence": "Duration units, host tick decrement, tick clipping proof, refresh/expire output order"
+  },
+  {
+    "gap_id": "MAGIC-GAP-0102-STACKING",
+    "subsystem": "duration_effect_stack_order",
+    "state": "gap",
+    "priority": "high",
+    "missing_evidence": "Same-family buff/debuff stacking, replacement, strongest-wins, additive, and cancellation rules"
+  },
+  {
+    "gap_id": "MAGIC-GAP-0102-STATUS-MAGIC",
+    "subsystem": "status_condition_magic",
+    "state": "gap",
+    "priority": "medium",
+    "missing_evidence": "Blind/stun/sleep/silence/poison/disease magical application/removal order and combat interactions"
+  },
+  {
+    "gap_id": "MAGIC-GAP-0102-ITEM-CASTING",
+    "subsystem": "item_casting_and_charges",
+    "state": "gap",
+    "priority": "medium",
+    "missing_evidence": "Scroll/wand/staff/potion cast path, charge consumption timing, failure behavior, class restrictions"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "code_update": "0084_0087",
+  "status": "PASS_WITH_LIMITATIONS",
+  "runtime_changed": false,
+  "formulas_promoted": 0,
+  "runtime_formulas_replaced": 0,
+  "checks": [
+    {"name": "0084 call graph reconstructed", "status": "PASS"},
+    {"name": "0085 WCC/WBB binary symbol correlation", "status": "PASS"},
+    {"name": "0086 MegaMUD provenance audit", "status": "PASS_WITH_FINDINGS"},
+    {"name": "0087 end-to-end timing model", "status": "PASS_WITH_LIMITATIONS"},
+    {"name": "no nested update zips intended", "status": "PENDING_FINAL_PACKAGE_CHECK"}
+  ],
+  "evidence_counts": {
+    "wcc_wbb_binary_timing_symbol_hits": 234,
+    "repo_timing_text_hits": 195,
+    "shared_wcc_wbb_major_timing_symbols": 22
+  },
+  "promotions": [],
+  "not_promoted_reason": "The host/module execution model is corroborated and WCC/WBB symbols are observed, but exact Classic cadence constants and gameplay timing mappings still require disassembly/runtime traces or primary configuration provenance."
+}

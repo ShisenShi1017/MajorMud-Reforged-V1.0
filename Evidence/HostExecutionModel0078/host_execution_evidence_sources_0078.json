@@ -1,0 +1,1784 @@
+[
+  {
+    "id": "mbbsemu_host_loop",
+    "source": "MBBSEmu GitHub ZIP",
+    "path": "HostProcess/MbbsHost.cs",
+    "sha256": "d67f9a2eb7bf90a2cfd2564689f62f3a085f839285150e1210dbe21be89ee705",
+    "line_start": 340,
+    "line_end": 455,
+    "summary": "Session processing loop: command handling, STTROU/STSROU, polling, then timed events.",
+    "excerpt": [
+      {
+        "line": 340,
+        "text": "                        //Check for Internal System Globals"
+      },
+      {
+        "line": 341,
+        "text": "                        if (_globalRoutines.Any(g =>"
+      },
+      {
+        "line": 342,
+        "text": "                            g.ProcessCommand(session.InputCommand, session.Channel, _channelDictionary, _modules)))"
+      },
+      {
+        "line": 343,
+        "text": "                        {"
+      },
+      {
+        "line": 344,
+        "text": "                            session.Status.Enqueue(EnumUserStatus.RINGING);"
+      },
+      {
+        "line": 345,
+        "text": "                            session.InputBuffer.SetLength(0);"
+      },
+      {
+        "line": 346,
+        "text": ""
+      },
+      {
+        "line": 347,
+        "text": "                            //Redisplay Main Menu prompt after global if session is at Main Menu"
+      },
+      {
+        "line": 348,
+        "text": "                            if (session.SessionState == EnumSessionState.MainMenuInput)"
+      },
+      {
+        "line": 349,
+        "text": "                            {"
+      },
+      {
+        "line": 350,
+        "text": "                                session.SessionState = EnumSessionState.MainMenuInputDisplay;"
+      },
+      {
+        "line": 351,
+        "text": "                            }"
+      },
+      {
+        "line": 352,
+        "text": ""
+      },
+      {
+        "line": 353,
+        "text": "                            session.Status.Dequeue();"
+      },
+      {
+        "line": 354,
+        "text": "                            continue;"
+      },
+      {
+        "line": 355,
+        "text": "                        }"
+      },
+      {
+        "line": 356,
+        "text": ""
+      },
+      {
+        "line": 357,
+        "text": "                        //Check for Module Globals"
+      },
+      {
+        "line": 358,
+        "text": "                        foreach (var m in _modules.Values.Where(x => x.GlobalCommandHandlers.Any()))"
+      },
+      {
+        "line": 359,
+        "text": "                        {"
+      },
+      {
+        "line": 360,
+        "text": "                            var result = Run(m.ModuleIdentifier,"
+      },
+      {
+        "line": 361,
+        "text": "                                m.GlobalCommandHandlers.First(), session.Channel);"
+      },
+      {
+        "line": 362,
+        "text": ""
+      },
+      {
+        "line": 363,
+        "text": "                            //Command Not Processed"
+      },
+      {
+        "line": 364,
+        "text": "                            if (result == 0) continue;"
+      },
+      {
+        "line": 365,
+        "text": ""
+      },
+      {
+        "line": 366,
+        "text": "                            //Otherwise dequeue the input status to denote we've handled it"
+      },
+      {
+        "line": 367,
+        "text": "                            session.Status.Dequeue();"
+      },
+      {
+        "line": 368,
+        "text": "                            break;"
+      },
+      {
+        "line": 369,
+        "text": ""
+      },
+      {
+        "line": 370,
+        "text": "                        }"
+      },
+      {
+        "line": 371,
+        "text": "                    }"
+      },
+      {
+        "line": 372,
+        "text": ""
+      },
+      {
+        "line": 373,
+        "text": "                    switch (session.SessionState)"
+      },
+      {
+        "line": 374,
+        "text": "                    {"
+      },
+      {
+        "line": 375,
+        "text": "                        case EnumSessionState.RloginEnteringModule:"
+      },
+      {
+        "line": 376,
+        "text": "                            {"
+      },
+      {
+        "line": 377,
+        "text": "                                ProcessLONROU_FromRlogin(session);"
+      },
+      {
+        "line": 378,
+        "text": "                                break;"
+      },
+      {
+        "line": 379,
+        "text": "                            }"
+      },
+      {
+        "line": 380,
+        "text": "                        //Initial call to STTROU when a User is Entering a Module"
+      },
+      {
+        "line": 381,
+        "text": "                        case EnumSessionState.EnteringModule:"
+      },
+      {
+        "line": 382,
+        "text": "                            {"
+      },
+      {
+        "line": 383,
+        "text": "                                ProcessSTTROU_EnteringModule(session);"
+      },
+      {
+        "line": 384,
+        "text": "                                break;"
+      },
+      {
+        "line": 385,
+        "text": "                            }"
+      },
+      {
+        "line": 386,
+        "text": ""
+      },
+      {
+        "line": 387,
+        "text": "                        //Post-Login Display Routine"
+      },
+      {
+        "line": 388,
+        "text": "                        case EnumSessionState.LoginRoutines:"
+      },
+      {
+        "line": 389,
+        "text": "                            {"
+      },
+      {
+        "line": 390,
+        "text": "                                ProcessLONROU(session);"
+      },
+      {
+        "line": 391,
+        "text": "                                break;"
+      },
+      {
+        "line": 392,
+        "text": "                            }"
+      },
+      {
+        "line": 393,
+        "text": ""
+      },
+      {
+        "line": 394,
+        "text": "                        //User is in the module, process all the in-module type of events"
+      },
+      {
+        "line": 395,
+        "text": "                        case EnumSessionState.InModule:"
+      },
+      {
+        "line": 396,
+        "text": "                            {"
+      },
+      {
+        "line": 397,
+        "text": "                                //Did BTUCHI or a previous command cause a status change?"
+      },
+      {
+        "line": 398,
+        "text": "                                if (session.GetStatus() == EnumUserStatus.CYCLE || session.GetStatus() == EnumUserStatus.OUTPUT_BUFFER_EMPTY)"
+      },
+      {
+        "line": 399,
+        "text": "                                {"
+      },
+      {
+        "line": 400,
+        "text": "                                    ProcessSTSROU(session);"
+      },
+      {
+        "line": 401,
+        "text": "                                    break;"
+      },
+      {
+        "line": 402,
+        "text": "                                }"
+      },
+      {
+        "line": 403,
+        "text": ""
+      },
+      {
+        "line": 404,
+        "text": "                                //User Input Available? Invoke *STTROU"
+      },
+      {
+        "line": 405,
+        "text": "                                if (session.GetStatus() == EnumUserStatus.CR_TERMINATED_STRING_AVAILABLE)"
+      },
+      {
+        "line": 406,
+        "text": "                                {"
+      },
+      {
+        "line": 407,
+        "text": "                                    ProcessSTTROU(session);"
+      },
+      {
+        "line": 408,
+        "text": "                                }"
+      },
+      {
+        "line": 409,
+        "text": ""
+      },
+      {
+        "line": 410,
+        "text": "                                //If the channel has been registered with BEGIN_POLLING"
+      },
+      {
+        "line": 411,
+        "text": "                                if (session.PollingRoutine != null)"
+      },
+      {
+        "line": 412,
+        "text": "                                {"
+      },
+      {
+        "line": 413,
+        "text": "                                    session.Status.Enqueue(EnumUserStatus.POLLING_STATUS);"
+      },
+      {
+        "line": 414,
+        "text": "                                    ProcessPollingRoutine(session);"
+      },
+      {
+        "line": 415,
+        "text": "                                    session.Status.Dequeue();"
+      },
+      {
+        "line": 416,
+        "text": "                                }"
+      },
+      {
+        "line": 417,
+        "text": ""
+      },
+      {
+        "line": 418,
+        "text": "                                break;"
+      },
+      {
+        "line": 419,
+        "text": "                            }"
+      },
+      {
+        "line": 420,
+        "text": ""
+      },
+      {
+        "line": 421,
+        "text": "                        //Check for any other session states, we handle these here as they are"
+      },
+      {
+        "line": 422,
+        "text": "                        //lower priority than handling \"in-module\" states"
+      },
+      {
+        "line": 423,
+        "text": "                        default:"
+      },
+      {
+        "line": 424,
+        "text": "                            {"
+      },
+      {
+        "line": 425,
+        "text": "                                foreach (var r in _mbbsRoutines)"
+      },
+      {
+        "line": 426,
+        "text": "                                    if (r.ProcessSessionState(session, _modules))"
+      },
+      {
+        "line": 427,
+        "text": "                                        break;"
+      },
+      {
+        "line": 428,
+        "text": ""
+      },
+      {
+        "line": 429,
+        "text": "                            }"
+      },
+      {
+        "line": 430,
+        "text": "                            break;"
+      },
+      {
+        "line": 431,
+        "text": "                    }"
+      },
+      {
+        "line": 432,
+        "text": ""
+      },
+      {
+        "line": 433,
+        "text": "                    //Mark Data Processing for this Channel as Complete"
+      },
+      {
+        "line": 434,
+        "text": "                    session.DataToProcess = false;"
+      },
+      {
+        "line": 435,
+        "text": ""
+      },
+      {
+        "line": 436,
+        "text": "                }"
+      },
+      {
+        "line": 437,
+        "text": ""
+      },
+      {
+        "line": 438,
+        "text": "                //Process Timed/Real-Time Events"
+      },
+      {
+        "line": 439,
+        "text": "                ProcessRTKICK();"
+      },
+      {
+        "line": 440,
+        "text": "                ProcessRTIHDLR();"
+      },
+      {
+        "line": 441,
+        "text": "                ProcessSYSCYC();"
+      },
+      {
+        "line": 442,
+        "text": "                ProcessTasks();"
+      },
+      {
+        "line": 443,
+        "text": ""
+      },
+      {
+        "line": 444,
+        "text": "                foreach (var c in _channelDictionary.Where(x => x.Value.Status.Count > 0))"
+      },
+      {
+        "line": 445,
+        "text": "                    c.Value.Status.Dequeue();"
+      },
+      {
+        "line": 446,
+        "text": "            }"
+      },
+      {
+        "line": 447,
+        "text": ""
+      },
+      {
+        "line": 448,
+        "text": "            Shutdown();"
+      },
+      {
+        "line": 449,
+        "text": "        }"
+      },
+      {
+        "line": 450,
+        "text": ""
+      },
+      {
+        "line": 451,
+        "text": "        private void Shutdown()"
+      },
+      {
+        "line": 452,
+        "text": "        {"
+      },
+      {
+        "line": 453,
+        "text": "            Logger.Info(\"SHUTTING DOWN\");"
+      },
+      {
+        "line": 454,
+        "text": ""
+      },
+      {
+        "line": 455,
+        "text": "            // kill all active sessions"
+      }
+    ]
+  },
+  {
+    "id": "mbbsemu_host_routines",
+    "source": "MBBSEmu GitHub ZIP",
+    "path": "HostProcess/MbbsHost.cs",
+    "sha256": "d67f9a2eb7bf90a2cfd2564689f62f3a085f839285150e1210dbe21be89ee705",
+    "line_start": 725,
+    "line_end": 840,
+    "summary": "Host routine dispatch: STSROU, BEGIN_POLLING routine, RTKICK, RTIHDLR, SYSCYC, INITASK.",
+    "excerpt": [
+      {
+        "line": 725,
+        "text": "        ///     Invokes routine registered as STSROU during MAJORBBS->REGISTER_MODULE() call"
+      },
+      {
+        "line": 726,
+        "text": "        ///"
+      },
+      {
+        "line": 727,
+        "text": "        ///     The registered STSROU is invoked any time there is a status change or deferred processing"
+      },
+      {
+        "line": 728,
+        "text": "        ///     using a channel Status code of 240 or 5. Most modules that utilize this use it as a method to"
+      },
+      {
+        "line": 729,
+        "text": "        ///     rapidly call the module to perform actions at a calculated interval"
+      },
+      {
+        "line": 730,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 731,
+        "text": "        /// <param name=\"session\"></param>"
+      },
+      {
+        "line": 732,
+        "text": "        [MethodImpl(MethodImplOptions.AggressiveInlining)]"
+      },
+      {
+        "line": 733,
+        "text": "        private void ProcessSTSROU(SessionBase session)"
+      },
+      {
+        "line": 734,
+        "text": "        {"
+      },
+      {
+        "line": 735,
+        "text": "            Run(session.CurrentModule.ModuleIdentifier, session.CurrentModule.MainModuleDll.EntryPoints[\"stsrou\"],"
+      },
+      {
+        "line": 736,
+        "text": "                session.Channel);"
+      },
+      {
+        "line": 737,
+        "text": "        }"
+      },
+      {
+        "line": 738,
+        "text": ""
+      },
+      {
+        "line": 739,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 740,
+        "text": "        ///     Invokes routine registered during MAJORBBS->BEGIN_POLLING()"
+      },
+      {
+        "line": 741,
+        "text": "        ///"
+      },
+      {
+        "line": 742,
+        "text": "        ///     Method registered using BEGIN_POLLING() is called as often as possible to poll for a specific event"
+      },
+      {
+        "line": 743,
+        "text": "        ///     and will not stop polling until STOP_POLLING() is invoked"
+      },
+      {
+        "line": 744,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 745,
+        "text": "        /// <param name=\"session\"></param>"
+      },
+      {
+        "line": 746,
+        "text": "        [MethodImpl(MethodImplOptions.AggressiveInlining)]"
+      },
+      {
+        "line": 747,
+        "text": "        private void ProcessPollingRoutine(SessionBase session)"
+      },
+      {
+        "line": 748,
+        "text": "        {"
+      },
+      {
+        "line": 749,
+        "text": "            Run(session.CurrentModule.ModuleIdentifier, session.PollingRoutine, session.Channel,"
+      },
+      {
+        "line": 750,
+        "text": "                true);"
+      },
+      {
+        "line": 751,
+        "text": "        }"
+      },
+      {
+        "line": 752,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 753,
+        "text": "        ///     Invokes routine registered during MAJORBBS->RTKICK()"
+      },
+      {
+        "line": 754,
+        "text": "        ///"
+      },
+      {
+        "line": 755,
+        "text": "        ///     Methods registered using RTKICK are automatically invoked after a specified delay (in seconds). Methods"
+      },
+      {
+        "line": 756,
+        "text": "        ///     only execute once and are then discarded."
+      },
+      {
+        "line": 757,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 758,
+        "text": "        [MethodImpl(MethodImplOptions.AggressiveInlining)]"
+      },
+      {
+        "line": 759,
+        "text": "        private void ProcessRTKICK()"
+      },
+      {
+        "line": 760,
+        "text": "        {"
+      },
+      {
+        "line": 761,
+        "text": "            //Check for any rtkick routines"
+      },
+      {
+        "line": 762,
+        "text": "            foreach (var module in _modules.Values.Where(m => (bool)m.ModuleConfig.ModuleEnabled))"
+      },
+      {
+        "line": 763,
+        "text": "            {"
+      },
+      {
+        "line": 764,
+        "text": "                if (module.RtkickRoutines.Count == 0) continue;"
+      },
+      {
+        "line": 765,
+        "text": ""
+      },
+      {
+        "line": 766,
+        "text": "                foreach (var (key, value) in module.RtkickRoutines.ToList())"
+      },
+      {
+        "line": 767,
+        "text": "                {"
+      },
+      {
+        "line": 768,
+        "text": "                    if (!value.Executed && value.Elapsed.ElapsedMilliseconds > value.Delay * 1000)"
+      },
+      {
+        "line": 769,
+        "text": "                    {"
+      },
+      {
+        "line": 770,
+        "text": "#if DEBUG"
+      },
+      {
+        "line": 771,
+        "text": "                        Logger.Info($\"Running RTKICK-{key}: {value}\");"
+      },
+      {
+        "line": 772,
+        "text": "#endif"
+      },
+      {
+        "line": 773,
+        "text": "                        Run(module.ModuleIdentifier, value, ushort.MaxValue);"
+      },
+      {
+        "line": 774,
+        "text": ""
+      },
+      {
+        "line": 775,
+        "text": "                        value.Elapsed.Stop();"
+      },
+      {
+        "line": 776,
+        "text": "                        value.Executed = true;"
+      },
+      {
+        "line": 777,
+        "text": "                        module.RtkickRoutines.Remove(key);"
+      },
+      {
+        "line": 778,
+        "text": "                    }"
+      },
+      {
+        "line": 779,
+        "text": "                }"
+      },
+      {
+        "line": 780,
+        "text": "            }"
+      },
+      {
+        "line": 781,
+        "text": "        }"
+      },
+      {
+        "line": 782,
+        "text": ""
+      },
+      {
+        "line": 783,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 784,
+        "text": "        ///     Invokes routine registered during MAJORBBS->RTIHDLR()"
+      },
+      {
+        "line": 785,
+        "text": "        ///"
+      },
+      {
+        "line": 786,
+        "text": "        ///     Methods registered with RTIHDLR execute at 18hz (every ~55ms) and on the original DOS MajorBBS/Worldgroup"
+      },
+      {
+        "line": 787,
+        "text": "        ///     were executed at the DOS interrupt level. This is why on later Windows versions of worldgroup, any Module"
+      },
+      {
+        "line": 788,
+        "text": "        ///     that relied on RTIHDLR wouldn't work."
+      },
+      {
+        "line": 789,
+        "text": "        ///"
+      },
+      {
+        "line": 790,
+        "text": "        ///     Unlike RTKICK, methods registered with RTIHDLR() only need to be registered once and will run until the BBS"
+      },
+      {
+        "line": 791,
+        "text": "        ///     is shut down."
+      },
+      {
+        "line": 792,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 793,
+        "text": "        [MethodImpl(MethodImplOptions.AggressiveInlining)]"
+      },
+      {
+        "line": 794,
+        "text": "        private void ProcessRTIHDLR()"
+      },
+      {
+        "line": 795,
+        "text": "        {"
+      },
+      {
+        "line": 796,
+        "text": "            //Too soon? Bail."
+      },
+      {
+        "line": 797,
+        "text": "            if (_realTimeStopwatch.ElapsedMilliseconds <= 55) return;"
+      },
+      {
+        "line": 798,
+        "text": ""
+      },
+      {
+        "line": 799,
+        "text": "            foreach (var m in _modules.Values.Where(m => (bool)m.ModuleConfig.ModuleEnabled))"
+      },
+      {
+        "line": 800,
+        "text": "            {"
+      },
+      {
+        "line": 801,
+        "text": "                if (m.RtihdlrRoutines.Count == 0) continue;"
+      },
+      {
+        "line": 802,
+        "text": ""
+      },
+      {
+        "line": 803,
+        "text": "                foreach (var r in m.RtihdlrRoutines)"
+      },
+      {
+        "line": 804,
+        "text": "                {"
+      },
+      {
+        "line": 805,
+        "text": "                    Run(m.ModuleIdentifier, r.Value, ushort.MaxValue);"
+      },
+      {
+        "line": 806,
+        "text": "                }"
+      },
+      {
+        "line": 807,
+        "text": "            }"
+      },
+      {
+        "line": 808,
+        "text": ""
+      },
+      {
+        "line": 809,
+        "text": "            _realTimeStopwatch.Restart();"
+      },
+      {
+        "line": 810,
+        "text": "        }"
+      },
+      {
+        "line": 811,
+        "text": ""
+      },
+      {
+        "line": 812,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 813,
+        "text": "        ///     Processes the routine set to a modules specified SYSCYC Pointer"
+      },
+      {
+        "line": 814,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 815,
+        "text": "        private void ProcessSYSCYC()"
+      },
+      {
+        "line": 816,
+        "text": "        {"
+      },
+      {
+        "line": 817,
+        "text": "            foreach (var m in _modules.Values.Where(m => (bool)m.ModuleConfig.ModuleEnabled))"
+      },
+      {
+        "line": 818,
+        "text": "            {"
+      },
+      {
+        "line": 819,
+        "text": "                var syscycPointer = m.Memory.GetPointer(m.Memory.GetVariablePointer(\"SYSCYC\"));"
+      },
+      {
+        "line": 820,
+        "text": "                if (syscycPointer == FarPtr.Empty) continue;"
+      },
+      {
+        "line": 821,
+        "text": ""
+      },
+      {
+        "line": 822,
+        "text": "                Run(m.ModuleIdentifier, syscycPointer, ushort.MaxValue);"
+      },
+      {
+        "line": 823,
+        "text": "            }"
+      },
+      {
+        "line": 824,
+        "text": "        }"
+      },
+      {
+        "line": 825,
+        "text": ""
+      },
+      {
+        "line": 826,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 827,
+        "text": "        ///     Invokes routine registered during MAJORBBS->INITASK()"
+      },
+      {
+        "line": 828,
+        "text": "        ///"
+      },
+      {
+        "line": 829,
+        "text": "        ///     Similar to BEGIN_POLLING() or RTIHDLR(), methods registered with INITASK() are invoked very quickly as often"
+      },
+      {
+        "line": 830,
+        "text": "        ///     as possible."
+      },
+      {
+        "line": 831,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 832,
+        "text": "        [MethodImpl(MethodImplOptions.AggressiveInlining)]"
+      },
+      {
+        "line": 833,
+        "text": "        private void ProcessTasks()"
+      },
+      {
+        "line": 834,
+        "text": "        {"
+      },
+      {
+        "line": 835,
+        "text": "            //Run task routines"
+      },
+      {
+        "line": 836,
+        "text": "            foreach (var m in _modules.Values.Where(m => (bool)m.ModuleConfig.ModuleEnabled))"
+      },
+      {
+        "line": 837,
+        "text": "            {"
+      },
+      {
+        "line": 838,
+        "text": "                if (m.TaskRoutines.Count == 0) continue;"
+      },
+      {
+        "line": 839,
+        "text": ""
+      },
+      {
+        "line": 840,
+        "text": "                foreach (var r in m.TaskRoutines)"
+      }
+    ]
+  },
+  {
+    "id": "mbbsemu_begin_polling",
+    "source": "MBBSEmu GitHub ZIP",
+    "path": "HostProcess/ExportedModules/Majorbbs.cs",
+    "sha256": "3bcaa8ee7abf875fd09d727f7161ecf169ab98330032c1847d7651e4c38cb3c8",
+    "line_start": 4882,
+    "line_end": 4925,
+    "summary": "BEGIN_POLLING exported API: per-channel routine called as fast/often as possible until STOP_POLLING.",
+    "excerpt": [
+      {
+        "line": 4882,
+        "text": "        ///     Turn on polling for the specified user number channel"
+      },
+      {
+        "line": 4883,
+        "text": "        ///"
+      },
+      {
+        "line": 4884,
+        "text": "        ///     This will be called as fast as possible, as often as possible until"
+      },
+      {
+        "line": 4885,
+        "text": "        ///     stop_polling() is called"
+      },
+      {
+        "line": 4886,
+        "text": "        ///"
+      },
+      {
+        "line": 4887,
+        "text": "        ///     Signature: void begin_polling(int unum,void (*rouptr)())"
+      },
+      {
+        "line": 4888,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 4889,
+        "text": "        private void begin_polling()"
+      },
+      {
+        "line": 4890,
+        "text": "        {"
+      },
+      {
+        "line": 4891,
+        "text": "            var channelNumber = GetParameter(0);"
+      },
+      {
+        "line": 4892,
+        "text": "            var routinePointer = GetParameterPointer(1);"
+      },
+      {
+        "line": 4893,
+        "text": ""
+      },
+      {
+        "line": 4894,
+        "text": "            //Unset on the specified channel"
+      },
+      {
+        "line": 4895,
+        "text": "            if (routinePointer == FarPtr.Empty)"
+      },
+      {
+        "line": 4896,
+        "text": "            {"
+      },
+      {
+        "line": 4897,
+        "text": "                ChannelDictionary[channelNumber].PollingRoutine = null;"
+      },
+      {
+        "line": 4898,
+        "text": "#if DEBUG"
+      },
+      {
+        "line": 4899,
+        "text": "                _logger.Debug($\"Unassigned Polling Routine on Channel {channelNumber}\");"
+      },
+      {
+        "line": 4900,
+        "text": "#endif"
+      },
+      {
+        "line": 4901,
+        "text": "                return;"
+      },
+      {
+        "line": 4902,
+        "text": "            }"
+      },
+      {
+        "line": 4903,
+        "text": ""
+      },
+      {
+        "line": 4904,
+        "text": "            ChannelDictionary[channelNumber].PollingRoutine = routinePointer;"
+      },
+      {
+        "line": 4905,
+        "text": "            Module.Memory.SetWord(Module.Memory.GetVariablePointer(\"STATUS\"), 192);"
+      },
+      {
+        "line": 4906,
+        "text": ""
+      },
+      {
+        "line": 4907,
+        "text": "#if DEBUG"
+      },
+      {
+        "line": 4908,
+        "text": "            _logger.Debug($\"({Module.ModuleIdentifier}) Assigned Polling Routine {ChannelDictionary[channelNumber].PollingRoutine} to Channel {channelNumber}\");"
+      },
+      {
+        "line": 4909,
+        "text": "#endif"
+      },
+      {
+        "line": 4910,
+        "text": "        }"
+      },
+      {
+        "line": 4911,
+        "text": ""
+      },
+      {
+        "line": 4912,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 4913,
+        "text": "        ///     Stop polling for the specified user number channel"
+      },
+      {
+        "line": 4914,
+        "text": "        ///"
+      },
+      {
+        "line": 4915,
+        "text": "        ///     Signature: void stop_polling(int unum)"
+      },
+      {
+        "line": 4916,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 4917,
+        "text": "        private void stop_polling()"
+      },
+      {
+        "line": 4918,
+        "text": "        {"
+      },
+      {
+        "line": 4919,
+        "text": "            var channelNumber = GetParameter(0);"
+      },
+      {
+        "line": 4920,
+        "text": ""
+      },
+      {
+        "line": 4921,
+        "text": "            ChannelDictionary[channelNumber].PollingRoutine = null;"
+      },
+      {
+        "line": 4922,
+        "text": ""
+      },
+      {
+        "line": 4923,
+        "text": "#if DEBUG"
+      },
+      {
+        "line": 4924,
+        "text": "            _logger.Debug($\"({Module.ModuleIdentifier}) Unassigned Polling Routine on Channel {channelNumber}\");"
+      },
+      {
+        "line": 4925,
+        "text": "#endif"
+      }
+    ]
+  },
+  {
+    "id": "mbbsemu_ticker",
+    "source": "MBBSEmu GitHub ZIP",
+    "path": "HostProcess/ExportedModules/Galgsbl.cs",
+    "sha256": "f1fb2cd52728fae2ebcfdee3731ffcbf45427c96379c4ad79c5b49fb88a6e183",
+    "line_start": 60,
+    "line_end": 105,
+    "summary": "GALGSBL TICKER allocation and one-second update timer.",
+    "excerpt": [
+      {
+        "line": 60,
+        "text": "            //Sanity Check"
+      },
+      {
+        "line": 61,
+        "text": "            if (bturno.Length > 8)"
+      },
+      {
+        "line": 62,
+        "text": "                bturno = bturno.Substring(0, 8);"
+      },
+      {
+        "line": 63,
+        "text": ""
+      },
+      {
+        "line": 64,
+        "text": "            Module.Memory.SetArray(\"BTURNO\", Encoding.ASCII.GetBytes($\"{bturno}\\0\"));"
+      },
+      {
+        "line": 65,
+        "text": "            Module.Memory.SetWord(\"BTURS\", (ushort)255);"
+      },
+      {
+        "line": 66,
+        "text": "            Module.Memory.AllocateVariable(\"TICKER\", 0x02); //ushort increments once per second"
+      },
+      {
+        "line": 67,
+        "text": ""
+      },
+      {
+        "line": 68,
+        "text": "            MonitoredChannel2 = 0xFFFF;"
+      },
+      {
+        "line": 69,
+        "text": "            MonitoredChannel = 0xFFFF;"
+      },
+      {
+        "line": 70,
+        "text": ""
+      },
+      {
+        "line": 71,
+        "text": "            TimeSpan timeSpan = TimeSpan.FromSeconds(1);"
+      },
+      {
+        "line": 72,
+        "text": "            _timer = new Timer(OnTimerCallback, this, timeSpan, timeSpan);"
+      },
+      {
+        "line": 73,
+        "text": "        }"
+      },
+      {
+        "line": 74,
+        "text": ""
+      },
+      {
+        "line": 75,
+        "text": "        public void Stop()"
+      },
+      {
+        "line": 76,
+        "text": "        {"
+      },
+      {
+        "line": 77,
+        "text": "            _timer.Dispose();"
+      },
+      {
+        "line": 78,
+        "text": "        }"
+      },
+      {
+        "line": 79,
+        "text": ""
+      },
+      {
+        "line": 80,
+        "text": "        public void UpdateSession(ushort channel)"
+      },
+      {
+        "line": 81,
+        "text": "        {"
+      },
+      {
+        "line": 82,
+        "text": ""
+      },
+      {
+        "line": 83,
+        "text": "        }"
+      },
+      {
+        "line": 84,
+        "text": ""
+      },
+      {
+        "line": 85,
+        "text": "        public void SetRegisters(ICpuRegisters registers)"
+      },
+      {
+        "line": 86,
+        "text": "        {"
+      },
+      {
+        "line": 87,
+        "text": "            Registers = registers;"
+      },
+      {
+        "line": 88,
+        "text": "        }"
+      },
+      {
+        "line": 89,
+        "text": ""
+      },
+      {
+        "line": 90,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 91,
+        "text": "        ///     Internal timer for operations that need to happen every 1 seconds"
+      },
+      {
+        "line": 92,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 93,
+        "text": "        private void OnTimerCallback(object unused)"
+      },
+      {
+        "line": 94,
+        "text": "        {"
+      },
+      {
+        "line": 95,
+        "text": "            // Update TICKER. Wrapped in TryGetVariablePointer since debug tests might take too long"
+      },
+      {
+        "line": 96,
+        "text": "            // and trigger a race condition where the timer callback fires even though the test has"
+      },
+      {
+        "line": 97,
+        "text": "            // completed. This crashes the test."
+      },
+      {
+        "line": 98,
+        "text": "            if (Module.Memory.TryGetVariablePointer(\"TICKER\", out var tickerPointer))"
+      },
+      {
+        "line": 99,
+        "text": "            {"
+      },
+      {
+        "line": 100,
+        "text": "                var seconds = (ushort)((_clock.Now - _startDate).TotalSeconds % 0xFFFF);"
+      },
+      {
+        "line": 101,
+        "text": "                Module.Memory.SetWord(tickerPointer, seconds);"
+      },
+      {
+        "line": 102,
+        "text": "            }"
+      },
+      {
+        "line": 103,
+        "text": "        }"
+      },
+      {
+        "line": 104,
+        "text": ""
+      },
+      {
+        "line": 105,
+        "text": "        public ReadOnlySpan<byte> Invoke(ushort ordinal, bool offsetsOnly = false)"
+      }
+    ]
+  },
+  {
+    "id": "mbbsemu_timer_hertz",
+    "source": "MBBSEmu GitHub ZIP",
+    "path": "HostProcess/MbbsHost.cs",
+    "sha256": "d67f9a2eb7bf90a2cfd2564689f62f3a085f839285150e1210dbe21be89ee705",
+    "line_start": 125,
+    "line_end": 205,
+    "summary": "Optional host tick timer controlled by Timer.Hertz.",
+    "excerpt": [
+      {
+        "line": 125,
+        "text": "        ///     Timer that sets _timerEvent on a set interval, controlled by Timer.Hertz"
+      },
+      {
+        "line": 126,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 127,
+        "text": "        private readonly Timer _tickTimer;"
+      },
+      {
+        "line": 128,
+        "text": "        private readonly EventWaitHandle _timerEvent;"
+      },
+      {
+        "line": 129,
+        "text": ""
+      },
+      {
+        "line": 130,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 131,
+        "text": "        ///     Flag that controls whether the main loop will perform a nightly cleanup"
+      },
+      {
+        "line": 132,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 133,
+        "text": "        private bool _performCleanup = false;"
+      },
+      {
+        "line": 134,
+        "text": "        private EventWaitHandle _cleanupRestartEvent = null;"
+      },
+      {
+        "line": 135,
+        "text": ""
+      },
+      {
+        "line": 136,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 137,
+        "text": "        ///     Global Cache of objects maintained and accessible everywhere within the process"
+      },
+      {
+        "line": 138,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 139,
+        "text": "        private readonly IGlobalCache _globalCache;"
+      },
+      {
+        "line": 140,
+        "text": ""
+      },
+      {
+        "line": 141,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 142,
+        "text": "        ///     File Utility used for safely handling cross-platform File operations"
+      },
+      {
+        "line": 143,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 144,
+        "text": "        private readonly IFileUtility _fileUtility;"
+      },
+      {
+        "line": 145,
+        "text": ""
+      },
+      {
+        "line": 146,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 147,
+        "text": "        ///     Main Worker Thread that processes the main loop within MBBSEmu"
+      },
+      {
+        "line": 148,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 149,
+        "text": "        private Thread _workerThread;"
+      },
+      {
+        "line": 150,
+        "text": ""
+      },
+      {
+        "line": 151,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 152,
+        "text": "        ///     Repository for Account Keys related to Accounts within MBBSEmu"
+      },
+      {
+        "line": 153,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 154,
+        "text": "        private readonly IAccountKeyRepository _accountKeyRepository;"
+      },
+      {
+        "line": 155,
+        "text": ""
+      },
+      {
+        "line": 156,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 157,
+        "text": "        ///     Repository for the MBBSEmu Accounts Database"
+      },
+      {
+        "line": 158,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 159,
+        "text": "        private readonly IAccountRepository _accountRepository;"
+      },
+      {
+        "line": 160,
+        "text": ""
+      },
+      {
+        "line": 161,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 162,
+        "text": "        ///     Text Variable Service used to process Global Text Variables"
+      },
+      {
+        "line": 163,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 164,
+        "text": "        private readonly ITextVariableService _textVariableService;"
+      },
+      {
+        "line": 165,
+        "text": ""
+      },
+      {
+        "line": 166,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 167,
+        "text": "        ///     Message Center used to handle notifications and events from other parts of the system"
+      },
+      {
+        "line": 168,
+        "text": "        /// </summary>"
+      },
+      {
+        "line": 169,
+        "text": "        private readonly IMessagingCenter _messagingCenter;"
+      },
+      {
+        "line": 170,
+        "text": ""
+      },
+      {
+        "line": 171,
+        "text": "        public MbbsHost(IClock clock, LogFactory logger, IGlobalCache globalCache, IFileUtility fileUtility, IEnumerable<IHostRoutine> mbbsRoutines, AppSettingsManager configuration, IEnumerable<IGlobalRoutine> globalRoutines, IAccountKeyRepository accountKeyRepository, IAccountRepository accountRepository, PointerDictionary<SessionBase> channelDictionary, ITextVariableService textVariableService, IMessagingCenter messagingCenter)"
+      },
+      {
+        "line": 172,
+        "text": "        {"
+      },
+      {
+        "line": 173,
+        "text": "            Logger = logger.GetLogger<MessageLogger>();"
+      },
+      {
+        "line": 174,
+        "text": "            Clock = clock;"
+      },
+      {
+        "line": 175,
+        "text": "            _globalCache = globalCache;"
+      },
+      {
+        "line": 176,
+        "text": "            _fileUtility = fileUtility;"
+      },
+      {
+        "line": 177,
+        "text": "            _mbbsRoutines = mbbsRoutines;"
+      },
+      {
+        "line": 178,
+        "text": "            _configuration = configuration;"
+      },
+      {
+        "line": 179,
+        "text": "            _globalRoutines = globalRoutines;"
+      },
+      {
+        "line": 180,
+        "text": "            _channelDictionary = channelDictionary;"
+      },
+      {
+        "line": 181,
+        "text": "            _accountKeyRepository = accountKeyRepository;"
+      },
+      {
+        "line": 182,
+        "text": "            _accountRepository = accountRepository;"
+      },
+      {
+        "line": 183,
+        "text": "            _textVariableService = textVariableService;"
+      },
+      {
+        "line": 184,
+        "text": "            _messagingCenter = messagingCenter;"
+      },
+      {
+        "line": 185,
+        "text": ""
+      },
+      {
+        "line": 186,
+        "text": "            Logger.Info(\"Constructing MBBSEmu Host...\");"
+      },
+      {
+        "line": 187,
+        "text": ""
+      },
+      {
+        "line": 188,
+        "text": "            _modules = new Dictionary<string, MbbsModule>();"
+      },
+      {
+        "line": 189,
+        "text": "            _exportedFunctions = new Dictionary<string, IExportedModule>();"
+      },
+      {
+        "line": 190,
+        "text": "            _realTimeStopwatch = Stopwatch.StartNew();"
+      },
+      {
+        "line": 191,
+        "text": "            _incomingSessions = new Queue<SessionBase>();"
+      },
+      {
+        "line": 192,
+        "text": ""
+      },
+      {
+        "line": 193,
+        "text": "            //Setup Cleanup Restart Event"
+      },
+      {
+        "line": 194,
+        "text": "            _cleanupTime = _configuration.CleanupTime;"
+      },
+      {
+        "line": 195,
+        "text": "            _cleanupTimer = new Timer(_ => _performCleanup = true, null, NowUntil(_cleanupTime + _cleanupGracePeriod), TimeSpan.FromDays(1));"
+      },
+      {
+        "line": 196,
+        "text": "            _cleanupWarningTimer = SetupCleanupWarningTimer();"
+      },
+      {
+        "line": 197,
+        "text": ""
+      },
+      {
+        "line": 198,
+        "text": "            if (_configuration.TimerHertz > 0)"
+      },
+      {
+        "line": 199,
+        "text": "            {"
+      },
+      {
+        "line": 200,
+        "text": "                _timerEvent = new AutoResetEvent(true);"
+      },
+      {
+        "line": 201,
+        "text": "                _tickTimer = new Timer(_ => _timerEvent.Set(), this, TimeSpan.Zero, TimeSpan.FromMilliseconds(1000 / configuration.TimerHertz));"
+      },
+      {
+        "line": 202,
+        "text": "            }"
+      },
+      {
+        "line": 203,
+        "text": ""
+      },
+      {
+        "line": 204,
+        "text": "            //Setup Text Variables"
+      },
+      {
+        "line": 205,
+        "text": "            _textVariableService.SetVariable(\"SYSTEM_NAME\", () => _configuration.BBSTitle);"
+      }
+    ]
+  },
+  {
+    "id": "mbbsemu_telnet_keepalive",
+    "source": "MBBSEmu GitHub ZIP",
+    "path": "Session/Telnet/TelnetSession.cs",
+    "sha256": "4706e75efc2e02186ba84ca84297502ee4eda052f71e087d0fe948a38bb1bf58",
+    "line_start": 100,
+    "line_end": 125,
+    "summary": "Telnet IAC/NOP socket keepalive/negotiation timing; not gameplay tick evidence.",
+    "excerpt": [
+      {
+        "line": 100,
+        "text": "                    case 0xFF: //Escape 0xFF with two"
+      },
+      {
+        "line": 101,
+        "text": "                        msOutputBuffer.WriteByte(0xFF);"
+      },
+      {
+        "line": 102,
+        "text": "                        break;"
+      },
+      {
+        "line": 103,
+        "text": "                }"
+      },
+      {
+        "line": 104,
+        "text": ""
+      },
+      {
+        "line": 105,
+        "text": "                msOutputBuffer.WriteByte(b);"
+      },
+      {
+        "line": 106,
+        "text": "            }"
+      },
+      {
+        "line": 107,
+        "text": ""
+      },
+      {
+        "line": 108,
+        "text": "            base.Send(msOutputBuffer.ToArray());"
+      },
+      {
+        "line": 109,
+        "text": "        }"
+      },
+      {
+        "line": 110,
+        "text": ""
+      },
+      {
+        "line": 111,
+        "text": "        protected override void PreSend()"
+      },
+      {
+        "line": 112,
+        "text": "        {"
+      },
+      {
+        "line": 113,
+        "text": "            if (SessionTimer.ElapsedMilliseconds >= 500 && _iacPhase == 0)"
+      },
+      {
+        "line": 114,
+        "text": "            {"
+      },
+      {
+        "line": 115,
+        "text": "                TriggerIACNegotiation();"
+      },
+      {
+        "line": 116,
+        "text": "            }"
+      },
+      {
+        "line": 117,
+        "text": "        }"
+      },
+      {
+        "line": 118,
+        "text": ""
+      },
+      {
+        "line": 119,
+        "text": "        protected override (byte[], int) ProcessIncomingClientData(byte[] clientData, int bytesReceived)"
+      },
+      {
+        "line": 120,
+        "text": "        {"
+      },
+      {
+        "line": 121,
+        "text": "            return _iacFilter.ProcessIncomingClientData(clientData, bytesReceived);"
+      },
+      {
+        "line": 122,
+        "text": "        }"
+      },
+      {
+        "line": 123,
+        "text": ""
+      },
+      {
+        "line": 124,
+        "text": "        /// <summary>"
+      },
+      {
+        "line": 125,
+        "text": "        ///     Initiates server side IAC negotiation"
+      }
+    ]
+  }
+]

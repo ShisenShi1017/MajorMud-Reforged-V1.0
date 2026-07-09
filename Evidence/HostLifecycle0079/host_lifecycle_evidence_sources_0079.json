@@ -1,0 +1,171 @@
+[
+  {
+    "id": "HOST0079-EV001",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "WorkerThread is serial host loop",
+    "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+    "line_range": [
+      302,
+      446
+    ],
+    "finding": "Main host loop waits for next tick, processes cleanup/session input/module entry/status/polling, then timed routines in a fixed serial order.",
+    "excerpt": "302:         ///     serial order as quickly as possible. For compatibility, we've replicated the process here as well.\n303:         /// </summary>\n304:         private void WorkerThread()\n305:         {\n306:             while (_isRunning)\n307:             {\n308:                 WaitForNextTick();\n309: \n310:                 ProcessNightlyCleanup();\n311: \n312:                 //Handle Channels\n313:                 ProcessIncomingSessions();\n314:                 ProcessDisconnects();\n315: \n316:                 //Process Channel Events\n317:                 foreach (var session in _channelDictionary.Values)\n318:                 {\n319:                     //Process a single incoming byte from the client session\n320:                     session.ProcessDataFromClient();\n321: \n322:                     //Handle GSBL Chain of Events\n323:                     if (!ProcessGSBLInputEvents(session))\n324:                     {\n325:                         session.DataToProcess = false;\n326:                         continue;\n327:                     }\n328: \n329:                     //Handle Character based Events\n330:                     if (session.DataToProcess)\n331:                         ProcessIncomingCharacter(session);\n332: \n333:                     //Global Command Handler\n334:                     if (session.GetStatus() == EnumUserStatus.CR_TERMINATED_STRING_AVAILABLE && DoGlobalsAttribute.Get(session.SessionState))\n335:                     {\n336:                         //Transfer Input Buffer to Command Buffer, but don't clear it\n337:                         session.InputBuffer.WriteByte(0x0);\n338:                         session.InputCommand = session.InputBuffer.ToArray();\n339: \n340:                         //Check for Internal System Globals\n341:                         if (_globalRoutines.Any(g =>\n342:                             g.ProcessCommand(session.InputCommand, session.Channel, _channelDictionary, _modules)))\n343:                         {\n344:                             session.Status.Enqueue(EnumUserStatus.RINGING);\n345:                             session.InputBuffer.SetLength(0);\n346: \n347:                             //Redisplay Main Menu prompt after global if session is at Main Menu\n348:                             if (session.SessionState == EnumSessionState.MainMenuInput)\n349:                             {\n350:                                 session.SessionState = EnumSessionState.MainMenuInputDisplay;\n351:                             }\n352: \n353:                             session.Status.Dequeue();\n354:                             continue;\n355:                         }\n356: \n357:                         //Check for Module Globals\n358:                         foreach (var m in _modules.Values.Where(x => x.GlobalCommandHandlers.Any()))\n359:                         {\n360:                             var result = Run(m.ModuleIdentifier,\n361:                                 m.GlobalCommandHandlers.First(), session.Channel);\n362: \n363:                             //Command Not Processed\n364:                             if (result == 0) continue;\n365: \n366:                             //Otherwise dequeue the input status to denote we've handled it\n367:                             session.Status.Dequeue();\n368:                             break;\n369: \n370:                         }\n371:                     }\n372: \n373:                     switch (session.SessionState)\n374:                     {\n375:                         case EnumSessionState.RloginEnteringModule:\n376:                             {\n377:                                 ProcessLONROU_FromRlogin(session);\n378:                                 break;\n379:                             }\n380:                         //Initial call to STTROU when a User is Entering a Module\n381:                         case EnumSessionState.EnteringModule:\n382:                             {\n383:                                 ProcessSTTROU_EnteringModule(session);\n384:                                 break;\n385:                             }\n386: \n387:                         //Post-Login Display Routine\n388:                         case EnumSessionState.LoginRoutines:\n389:                             {\n390:                                 ProcessLONROU(session);\n391:                                 break;\n392:                             }\n393: \n394:                         //User is in the module, process all the in-module type of events\n395:                         case EnumSessionState.InModule:\n396:                             {\n397:                                 //Did BTUCHI or a previous command cause a status change?\n398:                                 if (session.GetStatus() == EnumUserStatus.CYCLE || session.GetStatus() == EnumUserStatus.OUTPUT_BUFFER_EMPTY)\n399:                                 {\n400:                                     ProcessSTSROU(session);\n401:                                     break;\n402:                                 }\n403: \n404:                                 //User Input Available? Invoke *STTROU\n405:                                 if (session.GetStatus() == EnumUserStatus.CR_TERMINATED_STRING_AVAILABLE)\n406:                                 {\n407:                                     ProcessSTTROU(session);\n408:                                 }\n409: \n410:                                 //If the channel has been registered with BEGIN_POLLING\n411:                                 if (session.PollingRoutine != null)\n412:                                 {\n413:                                     session.Status.Enqueue(EnumUserStatus.POLLING_STATUS);\n414:                                     ProcessPollingRoutine(session);\n415:                                     session.Status.Dequeue();\n416:                                 }\n417: \n418:                                 break;\n419:                             }\n420: \n421:                         //Check for any other session states, we handle these here as they are\n422:                         //lower priority than handling \"in-module\" states\n423:                         default:\n424:                             {\n425:                                 foreach (var r in _mbbsRoutines)\n426:                                     if (r.ProcessSessionState(session, _modules))\n427:                                         break;\n428: \n429:                             }\n430:                             break;\n431:                     }\n432: \n433:                     //Mark Data Processing for this Channel as Complete\n434:                     session.DataToProcess = false;\n435: \n436:                 }\n437: \n438:                 //Process Timed/Real-Time Events\n439:                 ProcessRTKICK();\n440:                 ProcessRTIHDLR();\n441:                 ProcessSYSCYC();\n442:                 ProcessTasks();\n443: \n444:                 foreach (var c in _channelDictionary.Where(x => x.Value.Status.Count > 0))\n445:                     c.Value.Status.Dequeue();\n446:             }"
+  },
+  {
+    "id": "HOST0079-EV002",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "Configurable Timer.Hertz gates idle loop",
+    "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+    "line_range": [
+      195,
+      296
+    ],
+    "finding": "If Timer.Hertz > 0, AutoResetEvent is set by a timer at 1000/Timer.Hertz ms. WaitForNextTick returns immediately when client input/output/status exists.",
+    "excerpt": "195:             _cleanupTimer = new Timer(_ => _performCleanup = true, null, NowUntil(_cleanupTime + _cleanupGracePeriod), TimeSpan.FromDays(1));\n196:             _cleanupWarningTimer = SetupCleanupWarningTimer();\n197: \n198:             if (_configuration.TimerHertz > 0)\n199:             {\n200:                 _timerEvent = new AutoResetEvent(true);\n201:                 _tickTimer = new Timer(_ => _timerEvent.Set(), this, TimeSpan.Zero, TimeSpan.FromMilliseconds(1000 / configuration.TimerHertz));\n202:             }\n203: \n204:             //Setup Text Variables\n205:             _textVariableService.SetVariable(\"SYSTEM_NAME\", () => _configuration.BBSTitle);\n206:             _textVariableService.SetVariable(\"SYSTEM_COMPANY\", () => _configuration.BBSCompanyName);\n207:             _textVariableService.SetVariable(\"SYSTEM_ADDRESS1\", () => _configuration.BBSAddress1);\n208:             _textVariableService.SetVariable(\"SYSTEM_ADDRESS2\", () => _configuration.BBSAddress2);\n209:             _textVariableService.SetVariable(\"SYSTEM_PHONE\", () => _configuration.BBSDataPhone);\n210:             _textVariableService.SetVariable(\"NUMBER_OF_LINES\", () => _configuration.BBSChannels.ToString());\n211:             _textVariableService.SetVariable(\"DATE\", () => Clock.Now.ToString(\"M/d/yy\"));\n212:             _textVariableService.SetVariable(\"TIME\", () => Clock.Now.ToString(\"t\"));\n213:             _textVariableService.SetVariable(\"TOTAL_ACCOUNTS\", () => _accountRepository.GetAccounts().Count().ToString());\n214:             _textVariableService.SetVariable(\"OTHERS_ONLINE\", () => (GetUserSessions().Count - 1).ToString());\n215:             _textVariableService.SetVariable(\"REG_NUMBER\", () => _configuration.GSBLBTURNO);\n216: \n217:             //Setup Message Subscribers\n218:             _messagingCenter.Subscribe<SysopGlobal, string>(this, EnumMessageEvent.EnableModule, (sender, moduleId) => { EnableModule(moduleId); });\n219:             _messagingCenter.Subscribe<SysopGlobal, string>(this, EnumMessageEvent.DisableModule, (sender, moduleId) => { DisableModule(moduleId); });\n220:             _messagingCenter.Subscribe<MbbsModule, string>(this, EnumMessageEvent.DisableModule, (sender, moduleId) => { DisableModule(moduleId, true); });\n221:             _messagingCenter.Subscribe<SysopGlobal>(this, EnumMessageEvent.Cleanup, (sender) => { _performCleanup = true; });\n222: \n223:             Logger.Info(\"Constructed MBBSEmu Host!\");\n224:         }\n225: \n226:         public void Dispose()\n227:         {\n228:             foreach (var module in _modules)\n229:                 module.Value.Dispose();\n230: \n231:             _modules.Clear();\n232:         }\n233: \n234:         /// <summary>\n235:         ///     Starts the MbbsHost Worker Thread\n236:         /// </summary>\n237:         public void Start(List<ModuleConfiguration> moduleConfigurations)\n238:         {\n239:             //Load Modules\n240:             foreach (var m in moduleConfigurations)\n241:                 AddModule(new MbbsModule(_fileUtility, Clock, Logger, m, null, _messagingCenter));\n242: \n243:             //Remove any modules that did not properly initialize\n244:             foreach (var (_, value) in _modules.Where(m => m.Value.MainModuleDll.EntryPoints.Count == 1 && (bool)m.Value.ModuleConfig.ModuleEnabled))\n245:             {\n246:                 Logger.Error($\"{value.ModuleIdentifier} not properly initialized, Removing\");\n247:                 moduleConfigurations.RemoveAll(x => x.ModuleIdentifier == value.ModuleIdentifier);\n248:                 _modules.Remove(value.ModuleIdentifier);\n249:                 foreach (var e in _exportedFunctions.Keys.Where(x => x.StartsWith(value.ModuleIdentifier)))\n250:                     _exportedFunctions.Remove(e);\n251:             }\n252: \n253:             _isRunning = true;\n254: \n255:             if (_workerThread == null)\n256:             {\n257:                 _workerThread = new Thread(WorkerThread);\n258:                 _workerThread.Start();\n259:             }\n260:         }\n261: \n262:         /// <summary>\n263:         ///     Stops the MbbsHost worker thread\n264:         /// </summary>\n265:         public void Stop()\n266:         {\n267:             _isRunning = false;\n268:             _cleanupTimer?.Dispose();\n269:             _cleanupWarningTimer?.Dispose();\n270:             _tickTimer?.Dispose();\n271:             // this set must come after _isRunning is set to false, to trigger the exit of the\n272:             // worker thread.\n273:             _timerEvent?.Set();\n274:         }\n275: \n276:         public void ScheduleNightlyShutdown(EventWaitHandle eventWaitHandle)\n277:         {\n278:             _cleanupRestartEvent = eventWaitHandle;\n279:             _performCleanup = true;\n280:         }\n281: \n282:         public void WaitForShutdown()\n283:         {\n284:             _workerThread.Join();\n285:         }\n286: \n287:         private void WaitForNextTick()\n288:         {\n289:             if (_timerEvent == null ||\n290:                 _channelDictionary.Values.Any(session => session.DataFromClient.Count > 0 || session.DataToClient.Count > 0 || session.DataToProcess))\n291:                 return;\n292: \n293:             _timerEvent.WaitOne();\n294:         }\n295: \n296:         public void TriggerProcessing() => _timerEvent?.Set();"
+  },
+  {
+    "id": "HOST0079-EV003",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "In-module callback order",
+    "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+    "line_range": [
+      389,
+      421
+    ],
+    "finding": "For in-module sessions, status STSROU/CYCLE/OUTPUT_BUFFER_EMPTY is processed before CR-terminated STTROU command handling, followed by BEGIN_POLLING if registered.",
+    "excerpt": "389:                             {\n390:                                 ProcessLONROU(session);\n391:                                 break;\n392:                             }\n393: \n394:                         //User is in the module, process all the in-module type of events\n395:                         case EnumSessionState.InModule:\n396:                             {\n397:                                 //Did BTUCHI or a previous command cause a status change?\n398:                                 if (session.GetStatus() == EnumUserStatus.CYCLE || session.GetStatus() == EnumUserStatus.OUTPUT_BUFFER_EMPTY)\n399:                                 {\n400:                                     ProcessSTSROU(session);\n401:                                     break;\n402:                                 }\n403: \n404:                                 //User Input Available? Invoke *STTROU\n405:                                 if (session.GetStatus() == EnumUserStatus.CR_TERMINATED_STRING_AVAILABLE)\n406:                                 {\n407:                                     ProcessSTTROU(session);\n408:                                 }\n409: \n410:                                 //If the channel has been registered with BEGIN_POLLING\n411:                                 if (session.PollingRoutine != null)\n412:                                 {\n413:                                     session.Status.Enqueue(EnumUserStatus.POLLING_STATUS);\n414:                                     ProcessPollingRoutine(session);\n415:                                     session.Status.Dequeue();\n416:                                 }\n417: \n418:                                 break;\n419:                             }\n420: \n421:                         //Check for any other session states, we handle these here as they are"
+  },
+  {
+    "id": "HOST0079-EV004",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "Real-time routine ordering after sessions",
+    "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+    "line_range": [
+      435,
+      443
+    ],
+    "finding": "After all sessions are processed, host invokes ProcessRTKICK, ProcessRTIHDLR, ProcessSYSCYC, and ProcessTasks in that order.",
+    "excerpt": "435: \n436:                 }\n437: \n438:                 //Process Timed/Real-Time Events\n439:                 ProcessRTKICK();\n440:                 ProcessRTIHDLR();\n441:                 ProcessSYSCYC();\n442:                 ProcessTasks();\n443: "
+  },
+  {
+    "id": "HOST0079-EV005",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "RTKICK delay is seconds-based",
+    "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+    "line_range": [
+      753,
+      779
+    ],
+    "finding": "RTKICK routines are one-shot delayed callbacks after Delay seconds, executed with channel ushort.MaxValue.",
+    "excerpt": "753:         ///     Invokes routine registered during MAJORBBS->RTKICK()\n754:         ///\n755:         ///     Methods registered using RTKICK are automatically invoked after a specified delay (in seconds). Methods\n756:         ///     only execute once and are then discarded.\n757:         /// </summary>\n758:         [MethodImpl(MethodImplOptions.AggressiveInlining)]\n759:         private void ProcessRTKICK()\n760:         {\n761:             //Check for any rtkick routines\n762:             foreach (var module in _modules.Values.Where(m => (bool)m.ModuleConfig.ModuleEnabled))\n763:             {\n764:                 if (module.RtkickRoutines.Count == 0) continue;\n765: \n766:                 foreach (var (key, value) in module.RtkickRoutines.ToList())\n767:                 {\n768:                     if (!value.Executed && value.Elapsed.ElapsedMilliseconds > value.Delay * 1000)\n769:                     {\n770: #if DEBUG\n771:                         Logger.Info($\"Running RTKICK-{key}: {value}\");\n772: #endif\n773:                         Run(module.ModuleIdentifier, value, ushort.MaxValue);\n774: \n775:                         value.Elapsed.Stop();\n776:                         value.Executed = true;\n777:                         module.RtkickRoutines.Remove(key);\n778:                     }\n779:                 }"
+  },
+  {
+    "id": "HOST0079-EV006",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "RTIHDLR roughly 18 Hz",
+    "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+    "line_range": [
+      790,
+      812
+    ],
+    "finding": "RTIHDLR routines are described/executed around every 55ms, approximately 18Hz, when registered.",
+    "excerpt": "790:         ///     Unlike RTKICK, methods registered with RTIHDLR() only need to be registered once and will run until the BBS\n791:         ///     is shut down.\n792:         /// </summary>\n793:         [MethodImpl(MethodImplOptions.AggressiveInlining)]\n794:         private void ProcessRTIHDLR()\n795:         {\n796:             //Too soon? Bail.\n797:             if (_realTimeStopwatch.ElapsedMilliseconds <= 55) return;\n798: \n799:             foreach (var m in _modules.Values.Where(m => (bool)m.ModuleConfig.ModuleEnabled))\n800:             {\n801:                 if (m.RtihdlrRoutines.Count == 0) continue;\n802: \n803:                 foreach (var r in m.RtihdlrRoutines)\n804:                 {\n805:                     Run(m.ModuleIdentifier, r.Value, ushort.MaxValue);\n806:                 }\n807:             }\n808: \n809:             _realTimeStopwatch.Restart();\n810:         }\n811: \n812:         /// <summary>"
+  },
+  {
+    "id": "HOST0079-EV007",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "SYSCYC after RTIHDLR",
+    "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+    "line_range": [
+      816,
+      827
+    ],
+    "finding": "SYSCYC module pointer is invoked after RTIHDLR in the timed/real-time phase.",
+    "excerpt": "816:         {\n817:             foreach (var m in _modules.Values.Where(m => (bool)m.ModuleConfig.ModuleEnabled))\n818:             {\n819:                 var syscycPointer = m.Memory.GetPointer(m.Memory.GetVariablePointer(\"SYSCYC\"));\n820:                 if (syscycPointer == FarPtr.Empty) continue;\n821: \n822:                 Run(m.ModuleIdentifier, syscycPointer, ushort.MaxValue);\n823:             }\n824:         }\n825: \n826:         /// <summary>\n827:         ///     Invokes routine registered during MAJORBBS->INITASK()"
+  },
+  {
+    "id": "HOST0079-EV008",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "BEGIN_POLLING registration",
+    "file": "MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+    "line_range": [
+      4885,
+      4927
+    ],
+    "finding": "BEGIN_POLLING assigns a per-channel polling routine; STOP_POLLING clears it.",
+    "excerpt": "4885:         ///     stop_polling() is called\n4886:         ///\n4887:         ///     Signature: void begin_polling(int unum,void (*rouptr)())\n4888:         /// </summary>\n4889:         private void begin_polling()\n4890:         {\n4891:             var channelNumber = GetParameter(0);\n4892:             var routinePointer = GetParameterPointer(1);\n4893: \n4894:             //Unset on the specified channel\n4895:             if (routinePointer == FarPtr.Empty)\n4896:             {\n4897:                 ChannelDictionary[channelNumber].PollingRoutine = null;\n4898: #if DEBUG\n4899:                 _logger.Debug($\"Unassigned Polling Routine on Channel {channelNumber}\");\n4900: #endif\n4901:                 return;\n4902:             }\n4903: \n4904:             ChannelDictionary[channelNumber].PollingRoutine = routinePointer;\n4905:             Module.Memory.SetWord(Module.Memory.GetVariablePointer(\"STATUS\"), 192);\n4906: \n4907: #if DEBUG\n4908:             _logger.Debug($\"({Module.ModuleIdentifier}) Assigned Polling Routine {ChannelDictionary[channelNumber].PollingRoutine} to Channel {channelNumber}\");\n4909: #endif\n4910:         }\n4911: \n4912:         /// <summary>\n4913:         ///     Stop polling for the specified user number channel\n4914:         ///\n4915:         ///     Signature: void stop_polling(int unum)\n4916:         /// </summary>\n4917:         private void stop_polling()\n4918:         {\n4919:             var channelNumber = GetParameter(0);\n4920: \n4921:             ChannelDictionary[channelNumber].PollingRoutine = null;\n4922: \n4923: #if DEBUG\n4924:             _logger.Debug($\"({Module.ModuleIdentifier}) Unassigned Polling Routine on Channel {channelNumber}\");\n4925: #endif\n4926:         }\n4927: "
+  },
+  {
+    "id": "HOST0079-EV009",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "Polling routine as often as possible",
+    "file": "MBBSEmu/HostProcess/MbbsHost.cs",
+    "line_range": [
+      740,
+      750
+    ],
+    "finding": "MBBSEmu comments state BEGIN_POLLING is called as often as possible until STOP_POLLING.",
+    "excerpt": "740:         ///     Invokes routine registered during MAJORBBS->BEGIN_POLLING()\n741:         ///\n742:         ///     Method registered using BEGIN_POLLING() is called as often as possible to poll for a specific event\n743:         ///     and will not stop polling until STOP_POLLING() is invoked\n744:         /// </summary>\n745:         /// <param name=\"session\"></param>\n746:         [MethodImpl(MethodImplOptions.AggressiveInlining)]\n747:         private void ProcessPollingRoutine(SessionBase session)\n748:         {\n749:             Run(session.CurrentModule.ModuleIdentifier, session.PollingRoutine, session.Channel,\n750:                 true);"
+  },
+  {
+    "id": "HOST0079-EV010",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "TICKER increments once per second",
+    "file": "MBBSEmu/HostProcess/ExportedModules/Galgsbl.cs",
+    "line_range": [
+      62,
+      102
+    ],
+    "finding": "GALGSBL allocates TICKER as ushort and increments it once per second by a Timer callback.",
+    "excerpt": "62:                 bturno = bturno.Substring(0, 8);\n63: \n64:             Module.Memory.SetArray(\"BTURNO\", Encoding.ASCII.GetBytes($\"{bturno}\\0\"));\n65:             Module.Memory.SetWord(\"BTURS\", (ushort)255);\n66:             Module.Memory.AllocateVariable(\"TICKER\", 0x02); //ushort increments once per second\n67: \n68:             MonitoredChannel2 = 0xFFFF;\n69:             MonitoredChannel = 0xFFFF;\n70: \n71:             TimeSpan timeSpan = TimeSpan.FromSeconds(1);\n72:             _timer = new Timer(OnTimerCallback, this, timeSpan, timeSpan);\n73:         }\n74: \n75:         public void Stop()\n76:         {\n77:             _timer.Dispose();\n78:         }\n79: \n80:         public void UpdateSession(ushort channel)\n81:         {\n82: \n83:         }\n84: \n85:         public void SetRegisters(ICpuRegisters registers)\n86:         {\n87:             Registers = registers;\n88:         }\n89: \n90:         /// <summary>\n91:         ///     Internal timer for operations that need to happen every 1 seconds\n92:         /// </summary>\n93:         private void OnTimerCallback(object unused)\n94:         {\n95:             // Update TICKER. Wrapped in TryGetVariablePointer since debug tests might take too long\n96:             // and trigger a race condition where the timer callback fires even though the test has\n97:             // completed. This crashes the test.\n98:             if (Module.Memory.TryGetVariablePointer(\"TICKER\", out var tickerPointer))\n99:             {\n100:                 var seconds = (ushort)((_clock.Now - _startDate).TotalSeconds % 0xFFFF);\n101:                 Module.Memory.SetWord(tickerPointer, seconds);\n102:             }"
+  },
+  {
+    "id": "HOST0079-EV011",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "Output queued then sent by session sender",
+    "file": "MBBSEmu/Session/SessionBase.cs",
+    "line_range": [
+      274,
+      299
+    ],
+    "finding": "SendToClient queues/line-breaks output and can enqueue OUTPUT_BUFFER_EMPTY when buffer drains.",
+    "excerpt": "274:         /// <param name=\"dataToSend\"></param>\n275:         public void SendToClient(byte[] dataToSend)\n276:         {\n277:             if (!OutputEnabled) return;\n278: \n279:             if (_textVariableService == null)\n280:             {\n281:                 SendBreakingIntoLines(dataToSend.Where(shouldSendToClient).ToArray());\n282:             }\n283:             else\n284:             {\n285:                 var dataToSendSpan = new ReadOnlySpan<byte>(dataToSend);\n286:                 var dataToSendProcessed = _textVariableService?.Parse(dataToSendSpan, SessionVariables).ToArray();\n287: \n288:                 SendBreakingIntoLines(dataToSendProcessed.Where(shouldSendToClient).ToArray());\n289:             }\n290: \n291:             if (OutputEmptyStatus && DataToClient.Count == 0)\n292:             {\n293:                 //Only queue up the event if there's not one already in the buffer\n294:                 if(!Status.Contains(EnumUserStatus.OUTPUT_BUFFER_EMPTY) || GetStatus() == EnumUserStatus.OUTPUT_BUFFER_EMPTY && Status.Count(x=> x == EnumUserStatus.OUTPUT_BUFFER_EMPTY) == 1)\n295:                     Status.Enqueue(EnumUserStatus.OUTPUT_BUFFER_EMPTY);\n296:             }\n297:         }\n298: \n299:         public void SendToClient(string dataToSend) => SendToClient(Encoding.ASCII.GetBytes(dataToSend));"
+  },
+  {
+    "id": "HOST0079-EV012",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "Socket sender drains output asynchronously",
+    "file": "MBBSEmu/Session/SocketSession.cs",
+    "line_range": [
+      80,
+      117
+    ],
+    "finding": "SendWorker takes DataToClient entries, runs PreSend, heartbeat on idle, and sends queued bytes to socket.",
+    "excerpt": "80:         private void SendWorker()\n81:         {\n82:             while (SessionState != EnumSessionState.LoggedOff && _socket.Connected)\n83:             {\n84:                 bool tookData;\n85:                 byte[] dataToSend;\n86:                 try\n87:                 {\n88:                     tookData = DataToClient.TryTake(out dataToSend, 500, _cancellationTokenSource.Token);\n89:                 } catch (Exception) // either ObjectDisposedException | OperationCanceledException\n90:                 {\n91:                     return;\n92:                 }\n93: \n94:                 if (SessionState == EnumSessionState.LoggingOffProcessing)\n95:                 {\n96:                     CloseSocket(\"User-initiated log off\");\n97:                     return;\n98:                 }\n99: \n100:                 //If EchoEmpty is on, we actually sent data, AND there's no longer data to send, trigger\n101:                 if (EchoEmptyInvokeEnabled && tookData && DataToClient.Count == 0)\n102:                     EchoEmptyInvoke = true;\n103: \n104:                 PreSend();\n105: \n106:                 if (!tookData)\n107:                 {\n108:                     if (!Heartbeat()) {\n109:                         break;\n110:                     }\n111:                     continue;\n112:                 }\n113: \n114:                 Send(dataToSend);\n115:             }\n116: \n117:             //Cleanup if the connection was dropped"
+  },
+  {
+    "id": "HOST0079-EV013",
+    "source": "MBBSEmu GitHub upload",
+    "source_state": "external_evidence_only",
+    "title": "Telnet IAC heartbeat is not gameplay tick",
+    "file": "MBBSEmu/Session/Telnet/TelnetSession.cs",
+    "line_range": [
+      111,
+      118
+    ],
+    "finding": "Telnet PreSend triggers IAC negotiation every 500ms during early phase, indicating keepalive/negotiation behavior separate from game timing.",
+    "excerpt": "111:         protected override void PreSend()\n112:         {\n113:             if (SessionTimer.ElapsedMilliseconds >= 500 && _iacPhase == 0)\n114:             {\n115:                 TriggerIACNegotiation();\n116:             }\n117:         }\n118: "
+  }
+]

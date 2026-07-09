@@ -1,0 +1,47 @@
+[
+  {
+    "id": "dialogue.gap.conversation_ordering",
+    "priority": "high",
+    "description": "Exact ordering of multi-line and branching conversations remains unresolved without runtime traces."
+  },
+  {
+    "id": "dialogue.gap.quest_state_text_selection",
+    "priority": "high",
+    "description": "Quest dialogue selection by flag/stage/condition requires deeper script correlation."
+  },
+  {
+    "id": "dialogue.gap.variable_substitution_tokens",
+    "priority": "high",
+    "description": "Complete placeholder/token syntax and substitution rules remain unverified."
+  },
+  {
+    "id": "dialogue.gap.text_formatting_ansi_wrapping",
+    "priority": "medium",
+    "description": "ANSI/color/wrapping/control-code behavior requires runtime output evidence."
+  },
+  {
+    "id": "dialogue.gap.trigger_message_timing",
+    "priority": "high",
+    "description": "Exact timing/order of triggered messages relative to state changes and output flush remains unresolved."
+  },
+  {
+    "id": "dialogue.gap.merchant_trainer_dialogue_rules",
+    "priority": "medium",
+    "description": "Service-specific prompt/denial/success/failure text selection requires scenario testing."
+  },
+  {
+    "id": "dialogue.gap.room_text_command_matrix",
+    "priority": "medium",
+    "description": "Mapping of look/read/examine/search commands to text assets remains incomplete."
+  },
+  {
+    "id": "dialogue.gap.combat_magic_message_recipients",
+    "priority": "medium",
+    "description": "Recipient visibility for combat/spell/status messages remains unverified."
+  },
+  {
+    "id": "dialogue.gap.encoding_legacy_characters",
+    "priority": "low",
+    "description": "Legacy encoding, high-ASCII, and formatting characters need preservation tests."
+  }
+]

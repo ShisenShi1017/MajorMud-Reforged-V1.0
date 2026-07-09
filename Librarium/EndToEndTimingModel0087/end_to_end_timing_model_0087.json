@@ -1,0 +1,26 @@
+{
+  "code_update": "0087",
+  "title": "End-to-End Host Timing Model",
+  "status": "CORROBORATED_MODEL_NOT_VERIFIED_CLASSIC",
+  "model": [
+    {"step": 1, "layer": "Hardware/host timing base", "evidence": "MBBSEmu RTIHDLR implementation comments describe 18 Hz / ~55 ms real-time interval behavior and original DOS interrupt-level handling.", "state": "Observed in MBBSEmu"},
+    {"step": 2, "layer": "MajorBBS/Worldgroup host loop", "evidence": "MBBSEmu MbbsHost main loop dispatches sessions, then ProcessRTKICK, ProcessRTIHDLR, ProcessSYSCYC, and ProcessTasks.", "state": "Observed in MBBSEmu"},
+    {"step": 3, "layer": "Session/module routines", "evidence": "STTROU, STSROU, BEGIN_POLLING handling in MBBSEmu; _ljngame_sttrou/_ljngame_stsrou and _begin_polling strings in WCC/WBB MajorMUD DLLs.", "state": "Corroborated symbol/API model"},
+    {"step": 4, "layer": "Delayed scheduled work", "evidence": "RTKICK registers routines after N seconds in MBBSEmu; _rtkick/_my_rtkick in WCC/WBB DLLs.", "state": "Corroborated symbol/API model"},
+    {"step": 5, "layer": "System cycle/background work", "evidence": "ProcessSYSCYC in MBBSEmu host loop; _syscyc/_majormud_syscyc and background cadence bucket symbols in WCC/WBB DLLs.", "state": "Corroborated symbol/API model"},
+    {"step": 6, "layer": "MajorMUD gameplay systems", "evidence": "WCC/WBB strings show autocombat, regen, background, delay, spawn-room delay, inactivity-round, and output strings.", "state": "Observed symbol presence; exact cadence unresolved"},
+    {"step": 7, "layer": "Player-visible output", "evidence": "Host/session architecture implies modem/telnet latency affects observed output timing, not master gameplay cadence.", "state": "Derived from host architecture"}
+  ],
+  "closed_assumptions": [
+    "MajorMUD should not be modeled as owning an independent modern game loop.",
+    "The host/module API is the correct layer for tick investigation.",
+    "WCC and WBB MajorMUD DLL imports share the same timing-relevant symbol set in this pass."
+  ],
+  "open_gaps": [
+    "Exact cadence values for MajorMUD background_fast/background_medium/background_slow",
+    "Exact mapping of autocombat routines to host scheduler and delay values",
+    "Original-file provenance for 1500 ms MegaMUD CommandDelay/CombatPulse values",
+    "Whether 3-second global-message interval also governs regen/spell ticks",
+    "Output flush granularity in original Worldgroup host"
+  ]
+}

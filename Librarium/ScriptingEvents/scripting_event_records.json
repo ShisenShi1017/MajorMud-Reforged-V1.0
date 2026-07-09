@@ -1,0 +1,82 @@
+[
+  {
+    "id": "scripting_events.script",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 534,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.event",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 210,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.trigger",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 386,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.timer",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 479,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.quest_event",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 1370,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.dialogue_event",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 21359,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.npc_event",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 13363,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.room_event",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 14849,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.item_event",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 10094,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  },
+  {
+    "id": "scripting_events.spell_event",
+    "type": "scripting_event_domain",
+    "evidence_state": "Observed",
+    "confidence": "medium",
+    "source_hit_count": 9512,
+    "promotion_requirement": "Direct call-chain evidence plus deterministic runtime trace required for gameplay semantics."
+  }
+]

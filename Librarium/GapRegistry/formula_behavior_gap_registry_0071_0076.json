@@ -1,0 +1,646 @@
+[
+  {
+    "gap_id": "KG0071-HIT_RESOLUTION_ORDER",
+    "source_behavior_id": "FB0071-HIT_RESOLUTION_ORDER",
+    "title": "Resolve Combat Behavior Verification: hit resolution order",
+    "priority": "critical",
+    "subsystem": "combat",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "combat",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0071-DAMAGE_RANGE_AND_ROUNDING",
+    "source_behavior_id": "FB0071-DAMAGE_RANGE_AND_ROUNDING",
+    "title": "Resolve Combat Behavior Verification: damage range and rounding",
+    "priority": "critical",
+    "subsystem": "combat",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "combat",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0071-ARMOR_OR_RESIST_MITIGATION",
+    "source_behavior_id": "FB0071-ARMOR_OR_RESIST_MITIGATION",
+    "title": "Resolve Combat Behavior Verification: armor or resist mitigation",
+    "priority": "critical",
+    "subsystem": "combat",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "combat",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0071-BACKSTAB_OR_SPECIAL_ATTACK_MODIFIERS",
+    "source_behavior_id": "FB0071-BACKSTAB_OR_SPECIAL_ATTACK_MODIFIERS",
+    "title": "Resolve Combat Behavior Verification: backstab or special attack modifiers",
+    "priority": "critical",
+    "subsystem": "combat",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "combat",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0071-WEAPON_SPEED_TICK_INTERACTION",
+    "source_behavior_id": "FB0071-WEAPON_SPEED_TICK_INTERACTION",
+    "title": "Resolve Combat Behavior Verification: weapon speed tick interaction",
+    "priority": "critical",
+    "subsystem": "combat",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "combat",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0072-EXPERIENCE_AWARD_SOURCE",
+    "source_behavior_id": "FB0072-EXPERIENCE_AWARD_SOURCE",
+    "title": "Resolve Experience and Leveling Behavior Verification: experience award source",
+    "priority": "high",
+    "subsystem": "xp_level",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "xp_level",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0072-PARTY_XP_DISTRIBUTION",
+    "source_behavior_id": "FB0072-PARTY_XP_DISTRIBUTION",
+    "title": "Resolve Experience and Leveling Behavior Verification: party xp distribution",
+    "priority": "high",
+    "subsystem": "xp_level",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "xp_level",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0072-LEVEL_THRESHOLD_CHECK",
+    "source_behavior_id": "FB0072-LEVEL_THRESHOLD_CHECK",
+    "title": "Resolve Experience and Leveling Behavior Verification: level threshold check",
+    "priority": "high",
+    "subsystem": "xp_level",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "xp_level",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0072-DEATH_OR_PENALTY_APPLICATION",
+    "source_behavior_id": "FB0072-DEATH_OR_PENALTY_APPLICATION",
+    "title": "Resolve Experience and Leveling Behavior Verification: death or penalty application",
+    "priority": "high",
+    "subsystem": "xp_level",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "xp_level",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0073-PERIODIC_TICK_CADENCE",
+    "source_behavior_id": "FB0073-PERIODIC_TICK_CADENCE",
+    "title": "Resolve Regeneration and Time Behavior Verification: periodic tick cadence",
+    "priority": "high",
+    "subsystem": "regen_time",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "regen_time",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0073-HP_MANA_MOVE_REGENERATION",
+    "source_behavior_id": "FB0073-HP_MANA_MOVE_REGENERATION",
+    "title": "Resolve Regeneration and Time Behavior Verification: hp mana move regeneration",
+    "priority": "high",
+    "subsystem": "regen_time",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "regen_time",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0073-DURATION_EXPIRATION",
+    "source_behavior_id": "FB0073-DURATION_EXPIRATION",
+    "title": "Resolve Regeneration and Time Behavior Verification: duration expiration",
+    "priority": "high",
+    "subsystem": "regen_time",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "regen_time",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0073-ONGOING_EFFECT_TICK_ORDER",
+    "source_behavior_id": "FB0073-ONGOING_EFFECT_TICK_ORDER",
+    "title": "Resolve Regeneration and Time Behavior Verification: ongoing effect tick order",
+    "priority": "high",
+    "subsystem": "regen_time",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "regen_time",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0074-SPAWN_PROBABILITY_MODEL",
+    "source_behavior_id": "FB0074-SPAWN_PROBABILITY_MODEL",
+    "title": "Resolve Loot and Spawn Behavior Verification: spawn probability model",
+    "priority": "high",
+    "subsystem": "loot_spawn",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "loot_spawn",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0074-RESPAWN_ATTEMPT_WINDOW",
+    "source_behavior_id": "FB0074-RESPAWN_ATTEMPT_WINDOW",
+    "title": "Resolve Loot and Spawn Behavior Verification: respawn attempt window",
+    "priority": "high",
+    "subsystem": "loot_spawn",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "loot_spawn",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0074-LOOT_TABLE_SELECTION",
+    "source_behavior_id": "FB0074-LOOT_TABLE_SELECTION",
+    "title": "Resolve Loot and Spawn Behavior Verification: loot table selection",
+    "priority": "high",
+    "subsystem": "loot_spawn",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "loot_spawn",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0074-RARE_DROP_PROBABILITY",
+    "source_behavior_id": "FB0074-RARE_DROP_PROBABILITY",
+    "title": "Resolve Loot and Spawn Behavior Verification: rare drop probability",
+    "priority": "high",
+    "subsystem": "loot_spawn",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "loot_spawn",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0074-GOLD_OR_ITEM_REWARD_GENERATION",
+    "source_behavior_id": "FB0074-GOLD_OR_ITEM_REWARD_GENERATION",
+    "title": "Resolve Loot and Spawn Behavior Verification: gold or item reward generation",
+    "priority": "high",
+    "subsystem": "loot_spawn",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "loot_spawn",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0075-TARGET_SELECTION_PRIORITY",
+    "source_behavior_id": "FB0075-TARGET_SELECTION_PRIORITY",
+    "title": "Resolve NPC AI Behavior Verification: target selection priority",
+    "priority": "high",
+    "subsystem": "npc_ai",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "npc_ai",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0075-OFFENSIVE_ACTION_SELECTION",
+    "source_behavior_id": "FB0075-OFFENSIVE_ACTION_SELECTION",
+    "title": "Resolve NPC AI Behavior Verification: offensive action selection",
+    "priority": "high",
+    "subsystem": "npc_ai",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "npc_ai",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0075-FLEE_OR_RETREAT_THRESHOLD",
+    "source_behavior_id": "FB0075-FLEE_OR_RETREAT_THRESHOLD",
+    "title": "Resolve NPC AI Behavior Verification: flee or retreat threshold",
+    "priority": "high",
+    "subsystem": "npc_ai",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "npc_ai",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0075-PATHING_AND_PURSUIT",
+    "source_behavior_id": "FB0075-PATHING_AND_PURSUIT",
+    "title": "Resolve NPC AI Behavior Verification: pathing and pursuit",
+    "priority": "high",
+    "subsystem": "npc_ai",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "npc_ai",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0075-SPECIAL_ABILITY_WEIGHTING",
+    "source_behavior_id": "FB0075-SPECIAL_ABILITY_WEIGHTING",
+    "title": "Resolve NPC AI Behavior Verification: special ability weighting",
+    "priority": "high",
+    "subsystem": "npc_ai",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "npc_ai",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0076-QUEST_STAGE_ORDERING",
+    "source_behavior_id": "FB0076-QUEST_STAGE_ORDERING",
+    "title": "Resolve Quest Runtime Behavior Verification: quest stage ordering",
+    "priority": "high",
+    "subsystem": "quest_runtime",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "quest_runtime",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0076-DIALOGUE_CONDITION_RESOLUTION",
+    "source_behavior_id": "FB0076-DIALOGUE_CONDITION_RESOLUTION",
+    "title": "Resolve Quest Runtime Behavior Verification: dialogue condition resolution",
+    "priority": "high",
+    "subsystem": "quest_runtime",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "quest_runtime",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0076-QUEST_FLAG_OR_ABILITY_GRANTS",
+    "source_behavior_id": "FB0076-QUEST_FLAG_OR_ABILITY_GRANTS",
+    "title": "Resolve Quest Runtime Behavior Verification: quest flag or ability grants",
+    "priority": "high",
+    "subsystem": "quest_runtime",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "quest_runtime",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0076-BRANCH_FAILURE_COMPLETION_STATES",
+    "source_behavior_id": "FB0076-BRANCH_FAILURE_COMPLETION_STATES",
+    "title": "Resolve Quest Runtime Behavior Verification: branch failure completion states",
+    "priority": "high",
+    "subsystem": "quest_runtime",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "quest_runtime",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  },
+  {
+    "gap_id": "KG0076-SCRIPTED_RUNTIME_EFFECTS",
+    "source_behavior_id": "FB0076-SCRIPTED_RUNTIME_EFFECTS",
+    "title": "Resolve Quest Runtime Behavior Verification: scripted runtime effects",
+    "priority": "high",
+    "subsystem": "quest_runtime",
+    "evidence_state": "Derived",
+    "confidence": "insufficient_for_verified_promotion",
+    "evidence_needed": [
+      "corroborating Classic/reference/runtime/simulator evidence",
+      "exact equation or ordering where applicable",
+      "rounding/RNG/tick/edge cases resolved",
+      "runtime consumer tied to Librarium record"
+    ],
+    "consumers": [
+      "quest_runtime",
+      "generated_runtime",
+      "simulator",
+      "documentation"
+    ],
+    "status": "open",
+    "created_by": "CodeUpdate-0071-0076 Combined Behavior Verification"
+  }
+]

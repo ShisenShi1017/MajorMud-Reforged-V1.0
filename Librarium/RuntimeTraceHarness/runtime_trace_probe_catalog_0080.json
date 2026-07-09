@@ -1,0 +1,58 @@
+{
+  "codeupdate": "0080",
+  "title": "Runtime Trace Probe Harness Catalog",
+  "canonical_rule": "Librarium remains canonical; trace output is observed evidence only until reconciled.",
+  "baseline": "CodeUpdate-0079 HostLifecycleEvidenceLockdown",
+  "probes": [
+    {
+      "id": "TRACE-0080-001",
+      "name": "Scheduler Cadence Probe",
+      "resolves_gaps": ["HOST-TIMING-GAP-0079-001"],
+      "question": "How often does the host worker loop invoke module-visible processing under idle and busy conditions?",
+      "instrumentation_points": ["WorkerThread loop entry", "Timer.Hertz gate", "BEGIN_POLLING entry/exit", "module callback entry/exit"],
+      "expected_events": ["host.loop.enter", "host.timer_gate", "module.poll.enter", "module.poll.exit"],
+      "outputs": ["scheduler_cadence.ndjson", "scheduler_cadence_summary.json"],
+      "promotion_note": "May promote scheduler cadence only after repeated observed traces match expected ordering and cadence. Does not promote gameplay formulas."
+    },
+    {
+      "id": "TRACE-0080-002",
+      "name": "Callback Registration Probe",
+      "resolves_gaps": ["HOST-TIMING-GAP-0079-002", "HOST-TIMING-GAP-0079-004"],
+      "question": "Which callbacks does MajorMUD register and which host services invoke them?",
+      "instrumentation_points": ["REGISTER_MODULE", "BEGIN_POLLING", "RTKICK", "RTIHDLR", "SYSCYC", "INITASK", "STSROU", "STTROU"],
+      "expected_events": ["callback.register", "callback.invoke", "callback.return"],
+      "outputs": ["callback_registration.ndjson", "callback_registration_summary.json"],
+      "promotion_note": "Can promote callback usage from Hypothesis to Observed when actual module registration traces exist."
+    },
+    {
+      "id": "TRACE-0080-003",
+      "name": "Timed Callback Ordering Probe",
+      "resolves_gaps": ["HOST-TIMING-GAP-0079-001", "HOST-TIMING-GAP-0079-004"],
+      "question": "What is the observed order among RTKICK, RTIHDLR, SYSCYC, polling callbacks, and session status handlers?",
+      "instrumentation_points": ["RTKICK queue", "RTKICK invoke", "RTIHDLR invoke", "SYSCYC invoke", "STSROU invoke", "STTROU invoke"],
+      "expected_events": ["timer.queue", "timer.invoke", "system_cycle.invoke", "status.invoke"],
+      "outputs": ["timed_callback_order.ndjson", "timed_callback_order_summary.json"],
+      "promotion_note": "Can promote ordering behavior only when enough observed runs show stable order under load and idle."
+    },
+    {
+      "id": "TRACE-0080-004",
+      "name": "Output Flush Ordering Probe",
+      "resolves_gaps": ["HOST-TIMING-GAP-0079-003"],
+      "question": "When is player-visible output enqueued, drained, and flushed relative to gameplay state updates?",
+      "instrumentation_points": ["SendToClient enqueue", "DataToClient drain", "OUTPUT_BUFFER_EMPTY enqueue/process", "socket send", "module callback return"],
+      "expected_events": ["output.enqueue", "output.drain", "output.flush", "module.callback.return"],
+      "outputs": ["output_flush_order.ndjson", "output_flush_order_summary.json"],
+      "promotion_note": "Can promote output ordering to Observed/Verified timing behavior only after trace + classic session corroboration."
+    },
+    {
+      "id": "TRACE-0080-005",
+      "name": "World Iteration Probe",
+      "resolves_gaps": ["HOST-TIMING-GAP-0079-002"],
+      "question": "Does the world process sessions, rooms, NPCs, timers, combat, regen, and quest updates in a stable order?",
+      "instrumentation_points": ["session iteration", "room iteration", "NPC update", "combat resolution", "regen application", "quest update", "spawn update"],
+      "expected_events": ["world.iteration.start", "session.process", "npc.process", "combat.process", "regen.process", "quest.process", "world.iteration.end"],
+      "outputs": ["world_iteration.ndjson", "world_iteration_summary.json"],
+      "promotion_note": "Observed world order is required before formula timing can be promoted."
+    }
+  ]
+}
