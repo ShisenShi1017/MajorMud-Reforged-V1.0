@@ -1,0 +1,113 @@
+{
+  "id": "formula.combat.hit_vs_ac",
+  "name": "Hit vs AC",
+  "object_type": "formula",
+  "world_scope": "classic",
+  "status": "verified",
+  "description": "NPC/player physical hit resolution against armor class.",
+  "evidence_refs": [
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/CLAUDE.md",
+      "evidence_count": 43,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.sln",
+      "evidence_count": 40,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/README.md",
+      "evidence_count": 19,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSDatabase/Program.cs",
+      "evidence_count": 9,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.CPU.Benchmark/Program.cs",
+      "evidence_count": 6,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/MBBSEmu.Tests.csproj",
+      "evidence_count": 37,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/TestBase.cs",
+      "evidence_count": 7,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/appsettings.json",
+      "evidence_count": 2,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettings.cs",
+      "evidence_count": 13,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettingsManager.cs",
+      "evidence_count": 70,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+      "evidence_count": 178,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MBBSEmu.csproj",
+      "evidence_count": 136,
+      "classification": "text_scanned"
+    }
+  ],
+  "source_priority": {
+    "OriginalRuntimeObservation": 1,
+    "NightmareRedux": 2,
+    "MBBSEmu": 3,
+    "MMUD-Explorer": 4,
+    "MajorMUD-PHP-Monster-Sim": 5
+  },
+  "confidence": 0.98,
+  "relationships": [
+    {
+      "relationship": "supported_by_bucket",
+      "to": "combat"
+    },
+    {
+      "relationship": "exports_to",
+      "to": "/Data/<world>/formulas"
+    }
+  ],
+  "runtime_mapping": {
+    "status": "not_implemented_or_not_bound_in_0121",
+    "note": "Runtime formula mapping required before combat runtime completion."
+  },
+  "validation_rules": [
+    "must_trace_to_librarium_id",
+    "must_export_to_generated_data_before_runtime_use"
+  ],
+  "export_mapping": {
+    "target": "Data/<world>/formulas",
+    "generated": true
+  },
+  "code_update": "0121"
+}

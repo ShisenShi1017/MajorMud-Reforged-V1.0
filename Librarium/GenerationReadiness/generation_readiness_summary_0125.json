@@ -1,0 +1,17 @@
+{
+  "code_update": "0125",
+  "created_utc": "2026-07-09T20:27:19Z",
+  "purpose": "Librarium generation readiness baseline: every current object family receives an export contract, dependency declaration, runtime consumer target, validation contract, and world inheritance/override rule.",
+  "librarium_authority": "Librarium remains source of truth. /Data remains generated runtime output only.",
+  "runtime_modified": false,
+  "data_generated": false,
+  "imported_databases_retained": true,
+  "object_families": 32,
+  "generation_ready_families": 32,
+  "compiler_status": "contracts_ready; compiler implementation next",
+  "open_conflicts": [
+    "physical_damage_reduction",
+    "dodge_order",
+    "special_attack_backstab_defense_order"
+  ]
+}

@@ -1,0 +1,569 @@
+{
+  "id": "NPC.TARGETING",
+  "bucket": "NPC AI",
+  "name": "NPC targeting and aggro",
+  "description": "Target selection, hostility, aggro retention, and group behavior.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2005,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 19,
+  "keywords_used": [
+    "target",
+    "aggro",
+    "hate",
+    "hostile",
+    "attack"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3380,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"Increase\" & vbTab & \"Level Cap\" & vbTab & \"Difficulty\" & vbTab & \"Length\" & vbTab & \"Type of Resist\" & vbTab & \"Spell Type\" & vbTab & \"Target\" & vbTab & \"Resist Ability\" & vbTab & \"Type of Attack\" & vbTab & \"Cast Msg A\" & vbTab & \"Cast Msg B\" & vbTab)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 2128,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "Dim DF_Flags As eDefenseFlags, eMobDefenseFlags As eDefenseFlags, eAttackFlags As eAttackRestrictions, bValidTarget As Boolean"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 3211,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "If eAttackFlags <= AR001_None Then bValidTarget = True"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 4841,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Dim DF_Flags As eDefenseFlags, bValidTarget As Boolean, nReturnSwings As Double, nAttackTypeMUD As eAttackTypeMUD"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 5081,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "If eAttackFlags <= AR001_None Then bValidTarget = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/Nightmare Redux.vbp",
+      "line": 62,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "Form=frmSwingCalc.frm"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/Nightmare Redux.vbw",
+      "line": 50,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "frmSwingCalc = 338, 338, 2136, 1083, C, 208, 208, 1372, 1054, C"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 16,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "character_progression",
+      "text": "-UP: update attack sim to allow for true dodge value (as computed in MME v1.9.2) or megamud's value"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 53,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: Added attack names field (will show attack names on monster details and in simulator)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 54,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: Added average monster damage and true attack percentages (unique, calculated fields for MME)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 215,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "-UP: updated the swing calculator"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 271,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "-NEW: swing calculator tool"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 4,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "Persistable = 0  'NotPersistable"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 11,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "Attribute VB_Creatable = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 15,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "Attribute VB_Ext_KEY = \"Top_Level\" ,\"Yes\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 30,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nAtkResist(0 To 4) As Integer"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 7,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "MBBSEmu is a cross-platform emulator for running legacy MajorBBS and Worldgroup modules (16-bit NE format DLLs) on modern systems. It emulates both the Galacticomm host environment and an x86-16 processor. Written in C# targeting .NET 10."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 76,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "- **Logging** (`Logging/`): `LogFactory` manages `MessageLogger`, `AuditLogger`, `CPULogger` with pluggable targets."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 125,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "of background processing (such as monster attacks)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Integration/BtrievePrint_Tests.cs",
+      "line": 580,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "session.SendToModule(Encoding.ASCII.GetBytes(\"SWhatever\\r\\n\"));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/Enums/EnumBtrieveOperationCodes.cs",
+      "line": 6,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "[System.AttributeUsage(System.AttributeTargets.Field)]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/Enums/EnumBtrieveOperationCodes.cs",
+      "line": 12,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "[System.AttributeUsage(System.AttributeTargets.Field)]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/Enums/EnumBtrieveOperationCodes.cs",
+      "line": 18,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "[System.AttributeUsage(System.AttributeTargets.Field)]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/Enums/EnumBtrieveOperationCodes.cs",
+      "line": 24,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "[System.AttributeUsage(System.AttributeTargets.Field)]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 204,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "- `OpKind.NearBranch16` \u2014 direct branch target offset"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 281,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "2. Read the target far pointer from memory at `[MemorySegment:offset]`"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 3302,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "//Far call with target offset at memory location"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Attributes/SqlQueryAttribute.cs",
+      "line": 10,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "[AttributeUsage(AttributeTargets.Field)]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 86,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "(graphical room explorer), `frmResults`, calculators (`frmSwingCalc`, `frmHitCalc`, `frmBSCalc`,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/MMUD_Explorer.vbp",
+      "line": 31,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "Form=frmSwingCalc.frm"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/MMUD_Explorer.vbw",
+      "line": 24,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "frmSwingCalc = 156, 156, 1892, 1028, Z, 260, 260, 2004, 1106, C"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 13,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Max 6 swings w/updated QnD calc when used with Paramud DB 1.9+ (old formulas used with v1.8.5 DB)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 34,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-FIX: Paste MegaMud stats on Swing Calc's true damage calculator now accepts MegaMMUD v1 and v2's formats"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 119,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Added sample weapon speed/dmg/swings to character builder"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 136,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Attack/Combat setup screen will now only show spells you have learned or could cast"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 162,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-FIX: Rounding swings on EQ tab (will now be truncated)"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 41,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$i=0; $attacks = array(); //1=name, 2=hit msg, 3=miss/fail msg, 4=resist"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'BITE'; $attacks[$i][2] = 'The SOURCE bites you for DMG damage!'; $attacks[$i][3] = 'The SOURCE lunges at you';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 43,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'CLAW'; $attacks[$i][2] = 'SOURCE claws you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with its huge claws!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 46,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'SLASH'; $attacks[$i][2] = 'SOURCE slashes you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with their SOURCE!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 57,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast '.$long_name.' at you, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 58,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of '.$long_name;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'HEAL'; $attacks[$i][2] = 'The room casts room heal on you, healing DMG damage!'; $attacks[$i][3] = 'AAAAAAA';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 64,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast hellstorm, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 65,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of hellstorm';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 124,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($attack[4], '/')).\".*/\", 'PARSED_'.$attack[1].$num.',0,resist', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 127,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$miss = str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($attack[3], '/'));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 129,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$miss.$deflect.\".*/\", 'PARSED_'.$attack[1].$num.',0,deflect', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 130,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$miss.\".*/\", 'PARSED_'.$attack[1].$num.',0,miss/fail', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 137,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$hit.\".*/\", 'PARSED_'.$attack[1].$num.',$1', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 13,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "function AddAttack($name, $type, $energy, $min, $max, $attack_chance, $success_chance, $resistable=0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 18,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['energy'] = $energy;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 25,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i]['resistable'] = $resistable;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 26,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i]['damage_resisted'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 27,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$attacks[$i]['attempt_dodged_resisted'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 28,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['no_energy'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 29,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['remaining_energy_yes'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 30,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['remaining_energy_no'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 34,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['attempt_stats'][$x]['energy'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 60,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "if (!empty($name) && $energy > 0 && $max > 0 && $attack_chance > 0 && $success_chance > 0) {"
+    }
+  ]
+}

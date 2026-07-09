@@ -1,0 +1,12 @@
+{
+  "schema_version": "0116.1",
+  "world_id": "classic",
+  "display_name": "Classic MajorMUD",
+  "mode": "classic",
+  "definition_policy": "locked_evidence_verified_branch",
+  "host_editable": false,
+  "client_access": "read_only",
+  "data_export_path": "Data/Classic",
+  "mechanics_source": "Librarium/RuntimeDefinitions/mechanics/core_mechanics.json",
+  "notes": "Classic world definitions are read-only except through evidence-backed Librarium updates."
+}

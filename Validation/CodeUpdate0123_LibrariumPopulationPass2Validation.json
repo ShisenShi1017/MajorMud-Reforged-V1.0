@@ -1,0 +1,34 @@
+{
+  "code_update": "0123",
+  "result": "PASS_WITH_OPEN_CONFLICTS",
+  "runtime_modified": false,
+  "data_generated": false,
+  "open_conflicts": [
+    "Physical Damage Reduction",
+    "Dodge Order",
+    "Special Attack / Backstab Defense Order"
+  ],
+  "population_counts": {
+    "commands": 25,
+    "status_effects": 111,
+    "economy_rules": 22,
+    "banks": 27,
+    "classes": 58,
+    "races": 2,
+    "guilds": 44,
+    "skills": 13,
+    "events": 1501,
+    "triggers": 719,
+    "quests": 2100,
+    "ai_profiles": 27,
+    "worlds": 3,
+    "world_overlays": 2,
+    "formulas": 32,
+    "relationships_added": 4838
+  },
+  "notes": [
+    "Pass 2 expands object families not fully populated in Pass 1.",
+    "Records are evidence-linked where source artifacts provide support.",
+    "Some classes/guilds/skills remain candidate/probable because source evidence is derived from access/trainer/service records, not full original runtime proof."
+  ]
+}

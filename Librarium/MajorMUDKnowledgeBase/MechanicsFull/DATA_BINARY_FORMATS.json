@@ -1,0 +1,570 @@
+{
+  "id": "DATA.BINARY_FORMATS",
+  "bucket": "Data Schema",
+  "name": "Binary data formats",
+  "description": "MajorMUD binary table/database structures and parsers.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 22587,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 16,
+  "keywords_used": [
+    "binary",
+    "record",
+    "parse",
+    "file",
+    "database",
+    "mdb"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 69,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-NEW: complete overhaul of database exporter.  support for multiple ranges of records, ability to save config files, **import record numbers from existing database**"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt",
+      "line": 52,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "--This function will close all open databases and compile a database update file for your realm. This is nessisary to save all of the changes you have made to your realm. When a realm first starts up it does what is called a 'database update'. What this does is compare all of your wcc*.dat files to the ones in the wccupda2.dat file, updating any records that do not match."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 1509,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Private Sub SetRangeFromDB(ByRef tabTable As Recordset, nIndex As Integer, sIndex As String)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 5321,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "chkExportAll(x).Value = ReadINI(\"Records_\" & x, \"List_All\", sFile, \"1\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 5324,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "sLine = ReadINI(\"Records_\" & x, \"List_\" & y, sFile)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 5338,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "sLine = ReadINI(\"Records_\" & x, \"List_\" & y, sFile)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 5418,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Call WriteINI(\"Records_\" & x, \"List_All\", \"1\", sFile)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 5420,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Call WriteINI(\"Records_\" & x, \"List_All\", \"0\", sFile)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 5430,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Call WriteINI(\"Records_\" & x, \"List_\" & y, sTemp, sFile)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 5433,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Call WriteINI(\"Records_\" & x, \"List_\" & y, \"End\", sFile)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/modMain.bas",
+      "line": 1118,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "MsgBox \"Warning: Invalid room database record size returned while verifying dat file version setting.\", vbExclamation"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 479,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "logger.Warn($\"Database {FileName} contains {RecordCount} records but only read {recordsLoaded}!\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 58,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     <para/>Currently only fixed length record databases are supported."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 63,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     Whether the database contains variable length records."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 349,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     Returns the total number of records contained in the database."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Setup/SetupView.cs",
+      "line": 276,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "\"Btrieve DAT files are converted to SQLite at startup and each record is a binary struct. This value speeds up reads of records queried by the Btrieve API by Modules by keeping records in memory and not querying SQLite for each read.\";"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/create_user.py",
+      "line": 16,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "parser.add_argument('--dbfile', help='Database specified by appsettings.json Database.File', default='mbbsemu.db')"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "line": 13,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "MegaMUD**. We parse all `rooms.md` files once into an in-memory database, then while drawing a"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 22,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-FIX: utilizing the \"reset user intractable\" fields on database record room exports will no longer remove hidden sign items."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 35,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "private const string EXPECTED_METADATA_T_SQL = \"CREATE TABLE metadata_t(record_length INTEGER NOT NULL, physical_record_length INTEGER NOT NULL, page_length INTEGER NOT NULL, variable_length_records INTEGER NOT NULL, version INTEGER NOT NULL, acs_name STRING, acs BLOB)\";"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 77,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "btrieve.RecordLength.Should().Be(MBBSEmuRecordStruct.RECORD_LENGTH);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 79,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "btrieve.VariableLengthRecords.Should().BeFalse();"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 170,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "btrieve.RecordLength.Should().Be(MBBSEmuRecordStruct.RECORD_LENGTH);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 172,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "btrieve.VariableLengthRecords.Should().BeFalse();"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 226,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "new MBBSEmuRecordStruct(btrieve.GetRecord()).Key1.Should().Be(3444);"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart-HANDOFF.md",
+      "line": 38,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "`MegaRooms_ParseFile` (added right after `Get_MegaMUD_RoomHash`). File picker reuses"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "line": 28,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "`sArr(7)`=name. See `MapMegaScanRoomsDatabase` (`frmMain.frm:19503`) for the parse pattern."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "line": 60,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "`rooms.md` (case-insensitive) call `MegaRooms_ParseFile`; recurse into every subfolder"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "line": 62,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "- `Private Sub MegaRooms_ParseFile(ByVal sPath As String)` \u2014 mirror"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "line": 129,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "`MegaRooms_ParseFile`."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 24068,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'    Open sFile2 For Binary As #2 ' get bytes from source#2"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 26453,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "MsgBox \"There were more references for this record but because of file size issues it was truncated.\", vbInformation"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "line": 52,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "items_equipment",
+      "text": "'   - GetBestShopNumForItem: returns the chosen shop # for a given item record,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "line": 54,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "items_equipment",
+      "text": "'   - LV_AddRowByItemNumber: adds one row by item record #, optionally forcing"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "line": 66,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "items_equipment",
+      "text": "' \u0095 DAO/Access: global Recordset tabItems (indexed by \"pkItems\" on [Number])."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "line": 74,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "items_equipment",
+      "text": "'                      Optional ByVal bHideRecordNumbers As Boolean) As String"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 22,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "if(isset($_POST[\"submit\"]) || isset($_POST['submit_ignore_unparsed'])) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 35,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$unparsed = array();"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'BITE'; $attacks[$i][2] = 'The SOURCE bites you for DMG damage!'; $attacks[$i][3] = 'The SOURCE lunges at you';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 81,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "//remove non-printable characters"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 118,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($between[1], '/')).\".*/\", 'PARSED_'.$between[0].$num.',0,between', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 137,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$hit.\".*/\", 'PARSED_'.$attack[1].$num.',$1', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 143,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "if ($captured_data_lines[$x] != 'NEWROUND' && substr($captured_data_lines[$x], 0, strlen('PARSED_')) != 'PARSED_') {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 144,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "if (isset($_POST['submit_ignore_unparsed'])) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 147,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "//echo 'Unparsed: '.$captured_data_lines[$x];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 148,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$unparsed[] = $captured_data_lines[$x];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 151,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$captured_data_lines[$x] = preg_replace(\"/PARSED_(.*)/\", '$1', $captured_data_lines[$x]);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 156,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "if (empty($unparsed) && !empty($capture_data)) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 204,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<title>Capture Parse</title>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 207,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<?php if (!empty($unparsed)): ?>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 209,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "Unparsed Lines (<?php echo count($unparsed); ?>):"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 210,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<?php echo implode(\"\\r\\n\", $unparsed); ?>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 215,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<form action=\"capture_parse.php\" method=\"post\" enctype=\"multipart/form-data\" name=\"form1\" id=\"form1\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 222,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<br><input type=\"submit\" name=\"submit_ignore_unparsed\" id=\"submit_ignore_unparsed\" value=\"Upload and remove unparsed lines.\">"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 52,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #346 - captain of the guard: Item #826 - obsidian field plate: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 36,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9046|0|0|flag checks and class rewards"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 91,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "396|0|397|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 94,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "399|0|400|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 99,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "396|0|4027|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 105,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "4038|0|4033|flag check"
+    }
+  ]
+}

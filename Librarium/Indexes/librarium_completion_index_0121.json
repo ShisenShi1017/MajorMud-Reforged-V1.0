@@ -1,0 +1,432 @@
+{
+  "code_update": "0121",
+  "phase2": "complete",
+  "phase3": "complete_for_current_evidence_corpus",
+  "definition": "Phase 2/3 completion means the authoritative Librarium object model, object catalogs, relationship graph, evidence mapping, world branches, and export mappings exist and are internally validated. It does not mean runtime gameplay has been implemented.",
+  "objects": [
+    {
+      "object_type": "world",
+      "directory": "Librarium/Objects/worlds",
+      "records": 2,
+      "evidence_bucket": "world",
+      "evidence_total": 22441,
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "NightmareRedux": 9516,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "region",
+      "directory": "Librarium/Objects/regions",
+      "records": 2,
+      "evidence_bucket": "world",
+      "evidence_total": 22441,
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "NightmareRedux": 9516,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "area",
+      "directory": "Librarium/Objects/areas",
+      "records": 1,
+      "evidence_bucket": "world",
+      "evidence_total": 22441,
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "NightmareRedux": 9516,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "room",
+      "directory": "Librarium/Objects/rooms",
+      "records": 2,
+      "evidence_bucket": "room",
+      "evidence_total": 102260,
+      "source_breakdown": {
+        "MBBSEmu": 5637,
+        "MMUD-Explorer": 39382,
+        "NightmareRedux": 57010,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "exit",
+      "directory": "Librarium/Objects/exits",
+      "records": 2,
+      "evidence_bucket": "room",
+      "evidence_total": 102260,
+      "source_breakdown": {
+        "MBBSEmu": 5637,
+        "MMUD-Explorer": 39382,
+        "NightmareRedux": 57010,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "npc",
+      "directory": "Librarium/Objects/npcs",
+      "records": 2,
+      "evidence_bucket": "npc",
+      "evidence_total": 107604,
+      "source_breakdown": {
+        "MBBSEmu": 9675,
+        "MMUD-Explorer": 38523,
+        "NightmareRedux": 58098,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "spawn",
+      "directory": "Librarium/Objects/spawns",
+      "records": 2,
+      "evidence_bucket": "spawn",
+      "evidence_total": 61648,
+      "source_breakdown": {
+        "MBBSEmu": 3326,
+        "MMUD-Explorer": 30663,
+        "NightmareRedux": 27659
+      }
+    },
+    {
+      "object_type": "item",
+      "directory": "Librarium/Objects/items",
+      "records": 2,
+      "evidence_bucket": "item",
+      "evidence_total": 90646,
+      "source_breakdown": {
+        "MBBSEmu": 3260,
+        "MMUD-Explorer": 31711,
+        "NightmareRedux": 55675
+      }
+    },
+    {
+      "object_type": "equipment",
+      "directory": "Librarium/Objects/equipment",
+      "records": 1,
+      "evidence_bucket": "item",
+      "evidence_total": 90646,
+      "source_breakdown": {
+        "MBBSEmu": 3260,
+        "MMUD-Explorer": 31711,
+        "NightmareRedux": 55675
+      }
+    },
+    {
+      "object_type": "spell",
+      "directory": "Librarium/Objects/spells",
+      "records": 2,
+      "evidence_bucket": "magic",
+      "evidence_total": 105655,
+      "source_breakdown": {
+        "MBBSEmu": 9263,
+        "MMUD-Explorer": 37419,
+        "NightmareRedux": 57665,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "skill",
+      "directory": "Librarium/Objects/skills",
+      "records": 2,
+      "evidence_bucket": "progression",
+      "evidence_total": 113781,
+      "source_breakdown": {
+        "MBBSEmu": 15143,
+        "MMUD-Explorer": 38578,
+        "NightmareRedux": 58752,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "class",
+      "directory": "Librarium/Objects/classes",
+      "records": 2,
+      "evidence_bucket": "progression",
+      "evidence_total": 113781,
+      "source_breakdown": {
+        "MBBSEmu": 15143,
+        "MMUD-Explorer": 38578,
+        "NightmareRedux": 58752,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "race",
+      "directory": "Librarium/Objects/races",
+      "records": 2,
+      "evidence_bucket": "progression",
+      "evidence_total": 113781,
+      "source_breakdown": {
+        "MBBSEmu": 15143,
+        "MMUD-Explorer": 38578,
+        "NightmareRedux": 58752,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "guild",
+      "directory": "Librarium/Objects/guilds",
+      "records": 2,
+      "evidence_bucket": "progression",
+      "evidence_total": 113781,
+      "source_breakdown": {
+        "MBBSEmu": 15143,
+        "MMUD-Explorer": 38578,
+        "NightmareRedux": 58752,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "formula",
+      "directory": "Librarium/Objects/formulas",
+      "records": 17,
+      "evidence_bucket": "combat",
+      "evidence_total": 115727,
+      "source_breakdown": {
+        "MBBSEmu": 15761,
+        "MMUD-Explorer": 39450,
+        "NightmareRedux": 59208,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "status_effect",
+      "directory": "Librarium/Objects/status_effects",
+      "records": 2,
+      "evidence_bucket": "status_effect",
+      "evidence_total": 92942,
+      "source_breakdown": {
+        "MBBSEmu": 6320,
+        "MMUD-Explorer": 31777,
+        "NightmareRedux": 54845
+      }
+    },
+    {
+      "object_type": "quest",
+      "directory": "Librarium/Objects/quests",
+      "records": 2,
+      "evidence_bucket": "quest",
+      "evidence_total": 91149,
+      "source_breakdown": {
+        "MBBSEmu": 5619,
+        "MMUD-Explorer": 33494,
+        "NightmareRedux": 52036
+      }
+    },
+    {
+      "object_type": "shop",
+      "directory": "Librarium/Objects/shops",
+      "records": 2,
+      "evidence_bucket": "economy",
+      "evidence_total": 79856,
+      "source_breakdown": {
+        "MBBSEmu": 1054,
+        "MMUD-Explorer": 30446,
+        "NightmareRedux": 48125,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "bank",
+      "directory": "Librarium/Objects/banks",
+      "records": 1,
+      "evidence_bucket": "economy",
+      "evidence_total": 79856,
+      "source_breakdown": {
+        "MBBSEmu": 1054,
+        "MMUD-Explorer": 30446,
+        "NightmareRedux": 48125,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "command",
+      "directory": "Librarium/Objects/commands",
+      "records": 2,
+      "evidence_bucket": "command",
+      "evidence_total": 103563,
+      "source_breakdown": {
+        "MBBSEmu": 9775,
+        "MMUD-Explorer": 36933,
+        "NightmareRedux": 55547,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "script",
+      "directory": "Librarium/Objects/scripts",
+      "records": 2,
+      "evidence_bucket": "command",
+      "evidence_total": 103563,
+      "source_breakdown": {
+        "MBBSEmu": 9775,
+        "MMUD-Explorer": 36933,
+        "NightmareRedux": 55547,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "event",
+      "directory": "Librarium/Objects/events",
+      "records": 2,
+      "evidence_bucket": "world",
+      "evidence_total": 22441,
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "NightmareRedux": 9516,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "trigger",
+      "directory": "Librarium/Objects/triggers",
+      "records": 2,
+      "evidence_bucket": "quest",
+      "evidence_total": 91149,
+      "source_breakdown": {
+        "MBBSEmu": 5619,
+        "MMUD-Explorer": 33494,
+        "NightmareRedux": 52036
+      }
+    },
+    {
+      "object_type": "economy_rule",
+      "directory": "Librarium/Objects/economy_rules",
+      "records": 2,
+      "evidence_bucket": "economy",
+      "evidence_total": 79856,
+      "source_breakdown": {
+        "MBBSEmu": 1054,
+        "MMUD-Explorer": 30446,
+        "NightmareRedux": 48125,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "loot_rule",
+      "directory": "Librarium/Objects/loot_rules",
+      "records": 2,
+      "evidence_bucket": "loot",
+      "evidence_total": 80172,
+      "source_breakdown": {
+        "MBBSEmu": 641,
+        "MMUD-Explorer": 30755,
+        "NightmareRedux": 48776
+      }
+    },
+    {
+      "object_type": "ai_profile",
+      "directory": "Librarium/Objects/ai_profiles",
+      "records": 2,
+      "evidence_bucket": "npc",
+      "evidence_total": 107604,
+      "source_breakdown": {
+        "MBBSEmu": 9675,
+        "MMUD-Explorer": 38523,
+        "NightmareRedux": 58098,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "asset",
+      "directory": "Librarium/Objects/assets",
+      "records": 2,
+      "evidence_bucket": "world",
+      "evidence_total": 22441,
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "NightmareRedux": 9516,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "client_view",
+      "directory": "Librarium/Objects/client_views",
+      "records": 1,
+      "evidence_bucket": "command",
+      "evidence_total": 103563,
+      "source_breakdown": {
+        "MBBSEmu": 9775,
+        "MMUD-Explorer": 36933,
+        "NightmareRedux": 55547,
+        "MajorMUD-PHP-Monster-Sim": 1308
+      }
+    },
+    {
+      "object_type": "world_overlay",
+      "directory": "Librarium/Objects/world_overlays",
+      "records": 1,
+      "evidence_bucket": "world",
+      "evidence_total": 22441,
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "NightmareRedux": 9516,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "validation_rule",
+      "directory": "Librarium/Objects/validation_rules",
+      "records": 1,
+      "evidence_bucket": "world",
+      "evidence_total": 22441,
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "NightmareRedux": 9516,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "evidence_record",
+      "directory": "Librarium/Objects/evidence_records",
+      "records": 1,
+      "evidence_bucket": "world",
+      "evidence_total": 22441,
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "NightmareRedux": 9516,
+        "MajorMUD-PHP-Monster-Sim": 231
+      }
+    },
+    {
+      "object_type": "conflict",
+      "directory": "Librarium/Objects/conflicts",
+      "records": 1,
+      "evidence_bucket": "combat",
+      "evidence_total": 3,
+      "source_breakdown": {}
+    }
+  ],
+  "open_conflicts": [
+    {
+      "id": "conflict.combat.physical_damage_reduction",
+      "name": "Physical Damage Reduction",
+      "status": "open",
+      "summary": "Nightmare Redux current interpretation leads; older Monster Sim differs. Keep open until runtime observation or stronger corroboration resolves."
+    },
+    {
+      "id": "conflict.combat.dodge_order",
+      "name": "Dodge Order",
+      "status": "open",
+      "summary": "Dodge placement relative to AC/special defenses remains unresolved."
+    },
+    {
+      "id": "conflict.combat.special_backstab_defense_order",
+      "name": "Special Attack/Backstab Defense Order",
+      "status": "open",
+      "summary": "Order of defense checks for special/backstab cases remains unresolved."
+    }
+  ]
+}

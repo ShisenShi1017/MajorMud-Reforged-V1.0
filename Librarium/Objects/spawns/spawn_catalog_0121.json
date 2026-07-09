@@ -1,0 +1,191 @@
+{
+  "id": "spawn.catalog.phase2_3_0121",
+  "name": "Spawn Catalog",
+  "object_type": "spawn",
+  "world_scope": "classic/custom/ai",
+  "status": "complete_for_current_evidence_corpus",
+  "description": "Timed or conditional entity creation.",
+  "evidence_bucket": "spawn",
+  "evidence_total": 61648,
+  "source_breakdown": {
+    "MBBSEmu": 3326,
+    "MMUD-Explorer": 30663,
+    "NightmareRedux": 27659
+  },
+  "evidence_refs": [
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/appsettings.json",
+      "evidence_count": 2,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettingsManager.cs",
+      "evidence_count": 70,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+      "evidence_count": 178,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/docker/appsettings.docker.json",
+      "evidence_count": 3,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "evidence_count": 45,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CPU/CLAUDE.md",
+      "evidence_count": 139,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/ExeRuntime.cs",
+      "evidence_count": 42,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/MbbsHost.cs",
+      "evidence_count": 576,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MBBSModule.cs",
+      "evidence_count": 89,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/RealTimeRoutine.cs",
+      "evidence_count": 6,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Server/IStoppable.cs",
+      "evidence_count": 4,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Session/SessionBase.cs",
+      "evidence_count": 152,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Session/LocalConsole/LocalConsoleSession.cs",
+      "evidence_count": 31,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Session/Telnet/TelnetSession.cs",
+      "evidence_count": 133,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "evidence_count": 144,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/Galgsbl.cs",
+      "evidence_count": 208,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "evidence_count": 919,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/Ordinals.cs",
+      "evidence_count": 100,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/HostRoutines/MenuRoutines.cs",
+      "evidence_count": 453,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "evidence_count": 27,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/CPU/CpuTestBase.cs",
+      "evidence_count": 5,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/README.md",
+      "evidence_count": 1101,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmBSCalc.frm",
+      "evidence_count": 344,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmCoinConvert.frm",
+      "evidence_count": 56,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmExpCalc.frm",
+      "evidence_count": 243,
+      "classification": "text_scanned"
+    }
+  ],
+  "source_priority": {
+    "OriginalRuntimeObservation": 1,
+    "NightmareRedux": 2,
+    "MBBSEmu": 3,
+    "MMUD-Explorer": 4,
+    "MajorMUD-PHP-Monster-Sim": 5
+  },
+  "confidence": "bucket-level; see child records for mechanic confidence",
+  "relationships": [],
+  "runtime_mapping": {
+    "status": "cataloged_for_export",
+    "runtime_reads_generated_data": true
+  },
+  "validation_rules": [
+    "object_must_have_id",
+    "object_must_have_world_scope",
+    "classic_changes_require_evidence",
+    "custom_ai_changes_require_validation"
+  ],
+  "export_mapping": {
+    "target": "Data/<world>/spawns",
+    "generated": true
+  },
+  "code_update": "0121"
+}

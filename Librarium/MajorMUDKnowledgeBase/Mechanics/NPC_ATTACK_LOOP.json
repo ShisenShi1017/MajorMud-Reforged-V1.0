@@ -1,0 +1,219 @@
+{
+  "mechanic_id": "NPC_ATTACK_LOOP",
+  "name": "NPC Attack Energy Loop",
+  "domain": "NPC AI / Combat",
+  "description": "NPC action-energy loop controlling physical attacks and repeated spell attempts.",
+  "status": "verified_high_confidence",
+  "confidence": "high",
+  "evidence_hit_count": 557,
+  "source_counts": {
+    "MMUDExplorer": 307,
+    "MonsterSim": 44,
+    "NightmareRedux": 206
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "primary_buckets": {
+    "combat": 254,
+    "tooling_ui": 191,
+    "character_progression": 58,
+    "npc_ai": 30,
+    "items_equipment": 12,
+    "data_schema": 6,
+    "world_spawns": 6
+  },
+  "unique_evidence_files": 36,
+  "top_evidence_files": [
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmSwingCalc.frm",
+      "hits": 68
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "hits": 58
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "hits": 56
+    },
+    {
+      "source": "MonsterSim",
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "hits": 42
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "hits": 40
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "hits": 39
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "hits": 35
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "hits": 35
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPasteChar.frm",
+      "hits": 30
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "hits": 30
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/swing eq.txt",
+      "hits": 29
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmItem.frm",
+      "hits": 12
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "hits": 10
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "hits": 8
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "hits": 8
+    }
+  ],
+  "open_conflicts": [],
+  "runtime_status": "ready_for_test_mapping_before_runtime_sync",
+  "reconstruction_notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/Nightmare Redux.vbp",
+      "line": 62,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "Form=frmSwingCalc.frm"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/Nightmare Redux.vbw",
+      "line": 50,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "frmSwingCalc = 338, 338, 2136, 1083, C, 208, 208, 1372, 1054, C"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 215,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "-UP: updated the swing calculator"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 271,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "-NEW: swing calculator tool"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 287,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Dim nLeastEnergyUsed As Long, nLowestCostAttack As Long, nLowEnergy As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 288,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Dim nMaxEnergyRound As Long, nMaxCostAttack As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 290,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Dim nEnergyForAttack As Long, nEnergyRemaining As Long, nDamagePerEnergy As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 309,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "If m_nAtkType(nAttack) > 0 And m_nAtkEnergy(nAttack) > 0 Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 310,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "nLowEnergy = m_nAtkEnergy(nAttack)"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 315,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "nLowEnergy = Round(m_nAtkEnergy(nAttack) / 2)"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 319,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "If (nLowestCostAttack = 0 Or nLowEnergy < nLowestCostAttack) And nLowEnergy > 0 Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 320,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "nLowestCostAttack = nLowEnergy"
+    }
+  ]
+}

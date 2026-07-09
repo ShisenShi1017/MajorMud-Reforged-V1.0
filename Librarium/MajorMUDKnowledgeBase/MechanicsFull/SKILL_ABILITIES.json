@@ -1,0 +1,433 @@
+{
+  "id": "SKILL.ABILITIES",
+  "bucket": "Skills and Abilities",
+  "name": "Skill/ability mapping",
+  "description": "Skill IDs, ability fields, ranks, and derived effects.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 1848,
+  "representative_evidence_count": 45,
+  "representative_source_path_count": 20,
+  "keywords_used": [
+    "skill",
+    "ability",
+    "rank",
+    "use"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt",
+      "line": 49,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "--This editor gives you a list of all the ability flags in the game by number. Useful for looking up abilities and their description. NOTE: Changes made in the ability editor dont actually effect the game. This editor is only used to resolve ability numbers to names when making edits."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt",
+      "line": 58,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "--This feature has a variety of functions. You can check any database for any field and perform basic mathmatical functions to the entire database or a range of your choice. You may also limit your result. A very useful tool for making changes to specific fields in an entire database. This editor will add the HP ability to every item that has the stealth ability, or add the picklocks ability to ev"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4944,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "ts.Write (Userrec.Ability(x) & \"(\" & Userrec.AbilityModifier(x) & \")\" & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1855,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 1446,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "& \"uses and is not set to destroy after the uses expire, the recharge ability value \" _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 1447,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "& \"will be verified against the max uses.  If an item in this case has no recharge ability, \" _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 1520,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "& \" [\" & ClipNull(Itemrec.Name) & \"] -- Item has \" & Itemrec.Uses & \" uses, but no recharge ability!\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 4860,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "line": 8272,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "sTemp(1) = AutoAppendString(sTemp(1), Userrec.Ability(x) & \"|\" & Userrec.AbilityModifier(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "line": 9094,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "txtAbilityB(x).Text = Userrec.AbilityModifier(x)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "line": 9835,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Userrec.AbilityModifier(x) = Val(txtAbilityB(x).Text)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 5498,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 4302,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "'     Penalties or bonuses such as HP per level (Halfling, Half-Ogre), or Ability"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 2860,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "oLI.ListSubItems.Add (1), \"Detail\", \"This is an invalid spell and will not be cast (area attack spells from regular monster casts must use ability 17, Damage-MR).\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 4789,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "sTemp2 = PullSpellEQ(bUseCharacter, tChar.nLevel, nAbilityVal, , , , , , True, , , tChar.nSpellDmgBonus)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 392,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "'this is kind of confusing because after the flag check there are actually 2 text blocks used. each one uses the 511 block, then the others are class specific."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "6. **Sessions** (`Session/`): `SessionBase` subclasses handle different connection types (Telnet, Rlogin, local console). Sessions are assigned channel numbers and manage user I/O buffers."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/LICENSE",
+      "line": 8,
+      "mechanic_id": "ECONOMY",
+      "bucket": "non_gameplay",
+      "text": "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 130,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "comes back to a more normal level. So, users will"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 1083,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "private static byte[] CreateRecord(string username)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 1085,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "var usernameBytes = Encoding.ASCII.GetBytes(username);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 1090,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "Array.Copy(usernameBytes, 0, record, 2, usernameBytes.Length);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 1091,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "record[2 + usernameBytes.Length] = 0;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 213,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "flags = (ushort) (EnumKeyAttributeMask.Duplicates | EnumKeyAttributeMask.UseExtendedDataType),"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 222,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "flags = (ushort) (EnumKeyAttributeMask.Modifiable | EnumKeyAttributeMask.UseExtendedDataType),"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 230,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "flags = (ushort) (EnumKeyAttributeMask.Duplicates | EnumKeyAttributeMask.Modifiable | EnumKeyAttributeMask.UseExtendedDataType),"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 238,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "flags = (ushort) EnumKeyAttributeMask.UseExtendedDataType,"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/ExportedModuleTestBase.cs",
+      "line": 236,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "commands_client",
+      "text": "///     address for the property. Because Unit Tests aren't going through the same relocation process, we simulate it by getting the"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 41,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Do **not** use Edit/Write on these files. Apply changes with a byte-exact **Latin-1 (codepage"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 13,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Max 6 swings w/updated QnD calc when used with Paramud DB 1.9+ (old formulas used with v1.8.5 DB)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 35,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Calculate weight difference button on EQ tab used in conjunction with carried items on item manager"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 70,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-UP: Items will now show ganghouse shop value (fixed 200% markup w/no charm discount) in the detail pane for [GreaterMUD]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 87,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-FIX: Spells with ability 144-NonMagicalSpell (hidden in MME due to prevalence) will no longer show as Damage(-MR)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 105,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Added a \"use\" flag on item manager; use to open chests, read scrolls, etc"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 261,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Ability to calculate spell damage / resist based on the defender MR rating"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 479,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-UP: added quest box to select 2nd alignment quest bonuses"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 101,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "AddStrip(array('Also here:', 'You hear movement ', ' into the room from ', ' just entered the Realm', ' just left the Realm', ' just hung up', ' peeks in from ', 'the server will be shutting', 'nightly \"auto-cleanup\"', 'Please finish up and log off', 'Software caused connection abort', 'Session ended', 'or type \"new\"', 'Enter your password', 'password you have given', 'glad to see you back', 'majo"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 302,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['total_used'] += $attack['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 306,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "p(damage($attack['name'].' for '.$damage.($glance ? ' (GLANCE)' : '')),'Energy used: '.$attack['energy'].' ... Energy remaining: '.$remaining_energy);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 312,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_used = round($attack['energy']/2,0);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 314,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['attempt_stats'][$x]['energy'] += $energy_used;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 318,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "p($attack['name'].' ('.($resisted ? 'RESIST' : 'FAIL').')','Energy used: '.$energy_used.' ... Energy remaining: '.$remaining_energy);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 321,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['total_used'] += $attack['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 324,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "p($attack['name'].' ('.($dodged ? 'DODGE' : 'MISS').')','Energy used: '.$attack['energy'].' ... Energy remaining: '.$remaining_energy);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 501,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "p('Average Energy Used/Attack: '.round($energy_stats['total_used']/$total_attacks,2));"
+    }
+  ]
+}

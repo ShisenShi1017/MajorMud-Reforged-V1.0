@@ -1,0 +1,30 @@
+{
+  "id": "shop.catalog.seed.0119",
+  "object_type": "shop",
+  "name": "Shop Catalog Seed",
+  "world_scope": [
+    "classic",
+    "custom",
+    "ai"
+  ],
+  "librarium_status": "schema_defined_seeded_from_evidence",
+  "evidence_refs": [],
+  "source_priority": [
+    "OriginalRuntimeObservation",
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUD-Explorer",
+    "MajorMUD-PHP-Monster-Sim"
+  ],
+  "runtime_export": {
+    "exports_to_data": true,
+    "status": "contract_defined_not_gameplay_generated_yet"
+  },
+  "client_visibility": "read_only_world_scoped",
+  "population_status": {
+    "seeded": true,
+    "evidence_bucket": "economy",
+    "evidence_hits_indexed": 79856,
+    "next_step": "expand individual entity records from canonical evidence and existing Librarium content"
+  }
+}

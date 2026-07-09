@@ -25,8 +25,8 @@ public sealed class RuntimeRoom
         return new RuntimeRoom
         {
             Id = ReadString(element, "id", string.Empty),
-            MapId = ReadInt(element, "mapId", 0),
-            RoomNumber = ReadInt(element, "roomNumber", 0),
+            MapId = ReadInt(element, "mapId", ReadInt(element, "map_id", 0)),
+            RoomNumber = ReadInt(element, "roomNumber", ReadInt(element, "room_number", ReadLegacyId(element))),
             Name = ReadString(element, "name", "Unknown Room"),
             Description = ReadString(element, "description", string.Empty),
             Exits = exits
@@ -45,6 +45,23 @@ public sealed class RuntimeRoom
         return element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var result)
             ? result
             : fallback;
+    }
+
+    private static int ReadLegacyId(JsonElement element)
+    {
+        if (!element.TryGetProperty("legacy_id", out var value))
+        {
+            return 0;
+        }
+
+        if (value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var number))
+        {
+            return number;
+        }
+
+        return value.ValueKind == JsonValueKind.String && int.TryParse(value.GetString(), out var parsed)
+            ? parsed
+            : 0;
     }
 }
 

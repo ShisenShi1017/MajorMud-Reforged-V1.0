@@ -1,0 +1,23 @@
+{
+  "ai_editable": false,
+  "base_source": "Classic",
+  "base_world": "Classic",
+  "description": "Host-editable custom world overlay that inherits Classic and stores only differences.",
+  "host_editable": true,
+  "locked": false,
+  "overlay_id": "custom_template",
+  "overrides": [
+    {
+      "fields": {
+        "base_world": "Classic",
+        "display_name": "Custom Template"
+      },
+      "operation": "metadata",
+      "target_family": "worlds",
+      "target_id": "world.custom.template"
+    }
+  ],
+  "precedence": 10,
+  "world_id": "CustomTemplate",
+  "world_type": "custom"
+}

@@ -1,0 +1,380 @@
+{
+  "id": "NPC.MOVEMENT",
+  "bucket": "NPC AI",
+  "name": "NPC movement behavior",
+  "description": "Roaming, following, fleeing, and room movement behavior.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 375,
+  "representative_evidence_count": 39,
+  "representative_source_path_count": 19,
+  "keywords_used": [
+    "move",
+    "roam",
+    "flee",
+    "follow",
+    "wander"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 324,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Public Declare Sub CopyMem Lib \"kernel32\" Alias \"RtlMoveMemory\" (pDest As Any, pSource As Any, ByVal ByteLen As Long)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 545,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "DefWindowProc hWnd, WM_SYSCOMMAND, SC_MOVE, 0"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 22,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-FIX: utilizing the \"reset user intractable\" fields on database record room exports will no longer remove hidden sign items."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 124,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-NEW: option to add/remove EDITED flag on users"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 162,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: moved around spell editor fields again"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 601,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: Added the ability to remove all item level restrictions"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/cRegistry.cls",
+      "line": 52,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Private Declare Sub CopyMemory Lib \"kernel32\" Alias \"RtlMoveMemory\" (dest As Any, Source As Any, ByVal numBytes As Long)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 20,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-FIX: utilizing the \"reset user intractable\" fields on database record room exports will no longer remove hidden sign items."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 137,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-NEW: option to add/remove EDITED flag on users"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 175,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: moved around spell editor fields again"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt",
+      "line": 9,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "Export: Allows you to export part or all of any database(s) in the game. This function is highly useful when you need to move specific databases (or ranges thereof) between realms and serves as an excellent backup function. It is also a great tool for upgrading versions, or even downgrading as far as version 1.11h. Lets say you have version 1.11i and would like to upgrade to version 1.11m, but hav"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt",
+      "line": 17,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "---Allows you to create a limited item list scanning in some or all of the following databases: Users, rooms and shops. You may also save the list for future reference. Very useful for keeping track of your limiteds."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/movmem_Tests.cs",
+      "line": 50,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "public void movmem_samepointer_Test(ushort moveLength, ushort bufferShift, byte[] source, byte[] expected)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 175,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "This three-tier pattern (dispatch \u2192 size select \u2192 compute+flags+write) is consistent across ADD, SUB, AND, OR, XOR, INC, DEC, NEG, CMP, TEST, SHL, SHR, SAR, RCR, RCL, ROR, SHLD, etc. When adding a new instruction, follow this same pattern."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 4469,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "///     Move with Sign-Extend to 16bit destination"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 4479,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "///     Move with Sign-Extend to 32bit destination"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 4523,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "///     Move with Zero-Extend to 16bit destination"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 4533,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "///     Move with Zero-Extend to 32bit destination"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/NEFile.cs",
+      "line": 193,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "//0xFF is moveable (6 bytes), anything else is fixed as it becomes the segment number"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Extensions/ByteExtensions.cs",
+      "line": 49,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public static byte RemoveFlag(this byte b, byte bitMask) => (byte)(b & ~bitMask);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 37,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "/// <summary>True to indicate there is more input following what was parsed</summary>"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 2454,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "McvPointerDictionary.Remove(filePointer.Offset);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 3385,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "FilePointerDictionary.Remove(fileStruct.curp.Offset);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 4358,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "var bytesToMove = GetParameter(4);"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 109,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Items not removed from saved list when equipped from item manager (setting)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 200,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-UP: Added more prompts to remove the filter and try again when trying to jump to a record where the table is filtered"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 272,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 322,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-combined the seperate add and remove compare items to just one single item (if it's missing it will add, if it's there it will remove)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsRegistryRoutines.cls",
+      "line": 52,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Private Declare Sub CopyMemory Lib \"kernel32\" Alias \"RtlMoveMemory\" (dest As Any, Source As Any, ByVal numBytes As Long)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart-HANDOFF.md",
+      "line": 70,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "world_spawns",
+      "text": "6. Confirm restricted exits (class/race/level) are now always followed on both forms."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "line": 144,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "world_spawns",
+      "text": "6. Confirm restricted exits (class/race/level, types 13\u201315) are now always followed on both forms."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 22,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Items not removed from saved list when equipped from item manager (setting)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 106,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-UP: Added more prompts to remove the filter and try again when trying to jump to a record where the table is filtered"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 178,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 229,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-combined the seperate add and remove compare items to just one single item (if it's missing it will add, if it's there it will remove)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 104,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Items not removed from saved list when equipped from item manager (setting)"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 81,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "//remove non-printable characters"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 101,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "AddStrip(array('Also here:', 'You hear movement ', ' into the room from ', ' just entered the Realm', ' just left the Realm', ' just hung up', ' peeks in from ', 'the server will be shutting', 'nightly \"auto-cleanup\"', 'Please finish up and log off', 'Software caused connection abort', 'Session ended', 'or type \"new\"', 'Enter your password', 'password you have given', 'glad to see you back', 'majo"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 222,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<br><input type=\"submit\" name=\"submit_ignore_unparsed\" id=\"submit_ignore_unparsed\" value=\"Upload and remove unparsed lines.\">"
+    }
+  ]
+}

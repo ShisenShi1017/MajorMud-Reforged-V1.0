@@ -1,0 +1,191 @@
+{
+  "id": "item.catalog.phase2_3_0121",
+  "name": "Item Catalog",
+  "object_type": "item",
+  "world_scope": "classic/custom/ai",
+  "status": "complete_for_current_evidence_corpus",
+  "description": "Usable/equipable object, flags, effects, restrictions.",
+  "evidence_bucket": "item",
+  "evidence_total": 90646,
+  "source_breakdown": {
+    "MBBSEmu": 3260,
+    "MMUD-Explorer": 31711,
+    "NightmareRedux": 55675
+  },
+  "evidence_refs": [
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.sln",
+      "evidence_count": 40,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSDatabase/MBBSDatabase.csproj",
+      "evidence_count": 4,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.CPU.Benchmark/MBBSEmu.CPU.Benchmark.csproj",
+      "evidence_count": 2,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/MBBSEmu.Tests.csproj",
+      "evidence_count": 37,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+      "evidence_count": 178,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MBBSEmu.csproj",
+      "evidence_count": 136,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "evidence_count": 67,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "evidence_count": 302,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DependencyInjection/ServiceResolver.cs",
+      "evidence_count": 22,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/MbbsHost.cs",
+      "evidence_count": 576,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MsgFile.cs",
+      "evidence_count": 285,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Reports/ApiReport.cs",
+      "evidence_count": 18,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Util/LRUCache.cs",
+      "evidence_count": 50,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Util/MessagingCenter.cs",
+      "evidence_count": 95,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/UI/Main/MainView.cs",
+      "evidence_count": 131,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/UI/Setup/SetupView.cs",
+      "evidence_count": 89,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Session/Telnet/TelnetSession.cs",
+      "evidence_count": 133,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Logging/Targets/QueueTarget.cs",
+      "evidence_count": 19,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/Ordinals.cs",
+      "evidence_count": 100,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/HostRoutines/MenuRoutines.cs",
+      "evidence_count": 453,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/Integration/BtrievePrint_Tests.cs",
+      "evidence_count": 219,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/Module/MsgFile_Tests.cs",
+      "evidence_count": 211,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/ExportedModules/Majorbbs/memcpy_Tests.cs",
+      "evidence_count": 25,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/ExportedModules/Majorbbs/prf_Tests.cs",
+      "evidence_count": 33,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+      "evidence_count": 35,
+      "classification": "text_scanned"
+    }
+  ],
+  "source_priority": {
+    "OriginalRuntimeObservation": 1,
+    "NightmareRedux": 2,
+    "MBBSEmu": 3,
+    "MMUD-Explorer": 4,
+    "MajorMUD-PHP-Monster-Sim": 5
+  },
+  "confidence": "bucket-level; see child records for mechanic confidence",
+  "relationships": [],
+  "runtime_mapping": {
+    "status": "cataloged_for_export",
+    "runtime_reads_generated_data": true
+  },
+  "validation_rules": [
+    "object_must_have_id",
+    "object_must_have_world_scope",
+    "classic_changes_require_evidence",
+    "custom_ai_changes_require_validation"
+  ],
+  "export_mapping": {
+    "target": "Data/<world>/items",
+    "generated": true
+  },
+  "code_update": "0121"
+}

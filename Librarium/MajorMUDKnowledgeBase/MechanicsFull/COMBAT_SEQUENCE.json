@@ -1,0 +1,571 @@
+{
+  "id": "COMBAT.SEQUENCE",
+  "bucket": "Combat",
+  "name": "Combat operation sequence",
+  "description": "The ordered pipeline from target selection through hit, defenses, damage, reductions, and final HP change.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 10089,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 26,
+  "keywords_used": [
+    "combat",
+    "attack",
+    "sequence",
+    "order",
+    "damage",
+    "dodge",
+    "hit"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 421,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim bAttackHit As Boolean, bDodged As Boolean, bGlanced As Boolean, bResisted As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 423,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim nRoll_AttackChance As Integer, nRoll_HitChance As Integer, nRoll_DodgeChance As Integer, nAdjustedDodgeValue As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 577,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bAttackHit = False: bDodged = False: bGlanced = False: bResisted = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 606,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bAttackHit = False: bDodged = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 622,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bAttackHit = False: bDodged = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 5056,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "tooling_ui",
+      "text": "& \"This is because dodge is checked after the AC check and determined to be a hit. This is compounded by different mobs with different accuracy causing the reported dodge value to fluctuate.\" _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 5297,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "tooling_ui",
+      "text": "'ElseIf clsMonAtkSim.nStatAtkHits(x) > 0 Or clsMonAtkSim.nStatAtkAttemptDodgedOrResisted(x) > 0 Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 5300,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "tooling_ui",
+      "text": "'txtStatResistDodge(x).Text = Round(clsMonAtkSim.nStatAtkAttemptDodgedOrResisted(x) / (clsMonAtkSim.nStatAtkHits(x) + clsMonAtkSim.nStatAtkAttemptDodgedOrResisted(x)), 3) * 100"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 483,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim bAttackHit As Boolean, bDodged As Boolean, bGlanced As Boolean, bResisted As Boolean"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 485,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim nRoll_AttackChance As Integer, nRoll_HitChance As Integer, nRoll_DodgeChance As Integer, nAdjustedDodgeValue As Long"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 646,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bAttackHit = False: bDodged = False: bGlanced = False: bResisted = False"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 672,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bAttackHit = False: bDodged = True"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 700,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bAttackHit = False: bDodged = True"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmHitCalc.frm",
+      "line": 1022,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "tooling_ui",
+      "text": "nDefense = CalculateAttackDefense(nAccy, nAC, nDodge, nBSdefense, nProtEv, 0, nPerception, _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMonsterAttackSim.frm",
+      "line": 1900,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "tooling_ui",
+      "text": "'ElseIf clsMonAtkSimThisForm.nStatAtkHits(x) > 0 Or clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x) > 0 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMonsterAttackSim.frm",
+      "line": 1903,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "tooling_ui",
+      "text": "'txtStatResistDodge(x).Text = Round(clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x) / (clsMonAtkSimThisForm.nStatAtkHits(x) + clsMonAtkSimThisForm.nStatAtkAttemptDodgedOrResisted(x)), 3) * 100"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMonsterAttackSim.frm",
+      "line": 1925,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "tooling_ui",
+      "text": "& \"This is because dodge is checked after the AC check and determined to be a hit.  This is compounded by different mobs with different accuracy causing the reported dodge value to fluctuate.\" _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 3148,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "tBackStab = CalculateAttack(tBackStabProfile, a4_Surprise, nTemp, False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge, , , , , nBSdefense)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 3165,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "tAttack = CalculateAttack(tForcedCharProfile, a6_Bash, nGlobalCharWeaponNumber(0), False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 3167,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "tAttack = CalculateAttack(tForcedCharProfile, a7_Smash, nGlobalCharWeaponNumber(0), False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge)"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 202,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$total_damage = 0; $total_attacks = 0; $total_dodge = 0; $total_resisted = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 253,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($dodge_chance <= $character_dodge) { $attack_hit = false; $dodged = true; $attacks[$attack_num]['attempt_dodged_resisted']++; $total_dodge++; }"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 388,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "($attack['type'] == 'spell' ? $attack['attempted'] : ($attack['hits'] + $attack['attempt_dodged_resisted']) )"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 16,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "character_progression",
+      "text": "-UP: update attack sim to allow for true dodge value (as computed in MME v1.9.2) or megamud's value"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 37,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nStatAtkAttemptDodgedOrResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 47,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nUserDodge As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 50,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_bDodgeBeforeAC As Boolean"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 41,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$i=0; $attacks = array(); //1=name, 2=hit msg, 3=miss/fail msg, 4=resist"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 43,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'CLAW'; $attacks[$i][2] = 'SOURCE claws you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with its huge claws!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 46,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'SLASH'; $attacks[$i][2] = 'SOURCE slashes you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with their SOURCE!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 127,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$miss = str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($attack[3], '/'));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 129,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$miss.$deflect.\".*/\", 'PARSED_'.$attack[1].$num.',0,deflect', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 130,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$miss.\".*/\", 'PARSED_'.$attack[1].$num.',0,miss/fail', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 27,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$attacks[$i]['attempt_dodged_resisted'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 251,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($attack['type'] != 'spell' && $character_dodge > 0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 265,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['attempt_dodged_resisted']++; $total_resisted++;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/LICENSE",
+      "line": 5,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "non_gameplay",
+      "text": "Permission is hereby granted, free of charge, to any person obtaining a copy"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/LICENSE",
+      "line": 12,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "non_gameplay",
+      "text": "The above copyright notice and this permission notice shall be included in all"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/file_Tests.cs",
+      "line": 18,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "tests_validation",
+      "text": "+ \"lacus vel facilisis. Ipsum nunc aliquet bibendum enim facilisis. Malesuada fames ac \""
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/filelength_Tests.cs",
+      "line": 21,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "character_progression",
+      "text": "+ \"lacus vel facilisis. Ipsum nunc aliquet bibendum enim facilisis. Malesuada fames ac \""
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/posix_file_Tests.cs",
+      "line": 18,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "+ \"lacus vel facilisis. Ipsum nunc aliquet bibendum enim facilisis. Malesuada fames ac \""
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/setmode_Tests.cs",
+      "line": 15,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "commands_client",
+      "text": "+ \"lacus vel facilisis. Ipsum nunc aliquet bibendum enim facilisis. Malesuada fames ac \""
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/AppSettingsManager.cs",
+      "line": 278,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "logging_debug",
+      "text": "///     Sets a default cleanup time if missing or what is provided can't be parsed into TimeSpan"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 201,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "data_schema",
+      "text": "//Sanity Check if we're missing .DAT files and there are available .VIR files that can be used"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 209,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "data_schema",
+      "text": "//If we're missing a DAT file, just bail. Because we don't know the file definition, we can't just create a \"blank\" one."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 280,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "data_schema",
+      "text": "// creates the missing triggers"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 8106,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "networking_runtime",
+      "text": "//Make room for leading forward slash (SIGIDC) if missing"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 8112,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "networking_runtime",
+      "text": "//Add leading forward slash (SIGIDC) if missing"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/Structs/FtgStruct.cs",
+      "line": 94,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "commands_client",
+      "text": "/// check download permission & begin (1=ok 0=denied)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Program.cs",
+      "line": 372,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "networking_runtime",
+      "text": "_logger.Warn($\"SQLite Database File {databaseFile} missing, performing Database Reset to perform initial configuration\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Program.cs",
+      "line": 464,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "networking_runtime",
+      "text": "//Check for missing MenuOptionKey, assign, add to list"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Program.cs",
+      "line": 673,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "networking_runtime",
+      "text": "///     and users that are already created. This is useful if you have a corrupted or missing BBSUSR.DB."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/Telnet/EnumIacOptions.cs",
+      "line": 10,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "commands_client",
+      "text": "BinaryTransmission = 0,"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/Telnet/TelnetSession.cs",
+      "line": 40,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "{EnumIacOptions.BinaryTransmission, new TelnetOptionsValue { Local = true, Remote = true}},"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/Telnet/TelnetSession.cs",
+      "line": 129,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "base.Send(new IacResponse(EnumIacVerbs.DO, EnumIacOptions.BinaryTransmission).ToArray());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Setup/SetupView.cs",
+      "line": 284,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "commands_client",
+      "text": "HelpText = \"Default User Keys\\n\\nUser Keys are used in MBBS/Worldgroup to give users specific permissions within modules.\\n\\nThese Keys will be the keys that every new user receives after creating an account within MBBSEmu. You can change a users keys within MBBSEmu as well using the /SYSOP command.\","
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/docker/root/etc/s6-overlay/s6-rc.d/init-mbbsemu/run",
+      "line": 10,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "commands_client",
+      "text": "# Set ownership first so all operations create files with correct permissions"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/docker/root/etc/s6-overlay/s6-rc.d/init-mbbsemu/run",
+      "line": 26,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "commands_client",
+      "text": "# Run as abc user to avoid permission issues"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/wbtrv32/AssemblyInfo.cpp",
+      "line": 7,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "using namespace System::Security::Permissions;"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 86,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "(graphical room explorer), `frmResults`, calculators (`frmSwingCalc`, `frmHitCalc`, `frmBSCalc`,"
+    }
+  ]
+}

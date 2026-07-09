@@ -1,0 +1,192 @@
+{
+  "id": "bank.catalog.phase2_3_0121",
+  "name": "Bank Catalog",
+  "object_type": "bank",
+  "world_scope": "classic/custom/ai",
+  "status": "complete_for_current_evidence_corpus",
+  "description": "Banking/deposit/withdrawal behavior.",
+  "evidence_bucket": "economy",
+  "evidence_total": 79856,
+  "source_breakdown": {
+    "MBBSEmu": 1054,
+    "MMUD-Explorer": 30446,
+    "NightmareRedux": 48125,
+    "MajorMUD-PHP-Monster-Sim": 231
+  },
+  "evidence_refs": [
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "evidence_count": 919,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/Ordinals.cs",
+      "evidence_count": 100,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+      "evidence_count": 35,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/CLAUDE.md",
+      "evidence_count": 108,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/README.md",
+      "evidence_count": 1101,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/_outputsmashuptemp.txt",
+      "evidence_count": 463,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmBSCalc.frm",
+      "evidence_count": 344,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmCoinConvert.frm",
+      "evidence_count": 56,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmExpCalc.frm",
+      "evidence_count": 243,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmHitCalc.frm",
+      "evidence_count": 744,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmMain.frm",
+      "evidence_count": 834,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmMegaMUDPathing.frm",
+      "evidence_count": 844,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmMonsterAttackSim.frm",
+      "evidence_count": 514,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmMonsterFilters.frm",
+      "evidence_count": 446,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmNotepad.frm",
+      "evidence_count": 43,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmPasteChar.frm",
+      "evidence_count": 1297,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmPopUpOptions.frm",
+      "evidence_count": 1938,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmResults.frm",
+      "evidence_count": 756,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/frmSettings.frm",
+      "evidence_count": 324,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/modItemParse.bas",
+      "evidence_count": 1363,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/modListViewExt.bas",
+      "evidence_count": 1104,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/modMMudDatabase.bas",
+      "evidence_count": 5235,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/modMMudFunc.bas",
+      "evidence_count": 4513,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/modMain.bas",
+      "evidence_count": 6199,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MMUD-Explorer",
+      "path": "ImportedDatabases/MMUD-Explorer/modSyntaxsFunc.bas",
+      "evidence_count": 255,
+      "classification": "text_scanned"
+    }
+  ],
+  "source_priority": {
+    "OriginalRuntimeObservation": 1,
+    "NightmareRedux": 2,
+    "MBBSEmu": 3,
+    "MMUD-Explorer": 4,
+    "MajorMUD-PHP-Monster-Sim": 5
+  },
+  "confidence": "bucket-level; see child records for mechanic confidence",
+  "relationships": [],
+  "runtime_mapping": {
+    "status": "cataloged_for_export",
+    "runtime_reads_generated_data": true
+  },
+  "validation_rules": [
+    "object_must_have_id",
+    "object_must_have_world_scope",
+    "classic_changes_require_evidence",
+    "custom_ai_changes_require_validation"
+  ],
+  "export_mapping": {
+    "target": "Data/<world>/banks",
+    "generated": true
+  },
+  "code_update": "0121"
+}

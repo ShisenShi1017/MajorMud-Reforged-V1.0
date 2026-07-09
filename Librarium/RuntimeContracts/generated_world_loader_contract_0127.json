@@ -1,0 +1,27 @@
+{
+  "code_update": "0127",
+  "compatibility": {
+    "manifest_schema": "generated_world_manifest_v1",
+    "minimum_compiler_code_update": "0127"
+  },
+  "hot_reload_preparation": {
+    "classic_lock_preserved": true,
+    "requires_manifest_hash_change": true,
+    "supported_later": true
+  },
+  "loader_sequence": [
+    "read manifest",
+    "validate compiler version",
+    "load families",
+    "load relationships",
+    "initialize runtime subsystems",
+    "expose read-only client projection"
+  ],
+  "required_files": [
+    "compile_manifest.json",
+    "world_manifest.json",
+    "client_projection.json"
+  ],
+  "runtime_loader_contract": "generated_world_manifest_v1",
+  "runtime_rule": "Runtime reads generated /Data only; runtime does not edit Librarium."
+}

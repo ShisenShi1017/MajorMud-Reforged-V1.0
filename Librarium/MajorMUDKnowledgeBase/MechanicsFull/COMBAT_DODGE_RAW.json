@@ -1,0 +1,568 @@
+{
+  "id": "COMBAT.DODGE_RAW",
+  "bucket": "Combat",
+  "name": "Raw dodge/evasion calculation",
+  "description": "Base dodge/evasion value before ordering and mode decisions are applied.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 669,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 18,
+  "keywords_used": [
+    "dodge",
+    "evade",
+    "evasion",
+    "avoid"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 16,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "character_progression",
+      "text": "-UP: update attack sim to allow for true dodge value (as computed in MME v1.9.2) or megamud's value"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 37,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nStatAtkAttemptDodgedOrResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 47,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nUserDodge As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 50,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_bDodgeBeforeAC As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 97,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Public Property Let bDodgeBeforeAC(ByVal vData As Boolean)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 98,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "m_bDodgeBeforeAC = vData"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 101,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Public Property Get bDodgeBeforeAC() As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 102,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bDodgeBeforeAC = m_bDodgeBeforeAC"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 421,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim bAttackHit As Boolean, bDodged As Boolean, bGlanced As Boolean, bResisted As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 423,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim nRoll_AttackChance As Integer, nRoll_HitChance As Integer, nRoll_DodgeChance As Integer, nAdjustedDodgeValue As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 577,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bAttackHit = False: bDodged = False: bGlanced = False: bResisted = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 602,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "'this will allow the dodge percentage to match what players see in megamud"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 129,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "-FIX: Updated dodge formula for mob v player damage calc in [GreaterMUD]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 158,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "-UP: Hit calc will now show dodge/overall always"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 188,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "-NEW: Dodge formula discovered and now calculated automatically"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 236,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "-UP: Attack sim updated with new understanding of dodge calculation and how it's factored into physical attacks"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 237,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "-UP: Added option to attack sim to calculate dodge based on actual dodge (new calculation) or what is shown in megamud (value seen in megamud is only accurate if you're fighting mobs with all the same accuracy on their physical attacks)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 39,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nStatAtkAttemptDodgedOrResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 49,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nUserDodge As Long"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 52,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_bDodgeBeforeAC As Boolean"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 101,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_DODGE_SOFTCAP As Integer"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 102,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_DODGE_CAP As Integer"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 138,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Public Property Get DODGE_SOFTCAP() As Integer"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 139,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "DODGE_SOFTCAP = m_DODGE_SOFTCAP"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 27,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$attacks[$i]['attempt_dodged_resisted'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 48,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$character_dodge = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 73,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$character_dodge = (int)preg_replace(\"/[^0-9]/\", '', $_POST['character_dodge']);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 74,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($character_dodge > 1000) $character_dodge = 1000;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 75,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($character_dodge < 0) $character_dodge = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 158,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "<label for=\"character_dodge\">Dodge <strong>%</strong>:</label>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 159,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "<input type=\"number\" name=\"character_dodge\" id=\"character_dodge\" size=\"5\" value=\"<?php echo $character_dodge; ?>\"> &nbsp;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 202,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$total_damage = 0; $total_attacks = 0; $total_dodge = 0; $total_resisted = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 235,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$dodged = false; $glance = false; $resisted = false;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 251,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($attack['type'] != 'spell' && $character_dodge > 0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 252,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$dodge_chance = mt_rand(1,100);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 253,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($dodge_chance <= $character_dodge) { $attack_hit = false; $dodged = true; $attacks[$attack_num]['attempt_dodged_resisted']++; $total_dodge++; }"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 211,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "- **LineBreaker:** Word-wrapping with ANSI escape sequence awareness (state machine parser that avoids breaking mid-escape)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 35,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "`CpuCore` inherits from `CpuRegisters`, so all register properties (AX, BX, CS, IP, CarryFlag, etc.) are directly accessible as `this.AX`, `Registers.AX`, etc. throughout the opcode handlers. This flat inheritance was chosen for performance \u2014 it avoids indirection in the hottest code path."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 60,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "**FLAGS register:** Individual flags are stored as separate bools for fast per-flag access. `F()` assembles them into a packed ushort; `SetF(ushort)` disassembles back. This avoids bitfield manipulation in the hot path where most instructions only touch one or two flags."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/Structs/EnumFsdfldFlags.cs",
+      "line": 44,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     fields to \"avoid\" during entry or display"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/docker/root/etc/s6-overlay/s6-rc.d/init-mbbsemu/run",
+      "line": 26,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "commands_client",
+      "text": "# Run as abc user to avoid permission issues"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 58,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: By popular demand, more monster filter options (accuracy, dodge, coin types, ac/dr, etc)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 229,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-UP: Added columns for AC/DR, Dodge, and MR"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 242,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 135,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-UP: Added columns for AC/DR, Dodge, and MR"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 148,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 55,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: By popular demand, more monster filter options (accuracy, dodge, coin types, ac/dr, etc)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 217,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-UP: Added columns for AC/DR, Dodge, and MR"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 230,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmHitCalc.frm",
+      "line": 1055,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "lblSubRight.Caption = lblSubRight.Caption & vbCrLf & \"Dodge DR-Cap:\" & vbCrLf & GetDodgeCap(, True) & \"% - \" & GetDodgeCap() & \"%\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 29315,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "Case 2, 3, 24, 8: 'ac, dr, mr, dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 34292,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "If Index = 7 Then 'weapon... txtWeaponExtras 2=ac, 3=dr, 4=dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMonsterAttackSim.frm",
+      "line": 1785,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "'txtMonsterLairFilter... 0-#, 1-ac, 2-dr, 3-mr, 4-dodge, 5-HP, 6-#antimag, 7-hpregen, 8-accy"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPasteChar.frm",
+      "line": 2989,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "& vbCrLf & vbCrLf & \"Enter the damage as if it were VS 0/0/0 AC/DR/Dodge.\", vbInformation"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPopUpOptions.frm",
+      "line": 622,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "ToolTipText     =   \"vs 0 AC, DR, and Dodge\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPopUpOptions.frm",
+      "line": 1387,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "& vbCrLf & vbCrLf & \"Manual damage should be entered as if it where versus 0/0/0 ac/dr/dodge and 50 MR.\" _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modListViewExt.bas",
+      "line": 99,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "' To avoid mutating the visible Text/Tag and to keep sorts stable, we:"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modListViewExt.bas",
+      "line": 1211,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "quests_scripts",
+      "text": "st.LastCol = col.Index          ' <-- critical to avoid drift on refresh"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modListViewExt.bas",
+      "line": 1901,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "' Delegates to ParseActionAndQty to avoid duplicate parsing logic"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 5307,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "'txtMonsterLairFilter... 0-#, 1-ac, 2-dr, 3-mr, 4-dodge, 5-HP, 6-#antimag, 7-hpregen, 8-accy"
+    }
+  ]
+}

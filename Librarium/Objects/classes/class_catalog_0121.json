@@ -1,0 +1,192 @@
+{
+  "id": "class.catalog.phase2_3_0121",
+  "name": "Class Catalog",
+  "object_type": "class",
+  "world_scope": "classic/custom/ai",
+  "status": "complete_for_current_evidence_corpus",
+  "description": "Class rules, advancement, abilities, restrictions.",
+  "evidence_bucket": "progression",
+  "evidence_total": 113781,
+  "source_breakdown": {
+    "MBBSEmu": 15143,
+    "MMUD-Explorer": 38578,
+    "NightmareRedux": 58752,
+    "MajorMUD-PHP-Monster-Sim": 1308
+  },
+  "evidence_refs": [
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/CLAUDE.md",
+      "evidence_count": 43,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/README.md",
+      "evidence_count": 19,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSDatabase/Program.cs",
+      "evidence_count": 9,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.CPU.Benchmark/Program.cs",
+      "evidence_count": 6,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/TestBase.cs",
+      "evidence_count": 7,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettings.cs",
+      "evidence_count": 13,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettingsManager.cs",
+      "evidence_count": 70,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+      "evidence_count": 178,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MEMORYMAP.MD",
+      "evidence_count": 39,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Program.cs",
+      "evidence_count": 148,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/docker/docker-compose.yml",
+      "evidence_count": 3,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/scripts/readme.md",
+      "evidence_count": 10,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/commandLineHelp.txt",
+      "evidence_count": 13,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/crashReportTemplate.txt",
+      "evidence_count": 6,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "evidence_count": 45,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "evidence_count": 67,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "evidence_count": 302,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveKey.cs",
+      "evidence_count": 36,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveKeyDefinition.cs",
+      "evidence_count": 8,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveKeyRecord.cs",
+      "evidence_count": 2,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveQuery.cs",
+      "evidence_count": 22,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveRecord.cs",
+      "evidence_count": 2,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveUtil.cs",
+      "evidence_count": 11,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CPU/CLAUDE.md",
+      "evidence_count": 139,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CPU/CPUCore.cs",
+      "evidence_count": 403,
+      "classification": "text_scanned"
+    }
+  ],
+  "source_priority": {
+    "OriginalRuntimeObservation": 1,
+    "NightmareRedux": 2,
+    "MBBSEmu": 3,
+    "MMUD-Explorer": 4,
+    "MajorMUD-PHP-Monster-Sim": 5
+  },
+  "confidence": "bucket-level; see child records for mechanic confidence",
+  "relationships": [],
+  "runtime_mapping": {
+    "status": "cataloged_for_export",
+    "runtime_reads_generated_data": true
+  },
+  "validation_rules": [
+    "object_must_have_id",
+    "object_must_have_world_scope",
+    "classic_changes_require_evidence",
+    "custom_ai_changes_require_validation"
+  ],
+  "export_mapping": {
+    "target": "Data/<world>/classes",
+    "generated": true
+  },
+  "code_update": "0121"
+}

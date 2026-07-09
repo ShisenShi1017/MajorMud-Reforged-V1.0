@@ -1,0 +1,371 @@
+{
+  "id": "CMD.OUTPUT",
+  "bucket": "Commands and Client",
+  "name": "Output/message formatting",
+  "description": "Classic-style text responses, combat messages, and UI-facing strings.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2689,
+  "representative_evidence_count": 38,
+  "representative_source_path_count": 18,
+  "keywords_used": [
+    "message",
+    "output",
+    "print",
+    "display",
+    "text"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmItem.frm",
+      "line": 4078,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "items_equipment",
+      "text": "'txtMissMsgDisplay.Text = GetMessages(Itemrec.MissMsg, 1)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmItem.frm",
+      "line": 4379,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "items_equipment",
+      "text": "txtMissMsgDisplay.Text = GetMessages(Val(txtMissMsg.Text), 1)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 7175,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "npc_ai",
+      "text": "'txtAttackDodgeMsgDisplay(x).Text = GetMessages(Monsterrec.AttackDodgeMsg(x), 3)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 7176,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "npc_ai",
+      "text": "'txtAttackMissMsgDisplay(x).Text = GetMessages(Monsterrec.AttackMissMsg(x), 2)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 7532,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "npc_ai",
+      "text": "txtAttackDodgeMsgDisplay(Index).Text = GetMessages(Val(txtAttackDodgeMsg(Index).Text), 3)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 7606,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "npc_ai",
+      "text": "txtAttackMissMsgDisplay(Index).Text = GetMessages(Val(txtAttackMissMsg(Index).Text), 2)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "line": 2595,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "magic",
+      "text": "'txtCastADisplay.Text = GetMessages(Spellrec.CastMsgA, 1)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "line": 2596,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "magic",
+      "text": "'txtCastBDisplay.Text = GetMessages(Spellrec.CastMsgB, 2)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "line": 2718,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "magic",
+      "text": "txtCastADisplay.Text = GetMessages(Val(txtCastMsgA.Text), 1)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "line": 2727,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "magic",
+      "text": "txtCastBDisplay.Text = GetMessages(Val(txtCastMsgB.Text), 2)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseDeleter.frm",
+      "line": 1459,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "CalcTotalRecords = CalcTotalRecords + Val(txtMessagesTo.Text) - Val(txtMessagesFrom.Text) + 1"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 3085,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "CalcTotalRecords = CalcTotalRecords + Val(txtMessagesTo.Text) - Val(txtMessagesFrom.Text) + 1"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "line": 83,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "`FormatOutput()` chains three processors for text sent to clients:"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Doscalls.cs",
+      "line": 30,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "internal Doscalls(IClock clock, IMessageLogger logger, AppSettingsManager configuration, IFileUtility fileUtility, IGlobalCache globalCache, MbbsModule module, PointerDictionary<SessionBase> channelDictionary, ITextVariableService textVariableService) : base("
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 115,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "private protected ExportedModuleBase(IClock clock, IMessageLogger logger, AppSettingsManager configuration, IFileUtility fileUtility, IGlobalCache globalCache, MbbsModule module, PointerDictionary<SessionBase> channelDictionary, ITextVariableService textVariableService)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 720,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "private protected ReadOnlySpan<byte> ProcessTextVariables(ReadOnlySpan<byte> outputBuffer)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 761,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "return _textVariableService.Parse(outputBuffer, txtvarDictionary);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1136,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "output.Write(ProcessTextVariables(FormatNewLineCarriageReturn(ProcessIfANSI(outputBytes))));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Galgsbl.cs",
+      "line": 45,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "commands_client",
+      "text": "public Galgsbl(IClock clock, IMessageLogger logger, AppSettingsManager configuration, IFileUtility fileUtility, IGlobalCache globalCache, MbbsModule module, PointerDictionary<SessionBase> channelDictionary, ITextVariableService textVariableService) : base("
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Galme.cs",
+      "line": 26,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "internal Galme(IClock clock, IMessageLogger logger, AppSettingsManager configuration, IFileUtility fileUtility, IGlobalCache globalCache, MbbsModule module, PointerDictionary<SessionBase> channelDictionary, ITextVariableService textVariableService) : base("
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Galmsg.cs",
+      "line": 23,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "commands_client",
+      "text": "internal Galmsg(IClock clock, IMessageLogger logger, AppSettingsManager configuration, IFileUtility fileUtility, IGlobalCache globalCache, MbbsModule module, PointerDictionary<SessionBase> channelDictionary, ITextVariableService textVariableService) : base("
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 132,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "public Majorbbs(IClock clock, IMessageLogger logger, AppSettingsManager configuration, IFileUtility fileUtility, IGlobalCache globalCache, MbbsModule module, PointerDictionary<SessionBase> channelDictionary, IAccountKeyRepository accountKeyRepository, IAccountRepository accountRepository, ITextVariableService textVariableService) : base("
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 4021,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "var output = McvPointerDictionary[_currentMcvFile.Offset].GetString(messageNumber);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 4031,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "_logger.Debug($\"({Module.ModuleIdentifier}) Added {output.Length} bytes to the buffer (Message #: {messageNumber})\");"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 389,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: if a spell executes a textblock and that textblock only casts spells, the spells will be displayed in the detail window"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 296,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: if a spell executes a textblock and that textblock only casts spells, the spells will be displayed in the detail window"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 18072,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "ToolTipText     =   \"Party physical damage output/round @ 50/0 AC/DR\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 18085,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "ToolTipText     =   \"Party magic damage output/round @ 50 MR\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 34677,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "DebugLogPrint \"Level=\" & txtGlobalLevel(0).Text"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 34738,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "DebugLogPrint \"RefMonster=\" & lvMonsters.ListItems(lvMonsters.SelectedItem.Index).ListSubItems(1).Text & \"(\" & lvMonsters.ListItems(lvMonsters.SelectedItem.Index).Text & \")\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 2091,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "DebugLogPrint \"WARN: Skipping line (needs =25 fields): \" & lineText"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 2129,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "DebugLogPrint \"WARN: Extra fields ignored on line: \" & Left$(lineText, 128)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 2122,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "Dim nDmgOut As tDamageOutput, nSpeedAdj As Integer, sBackstabText As String, nOverrideRTK As Double, sImmuTXT As String"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 6709,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "oLI.Text = sLocation & GetRoomName(mid(sTest, y1, y2), , , bHideRecordNumbers) & sPercent & sDisplayFooter"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 6743,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "oLI.Text = sLocation & sHeader & GetMonsterName(nValue, bHideRecordNumbers) & sPercent & sDisplayFooter"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 6870,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "oLI.Text = sLocation & sHeader & GetItemName(nValue, bHideRecordNumbers) & sPercent & sDisplayFooter"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 81,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "//remove non-printable characters"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 128,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$miss = str_replace('MSGTEXT', '[ a-zA-Z\\']+', $miss);"
+    }
+  ]
+}

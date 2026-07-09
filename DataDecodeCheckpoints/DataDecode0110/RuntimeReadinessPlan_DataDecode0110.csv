@@ -1,5 +1,0 @@
-phase,decision,notes
-Runtime validation gate,OPEN_AFTER_0110,Runtime may begin only after this verified 0110 checkpoint.
-Content validation,REQUIRED,"Use room/detail inventory CSVs and MDB evidence to validate rooms, monster placements, items, shops, drops, and spawn/population behavior."
-Dynamic behavior validation,REQUIRED,"Respawn timers, cleanup cycles, scripts, conditional triggers, combat formulas, shop behavior, and drop rates still require runtime confirmation."
-Evidence limitations,PRESERVE,Do not infer unresolved static ownership rows or static rows without evidence.

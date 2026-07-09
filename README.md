@@ -1,67 +1,59 @@
-# MajorMUD Reforged
+# MajorMUD Reforged — CodeUpdate 0120
 
-MajorMUD Reforged is now organized around the **Librarium**: an evidence-driven canonical knowledge graph for MajorMUD data, relationships, behavior, validation, and generated runtime output.
+## Current Baseline
 
-## Current Project Rule
+CodeUpdate 0120 is the corrected Librarium object-graph baseline. It supersedes CodeUpdate 0119 by fixing repository metrics and adding repository invariants.
 
-**The Librarium is canonical.**
+Official rule set:
 
-`/Data` is retained for compatibility, but it is generated runtime output. Do not make canonical gameplay changes directly in `/Data`. Update the Librarium first, then regenerate runtime data.
+- **Librarium is the authoritative source of truth.**
+- **Host/server/editor modifies the Librarium.**
+- **Client is read-only and receives the active world's view.**
+- **/Data is generated runtime output per world.**
+- **/ImportedDatabases is retained evidence until the Librarium is 100% complete.**
+- **Classic world definitions are locked/evidence-backed.**
+- **Custom and AI worlds use explicit Librarium overlays.**
 
-## Repository Layout
+## Active Flow
 
-- `/Librarium` — canonical knowledge graph, assertions, evidence, relationships, world overlays, contracts, compiler/export model.
-- `/Generated` — generated runtime data, generated docs, generated validation reports.
-- `/Data` — compatibility runtime data surface generated from Librarium.
-- `/Runtime` — runtime consumer code/scaffolding.
-- `/Apps` — application projects preserved from the uploaded repo.
-- `/Core` — existing core source preserved from the uploaded repo.
-- `/Tools` — import, validation, graph, and compiler tools.
-- `/Validation` — validation suites and outputs.
-- `/Reports` — current and historical reports.
-- `/Documentation` — architecture, handoffs, generated docs, historical validation records.
-- `/ImportedDatabases`, `/Evidence`, `/KnowledgeBase` — preserved source/provenance material.
+```text
+Librarium → validate/export → /Data/<world> → server runtime → client read-only view
+```
 
-## Development Flow
+## Corrected Metrics
 
-1. Add or update knowledge in `/Librarium`.
-2. Preserve evidence/provenance for every assertion.
-3. Validate and promote evidence states only with support.
-4. Generate `/Generated/RuntimeData` and compatibility `/Data`.
-5. Runtime/server/editor/client consume generated output or Librarium APIs.
+- Canonical sources retained: **4**
+- Canonical source files classified: **941**
+- Text files scanned: **657**
+- Binary/asset files classified: **284**
+- Librarium object types defined: **24**
+- Relationship edges defined: **16**
 
-## Evidence States
+## Generate Runtime Data
 
-- `Verified` — directly supported by authoritative evidence.
-- `Derived` — strongly inferred from multiple supporting sources.
-- `Observed` — seen in gameplay/runtime/user evidence but not fully decoded.
-- `Hypothesis` — plausible but not promoted.
-- `WorldOverride` — non-canonical overlay change for a specific world.
-- `AIProposal` — AI-created candidate change requiring review.
+Generate Classic runtime data locally with:
 
-## Baseline
+```bash
+python Tools/Librarium/export_librarium_to_data.py --world classic --clean
+```
 
-This replacement repository was generated from the uploaded repo `MajorMud-Reforged-V1.0-main(22).zip` plus the latest Librarium/Validation baseline through Validation-0007.
+## Important Documents
 
-## Current Runtime Status
+- `SOURCE_OF_TRUTH.md`
+- `REPOSITORY_RULES.md`
+- `Reports/CodeUpdate0120/repository_metrics_0120.md`
+- `Codex/CODEUPDATE_0120_CODEX_HANDOFF.md`
 
-CodeUpdate 0115 starts Runtime Milestone 2 with host-owned runtime state and a generic runtime event dispatcher. The server now tracks loaded world state, session state, and character shell state, and publishes runtime events for world load, session start/end, command receipt, and movement outcomes. Runtime inspection commands `state` and `events` expose this backbone.
+## Next Work
 
-`Docs/Architecture/HOST_VISION_V1.md` records the approved multi-world Host vision: Classic, Reforged Custom, Pure AI, test realms, publishing, import wizard, world identity, transfer rules, reset system, permissions, networking, scripting boundaries, and future cluster/maintenance/dashboard direction.
+Continue Librarium population and Step 4: Librarium → `/Data` generator/compiler. Runtime gameplay code remains unchanged in this correction update.
 
-CodeUpdate 0115 does not add combat, magic, NPC AI, spawn logic, quests, dialogue, scripts, guilds, economy integration, durable account saves, formula changes, or non-Classic gameplay expansion.
+## CodeUpdate 0126 — Librarium Compiler v1
 
-CodeUpdate 0114 applies Runtime Milestone 1. The server now has an opt-in Classic-first runtime path with local console mode, telnet/network mode, multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, and scheduler shell.
+The repository now includes the first Librarium compiler source in `Apps/Compiler` and generated Classic runtime output in `Data/Classic`. The Librarium remains the source of truth; `/Data` is generated output and must not be hand-edited.
 
-GitHub Actions server build automation has been restored under `.github/workflows/dotnet-server.yml` and is configured to run on every branch push, every pull request, and manual dispatch. The official gate remains GitHub Actions after the user pushes local changes.
+Run with .NET when available:
 
-Runtime Milestone 1 does not add combat runtime, persistent accounts/characters, saves, AI worlds, custom worlds, formula changes, or non-Classic gameplay expansion.
-
-
-## CodeUpdate 0082 — Timing Constant Verification
-
-Added evidence-backed timing-constant claim records for 3.0s system/spell tick, 1.5s combat round, tick/round ratio, and tick clipping. No promotions or runtime replacements. Status: PASS_WITH_LIMITATIONS.
-
-## CodeUpdate 0083
-
-Performed internal timing evidence extraction across WCC/WBB imports, imported disassembly evidence, MMUD Explorer, and MBBSEmu. Host/module-driven timing is now internally corroborated. Exact Classic HP/mana/buff tick and combat-round constants remain unverified; MMUD Explorer introduces a conflicting 5-second combat-round modeling constant. No runtime formulas were replaced.
+```bash
+dotnet run --project Apps/Compiler -- build --world Classic --clean --root .
+```

@@ -1,0 +1,43 @@
+{
+  "code_update": "0124",
+  "title": "Librarium Enrichment Pass 1",
+  "baseline": "CodeUpdate0123",
+  "runtime_modified": false,
+  "data_generated_only": true,
+  "imported_databases_retained": true,
+  "object_files_enriched": 20,
+  "records_enriched_by_object": {
+    "items": 1950,
+    "spells": 1350,
+    "npcs": 1100,
+    "rooms": 951,
+    "spawns": 962,
+    "shops": 178,
+    "commands": 25,
+    "status_effects": 111,
+    "economy_rules": 22,
+    "banks": 27,
+    "classes": 58,
+    "races": 2,
+    "guilds": 44,
+    "skills": 13,
+    "events": 1501,
+    "triggers": 719,
+    "quests": 2100,
+    "ai_profiles": 27,
+    "worlds": 3,
+    "formulas": 32
+  },
+  "total_records_enriched": 11175,
+  "authority_rules": [
+    "Librarium is source of truth",
+    "/Data is generated output only",
+    "ImportedDatabases retained until Librarium 100% complete",
+    "Host edits Librarium; runtime consumes generated /Data; client read-only by world context"
+  ],
+  "known_open_conflicts": [
+    "physical_damage_reduction",
+    "dodge_order",
+    "special_attack_backstab_defense_order"
+  ]
+}

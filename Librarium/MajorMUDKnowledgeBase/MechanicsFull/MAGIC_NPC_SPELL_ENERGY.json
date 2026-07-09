@@ -1,0 +1,570 @@
+{
+  "id": "MAGIC.NPC_SPELL_ENERGY",
+  "bucket": "Magic",
+  "name": "NPC spell energy and double-cast behavior",
+  "description": "NPC spell cost/refund behavior including half-cost on failed/resisted spell and possible second cast.",
+  "knowledge_status": "high_confidence_verified",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2363,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 18,
+  "keywords_used": [
+    "spell energy",
+    "energy",
+    "half",
+    "refund",
+    "second spell",
+    "cast"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1855,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 4860,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 4528,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "Public Function GetSpellMinDamage(ByVal nSpellNumber As Long, Optional ByVal nCastLevel As Integer, Optional nEnergyRem As Integer, _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 4598,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "GetSpellMinDamage = GetSpellMinDamage + GetSpellMinDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 4610,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "Public Function GetSpellMaxDamage(ByVal nSpellNumber As Long, Optional ByVal nCastLevel As Integer, Optional nEnergyRem As Integer, _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 4680,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "GetSpellMaxDamage = GetSpellMaxDamage + GetSpellMaxDamage(nEndCast, nCastLevel, nEnergyRem, bForMonster)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 5498,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 987,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "nCasts = Fix(1000 / tabSpells.Fields(\"EnergyCost\"))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 163,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "-UP: spell calculations will now take energy into account"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 419,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "combat",
+      "text": "Dim nRemainingEnergy As Long, nEnergyUsed As Integer, bShowHitSpell As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 176,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "-UP: spell calculations will now take energy into account"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3398,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "ts.Write (Spellrec.Energy & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3515,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "tabSpells.Fields(\"Energy\") = Spellrec.Energy"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2163,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "Spellrec.Energy = tabSpells.Fields(\"Energy\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 2165,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "tabSpells.Fields(\"EnergyCost\") = 0"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 5055,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "tabSpells.Fields(\"EnergyCost\") = Spellrec.Energy"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "line": 2037,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "magic",
+      "text": "If Spellrec.Energy > nVal Then bAdd = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "line": 2038,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "magic",
+      "text": "If chkFilterExcludeZero.Value = 1 And Spellrec.Energy = 0 Then bAdd = False"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 481,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "combat",
+      "text": "Dim nRemainingEnergy As Long, nEnergyUsed As Integer, bShowHitSpell As Boolean"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 1934,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "If tabSpells.Fields(\"EnergyCost\") > 0 And tabSpells.Fields(\"EnergyCost\") <= 500 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 1935,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "GetSpellManaCost = GetSpellManaCost * Fix(1000 / tabSpells.Fields(\"EnergyCost\"))"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 3453,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "nCostCopper = nCost * 10000"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 3455,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "nCostCopper = nCost * 1000000"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 3517,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "nCopperBuy = nBaseCost * 10000"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 129,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<th>#</th><th>Name</th><th>Type</th><th>Resistable</th><th>Energy</th><th>Min</th><th>Max</th><th>Attack<br>Chance</th><th>Accy. or<br>Cast%</th>"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/.gitignore",
+      "line": 298,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "build_meta",
+      "text": "# Paket dependency manager"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 66,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "4. **Host Process** (`HostProcess/`): `MbbsHost` manages module lifecycle, session scheduling, and execution units. `ExecutionUnit` wraps CPU contexts for concurrent module operations."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "6. **Sessions** (`Session/`): `SessionBase` subclasses handle different connection types (Telnet, Rlogin, local console). Sessions are assigned channel numbers and manage user I/O buffers."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 76,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "- **Logging** (`Logging/`): `LogFactory` manages `MessageLogger`, `AuditLogger`, `CPULogger` with pluggable targets."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 59,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "var resourceManager = ResourceManager.GetTestResourceManager();"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 63,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "File.WriteAllBytes(Path.Combine(_modulePath, file), resourceManager.GetResource($\"MBBSEmu.Tests.Assets.{file}\").ToArray());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFile_Tests.cs",
+      "line": 26,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "CopyFilesToTempPath(ResourceManager.GetTestResourceManager());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFile_Tests.cs",
+      "line": 34,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "private void CopyFilesToTempPath(IResourceManager resourceManager)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFile_Tests.cs",
+      "line": 38,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "File.WriteAllBytes(Path.Combine(_modulePath, file), resourceManager.GetResource($\"MBBSEmu.Tests.Assets.{file}\").ToArray());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Converters/JsonModuleConfigurationFileConverter_Tests.cs",
+      "line": 15,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "var resourceManager = ResourceManager.GetTestResourceManager();"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Converters/JsonModuleConfigurationFileConverter_Tests.cs",
+      "line": 19,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "//Determine Platform and using a switch, set the file to be opened using resourceManager and the resulting BasePath"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Converters/JsonModuleConfigurationFileConverter_Tests.cs",
+      "line": 28,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "resourceManager.GetString(\"MBBSEmu.Tests.Assets.Module_Single_NoPatch_BasePath_Windows.json\");"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 57,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast '.$long_name.' at you, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 58,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of '.$long_name;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'HEAL'; $attacks[$i][2] = 'The room casts room heal on you, healing DMG damage!'; $attacks[$i][3] = 'AAAAAAA';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 64,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast hellstorm, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 65,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of hellstorm';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $between_rounds[$i][0] = 'CHAINS'; $between_rounds[$i][1] = 'Glowing silver manacles clamp around your wrists!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 101,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "AddStrip(array('Also here:', 'You hear movement ', ' into the room from ', ' just entered the Realm', ' just left the Realm', ' just hung up', ' peeks in from ', 'the server will be shutting', 'nightly \"auto-cleanup\"', 'Please finish up and log off', 'Software caused connection abort', 'Session ended', 'or type \"new\"', 'Enter your password', 'password you have given', 'glad to see you back', 'majo"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 13,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "function AddAttack($name, $type, $energy, $min, $max, $attack_chance, $success_chance, $resistable=0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 18,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['energy'] = $energy;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 28,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['no_energy'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 29,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['remaining_energy_yes'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 30,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['remaining_energy_no'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 34,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['attempt_stats'][$x]['energy'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 60,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "if (!empty($name) && $energy > 0 && $max > 0 && $attack_chance > 0 && $success_chance > 0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "AddAttack($name,$type,$energy,$min,$max,$attack_chance,$success_chance,$resistable);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 92,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "//  \t\tname\t\ttype\t\tenergy\tmin\tmax\tattack%\tsuccess%"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 148,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "<?php foreach (array('energy', 'min', 'max', 'attack_chance', 'success_chance') as $var):"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 196,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['remaining_per_attack'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 197,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['remaining_after_attack'] = array(1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 203,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$last_attack['energy'] = 0; $last_attack['type'] = '';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 213,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$last_attack['energy'] = 0; $last_attack['type'] = '';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 218,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$last_attack['energy'] = $attack['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 221,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "if ($remaining_energy < $attack['energy']) {"
+    }
+  ]
+}

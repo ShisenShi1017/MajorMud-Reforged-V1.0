@@ -1,5 +1,16 @@
 # Reforged Agent Instructions
 
+
+## Current Baseline — CodeUpdate 0118
+
+- Librarium is the authoritative source of truth.
+- `/Data` is generated runtime output per world.
+- `/ImportedDatabases` must be retained until the Librarium is 100% complete and the user explicitly approves retirement.
+- Host/server/editor modifies Librarium world definitions and overlays.
+- Client is read-only and receives data for the active connected world.
+- Keep docs, handoffs, evidence, and decision records aligned with this model.
+
+
 These instructions are mandatory for every AI assistant, Codex session, ChatGPT session, and developer handoff working on this repository.
 
 ## 1. Identify the work mode first

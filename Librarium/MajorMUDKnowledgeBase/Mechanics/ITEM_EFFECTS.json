@@ -1,0 +1,222 @@
+{
+  "mechanic_id": "ITEM_EFFECTS",
+  "name": "Item and Equipment Effects",
+  "domain": "Items / Equipment",
+  "description": "Equipment modifiers, effects, restrictions, charges, flags, and stat interactions.",
+  "status": "probable_needs_reconstruction",
+  "confidence": "medium_reconstruction_needed",
+  "evidence_hit_count": 1738,
+  "source_counts": {
+    "MBBSEmu": 1015,
+    "MMUDExplorer": 284,
+    "NightmareRedux": 439
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "primary_buckets": {
+    "tooling_ui": 399,
+    "character_progression": 373,
+    "commands_client": 275,
+    "networking_runtime": 216,
+    "data_schema": 150,
+    "items_equipment": 102,
+    "quests_scripts": 80,
+    "tests_validation": 77,
+    "combat": 55,
+    "logging_debug": 7
+  },
+  "unique_evidence_files": 311,
+  "top_evidence_files": [
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "hits": 90
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "hits": 89
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "hits": 82
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/MbbsHost.cs",
+      "hits": 80
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "hits": 73
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "hits": 62
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "hits": 58
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "hits": 53
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "hits": 43
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 41
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "hits": 37
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "hits": 30
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/ADD_Tests.cs",
+      "hits": 27
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/anpbtv_Tests.cs",
+      "hits": 26
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "hits": 23
+    }
+  ],
+  "open_conflicts": [],
+  "runtime_status": "requires_formula_record_expansion_before_runtime_sync",
+  "reconstruction_notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 1,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "Monster Item Drop Percentage Modifier 8/5/2021 @ 11:11:49 AM"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 498,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "quests_scripts",
+      "text": "9537|0|9483|death spell of dark mage -- flag check, give 175 mill exp bonus"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 503,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "quests_scripts",
+      "text": "9547|0|0|death spell connected to text block -- flag check, add 50 mill exp bonus"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 59,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "'Becouse I have no idea how the buld process works and I could not stop it moving the f$%king buttons"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 332,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "' called only from substitutedWndProc for MDI window"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 845,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "' process (even if it is over another object)"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 106,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Declare Function CallWindowProc Lib \"user32\" Alias \"CallWindowProcA\" (ByVal lpPrevWndFunc As Long, ByVal hWnd As Long, ByVal Msg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 182,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Private pfWndProc As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 257,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Public Declare Function DefWindowProc Lib \"user32\" Alias \"DefWindowProcA\" (ByVal hWnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 316,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "'/// m_lPrevProc is the address of the procedure"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 319,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Private m_lPrevProc As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 343,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Private Const GWL_WNDPROC = (-4)"
+    }
+  ]
+}

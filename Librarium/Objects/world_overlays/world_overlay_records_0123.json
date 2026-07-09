@@ -1,0 +1,39 @@
+{
+  "code_update": "0123",
+  "librarium_authority": "source_of_truth",
+  "runtime_export": "Data remains generated from Librarium; runtime gameplay code unchanged in 0123.",
+  "source_priority": [
+    "OriginalRuntimeObservation",
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUD-Explorer",
+    "MajorMUD-PHP-Monster-Sim"
+  ],
+  "object_type": "world_overlay",
+  "source": "SOURCE_OF_TRUTH.md + repository rules",
+  "record_count": 2,
+  "records": [
+    {
+      "id": "world_overlay.custom",
+      "name": "Custom world validated overrides",
+      "object_type": "world_overlay",
+      "applies_to": "world.template.custom",
+      "rules": [
+        "may override host-editable Librarium definitions",
+        "must validate before export",
+        "must not mutate Classic evidence branch"
+      ]
+    },
+    {
+      "id": "world_overlay.ai",
+      "name": "AI world constrained generated overrides",
+      "object_type": "world_overlay",
+      "applies_to": "world.template.ai",
+      "rules": [
+        "AI changes use a working Librarium branch",
+        "host approval configurable",
+        "validation required before export"
+      ]
+    }
+  ]
+}

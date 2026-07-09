@@ -1,0 +1,407 @@
+{
+  "id": "DATA.ID_LINKS",
+  "bucket": "Data Schema",
+  "name": "ID/link relationships",
+  "description": "Cross-table references between rooms, NPCs, items, spells, shops, quests, and effects.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2493,
+  "representative_evidence_count": 42,
+  "representative_source_path_count": 23,
+  "keywords_used": [
+    "id",
+    "index",
+    "link",
+    "reference",
+    "lookup"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 181,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Let nBetweenRoundResistDmgMR(ByVal Index As Integer, ByVal iData As Integer)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 182,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nBetweenRoundResistDmgMR(Index) = iData"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 189,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Let nBetweenRoundResistType(ByVal Index As Integer, ByVal iData As Integer)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 190,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nBetweenRoundResistType(Index) = iData"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterIndex.frm",
+      "line": 110,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": ".MINWIDTH = 500 + (TITLEBAR_OFFSET / 10)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterIndexChanger.frm",
+      "line": 874,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "tabWorkingTable.Index = \"idxRooms\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterIndexChanger.frm",
+      "line": 904,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "MsgBox \"Group Invalid on Monster #\" & tabMonsters.Fields(\"Number\") & \" (\" & ClipNull(tabMonsters.Fields(\"Name\")) & \")\", vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterIndexChanger.frm",
+      "line": 924,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "MsgBox \"Mon Type Invalid on Room #\" & tabRooms.Fields(\"Map Number\") & \"/\" & tabRooms.Fields(\"Room Number\"), vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "line": 754,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "tabWorkingTable.Index = \"idxRooms\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "line": 770,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "tabWorkingTable.Index = \"idxTextblocks\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps_vO.bas",
+      "line": 644,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "'Bit 15 (mask 0x8000): reference to having a character but not paid on the bbs"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/readme.rtf",
+      "line": 41,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "\\snext11 \\ssemihidden \\sunhideused \\sqformat Normal Table;}{\\*\\cs15 \\additive \\rtlch\\fcs1 \\af0 \\ltrch\\fcs0 \\ul\\cf17 \\sbasedon10 \\sunhideused \\styrsid1602527 Hyperlink;}}{\\*\\listtable{\\list\\listtemplateid-1560145574\\listhybrid{\\listlevel\\levelnfc23"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 811,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public void GetDirectRecordBadIndex()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/strchr_Tests.cs",
+      "line": 40,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "Assert.Equal(strPointer.Offset + a.IndexOf(toFind), mbbsEmuCpuRegisters.AX);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 126,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "**Why a giant switch and not a dictionary/delegate table:** The large `switch` on `Mnemonic` is intentional. When the .NET JIT compiles this to native code, it emits an optimized jump table \u2014 a single indexed jump instruction rather than a chain of comparisons or dictionary lookups. This makes dispatch O(1) with minimal overhead (one bounds check + indirect jump), which matters critically here sin"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/Artifacts/NonResidentName.cs",
+      "line": 9,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public ushort IndexIntoEntryTable { get; set; }"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/Artifacts/ResidentName.cs",
+      "line": 9,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public ushort IndexIntoEntryTable { get; set; }"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/NEFile.cs",
+      "line": 157,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "residentName.IndexIntoEntryTable = BitConverter.ToUInt16(FileContent, WindowsHeader.ResidentNameTableOffset + i);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/NEFile.cs",
+      "line": 242,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "NonResidentNameTable.Add(new NonResidentName() { Name = name, IndexIntoEntryTable = indexIntoEntryTable });"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/Structs/UserAccount.cs",
+      "line": 426,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "return Encoding.ASCII.GetString(useridSpan.Slice(0, Array.IndexOf(userid, (byte)0x0)));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Memory/ProtectedModeMemoryCore.cs",
+      "line": 244,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "public override FarPtr GetBigMemoryBlock(FarPtr block, ushort index) => _bigMemoryBlocks[block.Offset][index];"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Module/MBBSModule.cs",
+      "line": 252,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "var initEntryPoint = dll.File.EntryTable.First(x => x.Ordinal == initNonResidentName.IndexIntoEntryTable);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Module/MBBSModule.cs",
+      "line": 259,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "var initEntryPoint = dll.File.EntryTable.First(x => x.Ordinal == initResidentName.IndexIntoEntryTable);"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 243,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Let nBetweenRoundResistDmgMR(ByVal Index As Integer, ByVal iData As Integer)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 244,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nBetweenRoundResistDmgMR(Index) = iData"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 251,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Let nBetweenRoundResistType(ByVal Index As Integer, ByVal iData As Integer)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 252,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nBetweenRoundResistType(Index) = iData"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27074,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "If cmbGlobalClass(0).ListIndex > 0 And tabClasses.RecordCount > 0 And chkInvenHideCharStats.Value = 0 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27131,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "If cmbGlobalRace(0).ListIndex > 0 And tabRaces.RecordCount > 0 And chkInvenHideCharStats.Value = 0 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modForms.bas",
+      "line": 277,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Call SetWindowSubclass(LVhWnd, AddressOf ListViewSubclassProc, ObjPtr(frm), INVALID_INDEX)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modListViewExt.bas",
+      "line": 94,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "'       - 1-based index of an internal hidden column used as a stable, monotonic row sequence for"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modListViewExt.bas",
+      "line": 1211,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "quests_scripts",
+      "text": "st.LastCol = col.Index          ' <-- critical to avoid drift on refresh"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modListViewExt.bas",
+      "line": 1454,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "If .SubItemIndex <> idx - 1 Then .SubItemIndex = idx - 1"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modListViewExt.bas",
+      "line": 1863,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "If .SubItemIndex <> idx - 1 Then .SubItemIndex = idx - 1"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 7,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "MBBSEmu is a cross-platform emulator for running legacy MajorBBS and Worldgroup modules (16-bit NE format DLLs) on modern systems. It emulates both the Galacticomm host environment and an x86-16 processor. Written in C# targeting .NET 10."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 40,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "character_progression",
+      "text": "the result stays valid ASCII and still compiles, making the damage easy to miss in a quick diff."
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 215,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<form action=\"capture_parse.php\" method=\"post\" enctype=\"multipart/form-data\" name=\"form1\" id=\"form1\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 222,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<br><input type=\"submit\" name=\"submit_ignore_unparsed\" id=\"submit_ignore_unparsed\" value=\"Upload and remove unparsed lines.\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 57,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$resistable = (int)preg_replace(\"/[^0-2]/\", '', $_POST['resistable'][$index]);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 120,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "table.thinborders td, table.thinborders th { border: 1px solid black; }"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 143,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<td><select name=\"resistable[]\" id=\"resistable<?php echo $x; ?>\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 159,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "<input type=\"number\" name=\"character_dodge\" id=\"character_dodge\" size=\"5\" value=\"<?php echo $character_dodge; ?>\"> &nbsp;"
+    }
+  ]
+}

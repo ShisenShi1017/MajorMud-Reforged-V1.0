@@ -1,0 +1,570 @@
+{
+  "id": "NPC.FIELD_SCHEMA",
+  "bucket": "NPC AI",
+  "name": "Monster/NPC field schema",
+  "description": "Monster data layout, flags, stats, attacks, spells, and behavior fields.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 23718,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 10,
+  "keywords_used": [
+    "monster",
+    "npc",
+    "mob",
+    "field",
+    "flag",
+    "schema"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 33410,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "sAlsoHere = \"Also Here (\" & tLairInfo.nMaxRegen & \"): \" & sNPC & IIf(sNPC = \"\", \"\", \", \") & GetMultiMonsterNames(tLairInfo.sMobList & \",\", bHideRecordNumbers)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMap.frm",
+      "line": 44715,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "sAlsoHere = \"Also Here (\" & tLairInfo.nMaxRegen & \"): \" & sNPC & IIf(sNPC = \"\", \"\", \", \") & GetMultiMonsterNames(tLairInfo.sMobList & \",\", bHideRecordNumbers)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmHelpMonsters.frm",
+      "line": 76,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": "Attribute VB_Creatable = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmHelpMonsters.frm",
+      "line": 131,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": ".Move .Left, .Top, lUseWidth - 125, lUseHeight - TITLEBAR_OFFSET - 760"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmHelpMonsters.frm",
+      "line": 136,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": ".Move .Left, .Top, lUseWidth - 125, lUseHeight - TITLEBAR_OFFSET - 760"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmHelpMonsters.frm",
+      "line": 141,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": ".Move .Left, .Top, lUseWidth - 125, lUseHeight - TITLEBAR_OFFSET - 760"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 647,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'It looks like it only gets flagged as from bad source if it's a monster greet text or a spell textblock"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 2841,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "tabMonsters.Fields(\"ScriptValue\") = nMobScriptValue"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 5773,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": "Caption         =   \"Type + and - in the '#' field to cycle though the abilities.  You can also type the name of the ability in the 'Name' field.\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 6211,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": "Attribute VB_Creatable = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 6219,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": "Dim nCurrentRecord As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 6260,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": "If bLoaded Then Call saverecord(nCurrentRecord)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 6441,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": "MsgBox \"No Records Matched.\", vbInformation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "line": 6693,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "npc_ai",
+      "text": ".MINHEIGHT = 475 + (TITLEBAR_OFFSET / 10) + 12"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 206,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "btrieveFileSpec.flags.Should().Be(0);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 213,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "flags = (ushort) (EnumKeyAttributeMask.Duplicates | EnumKeyAttributeMask.UseExtendedDataType),"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 222,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "flags = (ushort) (EnumKeyAttributeMask.Modifiable | EnumKeyAttributeMask.UseExtendedDataType),"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 230,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "flags = (ushort) (EnumKeyAttributeMask.Duplicates | EnumKeyAttributeMask.Modifiable | EnumKeyAttributeMask.UseExtendedDataType),"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 238,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "flags = (ushort) EnumKeyAttributeMask.UseExtendedDataType,"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 275,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "var accelFlags = BitConverter.ToUInt16(Data.AsSpan().Slice(0xA, 2));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 276,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "if (accelFlags != 0)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 277,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "return (false, $\"Valid accel flags, expected 0, got {accelFlags}! {FileName}\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 344,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "if (attributes.HasFlag(EnumKeyAttributeMask.UseExtendedDataType))"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 347,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "dataType = attributes.HasFlag(EnumKeyAttributeMask.OldStyleBinary) ? EnumKeyDataType.OldBinary : EnumKeyDataType.OldAscii;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 355,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "Segment = attributes.HasFlag(EnumKeyAttributeMask.SegmentedKey),"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 356,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "SegmentOf = attributes.HasFlag(EnumKeyAttributeMask.SegmentedKey) ? currentKeyNumber : (ushort)0,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 32971,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "oLI.Text = \"NPC: \" & GetMonsterName(tabRooms.Fields(\"NPC\"), bHideRecordNumbers)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 33362,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "sNPC = GetMonsterName(tabRooms.Fields(\"NPC\"), bHideRecordNumbers) & \" (NPC)\"  '\"NPC: \" &"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 33440,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "sAlsoHere = \"Also Here: \" & sNPC & IIf(sNPC = \"\", \"\", \", \") & GetMultiMonsterNames(mid(tabRooms.Fields(\"Lair\"), InStr(1, tabRooms.Fields(\"Lair\"), \":\") + 2), bHideRecordNumbers)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMap.frm",
+      "line": 44667,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "sNPC = GetMonsterName(tabRooms.Fields(\"NPC\"), bHideRecordNumbers) & \" (NPC)\"  '\"NPC: \" &"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMap.frm",
+      "line": 44745,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "sAlsoHere = \"Also Here: \" & sNPC & IIf(sNPC = \"\", \"\", \", \") & GetMultiMonsterNames(mid(tabRooms.Fields(\"Lair\"), InStr(1, tabRooms.Fields(\"Lair\"), \":\") + 2), bHideRecordNumbers)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMap.frm",
+      "line": 45472,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "oLI.Text = \"NPC: \" & GetMonsterName(tabRooms.Fields(\"NPC\"), bHideRecordNumbers)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 355,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "If GetLairAveragesFromLocs.nNumAntiMagic > 0 And GetLairAveragesFromLocs.nNumAntiMagic >= (GetLairAveragesFromLocs.nMobs / 2) Then DF_Flags = DF_Flags Or DFIAM_IsAntiMag"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 356,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "If GetLairAveragesFromLocs.nNumUndeads > 0 And GetLairAveragesFromLocs.nNumUndeads >= (GetLairAveragesFromLocs.nMobs * LAIR_FLAG_RATIO) Then DF_Flags = DF_Flags Or DF023_IsUndead"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 357,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "If GetLairAveragesFromLocs.nNumLiving > 0 And GetLairAveragesFromLocs.nNumLiving >= (GetLairAveragesFromLocs.nMobs * LAIR_FLAG_RATIO) Then DF_Flags = DF_Flags Or DF109_IsLiving"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 358,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "If GetLairAveragesFromLocs.nNumAnimals > 0 And GetLairAveragesFromLocs.nNumAnimals >= (GetLairAveragesFromLocs.nMobs * LAIR_FLAG_RATIO) Then DF_Flags = DF_Flags Or DF078_IsAnimal"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 22,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "if(isset($_POST[\"submit\"]) || isset($_POST['submit_ignore_unparsed'])) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 35,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$unparsed = array();"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'BITE'; $attacks[$i][2] = 'The SOURCE bites you for DMG damage!'; $attacks[$i][3] = 'The SOURCE lunges at you';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 81,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "//remove non-printable characters"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 118,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($between[1], '/')).\".*/\", 'PARSED_'.$between[0].$num.',0,between', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 137,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$hit.\".*/\", 'PARSED_'.$attack[1].$num.',$1', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 143,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "if ($captured_data_lines[$x] != 'NEWROUND' && substr($captured_data_lines[$x], 0, strlen('PARSED_')) != 'PARSED_') {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 144,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "if (isset($_POST['submit_ignore_unparsed'])) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 147,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "//echo 'Unparsed: '.$captured_data_lines[$x];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 148,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$unparsed[] = $captured_data_lines[$x];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 151,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$captured_data_lines[$x] = preg_replace(\"/PARSED_(.*)/\", '$1', $captured_data_lines[$x]);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 156,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "if (empty($unparsed) && !empty($capture_data)) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 204,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<title>Capture Parse</title>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 207,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<?php if (!empty($unparsed)): ?>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 209,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "Unparsed Lines (<?php echo count($unparsed); ?>):"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 210,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<?php echo implode(\"\\r\\n\", $unparsed); ?>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 215,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<form action=\"capture_parse.php\" method=\"post\" enctype=\"multipart/form-data\" name=\"form1\" id=\"form1\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 222,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<br><input type=\"submit\" name=\"submit_ignore_unparsed\" id=\"submit_ignore_unparsed\" value=\"Upload and remove unparsed lines.\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 119,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "table.thinborders { border-collapse: collapse; }"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 120,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "table.thinborders td, table.thinborders th { border: 1px solid black; }"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 127,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<table cellpadding=\"4\" cellspacing=\"0\" border=\"0\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 154,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "</table>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 353,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<table cellpadding=\"4\" cellspacing=\"0\" border=\"0\" class=\"thinborders\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 393,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "</table>"
+    }
+  ]
+}

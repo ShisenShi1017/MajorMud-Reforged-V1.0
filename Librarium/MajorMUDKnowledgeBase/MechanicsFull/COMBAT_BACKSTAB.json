@@ -1,0 +1,145 @@
+{
+  "id": "COMBAT.BACKSTAB",
+  "bucket": "Combat",
+  "name": "Backstab/special attack resolution",
+  "description": "How backstab and special physical attacks interact with hit, dodge, defenses, and damage.",
+  "knowledge_status": "open_conflict",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 251,
+  "representative_evidence_count": 13,
+  "representative_source_path_count": 6,
+  "keywords_used": [
+    "backstab",
+    "sneak",
+    "special attack",
+    "ambush"
+  ],
+  "notes": [
+    "Conflict carried forward: special/backstab defense order requires exact pipeline resolution."
+  ],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 20,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "if the character wasn't also backstabbing. Even in those cases, it was the backstab weapon magic being considered."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 52,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "-FIX: Backstab accuracy calculation for [GreaterMUD]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 525,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "-NEW: backstab calculator"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 432,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "-NEW: backstab calculator"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 18,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "if the character wasn't also backstabbing. Even in those cases, it was the backstab weapon magic being considered."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 49,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "-FIX: Backstab accuracy calculation for [GreaterMUD]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 5,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "character_progression",
+      "text": "Caption         =   \"Backstab Calculator\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmHitCalc.frm",
+      "line": 228,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"Backstab\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmHitCalc.frm",
+      "line": 957,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "tooling_ui",
+      "text": "Dim bShadow As Boolean, bSeeHidden As Boolean, bBackstab As Boolean, bVSplayer As Boolean"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmHitCalc.frm",
+      "line": 963,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "tooling_ui",
+      "text": "If optHitCalcType(1).Value = True Then bBackstab = True"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmHitCalc.frm",
+      "line": 1023,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "tooling_ui",
+      "text": "nVileWard, eEvil, bShadow, bSeeHidden, bBackstab, bVSplayer, nClass)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmHitCalc.frm",
+      "line": 1094,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "tooling_ui",
+      "text": "'        If optHitCalcType(1).Value = True Then 'backstab - bs defense"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps_vO.bas",
+      "line": 625,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "SomeUserFlags(7) As Byte            '8      1788   629  flag sneaking (0x6f4==1780): *(uint16_t*)((char*)arg1 + 0x6f4) |= 4;"
+    }
+  ]
+}

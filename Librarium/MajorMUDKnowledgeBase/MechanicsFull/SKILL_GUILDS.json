@@ -1,0 +1,153 @@
+{
+  "id": "SKILL.GUILDS",
+  "bucket": "Skills and Abilities",
+  "name": "Guild mechanics",
+  "description": "Guild membership, abilities, restrictions, and progression.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 20,
+  "representative_evidence_count": 14,
+  "representative_source_path_count": 4,
+  "keywords_used": [
+    "guild",
+    "hall",
+    "member",
+    "guild"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsMenuItems.cls",
+      "line": 82,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute NewEnum.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 66,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute m_colIcons.VB_VarMemberFlags = \"440\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 68,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute m_colTrayIcons.VB_VarMemberFlags = \"440\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 166,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute MainMenu.VB_VarMemberFlags = \"400\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 200,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseMenuItemClick.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 216,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildCreate.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 233,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildDestroy.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 246,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildMinimize.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 263,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildMaximize.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 280,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildRestore.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 297,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildActivate.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 2857,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute MenuButtonIcon.VB_MemberFlags = \"400\""
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/LICENSE",
+      "line": 12,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "non_gameplay",
+      "text": "The above copyright notice and this permission notice shall be included in all"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "line": 217,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "items_equipment",
+      "text": "' Membership test against a parsed paste"
+    }
+  ]
+}

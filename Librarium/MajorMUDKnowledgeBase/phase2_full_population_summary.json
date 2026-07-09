@@ -1,0 +1,34 @@
+{
+  "generated_utc": "2026-07-09T18:17:31.449572+00:00",
+  "phase": "Phase 2 Full Librarium Population",
+  "definition": "Populates the Librarium framework with mechanic-level records across all mined gameplay areas from the exhausted Phase 1 evidence corpus.",
+  "source_corpus_evidence_hits": 31281,
+  "mechanic_records_created": 60,
+  "records_by_status": {
+    "high_confidence_verified": 6,
+    "probable_multi_source": 51,
+    "open_conflict": 3
+  },
+  "records_by_bucket": {
+    "Combat": 10,
+    "Magic": 9,
+    "Character Progression": 6,
+    "Items and Equipment": 7,
+    "NPC AI": 6,
+    "World and Spawns": 4,
+    "Quests and Scripts": 2,
+    "Economy and Shops": 4,
+    "Commands and Client": 2,
+    "Skills and Abilities": 2,
+    "Status Effects": 2,
+    "Data Schema": 3,
+    "Runtime Support": 3
+  },
+  "runtime_modified": false,
+  "open_conflicts_carried_forward": [
+    "COMBAT.DR_PHYSICAL",
+    "COMBAT.DODGE_ORDER",
+    "COMBAT.BACKSTAB"
+  ],
+  "important_caveat": "Records are populated from the exhausted evidence corpus using automated extraction and representative evidence selection. Implementation still requires per-record review/test generation before runtime changes."
+}

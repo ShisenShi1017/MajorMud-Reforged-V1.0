@@ -1,0 +1,220 @@
+{
+  "mechanic_id": "MAGIC_RESIST",
+  "name": "Magic Resistance",
+  "domain": "Magic",
+  "description": "Magic resistance check and spell damage reduction behavior.",
+  "status": "verified_high_confidence",
+  "confidence": "high",
+  "evidence_hit_count": 730,
+  "source_counts": {
+    "MMUDExplorer": 420,
+    "MonsterSim": 35,
+    "NightmareRedux": 275
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "primary_buckets": {
+    "combat": 330,
+    "tooling_ui": 228,
+    "character_progression": 143,
+    "magic": 11,
+    "data_schema": 7,
+    "items_equipment": 5,
+    "npc_ai": 3,
+    "world_spawns": 3
+  },
+  "unique_evidence_files": 31,
+  "top_evidence_files": [
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "hits": 117
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "hits": 103
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "hits": 97
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "hits": 64
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "hits": 56
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "hits": 53
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "hits": 45
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMonsterAttackSim.frm",
+      "hits": 41
+    },
+    {
+      "source": "MonsterSim",
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "hits": 32
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 20
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "hits": 11
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "hits": 8
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps.bas",
+      "hits": 7
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps_vN.bas",
+      "hits": 7
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps_vO.bas",
+      "hits": 7
+    }
+  ],
+  "open_conflicts": [],
+  "runtime_status": "ready_for_test_mapping_before_runtime_sync",
+  "reconstruction_notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 47,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: Changed drop down spell editor's \"Type of Resist\" to what I believe they actually mean"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 52,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: Added spell resist type (if the spell is completely resistible)"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 164,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: added boxes to show spell damage vs. X MR for damage spells"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 314,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-NEW: \"Charm Resistance\" field for monsters added (thx Tsunami)"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 30,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nAtkResist(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 31,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nAtkMRdmgResist(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 36,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nStatAtkDmgResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 40,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nStatHitSpell_AtkDmgResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 42,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nStatBetweenRound_AtkDmgResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 83,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nBetweenRoundResistType(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 84,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nBetweenRoundResistDmgMR(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 177,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nBetweenRoundResistDmgMR(ByVal Index As Integer) As Integer"
+    }
+  ]
+}

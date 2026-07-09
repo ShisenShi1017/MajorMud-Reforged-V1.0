@@ -1,0 +1,13 @@
+{
+  "schema_version": "0116.1",
+  "world_id": "ai-template",
+  "display_name": "AI World Template",
+  "mode": "ai",
+  "definition_policy": "host_editable_ai_constraints_with_validation",
+  "host_editable": true,
+  "client_access": "read_only",
+  "data_export_path": "Data/Worlds/ai-template",
+  "inherits_from": "classic",
+  "override_path": "Librarium/WorldOverrides/ai-template",
+  "ai_constraints_required": true
+}

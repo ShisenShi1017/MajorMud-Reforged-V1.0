@@ -1,0 +1,498 @@
+{
+  "id": "RUNTIME.PERSISTENCE",
+  "bucket": "Runtime Support",
+  "name": "Account/character persistence contracts",
+  "description": "Save/load data, slots, character state, and world isolation.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 4903,
+  "representative_evidence_count": 52,
+  "representative_source_path_count": 14,
+  "keywords_used": [
+    "save",
+    "load",
+    "character",
+    "account",
+    "slot",
+    "persist"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 69,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-NEW: complete overhaul of database exporter.  support for multiple ranges of records, ability to save config files, **import record numbers from existing database**"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 133,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: clicking save will now update the text on the row in the record list"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 163,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "-UP: spell calculations will now take energy into account"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 241,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "-NEW: shops now show bank account/cost info for gangshops"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 258,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "-FIX: had to save and re-click to see markup change on shops"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 280,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-FIX: class/race editors were reloading the record lists on close"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 358,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "-UP: optimized some loading code in users/monsters/spells/shops/items"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 362,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: fixed some tab orders and made search/goto fields have focus on load"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/cRegistry.cls",
+      "line": 4,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Persistable = 0  'NotPersistable"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 74,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "records, ability to save config files, **import record numbers from existing"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 146,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: clicking save will now update the text on the row in the record list"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 176,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "-UP: spell calculations will now take energy into account"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Module/MsgFile_Tests.cs",
+      "line": 85,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "File.WriteAllBytes(fileName, Load(\"MBBSEMU.MSG\").ToArray());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Module/MsgFile_Tests.cs",
+      "line": 89,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "File.ReadAllBytes(fileName).Should().BeEquivalentTo(Load(\"MBBSEMU.MSG\").ToArray());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Module/MsgFile_Tests.cs",
+      "line": 98,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "File.WriteAllBytes(fileName, Load(\"MBBSEMU.MSG\").ToArray());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "line": 3,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "This directory contains the C# implementations of the MajorBBS/Worldgroup SDK libraries. When a loaded module's x86 code executes a `CALL FAR` to a virtual segment (>= 0xFF00), the CPU fires `_invokeExternalFunctionDelegate`, which routes to the appropriate exported module's `Invoke(ordinal)` method. These classes are the bridge between the emulated 16-bit world and modern C#."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "line": 14,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "| `Doscalls.cs` | ~175 | OS/2-style DOS calls: DosAllocSeg, DosLoadModule, DosGetProcAddr, DosGetModHandle |"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "line": 75,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "**Important**: Pointer parameters consume 2 ordinal slots (offset + segment). So if param 0 is a pointer, the next scalar is at ordinal 2, not 1."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "line": 94,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "- Btrieve helpers: `BtrieveSaveProcessor()`, `BtrieveGetProcessor()`, `BtrieveDeleteProcessor()`, `BtrieveSetupGlobalPointer()`"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "line": 137,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "**Properties** (Phase 1) return a 4-byte `ReadOnlySpan<byte>` containing a `FarPtr` that points to the variable's location in module memory. These are used by the NE relocation process \u2014 the loader patches the module's code with the returned address."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "line": 194,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "- `USRACC` / `USAPTR` (account records), `EXTUSR` / `EXTPTR`"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1141,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "///     Saves a BtrieveFileProcessor for the given pointer to the Global Cache"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1145,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "private protected void BtrieveSaveProcessor(FarPtr btrievePointer, BtrieveFileProcessor btrieveFileProcessor) =>"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1218,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "//Save a local reference to the shared Processor"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 65,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "`Recordset` objects opened once at load: `tabItems`, `tabMonsters`, `tabSpells`, `tabRooms`,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 84,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Upon character load, learned spells that cannot be cast by the loaded character will be unlearned"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 100,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-FIX: Missed a spot where the loaded character's stats were still effecting the spellbook output of another magery"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 223,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-NEW: Option and fields to consider party defenses instead of the currently loaded character"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsRegistryRoutines.cls",
+      "line": 4,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Persistable = 0  'NotPersistable"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 14,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-FIX: Missed a spot where the loaded character's stats were still effecting the spellbook output of another magery"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 129,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-NEW: Option and fields to consider party defenses instead of the currently loaded character"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 81,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Upon character load, learned spells that cannot be cast by the loaded character will be unlearned"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 96,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-FIX: Missed a spot where the loaded character's stats were still effecting the spellbook output of another magery"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 211,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-NEW: Option and fields to consider party defenses instead of the currently loaded character"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 548,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "& \"Note: Stat/input fields are not updated once the tool is loaded. Click reset to refresh stats.\", vbInformation"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 1001,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "Call HandleError(\"SwingCalc_LoadItems\")"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 81,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "//remove non-printable characters"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 222,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<br><input type=\"submit\" name=\"submit_ignore_unparsed\" id=\"submit_ignore_unparsed\" value=\"Upload and remove unparsed lines.\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 48,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$character_dodge = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 73,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$character_dodge = (int)preg_replace(\"/[^0-9]/\", '', $_POST['character_dodge']);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 74,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($character_dodge > 1000) $character_dodge = 1000;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 75,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($character_dodge < 0) $character_dodge = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 158,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "<label for=\"character_dodge\">Dodge <strong>%</strong>:</label>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 159,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "<input type=\"number\" name=\"character_dodge\" id=\"character_dodge\" size=\"5\" value=\"<?php echo $character_dodge; ?>\"> &nbsp;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 161,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "<label for=\"character_ac\">AC:</label>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 164,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "<label for=\"character_dr\">DR:</label>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 167,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<label for=\"character_mr\">MR:</label>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 251,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($attack['type'] != 'spell' && $character_dodge > 0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 253,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($dodge_chance <= $character_dodge) { $attack_hit = false; $dodged = true; $attacks[$attack_num]['attempt_dodged_resisted']++; $total_dodge++; }"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 261,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "if (($attack['resistable'] == 1 && $character_antimagic == 1) || $attack['resistable'] == 2) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 264,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "if ( $resist_chance <= (($character_mr > 196 ? 196 : $character_mr)/2) ) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 285,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$dr_damage_resist = ($character_dr/2);"
+    }
+  ]
+}

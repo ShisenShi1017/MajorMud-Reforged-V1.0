@@ -1,0 +1,361 @@
+{
+  "id": "CHAR.XP_LEVEL",
+  "bucket": "Character Progression",
+  "name": "Experience and level progression",
+  "description": "XP thresholds, level checks, and leveling rules.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 13156,
+  "representative_evidence_count": 37,
+  "representative_source_path_count": 17,
+  "keywords_used": [
+    "experience",
+    "xp",
+    "level",
+    "advance"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 104,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: tool to combine monster experience and experience multiplier"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 107,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-UP: exp calc will copy to clipboard the selected levels experience"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 377,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: a pseudo tool to multiply just boss experience"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 617,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: divide monster experience"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 117,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: tool to combine monster experience and experience multiplier"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 120,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-UP: exp calc will copy to clipboard the selected levels experience"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 390,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: a pseudo tool to multiply just boss experience"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt",
+      "line": 25,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "---This function will divide all monster experience by a specific amount. (2-20) with a minimum experience of 1 possible. Useful for those who may have multiplied their monster experience more than they wanted to."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt",
+      "line": 27,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "---This function will multiply all monster experience by a specific amount. (2-20)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 146,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": ".Columns.Append \"Experience\", adDouble\t\t==> EXP"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4520,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "ts.Write ((CDbl(SLong2ULong(Monsterrec.Experience)) * CDbl(SLong2ULong(Monsterrec.ExpMulti))) & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4522,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "ts.Write (SLong2ULong(Monsterrec.Experience) & vbTab)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/mmud_edit.py",
+      "line": 31,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "if args.experience is not None:"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/mmud_edit.py",
+      "line": 32,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "#print('Experience is {}'.format(args.experience))"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/mmud_edit.py",
+      "line": 34,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "b[0x470] = ((args.experience >> 8) & 0xFF)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/mmud_edit.py",
+      "line": 35,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "b[0x471] = ((args.experience >> 16) & 0xFF)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/mmud_edit.py",
+      "line": 36,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "b[0x472] = ((args.experience >> 24) & 0xFF)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/readme.md",
+      "line": 12,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "quests_scripts",
+      "text": "mmud_edit.py --username=USERNAME [--experience=EXPERIENCE]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 196,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 409,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: filtering capabilities: cash, hp, damage, regen, experience"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 134,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "You gain 1500 experience."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 217,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "You gain 2250 experience."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 438,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "You gain 2576 experience."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 102,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 316,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: filtering capabilities: cash, hp, damage, regen, experience"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 184,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: Experience now calculated internally and no need for lltmmudxp.dll"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/exp-per-hour-models.md",
+      "line": 3,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "`CalcExpPerHour()` estimates effective experience/hour for a lair-style farming"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmExpCalc.frm",
+      "line": 351,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "lvCalcExp.ColumnHeaders.Add , , \"Experience\", 2800"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmExpCalc.frm",
+      "line": 354,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "lvCalcExp.ColumnHeaders.Add , , \"Experience\", 1800"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 35136,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "sClipBoardText = sClipBoardText & \"Experience:\" & (CalcExpNeededByRaceClass(nLevel, nClass, nRace) + 1) & vbCrLf"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 90,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "$regex_line_strips[] = 'You gain NUMVAR experience';"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 98,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "- `AllowUnsafeBlocks` is enabled \u2014 unsafe code is expected for low-level memory/CPU emulation."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 1,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "\ufeffLEVEL0 {MBBSEmu Test MSG File for MajorMUD Scenarios}"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 3,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "LEVEL1 {Hardware Setup Options}"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 5,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "LEVEL3 {Security and Accounting Options}"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 7,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "LEVEL4 {Configuration Options}"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 21,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "LEVEL8 {FSE Help Messages}"
+    }
+  ]
+}

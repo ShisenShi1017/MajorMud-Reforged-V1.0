@@ -1,0 +1,222 @@
+{
+  "mechanic_id": "SPAWN_TIMERS",
+  "name": "Spawn Timers and World Scheduling",
+  "domain": "World / Spawns",
+  "description": "Spawn timing, event timers, room/event scheduling, and world lifecycle references.",
+  "status": "probable_needs_reconstruction",
+  "confidence": "medium_reconstruction_needed",
+  "evidence_hit_count": 453,
+  "source_counts": {
+    "MBBSEmu": 100,
+    "MMUDExplorer": 295,
+    "NightmareRedux": 58
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "primary_buckets": {
+    "combat": 174,
+    "tooling_ui": 120,
+    "character_progression": 46,
+    "networking_runtime": 43,
+    "commands_client": 34,
+    "logging_debug": 12,
+    "world_spawns": 10,
+    "magic": 7,
+    "docs_notes": 5,
+    "tests_validation": 2
+  },
+  "unique_evidence_files": 60,
+  "top_evidence_files": [
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "hits": 123
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "hits": 26
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/MbbsHost.cs",
+      "hits": 25
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "hits": 25
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "hits": 22
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmCoinConvert.frm",
+      "hits": 12
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "hits": 11
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "hits": 11
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "hits": 9
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmSwingCalc.frm",
+      "hits": 9
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 8
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "hits": 8
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "hits": 8
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/AppSettingsManager.cs",
+      "hits": 7
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Galgsbl.cs",
+      "hits": 7
+    }
+  ],
+  "open_conflicts": [],
+  "runtime_status": "requires_formula_record_expansion_before_runtime_sync",
+  "reconstruction_notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 12,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer tmrRefresh"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 17,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer FlashTimer"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 22,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer tmrMouse"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 365,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub FlashTimer_Timer()"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 389,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "'Stop the Timer"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 390,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "FlashTimer.Enabled = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 581,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "'Start the Timer"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 582,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "FlashTimer.Enabled = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 593,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub tmrMouse_Timer()"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 595,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "' this timer is used to take away the focus rect, for bars"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 734,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "If InDesign = True Then: Stop: Else: Call HandleError(\"Class \" & TypeName(Me) & \"_tmrMouse_Timer\" & vbCrLf & \"Line# \" & Erl & vbCrLf & \"Err#\" & Err.Number & vbCrLf & \"Desc. \" & Err.Description, App.Title, \"\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 739,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub tmrRefresh_Timer()"
+    }
+  ]
+}

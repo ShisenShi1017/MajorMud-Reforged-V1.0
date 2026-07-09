@@ -1,0 +1,12 @@
+{
+  "code_update": "0125",
+  "compiler_role": "Validate Librarium world scope, resolve Classic/custom/AI overlays, apply generation contracts, emit /Data runtime packages, produce manifests and client read-only projections.",
+  "input": "Librarium/Objects + Librarium/GenerationReadiness + Librarium/Relationships",
+  "output": [
+    "Data/{world_id}/manifest.json",
+    "Data/{world_id}/*.json",
+    "Data/{world_id}/client_projection.json"
+  ],
+  "implementation_status": "contract_only_runtime_unchanged",
+  "next_code_update": "0126 Librarium compiler implementation"
+}

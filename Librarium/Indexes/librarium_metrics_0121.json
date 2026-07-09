@@ -1,0 +1,40 @@
+{
+  "code_update": "0121",
+  "date": "2026-07-09",
+  "canonical_sources": [
+    "MBBSEmu",
+    "MMUD-Explorer",
+    "MajorMUD-PHP-Monster-Sim",
+    "NightmareRedux"
+  ],
+  "source_count": 4,
+  "total_files": 941,
+  "text_files_scanned": 657,
+  "binary_or_asset_files": 284,
+  "raw_evidence_count": 115756,
+  "bucket_evidence_total_with_overlap": 1167444,
+  "bucket_counts": {
+    "combat": 115727,
+    "magic": 105655,
+    "npc": 107604,
+    "room": 102260,
+    "progression": 113781,
+    "world": 22441,
+    "command": 103563,
+    "item": 90646,
+    "status_effect": 92942,
+    "spawn": 61648,
+    "loot": 80172,
+    "quest": 91149,
+    "economy": 79856
+  },
+  "source_counts": {
+    "MBBSEmu": 15776,
+    "MMUD-Explorer": 39453,
+    "NightmareRedux": 59219,
+    "MajorMUD-PHP-Monster-Sim": 1308
+  },
+  "object_type_count": 32,
+  "open_conflict_count": 3,
+  "runtime_modified": false
+}

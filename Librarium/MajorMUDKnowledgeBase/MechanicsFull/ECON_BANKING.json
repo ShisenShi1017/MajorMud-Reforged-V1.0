@@ -1,0 +1,270 @@
+{
+  "id": "ECON.BANKING",
+  "bucket": "Economy and Shops",
+  "name": "Banking and money storage",
+  "description": "Deposit, withdraw, banked gold, and related persistence.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 474,
+  "representative_evidence_count": 27,
+  "representative_source_path_count": 9,
+  "keywords_used": [
+    "bank",
+    "deposit",
+    "withdraw",
+    "gold"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 4,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #52 - giant spider: Item #216 - gold ring: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 5,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #59 - Thrag: Item #211 - golden belt: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 13,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #69 - chest: Item #265 - golden broadsword: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 16,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #122 - high druid: Item #460 - golden sickle: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 71,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #588 - manscorpion king: Item #1170 - golden pike: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 96,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #658 - massive cocoon: Item #642 - white gold ring: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 98,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #700 - dark phoenix: Item #956 - golden chest: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 539,
+      "mechanic_id": "ECONOMY",
+      "bucket": "quests_scripts",
+      "text": "425|0|426|GOLD command given to nasty looking man"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/Nightmare Redux.vbp",
+      "line": 64,
+      "mechanic_id": "ECONOMY",
+      "bucket": "tooling_ui",
+      "text": "Form=frmBank.frm"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/Nightmare Redux.vbw",
+      "line": 52,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "frmBank = 0, 0, 0, 0, C, 260, 260, 1424, 1106, C"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 200,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "-NEW: Find/Find Next for bank editor"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 241,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "-NEW: shops now show bank account/cost info for gangshops"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+      "line": 43,
+      "mechanic_id": "ECONOMY",
+      "bucket": "tests_validation",
+      "text": "[InlineData(\"%-8s\", \"gold crowns\", \"gold crowns\")]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+      "line": 44,
+      "mechanic_id": "ECONOMY",
+      "bucket": "tests_validation",
+      "text": "[InlineData(\"%-8s\", \"gold    \", \"gold\")]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/mmud_edit.py",
+      "line": 40,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "# gold low-byte @ 0x607"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 26,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-UP: Tolls in room tooltips will now show as gold or higher currency"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 11,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "You are carrying 28 gold crowns, starsteel plate gauntlets (Hands), golden"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 16,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "nexus spear (Weapon Hand), griffon shield, king crab claw, white gold ring,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 20,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "obsidian key, 2 golden idols, skeleton key, steel key, 2 black star keys,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 35,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "You are carrying 1 platinum piece, 5 gold crowns, white gold ring (Finger),"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 39,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "slippers (Feet), moonstone ring (Finger), golden chalice (Off-Hand), lionskin"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 40,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "belt (Waist), amber sceptre (Weapon Hand), silverbark canoe, mine pass, golden"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 60,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "leather gauntlets (Hands), platinum ring (Finger), white gold ring (Finger),"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 61,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "golden belt (Waist), rigid leather pants (Legs), hardened leather boots"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 102,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "You are carrying 4 runic coins, 71 platinum pieces, 99 gold crowns, 5 silver"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 103,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "nobles, hard leather helm (Head), golden snake earrings (Ears), carved ivory"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 107,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "white gold ring (Finger), leather belt (Waist), rigid leather pants (Legs),"
+    }
+  ]
+}

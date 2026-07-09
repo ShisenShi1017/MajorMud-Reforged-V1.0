@@ -1,0 +1,350 @@
+{
+  "id": "COMBAT.CRITICAL",
+  "bucket": "Combat",
+  "name": "Critical hit logic",
+  "description": "Critical chance, critical damage, and any special conditions that alter critical outcomes.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 127,
+  "representative_evidence_count": 36,
+  "representative_source_path_count": 19,
+  "keywords_used": [
+    "critical",
+    "crit",
+    "critical hit"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1888,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "'         { Critical hit }"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27917,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "'| CRITICAL HIT CALCULATION..."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmSwingCalc.frm",
+      "line": 2048,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "'         { Critical hit }"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 2041,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "tooling_ui",
+      "text": "' { Calculates the critical hit chance bonus for being quick and deadly with a"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 187,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-NEW: Critical Hit Chance formula discovered and now calculated automatically"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 93,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-NEW: Critical Hit Chance formula discovered and now calculated automatically"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 175,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-NEW: Critical Hit Chance formula discovered and now calculated automatically"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 4533,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "character_progression",
+      "text": "' { Calculates the critical hit chance bonus for being quick and deadly with a"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 528,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "character_progression",
+      "text": "-UP: mass room editor now logs errors (and only the critical errors) to a log file"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 559,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "character_progression",
+      "text": "-UP: mass room editor now logs errors (and only the critical errors) to a log file"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 5693,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "MsgBox \"Error regetting room \" & nTempMap & \"/\" & nTempRoom, vbCritical"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 159,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"Crit AVG\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 169,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"Crit %\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1573,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "If x = 0 Then GoTo Crit:"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1577,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "If nExtraP = 0 Then GoTo Crit:"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1580,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "If x = 0 Then GoTo Crit:"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1583,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "nExtraA = Val(Mid(sClipText, x, InStr(x, sClipText, \"Crit\") - x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1584,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "If nExtraA = 0 Then GoTo Crit:"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 51,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "The CPU is the innermost loop of the emulator. Understanding it is critical."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 287,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "Performance-critical utility methods with aggressive inlining: `ByteExtensions` (bit operations, parity), `UshortExtensions`/`UintExtensions` (sign extension, bit tests), `ReadOnlySpanExtensions`, `ANSIStringExtensions`, `EnumSessionStateExtensions`."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 126,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "**Why a giant switch and not a dictionary/delegate table:** The large `switch` on `Mnemonic` is intentional. When the .NET JIT compiles this to native code, it emits an optimized jump table \u2014 a single indexed jump instruction rather than a chain of comparisons or dictionary lookups. This makes dispatch O(1) with minimal overhead (one bounds check + indirect jump), which matters critically here sin"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 293,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "`Op_Retf()` pops IP then CS from the stack. The critical line: `Registers.Halt |= Registers.CS == 0xFFFF`. When the sentinel value pushed during `Reset()` is reached (CS=0xFFFF), execution stops. `Op_Ret()` (near return) pops only IP but also checks the halt condition. Both handle optional `RETF imm16` by advancing SP."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/DOS/Structs/PSPStruct.cs",
+      "line": 55,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "data_schema",
+      "text": "///     Critical Error Handler Address (See Int 24h)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExecutionUnits/CLAUDE.md",
+      "line": 3,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "networking_runtime",
+      "text": "This directory contains `ExecutionUnit.cs`, a single but critical class that encapsulates everything needed to run a chunk of x86 code within a module: a CPU core, registers, memory reference, exported module dictionary, and interrupt handlers. ExecutionUnits are the mechanism that enables nested subroutine calls without corrupting CPU state."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExecutionUnits/CLAUDE.md",
+      "line": 58,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "networking_runtime",
+      "text": "// Critical: re-associate this EU's registers with the exported module,"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 2724,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "networking_runtime",
+      "text": "if (!insertBtv(LogLevel.Critical))"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Program.cs",
+      "line": 570,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "networking_runtime",
+      "text": "Console.WriteLine(\"Critical Exception has occurred:\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Main/MainView.cs",
+      "line": 287,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "logging_debug",
+      "text": "LogLevel.Critical => \"CRIT\","
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/docker/test-integration.sh",
+      "line": 177,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tests_validation",
+      "text": "if echo \"$LOGS\" | grep -qi \"exception\\|error.*sql\\|critical\"; then"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/docker/test-integration.sh",
+      "line": 179,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tests_validation",
+      "text": "echo \"$LOGS\" | grep -i \"exception\\|error.*sql\\|critical\" | head -5"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 402,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "-UP: added a non-crit average damage to swing calc"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart-HANDOFF.md",
+      "line": 51,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "world_spawns",
+      "text": "## \u26a0\ufe0f Editing rule (critical)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 309,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "-UP: added a non-crit average damage to swing calc"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 11388,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"ARD (+1 Crit, +2 SC)\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 25842,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "oLI.ListSubItems.Add (20), \"Ability\", tWeaponDmg.nHitChance & \"% hit, Avg/Max Crit: \" & tWeaponDmg.nAvgCrit & \"/\" & tWeaponDmg.nMaxCrit"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27723,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "tooling_ui",
+      "text": "Case 2: 'adult red dragon +1 crit + 2 sc"
+    }
+  ]
+}

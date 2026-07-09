@@ -1,7 +1,7 @@
 {
   "name": "MajorMUD-Reforged Librarium Canonical Manifest",
   "version": "0010",
-  "codeUpdate": "0066",
+  "codeUpdate": "0118",
   "generated_utc": "2026-07-08T01:05:06.120753Z",
   "source_repo_zip": "MajorMud-Reforged-V1.0-main(22).zip",
   "librarium_validation_baseline_zip": "MajorMUD-Reforged-Validation-0007-Final-Librarium-Completion-Compiler-Foundation.zip",
@@ -109,5 +109,17 @@
   "last_update": "Dialogue / Text Reconstruction",
   "subsystems_completed": [
     "Dialogue / Text"
-  ]
+  ],
+  "librariumAuthority": "Librarium is the source of truth; /Data is generated runtime output.",
+  "importedDatabasesPolicy": "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
+  "retainedImportedDatabases": [
+    "MBBSEmu",
+    "MMUD-Explorer",
+    "NightmareRedux",
+    "MajorMUD-PHP-Monster-Sim"
+  ],
+  "baseline": "CodeUpdate 0118 - Librarium Baseline Cleanup and Import Retention",
+  "updatedUtc": "2026-07-09T18:49:01Z",
+  "dataPolicy": "/Data is generated output per world and should not be hand-edited as canonical source.",
+  "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

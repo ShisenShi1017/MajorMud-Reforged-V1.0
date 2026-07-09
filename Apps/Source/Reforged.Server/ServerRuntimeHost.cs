@@ -8,14 +8,6 @@ public sealed class ServerRuntimeHost
     private readonly Dictionary<string, RuntimeWorld> _worlds = new(StringComparer.OrdinalIgnoreCase);
     private readonly RuntimeStateStore _state = new();
     private readonly RuntimeEventDispatcher _events = new();
-    private readonly RuntimeEntityRegistry _entities = new();
-    private readonly IRuntimeAccountRepository _accounts = new InMemoryRuntimeAccountRepository();
-    private readonly IRuntimeCharacterRepository _characters = new InMemoryRuntimeCharacterRepository();
-    private readonly SpawnSchedulingFoundation _spawnScheduling = new();
-    private readonly RuntimeEventSchedulingFoundation _eventScheduling = new();
-    private readonly NpcLifecycleFoundation _npcLifecycle = new();
-    private readonly CombatLoopFoundation _combatLoop = new();
-    private readonly MagicCastPipelineFoundation _magicPipeline = new();
     private readonly RuntimeSessionManager _sessions;
     private readonly ServerTickScheduler _scheduler = new();
     private RuntimeCommandDispatcher _commands;
@@ -24,15 +16,14 @@ public sealed class ServerRuntimeHost
     {
         _projectRoot = projectRoot;
         _options = options;
-        _sessions = new RuntimeSessionManager(_state, _events, _entities);
-        _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions, _state, _events, _entities, _characters, _magicPipeline, _npcLifecycle, _combatLoop);
+        _sessions = new RuntimeSessionManager(_state, _events);
+        _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions, _state, _events);
     }
 
     public IReadOnlyDictionary<string, RuntimeWorld> Worlds => _worlds;
     public RuntimeSessionManager Sessions => _sessions;
     public RuntimeStateStore State => _state;
     public RuntimeEventDispatcher Events => _events;
-    public RuntimeEntityRegistry Entities => _entities;
 
     public void Bootstrap()
     {
@@ -52,10 +43,6 @@ public sealed class ServerRuntimeHost
 
         _scheduler.Register("world-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.WorldTickMilliseconds)), _ => Task.CompletedTask);
         _scheduler.Register("session-heartbeat", TimeSpan.FromSeconds(30), _ => Task.CompletedTask);
-        _scheduler.Register("event-scheduler-foundation", TimeSpan.FromSeconds(10), token => _eventScheduling.TickAsync(_events, _worlds, token));
-        _scheduler.Register("spawn-scheduler-foundation", TimeSpan.FromSeconds(15), token => _spawnScheduling.TickAsync(_events, _worlds, token));
-        _scheduler.Register("npc-lifecycle-foundation", TimeSpan.FromSeconds(20), token => _npcLifecycle.TickAsync(_events, _worlds, _entities, token));
-        _scheduler.Register("combat-loop-foundation", TimeSpan.FromSeconds(20), token => _combatLoop.TickAsync(_events, _worlds, token));
     }
 
     public async Task RunLocalConsoleAsync(CancellationToken cancellationToken)
@@ -65,9 +52,7 @@ public sealed class ServerRuntimeHost
             world = _worlds.Values.First();
         }
 
-        var account = _accounts.GetOrCreateAccount("LocalConsole");
-        var character = _characters.GetOrCreateCharacter(account, world, 1, "LocalConsole");
-        var session = new RuntimeSession("local-console", world, account, character);
+        var session = new RuntimeSession("local-console", world, "LocalConsole");
         _sessions.TryAdd(session, int.MaxValue, out _);
         _events.Publish("runtime", "local-console-started", world.Definition.Id, session.Id, session.CharacterId, "host=authoritative");
         Console.WriteLine(_options.HostName);
@@ -128,7 +113,7 @@ public sealed class ServerRuntimeHost
         };
 
         var schedulerTask = _scheduler.RunAsync(linked.Token);
-        var network = new ServerNetworkHost(_options, () => _worlds, _commands, _sessions, _accounts, _characters);
+        var network = new ServerNetworkHost(_options, () => _worlds, _commands, _sessions);
         var networkTask = network.RunTelnetAsync(linked.Token);
 
         Console.WriteLine("Runtime network host is running. Press Ctrl+C to stop.");

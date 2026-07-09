@@ -1,0 +1,213 @@
+{
+  "mechanic_id": "MAGIC_SPELL_ENERGY",
+  "name": "NPC Spell Energy",
+  "domain": "Magic",
+  "description": "NPC spell casting energy cost, failed/resisted spell half-cost, and double-cast possibility.",
+  "status": "verified_high_confidence",
+  "confidence": "high",
+  "evidence_hit_count": 47,
+  "source_counts": {
+    "MMUDExplorer": 25,
+    "NightmareRedux": 22
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MMUDExplorer"
+  ],
+  "primary_buckets": {
+    "character_progression": 27,
+    "magic": 8,
+    "tooling_ui": 5,
+    "combat": 3,
+    "items_equipment": 2,
+    "world_spawns": 2
+  },
+  "unique_evidence_files": 14,
+  "top_evidence_files": [
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 21
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "hits": 8
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "hits": 3
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "hits": 2
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "hits": 2
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "hits": 2
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modMMUDFunctions.bas",
+      "hits": 2
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "hits": 1
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "hits": 1
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "hits": 1
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "hits": 1
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "hits": 1
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "hits": 1
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "hits": 1
+    }
+  ],
+  "open_conflicts": [],
+  "runtime_status": "ready_for_test_mapping_before_runtime_sync",
+  "reconstruction_notes": [
+    "NPC failed/resisted spell half-energy and double-spell behavior are high-confidence and should be represented in deterministic tests."
+  ],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 163,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "-UP: spell calculations will now take energy into account"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 419,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "combat",
+      "text": "Dim nRemainingEnergy As Long, nEnergyUsed As Integer, bShowHitSpell As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 176,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "-UP: spell calculations will now take energy into account"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3398,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "ts.Write (Spellrec.Energy & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3515,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "tabSpells.Fields(\"Energy\") = Spellrec.Energy"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2163,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "Spellrec.Energy = tabSpells.Fields(\"Energy\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1855,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 2165,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "tabSpells.Fields(\"EnergyCost\") = 0"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 5055,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "tabSpells.Fields(\"EnergyCost\") = Spellrec.Energy"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 4860,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "line": 2037,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "magic",
+      "text": "If Spellrec.Energy > nVal Then bAdd = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "line": 2038,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "magic",
+      "text": "If chkFilterExcludeZero.Value = 1 And Spellrec.Energy = 0 Then bAdd = False"
+    }
+  ]
+}

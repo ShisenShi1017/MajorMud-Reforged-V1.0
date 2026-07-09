@@ -1,0 +1,46 @@
+{
+  "object_type": "validation_rule",
+  "code_update": "0125",
+  "schema_ref": "../../Schemas/librarium_object_schema_0121.json",
+  "records": [
+    "validation_rule_catalog_0121.json"
+  ],
+  "phase2_status": "foundation_complete",
+  "phase3_status": "population_complete_for_current_evidence_corpus",
+  "catalog_role": "librarium_object_catalog_index",
+  "librarium_authority": "source_of_truth",
+  "data_generation_policy": "/Data is generated from Librarium and must not be manually edited",
+  "imported_database_retention": "retain until Librarium is 100% complete",
+  "enrichment_pointer": "See *_records_0122.json or *_records_0123.json for populated records where available.",
+  "generation_readiness": "ready_for_compiler_contract_pass",
+  "generation_contract_ref": "../../GenerationReadiness/generation_contracts_0125.json",
+  "export_contract_summary": {
+    "export_scope": "world_runtime",
+    "runtime_destination": "Data/{world_id}/validation_rules.json",
+    "serialization": "canonical_json",
+    "world_inheritance": "global_reference",
+    "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+    "runtime_consumer": "Runtime.Validation.ValidationRuntime",
+    "client_visibility": "host/admin_librarium_only",
+    "generation_order": 0,
+    "dependencies": [],
+    "required_fields": [
+      "id",
+      "name",
+      "object_type",
+      "world_scope",
+      "evidence_refs",
+      "relationships",
+      "runtime_mapping",
+      "export_mapping",
+      "validation"
+    ],
+    "validation_rules": [
+      "unique_id",
+      "schema_conforms",
+      "dependencies_resolve",
+      "world_scope_valid",
+      "export_mapping_present"
+    ]
+  }
+}

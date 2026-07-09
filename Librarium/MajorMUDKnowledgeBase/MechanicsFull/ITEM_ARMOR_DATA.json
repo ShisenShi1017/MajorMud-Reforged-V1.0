@@ -1,0 +1,569 @@
+{
+  "id": "ITEM.ARMOR_DATA",
+  "bucket": "Items and Equipment",
+  "name": "Armor data interpretation",
+  "description": "Armor class, DR, slots, and protective effects.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 9243,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 16,
+  "keywords_used": [
+    "armor",
+    "ac",
+    "dr",
+    "slot",
+    "defense"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4482,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"Number\" & vbTab & \"Name\" & vbTab & \"Experience\" & vbTab & \"Index\" & vbTab & \"Weapon\" & vbTab & \"AC\" & vbTab & \"DR\" & vbTab & \"Follow\" & vbTab & \"MR\" & vbTab & \"HPs\" & vbTab & \"BS Defense\" & vbTab & \"Energy\" & vbTab & \"HP Regen\" & vbTab & \"Game Limit\" & vbTab & \"Active\" & vbTab & \"Type\" & vbTab & \"Alignment\" & vbTab & \"Gender\" & vbTab & \"Group\" & vbTab & \"Regen Time\" & vbTab)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 50,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: Armor comparison calculation for AC/DR +/- (it was rounding decimals)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 47,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: Armor comparison calculation for AC/DR +/- (it was rounding decimals)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 23151,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "tooling_ui",
+      "text": "& vbCrLf & \"Party physical damage per round = ((phys_damage * party_size) - (defense_DR * swings)) - [defenses from ac+accuracy+dodge]\" _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 3148,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "tBackStab = CalculateAttack(tBackStabProfile, a4_Surprise, nTemp, False, nSpeedAdj, nCalcDamageAC, nCalcDamageDR, nCalcDamageDodge, , , , , nBSdefense)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 5002,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "tBackStab = CalculateAttack(tCharacter, a4_Surprise, nTemp, False, nSpeedAdj, nVSAC, nVSDR, nVSDodge, , , , , nVSBSDefense)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 24,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #174 - dark bishop: Item #1708 - runed sacrificial robes: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 9,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: Added monster game limit, bs defense, and lair exp fields for MME export"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 26,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "-NEW: Tools > Monsters > Item drop percentage modifier - alter monster drop percentages based on monster and item info.  this will allow you to do things like set the minimum drop percentage to 50% for items dropped by monsters that regen greater than 7 days, for example"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 47,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: Changed drop down spell editor's \"Type of Resist\" to what I believe they actually mean"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 83,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-BUGFIX: fixed container coin drop fieldmap locations"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 312,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-NEW: chest cash drops fields on item editor (thx Locke Cole)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 313,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-NEW: \"BS Defense\" field for monsters added (thx Tsunami)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 497,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "-UP: in-game AC and DR is calculated and shown on the item editor"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 83,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nBetweenRoundResistType(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 84,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nBetweenRoundResistDmgMR(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 177,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nBetweenRoundResistDmgMR(ByVal Index As Integer) As Integer"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 63,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "1. **Module Loading** (`Module/`): Parses NE-format DLLs, MDF (module definition), MSG (messages), MCV (config values). Each module gets a full 4GB virtual address space."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 65,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "3. **Memory** (`Memory/`): `ProtectedModeMemoryCore` provides per-module 4GB address space. `FarPtr` represents segment:offset pointers. Memory is lazily allocated."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/cncchr_Tests.cs",
+      "line": 22,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "public void cncchr_Test(string inputString, ushort nxtcmdStartingOffset, char expectedResult, ushort expectedNxtcmdOffset)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/cncchr_Tests.cs",
+      "line": 43,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "expectedResultPointer.Offset += expectedNxtcmdOffset;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/cncsig_Tests.cs",
+      "line": 23,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "public void cncsig_Test(string inputString, ushort nxtcmdStartingOffset, string expectedResult, ushort expectedNxtcmdOffset, string expectedNxtcmdRemaining)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/cncsig_Tests.cs",
+      "line": 45,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "expectedResultPointer.Offset += expectedNxtcmdOffset;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/morcnc_Tests.cs",
+      "line": 21,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "public void morcnc_Test(string inputString, ushort nxtcmdStartingOffset, char expectedResult, ushort expectedNxtcmdOffset)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/morcnc_Tests.cs",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "expectedResultPointer.Offset += expectedNxtcmdOffset;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 55,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "private HostProcess.ExportedModules.Majorbbs.TFStateCodes tfstate => (HostProcess.ExportedModules.Majorbbs.TFStateCodes)mbbsEmuMemoryCore.GetWord(GetOrdinalAddress(HostProcess.ExportedModules.Majorbbs.Segment, TFSTATE_ORDINAL));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 56,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "private string tfsbuf => Encoding.ASCII.GetString(mbbsEmuMemoryCore.GetString(GetOrdinalAddress(HostProcess.ExportedModules.Majorbbs.Segment, TFSBUF_ORDINAL), stripNull: true));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 57,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "private string tfspst => Encoding.ASCII.GetString(mbbsEmuMemoryCore.GetString(mbbsEmuMemoryCore.GetPointer(GetOrdinalAddress(HostProcess.ExportedModules.Majorbbs.Segment, TFSPST_ORDINAL)), stripNull: true));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 89,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "Each loaded module gets its own full 16-bit address space (up to 4GB, lazily allocated)."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 58,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: By popular demand, more monster filter options (accuracy, dodge, coin types, ac/dr, etc)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 169,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: Decimal values for manual AC/DR adjustments"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 223,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-NEW: Option and fields to consider party defenses instead of the currently loaded character"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 229,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-UP: Added columns for AC/DR, Dodge, and MR"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 242,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 272,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 713,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: AC and DR calculation issues on inventory"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 164,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "<label for=\"character_dr\">DR:</label>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 285,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$dr_damage_resist = ($character_dr/2);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 287,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['damage_resisted'] += $dr_damage_resist;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 41,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$i=0; $attacks = array(); //1=name, 2=hit msg, 3=miss/fail msg, 4=resist"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'BITE'; $attacks[$i][2] = 'The SOURCE bites you for DMG damage!'; $attacks[$i][3] = 'The SOURCE lunges at you';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 43,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'CLAW'; $attacks[$i][2] = 'SOURCE claws you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with its huge claws!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 46,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'SLASH'; $attacks[$i][2] = 'SOURCE slashes you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with their SOURCE!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 57,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast '.$long_name.' at you, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 58,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of '.$long_name;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'HEAL'; $attacks[$i][2] = 'The room casts room heal on you, healing DMG damage!'; $attacks[$i][3] = 'AAAAAAA';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 64,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast hellstorm, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 65,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of hellstorm';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $between_rounds[$i][0] = 'CHAINS'; $between_rounds[$i][1] = 'Glowing silver manacles clamp around your wrists!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 81,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "//remove non-printable characters"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 101,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "AddStrip(array('Also here:', 'You hear movement ', ' into the room from ', ' just entered the Realm', ' just left the Realm', ' just hung up', ' peeks in from ', 'the server will be shutting', 'nightly \"auto-cleanup\"', 'Please finish up and log off', 'Software caused connection abort', 'Session ended', 'or type \"new\"', 'Enter your password', 'password you have given', 'glad to see you back', 'majo"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 118,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($between[1], '/')).\".*/\", 'PARSED_'.$between[0].$num.',0,between', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 124,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($attack[4], '/')).\".*/\", 'PARSED_'.$attack[1].$num.',0,resist', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 127,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$miss = str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($attack[3], '/'));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 128,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$miss = str_replace('MSGTEXT', '[ a-zA-Z\\']+', $miss);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 129,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$miss.$deflect.\".*/\", 'PARSED_'.$attack[1].$num.',0,deflect', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 130,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$miss.\".*/\", 'PARSED_'.$attack[1].$num.',0,miss/fail', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 137,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".$hit.\".*/\", 'PARSED_'.$attack[1].$num.',$1', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 151,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$captured_data_lines[$x] = preg_replace(\"/PARSED_(.*)/\", '$1', $captured_data_lines[$x]);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 215,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<form action=\"capture_parse.php\" method=\"post\" enctype=\"multipart/form-data\" name=\"form1\" id=\"form1\">"
+    }
+  ]
+}

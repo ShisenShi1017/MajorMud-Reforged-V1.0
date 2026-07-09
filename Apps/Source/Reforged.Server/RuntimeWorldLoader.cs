@@ -15,12 +15,14 @@ public sealed class RuntimeWorldLoader
         var rooms = new Dictionary<string, RuntimeRoom>(StringComparer.OrdinalIgnoreCase);
         var roomsByNumber = new Dictionary<int, RuntimeRoom>();
         using var document = JsonDocument.Parse(File.ReadAllText(roomsPath));
-        if (document.RootElement.ValueKind != JsonValueKind.Array)
+        var roomElements = document.RootElement.ValueKind switch
         {
-            throw new InvalidOperationException($"World rooms file must contain a JSON array: {roomsPath}");
-        }
+            JsonValueKind.Array => document.RootElement.EnumerateArray(),
+            JsonValueKind.Object when document.RootElement.TryGetProperty("records", out var recordsElement) && recordsElement.ValueKind == JsonValueKind.Array => recordsElement.EnumerateArray(),
+            _ => throw new InvalidOperationException($"World rooms file must contain a JSON array or generated records array: {roomsPath}")
+        };
 
-        foreach (var roomElement in document.RootElement.EnumerateArray())
+        foreach (var roomElement in roomElements)
         {
             var room = RuntimeRoom.FromJson(roomElement);
             if (string.IsNullOrWhiteSpace(room.Id))

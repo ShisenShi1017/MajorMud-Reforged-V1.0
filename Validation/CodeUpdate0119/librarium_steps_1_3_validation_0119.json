@@ -1,0 +1,15 @@
+{
+  "code_update": "0119",
+  "steps_completed": [
+    "Step 1 - Librarium object schema",
+    "Step 2 - object catalogs seeded from evidence buckets",
+    "Step 3 - relationship graph/indexes created"
+  ],
+  "runtime_modified": false,
+  "data_role": "generated output only",
+  "imported_databases_retained": true,
+  "object_types": 24,
+  "canonical_files_classified": 941,
+  "relationship_edges": 16,
+  "status": "PASS_SCHEMA_GRAPH_BASELINE"
+}

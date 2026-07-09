@@ -1,0 +1,10 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MajorMud.Reforged.Compiler", "Apps\Compiler\MajorMud.Reforged.Compiler.csproj", "{A1260000-0000-0000-0000-000000000126}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MajorMud.Reforged.Compiler.Tests", "Apps\Compiler.Tests\MajorMud.Reforged.Compiler.Tests.csproj", "{A1260000-0000-0000-0000-000000000127}"
+EndProject
+Global
+EndGlobal

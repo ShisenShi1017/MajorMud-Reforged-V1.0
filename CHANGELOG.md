@@ -1,4 +1,74 @@
+
+## CodeUpdate 0119 - Librarium Steps 1-3 Runtime Object Graph Baseline
+- Added Librarium machine-readable object schema.
+- Seeded Librarium object catalogs for worlds, rooms, NPCs, items, spells, formulas, quests, shops, commands, events, triggers, loot, economy, AI, and assets.
+- Added Librarium relationship graph and object indexes.
+- Retained ImportedDatabases as active evidence archive until Librarium is 100% complete.
+- Kept /Data generated-only.
+- Runtime gameplay code unchanged.
+
+# CodeUpdate 0118 - Librarium Baseline Cleanup and Import Retention
+
+Date: 2026-07-09T18:49:01Z
+
+- Updated repo baseline to CodeUpdate 0118.
+- Reaffirmed Librarium as source of truth.
+- Reaffirmed `/Data` as generated runtime output only.
+- Reaffirmed `/ImportedDatabases` must be retained until Librarium is 100% complete and user approves retirement.
+- Added CodeUpdate 0118 architecture docs in `Docs/Architecture`, `Documentation`, and `Librarium/DecisionRecords`.
+- Updated `README.md`, `GOVERNING_PRINCIPLES.md`, `VERSION.md`, `ProjectManifest.json`, and `LibrariumManifest.json`.
+- Runtime gameplay code was not modified.
+
+# CodeUpdate 0117 - Imported Evidence Retained Placeholder
+
+Generated: 2026-07-09T18:39:31Z
+
+- Restored `/ImportedDatabases` as retained evidence archive.
+- Kept all imported data until Librarium is 100% complete.
+- Kept `/Data` as empty generated-runtime placeholder.
+- Updated docs to clarify Librarium source-of-truth and import retention rules.
+
+# CodeUpdate 0116 - Librarium Runtime Conversion and Repository Cleanup
+
+## Summary
+
+CodeUpdate 0116 aligns the repository with the agreed architecture:
+
+```text
+Librarium = authoritative source of truth
+/Data = generated runtime output per world
+```
+
+## Completed
+
+- Added machine-readable Librarium runtime definition scaffold.
+- Added Classic, Custom template, and AI template world definition records.
+- Added host-editable world override locations under `Librarium/WorldOverrides`.
+- Added `Tools/Librarium/export_librarium_to_data.py` to generate `/Data/<World>` packages from the Librarium.
+- Removed committed/generated `/Data`, `/Generated`, and `/DataDecodeCheckpoints` clutter from the cleaned repo.
+- Removed old `/ImportedDatabases` snapshots and replaced them with canonical GitHub evidence source imports under `Evidence/CanonicalSources`.
+- Archived old root CodeUpdate handoff/changelog files into `Documentation/Archive/CodeUpdateHistory` to reduce root clutter.
+- Updated `.gitignore` so `/Data` remains generated and uncommitted.
+- Added export validation test.
+
+## Not changed
+
+- Runtime gameplay logic was not rewritten in this pass.
+- Formula conflicts remain documented for later resolution.
+- Server consumption of generated world data is the next runtime milestone.
+
+---
+
 # Changelog
+
+## CodeUpdate-0127 - World Overlay Compiler Completion
+
+- Applied the user-provided 0127 full repository snapshot locally.
+- Cleaned up old tracked files absent from the 0127 snapshot while preserving `Saves/` and `ImportedDatabases/`.
+- Repaired stale manifest/version fields that still reported 0118/0126.
+- Added generated-world compatibility for server runtime/audits reading `Data/Classic` wrapper files.
+- Fixed the compiler build by adding the missing `CreateWorldManifest` helper.
+- Verified server/Core smoke tests, compiler build/tests, and Python 0127 world-output validation locally.
 
 ## CodeUpdate-0115 - Runtime State and Event Dispatcher Foundation
 
@@ -665,6 +735,12 @@ One narrow quest flag data-presence record was promoted. No gameplay quest mecha
 - Added GitHub Actions, global.json, and Codespaces devcontainer support.
 - Delivered as update-only package with cumulative server payload.
 
-## CodeUpdate 0116 - Runtime Milestone 2 Core Backbone
 
-- Added account/character persistence contracts, world-isolated save-slot contracts, entity registry, room occupancy, and foundation scheduler hooks for spawn/events/NPC/combat/magic without enabling gameplay formulas or durable save writes.
+## CodeUpdate 0121 — Phase 2/3 Librarium Completion
+
+Completed Librarium object model foundation and current evidence-corpus population. Runtime unchanged.
+
+
+## CodeUpdate 0124 - Librarium Enrichment Pass 1
+
+Enriched populated Librarium records with evidence summary, runtime/generator mapping, validation rules, override policy, and version metadata. Runtime unchanged. ImportedDatabases retained. /Data remains generated-only.

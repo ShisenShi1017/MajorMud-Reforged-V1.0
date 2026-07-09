@@ -1,0 +1,569 @@
+{
+  "id": "STATUS.SAVES",
+  "bucket": "Status Effects",
+  "name": "Saving throws and immunities",
+  "description": "Save checks, immunity fields, and status prevention.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 950,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 11,
+  "keywords_used": [
+    "save",
+    "saving",
+    "immunity",
+    "immune",
+    "resist"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 47,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: Changed drop down spell editor's \"Type of Resist\" to what I believe they actually mean"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 52,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: Added spell resist type (if the spell is completely resistible)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 69,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-NEW: complete overhaul of database exporter.  support for multiple ranges of records, ability to save config files, **import record numbers from existing database**"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 133,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: clicking save will now update the text on the row in the record list"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 164,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: added boxes to show spell damage vs. X MR for damage spells"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 258,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "-FIX: had to save and re-click to see markup change on shops"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 314,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-NEW: \"Charm Resistance\" field for monsters added (thx Tsunami)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 30,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nAtkResist(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 31,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nAtkMRdmgResist(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 36,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nStatAtkDmgResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 37,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nStatAtkAttemptDodgedOrResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 40,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nStatHitSpell_AtkDmgResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 3416,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "///     Set Status Flag Values from Flags Saved in AH"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 3667,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "Memory.SetWord(destinationSegment, offset, (ushort)Convert.ToInt16(valueToSave));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 3679,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "Memory.SetArray(destinationSegment, offset, BitConverter.GetBytes(valueToSave));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 3729,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "Memory.SetArray(Registers.GetValue(_currentInstruction.MemorySegment), GetOperandOffset(_currentInstruction.Op0Kind), BitConverter.GetBytes((float)valueToSave));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 3735,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "Memory.SetArray(Registers.GetValue(_currentInstruction.MemorySegment), GetOperandOffset(_currentInstruction.Op0Kind), BitConverter.GetBytes(valueToSave));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+      "line": 94,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "- Btrieve helpers: `BtrieveSaveProcessor()`, `BtrieveGetProcessor()`, `BtrieveDeleteProcessor()`, `BtrieveSetupGlobalPointer()`"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1141,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "///     Saves a BtrieveFileProcessor for the given pointer to the Global Cache"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1145,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "private protected void BtrieveSaveProcessor(FarPtr btrievePointer, BtrieveFileProcessor btrieveFileProcessor) =>"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1171,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "///     Generates a Unique Key to be used for saving a BtrieveFileProcessor mapped to its pointer"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1218,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "//Save a local reference to the shared Processor"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/ExportedModuleBase.cs",
+      "line": 1219,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "BtrieveSaveProcessor(btrievePointer, _globalCache.Get<BtrieveFileProcessor>($\"{variableName}-PROCESSOR\"));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 1603,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "_logger.Debug($\"({Module.ModuleIdentifier}) Retrieved Module Name \\\"{moduleName}\\\" and saved it at host memory offset {variablePointer}\");"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 87,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-FIX: Spells with ability 144-NonMagicalSpell (hidden in MME due to prevalence) will no longer show as Damage(-MR)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 109,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Items not removed from saved list when equipped from item manager (setting)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 161,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-UP: Accy, Stealth, and MR will now be colored on the EQ tab as they are calculated stats"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 189,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Magic Resistance formula discovered and now calculated automatically"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 261,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Ability to calculate spell damage / resist based on the defender MR rating"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 384,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: new field (from NMR v1.8+ exports) for displaying if a spell is resistible by no one, anyone, and anti-magic"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 418,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-UP: added MR value corresponding resistance values"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 76,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "3   6    rcol  resist cold"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 79,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "5   8    rfir  resist fire"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 85,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "9   10   rlit  resist lightning"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 98,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "20   8    rwat  resist water"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 32,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nAtkResist(0 To 4) As Integer"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 41,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "$i=0; $attacks = array(); //1=name, 2=hit msg, 3=miss/fail msg, 4=resist"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 58,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of '.$long_name;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 65,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of hellstorm';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 124,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($attack[4], '/')).\".*/\", 'PARSED_'.$attack[1].$num.',0,resist', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 13,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "function AddAttack($name, $type, $energy, $min, $max, $attack_chance, $success_chance, $resistable=0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 25,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i]['resistable'] = $resistable;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 26,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i]['damage_resisted'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 27,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$attacks[$i]['attempt_dodged_resisted'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 57,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$resistable = (int)preg_replace(\"/[^0-2]/\", '', $_POST['resistable'][$index]);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "AddAttack($name,$type,$energy,$min,$max,$attack_chance,$success_chance,$resistable);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 129,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<th>#</th><th>Name</th><th>Type</th><th>Resistable</th><th>Energy</th><th>Min</th><th>Max</th><th>Attack<br>Chance</th><th>Accy. or<br>Cast%</th>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 134,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$resistable = empty($attacks[$x]['resistable']) ? 0 : $attacks[$x]['resistable'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 143,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<td><select name=\"resistable[]\" id=\"resistable<?php echo $x; ?>\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 144,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<option value=\"0\" <?php if ($resistable==0) echo 'selected'; ?>>No One</option>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 145,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<option value=\"1\" <?php if ($resistable==1) echo 'selected'; ?>>Anti-Magic</option>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 146,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<option value=\"2\" <?php if ($resistable==2) echo 'selected'; ?>>Everyone</option>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 167,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<label for=\"character_mr\">MR:</label>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 202,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$total_damage = 0; $total_attacks = 0; $total_dodge = 0; $total_resisted = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 235,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$dodged = false; $glance = false; $resisted = false;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 253,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "if ($dodge_chance <= $character_dodge) { $attack_hit = false; $dodged = true; $attacks[$attack_num]['attempt_dodged_resisted']++; $total_dodge++; }"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 261,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "if (($attack['resistable'] == 1 && $character_antimagic == 1) || $attack['resistable'] == 2) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 262,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "//if( TYPEofRESIST=Never , 0 , IF( ANTI_MAGIC=Yes or TYPEofRESIST=Yes , IF( MR>196 , 0.98 , MR/200 ) , 0 ) )"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 263,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$resist_chance = mt_rand(1,100);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 264,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "if ( $resist_chance <= (($character_mr > 196 ? 196 : $character_mr)/2) ) {"
+    }
+  ]
+}

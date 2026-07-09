@@ -1,0 +1,2560 @@
+{
+  "code_update": "0124",
+  "librarium_authority": "source_of_truth",
+  "runtime_export": "Data remains generated from Librarium; runtime gameplay code unchanged in 0123.",
+  "source_priority": [
+    "OriginalRuntimeObservation",
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUD-Explorer",
+    "MajorMUD-PHP-Monster-Sim"
+  ],
+  "object_type": "formula",
+  "source": "Simulator probe definitions + conflict registry",
+  "record_count": 32,
+  "records": [
+    {
+      "id": "formula.probe.combat_0101_hit_dex_delta",
+      "name": "COMBAT-0101-HIT-DEX-DELTA",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.csv",
+          "row": {
+            "probe_id": "COMBAT-0101-HIT-DEX-DELTA",
+            "question": "Does increasing attacker accuracy/dexterity monotonically increase hit probability when defender is unchanged?",
+            "inputs": "attacker accuracy_stat or dex; defender defense/agility; level parity",
+            "expected_observation": "hit chance changes monotonically in Reforged runtime; Classic formula remains unverified",
+            "promotion_target": "hit_resolution_behavior"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.combat_0101_damage_str_delta",
+      "name": "COMBAT-0101-DAMAGE-STR-DELTA",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.csv",
+          "row": {
+            "probe_id": "COMBAT-0101-DAMAGE-STR-DELTA",
+            "question": "Does increasing strength/damage bonus monotonically increase final damage after mitigation?",
+            "inputs": "weapon roll fixed; strength_bonus; damage_reduction",
+            "expected_observation": "damage result changes by formula trace; Classic magnitude/rounding unverified",
+            "promotion_target": "damage_resolution_behavior"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.combat_0101_armor_mitigation",
+      "name": "COMBAT-0101-ARMOR-MITIGATION",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.csv",
+          "row": {
+            "probe_id": "COMBAT-0101-ARMOR-MITIGATION",
+            "question": "Does increasing defender damage reduction reduce applied damage and respect minimum damage floor?",
+            "inputs": "weapon roll fixed; damage_reduction sweep",
+            "expected_observation": "Reforged floor is 1 damage; Classic minimum/floor unverified",
+            "promotion_target": "armor_mitigation_behavior"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.combat_0101_initiative_speed",
+      "name": "COMBAT-0101-INITIATIVE-SPEED",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.csv",
+          "row": {
+            "probe_id": "COMBAT-0101-INITIATIVE-SPEED",
+            "question": "Does lower weapon speed/higher agility affect attack ordering?",
+            "inputs": "speed; agility; seeded RNG",
+            "expected_observation": "Runtime initiative order is deterministic with seed; Classic weapon speed timing unverified",
+            "promotion_target": "initiative_round_order"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.combat_0101_backstab_crit",
+      "name": "COMBAT-0101-BACKSTAB-CRIT",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.csv",
+          "row": {
+            "probe_id": "COMBAT-0101-BACKSTAB-CRIT",
+            "question": "Which evidence sources contain backstab/critical mechanics and what variables are consumed?",
+            "inputs": "backstab skill; weapon; class; position/prereq evidence",
+            "expected_observation": "Evidence inventory only until exact implementation located",
+            "promotion_target": "critical_backstab_specials"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.combat_0101_death_xp_order",
+      "name": "COMBAT-0101-DEATH-XP-ORDER",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0101_CombatReconstruction/combat_probe_definitions.csv",
+          "row": {
+            "probe_id": "COMBAT-0101-DEATH-XP-ORDER",
+            "question": "After lethal damage, is death event emitted before XP/reward resolution?",
+            "inputs": "lethal attack scenario; runtime event log",
+            "expected_observation": "Runtime emits death event; Classic XP ordering requires evidence",
+            "promotion_target": "death_xp_order"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.magic_0102_cast_mana_cost",
+      "name": "MAGIC-0102-CAST-MANA-COST",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+          "row": {
+            "probe_id": "MAGIC-0102-CAST-MANA-COST",
+            "question": "Does casting consume the expected mana and reject casts below cost?",
+            "inputs": "caster mana; spell mana_cost; spell availability",
+            "expected_observation": "Reforged runtime should trace cost gate; Classic mana cost table/formula remains unverified",
+            "promotion_target": "mana_cost_and_recovery"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.magic_0102_resist_save_sweep",
+      "name": "MAGIC-0102-RESIST-SAVE-SWEEP",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+          "row": {
+            "probe_id": "MAGIC-0102-RESIST-SAVE-SWEEP",
+            "question": "Does increasing target resistance/save reduce harmful spell success or damage?",
+            "inputs": "spell type; target resistance; caster level/stat; seeded RNG",
+            "expected_observation": "Monotonic resistance behavior if runtime supports it; exact Classic save formula unverified",
+            "promotion_target": "resistance_save_resolution"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.magic_0102_damage_healing",
+      "name": "MAGIC-0102-DAMAGE-HEALING",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+          "row": {
+            "probe_id": "MAGIC-0102-DAMAGE-HEALING",
+            "question": "Do fixed-input spell damage/healing effects resolve deterministically and trace modifiers?",
+            "inputs": "spell base amount; caster modifiers; target mitigation",
+            "expected_observation": "Deterministic trace available; Classic damage/heal scaling unverified",
+            "promotion_target": "spell_damage_healing"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.magic_0102_duration_ticking",
+      "name": "MAGIC-0102-DURATION-TICKING",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+          "row": {
+            "probe_id": "MAGIC-0102-DURATION-TICKING",
+            "question": "Are buffs/debuffs decremented by host/system timing, and is tick clipping observable?",
+            "inputs": "duration; cast offset; host tick timeline",
+            "expected_observation": "Probe specification only until executable timing harness is connected",
+            "promotion_target": "duration_effect_stack_order"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.magic_0102_stacking_order",
+      "name": "MAGIC-0102-STACKING-ORDER",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+          "row": {
+            "probe_id": "MAGIC-0102-STACKING-ORDER",
+            "question": "How do overlapping buffs/debuffs of same family stack, refresh, replace, or reject?",
+            "inputs": "effect A; effect B; same target; cast order",
+            "expected_observation": "Gap until original behavior is proven",
+            "promotion_target": "duration_effect_stack_order"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.magic_0102_interrupt_fizzle",
+      "name": "MAGIC-0102-INTERRUPT-FIZZLE",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+          "row": {
+            "probe_id": "MAGIC-0102-INTERRUPT-FIZZLE",
+            "question": "Can combat damage, silence, or status interrupt casting, and when is mana consumed?",
+            "inputs": "cast in combat; incoming damage/status; mana before cast",
+            "expected_observation": "Gap until spell execution order is proven",
+            "promotion_target": "spell_cast_resolution"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.magic_0102_item_casting_charges",
+      "name": "MAGIC-0102-ITEM-CASTING-CHARGES",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0102_MagicReconstruction/magic_probe_definitions.csv",
+          "row": {
+            "probe_id": "MAGIC-0102-ITEM-CASTING-CHARGES",
+            "question": "Do scroll/wand/staff/potion casts consume charges before or after success/failure?",
+            "inputs": "charged item; spell effect; failure scenario",
+            "expected_observation": "Gap until item magic evidence is proven",
+            "promotion_target": "item_casting_and_charges"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.prog_0103_xp_threshold_curve",
+      "name": "PROG-0103-XP-THRESHOLD-CURVE",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+          "row": {
+            "probe_id": "PROG-0103-XP-THRESHOLD-CURVE",
+            "question": "Do XP thresholds produce expected level transitions at boundaries?",
+            "inputs": "class; race; current xp; threshold table; level before",
+            "expected_observation": "Boundary behavior is deterministic in generated runtime; Classic threshold table/formula remains unverified unless original table provenance is found",
+            "promotion_target": "xp_level_progression"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.prog_0103_xp_award_party",
+      "name": "PROG-0103-XP-AWARD-PARTY",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+          "row": {
+            "probe_id": "PROG-0103-XP-AWARD-PARTY",
+            "question": "How are XP awards shared or modified by party, level, and kill contribution?",
+            "inputs": "base xp; party members; levels; contribution; modifiers",
+            "expected_observation": "Probe defines share scenarios; Classic party XP rules remain unresolved",
+            "promotion_target": "xp_level_progression"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.prog_0103_levelup_stat_gains",
+      "name": "PROG-0103-LEVELUP-STAT-GAINS",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+          "row": {
+            "probe_id": "PROG-0103-LEVELUP-STAT-GAINS",
+            "question": "Which stats/resources change on level-up and in what order?",
+            "inputs": "class; race; level before; stats before; seed/rules",
+            "expected_observation": "Generated stat deltas can be traced; Classic formulas/tables need confirmation",
+            "promotion_target": "attribute_stat_model"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.prog_0103_race_class_modifiers",
+      "name": "PROG-0103-RACE-CLASS-MODIFIERS",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+          "row": {
+            "probe_id": "PROG-0103-RACE-CLASS-MODIFIERS",
+            "question": "Do race/class modifiers alter base attributes, max caps, skills, or resources?",
+            "inputs": "race; class; base stat table; level",
+            "expected_observation": "Differences should be attributable to Librarium records; exact Classic caps/modifiers need proof",
+            "promotion_target": "race_class_progression"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.prog_0103_skill_ability_grants",
+      "name": "PROG-0103-SKILL-ABILITY-GRANTS",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+          "row": {
+            "probe_id": "PROG-0103-SKILL-ABILITY-GRANTS",
+            "question": "When are skills/abilities granted, trained, capped, or gated?",
+            "inputs": "class; level; trainer/quest flag; skill state",
+            "expected_observation": "Trace ability grant/gate paths; Classic ordering and prerequisites remain gaps",
+            "promotion_target": "skill_ability_training"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.prog_0103_resource_growth",
+      "name": "PROG-0103-RESOURCE-GROWTH",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+          "row": {
+            "probe_id": "PROG-0103-RESOURCE-GROWTH",
+            "question": "How do HP, mana, and movement grow by level, class, race, and attributes?",
+            "inputs": "class; race; level; attributes; previous resource values",
+            "expected_observation": "Generated resource changes are deterministic; Classic dice/table/rounding unknown",
+            "promotion_target": "resource_growth_hp_mana_move"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.prog_0103_death_penalty",
+      "name": "PROG-0103-DEATH-PENALTY",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+          "row": {
+            "probe_id": "PROG-0103-DEATH-PENALTY",
+            "question": "Does death reduce XP, level, stats, or resources, and how are boundaries handled?",
+            "inputs": "level; xp; death event; resurrection/recovery state",
+            "expected_observation": "Scenario enumerated; Classic penalty behavior unresolved",
+            "promotion_target": "death_penalty_progression"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.prog_0103_advancement_rewards",
+      "name": "PROG-0103-ADVANCEMENT-REWARDS",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0103_ProgressionReconstruction/progression_probe_definitions.csv",
+          "row": {
+            "probe_id": "PROG-0103-ADVANCEMENT-REWARDS",
+            "question": "Do level/quest/training rewards grant spells, titles, abilities, or caps in a defined order?",
+            "inputs": "advancement trigger; current grants; class/race; quest flags",
+            "expected_observation": "Reward ordering is traced as a gap until original behavior is proven",
+            "promotion_target": "advancement_rewards_grants"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.npc_0104_entity_load",
+      "name": "NPC-0104-ENTITY-LOAD",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+          "row": {
+            "probe_id": "NPC-0104-ENTITY-LOAD",
+            "question": "Can every NPC record be loaded with identity, stats, location, inventory, and behavior flags?",
+            "inputs": "npc id; runtime state; Librarium record; evidence source",
+            "expected_observation": "Generated runtime behavior is deterministic; Classic behavior remains unverified until trace evidence exists",
+            "promotion_target": "npc_entity_catalog"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.npc_0104_spawn_respawn",
+      "name": "NPC-0104-SPAWN-RESPAWN",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+          "row": {
+            "probe_id": "NPC-0104-SPAWN-RESPAWN",
+            "question": "When and where does an NPC spawn or respawn after death/reset?",
+            "inputs": "npc id; runtime state; Librarium record; evidence source",
+            "expected_observation": "Generated runtime behavior is deterministic; Classic behavior remains unverified until trace evidence exists",
+            "promotion_target": "npc_spawn_respawn"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.npc_0104_ai_targeting",
+      "name": "NPC-0104-AI-TARGETING",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+          "row": {
+            "probe_id": "NPC-0104-AI-TARGETING",
+            "question": "How does NPC select target, aggro, assist, flee, or switch targets?",
+            "inputs": "npc id; runtime state; Librarium record; evidence source",
+            "expected_observation": "Generated runtime behavior is deterministic; Classic behavior remains unverified until trace evidence exists",
+            "promotion_target": "npc_ai_behavior"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.npc_0104_spell_ability_use",
+      "name": "NPC-0104-SPELL-ABILITY-USE",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+          "row": {
+            "probe_id": "NPC-0104-SPELL-ABILITY-USE",
+            "question": "When does an NPC use spells, specials, or combat abilities?",
+            "inputs": "npc id; runtime state; Librarium record; evidence source",
+            "expected_observation": "Generated runtime behavior is deterministic; Classic behavior remains unverified until trace evidence exists",
+            "promotion_target": "npc_combat_capabilities"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.npc_0104_merchant_trainer",
+      "name": "NPC-0104-MERCHANT-TRAINER",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+          "row": {
+            "probe_id": "NPC-0104-MERCHANT-TRAINER",
+            "question": "How are merchant inventory, pricing, repair/service, and trainer gates resolved?",
+            "inputs": "npc id; runtime state; Librarium record; evidence source",
+            "expected_observation": "Generated runtime behavior is deterministic; Classic behavior remains unverified until trace evidence exists",
+            "promotion_target": "npc_merchant_trainer_services"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.npc_0104_dialogue_quest",
+      "name": "NPC-0104-DIALOGUE-QUEST",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+          "row": {
+            "probe_id": "NPC-0104-DIALOGUE-QUEST",
+            "question": "How do NPC keywords, dialogue textblocks, quest flags, and rewards interact?",
+            "inputs": "npc id; runtime state; Librarium record; evidence source",
+            "expected_observation": "Generated runtime behavior is deterministic; Classic behavior remains unverified until trace evidence exists",
+            "promotion_target": "npc_dialogue_interaction"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.npc_0104_loot_drop",
+      "name": "NPC-0104-LOOT-DROP",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+          "row": {
+            "probe_id": "NPC-0104-LOOT-DROP",
+            "question": "What loot/gold/equipment is generated from an NPC death?",
+            "inputs": "npc id; runtime state; Librarium record; evidence source",
+            "expected_observation": "Generated runtime behavior is deterministic; Classic behavior remains unverified until trace evidence exists",
+            "promotion_target": "npc_loot_drop_model"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.probe.npc_0104_movement_pathing",
+      "name": "NPC-0104-MOVEMENT-PATHING",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "deterministic_probe_definition",
+      "confidence": "probable",
+      "evidence": [
+        {
+          "source": "Simulator/CodeUpdate0104_NPCReconstruction/npc_probe_definitions.csv",
+          "row": {
+            "probe_id": "NPC-0104-MOVEMENT-PATHING",
+            "question": "How does NPC movement/pathing interact with rooms, exits, tracking, and aggro?",
+            "inputs": "npc id; runtime state; Librarium record; evidence source",
+            "expected_observation": "Generated runtime behavior is deterministic; Classic behavior remains unverified until trace evidence exists",
+            "promotion_target": "npc_room_world_placement"
+          }
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "probable"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.combat.damage_reduction.physical",
+      "name": "Physical Damage Reduction",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "open_conflict",
+      "confidence": "conflict_open",
+      "evidence": [
+        {
+          "source": "Librarium/Objects/conflicts/catalog.json",
+          "note": "Open conflict carried forward from Phase 1/2 evidence mining."
+        }
+      ],
+      "runtime_mapping": {
+        "status": "blocked_until_conflict_resolved",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "conflict_open"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.combat.dodge.order",
+      "name": "Dodge Order",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "open_conflict",
+      "confidence": "conflict_open",
+      "evidence": [
+        {
+          "source": "Librarium/Objects/conflicts/catalog.json",
+          "note": "Open conflict carried forward from Phase 1/2 evidence mining."
+        }
+      ],
+      "runtime_mapping": {
+        "status": "blocked_until_conflict_resolved",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "conflict_open"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
+      "id": "formula.combat.special_defense.order",
+      "name": "Special Attack / Backstab Defense Order",
+      "object_type": "formula",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "open_conflict",
+      "confidence": "conflict_open",
+      "evidence": [
+        {
+          "source": "Librarium/Objects/conflicts/catalog.json",
+          "note": "Open conflict carried forward from Phase 1/2 evidence mining."
+        }
+      ],
+      "runtime_mapping": {
+        "status": "blocked_until_conflict_resolved",
+        "exports_to": "/Data/<world>/formulas.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "formulas",
+        "export_path": "/Data/<world>/formulas.json",
+        "requires_validation": true,
+        "hot_reload_candidate": true
+      },
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "conflict_open"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    }
+  ],
+  "enrichment_status_0124": "enriched_pass_1"
+}

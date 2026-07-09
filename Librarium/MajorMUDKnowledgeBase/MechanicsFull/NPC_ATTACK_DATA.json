@@ -1,0 +1,569 @@
+{
+  "id": "NPC.ATTACK_DATA",
+  "bucket": "NPC AI",
+  "name": "Monster attack data encoding",
+  "description": "Attack list encoding, multiple attacks, damage values, and special attack flags.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 3915,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 14,
+  "keywords_used": [
+    "monster",
+    "attack",
+    "damage",
+    "special",
+    "attack data"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 3186,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "Call AddMonsterDamageOutText(DetailLV, sHeader, nDamageOut & \"/round (\" & tAttack.sAttackDesc & \")\" & sImmuTXT & sBackstabText, tAttack.sAttackDetail, _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 3275,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "Call AddMonsterDamageOutText(DetailLV, sHeader, nDamageOut & \"/round (\" & tAttack.sAttackDesc & \")\" & sImmuTXT & sBackstabText, tAttack.sAttackDetail, _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 54,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: Added average monster damage and true attack percentages (unique, calculated fields for MME)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 290,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Dim nEnergyForAttack As Long, nEnergyRemaining As Long, nDamagePerEnergy As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 351,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "nDamage = 0: nMaxDamage = 0: nEnergyForAttack = 0: nMaxDPE = 0"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 420,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Dim nDR_DamageResisted As Currency, nMR_Reduction As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 642,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "If m_nAtkMRdmgResist(nAttack) = 1 And nDamage > 0 Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 643,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 645,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "'    m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nDamage - nMR_Reduction)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 679,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "'m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nDamage"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 693,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "nDR_DamageResisted = m_nUserDR '(m_nUserDR / 2)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 694,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "If nDR_DamageResisted > nDamage Then nDR_DamageResisted = nDamage"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 695,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nDR_DamageResisted"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 696,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "nDamage = nDamage - nDR_DamageResisted"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 352,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Dim nEnergyForAttack As Long, nEnergyRemaining As Long, nDamagePerEnergy As Currency"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 413,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "nDamage = 0: nMaxDamage = 0: nEnergyForAttack = 0: nMaxDPE = 0"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 482,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Dim nDR_DamageResisted As Currency, nMR_Reduction As Currency, nResist_Reduction As Currency"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 720,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "If m_nAtkMRdmgResist(nAttack) = 1 And nDamage > 0 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 721,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 723,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "'    m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nDamage - nMR_Reduction)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 730,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Case 0: If m_nUserRCOL > 0 Then nResist_Reduction = (nDamage * (m_nUserRCOL / 100))  'col"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 731,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Case 1: If m_nUserRFIR > 0 Then nResist_Reduction = (nDamage * (m_nUserRFIR / 100))  'fir"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 732,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Case 2: If m_nUserRSTO > 0 Then nResist_Reduction = (nDamage * (m_nUserRSTO / 100))  'sto"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 733,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Case 3: If m_nUserRLIT > 0 Then nResist_Reduction = (nDamage * (m_nUserRLIT / 100))  'lit"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'BITE'; $attacks[$i][2] = 'The SOURCE bites you for DMG damage!'; $attacks[$i][3] = 'The SOURCE lunges at you';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 43,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'CLAW'; $attacks[$i][2] = 'SOURCE claws you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with its huge claws!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 46,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'SLASH'; $attacks[$i][2] = 'SOURCE slashes you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with their SOURCE!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'HEAL'; $attacks[$i][2] = 'The room casts room heal on you, healing DMG damage!'; $attacks[$i][3] = 'AAAAAAA';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 26,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i]['damage_resisted'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 202,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$total_damage = 0; $total_attacks = 0; $total_dodge = 0; $total_resisted = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 266,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$damage = 0; $attack_hit = false; $resisted = true;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 280,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['damage_resisted'] += $mr_reduction;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 287,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['damage_resisted'] += $dr_damage_resist;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 306,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "p(damage($attack['name'].' for '.$damage.($glance ? ' (GLANCE)' : '')),'Energy used: '.$attack['energy'].' ... Energy remaining: '.$remaining_energy);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 382,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<td><?php echo $attack['damage_resisted']; ?></td><!-- DMG Resisted -->"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 383,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<td><?php echo $attack['total_damage'] > 0 ? round($attack['damage_resisted']/($attack['damage_resisted']+$attack['total_damage']), 3)*100 : 100; ?>%</td><!-- % DMG Resisted -->"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 125,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "of background processing (such as monster attacks)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/ICpuRegisters.cs",
+      "line": 28,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "///     While the majority of these are basic 16-bit values, several special"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/Fsd/FsdUtility.cs",
+      "line": 155,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "//Special Case for Error Field"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/Fsd/FsdUtility.cs",
+      "line": 302,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "//Error Fields are their own special little snowflakes"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/HostRoutines/FsdRoutines.cs",
+      "line": 393,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "///     Processes data sent by the user and sets the ASCII (0-127) value, or the EnumKeyCode value for special characters"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 40,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "character_progression",
+      "text": "the result stays valid ASCII and still compiles, making the damage easy to miss in a quick diff."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 65,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "`Recordset` objects opened once at load: `tabItems`, `tabMonsters`, `tabSpells`, `tabRooms`,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 66,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "`tabShops`, `tabRaces`, `tabClasses`, `tabLairs`, etc. Combat/damage result arrays"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 86,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "(graphical room explorer), `frmResults`, calculators (`frmSwingCalc`, `frmHitCalc`, `frmBSCalc`,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/MMUD_Explorer.vbp",
+      "line": 31,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "Form=frmSwingCalc.frm"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/MMUD_Explorer.vbw",
+      "line": 24,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "character_progression",
+      "text": "frmSwingCalc = 156, 156, 1892, 1028, Z, 260, 260, 2004, 1106, C"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 3,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "MMUD Explorer is a database viewer for the game MajorMUD(r) created by syntax53. It has a unique comparing feature which allows you to easily compare weapons, armour, and spells. It also has a graphical room explorer in which you can 'walk' around the realm. Other features include an inventory calculator, exp calculator, explorers for monsters/shops/weapons/armour/spells/items/races/classes, savin"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 13,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Max 6 swings w/updated QnD calc when used with Paramud DB 1.9+ (old formulas used with v1.8.5 DB)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 20,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "if the character wasn't also backstabbing. Even in those cases, it was the backstab weapon magic being considered."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 52,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "-FIX: Backstab accuracy calculation for [GreaterMUD]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 58,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: By popular demand, more monster filter options (accuracy, dodge, coin types, ac/dr, etc)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 87,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-FIX: Spells with ability 144-NonMagicalSpell (hidden in MME due to prevalence) will no longer show as Damage(-MR)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 93,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Area effect spells cast by monsters utilizing abil-1 being marked as invalid for [GreaterMUD] (they ARE still invalid for stock)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 119,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Added sample weapon speed/dmg/swings to character builder"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 129,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "-FIX: Updated dodge formula for mob v player damage calc in [GreaterMUD]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 136,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Attack/Combat setup screen will now only show spells you have learned or could cast"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 162,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-FIX: Rounding swings on EQ tab (will now be truncated)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 230,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-UP: Added BS defense bonus to monster detail"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 236,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "-UP: Attack sim updated with new understanding of dodge calculation and how it's factored into physical attacks"
+    }
+  ]
+}

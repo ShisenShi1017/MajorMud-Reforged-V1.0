@@ -1,0 +1,12 @@
+{
+  "schema_version": "0116.1",
+  "world_id": "custom-template",
+  "display_name": "Custom World Template",
+  "mode": "custom",
+  "definition_policy": "host_editable_overrides_with_validation",
+  "host_editable": true,
+  "client_access": "read_only",
+  "data_export_path": "Data/Worlds/custom-template",
+  "inherits_from": "classic",
+  "override_path": "Librarium/WorldOverrides/custom-template"
+}

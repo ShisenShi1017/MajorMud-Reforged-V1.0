@@ -1,0 +1,122 @@
+{
+  "code_update": "0124",
+  "checks": [
+    {
+      "check": "items_records_enriched",
+      "status": "PASS",
+      "count": 1950
+    },
+    {
+      "check": "spells_records_enriched",
+      "status": "PASS",
+      "count": 1350
+    },
+    {
+      "check": "npcs_records_enriched",
+      "status": "PASS",
+      "count": 1100
+    },
+    {
+      "check": "rooms_records_enriched",
+      "status": "PASS",
+      "count": 951
+    },
+    {
+      "check": "spawns_records_enriched",
+      "status": "PASS",
+      "count": 962
+    },
+    {
+      "check": "shops_records_enriched",
+      "status": "PASS",
+      "count": 178
+    },
+    {
+      "check": "commands_records_enriched",
+      "status": "PASS",
+      "count": 25
+    },
+    {
+      "check": "status_effects_records_enriched",
+      "status": "PASS",
+      "count": 111
+    },
+    {
+      "check": "economy_rules_records_enriched",
+      "status": "PASS",
+      "count": 22
+    },
+    {
+      "check": "banks_records_enriched",
+      "status": "PASS",
+      "count": 27
+    },
+    {
+      "check": "classes_records_enriched",
+      "status": "PASS",
+      "count": 58
+    },
+    {
+      "check": "races_records_enriched",
+      "status": "PASS",
+      "count": 2
+    },
+    {
+      "check": "guilds_records_enriched",
+      "status": "PASS",
+      "count": 44
+    },
+    {
+      "check": "skills_records_enriched",
+      "status": "PASS",
+      "count": 13
+    },
+    {
+      "check": "events_records_enriched",
+      "status": "PASS",
+      "count": 1501
+    },
+    {
+      "check": "triggers_records_enriched",
+      "status": "PASS",
+      "count": 719
+    },
+    {
+      "check": "quests_records_enriched",
+      "status": "PASS",
+      "count": 2100
+    },
+    {
+      "check": "ai_profiles_records_enriched",
+      "status": "PASS",
+      "count": 27
+    },
+    {
+      "check": "worlds_records_enriched",
+      "status": "PASS",
+      "count": 3
+    },
+    {
+      "check": "formulas_records_enriched",
+      "status": "PASS",
+      "count": 32
+    },
+    {
+      "check": "data_generated_only_placeholder",
+      "status": "PASS",
+      "files": [
+        "Data/README.md",
+        "Data/.gitkeep"
+      ]
+    },
+    {
+      "check": "imported_databases_retained",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "data_files": [
+    "Data/README.md",
+    "Data/.gitkeep"
+  ]
+}

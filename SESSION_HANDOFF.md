@@ -64,7 +64,3 @@ dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj -- --run
 ## Current Handoff — CodeUpdate 0114 Runtime Milestone 1
 
 Runtime Milestone 1 implemented network/telnet hosting, multiple sessions, login name prompt, world selection foundation, and build automation. The package is update-only with a cumulative server payload.
-
-## CodeUpdate 0116 Handoff
-
-Runtime backbone contracts are staged for verification. Apply to verified 0115 baseline, build with .NET, smoke-test state/events/entities/slots/foundation commands, and preserve Saves/ImportedDatabases.

@@ -1,0 +1,15 @@
+mechanic_id,name,domain,status,confidence,evidence_hit_count,unique_evidence_files,runtime_status,open_conflicts,NightmareRedux_hits,MBBSEmu_hits,MMUDExplorer_hits,MonsterSim_hits,OriginalRuntimeObservation_hits
+COMBAT_BACKSTAB_SPECIAL,Backstab / Special Attack Defense,Combat,open_conflict,blocked_by_open_conflict,245,12,do_not_implement_as_classic_verified_yet,1,0,0,245,0,0
+COMBAT_CRITICAL,Critical Hits,Combat,probable_needs_reconstruction,medium_reconstruction_needed,78,24,requires_formula_record_expansion_before_runtime_sync,0,30,12,36,0,0
+COMBAT_DODGE,Dodge and Evasion,Combat,open_conflict_leading_nightmare_redux,blocked_by_open_conflict,645,27,do_not_implement_as_classic_verified_yet,1,189,0,435,21,0
+COMBAT_DR,Physical Damage Reduction,Combat,open_conflict_leading_nightmare_redux,blocked_by_open_conflict,139,30,do_not_implement_as_classic_verified_yet,1,60,0,78,1,0
+COMBAT_HIT_AC,Combat Hit vs AC,Combat,verified_high_confidence,high,419,69,ready_for_test_mapping_before_runtime_sync,0,222,23,167,7,0
+DATA_FIELDS,Data Fields and Schema,Data Schema,supporting_foundation,supporting,21030,509,feeds_all_mechanic_records,0,9982,7320,3702,26,0
+ECONOMY,Economy and Shops,Economy,probable_needs_reconstruction,medium_reconstruction_needed,2047,68,requires_formula_record_expansion_before_runtime_sync,0,1172,5,870,0,0
+ITEM_EFFECTS,Item and Equipment Effects,Items / Equipment,probable_needs_reconstruction,medium_reconstruction_needed,1738,311,requires_formula_record_expansion_before_runtime_sync,0,439,1015,284,0,0
+MAGIC_MANA_CAST,Magic Mana and Cast Pipeline,Magic,probable_needs_reconstruction,medium_reconstruction_needed,2011,93,requires_formula_record_expansion_before_runtime_sync,0,518,163,1314,16,0
+MAGIC_RESIST,Magic Resistance,Magic,verified_high_confidence,high,730,31,ready_for_test_mapping_before_runtime_sync,0,275,0,420,35,0
+MAGIC_SPELL_ENERGY,NPC Spell Energy,Magic,verified_high_confidence,high,47,14,ready_for_test_mapping_before_runtime_sync,0,22,0,25,0,0
+NPC_ATTACK_LOOP,NPC Attack Energy Loop,NPC AI / Combat,verified_high_confidence,high,557,36,ready_for_test_mapping_before_runtime_sync,0,206,0,307,44,0
+SPAWN_TIMERS,Spawn Timers and World Scheduling,World / Spawns,probable_needs_reconstruction,medium_reconstruction_needed,453,60,requires_formula_record_expansion_before_runtime_sync,0,58,100,295,0,0
+XP_LEVEL,Experience and Level Progression,Character Progression,probable_needs_reconstruction,medium_reconstruction_needed,1142,99,requires_formula_record_expansion_before_runtime_sync,0,345,122,674,1,0

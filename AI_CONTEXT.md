@@ -1,5 +1,16 @@
 # AI Context for Reforged
 
+
+## Current Baseline — CodeUpdate 0118
+
+- Librarium is the authoritative source of truth.
+- `/Data` is generated runtime output per world.
+- `/ImportedDatabases` must be retained until the Librarium is 100% complete and the user explicitly approves retirement.
+- Host/server/editor modifies Librarium world definitions and overlays.
+- Client is read-only and receives data for the active connected world.
+- Keep docs, handoffs, evidence, and decision records aligned with this model.
+
+
 ## READ THIS FIRST
 
 This is the authoritative handoff document for every ChatGPT window, Codex session, and development continuation. Read this file before modifying the repository.

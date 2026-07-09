@@ -1,0 +1,208 @@
+{
+  "base_world": null,
+  "compiler_code_update": "0127",
+  "family": "client_views",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "record_count": 1,
+  "records": [
+    {
+      "code_update": "0121",
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "confidence": "bucket-level; see child records for mechanic confidence",
+      "description": "Read-only client-facing projection.",
+      "evidence_bucket": "command",
+      "evidence_refs": [
+        {
+          "classification": "text_scanned",
+          "evidence_count": 43,
+          "path": "ImportedDatabases/MBBSEmu/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 19,
+          "path": "ImportedDatabases/MBBSEmu/README.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 70,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettingsManager.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 178,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 136,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MBBSEmu.csproj",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 148,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Program.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 13,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/commandLineHelp.txt",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 45,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 302,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 22,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveQuery.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 12,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/DOSErrorCode.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 42,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/ExeRuntime.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 19,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/Win32VT100.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 14,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Disassembler/NEFile.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 62,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Extensions/EnumSessionStateExtensions.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 576,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/MbbsHost.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 24,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Memory/FarPtr.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 89,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MBBSModule.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 24,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/McvFile.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 34,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MdfFile.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 8,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/ModuleConfiguration.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 285,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MsgFile.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 2,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Properties/launchSettings.json",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 16,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Resources/ResourceManager.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 236,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Session/LineBreaker.cs",
+          "source": "MBBSEmu"
+        }
+      ],
+      "evidence_total": 103563,
+      "export_mapping": {
+        "generated": true,
+        "target": "Data/<world>/client_views"
+      },
+      "id": "client_view.catalog.phase2_3_0121",
+      "librarium_source_file": "Librarium/Objects/client_views/client_view_catalog_0121.json",
+      "name": "Client View Catalog",
+      "object_type": "client_view",
+      "relationships": [],
+      "runtime_mapping": {
+        "runtime_reads_generated_data": true,
+        "status": "cataloged_for_export"
+      },
+      "source_breakdown": {
+        "MBBSEmu": 9775,
+        "MMUD-Explorer": 36933,
+        "MajorMUD-PHP-Monster-Sim": 1308,
+        "NightmareRedux": 55547
+      },
+      "source_priority": {
+        "MBBSEmu": 3,
+        "MMUD-Explorer": 4,
+        "MajorMUD-PHP-Monster-Sim": 5,
+        "NightmareRedux": 2,
+        "OriginalRuntimeObservation": 1
+      },
+      "status": "complete_for_current_evidence_corpus",
+      "validation_rules": [
+        "object_must_have_id",
+        "object_must_have_world_scope",
+        "classic_changes_require_evidence",
+        "custom_ai_changes_require_validation"
+      ],
+      "world_scope": "classic/custom/ai"
+    }
+  ],
+  "source_file": "Librarium/Objects/client_views/client_view_catalog_0121.json",
+  "world_id": "Classic",
+  "world_type": "classic"
+}

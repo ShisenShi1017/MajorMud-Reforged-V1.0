@@ -1,0 +1,244 @@
+{
+  "base_world": null,
+  "compiler_code_update": "0127",
+  "family": "worlds",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "record_count": 4,
+  "records": [
+    {
+      "client_access": "read_only_world_view",
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "data_output": "Data/Classic",
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 0,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/worlds.json",
+        "hot_reload_candidate": false,
+        "output_collection": "worlds",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "host_editable": false,
+      "id": "world.classic",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/worlds/world_records_0123.json",
+      "lock_state": "evidence_locked",
+      "name": "Classic",
+      "object_type": "world",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/worlds.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "source_policy": "canonical_librarium",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "client_access": "read_only_world_view",
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "data_output": "Data/Worlds/<world_id>",
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 0,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/worlds.json",
+        "hot_reload_candidate": false,
+        "output_collection": "worlds",
+        "requires_validation": true,
+        "target_worlds": [
+          "custom"
+        ]
+      },
+      "host_editable": true,
+      "id": "world.template.custom",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/worlds/world_records_0123.json",
+      "lock_state": "host_editable_validated",
+      "name": "Custom World Template",
+      "object_type": "world",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/worlds.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "source_policy": "librarium_override_branch",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "custom"
+      ]
+    },
+    {
+      "client_access": "read_only_world_view",
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "data_output": "Data/Worlds/<world_id>",
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 0,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/worlds.json",
+        "hot_reload_candidate": false,
+        "output_collection": "worlds",
+        "requires_validation": true,
+        "target_worlds": [
+          "ai"
+        ]
+      },
+      "host_editable": true,
+      "id": "world.template.ai",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/worlds/world_records_0123.json",
+      "lock_state": "host_approved_ai_editable",
+      "name": "AI Driven World Template",
+      "object_type": "world",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/worlds.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "source_policy": "librarium_ai_override_branch",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "ai"
+      ]
+    },
+    {
+      "base_world": null,
+      "compiled_from_overlay": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+      "id": "overlay.classic",
+      "locked": true,
+      "name": "Classic",
+      "object_type": "overlay_world_record",
+      "world_type": "classic"
+    }
+  ],
+  "source_file": "Librarium/Objects/worlds/world_records_0123.json",
+  "world_id": "Classic",
+  "world_type": "classic"
+}

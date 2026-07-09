@@ -1,0 +1,571 @@
+{
+  "id": "CHAR.STATS",
+  "bucket": "Character Progression",
+  "name": "Character stat model",
+  "description": "Core STR/INT/WIL/AGI/HEA/etc. field interpretation and derived calculations.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 14968,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 26,
+  "keywords_used": [
+    "str",
+    "int",
+    "wil",
+    "agi",
+    "hea",
+    "stat",
+    "ability"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPasteChar.frm",
+      "line": 2153,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "sRegexPattern = \"(?:(Armour Class|Hits|Mana|Encumbrance):\\s*\\*?\\s*(-?\\d+)\\/(\\d+)|(MagicRes|Level|Spellcasting|Strength|Agility|Willpower|Charm|Intellect|Health):\\s*\\*?\\s*(\\d+)|(Name|Race|Class):\\s*([^\\s:]+(?:\\s[^\\s:]+)?))\""
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 101,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "AddStrip(array('Also here:', 'You hear movement ', ' into the room from ', ' just entered the Realm', ' just left the Realm', ' just hung up', ' peeks in from ', 'the server will be shutting', 'nightly \"auto-cleanup\"', 'Please finish up and log off', 'Software caused connection abort', 'Session ended', 'or type \"new\"', 'Enter your password', 'password you have given', 'glad to see you back', 'majo"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4001,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"Number\" & vbTab & \"Name\" & vbTab & \"EXP %\" & vbTab & \"HP Bonus\" & vbTab & \"CP\" & vbTab & \"Min INT\" & vbTab & \"Min AGL\" & vbTab & \"Min STR\" & vbTab & \"Min WIL\" & vbTab & \"Min CHM\" & vbTab & \"Min HEA\" & vbTab)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 70,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "The x87 FPU uses a circular 8-slot stack stored in `CpuCore.FpuStack` (a `double[8]` array). The struct manages the stack pointer and control state:"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 902,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "cephC_DebugPrint \"  SpellCost=\" & CStr(nSpellCost) & \"; SpellOverhead=\" & Format$(nSpellOverhead, \"0.00\")"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 2298,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "'   \u0095 tabRaces has fields: mSTR/xSTR, mINT/xINT, mWIL/xWIL, mAGL/xAGL, mHEA/xHEA, mCHM/xCHM."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 163,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "-UP: spell calculations will now take energy into account"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 1346,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nStatBetweenRound_AtkDmgResisted(ByVal Index As Integer) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 1354,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nStatHitSpell_AtkDmgResisted(ByVal Index As Integer) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 1374,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "'Public Property Let nStatAtkDmgResisted(ByVal Index As Integer, ByVal vData As Currency)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 1378,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nStatAtkDmgResisted(ByVal Index As Integer) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 176,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "character_progression",
+      "text": "-UP: spell calculations will now take energy into account"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 166,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": ".Columns.Append CStr(\"Attack Min Hit/Cast % \" & x), adInteger\t==> AttMin-"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 167,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": ".Columns.Append CStr(\"Attack Max Hit/Cast LVL \" & x), adInteger\t==> AttMax-"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 174,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": ".Columns.Append CStr(\"Spell Cast % \" & x), adInteger\t\t==> MidSpell%-"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 175,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": ".Columns.Append CStr(\"Spell Cast LVL \" & x), adInteger\t\t==> MidSpellLVL-"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1855,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveKey_Tests.cs",
+      "line": 18,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "private static byte[] CreateNullPaddedString(string s, int length)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 55,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "CopyModuleToTempPath(ResourceManager.GetTestResourceManager());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Integration/MBBSEmuIntegrationTestBase.cs",
+      "line": 86,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "commands_client",
+      "text": "CopyModuleToTempPath(ResourceManager.GetTestResourceManager());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 1117,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "const string insertIntoTableStatement ="
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 1144,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "const string insertIntoTableStatement ="
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 80,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "The FPU registers struct maintains a circular stack via `GetStackTop()`/`PushStackTop()`/`PopStackTop()` with 3-bit stack pointer in StatusWord."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 206,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "Abstract base class managing user state and I/O. Key elements:"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 248,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "- **Int21h** (~1,100 lines): Primary DOS API \u2014 file operations (open/close/read/write/seek/create/delete/find), memory management (allocate/free with allocation strategies), DTA, FCB, current drive/directory. Handles STDIN/STDOUT/STDERR + custom file handles."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 287,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "Performance-critical utility methods with aggressive inlining: `ByteExtensions` (bit operations, parity), `UshortExtensions`/`UintExtensions` (sign extension, bit tests), `ReadOnlySpanExtensions`, `ANSIStringExtensions`, `EnumSessionStateExtensions`."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 126,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "**Why a giant switch and not a dictionary/delegate table:** The large `switch` on `Mnemonic` is intentional. When the .NET JIT compiles this to native code, it emits an optimized jump table \u2014 a single indexed jump instruction rather than a chain of comparisons or dictionary lookups. This makes dispatch O(1) with minimal overhead (one bounds check + indirect jump), which matters critically here sin"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/DOS/Interrupts/Int7Bh.cs",
+      "line": 534,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public static unsafe T ByteArrayToStructure<T>(byte[] bytes) where T : struct"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 46,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "zero lone LFs, and a high-byte-stripped diff vs HEAD shows only the intended edits. To recover a"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 66,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Carried items in item manager can now have multiple quantities and they will be counted for encumbrance and stats"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 87,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-FIX: Spells with ability 144-NonMagicalSpell (hidden in MME due to prevalence) will no longer show as Damage(-MR)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 161,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-UP: Accy, Stealth, and MR will now be colored on the EQ tab as they are calculated stats"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 400,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-UP: find best will now take AC/Enc ratio into account when stats are equal"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 1523,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nStatBetweenRound_AtkDmgResisted(ByVal Index As Integer) As Currency"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 1531,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nStatHitSpell_AtkDmgResisted(ByVal Index As Integer) As Currency"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 1551,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "'Public Property Let nStatAtkDmgResisted(ByVal Index As Integer, ByVal vData As Currency)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 1555,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nStatAtkDmgResisted(ByVal Index As Integer) As Currency"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'HEAL'; $attacks[$i][2] = 'The room casts room heal on you, healing DMG damage!'; $attacks[$i][3] = 'AAAAAAA';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 124,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($attack[4], '/')).\".*/\", 'PARSED_'.$attack[1].$num.',0,resist', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 57,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$resistable = (int)preg_replace(\"/[^0-2]/\", '', $_POST['resistable'][$index]);"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 83,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "quests_scripts",
+      "text": "2688|0|0|(this is just the last part) dao lords death spell casts another spell which executes this block.  it has the flag checks, exp gain, and giving the item."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 490,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9566|0|9568|flag check/give ability"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 755,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "quests_scripts",
+      "text": "--Nahr's Castle"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 765,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "quests_scripts",
+      "text": "4305|0|0|caster nahr portal in"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 766,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "quests_scripts",
+      "text": "4301|0|0|caster nahr portal out"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 910,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "quests_scripts",
+      "text": "'little complex here - block 1448 casts spell 614, which gives +0 charm for"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsMenuItem.cls",
+      "line": 34,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'Syntax: Debug.Print X.SubItems"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsTrayIcon.cls",
+      "line": 4,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Persistable = 0  'NotPersistable"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsTrayIcon.cls",
+      "line": 11,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute VB_Creatable = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsTrayIcon.cls",
+      "line": 15,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Attribute VB_Ext_KEY = \"Top_Level\" ,\"Yes\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 233,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildDestroy.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 2113,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'                nEl = Int((y - UserControl.ScaleTop - FIRST_OFFSET) / (nItemH + STANDARD_OFFSET)) + 1"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 2115,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'                    If (y - UserControl.ScaleTop - FIRST_OFFSET) - (nEl - 1) * (nItemH + STANDARD_OFFSET) > -2 Then PointInElement = nEl"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 2127,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'                nEl = Int((x - UserControl.ScaleLeft - FIRST_OFFSET) / (nItemW + STANDARD_OFFSET)) + 1"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 2129,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'                    If (x - UserControl.ScaleLeft - FIRST_OFFSET) - (nEl - 1) * (nItemW + STANDARD_OFFSET) > -2 Then PointInElement = nEl"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 2207,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'                IsPointInElement = (y > (idx - 1) * (nItemH + STANDARD_OFFSET)) And (y < idx * (nItemH + STANDARD_OFFSET) - STANDARD_OFFSET)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 2220,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "'                IsPointInElement = (x > (idx - 1) * (nItemW + STANDARD_OFFSET)) And (x < idx * (nItemW + STANDARD_OFFSET) - STANDARD_OFFSET)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 325,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Public Declare Function ModifyMenu Lib \"user32\" Alias \"ModifyMenuA\" (ByVal hMenu As Long, ByVal nPosition As Long, ByVal wFlags As Long, ByVal wIDNewItem As Long, ByVal lpString As Any) As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 393,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "bmBitsPixel As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 450,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "'// Thiw procedure will tell Windows how big our items are."
+    }
+  ]
+}

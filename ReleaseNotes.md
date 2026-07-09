@@ -1,3 +1,9 @@
+# Release Notes - CodeUpdate 0116
+
+Librarium Runtime Conversion: Librarium is authoritative; `/Data` is generated per world; repository cleaned of old generated/import clutter.
+
+---
+
 # CodeUpdate-0115 - Runtime State and Event Dispatcher Foundation
 
 This update starts Runtime Milestone 2 with a host-owned state and event backbone.

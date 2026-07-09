@@ -1,0 +1,207 @@
+{
+  "base_world": null,
+  "compiler_code_update": "0127",
+  "family": "loot_rules",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "record_count": 1,
+  "records": [
+    {
+      "code_update": "0121",
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "confidence": "bucket-level; see child records for mechanic confidence",
+      "description": "Drop tables and treasure resolution.",
+      "evidence_bucket": "loot",
+      "evidence_refs": [
+        {
+          "classification": "text_scanned",
+          "evidence_count": 13,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettings.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 136,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MBBSEmu.csproj",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 44,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Session/SocketSession.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 73,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Database/Repositories/Account/AccountRepository.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 29,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Database/Repositories/Account/IAccountRepository.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 69,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Database/Repositories/AccountKey/AccountKeyRepository.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 24,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Database/Repositories/AccountKey/IAccountKeyRepository.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 3,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Database/Repositories/AccountKey/Queries/DropAccountKeysTable.sql",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 44,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Database/Repositories/AccountKey/Queries/EnumQueries.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 3,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Database/Repositories/Account/Queries/DropAccountsTable.sql",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 53,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Database/Repositories/Account/Queries/EnumQueries.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 19,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Logging/Targets/QueueTarget.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 100,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/Ordinals.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 11,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/Fsd/FsdFieldSpec.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 20,
+          "path": "ImportedDatabases/MBBSEmu/.github/ISSUE_TEMPLATE/majormud-bug-report.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 1101,
+          "path": "ImportedDatabases/MMUD-Explorer/README.md",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 463,
+          "path": "ImportedDatabases/MMUD-Explorer/_outputsmashuptemp.txt",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 344,
+          "path": "ImportedDatabases/MMUD-Explorer/frmBSCalc.frm",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 243,
+          "path": "ImportedDatabases/MMUD-Explorer/frmExpCalc.frm",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 744,
+          "path": "ImportedDatabases/MMUD-Explorer/frmHitCalc.frm",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 834,
+          "path": "ImportedDatabases/MMUD-Explorer/frmMain.frm",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 514,
+          "path": "ImportedDatabases/MMUD-Explorer/frmMonsterAttackSim.frm",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 446,
+          "path": "ImportedDatabases/MMUD-Explorer/frmMonsterFilters.frm",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 1938,
+          "path": "ImportedDatabases/MMUD-Explorer/frmPopUpOptions.frm",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 409,
+          "path": "ImportedDatabases/MMUD-Explorer/frmSpellBook.frm",
+          "source": "MMUD-Explorer"
+        }
+      ],
+      "evidence_total": 80172,
+      "export_mapping": {
+        "generated": true,
+        "target": "Data/<world>/loot_rules"
+      },
+      "id": "loot_rule.catalog.phase2_3_0121",
+      "librarium_source_file": "Librarium/Objects/loot_rules/loot_rule_catalog_0121.json",
+      "name": "Loot Rule Catalog",
+      "object_type": "loot_rule",
+      "relationships": [],
+      "runtime_mapping": {
+        "runtime_reads_generated_data": true,
+        "status": "cataloged_for_export"
+      },
+      "source_breakdown": {
+        "MBBSEmu": 641,
+        "MMUD-Explorer": 30755,
+        "NightmareRedux": 48776
+      },
+      "source_priority": {
+        "MBBSEmu": 3,
+        "MMUD-Explorer": 4,
+        "MajorMUD-PHP-Monster-Sim": 5,
+        "NightmareRedux": 2,
+        "OriginalRuntimeObservation": 1
+      },
+      "status": "complete_for_current_evidence_corpus",
+      "validation_rules": [
+        "object_must_have_id",
+        "object_must_have_world_scope",
+        "classic_changes_require_evidence",
+        "custom_ai_changes_require_validation"
+      ],
+      "world_scope": "classic/custom/ai"
+    }
+  ],
+  "source_file": "Librarium/Objects/loot_rules/loot_rule_catalog_0121.json",
+  "world_id": "Classic",
+  "world_type": "classic"
+}

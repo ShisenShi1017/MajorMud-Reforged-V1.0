@@ -1,0 +1,25 @@
+{
+  "ai_editable": true,
+  "base_source": "Classic",
+  "base_world": "Classic",
+  "description": "AI world overlay seeded from Classic. AI changes must live in this overlay and are validation-gated.",
+  "host_editable": true,
+  "locked": false,
+  "overlay_id": "ai_from_classic",
+  "overrides": [
+    {
+      "fields": {
+        "ai_overlay_enabled": true,
+        "base_world": "Classic",
+        "display_name": "AI From Classic"
+      },
+      "operation": "metadata",
+      "target_family": "worlds",
+      "target_id": "world.ai.from_classic"
+    }
+  ],
+  "precedence": 20,
+  "requires_host_approval": true,
+  "world_id": "AIFromClassic",
+  "world_type": "ai"
+}

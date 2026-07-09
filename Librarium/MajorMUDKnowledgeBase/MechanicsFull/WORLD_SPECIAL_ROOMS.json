@@ -1,0 +1,381 @@
+{
+  "id": "WORLD.SPECIAL_ROOMS",
+  "bucket": "World and Spawns",
+  "name": "Special room actions",
+  "description": "Room scripts, special actions, gates, traps, teleports, and puzzles.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2868,
+  "representative_evidence_count": 39,
+  "representative_source_path_count": 15,
+  "keywords_used": [
+    "special",
+    "room",
+    "trap",
+    "teleport",
+    "script",
+    "action"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 890,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "1436|0|0|flag check, remote action"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/nmr tools.txt",
+      "line": 38,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "---This very useful tool allows you to change ranges of specific fields in the room database and is  more configurable for rooms than the universal modifier. Very useful for fixing area regen problems, or changing the room description of an entire area. Could also be used to remove large ranges from rooms, such as setting every room's light setting to 0."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3701,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "tabActions.Fields(\"Single to Room\") = Actionrec.SingleToRoom"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3704,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "tabActions.Fields(\"User to Room\") = Actionrec.UserToRoom"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3706,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "tabActions.Fields(\"Monster to Room\") = Actionrec.MonsterToRoom"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3708,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "tabActions.Fields(\"Inventory to Room\") = Actionrec.InventoryToRoom"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3710,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "tabActions.Fields(\"Floor Item to Room\") = Actionrec.FloorItemToRoom"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2284,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Actionrec.SingleToRoom = Trim(tabActions.Fields(\"Single to Room\"))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2287,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Actionrec.UserToRoom = Trim(tabActions.Fields(\"User to Room\"))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2289,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Actionrec.MonsterToRoom = Trim(tabActions.Fields(\"Monster to Room\"))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2291,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Actionrec.InventoryToRoom = Trim(tabActions.Fields(\"Inventory to Room\"))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2293,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Actionrec.FloorItemToRoom = Trim(tabActions.Fields(\"Floor Item to Room\"))"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/EnumFlags.cs",
+      "line": 39,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "///     Trap Flag"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/ICpuRegisters.cs",
+      "line": 28,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "///     While the majority of these are basic 16-bit values, several special"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/scripts/create_user.py",
+      "line": 14,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "parser.add_argument('--keys', help='Account keys to add to the new account', action='append', default=['NORMAL','PAYING'])"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 20339,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "If Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 20368,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "If TextBlockHasTeleport(tabRooms.Fields(\"CMD\"), nMapStartRoom, nMapStartMap, bStrict) Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 22958,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "If Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 26611,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "MsgBox \"Note: room command (teleport) not recorded to MegaMUD path because current path position does not match.\", vbInformation"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 33184,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "ElseIf Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 33483,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "If Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 41017,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "If Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMap.frm",
+      "line": 43872,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "If Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMap.frm",
+      "line": 44788,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "If Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMap.frm",
+      "line": 45746,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "ElseIf Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMegaMUDPathing.frm",
+      "line": 1217,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "world_spawns",
+      "text": "If Left(tabRooms.Fields(sLook), 6) = \"Action\" Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modListViewExt.bas",
+      "line": 13,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "'   2) \u0093Sticky\u0094 grouped sorting by action flag (CARRIED, STASH, MANUAL, BUY/SELL, DROP, HIDE, PICKUP/USE)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 565,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "Action action = () => btrieve.Update(1, record.Data).Should().NotBe(BtrieveError.Success);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 1244,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "Action act = () => btrieve.PerformOperation(0, Encoding.ASCII.GetBytes(\"test\"), EnumBtrieveOperationCodes.QueryEqual);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AAM_DAA_Tests.cs",
+      "line": 24,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "Description     Convert 16 bit parameter (in dx) to 4 hex digits at ES: [di]."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 15,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_AL_IMM8(byte alValue, byte valueToAnd, byte expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 25,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "quests_scripts",
+      "text": "//Process Instruction"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 31,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "//Verify Flags"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 32,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.Equal(zeroFlagSet, mbbsEmuCpuRegisters.ZeroFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 33,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.Equal(signFlagSet, mbbsEmuCpuRegisters.SignFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 34,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.False(mbbsEmuCpuRegisters.OverflowFlag);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'HEAL'; $attacks[$i][2] = 'The room casts room heal on you, healing DMG damage!'; $attacks[$i][3] = 'AAAAAAA';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 101,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "AddStrip(array('Also here:', 'You hear movement ', ' into the room from ', ' just entered the Realm', ' just left the Realm', ' just hung up', ' peeks in from ', 'the server will be shutting', 'nightly \"auto-cleanup\"', 'Please finish up and log off', 'Software caused connection abort', 'Session ended', 'or type \"new\"', 'Enter your password', 'password you have given', 'glad to see you back', 'majo"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 215,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<form action=\"capture_parse.php\" method=\"post\" enctype=\"multipart/form-data\" name=\"form1\" id=\"form1\">"
+    }
+  ]
+}

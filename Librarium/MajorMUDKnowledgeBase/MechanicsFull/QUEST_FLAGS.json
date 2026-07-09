@@ -1,0 +1,351 @@
+{
+  "id": "QUEST.FLAGS",
+  "bucket": "Quests and Scripts",
+  "name": "Quest flags/state",
+  "description": "Persistent quest state, flags, and per-character progress fields.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 6864,
+  "representative_evidence_count": 36,
+  "representative_source_path_count": 7,
+  "keywords_used": [
+    "quest",
+    "flag",
+    "state",
+    "progress"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 3650,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "GetAbilityName = \"QuestFlag\" & nNum"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 3675,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "GetAbilityName = \"QuestFlag\" & nNum"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 3684,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "GetAbilityName = \"QuestFlag\" & nNum"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 3971,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "'sAbility = \"QuestFlag\" & nNum"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 3996,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "'sAbility = \"QuestFlag\" & nNum"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 4005,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "'sAbility = \"QuestFlag\" & nNum"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 36,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9046|0|0|flag checks and class rewards"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 83,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "quests_scripts",
+      "text": "2688|0|0|(this is just the last part) dao lords death spell casts another spell which executes this block.  it has the flag checks, exp gain, and giving the item."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 91,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "396|0|397|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 94,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "399|0|400|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 99,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "396|0|4027|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 105,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "4038|0|4033|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 110,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "4041|0|4037|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 119,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "396|0|9449|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 121,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9446|0|9449|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 124,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9451|0|9579|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 130,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9290|0|9455|flag check"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 133,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9292|0|9291|flag check"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 15,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_AL_IMM8(byte alValue, byte valueToAnd, byte expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 31,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "//Verify Flags"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 32,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.Equal(zeroFlagSet, mbbsEmuCpuRegisters.ZeroFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 33,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.Equal(signFlagSet, mbbsEmuCpuRegisters.SignFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 34,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.False(mbbsEmuCpuRegisters.OverflowFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 35,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.False(mbbsEmuCpuRegisters.CarryFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_AX_IMM16(ushort axValue, ushort valueToAnd, ushort expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 58,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "//Verify Flags"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 59,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.Equal(zeroFlagSet, mbbsEmuCpuRegisters.ZeroFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 60,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.Equal(signFlagSet, mbbsEmuCpuRegisters.SignFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 61,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.False(mbbsEmuCpuRegisters.OverflowFlag);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 62,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.False(mbbsEmuCpuRegisters.CarryFlag);"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 23,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "### Dev-mode flags \u2014 turn OFF before a release build"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 24,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Four flags are marked `'TURN OFF BEFORE RELEASE - LOC n/4`. All four must be flipped for a"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 83,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "7   10   camo  camouflage"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 404,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "flagstones. Tall, rickety buildings tower above on either side of the street,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/exp-per-hour-models.md",
+      "line": 17,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Model flags: `bGlobal_cephModelA/B/C/D`. Each maps to `chkEPH_Model(0/1/2/3)` in"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/manifest.manifest",
+      "line": 7,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "<requestedExecutionLevel level=\"asInvoker\" uiAccess=\"false\"/>"
+    }
+  ]
+}

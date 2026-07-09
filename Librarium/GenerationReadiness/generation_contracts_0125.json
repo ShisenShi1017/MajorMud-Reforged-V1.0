@@ -1,0 +1,1277 @@
+{
+  "code_update": "0125",
+  "contracts": [
+    {
+      "object_family": "ai_profiles",
+      "object_type": "ai_profile",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/ai_profiles/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/ai_profiles.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.AI.AiProfileRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 16,
+        "dependencies": [
+          "formulas",
+          "spells",
+          "skills"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "areas",
+      "object_type": "area",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/areas/catalog.json",
+      "record_index_count": 1,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/areas.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.World.AreaRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 20,
+        "dependencies": [
+          "regions"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "assets",
+      "object_type": "asset",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/assets/catalog.json",
+      "record_index_count": 2,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/assets/manifest.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Assets.AssetRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 30,
+        "dependencies": [],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "banks",
+      "object_type": "bank",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/banks/catalog.json",
+      "record_index_count": 2,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/banks.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Economy.BankRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 14,
+        "dependencies": [
+          "economy_rules"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "classes",
+      "object_type": "class",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/classes/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/classes.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Characters.ClassRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 7,
+        "dependencies": [
+          "skills",
+          "spells"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "client_views",
+      "object_type": "client_view",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/client_views/catalog.json",
+      "record_index_count": 1,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/client_views.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Client.ClientViewRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 31,
+        "dependencies": [
+          "worlds",
+          "items",
+          "spells",
+          "rooms",
+          "npcs",
+          "quests"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "commands",
+      "object_type": "command",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/commands/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/commands.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Commands.CommandRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 26,
+        "dependencies": [
+          "skills",
+          "spells",
+          "scripts"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "conflicts",
+      "object_type": "conflict",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/conflicts/catalog.json",
+      "record_index_count": 1,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "librarium_metadata",
+        "runtime_destination": "Librarium/Conflicts/conflict_index.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "global_reference",
+        "override_behavior": "not_runtime_overridable",
+        "runtime_consumer": "Librarium.ConflictTrackingOnly",
+        "client_visibility": "host/admin_librarium_only",
+        "generation_order": 2,
+        "dependencies": [
+          "evidence_records"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "economy_rules",
+      "object_type": "economy_rule",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/economy_rules/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/economy_rules.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Economy.EconomyRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 13,
+        "dependencies": [],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "equipment",
+      "object_type": "equipment",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/equipment/catalog.json",
+      "record_index_count": 1,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/equipment.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Items.EquipmentRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 11,
+        "dependencies": [
+          "items",
+          "formulas"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "events",
+      "object_type": "event",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/events/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/events.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Events.EventRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 28,
+        "dependencies": [
+          "rooms",
+          "npcs",
+          "items",
+          "spells",
+          "scripts"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "evidence_records",
+      "object_type": "evidence_record",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/evidence_records/catalog.json",
+      "record_index_count": 1,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "librarium_metadata",
+        "runtime_destination": "Librarium/Evidence/evidence_index.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "global_reference",
+        "override_behavior": "not_runtime_overridable",
+        "runtime_consumer": "Librarium.EvidenceOnly",
+        "client_visibility": "host/admin_librarium_only",
+        "generation_order": 1,
+        "dependencies": [],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "exits",
+      "object_type": "exit",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/exits/catalog.json",
+      "record_index_count": 2,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/exits.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.World.ExitRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 22,
+        "dependencies": [
+          "rooms"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "formulas",
+      "object_type": "formula",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/formulas/catalog.json",
+      "record_index_count": 18,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/formulas.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Formulas.FormulaRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 3,
+        "dependencies": [],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "guilds",
+      "object_type": "guild",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/guilds/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/guilds.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Social.GuildRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 9,
+        "dependencies": [
+          "classes",
+          "skills"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "items",
+      "object_type": "item",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/items/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/items.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Items.ItemRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 10,
+        "dependencies": [
+          "formulas",
+          "spells",
+          "status_effects"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "loot_rules",
+      "object_type": "loot_rule",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/loot_rules/catalog.json",
+      "record_index_count": 2,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/loot_rules.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Loot.LootRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 12,
+        "dependencies": [
+          "items"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "npcs",
+      "object_type": "npc",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/npcs/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/npcs.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Entities.NpcRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 23,
+        "dependencies": [
+          "ai_profiles",
+          "spells",
+          "skills",
+          "loot_rules",
+          "formulas"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "quests",
+      "object_type": "quest",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/quests/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/quests.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Quests.QuestRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 25,
+        "dependencies": [
+          "rooms",
+          "npcs",
+          "items",
+          "spells",
+          "status_effects"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "races",
+      "object_type": "race",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/races/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/races.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Characters.RaceRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 8,
+        "dependencies": [
+          "skills",
+          "status_effects"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "regions",
+      "object_type": "region",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/regions/catalog.json",
+      "record_index_count": 2,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/regions.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.World.RegionRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 19,
+        "dependencies": [
+          "worlds"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "rooms",
+      "object_type": "room",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/rooms/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/rooms.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.World.RoomRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 21,
+        "dependencies": [
+          "areas"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "scripts",
+      "object_type": "script",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/scripts/catalog.json",
+      "record_index_count": 2,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/scripts.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Scripting.ScriptRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 27,
+        "dependencies": [
+          "commands",
+          "events",
+          "triggers"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "shops",
+      "object_type": "shop",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/shops/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/shops.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Economy.ShopRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 15,
+        "dependencies": [
+          "items",
+          "economy_rules"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "skills",
+      "object_type": "skill",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/skills/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/skills.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Skills.SkillRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 6,
+        "dependencies": [
+          "formulas",
+          "status_effects"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "spawns",
+      "object_type": "spawn",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/spawns/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/spawns.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.World.SpawnRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 24,
+        "dependencies": [
+          "rooms",
+          "npcs"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "spells",
+      "object_type": "spell",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/spells/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/spells.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Magic.SpellRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 5,
+        "dependencies": [
+          "formulas",
+          "status_effects"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "status_effects",
+      "object_type": "status_effect",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/status_effects/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/status_effects.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Effects.StatusEffectRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 4,
+        "dependencies": [
+          "formulas"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "triggers",
+      "object_type": "trigger",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/triggers/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/triggers.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Events.TriggerRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 29,
+        "dependencies": [
+          "events",
+          "rooms",
+          "npcs",
+          "items"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "validation_rules",
+      "object_type": "validation_rule",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/validation_rules/catalog.json",
+      "record_index_count": 1,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/validation_rules.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "global_reference",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.Validation.ValidationRuntime",
+        "client_visibility": "host/admin_librarium_only",
+        "generation_order": 0,
+        "dependencies": [],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "world_overlays",
+      "object_type": "world_overlay",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/world_overlays/catalog.json",
+      "record_index_count": 2,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/overlays/*.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.World.WorldOverlayRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 18,
+        "dependencies": [
+          "worlds"
+        ],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    },
+    {
+      "object_family": "worlds",
+      "object_type": "world",
+      "code_update": "0125",
+      "source_catalog": "Librarium/Objects/worlds/catalog.json",
+      "record_index_count": 3,
+      "generation_ready": true,
+      "export_contract": {
+        "export_scope": "world_runtime",
+        "runtime_destination": "Data/{world_id}/world.json",
+        "serialization": "canonical_json",
+        "world_inheritance": "classic_locked_custom_ai_overlay",
+        "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+        "runtime_consumer": "Runtime.World.WorldRuntime",
+        "client_visibility": "world_filtered_read_only",
+        "generation_order": 17,
+        "dependencies": [],
+        "required_fields": [
+          "id",
+          "name",
+          "object_type",
+          "world_scope",
+          "evidence_refs",
+          "relationships",
+          "runtime_mapping",
+          "export_mapping",
+          "validation"
+        ],
+        "validation_rules": [
+          "unique_id",
+          "schema_conforms",
+          "dependencies_resolve",
+          "world_scope_valid",
+          "export_mapping_present"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "object_type": "economy_rule",
+  "code_update": "0125",
+  "schema_ref": "../../Schemas/librarium_object_schema_0121.json",
+  "records": [
+    "catalog_seed_0119.json",
+    "economy_rule_catalog_0121.json",
+    "economy_rule_records_0123.json"
+  ],
+  "phase2_status": "foundation_complete",
+  "phase3_status": "true_population_pass_2_enriched",
+  "population_note": "Pass 2 adds economy and service rule records from shop inventory and service extraction evidence.",
+  "catalog_role": "librarium_object_catalog_index",
+  "librarium_authority": "source_of_truth",
+  "data_generation_policy": "/Data is generated from Librarium and must not be manually edited",
+  "imported_database_retention": "retain until Librarium is 100% complete",
+  "enrichment_pointer": "See *_records_0122.json or *_records_0123.json for populated records where available.",
+  "generation_readiness": "ready_for_compiler_contract_pass",
+  "generation_contract_ref": "../../GenerationReadiness/generation_contracts_0125.json",
+  "export_contract_summary": {
+    "export_scope": "world_runtime",
+    "runtime_destination": "Data/{world_id}/economy_rules.json",
+    "serialization": "canonical_json",
+    "world_inheritance": "classic_locked_custom_ai_overlay",
+    "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+    "runtime_consumer": "Runtime.Economy.EconomyRuntime",
+    "client_visibility": "world_filtered_read_only",
+    "generation_order": 13,
+    "dependencies": [],
+    "required_fields": [
+      "id",
+      "name",
+      "object_type",
+      "world_scope",
+      "evidence_refs",
+      "relationships",
+      "runtime_mapping",
+      "export_mapping",
+      "validation"
+    ],
+    "validation_rules": [
+      "unique_id",
+      "schema_conforms",
+      "dependencies_resolve",
+      "world_scope_valid",
+      "export_mapping_present"
+    ]
+  }
+}

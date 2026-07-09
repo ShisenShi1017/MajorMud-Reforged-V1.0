@@ -1,0 +1,388 @@
+{
+  "id": "MAGIC.DURATION",
+  "bucket": "Magic",
+  "name": "Spell duration",
+  "description": "How spell durations are stored, scaled, and expired.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 637,
+  "representative_evidence_count": 40,
+  "representative_source_path_count": 12,
+  "keywords_used": [
+    "duration",
+    "rounds",
+    "timer",
+    "expire"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 3070,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "' Ensure both the seconds timer and the rounds tracker reflect fallback"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1005,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "CalculateSpellCast.nOOM = CalcRoundsToOOM(CalculateSpellCast.nManaCost + tCharStats.nSpellOverhead, tCharStats.nMaxMana, tCharStats.nManaRegen, nCastChance, nSpellDuration)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1032,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "sAvgRound = sAvgRound & \" for \" & (nSpellDuration * SPELL_ROUND_SECS) & \" secs/\" & Fix((nSpellDuration * SPELL_ROUND_SECS) / ROUND_SECS) & \" rounds (\" & ((CalculateSpellCast.nAvgRoundDmg + CalculateSpellCast.nAvgRoundHeals) * nSpellDuration) & \" total)\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 12,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer tmrRefresh"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 17,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer FlashTimer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 22,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer tmrMouse"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 365,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub FlashTimer_Timer()"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 389,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "'Stop the Timer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 390,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "FlashTimer.Enabled = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 581,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "'Start the Timer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 582,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "FlashTimer.Enabled = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 593,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub tmrMouse_Timer()"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 595,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "' this timer is used to take away the focus rect, for bars"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 734,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "If InDesign = True Then: Stop: Else: Call HandleError(\"Class \" & TypeName(Me) & \"_tmrMouse_Timer\" & vbCrLf & \"Line# \" & Erl & vbCrLf & \"Err#\" & Err.Number & vbCrLf & \"Desc. \" & Err.Description, App.Title, \"\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 739,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub tmrRefresh_Timer()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 79,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "TMRINT {Initiating the timers, x to exit module..."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 80,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "} T Timer Intro"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 82,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "TMROUT {Timer has fired! %d:%d rti:%d"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 83,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "} T Timer"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 11,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "public class ProgrammableIntervalTimer_Tests : CpuTestBase"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 17,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public void CantWriteToInvalidPorts(byte port)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 54,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public void ReadLowByteOnly(byte channel)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 58,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "mbbsEmuCpuRegisters.AL = (byte)((1 << 4) | (channel << 6)); // lo byte only"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 60,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "var expected = (byte)(int)(ProgrammableIntervalTimer.FREQUENCY * (1.0 - fakeClock.CurrentTick));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 64,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "instructions.@in(al, (byte)(0x40 + channel));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 66,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "instructions.@in(al, (byte)(0x40 + channel));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 82,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public void ReadHighByteOnly(byte channel)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 273,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 335,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "-monster tab references now show how many spawn in each lair (requires database exported with nmr v1.8.2+)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 905,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "'If m_nAtkDuration(nAttack) = 0 Or bResisted Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 906,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "If m_nAtkDuration(nAttack) = 0 Or bResisted Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 179,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 242,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "-monster tab references now show how many spawn in each lair (requires database exported with nmr v1.8.2+)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 261,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 15,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "character_progression",
+      "text": "Begin VB.Timer timCalc"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 21,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "character_progression",
+      "text": "Begin VB.Timer timButtonPress"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $between_rounds[$i][0] = 'CHAINS'; $between_rounds[$i][1] = 'Glowing silver manacles clamp around your wrists!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 431,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "<td bgcolor=\"<?php echo $bgcolor; ?>\"><?php echo round($attack['attempt_stats'][$x]['energy']/$number_of_rounds, 3); ?></td>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 473,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "p('Average '.($attack['type'] == 'spell' ? 'Casts' : 'Swings').'/Round: '.round($attack['attempted']/$number_of_rounds,2));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 510,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "p('Average Energy Remaining after attack '.$x.': '.round($energy_stats['remaining_after_attack'][$x]/$number_of_rounds,2));"
+    }
+  ]
+}

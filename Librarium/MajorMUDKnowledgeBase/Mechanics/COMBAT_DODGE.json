@@ -1,0 +1,232 @@
+{
+  "mechanic_id": "COMBAT_DODGE",
+  "name": "Dodge and Evasion",
+  "domain": "Combat",
+  "description": "Dodge chance, caps, and placement in attack sequence.",
+  "status": "open_conflict_leading_nightmare_redux",
+  "confidence": "blocked_by_open_conflict",
+  "evidence_hit_count": 645,
+  "source_counts": {
+    "MMUDExplorer": 435,
+    "MonsterSim": 21,
+    "NightmareRedux": 189
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "primary_buckets": {
+    "tooling_ui": 247,
+    "combat": 224,
+    "character_progression": 105,
+    "npc_ai": 62,
+    "data_schema": 6,
+    "world_spawns": 1
+  },
+  "unique_evidence_files": 27,
+  "top_evidence_files": [
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "hits": 107
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "hits": 89
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "hits": 62
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "hits": 58
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "hits": 46
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "hits": 44
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMonsterAttackSim.frm",
+      "hits": 38
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "hits": 38
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPasteChar.frm",
+      "hits": 33
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmHitCalc.frm",
+      "hits": 25
+    },
+    {
+      "source": "MonsterSim",
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "hits": 21
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMonsterFilters.frm",
+      "hits": 13
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "hits": 12
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 11
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "hits": 7
+    }
+  ],
+  "open_conflicts": [
+    {
+      "id": "CONFLICT_COMBAT_DODGE_ORDER_001",
+      "mechanic": "Dodge/Evasion order",
+      "status": "open_needs_order_confirmation",
+      "current_policy": "Nightmare Redux is leading interpretation; confirm sequence against emulator/log behavior before runtime lock.",
+      "sources": [
+        "NightmareRedux",
+        "MonsterSim",
+        "MMUDExplorer"
+      ]
+    }
+  ],
+  "runtime_status": "do_not_implement_as_classic_verified_yet",
+  "reconstruction_notes": [
+    "Dodge has enough evidence for raw dodge/caps but remains blocked on exact sequence placement and mode selection."
+  ],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 16,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "character_progression",
+      "text": "-UP: update attack sim to allow for true dodge value (as computed in MME v1.9.2) or megamud's value"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 37,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nStatAtkAttemptDodgedOrResisted(0 To 4) As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 47,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_nUserDodge As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 50,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Private m_bDodgeBeforeAC As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 97,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Public Property Let bDodgeBeforeAC(ByVal vData As Boolean)"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 98,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "m_bDodgeBeforeAC = vData"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 101,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Public Property Get bDodgeBeforeAC() As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 102,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bDodgeBeforeAC = m_bDodgeBeforeAC"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 421,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim bAttackHit As Boolean, bDodged As Boolean, bGlanced As Boolean, bResisted As Boolean"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 423,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim nRoll_AttackChance As Integer, nRoll_HitChance As Integer, nRoll_DodgeChance As Integer, nAdjustedDodgeValue As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 577,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "bAttackHit = False: bDodged = False: bGlanced = False: bResisted = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 602,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "'this will allow the dodge percentage to match what players see in megamud"
+    }
+  ]
+}

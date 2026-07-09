@@ -1,9 +1,0 @@
-claim,docs,nativeDAT,promotion,status,wccWbb,wgserver
-Spell records exist as canonical Data/spells.json records,multiple docs mention spells/casting,WCCSPELS records/string anchors available,No,Strongly Supported,OmniVerse/WCC spell reference available,not proven by dataflow
-Spell identity can be bridged by sourceId/legacy_number for most records,reference only,canonical sourceId present; WCCSPELS anchors available,No,Strongly Supported,1151 canonical spells matched OmniVerse legacy_number,not proven by dataflow
-Spell records have raw fields likely representing level/cost/effects/duration/target/resist properties,"MudInfo/Wiki discuss MR, spell damage/healing/duration",41 raw field positions profiled,No,Candidate,OmniVerse names candidate spell_level/target/effect/duration/resist fields,constant probes only
-Magic resistance affects spell avoidance or damage reduction,MudInfo formula references mention MR/anti-magic,candidate raw fields and OmniVerse resist fields exist,No,Candidate,resist_type/resist_ability reference fields available,MR constants found but no dataflow proof
-Spell damage and healing have min/max or effect ranges,spell docs mention damage/healing,raw field numeric ranges and canonical spell names support candidate grouping,No,"Strongly Supported as data/reference, Candidate as engine behavior",OmniVerse min_effect/max_effect fields available,constants and no spell string anchors sufficient
-Spell duration is data-driven,duration terms in references,candidate raw fields with duration-like values,No,Candidate,OmniVerse duration field available,no routine dataflow proof
-Anti-magic/resist flags gate spell resistance behavior,MudInfo MR formula references,candidate fields only,No,Candidate,reference resist fields and ability names,constants only
-Spell targeting uses explicit target type or flags,docs mention targets/casting,candidate raw fields only,No,Candidate,OmniVerse target_type available,no dataflow proof

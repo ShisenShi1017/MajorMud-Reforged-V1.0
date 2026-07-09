@@ -1,0 +1,1550 @@
+{
+  "schema_version": "0116.1",
+  "generated_from": "Librarium/MajorMUDKnowledgeBase/phase2_full_population_records.json",
+  "mechanics": [
+    {
+      "id": "COMBAT.HIT_AC",
+      "bucket": "Combat",
+      "name": "Physical hit chance vs armor class",
+      "description": "How attacker accuracy/level/attack values interact with defender AC before damage is rolled.",
+      "knowledge_status": "high_confidence_verified",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 8815,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.DODGE_RAW",
+      "bucket": "Combat",
+      "name": "Raw dodge/evasion calculation",
+      "description": "Base dodge/evasion value before ordering and mode decisions are applied.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 669,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.DODGE_ORDER",
+      "bucket": "Combat",
+      "name": "Dodge evaluation order",
+      "description": "Whether dodge is checked before AC, after AC, or through mode-specific branches.",
+      "knowledge_status": "open_conflict",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 1320,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.DR_PHYSICAL",
+      "bucket": "Combat",
+      "name": "Physical damage reduction",
+      "description": "How physical DR reduces final melee damage; current conflict prefers Nightmare Redux pending original runtime corroboration.",
+      "knowledge_status": "open_conflict",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 953,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.CRITICAL",
+      "bucket": "Combat",
+      "name": "Critical hit logic",
+      "description": "Critical chance, critical damage, and any special conditions that alter critical outcomes.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 127,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.BACKSTAB",
+      "bucket": "Combat",
+      "name": "Backstab/special attack resolution",
+      "description": "How backstab and special physical attacks interact with hit, dodge, defenses, and damage.",
+      "knowledge_status": "open_conflict",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 251,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.ATTACK_ENERGY",
+      "bucket": "Combat",
+      "name": "Attack energy/action loop",
+      "description": "How NPC/player physical actions consume energy and allow additional attacks.",
+      "knowledge_status": "high_confidence_verified",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 1453,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.WEAPON_SWING",
+      "bucket": "Combat",
+      "name": "Weapon swing timing",
+      "description": "Weapon energy/speed handling and how multiple swings are derived.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 1233,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.DAMAGE_ROLL",
+      "bucket": "Combat",
+      "name": "Physical damage roll",
+      "description": "How min/max damage, bonuses, and reductions produce final physical damage.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2132,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "COMBAT.SEQUENCE",
+      "bucket": "Combat",
+      "name": "Combat operation sequence",
+      "description": "The ordered pipeline from target selection through hit, defenses, damage, reductions, and final HP change.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 10089,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.MANA_COST",
+      "bucket": "Magic",
+      "name": "Spell mana cost",
+      "description": "How player spell mana cost is interpreted from spell data and modifiers.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 4619,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.CAST_FAILURE",
+      "bucket": "Magic",
+      "name": "Cast failure handling",
+      "description": "Failure/resist outcomes and resource refund or loss behavior.",
+      "knowledge_status": "high_confidence_verified",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 894,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.MR_RESIST",
+      "bucket": "Magic",
+      "name": "Magic resistance chance",
+      "description": "Chance that magic resistance prevents or resists a spell effect.",
+      "knowledge_status": "high_confidence_verified",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2731,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.MR_DAMAGE_REDUCTION",
+      "bucket": "Magic",
+      "name": "Magic resistance damage reduction",
+      "description": "How MR reduces spell damage after resist logic.",
+      "knowledge_status": "high_confidence_verified",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2731,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.NPC_SPELL_ENERGY",
+      "bucket": "Magic",
+      "name": "NPC spell energy and double-cast behavior",
+      "description": "NPC spell cost/refund behavior including half-cost on failed/resisted spell and possible second cast.",
+      "knowledge_status": "high_confidence_verified",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2363,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.SPELL_EFFECT_MAPPING",
+      "bucket": "Magic",
+      "name": "Spell effect mapping",
+      "description": "Mapping spell IDs/ability fields to damage, buff, debuff, healing, summon, and utility effects.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 6319,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.DURATION",
+      "bucket": "Magic",
+      "name": "Spell duration",
+      "description": "How spell durations are stored, scaled, and expired.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 637,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.BUFF_STACKING",
+      "bucket": "Magic",
+      "name": "Buff/debuff stacking",
+      "description": "Whether spell effects stack, refresh, overwrite, or conflict.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 2521,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "MAGIC.AOE_TARGETING",
+      "bucket": "Magic",
+      "name": "Area/targeting rules",
+      "description": "How spell targets, groups, rooms, and area effects are selected.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 1357,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "CHAR.STATS",
+      "bucket": "Character Progression",
+      "name": "Character stat model",
+      "description": "Core STR/INT/WIL/AGI/HEA/etc. field interpretation and derived calculations.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 14968,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "CHAR.HP_MP_GAIN",
+      "bucket": "Character Progression",
+      "name": "HP/MP gain and regeneration",
+      "description": "Hit point/mana gain, regeneration, and derived pools.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 4908,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "CHAR.XP_LEVEL",
+      "bucket": "Character Progression",
+      "name": "Experience and level progression",
+      "description": "XP thresholds, level checks, and leveling rules.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 13156,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "CHAR.CLASS_RULES",
+      "bucket": "Character Progression",
+      "name": "Class modifiers and restrictions",
+      "description": "Class-specific formulas, restrictions, and ability access.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 1325,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "CHAR.RACE_RULES",
+      "bucket": "Character Progression",
+      "name": "Race modifiers and restrictions",
+      "description": "Race-specific stat modifiers, restrictions, and abilities.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 497,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "CHAR.TRAINING",
+      "bucket": "Character Progression",
+      "name": "Training and advancement costs",
+      "description": "Trainer rules, advancement costs, and learned ability requirements.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 368,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ITEM.FIELD_SCHEMA",
+      "bucket": "Items and Equipment",
+      "name": "Item field schema",
+      "description": "Item data columns, binary fields, flags, and editor interpretation.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 24639,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ITEM.EQUIP_MODIFIERS",
+      "bucket": "Items and Equipment",
+      "name": "Equipment stat/effect modifiers",
+      "description": "How equipped items alter stats, AC, DR, MR, damage, hit, regen, or abilities.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 4314,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ITEM.WEAR_RESTRICTIONS",
+      "bucket": "Items and Equipment",
+      "name": "Wear/use restrictions",
+      "description": "Race/class/alignment/level/slot restrictions for using items.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2344,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ITEM.PROCS_CHARGES",
+      "bucket": "Items and Equipment",
+      "name": "Item procs and charges",
+      "description": "Triggered item effects, consumables, charges, and spell-cast items.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 6651,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ITEM.WEAPON_DATA",
+      "bucket": "Items and Equipment",
+      "name": "Weapon data interpretation",
+      "description": "Weapon damage/speed/type/special fields.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2104,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ITEM.ARMOR_DATA",
+      "bucket": "Items and Equipment",
+      "name": "Armor data interpretation",
+      "description": "Armor class, DR, slots, and protective effects.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 9243,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ITEM.RESISTANCES",
+      "bucket": "Items and Equipment",
+      "name": "Item resistances",
+      "description": "Resistance fields provided by equipment or consumables.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2747,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "NPC.FIELD_SCHEMA",
+      "bucket": "NPC AI",
+      "name": "Monster/NPC field schema",
+      "description": "Monster data layout, flags, stats, attacks, spells, and behavior fields.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 23718,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "NPC.ATTACK_DATA",
+      "bucket": "NPC AI",
+      "name": "Monster attack data encoding",
+      "description": "Attack list encoding, multiple attacks, damage values, and special attack flags.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 3915,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "NPC.SPELL_PRIORITY",
+      "bucket": "NPC AI",
+      "name": "NPC spell choice and priority",
+      "description": "How NPCs select spells, including energy and target conditions.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 5678,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "NPC.TARGETING",
+      "bucket": "NPC AI",
+      "name": "NPC targeting and aggro",
+      "description": "Target selection, hostility, aggro retention, and group behavior.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2005,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "NPC.MOVEMENT",
+      "bucket": "NPC AI",
+      "name": "NPC movement behavior",
+      "description": "Roaming, following, fleeing, and room movement behavior.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 375,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "NPC.LIFECYCLE",
+      "bucket": "NPC AI",
+      "name": "NPC lifecycle",
+      "description": "Spawn, death, despawn, respawn, and cleanup behavior.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 895,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "WORLD.ROOM_SCHEMA",
+      "bucket": "World and Spawns",
+      "name": "Room field schema",
+      "description": "Room data layout, exits, flags, text, and environmental attributes.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 22022,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "WORLD.SPAWN_TIMERS",
+      "bucket": "World and Spawns",
+      "name": "Spawn timers",
+      "description": "Spawn interval, hard timers, reset behavior, and timer visibility.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 883,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "WORLD.SPECIAL_ROOMS",
+      "bucket": "World and Spawns",
+      "name": "Special room actions",
+      "description": "Room scripts, special actions, gates, traps, teleports, and puzzles.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2868,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "WORLD.EVENT_TIMERS",
+      "bucket": "World and Spawns",
+      "name": "World event timers",
+      "description": "Scheduled events, room/NPC timers, and recurring world actions.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 576,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "QUEST.SCRIPTING",
+      "bucket": "Quests and Scripts",
+      "name": "Quest/script hooks",
+      "description": "Quest flags, script triggers, conditions, rewards, and progression hooks.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 1329,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "QUEST.FLAGS",
+      "bucket": "Quests and Scripts",
+      "name": "Quest flags/state",
+      "description": "Persistent quest state, flags, and per-character progress fields.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 6864,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ECON.SHOPS",
+      "bucket": "Economy and Shops",
+      "name": "Shop inventory and behavior",
+      "description": "Shop stock, restrictions, refresh, and buy/sell interaction rules.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 2491,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ECON.PRICES",
+      "bucket": "Economy and Shops",
+      "name": "Price/value formula",
+      "description": "Item value, buy/sell price, markup, markdown, and economic modifiers.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 3890,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ECON.BANKING",
+      "bucket": "Economy and Shops",
+      "name": "Banking and money storage",
+      "description": "Deposit, withdraw, banked gold, and related persistence.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 474,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "ECON.LOOT",
+      "bucket": "Economy and Shops",
+      "name": "Loot/treasure generation",
+      "description": "Monster drops, treasure tables, gold generation, and item reward behavior.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 382,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "CMD.PARSER",
+      "bucket": "Commands and Client",
+      "name": "Command parser behavior",
+      "description": "Command vocabulary, aliases, parser routing, and output contracts.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2689,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "CMD.OUTPUT",
+      "bucket": "Commands and Client",
+      "name": "Output/message formatting",
+      "description": "Classic-style text responses, combat messages, and UI-facing strings.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2689,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "SKILL.ABILITIES",
+      "bucket": "Skills and Abilities",
+      "name": "Skill/ability mapping",
+      "description": "Skill IDs, ability fields, ranks, and derived effects.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 1848,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "SKILL.GUILDS",
+      "bucket": "Skills and Abilities",
+      "name": "Guild mechanics",
+      "description": "Guild membership, abilities, restrictions, and progression.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 20,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "STATUS.EFFECTS",
+      "bucket": "Status Effects",
+      "name": "Status effect model",
+      "description": "Poison, disease, paralysis, invisibility, protections, and other persistent effects.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer"
+      ],
+      "evidence_hit_count": 2294,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "STATUS.SAVES",
+      "bucket": "Status Effects",
+      "name": "Saving throws and immunities",
+      "description": "Save checks, immunity fields, and status prevention.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 950,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "DATA.BINARY_FORMATS",
+      "bucket": "Data Schema",
+      "name": "Binary data formats",
+      "description": "MajorMUD binary table/database structures and parsers.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 22587,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "DATA.FLAGS_ENUMS",
+      "bucket": "Data Schema",
+      "name": "Flags and enumerations",
+      "description": "Bit flags, enums, masks, and symbolic values across data tables.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 21285,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "DATA.ID_LINKS",
+      "bucket": "Data Schema",
+      "name": "ID/link relationships",
+      "description": "Cross-table references between rooms, NPCs, items, spells, shops, quests, and effects.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 2493,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "RUNTIME.PERSISTENCE",
+      "bucket": "Runtime Support",
+      "name": "Account/character persistence contracts",
+      "description": "Save/load data, slots, character state, and world isolation.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 4903,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "RUNTIME.NETWORKING",
+      "bucket": "Runtime Support",
+      "name": "Network/session model",
+      "description": "Telnet/web/client session expectations and server communications.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 3280,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    },
+    {
+      "id": "RUNTIME.TESTING",
+      "bucket": "Runtime Support",
+      "name": "Tests and validation harnesses",
+      "description": "Test fixtures, validators, simulators, and regression tooling.",
+      "knowledge_status": "probable_multi_source",
+      "runtime_implemented": "not_changed_by_phase2_population",
+      "test_status": "not_generated_in_this_pass",
+      "sources_present": [
+        "NightmareRedux",
+        "MBBSEmu",
+        "MMUDExplorer",
+        "MonsterSim"
+      ],
+      "evidence_hit_count": 4537,
+      "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+      "runtime_binding": null,
+      "formula_expression": null,
+      "export_status": "definition_stub_pending_formula_binding",
+      "client_visibility": "read_only_summary",
+      "world_scope": [
+        "Classic",
+        "Custom",
+        "AI"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,569 @@
+{
+  "id": "MAGIC.MR_DAMAGE_REDUCTION",
+  "bucket": "Magic",
+  "name": "Magic resistance damage reduction",
+  "description": "How MR reduces spell damage after resist logic.",
+  "knowledge_status": "high_confidence_verified",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2731,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 25,
+  "keywords_used": [
+    "magic resist",
+    "mr",
+    "damage reduction",
+    "spell damage",
+    "reduce"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 164,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: added boxes to show spell damage vs. X MR for damage spells"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 177,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: added boxes to show spell damage vs. X MR for damage spells"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 261,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Ability to calculate spell damage / resist based on the defender MR rating"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 167,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Ability to calculate spell damage / resist based on the defender MR rating"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 249,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Ability to calculate spell damage / resist based on the defender MR rating"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "line": 4210,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"Magic Resistance:\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 189,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Magic Resistance formula discovered and now calculated automatically"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 95,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Magic Resistance formula discovered and now calculated automatically"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 177,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "-NEW: Magic Resistance formula discovered and now calculated automatically"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 10297,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"Magic Resistance\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 13951,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"Magic Resist:\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 17572,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "ToolTipText     =   \"Average Magic Resistance of characters in party\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27978,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "'| Magic Resistance"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 28027,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "'magic resist"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPasteChar.frm",
+      "line": 3001,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "& vbCrLf & vbCrLf & \"Enter the damage as if it were VS 50 MR so that the damage can be appropriately calculated against mob/lair defenses. All party magic damage is reduced by MR defense.\", vbInformation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 31,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nAtkMRdmgResist(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 84,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Private m_nBetweenRoundResistDmgMR(0 To 4) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 177,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Get nBetweenRoundResistDmgMR(ByVal Index As Integer) As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 178,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "nBetweenRoundResistDmgMR = m_nBetweenRoundResistDmgMR(Index)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 181,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Public Property Let nBetweenRoundResistDmgMR(ByVal Index As Integer, ByVal iData As Integer)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 182,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nBetweenRoundResistDmgMR(Index) = iData"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 420,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Dim nDR_DamageResisted As Currency, nMR_Reduction As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 642,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "If m_nAtkMRdmgResist(nAttack) = 1 And nDamage > 0 Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 643,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "nMR_Reduction = Round(CalcResistedDamage(nDamage, m_nUserMR, m_nUserAntiMagic))"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 167,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<label for=\"character_mr\">MR:</label>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 262,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "//if( TYPEofRESIST=Never , 0 , IF( ANTI_MAGIC=Yes or TYPEofRESIST=Yes , IF( MR>196 , 0.98 , MR/200 ) , 0 ) )"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 264,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "if ( $resist_chance <= (($character_mr > 196 ? 196 : $character_mr)/2) ) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 272,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "//DAMAGE = DAMAGE - ( DAMAGE * IF( MR<50, (MR-50)/100, IF( MR>150, 0.5, (MR-50)/200 ) ) )"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 275,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "//DAMAGE = DAMAGE - ( DAMAGE * IF( MR>150 , 0.75 , MR/200 ) )"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 280,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['damage_resisted'] += $mr_reduction;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 58,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of '.$long_name;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 65,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i][4] = 'You resisted SOURCE cast of hellstorm';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 124,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$capture_data = preg_replace(\"/.*\".str_replace('SOURCE', '[ a-zA-Z0-9\\']+', preg_quote($attack[4], '/')).\".*/\", 'PARSED_'.$attack[1].$num.',0,resist', $capture_data);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 13,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "function AddAttack($name, $type, $energy, $min, $max, $attack_chance, $success_chance, $resistable=0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 25,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i]['resistable'] = $resistable;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 26,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i]['damage_resisted'] = 0;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 79,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "TMRINT {Initiating the timers, x to exit module..."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 82,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "TMROUT {Timer has fired! %d:%d rti:%d"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/condex_Tests.cs",
+      "line": 20,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "testSessions[0].UsrPtr.Flags = testSessions[0].UsrPtr.Flags.SetFlag((ushort)EnumRuntimeFlags.Concex);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/AppSettingsManager.cs",
+      "line": 97,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "!Enum.TryParse(typeof(Session.Rlogin.EnumRloginCompatibility), ConfigurationRoot[\"Rlogin.Compatibility\"], out var result ))"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 293,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     Gets a record pointer offset at <paramref name=\"first\"/> and then continues to walk"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 311,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     Returns the record pointer located at absolute file offset <paramref name=\"offset\"/>."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 506,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     Gets the complete variable length data from the specified <paramref name=\"recordOffset\"/>,"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 492,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "key.ExtractKeyDataFromRecord(ret.ToSpan()).CopyTo(keyData.AsSpan());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveKey.cs",
+      "line": 77,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public ReadOnlySpan<byte> ExtractKeyDataFromRecord(ReadOnlySpan<byte> record)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveKey.cs",
+      "line": 109,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public bool KeyInRecordIsAllSameByte(ReadOnlySpan<byte> record, byte b) => IsAllSameByteValue(ExtractKeyDataFromRecord(record), b);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveKey.cs",
+      "line": 120,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public object ExtractKeyInRecordToSqliteObject(ReadOnlySpan<byte> data) => KeyDataToSqliteObject(ExtractKeyDataFromRecord(data));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CLAUDE.md",
+      "line": 64,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "**DOS.H interop:** `ToRegs()` serializes AX/BX/CX/DX/SI/DI/CF/FLAGS into a 16-byte span matching the DOS REGS struct layout. `FromRegs()` deserializes."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CpuRegisters.cs",
+      "line": 65,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void FromRegs(ReadOnlySpan<byte> regs) => Registers.FromRegs(regs);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/ICpuRegisters.cs",
+      "line": 81,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "void FromRegs(ReadOnlySpan<byte> regs);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/RegistersStructs.cs",
+      "line": 516,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public void FromRegs(ReadOnlySpan<byte> regs)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/DOS/ExeRuntime.cs",
+      "line": 158,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "///     Applies Relocation Records to the EXE using _programRealModeLoadAddress"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/DOS/Interrupts/Int7Bh.cs",
+      "line": 389,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "_memory.SetArray(command.key_buffer_segment, command.key_buffer_offset, db.Keys[(ushort)command.key_number].ExtractKeyDataFromRecord(record));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/DOS/Interrupts/Int7Bh.cs",
+      "line": 409,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "_memory.SetArray(command.key_buffer_segment, command.key_buffer_offset, db.Keys[(ushort)command.key_number].ExtractKeyDataFromRecord(record));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/DOS/Interrupts/Int7Bh.cs",
+      "line": 463,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "_memory.SetArray(command.key_buffer_segment, command.key_buffer_offset, db.Keys[(ushort)command.key_number].ExtractKeyDataFromRecord(data));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/DOS/Interrupts/Int7Bh.cs",
+      "line": 498,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "_memory.SetArray(command.key_buffer_segment, command.key_buffer_offset, db.Keys[(ushort)command.key_number].ExtractKeyDataFromRecord(record.Data));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/Artifacts/EnumRecordsFlag.cs",
+      "line": 5,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public enum EnumRecordsFlag"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/Artifacts/RelocationRecord.cs",
+      "line": 20,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public EnumRecordsFlag Flag => (EnumRecordsFlag) Data[1];"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/Artifacts/RelocationRecord.cs",
+      "line": 23,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public Tuple<EnumRecordsFlag, ushort, ushort, ushort> TargetTypeValueTuple"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Disassembler/Artifacts/RelocationRecord.cs",
+      "line": 29,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "case EnumRecordsFlag.InternalRefAdditive:"
+    }
+  ]
+}

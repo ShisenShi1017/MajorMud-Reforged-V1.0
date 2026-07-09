@@ -1,0 +1,33 @@
+[
+  {
+    "id": "CONFLICT_COMBAT_DR_001",
+    "mechanic": "Physical Damage Reduction",
+    "status": "open_leading_nightmare_redux",
+    "current_policy": "Prefer Nightmare Redux 2025 over historical Monster Sim when unsupported by original observations; seek MBBSEmu/runtime corroboration before classic-verified.",
+    "sources": [
+      "NightmareRedux",
+      "MonsterSim"
+    ]
+  },
+  {
+    "id": "CONFLICT_COMBAT_DODGE_ORDER_001",
+    "mechanic": "Dodge/Evasion order",
+    "status": "open_needs_order_confirmation",
+    "current_policy": "Nightmare Redux is leading interpretation; confirm sequence against emulator/log behavior before runtime lock.",
+    "sources": [
+      "NightmareRedux",
+      "MonsterSim",
+      "MMUDExplorer"
+    ]
+  },
+  {
+    "id": "CONFLICT_BACKSTAB_SPECIAL_DEFENSE_001",
+    "mechanic": "Backstab/special attack defense order",
+    "status": "open_needs_specific_scenario_tests",
+    "current_policy": "Treat as unresolved until cross-source scenario tests exist.",
+    "sources": [
+      "NightmareRedux",
+      "MMUDExplorer"
+    ]
+  }
+]

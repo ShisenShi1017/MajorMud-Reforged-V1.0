@@ -67,3 +67,12 @@ Documentation/local_generated_artifacts_manifest.json
 *.swp
 .DS_Store
 Thumbs.db
+# CodeUpdate 0116 generated runtime data
+# /Data is generated from Librarium. Keep the folder and baseline Classic compiler output; do not hand-edit.
+/Data/*
+!/Data/.gitkeep
+!/Data/README.md
+!/Data/Classic/
+!/Data/Classic/*.json
+!/Librarium/RuntimeDefinitions/
+!/Librarium/WorldOverrides/

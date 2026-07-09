@@ -1,0 +1,2470 @@
+{
+  "base_world": null,
+  "compiler_code_update": "0127",
+  "family": "banks",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "record_count": 27,
+  "records": [
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Orange Gang House Vault",
+            "room_exists": "False",
+            "room_number": "875",
+            "service_kind": "vault_or_bank",
+            "shop_id": "126",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.126",
+      "legacy_id": "126",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Orange Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "875",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Arlysia Bank",
+            "room_exists": "True",
+            "room_number": "2435",
+            "service_kind": "guild_service",
+            "shop_id": "156",
+            "type": "7",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.156",
+      "legacy_id": "156",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Arlysia Bank",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "2435",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "guild_service",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Bank of Godfrey",
+            "room_exists": "True",
+            "room_number": "3337",
+            "service_kind": "guild_service",
+            "shop_id": "8",
+            "type": "7",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.8",
+      "legacy_id": "8",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Bank of Godfrey",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "3337",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "guild_service",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Black Gang House Supply",
+            "room_exists": "False",
+            "room_number": "979",
+            "service_kind": "vault_or_bank",
+            "shop_id": "142",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.142",
+      "legacy_id": "142",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Black Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "979",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Violet Gang House Supply",
+            "room_exists": "False",
+            "room_number": "977",
+            "service_kind": "vault_or_bank",
+            "shop_id": "140",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.140",
+      "legacy_id": "140",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Violet Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "977",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Gold Gang House Vault",
+            "room_exists": "False",
+            "room_number": "968",
+            "service_kind": "vault_or_bank",
+            "shop_id": "134",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.134",
+      "legacy_id": "134",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Gold Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "968",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "White Gang House Vault",
+            "room_exists": "True",
+            "room_number": "861",
+            "service_kind": "vault_or_bank",
+            "shop_id": "125",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.125",
+      "legacy_id": "125",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "White Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "861",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Gang Shop",
+            "room_exists": "True",
+            "room_number": "1809",
+            "service_kind": "vault_or_bank",
+            "shop_id": "123",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.123",
+      "legacy_id": "123",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Gang Shop",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "1809",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Violet Gang House Vault",
+            "room_exists": "False",
+            "room_number": "902",
+            "service_kind": "vault_or_bank",
+            "shop_id": "128",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.128",
+      "legacy_id": "128",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Violet Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "902",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Green Gang House Supply",
+            "room_exists": "False",
+            "room_number": "976",
+            "service_kind": "vault_or_bank",
+            "shop_id": "139",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.139",
+      "legacy_id": "139",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Green Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "976",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Green Gang House Vault",
+            "room_exists": "False",
+            "room_number": "932",
+            "service_kind": "vault_or_bank",
+            "shop_id": "133",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.133",
+      "legacy_id": "133",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Green Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "932",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Yellow Gang House Vault",
+            "room_exists": "False",
+            "room_number": "890",
+            "service_kind": "vault_or_bank",
+            "shop_id": "127",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.127",
+      "legacy_id": "127",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Yellow Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "890",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Leave this blank",
+            "room_exists": "False",
+            "room_number": "",
+            "service_kind": "bank_or_vault",
+            "shop_id": "2",
+            "type": "6",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.2",
+      "legacy_id": "2",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Leave this blank",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "bank_or_vault",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Lost City Bank",
+            "room_exists": "True",
+            "room_number": "320",
+            "service_kind": "guild_service",
+            "shop_id": "116",
+            "type": "7",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.116",
+      "legacy_id": "116",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Lost City Bank",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "320",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "guild_service",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Red Gang House Vault",
+            "room_exists": "False",
+            "room_number": "908",
+            "service_kind": "vault_or_bank",
+            "shop_id": "132",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.132",
+      "legacy_id": "132",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Red Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "908",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Red Gang House Supply",
+            "room_exists": "False",
+            "room_number": "973",
+            "service_kind": "vault_or_bank",
+            "shop_id": "136",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.136",
+      "legacy_id": "136",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Red Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "973",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Rhudaur Bank",
+            "room_exists": "True",
+            "room_number": "2568",
+            "service_kind": "guild_service",
+            "shop_id": "83",
+            "type": "7",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.83",
+      "legacy_id": "83",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Rhudaur Bank",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "2568",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "guild_service",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Black Gang House Vault",
+            "room_exists": "False",
+            "room_number": "946",
+            "service_kind": "vault_or_bank",
+            "shop_id": "130",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.130",
+      "legacy_id": "130",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Black Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "946",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Silver Gang House Supply",
+            "room_exists": "False",
+            "room_number": "980",
+            "service_kind": "vault_or_bank",
+            "shop_id": "143",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.143",
+      "legacy_id": "143",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Silver Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "980",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Silver Gang House Vault",
+            "room_exists": "False",
+            "room_number": "919",
+            "service_kind": "vault_or_bank",
+            "shop_id": "129",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.129",
+      "legacy_id": "129",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Silver Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "919",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Blue Gang House Vault",
+            "room_exists": "False",
+            "room_number": "948",
+            "service_kind": "vault_or_bank",
+            "shop_id": "131",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.131",
+      "legacy_id": "131",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Blue Gang House Vault",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "948",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Tavern",
+            "room_exists": "True",
+            "room_number": "311",
+            "service_kind": "bank_or_vault",
+            "shop_id": "164",
+            "type": "6",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.164",
+      "legacy_id": "164",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Tavern",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "311",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "bank_or_vault",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Orange Gang House Supply",
+            "room_exists": "False",
+            "room_number": "974",
+            "service_kind": "vault_or_bank",
+            "shop_id": "137",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.137",
+      "legacy_id": "137",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Orange Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "974",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Gold Gang House Supply",
+            "room_exists": "False",
+            "room_number": "981",
+            "service_kind": "vault_or_bank",
+            "shop_id": "144",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.144",
+      "legacy_id": "144",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Gold Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "981",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "White Gang House Supply",
+            "room_exists": "False",
+            "room_number": "982",
+            "service_kind": "vault_or_bank",
+            "shop_id": "145",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.145",
+      "legacy_id": "145",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "White Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "982",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Blue Gang House Supply",
+            "room_exists": "False",
+            "room_number": "978",
+            "service_kind": "vault_or_bank",
+            "shop_id": "141",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.141",
+      "legacy_id": "141",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Blue Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "978",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "row": {
+            "class_limit": "0",
+            "evidence_basis": "DataSimVer0008 shop/service extraction",
+            "inventory_count": "20",
+            "max_level": "99",
+            "min_level": "1",
+            "name": "Yellow Gang House Supply",
+            "room_exists": "False",
+            "room_number": "975",
+            "service_kind": "vault_or_bank",
+            "shop_id": "138",
+            "type": "11",
+            "verified_inventory_rows": "20"
+          },
+          "source": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/banks.json",
+        "hot_reload_candidate": false,
+        "output_collection": "banks",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "bank.138",
+      "legacy_id": "138",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/banks/bank_records_0123.json",
+      "name": "Yellow Gang House Supply",
+      "object_type": "bank",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [],
+      "room_number": "975",
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/banks.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "service_kind": "vault_or_bank",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    }
+  ],
+  "source_file": "Librarium/Objects/banks/bank_records_0123.json",
+  "world_id": "Classic",
+  "world_type": "classic"
+}

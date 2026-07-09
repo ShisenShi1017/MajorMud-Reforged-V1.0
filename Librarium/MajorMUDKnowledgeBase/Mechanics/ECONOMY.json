@@ -1,0 +1,222 @@
+{
+  "mechanic_id": "ECONOMY",
+  "name": "Economy and Shops",
+  "domain": "Economy",
+  "description": "Shop, price, money, sale, repair, and purchase mechanics.",
+  "status": "probable_needs_reconstruction",
+  "confidence": "medium_reconstruction_needed",
+  "evidence_hit_count": 2047,
+  "source_counts": {
+    "MBBSEmu": 5,
+    "MMUDExplorer": 870,
+    "NightmareRedux": 1172
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "primary_buckets": {
+    "tooling_ui": 603,
+    "character_progression": 433,
+    "economy_shops": 354,
+    "items_equipment": 252,
+    "combat": 250,
+    "world_spawns": 58,
+    "data_schema": 42,
+    "quests_scripts": 37,
+    "npc_ai": 6,
+    "docs_notes": 5
+  },
+  "unique_evidence_files": 68,
+  "top_evidence_files": [
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmShop.frm",
+      "hits": 268
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "hits": 244
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 200
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "hits": 163
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "hits": 100
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmBank.frm",
+      "hits": 86
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "hits": 71
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "hits": 62
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "hits": 55
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseDeleter.frm",
+      "hits": 46
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps_vN.bas",
+      "hits": 46
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "hits": 43
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "hits": 42
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps.bas",
+      "hits": 42
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps_vO.bas",
+      "hits": 42
+    }
+  ],
+  "open_conflicts": [],
+  "runtime_status": "requires_formula_record_expansion_before_runtime_sync",
+  "reconstruction_notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 4,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #52 - giant spider: Item #216 - gold ring: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 5,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #59 - Thrag: Item #211 - golden belt: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 13,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #69 - chest: Item #265 - golden broadsword: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 16,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #122 - high druid: Item #460 - golden sickle: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 23,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #174 - dark bishop: Item #454 - hell-flail: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 24,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #174 - dark bishop: Item #1708 - runed sacrificial robes: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 71,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #588 - manscorpion king: Item #1170 - golden pike: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 96,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #658 - massive cocoon: Item #642 - white gold ring: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 98,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #700 - dark phoenix: Item #956 - golden chest: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 539,
+      "mechanic_id": "ECONOMY",
+      "bucket": "quests_scripts",
+      "text": "425|0|426|GOLD command given to nasty looking man"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 739,
+      "mechanic_id": "ECONOMY",
+      "bucket": "quests_scripts",
+      "text": "--Bishop Quest"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 740,
+      "mechanic_id": "ECONOMY",
+      "bucket": "quests_scripts",
+      "text": "'Bishop (1/525)"
+    }
+  ]
+}

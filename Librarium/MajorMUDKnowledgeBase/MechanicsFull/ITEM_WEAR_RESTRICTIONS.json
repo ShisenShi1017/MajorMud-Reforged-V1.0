@@ -1,0 +1,390 @@
+{
+  "id": "ITEM.WEAR_RESTRICTIONS",
+  "bucket": "Items and Equipment",
+  "name": "Wear/use restrictions",
+  "description": "Race/class/alignment/level/slot restrictions for using items.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2344,
+  "representative_evidence_count": 40,
+  "representative_source_path_count": 18,
+  "keywords_used": [
+    "wear",
+    "restrict",
+    "class",
+    "race",
+    "slot",
+    "level"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 272,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart-HANDOFF.md",
+      "line": 70,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "world_spawns",
+      "text": "6. Confirm restricted exits (class/race/level) are now always followed on both forms."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "line": 144,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "world_spawns",
+      "text": "6. Confirm restricted exits (class/race/level, types 13\u201315) are now always followed on both forms."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 178,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 260,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmExpCalc.frm",
+      "line": 209,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "Public Sub CalcBy(nClass As Long, nRace As Long, nLevel As Long)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMapLegend.frm",
+      "line": 242,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"Class / Race / Level / Alignment / Ability\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "line": 2511,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Case 1, 13, 14, 15: 'spell/class/race/level"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "line": 2516,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "& \" -- Exit \" & GetFriendlyRoomExit(x, False) & \" (spell/class/race/level): \" & tabRooms.Fields(\"Para3 \" & x) & \" to \" & (ChangeList(3, y) + (tabRooms.Fields(\"Para3 \" & x) - ChangeList(1, y)))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "line": 7359,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Call frmExpCalc.CalcBy(cmbClasses.ListIndex, cmbRaces.ListIndex, Val(txtLevel.Text))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "line": 7397,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "frmUserPaste.Caption = \"Paste Character Class/Race/Level/Exp\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "line": 8140,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "& vbCrLf & vbCrLf & \"Paste: Paste a capture of a character's \"\"stat\"\" output.  Class, Race, Level, Exp, \" _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "line": 9383,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "'    nExp = CalcExpNeeded(CLng(Val(txtLevel.Text)), CInt(nClassExp + nRaceExp))"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 24339,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "nExp = CalcExpNeededByRaceClass(val(txtGlobalLevel(0).Text), _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 26990,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Dim nCombatLevel As Integer, sGlobalCharAccyFromAbils As String, bClassStealth As Boolean, bRaceStealth As Boolean"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 35135,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "If nRace > 0 And nClass > 0 And nLevel > 0 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 35136,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "sClipBoardText = sClipBoardText & \"Experience:\" & (CalcExpNeededByRaceClass(nLevel, nClass, nRace) + 1) & vbCrLf"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 38268,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Dim nLevelReq As Long, nBaseCP As Long, nRace As Long, nClass As Long"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 38327,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "lblStatCalc.Caption = lblStatCalc.Caption & vbCrLf & \"EXP Req: \" & PutCommas(CalcExpNeededByRaceClass(nLevelReq, nClass, nRace), True)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 40517,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "'class, level, and alignment ok ... now check armour/weapon restrictions"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 761,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "quests_scripts",
+      "text": "4327|0|0|tele for solo trainer, class filtered"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 84,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-BUGFIX: fixed item race restriction fieldmap locations"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 280,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-FIX: class/race editors were reloading the record lists on close"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 515,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-FIX: database exporter/importer wasn\u2019t exporting/importing a spell\u2019s level restriction field"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Logging/MessageLogger.cs",
+      "line": 52,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "logging_debug",
+      "text": "target.Write(logLevel, exception.StackTrace);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Main/MainView.cs",
+      "line": 194,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "logging_debug",
+      "text": "MessageBox.Query(\"Log Entry\", $\"Time: {logEntry[0]}\\nClass: {logEntry[1]}\\nLevel: {logEntry[2]}\\nMessage: {logEntry[3]}\", \"OK\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Main/MainView.cs",
+      "line": 249,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "logging_debug",
+      "text": "//Split the log entry into its parts (Time, Class, Level, Message"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Main/MainView.cs",
+      "line": 282,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "logging_debug",
+      "text": "LogLevel.Trace => \"TRACE\","
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Main/MainView.cs",
+      "line": 293,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "logging_debug",
+      "text": "logDate, logClass, logLevel, logMessage);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "6. **Sessions** (`Session/`): `SessionBase` subclasses handle different connection types (Telnet, Rlogin, local console). Sessions are assigned channel numbers and manage user I/O buffers."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 98,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "- `AllowUnsafeBlocks` is enabled \u2014 unsafe code is expected for low-level memory/CPU emulation."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 1,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "\ufeffLEVEL0 {MBBSEmu Test MSG File for MajorMUD Scenarios}"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 3,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "LEVEL1 {Hardware Setup Options}"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 5,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "LEVEL3 {Security and Accounting Options}"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 7,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tests_validation",
+      "text": "LEVEL4 {Configuration Options}"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/IntegrationTest.msg",
+      "line": 11,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "LEVEL6 {Text Editable Blocks}"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 90,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "$regex_line_strips[] = 'You gain NUMVAR experience';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 353,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<table cellpadding=\"4\" cellspacing=\"0\" border=\"0\" class=\"thinborders\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 374,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<td><span class=\"magenta bold\"><?php echo (round($attack['attempted']/$total_attacks, 3)*100); ?>%</span></td><!-- True Cast -->"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 397,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<table cellpadding=\"4\" cellspacing=\"0\" border=\"0\" class=\"thinborders\">"
+    }
+  ]
+}

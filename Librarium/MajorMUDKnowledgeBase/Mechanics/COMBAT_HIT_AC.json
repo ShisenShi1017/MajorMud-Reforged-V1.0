@@ -1,0 +1,224 @@
+{
+  "mechanic_id": "COMBAT_HIT_AC",
+  "name": "Combat Hit vs AC",
+  "domain": "Combat",
+  "description": "To-hit resolution against armor class for physical attacks.",
+  "status": "verified_high_confidence",
+  "confidence": "high",
+  "evidence_hit_count": 419,
+  "source_counts": {
+    "MBBSEmu": 23,
+    "MMUDExplorer": 167,
+    "MonsterSim": 7,
+    "NightmareRedux": 222
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "primary_buckets": {
+    "combat": 102,
+    "tooling_ui": 93,
+    "npc_ai": 65,
+    "character_progression": 62,
+    "items_equipment": 33,
+    "data_schema": 17,
+    "quests_scripts": 15,
+    "logging_debug": 12,
+    "commands_client": 6,
+    "networking_runtime": 5
+  },
+  "unique_evidence_files": 69,
+  "top_evidence_files": [
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "hits": 65
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "hits": 53
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmItem.frm",
+      "hits": 19
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "hits": 16
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "hits": 15
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps_vO.bas",
+      "hits": 14
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps_vN.bas",
+      "hits": 13
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 12
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/modFieldmaps.bas",
+      "hits": 12
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "hits": 11
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "hits": 11
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "hits": 10
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "hits": 10
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "hits": 10
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "hits": 10
+    }
+  ],
+  "open_conflicts": [],
+  "runtime_status": "ready_for_test_mapping_before_runtime_sync",
+  "reconstruction_notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 143,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "318|0|325|MISSION command given to wounded messenger"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 182,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "518|0|495|MISSIONS command given to annora"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 205,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "518|0|495|MISSIONS command"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 218,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "1112|0|1113|PERMISSION command"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 273,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "518|0|495|MISSIONS command given to annora"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 288,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "518|0|495|missions command"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 349,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "505|0|506|MISSIONS command given to grey lord"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 380,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "505|0|506|MISSIONS command given to grey lord"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 399,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "505|0|506|MISSIONS command"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 441,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "505|0|506|MISSIONS command given to grey lord"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 462,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "quests_scripts",
+      "text": "505|0|506|MISSIONS command given to grey lord"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/Nightmare Redux.PDM",
+      "line": 20,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "build_meta",
+      "text": "[Package|Nightmare Redux Package 1|Missing Dependency Information]"
+    }
+  ]
+}

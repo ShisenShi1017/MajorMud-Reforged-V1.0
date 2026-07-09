@@ -1,0 +1,34 @@
+{
+  "authority": "Librarium is source of truth. /Data is generated runtime output.",
+  "code_update": "0127",
+  "compiler_outputs": [
+    "Data/Classic",
+    "Data/Worlds/<CustomWorld>",
+    "Data/Worlds/<AIWorld>"
+  ],
+  "inheritance_order": [
+    "Classic base Librarium",
+    "Custom world overlay",
+    "AI world overlay"
+  ],
+  "precedence_rules": [
+    "Higher precedence overlays override lower precedence objects by stable id.",
+    "Classic is locked and cannot be edited directly.",
+    "AI overlays may be based on Classic or a custom world and must pass validation before compile.",
+    "Overlays store deltas, not full duplicated worlds."
+  ],
+  "supported_build_sources": [
+    "Classic",
+    "CustomTemplate",
+    "AIFromClassic",
+    "EmptyTemplate (contract only)"
+  ],
+  "title": "World Overlay and Compiler Completion Contract",
+  "validation_requirements": [
+    "duplicate id detection",
+    "missing catalog detection",
+    "overlay target validation",
+    "manifest hash generation",
+    "deterministic file ordering"
+  ]
+}

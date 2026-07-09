@@ -1,0 +1,351 @@
+{
+  "id": "WORLD.SPAWN_TIMERS",
+  "bucket": "World and Spawns",
+  "name": "Spawn timers",
+  "description": "Spawn interval, hard timers, reset behavior, and timer visibility.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 883,
+  "representative_evidence_count": 36,
+  "representative_source_path_count": 8,
+  "keywords_used": [
+    "spawn",
+    "timer",
+    "respawn",
+    "interval"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 11,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "public class ProgrammableIntervalTimer_Tests : CpuTestBase"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 88,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "var expected = (ushort)(int)(ProgrammableIntervalTimer.FREQUENCY * (1.0 - fakeClock.CurrentTick));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 116,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "var expected = (ushort)(int)(ProgrammableIntervalTimer.FREQUENCY * (1.0 - fakeClock.CurrentTick));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 145,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "var expected = (ushort)(int)(ProgrammableIntervalTimer.FREQUENCY * (1.0 - fakeClock.CurrentTick));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/CpuTestBase.cs",
+      "line": 18,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "private protected readonly ProgrammableIntervalTimer pit;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/CpuTestBase.cs",
+      "line": 28,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "pit = new ProgrammableIntervalTimer(logger: null, fakeClock, mbbsEmuCpuCore);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "line": 11,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "public class ProgrammableIntervalTimer : IIOPort, IStoppable, IDisposable"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "line": 46,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "private Timer _timer;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "line": 48,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "public ProgrammableIntervalTimer(IMessageLogger logger, IClock clock, ICpuCore cpu)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "line": 57,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "_timer?.Dispose();"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "line": 58,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "_timer = null;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "line": 63,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "_timer?.Dispose();"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 273,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 179,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 261,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "-UP: lairs now show minutes to respawn (note that it's /usually/ what is displayed +1 minute due to timing)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 124,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "roamSecs        As Double   'Seconds waiting for respawns (per-cycle, rarely used)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 465,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "'   -> No movement or recovery; cycle time = respawn time."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 581,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "'   - Instant respawn (stand-in-place): no movement."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 1487,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "' Lairs respawn on the wall-clock minute, so the real wait is the stated"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 2179,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "'      \u0095 Spawn-gating waits when the loop outruns respawns"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 2211,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "'       - Scale for respawn throughput: compute effectiveLairs & roomsScaled;"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 2239,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "'       - If timePerClear < spawnInterval, wait fillerSec to the gate; split that"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 2340,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "Dim spawnInterval       As Double"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 3262,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "spawnInterval = 0"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 12,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer tmrRefresh"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 17,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer FlashTimer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 22,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Begin VB.Timer tmrMouse"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 365,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub FlashTimer_Timer()"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 389,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "'Stop the Timer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 390,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "FlashTimer.Enabled = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 581,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "'Start the Timer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 582,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "FlashTimer.Enabled = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 593,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub tmrMouse_Timer()"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 595,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "' this timer is used to take away the focus rect, for bars"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 734,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "If InDesign = True Then: Stop: Else: Call HandleError(\"Class \" & TypeName(Me) & \"_tmrMouse_Timer\" & vbCrLf & \"Line# \" & Erl & vbCrLf & \"Err#\" & Err.Number & vbCrLf & \"Desc. \" & Err.Description, App.Title, \"\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 739,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub tmrRefresh_Timer()"
+    }
+  ]
+}

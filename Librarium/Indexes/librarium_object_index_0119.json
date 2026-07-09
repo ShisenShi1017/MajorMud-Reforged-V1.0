@@ -1,0 +1,174 @@
+{
+  "code_update": "0119",
+  "object_type_count": 24,
+  "object_types": [
+    {
+      "object_type": "world",
+      "directory": "Librarium/Objects/worlds",
+      "records": 1,
+      "evidence_bucket": "world",
+      "evidence_hits_indexed": 22441
+    },
+    {
+      "object_type": "region",
+      "directory": "Librarium/Objects/regions",
+      "records": 1,
+      "evidence_bucket": "world",
+      "evidence_hits_indexed": 22441
+    },
+    {
+      "object_type": "room",
+      "directory": "Librarium/Objects/rooms",
+      "records": 1,
+      "evidence_bucket": "room",
+      "evidence_hits_indexed": 102260
+    },
+    {
+      "object_type": "exit",
+      "directory": "Librarium/Objects/exits",
+      "records": 1,
+      "evidence_bucket": "room",
+      "evidence_hits_indexed": 102260
+    },
+    {
+      "object_type": "npc",
+      "directory": "Librarium/Objects/npcs",
+      "records": 1,
+      "evidence_bucket": "npc",
+      "evidence_hits_indexed": 107604
+    },
+    {
+      "object_type": "spawn",
+      "directory": "Librarium/Objects/spawns",
+      "records": 1,
+      "evidence_bucket": "spawn",
+      "evidence_hits_indexed": 61648
+    },
+    {
+      "object_type": "item",
+      "directory": "Librarium/Objects/items",
+      "records": 1,
+      "evidence_bucket": "item",
+      "evidence_hits_indexed": 90646
+    },
+    {
+      "object_type": "spell",
+      "directory": "Librarium/Objects/spells",
+      "records": 1,
+      "evidence_bucket": "magic",
+      "evidence_hits_indexed": 105655
+    },
+    {
+      "object_type": "skill",
+      "directory": "Librarium/Objects/skills",
+      "records": 1,
+      "evidence_bucket": "progression",
+      "evidence_hits_indexed": 113781
+    },
+    {
+      "object_type": "class",
+      "directory": "Librarium/Objects/classs",
+      "records": 1,
+      "evidence_bucket": "progression",
+      "evidence_hits_indexed": 113781
+    },
+    {
+      "object_type": "race",
+      "directory": "Librarium/Objects/races",
+      "records": 1,
+      "evidence_bucket": "progression",
+      "evidence_hits_indexed": 113781
+    },
+    {
+      "object_type": "guild",
+      "directory": "Librarium/Objects/guilds",
+      "records": 1,
+      "evidence_bucket": "progression",
+      "evidence_hits_indexed": 113781
+    },
+    {
+      "object_type": "formula",
+      "directory": "Librarium/Objects/formulas",
+      "records": 1,
+      "evidence_bucket": "combat",
+      "evidence_hits_indexed": 115727
+    },
+    {
+      "object_type": "status_effect",
+      "directory": "Librarium/Objects/status_effects",
+      "records": 1,
+      "evidence_bucket": "status_effect",
+      "evidence_hits_indexed": 92942
+    },
+    {
+      "object_type": "quest",
+      "directory": "Librarium/Objects/quests",
+      "records": 1,
+      "evidence_bucket": "quest",
+      "evidence_hits_indexed": 91149
+    },
+    {
+      "object_type": "shop",
+      "directory": "Librarium/Objects/shops",
+      "records": 1,
+      "evidence_bucket": "economy",
+      "evidence_hits_indexed": 79856
+    },
+    {
+      "object_type": "command",
+      "directory": "Librarium/Objects/commands",
+      "records": 1,
+      "evidence_bucket": "command",
+      "evidence_hits_indexed": 103563
+    },
+    {
+      "object_type": "script",
+      "directory": "Librarium/Objects/scripts",
+      "records": 1,
+      "evidence_bucket": "quest",
+      "evidence_hits_indexed": 91149
+    },
+    {
+      "object_type": "event",
+      "directory": "Librarium/Objects/events",
+      "records": 1,
+      "evidence_bucket": "world",
+      "evidence_hits_indexed": 22441
+    },
+    {
+      "object_type": "trigger",
+      "directory": "Librarium/Objects/triggers",
+      "records": 1,
+      "evidence_bucket": "quest",
+      "evidence_hits_indexed": 91149
+    },
+    {
+      "object_type": "economy_rule",
+      "directory": "Librarium/Objects/economy_rules",
+      "records": 1,
+      "evidence_bucket": "economy_rule",
+      "evidence_hits_indexed": 0
+    },
+    {
+      "object_type": "loot_rule",
+      "directory": "Librarium/Objects/loot_rules",
+      "records": 1,
+      "evidence_bucket": "loot",
+      "evidence_hits_indexed": 80172
+    },
+    {
+      "object_type": "ai_profile",
+      "directory": "Librarium/Objects/ai_profiles",
+      "records": 1,
+      "evidence_bucket": "npc",
+      "evidence_hits_indexed": 107604
+    },
+    {
+      "object_type": "asset",
+      "directory": "Librarium/Objects/assets",
+      "records": 1,
+      "evidence_bucket": "world",
+      "evidence_hits_indexed": 22441
+    }
+  ]
+}

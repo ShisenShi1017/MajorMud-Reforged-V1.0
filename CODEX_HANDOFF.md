@@ -1,31 +1,37 @@
-# Codex / Developer Handoff
+# Codex Handoff — CodeUpdate 0126
 
-## Immediate Rule
+## Current baseline
+CodeUpdate 0126 — Librarium Compiler v1.
 
-Work from this repository as a complete PC replacement baseline. The project is now Librarium-first.
+## Critical rules
+1. Librarium is the authoritative source of truth.
+2. `/Data` is generated runtime output and must not be hand-edited.
+3. `ImportedDatabases` must remain until the Librarium is declared 100% complete by the project owner.
+4. Runtime gameplay code is unchanged in this update.
+5. Client is read-only and world-scoped.
+6. Host/editor edits Librarium, then validates/compiles to `/Data`.
 
-## Do Not
+## Compiler
+Primary implementation:
 
-- Do not treat `/Data` as canonical.
-- Do not add game rules directly to runtime/server code without a Librarium record.
-- Do not discard provenance.
-- Do not flatten world overlays into Classic canon.
+```bash
+dotnet run --project Apps/Compiler -- build --world Classic --clean --root .
+```
 
-## Do
+Smoke test:
 
-- Add records/assertions/relationships in `/Librarium`.
-- Keep evidence state, confidence, and provenance attached.
-- Generate runtime data from the Librarium.
-- Preserve existing app/core/tooling folders unless a migration report explicitly marks them obsolete.
+```bash
+dotnet run --project Apps/Compiler.Tests --root .
+```
 
-## Next Recommended Work
+Fallback/reference compiler used in this ChatGPT container:
 
-1. Implement/refine Librarium compiler/export tooling.
-2. Generate runtime data from Librarium records.
-3. Continue formula reconciliation and quest/dialogue ordering validation.
-4. Only after Librarium export is stable, integrate runtime/server consumers.
+```bash
+python Tools/Librarium/compile_librarium_reference.py --world Classic --clean --root .
+```
 
-## Baseline Inputs
+## Validation note
+The ChatGPT execution container did not have the .NET SDK installed. The .NET compiler source is present but was not built here. The reference compiler generated `Data/Classic` and passed deterministic output validation.
 
-- Uploaded repo: `MajorMud-Reforged-V1.0-main(22).zip`
-- Latest knowledge baseline: `Validation-0007 Final Librarium Completion / Compiler Foundation`
+## Next task
+Install/confirm .NET 8 SDK, build `Apps/Compiler`, run `Apps/Compiler.Tests`, compare generated output with `Data/Classic/compile_hash.json`, then begin server load tests against generated `Data/Classic`.

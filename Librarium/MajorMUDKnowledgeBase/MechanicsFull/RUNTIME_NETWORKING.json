@@ -1,0 +1,263 @@
+{
+  "id": "RUNTIME.NETWORKING",
+  "bucket": "Runtime Support",
+  "name": "Network/session model",
+  "description": "Telnet/web/client session expectations and server communications.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 3280,
+  "representative_evidence_count": 26,
+  "representative_source_path_count": 8,
+  "keywords_used": [
+    "network",
+    "session",
+    "socket",
+    "client",
+    "server"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Server/Socket/SocketServer.cs",
+      "line": 32,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "public SocketServer(LogFactory logger, IMbbsHost host, AppSettingsManager configuration, ITextVariableService textVariableService, PointerDictionary<SessionBase> channelDictionary)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/SocketSession.cs",
+      "line": 161,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "ProcessIncomingClientData(bytesReceived);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/SocketSession.cs",
+      "line": 168,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "///     Allows a derived class to parse and alter incoming client data, such as stripping"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/SocketSession.cs",
+      "line": 171,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "/// <returns>A tuple. The first result is the byte array to be entered into the client"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/SocketSession.cs",
+      "line": 175,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "protected abstract (byte[], int) ProcessIncomingClientData(byte[] clientData, int bytesReceived);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/SocketSession.cs",
+      "line": 177,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "private void ProcessIncomingClientData(int bytesReceived)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Session/SocketSession.cs",
+      "line": 183,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "var (dataFromClient, length) = ProcessIncomingClientData(_socketReceiveBuffer, bytesReceived);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 216,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "- **SocketSession** (abstract) \u2014 Base for socket sessions. Async receive via `BeginReceive`/`EndReceive`, dedicated sender thread processing `DataToClient` queue, optional heartbeat"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/HostRoutines/FsdRoutines.cs",
+      "line": 117,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "session.SendToClient(new string(' ', field.FieldLength));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/HostRoutines/FsdRoutines.cs",
+      "line": 119,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "session.SendToClient(field.Value ?? string.Empty);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/HostRoutines/FsdRoutines.cs",
+      "line": 139,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "session.SendToClient(field.FieldAnsi);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/HostRoutines/FsdRoutines.cs",
+      "line": 141,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "networking_runtime",
+      "text": "session.SendToClient(new string(' ', field.FieldLength));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 101,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "AddStrip(array('Also here:', 'You hear movement ', ' into the room from ', ' just entered the Realm', ' just left the Realm', ' just hung up', ' peeks in from ', 'the server will be shutting', 'nightly \"auto-cleanup\"', 'Please finish up and log off', 'Software caused connection abort', 'Session ended', 'or type \"new\"', 'Enter your password', 'password you have given', 'glad to see you back', 'majo"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 608,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "' WndProc of MDIClient window"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 24,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "Begin VB.Timer CursorTimer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 50,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "Attribute VB_Creatable = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 57,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "Private Sub CursorTimer_Timer()"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 103,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "'frmPreview.CursorTimer.Enabled = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 116,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "'frmPreview.CursorTimer.Enabled = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 133,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "'  frmPreview.CursorTimer.Enabled = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 196,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "commands_client",
+      "text": "'        term_process_char (Asc(Mid(CH, i, 1)))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 201,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "'frmPreview.CursorTimer.Enabled = True"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 208,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "'frmPreview.CursorTimer.Enabled = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 225,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "commands_client",
+      "text": "'                term_process_char (Asc(Mid(CH, i, 1)))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmPreview.frm",
+      "line": 231,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "'frmPreview.CursorTimer.Enabled = True"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 23180,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "& \"Mob Mode (session only), Lair+Solo (saved), Lair+Party (saved, subset of fields)\", vbInformation"
+    }
+  ]
+}

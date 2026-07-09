@@ -1,0 +1,561 @@
+{
+  "id": "CHAR.CLASS_RULES",
+  "bucket": "Character Progression",
+  "name": "Class modifiers and restrictions",
+  "description": "Class-specific formulas, restrictions, and ability access.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 1325,
+  "representative_evidence_count": 59,
+  "representative_source_path_count": 19,
+  "keywords_used": [
+    "class",
+    "profession",
+    "fighter",
+    "mage",
+    "cleric",
+    "thief"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmClass.frm",
+      "line": 965,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "oLI.ListSubItems(5).Text = GetMagery(Classrec.MagicType, Classrec.MagicLvL)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmClass.frm",
+      "line": 1046,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "oLI.ListSubItems.add (5), \"Magic\", GetMagery(Classrec.MagicType, Classrec.MagicLvL)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 5140,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "tabClasses.Fields(\"MageryType\") = Classrec.MagicType"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 5141,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "tabClasses.Fields(\"MageryLVL\") = Classrec.MagicLvL"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 66,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "`tabShops`, `tabRaces`, `tabClasses`, `tabLairs`, etc. Combat/damage result arrays"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 1006,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "Dim x As Integer, bClassStealth As Boolean, nPlusMaxDamage As Integer, nMinStrBonus As Integer"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 1123,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "nMinDmg = CalcBSDamage(val(txtLevel.Text), nStealth, nMinDmg, nPlusBSmindmg, bClassStealth)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 1124,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "nMaxDmg = CalcBSDamage(val(txtLevel.Text), nStealth, nMaxDmg, nPlusBSmaxdmg, bClassStealth)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 21677,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Dim nLevel As Long, nClass As Long ', nMagery As Integer, nMageryLVL As Integer"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27855,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "tooling_ui",
+      "text": "Case 1: 'warrior/paladin/cleric/missy/ninja/thief/bard/gypsy/warlock/ranger/mystic: 1 ac + 1 crit"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 28909,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "LastFindBest(x) = tabItems.Fields(\"ArmourClass\") + tabItems.Fields(\"DamageResist\")"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 28965,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "nEnc_Ratio = Get_Enc_Ratio(tabItems.Fields(\"Encum\"), tabItems.Fields(\"ArmourClass\"), tabItems.Fields(\"DamageResist\"))"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 28968,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "If (tabItems.Fields(\"ArmourClass\") + tabItems.Fields(\"DamageResist\") > tPosWinner(x).Value) _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 28969,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "Or (tabItems.Fields(\"ArmourClass\") + tabItems.Fields(\"DamageResist\") = tPosWinner(x).Value _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 28974,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "tooling_ui",
+      "text": "tPosWinner(x).Value = tabItems.Fields(\"ArmourClass\") + tabItems.Fields(\"DamageResist\")"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 35686,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "tooling_ui",
+      "text": "'Case 1: 'warrior/paladin/cleric/missy/ninja/thief/bard/gypsy/warlock/ranger/mystic: 1 ac + 1 crit"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 374,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<td><span class=\"magenta bold\"><?php echo (round($attack['attempted']/$total_attacks, 3)*100); ?>%</span></td><!-- True Cast -->"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 36,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9046|0|0|flag checks and class rewards"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 317,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9537|0|9483|exp and flags - executed by dark mage's death spell"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 392,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "'this is kind of confusing because after the flag check there are actually 2 text blocks used. each one uses the 511 block, then the others are class specific."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 498,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "quests_scripts",
+      "text": "9537|0|9483|death spell of dark mage -- flag check, give 175 mill exp bonus"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 507,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9474|0|0|class/flag checks, then rewards"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 508,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9474|1|0|class/flag checks, then rewards"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 709,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9489|0|0|class/flag checks and rewards"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 761,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "quests_scripts",
+      "text": "4327|0|0|tele for solo trainer, class filtered"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "6. **Sessions** (`Session/`): `SessionBase` subclasses handle different connection types (Telnet, Rlogin, local console). Sessions are assigned channel numbers and manage user I/O buffers."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 11,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "public class ProgrammableIntervalTimer_Tests : CpuTestBase"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 31,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "data_schema",
+      "text": "public class BtrieveFileProcessor_Tests : TestBase, IDisposable"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/GetOperandOffset_Tests.cs",
+      "line": 8,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public class GetOperandOffset_Tests : CpuTestBase"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/AppSettingsManager.cs",
+      "line": 19,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "logging_debug",
+      "text": "public class AppSettingsManager"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+      "line": 11,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "combat",
+      "text": "public class ProgrammableIntervalTimer : IIOPort, IStoppable, IDisposable"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 17,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "data_schema",
+      "text": "///     The BtrieveFileProcessor class is used to abstract the loading, parsing, and querying of"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 29,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "data_schema",
+      "text": "public class BtrieveFileProcessor : IDisposable"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveKeyRecord.cs",
+      "line": 13,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public class BtrieveKeyRecord"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveQuery.cs",
+      "line": 26,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "commands_client",
+      "text": "// Purposefully not Disposing of Command because it's likely cached by BtrieveFileProcessor, so let that class"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveRecord.cs",
+      "line": 8,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "public class BtrieveRecord"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 124,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "`WorkerThread()` is the core loop, processing in classic DOS BBS serial fashion:"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'BITE'; $attacks[$i][2] = 'The SOURCE bites you for DMG damage!'; $attacks[$i][3] = 'The SOURCE lunges at you';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 43,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'CLAW'; $attacks[$i][2] = 'SOURCE claws you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with its huge claws!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 46,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'SLASH'; $attacks[$i][2] = 'SOURCE slashes you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with their SOURCE!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'HEAL'; $attacks[$i][2] = 'The room casts room heal on you, healing DMG damage!'; $attacks[$i][3] = 'AAAAAAA';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 26,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$i]['damage_resisted'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 202,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "$total_damage = 0; $total_attacks = 0; $total_dodge = 0; $total_resisted = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 266,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$damage = 0; $attack_hit = false; $resisted = true;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 272,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "//DAMAGE = DAMAGE - ( DAMAGE * IF( MR<50, (MR-50)/100, IF( MR>150, 0.5, (MR-50)/200 ) ) )"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 275,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "//DAMAGE = DAMAGE - ( DAMAGE * IF( MR>150 , 0.75 , MR/200 ) )"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 280,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['damage_resisted'] += $mr_reduction;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 285,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$dr_damage_resist = ($character_dr/2);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 286,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "if ($dr_damage_resist > $damage) $dr_damage_resist = $damage;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 287,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['damage_resisted'] += $dr_damage_resist;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 288,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$damage -= $dr_damage_resist;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 306,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "p(damage($attack['name'].' for '.$damage.($glance ? ' (GLANCE)' : '')),'Energy used: '.$attack['energy'].' ... Energy remaining: '.$remaining_energy);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 353,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<table cellpadding=\"4\" cellspacing=\"0\" border=\"0\" class=\"thinborders\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 382,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<td><?php echo $attack['damage_resisted']; ?></td><!-- DMG Resisted -->"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 383,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<td><?php echo $attack['total_damage'] > 0 ? round($attack['damage_resisted']/($attack['damage_resisted']+$attack['total_damage']), 3)*100 : 100; ?>%</td><!-- % DMG Resisted -->"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 397,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<table cellpadding=\"4\" cellspacing=\"0\" border=\"0\" class=\"thinborders\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 468,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": ".($attack['damage_resisted'] > 0 ? ' (Damage Resisted: '.$attack['damage_resisted'].', '"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 469,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": ".($attack['total_damage'] > 0 ? (round($attack['damage_resisted']/($attack['damage_resisted']+$attack['total_damage']), 3)*100) : 100).'%)': ''));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 472,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "p(damage('Average Damage/'.($attack['type'] == 'spell' ? (($attack['attempted'] > $attack['hits']) ? 'Cast (including fails)':'Cast') : 'Swing').': '.round($attack['total_damage']/$attack['attempted'],2)));"
+    }
+  ]
+}

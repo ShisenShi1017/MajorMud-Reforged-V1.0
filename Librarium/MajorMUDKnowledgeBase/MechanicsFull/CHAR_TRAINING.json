@@ -1,0 +1,352 @@
+{
+  "id": "CHAR.TRAINING",
+  "bucket": "Character Progression",
+  "name": "Training and advancement costs",
+  "description": "Trainer rules, advancement costs, and learned ability requirements.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 368,
+  "representative_evidence_count": 36,
+  "representative_source_path_count": 14,
+  "keywords_used": [
+    "train",
+    "training",
+    "trainer",
+    "cost",
+    "learn"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 659,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-NEW: cost shown for buying/selling/training"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 566,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-NEW: cost shown for buying/selling/training"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 761,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "quests_scripts",
+      "text": "4327|0|0|tele for solo trainer, class filtered"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1242,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Call AddToDefaultsArr(x, 1, 289, 289, \"halls of training, entrance\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1252,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Call AddToDefaultsArr(x, 17, 2867, 2867, \"sysop training room\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 2395,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "frmProgressBar.lblCaption.Caption = \"Retraining Users ...\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmShop.frm",
+      "line": 1989,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "economy_shops",
+      "text": "'8=Training"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmShop.frm",
+      "line": 2008,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "economy_shops",
+      "text": "If cmbType.ListIndex = 8 Then 'training"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 1158,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "items_equipment",
+      "text": "cmbOnlyIfValue(Index).AddItem \"Training\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/modMMUDFunctions.bas",
+      "line": 153,
+      "mechanic_id": "ECONOMY",
+      "bucket": "world_spawns",
+      "text": "Case 8: GetShopType = \"Training\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 168,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-FIX: Trainer sorting by level"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 210,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-FIX: Copy shop trainer to clipboard"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 330,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-added a trainer filter to shops - shows where you can train based on character/level"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 371,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-UP: shops will now show the appropriate coin type value next to the copper value when buying, selling, training"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 76,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-FIX: Trainer sorting by level"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 116,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-FIX: Copy shop trainer to clipboard"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 237,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-added a trainer filter to shops - shows where you can train based on character/level"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 278,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-UP: shops will now show the appropriate coin type value next to the copper value when buying, selling, training"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 158,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-FIX: Trainer sorting by level"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 198,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-FIX: Copy shop trainer to clipboard"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 757,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "quests_scripts",
+      "text": "4286|0|0|tele from final nahr's pit & for already-trained chars from ent to"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 241,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "-NEW: shops now show bank account/cost info for gangshops"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 275,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "-UP: shop editor now shows all items on one page along with the adjusted cost"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 321,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: tool to give all users a retrain"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 463,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "public void InsertionConstraintFailure()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 473,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "Key1 = 3444, // constraint failure here"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 535,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "public void UpdateTestConstraintFailed()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 543,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "// constraint failure here"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 567,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "data_schema",
+      "text": ".Where(ex => ex.SqliteErrorCode == BtrieveFileProcessor.SQLITE_CONSTRAINT)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 568,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "data_schema",
+      "text": ".Where(ex => ex.SqliteExtendedErrorCode == BtrieveFileProcessor.SQLITE_CONSTRAINT_TRIGGER);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 640,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "public void UpdateKeyConstraintFailure()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Integration/BtrievePrint_Tests.cs",
+      "line": 656,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "networking_runtime",
+      "text": "public void AddItems_KeyConstraint_Failure()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 31,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "public const int SQLITE_CONSTRAINT = 19;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 32,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "public const int SQLITE_CONSTRAINT_UNIQUE = 2067;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 33,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "public const int SQLITE_CONSTRAINT_TRIGGER = 1811;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 566,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "data_schema",
+      "text": "// emulating strange MBBS behavior here. If an update fails on a constraint check,"
+    }
+  ]
+}

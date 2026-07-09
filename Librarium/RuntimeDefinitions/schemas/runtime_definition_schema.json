@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MajorMUD Reforged Librarium Runtime Definition",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "mechanics"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "generated_from": {
+      "type": "string"
+    },
+    "mechanics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "bucket",
+          "knowledge_status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "knowledge_status": {
+            "type": "string"
+          },
+          "runtime_binding": {},
+          "formula_expression": {},
+          "export_status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

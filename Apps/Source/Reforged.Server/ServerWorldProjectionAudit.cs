@@ -17,8 +17,8 @@ public sealed class ServerWorldProjectionAudit
     public ServerWorldProjectionAuditReport Run(string projectRoot, ValidationResult validation)
     {
         var root = Path.GetFullPath(projectRoot);
-        var dataRoot = Path.Combine(root, "Data");
-        var worldPath = Path.Combine(dataRoot, "world.json");
+        var dataRoot = ResolveDataRoot(root);
+        var worldPath = Path.Combine(dataRoot, File.Exists(Path.Combine(dataRoot, "world.json")) ? "world.json" : "worlds.json");
         var roomsPath = Path.Combine(dataRoot, "rooms.json");
         var report = new ServerWorldProjectionAuditReport
         {
@@ -41,10 +41,14 @@ public sealed class ServerWorldProjectionAudit
 
         try
         {
-            using var worldDocument = JsonDocument.Parse(File.ReadAllText(worldPath), DocumentOptions);
             using var roomsDocument = JsonDocument.Parse(File.ReadAllText(roomsPath), DocumentOptions);
-            var worldRoomIds = ReadWorldRoomIds(worldDocument.RootElement);
             var canonicalRoomIds = ReadCanonicalRoomIds(roomsDocument.RootElement);
+            using var worldDocument = JsonDocument.Parse(File.ReadAllText(worldPath), DocumentOptions);
+            var worldRoomIds = ReadWorldRoomIds(worldDocument.RootElement);
+            if (worldRoomIds.Count == 0)
+            {
+                worldRoomIds = canonicalRoomIds.OrderBy(roomId => roomId, StringComparer.OrdinalIgnoreCase).ToArray();
+            }
             var uniqueWorldRoomIds = new HashSet<string>(worldRoomIds, StringComparer.OrdinalIgnoreCase);
             var missingRoomIds = uniqueWorldRoomIds
                 .Where(roomId => !canonicalRoomIds.Contains(roomId))
@@ -56,7 +60,7 @@ public sealed class ServerWorldProjectionAudit
                 .Select(group => group.Key)
                 .OrderBy(roomId => roomId, StringComparer.OrdinalIgnoreCase)
                 .ToArray();
-            var startRoom = TryGetString(worldDocument.RootElement, "startRoom");
+            var startRoom = TryGetString(worldDocument.RootElement, "startRoom") ?? "room.1";
             var startRoomExists = !string.IsNullOrWhiteSpace(startRoom) && canonicalRoomIds.Contains(startRoom);
 
             report.StartRoom = startRoom;
@@ -110,12 +114,19 @@ public sealed class ServerWorldProjectionAudit
     private static HashSet<string> ReadCanonicalRoomIds(JsonElement root)
     {
         var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        if (root.ValueKind != JsonValueKind.Array)
+        var rooms = root.ValueKind switch
+        {
+            JsonValueKind.Array => root.EnumerateArray(),
+            JsonValueKind.Object when root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array => records.EnumerateArray(),
+            _ => default
+        };
+
+        if (rooms.Equals(default(JsonElement.ArrayEnumerator)))
         {
             return ids;
         }
 
-        foreach (var room in root.EnumerateArray())
+        foreach (var room in rooms)
         {
             var id = TryGetString(room, "id");
             if (!string.IsNullOrWhiteSpace(id))
@@ -125,6 +136,14 @@ public sealed class ServerWorldProjectionAudit
         }
 
         return ids;
+    }
+
+    private static string ResolveDataRoot(string projectRoot)
+    {
+        var flatRoot = Path.Combine(projectRoot, "Data");
+        return File.Exists(Path.Combine(flatRoot, "rooms.json"))
+            ? flatRoot
+            : Path.Combine(flatRoot, "Classic");
     }
 
     private static string? TryGetString(JsonElement element, string name)

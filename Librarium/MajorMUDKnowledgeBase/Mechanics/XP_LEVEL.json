@@ -1,0 +1,224 @@
+{
+  "mechanic_id": "XP_LEVEL",
+  "name": "Experience and Level Progression",
+  "domain": "Character Progression",
+  "description": "XP award, level progression, and stat/progression references.",
+  "status": "probable_needs_reconstruction",
+  "confidence": "medium_reconstruction_needed",
+  "evidence_hit_count": 1142,
+  "source_counts": {
+    "MBBSEmu": 122,
+    "MMUDExplorer": 674,
+    "MonsterSim": 1,
+    "NightmareRedux": 345
+  },
+  "sources_by_priority": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "primary_buckets": {
+    "tooling_ui": 408,
+    "character_progression": 395,
+    "combat": 110,
+    "magic": 61,
+    "logging_debug": 55,
+    "items_equipment": 22,
+    "npc_ai": 20,
+    "data_schema": 18,
+    "networking_runtime": 15,
+    "tests_validation": 14
+  },
+  "unique_evidence_files": 99,
+  "top_evidence_files": [
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "hits": 187
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "hits": 156
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "hits": 83
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "hits": 54
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "hits": 46
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/readme.rtf",
+      "hits": 44
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmSwingCalc.frm",
+      "hits": 43
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSpell.frm",
+      "hits": 42
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUser.frm",
+      "hits": 36
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "hits": 32
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Logging/MessageLogger.cs",
+      "hits": 22
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "hits": 21
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPopUpOptions.frm",
+      "hits": 20
+    },
+    {
+      "source": "NightmareRedux",
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonster.frm",
+      "hits": 20
+    },
+    {
+      "source": "MMUDExplorer",
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmSpellBook.frm",
+      "hits": 19
+    }
+  ],
+  "open_conflicts": [],
+  "runtime_status": "requires_formula_record_expansion_before_runtime_sync",
+  "reconstruction_notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 757,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "quests_scripts",
+      "text": "4286|0|0|tele from final nahr's pit & for already-trained chars from ent to"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 758,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "quests_scripts",
+      "text": "spacelord - level filter"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 761,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "quests_scripts",
+      "text": "4327|0|0|tele for solo trainer, class filtered"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsCOwnMenu.cls",
+      "line": 15,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "Attribute VB_Ext_KEY = \"Top_Level\" ,\"Yes\""
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsIcon.cls",
+      "line": 16,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Attribute VB_Ext_KEY = \"Top_Level\" ,\"Yes\""
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsMenuItem.cls",
+      "line": 15,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Attribute VB_Ext_KEY = \"Top_Level\" ,\"Yes\""
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsMenuItems.cls",
+      "line": 17,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Attribute VB_Ext_KEY = \"Top_Level\" ,\"Yes\""
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_clsTrayIcon.cls",
+      "line": 15,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Attribute VB_Ext_KEY = \"Top_Level\" ,\"Yes\""
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 104,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: tool to combine monster experience and experience multiplier"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 107,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-UP: exp calc will copy to clipboard the selected levels experience"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 321,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: tool to give all users a retrain"
+    },
+    {
+      "source": "NightmareRedux",
+      "source_priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 377,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "-NEW: a pseudo tool to multiply just boss experience"
+    }
+  ]
+}

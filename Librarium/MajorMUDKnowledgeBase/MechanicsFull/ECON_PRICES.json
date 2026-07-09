@@ -1,0 +1,399 @@
+{
+  "id": "ECON.PRICES",
+  "bucket": "Economy and Shops",
+  "name": "Price/value formula",
+  "description": "Item value, buy/sell price, markup, markdown, and economic modifiers.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 3890,
+  "representative_evidence_count": 41,
+  "representative_source_path_count": 20,
+  "keywords_used": [
+    "price",
+    "value",
+    "gold",
+    "cost",
+    "buy",
+    "sell"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 371,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-UP: shops will now show the appropriate coin type value next to the copper value when buying, selling, training"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 659,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-NEW: cost shown for buying/selling/training"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 278,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-UP: shops will now show the appropriate coin type value next to the copper value when buying, selling, training"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 566,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-NEW: cost shown for buying/selling/training"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "line": 1213,
+      "mechanic_id": "ECONOMY",
+      "bucket": "items_equipment",
+      "text": "selectMetric = EvaluateBestPriceForHit(hit, nCharm, bestShopName, valueCell, moreShops, sellOnly, chosenShopNum)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "line": 1312,
+      "mechanic_id": "ECONOMY",
+      "bucket": "items_equipment",
+      "text": "valueCell = itemVal.sFriendlyBuyShort & \" / \" & itemVal.sFriendlySellShort"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modItemParse.bas",
+      "line": 1663,
+      "mechanic_id": "ECONOMY",
+      "bucket": "items_equipment",
+      "text": "'     sValueCell       -> \"buy/sell\" or \"(sell) X\" like the original"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudDatabase.bas",
+      "line": 3473,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "Dim nBaseCost As Double, nCharmModBuy As Double, nCharmModSell As Double, nCopperBuy As Double, nCopperSell As Double"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 1880,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "If tValue.nBaseCost > 0 And Len(tValue.sFriendlyBuyShortGanghouse) > 0 Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 197,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": ".Columns.Append \"Cost\", adInteger\t\t\t==> Price"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmRecordChange.frm",
+      "line": 3827,
+      "mechanic_id": "ECONOMY",
+      "bucket": "tooling_ui",
+      "text": "'price <value> <msg>"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 950,
+      "mechanic_id": "ECONOMY",
+      "bucket": "items_equipment",
+      "text": "cmbOnlyIfAuxValue(Index).AddItem \"Gold\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/modMMUDFunctions.bas",
+      "line": 2266,
+      "mechanic_id": "ECONOMY",
+      "bucket": "world_spawns",
+      "text": "Case 2: GetCostType = \"Gold\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 89,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-FIX: Sell value formula in [GreaterMUD]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 218,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-NEW: You can also paste items from your inventory or from seen on the ground and mark them as buy, sell, drop, hide pickup, or stash."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 10,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-FIX: Sell value formula in [GreaterMUD]"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 4,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #52 - giant spider: Item #216 - gold ring: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 5,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #59 - Thrag: Item #211 - golden belt: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 13,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #69 - chest: Item #265 - golden broadsword: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 16,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #122 - high druid: Item #460 - golden sickle: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 71,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #588 - manscorpion king: Item #1170 - golden pike: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 96,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #658 - massive cocoon: Item #642 - white gold ring: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 98,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #700 - dark phoenix: Item #956 - golden chest: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 539,
+      "mechanic_id": "ECONOMY",
+      "bucket": "quests_scripts",
+      "text": "425|0|426|GOLD command given to nasty looking man"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/LICENSE",
+      "line": 8,
+      "mechanic_id": "ECONOMY",
+      "bucket": "non_gameplay",
+      "text": "to use, copy, modify, merge, publish, distribute, sublicense, and/or sell"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+      "line": 43,
+      "mechanic_id": "ECONOMY",
+      "bucket": "tests_validation",
+      "text": "[InlineData(\"%-8s\", \"gold crowns\", \"gold crowns\")]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+      "line": 44,
+      "mechanic_id": "ECONOMY",
+      "bucket": "tests_validation",
+      "text": "[InlineData(\"%-8s\", \"gold    \", \"gold\")]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 600,
+      "mechanic_id": "ECONOMY",
+      "bucket": "networking_runtime",
+      "text": "case 340: //HOWBUY -- emits how to buy credits, ignored for MBBSEmu"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Ordinals.cs",
+      "line": 343,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "{340, \"HOWBUY\"},"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 63,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "1. **Module Loading** (`Module/`): Parses NE-format DLLs, MDF (module definition), MSG (messages), MCV (config values). Each module gets a full 4GB virtual address space."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/BIOS/ProgrammableIntervalTimer_Tests.cs",
+      "line": 139,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public void ReadLatchedValue(byte channel)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 36,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "private const string EXPECTED_KEYS_T_SQL = \"CREATE TABLE keys_t(id INTEGER PRIMARY KEY, number INTEGER NOT NULL, segment INTEGER NOT NULL, attributes INTEGER NOT NULL, data_type INTEGER NOT NULL, offset INTEGER NOT NULL, length INTEGER NOT NULL, null_value INTEGER NOT NULL, UNIQUE(number, segment))\";"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 283,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "record.Key2.Should().Be(\"stringValue\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 544,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "btrieve.Update(1, record.Data).Should().Be(BtrieveError.DuplicateKeyValue);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 665,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "var key = Encoding.ASCII.GetBytes(\"StringValue\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFileProcessor_Tests.cs",
+      "line": 672,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "new MBBSEmuRecordStruct(btrieve.GetRecord(btrieve.Position)?.Data).Key2.Should().Be(\"stringValue\");"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 222,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "<br><input type=\"submit\" name=\"submit_ignore_unparsed\" id=\"submit_ignore_unparsed\" value=\"Upload and remove unparsed lines.\">"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 144,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<option value=\"0\" <?php if ($resistable==0) echo 'selected'; ?>>No One</option>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 145,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<option value=\"1\" <?php if ($resistable==1) echo 'selected'; ?>>Anti-Magic</option>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 146,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<option value=\"2\" <?php if ($resistable==2) echo 'selected'; ?>>Everyone</option>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 159,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "<input type=\"number\" name=\"character_dodge\" id=\"character_dodge\" size=\"5\" value=\"<?php echo $character_dodge; ?>\"> &nbsp;"
+    }
+  ]
+}

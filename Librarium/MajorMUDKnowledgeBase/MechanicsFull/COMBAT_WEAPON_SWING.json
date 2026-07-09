@@ -1,0 +1,569 @@
+{
+  "id": "COMBAT.WEAPON_SWING",
+  "bucket": "Combat",
+  "name": "Weapon swing timing",
+  "description": "Weapon energy/speed handling and how multiple swings are derived.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 1233,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 17,
+  "keywords_used": [
+    "weapon",
+    "swing",
+    "speed",
+    "delay",
+    "energy"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/swing eq.txt",
+      "line": 14,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Swings=(((1+((eval(Swing_Calc.Agility.value)-50)*0.005))*(0.3+(eval(Swing_Calc.Level.value)*((eval(Swing_Calc.Combat.value)+2)*(1/150)))))*(5000/eval(Swing_Calc.Weapon_Speed.value)))*(1+(eval(Swing_Calc.Encumberance.value)*(40/1413)));"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 119,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Added sample weapon speed/dmg/swings to character builder"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 31,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Added sample weapon speed/dmg/swings to character builder"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 113,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Added sample weapon speed/dmg/swings to character builder"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 25835,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "oLI.ListSubItems.Add (14), \"Dmg/Spd\", Round(tWeaponDmg.nRoundTotal / tWeaponDmg.nSwings / tWeaponDmg.nAttackSpeed)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 31678,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "sOutput(0) = sOutput(0) & Space(nSpaceLen(0)) & \"SPEED/DMG @ LVL/AGI: Weapon Swings (DMG)\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 4765,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "If nAttackTypeMUD <> a4_Surprise And nSpeed > 0 And tWeaponDmg.nRoundTotal > 0 And tWeaponDmg.nSwings > 0 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 4766,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "oLI.ListSubItems.Add (14), \"Dmg/Spd\", Round(tWeaponDmg.nRoundTotal / tWeaponDmg.nSwings / nSpeed, 4) * 1000"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/swing eq.txt",
+      "line": 17,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "EU=Math.floor(EU*(eval(Swing_Calc.Speed.value)/100));"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmItem.frm",
+      "line": 3648,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "items_equipment",
+      "text": "Call frmSwingCalc.LoadWeapons"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmItem.frm",
+      "line": 3653,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "items_equipment",
+      "text": "frmSwingCalc.GotoWeapon (Val(lvDatabase.SelectedItem.Text))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 464,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "Caption         =   \"Energy per swing\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1764,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Dim nWeaponSpeed As Currency, nEnergy As Currency, nQnDBonus As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1796,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "nEnergy = CalcEnergyUsedWithEncum(cmbCombat.ItemData(cmbCombat.ListIndex), Val(txtLevel.Text), nWeaponSpeed, _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1836,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "lblEnergy.Caption = \"Energy per swing: 0\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1837,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "lblEnergy.Caption = \"Energy per swing: \" & nEnergy"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1853,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "nSwings = Round((1000 / nEnergy), 4)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmSwingCalc.frm",
+      "line": 1855,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "lblEnergy.Caption = \"Energy per swing: \" & nEnergy"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 176,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Added weapon swings and 1st round damage columns to weapon tab"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 178,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-FIX: Weapon damage/swing calculation (but not the swing calculator) was flooring swings at 1 swing instead of 0"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 83,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Added weapon swings and 1st round damage columns to weapon tab"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 85,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-FIX: Weapon damage/swing calculation (but not the swing calculator) was flooring swings at 1 swing instead of 0"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 165,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "-UP: Added weapon swings and 1st round damage columns to weapon tab"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/Nightmare Redux.vbp",
+      "line": 62,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "tooling_ui",
+      "text": "Form=frmSwingCalc.frm"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 43,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'CLAW'; $attacks[$i][2] = 'SOURCE claws you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with its huge claws!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 46,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'SLASH'; $attacks[$i][2] = 'SOURCE slashes you for DMG damage!'; $attacks[$i][3] = 'SOURCE swings at you with their SOURCE!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 18,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['energy'] = $energy;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 28,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['no_energy'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 29,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['remaining_energy_yes'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 30,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['remaining_energy_no'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 34,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['attempt_stats'][$x]['energy'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 60,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "if (!empty($name) && $energy > 0 && $max > 0 && $attack_chance > 0 && $success_chance > 0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 92,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "//  \t\tname\t\ttype\t\tenergy\tmin\tmax\tattack%\tsuccess%"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 148,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "<?php foreach (array('energy', 'min', 'max', 'attack_chance', 'success_chance') as $var):"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 196,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['remaining_per_attack'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 197,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['remaining_after_attack'] = array(1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+      "line": 79,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     An offset -> BtrieveRecord cache used to speed up record access by reducing Sqlite"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 2487,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "networking_runtime",
+      "text": "var routine = new RealTimeRoutine(routinePointer, delaySeconds);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Module/RealTimeRoutine.cs",
+      "line": 28,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public RealTimeRoutine(ushort segment, ushort offset, ushort delay = 0) : base(segment, offset)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Module/RealTimeRoutine.cs",
+      "line": 41,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "public RealTimeRoutine(FarPtr pointer, ushort delay = 0) : this(pointer.Segment, pointer.Offset, delay)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Setup/SetupView.cs",
+      "line": 276,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "\"Btrieve DAT files are converted to SQLite at startup and each record is a binary struct. This value speeds up reads of records queried by the Btrieve API by Modules by keeping records in memory and not querying SQLite for each read.\";"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 3,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "MMUD Explorer is a database viewer for the game MajorMUD(r) created by syntax53. It has a unique comparing feature which allows you to easily compare weapons, armour, and spells. It also has a graphical room explorer in which you can 'walk' around the realm. Other features include an inventory calculator, exp calculator, explorers for monsters/shops/weapons/armour/spells/items/races/classes, savin"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 20,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "if the character wasn't also backstabbing. Even in those cases, it was the backstab weapon magic being considered."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 144,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-FIX: Weapons tab table data all screwed up (poor implementation of previous weapon swapping encumbrance compensation)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 177,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Current attack damage + swings/casts shown on equipment tab"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 242,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 344,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-added a global filter for minimum level of items on weapon and armor tab [ISSUE #20]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 402,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "-UP: added a non-crit average damage to swing calc"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 403,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: increased magic level dropdown on weapons from 6+ to 10+"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 16,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "nexus spear (Weapon Hand), griffon shield, king crab claw, white gold ring,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 40,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "belt (Waist), amber sceptre (Weapon Hand), silverbark canoe, mine pass, golden"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/clsMonsterAttackSim.cls",
+      "line": 481,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "combat",
+      "text": "Dim nRemainingEnergy As Long, nEnergyUsed As Integer, bShowHitSpell As Boolean"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 54,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-FIX: Weapons tab table data all screwed up (poor implementation of previous weapon swapping encumbrance compensation)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 84,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Current attack damage + swings/casts shown on equipment tab"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 148,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 251,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-added a global filter for minimum level of items on weapon and armor tab [ISSUE #20]"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 309,
+      "mechanic_id": "COMBAT_CRITICAL",
+      "bucket": "combat",
+      "text": "-UP: added a non-crit average damage to swing calc"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 310,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: increased magic level dropdown on weapons from 6+ to 10+"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 18,
+      "mechanic_id": "COMBAT_BACKSTAB_SPECIAL",
+      "bucket": "combat",
+      "text": "if the character wasn't also backstabbing. Even in those cases, it was the backstab weapon magic being considered."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 136,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-FIX: Weapons tab table data all screwed up (poor implementation of previous weapon swapping encumbrance compensation)"
+    }
+  ]
+}

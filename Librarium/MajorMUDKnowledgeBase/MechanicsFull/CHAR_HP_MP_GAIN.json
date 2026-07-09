@@ -1,0 +1,570 @@
+{
+  "id": "CHAR.HP_MP_GAIN",
+  "bucket": "Character Progression",
+  "name": "HP/MP gain and regeneration",
+  "description": "Hit point/mana gain, regeneration, and derived pools.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 4908,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 23,
+  "keywords_used": [
+    "hp",
+    "mp",
+    "mana",
+    "regen",
+    "regeneration",
+    "health"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPasteChar.frm",
+      "line": 2492,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "txtPastePartyRegenHP(iChar).Text = CalcRestingRate(nLevel(iChar), nHealth(iChar), nPlusRegen(iChar), False)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPasteChar.frm",
+      "line": 2493,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "txtPastePartyRestHP(iChar).Text = CalcRestingRate(nLevel(iChar), nHealth(iChar), nPlusRegen(iChar), True)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modExpPerHour.bas",
+      "line": 921,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "nWalkSpeed, nCharHP, nCharHPRegen, nCharMana, nCharMPRegen, _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2850,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Monsterrec.HPRegen = tabMonsters.Fields(\"HP Regen\")"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/exp-per-hour-models.md",
+      "line": 44,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "passive HP = `HPRegen/3` per 30s; rest HP = `HPRegen` per 20s. Mana"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27219,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "tooling_ui",
+      "text": "Case 2: 'Cleric/Warlock: 2/0 ac, 5 mana regen, 3 encum, 50 max hp"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27806,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "tooling_ui",
+      "text": "Case 2: 'Cleric/Warlock: 2/0 ac, 5 mana regen, 3 encum, 50 max hp"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27815,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "Case 3: 'Priest/Mage/Druid: 50 sc, 10 mana regen, 50 max hp"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27822,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "tooling_ui",
+      "text": "Case 4: 'Missionary/Bard/Gypsy: 10 bs min/bs max, 5 mana regen, 10 stealth, 50 max hp"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 35299,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "sTemp = AutoAppend(sTemp, \"145|5\", \",\") 'mana regen"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 35304,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "sTemp = AutoAppend(sTemp, \"145|10\", \",\") 'mana regen"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 35309,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "sTemp = AutoAppend(sTemp, \"145|5\", \",\") 'mana regen"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 35818,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "tooling_ui",
+      "text": "'2: 'Cleric/Warlock: 2/0 ac, 5 mana regen, 3 encum, 50 max hp"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 57,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast '.$long_name.' at you, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 64,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast hellstorm, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $between_rounds[$i][0] = 'CHAINS'; $between_rounds[$i][1] = 'Glowing silver manacles clamp around your wrists!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 374,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<td><span class=\"magenta bold\"><?php echo (round($attack['attempted']/$total_attacks, 3)*100); ?>%</span></td><!-- True Cast -->"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 472,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "p(damage('Average Damage/'.($attack['type'] == 'spell' ? (($attack['attempted'] > $attack['hits']) ? 'Cast (including fails)':'Cast') : 'Swing').': '.round($attack['total_damage']/$attack['attempted'],2)));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 473,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "p('Average '.($attack['type'] == 'spell' ? 'Casts' : 'Swings').'/Round: '.round($attack['attempted']/$number_of_rounds,2));"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 910,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "quests_scripts",
+      "text": "'little complex here - block 1448 casts spell 614, which gives +0 charm for"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 11,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: completely reworked script/lair value calculations to be more based on the lair composition of all monsters that regen in the lair.  lair table now created during mme export with lair information (avg damage, exp, max regen, etc) to be used in MME.  monsters and lairs have pre-calculated script values."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 26,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "-NEW: Tools > Monsters > Item drop percentage modifier - alter monster drop percentages based on monster and item info.  this will allow you to do things like set the minimum drop percentage to 50% for items dropped by monsters that regen greater than 7 days, for example"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 9,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: completely reworked script/lair value calculations to be more based on the lair composition of all monsters that regen in the lair.  lair table now created during mme export with lair information (avg damage, exp, max regen, etc) to be used in MME.  monsters and lairs have pre-calculated script values."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 24,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "-NEW: Tools > Monsters > Item drop percentage modifier - alter monster drop percentages based on monster and item info.  this will allow you to do things like set the minimum drop percentage to 50% for items dropped by monsters that regen greater than 7 days, for example."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4482,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"Number\" & vbTab & \"Name\" & vbTab & \"Experience\" & vbTab & \"Index\" & vbTab & \"Weapon\" & vbTab & \"AC\" & vbTab & \"DR\" & vbTab & \"Follow\" & vbTab & \"MR\" & vbTab & \"HPs\" & vbTab & \"BS Defense\" & vbTab & \"Energy\" & vbTab & \"HP Regen\" & vbTab & \"Game Limit\" & vbTab & \"Active\" & vbTab & \"Type\" & vbTab & \"Alignment\" & vbTab & \"Gender\" & vbTab & \"Group\" & vbTab & \"Regen Time\" & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4706,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "tabMonsters.Fields(\"HP Regen\") = Monsterrec.HPRegen"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4870,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"BBS Name\" & vbTab & \"First Name\" & vbTab & \"Last Name\" & vbTab & \"Race\" & vbTab & \"Class\" & vbTab & \"LVL\" & vbTab & \"EXP\" & vbTab & \"Max HP\" & vbTab & \"HP\" & vbTab & \"HPRolls\" & vbTab & \"Max Mana\" & vbTab & \"Mana\" & vbTab & \"SC\" & vbTab & \"Lives\" & vbTab & \"CP\" & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2002,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Roomrec.MaxRegen = tabRooms.Fields(\"Max Regen\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2160,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "Spellrec.CastMsgA = tabSpells.Fields(\"Cast MSG A\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 2161,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "Spellrec.CastMsgB = tabSpells.Fields(\"Cast MSG B\")"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFile_Tests.cs",
+      "line": 26,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "CopyFilesToTempPath(ResourceManager.GetTestResourceManager());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveFile_Tests.cs",
+      "line": 34,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "private void CopyFilesToTempPath(IResourceManager resourceManager)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/BtrieveRuntime_Tests.cs",
+      "line": 42,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "private void CopyModuleToTempPath(IResourceManager resourceManager)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/BtrieveRuntime_Tests.cs",
+      "line": 88,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "CopyModuleToTempPath(ResourceManager.GetTestResourceManager());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/ExeRuntime_Tests.cs",
+      "line": 39,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "commands_client",
+      "text": "private void CopyModuleToTempPath(IResourceManager resourceManager)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/ExeRuntime_Tests.cs",
+      "line": 97,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "commands_client",
+      "text": "CopyModuleToTempPath(ResourceManager.GetTestResourceManager());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 55,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "CopyModuleToTempPath(ResourceManager.GetTestResourceManager());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/DOS/Interrupts/Int7Bh_Tests.cs",
+      "line": 76,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "private void CopyModuleToTempPath(IResourceManager resourceManager)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Integration/MBBSEmuIntegrationTestBase.cs",
+      "line": 49,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "commands_client",
+      "text": "private void CopyModuleToTempPath(IResourceManager resourceManager)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Integration/MBBSEmuIntegrationTestBase.cs",
+      "line": 86,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "commands_client",
+      "text": "CopyModuleToTempPath(ResourceManager.GetTestResourceManager());"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/AppSettingsManager.cs",
+      "line": 97,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "!Enum.TryParse(typeof(Session.Rlogin.EnumRloginCompatibility), ConfigurationRoot[\"Rlogin.Compatibility\"], out var result ))"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 8285,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "var template = resourceManager.GetResource(\"MBBSEmu.Assets.fseTemplate.ans\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Module/CrashReport.cs",
+      "line": 79,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "networking_runtime",
+      "text": "var crashTemplate = new ResourceManager().GetString(\"MBBSEmu.Assets.crashReportTemplate.txt\");"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 30,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: NMR import/export will now import to and export carried items from the inventory manager"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 121,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Tweak to one of the exp/hr models regarding mana regen"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 409,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: filtering capabilities: cash, hp, damage, regen, experience"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 651,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-NEW: Mana & Mana Regen Calculators ++"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 29,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "Mana: * 633/633   Spellcasting: 310    Traps:           0"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 52,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "Mana: *  12/131   Spellcasting: 140    Traps:           0"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 71,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "Level Mana Short Spell Name"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 118,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "Mana:    50/78    Spellcasting: 126    Traps:           0"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 149,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "Level Mana Short Spell Name"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 192,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "Mana: * 120/120   Spellcasting: 174    Traps:           0"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 225,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "You cast major healing on Syntax, healing 17 damage!"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 33,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Tweak to one of the exp/hr models regarding mana regen"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 316,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: filtering capabilities: cash, hp, damage, regen, experience"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 558,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-NEW: Mana & Mana Regen Calculators ++"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 28,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: NMR import/export will now import to and export carried items from the inventory manager"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 115,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Tweak to one of the exp/hr models regarding mana regen"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/exp-per-hour-models.md",
+      "line": 5,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "Output is a `tExpPerHourInfo` (exp/hr plus attack / move / HP-rest / mana-rest /"
+    }
+  ]
+}

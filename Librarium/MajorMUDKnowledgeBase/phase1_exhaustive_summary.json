@@ -1,0 +1,63 @@
+{
+  "generated_utc": "2026-07-09T17:49:48.843819+00:00",
+  "phase": "Phase 1 Exhaustive Canonical Evidence Mining",
+  "definition_of_exhausted": "Every file in the four canonical source packages was inventoried, assigned a classification, and either linked to mechanic evidence or marked as supporting/non-gameplay.",
+  "sources": {
+    "NightmareRedux": {
+      "priority": 2,
+      "role": "primary_current_reverse_engineered_implementation"
+    },
+    "MBBSEmu": {
+      "priority": 3,
+      "role": "independent_emulator_runtime_reference"
+    },
+    "MMUDExplorer": {
+      "priority": 4,
+      "role": "data_structure_and_field_interpretation"
+    },
+    "MonsterSim": {
+      "priority": 5,
+      "role": "historical_behavior_simulator"
+    }
+  },
+  "file_count": 941,
+  "text_files": 725,
+  "binary_or_unread_files": 216,
+  "evidence_hit_count": 31281,
+  "cross_source_duplicate_groups": 4,
+  "open_conflict_count": 3,
+  "runtime_modified": false,
+  "by_source": {
+    "MBBSEmu": 572,
+    "MMUDExplorer": 171,
+    "MonsterSim": 5,
+    "NightmareRedux": 193
+  },
+  "by_bucket": {
+    "docs_notes": 4,
+    "commands_client": 249,
+    "build_meta": 8,
+    "character_progression": 241,
+    "tests_validation": 61,
+    "non_gameplay": 19,
+    "logging_debug": 26,
+    "data_schema": 63,
+    "combat": 66,
+    "tooling_ui": 63,
+    "quests_scripts": 20,
+    "networking_runtime": 36,
+    "npc_ai": 18,
+    "asset_resource": 12,
+    "magic": 21,
+    "items_equipment": 13,
+    "world_spawns": 15,
+    "skills_abilities": 2,
+    "economy_shops": 4
+  },
+  "by_relevance": {
+    "supporting_evidence": 128,
+    "implementation_support": 348,
+    "non_gameplay_or_support": 65,
+    "gameplay_mechanic_candidate": 400
+  }
+}

@@ -1,0 +1,4716 @@
+{
+  "base_world": null,
+  "compiler_code_update": "0127",
+  "family": "commands",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "record_count": 25,
+  "records": [
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room1",
+          "room_name": "Town Gates",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room1",
+          "room_name": "Town Gates",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run door|run wall",
+          "room_id": "wcc_map1_room3",
+          "room_name": "Estwall Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room4",
+          "room_name": "Estwall Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room5",
+          "room_name": "Estwall Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room6",
+          "room_name": "Estwall Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room7",
+          "room_name": "Estwall Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room8",
+          "room_name": "Intersection of Estwall St. & Crown St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room9",
+          "room_name": "Estwall Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run boat|run river",
+          "room_id": "wcc_map1_room27",
+          "room_name": "Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run river",
+          "room_id": "wcc_map1_room27",
+          "room_name": "Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run door|run wall",
+          "room_id": "wcc_map1_room100",
+          "room_name": "Estwall Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run",
+          "room_id": "wcc_map1_room383",
+          "room_name": "Dark Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room520",
+          "room_name": "Temple Hall",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room521",
+          "room_name": "Temple Hall",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room522",
+          "room_name": "Temple Spell Store",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room523",
+          "room_name": "Clerical Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room525",
+          "room_name": "Temple Chapel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room526",
+          "room_name": "Priestly Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "run|run wall",
+          "room_id": "wcc_map1_room527",
+          "room_name": "Temple Healer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.run",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "run",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room1",
+          "wcc_map1_room1",
+          "wcc_map1_room3",
+          "wcc_map1_room4",
+          "wcc_map1_room5",
+          "wcc_map1_room6",
+          "wcc_map1_room7",
+          "wcc_map1_room8",
+          "wcc_map1_room9",
+          "wcc_map1_room27",
+          "wcc_map1_room27",
+          "wcc_map1_room100",
+          "wcc_map1_room383",
+          "wcc_map1_room520",
+          "wcc_map1_room521",
+          "wcc_map1_room522",
+          "wcc_map1_room523",
+          "wcc_map1_room525",
+          "wcc_map1_room526",
+          "wcc_map1_room527",
+          "wcc_map1_room1814",
+          "wcc_map1_room2316",
+          "wcc_map1_room2324",
+          "wcc_map1_room2324",
+          "wcc_map1_room2680",
+          "wcc_map1_room2680",
+          "wcc_map6_room1263",
+          "wcc_map6_room1263",
+          "wcc_map6_room1264",
+          "wcc_map6_room1264",
+          "wcc_map6_room1266",
+          "wcc_map6_room1266",
+          "wcc_map6_room1267",
+          "wcc_map6_room1267",
+          "wcc_map6_room1269",
+          "wcc_map6_room1274",
+          "wcc_map6_room1275",
+          "wcc_map6_room1276",
+          "wcc_map6_room1283",
+          "wcc_map6_room1284",
+          "wcc_map6_room1285",
+          "wcc_map6_room1286",
+          "wcc_map6_room1287",
+          "wcc_map6_room1289",
+          "wcc_map6_room1290",
+          "wcc_map6_room1291",
+          "wcc_map6_room1292",
+          "wcc_map6_room1293",
+          "wcc_map6_room1294",
+          "wcc_map6_room1295"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look curtain",
+          "room_id": "wcc_map1_room10",
+          "room_name": "Lucky Strike Casino",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look boat|look river",
+          "room_id": "wcc_map1_room27",
+          "room_name": "Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look boat|look river",
+          "room_id": "wcc_map1_room27",
+          "room_name": "Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look door|look gate|look sign|look window",
+          "room_id": "wcc_map1_room102",
+          "room_name": "Silver Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room159",
+          "room_name": "Jael's Missile Weapons",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well|look tree",
+          "room_id": "wcc_map1_room165",
+          "room_name": "Park Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room170",
+          "room_name": "Crown Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room184",
+          "room_name": "Intersection of Bridge St. & Crown St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look door",
+          "room_id": "wcc_map1_room199",
+          "room_name": "Thieves' Guild",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room201",
+          "room_name": "Thief Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room201",
+          "room_name": "Thief Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look trapdoor",
+          "room_id": "wcc_map1_room202",
+          "room_name": "Thieves' Guild",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look bridge|look well",
+          "room_id": "wcc_map1_room212",
+          "room_name": "Intersection of Crown St. & Brass St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room214",
+          "room_name": "Crown Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room215",
+          "room_name": "Crown Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room216",
+          "room_name": "Crown Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room218",
+          "room_name": "Intersection of Guild St. & Crown St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look well",
+          "room_id": "wcc_map1_room245",
+          "room_name": "Intersection of Stone St. and Crown St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look passage|look well|look wall",
+          "room_id": "wcc_map1_room289",
+          "room_name": "Halls of Training, Entrance",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "look|look wall",
+          "room_id": "wcc_map1_room290",
+          "room_name": "Sarkhee's Jewellery",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.look",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "look",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room10",
+          "wcc_map1_room27",
+          "wcc_map1_room27",
+          "wcc_map1_room102",
+          "wcc_map1_room159",
+          "wcc_map1_room165",
+          "wcc_map1_room170",
+          "wcc_map1_room184",
+          "wcc_map1_room199",
+          "wcc_map1_room201",
+          "wcc_map1_room201",
+          "wcc_map1_room202",
+          "wcc_map1_room212",
+          "wcc_map1_room214",
+          "wcc_map1_room215",
+          "wcc_map1_room216",
+          "wcc_map1_room218",
+          "wcc_map1_room245",
+          "wcc_map1_room289",
+          "wcc_map1_room290",
+          "wcc_map1_room292",
+          "wcc_map1_room293",
+          "wcc_map1_room307",
+          "wcc_map1_room309",
+          "wcc_map1_room348",
+          "wcc_map1_room354",
+          "wcc_map1_room372",
+          "wcc_map1_room373",
+          "wcc_map1_room383",
+          "wcc_map1_room394",
+          "wcc_map1_room394",
+          "wcc_map1_room394",
+          "wcc_map1_room394",
+          "wcc_map1_room395",
+          "wcc_map1_room395",
+          "wcc_map1_room395",
+          "wcc_map1_room395",
+          "wcc_map1_room396",
+          "wcc_map1_room396",
+          "wcc_map1_room396",
+          "wcc_map1_room396",
+          "wcc_map1_room396",
+          "wcc_map1_room398",
+          "wcc_map1_room399",
+          "wcc_map1_room437",
+          "wcc_map1_room438",
+          "wcc_map1_room443",
+          "wcc_map1_room444",
+          "wcc_map1_room497",
+          "wcc_map1_room500"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "drink|drink curtain",
+          "room_id": "wcc_map1_room10",
+          "room_name": "Lucky Strike Casino",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "drink",
+          "room_id": "wcc_map2_room2552",
+          "room_name": "The Drunken Demon Inn, Stairwell",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "drink|drink well|drink wall",
+          "room_id": "wcc_map6_room1332",
+          "room_name": "Frothing Mug Tavern",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "drink|drink well|drink wall",
+          "room_id": "wcc_map6_room1332",
+          "room_name": "Frothing Mug Tavern",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "drink|drink well|drink wall",
+          "room_id": "wcc_map6_room1332",
+          "room_name": "Frothing Mug Tavern",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "drink|drink sign|drink lever|drink wall|drink window|drink box",
+          "room_id": "wcc_map6_room1333",
+          "room_name": "Gambling Hall",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "drink",
+          "room_id": "wcc_map17_room2441",
+          "room_name": "Tavern",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "drink",
+          "room_id": "wcc_map17_room2442",
+          "room_name": "Tavern",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 8,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.drink",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "drink",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room10",
+          "wcc_map2_room2552",
+          "wcc_map6_room1332",
+          "wcc_map6_room1332",
+          "wcc_map6_room1332",
+          "wcc_map6_room1333",
+          "wcc_map17_room2441",
+          "wcc_map17_room2442"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read river|read well|read sign|read wall",
+          "room_id": "wcc_map1_room23",
+          "room_name": "Intersection of River St. & Mystic Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read door|read sign",
+          "room_id": "wcc_map1_room41",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign",
+          "room_id": "wcc_map1_room102",
+          "room_name": "Silver Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read door|read sign",
+          "room_id": "wcc_map1_room107",
+          "room_name": "Silver Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign",
+          "room_id": "wcc_map1_room107",
+          "room_name": "Silver Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign",
+          "room_id": "wcc_map1_room219",
+          "room_name": "Guild Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign",
+          "room_id": "wcc_map1_room228",
+          "room_name": "Sovereign Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read door|read sign",
+          "room_id": "wcc_map1_room254",
+          "room_name": "Silver Street, Western End",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read wall",
+          "room_id": "wcc_map1_room274",
+          "room_name": "Warlock Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room310",
+          "room_name": "Sentara's Clothing, Back Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read",
+          "room_id": "wcc_map1_room354",
+          "room_name": "Colin's Maces",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room2328",
+          "room_name": "Blue Tower, Second Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room2329",
+          "room_name": "Blue Tower, Third Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room2330",
+          "room_name": "Blue Tower, Fourth Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room2334",
+          "room_name": "Blue Tower, Top Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room3302",
+          "room_name": "Blue Tower, Second Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room3303",
+          "room_name": "Blue Tower, Second Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room3304",
+          "room_name": "Blue Tower, Third Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room3305",
+          "room_name": "Blue Tower, Third Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "read|read sign|read wall",
+          "room_id": "wcc_map1_room3306",
+          "room_name": "Blue Tower, Fourth Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.read",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "read",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room23",
+          "wcc_map1_room41",
+          "wcc_map1_room102",
+          "wcc_map1_room107",
+          "wcc_map1_room107",
+          "wcc_map1_room219",
+          "wcc_map1_room228",
+          "wcc_map1_room254",
+          "wcc_map1_room274",
+          "wcc_map1_room310",
+          "wcc_map1_room354",
+          "wcc_map1_room2328",
+          "wcc_map1_room2329",
+          "wcc_map1_room2330",
+          "wcc_map1_room2334",
+          "wcc_map1_room3302",
+          "wcc_map1_room3303",
+          "wcc_map1_room3304",
+          "wcc_map1_room3305",
+          "wcc_map1_room3306",
+          "wcc_map1_room3307",
+          "wcc_map1_room3308",
+          "wcc_map1_room3309",
+          "wcc_map1_room3336",
+          "wcc_map1_room3337",
+          "wcc_map1_room3338",
+          "wcc_map1_room3339",
+          "wcc_map1_room3340",
+          "wcc_map2_room2577",
+          "wcc_map16_room379"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open boat",
+          "room_id": "wcc_map1_room31",
+          "room_name": "Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open boat",
+          "room_id": "wcc_map1_room32",
+          "room_name": "Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open boat",
+          "room_id": "wcc_map1_room33",
+          "room_name": "Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open tree",
+          "room_id": "wcc_map1_room125",
+          "room_name": "Park Plaza",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open path|open tree",
+          "room_id": "wcc_map1_room126",
+          "room_name": "Park Plaza",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open path|open tree",
+          "room_id": "wcc_map1_room127",
+          "room_name": "Park Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open path|open tree",
+          "room_id": "wcc_map1_room128",
+          "room_name": "Park Plaza",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open well",
+          "room_id": "wcc_map1_room159",
+          "room_name": "Jael's Missile Weapons",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open path|open well|open wall",
+          "room_id": "wcc_map1_room197",
+          "room_name": "Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door|open path|open well|open wall|open window",
+          "room_id": "wcc_map1_room198",
+          "room_name": "Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door",
+          "room_id": "wcc_map1_room221",
+          "room_name": "Guild Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door",
+          "room_id": "wcc_map1_room225",
+          "room_name": "Sovereign Street, Northern End",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door",
+          "room_id": "wcc_map1_room254",
+          "room_name": "Silver Street, Western End",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open boat",
+          "room_id": "wcc_map1_room296",
+          "room_name": "Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door|open sign",
+          "room_id": "wcc_map1_room301",
+          "room_name": "Temple Street, Eastern End",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door",
+          "room_id": "wcc_map1_room301",
+          "room_name": "Temple Street, Eastern End",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open sign",
+          "room_id": "wcc_map1_room303",
+          "room_name": "Temple Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door",
+          "room_id": "wcc_map1_room307",
+          "room_name": "Thuluk's Marvelous Axes",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door",
+          "room_id": "wcc_map1_room309",
+          "room_name": "Sentara's Clothing, Front Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "open|open door",
+          "room_id": "wcc_map1_room324",
+          "room_name": "Intersection of Temple St. & Stone St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.open",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "open",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room31",
+          "wcc_map1_room32",
+          "wcc_map1_room33",
+          "wcc_map1_room125",
+          "wcc_map1_room126",
+          "wcc_map1_room127",
+          "wcc_map1_room128",
+          "wcc_map1_room159",
+          "wcc_map1_room197",
+          "wcc_map1_room198",
+          "wcc_map1_room221",
+          "wcc_map1_room225",
+          "wcc_map1_room254",
+          "wcc_map1_room296",
+          "wcc_map1_room301",
+          "wcc_map1_room301",
+          "wcc_map1_room303",
+          "wcc_map1_room307",
+          "wcc_map1_room309",
+          "wcc_map1_room324",
+          "wcc_map1_room334",
+          "wcc_map1_room390",
+          "wcc_map1_room391",
+          "wcc_map1_room521",
+          "wcc_map1_room1072",
+          "wcc_map1_room2145",
+          "wcc_map1_room2316",
+          "wcc_map2_room2522",
+          "wcc_map2_room2525",
+          "wcc_map2_room2526",
+          "wcc_map2_room2527",
+          "wcc_map2_room2549",
+          "wcc_map6_room122",
+          "wcc_map6_room1245",
+          "wcc_map6_room1246",
+          "wcc_map6_room1308",
+          "wcc_map6_room1353",
+          "wcc_map7_room1133",
+          "wcc_map8_room560",
+          "wcc_map10_room270",
+          "wcc_map12_room4",
+          "wcc_map16_room323",
+          "wcc_map16_room324",
+          "wcc_map16_room431",
+          "wcc_map16_room2550",
+          "wcc_map16_room2663",
+          "wcc_map17_room2433",
+          "wcc_map17_room3036",
+          "wcc_map17_room3037",
+          "wcc_map17_room3038"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock door|lock river|lock well|lock wall",
+          "room_id": "wcc_map1_room34",
+          "room_name": "River Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock door|lock gate",
+          "room_id": "wcc_map1_room41",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock gate|lock wall",
+          "room_id": "wcc_map1_room77",
+          "room_name": "Sovereign Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock gate|lock lock",
+          "room_id": "wcc_map1_room297",
+          "room_name": "Bank of Godfrey",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock door|lock gate",
+          "room_id": "wcc_map1_room3336",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock door|lock gate",
+          "room_id": "wcc_map1_room3337",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock door|lock gate",
+          "room_id": "wcc_map1_room3338",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock door|lock gate",
+          "room_id": "wcc_map1_room3339",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock door|lock gate",
+          "room_id": "wcc_map1_room3340",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "lock|lock wall",
+          "room_id": "wcc_map3_room542",
+          "room_name": "Training Area",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 10,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.lock",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "lock",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room34",
+          "wcc_map1_room41",
+          "wcc_map1_room77",
+          "wcc_map1_room297",
+          "wcc_map1_room3336",
+          "wcc_map1_room3337",
+          "wcc_map1_room3338",
+          "wcc_map1_room3339",
+          "wcc_map1_room3340",
+          "wcc_map3_room542"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go river",
+          "room_id": "wcc_map1_room35",
+          "room_name": "Intersection of River St. & Westwall St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map1_room66",
+          "room_name": "Intersection of Noble St. & Westwall St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map1_room106",
+          "room_name": "Intersection of Silver St. & Brass St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map1_room206",
+          "room_name": "Arena Practice Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go door|go wall",
+          "room_id": "wcc_map1_room324",
+          "room_name": "Intersection of Temple St. & Stone St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go path|go tree",
+          "room_id": "wcc_map1_room2148",
+          "room_name": "Newhaven, Forest Path",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go sign",
+          "room_id": "wcc_map6_room121",
+          "room_name": "Valley Path, Outside Inn",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go passage|go path",
+          "room_id": "wcc_map6_room123",
+          "room_name": "Grassy Path",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go wall|go box",
+          "room_id": "wcc_map6_room128",
+          "room_name": "Stairwell",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go passage",
+          "room_id": "wcc_map6_room1350",
+          "room_name": "Arena, Spectator Seats",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go tunnel",
+          "room_id": "wcc_map6_room1569",
+          "room_name": "Iron Mine, Cart Track",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go wall",
+          "room_id": "wcc_map10_room268",
+          "room_name": "Rocky Trail, Bottleneck Pass",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go|go wall",
+          "room_id": "wcc_map10_room269",
+          "room_name": "Rocky Trail, Bottleneck Pass",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map10_room306",
+          "room_name": "Rocky Trail",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map17_room2287",
+          "room_name": "Dock Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map17_room2288",
+          "room_name": "Dock Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map17_room2289",
+          "room_name": "Dock Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map17_room2290",
+          "room_name": "Intersection of Dock Street & Haven Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map17_room2291",
+          "room_name": "Dock Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "go",
+          "room_id": "wcc_map17_room2292",
+          "room_name": "Dock Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.go",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "go",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room35",
+          "wcc_map1_room66",
+          "wcc_map1_room106",
+          "wcc_map1_room206",
+          "wcc_map1_room324",
+          "wcc_map1_room2148",
+          "wcc_map6_room121",
+          "wcc_map6_room123",
+          "wcc_map6_room128",
+          "wcc_map6_room1350",
+          "wcc_map6_room1569",
+          "wcc_map10_room268",
+          "wcc_map10_room269",
+          "wcc_map10_room306",
+          "wcc_map17_room2287",
+          "wcc_map17_room2288",
+          "wcc_map17_room2289",
+          "wcc_map17_room2290",
+          "wcc_map17_room2291",
+          "wcc_map17_room2292",
+          "wcc_map17_room2293",
+          "wcc_map17_room2294"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room39",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use path|use statue",
+          "room_id": "wcc_map1_room40",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use path|use statue",
+          "room_id": "wcc_map1_room168",
+          "room_name": "Junkyard, Entrance",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room169",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room263",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room271",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room516",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room529",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room530",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room532",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room536",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue",
+          "room_id": "wcc_map1_room537",
+          "room_name": "Junkyard",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use",
+          "room_id": "wcc_map1_room1376",
+          "room_name": "Adventurer's Guild, Universal Trainer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use river",
+          "room_id": "wcc_map1_room2149",
+          "room_name": "Newhaven, Docks",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue|use wall|use chest",
+          "room_id": "wcc_map6_room1347",
+          "room_name": "Dwarven Temple",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use statue|use wall|use chest",
+          "room_id": "wcc_map6_room1348",
+          "room_name": "Dwarven Temple",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use tunnel|use wall",
+          "room_id": "wcc_map6_room1568",
+          "room_name": "Iron Mine Entrance",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use tunnel|use wall",
+          "room_id": "wcc_map6_room1569",
+          "room_name": "Iron Mine, Cart Track",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use tunnel|use wall",
+          "room_id": "wcc_map6_room1585",
+          "room_name": "Iron Mine, Cart Track",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "use|use tunnel|use wall",
+          "room_id": "wcc_map6_room1586",
+          "room_name": "Iron Mine, Cart Track",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.use",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "use",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room39",
+          "wcc_map1_room40",
+          "wcc_map1_room168",
+          "wcc_map1_room169",
+          "wcc_map1_room263",
+          "wcc_map1_room271",
+          "wcc_map1_room516",
+          "wcc_map1_room529",
+          "wcc_map1_room530",
+          "wcc_map1_room532",
+          "wcc_map1_room536",
+          "wcc_map1_room537",
+          "wcc_map1_room1376",
+          "wcc_map1_room2149",
+          "wcc_map6_room1347",
+          "wcc_map6_room1348",
+          "wcc_map6_room1568",
+          "wcc_map6_room1569",
+          "wcc_map6_room1585",
+          "wcc_map6_room1586",
+          "wcc_map6_room1587",
+          "wcc_map6_room1588",
+          "wcc_map6_room1589",
+          "wcc_map12_room54",
+          "wcc_map17_room2472",
+          "wcc_map17_room2473",
+          "wcc_map17_room2474",
+          "wcc_map17_room2940"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say door|say gate|say sign",
+          "room_id": "wcc_map1_room41",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say well",
+          "room_id": "wcc_map1_room201",
+          "room_name": "Thief Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say sign",
+          "room_id": "wcc_map1_room222",
+          "room_name": "Guild Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say door|say sign",
+          "room_id": "wcc_map1_room303",
+          "room_name": "Temple Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say sign",
+          "room_id": "wcc_map1_room303",
+          "room_name": "Temple Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say rope|say well",
+          "room_id": "wcc_map1_room384",
+          "room_name": "Back Room, Gypsy Trainer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say rune",
+          "room_id": "wcc_map1_room399",
+          "room_name": "Magic Shoppe, Back Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say sign|say wall",
+          "room_id": "wcc_map1_room482",
+          "room_name": "Adventurer's Guild, Halls of Training",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say door|say gate|say sign",
+          "room_id": "wcc_map1_room3336",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say door|say gate|say sign",
+          "room_id": "wcc_map1_room3337",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say door|say gate|say sign",
+          "room_id": "wcc_map1_room3338",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say door|say gate|say sign",
+          "room_id": "wcc_map1_room3339",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say|say door|say gate|say sign",
+          "room_id": "wcc_map1_room3340",
+          "room_name": "Bank Vault",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say",
+          "room_id": "wcc_map6_room1344",
+          "room_name": "Drotha's Deadly Weaponry",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "say",
+          "room_id": "wcc_map6_room1352",
+          "room_name": "Training Area",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 15,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.say",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "say",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room41",
+          "wcc_map1_room201",
+          "wcc_map1_room222",
+          "wcc_map1_room303",
+          "wcc_map1_room303",
+          "wcc_map1_room384",
+          "wcc_map1_room399",
+          "wcc_map1_room482",
+          "wcc_map1_room3336",
+          "wcc_map1_room3337",
+          "wcc_map1_room3338",
+          "wcc_map1_room3339",
+          "wcc_map1_room3340",
+          "wcc_map6_room1344",
+          "wcc_map6_room1352"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room81",
+          "room_name": "Twisting Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room82",
+          "room_name": "Twisting Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room83",
+          "room_name": "Twisting Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn|turn hole|turn well|turn curtain|turn wall",
+          "room_id": "wcc_map1_room200",
+          "room_name": "Ninja Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room235",
+          "room_name": "Stone Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room236",
+          "room_name": "Stone Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room237",
+          "room_name": "Stone Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room240",
+          "room_name": "Stone Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room241",
+          "room_name": "Stone Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room242",
+          "room_name": "Stone Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room243",
+          "room_name": "Stone Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room306",
+          "room_name": "Skali's Fine Armour, Showroom",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room317",
+          "room_name": "Stone Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn|turn door|turn curtain",
+          "room_id": "wcc_map1_room398",
+          "room_name": "Magic Shoppe",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map1_room498",
+          "room_name": "Witchunter Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn|turn wall",
+          "room_id": "wcc_map1_room2437",
+          "room_name": "Bloodied Booth",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn|turn door|turn wall",
+          "room_id": "wcc_map2_room2519",
+          "room_name": "Rhudaur, Massive Doors",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map6_room676",
+          "room_name": "Tilled Fields",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map6_room679",
+          "room_name": "Tilled Fields",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "turn",
+          "room_id": "wcc_map6_room1567",
+          "room_name": "Miner's Guild",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.turn",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "turn",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room81",
+          "wcc_map1_room82",
+          "wcc_map1_room83",
+          "wcc_map1_room200",
+          "wcc_map1_room235",
+          "wcc_map1_room236",
+          "wcc_map1_room237",
+          "wcc_map1_room240",
+          "wcc_map1_room241",
+          "wcc_map1_room242",
+          "wcc_map1_room243",
+          "wcc_map1_room306",
+          "wcc_map1_room317",
+          "wcc_map1_room398",
+          "wcc_map1_room498",
+          "wcc_map1_room2437",
+          "wcc_map2_room2519",
+          "wcc_map6_room676",
+          "wcc_map6_room679",
+          "wcc_map6_room1567",
+          "wcc_map8_room560",
+          "wcc_map16_room321",
+          "wcc_map16_room383"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter door|enter sign",
+          "room_id": "wcc_map1_room107",
+          "room_name": "Silver Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter well",
+          "room_id": "wcc_map1_room201",
+          "room_name": "Thief Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter wall",
+          "room_id": "wcc_map1_room293",
+          "room_name": "Stables",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter",
+          "room_id": "wcc_map1_room306",
+          "room_name": "Skali's Fine Armour, Showroom",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter door|enter chest",
+          "room_id": "wcc_map1_room307",
+          "room_name": "Thuluk's Marvelous Axes",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter curtain",
+          "room_id": "wcc_map1_room332",
+          "room_name": "Curio Shop",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter well|enter curtain",
+          "room_id": "wcc_map1_room333",
+          "room_name": "Back Room, Mystic Trainer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter door|enter well|enter wall",
+          "room_id": "wcc_map1_room355",
+          "room_name": "Helfgrim's Blades",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter",
+          "room_id": "wcc_map1_room373",
+          "room_name": "Sheriff's Office",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter rope|enter well",
+          "room_id": "wcc_map1_room384",
+          "room_name": "Back Room, Gypsy Trainer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter rune",
+          "room_id": "wcc_map1_room399",
+          "room_name": "Magic Shoppe, Back Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter wall",
+          "room_id": "wcc_map1_room499",
+          "room_name": "Paladin Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter",
+          "room_id": "wcc_map1_room500",
+          "room_name": "Missionary Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter",
+          "room_id": "wcc_map1_room502",
+          "room_name": "Ranger Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter rune|enter wall",
+          "room_id": "wcc_map1_room522",
+          "room_name": "Temple Spell Store",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter wall",
+          "room_id": "wcc_map1_room526",
+          "room_name": "Priestly Training Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter wall",
+          "room_id": "wcc_map1_room527",
+          "room_name": "Temple Healer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter",
+          "room_id": "wcc_map1_room852",
+          "room_name": "Bard's Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter|enter gate|enter hole|enter passage",
+          "room_id": "wcc_map1_room1381",
+          "room_name": "Town Gates, Inner Bailey",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "enter",
+          "room_id": "wcc_map1_room2145",
+          "room_name": "Newhaven, General Store",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.enter",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "enter",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room107",
+          "wcc_map1_room201",
+          "wcc_map1_room293",
+          "wcc_map1_room306",
+          "wcc_map1_room307",
+          "wcc_map1_room332",
+          "wcc_map1_room333",
+          "wcc_map1_room355",
+          "wcc_map1_room373",
+          "wcc_map1_room384",
+          "wcc_map1_room399",
+          "wcc_map1_room499",
+          "wcc_map1_room500",
+          "wcc_map1_room502",
+          "wcc_map1_room522",
+          "wcc_map1_room526",
+          "wcc_map1_room527",
+          "wcc_map1_room852",
+          "wcc_map1_room1381",
+          "wcc_map1_room2145",
+          "wcc_map2_room2524",
+          "wcc_map2_room2538",
+          "wcc_map6_room122",
+          "wcc_map6_room134",
+          "wcc_map6_room135",
+          "wcc_map6_room136",
+          "wcc_map6_room137",
+          "wcc_map6_room234",
+          "wcc_map6_room235",
+          "wcc_map6_room236",
+          "wcc_map6_room237",
+          "wcc_map6_room549",
+          "wcc_map6_room562",
+          "wcc_map6_room1247",
+          "wcc_map6_room1248",
+          "wcc_map7_room1141",
+          "wcc_map16_room329",
+          "wcc_map16_room2663",
+          "wcc_map17_room2440"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross path|cross bridge",
+          "room_id": "wcc_map1_room190",
+          "room_name": "Bridge Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross well",
+          "room_id": "wcc_map1_room218",
+          "room_name": "Intersection of Guild St. & Crown St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross sign",
+          "room_id": "wcc_map1_room221",
+          "room_name": "Guild Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross well",
+          "room_id": "wcc_map1_room229",
+          "room_name": "Intersection of Sovereign St. & Oak St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross well",
+          "room_id": "wcc_map1_room245",
+          "room_name": "Intersection of Stone St. and Crown St.",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross",
+          "room_id": "wcc_map1_room315",
+          "room_name": "The Homely Hearth, Common Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross well",
+          "room_id": "wcc_map1_room333",
+          "room_name": "Back Room, Mystic Trainer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross well",
+          "room_id": "wcc_map1_room2147",
+          "room_name": "Newhaven, Adventurer's Guild",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map1_room2680",
+          "room_name": "Gold Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1568",
+          "room_name": "Iron Mine Entrance",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1569",
+          "room_name": "Iron Mine, Cart Track",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1570",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1571",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1572",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1573",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1574",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1576",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1577",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1578",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "cross|cross tunnel|cross wall",
+          "room_id": "wcc_map6_room1579",
+          "room_name": "Iron Mine Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.cross",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "cross",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room190",
+          "wcc_map1_room218",
+          "wcc_map1_room221",
+          "wcc_map1_room229",
+          "wcc_map1_room245",
+          "wcc_map1_room315",
+          "wcc_map1_room333",
+          "wcc_map1_room2147",
+          "wcc_map1_room2680",
+          "wcc_map6_room1568",
+          "wcc_map6_room1569",
+          "wcc_map6_room1570",
+          "wcc_map6_room1571",
+          "wcc_map6_room1572",
+          "wcc_map6_room1573",
+          "wcc_map6_room1574",
+          "wcc_map6_room1576",
+          "wcc_map6_room1577",
+          "wcc_map6_room1578",
+          "wcc_map6_room1579",
+          "wcc_map6_room1580",
+          "wcc_map6_room1585",
+          "wcc_map6_room1586",
+          "wcc_map6_room1587",
+          "wcc_map6_room1588",
+          "wcc_map6_room1589",
+          "wcc_map7_room1133"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "push|push wall",
+          "room_id": "wcc_map1_room197",
+          "room_name": "Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "push|push wall",
+          "room_id": "wcc_map1_room198",
+          "room_name": "Alley",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "push|push door",
+          "room_id": "wcc_map1_room203",
+          "room_name": "Arena Entrance",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "push|push door|push sign",
+          "room_id": "wcc_map1_room254",
+          "room_name": "Silver Street, Western End",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "push",
+          "room_id": "wcc_map1_room302",
+          "room_name": "Temple Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "push|push wall",
+          "room_id": "wcc_map2_room2570",
+          "room_name": "Training Hall",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 6,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.push",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "push",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room197",
+          "wcc_map1_room198",
+          "wcc_map1_room203",
+          "wcc_map1_room254",
+          "wcc_map1_room302",
+          "wcc_map2_room2570"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ring|ring wall",
+          "room_id": "wcc_map1_room290",
+          "room_name": "Sarkhee's Jewellery",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ring|ring door",
+          "room_id": "wcc_map1_room301",
+          "room_name": "Temple Street, Eastern End",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ring",
+          "room_id": "wcc_map1_room305",
+          "room_name": "Skali's Fine Armour, Front Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ring|ring wall",
+          "room_id": "wcc_map1_room2330",
+          "room_name": "Blue Tower, Fourth Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ring|ring wall",
+          "room_id": "wcc_map1_room3306",
+          "room_name": "Blue Tower, Fourth Floor",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 5,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.ring",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "ring",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room290",
+          "wcc_map1_room301",
+          "wcc_map1_room305",
+          "wcc_map1_room2330",
+          "wcc_map1_room3306"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "jump",
+          "room_id": "wcc_map1_room291",
+          "room_name": "Library",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "jump",
+          "room_id": "wcc_map16_room329",
+          "room_name": "Hides Shop",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 2,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.jump",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "jump",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room291",
+          "wcc_map16_room329"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ascend|ascend stairs",
+          "room_id": "wcc_map1_room313",
+          "room_name": "The Homely Hearth, Stairwell",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ascend|ascend stairs|ascend wall",
+          "room_id": "wcc_map1_room538",
+          "room_name": "Dungeon Stairs",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ascend|ascend wall",
+          "room_id": "wcc_map1_room847",
+          "room_name": "Inn Second Floor, Stairwell",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "ascend|ascend path",
+          "room_id": "wcc_map6_room1244",
+          "room_name": "Ascent to Khazarad",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 4,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.ascend",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "ascend",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room313",
+          "wcc_map1_room538",
+          "wcc_map1_room847",
+          "wcc_map6_room1244"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "board|board wall",
+          "room_id": "wcc_map1_room349",
+          "room_name": "Adventurer's Guild, Main Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "board|board door",
+          "room_id": "wcc_map6_room125",
+          "room_name": "Cozy Inn, Foyer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "board|board rope",
+          "room_id": "wcc_map16_room2659",
+          "room_name": "Floating Platform, Dock",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "board|board rope",
+          "room_id": "wcc_map16_room2660",
+          "room_name": "Floating Platform, Dock",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "board|board rope",
+          "room_id": "wcc_map16_room2661",
+          "room_name": "Floating Platform, Dock",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "board|board rope",
+          "room_id": "wcc_map16_room2662",
+          "room_name": "Floating Platform, Dock",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "board",
+          "room_id": "wcc_map17_room2292",
+          "room_name": "Dock Street",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "board",
+          "room_id": "wcc_map17_room2437",
+          "room_name": "Abandoned Shop",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 8,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.board",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "board",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room349",
+          "wcc_map6_room125",
+          "wcc_map16_room2659",
+          "wcc_map16_room2660",
+          "wcc_map16_room2661",
+          "wcc_map16_room2662",
+          "wcc_map17_room2292",
+          "wcc_map17_room2437"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk door|walk curtain",
+          "room_id": "wcc_map1_room398",
+          "room_name": "Magic Shoppe",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk tunnel|walk passage|walk wall",
+          "room_id": "wcc_map2_room1173",
+          "room_name": "Stone Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk tunnel|walk passage|walk wall",
+          "room_id": "wcc_map2_room1176",
+          "room_name": "Stone Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk tunnel|walk passage|walk wall",
+          "room_id": "wcc_map2_room1177",
+          "room_name": "Stone Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk tunnel|walk passage|walk wall",
+          "room_id": "wcc_map2_room1178",
+          "room_name": "Stone Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk tunnel|walk passage|walk wall",
+          "room_id": "wcc_map2_room1179",
+          "room_name": "Stone Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk tunnel|walk passage|walk wall",
+          "room_id": "wcc_map2_room1183",
+          "room_name": "Stone Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk path",
+          "room_id": "wcc_map6_room238",
+          "room_name": "Misty Swamp Path",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk path",
+          "room_id": "wcc_map6_room239",
+          "room_name": "Misty Swamp Path",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk path",
+          "room_id": "wcc_map6_room240",
+          "room_name": "Misty Swamp Path",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1255",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1255",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1256",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1256",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1257",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1257",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1258",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1258",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1260",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "walk|walk statue",
+          "room_id": "wcc_map6_room1260",
+          "room_name": "Khazarad, Garden Walk",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.walk",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "walk",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room398",
+          "wcc_map2_room1173",
+          "wcc_map2_room1176",
+          "wcc_map2_room1177",
+          "wcc_map2_room1178",
+          "wcc_map2_room1179",
+          "wcc_map2_room1183",
+          "wcc_map6_room238",
+          "wcc_map6_room239",
+          "wcc_map6_room240",
+          "wcc_map6_room1255",
+          "wcc_map6_room1255",
+          "wcc_map6_room1256",
+          "wcc_map6_room1256",
+          "wcc_map6_room1257",
+          "wcc_map6_room1257",
+          "wcc_map6_room1258",
+          "wcc_map6_room1258",
+          "wcc_map6_room1260",
+          "wcc_map6_room1260",
+          "wcc_map6_room1261",
+          "wcc_map6_room1261",
+          "wcc_map6_room1262",
+          "wcc_map6_room1262",
+          "wcc_map6_room1302",
+          "wcc_map6_room1303",
+          "wcc_map10_room268",
+          "wcc_map10_room269",
+          "wcc_map16_room329",
+          "wcc_map16_room433",
+          "wcc_map16_room624",
+          "wcc_map16_room624",
+          "wcc_map16_room625",
+          "wcc_map16_room625",
+          "wcc_map16_room626",
+          "wcc_map16_room626",
+          "wcc_map16_room627",
+          "wcc_map16_room627",
+          "wcc_map16_room628",
+          "wcc_map16_room628",
+          "wcc_map16_room629",
+          "wcc_map16_room629",
+          "wcc_map16_room630",
+          "wcc_map16_room630",
+          "wcc_map16_room2551",
+          "wcc_map16_room2551",
+          "wcc_map17_room2435"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "descend|descend wall",
+          "room_id": "wcc_map1_room527",
+          "room_name": "Temple Healer",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "descend|descend well|descend wall",
+          "room_id": "wcc_map1_room847",
+          "room_name": "Inn Second Floor, Stairwell",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "descend|descend stairs|descend hole",
+          "room_id": "wcc_map3_room541",
+          "room_name": "Common Area",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "descend|descend passage",
+          "room_id": "wcc_map6_room1350",
+          "room_name": "Arena, Spectator Seats",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 4,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.descend",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "descend",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room527",
+          "wcc_map1_room847",
+          "wcc_map3_room541",
+          "wcc_map6_room1350"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room650",
+          "room_name": "Sewer Tunnel, Intersection",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room713",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room714",
+          "room_name": "Sewer Tunnel, Intersection",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room715",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room716",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room717",
+          "room_name": "Sewer Tunnel, Intersection",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room718",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room719",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room720",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room730",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room731",
+          "room_name": "Sewer Tunnel, Intersection",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room732",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room733",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room734",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room735",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press ladder|press tunnel|press passage",
+          "room_id": "wcc_map1_room736",
+          "room_name": "Sewer Tunnel, Dead End",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room751",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room752",
+          "room_name": "Sewer Tunnel, Intersection",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room753",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "press|press tunnel|press passage",
+          "room_id": "wcc_map1_room757",
+          "room_name": "Sewer Tunnel",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.press",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "press",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room650",
+          "wcc_map1_room713",
+          "wcc_map1_room714",
+          "wcc_map1_room715",
+          "wcc_map1_room716",
+          "wcc_map1_room717",
+          "wcc_map1_room718",
+          "wcc_map1_room719",
+          "wcc_map1_room720",
+          "wcc_map1_room730",
+          "wcc_map1_room731",
+          "wcc_map1_room732",
+          "wcc_map1_room733",
+          "wcc_map1_room734",
+          "wcc_map1_room735",
+          "wcc_map1_room736",
+          "wcc_map1_room751",
+          "wcc_map1_room752",
+          "wcc_map1_room753",
+          "wcc_map1_room757",
+          "wcc_map16_room332",
+          "wcc_map16_room417"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map1_room1089",
+          "room_name": "Slum Street, Square",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map1_room2153",
+          "room_name": "Skali's Fine Armour, Back Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move|move path",
+          "room_id": "wcc_map6_room238",
+          "room_name": "Misty Swamp Path",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move|move path",
+          "room_id": "wcc_map6_room239",
+          "room_name": "Misty Swamp Path",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move|move path",
+          "room_id": "wcc_map6_room240",
+          "room_name": "Misty Swamp Path",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move|move well|move chest",
+          "room_id": "wcc_map6_room1345",
+          "room_name": "Storage Room",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1114",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1115",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1116",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1117",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1118",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1119",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1120",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1122",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1123",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1124",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1125",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1126",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1127",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "move",
+          "room_id": "wcc_map7_room1128",
+          "room_name": "Dreary Village, Back Streets",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 20,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.move",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "move",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map1_room1089",
+          "wcc_map1_room2153",
+          "wcc_map6_room238",
+          "wcc_map6_room239",
+          "wcc_map6_room240",
+          "wcc_map6_room1345",
+          "wcc_map7_room1114",
+          "wcc_map7_room1115",
+          "wcc_map7_room1116",
+          "wcc_map7_room1117",
+          "wcc_map7_room1118",
+          "wcc_map7_room1119",
+          "wcc_map7_room1120",
+          "wcc_map7_room1122",
+          "wcc_map7_room1123",
+          "wcc_map7_room1124",
+          "wcc_map7_room1125",
+          "wcc_map7_room1126",
+          "wcc_map7_room1127",
+          "wcc_map7_room1128",
+          "wcc_map7_room1129",
+          "wcc_map7_room1131",
+          "wcc_map8_room463",
+          "wcc_map8_room464",
+          "wcc_map8_room465",
+          "wcc_map8_room467",
+          "wcc_map8_room472",
+          "wcc_map8_room475",
+          "wcc_map8_room477",
+          "wcc_map8_room479",
+          "wcc_map8_room480",
+          "wcc_map8_room482",
+          "wcc_map8_room483",
+          "wcc_map8_room484"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "touch|touch door",
+          "room_id": "wcc_map2_room2577",
+          "room_name": "Fine Mansion, Study",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.touch",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "touch",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map2_room2577"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "climb|climb well",
+          "room_id": "wcc_map6_room562",
+          "room_name": "Ascent to Khazarad",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "climb|climb well",
+          "room_id": "wcc_map6_room562",
+          "room_name": "Ascent to Khazarad",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "climb|climb gate|climb path",
+          "room_id": "wcc_map6_room1244",
+          "room_name": "Ascent to Khazarad",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "climb|climb path|climb wall",
+          "room_id": "wcc_map10_room268",
+          "room_name": "Rocky Trail, Bottleneck Pass",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "climb|climb path|climb wall",
+          "room_id": "wcc_map10_room269",
+          "room_name": "Rocky Trail, Bottleneck Pass",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "climb",
+          "room_id": "wcc_map10_room306",
+          "room_name": "Rocky Trail",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        },
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "climb|climb wall",
+          "room_id": "wcc_map12_room1799",
+          "room_name": "Deep Dark Pit",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 7,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.climb",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "climb",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map6_room562",
+          "wcc_map6_room562",
+          "wcc_map6_room1244",
+          "wcc_map10_room268",
+          "wcc_map10_room269",
+          "wcc_map10_room306",
+          "wcc_map12_room1799"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "pull|pull lever|pull window",
+          "room_id": "wcc_map6_room1333",
+          "room_name": "Gambling Hall",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.pull",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "pull",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map6_room1333"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    },
+    {
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "evidence": [
+        {
+          "basis": "Data/rooms.json room name/description keyword harvest; expected-model parser clue only",
+          "candidate_forms": "swim|swim gate|swim passage|swim crack",
+          "room_id": "wcc_map8_room559",
+          "room_name": "Dark-Elf City, Moatside",
+          "source": "Evidence/DataSimVer0005/CommandClueHarvest.csv"
+        }
+      ],
+      "evidence_summary_0124": {
+        "confidence": "unscored",
+        "evidence_ref_count": 1,
+        "has_imported_database_anchor": false,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ]
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "export_path": "/Data/<world>/commands.json",
+        "hot_reload_candidate": true,
+        "output_collection": "commands",
+        "requires_validation": true,
+        "target_worlds": [
+          "classic"
+        ]
+      },
+      "id": "command.swim",
+      "librarium_enrichment_0124": {
+        "classic_lock": "classic world records require evidence-backed edits",
+        "client_visibility": "read_only_world_scoped",
+        "data_role": "definition_source_for_generated_data",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "source_of_truth": "Librarium",
+        "status": "enriched_pass_1"
+      },
+      "librarium_source_file": "Librarium/Objects/commands/command_records_0123.json",
+      "name": "swim",
+      "object_type": "command",
+      "override_policy_0124": {
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation"
+      },
+      "relationship_summary_0124": [
+        {
+          "field": "relationships",
+          "value_count": 1
+        }
+      ],
+      "relationships": {
+        "rooms_seen_in": [
+          "wcc_map8_room559"
+        ]
+      },
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/commands.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "source": "Librarium/Objects",
+        "status": "pending_generator_mapping"
+      },
+      "status": "evidence_mined_requires_parser_confirmation",
+      "validation_rules_0124": [
+        "id_required",
+        "object_type_required",
+        "world_scope_required",
+        "evidence_required_for_classic",
+        "runtime_mapping_required",
+        "generator_mapping_required"
+      ],
+      "version_history_0124": {
+        "code_update": "0124",
+        "date": "2026-07-09",
+        "operation": "librarium_enrichment_pass_1"
+      },
+      "world_scope": [
+        "classic"
+      ]
+    }
+  ],
+  "source_file": "Librarium/Objects/commands/command_records_0123.json",
+  "world_id": "Classic",
+  "world_type": "classic"
+}

@@ -1,0 +1,353 @@
+{
+  "id": "STATUS.EFFECTS",
+  "bucket": "Status Effects",
+  "name": "Status effect model",
+  "description": "Poison, disease, paralysis, invisibility, protections, and other persistent effects.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2294,
+  "representative_evidence_count": 36,
+  "representative_source_path_count": 11,
+  "keywords_used": [
+    "status",
+    "poison",
+    "disease",
+    "paralyze",
+    "invisible",
+    "effect"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 653,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 786,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 894,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 1238,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "'Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 1353,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 1495,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 1830,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 1961,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 2094,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 2168,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 2258,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMain.frm",
+      "line": 2334,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/onsys_Tests.cs",
+      "line": 57,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "ExecuteApiTest(HostProcess.ExportedModules.Majorbbs.Segment, ONSYSN_ORDINAL, new List<ushort> { stringPointer.Offset, stringPointer.Segment, isInvisible });"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/Enums/EnumUserStatus.cs",
+      "line": 1,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "namespace MBBSEmu.HostProcess.Enums"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Galgsbl.cs",
+      "line": 789,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "commands_client",
+      "text": "if (channel.DataToProcess && channel.GetStatus() == EnumUserStatus.CR_TERMINATED_STRING_AVAILABLE)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Majorbbs.cs",
+      "line": 321,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "//Bail if it's max value, not processing any input or status"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/Fsd/FsdStatus.cs",
+      "line": 3,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "data_schema",
+      "text": "namespace MBBSEmu.HostProcess.Fsd"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/MbbsHost.cs",
+      "line": 727,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "///     The registered STSROU is invoked any time there is a status change or deferred processing"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/MbbsHost.cs",
+      "line": 913,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "//If BTUCHI Injected a deferred Execution Status, respect that vs. processing the input"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 7,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "MBBSEmu is a cross-platform emulator for running legacy MajorBBS and Worldgroup modules (16-bit NE format DLLs) on modern systems. It emulates both the Galacticomm host environment and an x86-16 processor. Written in C# targeting .NET 10."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 54,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "- **MBBSEmu/** - Main executable: emulation engine, host process, exported modules"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 67,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "5. **Exported Modules** (`HostProcess/ExportedModules/`): C# implementations of MajorBBS/Worldgroup APIs that modules call via imported ordinals. Each mapped to a virtual segment:"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 73,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "- **Btrieve** (`Btrieve/`): Database engine emulation backed by SQLite. `BtrieveFileProcessor` handles CRUD operations with key-based access."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 93,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "- **Integration tests** (`Tests/Integration/`): Full host process tests. Extend `MBBSEmuIntegrationTestBase`."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 51,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "code. Hand-editing the control/layout block is risky; prefer editing the procedure code at"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 93,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Area effect spells cast by monsters utilizing abil-1 being marked as invalid for [GreaterMUD] (they ARE still invalid for stock)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 100,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-FIX: Missed a spot where the loaded character's stats were still effecting the spellbook output of another magery"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 164,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-FIX: +STR from items effecting encumbrance"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 230,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-UP: Added BS defense bonus to monster detail"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 252,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-NEW: visual representation for martial arts attack modifiers"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 479,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-UP: added quest box to select 2nd alignment quest bonuses"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 14,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "combat",
+      "text": "-FIX: Missed a spot where the loaded character's stats were still effecting the spellbook output of another magery"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 72,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-FIX: +STR from items effecting encumbrance"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 136,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-UP: Added BS defense bonus to monster detail"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 158,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-NEW: visual representation for martial arts attack modifiers"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 386,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "-UP: added quest box to select 2nd alignment quest bonuses"
+    }
+  ]
+}

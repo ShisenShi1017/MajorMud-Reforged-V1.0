@@ -1,9 +1,0 @@
-area,status,evidence
-Evidence scope,CERTIFIED_STATIC_SCOPE,ImportedDatabases only; /Data excluded; runtime not started
-ZIP integrity,PASSED,Incoming 0109 checkpoint and repository archive passed zipfile testzip
-Imported database presence,PASSED,3908 ImportedDatabases files found; 1 mdb; 5 csv
-Room/detail inventory CSV evidence,PRESENT,room-detail-inventory-wcc.csv and roommap-inventory-wcc.csv present under ImportedDatabases
-MDB evidence,PRESENT_NOT_INTERNALLY_EXPANDED,data-v1.11n.mdb present under ImportedDatabases; internal MDB tables not expanded by this pass
-Static consistency blockers,NONE_FOUND_IN_0109_AUDIT,"0109 reported duplicate node keys 0, missing ownership rows 0, missing edge endpoints 0, missing node paths 0"
-Unresolved static items,CARRIED_FORWARD,3975 unresolved ownership rows and 5464 unresolved static rows preserved without inference
-Runtime readiness,READY_FOR_CONTROLLED_RUNTIME_VALIDATION,Static passes 0101-0110 complete; runtime validation remains required for dynamic behavior

@@ -1,0 +1,335 @@
+{
+  "id": "CHAR.RACE_RULES",
+  "bucket": "Character Progression",
+  "name": "Race modifiers and restrictions",
+  "description": "Race-specific stat modifiers, restrictions, and abilities.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 497,
+  "representative_evidence_count": 34,
+  "representative_source_path_count": 19,
+  "keywords_used": [
+    "race",
+    "racial",
+    "elf",
+    "dwarf",
+    "human",
+    "gnome"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 84,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-BUGFIX: fixed item race restriction fieldmap locations"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 280,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-FIX: class/race editors were reloading the record lists on close"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 97,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-BUGFIX: fixed item race restriction fieldmap locations"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 293,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-FIX: class/race editors were reloading the record lists on close"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseDeleter.frm",
+      "line": 1473,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "CalcTotalRecords = CalcTotalRecords + Val(txtRacesTo.Text) - Val(txtRacesFrom.Text) + 1"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 1022,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Dim tabRaces As Recordset"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 1227,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "MsgBox \"Error getting first race record: \" & BtrieveErrorCode(nStatus)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 1416,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "If Not tabRaces Is Nothing Then nTotalRec = nTotalRec + tabRaces.RecordCount"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 2022,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "Set tabRaces = DB.OpenRecordset(\"Races\")"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 2898,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "tabItems.Fields(\"Race \" & x) = Itemrec.Race(x)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3988,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "MsgBox \"Races: Could not get first record, Error: \" & BtrieveErrorCode(nStatus)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4016,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "ts.Write (Racerec.HPBonus & vbTab)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Assets/MBBSEMU.MSG",
+      "line": 129,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "processing will suspend itself until system performance"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 275,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "var accelFlags = BitConverter.ToUInt16(Data.AsSpan().Slice(0xA, 2));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 276,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "if (accelFlags != 0)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Btrieve/BtrieveFile.cs",
+      "line": 277,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "return (false, $\"Valid accel flags, expected 0, got {accelFlags}! {FileName}\");"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Extensions/ReadOnlySpanExtensions.cs",
+      "line": 40,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "commands_client",
+      "text": "///     Creates a human-readable hex string from a ReadOnlySpan of bytes"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/ExportedModules/Galgsbl.cs",
+      "line": 96,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "commands_client",
+      "text": "// and trigger a race condition where the timer callback fires even though the test has"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/MbbsHost.cs",
+      "line": 195,
+      "mechanic_id": "SPAWN_TIMERS",
+      "bucket": "networking_runtime",
+      "text": "_cleanupTimer = new Timer(_ => _performCleanup = true, null, NowUntil(_cleanupTime + _cleanupGracePeriod), TimeSpan.FromDays(1));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Logging/MessageLogger.cs",
+      "line": 52,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "logging_debug",
+      "text": "target.Write(logLevel, exception.StackTrace);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Module/MBBSModule.cs",
+      "line": 339,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "networking_runtime",
+      "text": "//Set AX == 1, we don't return an exit code so it can be gracefully handled by the host process"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Main/MainView.cs",
+      "line": 282,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "logging_debug",
+      "text": "LogLevel.Trace => \"TRACE\","
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/CLAUDE.md",
+      "line": 66,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "`tabShops`, `tabRaces`, `tabClasses`, `tabLairs`, etc. Combat/damage result arrays"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 3,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "MMUD Explorer is a database viewer for the game MajorMUD(r) created by syntax53. It has a unique comparing feature which allows you to easily compare weapons, armour, and spells. It also has a graphical room explorer in which you can 'walk' around the realm. Other features include an inventory calculator, exp calculator, explorers for monsters/shops/weapons/armour/spells/items/races/classes, savin"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 120,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: Level range on character builder now dynamic based on race stats"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 272,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart-HANDOFF.md",
+      "line": 70,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "world_spawns",
+      "text": "6. Confirm restricted exits (class/race/level) are now always followed on both forms."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/c-users-matthew-snead-github-megamud2-m-sharded-engelbart.md",
+      "line": 144,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "world_spawns",
+      "text": "6. Confirm restricted exits (class/race/level, types 13\u201315) are now always followed on both forms."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 32,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: Level range on character builder now dynamic based on race stats"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 178,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 114,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: Level range on character builder now dynamic based on race stats"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 260,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-NEW: New option to not follow restricted exits (class, race, and level) when drawing maps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmExpCalc.frm",
+      "line": 244,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "If Not tabRaces.RecordCount = 0 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmExpCalc.frm",
+      "line": 247,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "cmbRace.AddItem tabRaces.Fields(\"Name\")"
+    }
+  ]
+}

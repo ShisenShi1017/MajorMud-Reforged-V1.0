@@ -1,0 +1,311 @@
+{
+  "code_update": "0125",
+  "status": "PASS",
+  "checks": [
+    {
+      "object_family": "ai_profiles",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 3,
+      "status": "PASS"
+    },
+    {
+      "object_family": "areas",
+      "catalog_exists": true,
+      "record_index_count": 1,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "assets",
+      "catalog_exists": true,
+      "record_index_count": 2,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 0,
+      "status": "PASS"
+    },
+    {
+      "object_family": "banks",
+      "catalog_exists": true,
+      "record_index_count": 2,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "classes",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 2,
+      "status": "PASS"
+    },
+    {
+      "object_family": "client_views",
+      "catalog_exists": true,
+      "record_index_count": 1,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 6,
+      "status": "PASS"
+    },
+    {
+      "object_family": "commands",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 3,
+      "status": "PASS"
+    },
+    {
+      "object_family": "conflicts",
+      "catalog_exists": true,
+      "record_index_count": 1,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "economy_rules",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 0,
+      "status": "PASS"
+    },
+    {
+      "object_family": "equipment",
+      "catalog_exists": true,
+      "record_index_count": 1,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 2,
+      "status": "PASS"
+    },
+    {
+      "object_family": "events",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 5,
+      "status": "PASS"
+    },
+    {
+      "object_family": "evidence_records",
+      "catalog_exists": true,
+      "record_index_count": 1,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 0,
+      "status": "PASS"
+    },
+    {
+      "object_family": "exits",
+      "catalog_exists": true,
+      "record_index_count": 2,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "formulas",
+      "catalog_exists": true,
+      "record_index_count": 18,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 0,
+      "status": "PASS"
+    },
+    {
+      "object_family": "guilds",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 2,
+      "status": "PASS"
+    },
+    {
+      "object_family": "items",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 3,
+      "status": "PASS"
+    },
+    {
+      "object_family": "loot_rules",
+      "catalog_exists": true,
+      "record_index_count": 2,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "npcs",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 5,
+      "status": "PASS"
+    },
+    {
+      "object_family": "quests",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 5,
+      "status": "PASS"
+    },
+    {
+      "object_family": "races",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 2,
+      "status": "PASS"
+    },
+    {
+      "object_family": "regions",
+      "catalog_exists": true,
+      "record_index_count": 2,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "rooms",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "scripts",
+      "catalog_exists": true,
+      "record_index_count": 2,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 3,
+      "status": "PASS"
+    },
+    {
+      "object_family": "shops",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 2,
+      "status": "PASS"
+    },
+    {
+      "object_family": "skills",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 2,
+      "status": "PASS"
+    },
+    {
+      "object_family": "spawns",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 2,
+      "status": "PASS"
+    },
+    {
+      "object_family": "spells",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 2,
+      "status": "PASS"
+    },
+    {
+      "object_family": "status_effects",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "triggers",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 4,
+      "status": "PASS"
+    },
+    {
+      "object_family": "validation_rules",
+      "catalog_exists": true,
+      "record_index_count": 1,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 0,
+      "status": "PASS"
+    },
+    {
+      "object_family": "world_overlays",
+      "catalog_exists": true,
+      "record_index_count": 2,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 1,
+      "status": "PASS"
+    },
+    {
+      "object_family": "worlds",
+      "catalog_exists": true,
+      "record_index_count": 3,
+      "has_export_mapping": true,
+      "has_runtime_consumer": true,
+      "dependency_count": 0,
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "code_update": "0125",
+    "created_utc": "2026-07-09T20:27:19Z",
+    "purpose": "Librarium generation readiness baseline: every current object family receives an export contract, dependency declaration, runtime consumer target, validation contract, and world inheritance/override rule.",
+    "librarium_authority": "Librarium remains source of truth. /Data remains generated runtime output only.",
+    "runtime_modified": false,
+    "data_generated": false,
+    "imported_databases_retained": true,
+    "object_families": 32,
+    "generation_ready_families": 32,
+    "compiler_status": "contracts_ready; compiler implementation next",
+    "open_conflicts": [
+      "physical_damage_reduction",
+      "dodge_order",
+      "special_attack_backstab_defense_order"
+    ]
+  }
+}

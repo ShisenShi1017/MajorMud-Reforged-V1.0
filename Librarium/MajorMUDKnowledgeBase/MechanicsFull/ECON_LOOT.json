@@ -1,0 +1,352 @@
+{
+  "id": "ECON.LOOT",
+  "bucket": "Economy and Shops",
+  "name": "Loot/treasure generation",
+  "description": "Monster drops, treasure tables, gold generation, and item reward behavior.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 382,
+  "representative_evidence_count": 36,
+  "representative_source_path_count": 10,
+  "keywords_used": [
+    "loot",
+    "treasure",
+    "drop",
+    "gold",
+    "reward"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 4,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #52 - giant spider: Item #216 - gold ring: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 5,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #59 - Thrag: Item #211 - golden belt: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 13,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #69 - chest: Item #265 - golden broadsword: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 16,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #122 - high druid: Item #460 - golden sickle: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 71,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #588 - manscorpion king: Item #1170 - golden pike: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 96,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #658 - massive cocoon: Item #642 - white gold ring: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 98,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #700 - dark phoenix: Item #956 - golden chest: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 215,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "19 gold drop to the ground."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 436,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "1 gold drop to the ground."
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 1,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "combat",
+      "text": "Monster Item Drop Percentage Modifier 8/5/2021 @ 11:11:49 AM"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 23,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #174 - dark bishop: Item #454 - hell-flail: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 24,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #174 - dark bishop: Item #1708 - runed sacrificial robes: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Log_MonItemPct.txt",
+      "line": 52,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "LOG_ONLY: Monster #346 - captain of the guard: Item #826 - obsidian field plate: Drop % changed from 20 to 50"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 36,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "9046|0|0|flag checks and class rewards"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+      "line": 43,
+      "mechanic_id": "ECONOMY",
+      "bucket": "tests_validation",
+      "text": "[InlineData(\"%-8s\", \"gold crowns\", \"gold crowns\")]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/sprintf_Tests.cs",
+      "line": 44,
+      "mechanic_id": "ECONOMY",
+      "bucket": "tests_validation",
+      "text": "[InlineData(\"%-8s\", \"gold    \", \"gold\")]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/Account/AccountRepository.cs",
+      "line": 30,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "public bool DropTable()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/Account/AccountRepository.cs",
+      "line": 32,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "var result = Query(EnumQueries.DropAccountsTable, null);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/Account/AccountRepository.cs",
+      "line": 93,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "DropTable();"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/Account/IAccountRepository.cs",
+      "line": 10,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "bool DropTable();"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/Account/Queries/DropAccountsTable.sql",
+      "line": 1,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "\ufeffDROP TABLE Accounts;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/Account/Queries/EnumQueries.cs",
+      "line": 20,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "[SqlQuery(\"DropAccountsTable.sql\")]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/Account/Queries/EnumQueries.cs",
+      "line": 21,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "[Description(\"Drops the Account Table\")]"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/Account/Queries/EnumQueries.cs",
+      "line": 22,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "DropAccountsTable,"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/AccountKey/AccountKeyRepository.cs",
+      "line": 25,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "public bool DropTable()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/Database/Repositories/AccountKey/AccountKeyRepository.cs",
+      "line": 27,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "var result = Query(EnumQueries.DropAccountKeysTable, null);"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 26,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-UP: Tolls in room tooltips will now show as gold or higher currency"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 218,
+      "mechanic_id": "ECONOMY",
+      "bucket": "combat",
+      "text": "-NEW: You can also paste items from your inventory or from seen on the ground and mark them as buy, sell, drop, hide pickup, or stash."
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 403,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "combat",
+      "text": "-UP: increased magic level dropdown on weapons from 6+ to 10+"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 11,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "You are carrying 28 gold crowns, starsteel plate gauntlets (Hands), golden"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 16,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "nexus spear (Weapon Hand), griffon shield, king crab claw, white gold ring,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 20,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "obsidian key, 2 golden idols, skeleton key, steel key, 2 black star keys,"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 35,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "You are carrying 1 platinum piece, 5 gold crowns, white gold ring (Finger),"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 39,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "slippers (Feet), moonstone ring (Finger), golden chalice (Off-Hand), lionskin"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 40,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "belt (Waist), amber sceptre (Weapon Hand), silverbark canoe, mine pass, golden"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/_outputsmashuptemp.txt",
+      "line": 60,
+      "mechanic_id": "ECONOMY",
+      "bucket": "character_progression",
+      "text": "leather gauntlets (Hands), platinum ring (Finger), white gold ring (Finger),"
+    }
+  ]
+}

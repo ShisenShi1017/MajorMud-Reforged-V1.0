@@ -1,0 +1,409 @@
+{
+  "id": "COMBAT.DR_PHYSICAL",
+  "bucket": "Combat",
+  "name": "Physical damage reduction",
+  "description": "How physical DR reduces final melee damage; current conflict prefers Nightmare Redux pending original runtime corroboration.",
+  "knowledge_status": "open_conflict",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 953,
+  "representative_evidence_count": 42,
+  "representative_source_path_count": 12,
+  "keywords_used": [
+    "dr",
+    "damage reduction",
+    "reduction",
+    "armor soak",
+    "soak"
+  ],
+  "notes": [
+    "Conflict carried forward: Monster Sim historical interpretation differs from Nightmare Redux current interpretation. Project policy prefers Nightmare Redux as leading hypothesis until original runtime evidence proves otherwise."
+  ],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 23166,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "MsgBox \"Enter the average of the number of swings from each melee character. This is utilized to help determine DR reduction. \" _"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmPasteChar.frm",
+      "line": 3004,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "MsgBox \"Enter the average of the number of swings from each melee character. This is utilized to help determine DR reduction. \" _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 497,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "-UP: in-game AC and DR is calculated and shown on the item editor"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/changelog.txt",
+      "line": 523,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "-UP: in-game AC and DR is calculated and shown on the item editor"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 9,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "[07:44] darkedgex: HEHEHE, you should update MMUD Explorer to let you pick which monster you're fighting in the BS calculator so it'll take off the DR. :D"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 143,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": ".Columns.Append \"DR\", adInteger\t\t\t==> DamageResist"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/notes.txt",
+      "line": 202,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": ".Columns.Append \"DR\", adInteger\t\t\t==> DamageResist"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 2693,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"Number\" & vbTab & \"Name\" & vbTab & \"Desc 1\" & vbTab & \"Desc 2\" & vbTab & \"Desc 3\" & vbTab & \"Desc 4\" & vbTab & \"Desc 5\" & vbTab & \"Desc 6\" & vbTab & \"Game Limit\" & vbTab & \"Weight\" & vbTab & \"Type\" & vbTab & \"Uses\" & vbTab & \"Cost\" & vbTab & \"Cost Type\" & vbTab & \"Min Hit\" & vbTab & \"Max Hit\" & vbTab & \"Weapon\" & vbTab & \"Armour\" & vbTab & \"WornOn\" & vbTab & \"Accuracy\" & vbTab & \"DR\" & "
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 2736,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "ts.Write (Itemrec.DR & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 2867,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "tabItems.Fields(\"DR\") = Itemrec.DR"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4482,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"Number\" & vbTab & \"Name\" & vbTab & \"Experience\" & vbTab & \"Index\" & vbTab & \"Weapon\" & vbTab & \"AC\" & vbTab & \"DR\" & vbTab & \"Follow\" & vbTab & \"MR\" & vbTab & \"HPs\" & vbTab & \"BS Defense\" & vbTab & \"Energy\" & vbTab & \"HP Regen\" & vbTab & \"Game Limit\" & vbTab & \"Active\" & vbTab & \"Type\" & vbTab & \"Alignment\" & vbTab & \"Gender\" & vbTab & \"Group\" & vbTab & \"Regen Time\" & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4528,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "ts.Write (Monsterrec.DR & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 4691,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "tabMonsters.Fields(\"DR\") = Monsterrec.DR"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseImport.frm",
+      "line": 1813,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "tooling_ui",
+      "text": "Itemrec.DR = tabItems.Fields(\"DR\")"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 50,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: Armor comparison calculation for AC/DR +/- (it was rounding decimals)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 58,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: By popular demand, more monster filter options (accuracy, dodge, coin types, ac/dr, etc)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 169,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: Decimal values for manual AC/DR adjustments"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 229,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-UP: Added columns for AC/DR, Dodge, and MR"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 242,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 454,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: reported DR amount in spell formula when value is scaled"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 713,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: AC and DR calculation issues on inventory"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 77,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-FIX: Decimal values for manual AC/DR adjustments"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 135,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-UP: Added columns for AC/DR, Dodge, and MR"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 148,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 164,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "<label for=\"character_dr\">DR:</label>"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 63,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "1. **Module Loading** (`Module/`): Parses NE-format DLLs, MDF (module definition), MSG (messages), MCV (config values). Each module gets a full 4GB virtual address space."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 65,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "3. **Memory** (`Memory/`): `ProtectedModeMemoryCore` provides per-module 4GB address space. `FarPtr` represents segment:offset pointers. Memory is lazily allocated."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 15,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_AL_IMM8(byte alValue, byte valueToAnd, byte expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 42,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_AX_IMM16(ushort axValue, ushort valueToAnd, ushort expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 69,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_EAX_IMM32(uint eaxValue, uint valueToAnd, uint expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 96,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_R8_IMM8(byte blValue, byte valueToAnd, byte expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 123,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_R16_IMM16(ushort bxValue, ushort valueToAnd, ushort expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 150,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_R32_IMM32(uint ebxValue, uint valueToAnd, uint expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 177,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_M8_IMM8(byte memoryValue, byte valueToAnd, byte expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 193,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "Assert.Equal(expectedResult, mbbsEmuMemoryCore.GetByte(2, 0));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 206,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_M16_IMM16(ushort memoryValue, ushort valueToAnd, ushort expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/CPU/AND_Tests.cs",
+      "line": 235,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "quests_scripts",
+      "text": "public void AND_M32_IMM32(uint memoryValue, uint valueToAnd, uint expectedResult, bool zeroFlagSet, bool signFlagSet)"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 280,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['damage_resisted'] += $mr_reduction;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 285,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$dr_damage_resist = ($character_dr/2);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 286,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "if ($dr_damage_resist > $damage) $dr_damage_resist = $damage;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 287,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['damage_resisted'] += $dr_damage_resist;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 288,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "$damage -= $dr_damage_resist;"
+    }
+  ]
+}

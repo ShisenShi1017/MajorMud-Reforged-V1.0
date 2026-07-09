@@ -1,0 +1,39 @@
+{
+  "id": "combat.hit_vs_ac",
+  "object_type": "formula",
+  "name": "NPC physical hit versus armor class",
+  "system": "combat",
+  "world_scope": [
+    "classic",
+    "custom",
+    "ai"
+  ],
+  "librarium_status": "high_confidence",
+  "sources": [
+    "NightmareRedux",
+    "MMUD-Explorer",
+    "MajorMUD-PHP-Monster-Sim"
+  ],
+  "source_priority": [
+    "OriginalRuntimeObservation",
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUD-Explorer",
+    "MajorMUD-PHP-Monster-Sim"
+  ],
+  "definition": "See linked evidence and conflict records; runtime implementation not changed in CodeUpdate0119.",
+  "inputs": [],
+  "outputs": [],
+  "runtime_binding": null,
+  "tests": {
+    "status": "pending_or_existing_no_runtime_static_only"
+  },
+  "runtime_export": {
+    "exports_to_data": true,
+    "status": "definition_record_created"
+  },
+  "client_visibility": "read_only_world_scoped",
+  "evidence_refs": [
+    "ImportedDatabases retained for full traceability"
+  ]
+}

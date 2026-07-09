@@ -1,0 +1,223 @@
+{
+  "base_world": null,
+  "compiler_code_update": "0127",
+  "family": "conflicts",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "record_count": 1,
+  "records": [
+    {
+      "code_update": "0121",
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "confidence": "bucket-level; see child records for mechanic confidence",
+      "description": "Known source disagreement or unresolved order.",
+      "evidence_bucket": "combat",
+      "evidence_refs": [
+        {
+          "classification": "text_scanned",
+          "evidence_count": 43,
+          "path": "ImportedDatabases/MBBSEmu/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 40,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu.sln",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 19,
+          "path": "ImportedDatabases/MBBSEmu/README.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 9,
+          "path": "ImportedDatabases/MBBSEmu/MBBSDatabase/Program.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 6,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu.CPU.Benchmark/Program.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 37,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/MBBSEmu.Tests.csproj",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 7,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/TestBase.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 2,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu.Tests/appsettings.json",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 13,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettings.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 70,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettingsManager.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 178,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 136,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MBBSEmu.csproj",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 39,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MEMORYMAP.MD",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 148,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Program.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 2,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/appsettings.json",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 3,
+          "path": "ImportedDatabases/MBBSEmu/docker/appsettings.docker.json",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 3,
+          "path": "ImportedDatabases/MBBSEmu/docker/docker-compose.yml",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 1,
+          "path": "ImportedDatabases/MBBSEmu/documents/readme.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 10,
+          "path": "ImportedDatabases/MBBSEmu/scripts/readme.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 2,
+          "path": "ImportedDatabases/MBBSEmu/TestApps/EXE/README.TXT",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 6,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/bbsgen.db.sql",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 8,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/bbsusr.db.sql",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 13,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/commandLineHelp.txt",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 6,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/crashReportTemplate.txt",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 1,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/version.txt",
+          "source": "MBBSEmu"
+        }
+      ],
+      "evidence_total": 3,
+      "export_mapping": {
+        "generated": true,
+        "target": "Data/<world>/conflicts"
+      },
+      "id": "conflict.catalog.phase2_3_0121",
+      "librarium_source_file": "Librarium/Objects/conflicts/conflict_catalog_0121.json",
+      "name": "Conflict Catalog",
+      "object_type": "conflict",
+      "open_conflicts": [
+        {
+          "id": "conflict.combat.physical_damage_reduction",
+          "name": "Physical Damage Reduction",
+          "status": "open",
+          "summary": "Nightmare Redux current interpretation leads; older Monster Sim differs. Keep open until runtime observation or stronger corroboration resolves."
+        },
+        {
+          "id": "conflict.combat.dodge_order",
+          "name": "Dodge Order",
+          "status": "open",
+          "summary": "Dodge placement relative to AC/special defenses remains unresolved."
+        },
+        {
+          "id": "conflict.combat.special_backstab_defense_order",
+          "name": "Special Attack/Backstab Defense Order",
+          "status": "open",
+          "summary": "Order of defense checks for special/backstab cases remains unresolved."
+        }
+      ],
+      "relationships": [],
+      "runtime_mapping": {
+        "runtime_reads_generated_data": true,
+        "status": "cataloged_for_export"
+      },
+      "source_breakdown": {},
+      "source_priority": {
+        "MBBSEmu": 3,
+        "MMUD-Explorer": 4,
+        "MajorMUD-PHP-Monster-Sim": 5,
+        "NightmareRedux": 2,
+        "OriginalRuntimeObservation": 1
+      },
+      "status": "complete_for_current_evidence_corpus",
+      "validation_rules": [
+        "object_must_have_id",
+        "object_must_have_world_scope",
+        "classic_changes_require_evidence",
+        "custom_ai_changes_require_validation"
+      ],
+      "world_scope": "classic/custom/ai"
+    }
+  ],
+  "source_file": "Librarium/Objects/conflicts/conflict_catalog_0121.json",
+  "world_id": "Classic",
+  "world_type": "classic"
+}

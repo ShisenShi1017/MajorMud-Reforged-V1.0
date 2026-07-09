@@ -1,0 +1,363 @@
+{
+  "code_update": "0120",
+  "status": "PASS_BASELINE_CORRECTION",
+  "baseline_corrected_from": "0119",
+  "date": "2026-07-09",
+  "architecture": {
+    "librarium": "authoritative_source_of_truth",
+    "data": "generated_runtime_output_only",
+    "imported_databases": "retained_until_librarium_100_percent_complete",
+    "runtime": "reads_generated_data_and_does_not_own_game_knowledge",
+    "client": "read_only_active_world_view",
+    "classic": "locked_evidence_backed_branch",
+    "custom_ai": "validated_librarium_overlays"
+  },
+  "canonical_sources": {
+    "count": 4,
+    "sources": {
+      "MBBSEmu": 572,
+      "MMUD-Explorer": 171,
+      "NightmareRedux": 193,
+      "MajorMUD-PHP-Monster-Sim": 5
+    }
+  },
+  "file_classification": {
+    "total_files": 941,
+    "text_files_scanned": 657,
+    "binary_or_asset_files": 284,
+    "records_index": "Librarium/Indexes/canonical_source_file_classification_0119.json"
+  },
+  "librarium_schema": {
+    "object_type_count": 24,
+    "object_types": [
+      {
+        "object_type": "world",
+        "fields": [
+          "id",
+          "name",
+          "world_type",
+          "source_branch",
+          "status",
+          "description",
+          "allowed_overrides",
+          "data_export_path",
+          "evidence_policy"
+        ],
+        "description": "Machine-readable Librarium definition for world objects."
+      },
+      {
+        "object_type": "region",
+        "fields": [
+          "id",
+          "name",
+          "world_id",
+          "description",
+          "rooms",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for region objects."
+      },
+      {
+        "object_type": "room",
+        "fields": [
+          "id",
+          "name",
+          "world_id",
+          "region_id",
+          "description",
+          "exits",
+          "spawns",
+          "shops",
+          "scripts",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for room objects."
+      },
+      {
+        "object_type": "exit",
+        "fields": [
+          "id",
+          "from_room",
+          "to_room",
+          "direction",
+          "conditions",
+          "special_action",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for exit objects."
+      },
+      {
+        "object_type": "npc",
+        "fields": [
+          "id",
+          "name",
+          "stats",
+          "attacks",
+          "spells",
+          "ai_profile",
+          "spawn_refs",
+          "loot_refs",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for npc objects."
+      },
+      {
+        "object_type": "spawn",
+        "fields": [
+          "id",
+          "world_id",
+          "room_id",
+          "entity_ref",
+          "timer",
+          "conditions",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for spawn objects."
+      },
+      {
+        "object_type": "item",
+        "fields": [
+          "id",
+          "name",
+          "item_type",
+          "slots",
+          "flags",
+          "effects",
+          "restrictions",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for item objects."
+      },
+      {
+        "object_type": "spell",
+        "fields": [
+          "id",
+          "name",
+          "spell_type",
+          "costs",
+          "scaling",
+          "resist_rules",
+          "effects",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for spell objects."
+      },
+      {
+        "object_type": "skill",
+        "fields": [
+          "id",
+          "name",
+          "class_refs",
+          "formula_refs",
+          "effects",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for skill objects."
+      },
+      {
+        "object_type": "class",
+        "fields": [
+          "id",
+          "name",
+          "progression",
+          "skills",
+          "restrictions",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for class objects."
+      },
+      {
+        "object_type": "race",
+        "fields": [
+          "id",
+          "name",
+          "modifiers",
+          "restrictions",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for race objects."
+      },
+      {
+        "object_type": "guild",
+        "fields": [
+          "id",
+          "name",
+          "memberships",
+          "training_rules",
+          "locations",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for guild objects."
+      },
+      {
+        "object_type": "formula",
+        "fields": [
+          "id",
+          "name",
+          "system",
+          "inputs",
+          "outputs",
+          "definition",
+          "confidence",
+          "source_priority",
+          "tests",
+          "runtime_binding",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for formula objects."
+      },
+      {
+        "object_type": "status_effect",
+        "fields": [
+          "id",
+          "name",
+          "stacking",
+          "duration",
+          "modifiers",
+          "clear_conditions",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for status_effect objects."
+      },
+      {
+        "object_type": "quest",
+        "fields": [
+          "id",
+          "name",
+          "steps",
+          "triggers",
+          "rewards",
+          "text_refs",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for quest objects."
+      },
+      {
+        "object_type": "shop",
+        "fields": [
+          "id",
+          "name",
+          "room_refs",
+          "inventory",
+          "buy_sell_rules",
+          "repair_rules",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for shop objects."
+      },
+      {
+        "object_type": "command",
+        "fields": [
+          "id",
+          "name",
+          "syntax",
+          "handler",
+          "permissions",
+          "world_rules",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for command objects."
+      },
+      {
+        "object_type": "script",
+        "fields": [
+          "id",
+          "name",
+          "trigger_type",
+          "scope",
+          "effects",
+          "safety_rules",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for script objects."
+      },
+      {
+        "object_type": "event",
+        "fields": [
+          "id",
+          "name",
+          "schedule",
+          "trigger",
+          "effects",
+          "world_scope",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for event objects."
+      },
+      {
+        "object_type": "trigger",
+        "fields": [
+          "id",
+          "name",
+          "trigger_type",
+          "conditions",
+          "target_refs",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for trigger objects."
+      },
+      {
+        "object_type": "economy_rule",
+        "fields": [
+          "id",
+          "name",
+          "currency",
+          "pricing_formula",
+          "scope",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for economy_rule objects."
+      },
+      {
+        "object_type": "loot_rule",
+        "fields": [
+          "id",
+          "name",
+          "source_ref",
+          "table",
+          "roll_rules",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for loot_rule objects."
+      },
+      {
+        "object_type": "ai_profile",
+        "fields": [
+          "id",
+          "name",
+          "targeting",
+          "movement",
+          "spell_priority",
+          "flee_rules",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for ai_profile objects."
+      },
+      {
+        "object_type": "asset",
+        "fields": [
+          "id",
+          "name",
+          "asset_type",
+          "path",
+          "world_scope",
+          "evidence_refs"
+        ],
+        "description": "Machine-readable Librarium definition for asset objects."
+      }
+    ],
+    "schema_file": "Librarium/Schemas/librarium_object_schema_0119.json"
+  },
+  "relationship_graph": {
+    "relationship_count": 16,
+    "relationship_file": "Librarium/Relationships/librarium_relationship_graph_0119.json"
+  },
+  "data_placeholder": {
+    "exists": true,
+    "allowed_committed_files": [
+      "Data/README.md",
+      "Data/.gitkeep"
+    ]
+  },
+  "runtime_modified": "No"
+}

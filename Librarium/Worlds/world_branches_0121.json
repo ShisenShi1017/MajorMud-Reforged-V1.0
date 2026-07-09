@@ -1,0 +1,33 @@
+{
+  "code_update": "0121",
+  "authority": "Librarium world branches generate /Data runtime outputs.",
+  "worlds": [
+    {
+      "id": "world.classic",
+      "name": "Classic",
+      "world_type": "classic",
+      "locked": true,
+      "source_branch": "Librarium/Worlds/Classic",
+      "data_export_path": "Data/Classic",
+      "edit_policy": "evidence_locked"
+    },
+    {
+      "id": "world.custom_template",
+      "name": "Custom World Template",
+      "world_type": "custom",
+      "locked": false,
+      "source_branch": "Librarium/Worlds/Custom/Templates",
+      "data_export_path": "Data/Worlds/<custom>",
+      "edit_policy": "host_editable_validated_overrides"
+    },
+    {
+      "id": "world.ai_template",
+      "name": "AI Driven World Template",
+      "world_type": "ai",
+      "locked": false,
+      "source_branch": "Librarium/Worlds/AI/Templates",
+      "data_export_path": "Data/Worlds/<ai>",
+      "edit_policy": "host_policy_validated_ai_overlays"
+    }
+  ]
+}

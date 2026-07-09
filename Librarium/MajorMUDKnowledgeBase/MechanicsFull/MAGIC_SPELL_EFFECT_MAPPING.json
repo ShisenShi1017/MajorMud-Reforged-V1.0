@@ -1,0 +1,572 @@
+{
+  "id": "MAGIC.SPELL_EFFECT_MAPPING",
+  "bucket": "Magic",
+  "name": "Spell effect mapping",
+  "description": "Mapping spell IDs/ability fields to damage, buff, debuff, healing, summon, and utility effects.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 6319,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 14,
+  "keywords_used": [
+    "spell",
+    "ability",
+    "effect",
+    "cast",
+    "damage",
+    "heal",
+    "buff",
+    "debuff"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1004,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "If CalculateSpellCast.nManaCost > 0 And CalculateSpellCast.nManaCost <= tCharStats.nMaxMana Then  'and (CalculateSpellCast.bDoesDamage Or CalculateSpellCast.bDoesHeal)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1013,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "If CalculateSpellCast.bDoesDamage Or CalculateSpellCast.bDoesHeal Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1016,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "If CalculateSpellCast.bDoesDamage And CalculateSpellCast.bDoesHeal Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1017,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "sAvgRound = sCastLVL & IIf(nSpellDuration > 1, nSpellAvgCast, CalculateSpellCast.nAvgRoundDmg) & \" damage + \" & CalculateSpellCast.nAvgRoundHeals & \" heals\""
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1023,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "If (CalculateSpellCast.bDoesDamage Or CalculateSpellCast.bDoesHeal) Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1849,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "character_progression",
+      "text": "nCount = nCount + 1 'still counting here because its presence would reduce the chance of casting the other spells in the group, thereby reducing their overall effect on the average damage"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 4219,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "If bCalcCombat And (tSpellcast.bDoesDamage Or tSpellcast.bDoesHeal) And Len(tSpellcast.sAvgRound) > 0 Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 4236,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "And Val(frmMain.lblCharMaxMana.Tag) > 0 And (tSpellCast.bDoesDamage Or tSpellCast.bDoesHeal) And tSpellCast.nDuration = 1"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 4315,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "'If tChar.nSpellDmgBonus > 0 And (tSpellcast.bDoesDamage Or (tSpellcast.bDoesHeal And bGreaterMUD)) Then"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMain.bas",
+      "line": 5496,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "nSpellDamage = Round(tSpellcast.nAvgRoundHeals / nManaCost, 1)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/docs/mme_export_notes.txt",
+      "line": 24,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "masks spells cast (ability 43-CastSP) by the items as in game"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1876,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMin(x) = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1877,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMax(x) = GetSpellMaxDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1888,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMin(x) = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1889,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMax(x) = GetSpellMaxDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1900,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMin(x) = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1901,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMax(x) = GetSpellMaxDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1959,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nBetweenRoundMin(x) = GetSpellMinDamage(Monsterrec.SpellNumber(x), Monsterrec.SpellCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1960,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nBetweenRoundMax(x) = GetSpellMaxDamage(Monsterrec.SpellNumber(x), Monsterrec.SpellCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1971,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nBetweenRoundMin(x) = GetSpellMinDamage(Monsterrec.SpellNumber(x), Monsterrec.SpellCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1972,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nBetweenRoundMax(x) = GetSpellMaxDamage(Monsterrec.SpellNumber(x), Monsterrec.SpellCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1983,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nBetweenRoundMin(x) = GetSpellMinDamage(Monsterrec.SpellNumber(x), Monsterrec.SpellCastLvl(x))"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 93,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: Area effect spells cast by monsters utilizing abil-1 being marked as invalid for [GreaterMUD] (they ARE still invalid for stock)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 263,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-UP: Adding healing average and healing/mana colums like there were already for damage"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $attacks[$i][1] = 'HEAL'; $attacks[$i][2] = 'The room casts room heal on you, healing DMG damage!'; $attacks[$i][3] = 'AAAAAAA';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 472,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "p(damage('Average Damage/'.($attack['type'] == 'spell' ? (($attack['attempted'] > $attack['hits']) ? 'Cast (including fails)':'Cast') : 'Swing').': '.round($attack['total_damage']/$attack['attempted'],2)));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "6. **Sessions** (`Session/`): `SessionBase` subclasses handle different connection types (Telnet, Rlogin, local console). Sessions are assigned channel numbers and manage user I/O buffers."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CLAUDE.md",
+      "line": 130,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "- `ProcessIncomingCharacter()` \u2014 echo handling, buffer management"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/wbtrv32/wbtrv32.cpp",
+      "line": 54,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "static array<byte>^ ToManagedArray(LPVOID buffer, uint count) {"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/wbtrv32/wbtrv32.cpp",
+      "line": 55,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "LPBYTE src = reinterpret_cast<LPBYTE>(buffer);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/wbtrv32/wbtrv32.cpp",
+      "line": 72,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "b.data_buffer_segment = reinterpret_cast<DWORD>(lpDataBuffer) >> 16;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/wbtrv32/wbtrv32.cpp",
+      "line": 73,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "b.data_buffer_offset = reinterpret_cast<DWORD>(lpDataBuffer) & 0xFFFF;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/wbtrv32/wbtrv32.cpp",
+      "line": 80,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "b.key_buffer_segment = reinterpret_cast<DWORD>(lpKeyBuffer) >> 16;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/wbtrv32/wbtrv32.cpp",
+      "line": 81,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "b.key_buffer_offset = reinterpret_cast<DWORD>(lpKeyBuffer) & 0xFFFF;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/wbtrv32/wbtrv32.cpp",
+      "line": 84,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "data_schema",
+      "text": "b.key_buffer_length = static_cast<unsigned char>(bKeyLength);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 473,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "p('Average '.($attack['type'] == 'spell' ? 'Casts' : 'Swings').'/Round: '.round($attack['attempted']/$number_of_rounds,2));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/.gitignore",
+      "line": 298,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "build_meta",
+      "text": "# Paket dependency manager"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 66,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "4. **Host Process** (`HostProcess/`): `MbbsHost` manages module lifecycle, session scheduling, and execution units. `ExecutionUnit` wraps CPU contexts for concurrent module operations."
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/CLAUDE.md",
+      "line": 76,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tests_validation",
+      "text": "- **Logging** (`Logging/`): `LogFactory` manages `MessageLogger`, `AuditLogger`, `CPULogger` with pluggable targets."
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 57,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast '.$long_name.' at you, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 64,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$attacks[$i][3] = 'SOURCE attempted to cast hellstorm, but failed.';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 69,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$i++; $between_rounds[$i][0] = 'CHAINS'; $between_rounds[$i][1] = 'Glowing silver manacles clamp around your wrists!';"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/capture_parse.php",
+      "line": 101,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "AddStrip(array('Also here:', 'You hear movement ', ' into the room from ', ' just entered the Realm', ' just left the Realm', ' just hung up', ' peeks in from ', 'the server will be shutting', 'nightly \"auto-cleanup\"', 'Please finish up and log off', 'Software caused connection abort', 'Session ended', 'or type \"new\"', 'Enter your password', 'password you have given', 'glad to see you back', 'majo"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 356,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<th>Initial<br>Cast%</th>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 357,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<th>True<br>Cast%</th>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 370,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<?php $last_cast_percent = 0; foreach ($attacks as $attack): ?>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 373,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<td><?php echo ($attack['attack_chance']-$last_cast_percent); ?>%</td><!-- Initial Cast -->"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 374,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<td><span class=\"magenta bold\"><?php echo (round($attack['attempted']/$total_attacks, 3)*100); ?>%</span></td><!-- True Cast -->"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 392,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "<?php $last_cast_percent = $attack['attack_chance']; endforeach; ?>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 459,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "/*$last_cast_percent = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 476,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "p('Initial Attack Chance: '.($attack['attack_chance']-$last_cast_percent).'%');"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 478,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "$last_cast_percent = $attack['attack_chance'];"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 498,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "quests_scripts",
+      "text": "9537|0|9483|death spell of dark mage -- flag check, give 175 mill exp bonus"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMR-Quests.txt",
+      "line": 503,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "quests_scripts",
+      "text": "9547|0|0|death spell connected to text block -- flag check, add 50 mill exp bonus"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 164,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: added boxes to show spell damage vs. X MR for damage spells"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 706,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "If m_nAtkMRdmgResist(nAttack) = 1 And nHitSpellDamage > 0 Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 707,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "nMR_Reduction = Round(CalcResistedDamage(nHitSpellDamage, m_nUserMR, m_nUserAntiMagic))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 709,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + (nHitSpellDamage - nMR_Reduction)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 719,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nHitSpellDamage"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 738,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "m_nStatAtkDmgResisted(nAttack) = m_nStatAtkDmgResisted(nAttack) + nHitSpellDamage"
+    }
+  ]
+}

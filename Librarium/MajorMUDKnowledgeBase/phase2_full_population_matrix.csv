@@ -1,0 +1,61 @@
+id,bucket,name,status,sources_present,corpus_matches,representative_evidence,paths
+COMBAT.HIT_AC,Combat,Physical hit chance vs armor class,high_confidence_verified,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,8815,60,30
+COMBAT.DODGE_RAW,Combat,Raw dodge/evasion calculation,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,669,60,18
+COMBAT.DODGE_ORDER,Combat,Dodge evaluation order,open_conflict,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,1320,60,11
+COMBAT.DR_PHYSICAL,Combat,Physical damage reduction,open_conflict,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,953,42,12
+COMBAT.CRITICAL,Combat,Critical hit logic,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,127,36,19
+COMBAT.BACKSTAB,Combat,Backstab/special attack resolution,open_conflict,NightmareRedux;MMUDExplorer,251,13,6
+COMBAT.ATTACK_ENERGY,Combat,Attack energy/action loop,high_confidence_verified,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,1453,60,16
+COMBAT.WEAPON_SWING,Combat,Weapon swing timing,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,1233,60,17
+COMBAT.DAMAGE_ROLL,Combat,Physical damage roll,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2132,60,21
+COMBAT.SEQUENCE,Combat,Combat operation sequence,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,10089,60,26
+MAGIC.MANA_COST,Magic,Spell mana cost,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,4619,60,19
+MAGIC.CAST_FAILURE,Magic,Cast failure handling,high_confidence_verified,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,894,60,17
+MAGIC.MR_RESIST,Magic,Magic resistance chance,high_confidence_verified,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2731,60,25
+MAGIC.MR_DAMAGE_REDUCTION,Magic,Magic resistance damage reduction,high_confidence_verified,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2731,60,25
+MAGIC.NPC_SPELL_ENERGY,Magic,NPC spell energy and double-cast behavior,high_confidence_verified,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2363,60,18
+MAGIC.SPELL_EFFECT_MAPPING,Magic,Spell effect mapping,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,6319,60,14
+MAGIC.DURATION,Magic,Spell duration,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,637,40,12
+MAGIC.BUFF_STACKING,Magic,Buff/debuff stacking,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,2521,36,11
+MAGIC.AOE_TARGETING,Magic,Area/targeting rules,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,1357,38,16
+CHAR.STATS,Character Progression,Character stat model,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,14968,60,26
+CHAR.HP_MP_GAIN,Character Progression,HP/MP gain and regeneration,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,4908,60,23
+CHAR.XP_LEVEL,Character Progression,Experience and level progression,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,13156,37,17
+CHAR.CLASS_RULES,Character Progression,Class modifiers and restrictions,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,1325,59,19
+CHAR.RACE_RULES,Character Progression,Race modifiers and restrictions,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,497,34,19
+CHAR.TRAINING,Character Progression,Training and advancement costs,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,368,36,14
+ITEM.FIELD_SCHEMA,Items and Equipment,Item field schema,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,24639,60,18
+ITEM.EQUIP_MODIFIERS,Items and Equipment,Equipment stat/effect modifiers,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,4314,54,5
+ITEM.WEAR_RESTRICTIONS,Items and Equipment,Wear/use restrictions,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2344,40,18
+ITEM.PROCS_CHARGES,Items and Equipment,Item procs and charges,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,6651,60,19
+ITEM.WEAPON_DATA,Items and Equipment,Weapon data interpretation,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2104,60,24
+ITEM.ARMOR_DATA,Items and Equipment,Armor data interpretation,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,9243,60,16
+ITEM.RESISTANCES,Items and Equipment,Item resistances,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2747,60,25
+NPC.FIELD_SCHEMA,NPC AI,Monster/NPC field schema,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,23718,60,10
+NPC.ATTACK_DATA,NPC AI,Monster attack data encoding,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,3915,60,14
+NPC.SPELL_PRIORITY,NPC AI,NPC spell choice and priority,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,5678,60,21
+NPC.TARGETING,NPC AI,NPC targeting and aggro,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2005,60,19
+NPC.MOVEMENT,NPC AI,NPC movement behavior,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,375,39,19
+NPC.LIFECYCLE,NPC AI,NPC lifecycle,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,895,36,10
+WORLD.ROOM_SCHEMA,World and Spawns,Room field schema,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,22022,60,6
+WORLD.SPAWN_TIMERS,World and Spawns,Spawn timers,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,883,36,8
+WORLD.SPECIAL_ROOMS,World and Spawns,Special room actions,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2868,39,15
+WORLD.EVENT_TIMERS,World and Spawns,World event timers,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,576,36,10
+QUEST.SCRIPTING,Quests and Scripts,Quest/script hooks,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,1329,36,3
+QUEST.FLAGS,Quests and Scripts,Quest flags/state,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,6864,36,7
+ECON.SHOPS,Economy and Shops,Shop inventory and behavior,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,2491,36,17
+ECON.PRICES,Economy and Shops,Price/value formula,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,3890,41,20
+ECON.BANKING,Economy and Shops,Banking and money storage,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,474,27,9
+ECON.LOOT,Economy and Shops,Loot/treasure generation,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,382,36,10
+CMD.PARSER,Commands and Client,Command parser behavior,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2689,60,17
+CMD.OUTPUT,Commands and Client,Output/message formatting,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2689,38,18
+SKILL.ABILITIES,Skills and Abilities,Skill/ability mapping,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,1848,45,20
+SKILL.GUILDS,Skills and Abilities,Guild mechanics,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,20,14,4
+STATUS.EFFECTS,Status Effects,Status effect model,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer,2294,36,11
+STATUS.SAVES,Status Effects,Saving throws and immunities,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,950,60,11
+DATA.BINARY_FORMATS,Data Schema,Binary data formats,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,22587,60,16
+DATA.FLAGS_ENUMS,Data Schema,Flags and enumerations,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,21285,60,17
+DATA.ID_LINKS,Data Schema,ID/link relationships,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,2493,42,23
+RUNTIME.PERSISTENCE,Runtime Support,Account/character persistence contracts,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,4903,52,14
+RUNTIME.NETWORKING,Runtime Support,Network/session model,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,3280,26,8
+RUNTIME.TESTING,Runtime Support,Tests and validation harnesses,probable_multi_source,NightmareRedux;MBBSEmu;MMUDExplorer;MonsterSim,4537,60,11

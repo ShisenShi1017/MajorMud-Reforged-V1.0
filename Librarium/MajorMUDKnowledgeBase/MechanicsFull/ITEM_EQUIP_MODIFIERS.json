@@ -1,0 +1,516 @@
+{
+  "id": "ITEM.EQUIP_MODIFIERS",
+  "bucket": "Items and Equipment",
+  "name": "Equipment stat/effect modifiers",
+  "description": "How equipped items alter stats, AC, DR, MR, damage, hit, regen, or abilities.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 4314,
+  "representative_evidence_count": 54,
+  "representative_source_path_count": 5,
+  "keywords_used": [
+    "equip",
+    "modifier",
+    "bonus",
+    "stat",
+    "armor",
+    "weapon"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 1383,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "cmbField.AddItem \"HP Bonus\", 2"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 1877,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 2039,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 2147,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 2248,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 2293,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Case 2: Racerec.HPBonus = DoMath(Racerec.HPBonus, 1, 1, sName)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 2388,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 2645,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmUniversalModifier.frm",
+      "line": 2772,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Do While nStatus = 0 And bStopProcess = False"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27094,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Call AdjMainStatBonus(tabClasses.Fields(\"AbilVal-\" & x), tabClasses.Fields(\"Name\"), , tEquip.nEquip)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27161,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Call AdjMainStatBonus(tabRaces.Fields(\"AbilVal-\" & x), tabRaces.Fields(\"Name\"), , tEquip.nEquip)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27508,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "If tEquip.nEquip <> 101 Then Call AdjMainStatBonus(nAbilVal * nMultiQTY, tabItems.Fields(\"Name\") & sCarryText & sMultiQTY, , tEquip.nEquip)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonItemDropPct.frm",
+      "line": 4,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Caption         =   \"Monster Item Drop Percentage Modifier\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonItemDropPct.frm",
+      "line": 87,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Begin VB.ComboBox cmbOnlyIfModifier"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonItemDropPct.frm",
+      "line": 334,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "items_equipment",
+      "text": "Private Sub cmbOnlyIfModifier_Click()"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 26947,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Private Sub AdjMainStatBonus(ByVal nValue As Long, ByVal sSource As String, Optional ByVal nStatIndex As Integer = -1, Optional ByVal nLabelIndex As Integer = -1)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 26982,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Call HandleError(\"AdjMainStatBonus\")"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 26989,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Dim StatTips(0 To TOTAL_STAT_LBLS) As String, rc As RECT, nEncumPCT As Integer, nCritBonus As Long, nAccyCalc As Long"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27136,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "lblInvenCharStat(5).Caption = val(lblInvenCharStat(5).Caption) + nRaceBonus"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27229,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Call AdjMainStatBonus(10, \"Quest: Renfry (10)\", 0)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27273,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Call AdjMainStatBonus(tabItems.Fields(\"AbilVal-\" & x), tabItems.Fields(\"Name\") & \" (\" & tabItems.Fields(\"AbilVal-\" & x) & \")\", , 101)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27306,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "Call AdjMainStatBonus(bless_Stats(x), bless_StatText(x), , x)"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27694,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "nStrengthBonus = Fix((val(txtCharStats(0).Tag) - 50) / 10) 'matching how mmud does it 2025.03.13"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 27697,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "StatTips(11) = AutoAppend(StatTips(11), \"Strength (\" & nStrengthBonus & \")\", vbCrLf)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 37,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "private HostProcess.ExportedModules.Majorbbs.TFStateCodes tfsrdl()"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 40,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "return (HostProcess.ExportedModules.Majorbbs.TFStateCodes)mbbsEmuCpuCore.AX;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 55,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "private HostProcess.ExportedModules.Majorbbs.TFStateCodes tfstate => (HostProcess.ExportedModules.Majorbbs.TFStateCodes)mbbsEmuMemoryCore.GetWord(GetOrdinalAddress(HostProcess.ExportedModules.Majorbbs.Segment, TFSTATE_ORDINAL));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 65,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfstate.Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSDUN);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 81,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfstate.Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSDUN);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 85,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfstate.Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSBGN);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 89,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfstate.Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSDUN);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 103,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfstate.Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSDUN);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 107,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfstate.Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSBGN);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 109,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfsrdl().Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSBOF);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 110,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfstate.Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSBOF);"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/tfs_Tests.cs",
+      "line": 112,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "tfsrdl().Should().Be(HostProcess.ExportedModules.Majorbbs.TFStateCodes.TFSLIN);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 34,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$i]['attempt_stats'][$x]['energy'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 196,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['remaining_per_attack'] = 0;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 197,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['remaining_after_attack'] = array(1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 301,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['attempt_stats'][$x]['energy'] += $attack['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 302,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['total_used'] += $attack['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 314,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['attempt_stats'][$x]['energy'] += $energy_used;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 320,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$attacks[$attack_num]['attempt_stats'][$x]['energy'] += $attack['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 321,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['total_used'] += $attack['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 333,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['remaining_per_attack'] += $remaining_energy;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 334,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$energy_stats['remaining_after_attack'][$x] += $remaining_energy;"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 420,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$total_energy_attempt += $attack['attempt_stats'][$x]['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 423,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$total_energy_each[$num] += $attack['attempt_stats'][$x]['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 426,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$total_energy += $attack['attempt_stats'][$x]['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 431,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "<td bgcolor=\"<?php echo $bgcolor; ?>\"><?php echo round($attack['attempt_stats'][$x]['energy']/$number_of_rounds, 3); ?></td>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 444,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "$total_energy += $attack['attempt_stats'][$x]['energy'];"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 501,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "p('Average Energy Used/Attack: '.round($energy_stats['total_used']/$total_attacks,2));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 503,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "p('Average Energy Remaining/Attack: '.round($energy_stats['remaining_per_attack']/$total_attacks,2));"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 510,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "p('Average Energy Remaining after attack '.$x.': '.round($energy_stats['remaining_after_attack'][$x]/$number_of_rounds,2));"
+    }
+  ]
+}

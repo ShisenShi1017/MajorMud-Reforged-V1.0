@@ -1,0 +1,569 @@
+{
+  "id": "COMBAT.DAMAGE_ROLL",
+  "bucket": "Combat",
+  "name": "Physical damage roll",
+  "description": "How min/max damage, bonuses, and reductions produce final physical damage.",
+  "knowledge_status": "probable_multi_source",
+  "runtime_implemented": "not_changed_by_phase2_population",
+  "test_status": "not_generated_in_this_pass",
+  "source_priority_policy": "Original runtime observations > Nightmare Redux > MBBSEmu > MMUD Explorer > Monster Sim historical.",
+  "sources_present": [
+    "NightmareRedux",
+    "MBBSEmu",
+    "MMUDExplorer",
+    "MonsterSim"
+  ],
+  "evidence_hit_count_from_exhaustive_corpus": 2132,
+  "representative_evidence_count": 60,
+  "representative_source_path_count": 21,
+  "keywords_used": [
+    "damage",
+    "min",
+    "max",
+    "roll",
+    "weapon"
+  ],
+  "notes": [],
+  "representative_evidence": [
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/modMMudFunc.bas",
+      "line": 1188,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "Dim nPreRollMinModifier As Double, nPreRollMaxModifier As Double, nDamageMultiplierMin As Double, nDamageMultiplierMax As Double"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 2693,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"Number\" & vbTab & \"Name\" & vbTab & \"Desc 1\" & vbTab & \"Desc 2\" & vbTab & \"Desc 3\" & vbTab & \"Desc 4\" & vbTab & \"Desc 5\" & vbTab & \"Desc 6\" & vbTab & \"Game Limit\" & vbTab & \"Weight\" & vbTab & \"Type\" & vbTab & \"Uses\" & vbTab & \"Cost\" & vbTab & \"Cost Type\" & vbTab & \"Min Hit\" & vbTab & \"Max Hit\" & vbTab & \"Weapon\" & vbTab & \"Armour\" & vbTab & \"WornOn\" & vbTab & \"Accuracy\" & vbTab & \"DR\" & "
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmDatabaseExport.frm",
+      "line": 3774,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "character_progression",
+      "text": "ts.Write (\"Number\" & vbTab & \"Name\" & vbTab & \"Min HP\" & vbTab & \"Max HP\" & vbTab & \"EXP %\" & vbTab & \"Magic LVL\" & vbTab & \"Combat Level\" & vbTab & \"Title Text\" & vbTab & \"Magic Type\" & vbTab & \"Weapon\" & vbTab & \"Armour\" & vbTab)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1855,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1876,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMin(x) = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1888,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMin(x) = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMME_Export.frm",
+      "line": 1900,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "clsMonAtkSim.nAtkMin(x) = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 4860,
+      "mechanic_id": "MAGIC_SPELL_ENERGY",
+      "bucket": "tooling_ui",
+      "text": "& \"This is an error and MMUD will not cast this.  Area attack spells must use ability 17 (or possibly 8-drain?).  The min/max damage and energy cost has been zero'd out for the sim to reflect the game.\", vbExclamation"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 4882,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "txtAtkMin(x).Text = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 4894,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "txtAtkMin(x).Text = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 4906,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "tooling_ui",
+      "text": "txtAtkMin(x).Text = GetSpellMinDamage(Monsterrec.AttackAccuSpell(x), Monsterrec.AttackMaxHCastLvl(x))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 5106,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "MsgBox \"Items that are *ON* the monster will give them bonuses to ACCY and +min/max damage... \" _"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/frmMonsterAttackSim.frm",
+      "line": 5608,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tooling_ui",
+      "text": "sText = sText & \"Physical Min/Max Dmg: \" & IIf(nItemDamageBonus > 0, \"+\", \"\") & nItemDamageBonus"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 242,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 413,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: min/max spell damage was sometimes incorrect if the cast level was outside the spell's min/max level caps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 435,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-UP: separated damage into min/max so it is sortable"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/README.md",
+      "line": 438,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-UP: separated damage into min/max so it is sortable"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 148,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 320,
+      "mechanic_id": "MAGIC_MANA_CAST",
+      "bucket": "combat",
+      "text": "-FIX: min/max spell damage was sometimes incorrect if the cast level was outside the spell's min/max level caps"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 342,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-UP: separated damage into min/max so it is sortable"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.archive.txt",
+      "line": 345,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "combat",
+      "text": "-UP: separated damage into min/max so it is sortable"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/docs/changelog.txt",
+      "line": 230,
+      "mechanic_id": "COMBAT_DR",
+      "bucket": "combat",
+      "text": "-NEW: Full damage calculation of weapons with consideration of crits, max damage, and accuracy versues mob AC/DR and dodge"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmBSCalc.frm",
+      "line": 1006,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "Dim x As Integer, bClassStealth As Boolean, nPlusMaxDamage As Integer, nMinStrBonus As Integer"
+    },
+    {
+      "source": "MMUDExplorer",
+      "priority": 4,
+      "path": "MMUDExplorer/MMUD-Explorer-master/frmMain.frm",
+      "line": 31562,
+      "mechanic_id": "XP_LEVEL",
+      "bucket": "tooling_ui",
+      "text": "Dim nMinRoll As Long, nMaxRoll As Long, nLevelSteps(4) As Integer, nHealth As Integer, sTmp As String"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/Btrieve/BtrieveUtil_Test.cs",
+      "line": 19,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tests_validation",
+      "text": "return base.Read(buffer, offset, Math.Min(count, MaxBytesToRead));"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/hexopt_Tests.cs",
+      "line": 32,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "tests_validation",
+      "text": "ExecuteApiTest(HostProcess.ExportedModules.Majorbbs.Segment, HEXOPT_ORDINAL, new List<ushort> { 0, min, max });"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/numopt_Tests.cs",
+      "line": 32,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "commands_client",
+      "text": "ExecuteApiTest(HostProcess.ExportedModules.Majorbbs.Segment, NUMOPT_ORDINAL, new List<ushort> { 0, min, max });"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/random_Tests.cs",
+      "line": 23,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "ExecuteApiTest(HostProcess.ExportedModules.Majorbbs.Segment, GENRDN_ORDINAL, new List<ushort> { valueMin, valueMax });"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/random_Tests.cs",
+      "line": 52,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "ExecuteApiTest(HostProcess.ExportedModules.Majorbbs.Segment, LNGRND_ORDINAL, new List<ushort> { (ushort)(valueMin & 0xFFFF), (ushort)(valueMin >> 16), (ushort)(valueMax & 0xFFFF), (ushort)(valueMax >> 16) });"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu.Tests/ExportedModules/Majorbbs/random_Tests.cs",
+      "line": 67,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "ExecuteApiTest(HostProcess.ExportedModules.Majorbbs.Segment, LNGRND_ORDINAL, new List<ushort> { (ushort)(valueMin & 0xFFFF), (ushort)(valueMin >> 16), (ushort)(valueMax & 0xFFFF), (ushort)(valueMax >> 16) });"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 2930,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "Registers.OverflowFlag = Registers.CarryFlag = result is > sbyte.MaxValue or < sbyte.MinValue;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 2943,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "Registers.OverflowFlag = Registers.CarryFlag = result is > short.MaxValue or < short.MinValue;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 2956,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "Registers.OverflowFlag = Registers.CarryFlag = result is > int.MaxValue or < int.MinValue;"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/CPU/CPUCore.cs",
+      "line": 3044,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "if (quotient > sbyte.MaxValue || quotient < sbyte.MinValue)"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/HostProcess/Structs/EnumFsdfldFlags.cs",
+      "line": 19,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "data_schema",
+      "text": "///     field has a min and/or max in field specs"
+    },
+    {
+      "source": "MBBSEmu",
+      "priority": 3,
+      "path": "MBBSEmu/MBBSEmu-master/MBBSEmu/UI/Main/MainView.cs",
+      "line": 105,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "logging_debug",
+      "text": "TableView.ColumnStyle GetAuditLogStyle(int minWidth, int maxWidth) => new()"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 13,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "function AddAttack($name, $type, $energy, $min, $max, $attack_chance, $success_chance, $resistable=0) {"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 61,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "AddAttack($name,$type,$energy,$min,$max,$attack_chance,$success_chance,$resistable);"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 92,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "//  \t\tname\t\ttype\t\tenergy\tmin\tmax\tattack%\tsuccess%"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 129,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "<th>#</th><th>Name</th><th>Type</th><th>Resistable</th><th>Energy</th><th>Min</th><th>Max</th><th>Attack<br>Chance</th><th>Accy. or<br>Cast%</th>"
+    },
+    {
+      "source": "MonsterSim",
+      "priority": 5,
+      "path": "MonsterSim/MajorMUD-PHP-Monster-Sim-master/monster.php",
+      "line": 148,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "<?php foreach (array('energy', 'min', 'max', 'attack_chance', 'success_chance') as $var):"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 246,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildMinimize.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_ctlTaskBar.ctl",
+      "line": 263,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "Attribute RaiseChildMaximize.VB_MemberFlags = \"40\""
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 421,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "SetMenuData = SetMenuItemInfo(hMenu, nPosition, -1 * wFlags, minfo)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/NMRTask_modDeclares.bas",
+      "line": 428,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "tooling_ui",
+      "text": "GetMenuItemInfo hMenu, nPosition, -1 * wFlags, minfo"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 26,
+      "mechanic_id": "ITEM_EFFECTS",
+      "bucket": "character_progression",
+      "text": "-NEW: Tools > Monsters > Item drop percentage modifier - alter monster drop percentages based on monster and item info.  this will allow you to do things like set the minimum drop percentage to 50% for items dropped by monsters that regen greater than 7 days, for example"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 54,
+      "mechanic_id": "DATA_FIELDS",
+      "bucket": "character_progression",
+      "text": "-UP: Added average monster damage and true attack percentages (unique, calculated fields for MME)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 76,
+      "mechanic_id": "COMBAT_HIT_AC",
+      "bucket": "character_progression",
+      "text": "-UP: added text on db importer error to help determine which table was missing fields upon import from old exports"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/README.md",
+      "line": 164,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "character_progression",
+      "text": "-UP: added boxes to show spell damage vs. X MR for damage spells"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 288,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Dim nMaxEnergyRound As Long, nMaxCostAttack As Long"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 290,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Dim nEnergyForAttack As Long, nEnergyRemaining As Long, nDamagePerEnergy As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 323,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "If nMaxCostAttack = 0 Or m_nAtkEnergy(nAttack) > nMaxCostAttack Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 324,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "nMaxCostAttack = m_nAtkEnergy(nAttack)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 338,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "Do While (nLeastEnergyUsed + nMaxCostAttack) <= nMaxEnergyRound"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 363,
+      "mechanic_id": "NPC_ATTACK_LOOP",
+      "bucket": "combat",
+      "text": "nMaxAttempts = Fix(nEnergyRemaining / m_nAtkEnergy(nAttack))"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 420,
+      "mechanic_id": "MAGIC_RESIST",
+      "bucket": "combat",
+      "text": "Dim nDR_DamageResisted As Currency, nMR_Reduction As Currency"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 423,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "Dim nRoll_AttackChance As Integer, nRoll_HitChance As Integer, nRoll_DodgeChance As Integer, nAdjustedDodgeValue As Integer"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 604,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "nRoll_DodgeChance = Me.RandomNumber(1, 100)"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 605,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "If nRoll_DodgeChance <= m_nUserDodge Then"
+    },
+    {
+      "source": "NightmareRedux",
+      "priority": 2,
+      "path": "NightmareRedux/Nightmare-Redux-master/clsMonsterAttackSim.cls",
+      "line": 620,
+      "mechanic_id": "COMBAT_DODGE",
+      "bucket": "combat",
+      "text": "nRoll_DodgeChance = Me.RandomNumber(1, 100)"
+    }
+  ]
+}

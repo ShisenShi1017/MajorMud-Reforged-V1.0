@@ -1,0 +1,208 @@
+{
+  "base_world": null,
+  "compiler_code_update": "0127",
+  "family": "regions",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "record_count": 1,
+  "records": [
+    {
+      "code_update": "0121",
+      "compiled_from_librarium": true,
+      "compiler_code_update": "0127",
+      "confidence": "bucket-level; see child records for mechanic confidence",
+      "description": "World grouping for areas/rooms.",
+      "evidence_bucket": "world",
+      "evidence_refs": [
+        {
+          "classification": "text_scanned",
+          "evidence_count": 43,
+          "path": "ImportedDatabases/MBBSEmu/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 19,
+          "path": "ImportedDatabases/MBBSEmu/README.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 13,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettings.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 178,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 39,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MEMORYMAP.MD",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 13,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/commandLineHelp.txt",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 22,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveQuery.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 139,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CPU/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 576,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/MbbsHost.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 26,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/IO/FileUtility.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 13,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Memory/ProtectedModeMemoryCore.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 18,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MbbsDll.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 285,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MsgFile.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 89,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/UI/Setup/SetupView.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 105,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExecutionUnits/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 144,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/CLAUDE.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 28,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/ExportedModules/Phapi.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 136,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/Fsd/FsdUtility.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 453,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/HostRoutines/MenuRoutines.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 3,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/Structs/ModuleStruct.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 59,
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/Structs/UserAccount.cs",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 12,
+          "path": "ImportedDatabases/MBBSEmu/.github/ISSUE_TEMPLATE/bug_report.md",
+          "source": "MBBSEmu"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 324,
+          "path": "ImportedDatabases/MMUD-Explorer/frmSettings.frm",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 3950,
+          "path": "ImportedDatabases/MMUD-Explorer/modExpPerHour.bas",
+          "source": "MMUD-Explorer"
+        },
+        {
+          "classification": "text_scanned",
+          "evidence_count": 1363,
+          "path": "ImportedDatabases/MMUD-Explorer/modItemParse.bas",
+          "source": "MMUD-Explorer"
+        }
+      ],
+      "evidence_total": 22441,
+      "export_mapping": {
+        "generated": true,
+        "target": "Data/<world>/regions"
+      },
+      "id": "region.catalog.phase2_3_0121",
+      "librarium_source_file": "Librarium/Objects/regions/region_catalog_0121.json",
+      "name": "Region Catalog",
+      "object_type": "region",
+      "relationships": [],
+      "runtime_mapping": {
+        "runtime_reads_generated_data": true,
+        "status": "cataloged_for_export"
+      },
+      "source_breakdown": {
+        "MBBSEmu": 2413,
+        "MMUD-Explorer": 10281,
+        "MajorMUD-PHP-Monster-Sim": 231,
+        "NightmareRedux": 9516
+      },
+      "source_priority": {
+        "MBBSEmu": 3,
+        "MMUD-Explorer": 4,
+        "MajorMUD-PHP-Monster-Sim": 5,
+        "NightmareRedux": 2,
+        "OriginalRuntimeObservation": 1
+      },
+      "status": "complete_for_current_evidence_corpus",
+      "validation_rules": [
+        "object_must_have_id",
+        "object_must_have_world_scope",
+        "classic_changes_require_evidence",
+        "custom_ai_changes_require_validation"
+      ],
+      "world_scope": "classic/custom/ai"
+    }
+  ],
+  "source_file": "Librarium/Objects/regions/region_catalog_0121.json",
+  "world_id": "Classic",
+  "world_type": "classic"
+}

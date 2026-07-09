@@ -1,0 +1,113 @@
+{
+  "id": "formula.npc.attack_energy_loop",
+  "name": "NPC Attack Energy Loop",
+  "object_type": "formula",
+  "world_scope": "classic",
+  "status": "verified",
+  "description": "NPCs consume energy through attacks/spells and can continue while sufficient energy remains.",
+  "evidence_refs": [
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/CLAUDE.md",
+      "evidence_count": 43,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSDatabase/Program.cs",
+      "evidence_count": 9,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu.CPU.Benchmark/Program.cs",
+      "evidence_count": 6,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+      "evidence_count": 178,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MBBSEmu.csproj",
+      "evidence_count": 136,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MEMORYMAP.MD",
+      "evidence_count": 39,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Program.cs",
+      "evidence_count": 148,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/docker/docker-compose.yml",
+      "evidence_count": 3,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/scripts/readme.md",
+      "evidence_count": 10,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/TestApps/EXE/README.TXT",
+      "evidence_count": 2,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/bbsusr.db.sql",
+      "evidence_count": 8,
+      "classification": "text_scanned"
+    },
+    {
+      "source": "MBBSEmu",
+      "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/commandLineHelp.txt",
+      "evidence_count": 13,
+      "classification": "text_scanned"
+    }
+  ],
+  "source_priority": {
+    "OriginalRuntimeObservation": 1,
+    "NightmareRedux": 2,
+    "MBBSEmu": 3,
+    "MMUD-Explorer": 4,
+    "MajorMUD-PHP-Monster-Sim": 5
+  },
+  "confidence": 0.98,
+  "relationships": [
+    {
+      "relationship": "supported_by_bucket",
+      "to": "npc"
+    },
+    {
+      "relationship": "exports_to",
+      "to": "/Data/<world>/formulas"
+    }
+  ],
+  "runtime_mapping": {
+    "status": "not_implemented_or_not_bound_in_0121",
+    "note": "Runtime mapping required before NPC lifecycle."
+  },
+  "validation_rules": [
+    "must_trace_to_librarium_id",
+    "must_export_to_generated_data_before_runtime_use"
+  ],
+  "export_mapping": {
+    "target": "Data/<world>/formulas",
+    "generated": true
+  },
+  "code_update": "0121"
+}
