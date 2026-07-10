@@ -32374,7 +32374,9 @@
         "worn_on": "19",
         "class_restricted": false,
         "race_restricted": false,
-        "str_requirement": "0"
+        "str_requirement": "0",
+        "slot_name": "face",
+        "not_slot": "ears"
       },
       "flags": {
         "gettable": true
@@ -32389,6 +32391,11 @@
           "source": "ImportedDatabases",
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "confidence": "data_extracted_field_level",
@@ -32449,7 +32456,10 @@
         "code_update": "0124",
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
-      }
+      },
+      "classic_bug_fixes_0135": [
+        "mask_face_slot_not_ears"
+      ]
     },
     {
       "id": "item.827",
@@ -38744,7 +38754,9 @@
         "worn_on": "19",
         "class_restricted": false,
         "race_restricted": false,
-        "str_requirement": "0"
+        "str_requirement": "0",
+        "slot_name": "face",
+        "not_slot": "ears"
       },
       "flags": {
         "gettable": true
@@ -38759,6 +38771,11 @@
           "source": "ImportedDatabases",
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "confidence": "data_extracted_field_level",
@@ -38819,7 +38836,10 @@
         "code_update": "0124",
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
-      }
+      },
+      "classic_bug_fixes_0135": [
+        "mask_face_slot_not_ears"
+      ]
     },
     {
       "id": "item.1659",
@@ -45016,7 +45036,9 @@
         "worn_on": "19",
         "class_restricted": true,
         "race_restricted": false,
-        "str_requirement": "0"
+        "str_requirement": "0",
+        "slot_name": "face",
+        "not_slot": "ears"
       },
       "flags": {
         "gettable": true
@@ -45031,6 +45053,11 @@
           "source": "ImportedDatabases",
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "confidence": "data_extracted_field_level",
@@ -45091,7 +45118,10 @@
         "code_update": "0124",
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
-      }
+      },
+      "classic_bug_fixes_0135": [
+        "mask_face_slot_not_ears"
+      ]
     },
     {
       "id": "item.873",
@@ -95697,6 +95727,11 @@
           "source": "ImportedDatabases",
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "confidence": "data_extracted_field_level",
@@ -95757,7 +95792,15 @@
         "code_update": "0124",
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
-      }
+      },
+      "use_effect": {
+        "spell_ref": "spell.1055",
+        "spell_legacy_id": "1055",
+        "activation": "use"
+      },
+      "classic_bug_fixes_0135": [
+        "lyrists_companion_bcns_message_repair"
+      ]
     },
     {
       "id": "item.87",
@@ -158598,7 +158641,9 @@
         "worn_on": "19",
         "class_restricted": false,
         "race_restricted": false,
-        "str_requirement": "0"
+        "str_requirement": "0",
+        "slot_name": "face",
+        "not_slot": "ears"
       },
       "flags": {
         "gettable": true
@@ -158613,6 +158658,11 @@
           "source": "ImportedDatabases",
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "confidence": "data_extracted_field_level",
@@ -158673,7 +158723,10 @@
         "code_update": "0124",
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
-      }
+      },
+      "classic_bug_fixes_0135": [
+        "mask_face_slot_not_ears"
+      ]
     },
     {
       "id": "item.857",
@@ -191114,5 +191167,6 @@
       }
     }
   ],
-  "enrichment_status_0124": "enriched_pass_1"
+  "enrichment_status_0124": "enriched_pass_1",
+  "compiler_code_update": "0135"
 }

@@ -1,3 +1,21 @@
+# CodeUpdate-0135 - Final Exhaustive Classic Fixes
+
+This update applies the final exhaustive Classic fix payload over the verified 0134 runtime baseline.
+
+Highlights:
+
+- Adds generated Classic bug-fix policy data and runtime output for eight verified Classic bug-fix contracts.
+- Adds DLL-verified single-swing Classic combat smoke support through `--smoke-combat`.
+- Repairs validators and complete runtime verification tooling.
+- Canonicalizes duplicate trigger observations while preserving evidence.
+- Excludes `room.unknown` from runtime output.
+- Records final simulation verification: 38/38 validators and simulators passed.
+- Records complete runtime verification: 49/49 checks passed locally, including .NET restore/build, server generated-data/room-exit/NPC/combat/scripted-session smokes, compiler tests, and Core/server smoke tests.
+
+Known limitation:
+
+- CodeUpdate0136 remains required for complete Classic single-player gameplay. It must be worked internally until the consolidated objective has zero executable failures and zero Classic single-player gameplay blockers. GitHub Actions remains pending until the user pushes this 0135 commit.
+
 # CodeUpdate-0134 - Complete Map-Qualified NPC Population
 
 This update corrects and completes static generated NPC population loading for the server runtime.

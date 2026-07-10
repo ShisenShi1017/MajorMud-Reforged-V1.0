@@ -1,6 +1,6 @@
 {
   "base_world": null,
-  "compiler_code_update": "0127",
+  "compiler_code_update": "0135",
   "family": "items",
   "generated_by": "MajorMud.Reforged.Compiler",
   "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
@@ -33353,7 +33353,9 @@
         "class_restricted": false,
         "race_restricted": false,
         "str_requirement": "0",
-        "worn_on": "19"
+        "worn_on": "19",
+        "slot_name": "face",
+        "not_slot": "ears"
       },
       "evidence_refs": [
         {
@@ -33365,6 +33367,11 @@
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion",
           "source": "ImportedDatabases"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "evidence_summary_0124": {
@@ -33435,6 +33442,9 @@
       },
       "world_scope": [
         "classic"
+      ],
+      "classic_bug_fixes_0135": [
+        "mask_face_slot_not_ears"
       ]
     },
     {
@@ -39918,7 +39928,9 @@
         "class_restricted": false,
         "race_restricted": false,
         "str_requirement": "0",
-        "worn_on": "19"
+        "worn_on": "19",
+        "slot_name": "face",
+        "not_slot": "ears"
       },
       "evidence_refs": [
         {
@@ -39930,6 +39942,11 @@
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion",
           "source": "ImportedDatabases"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "evidence_summary_0124": {
@@ -40000,6 +40017,9 @@
       },
       "world_scope": [
         "classic"
+      ],
+      "classic_bug_fixes_0135": [
+        "mask_face_slot_not_ears"
       ]
     },
     {
@@ -46382,7 +46402,9 @@
         "class_restricted": true,
         "race_restricted": false,
         "str_requirement": "0",
-        "worn_on": "19"
+        "worn_on": "19",
+        "slot_name": "face",
+        "not_slot": "ears"
       },
       "evidence_refs": [
         {
@@ -46394,6 +46416,11 @@
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion",
           "source": "ImportedDatabases"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "evidence_summary_0124": {
@@ -46464,6 +46491,9 @@
       },
       "world_scope": [
         "classic"
+      ],
+      "classic_bug_fixes_0135": [
+        "mask_face_slot_not_ears"
       ]
     },
     {
@@ -98611,6 +98641,11 @@
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion",
           "source": "ImportedDatabases"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "evidence_summary_0124": {
@@ -98681,6 +98716,14 @@
       },
       "world_scope": [
         "classic"
+      ],
+      "use_effect": {
+        "spell_ref": "spell.1055",
+        "spell_legacy_id": "1055",
+        "activation": "use"
+      },
+      "classic_bug_fixes_0135": [
+        "lyrists_companion_bcns_message_repair"
       ]
     },
     {
@@ -163441,7 +163484,9 @@
         "class_restricted": false,
         "race_restricted": false,
         "str_requirement": "0",
-        "worn_on": "19"
+        "worn_on": "19",
+        "slot_name": "face",
+        "not_slot": "ears"
       },
       "evidence_refs": [
         {
@@ -163453,6 +163498,11 @@
           "path": "ImportedDatabases",
           "role": "retained canonical evidence for future field expansion",
           "source": "ImportedDatabases"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "evidence_summary_0124": {
@@ -163523,6 +163573,9 @@
       },
       "world_scope": [
         "classic"
+      ],
+      "classic_bug_fixes_0135": [
+        "mask_face_slot_not_ears"
       ]
     },
     {

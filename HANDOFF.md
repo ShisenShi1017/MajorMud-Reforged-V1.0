@@ -1,30 +1,19 @@
-# Handoff — Post CodeUpdate0134
+# Handoff — Post CodeUpdate0135
 
-CodeUpdate0134 is the NPC loading and map-qualified population milestone.
+CodeUpdate0135 is the active local baseline after local promotion.
 
-## Active behavior
+## Verified here
 
-- NPC definitions load from generated `npcs.json`.
-- `monster_type` is a monster-group ID.
-- `npc_legacy_id` is an optional boss/unique NPC ID.
-- Primary spawn identity is `(map_id, room_number)`.
-- Linked population identity is `(map_id, linked_spawn_room)`.
-- The runtime never resolves room numbers globally.
-- Linked population rooms do not need independent spawn records.
-- Spawns for maps absent from the current generated room slice remain loaded but unattached until those maps are generated.
+- 38/38 Python simulators and validators pass.
+- 328 unique triggers; duplicate profile observations merged with evidence retained.
+- 950 runtime rooms; `room.unknown` removed from runtime output.
+- All eight Classic bug-fix contracts validate.
+- CodeUpdate0132 room/exits, 0134 NPC populations, and 0135 combat validators pass.
 
-## Verified totals
+## Local promotion gate
 
-- 1,100 NPC definitions
-- 962 spawn records
-- 748 linked population records
-- 0 unqualified spawn identities
-- 0 unresolved groups or bosses
+Local promotion passed in Codex. `python Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py` passed, `python Tools/Validation/run_complete_runtime_verification.py` passed 49/49, and the generated runtime verification report is stored under `Reports/RuntimeVerification/`.
 
-## Remaining world-generation boundary
+## Next direction
 
-The current generated room slice contains Map 1 only. This is no longer an NPC identity defect. Generating the remaining Classic maps is a separate compiler/world-completeness task.
-
-## Next milestone
-
-CodeUpdate0135 may begin combat execution only after local build, compiler, generated-data, NPC smoke, and core tests pass.
+After user push and green GitHub Actions, continue with CodeUpdate0136 as an internal-only complete Classic single-player gameplay milestone. Do not publish partial public 0136 updates; work in internal phases until the consolidated 0136 gate has zero executable failures and zero Classic single-player gameplay blockers.

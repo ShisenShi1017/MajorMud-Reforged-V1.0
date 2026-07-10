@@ -96,13 +96,13 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0134`
+- Current Code Update: `0135`
 - Current Database Version: `0010`
-- Current Milestone: `Server Classic Test Readiness`
+- Current Milestone: `CodeUpdate0136 - Complete Classic Gameplay`
 - Milestone 1: complete/frozen
-- Current priority: push the corrected CodeUpdate-0134 map-qualified NPC population baseline, verify GitHub Actions green by user report, then approve one narrow server runtime slice built on corrected static NPC loading.
+- Current priority: push CodeUpdate-0135, verify GitHub Actions green by user report, then continue CodeUpdate0136 internally without publishing partial public 0136 updates.
 
-CodeUpdate-0134 loads corrected map-qualified generated NPC definitions and room spawn records into the server runtime. It resolves monster groups and optional boss NPCs, validates primary and linked spawn identities, attaches occupants only by `(map_id, room_number)`, preserves 687 future-map spawn rooms unattached until those maps are generated, and adds `--smoke-npcs`. It does not add NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, imported/reference deletion, or evidence promotion.
+CodeUpdate-0135 applies final exhaustive Classic fixes over the verified 0134 room/exit/session/NPC baseline. It adds generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, and final simulation/runtime verification reports. Local verification passed with 38/38 final simulation checks and 49/49 complete runtime verification checks. GitHub Actions remains pending until user push.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -175,6 +175,14 @@ CodeUpdate-0063 corrects CodeUpdate-0062 scheduler bootstrap diagnostics to use 
 CodeUpdate-0064 adds guarded scheduler/status command diagnostics to Server bootstrap and preserves ServerRuntimeValidation0013 movement/follow evidence under `Docs/ServerSim/ServerRuntimeValidation0013/`. Registered status commands are `status.overview`, `status.lifecycle`, `status.modules`, `status.scheduler`, `status.scheduler.channels`, `status.data`, and `status.validation`. Every command is guarded, runtime-disabled, and non-mutating. No command parser, dispatcher, scheduler ticking, sockets, sessions, gameplay, movement execution, party-follow implementation, runtime rule execution, mode/profile activation, combat services, spawning services, status-effect ticking, script dispatch, AI, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, live parity claim, or runtime formula/timing promotion is included.
 
 CodeUpdate-0065 repairs canonical room/world data directly from `ImportedDatabases/data-v1.11n.mdb`. It adds `Data/StockGameRaw/MMExplorerMDB/`, adds `Tools/MDBExtractor/promote_mdb_rooms.py`, promotes rooms `wcc_map1_room2150` and `wcc_map1_room2156`, and raises canonical/world room count to `1248`. It promotes only direct MDB-backed fields and keeps undecoded byte fields, formulas, runtime behavior, gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, and live editor behavior out of scope.
+
+## CodeUpdate-0135 - Final Exhaustive Classic Fixes
+
+CodeUpdate-0135 applies the final exhaustive Classic fix payload over the verified 0134 runtime baseline. It adds generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, and final verification reports.
+
+Local verification passed: final simulation 38/38, complete runtime verification 49/49, .NET restore/build, server generated-data/room-exit/NPC/combat/scripted-session smokes, compiler tests, and Core/server smoke tests.
+
+Boundaries: CodeUpdate0136 remains required for complete Classic single-player gameplay. Do not publish partial public 0136 updates. Continue internally until character creation/selection, inventory/equipment, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification pass.
 
 ## CodeUpdate-0134 - Complete Map-Qualified NPC Population
 
@@ -257,6 +265,7 @@ Completed/started slices:
 - CodeUpdate-0063: generic scheduler execution channels with runtime disabled, plus no-.NET simulator lifecycle validation folded from ServerRuntimeValidation0009.
 - CodeUpdate-0064: guarded scheduler/status command diagnostics with command execution disabled.
 - CodeUpdate-0065: MMExplorer MDB direct canonical room repair with world projection count raised to 1,248.
+- CodeUpdate-0135: final exhaustive Classic fixes with DLL-verified single-swing combat smoke, Classic bug-fix policy data, repaired validators, and 49/49 complete runtime verification.
 
 Focus Areas:
 
@@ -265,29 +274,27 @@ Focus Areas:
 - Data validation tools.
 - Runtime performance.
 - Client/editor modernization.
-- Gameplay systems only after explicit approval.
+- Complete Classic single-player gameplay under the approved CodeUpdate0136 internal milestone.
 
 Boundaries until approved:
 
-- No gameplay systems.
-- No combat.
-- No character creation.
-- No world simulation loop.
+- No partial public CodeUpdate0136 packages or commits.
+- No multiplayer.
+- No client implementation beyond read-only gameplay view assumptions.
+- No Custom/AI overlay-world implementation beyond preserving the architecture.
+- No editor implementation.
 - No networking expansion.
-- No live editor implementation beyond approved scope.
-- No Reforged mode, Custom mode, AI systems, alternate gameplay rules, or mode/profile loader implementation.
 - No `Data/` rewrite from imported WCC reference material.
 - All WCC data remains reference-only unless the user explicitly approves a reviewed import/reconciliation update.
 - Imported/reference data may be retired only after Reforged-native `Data/` is complete, verified, and explicitly approved for cleanup.
 
-Next candidate after CodeUpdate-0065:
+Next candidate after CodeUpdate-0135:
 
-- Choose one narrow MMExplorer MDB canonical repair slice, preferably shops or monsters, or one narrow non-gameplay Server construction slice.
-- Use direct MDB-backed fields only unless byte-level field positions are decoded and reviewed.
-- Keep Validation0043 and MegaMUD2 RE0021 as evidence unless a separate reviewed reconciliation update promotes a specific field or behavior.
-- Keep live runtime behavior uncertified until controlled Worldgroup validation is available.
-- Preserve previous decode reports instead of overwriting historical analysis.
-- Promote no fields without binary evidence.
+- Push CodeUpdate0135 and wait for user-reported green GitHub Actions.
+- Continue CodeUpdate0136 internally only.
+- Implement complete Classic single-player gameplay in phases: character creation/selection, inventory/equipment, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification.
+- Preserve the locked architecture: Librarium authoritative, `/Data` generated only, runtime consumes generated `/Data`, Classic immutable/evidence-locked, Custom/AI worlds use overlays, client read-only, and `ImportedDatabases/` untouched.
+- Do not guess missing Classic behavior; classify unknown shop item rows before treating them as missing data.
 
 ## Milestone 3 - Standalone Server
 

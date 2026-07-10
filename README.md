@@ -1,8 +1,8 @@
-# MajorMUD Reforged - CodeUpdate 0134
+# MajorMUD Reforged - CodeUpdate 0135
 
 ## Current Baseline
 
-CodeUpdate 0134 is the current local baseline. It builds on the 0132 room/exit runtime slice and 0133 developer-avatar session infrastructure by loading complete map-qualified Classic NPC population records into the server runtime. Spawns attach by `(map_id, room_number)` rather than global room number so future-map population does not contaminate Map 1. Librarium remains authoritative; generated `/Data/Classic` is runtime output; Omniverse evidence is validation material only until explicitly promoted through review.
+CodeUpdate 0135 is the current local baseline. It applies the final exhaustive Classic fix package over the verified 0134 map-qualified NPC population baseline. It adds DLL-verified single-swing Classic combat smoke coverage, generated Classic bug-fix policy data, repaired validators, duplicate trigger canonicalization, and final simulation/runtime verification reports. Librarium remains authoritative; generated `/Data/Classic` is runtime output; evidence remains validation material only until explicitly promoted through review.
 
 Official rule set:
 
@@ -46,7 +46,7 @@ python Tools/Librarium/export_librarium_to_data.py --world classic --clean
 
 ## Next Work
 
-Push the corrected CodeUpdate0134 map-qualified NPC population baseline and wait for green GitHub Actions before starting the next server slice. The next likely slice is combat execution readiness, but only after corrected 0134 is accepted. Do not add NPC AI, combat, loot, respawn timers, shops, economy, quests, persistence, or evidence promotion inside 0134.
+Push CodeUpdate0135 and wait for green GitHub Actions before continuing. CodeUpdate0136 is the active internal milestone for complete Classic single-player gameplay, but it must not be published as partial public CodeUpdates. Work should proceed in internal phases until the consolidated 0136 objective reaches zero executable failures and zero Classic single-player gameplay blockers.
 
 ## CodeUpdate 0126 â€” Librarium Compiler v1
 

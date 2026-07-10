@@ -1,42 +1,61 @@
-# CodeUpdate0134 Manifest
+# MANIFEST — CodeUpdate0135 Final
 
-Patch type: update-only
-Baseline: committed CodeUpdate0133 repository
-Supersedes: all earlier CodeUpdate0134 archives
+Update-only patch. Supersedes every earlier CodeUpdate0135 archive and addendum.
+
+## Codex Local Promotion Addendum
+
+Additional repository continuity files updated during local promotion:
+
+- `AGENTS.md`
+- `AI_CONTEXT.md`
+- `README.md`
+- `VERSION.md`
+- `CHANGELOG.md`
+- `ReleaseNotes.md`
+- `ProjectManifest.json`
+- `UpdateManifest.json`
+- `SOURCE_OF_TRUTH.md`
+- `Docs/Architecture/PROJECT_ROADMAP.md`
+- `Documentation/CodeUpdates/CODEUPDATE0135_FINAL_EXHAUSTIVE_CLASSIC_FIXES.md`
+- `Reports/RuntimeVerification/complete_runtime_verification_20260710T201026Z.md`
+- `Reports/RuntimeVerification/complete_runtime_verification_20260710T201026Z.json`
+
+The original package hash list is preserved below. The local promotion addendum records repository continuity and verification files created or updated by Codex after applying the package.
 
 ## Files
-
-| Path | Bytes | SHA-256 |
-|---|---:|---|
-| `Apps/Compiler/src/LibrariumValidator.cs` | 3514 | `0ba3deccb7d60ad75c14eea1a4a3f95dfa5a0e1cf80c0f61b2b0cd5e5b36de2c` |
-| `Apps/Source/Reforged.Server/RuntimeNpcModels.cs` | 5999 | `d6ff01fc5433247ac428081b02c8feda5314d4913121a3015f024d63652b47dd` |
-| `Apps/Source/Reforged.Server/RuntimeNpcSmokeReport.cs` | 1555 | `27566a7dbe0f8db964e159ebb6a5b9f475ebf62713c06827c5694dbc3cc31f46` |
-| `Apps/Source/Reforged.Server/RuntimeWorldLoader.cs` | 13949 | `49cc72821e56d6b903542e7b85544fe418e4428fb21ead0f34a069bd7bd5f301` |
-| `Apps/Source/Reforged.Server/ServerRuntimeHost.cs` | 13199 | `56414f51ae7cc9d5dddf86b1ee56cb8eeead773fee1d0a9be87c3065af6b940a` |
-| `CHANGELOG.md` | 1524 | `a22f71af3f48b2ea8b7533b38bcf8af6d71829e254f13179cbbfd3fd69613cf9` |
-| `Data/Classic/spawns.json` | 3419600 | `c8102114ffed20274eeb962d1809250335f4b4b5e5789b15f6021fbe0e03d780` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/REPORT.md` | 1601 | `51e54bd71d27c37bd47f1fff8f3ef36b8c8e46c42843ccb8448bc67304c75d97` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map1-room1457-dark-tunnel.jpg` | 247882 | `eba044d7e5481ead28b6eb3f3825a116424e3dd7abdeaebd766d2f27eea490fa` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map12-room1457-limestone-caverns.jpg` | 331616 | `971d78e954bbbeffcbb8a93d2cd95c8454cfdcf8ff470dd655df43af2209630f` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map15-room1457-old-mine.jpg` | 314897 | `3cef9ff6c869f6750864c9d7e422be11ace191906994a366a39b3218f7ce5a7c` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map16-room1457-deep-jungle.jpg` | 386631 | `22b5115f3753f0ce993638bdeb17e4ea8fcab4284759697dbd5b13f6dda05f1f` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map17-room1457-crystal-lake.jpg` | 444906 | `dd22ffaa2add5733f367c6be6e66b2fcb81f1317a55bb886c33e3784ab5a30a0` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map2-room1457-stone-tunnel.jpg` | 385994 | `8075810d42f2272950668f9ee2f6fcdbc464f3501710fe8d77d4f2358ec4a178` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map6-room1457-redstone-tunnel.jpg` | 489747 | `0e03bd8bb0419fef875b3780ff4e63355da7793fe90569b53ff04fd0c98bd4ed` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map7-room1457-cracked-tunnel.jpg` | 358138 | `b842f5d4c60ae1351adf34bd8c45423ba70ad0fd096714c7500dbd96a59906c2` |
-| `Evidence/CodeUpdate0134_LinkedSpawnMapQualification/Screenshots/map8-room1457-underground-lake.jpg` | 383693 | `db9843984c1e33168d71e449881864a3b60ce66a24848c8862f07906389bc19a` |
-| `HANDOFF.md` | 1160 | `919ab6c0fd6ac35c48a5d62aa46245997db4ba5f61678031f9ced8924156e95a` |
-| `Librarium/Objects/spawns/spawn_records_0122.json` | 3265774 | `fef55342bdb1a53846f70d970a4f1b1854ac3ba20ba22b68b6c100e63ddc758c` |
-| `PATCH_INSTRUCTIONS.md` | 1693 | `625d08990127351b3c7e9de1384d8caec390a245fbe036ba0a3ebcd469af051b` |
-| `Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py` | 4249 | `664e976d793c22445496c3ea3850e4741fb37848ed0edaf78ffe7365940aab31` |
-
-Total files before manifest: 21
-
-## Scope
-
-- Map-qualified NPC primary room identities.
-- Map-qualified linked population identities.
-- Monster-group and boss resolution.
-- Compiler validation preventing regression.
-- Runtime attachment by `(MapId, RoomNumber)`.
-- Evidence and validation only; no combat or AI execution.
+- `Apps/Source/Reforged.Server/ClassicCombatResolver.cs` — `01c844a476c8caa42f4a452c1efa33ea64296d55497febec64b6df62c52f2c2c`
+- `Apps/Source/Reforged.Server/ClassicCombatSmokeReport.cs` — `df564a28338d2678eed0fdd47532c0f203ba58f505e1cc9faf262169aaeea92c`
+- `Apps/Source/Reforged.Server/ClassicBugFixPolicies.cs` — `c118502f92fb880fb824cbb400548763257c164c5f88dbfa50e4decf4cc10b77`
+- `Apps/Source/Reforged.Server/Program.cs` — `7bdeb02eda065d6a6a5e52b2148a49df9541f000890374da2347b92373bd37d6`
+- `Tests/Source/Reforged.Core.Tests/Program.cs` — `2aa37f1d681d8883acf57481a5c3d7403945fa35757c4ab7ae6926bc680c16ee`
+- `Runtime/data_runtime.py` — `470ebbe4ec73c67bd9f378a1da529591f2171c7911dc9f498ef0cb72bc31d75a`
+- `Tools/Validation/validate_codeupdate0135_combat_execution.py` — `a7563c53c3b6ba975f173cc480f16b7954a8f7ea2987bae2833addb2ea1a2769`
+- `Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py` — `12d5e183b502722d09839aad76ae976db12c578847fd81791b04325437e29613`
+- `Tools/Validation/validate_codeupdate0130_server_classic_readiness.py` — `1f5d2330cd38ab8988ac462db848bacd7ecb8b72b139e638aa4d25afc0cd9443`
+- `Tools/Validation/run_complete_runtime_verification.py` — `83b95713e3ea1338e2d9ad8e7caa3840dc24128b991297c86e963863289d75fb`
+- `Tools/Librarium/validate_0127_world_outputs.py` — `1a8fd498a61580678dfaa4d4fc2ec94cdd9cf9710f697423bbaf69f7076bae5d`
+- `Tools/Librarium/validate_librarium_phase2_3.py` — `b0d30ea218018c54891e229c6b66a34907bf4421e51daff956b406b203746862`
+- `Tools/Librarium/validate_librarium_population_0122.py` — `5a7f0c153145684e6afe61db19de0419461bbcc38de682250965ed9b8bafa620`
+- `Tools/Librarium/validate_librarium_population_0123.py` — `ea2878c2d02f055ea886ee4325287758d423a1a7010b77345b4e01560deda5a0`
+- `Librarium/Tools/validate_librarium.py` — `ee707a2661614fe7c0dd5517dedf1574a5bc5080ee25a7f8907e411d60fa49b9`
+- `Librarium/Objects/triggers/trigger_records_0123.json` — `8cd23d31f66fec1cd3e7a14403c9e980ebf75dc4954dd0b3492ad36190889ea2`
+- `Librarium/Objects/rooms/room_records_0122.json` — `ca22c434344a14761026a7f5e0dfa7cfbea1157cb24ad537f2748f0bca9ab392`
+- `Librarium/Objects/npcs/npc_records_0122.json` — `55c48c36f4f74d3ead366793e6bb0e5805dff20393ed633ba11bf576720d9c7a`
+- `Librarium/Objects/items/item_records_0122.json` — `beef3d4343fa7b53fce4b5fde149e9c328931acddaf27fcad87e10b3ed46ab22`
+- `Librarium/Objects/spells/spell_records_0122.json` — `d64d602cd93a76d32dc6be5bccd7076e78fabe1d1cc0d10b7b377b367e91a88a`
+- `Librarium/Objects/economy_rules/economy_rule_records_0123.json` — `13e90b148b1bba3de46e6d03c5946bb50c5dd925fff80640b03881b1b3d901fe`
+- `Librarium/Objects/classic_bug_fixes/classic_bug_fix_records_0135.json` — `2440ea526f96d94bdc4c704f6660926c7d433639b3b4d0d68d2fc3ad60e99ab4`
+- `Data/Classic/triggers.json` — `7d07049250f8bf0836a367a67a9d98299dd955865a7d68d2bb445c6be20d8e77`
+- `Data/Classic/rooms.json` — `5f5efe9a0c2ea973e6a70e7b9c30be786e98e778bfdbf76ab2b10446e376c687`
+- `Data/Classic/npcs.json` — `341ab5c84fabfe88d7d5c89624e9211f8182d2227a311304c537200338a73aef`
+- `Data/Classic/items.json` — `446b41c27db36e408935091ccdaa97b073ec1b2e11073f413573543a107c6e7c`
+- `Data/Classic/spells.json` — `a280362a8997f7d19679f74070ce0f144fe5ae69387738aa5a8f5a72a6855db9`
+- `Data/Classic/economy_rules.json` — `c0348dc41ae5b6575dd3bf6d1e415f04899e13866259ccae9e5c854ece66bc07`
+- `Data/Classic/classic_bug_fixes.json` — `3b9b8634e249262403ce18d93fcafff87a24119dcd3c7bd8c195a33671cfae54`
+- `Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md` — `dfd4ff4082e513d039d32a9da7620d106efa7c7aa6774dd32e4138a0c5bffcae`
+- `Evidence/ClassicBugFixes/CodeUpdate0135/room_unknown_orphaned_service_evidence.json` — `6918126dc526e2e36d9aeba04d37aa9fd769606c866a115af0c97a5047518af7`
+- `Reports/SimulationVerification/CodeUpdate0135-FinalSimulationResults.json` — `396014d1de30414a8d36a801e5a6494c91aaedb778320f9ab544b9ce5d31a4fa`
+- `Reports/SimulationVerification/CodeUpdate0135-FinalSimulationReport.md` — `5f699de3323eb2cdab255425193747e4943488d85c9a84acbd2cb8b6547cbf5b`
+- `CHANGELOG.md` — `c9b1ed2fd9e9db561b675757b99c82e9412edeb8cf6bf671b73cae15703e6e2b`
+- `HANDOFF.md` — `18c2e2f9cf6e93a1f667301c6d64126edec72070ac1112febadc2cdf02e39e7b`
+- `PATCH_INSTRUCTIONS.md` — `c72cc8829f1ce8f064aff903d23b2295416cb79c969fcbdd2aa03a2ee9b7a4ab`

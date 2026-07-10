@@ -24,7 +24,8 @@ var tests = new List<(string Name, Action Body)>
     ("server scheduler bootstrap keeps channels disabled", ServerSchedulerBootstrapAuditSmoke),
     ("server scheduler status commands stay guarded", ServerSchedulerStatusCommandAuditSmoke),
     ("server runtime state and event dispatcher track host-owned changes", ServerRuntimeStateAndEventsSmoke),
-    ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke)
+    ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke),
+    ("classic bug-fix policies enforce corrected behavior", ClassicBugFixPolicySmoke)
 };
 
 var failures = new List<string>();
@@ -653,4 +654,21 @@ static string LocateProjectRoot(string start)
     }
 
     throw new DirectoryNotFoundException("Could not locate repository root from test output folder.");
+}
+
+
+void ClassicBugFixPolicySmoke()
+{
+    if (ClassicShopPricingPolicy.ClampEffectivePercent(0) != 10 || ClassicShopPricingPolicy.ClampEffectivePercent(25) != 25)
+        throw new InvalidOperationException("Bard shop minimum percentage policy failed.");
+    if (!ClassicVisibilityPolicy.CanDetect(true, true, true))
+        throw new InvalidOperationException("SEE HIDDEN was incorrectly suppressed by sneak.");
+    var prep = ClassicAttackPreparationPolicy.PrepareBackstab(true, false, false, true, true);
+    if (prep.AttackType != ClassicAttackType.NormalWeapon || !prep.EngageTarget || prep.BackstabQualified)
+        throw new InvalidOperationException("Invalid two-handed backstab did not downgrade to engaged normal attack.");
+    if (ClassicGangDeedPolicy.MayRetainDeed(false, true, true))
+        throw new InvalidOperationException("Former non-leader retained a gang deed.");
+    var coordinator = new ClassicDualLeverCoordinator();
+    var value = coordinator.ExecuteAtomic(() => 42);
+    if (value != 42) throw new InvalidOperationException("Dual lever atomic coordinator failed.");
 }

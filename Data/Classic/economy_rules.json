@@ -1,10 +1,10 @@
 {
   "base_world": null,
-  "compiler_code_update": "0127",
+  "compiler_code_update": "0135",
   "family": "economy_rules",
   "generated_by": "MajorMud.Reforged.Compiler",
   "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
-  "record_count": 22,
+  "record_count": 23,
   "records": [
     {
       "compiled_from_librarium": true,
@@ -5755,6 +5755,30 @@
       "world_scope": [
         "classic"
       ]
+    },
+    {
+      "id": "economy_rule.bard_shop_minimum_percent",
+      "name": "bard_shop_minimum_percent",
+      "object_type": "economy_rule",
+      "world_scope": [
+        "classic"
+      ],
+      "rule_scope": "shop_pricing",
+      "minimum_percent": 10,
+      "description": "Prevents the Bard cash exploit by flooring effective shop percentage at 10%.",
+      "evidence_refs": [
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
+        }
+      ],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/economy_rules.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "record_ready_for_generator"
+      }
     }
   ],
   "source_file": "Librarium/Objects/economy_rules/economy_rule_records_0123.json",

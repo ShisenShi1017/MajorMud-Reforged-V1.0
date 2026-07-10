@@ -1,68 +1,54 @@
 {
-  "codeUpdate": "0134",
-  "name": "CodeUpdate0134-CompleteMapQualifiedNpcPopulation",
-  "packageType": "0134-corrective-update-only-local-merge",
+  "codeUpdate": "0135",
+  "name": "CodeUpdate0135-FinalExhaustiveClassicFixes",
+  "packageType": "update-only-local-merge",
   "supersedes": [
-    "CodeUpdate0134-RuntimeNpcLoading"
+    "CodeUpdate0134-CompleteMapQualifiedNpcPopulation",
+    "earlier CodeUpdate0135 archives and addenda"
   ],
   "librariumAuthoritative": true,
   "dataGeneratedOnly": true,
   "importedDatabasesRetained": true,
-  "runtimeGameplayChanged": false,
+  "runtimeGameplayChanged": true,
   "serverSourceChanged": true,
-  "compilerSourceChanged": true,
-  "librariumSpawnRecordsChanged": true,
-  "generatedClassicSpawnsChanged": true,
-  "purpose": "Correct generated Classic NPC population so primary and linked spawn identities are map-qualified and runtime attachment uses (map_id, room_number), not global room numbers.",
+  "generatedClassicDataChanged": true,
+  "purpose": "Apply final exhaustive Classic fixes, generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, room.unknown runtime exclusion, and final verification reports over the verified 0134 runtime baseline.",
   "includedUpdates": [
-    "CodeUpdate0134-CompleteMapQualifiedNpcPopulation"
+    "CodeUpdate0135-FinalExhaustiveClassicFixes"
   ],
   "newServerCommands": [
-    "--smoke-npcs"
+    "--smoke-combat"
   ],
-  "evidencePolicy": "Generated NPC/spawn loading consumes generated Data/Classic runtime output derived from Librarium. Spawn identities must be map-qualified. Future-map spawns remain unattached until their maps are generated. Omniverse and screenshot evidence remain validation material only.",
+  "evidencePolicy": "Librarium remains authoritative. /Data is generated runtime output. ImportedDatabases remains untouched. Classic is immutable/evidence-locked. Unknown Classic behavior must not be guessed.",
   "validationStatus": "LOCAL_PASS",
   "dotnetSdkAvailableHere": true,
   "requiredCodexCommands": [
-    "python Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py",
-    "python Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py",
-    "dotnet build Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-restore",
-    "dotnet run --project Apps/Compiler.Tests --configuration Release",
-    "dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore",
-    "dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-generated-data",
-    "dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-room-exits",
-    "dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-npcs",
-    "scripted local console smoke with developer avatar movement",
-    "dotnet build Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-restore",
-    "dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build"
+    "python Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py",
+    "python Tools/Validation/run_complete_runtime_verification.py"
   ],
   "reports": [
+    "Reports/SimulationVerification/CodeUpdate0135-FinalSimulationReport.md",
+    "Reports/SimulationVerification/CodeUpdate0135-FinalSimulationResults.json",
+    "Reports/RuntimeVerification/complete_runtime_verification_20260710T201026Z.md",
+    "Reports/RuntimeVerification/complete_runtime_verification_20260710T201026Z.json",
     "HANDOFF.md",
     "MANIFEST.md",
-    "PATCH_INSTRUCTIONS.md",
-    "Evidence/CodeUpdate0134_LinkedSpawnMapQualification/REPORT.md",
-    "Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py"
+    "PATCH_INSTRUCTIONS.md"
   ],
   "knownLimitations": [
-    "Static NPC placement is loaded for inspection only.",
-    "The current generated room slice contains Map 1 only.",
-    "687 valid primary spawn rooms belong to maps not yet emitted in the current generated room slice and remain unattached until those maps are generated.",
-    "NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, and broader gameplay remain out of scope.",
-    "room.1 remains a developer diagnostic room only and is not verified new-character spawn evidence.",
-    "GitHub Actions remains pending until user push and green report for this corrected 0134 baseline."
+    "GitHub Actions remains pending until user push and green report for this 0135 baseline.",
+    "CodeUpdate0136 remains required for complete Classic single-player gameplay.",
+    "Do not publish partial CodeUpdate0136 packages or commits.",
+    "Character creation/selection, inventory/equipment completion, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive gameplay verification remain 0136 scope.",
+    "Unknown shop item rows must be classified before treating them as missing data."
   ],
-  "updatedUtc": "2026-07-10T14:10:00Z",
-  "verificationStatus": "LOCAL_PASS; Corrected CodeUpdate0134 map-qualified NPC population was merged locally with Saves and ImportedDatabases preserved. Room/exit validator passed. Corrected NPC loading validator passed with 1100 NPC definitions, 30 NPC groups, 962 spawns across 10 maps, 748 linked population records, 0 linked records missing map context, 275 primary spawn rooms available in the current generated room slice, and 687 valid primary spawn rooms outside the current generated room slice. Compiler Release build passed. Compiler tests passed with 37076 records across 32 families. Server Release build passed. --smoke-generated-data passed. --smoke-room-exits passed. --smoke-npcs passed with 0 unresolved groups and 0 unresolved boss definitions. Scripted local console movement smoke passed. Core/server Release build and smoke tests passed. GitHub Actions remains pending until user push.",
+  "updatedUtc": "2026-07-10T20:15:00Z",
+  "verificationStatus": "LOCAL_PASS; CodeUpdate0135 final exhaustive Classic fixes were merged locally with Saves and ImportedDatabases preserved. Exhaustive repairs validator passed. Complete runtime verification passed 49/49. Final simulation report passed 38/38. .NET solution restore/build gate, server generated-data/room-exit/NPC/combat/scripted-session smokes, compiler tests, and Core/server smoke tests passed. GitHub Actions remains pending until user push.",
   "localVerification": {
-    "roomExitValidator": "PASS: python Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py.",
-    "npcValidator": "PASS: python Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py; 1100 NPC definitions, 30 NPC groups, 962 spawns across 10 maps, 748 linked population records, 0 unresolved groups, 0 unresolved boss definitions.",
-    "compilerReleaseBuild": "PASS: dotnet build Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-restore; 0 warnings, 0 errors.",
-    "compilerTests": "PASS: dotnet run --project Apps/Compiler.Tests --configuration Release; compiled 37076 records across 32 families.",
-    "serverReleaseBuild": "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore; 0 warnings, 0 errors.",
-    "generatedDataSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-generated-data.",
-    "roomExitSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-room-exits.",
-    "npcSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-npcs.",
-    "localConsole": "PASS: scripted look/north/look/quit; developer-avatar starts at Town Gates diagnostic room and moves north to Estwall Street.",
-    "coreServerSmoke": "PASS: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build."
+    "exhaustiveRepairs": "PASS: python Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py; triggers=328 rooms=950 classic_bug_fixes=8.",
+    "completeRuntimeVerification": "PASS: python Tools/Validation/run_complete_runtime_verification.py; 49/49 checks passed.",
+    "finalSimulation": "PASS: Reports/SimulationVerification/CodeUpdate0135-FinalSimulationReport.md records 38/38 validators/simulators passed.",
+    "dotnetGate": "PASS: complete runtime verification included solution restore/build and server/Core smoke coverage.",
+    "githubActions": "PENDING until user push and green report."
   }
 }

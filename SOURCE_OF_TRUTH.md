@@ -1,6 +1,6 @@
 # MajorMUD Reforged Source of Truth
 
-**CodeUpdate 0134**
+**CodeUpdate 0135**
 
 The Librarium is the authoritative source for worlds, mechanics, evidence, and generation contracts.
 
@@ -21,3 +21,7 @@ Generated `/Data/Classic` now includes runtime-ready room identity and embedded 
 ## CodeUpdate 0134 Complete Map-Qualified NPC Population Note
 
 The server runtime now loads generated Classic NPC definitions and map-qualified room spawn records from `/Data/Classic` for static inspection. Spawn attachment uses `(map_id, room_number)` rather than global room number. Future-map spawn records remain valid but unattached until their maps are generated. This does not change authority: the Librarium remains source of truth, `/Data` remains generated output, and evidence remains validation material until reviewed promotion.
+
+## CodeUpdate 0135 Final Exhaustive Classic Fixes Note
+
+CodeUpdate0135 applies the final exhaustive Classic fix payload over the verified 0134 runtime baseline. It adds Classic bug-fix policy records, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, and final simulation/runtime verification reports. This does not change authority: the Librarium remains source of truth, `/Data` remains generated runtime output, `/ImportedDatabases` remains retained evidence, and CodeUpdate0136 is the next internal-only complete Classic single-player gameplay milestone.

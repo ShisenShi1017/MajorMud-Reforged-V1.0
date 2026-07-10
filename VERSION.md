@@ -1,13 +1,13 @@
 # MajorMUD Reforged Version
 
-Current repository baseline: **CodeUpdate 0134 - Complete Map-Qualified NPC Population**
+Current repository baseline: **CodeUpdate 0135 - Final Exhaustive Classic Fixes**
 
-Status: Corrected CodeUpdate0134 map-qualified NPC population is applied locally with Saves/ and ImportedDatabases/ preserved. Local Codex verification passed. The earlier CodeUpdate0134 push was green by user report; this corrected 0134 baseline still requires a new user push and green GitHub Actions report.
+Status: CodeUpdate0135 is applied locally with Saves/ and ImportedDatabases/ preserved. Local Codex verification passed. GitHub Actions remains pending until the user pushes this commit and reports green.
 
-Scope: 0134 loads generated Classic NPC definitions from `Data/Classic/npcs.json`, loads generated spawn records from `Data/Classic/spawns.json`, resolves monster groups through generated `spawn_model.monster_type`, resolves optional boss/unique NPCs through `npc_legacy_id`, validates map-qualified primary and linked population identities, and attaches occupants only when `(map_id, room_number)` exists in the current generated room slice.
+Scope: 0135 applies final exhaustive Classic fixes, generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired Python validators, duplicate trigger canonicalization, and complete runtime verification reporting over the verified 0134 room/exit/session/NPC baseline.
 
-Boundary: `room.1` remains configured as an explicit developer diagnostic room only. Town Gates and legacy generic start_room metadata are not treated as verified new-character spawn evidence. The developer avatar is non-persistent and is not a Classic character, Librarium record, generated-data entity, or save record. Static NPC placement is visible for inspection only; NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, and broader gameplay remain unchanged.
+Boundary: 0135 does not complete Classic single-player gameplay. CodeUpdate0136 is the active internal milestone for character creation/selection, inventory/equipment, full world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification. No partial public CodeUpdate0136 should be created.
 
-Local verification passed: room/exit validator, corrected NPC loading validator, compiler Release build, compiler tests, Server Release build, generated-data smoke, room-exit smoke, NPC smoke, scripted local console movement smoke, test Release build, and Core/server smoke tests.
+Local verification passed: `python Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py`, `python Tools/Validation/run_complete_runtime_verification.py`, complete runtime verification 49/49 PASS, final simulation report 38/38 PASS, .NET solution restore/build gate, server generated-data/room-exit/NPC/combat/scripted-session smokes, compiler tests, and Core/server smoke tests.
 
 GitHub Actions remains pending until user push and green report.

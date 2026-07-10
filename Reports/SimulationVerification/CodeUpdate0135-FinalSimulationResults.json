@@ -1,0 +1,230 @@
+[
+  {
+    "script": "Librarium/Tools/validate_librarium.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "{\n  \"status\": \"PASS\",\n  \"source\": \"Librarium/Assertions/knowledge_*_0011.json\",\n  \"nodes\": 20826,\n  \"relationships\": 71026,\n  \"missingSources\": 0,\n  \"missingEntityTargets\": 0,\n  \"duplicateEdgesDiagnostic\": 0\n}\n"
+  },
+  {
+    "script": "Librarium/Validation/validate_librarium_0009.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "{\n  \"milestone\": \"Librarium-0009\",\n  \"status\": \"PASS\",\n  \"missing\": [],\n  \"serviceCount\": 8,\n  \"serviceIds\": [\n    \"relationship_explorer\",\n    \"impact_analysis\",\n    \"world_diff\",\n    \"promotion_workflow\",\n    \"documentation_generator\",\n    \"validation_generator\",\n    \"runtime_consumer_api\",\n    \"natural_language_query_map\"\n  ]\n}\n"
+  },
+  {
+    "script": "Librarium/Validation/validate_librarium_0011.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "{\n  \"status\": \"PASS\",\n  \"entities\": 20826,\n  \"assertions\": 71026\n}\n"
+  },
+  {
+    "script": "Librarium/Validation/validate_validation_0001.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "PASS: Validation-0001 report present\n{\n  \"status\": \"PASS_WITH_FINDINGS\",\n  \"files_scanned\": 167,\n  \"entities\": 20826,\n  \"assertions\": 71026,\n  \"promotion_candidates\": 0,\n  \"integrity\": {\n    \"duplicate_assertion_keys\": 0,\n    \"possible_conflicts\": 0,\n    \"assertions_missing_required_fields\": 50200,\n    \"orphan_entities\": 0\n  }\n}\n"
+  },
+  {
+    "script": "Runtime/test_harness/full_game_test_harness.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_ability_quest_engine.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_class_race_engine.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_combat.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_command_gameloop.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_data_load.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_exp_leveling.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_formula_engine.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_full_game_harness.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_gameplay_completion.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_loot_economy_npc.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_monster_ai.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_movement.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_persistence.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_reference_integrity.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_regeneration.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_runtime_placeholders.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_schema_adapters.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_snapshot_equipment.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_spawn.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_spells_status.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Sim/validators/validate_world_integration.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Tests/test_librarium_export_0116.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Tools/Librarium/validate_0127_world_outputs.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "{\n  \"status\": \"PASS\",\n  \"validated_outputs\": [\n    \"Data/Classic\"\n  ],\n  \"overlay_sources_present\": true\n}\n"
+  },
+  {
+    "script": "Tools/Librarium/validate_generation_readiness.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "{\n  \"status\": \"PASS\",\n  \"object_families\": 32,\n  \"failures\": []\n}\n"
+  },
+  {
+    "script": "Tools/Librarium/validate_librarium_phase2_3.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "PASS CodeUpdate 0121 Phase 2/3 Librarium completion validation\n{\n  \"total_files\": 941,\n  \"text_files_scanned\": 657,\n  \"binary_or_asset_files\": 284,\n  \"raw_evidence_count\": 115756,\n  \"object_type_count\": 32,\n  \"open_conflict_count\": 3\n}\n"
+  },
+  {
+    "script": "Tools/Librarium/validate_librarium_population_0122.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "PASS\n{'items': 1950, 'spells': 1350, 'npcs': 1100, 'rooms': 950, 'spawns': 962, 'shops': 178, 'relationships': 71026}\n"
+  },
+  {
+    "script": "Tools/Librarium/validate_librarium_population_0123.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "PASS\n{\n  \"commands\": 25,\n  \"status_effects\": 111,\n  \"economy_rules\": 23,\n  \"banks\": 27,\n  \"classes\": 58,\n  \"races\": 2,\n  \"guilds\": 44,\n  \"skills\": 13,\n  \"events\": 1501,\n  \"triggers\": 328,\n  \"quests\": 2100,\n  \"ai_profiles\": 27,\n  \"worlds\": 3,\n  \"world_overlays\": 2,\n  \"formulas\": 36,\n  \"relationships_added\": 71026\n}\n"
+  },
+  {
+    "script": "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/tests/smoke_test.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "script": "Tools/Validation/validate_codeupdate0130_server_classic_readiness.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "{\n  \"code_update\": \"0130\",\n  \"status\": \"PASS\",\n  \"errors\": [],\n  \"data_classic_family_counts\": {\n    \"world_manifest\": 1,\n    \"compile_manifest\": 1,\n    \"rooms\": 950,\n    \"exits\": 693,\n    \"spawns\": 962,\n    \"npcs\": 1100,\n    \"items\": 1950,\n    \"spells\": 1350,\n    \"formulas\": 41,\n    \"shops\": 178,\n    \"quests\": 2100\n  },\n  \"evidence_sha256\": \"862f5ce039130e518893c40c8f0d52ad40bf0061eb6e992a6d6dbd0624cc5ce0\",\n  \"dotnet_sdk_available_here\": false,\n  \"codex_required_commands\": [\n    \"dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj\",\n    \"dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data\",\n    \"dotnet run --project Apps/Source/Reforged.Server -- --run-local\"\n  ]\n}\n"
+  },
+  {
+    "script": "Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "{\n  \"code_update\": \"0132\",\n  \"exit_records\": 693,\n  \"issues\": [],\n  \"rooms\": 950,\n  \"rooms_with_embedded_exits\": 343,\n  \"rooms_with_names\": 928,\n  \"start_room\": {\n    \"exit_count\": 3,\n    \"exits\": [\n      \"N->3\",\n      \"E->1381\",\n      \"W->101\"\n    ],\n    \"id\": \"room.1\",\n    \"name\": \"Town Gates\"\n  },\n  \"status\": \"PASS\"\n}\n"
+  },
+  {
+    "script": "Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "NPC definitions: 1100\nNPC groups: 30\nSpawns: 962\nSpawn maps: {1: 275, 2: 76, 3: 2, 6: 187, 7: 68, 8: 34, 10: 5, 12: 59, 16: 126, 17: 130}\nLinked population records: 748\nLinked population records missing map context: 0\nPrimary spawn rooms available in current generated room slice: 275\nPrimary spawn rooms outside current generated room slice: 687\nCodeUpdate0134 complete map-qualified NPC population validation: PASS\n"
+  },
+  {
+    "script": "Tools/Validation/validate_codeupdate0135_combat_execution.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "PASS CodeUpdate0135 combat validation\nVerified generated formula contracts and runtime resolver source bindings.\n"
+  },
+  {
+    "script": "Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py",
+    "status": "PASS",
+    "exit_code": 0,
+    "output": "PASS CodeUpdate0135 exhaustive repairs\ntriggers=328 rooms=950 classic_bug_fixes=8\n"
+  }
+]

@@ -5,7 +5,7 @@ Validates the pieces needed for tomorrow's Codex/.NET server boot test:
 - DLL-derived combat evidence is retained in Evidence and Librarium.
 - The three combat conflicts are closed in Librarium and generated Data.
 - Data/Classic has required generated runtime families.
-- Config/server.worlds.json points Classic at generated Data/Classic and valid start room.
+- Config/server.worlds.json points Classic at generated Data/Classic and uses the current spawn hierarchy.
 - Server source has generated-data smoke command and catalog loader code.
 """
 from __future__ import annotations
@@ -80,8 +80,18 @@ def main() -> int:
         if classic.get('dataRoot') != 'Data/Classic': errors.append('classic dataRoot is not Data/Classic')
         rooms = load_json(data_root/'rooms.json').get('records', []) if (data_root/'rooms.json').exists() else []
         room_ids = {r.get('id') for r in rooms}
-        if classic.get('startRoom') not in room_ids:
-            errors.append(f'classic startRoom {classic.get("startRoom")} not found in Data/Classic/rooms.json')
+        # CodeUpdate0133 retired the hardcoded production startRoom. A configured
+        # diagnosticRoom is allowed only for the runtime developer avatar.
+        start_room = classic.get('startRoom')
+        diagnostic_room = classic.get('diagnosticRoom')
+        if start_room is not None and start_room not in room_ids:
+            errors.append(f'classic startRoom {start_room} not found in Data/Classic/rooms.json')
+        if diagnostic_room is not None and diagnostic_room not in room_ids:
+            errors.append(f'classic diagnosticRoom {diagnostic_room} not found in Data/Classic/rooms.json')
+        if start_room is None and diagnostic_room is None:
+            development = cfg.get('development', {})
+            if not development.get('createRuntimeTestAvatar', False):
+                errors.append('no generated character start, diagnostic room, or runtime test avatar path configured')
 
     program = (ROOT/'Apps/Source/Reforged.Server/Program.cs').read_text(encoding='utf-8')
     catalog = (ROOT/'Apps/Source/Reforged.Server/GeneratedWorldDataCatalog.cs').read_text(encoding='utf-8') if (ROOT/'Apps/Source/Reforged.Server/GeneratedWorldDataCatalog.cs').exists() else ''

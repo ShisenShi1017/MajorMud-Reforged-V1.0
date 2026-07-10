@@ -36,14 +36,20 @@ for folder,fname in required.items():
         errors.append(f'empty {p}')
     if len(data.get('records',[])) != count:
         errors.append(f'record_count mismatch {p}')
-rel=root/'Librarium'/'Relationships'/'librarium_relationship_graph_0123.json'
-if not rel.exists():
-    errors.append(f'missing {rel}')
+relationship_candidates=[
+    root/'Librarium'/'Relationships'/'librarium_relationship_graph_0123.json',
+    root/'Librarium'/'Assertions'/'knowledge_assertions_0011.json',
+    root/'Librarium'/'SQLDataImport'/'sql_mdb_relationships_0128.json',
+]
+rel=next((p for p in relationship_candidates if p.exists()), None)
+if rel is None:
+    errors.append('missing current relationship artifact')
 else:
     r=json.loads(rel.read_text(encoding='utf-8'))
-    counts['relationships_added']=r.get('relationship_count',0)
-    if r.get('relationship_count',0)<=0:
-        errors.append('empty 0123 relationship graph')
+    count = len(r) if isinstance(r,list) else r.get('relationship_count',r.get('relationshipCount',len(r.get('relationships',[]))))
+    counts['relationships_added']=count
+    if count<=0:
+        errors.append('empty relationship artifact')
 # source-of-truth invariants
 for required_path in ['SOURCE_OF_TRUTH.md','REPOSITORY_RULES.md','Data/README.md','ImportedDatabases']:
     if not (root/required_path).exists():

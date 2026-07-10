@@ -1,92 +1,92 @@
-﻿{
-    "project":  "Reforged",
-    "projectVersion":  "0.1.0",
-    "codeUpdate":  "0134",
-    "databaseVersion":  "0010",
-    "milestone":  "Server Classic Test Readiness",
-    "sourceOfTruth":  "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Generated graph/index/database artifacts are local generated outputs and ignored by Git.",
-    "runtimePolicy":  "No .NET SDK required for normal runtime; launch compiled/runtime-ready artifacts from Bin.",
-    "updatePolicy":  "Cumulative replacement packages are self-contained. User may delete old local folder and extract the latest normalized ZIP. Generated graphs/indexes/databases must be rebuilt locally and not committed.",
-    "modePolicy":  "Each assistant must identify mode first. Codex updates local only and waits for user push plus stated green GitHub Actions before continuing. ChatGPT uses verified patch ZIPs for local application unless explicitly instructed otherwise.",
-    "neverGuessPolicy":  "Never guess when creating, fixing, reviewing, packaging, or reporting updates. Verify before claiming success; if something cannot be verified, state that clearly.",
-    "suggestionPolicy":  "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
-    "referenceDataPolicy":  "All WCC data, WCC-labeled data, WSGSERVE-related data, imported archives, website data, and community/tool data are reference-only unless the user explicitly approves a reviewed import or reconciliation update.",
-    "importedDataRetirementPolicy":  "ImportedDatabases may be retired from normal project work only after all needed source data has been decoded, imported, recreated as Reforged-native Data, verified by reports, and explicitly approved for cleanup.",
-    "preserve":  [
-                     "Saves",
-                     "ImportedDatabases"
-                 ],
-    "developmentStatus":  {
-                              "currentMilestone":  "Server Classic Test Readiness",
-                              "currentCodeUpdate":  "0134",
-                              "currentDatabaseVersion":  "0010",
-                              "completedMilestones":  [
-                                                          "Milestone 1 - Core Framework"
-                                                      ],
-                              "milestone1Status":  "Complete/frozen",
-                              "milestone2Status":  "CodeUpdate 0134 corrected NPC population to map-qualified spawn identity. Runtime now resolves monster groups and optional boss NPCs, attaches spawns by (map_id, room_number), and preserves future-map spawns unattached until their maps are generated while keeping NPC AI, combat, loot, respawn scheduling, economy, quests, persistence, and broader gameplay out of scope.",
-                              "lastUpdateName":  "CodeUpdate-0134-CompleteMapQualifiedNpcPopulation",
-                              "nextRecommendedWork":  [
-                                                          "Push corrected CodeUpdate0134 after local verification passes.",
-                                                          "Wait for user-reported green GitHub Actions before starting CodeUpdate0135.",
-                                                          "Do not begin combat execution or promote evidence until the 0134 pushed update is green and the next scope is explicitly approved.",
-                                                          "Next narrow server slice should continue Classic runtime readiness without adding NPC AI, loot, respawn timers, economy, quests, persistence, or evidence promotion unless explicitly requested."
-                                                      ]
-                          },
-    "handoffPolicy":  {
-                          "agentFile":  "AGENTS.md",
-                          "handoffDocument":  "AI_CONTEXT.md",
-                          "engineeringPrinciples":  "DEVELOPMENT_PRINCIPLES.md",
-                          "mustUpdateEveryCodeUpdate":  true,
-                          "mustUpdateRelevantDocs":  true,
-                          "requiredStartupOrder":  [
-                                                       "AGENTS.md",
-                                                       "AI_CONTEXT.md",
-                                                       "Docs/Architecture/PROJECT_ROADMAP.md",
-                                                       "README.md",
-                                                       "VERSION.md",
-                                                       "CHANGELOG.md",
-                                                       "ProjectManifest.json",
-                                                       "DEVELOPMENT_PRINCIPLES.md"
-                                                   ]
-                      },
-    "updateZipPolicy":  {
-                            "patchOnly":  true,
-                            "oneTopLevelFolder":  true,
-                            "requiresApplyBat":  true,
-                            "requiresManifest":  true,
-                            "requiresVerificationBeforeAnnouncement":  true
-                        },
-    "buildVerification":  "LOCAL_PASS; Corrected CodeUpdate0134 map-qualified NPC population was applied locally with Saves and ImportedDatabases preserved. Room/exit validator passed. Corrected NPC loading validator passed with 1100 NPC definitions, 30 NPC groups, 962 spawns across 10 maps, 748 linked population records, 0 unresolved groups, 0 unresolved boss definitions, 275 primary spawn rooms available in the current generated room slice, and 687 valid primary spawn rooms waiting for future map generation. Compiler Release build and compiler tests passed. Server Release build, generated-data smoke, room-exit smoke, NPC smoke, scripted local console movement smoke, Core/server Release build, and Core/server smoke tests passed. GitHub Actions remains pending until user push.",
-    "current_codeupdate":  "0134",
-    "last_update":  "Complete Map-Qualified NPC Population",
-    "subsystems_completed":  [
-                                 "Server Runtime Milestone 1",
-                                 "Runtime state/event foundation",
-                                 "Librarium compiler v1",
-                                 "World overlay compiler completion",
-                                 "Combat formula conflict resolution",
-                                 "Generated Data/Classic server smoke validation source",
-                                 "Runtime room/exit load slice",
-                                 "Runtime developer-avatar session infrastructure",
-                                 "Runtime static NPC definition and spawn loading",
-                                 "Omniverse evidence intake policy"
-                             ],
-    "gitIgnorePolicy":  "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
-    "lastNormalizedAt":  "2026-07-09T01:13:35Z",
-    "current_milestone":  "Server Classic Test Readiness",
-    "librarium_authoritative":  true,
-    "data_generated_from_librarium":  true,
-    "librariumAuthority":  "Librarium is the source of truth; /Data is generated runtime output.",
-    "importedDatabasesPolicy":  "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
-    "retainedImportedDatabases":  [
-                                      "MBBSEmu",
-                                      "MMUD-Explorer",
-                                      "NightmareRedux",
-                                      "MajorMUD-PHP-Monster-Sim"
-                                  ],
-    "baseline":  "CodeUpdate 0134 - Complete Map-Qualified NPC Population",
-    "updatedUtc":  "2026-07-10T14:10:00Z",
-    "dataPolicy":  "/Data is generated output per world and should not be hand-edited as canonical source.",
-    "hostClientPolicy":  "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
+{
+  "project": "Reforged",
+  "projectVersion": "0.1.0",
+  "codeUpdate": "0135",
+  "databaseVersion": "0010",
+  "milestone": "CodeUpdate0136 - Complete Classic Gameplay",
+  "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Data artifacts are generated runtime output and are not edited manually.",
+  "runtimePolicy": "Runtime consumes generated /Data only. The client is read-only for gameplay state.",
+  "updatePolicy": "Codex updates the local repository only and waits for user push plus green GitHub Actions before continuing to the next public Code Update.",
+  "modePolicy": "Each assistant must identify mode first. Codex updates local only. ChatGPT uses verified patch ZIPs for local application unless explicitly instructed otherwise.",
+  "neverGuessPolicy": "Never guess when creating, fixing, reviewing, packaging, or reporting updates. Verify before claiming success; if something cannot be verified, state that clearly.",
+  "suggestionPolicy": "All approved architectural or project suggestions become implementation requirements unless explicitly deferred or rejected.",
+  "referenceDataPolicy": "All WCC data, WCC-labeled data, WSGSERVE-related data, imported archives, website data, and community/tool data are reference-only unless the user explicitly approves a reviewed import or reconciliation update.",
+  "importedDataRetirementPolicy": "ImportedDatabases may be retired from normal project work only after all needed source data has been decoded, imported, recreated as Reforged-native generated data, verified by reports, and explicitly approved for cleanup.",
+  "preserve": [
+    "Saves",
+    "ImportedDatabases"
+  ],
+  "developmentStatus": {
+    "currentMilestone": "CodeUpdate0136 - Complete Classic Gameplay",
+    "currentCodeUpdate": "0135",
+    "currentDatabaseVersion": "0010",
+    "completedMilestones": [
+      "Milestone 1 - Core Framework"
+    ],
+    "milestone1Status": "Complete/frozen",
+    "milestone2Status": "CodeUpdate 0135 applies final exhaustive Classic fixes over the verified room/exit/session/NPC baseline. It adds generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, room.unknown runtime exclusion, and final simulation/runtime verification reports.",
+    "lastUpdateName": "CodeUpdate-0135-FinalExhaustiveClassicFixes",
+    "nextRecommendedWork": [
+      "Push CodeUpdate0135 after local commit.",
+      "Wait for user-reported green GitHub Actions before continuing.",
+      "Continue CodeUpdate0136 internally only; do not create partial public 0136 packages or commits.",
+      "Complete Classic single-player gameplay with zero executable failures and zero Classic single-player gameplay blockers before consolidated 0136 publication."
+    ]
+  },
+  "handoffPolicy": {
+    "agentFile": "AGENTS.md",
+    "handoffDocument": "AI_CONTEXT.md",
+    "engineeringPrinciples": "DEVELOPMENT_PRINCIPLES.md",
+    "mustUpdateEveryCodeUpdate": true,
+    "mustUpdateRelevantDocs": true,
+    "requiredStartupOrder": [
+      "AGENTS.md",
+      "AI_CONTEXT.md",
+      "Docs/Architecture/PROJECT_ROADMAP.md",
+      "README.md",
+      "VERSION.md",
+      "CHANGELOG.md",
+      "ProjectManifest.json",
+      "DEVELOPMENT_PRINCIPLES.md"
+    ]
+  },
+  "updateZipPolicy": {
+    "patchOnly": true,
+    "oneTopLevelFolder": true,
+    "requiresApplyBat": true,
+    "requiresManifest": true,
+    "requiresVerificationBeforeAnnouncement": true
+  },
+  "buildVerification": "LOCAL_PASS; CodeUpdate0135 final exhaustive Classic fixes were applied locally with Saves and ImportedDatabases preserved. Exhaustive repairs validator passed. Complete runtime verification passed 49/49. Final simulation report passed 38/38. .NET solution restore/build gate, server generated-data/room-exit/NPC/combat/scripted-session smokes, compiler tests, and Core/server smoke tests passed. GitHub Actions remains pending until user push.",
+  "current_codeupdate": "0135",
+  "last_update": "Final Exhaustive Classic Fixes",
+  "subsystems_completed": [
+    "Server Runtime Milestone 1",
+    "Runtime state/event foundation",
+    "Librarium compiler v1",
+    "World overlay compiler completion",
+    "Combat formula conflict resolution",
+    "Generated Data/Classic server smoke validation source",
+    "Runtime room/exit load slice",
+    "Runtime developer-avatar session infrastructure",
+    "Runtime static NPC definition and spawn loading",
+    "DLL-verified single-swing Classic combat smoke",
+    "Final exhaustive Classic fix policy records"
+  ],
+  "gitIgnorePolicy": "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
+  "current_milestone": "CodeUpdate0136 - Complete Classic Gameplay",
+  "librarium_authoritative": true,
+  "data_generated_from_librarium": true,
+  "librariumAuthority": "Librarium is the source of truth; /Data is generated runtime output.",
+  "importedDatabasesPolicy": "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
+  "retainedImportedDatabases": [
+    "MBBSEmu",
+    "MMUD-Explorer",
+    "NightmareRedux",
+    "MajorMUD-PHP-Monster-Sim"
+  ],
+  "baseline": "CodeUpdate 0135 - Final Exhaustive Classic Fixes",
+  "updatedUtc": "2026-07-10T20:15:00Z",
+  "dataPolicy": "/Data is generated output per world and should not be hand-edited as canonical source.",
+  "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

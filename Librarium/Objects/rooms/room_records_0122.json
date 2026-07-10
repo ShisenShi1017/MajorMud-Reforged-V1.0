@@ -11,7 +11,7 @@
   "runtime_export": "Data generated from Librarium; runtime code unchanged in 0122",
   "object_type": "room",
   "source": "Evidence/DataSimVer0012 spawn/service extracts",
-  "record_count": 951,
+  "record_count": 950,
   "records": [
     {
       "id": "room.2",
@@ -79250,148 +79250,6 @@
       }
     },
     {
-      "id": "room.unknown",
-      "legacy_id": "",
-      "name": null,
-      "object_type": "room",
-      "world_scope": [
-        "classic"
-      ],
-      "spawns": [],
-      "services": [
-        "shop.157",
-        "shop.13",
-        "shop.149",
-        "shop.110",
-        "shop.7",
-        "shop.92",
-        "shop.2",
-        "shop.166",
-        "shop.165",
-        "shop.109"
-      ],
-      "evidence_refs": [
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        },
-        {
-          "source": "DataSimVer0012",
-          "path": "Evidence/DataSimVer0012/ServiceEvidenceExtract.csv",
-          "row_key": ""
-        }
-      ],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/rooms.json",
-        "status": "partial_record_ready_for_generator",
-        "source": "Librarium/Objects",
-        "generated_only": true,
-        "runtime_reads_generated_data": true
-      },
-      "confidence": "room_identity_from_spawn_service_evidence",
-      "librarium_enrichment_0124": {
-        "status": "enriched_pass_1",
-        "source_of_truth": "Librarium",
-        "data_role": "definition_source_for_generated_data",
-        "classic_lock": "classic world records require evidence-backed edits",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "client_visibility": "read_only_world_scoped"
-      },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "target_worlds": [
-          "classic"
-        ],
-        "output_collection": "rooms",
-        "export_path": "/Data/<world>/rooms.json",
-        "requires_validation": true,
-        "hot_reload_candidate": true
-      },
-      "validation_rules_0124": [
-        "id_required",
-        "object_type_required",
-        "world_scope_required",
-        "evidence_required_for_classic",
-        "runtime_mapping_required",
-        "generator_mapping_required"
-      ],
-      "relationship_summary_0124": [
-        {
-          "field": "spawns",
-          "value_count": 0
-        },
-        {
-          "field": "services",
-          "value_count": 10
-        }
-      ],
-      "evidence_summary_0124": {
-        "evidence_ref_count": 10,
-        "source_priority": [
-          "OriginalRuntimeObservation",
-          "NightmareRedux",
-          "MBBSEmu",
-          "MMUDExplorer",
-          "MonsterSimulatorHistorical",
-          "DataSimEvidence"
-        ],
-        "has_imported_database_anchor": false,
-        "confidence": "room_identity_from_spawn_service_evidence"
-      },
-      "override_policy_0124": {
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation",
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
-      },
-      "version_history_0124": {
-        "code_update": "0124",
-        "operation": "librarium_enrichment_pass_1",
-        "date": "2026-07-09"
-      }
-    },
-    {
       "id": "room.3337",
       "legacy_id": "3337",
       "name": null,
@@ -84936,5 +84794,6 @@
       }
     }
   ],
-  "enrichment_status_0124": "enriched_pass_1"
+  "enrichment_status_0124": "enriched_pass_1",
+  "compiler_code_update": "0135"
 }

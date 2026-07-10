@@ -11,7 +11,7 @@
   ],
   "object_type": "economy_rule",
   "source": "Evidence/DataSimVer0012 + Evidence/DataSimVer0014",
-  "record_count": 22,
+  "record_count": 23,
   "records": [
     {
       "id": "economy_rule.shoptype_10",
@@ -5696,7 +5696,32 @@
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
       }
+    },
+    {
+      "id": "economy_rule.bard_shop_minimum_percent",
+      "name": "bard_shop_minimum_percent",
+      "object_type": "economy_rule",
+      "world_scope": [
+        "classic"
+      ],
+      "rule_scope": "shop_pricing",
+      "minimum_percent": 10,
+      "description": "Prevents the Bard cash exploit by flooring effective shop percentage at 10%.",
+      "evidence_refs": [
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
+        }
+      ],
+      "runtime_mapping": {
+        "exports_to": "/Data/<world>/economy_rules.json",
+        "generated_only": true,
+        "runtime_reads_generated_data": true,
+        "status": "record_ready_for_generator"
+      }
     }
   ],
-  "enrichment_status_0124": "enriched_pass_1"
+  "enrichment_status_0124": "enriched_pass_1",
+  "compiler_code_update": "0135"
 }

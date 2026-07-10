@@ -24228,6 +24228,11 @@
           "source": "DataSimVer0008",
           "path": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv",
           "row_key": "1086"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "confidence": "multi_extract_field_level",
@@ -24297,7 +24302,10 @@
         "code_update": "0124",
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
-      }
+      },
+      "classic_bug_fixes_0135": [
+        "cloaked_figure_xp_10000"
+      ]
     },
     {
       "id": "npc.650",
@@ -156430,5 +156438,6 @@
       }
     }
   ],
-  "enrichment_status_0124": "enriched_pass_1"
+  "enrichment_status_0124": "enriched_pass_1",
+  "compiler_code_update": "0135"
 }

@@ -10,14 +10,14 @@ CANONICAL_FILES = {
     "rooms": "rooms.json",
     "room_graph": "room_graph.json",
     "items": "items.json",
-    "monsters": "monsters.json",
+    "monsters": "npcs.json",
     "spells": "spells.json",
     "shops": "shops.json",
     "loot_tables": "loot_tables.json",
     "classes": "classes.json",
     "races": "races.json",
     "skills": "skills.json",
-    "abilities": "abilities.json",
+    "abilities": "skills.json",
     "derived_stats": "derived_stats.json",
     "progression": "progression.json",
     "leveling": "leveling.json",
@@ -42,7 +42,7 @@ class DataRuntime:
 
     @classmethod
     def from_repo_root(cls, repo_root: str | Path = ".") -> "DataRuntime":
-        return cls(Path(repo_root) / "Data")
+        return cls(Path(repo_root) / "Data" / "Classic")
 
     def load(self) -> "DataRuntime":
         self.tables.clear()

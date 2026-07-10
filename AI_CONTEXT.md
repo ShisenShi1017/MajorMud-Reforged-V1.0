@@ -1,15 +1,15 @@
 # AI Context for Reforged
 
 
-## Current Baseline - CodeUpdate 0134
+## Current Baseline - CodeUpdate 0135
 
 - Librarium is the authoritative source of truth.
 - `/Data` is generated runtime output per world.
 - `/ImportedDatabases` must be retained until the Librarium is 100% complete and the user explicitly approves retirement.
 - Host/server/editor modifies Librarium world definitions and overlays.
 - Client is read-only and receives data for the active connected world.
-- CodeUpdate 0134 adds complete map-qualified static runtime NPC definition/spawn loading from generated `Data/Classic`, with spawn attachment by `(map_id, room_number)` instead of global room number.
-- CodeUpdate 0134 does not add NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, or data promotion.
+- CodeUpdate 0135 is the verified local baseline after final exhaustive Classic fixes, generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, and complete runtime promotion verification.
+- CodeUpdate 0136 is the active internal milestone for complete Classic single-player gameplay. Do not create partial public CodeUpdate0136 packages or commits; work in internal phases until the consolidated 0136 objective passes verification.
 - CodeUpdate 0127A repairs the CodeUpdate-0127 clean-checkout bootstrap failure by tracking `Bin/.gitkeep` while generated `Bin/` contents remain ignored.
 - Keep docs, handoffs, evidence, and decision records aligned with this model.
 
@@ -39,11 +39,11 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 |---|---|
 | Project | Reforged |
 | GitHub Truth | `ShisenShi1017/MajorMud-Reforged-V1.0` |
-| Current Milestone | Server Classic Test Readiness |
-| Current Code Update | 0134 |
+| Current Milestone | CodeUpdate0136 - Complete Classic Gameplay |
+| Current Code Update | 0135 |
 | Current Database Version | 0010 |
-| Last Update Name | CodeUpdate-0134-CompleteMapQualifiedNpcPopulation |
-| Milestone Estimate | 0134 complete map-qualified NPC population is locally verified; GitHub Actions verification pending user push |
+| Last Update Name | CodeUpdate-0135-FinalExhaustiveClassicFixes |
+| Milestone Estimate | 0135 final exhaustive Classic fixes locally verified; GitHub Actions verification pending user push |
 | Source of Truth | Current GitHub repository state |
 | Runtime Policy | No .NET SDK required for normal runtime |
 | ChatGPT Packaging Policy | Patch-only ZIP with exactly one top-level update folder, included Apply-CodeUpdate BAT, and UpdateManifest.json |
@@ -51,7 +51,7 @@ Reforged is a standalone game engine and toolset inspired by the original legacy
 
 ## Current Development Goal
 
-CodeUpdate-0134 is the current local server runtime slice. It supersedes earlier 0134 NPC-loading archives by correcting spawn identity to be map-qualified. It loads generated Classic NPC definitions from `Data/Classic/npcs.json`, loads generated spawn records from `Data/Classic/spawns.json`, resolves monster groups and optional boss NPCs, indexes attached room occupants only when `(map_id, room_number)` exists in the generated room slice, and adds compiler/runtime validation to prevent unqualified spawn identities. Current validation proves 962 spawn records across 10 maps, 748 map-qualified linked population records, 0 unresolved groups, 0 unresolved boss definitions, 275 primary spawn rooms available in the current Map 1 slice, and 687 valid primary spawn rooms waiting for future map generation. No NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, or data promotion is included.
+CodeUpdate-0135 is the current local baseline. It applies the final exhaustive Classic fix payload over the verified 0134 room/exit/session/NPC baseline. It adds generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired Python validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, final simulation reports, and complete runtime verification reports. Local Codex verification passed: `validate_codeupdate0135_exhaustive_repairs.py`, `run_complete_runtime_verification.py` 49/49 PASS, final simulation report 38/38 PASS, .NET solution restore/build gate, server generated-data/room-exit/NPC/combat/scripted-session smokes, compiler tests, and Core/server smoke tests. GitHub Actions remains pending until user push.
 
 Milestone 1 is frozen. Milestone 2 implementation started in CodeUpdate-0029 with constrained host/server startup diagnostics. CodeUpdate-0031 added a first non-gameplay Server bootstrap entry point around the existing diagnostics path. CodeUpdate-0031A corrected the 0031 smoke-test compile failure and is green by user report. CodeUpdate-0032 improves Server bootstrap manifest identity output and is green by user report. CodeUpdate-0033 makes Server bootstrap exit-code behavior an explicit report contract and is green by user report. CodeUpdate-0034 records OmniVerse as a read-only reference source for future data audits and is green by user report. CodeUpdate-0035 adds Server bootstrap validation summary counts and local .NET 8.0.422 restore/build/smoke verification passed. CodeUpdate-0036 adds the knowledge-base/design-decision documentation baseline through direct GitHub commits. CodeUpdate-0037 combines the 0036B continuity cleanup package with Software Design Specification draft docs and is green by user report. CodeUpdate-0038 adds required-directory status reporting to the non-gameplay Server bootstrap path and is green by user report. CodeUpdate-0039 adds a host-tool readiness summary while keeping gameplay status disabled. CodeUpdate-0040 preserves WCC-labeled WBB material as reference/import material only. CodeUpdate-0041 adds the read-only Classic parity audit foundation and is green by user report. CodeUpdate-0042 adds canonical Server data catalog loading to bootstrap and is green by user report. CodeUpdate-0043 classifies canonical Server data readiness and is green by user report. CodeUpdate-0044 adds the original reference capture/extractor tool. CodeUpdate-0045 integrates the DataDecode0043 checkpoint as the pre-mirror import-readiness baseline and is green by user report. CodeUpdate-0046 imports the OmniVerse/MudInfo capture payload. CodeUpdate-0047 preserves DataDecode0049 and records the DataDecode0050 GitHub transition handoff so future decode passes work directly in the repository. CodeUpdate-0048 creates the unified decoded-data comparison folder and Android ChatGPT phone handoff workflow. CodeUpdate-0049 preserves DataDecode0068 Spell Engine Proof and refreshes unified decoded-data inventory. CodeUpdate-0050 preserves SimulatorBuild0002 handoff evidence, DataDecode0110 final static certification, RuntimePrep0001-0009 archives, and the expected-model simulator. CodeUpdate-0051 adds import staging reports and preserves Build0021 behavioral recovery evidence without promoting formulas or rewriting canonical `Data/`. CodeUpdate-0052 preserves Build0027 current-state handoff evidence. CodeUpdate-0053 replaces repository `Data/` from the embedded Patch0068 `/Data` payload, preserves Patch0068 and Handoff0074 evidence once under `DataDecodeCheckpoints/`, and records Patch0071 as unreadable/unapplied. CodeUpdate-0054 copies only repository-new files from Validation0013 and DocUpdate0024 while skipping all existing paths. CodeUpdate-0055 preserves Validation0043 and MegaMUD2 RE0021 as evidence-only checkpoints, refreshes UnifiedDecodedData after correcting stale placeholder wording, and records the current placeholder/blocker audit. CodeUpdate-0057 repairs continuity after `CoreUpdate 0056` left manifests/docs at 0055, folds in Server Build Session 0001 and DocUpdate0025 planning material, and adds the first non-gameplay modular Server foundation with MajorMUD Classic registered as a disabled data-driven module baseline. CodeUpdate-0058 closes the `world_rooms` projection gap with scalar string-array loading and read-only Server world projection diagnostics. CodeUpdate-0059 adds read-only Server module readiness diagnostics. CodeUpdate-0060 adds read-only Server host configuration diagnostics. CodeUpdate-0061 adds read-only Server host lifecycle readiness diagnostics. CodeUpdate-0062 adds read-only Server scheduler bootstrap diagnostics and folds in curated ServerSim0036 planning evidence. CodeUpdate-0063 corrects scheduler bootstrap diagnostics to generic execution channel names, preserves curated DataSimVer0045 evidence-regression contract planning, and folds ServerRuntimeValidation0009 into the no-.NET simulator validation surface as expected-model lifecycle validation only. CodeUpdate-0064 adds guarded scheduler/status command diagnostics and preserves ServerRuntimeValidation0013 movement/follow evidence as partial-pass evidence only. CodeUpdate-0065 repairs canonical room/world data from `ImportedDatabases/data-v1.11n.mdb` where fields map directly, adds `Data/StockGameRaw/MMExplorerMDB/` as the raw stock data surface, and raises canonical/world room count to 1,248 without enabling gameplay.
 
@@ -1126,17 +1126,17 @@ Verified before creating CodeUpdate-0039:
 - Repository manifests recorded CodeUpdate-0038 and DatabaseVersion 0009.
 - User reported CodeUpdate-0038 GitHub Actions green.
 
-CodeUpdate-0065 is the current local update candidate.
+CodeUpdate-0135 is the current local baseline candidate.
 
-CodeUpdate-0064 is green by user report. CodeUpdate-0065 should be pushed by the user after the final local commit is ready.
+CodeUpdate-0134 is green by user report. CodeUpdate-0135 should be pushed by the user after the final local commit is ready.
 
 ## Next Recommended Work
 
-1. Push CodeUpdate-0065 after the final local commit is ready and report GitHub Actions status.
-2. After green Actions, choose one narrow MMExplorer MDB canonical repair slice, preferably shops or monsters, or one narrow non-gameplay Server construction slice.
-3. Use direct MDB-backed fields only unless byte-level field positions are decoded and reviewed.
-4. Keep hidden/scripted exits, formulas, timers, scripts, AI, drops, quests, and other runtime-only behavior marked uncertain until controlled validation or executable hooks exist.
-5. Do not add gameplay systems without explicit approval.
+1. Push CodeUpdate-0135 after the final local commit is ready and report GitHub Actions status.
+2. After green Actions, continue CodeUpdate0136 as an internal-only complete Classic single-player gameplay milestone.
+3. Do not create partial public CodeUpdate0136 packages or commits.
+4. Preserve the locked architecture: Librarium authoritative, `/Data` generated only, runtime consumes generated `/Data`, Classic immutable/evidence-locked, Custom/AI worlds use overlays, client read-only, and `ImportedDatabases/` untouched.
+5. Do not guess missing Classic behavior; classify unknown shop item rows before treating them as missing data.
 
 ## New Window Instruction
 

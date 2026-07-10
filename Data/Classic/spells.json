@@ -1,6 +1,6 @@
 {
   "base_world": null,
-  "compiler_code_update": "0127",
+  "compiler_code_update": "0135",
   "family": "spells",
   "generated_by": "MajorMud.Reforged.Compiler",
   "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
@@ -5126,6 +5126,11 @@
           "path": "Evidence/DataSimVer0015/SpellStatusEvidenceExtract.csv",
           "row_key": "1055",
           "source": "DataSimVer0015"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "evidence_summary_0124": {
@@ -5204,6 +5209,15 @@
       },
       "world_scope": [
         "classic"
+      ],
+      "messages": {
+        "cast_message_id": "2520",
+        "description_message_id": "2531",
+        "cast_message_required": true,
+        "description_message_required": true
+      },
+      "classic_bug_fixes_0135": [
+        "bcns_nonblank_message_hooks"
       ]
     },
     {

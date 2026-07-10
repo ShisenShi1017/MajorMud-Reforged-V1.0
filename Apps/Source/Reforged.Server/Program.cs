@@ -76,6 +76,14 @@ if (!report.Passed)
     return report.ExitCode;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-combat", StringComparison.OrdinalIgnoreCase)))
+{
+    var combatSmoke = ClassicCombatSmokeReport.Run();
+    Console.WriteLine("Classic Combat Smoke Report");
+    Console.WriteLine(combatSmoke.ToJson());
+    return combatSmoke.Passed ? 0 : 6;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-npcs", StringComparison.OrdinalIgnoreCase)))
 {
     if (report.ProjectRoot is null)

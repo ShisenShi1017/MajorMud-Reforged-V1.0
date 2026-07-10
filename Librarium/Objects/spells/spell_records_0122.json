@@ -4991,6 +4991,11 @@
           "source": "DataSimVer0015",
           "path": "Evidence/DataSimVer0015/SpellStatusEvidenceExtract.csv",
           "row_key": "1055"
+        },
+        {
+          "source": "OperatorClassicBugList",
+          "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+          "status": "operator_confirmed_classic_correction"
         }
       ],
       "formula_refs": [
@@ -5061,7 +5066,16 @@
         "code_update": "0124",
         "operation": "librarium_enrichment_pass_1",
         "date": "2026-07-09"
-      }
+      },
+      "messages": {
+        "cast_message_id": "2520",
+        "description_message_id": "2531",
+        "cast_message_required": true,
+        "description_message_required": true
+      },
+      "classic_bug_fixes_0135": [
+        "bcns_nonblank_message_hooks"
+      ]
     },
     {
       "id": "spell.352",
@@ -136364,5 +136378,6 @@
       }
     }
   ],
-  "enrichment_status_0124": "enriched_pass_1"
+  "enrichment_status_0124": "enriched_pass_1",
+  "compiler_code_update": "0135"
 }

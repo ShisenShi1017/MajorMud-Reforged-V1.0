@@ -1,0 +1,68 @@
+{
+  "object_type": "classic_bug_fix_contract_set",
+  "world_scope": [
+    "classic"
+  ],
+  "code_update": "0135",
+  "records": [
+    {
+      "id": "classic_fix.bard_shop_minimum_percent",
+      "status": "fixed",
+      "minimum_shop_percent": 10,
+      "rule": "effective shop percentage may not fall below 10"
+    },
+    {
+      "id": "classic_fix.cloaked_figure_xp",
+      "status": "fixed",
+      "npc_ref": "npc.1086",
+      "xp": 10000
+    },
+    {
+      "id": "classic_fix.mask_face_slot",
+      "status": "fixed",
+      "item_refs": [
+        "item.288",
+        "item.561",
+        "item.999",
+        "item.1884"
+      ],
+      "slot": "face",
+      "legacy_worn_on": "19"
+    },
+    {
+      "id": "classic_fix.hidden_sneak_visibility",
+      "status": "runtime_contract",
+      "rule": "SEE HIDDEN evaluates hidden state independently of sneak state"
+    },
+    {
+      "id": "classic_fix.two_handed_backstab_downgrade",
+      "status": "runtime_contract",
+      "rule": "invalid backstab weapon downgrades to normal attack and engages target"
+    },
+    {
+      "id": "classic_fix.lyrists_companion",
+      "status": "fixed",
+      "item_ref": "item.1317",
+      "spell_ref": "spell.1055",
+      "cast_message_id": "2520",
+      "description_message_id": "2531"
+    },
+    {
+      "id": "classic_fix.dual_lever_atomicity",
+      "status": "runtime_contract",
+      "rule": "paired lever mutation must be serialized atomically"
+    },
+    {
+      "id": "classic_fix.gang_deed_cleanup",
+      "status": "runtime_contract",
+      "rule": "invalid former owner may not retain deed after gang ownership reset"
+    }
+  ],
+  "evidence_refs": [
+    {
+      "source": "OperatorClassicBugList",
+      "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
+      "status": "operator_confirmed_classic_correction"
+    }
+  ]
+}

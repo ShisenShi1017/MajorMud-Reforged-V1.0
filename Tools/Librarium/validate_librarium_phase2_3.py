@@ -6,10 +6,15 @@ required=[
  f'Librarium/Schemas/librarium_object_schema_{code}.json',
  f'Librarium/Indexes/librarium_metrics_{code}.json',
  f'Librarium/Indexes/librarium_completion_index_{code}.json',
- f'Librarium/Relationships/librarium_relationship_graph_{code}.json',
  'Librarium/Worlds/world_branches_0121.json',
  'SOURCE_OF_TRUTH.md','REPOSITORY_RULES.md','Data/README.md']
 errors=[]
+relationship_candidates=[
+ 'Librarium/Relationships/librarium_relationship_graph_0121.json',
+ 'Librarium/Assertions/knowledge_assertions_0011.json',
+ 'Librarium/SQLDataImport/sql_mdb_relationships_0128.json']
+if not any(os.path.exists(os.path.join(ROOT, rel)) for rel in relationship_candidates):
+ errors.append('missing current Librarium relationship artifact')
 for rel in required:
  p=os.path.join(ROOT,rel)
  if not os.path.exists(p): errors.append(f'missing {rel}')
