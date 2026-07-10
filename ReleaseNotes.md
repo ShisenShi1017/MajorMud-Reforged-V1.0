@@ -1,3 +1,21 @@
+# CodeUpdate-0134 - Runtime NPC Loading
+
+This update adds static generated NPC loading to the server runtime.
+
+Highlights:
+
+- Loads 1,100 generated NPC definitions from `Data/Classic/npcs.json`.
+- Loads 962 generated room spawn records from `Data/Classic/spawns.json`.
+- Resolves 927 spawn records to generated NPC definitions.
+- Retains 35 unresolved generated spawn references without guessing.
+- Indexes 883 rooms with spawn records.
+- Displays room occupants during `look` and movement output.
+- Adds `--smoke-npcs` and a Python NPC loading validator.
+
+Known limitation:
+
+- This is static runtime inspection only. NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, and broader gameplay remain future gated work.
+
 # CodeUpdate-0133 - Runtime Session Omniverse Evidence
 
 This update folds in the 0132 room/exit runtime slice and adds developer-avatar session infrastructure plus Omniverse evidence intake.

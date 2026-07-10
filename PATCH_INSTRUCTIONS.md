@@ -1,28 +1,21 @@
-# CodeUpdate0133 Patch Instructions
+# CodeUpdate0134 Patch Instructions
 
-## Baseline
-Apply to the CodeUpdate0132 full repository. This archive is update-only.
+1. Start from committed CodeUpdate0133 baseline `96834067` with a clean tree.
+2. Extract this archive into the repository root, preserving paths.
+3. Confirm protected folders are not staged: `Saves/`, `ImportedDatabases/`, and `Reports/TempReview/`.
+4. Run:
 
-## Apply
-Copy the archive contents over the repository root while preserving paths.
+```powershell
+python Tools\Validation\validate_codeupdate0134_runtime_npc_loading.py
+dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore
+dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data
+dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits
+dotnet run --project Apps/Source/Reforged.Server -- --smoke-npcs
+dotnet run --project Apps/Source/Reforged.Server -- --run-local
+dotnet build Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-restore
+dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build
+```
 
-## Build validation
-From the repository root, run the solution/project build commands used by CodeUpdate0132. At minimum build the compiler and `Reforged.Server` with the installed .NET SDK.
+During `--run-local`, enter a generated diagnostic room that contains a spawn and verify that `look` lists the generated NPC name. Do not treat an unresolved spawn as permission to invent an NPC mapping.
 
-## Runtime smoke validation
-1. Confirm the active world loads generated `rooms.json` and standalone `exits.json`.
-2. Start the server with developer mode enabled.
-3. Confirm the session attaches `RuntimeDeveloperAvatar`, not a gameplay character.
-4. Confirm `look` renders the diagnostic room.
-5. When an approved generated diagnostic room is configured, verify visible exits and movement.
-6. Confirm Town Gates is not used as a default spawn.
-7. Confirm the developer avatar is not written to character state or persistence.
-
-## Evidence validation
-1. Confirm all files under `Evidence/Omniverse` are present.
-2. Preserve screenshots unchanged.
-3. Do not copy Omniverse conclusions into the Librarium without an OVGN verification record.
-4. Keep stock/Classic findings separate from OmniMUD enhancements.
-
-## Promotion gate
-Do not promote CodeUpdate0133 until the C# build and runtime smoke validation pass. Evidence intake itself does not authorize gameplay-data changes.
+The authoring environment did not have the .NET SDK. Promotion requires all local commands to pass.

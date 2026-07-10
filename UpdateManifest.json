@@ -1,53 +1,54 @@
-﻿{
-    "codeUpdate":  "0133",
-    "name":  "CodeUpdate0133-RuntimeSession-OmniverseEvidence",
-    "packageType":  "0132-full-repo-overlay-plus-0133-update-only-local-merge",
-    "librariumAuthoritative":  true,
-    "dataGeneratedOnly":  true,
-    "importedDatabasesRetained":  true,
-    "runtimeGameplayChanged":  false,
-    "serverSourceChanged":  true,
-    "purpose":  "Combine CodeUpdate0132 runtime room/exit loading with CodeUpdate0133 runtime developer-avatar session infrastructure and Omniverse evidence intake policy.",
-    "includedUpdates":  [
-                            "CodeUpdate0132-RuntimeRoomExitLoadSlice",
-                            "CodeUpdate0133-RuntimeSession-OmniverseEvidence"
-                        ],
-    "newServerCommands":  [
-                              "--smoke-room-exits"
-                          ],
-    "evidencePolicy":  "Evidence/Omniverse is retained validation material only. Do not promote Omniverse formulas, mappings, or feature behavior into Librarium or generated data without an OVGN verification record and explicit reviewed promotion.",
-    "validationStatus":  "LOCAL_PASS",
-    "dotnetSdkAvailableHere":  true,
-    "requiredCodexCommands":  [
-                                  "python Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py",
-                                  "dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj",
-                                  "dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data",
-                                  "dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits",
-                                  "scripted local console smoke with developer avatar"
-                              ],
-    "reports":  [
-                    "Documentation/CodeUpdates/CODEUPDATE0132_RUNTIME_ROOM_EXIT_LOAD_SLICE.md",
-                    "Reports/CodeUpdate0132/runtime_room_exit_slice_0132.json",
-                    "HANDOFF.md",
-                    "MANIFEST.md",
-                    "PATCH_INSTRUCTIONS.md",
-                    "Evidence/Omniverse/SOURCE_INDEX.md"
-                ],
-    "knownLimitations":  [
-                             "0133 intentionally does not treat Town Gates or legacy generic start_room as a default new-character spawn.",
-                             "With no diagnostic room configured, the developer avatar starts in an isolated synthetic Developer Test Room.",
-                             "Combat, magic, NPC AI, spawns, shops, economy, quests, persistence, NPC loading, and broader gameplay remain out of scope.",
-                             "GitHub Actions remains pending until user push and green report."
-                         ],
-    "updatedUtc":  "2026-07-10T03:20:21Z",
-    "verificationStatus":  "LOCAL_PASS; CodeUpdate0132 room/exit load slice and CodeUpdate0133 runtime-session/evidence update were merged locally with Saves and ImportedDatabases preserved. Python 0132 room/exit validator passed. Server Debug build passed after updating RuntimeCommandSystem to use session.Actor.Id. --smoke-generated-data passed with explicit diagnosticRoom room.1. --smoke-room-exits passed. Scripted local console smoke passed with non-persistent developer-avatar, diagnostic Town Gates start, and north movement to Estwall Street. Server Release build passed. Core/server Release build and smoke tests passed after updating the runtime state/events smoke test for developer-avatar sessions. GitHub Actions remains pending until user push.",
-    "localVerification":  {
-                              "roomExitValidator":  "PASS: python Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py; 951 rooms, 693 exits, 0 issues.",
-                              "serverDebugBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj; 0 warnings, 0 errors after actor-id merge repair.",
-                              "generatedDataSmoke":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data; diagnostic room.1 resolved to Town Gates with three exits.",
-                              "roomExitSmoke":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits; E/N/W targets resolved to named rooms.",
-                              "localConsole":  "PASS: scripted look/north/look/quit; developer-avatar non-persistent actor starts at Town Gates diagnostic room and moves north to Estwall Street.",
-                              "serverReleaseBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore; 0 warnings, 0 errors.",
-                              "coreServerSmoke":  "PASS: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build."
-                          }
+{
+  "codeUpdate": "0134",
+  "name": "CodeUpdate0134-RuntimeNpcLoading",
+  "packageType": "0134-update-only-local-merge",
+  "librariumAuthoritative": true,
+  "dataGeneratedOnly": true,
+  "importedDatabasesRetained": true,
+  "runtimeGameplayChanged": false,
+  "serverSourceChanged": true,
+  "purpose": "Load generated Classic NPC definitions and room spawn records into the server runtime for static occupant inspection.",
+  "includedUpdates": [
+    "CodeUpdate0134-RuntimeNpcLoading"
+  ],
+  "newServerCommands": [
+    "--smoke-npcs"
+  ],
+  "evidencePolicy": "Generated NPC/spawn loading consumes existing generated Data/Classic runtime output. Unresolved generated spawn references are retained as diagnostics without guessing. Omniverse evidence remains validation material only.",
+  "validationStatus": "LOCAL_PASS",
+  "dotnetSdkAvailableHere": true,
+  "requiredCodexCommands": [
+    "python Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py",
+    "dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore",
+    "dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data",
+    "dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits",
+    "dotnet run --project Apps/Source/Reforged.Server -- --smoke-npcs",
+    "scripted local console smoke with developer avatar and visible generated NPC occupant",
+    "dotnet build Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-restore",
+    "dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build"
+  ],
+  "reports": [
+    "HANDOFF.md",
+    "MANIFEST.md",
+    "PATCH_INSTRUCTIONS.md",
+    "Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py"
+  ],
+  "knownLimitations": [
+    "Static NPC placement is loaded for inspection only.",
+    "35 generated spawn records reference monster_type values without generated NPC definitions and are retained by declared name without guessing.",
+    "NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, and broader gameplay remain out of scope.",
+    "room.1 remains a developer diagnostic room only and is not verified new-character spawn evidence.",
+    "GitHub Actions remains pending until user push and green report."
+  ],
+  "updatedUtc": "2026-07-10T04:28:00Z",
+  "verificationStatus": "LOCAL_PASS; CodeUpdate0134 runtime NPC loading was merged locally with Saves and ImportedDatabases preserved. Python NPC loading validator passed. Server Release build passed. --smoke-generated-data passed. --smoke-room-exits passed. --smoke-npcs passed with 1100 NPC definitions, 962 spawns, 927 resolved spawns, 35 unresolved retained without guessing, 883 spawn rooms, and 0 missing room references. Scripted local console smoke passed with non-persistent developer-avatar, diagnostic Town Gates start, north movement to Estwall Street, and visible mercenary occupant. Core/server Release build and smoke tests passed. GitHub Actions remains pending until user push.",
+  "localVerification": {
+    "npcValidator": "PASS: python Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py; 1100 NPC definitions, 962 spawns, 927 resolved, 35 unresolved retained, 883 spawn rooms.",
+    "serverReleaseBuild": "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore; 0 warnings, 0 errors.",
+    "generatedDataSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data.",
+    "roomExitSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits.",
+    "npcSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-npcs.",
+    "localConsole": "PASS: scripted look/north/look/quit; developer-avatar starts at Town Gates diagnostic room, moves north to Estwall Street, and sees mercenary.",
+    "coreServerSmoke": "PASS: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build."
+  }
 }

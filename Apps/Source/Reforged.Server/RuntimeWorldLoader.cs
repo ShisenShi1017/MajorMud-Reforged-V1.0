@@ -43,6 +43,11 @@ public sealed class RuntimeWorldLoader
             ApplyGeneratedExits(exitsPath, rooms, roomsByNumber);
         }
 
+        var npcsPath = Path.Combine(projectRoot, definition.DataRoot, definition.NpcsFile);
+        var spawnsPath = Path.Combine(projectRoot, definition.DataRoot, definition.SpawnsFile);
+        var npcs = LoadNpcs(npcsPath);
+        var spawns = LoadSpawns(spawnsPath, rooms, npcs);
+
         var generatedCharacterStartRoomId = ReadGeneratedCharacterStartRoom(projectRoot, definition);
         if (!string.IsNullOrWhiteSpace(generatedCharacterStartRoomId) && !rooms.ContainsKey(generatedCharacterStartRoomId))
         {
@@ -68,8 +73,76 @@ public sealed class RuntimeWorldLoader
             roomsByNumber,
             roomsPath,
             exitsPath,
+            npcsPath,
+            spawnsPath,
             generatedCharacterStartRoomId,
+            npcs,
+            spawns,
             catalog);
+    }
+
+    private static IReadOnlyDictionary<int, RuntimeNpcDefinition> LoadNpcs(string npcsPath)
+    {
+        if (!File.Exists(npcsPath))
+        {
+            throw new FileNotFoundException("Generated NPC file was not found.", npcsPath);
+        }
+
+        var npcs = new Dictionary<int, RuntimeNpcDefinition>();
+        using var document = JsonDocument.Parse(File.ReadAllText(npcsPath));
+        foreach (var element in EnumerateGeneratedRecords(document.RootElement, npcsPath))
+        {
+            var npc = RuntimeNpcDefinition.FromJson(element);
+            if (npc.LegacyId <= 0 || string.IsNullOrWhiteSpace(npc.Id))
+            {
+                continue;
+            }
+
+            npcs[npc.LegacyId] = npc;
+        }
+
+        if (npcs.Count == 0)
+        {
+            throw new InvalidOperationException($"Generated NPC file did not contain any loadable NPC definitions: {npcsPath}");
+        }
+
+        return npcs;
+    }
+
+    private static IReadOnlyList<RuntimeNpcSpawn> LoadSpawns(
+        string spawnsPath,
+        IReadOnlyDictionary<string, RuntimeRoom> rooms,
+        IReadOnlyDictionary<int, RuntimeNpcDefinition> npcs)
+    {
+        if (!File.Exists(spawnsPath))
+        {
+            throw new FileNotFoundException("Generated NPC spawn file was not found.", spawnsPath);
+        }
+
+        var spawns = new List<RuntimeNpcSpawn>();
+        using var document = JsonDocument.Parse(File.ReadAllText(spawnsPath));
+        foreach (var element in EnumerateGeneratedRecords(document.RootElement, spawnsPath))
+        {
+            var spawn = RuntimeNpcSpawn.FromJson(element, npcs);
+            if (string.IsNullOrWhiteSpace(spawn.Id) || string.IsNullOrWhiteSpace(spawn.RoomId))
+            {
+                continue;
+            }
+
+            if (!rooms.ContainsKey(spawn.RoomId))
+            {
+                throw new InvalidOperationException($"NPC spawn '{spawn.Id}' references missing room '{spawn.RoomId}'.");
+            }
+
+            spawns.Add(spawn);
+        }
+
+        if (spawns.Count == 0)
+        {
+            throw new InvalidOperationException($"Generated NPC spawn file did not contain any loadable spawn records: {spawnsPath}");
+        }
+
+        return spawns;
     }
 
     private static string? ReadGeneratedCharacterStartRoom(string projectRoot, WorldRuntimeDefinition definition)
@@ -190,7 +263,11 @@ public sealed class RuntimeWorld
         IReadOnlyDictionary<int, RuntimeRoom> roomsByNumber,
         string evidencePath,
         string exitsEvidencePath,
+        string npcEvidencePath,
+        string spawnEvidencePath,
         string? generatedCharacterStartRoomId,
+        IReadOnlyDictionary<int, RuntimeNpcDefinition> npcs,
+        IReadOnlyList<RuntimeNpcSpawn> spawns,
         GeneratedWorldDataCatalog dataCatalog)
     {
         Definition = definition;
@@ -198,14 +275,29 @@ public sealed class RuntimeWorld
         _roomsByNumber = roomsByNumber;
         EvidencePath = evidencePath;
         ExitsEvidencePath = exitsEvidencePath;
+        NpcEvidencePath = npcEvidencePath;
+        SpawnEvidencePath = spawnEvidencePath;
         GeneratedCharacterStartRoomId = generatedCharacterStartRoomId;
+        Npcs = npcs;
+        Spawns = spawns;
+        SpawnsByRoom = spawns.GroupBy(spawn => spawn.RoomId, StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(group => group.Key, group => (IReadOnlyList<RuntimeNpcSpawn>)group.ToArray(), StringComparer.OrdinalIgnoreCase);
         DataCatalog = dataCatalog;
     }
 
     public WorldRuntimeDefinition Definition { get; }
     public string EvidencePath { get; }
     public string ExitsEvidencePath { get; }
+    public string NpcEvidencePath { get; }
+    public string SpawnEvidencePath { get; }
     public string? GeneratedCharacterStartRoomId { get; }
+    public IReadOnlyDictionary<int, RuntimeNpcDefinition> Npcs { get; }
+    public IReadOnlyList<RuntimeNpcSpawn> Spawns { get; }
+    public IReadOnlyDictionary<string, IReadOnlyList<RuntimeNpcSpawn>> SpawnsByRoom { get; }
+    public int NpcCount => Npcs.Count;
+    public int SpawnCount => Spawns.Count;
+    public int ResolvedSpawnCount => Spawns.Count(spawn => spawn.DefinitionResolved);
+    public int UnresolvedSpawnCount => SpawnCount - ResolvedSpawnCount;
     public GeneratedWorldDataCatalog DataCatalog { get; }
     public int RoomCount => _rooms.Count;
 
@@ -218,4 +310,7 @@ public sealed class RuntimeWorld
     public RuntimeRoom? FindRoomById(string id) => _rooms.TryGetValue(id, out var room) ? room : null;
 
     public RuntimeRoom? FindRoomByNumber(int roomNumber) => _roomsByNumber.TryGetValue(roomNumber, out var room) ? room : null;
+
+    public IReadOnlyList<RuntimeNpcSpawn> FindSpawnsByRoom(string roomId) =>
+        SpawnsByRoom.TryGetValue(roomId, out var spawns) ? spawns : Array.Empty<RuntimeNpcSpawn>();
 }

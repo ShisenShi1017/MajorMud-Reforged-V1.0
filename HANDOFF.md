@@ -1,36 +1,39 @@
-# MajorMUD Reforged Handoff — Post CodeUpdate0133
+# MajorMUD Reforged Handoff — Post CodeUpdate0134
 
-## Active result
-CodeUpdate0133 integrates generated room/exit loading with a session-controlled developer avatar and formalizes Omniverse as an evidence source.
+## Baseline
 
-## Runtime actor model
-A `RuntimeSession` controls an `IRuntimeSessionActor`:
-- `RuntimeCharacterActor`: a real gameplay character.
-- `RuntimeDeveloperAvatar`: temporary session infrastructure used for runtime smoke testing.
+- Apply to committed CodeUpdate0133 baseline `96834067`.
+- CodeUpdate0134 is update-only.
 
-The developer avatar has no class, race, level, inventory, currency, character-creation bypass, or persistence record. It is not a Librarium or generated-data entity.
+## Implemented
 
-## Session order
-1. Restore a valid real character and room when available.
-2. Otherwise attach the developer avatar when developer mode permits.
-3. Use an explicitly configured diagnostic generated room when available.
-4. Otherwise use the isolated synthetic Developer Test Room.
-5. With developer mode disabled and no valid character, stop with a diagnostic because normal character creation is not yet implemented.
+The runtime now loads generated NPC definitions and room spawn records:
 
-## Remaining Classic spawn gap
-Generated Classic data does not yet expose a verified new-character starting location. Town Gates and legacy generic `start_room` metadata must not substitute for that evidence.
+`Librarium -> Compiler -> /Data/Classic/npcs.json + spawns.json -> Server runtime`
 
-## Omniverse evidence policy
-`Evidence/Omniverse` now preserves Omniverse Discord, website, document, video, and message-export material. Classic research is separated from intentional OmniMUD features. Nothing is canonical until validated and promoted into the Librarium with provenance.
+Runtime behavior:
 
-## Evidence included
-- Combat/spell technical discussion.
-- Aggro target-memory and daily-maintenance discussion.
-- Dragon-hide legacy mapping investigation and adjustment discussion.
-- MegaMUD/Omniverse connection configuration reference.
+1. Load NPC definitions keyed by generated `legacy_id`.
+2. Load spawn records.
+3. Resolve each spawn using `spawn_model.monster_type`.
+4. Validate the generated `room_ref`.
+5. Index spawns by room.
+6. Display present NPC names during `look` and room entry.
 
-## Next actions
-1. Run the C# build and runtime smoke commands in `PATCH_INSTRUCTIONS.md`.
-2. Do not promote Omniverse formulas or mappings directly.
-3. Begin OVGN validation passes against DLL evidence and ImportedDatabases.
-4. Do not begin CodeUpdate0134 NPC loading until 0133 runtime verification passes.
+## Verified generated-data results
+
+- 1,100 NPC definitions
+- 962 spawn records
+- 927 spawn records resolve to generated NPC definitions
+- 35 unresolved definition references retained without guessing
+- 883 rooms contain spawn records
+- 0 missing room references
+- 0 resolved-name mismatches
+
+## Scope boundary
+
+This update loads static NPC definitions and placements only. It does not execute AI, combat, spells, loot, death, movement, respawn timers, shops, or persistence.
+
+## Next milestone
+
+CodeUpdate0135: combat execution, only after local C# build, NPC smoke, and interactive room occupant checks pass.

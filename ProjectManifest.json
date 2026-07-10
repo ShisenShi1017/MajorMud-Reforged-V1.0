@@ -1,7 +1,7 @@
 ﻿{
     "project":  "Reforged",
     "projectVersion":  "0.1.0",
-    "codeUpdate":  "0133",
+    "codeUpdate":  "0134",
     "databaseVersion":  "0010",
     "milestone":  "Server Classic Test Readiness",
     "sourceOfTruth":  "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Generated graph/index/database artifacts are local generated outputs and ignored by Git.",
@@ -18,19 +18,19 @@
                  ],
     "developmentStatus":  {
                               "currentMilestone":  "Server Classic Test Readiness",
-                              "currentCodeUpdate":  "0133",
+                              "currentCodeUpdate":  "0134",
                               "currentDatabaseVersion":  "0010",
                               "completedMilestones":  [
                                                           "Milestone 1 - Core Framework"
                                                       ],
                               "milestone1Status":  "Complete/frozen",
-                              "milestone2Status":  "CodeUpdate 0132 loads runtime room/exit data for Classic smoke testing. CodeUpdate 0133 adds runtime developer-avatar session infrastructure and preserves Omniverse evidence as non-canonical validation material only. Combat, magic, NPC AI, economy, quests, persistence, and broader gameplay remain out of scope.",
-                              "lastUpdateName":  "CodeUpdate-0133-RuntimeSession-OmniverseEvidence",
+                              "milestone2Status":  "CodeUpdate 0134 loads static generated NPC definitions and room spawn records for Classic runtime inspection. It renders room occupants during look/movement output while keeping NPC AI, combat, loot, respawn scheduling, economy, quests, persistence, and broader gameplay out of scope.",
+                              "lastUpdateName":  "CodeUpdate-0134-RuntimeNpcLoading",
                               "nextRecommendedWork":  [
-                                                          "Push CodeUpdate0133 after local verification passes.",
-                                                          "Wait for user-reported green GitHub Actions before starting CodeUpdate0134.",
-                                                          "Do not begin NPC loading or promote Omniverse evidence until the 0133 pushed update is green and the next scope is explicitly approved.",
-                                                          "Next narrow server slice should continue Classic runtime readiness without adding combat, NPC AI, economy, quests, persistence, or evidence promotion unless explicitly requested."
+                                                          "Push CodeUpdate0134 after local verification passes.",
+                                                          "Wait for user-reported green GitHub Actions before starting CodeUpdate0135.",
+                                                          "Do not begin combat execution or promote evidence until the 0134 pushed update is green and the next scope is explicitly approved.",
+                                                          "Next narrow server slice should continue Classic runtime readiness without adding NPC AI, loot, respawn timers, economy, quests, persistence, or evidence promotion unless explicitly requested."
                                                       ]
                           },
     "handoffPolicy":  {
@@ -57,9 +57,9 @@
                             "requiresManifest":  true,
                             "requiresVerificationBeforeAnnouncement":  true
                         },
-    "buildVerification":  "LOCAL_PASS; CodeUpdate0132 room/exit load slice and CodeUpdate0133 runtime-session/evidence update were merged locally with Saves and ImportedDatabases preserved. Python 0132 room/exit validator passed. Server Debug build passed after updating RuntimeCommandSystem to use session.Actor.Id. --smoke-generated-data passed with explicit diagnosticRoom room.1. --smoke-room-exits passed. Scripted local console smoke passed with non-persistent developer-avatar, diagnostic Town Gates start, and north movement to Estwall Street. Server Release build passed. Core/server Release build and smoke tests passed after updating the runtime state/events smoke test for developer-avatar sessions. GitHub Actions remains pending until user push.",
-    "current_codeupdate":  "0133",
-    "last_update":  "Runtime Session Omniverse Evidence",
+    "buildVerification":  "LOCAL_PASS; CodeUpdate0134 runtime NPC loading was applied locally with Saves and ImportedDatabases preserved. Python NPC loading validator passed with 1100 NPC definitions, 962 spawns, 927 resolved spawns, 35 unresolved retained without guessing, and 883 spawn rooms. Server Release build passed. --smoke-generated-data passed with explicit diagnosticRoom room.1. --smoke-room-exits passed. --smoke-npcs passed. Scripted local console smoke passed with non-persistent developer-avatar, diagnostic Town Gates start, north movement to Estwall Street, and visible mercenary room occupant. Core/server Release build and smoke tests passed. GitHub Actions remains pending until user push.",
+    "current_codeupdate":  "0134",
+    "last_update":  "Runtime NPC Loading",
     "subsystems_completed":  [
                                  "Server Runtime Milestone 1",
                                  "Runtime state/event foundation",
@@ -69,6 +69,7 @@
                                  "Generated Data/Classic server smoke validation source",
                                  "Runtime room/exit load slice",
                                  "Runtime developer-avatar session infrastructure",
+                                 "Runtime static NPC definition and spawn loading",
                                  "Omniverse evidence intake policy"
                              ],
     "gitIgnorePolicy":  "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
@@ -84,8 +85,8 @@
                                       "NightmareRedux",
                                       "MajorMUD-PHP-Monster-Sim"
                                   ],
-    "baseline":  "CodeUpdate 0133 - Runtime Session Omniverse Evidence",
-    "updatedUtc":  "2026-07-10T03:20:21Z",
+    "baseline":  "CodeUpdate 0134 - Runtime NPC Loading",
+    "updatedUtc":  "2026-07-10T04:28:00Z",
     "dataPolicy":  "/Data is generated output per world and should not be hand-edited as canonical source.",
     "hostClientPolicy":  "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

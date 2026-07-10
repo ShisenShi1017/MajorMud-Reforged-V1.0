@@ -96,13 +96,13 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0127A`
+- Current Code Update: `0134`
 - Current Database Version: `0010`
-- Current Milestone: `Librarium World Overlay Compiler Completion`
+- Current Milestone: `Server Classic Test Readiness`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0127A, verify GitHub Actions green by user report, then approve one narrow runtime/compiler validation slice built on the 0127 generated-world baseline.
+- Current priority: push CodeUpdate-0134, verify GitHub Actions green by user report, then approve one narrow server runtime slice built on static NPC loading.
 
-CodeUpdate-0127A corrects the CodeUpdate-0127 clean-checkout Server bootstrap failure by tracking `Bin/.gitkeep` while keeping generated `Bin/` contents ignored. No gameplay, generated data change, runtime formula promotion, or imported/reference deletion is included.
+CodeUpdate-0134 loads static generated NPC definitions and room spawn records into the server runtime. It indexes room occupants, displays static occupant names during `look` and movement output, and adds `--smoke-npcs`. It does not add NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, generated data rewrites, Librarium rewrites, imported/reference deletion, or evidence promotion.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -175,6 +175,12 @@ CodeUpdate-0063 corrects CodeUpdate-0062 scheduler bootstrap diagnostics to use 
 CodeUpdate-0064 adds guarded scheduler/status command diagnostics to Server bootstrap and preserves ServerRuntimeValidation0013 movement/follow evidence under `Docs/ServerSim/ServerRuntimeValidation0013/`. Registered status commands are `status.overview`, `status.lifecycle`, `status.modules`, `status.scheduler`, `status.scheduler.channels`, `status.data`, and `status.validation`. Every command is guarded, runtime-disabled, and non-mutating. No command parser, dispatcher, scheduler ticking, sockets, sessions, gameplay, movement execution, party-follow implementation, runtime rule execution, mode/profile activation, combat services, spawning services, status-effect ticking, script dispatch, AI, character creation, world simulation, networking expansion, live editor behavior, canonical `Data/` rewrite, imported/reference deletion, live parity claim, or runtime formula/timing promotion is included.
 
 CodeUpdate-0065 repairs canonical room/world data directly from `ImportedDatabases/data-v1.11n.mdb`. It adds `Data/StockGameRaw/MMExplorerMDB/`, adds `Tools/MDBExtractor/promote_mdb_rooms.py`, promotes rooms `wcc_map1_room2150` and `wcc_map1_room2156`, and raises canonical/world room count to `1248`. It promotes only direct MDB-backed fields and keeps undecoded byte fields, formulas, runtime behavior, gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, and live editor behavior out of scope.
+
+## CodeUpdate-0134 - Runtime NPC Loading
+
+CodeUpdate-0134 adds static generated NPC definition and room spawn loading to the server runtime. The Classic runtime path now loads `Data/Classic/npcs.json` and `Data/Classic/spawns.json`, resolves spawn `monster_type` values where definitions exist, retains unresolved spawn references without guessing, validates spawn rooms, indexes occupants by room, renders room occupant names during `look` and movement output, and exposes `--smoke-npcs`.
+
+Boundaries: no NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, generated data rewrite, Librarium rewrite, imported/reference deletion, or evidence promotion.
 
 ## CodeUpdate-0115 - Runtime State and Event Dispatcher Foundation
 

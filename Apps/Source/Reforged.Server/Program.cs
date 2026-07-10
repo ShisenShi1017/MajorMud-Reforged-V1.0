@@ -76,6 +76,23 @@ if (!report.Passed)
     return report.ExitCode;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-npcs", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot validate NPC loading because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var host = new ServerRuntimeHost(report.ProjectRoot, options);
+    host.Bootstrap();
+    var npcSmoke = host.CreateNpcSmokeReport();
+    Console.WriteLine("Runtime NPC Smoke Report");
+    Console.WriteLine(npcSmoke.ToJson());
+    return npcSmoke.Passed ? 0 : 5;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-room-exits", StringComparison.OrdinalIgnoreCase)))
 {
     if (report.ProjectRoot is null)

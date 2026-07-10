@@ -18,7 +18,9 @@
       "classicProtected": true,
       "description": "Protected Classic world. Runtime Milestone 1 hosts Classic first and blocks transfers/AI contamination.",
       "motd": "Welcome to MajorMUD Reforged Classic. This host is authoritative and Classic remains protected.",
-      "loginBanner": "Classic World"
+      "loginBanner": "Classic World",
+      "npcsFile": "npcs.json",
+      "spawnsFile": "spawns.json"
     }
   ],
   "futureWorldTypes": [

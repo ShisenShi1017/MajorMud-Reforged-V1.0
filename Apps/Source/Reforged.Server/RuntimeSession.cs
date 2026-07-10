@@ -55,7 +55,7 @@ public sealed class RuntimeSession
         }
 
         CurrentRoom = target;
-        message = RoomRenderer.Render(CurrentRoom);
+        message = RoomRenderer.Render(World, CurrentRoom);
         return true;
     }
 
@@ -69,9 +69,15 @@ public sealed class RuntimeSession
 
 public static class RoomRenderer
 {
-    public static string Render(RuntimeRoom room)
+    public static string Render(RuntimeRoom room) => Render(null, room);
+
+    public static string Render(RuntimeWorld? world, RuntimeRoom room)
     {
         var exits = room.Exits.Count == 0 ? "none" : string.Join(", ", room.Exits.Select(exit => exit.Direction).Where(value => !string.IsNullOrWhiteSpace(value)).OrderBy(value => value));
-        return $"{room.Name}\n{room.Description}\n\nExits: {exits}";
+        var occupants = world?.FindSpawnsByRoom(room.Id) ?? Array.Empty<RuntimeNpcSpawn>();
+        var npcText = occupants.Count == 0
+            ? string.Empty
+            : $"\n\nYou see: {string.Join(", ", occupants.Select(spawn => spawn.DisplayName).OrderBy(name => name, StringComparer.OrdinalIgnoreCase))}";
+        return $"{room.Name}\n{room.Description}{npcText}\n\nExits: {exits}";
     }
 }

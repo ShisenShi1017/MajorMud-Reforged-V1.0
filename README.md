@@ -1,8 +1,8 @@
-# MajorMUD Reforged - CodeUpdate 0133
+# MajorMUD Reforged - CodeUpdate 0134
 
 ## Current Baseline
 
-CodeUpdate 0133 is the current local baseline. It combines the 0132 runtime room/exit load slice with 0133 developer-avatar session infrastructure and Omniverse evidence intake. Librarium remains authoritative; Omniverse evidence is validation material only until explicitly promoted through review.
+CodeUpdate 0134 is the current local baseline. It builds on the 0132 room/exit runtime slice and 0133 developer-avatar session infrastructure by loading generated Classic NPC definitions and room spawn records into the server runtime. Librarium remains authoritative; generated `/Data/Classic` is runtime output; Omniverse evidence is validation material only until explicitly promoted through review.
 
 Official rule set:
 
@@ -46,7 +46,7 @@ python Tools/Librarium/export_librarium_to_data.py --world classic --clean
 
 ## Next Work
 
-Continue server runtime validation from CodeUpdate0133. Do not begin NPC loading or promote Omniverse evidence until the 0133 build and runtime smoke checks pass and GitHub Actions is green.
+Push CodeUpdate0134 and wait for green GitHub Actions before starting the next server slice. The next likely slice is combat execution readiness, but only after 0134 is accepted. Do not add NPC AI, combat, loot, respawn timers, shops, economy, quests, persistence, or evidence promotion inside 0134.
 
 ## CodeUpdate 0126 â€” Librarium Compiler v1
 

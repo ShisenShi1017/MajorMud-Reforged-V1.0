@@ -44,6 +44,8 @@ public sealed class ServerRuntimeOptions
                         DataRoot = ReadString(world, "dataRoot", "Data"),
                         RoomsFile = ReadString(world, "roomsFile", "rooms.json"),
                         ExitsFile = ReadString(world, "exitsFile", "exits.json"),
+                        NpcsFile = ReadString(world, "npcsFile", "npcs.json"),
+                        SpawnsFile = ReadString(world, "spawnsFile", "spawns.json"),
                         DiagnosticRoom = ReadString(world, "diagnosticRoom", ReadString(world, "startRoom", string.Empty)),
                         AiMode = ReadString(world, "aiMode", "Off"),
                         BrandingLogo = ReadString(world, "brandingLogo", string.Empty),
@@ -98,6 +100,8 @@ public sealed class ServerRuntimeOptions
                     DataRoot = "Data",
                     RoomsFile = "rooms.json",
                     ExitsFile = "exits.json",
+                    NpcsFile = "npcs.json",
+                    SpawnsFile = "spawns.json",
                     DiagnosticRoom = string.Empty,
                     AiMode = "Off",
                     RuntimeEnabled = true,
@@ -194,6 +198,8 @@ public sealed class WorldRuntimeDefinition
     public string DataRoot { get; init; } = "Data";
     public string RoomsFile { get; init; } = "rooms.json";
     public string ExitsFile { get; init; } = "exits.json";
+    public string NpcsFile { get; init; } = "npcs.json";
+    public string SpawnsFile { get; init; } = "spawns.json";
     public string DiagnosticRoom { get; init; } = string.Empty;
     public string AiMode { get; init; } = "Off";
     public string BrandingLogo { get; init; } = string.Empty;

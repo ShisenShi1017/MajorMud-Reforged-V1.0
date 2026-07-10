@@ -1,5 +1,18 @@
 # Changelog
 
+## CodeUpdate-0134 - Runtime NPC Loading
+
+- Recorded CodeUpdate-0133 GitHub Actions as green by user report.
+- Added generated NPC definition loading from `Data/Classic/npcs.json`.
+- Added generated NPC spawn loading from `Data/Classic/spawns.json`.
+- Resolves each spawn through generated `spawn_model.monster_type` and retains unresolved references by declared name without guessing.
+- Validates spawn room references against generated runtime rooms and indexes static NPC occupants by room.
+- Renders static occupant names during `look` and movement output.
+- Adds `--smoke-npcs` runtime validation and `Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py`.
+- Preserves `room.1` as an explicit developer diagnostic room only; it is not verified new-character spawn evidence.
+- Local verification passed: Python NPC loading validator, Server Release build, generated-data smoke, room-exit smoke, NPC smoke, scripted local console occupant smoke, test Release build, and Core/server smoke tests.
+- No NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, generated data rewrite, Librarium rewrite, imported/reference deletion, or evidence promotion is included.
+
 ## CodeUpdate-0133 - Runtime Session Omniverse Evidence
 
 - Folded the CodeUpdate0132 runtime room/exit load slice and CodeUpdate0133 update-only package into one local working update.

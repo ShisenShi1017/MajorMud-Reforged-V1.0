@@ -53,7 +53,7 @@ public sealed class RuntimeCommandDispatcher
         _events?.Publish("command", "received", session.World.Definition.Id, session.Id, session.Actor.Id, command.Name);
         return command.Name switch
         {
-            "look" or "l" => RoomRenderer.Render(session.CurrentRoom),
+            "look" or "l" => RoomRenderer.Render(session.World, session.CurrentRoom),
             "where" => $"World={session.World.Definition.Id}; Room={session.CurrentRoom.Id}; Map={session.CurrentRoom.MapId}; Number={session.CurrentRoom.RoomNumber}",
             "world" => RenderWorld(session.World),
             "worlds" => RenderWorlds(),

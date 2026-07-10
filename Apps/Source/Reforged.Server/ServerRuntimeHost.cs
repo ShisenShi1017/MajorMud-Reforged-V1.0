@@ -61,6 +61,34 @@ public sealed class ServerRuntimeHost
 
 
 
+    public RuntimeNpcSmokeReport CreateNpcSmokeReport()
+    {
+        return new RuntimeNpcSmokeReport
+        {
+            Worlds = _worlds.Values.Select(world =>
+            {
+                var missingRooms = world.Spawns.Count(spawn => world.FindRoomById(spawn.RoomId) is null);
+                var diagnostics = new List<string>();
+                if (world.UnresolvedSpawnCount > 0)
+                {
+                    diagnostics.Add($"{world.UnresolvedSpawnCount} spawn records reference monster_type values without generated NPC definitions; retained by declared name and not guessed.");
+                }
+
+                return new RuntimeNpcSmokeWorld
+                {
+                    Id = world.Definition.Id,
+                    NpcDefinitionCount = world.NpcCount,
+                    SpawnCount = world.SpawnCount,
+                    ResolvedSpawnCount = world.ResolvedSpawnCount,
+                    UnresolvedSpawnCount = world.UnresolvedSpawnCount,
+                    SpawnRoomCount = world.SpawnsByRoom.Count,
+                    MissingRoomCount = missingRooms,
+                    Diagnostics = diagnostics
+                };
+            }).ToArray()
+        };
+    }
+
     public RuntimeRoomExitSmokeReport CreateRoomExitSmokeReport()
     {
         var worlds = _worlds.Values.Select(world =>
@@ -103,7 +131,7 @@ public sealed class ServerRuntimeHost
             var world = _worldLoader.Load(_projectRoot, worldDefinition);
             _worlds[worldDefinition.Id] = world;
             _state.EnsureWorld(world);
-            _events.Publish("world", "loaded", world.Definition.Id, null, null, $"rooms={world.RoomCount}; generatedFamilies={world.DataCatalog.Families.Count}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}");
+            _events.Publish("world", "loaded", world.Definition.Id, null, null, $"rooms={world.RoomCount}; npcs={world.NpcCount}; spawns={world.SpawnCount}; generatedFamilies={world.DataCatalog.Families.Count}; rules={world.Definition.RulesProfile}; ai={world.Definition.AiMode}");
         }
 
         if (_worlds.Count == 0)
@@ -129,7 +157,7 @@ public sealed class ServerRuntimeHost
         Console.WriteLine($"World: {world.Definition.Name} [{world.Definition.Type}] rules={world.Definition.RulesProfile} ai={world.Definition.AiMode}");
         Console.WriteLine("Local console session. Host is authoritative. Type 'help' or 'quit'.");
         Console.WriteLine($"Actor: {session.Actor.DisplayName} [{session.Actor.Kind}] persistentCharacter={session.Actor.IsPersistentCharacter} spawn={session.SpawnSource}");
-        Console.WriteLine(RoomRenderer.Render(session.CurrentRoom));
+        Console.WriteLine(RoomRenderer.Render(session.World, session.CurrentRoom));
 
         using var linked = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
         var schedulerTask = _scheduler.RunAsync(linked.Token);

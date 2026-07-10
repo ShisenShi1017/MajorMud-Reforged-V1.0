@@ -87,7 +87,7 @@ public sealed class ServerNetworkHost
             try
             {
                 await writer.WriteLineAsync(selectedWorld.Definition.Motd).ConfigureAwait(false);
-                await writer.WriteLineAsync(RoomRenderer.Render(session.CurrentRoom)).ConfigureAwait(false);
+                await writer.WriteLineAsync(RoomRenderer.Render(session.World, session.CurrentRoom)).ConfigureAwait(false);
                 while (!hostCancellationToken.IsCancellationRequested && connection.Connected)
                 {
                     await writer.WriteAsync("> ").ConfigureAwait(false);
