@@ -1,16 +1,23 @@
 # Changelog
 
-## CodeUpdate-0134 - Runtime NPC Loading
+## CodeUpdate-0134 - Complete Map-Qualified NPC Population
 
 - Recorded CodeUpdate-0133 GitHub Actions as green by user report.
+- Applied the corrected complete map-qualified NPC population package, which supersedes earlier CodeUpdate0134 archives.
 - Added generated NPC definition loading from `Data/Classic/npcs.json`.
 - Added generated NPC spawn loading from `Data/Classic/spawns.json`.
-- Resolves each spawn through generated `spawn_model.monster_type` and retains unresolved references by declared name without guessing.
-- Validates spawn room references against generated runtime rooms and indexes static NPC occupants by room.
+- Corrected `spawn_model.monster_type` to resolve monster groups, with optional boss/unique NPC resolution through `npc_legacy_id`.
+- Enriched 962 authoritative spawn records with `map_id`, `room_number`, `room_key`, and `qualified_room_ref`.
+- Added map-qualified linked population fields for 748 linked population records.
+- Regenerated `Data/Classic/spawns.json` from corrected Librarium spawn records.
+- Added compiler validation errors `SPN001` and `SPN002` to prevent unqualified spawn identities.
+- Updated runtime spawn attachment to use `(map_id, room_number)` rather than global room number.
+- Preserves 687 valid primary spawn rooms for maps not yet present in the generated room slice without attaching them to incorrect Map 1 rooms.
+- Validates spawn room references against generated runtime rooms and indexes static NPC occupants by resolved runtime room id.
 - Renders static occupant names during `look` and movement output.
 - Adds `--smoke-npcs` runtime validation and `Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py`.
 - Preserves `room.1` as an explicit developer diagnostic room only; it is not verified new-character spawn evidence.
-- Local verification passed: Python NPC loading validator, Server Release build, generated-data smoke, room-exit smoke, NPC smoke, scripted local console occupant smoke, test Release build, and Core/server smoke tests.
+- Local verification passed: room/exit validator, corrected NPC loading validator, compiler Release build, compiler tests, Server Release build, generated-data smoke, room-exit smoke, NPC smoke, scripted local console movement smoke, test Release build, and Core/server smoke tests.
 - No NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, generated data rewrite, Librarium rewrite, imported/reference deletion, or evidence promotion is included.
 
 ## CodeUpdate-0133 - Runtime Session Omniverse Evidence

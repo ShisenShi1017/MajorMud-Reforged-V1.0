@@ -8,7 +8,7 @@
 - `/ImportedDatabases` must be retained until the Librarium is 100% complete and the user explicitly approves retirement.
 - Host/server/editor modifies Librarium world definitions and overlays.
 - Client is read-only and receives data for the active connected world.
-- CodeUpdate 0134 adds static runtime NPC definition/spawn loading from generated `Data/Classic` and room occupant rendering for smoke/runtime inspection.
+- CodeUpdate 0134 adds complete map-qualified static runtime NPC definition/spawn loading from generated `Data/Classic`, with spawn attachment by `(map_id, room_number)` instead of global room number.
 - CodeUpdate 0134 does not add NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, or data promotion.
 - CodeUpdate 0127A repairs the CodeUpdate-0127 clean-checkout bootstrap failure by tracking `Bin/.gitkeep` while generated `Bin/` contents remain ignored.
 - Keep docs, handoffs, evidence, and decision records aligned with this model.

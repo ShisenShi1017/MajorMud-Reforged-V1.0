@@ -1,39 +1,30 @@
-# MajorMUD Reforged Handoff — Post CodeUpdate0134
+# Handoff — Post CodeUpdate0134
 
-## Baseline
+CodeUpdate0134 is the NPC loading and map-qualified population milestone.
 
-- Apply to committed CodeUpdate0133 baseline `96834067`.
-- CodeUpdate0134 is update-only.
+## Active behavior
 
-## Implemented
+- NPC definitions load from generated `npcs.json`.
+- `monster_type` is a monster-group ID.
+- `npc_legacy_id` is an optional boss/unique NPC ID.
+- Primary spawn identity is `(map_id, room_number)`.
+- Linked population identity is `(map_id, linked_spawn_room)`.
+- The runtime never resolves room numbers globally.
+- Linked population rooms do not need independent spawn records.
+- Spawns for maps absent from the current generated room slice remain loaded but unattached until those maps are generated.
 
-The runtime now loads generated NPC definitions and room spawn records:
-
-`Librarium -> Compiler -> /Data/Classic/npcs.json + spawns.json -> Server runtime`
-
-Runtime behavior:
-
-1. Load NPC definitions keyed by generated `legacy_id`.
-2. Load spawn records.
-3. Resolve each spawn using `spawn_model.monster_type`.
-4. Validate the generated `room_ref`.
-5. Index spawns by room.
-6. Display present NPC names during `look` and room entry.
-
-## Verified generated-data results
+## Verified totals
 
 - 1,100 NPC definitions
 - 962 spawn records
-- 927 spawn records resolve to generated NPC definitions
-- 35 unresolved definition references retained without guessing
-- 883 rooms contain spawn records
-- 0 missing room references
-- 0 resolved-name mismatches
+- 748 linked population records
+- 0 unqualified spawn identities
+- 0 unresolved groups or bosses
 
-## Scope boundary
+## Remaining world-generation boundary
 
-This update loads static NPC definitions and placements only. It does not execute AI, combat, spells, loot, death, movement, respawn timers, shops, or persistence.
+The current generated room slice contains Map 1 only. This is no longer an NPC identity defect. Generating the remaining Classic maps is a separate compiler/world-completeness task.
 
 ## Next milestone
 
-CodeUpdate0135: combat execution, only after local C# build, NPC smoke, and interactive room occupant checks pass.
+CodeUpdate0135 may begin combat execution only after local build, compiler, generated-data, NPC smoke, and core tests pass.

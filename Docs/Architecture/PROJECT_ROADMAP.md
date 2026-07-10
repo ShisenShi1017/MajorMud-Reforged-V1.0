@@ -100,9 +100,9 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 - Current Database Version: `0010`
 - Current Milestone: `Server Classic Test Readiness`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0134, verify GitHub Actions green by user report, then approve one narrow server runtime slice built on static NPC loading.
+- Current priority: push the corrected CodeUpdate-0134 map-qualified NPC population baseline, verify GitHub Actions green by user report, then approve one narrow server runtime slice built on corrected static NPC loading.
 
-CodeUpdate-0134 loads static generated NPC definitions and room spawn records into the server runtime. It indexes room occupants, displays static occupant names during `look` and movement output, and adds `--smoke-npcs`. It does not add NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, generated data rewrites, Librarium rewrites, imported/reference deletion, or evidence promotion.
+CodeUpdate-0134 loads corrected map-qualified generated NPC definitions and room spawn records into the server runtime. It resolves monster groups and optional boss NPCs, validates primary and linked spawn identities, attaches occupants only by `(map_id, room_number)`, preserves 687 future-map spawn rooms unattached until those maps are generated, and adds `--smoke-npcs`. It does not add NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, imported/reference deletion, or evidence promotion.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -176,11 +176,11 @@ CodeUpdate-0064 adds guarded scheduler/status command diagnostics to Server boot
 
 CodeUpdate-0065 repairs canonical room/world data directly from `ImportedDatabases/data-v1.11n.mdb`. It adds `Data/StockGameRaw/MMExplorerMDB/`, adds `Tools/MDBExtractor/promote_mdb_rooms.py`, promotes rooms `wcc_map1_room2150` and `wcc_map1_room2156`, and raises canonical/world room count to `1248`. It promotes only direct MDB-backed fields and keeps undecoded byte fields, formulas, runtime behavior, gameplay, command execution, scheduler execution, sockets, sessions, movement execution, combat, AI, and live editor behavior out of scope.
 
-## CodeUpdate-0134 - Runtime NPC Loading
+## CodeUpdate-0134 - Complete Map-Qualified NPC Population
 
-CodeUpdate-0134 adds static generated NPC definition and room spawn loading to the server runtime. The Classic runtime path now loads `Data/Classic/npcs.json` and `Data/Classic/spawns.json`, resolves spawn `monster_type` values where definitions exist, retains unresolved spawn references without guessing, validates spawn rooms, indexes occupants by room, renders room occupant names during `look` and movement output, and exposes `--smoke-npcs`.
+CodeUpdate-0134 adds corrected map-qualified generated NPC definition and room spawn loading to the server runtime. The Classic runtime path now loads `Data/Classic/npcs.json` and `Data/Classic/spawns.json`, resolves `spawn_model.monster_type` as monster group ids, resolves optional `npc_legacy_id` boss/unique NPC definitions, validates primary spawn identity by `(map_id, room_number)`, validates linked population identity by `(map_id, linked_spawn_room)`, indexes occupants only for rooms present in the current generated room slice, and exposes `--smoke-npcs`.
 
-Boundaries: no NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, generated data rewrite, Librarium rewrite, imported/reference deletion, or evidence promotion.
+Boundaries: no NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, full multi-map room generation, imported/reference deletion, or evidence promotion.
 
 ## CodeUpdate-0115 - Runtime State and Event Dispatcher Foundation
 

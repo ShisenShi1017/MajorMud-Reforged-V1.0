@@ -1,20 +1,24 @@
-# CodeUpdate-0134 - Runtime NPC Loading
+# CodeUpdate-0134 - Complete Map-Qualified NPC Population
 
-This update adds static generated NPC loading to the server runtime.
+This update corrects and completes static generated NPC population loading for the server runtime.
 
 Highlights:
 
 - Loads 1,100 generated NPC definitions from `Data/Classic/npcs.json`.
 - Loads 962 generated room spawn records from `Data/Classic/spawns.json`.
-- Resolves 927 spawn records to generated NPC definitions.
-- Retains 35 unresolved generated spawn references without guessing.
-- Indexes 883 rooms with spawn records.
-- Displays room occupants during `look` and movement output.
+- Resolves monster groups through `spawn_model.monster_type`.
+- Resolves optional boss/unique NPC definitions through `npc_legacy_id`.
+- Validates 962 map-qualified spawn records across 10 maps.
+- Validates 748 map-qualified linked population records.
+- Reports 0 unresolved monster groups and 0 unresolved boss definitions.
+- Attaches 275 primary spawn rooms present in the current Map 1 generated room slice.
+- Preserves 687 valid primary spawn rooms for future map generation instead of attaching them to incorrect Map 1 rooms.
+- Displays static room occupants during `look` and movement output when the generated room slice contains the spawn room.
 - Adds `--smoke-npcs` and a Python NPC loading validator.
 
 Known limitation:
 
-- This is static runtime inspection only. NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, and broader gameplay remain future gated work.
+- This is static runtime inspection only. NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, full multi-map room generation, and broader gameplay remain future gated work.
 
 # CodeUpdate-0133 - Runtime Session Omniverse Evidence
 

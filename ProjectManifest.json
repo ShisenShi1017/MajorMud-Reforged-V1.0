@@ -24,10 +24,10 @@
                                                           "Milestone 1 - Core Framework"
                                                       ],
                               "milestone1Status":  "Complete/frozen",
-                              "milestone2Status":  "CodeUpdate 0134 loads static generated NPC definitions and room spawn records for Classic runtime inspection. It renders room occupants during look/movement output while keeping NPC AI, combat, loot, respawn scheduling, economy, quests, persistence, and broader gameplay out of scope.",
-                              "lastUpdateName":  "CodeUpdate-0134-RuntimeNpcLoading",
+                              "milestone2Status":  "CodeUpdate 0134 corrected NPC population to map-qualified spawn identity. Runtime now resolves monster groups and optional boss NPCs, attaches spawns by (map_id, room_number), and preserves future-map spawns unattached until their maps are generated while keeping NPC AI, combat, loot, respawn scheduling, economy, quests, persistence, and broader gameplay out of scope.",
+                              "lastUpdateName":  "CodeUpdate-0134-CompleteMapQualifiedNpcPopulation",
                               "nextRecommendedWork":  [
-                                                          "Push CodeUpdate0134 after local verification passes.",
+                                                          "Push corrected CodeUpdate0134 after local verification passes.",
                                                           "Wait for user-reported green GitHub Actions before starting CodeUpdate0135.",
                                                           "Do not begin combat execution or promote evidence until the 0134 pushed update is green and the next scope is explicitly approved.",
                                                           "Next narrow server slice should continue Classic runtime readiness without adding NPC AI, loot, respawn timers, economy, quests, persistence, or evidence promotion unless explicitly requested."
@@ -57,9 +57,9 @@
                             "requiresManifest":  true,
                             "requiresVerificationBeforeAnnouncement":  true
                         },
-    "buildVerification":  "LOCAL_PASS; CodeUpdate0134 runtime NPC loading was applied locally with Saves and ImportedDatabases preserved. Python NPC loading validator passed with 1100 NPC definitions, 962 spawns, 927 resolved spawns, 35 unresolved retained without guessing, and 883 spawn rooms. Server Release build passed. --smoke-generated-data passed with explicit diagnosticRoom room.1. --smoke-room-exits passed. --smoke-npcs passed. Scripted local console smoke passed with non-persistent developer-avatar, diagnostic Town Gates start, north movement to Estwall Street, and visible mercenary room occupant. Core/server Release build and smoke tests passed. GitHub Actions remains pending until user push.",
+    "buildVerification":  "LOCAL_PASS; Corrected CodeUpdate0134 map-qualified NPC population was applied locally with Saves and ImportedDatabases preserved. Room/exit validator passed. Corrected NPC loading validator passed with 1100 NPC definitions, 30 NPC groups, 962 spawns across 10 maps, 748 linked population records, 0 unresolved groups, 0 unresolved boss definitions, 275 primary spawn rooms available in the current generated room slice, and 687 valid primary spawn rooms waiting for future map generation. Compiler Release build and compiler tests passed. Server Release build, generated-data smoke, room-exit smoke, NPC smoke, scripted local console movement smoke, Core/server Release build, and Core/server smoke tests passed. GitHub Actions remains pending until user push.",
     "current_codeupdate":  "0134",
-    "last_update":  "Runtime NPC Loading",
+    "last_update":  "Complete Map-Qualified NPC Population",
     "subsystems_completed":  [
                                  "Server Runtime Milestone 1",
                                  "Runtime state/event foundation",
@@ -85,8 +85,8 @@
                                       "NightmareRedux",
                                       "MajorMUD-PHP-Monster-Sim"
                                   ],
-    "baseline":  "CodeUpdate 0134 - Runtime NPC Loading",
-    "updatedUtc":  "2026-07-10T04:28:00Z",
+    "baseline":  "CodeUpdate 0134 - Complete Map-Qualified NPC Population",
+    "updatedUtc":  "2026-07-10T14:10:00Z",
     "dataPolicy":  "/Data is generated output per world and should not be hand-edited as canonical source.",
     "hostClientPolicy":  "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

@@ -1,29 +1,38 @@
 {
   "codeUpdate": "0134",
-  "name": "CodeUpdate0134-RuntimeNpcLoading",
-  "packageType": "0134-update-only-local-merge",
+  "name": "CodeUpdate0134-CompleteMapQualifiedNpcPopulation",
+  "packageType": "0134-corrective-update-only-local-merge",
+  "supersedes": [
+    "CodeUpdate0134-RuntimeNpcLoading"
+  ],
   "librariumAuthoritative": true,
   "dataGeneratedOnly": true,
   "importedDatabasesRetained": true,
   "runtimeGameplayChanged": false,
   "serverSourceChanged": true,
-  "purpose": "Load generated Classic NPC definitions and room spawn records into the server runtime for static occupant inspection.",
+  "compilerSourceChanged": true,
+  "librariumSpawnRecordsChanged": true,
+  "generatedClassicSpawnsChanged": true,
+  "purpose": "Correct generated Classic NPC population so primary and linked spawn identities are map-qualified and runtime attachment uses (map_id, room_number), not global room numbers.",
   "includedUpdates": [
-    "CodeUpdate0134-RuntimeNpcLoading"
+    "CodeUpdate0134-CompleteMapQualifiedNpcPopulation"
   ],
   "newServerCommands": [
     "--smoke-npcs"
   ],
-  "evidencePolicy": "Generated NPC/spawn loading consumes existing generated Data/Classic runtime output. Unresolved generated spawn references are retained as diagnostics without guessing. Omniverse evidence remains validation material only.",
+  "evidencePolicy": "Generated NPC/spawn loading consumes generated Data/Classic runtime output derived from Librarium. Spawn identities must be map-qualified. Future-map spawns remain unattached until their maps are generated. Omniverse and screenshot evidence remain validation material only.",
   "validationStatus": "LOCAL_PASS",
   "dotnetSdkAvailableHere": true,
   "requiredCodexCommands": [
+    "python Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py",
     "python Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py",
+    "dotnet build Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-restore",
+    "dotnet run --project Apps/Compiler.Tests --configuration Release",
     "dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore",
-    "dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data",
-    "dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits",
-    "dotnet run --project Apps/Source/Reforged.Server -- --smoke-npcs",
-    "scripted local console smoke with developer avatar and visible generated NPC occupant",
+    "dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-generated-data",
+    "dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-room-exits",
+    "dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-npcs",
+    "scripted local console smoke with developer avatar movement",
     "dotnet build Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-restore",
     "dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build"
   ],
@@ -31,24 +40,29 @@
     "HANDOFF.md",
     "MANIFEST.md",
     "PATCH_INSTRUCTIONS.md",
+    "Evidence/CodeUpdate0134_LinkedSpawnMapQualification/REPORT.md",
     "Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py"
   ],
   "knownLimitations": [
     "Static NPC placement is loaded for inspection only.",
-    "35 generated spawn records reference monster_type values without generated NPC definitions and are retained by declared name without guessing.",
+    "The current generated room slice contains Map 1 only.",
+    "687 valid primary spawn rooms belong to maps not yet emitted in the current generated room slice and remain unattached until those maps are generated.",
     "NPC AI, combat, movement, death, loot, respawn scheduling, shops, economy, quests, persistence, and broader gameplay remain out of scope.",
     "room.1 remains a developer diagnostic room only and is not verified new-character spawn evidence.",
-    "GitHub Actions remains pending until user push and green report."
+    "GitHub Actions remains pending until user push and green report for this corrected 0134 baseline."
   ],
-  "updatedUtc": "2026-07-10T04:28:00Z",
-  "verificationStatus": "LOCAL_PASS; CodeUpdate0134 runtime NPC loading was merged locally with Saves and ImportedDatabases preserved. Python NPC loading validator passed. Server Release build passed. --smoke-generated-data passed. --smoke-room-exits passed. --smoke-npcs passed with 1100 NPC definitions, 962 spawns, 927 resolved spawns, 35 unresolved retained without guessing, 883 spawn rooms, and 0 missing room references. Scripted local console smoke passed with non-persistent developer-avatar, diagnostic Town Gates start, north movement to Estwall Street, and visible mercenary occupant. Core/server Release build and smoke tests passed. GitHub Actions remains pending until user push.",
+  "updatedUtc": "2026-07-10T14:10:00Z",
+  "verificationStatus": "LOCAL_PASS; Corrected CodeUpdate0134 map-qualified NPC population was merged locally with Saves and ImportedDatabases preserved. Room/exit validator passed. Corrected NPC loading validator passed with 1100 NPC definitions, 30 NPC groups, 962 spawns across 10 maps, 748 linked population records, 0 linked records missing map context, 275 primary spawn rooms available in the current generated room slice, and 687 valid primary spawn rooms outside the current generated room slice. Compiler Release build passed. Compiler tests passed with 37076 records across 32 families. Server Release build passed. --smoke-generated-data passed. --smoke-room-exits passed. --smoke-npcs passed with 0 unresolved groups and 0 unresolved boss definitions. Scripted local console movement smoke passed. Core/server Release build and smoke tests passed. GitHub Actions remains pending until user push.",
   "localVerification": {
-    "npcValidator": "PASS: python Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py; 1100 NPC definitions, 962 spawns, 927 resolved, 35 unresolved retained, 883 spawn rooms.",
+    "roomExitValidator": "PASS: python Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py.",
+    "npcValidator": "PASS: python Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py; 1100 NPC definitions, 30 NPC groups, 962 spawns across 10 maps, 748 linked population records, 0 unresolved groups, 0 unresolved boss definitions.",
+    "compilerReleaseBuild": "PASS: dotnet build Apps/Compiler/MajorMud.Reforged.Compiler.csproj --configuration Release --no-restore; 0 warnings, 0 errors.",
+    "compilerTests": "PASS: dotnet run --project Apps/Compiler.Tests --configuration Release; compiled 37076 records across 32 families.",
     "serverReleaseBuild": "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore; 0 warnings, 0 errors.",
-    "generatedDataSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data.",
-    "roomExitSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits.",
-    "npcSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-npcs.",
-    "localConsole": "PASS: scripted look/north/look/quit; developer-avatar starts at Town Gates diagnostic room, moves north to Estwall Street, and sees mercenary.",
+    "generatedDataSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-generated-data.",
+    "roomExitSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-room-exits.",
+    "npcSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-npcs.",
+    "localConsole": "PASS: scripted look/north/look/quit; developer-avatar starts at Town Gates diagnostic room and moves north to Estwall Street.",
     "coreServerSmoke": "PASS: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build."
   }
 }

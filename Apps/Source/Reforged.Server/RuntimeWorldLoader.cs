@@ -119,21 +119,36 @@ public sealed class RuntimeWorldLoader
             throw new FileNotFoundException("Generated NPC spawn file was not found.", spawnsPath);
         }
 
+        var npcsByGroup = npcs.Values
+            .Where(npc => npc.GroupId > 0)
+            .GroupBy(npc => npc.GroupId)
+            .ToDictionary(group => group.Key, group => (IReadOnlyList<RuntimeNpcDefinition>)group.OrderBy(npc => npc.LegacyId).ToArray());
+
         var spawns = new List<RuntimeNpcSpawn>();
         using var document = JsonDocument.Parse(File.ReadAllText(spawnsPath));
         foreach (var element in EnumerateGeneratedRecords(document.RootElement, spawnsPath))
         {
-            var spawn = RuntimeNpcSpawn.FromJson(element, npcs);
+            var spawn = RuntimeNpcSpawn.FromJson(element, npcs, npcsByGroup);
             if (string.IsNullOrWhiteSpace(spawn.Id) || string.IsNullOrWhiteSpace(spawn.RoomId))
             {
                 continue;
             }
 
-            if (!rooms.ContainsKey(spawn.RoomId))
+            if (spawn.SourceMapId <= 0 || spawn.SourceRoomNumber <= 0)
             {
-                throw new InvalidOperationException($"NPC spawn '{spawn.Id}' references missing room '{spawn.RoomId}'.");
+                throw new InvalidOperationException($"NPC spawn '{spawn.Id}' is missing map-qualified primary room identity.");
             }
 
+            var primaryRoom = rooms.Values.FirstOrDefault(room =>
+                room.MapId == spawn.SourceMapId && room.RoomNumber == spawn.SourceRoomNumber);
+            if (primaryRoom is not null)
+            {
+                spawn.ResolvedRuntimeRoomId = primaryRoom.Id;
+            }
+
+            // A linked spawn room is a same-map shared population-area key. It does not
+            // need to own an independent spawn record. Preserve the qualified key even
+            // when that map is not yet present in the current generated room slice.
             spawns.Add(spawn);
         }
 
@@ -280,7 +295,8 @@ public sealed class RuntimeWorld
         GeneratedCharacterStartRoomId = generatedCharacterStartRoomId;
         Npcs = npcs;
         Spawns = spawns;
-        SpawnsByRoom = spawns.GroupBy(spawn => spawn.RoomId, StringComparer.OrdinalIgnoreCase)
+        SpawnsByRoom = spawns.Where(spawn => spawn.PrimaryRoomAvailable)
+            .GroupBy(spawn => spawn.ResolvedRuntimeRoomId, StringComparer.OrdinalIgnoreCase)
             .ToDictionary(group => group.Key, group => (IReadOnlyList<RuntimeNpcSpawn>)group.ToArray(), StringComparer.OrdinalIgnoreCase);
         DataCatalog = dataCatalog;
     }
@@ -296,8 +312,12 @@ public sealed class RuntimeWorld
     public IReadOnlyDictionary<string, IReadOnlyList<RuntimeNpcSpawn>> SpawnsByRoom { get; }
     public int NpcCount => Npcs.Count;
     public int SpawnCount => Spawns.Count;
-    public int ResolvedSpawnCount => Spawns.Count(spawn => spawn.DefinitionResolved);
+    public int ResolvedSpawnCount => Spawns.Count(spawn => spawn.FullyResolved);
     public int UnresolvedSpawnCount => SpawnCount - ResolvedSpawnCount;
+    public int GroupSpawnCount => Spawns.Count(spawn => spawn.MonsterGroupId > 0);
+    public int BossSpawnCount => Spawns.Count(spawn => spawn.BossLegacyId > 0);
+    public int UnresolvedGroupCount => Spawns.Count(spawn => !spawn.GroupResolved);
+    public int UnresolvedBossCount => Spawns.Count(spawn => !spawn.BossResolved);
     public GeneratedWorldDataCatalog DataCatalog { get; }
     public int RoomCount => _rooms.Count;
 

@@ -67,11 +67,32 @@ public sealed class ServerRuntimeHost
         {
             Worlds = _worlds.Values.Select(world =>
             {
-                var missingRooms = world.Spawns.Count(spawn => world.FindRoomById(spawn.RoomId) is null);
+                var availablePrimaryRooms = world.Spawns.Count(spawn => spawn.PrimaryRoomAvailable);
+                var unavailablePrimaryRooms = world.SpawnCount - availablePrimaryRooms;
+                var missingMapIdentity = world.Spawns.Count(spawn => spawn.SourceMapId <= 0 || spawn.SourceRoomNumber <= 0);
+                var linkedPopulationRecords = world.Spawns.Count(spawn => spawn.HasLinkedPopulationArea);
+                var mapQualifiedLinkedPopulationRecords = world.Spawns.Count(spawn => spawn.HasMapQualifiedPopulationArea);
+                var missingLinkedMapContext = linkedPopulationRecords - mapQualifiedLinkedPopulationRecords;
                 var diagnostics = new List<string>();
-                if (world.UnresolvedSpawnCount > 0)
+                if (world.UnresolvedGroupCount > 0)
                 {
-                    diagnostics.Add($"{world.UnresolvedSpawnCount} spawn records reference monster_type values without generated NPC definitions; retained by declared name and not guessed.");
+                    diagnostics.Add($"{world.UnresolvedGroupCount} spawn records reference monster group IDs without generated NPC group members.");
+                }
+                if (world.UnresolvedBossCount > 0)
+                {
+                    diagnostics.Add($"{world.UnresolvedBossCount} spawn records reference boss legacy IDs without generated NPC definitions.");
+                }
+                if (missingMapIdentity > 0)
+                {
+                    diagnostics.Add($"{missingMapIdentity} spawn records lack map-qualified primary room identity.");
+                }
+                if (missingLinkedMapContext > 0)
+                {
+                    diagnostics.Add($"{missingLinkedMapContext} linked population records lack map-qualified population identity.");
+                }
+                if (unavailablePrimaryRooms > 0)
+                {
+                    diagnostics.Add($"{unavailablePrimaryRooms} map-qualified spawn rooms are outside the currently generated room slice; their identities remain valid and will attach when those maps are emitted.");
                 }
 
                 return new RuntimeNpcSmokeWorld
@@ -79,10 +100,19 @@ public sealed class ServerRuntimeHost
                     Id = world.Definition.Id,
                     NpcDefinitionCount = world.NpcCount,
                     SpawnCount = world.SpawnCount,
+                    GroupSpawnCount = world.GroupSpawnCount,
+                    BossSpawnCount = world.BossSpawnCount,
                     ResolvedSpawnCount = world.ResolvedSpawnCount,
                     UnresolvedSpawnCount = world.UnresolvedSpawnCount,
+                    UnresolvedGroupCount = world.UnresolvedGroupCount,
+                    UnresolvedBossCount = world.UnresolvedBossCount,
                     SpawnRoomCount = world.SpawnsByRoom.Count,
-                    MissingRoomCount = missingRooms,
+                    AvailablePrimaryRoomCount = availablePrimaryRooms,
+                    UnavailablePrimaryRoomCount = unavailablePrimaryRooms,
+                    MissingMapIdentityCount = missingMapIdentity,
+                    LinkedPopulationRecordCount = linkedPopulationRecords,
+                    MapQualifiedLinkedPopulationCount = mapQualifiedLinkedPopulationRecords,
+                    MissingLinkedMapContextCount = missingLinkedMapContext,
                     Diagnostics = diagnostics
                 };
             }).ToArray()

@@ -31,6 +31,11 @@ public sealed class LibrariumValidator
                     continue;
                 }
 
+
+                if (string.Equals(family.Name, "spawns", StringComparison.OrdinalIgnoreCase))
+                {
+                    ValidateSpawnIdentity(record, i, family.SourceFile, diagnostics);
+                }
                 var composite = $"{family.Name}:{id}";
                 if (ids.TryGetValue(composite, out var existing))
                 {
@@ -42,6 +47,36 @@ public sealed class LibrariumValidator
                 }
             }
         }
+    }
+
+
+    private static void ValidateSpawnIdentity(JsonObject record, int index, string sourceFile, List<CompilerDiagnostic> diagnostics)
+    {
+        var mapId = GetInt(record, "map_id");
+        var roomNumber = GetInt(record, "room_number");
+        if (mapId <= 0 || roomNumber <= 0)
+        {
+            diagnostics.Add(new(DiagnosticSeverity.Error, "SPN001", $"Spawn record {index} must define positive map_id and room_number.", sourceFile));
+            return;
+        }
+
+        if (record["spawn_model"] is not JsonObject model) return;
+        var linkedRoom = GetInt(model, "linked_spawn_room");
+        if (linkedRoom <= 0) return;
+
+        var linkedMap = GetInt(model, "linked_spawn_map_id");
+        var key = GetString(model, "linked_population_key");
+        var expected = $"map{mapId}-room{linkedRoom}";
+        if (linkedMap != mapId || !string.Equals(key, expected, StringComparison.OrdinalIgnoreCase))
+        {
+            diagnostics.Add(new(DiagnosticSeverity.Error, "SPN002", $"Spawn record {index} has an unqualified or inconsistent linked population key; expected '{expected}'.", sourceFile));
+        }
+    }
+
+    private static int GetInt(JsonObject obj, string key)
+    {
+        var value = GetString(obj, key);
+        return int.TryParse(value, out var parsed) ? parsed : 0;
     }
 
     private static string? GetString(JsonObject obj, string key)

@@ -14,10 +14,19 @@ public sealed class RuntimeNpcSmokeWorld
     public string Id { get; init; } = string.Empty;
     public int NpcDefinitionCount { get; init; }
     public int SpawnCount { get; init; }
+    public int GroupSpawnCount { get; init; }
+    public int BossSpawnCount { get; init; }
     public int ResolvedSpawnCount { get; init; }
     public int UnresolvedSpawnCount { get; init; }
+    public int UnresolvedGroupCount { get; init; }
+    public int UnresolvedBossCount { get; init; }
     public int SpawnRoomCount { get; init; }
-    public int MissingRoomCount { get; init; }
+    public int AvailablePrimaryRoomCount { get; init; }
+    public int UnavailablePrimaryRoomCount { get; init; }
+    public int MissingMapIdentityCount { get; init; }
+    public int LinkedPopulationRecordCount { get; init; }
+    public int MapQualifiedLinkedPopulationCount { get; init; }
+    public int MissingLinkedMapContextCount { get; init; }
     public IReadOnlyList<string> Diagnostics { get; init; } = Array.Empty<string>();
-    public bool Passed => NpcDefinitionCount > 0 && SpawnCount > 0 && MissingRoomCount == 0;
+    public bool Passed => NpcDefinitionCount > 0 && SpawnCount > 0 && MissingMapIdentityCount == 0 && MissingLinkedMapContextCount == 0 && UnresolvedGroupCount == 0 && UnresolvedBossCount == 0;
 }
