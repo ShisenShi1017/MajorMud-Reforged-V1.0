@@ -1,3 +1,17 @@
+# CodeUpdate-0133 - Runtime Session Omniverse Evidence
+
+This update folds in the 0132 room/exit runtime slice and adds developer-avatar session infrastructure plus Omniverse evidence intake.
+
+Highlights:
+
+- Runtime room/exit smoke support is available through `--smoke-room-exits`.
+- Developer-avatar sessions are runtime-only and are not Classic characters, Librarium records, generated data entities, or persisted saves.
+- `room.1` is configured as an explicit developer diagnostic room only; it is not promoted as verified new-character spawn evidence.
+- Omniverse evidence is preserved under `Evidence/Omniverse/` as validation material only.
+
+Known limitation:
+
+- This is still a server-readiness update. NPC loading, combat, magic, spawns, economy, quests, persistence, and evidence promotion remain future gated work.
 # CodeUpdate-0131 - Librarium Gap Audit and Server Smoke Prep
 
 This update prepares generated Classic data for Server smoke testing without changing runtime gameplay code.

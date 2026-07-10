@@ -16,7 +16,7 @@ public sealed class ServerRuntimeHost
     {
         _projectRoot = projectRoot;
         _options = options;
-        _sessions = new RuntimeSessionManager(_state, _events);
+        _sessions = new RuntimeSessionManager(_state, _events, _options.Development);
         _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions, _state, _events);
     }
 
@@ -30,18 +30,69 @@ public sealed class ServerRuntimeHost
         return new GeneratedWorldSmokeReport
         {
             WorldCount = _worlds.Count,
-            Worlds = _worlds.Values.Select(world => new GeneratedWorldSmokeWorld
+            Worlds = _worlds.Values.Select(world =>
+            {
+                var startRoom = world.ResolveGeneratedCharacterStartRoom() ?? world.ResolveDiagnosticRoom();
+                var diagnostics = world.DataCatalog.Diagnostics.ToList();
+                if (startRoom is null)
+                {
+                    diagnostics.Add("No explicit generated character-start room is available and no diagnostic room is configured.");
+                }
+                return new GeneratedWorldSmokeWorld
+                {
+                    Id = world.Definition.Id,
+                    Name = world.Definition.Name,
+                    Type = world.Definition.Type,
+                    RoomCount = world.RoomCount,
+                    DataRoot = world.DataCatalog.DataRoot,
+                    FamilyCount = world.DataCatalog.Families.Count,
+                    TotalGeneratedRecords = world.DataCatalog.Families.Values.Sum(family => Math.Max(0, family.RecordCount)),
+                    StartRoomId = startRoom?.Id ?? string.Empty,
+                    StartRoomName = startRoom?.Name ?? string.Empty,
+                    StartRoomNumber = startRoom?.RoomNumber ?? 0,
+                    StartRoomExitCount = startRoom?.Exits.Count ?? 0,
+                    StartRoomResolved = startRoom is not null && !string.Equals(startRoom.Name, "Unknown Room", StringComparison.OrdinalIgnoreCase),
+                    StartRoomExits = startRoom?.Exits.Select(exit => $"{exit.Direction}->{exit.TargetRoomNumber}").ToArray() ?? Array.Empty<string>(),
+                    Diagnostics = diagnostics.ToArray()
+                };
+            }).ToArray()
+        };
+    }
+
+
+
+    public RuntimeRoomExitSmokeReport CreateRoomExitSmokeReport()
+    {
+        var worlds = _worlds.Values.Select(world =>
+        {
+            var startRoom = world.ResolveGeneratedCharacterStartRoom() ?? world.ResolveDiagnosticRoom();
+            var movementChecks = new List<RuntimeRoomExitMovementCheck>();
+            foreach (var exit in startRoom?.Exits ?? Array.Empty<RuntimeExit>())
+            {
+                var target = world.FindRoomByNumber(exit.TargetRoomNumber);
+                movementChecks.Add(new RuntimeRoomExitMovementCheck
+                {
+                    Direction = exit.Direction,
+                    TargetRoomNumber = exit.TargetRoomNumber,
+                    TargetRoomId = target?.Id ?? string.Empty,
+                    TargetRoomName = target?.Name ?? string.Empty,
+                    Resolved = target is not null && !string.Equals(target.Name, "Unknown Room", StringComparison.OrdinalIgnoreCase)
+                });
+            }
+
+            return new RuntimeRoomExitSmokeWorld
             {
                 Id = world.Definition.Id,
                 Name = world.Definition.Name,
-                Type = world.Definition.Type,
-                RoomCount = world.RoomCount,
-                DataRoot = world.DataCatalog.DataRoot,
-                FamilyCount = world.DataCatalog.Families.Count,
-                TotalGeneratedRecords = world.DataCatalog.Families.Values.Sum(family => Math.Max(0, family.RecordCount)),
-                Diagnostics = world.DataCatalog.Diagnostics.ToArray()
-            }).ToArray()
-        };
+                StartRoomId = startRoom?.Id ?? string.Empty,
+                StartRoomName = startRoom?.Name ?? string.Empty,
+                StartRoomNumber = startRoom?.RoomNumber ?? 0,
+                StartRoomExitCount = startRoom?.Exits.Count ?? 0,
+                MovementChecks = movementChecks.ToArray()
+            };
+        }).ToArray();
+
+        return new RuntimeRoomExitSmokeReport { Worlds = worlds };
     }
 
     public void Bootstrap()
@@ -71,12 +122,13 @@ public sealed class ServerRuntimeHost
             world = _worlds.Values.First();
         }
 
-        var session = new RuntimeSession("local-console", world, "LocalConsole");
+        var session = _sessions.CreateSession("local-console", world, "LocalConsole");
         _sessions.TryAdd(session, int.MaxValue, out _);
-        _events.Publish("runtime", "local-console-started", world.Definition.Id, session.Id, session.CharacterId, "host=authoritative");
+        _events.Publish("runtime", "local-console-started", world.Definition.Id, session.Id, session.Actor.Id, "host=authoritative");
         Console.WriteLine(_options.HostName);
         Console.WriteLine($"World: {world.Definition.Name} [{world.Definition.Type}] rules={world.Definition.RulesProfile} ai={world.Definition.AiMode}");
         Console.WriteLine("Local console session. Host is authoritative. Type 'help' or 'quit'.");
+        Console.WriteLine($"Actor: {session.Actor.DisplayName} [{session.Actor.Kind}] persistentCharacter={session.Actor.IsPersistentCharacter} spawn={session.SpawnSource}");
         Console.WriteLine(RoomRenderer.Render(session.CurrentRoom));
 
         using var linked = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);

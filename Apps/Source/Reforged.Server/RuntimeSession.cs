@@ -2,35 +2,37 @@ namespace Reforged.Server;
 
 public sealed class RuntimeSession
 {
-    public RuntimeSession(string id, RuntimeWorld world, string? playerName = null)
+    public RuntimeSession(
+        string id,
+        RuntimeWorld world,
+        RuntimeRoom initialRoom,
+        IRuntimeSessionActor actor,
+        string spawnSource)
     {
         Id = id;
         World = world;
-        PlayerName = string.IsNullOrWhiteSpace(playerName) ? id : playerName.Trim();
-        CharacterId = CreateCharacterId(World.Definition.Id, PlayerName);
-        CurrentRoom = world.GetStartRoom();
+        CurrentRoom = initialRoom;
+        Actor = actor;
+        SpawnSource = spawnSource;
         ConnectedAtUtc = DateTimeOffset.UtcNow;
         LastCommandAtUtc = ConnectedAtUtc;
     }
 
     public string Id { get; }
-    public string PlayerName { get; }
-    public string CharacterId { get; private set; }
+    public IRuntimeSessionActor Actor { get; }
     public RuntimeWorld World { get; private set; }
     public RuntimeRoom CurrentRoom { get; private set; }
+    public string SpawnSource { get; private set; }
     public DateTimeOffset ConnectedAtUtc { get; }
     public DateTimeOffset LastCommandAtUtc { get; private set; }
 
-    public void Touch()
-    {
-        LastCommandAtUtc = DateTimeOffset.UtcNow;
-    }
+    public void Touch() => LastCommandAtUtc = DateTimeOffset.UtcNow;
 
-    public void MoveToWorld(RuntimeWorld world)
+    public void MoveToWorld(RuntimeWorld world, RuntimeRoom room, string source)
     {
         World = world;
-        CharacterId = CreateCharacterId(World.Definition.Id, PlayerName);
-        CurrentRoom = world.GetStartRoom();
+        CurrentRoom = room;
+        SpawnSource = source;
         Touch();
     }
 
@@ -57,45 +59,19 @@ public sealed class RuntimeSession
         return true;
     }
 
-    private static string NormalizeDirection(string direction)
+    private static string NormalizeDirection(string direction) => direction.Trim().ToUpperInvariant() switch
     {
-        return direction.Trim().ToUpperInvariant() switch
-        {
-            "NORTH" => "N",
-            "SOUTH" => "S",
-            "EAST" => "E",
-            "WEST" => "W",
-            "NORTHEAST" => "NE",
-            "NORTHWEST" => "NW",
-            "SOUTHEAST" => "SE",
-            "SOUTHWEST" => "SW",
-            "UP" => "U",
-            "DOWN" => "D",
-            _ => direction.Trim().ToUpperInvariant()
-        };
-    }
-
-    private static string CreateCharacterId(string worldId, string playerName)
-    {
-        var safeName = new string(playerName
-            .Trim()
-            .ToLowerInvariant()
-            .Select(character => char.IsLetterOrDigit(character) ? character : '-')
-            .ToArray())
-            .Trim('-');
-
-        return $"{worldId}:{(safeName.Length == 0 ? "player" : safeName)}";
-    }
+        "NORTH" => "N", "SOUTH" => "S", "EAST" => "E", "WEST" => "W",
+        "NORTHEAST" => "NE", "NORTHWEST" => "NW", "SOUTHEAST" => "SE", "SOUTHWEST" => "SW",
+        "UP" => "U", "DOWN" => "D", _ => direction.Trim().ToUpperInvariant()
+    };
 }
 
 public static class RoomRenderer
 {
     public static string Render(RuntimeRoom room)
     {
-        var exits = room.Exits.Count == 0
-            ? "none"
-            : string.Join(", ", room.Exits.Select(exit => exit.Direction).Where(value => !string.IsNullOrWhiteSpace(value)).OrderBy(value => value));
-
+        var exits = room.Exits.Count == 0 ? "none" : string.Join(", ", room.Exits.Select(exit => exit.Direction).Where(value => !string.IsNullOrWhiteSpace(value)).OrderBy(value => value));
         return $"{room.Name}\n{room.Description}\n\nExits: {exits}";
     }
 }

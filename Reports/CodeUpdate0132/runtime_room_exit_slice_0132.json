@@ -1,0 +1,19 @@
+{
+  "code_update": "0132",
+  "exit_records": 693,
+  "issues": [],
+  "rooms": 951,
+  "rooms_with_embedded_exits": 343,
+  "rooms_with_names": 928,
+  "start_room": {
+    "exit_count": 3,
+    "exits": [
+      "N->3",
+      "E->1381",
+      "W->101"
+    ],
+    "id": "room.1",
+    "name": "Town Gates"
+  },
+  "status": "PASS"
+}

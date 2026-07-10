@@ -11,6 +11,19 @@ public sealed class RuntimeRoom
     public string Description { get; init; } = string.Empty;
     public IReadOnlyList<RuntimeExit> Exits { get; init; } = Array.Empty<RuntimeExit>();
 
+    public RuntimeRoom WithExits(IEnumerable<RuntimeExit> exits)
+    {
+        return new RuntimeRoom
+        {
+            Id = Id,
+            MapId = MapId,
+            RoomNumber = RoomNumber,
+            Name = Name,
+            Description = Description,
+            Exits = exits.OrderBy(exit => exit.Direction, StringComparer.OrdinalIgnoreCase).ToArray()
+        };
+    }
+
     public static RuntimeRoom FromJson(JsonElement element)
     {
         var exits = new List<RuntimeExit>();
@@ -18,50 +31,23 @@ public sealed class RuntimeRoom
         {
             foreach (var exit in exitsElement.EnumerateArray())
             {
-                exits.Add(RuntimeExit.FromJson(exit));
+                var runtimeExit = RuntimeExit.FromJson(exit);
+                if (!string.IsNullOrWhiteSpace(runtimeExit.Direction) && runtimeExit.TargetRoomNumber > 0)
+                {
+                    exits.Add(runtimeExit);
+                }
             }
         }
 
         return new RuntimeRoom
         {
-            Id = ReadString(element, "id", string.Empty),
-            MapId = ReadInt(element, "mapId", ReadInt(element, "map_id", 0)),
-            RoomNumber = ReadInt(element, "roomNumber", ReadInt(element, "room_number", ReadLegacyId(element))),
-            Name = ReadString(element, "name", "Unknown Room"),
-            Description = ReadString(element, "description", string.Empty),
+            Id = JsonValueReader.ReadString(element, "id", string.Empty),
+            MapId = JsonValueReader.ReadInt(element, "mapId", JsonValueReader.ReadInt(element, "map_id", 0)),
+            RoomNumber = JsonValueReader.ReadInt(element, "roomNumber", JsonValueReader.ReadInt(element, "room_number", JsonValueReader.ReadInt(element, "legacy_id", 0))),
+            Name = JsonValueReader.ReadString(element, "name", "Unknown Room"),
+            Description = JsonValueReader.ReadString(element, "description", string.Empty),
             Exits = exits
         };
-    }
-
-    private static string ReadString(JsonElement element, string propertyName, string fallback)
-    {
-        return element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.String
-            ? value.GetString() ?? fallback
-            : fallback;
-    }
-
-    private static int ReadInt(JsonElement element, string propertyName, int fallback)
-    {
-        return element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var result)
-            ? result
-            : fallback;
-    }
-
-    private static int ReadLegacyId(JsonElement element)
-    {
-        if (!element.TryGetProperty("legacy_id", out var value))
-        {
-            return 0;
-        }
-
-        if (value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var number))
-        {
-            return number;
-        }
-
-        return value.ValueKind == JsonValueKind.String && int.TryParse(value.GetString(), out var parsed)
-            ? parsed
-            : 0;
     }
 }
 
@@ -75,30 +61,76 @@ public sealed class RuntimeExit
     {
         return new RuntimeExit
         {
-            Direction = ReadString(element, "dir", string.Empty).ToUpperInvariant(),
-            TargetRoomNumber = ReadInt(element, "to_room", 0),
-            ExitType = ReadNullableInt(element, "exit_type")
+            Direction = JsonValueReader.ReadString(element, "dir", JsonValueReader.ReadString(element, "direction", string.Empty)).ToUpperInvariant(),
+            TargetRoomNumber = JsonValueReader.ReadInt(element, "to_room", JsonValueReader.ReadInt(element, "targetRoomNumber", JsonValueReader.ReadInt(element, "to_room_number", 0))),
+            ExitType = JsonValueReader.ReadNullableInt(element, "exit_type")
         };
     }
 
-    private static string ReadString(JsonElement element, string propertyName, string fallback)
+    public static RuntimeExit FromGeneratedRecord(JsonElement element)
     {
-        return element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.String
-            ? value.GetString() ?? fallback
+        return new RuntimeExit
+        {
+            Direction = JsonValueReader.ReadString(element, "direction", JsonValueReader.ReadString(element, "dir", string.Empty)).ToUpperInvariant(),
+            TargetRoomNumber = JsonValueReader.ReadInt(element, "to_room_number", JsonValueReader.ReadInt(element, "targetRoomNumber", JsonValueReader.ReadInt(element, "to_room", 0))),
+            ExitType = JsonValueReader.ReadNullableInt(element, "exit_type")
+        };
+    }
+
+    public static int ReadFromRoomNumber(JsonElement element)
+    {
+        return JsonValueReader.ReadInt(element, "from_room_number", JsonValueReader.ReadInt(element, "fromRoomNumber", JsonValueReader.ReadInt(element, "from_room", 0)));
+    }
+}
+
+internal static class JsonValueReader
+{
+    public static string ReadString(JsonElement element, string propertyName, string fallback)
+    {
+        if (!element.TryGetProperty(propertyName, out var value))
+        {
+            return fallback;
+        }
+
+        return value.ValueKind switch
+        {
+            JsonValueKind.String => value.GetString() ?? fallback,
+            JsonValueKind.Number => value.GetRawText(),
+            _ => fallback
+        };
+    }
+
+    public static int ReadInt(JsonElement element, string propertyName, int fallback)
+    {
+        if (!element.TryGetProperty(propertyName, out var value))
+        {
+            return fallback;
+        }
+
+        if (value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var number))
+        {
+            return number;
+        }
+
+        return value.ValueKind == JsonValueKind.String && int.TryParse(value.GetString(), out var parsed)
+            ? parsed
             : fallback;
     }
 
-    private static int ReadInt(JsonElement element, string propertyName, int fallback)
+    public static int? ReadNullableInt(JsonElement element, string propertyName)
     {
-        return element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var result)
-            ? result
-            : fallback;
-    }
+        if (!element.TryGetProperty(propertyName, out var value) || value.ValueKind == JsonValueKind.Null)
+        {
+            return null;
+        }
 
-    private static int? ReadNullableInt(JsonElement element, string propertyName)
-    {
-        return element.TryGetProperty(propertyName, out var value) && value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var result)
-            ? result
+        if (value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var number))
+        {
+            return number;
+        }
+
+        return value.ValueKind == JsonValueKind.String && int.TryParse(value.GetString(), out var parsed)
+            ? parsed
             : null;
     }
 }

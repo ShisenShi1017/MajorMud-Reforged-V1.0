@@ -1,7 +1,7 @@
-{
+﻿{
     "project":  "Reforged",
     "projectVersion":  "0.1.0",
-    "codeUpdate":  "0131",
+    "codeUpdate":  "0133",
     "databaseVersion":  "0010",
     "milestone":  "Server Classic Test Readiness",
     "sourceOfTruth":  "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Generated graph/index/database artifacts are local generated outputs and ignored by Git.",
@@ -18,19 +18,19 @@
                  ],
     "developmentStatus":  {
                               "currentMilestone":  "Server Classic Test Readiness",
-                              "currentCodeUpdate":  "0131",
+                              "currentCodeUpdate":  "0133",
                               "currentDatabaseVersion":  "0010",
                               "completedMilestones":  [
                                                           "Milestone 1 - Core Framework"
                                                       ],
                               "milestone1Status":  "Complete/frozen",
-                              "milestone2Status":  "CodeUpdate 0131 adds a no-runtime Librarium generated-data gap audit and prepares Data/Classic for server smoke testing. Runtime gameplay implementation is not claimed complete.",
-                              "lastUpdateName":  "CodeUpdate-0131-LibrariumGapAudit-ServerSmokePrep",
+                              "milestone2Status":  "CodeUpdate 0132 loads runtime room/exit data for Classic smoke testing. CodeUpdate 0133 adds runtime developer-avatar session infrastructure and preserves Omniverse evidence as non-canonical validation material only. Combat, magic, NPC AI, economy, quests, persistence, and broader gameplay remain out of scope.",
+                              "lastUpdateName":  "CodeUpdate-0133-RuntimeSession-OmniverseEvidence",
                               "nextRecommendedWork":  [
-                                                          "Push CodeUpdate0131 after local verification passes.",
-                                                          "Wait for user-reported green GitHub Actions before starting the next update.",
-                                                          "Next narrow server slice should wire runtime Classic room display and exits from generated Data/Classic, because scripted --run-local still shows Unknown Room/no exits.",
-                                                          "Keep runtime gameplay claims limited until interactive room/exits smoke behavior is verified."
+                                                          "Push CodeUpdate0133 after local verification passes.",
+                                                          "Wait for user-reported green GitHub Actions before starting CodeUpdate0134.",
+                                                          "Do not begin NPC loading or promote Omniverse evidence until the 0133 pushed update is green and the next scope is explicitly approved.",
+                                                          "Next narrow server slice should continue Classic runtime readiness without adding combat, NPC AI, economy, quests, persistence, or evidence promotion unless explicitly requested."
                                                       ]
                           },
     "handoffPolicy":  {
@@ -57,9 +57,9 @@
                             "requiresManifest":  true,
                             "requiresVerificationBeforeAnnouncement":  true
                         },
-    "buildVerification":  "LOCAL_PASS; CodeUpdate0131 full-repo overlay applied locally with Saves and ImportedDatabases preserved. Python Librarium gap audit passed, Server Debug build passed, Server Release build passed, generated-data smoke passed, scripted --run-local exited 0, Core/server Release build passed, and Core/server smoke tests passed. Known limitation: local runtime still displays Unknown Room/no exits and the exits command is not implemented; generated Data/Classic smoke passes but runtime room/exits wiring remains the next narrow server slice. GitHub Actions remains pending until user push.",
-    "current_codeupdate":  "0131",
-    "last_update":  "Librarium Gap Audit and Server Smoke Prep",
+    "buildVerification":  "LOCAL_PASS; CodeUpdate0132 room/exit load slice and CodeUpdate0133 runtime-session/evidence update were merged locally with Saves and ImportedDatabases preserved. Python 0132 room/exit validator passed. Server Debug build passed after updating RuntimeCommandSystem to use session.Actor.Id. --smoke-generated-data passed with explicit diagnosticRoom room.1. --smoke-room-exits passed. Scripted local console smoke passed with non-persistent developer-avatar, diagnostic Town Gates start, and north movement to Estwall Street. Server Release build passed. Core/server Release build and smoke tests passed after updating the runtime state/events smoke test for developer-avatar sessions. GitHub Actions remains pending until user push.",
+    "current_codeupdate":  "0133",
+    "last_update":  "Runtime Session Omniverse Evidence",
     "subsystems_completed":  [
                                  "Server Runtime Milestone 1",
                                  "Runtime state/event foundation",
@@ -67,8 +67,9 @@
                                  "World overlay compiler completion",
                                  "Combat formula conflict resolution",
                                  "Generated Data/Classic server smoke validation source",
-                                 "Librarium gap audit",
-                                 "Server Classic smoke prep"
+                                 "Runtime room/exit load slice",
+                                 "Runtime developer-avatar session infrastructure",
+                                 "Omniverse evidence intake policy"
                              ],
     "gitIgnorePolicy":  "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
     "lastNormalizedAt":  "2026-07-09T01:13:35Z",
@@ -83,8 +84,8 @@
                                       "NightmareRedux",
                                       "MajorMUD-PHP-Monster-Sim"
                                   ],
-    "baseline":  "CodeUpdate 0131 - Librarium Gap Audit and Server Smoke Prep",
-    "updatedUtc":  "2026-07-09T23:33:29Z",
+    "baseline":  "CodeUpdate 0133 - Runtime Session Omniverse Evidence",
+    "updatedUtc":  "2026-07-10T03:20:21Z",
     "dataPolicy":  "/Data is generated output per world and should not be hand-edited as canonical source.",
     "hostClientPolicy":  "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

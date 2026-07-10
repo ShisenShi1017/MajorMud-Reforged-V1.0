@@ -76,6 +76,23 @@ if (!report.Passed)
     return report.ExitCode;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-room-exits", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot validate room exits because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var host = new ServerRuntimeHost(report.ProjectRoot, options);
+    host.Bootstrap();
+    var roomExitSmoke = host.CreateRoomExitSmokeReport();
+    Console.WriteLine("Runtime Room/Exit Smoke Report");
+    Console.WriteLine(roomExitSmoke.ToJson());
+    return roomExitSmoke.Passed ? 0 : 4;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-generated-data", StringComparison.OrdinalIgnoreCase) || string.Equals(arg, "--validate-generated-data", StringComparison.OrdinalIgnoreCase)))
 {
     if (report.ProjectRoot is null)

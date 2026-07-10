@@ -1,8 +1,8 @@
-# MajorMUD Reforged - CodeUpdate 0131
+# MajorMUD Reforged - CodeUpdate 0133
 
 ## Current Baseline
 
-CodeUpdate 0131 is the current local baseline. It adds a no-runtime Librarium gap audit and prepares generated `Data/Classic` for Server smoke testing while keeping Librarium authoritative and preserving protected imported/reference material.
+CodeUpdate 0133 is the current local baseline. It combines the 0132 runtime room/exit load slice with 0133 developer-avatar session infrastructure and Omniverse evidence intake. Librarium remains authoritative; Omniverse evidence is validation material only until explicitly promoted through review.
 
 Official rule set:
 
@@ -17,7 +17,7 @@ Official rule set:
 ## Active Flow
 
 ```text
-Librarium → validate/export → /Data/<world> → server runtime → client read-only view
+Librarium â†’ validate/export â†’ /Data/<world> â†’ server runtime â†’ client read-only view
 ```
 
 ## Corrected Metrics
@@ -46,9 +46,9 @@ python Tools/Librarium/export_librarium_to_data.py --world classic --clean
 
 ## Next Work
 
-Continue Librarium population and Step 4: Librarium → `/Data` generator/compiler. Runtime gameplay code remains unchanged in this correction update.
+Continue server runtime validation from CodeUpdate0133. Do not begin NPC loading or promote Omniverse evidence until the 0133 build and runtime smoke checks pass and GitHub Actions is green.
 
-## CodeUpdate 0126 — Librarium Compiler v1
+## CodeUpdate 0126 â€” Librarium Compiler v1
 
 The repository now includes the first Librarium compiler source in `Apps/Compiler` and generated Classic runtime output in `Data/Classic`. The Librarium remains the source of truth; `/Data` is generated output and must not be hand-edited.
 

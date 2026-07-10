@@ -1,11 +1,13 @@
 # MajorMUD Reforged Version
 
-Current repository baseline: **CodeUpdate 0131 - Librarium Gap Audit and Server Smoke Prep**
+Current repository baseline: **CodeUpdate 0133 - Runtime Session Omniverse Evidence**
 
-Status: 0131 full replacement repository ZIP applied locally with `Saves/` and `ImportedDatabases/` preserved, root continuity repaired, and local Codex verification passed.
+Status: CodeUpdate0132 room/exit load slice and CodeUpdate0133 runtime-session/evidence update are applied locally with Saves/ and ImportedDatabases/ preserved. Local Codex verification passed.
 
-Scope: no-runtime Librarium generated-data gap audit, missing generated formula records, normalized `Data/Classic/rooms.json` spawn references, refreshed generated-data metadata, and Server smoke-test preparation. Runtime gameplay code is unchanged.
+Scope: 0132 adds generated Classic room identity/exits, runtime room/exit smoke reporting, and --smoke-room-exits. 0133 adds runtime developer-avatar session infrastructure and preserves Omniverse evidence as non-canonical validation material only.
 
-Local verification passed: Python 0131 Librarium gap audit, Server Debug build, Server Release build, generated-data smoke, scripted `--run-local` exit, Core/server Release build, and Core/server smoke tests. Known limitation: runtime still displays `Unknown Room`/no exits and `exits` is not implemented, so runtime room/exits wiring remains the next narrow server slice.
+Boundary: oom.1 is configured as an explicit developer diagnostic room only. Town Gates and legacy generic start_room metadata are not treated as verified new-character spawn evidence. The developer avatar is non-persistent and is not a Classic character, Librarium record, generated-data entity, or save record. Combat, magic, NPC AI, spawns, shops, economy, quests, persistence, NPC loading, and broader gameplay are unchanged.
+
+Local verification passed: Python room/exit validator, Server Debug build, generated-data smoke, room-exit smoke, scripted local console movement smoke, Server Release build, Core/server Release build, and Core/server smoke tests.
 
 GitHub Actions remains pending until user push and green report.

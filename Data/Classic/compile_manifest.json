@@ -1,8 +1,8 @@
 {
   "base_world": null,
-  "code_update": "0131",
+  "code_update": "0132",
   "compiler": "MajorMud.Reforged.Compiler",
-  "compiler_code_update": "0131",
+  "compiler_code_update": "0132",
   "deterministic_manifest_hash": "d4f420b48aa84aa485f557a0552de2f05c818d839d187a1c122da7e187f08910",
   "diagnostics": {
     "errors": 0,
@@ -218,7 +218,14 @@
     "overlay": "classic",
     "precedence": 0
   },
+  "runtime_room_exit_slice_0132": {
+    "embedded_exit_edges": 693,
+    "start_room": "room.1",
+    "start_room_exit_count": 3,
+    "start_room_name": "Town Gates"
+  },
   "schema": "compile_manifest_v2",
+  "status": "runtime_room_exit_slice_ready",
   "world_id": "Classic",
   "world_type": "classic"
 }

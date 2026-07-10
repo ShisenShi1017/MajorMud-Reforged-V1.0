@@ -96,11 +96,11 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0131`
+- Current Code Update: `0127A`
 - Current Database Version: `0010`
-- Current Milestone: `Server Classic Test Readiness`
+- Current Milestone: `Librarium World Overlay Compiler Completion`
 - Milestone 1: complete/frozen
-- Current priority: verify CodeUpdate-0131 locally, push after local verification, wait for user-reported green GitHub Actions, then approve one narrow Server Classic smoke/runtime data slice.
+- Current priority: push CodeUpdate-0127A, verify GitHub Actions green by user report, then approve one narrow runtime/compiler validation slice built on the 0127 generated-world baseline.
 
 CodeUpdate-0127A corrects the CodeUpdate-0127 clean-checkout Server bootstrap failure by tracking `Bin/.gitkeep` while keeping generated `Bin/` contents ignored. No gameplay, generated data change, runtime formula promotion, or imported/reference deletion is included.
 

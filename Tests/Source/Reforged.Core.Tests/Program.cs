@@ -572,10 +572,17 @@ void ServerRuntimeStateAndEventsSmoke()
     }
 
     var world = host.Worlds["classic"];
-    var session = new RuntimeSession("smoke-session", world, "Smoke Tester");
+    var session = host.Sessions.CreateSession("smoke-session", world, "Smoke Tester");
     if (!host.Sessions.TryAdd(session, 4, out var addMessage) || addMessage != "accepted")
     {
         throw new InvalidOperationException($"Runtime session was not accepted: {addMessage}");
+    }
+
+    if (session.Actor.Kind != "developer-avatar" ||
+        session.Actor.IsPersistentCharacter ||
+        session.SpawnSource != "developer-diagnostic-room")
+    {
+        throw new InvalidOperationException("Runtime smoke session did not attach the expected non-persistent developer avatar.");
     }
 
     var dispatcher = new RuntimeCommandDispatcher(() => host.Worlds, host.Sessions, host.State, host.Events);
@@ -586,18 +593,18 @@ void ServerRuntimeStateAndEventsSmoke()
         throw new InvalidOperationException("Runtime command dispatcher did not report the expected starting location.");
     }
 
-    var move = dispatcher.Dispatch(session, "west");
-    if (!move.Contains("cannot go", StringComparison.OrdinalIgnoreCase))
+    var move = dispatcher.Dispatch(session, "north");
+    if (!move.Contains("Estwall Street", StringComparison.OrdinalIgnoreCase))
     {
-        throw new InvalidOperationException("Runtime movement without generated exit edges did not block safely.");
+        throw new InvalidOperationException("Runtime movement did not resolve the generated north exit from the diagnostic room.");
     }
 
     var state = dispatcher.Dispatch(session, "state");
     var events = dispatcher.Dispatch(session, "events");
     if (!state.Contains("Worlds=1", StringComparison.Ordinal) ||
         !state.Contains("Sessions=1", StringComparison.Ordinal) ||
-        !state.Contains("Characters=1", StringComparison.Ordinal) ||
-        !events.Contains("movement.blocked", StringComparison.Ordinal))
+        !state.Contains("Characters=0", StringComparison.Ordinal) ||
+        !events.Contains("movement.completed", StringComparison.Ordinal))
     {
         throw new InvalidOperationException("Runtime state/events inspection commands did not expose expected host-owned records.");
     }

@@ -1,48 +1,53 @@
-{
-    "codeUpdate":  "0131",
-    "name":  "CodeUpdate0131-LibrariumGapAudit-ServerSmokePrep",
-    "packageType":  "full-replacement-repository-zip-with-local-continuity-repair",
+﻿{
+    "codeUpdate":  "0133",
+    "name":  "CodeUpdate0133-RuntimeSession-OmniverseEvidence",
+    "packageType":  "0132-full-repo-overlay-plus-0133-update-only-local-merge",
     "librariumAuthoritative":  true,
     "dataGeneratedOnly":  true,
     "importedDatabasesRetained":  true,
     "runtimeGameplayChanged":  false,
-    "serverSourceChanged":  false,
-    "purpose":  "Audit generated Classic Librarium gaps and prepare Data/Classic for Server smoke testing without changing runtime gameplay code.",
-    "generatedDataChanges":  [
-                                 "Added missing formula records used by NPC and spell generated records.",
-                                 "Normalized Data/Classic room spawn references from authoritative Data/Classic spawns room_ref values.",
-                                 "Refreshed generated-data manifest metadata to CodeUpdate0131."
-                             ],
-    "newTools":  [
-                     "Tools/Librarium/librarium_gap_audit_0131.py"
-                 ],
+    "serverSourceChanged":  true,
+    "purpose":  "Combine CodeUpdate0132 runtime room/exit loading with CodeUpdate0133 runtime developer-avatar session infrastructure and Omniverse evidence intake policy.",
+    "includedUpdates":  [
+                            "CodeUpdate0132-RuntimeRoomExitLoadSlice",
+                            "CodeUpdate0133-RuntimeSession-OmniverseEvidence"
+                        ],
+    "newServerCommands":  [
+                              "--smoke-room-exits"
+                          ],
+    "evidencePolicy":  "Evidence/Omniverse is retained validation material only. Do not promote Omniverse formulas, mappings, or feature behavior into Librarium or generated data without an OVGN verification record and explicit reviewed promotion.",
     "validationStatus":  "LOCAL_PASS",
     "dotnetSdkAvailableHere":  true,
     "requiredCodexCommands":  [
-                                  "python Tools/Librarium/librarium_gap_audit_0131.py",
+                                  "python Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py",
                                   "dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj",
                                   "dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data",
-                                  "dotnet run --project Apps/Source/Reforged.Server -- --run-local"
+                                  "dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits",
+                                  "scripted local console smoke with developer avatar"
                               ],
     "reports":  [
-                    "Reports/CodeUpdate0131/LIBRARIUM_GAP_AUDIT_0131.md",
-                    "Reports/CodeUpdate0131/librarium_gap_audit_0131.json",
-                    "Codex/CodeUpdate0131_LibrariumGapAuditServerSmokePrep/HANDOFF_CODEUPDATE0131.md",
-                    "Documentation/CodeUpdates/CODEUPDATE0131_SERVER_SMOKE_PREP.md"
+                    "Documentation/CodeUpdates/CODEUPDATE0132_RUNTIME_ROOM_EXIT_LOAD_SLICE.md",
+                    "Reports/CodeUpdate0132/runtime_room_exit_slice_0132.json",
+                    "HANDOFF.md",
+                    "MANIFEST.md",
+                    "PATCH_INSTRUCTIONS.md",
+                    "Evidence/Omniverse/SOURCE_INDEX.md"
                 ],
     "knownLimitations":  [
-                             "This update does not prove full gameplay.",
-                             "Runtime Classic start-room naming and exits must be verified by local server smoke output.",
+                             "0133 intentionally does not treat Town Gates or legacy generic start_room as a default new-character spawn.",
+                             "With no diagnostic room configured, the developer avatar starts in an isolated synthetic Developer Test Room.",
+                             "Combat, magic, NPC AI, spawns, shops, economy, quests, persistence, NPC loading, and broader gameplay remain out of scope.",
                              "GitHub Actions remains pending until user push and green report."
                          ],
-    "updatedUtc":  "2026-07-09T23:33:29Z",
-    "verificationStatus":  "LOCAL_PASS; CodeUpdate0131 full-repo overlay applied locally with Saves and ImportedDatabases preserved. Python Librarium gap audit passed, Server Debug build passed, Server Release build passed, generated-data smoke passed, scripted --run-local exited 0, Core/server Release build passed, and Core/server smoke tests passed. Known limitation: local runtime still displays Unknown Room/no exits and the exits command is not implemented; generated Data/Classic smoke passes but runtime room/exits wiring remains the next narrow server slice. GitHub Actions remains pending until user push.",
+    "updatedUtc":  "2026-07-10T03:20:21Z",
+    "verificationStatus":  "LOCAL_PASS; CodeUpdate0132 room/exit load slice and CodeUpdate0133 runtime-session/evidence update were merged locally with Saves and ImportedDatabases preserved. Python 0132 room/exit validator passed. Server Debug build passed after updating RuntimeCommandSystem to use session.Actor.Id. --smoke-generated-data passed with explicit diagnosticRoom room.1. --smoke-room-exits passed. Scripted local console smoke passed with non-persistent developer-avatar, diagnostic Town Gates start, and north movement to Estwall Street. Server Release build passed. Core/server Release build and smoke tests passed after updating the runtime state/events smoke test for developer-avatar sessions. GitHub Actions remains pending until user push.",
     "localVerification":  {
-                              "librariumGapAudit":  "PASS: python Tools/Librarium/librarium_gap_audit_0131.py; 35 families, 11201 records, 0 missing relationships, 0 warnings, 0 errors.",
-                              "serverDebugBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj; 0 warnings, 0 errors.",
+                              "roomExitValidator":  "PASS: python Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py; 951 rooms, 693 exits, 0 issues.",
+                              "serverDebugBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj; 0 warnings, 0 errors after actor-id merge repair.",
+                              "generatedDataSmoke":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data; diagnostic room.1 resolved to Town Gates with three exits.",
+                              "roomExitSmoke":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-room-exits; E/N/W targets resolved to named rooms.",
+                              "localConsole":  "PASS: scripted look/north/look/quit; developer-avatar non-persistent actor starts at Town Gates diagnostic room and moves north to Estwall Street.",
                               "serverReleaseBuild":  "PASS: dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore; 0 warnings, 0 errors.",
-                              "generatedDataSmoke":  "PASS: dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data; Classic world loaded with 951 rooms, 11 families, 8635 generated records.",
-                              "runLocal":  "PASS_WITH_LIMITATION: scripted --run-local exited 0, but runtime still displays Unknown Room/no exits and exits command is not implemented.",
                               "coreServerSmoke":  "PASS: dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build."
                           }
 }

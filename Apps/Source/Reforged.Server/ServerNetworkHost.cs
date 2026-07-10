@@ -77,7 +77,7 @@ public sealed class ServerNetworkHost
                 return;
             }
 
-            var session = new RuntimeSession(sessionId, selectedWorld, playerName);
+            var session = _sessions.CreateSession(sessionId, selectedWorld, playerName);
             if (!_sessions.TryAdd(session, Math.Max(1, _options.Network.MaxSessions), out var message))
             {
                 await writer.WriteLineAsync($"Connection refused: {message}").ConfigureAwait(false);

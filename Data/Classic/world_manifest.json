@@ -1,7 +1,7 @@
 {
   "base_world": null,
-  "code_update": "0131",
-  "compiler_code_update": "0131",
+  "code_update": "0132",
+  "compiler_code_update": "0132",
   "generated_data_audit": "Reports/CodeUpdate0131/librarium_gap_audit_0131.json",
   "locked": true,
   "object_families_compiled": 32,
@@ -9,8 +9,14 @@
   "output_root": "Data/Classic",
   "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
   "runtime_loader_contract": "Librarium/RuntimeContracts/generated_world_loader_contract_0127.json",
+  "runtime_room_exit_slice_0132": {
+    "embedded_exit_edges": 693,
+    "start_room": "room.1",
+    "start_room_exit_count": 3,
+    "start_room_name": "Town Gates"
+  },
   "schema": "generated_world_manifest_v1",
-  "status": "server_smoke_test_prep_ready",
+  "status": "runtime_room_exit_slice_ready",
   "world_id": "Classic",
   "world_type": "classic"
 }

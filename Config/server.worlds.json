@@ -10,7 +10,8 @@
       "rulesProfile": "classic",
       "dataRoot": "Data/Classic",
       "roomsFile": "rooms.json",
-      "startRoom": "room.1",
+      "exitsFile": "exits.json",
+      "diagnosticRoom": "room.1",
       "aiMode": "Off",
       "runtimeEnabled": true,
       "transfersAllowed": false,
@@ -28,7 +29,10 @@
     "0113 is Classic-first. Additional worlds are added by configuration and module/runtime services, not host rewrites.",
     "Classic remains protected: no transfers, no AI mode, no formula invention.",
     "The Host remains authoritative for world state, character state, combat, items, NPCs, quests, economy, timers, resets, and permissions.",
-    "Runtime Milestone 1 adds opt-in telnet networking and multiple sessions while keeping Classic as the only enabled world."
+    "Runtime Milestone 1 adds opt-in telnet networking and multiple sessions while keeping Classic as the only enabled world.",
+    "0133 creates a runtime-only test character when no saved or generated Classic character start is available. This character never modifies Librarium or generated Data.",
+    "worlds[].diagnosticRoom is set to room.1 for explicit developer smoke testing only. This does not promote Town Gates as verified new-character spawn evidence.",
+    "The runtime test avatar has no selected Classic class and bypasses character-creation validation only because IsRuntimeTestCharacter is true."
   ],
   "network": {
     "enabled": false,
@@ -37,5 +41,10 @@
     "maxSessions": 32,
     "loginTimeoutSeconds": 120,
     "allowWorldSelection": true
+  },
+  "development": {
+    "enabled": true,
+    "createRuntimeTestAvatar": true,
+    "testAvatarName": "Developer"
   }
 }

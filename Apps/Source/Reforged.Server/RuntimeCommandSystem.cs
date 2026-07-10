@@ -40,17 +40,17 @@ public sealed class RuntimeCommandDispatcher
             if (moved)
             {
                 _state?.UpdateSessionLocation(session);
-                _events?.Publish("movement", "completed", session.World.Definition.Id, session.Id, session.CharacterId, $"{previousRoom.Id}->{session.CurrentRoom.Id}");
+                _events?.Publish("movement", "completed", session.World.Definition.Id, session.Id, session.Actor.Id, $"{previousRoom.Id}->{session.CurrentRoom.Id}");
             }
             else
             {
-                _events?.Publish("movement", "blocked", session.World.Definition.Id, session.Id, session.CharacterId, movementResult);
+                _events?.Publish("movement", "blocked", session.World.Definition.Id, session.Id, session.Actor.Id, movementResult);
             }
 
             return movementResult;
         }
 
-        _events?.Publish("command", "received", session.World.Definition.Id, session.Id, session.CharacterId, command.Name);
+        _events?.Publish("command", "received", session.World.Definition.Id, session.Id, session.Actor.Id, command.Name);
         return command.Name switch
         {
             "look" or "l" => RoomRenderer.Render(session.CurrentRoom),

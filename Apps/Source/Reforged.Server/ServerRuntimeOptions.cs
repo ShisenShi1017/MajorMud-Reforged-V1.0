@@ -14,6 +14,7 @@ public sealed class ServerRuntimeOptions
     public string DefaultWorldId { get; init; } = "classic";
     public int WorldTickMilliseconds { get; init; } = 1000;
     public NetworkRuntimeOptions Network { get; init; } = new();
+    public RuntimeDevelopmentOptions Development { get; init; } = new();
     public IReadOnlyList<WorldRuntimeDefinition> Worlds { get; init; } = Array.Empty<WorldRuntimeDefinition>();
 
     public static ServerRuntimeOptions Load(string projectRoot)
@@ -42,7 +43,8 @@ public sealed class ServerRuntimeOptions
                         RulesProfile = ReadString(world, "rulesProfile", "classic"),
                         DataRoot = ReadString(world, "dataRoot", "Data"),
                         RoomsFile = ReadString(world, "roomsFile", "rooms.json"),
-                        StartRoom = ReadString(world, "startRoom", "wcc_map1_room1"),
+                        ExitsFile = ReadString(world, "exitsFile", "exits.json"),
+                        DiagnosticRoom = ReadString(world, "diagnosticRoom", ReadString(world, "startRoom", string.Empty)),
                         AiMode = ReadString(world, "aiMode", "Off"),
                         BrandingLogo = ReadString(world, "brandingLogo", string.Empty),
                         LoginBanner = ReadString(world, "loginBanner", string.Empty),
@@ -65,6 +67,7 @@ public sealed class ServerRuntimeOptions
                 DefaultWorldId = ReadString(root, "defaultWorldId", worlds[0].Id),
                 WorldTickMilliseconds = ReadInt(root, "worldTickMilliseconds", 1000),
                 Network = ReadNetwork(root),
+                Development = ReadDevelopment(root),
                 Worlds = worlds
             };
         }
@@ -82,6 +85,7 @@ public sealed class ServerRuntimeOptions
             DefaultWorldId = "classic",
             WorldTickMilliseconds = 1000,
             Network = new NetworkRuntimeOptions(),
+            Development = new RuntimeDevelopmentOptions(),
             Worlds = new[]
             {
                 new WorldRuntimeDefinition
@@ -93,7 +97,8 @@ public sealed class ServerRuntimeOptions
                     RulesProfile = "classic",
                     DataRoot = "Data",
                     RoomsFile = "rooms.json",
-                    StartRoom = "wcc_map1_room1",
+                    ExitsFile = "exits.json",
+                    DiagnosticRoom = string.Empty,
                     AiMode = "Off",
                     RuntimeEnabled = true,
                     TransfersAllowed = false,
@@ -101,6 +106,21 @@ public sealed class ServerRuntimeOptions
                     Motd = "Welcome to MajorMUD Reforged Classic."
                 }
             }
+        };
+    }
+
+    private static RuntimeDevelopmentOptions ReadDevelopment(JsonElement root)
+    {
+        if (!root.TryGetProperty("development", out var development) || development.ValueKind != JsonValueKind.Object)
+        {
+            return new RuntimeDevelopmentOptions();
+        }
+
+        return new RuntimeDevelopmentOptions
+        {
+            Enabled = ReadBoolean(development, "enabled", true),
+            CreateRuntimeTestAvatar = ReadBoolean(development, "createRuntimeTestAvatar", true),
+            TestAvatarName = ReadString(development, "testAvatarName", "Developer"),
         };
     }
 
@@ -173,7 +193,8 @@ public sealed class WorldRuntimeDefinition
     public string RulesProfile { get; init; } = "classic";
     public string DataRoot { get; init; } = "Data";
     public string RoomsFile { get; init; } = "rooms.json";
-    public string StartRoom { get; init; } = "wcc_map1_room1";
+    public string ExitsFile { get; init; } = "exits.json";
+    public string DiagnosticRoom { get; init; } = string.Empty;
     public string AiMode { get; init; } = "Off";
     public string BrandingLogo { get; init; } = string.Empty;
     public string LoginBanner { get; init; } = string.Empty;
@@ -181,4 +202,12 @@ public sealed class WorldRuntimeDefinition
     public bool RuntimeEnabled { get; init; } = true;
     public bool TransfersAllowed { get; init; }
     public bool ClassicProtected { get; init; } = true;
+}
+
+
+public sealed class RuntimeDevelopmentOptions
+{
+    public bool Enabled { get; init; } = true;
+    public bool CreateRuntimeTestAvatar { get; init; } = true;
+    public string TestAvatarName { get; init; } = "Developer";
 }
