@@ -1,3 +1,18 @@
+# CodeUpdate-0136 Internal - Classic Drop Roll Repair
+
+This internal phase repairs Classic kill-time drop percent resolution.
+
+Highlights:
+
+- Records the Classic full-width integer `1..100` drop-roll contract in the Librarium.
+- Runtime kill-loot drops now succeed on `roll <= drop_percent`.
+- Adds a regression validator proving 1% drops get exactly 1 successful bucket in 100 and 3% drops get exactly 3 successful buckets in 100.
+- Complete runtime verification passed locally: 50/50.
+
+Known limitation:
+
+- This is not a completed public CodeUpdate0136 release. The broader complete Classic single-player gameplay milestone remains in progress.
+
 # CodeUpdate-0135 - Final Exhaustive Classic Fixes
 
 This update applies the final exhaustive Classic fix payload over the verified 0134 runtime baseline.

@@ -1,0 +1,55 @@
+{
+  "id": "loot_rule.classic.kill_drop_percent_roll_0136",
+  "name": "Classic Kill-Time Drop Percent Roll",
+  "object_type": "loot_rule",
+  "world_scope": [
+    "classic"
+  ],
+  "status": "runtime_rule_verified_from_user_live_bug_report",
+  "description": "Classic kill-time loot drops roll a uniform integer bucket from 1 through 100 and succeed when the roll is less than or equal to the stored drop percent.",
+  "algorithm": {
+    "roll_range": "1..100 inclusive",
+    "success_condition": "roll <= drop_percent",
+    "implementation_contract": "floor(random()*100)+1 semantics; do not round scaled random values",
+    "known_bad_pattern": "(random()*99+1)::INT because PostgreSQL integer cast rounds and halves endpoint bucket width"
+  },
+  "affected_scope": [
+    "roll-at-kill loot path",
+    "orc-head quest drops",
+    "all drop rows using kill-time percent resolution"
+  ],
+  "example_drop_rates": [
+    {
+      "item": "orc-head",
+      "item_ref": "item.1101",
+      "monster_class": "common orcs",
+      "drop_percent": 1
+    },
+    {
+      "item": "orc-head",
+      "item_ref": "item.1101",
+      "monster_class": "orc captains",
+      "drop_percent": 3
+    }
+  ],
+  "evidence_refs": [
+    {
+      "source": "user_live_server_bug_report",
+      "date": "2026-07-10",
+      "summary": "Stored orc-head rates were correct at 1% common orcs and 3% captains, but the live roll-at-kill path used rounded PostgreSQL integer casting. The bug produced about 0.49% for 1% drops and 2.54% for 3% drops over 100k trials. Fix is floor(random()*100)+1."
+    }
+  ],
+  "runtime_mapping": {
+    "exports_to": "/Data/<world>/loot_rules.json",
+    "generated_only": true,
+    "runtime_reads_generated_data": true,
+    "implemented_in": "Runtime/loot/loot_runtime.py"
+  },
+  "validation_rules": [
+    "classic_changes_require_evidence",
+    "drop_percent_must_use_full_width_integer_bucket",
+    "one_percent_drop_has_exactly_one_successful_roll_in_1_to_100",
+    "three_percent_drop_has_exactly_three_successful_rolls_in_1_to_100"
+  ],
+  "code_update": "0136-internal"
+}

@@ -1,5 +1,17 @@
 # Changelog
 
+## CodeUpdate-0136 Internal - Classic Drop Roll Repair
+
+- Recorded CodeUpdate-0135 GitHub Actions as green by user report.
+- Added a Librarium Classic loot rule for kill-time drop percent resolution.
+- Fixed the runtime kill-loot path to use full-width integer `1..100` percent buckets and `roll <= drop_percent`.
+- Documented the known bad rounded PostgreSQL pattern `(random()*99+1)::INT`, which halves endpoint bucket width and under-drops 1%/3% loot.
+- Added regression validation proving 1% drops have exactly 1 successful bucket in 100 and 3% drops have exactly 3 successful buckets in 100.
+- Wired the drop-roll validator into complete runtime verification.
+- Local verification passed: `python Tools/Validation/validate_codeupdate0136_classic_drop_roll.py`.
+- Local complete runtime verification passed: 50/50 in `Reports/RuntimeVerification/complete_runtime_verification_20260710T223106Z.md`.
+- This is an internal CodeUpdate0136 phase, not a completed public CodeUpdate0136 release.
+
 ## CodeUpdate-0135 - Final Exhaustive Classic Fixes
 
 - Recorded CodeUpdate-0134 GitHub Actions as green by user report.

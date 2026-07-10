@@ -25,3 +25,7 @@ The server runtime now loads generated Classic NPC definitions and map-qualified
 ## CodeUpdate 0135 Final Exhaustive Classic Fixes Note
 
 CodeUpdate0135 applies the final exhaustive Classic fix payload over the verified 0134 runtime baseline. It adds Classic bug-fix policy records, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, and final simulation/runtime verification reports. This does not change authority: the Librarium remains source of truth, `/Data` remains generated runtime output, `/ImportedDatabases` remains retained evidence, and CodeUpdate0136 is the next internal-only complete Classic single-player gameplay milestone.
+
+## CodeUpdate0136 Internal Classic Drop Roll Note
+
+The first internal CodeUpdate0136 phase records the Classic kill-time drop percent roll contract in the Librarium and enforces it in Runtime: roll a full-width integer `1..100` bucket and drop when `roll <= drop_percent`. This fixes the rounded endpoint-bucket bug that under-dropped low-percent loot such as orc-heads. `/Data` remains generated output and was not manually rewritten for this rule.

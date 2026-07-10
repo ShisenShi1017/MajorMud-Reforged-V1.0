@@ -2,6 +2,23 @@
 
 Update-only patch. Supersedes every earlier CodeUpdate0135 archive and addendum.
 
+## Internal CodeUpdate0136 Drop Roll Repair Addendum
+
+Files added or updated for the internal Classic drop-roll repair:
+
+- `Librarium/Objects/loot_rules/classic_drop_roll_rule_0136.json`
+- `Runtime/loot/loot_runtime.py`
+- `Tools/Validation/validate_codeupdate0136_classic_drop_roll.py`
+- `Tools/Validation/run_complete_runtime_verification.py`
+- `Documentation/CodeUpdates/CODEUPDATE0136_INTERNAL_CLASSIC_DROP_ROLL_REPAIR.md`
+- `Reports/RuntimeVerification/complete_runtime_verification_20260710T223106Z.md`
+- `Reports/RuntimeVerification/complete_runtime_verification_20260710T223106Z.json`
+
+Verification:
+
+- Targeted validator PASS.
+- Complete runtime verification PASS, 50/50.
+
 ## Codex Local Promotion Addendum
 
 Additional repository continuity files updated during local promotion:

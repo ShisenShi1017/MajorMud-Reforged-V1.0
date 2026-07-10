@@ -59,6 +59,54 @@ class LootRuntime:
         self.loot_tables = loot_tables or []
         self.random = Random(seed)
         self.item_index = {str(_first(i, "runtime_id", "id", "item_id", "ItemID", "number", default=len(self.items))): i for i in self.items}
+        self.loot_by_monster_id: Dict[str, List[Dict[str, Any]]] = {}
+        self.loot_by_monster_legacy: Dict[str, List[Dict[str, Any]]] = {}
+        for table in self.loot_tables:
+            if not isinstance(table, dict):
+                continue
+            entries = table.get("entries") or []
+            if not isinstance(entries, list):
+                continue
+            monster_id = _first(table, "monster_runtime_id", "monsterRuntimeId", "monsterId", "monster_id")
+            monster_legacy = _first(table, "monster_legacy_number", "monsterLegacyNumber", "monsterLegacyId", "monster_id")
+            if monster_id not in (None, ""):
+                self.loot_by_monster_id.setdefault(str(monster_id), []).extend([e for e in entries if isinstance(e, dict)])
+            if monster_legacy not in (None, ""):
+                self.loot_by_monster_legacy.setdefault(str(monster_legacy), []).extend([e for e in entries if isinstance(e, dict)])
+
+    @staticmethod
+    def drop_roll_succeeds(drop_percent: Any, roll: int) -> bool:
+        chance = max(0, min(100, _as_int(drop_percent, 0)))
+        if chance <= 0:
+            return False
+        return 1 <= roll <= 100 and roll <= chance
+
+    def roll_drop_percent(self, drop_percent: Any) -> bool:
+        # Classic kill-time loot uses a full-width integer 1..100 bucket.
+        # Do not round a scaled float; rounded endpoints halve the 1 and 100 buckets.
+        return self.drop_roll_succeeds(drop_percent, self.random.randint(1, 100))
+
+    def _loot_entries_for_monster(self, monster: Dict[str, Any]) -> List[Dict[str, Any]]:
+        entries: List[Dict[str, Any]] = []
+        raw = _first(monster, "items", "drops", "loot", "Treasure", "treasure", default=[])
+        if isinstance(raw, list):
+            for entry in raw:
+                if isinstance(entry, dict):
+                    entries.append(entry)
+                else:
+                    entries.append({"item_id": entry, "drop_percent": 100})
+
+        monster_ids = [
+            _first(monster, "runtime_id", "id", "monster_id", "monsterId"),
+            _first(monster, "legacy_number", "legacyNumber", "legacy_id", "legacyId", "sourceId"),
+        ]
+        for monster_id in monster_ids:
+            if monster_id in (None, ""):
+                continue
+            key = str(monster_id)
+            entries.extend(self.loot_by_monster_id.get(key, []))
+            entries.extend(self.loot_by_monster_legacy.get(key, []))
+        return entries
 
     def gold_from_monster(self, monster: Dict[str, Any]) -> LootEvent:
         # Use explicit gold fields if the data exposes them; otherwise zero with provenance.
@@ -73,16 +121,11 @@ class LootRuntime:
     def item_drops_from_monster(self, monster: Dict[str, Any]) -> List[LootEvent]:
         source = str(_first(monster, "runtime_id", "id", "monster_id", "name", default="unknown_monster"))
         events: List[LootEvent] = []
-        raw = _first(monster, "items", "drops", "loot", "Treasure", "treasure", default=[])
-        if isinstance(raw, list):
-            for entry in raw:
-                if isinstance(entry, dict):
-                    item_id = str(_first(entry, "id", "item_id", "ItemID", "item", default=""))
-                    chance = _as_int(_first(entry, "chance", "percent", "Chance", default=100), 100)
-                else:
-                    item_id, chance = str(entry), 100
-                if item_id and self.random.randint(1, 100) <= max(0, min(100, chance)):
-                    events.append(LootEvent(event_type="item", source_id=source, item_id=item_id, notes=["Drop used explicit monster drop/list field."]))
+        for entry in self._loot_entries_for_monster(monster):
+            item_id = str(_first(entry, "item_runtime_id", "itemRuntimeId", "id", "item_id", "ItemID", "item", default=""))
+            chance = _first(entry, "drop_percent", "dropPercent", "chance", "percent", "Chance", default=100)
+            if item_id and self.roll_drop_percent(chance):
+                events.append(LootEvent(event_type="item", source_id=source, item_id=item_id, notes=["Drop used Classic full-width 1..100 integer percent roll."]))
         return events
 
     def generate_monster_loot(self, monster: Dict[str, Any], room_id: str = "unknown_room", create_corpse: bool = True) -> LootResult:

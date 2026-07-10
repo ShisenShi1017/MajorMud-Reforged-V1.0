@@ -104,6 +104,8 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 CodeUpdate-0135 applies final exhaustive Classic fixes over the verified 0134 room/exit/session/NPC baseline. It adds generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, and final simulation/runtime verification reports. Local verification passed with 38/38 final simulation checks and 49/49 complete runtime verification checks. GitHub Actions remains pending until user push.
 
+Internal CodeUpdate-0136 work has started. The first internal phase repairs Classic kill-time drop percent rolls by recording the full-width integer `1..100` roll contract in the Librarium and enforcing `roll <= drop_percent` in Runtime. Local verification passed with 50/50 complete runtime checks. This is not a completed public CodeUpdate0136 release.
+
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
 CodeUpdate-0032 improves Server bootstrap diagnostics by capturing ProjectManifest identity fields for startup output and smoke-test verification. The user reported CodeUpdate-0032 GitHub Actions green.
@@ -291,7 +293,8 @@ Boundaries until approved:
 Next candidate after CodeUpdate-0135:
 
 - Push CodeUpdate0135 and wait for user-reported green GitHub Actions.
-- Continue CodeUpdate0136 internally only.
+- Push the internal CodeUpdate0136 drop-roll repair and wait for user-reported green GitHub Actions.
+- Continue CodeUpdate0136 internally only after the green gate.
 - Implement complete Classic single-player gameplay in phases: character creation/selection, inventory/equipment, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification.
 - Preserve the locked architecture: Librarium authoritative, `/Data` generated only, runtime consumes generated `/Data`, Classic immutable/evidence-locked, Custom/AI worlds use overlays, client read-only, and `ImportedDatabases/` untouched.
 - Do not guess missing Classic behavior; classify unknown shop item rows before treating them as missing data.

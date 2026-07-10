@@ -2,7 +2,7 @@
 
 ## Current Baseline
 
-CodeUpdate 0135 is the current local baseline. It applies the final exhaustive Classic fix package over the verified 0134 map-qualified NPC population baseline. It adds DLL-verified single-swing Classic combat smoke coverage, generated Classic bug-fix policy data, repaired validators, duplicate trigger canonicalization, and final simulation/runtime verification reports. Librarium remains authoritative; generated `/Data/Classic` is runtime output; evidence remains validation material only until explicitly promoted through review.
+CodeUpdate 0135 is the current pushed green baseline by user report. Internal CodeUpdate0136 work has started with the Classic kill-time drop percent roll repair. The Librarium records the correct full-width integer `1..100` roll contract, and Runtime succeeds drops on `roll <= drop_percent`. Librarium remains authoritative; generated `/Data/Classic` is runtime output; evidence remains validation material only until explicitly promoted through review.
 
 Official rule set:
 
@@ -46,7 +46,7 @@ python Tools/Librarium/export_librarium_to_data.py --world classic --clean
 
 ## Next Work
 
-Push CodeUpdate0135 and wait for green GitHub Actions before continuing. CodeUpdate0136 is the active internal milestone for complete Classic single-player gameplay, but it must not be published as partial public CodeUpdates. Work should proceed in internal phases until the consolidated 0136 objective reaches zero executable failures and zero Classic single-player gameplay blockers.
+Push the internal CodeUpdate0136 drop-roll repair and wait for green GitHub Actions before continuing. CodeUpdate0136 remains the active internal milestone for complete Classic single-player gameplay, but it must not be published as partial public packages. Work should proceed in internal phases until the consolidated 0136 objective reaches zero executable failures and zero Classic single-player gameplay blockers.
 
 ## CodeUpdate 0126 â€” Librarium Compiler v1
 

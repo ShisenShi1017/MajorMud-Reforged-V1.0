@@ -21,3 +21,17 @@ dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj
 ```
 
 Promotion requires zero failures.
+
+## Internal CodeUpdate0136 Drop Roll Repair Verification
+
+After applying the internal Classic drop-roll repair, run:
+
+```powershell
+python Tools/Validation/validate_codeupdate0136_classic_drop_roll.py
+python Tools/Validation/run_complete_runtime_verification.py
+```
+
+Expected result:
+
+- Drop-roll validator PASS.
+- Complete runtime verification PASS, 50/50.
