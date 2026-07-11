@@ -101,6 +101,26 @@ if (args.Any(arg => string.Equals(arg, "--smoke-npcs", StringComparison.OrdinalI
     return npcSmoke.Passed ? 0 : 5;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-character-foundation", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot validate character foundation because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var host = new ServerRuntimeHost(report.ProjectRoot, options);
+    host.Bootstrap();
+    var world = host.Worlds.TryGetValue(options.DefaultWorldId, out var selectedWorld)
+        ? selectedWorld
+        : host.Worlds.Values.First();
+    var characterSmoke = RuntimeCharacterFoundationSmoke.Run(report.ProjectRoot, world);
+    Console.WriteLine("Runtime Character Foundation Smoke Report");
+    Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(characterSmoke, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
+    return characterSmoke.Passed ? 0 : 7;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-room-exits", StringComparison.OrdinalIgnoreCase)))
 {
     if (report.ProjectRoot is null)

@@ -9,6 +9,7 @@ public sealed class ServerRuntimeHost
     private readonly RuntimeStateStore _state = new();
     private readonly RuntimeEventDispatcher _events = new();
     private readonly RuntimeSessionManager _sessions;
+    private readonly RuntimeCharacterService _characters;
     private readonly ServerTickScheduler _scheduler = new();
     private RuntimeCommandDispatcher _commands;
 
@@ -16,7 +17,8 @@ public sealed class ServerRuntimeHost
     {
         _projectRoot = projectRoot;
         _options = options;
-        _sessions = new RuntimeSessionManager(_state, _events, _options.Development);
+        _characters = new RuntimeCharacterService(projectRoot);
+        _sessions = new RuntimeSessionManager(_state, _events, _options.Development, _characters);
         _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions, _state, _events);
     }
 
@@ -24,6 +26,7 @@ public sealed class ServerRuntimeHost
     public RuntimeSessionManager Sessions => _sessions;
     public RuntimeStateStore State => _state;
     public RuntimeEventDispatcher Events => _events;
+    public RuntimeCharacterService Characters => _characters;
 
     public GeneratedWorldSmokeReport CreateSmokeReport()
     {
@@ -242,7 +245,7 @@ public sealed class ServerRuntimeHost
         };
 
         var schedulerTask = _scheduler.RunAsync(linked.Token);
-        var network = new ServerNetworkHost(_options, () => _worlds, _commands, _sessions);
+        var network = new ServerNetworkHost(_options, () => _worlds, _commands, _sessions, _characters);
         var networkTask = network.RunTelnetAsync(linked.Token);
 
         Console.WriteLine("Runtime network host is running. Press Ctrl+C to stop.");

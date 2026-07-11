@@ -1,5 +1,18 @@
 # Changelog
 
+## CodeUpdate-0137 Internal - Character Foundation Catalog/Runtime Slice
+
+- Recorded internal CodeUpdate0136 Classic drop-roll repair as green by user report.
+- Added `Tools/Librarium/compile_character_foundation_0137.py` to generate Character Foundation runtime data from Librarium SQL/MDB-backed playable race/class records.
+- Regenerated `Data/Classic/races.json` and `Data/Classic/classes.json` from the playable catalog: 13 races and 15 classes.
+- Added `Data/Classic/character_foundation.json` with 13 races, 15 classes, 195 classified race/class pairs, source provenance, blocked fields, and no guessed compatibility allowance.
+- Added runtime account and character records with atomic save/load under `Saves/Runtime0137`.
+- Added telnet account prompt, character selection/creation plumbing, duplicate persistent-character login prevention, and saved-room session attachment.
+- Added `--smoke-character-foundation` and wired Character Foundation validators/smoke into complete runtime verification.
+- Local verification passed: Character Foundation Librarium validator, Character Foundation runtime-contract validator, Server Release build, server Character Foundation smoke, and complete runtime verification 53/53.
+- Known blocker: no verified generated Classic character-start room exists yet. Real character creation blocks rather than guessing or using `room.1`; `room.1` remains diagnostic-only.
+- This is an internal CodeUpdate0137 phase, not a completed public CodeUpdate0137 release.
+
 ## CodeUpdate-0136 Internal - Classic Drop Roll Repair
 
 - Recorded CodeUpdate-0135 GitHub Actions as green by user report.

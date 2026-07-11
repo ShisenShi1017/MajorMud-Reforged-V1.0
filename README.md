@@ -1,8 +1,10 @@
-# MajorMUD Reforged - CodeUpdate 0135
+# MajorMUD Reforged - CodeUpdate 0137 Internal Character Foundation
 
 ## Current Baseline
 
-CodeUpdate 0135 is the current pushed green baseline by user report. Internal CodeUpdate0136 work has started with the Classic kill-time drop percent roll repair. The Librarium records the correct full-width integer `1..100` roll contract, and Runtime succeeds drops on `roll <= drop_percent`. Librarium remains authoritative; generated `/Data/Classic` is runtime output; evidence remains validation material only until explicitly promoted through review.
+CodeUpdate 0135 is green by user report, and the internal CodeUpdate0136 Classic drop-roll repair is green by user report. The current local work is CodeUpdate0137 internal Character Foundation: Librarium SQL/MDB-backed records generate the playable Classic race/class catalog, and the server runtime now has account/character persistence and telnet character selection plumbing.
+
+The current generated Character Foundation catalog contains 13 playable races, 15 playable classes, and 195 classified race/class pairs. Exact compatibility, starting stats, HP/mana, skills, spells, equipment, and alignment remain blocked until evidence is promoted. Real character creation also blocks when no verified generated Classic character-start room exists; `room.1` remains diagnostic-only.
 
 Official rule set:
 
@@ -46,7 +48,7 @@ python Tools/Librarium/export_librarium_to_data.py --world classic --clean
 
 ## Next Work
 
-Push the internal CodeUpdate0136 drop-roll repair and wait for green GitHub Actions before continuing. CodeUpdate0136 remains the active internal milestone for complete Classic single-player gameplay, but it must not be published as partial public packages. Work should proceed in internal phases until the consolidated 0136 objective reaches zero executable failures and zero Classic single-player gameplay blockers.
+Push the internal CodeUpdate0137 Character Foundation slice and wait for green GitHub Actions before continuing. CodeUpdate0137 remains the active internal milestone for complete Classic gameplay, but it must not be published as a partial public package. Next work should resolve the generated Classic character-start evidence and then continue into exact compatibility, starting stats, skills/spells/equipment, and inventory/equipment runtime.
 
 ## CodeUpdate 0126 â€” Librarium Compiler v1
 

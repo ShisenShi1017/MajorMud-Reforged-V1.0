@@ -1,3 +1,22 @@
+# CodeUpdate-0137 Internal - Character Foundation Catalog/Runtime Slice
+
+This internal phase starts Character Foundation runtime work for Complete Classic Gameplay.
+
+Highlights:
+
+- Generates playable Classic character catalogs from Librarium SQL/MDB-backed records.
+- Replaces the old noisy generated race/class projection with 13 races and 15 classes.
+- Adds `Data/Classic/character_foundation.json` with 195 classified race/class pairs and blocked unresolved gameplay fields.
+- Adds runtime account and character records with atomic save/load under `Saves/Runtime0137`.
+- Adds telnet account, character selection, and character creation plumbing.
+- Adds duplicate persistent-character login prevention and saved-room session attachment.
+- Adds `--smoke-character-foundation`.
+- Complete runtime verification passed locally: 53/53.
+
+Known limitation:
+
+- This is not a completed public CodeUpdate0137 release. Exact race/class compatibility, starting stats, HP/mana, skills, spells, equipment, alignment, and verified generated Classic character-start evidence remain blocked. Character creation blocks when no generated start exists rather than guessing or using diagnostic `room.1`.
+
 # CodeUpdate-0136 Internal - Classic Drop Roll Repair
 
 This internal phase repairs Classic kill-time drop percent resolution.
@@ -29,7 +48,7 @@ Highlights:
 
 Known limitation:
 
-- CodeUpdate0136 remains required for complete Classic single-player gameplay. It must be worked internally until the consolidated objective has zero executable failures and zero Classic single-player gameplay blockers. GitHub Actions remains pending until the user pushes this 0135 commit.
+- CodeUpdate0137 remains required for complete Classic gameplay. It must be worked internally until the consolidated objective has zero executable failures and zero Classic gameplay blockers. Earlier CodeUpdate0135 and internal CodeUpdate0136 drop-roll repair are green by user report.
 
 # CodeUpdate-0134 - Complete Map-Qualified NPC Population
 

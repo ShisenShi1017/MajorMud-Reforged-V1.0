@@ -96,15 +96,17 @@ Classic, Reforged, custom worlds, future expansions, and additional rule sets sh
 
 ## Current Development Position
 
-- Current Code Update: `0135`
+- Current Code Update: `0137-internal`
 - Current Database Version: `0010`
-- Current Milestone: `CodeUpdate0136 - Complete Classic Gameplay`
+- Current Milestone: `CodeUpdate0137 - Complete Classic Gameplay`
 - Milestone 1: complete/frozen
-- Current priority: push CodeUpdate-0135, verify GitHub Actions green by user report, then continue CodeUpdate0136 internally without publishing partial public 0136 updates.
+- Current priority: push internal CodeUpdate0137 Character Foundation, verify GitHub Actions green by user report, then continue CodeUpdate0137 internally without publishing partial public 0137 updates.
 
-CodeUpdate-0135 applies final exhaustive Classic fixes over the verified 0134 room/exit/session/NPC baseline. It adds generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, and final simulation/runtime verification reports. Local verification passed with 38/38 final simulation checks and 49/49 complete runtime verification checks. GitHub Actions remains pending until user push.
+CodeUpdate-0135 applies final exhaustive Classic fixes over the verified 0134 room/exit/session/NPC baseline and is green by user report. It adds generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, and final simulation/runtime verification reports.
 
-Internal CodeUpdate-0136 work has started. The first internal phase repairs Classic kill-time drop percent rolls by recording the full-width integer `1..100` roll contract in the Librarium and enforcing `roll <= drop_percent` in Runtime. Local verification passed with 50/50 complete runtime checks. This is not a completed public CodeUpdate0136 release.
+Internal CodeUpdate-0136 Classic drop-roll repair is green by user report. It repairs Classic kill-time drop percent rolls by recording the full-width integer `1..100` roll contract in the Librarium and enforcing `roll <= drop_percent` in Runtime. Local verification passed with 50/50 complete runtime checks. This is not a completed public gameplay release.
+
+Internal CodeUpdate-0137 Character Foundation work is active. The current local slice generates 13 playable races, 15 playable classes, and 195 classified race/class pairs from Librarium SQL/MDB-backed records; adds runtime account/character persistence; adds telnet character selection/creation plumbing; and adds `--smoke-character-foundation`. Local complete runtime verification passed 53/53. Verified generated Classic character-start evidence remains blocked, so real character creation blocks rather than guessing or using diagnostic `room.1`.
 
 CodeUpdate-0031A corrects the CodeUpdate-0031 GitHub Actions build failure in `Tests/Source/Reforged.Core.Tests/Program.cs`. The fix is limited to the invalid C# string literal in the configuration smoke test. The user reported CodeUpdate-0031A GitHub Actions green, and Codex local .NET 8.0.422 sequential restore/build/smoke verification passed.
 
@@ -184,7 +186,7 @@ CodeUpdate-0135 applies the final exhaustive Classic fix payload over the verifi
 
 Local verification passed: final simulation 38/38, complete runtime verification 49/49, .NET restore/build, server generated-data/room-exit/NPC/combat/scripted-session smokes, compiler tests, and Core/server smoke tests.
 
-Boundaries: CodeUpdate0136 remains required for complete Classic single-player gameplay. Do not publish partial public 0136 updates. Continue internally until character creation/selection, inventory/equipment, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification pass.
+Boundaries: CodeUpdate0137 remains required for complete Classic gameplay. Do not publish partial public 0137 updates. Continue internally until character creation/selection, inventory/equipment, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification pass.
 
 ## CodeUpdate-0134 - Complete Map-Qualified NPC Population
 
@@ -276,11 +278,11 @@ Focus Areas:
 - Data validation tools.
 - Runtime performance.
 - Client/editor modernization.
-- Complete Classic single-player gameplay under the approved CodeUpdate0136 internal milestone.
+- Complete Classic gameplay under the approved CodeUpdate0137 internal milestone.
 
 Boundaries until approved:
 
-- No partial public CodeUpdate0136 packages or commits.
+- No partial public CodeUpdate0137 packages.
 - No multiplayer.
 - No client implementation beyond read-only gameplay view assumptions.
 - No Custom/AI overlay-world implementation beyond preserving the architecture.
@@ -293,8 +295,8 @@ Boundaries until approved:
 Next candidate after CodeUpdate-0135:
 
 - Push CodeUpdate0135 and wait for user-reported green GitHub Actions.
-- Push the internal CodeUpdate0136 drop-roll repair and wait for user-reported green GitHub Actions.
-- Continue CodeUpdate0136 internally only after the green gate.
+- Push the internal CodeUpdate0137 Character Foundation slice and wait for user-reported green GitHub Actions.
+- Continue CodeUpdate0137 internally only after the green gate.
 - Implement complete Classic single-player gameplay in phases: character creation/selection, inventory/equipment, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification.
 - Preserve the locked architecture: Librarium authoritative, `/Data` generated only, runtime consumes generated `/Data`, Classic immutable/evidence-locked, Custom/AI worlds use overlays, client read-only, and `ImportedDatabases/` untouched.
 - Do not guess missing Classic behavior; classify unknown shop item rows before treating them as missing data.

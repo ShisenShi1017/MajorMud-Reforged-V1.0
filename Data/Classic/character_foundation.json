@@ -1,0 +1,1803 @@
+{
+  "schema_version": 1,
+  "generated_by": "Tools/Librarium/compile_character_foundation_0137.py",
+  "code_update": "0137-internal-character-foundation",
+  "world_id": "Classic",
+  "authority": "Librarium",
+  "classic_locked": true,
+  "source_policy": "Generated from Librarium SQL/MDB-backed playable race/class records. ImportedDatabases are not runtime sources.",
+  "race_count": 13,
+  "class_count": 15,
+  "compatibility_count": 195,
+  "races": [
+    {
+      "id": "race.human",
+      "name": "Human",
+      "number": 1,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_1",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3932
+    },
+    {
+      "id": "race.dwarf",
+      "name": "Dwarf",
+      "number": 2,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_2",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3768
+    },
+    {
+      "id": "race.gnome",
+      "name": "Gnome",
+      "number": 3,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_3",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3604
+    },
+    {
+      "id": "race.halfling",
+      "name": "Halfling",
+      "number": 4,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_4",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3437
+    },
+    {
+      "id": "race.elf",
+      "name": "Elf",
+      "number": 5,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_5",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3275
+    },
+    {
+      "id": "race.half_elf",
+      "name": "Half-Elf",
+      "number": 6,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_6",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3108
+    },
+    {
+      "id": "race.dark_elf",
+      "name": "Dark-Elf",
+      "number": 7,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_7",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2941
+    },
+    {
+      "id": "race.half_orc",
+      "name": "Half-Orc",
+      "number": 8,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_8",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2774
+    },
+    {
+      "id": "race.goblin",
+      "name": "Goblin",
+      "number": 9,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_9",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2609
+    },
+    {
+      "id": "race.half_ogre",
+      "name": "Half-Ogre",
+      "number": 10,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_10",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2441
+    },
+    {
+      "id": "race.kang",
+      "name": "Kang",
+      "number": 11,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_11",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2278
+    },
+    {
+      "id": "race.nekojin",
+      "name": "Nekojin",
+      "number": 12,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_12",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2112
+    },
+    {
+      "id": "race.gaunt_one",
+      "name": "Gaunt One",
+      "number": 13,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_13",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 1944
+    }
+  ],
+  "classes": [
+    {
+      "id": "class.warrior",
+      "name": "Warrior",
+      "number": 1,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_1",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 3959
+    },
+    {
+      "id": "class.witchunter",
+      "name": "Witchunter",
+      "number": 2,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_2",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 3819
+    },
+    {
+      "id": "class.paladin",
+      "name": "Paladin",
+      "number": 3,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_3",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 3682
+    },
+    {
+      "id": "class.cleric",
+      "name": "Cleric",
+      "number": 4,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_4",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 3546
+    },
+    {
+      "id": "class.priest",
+      "name": "Priest",
+      "number": 5,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_5",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 3410
+    },
+    {
+      "id": "class.missionary",
+      "name": "Missionary",
+      "number": 6,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_6",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 3270
+    },
+    {
+      "id": "class.ninja",
+      "name": "Ninja}",
+      "number": 7,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_7",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 3135
+    },
+    {
+      "id": "class.thief",
+      "name": "Thief}",
+      "number": 8,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_8",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 3000
+    },
+    {
+      "id": "class.bard",
+      "name": "Bard|",
+      "number": 9,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_9",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 2866
+    },
+    {
+      "id": "class.gypsy",
+      "name": "Gypsy}",
+      "number": 10,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_10",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 2731
+    },
+    {
+      "id": "class.warlock",
+      "name": "Warlock",
+      "number": 11,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_11",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 2594
+    },
+    {
+      "id": "class.mage",
+      "name": "Mage|",
+      "number": 12,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_12",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 2460
+    },
+    {
+      "id": "class.druid",
+      "name": "Druid}",
+      "number": 13,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_13",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 2325
+    },
+    {
+      "id": "class.ranger",
+      "name": "Ranger",
+      "number": 14,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_14",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 2189
+    },
+    {
+      "id": "class.mystic",
+      "name": "Mystic",
+      "number": 15,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_class_15",
+      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB class row",
+      "source_owner_table_page": 15,
+      "source_page": 17,
+      "source_offset": 2053
+    }
+  ],
+  "compatibility": [
+    {
+      "race_id": "race.human",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.human",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dwarf",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gnome",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.halfling",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.elf",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_elf",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.dark_elf",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_orc",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.goblin",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.half_ogre",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.kang",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.nekojin",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.warrior",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.witchunter",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.paladin",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.cleric",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.priest",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.missionary",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.ninja",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.thief",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.bard",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.gypsy",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.warlock",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.mage",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.druid",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.ranger",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    },
+    {
+      "race_id": "race.gaunt_one",
+      "class_id": "class.mystic",
+      "classification": "unresolved_classic_compatibility",
+      "runtime_allowed": null,
+      "reason": "Playable race and class identities are SQL/MDB-backed; exact Classic race/class compatibility remains blocked until byte-level evidence is promoted."
+    }
+  ],
+  "start_location": {
+    "classification": "generated_world_start_room",
+    "runtime_resolution": "RuntimeWorld.ResolveGeneratedCharacterStartRoom",
+    "fallback_policy": "block instead of guessing when no generated start room exists"
+  },
+  "blocked_fields": [
+    "race_class_compatibility",
+    "starting_base_stats",
+    "starting_hit_points",
+    "starting_mana",
+    "starting_skills",
+    "starting_spells",
+    "starting_inventory",
+    "starting_equipment",
+    "alignment_rules"
+  ],
+  "rule_evidence": {
+    "class_rules": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_CLASS_RULES.json",
+    "race_rules": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_RACE_RULES.json",
+    "hp_mp_rules": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_HP_MP_GAIN.json",
+    "stats": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_STATS.json",
+    "training": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_TRAINING.json",
+    "xp_level": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_XP_LEVEL.json"
+  },
+  "initialization_policy": {
+    "no_guessed_values": true,
+    "rule": "Runtime may create a durable shell only from generated catalog identities; unresolved Classic gameplay fields remain blocked and must not be defaulted as verified behavior."
+  }
+}

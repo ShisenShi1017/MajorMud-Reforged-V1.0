@@ -1,13 +1,13 @@
 # MajorMUD Reforged Version
 
-Current repository baseline: **CodeUpdate 0135 - Final Exhaustive Classic Fixes**
+Current repository baseline: **CodeUpdate 0137 Internal - Character Foundation Catalog/Runtime Slice**
 
-Status: CodeUpdate0135 is green by user report. Internal CodeUpdate0136 work has started with the Classic kill-time drop percent roll repair. Local Codex verification passed. GitHub Actions remains pending until the user pushes this internal 0136 commit and reports green.
+Status: CodeUpdate0135 and the internal CodeUpdate0136 Classic drop-roll repair are green by user report. CodeUpdate0137 internal Character Foundation local verification passed. GitHub Actions remains pending until the user pushes this internal 0137 commit and reports green.
 
-Current internal 0136 scope: Classic kill-time loot drops use a full-width integer `1..100` roll and succeed on `roll <= drop_percent`. This fixes the rounded endpoint-bucket bug that under-dropped 1% and 3% loot such as orc-heads.
+Current internal 0137 scope: generated Character Foundation catalog and runtime plumbing. `Tools/Librarium/compile_character_foundation_0137.py` generates 13 playable races, 15 playable classes, 195 classified race/class pairs, and `Data/Classic/character_foundation.json` from Librarium SQL/MDB-backed records. Runtime adds account records, character records, atomic save/load, duplicate-login prevention, telnet account/character selection, and `--smoke-character-foundation`.
 
-Boundary: 0135 does not complete Classic single-player gameplay. CodeUpdate0136 is the active internal milestone for character creation/selection, inventory/equipment, full world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification. No partial public CodeUpdate0136 should be created.
+Boundary: CodeUpdate0137 does not complete Classic gameplay. Exact race/class compatibility, starting stats, HP/mana, skills, spells, equipment, alignment, and verified generated Classic character-start evidence remain blocked. Real character creation blocks rather than guessing a start room; `room.1` remains diagnostic-only. No partial public CodeUpdate0137 package should be created.
 
-Local verification passed: `python Tools/Validation/validate_codeupdate0136_classic_drop_roll.py` and `python Tools/Validation/run_complete_runtime_verification.py`; complete runtime verification 50/50 PASS.
+Local verification passed: `python Tools/Validation/validate_codeupdate0137_character_foundation_librarium.py`, `python Tools/Validation/validate_codeupdate0137_character_foundation.py`, `dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore`, `dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-character-foundation`, and `python Tools/Validation/run_complete_runtime_verification.py`; complete runtime verification 53/53 PASS.
 
 GitHub Actions remains pending until user push and green report.

@@ -1,7 +1,7 @@
 # Reforged Agent Instructions
 
 
-## Current Baseline - CodeUpdate 0135
+## Current Baseline - CodeUpdate 0137 Internal Character Foundation
 
 - Librarium is the authoritative source of truth.
 - `/Data` is generated runtime output per world.
@@ -9,8 +9,9 @@
 - Host/server/editor modifies Librarium world definitions and overlays.
 - Client is read-only and receives data for the active connected world.
 - CodeUpdate 0135 is the verified local baseline after final exhaustive Classic fixes, DLL-verified single-swing combat smoke, Classic bug-fix contracts, and complete runtime promotion gate.
-- CodeUpdate 0136 is the active internal milestone for complete Classic single-player gameplay. Do not create partial public CodeUpdate0136 packages or commits; work in internal phases until the consolidated 0136 objective passes verification.
-- Current internal 0136 phase repairs Classic kill-time drop percent rolls. Librarium records full-width integer `1..100` semantics, Runtime uses `roll <= drop_percent`, and local complete runtime verification passed 50/50.
+- CodeUpdate 0136 internal drop-roll repair is green by user report. Librarium records full-width integer `1..100` semantics, Runtime uses `roll <= drop_percent`, and local complete runtime verification passed 50/50.
+- CodeUpdate 0137 is the active internal milestone for Complete Classic Gameplay after the drop-roll repair. Do not create partial public CodeUpdate0137 packages; work in internal phases until the consolidated objective passes verification.
+- Current internal 0137 phase adds the Character Foundation catalog/runtime slice. Librarium SQL/MDB-backed playable race/class records generate `Data/Classic/character_foundation.json`, `races.json`, and `classes.json` with 13 races, 15 classes, and 195 classified race/class pairs. Runtime account/character persistence and telnet selection/creation plumbing exist, but real character creation blocks when no verified generated Classic character-start room is present.
 - CodeUpdate 0127A repairs the CodeUpdate-0127 clean-checkout bootstrap failure by tracking `Bin/.gitkeep` while generated `Bin/` contents remain ignored.
 - Keep docs, handoffs, evidence, and decision records aligned with this model.
 
@@ -143,15 +144,17 @@ Every ChatGPT-created Code Update ZIP must:
 
 ## 10. Current project position after CodeUpdate-0135
 
-- Current Code Update: `0135`
+- Current Code Update: `0137-internal`
 - Current Database Version: `0010`
-- Current Milestone: `CodeUpdate0136 - Complete Classic Gameplay`
+- Current Milestone: `CodeUpdate0137 - Complete Classic Gameplay`
 - Milestone 1: frozen
-- Current priority: push CodeUpdate-0135, verify GitHub Actions green by user report, then continue CodeUpdate0136 internally without publishing partial public 0136 updates.
+- Current priority: push the internal CodeUpdate0137 Character Foundation slice, verify GitHub Actions green by user report, then continue CodeUpdate0137 internally without publishing partial public 0137 updates.
 
-CodeUpdate-0135 is the verified local baseline after final exhaustive Classic fixes. It applies generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, and final simulation/runtime verification reports. Local Codex verification passed: exhaustive repairs validator, complete runtime verification 49/49, final simulation report 38/38, .NET solution restore/build gate, server generated-data/room-exit/NPC/combat/scripted-session smokes, compiler tests, and Core/server smoke tests. GitHub Actions remains pending until the user pushes and reports green.
+CodeUpdate-0135 is the verified baseline after final exhaustive Classic fixes and is green by user report. It applies generated Classic bug-fix policy data, DLL-verified single-swing combat smoke support, repaired validators, duplicate trigger canonicalization, `room.unknown` runtime exclusion, and final simulation/runtime verification reports.
 
-CodeUpdate-0136 is the active internal milestone for complete Classic single-player gameplay. Do not create partial public CodeUpdate0136 packages. Work in internal phases until character creation/selection, inventory/equipment, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification pass with zero executable failures and zero Classic single-player gameplay blockers. Current internal work repairs Classic kill-time drop percent rolls for orc-head-style loot: Librarium records the `1..100` roll contract and Runtime executes `roll <= drop_percent`.
+CodeUpdate-0136 internal Classic drop-roll repair is green by user report. It repairs orc-head-style kill-time loot by recording the `1..100` roll contract in the Librarium and executing `roll <= drop_percent` in Runtime.
+
+CodeUpdate-0137 is the active internal milestone for Complete Classic Gameplay. Do not create partial public CodeUpdate0137 packages. Work in internal phases until character creation/selection, inventory/equipment, complete world generation, NPC lifecycle/AI, combat rounds, magic/statuses, quests/triggers/events, shops/economy, persistence, and final exhaustive verification pass with zero executable failures and zero Classic single-player gameplay blockers. Current internal work adds Character Foundation catalog/runtime plumbing and records the verified generated-start blocker.
 
 CodeUpdate-0115 starts Runtime Milestone 2 with host-owned runtime state and a generic runtime event dispatcher. It adds `RuntimeStateStore`, `RuntimeEventDispatcher`, `state` and `events` runtime inspection commands, smoke coverage for state/event tracking, and `Docs/Architecture/HOST_VISION_V1.md`. Vision1 records the approved multi-world host direction: Classic, Reforged Custom, Pure AI, test realms, publishing, import wizard, world identity, transfer rules, reset system, permissions, networking, scripting boundaries, future cluster support, maintenance mode, and world health dashboard. CodeUpdate-0115 does not add combat, magic, NPC AI, spawn logic, quests, dialogue, scripts, guilds, economy integration, durable account saves, cluster runtime, maintenance mode, dashboard, formula changes, or imported/reference deletion.
 CodeUpdate-0114 applies Runtime Milestone 1 server files. It adds opt-in Classic-first local console runtime, opt-in telnet/network hosting, multi-session tracking, login name prompt, world selection foundation, runtime world loading from generated `/Data`, command dispatch, scheduler shell, `Config/server.worlds.json`, Codespaces support, and restored GitHub Actions server build automation. `.github/workflows/dotnet-server.yml` now runs on every branch push, every pull request, and manual dispatch. Local .NET 8.0.422 server restore/build/bootstrap verification passed; GitHub Actions remains pending until the user pushes and reports green. It does not add combat runtime, persistent accounts/characters, saves, AI worlds, custom worlds, formula changes, imported/reference deletion, or non-Classic gameplay expansion.

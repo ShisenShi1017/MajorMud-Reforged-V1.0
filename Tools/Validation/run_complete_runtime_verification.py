@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the complete CodeUpdate0135 plus internal CodeUpdate0136 verification gate.
+"""Run the complete CodeUpdate0135 plus internal 0136/0137 verification gate.
 
 This orchestrates Python validation/simulation, .NET builds/tests, server smoke
 modes, and a scripted local-console runtime session. It writes machine-readable
@@ -55,6 +55,8 @@ PYTHON_SCRIPTS = [
     "Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py",
     "Tools/Validation/validate_codeupdate0135_combat_execution.py",
     "Tools/Validation/validate_codeupdate0136_classic_drop_roll.py",
+    "Tools/Validation/validate_codeupdate0137_character_foundation_librarium.py",
+    "Tools/Validation/validate_codeupdate0137_character_foundation.py",
 ]
 
 DOTNET_STEPS = [
@@ -68,6 +70,7 @@ DOTNET_STEPS = [
     ("server_generated_data", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-generated-data"]),
     ("server_room_exits", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-room-exits"]),
     ("server_npcs", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-npcs"]),
+    ("server_character_foundation", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-character-foundation"]),
     ("server_combat", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-combat"]),
 ]
 
@@ -129,7 +132,7 @@ def main() -> int:
         return 2
 
     print(f"Repository: {root}")
-    print("Running complete CodeUpdate0135 plus internal CodeUpdate0136 runtime verification gate...")
+    print("Running complete CodeUpdate0135 plus internal 0136/0137 runtime verification gate...")
 
     for script in PYTHON_SCRIPTS:
         path = root / script
@@ -168,7 +171,7 @@ def main() -> int:
         print(f"{result['status']:7} {result['name']} ({result['seconds']}s)")
 
     summary = {
-        "codeupdate": "0135+0136-internal",
+        "codeupdate": "0135+0136+0137-internal",
         "gate": "complete_runtime_verification",
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "status": "PASS" if results and all(r["status"] == "PASS" for r in results) else "FAIL",
@@ -184,7 +187,7 @@ def main() -> int:
     lines = [
         "# Complete Runtime Verification",
         "",
-        f"- CodeUpdate: 0135+0136-internal",
+        f"- CodeUpdate: 0135+0136+0137-internal",
         f"- Status: **{summary['status']}**",
         f"- Passed: {summary['passed']}/{summary['total']}",
         f"- Timestamp: {summary['timestamp_utc']}",

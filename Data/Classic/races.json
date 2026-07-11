@@ -1,167 +1,192 @@
 {
-  "base_world": null,
-  "compiler_code_update": "0127",
+  "schema_version": 1,
+  "generated_by": "Tools/Librarium/compile_character_foundation_0137.py",
+  "world_id": "Classic",
+  "authority": "Librarium",
   "family": "races",
-  "generated_by": "MajorMud.Reforged.Compiler",
-  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
-  "record_count": 2,
+  "record_count": 13,
   "records": [
     {
-      "classification": "candidate_from_access_or_trainer_evidence",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "confidence": "probable",
-      "evidence": [
-        {
-          "note": "Extracted from character traversal profiles, trainer/service rooms, or trainer naming evidence.",
-          "source": "Evidence/DataSimVer0007/CharacterAccessMatrix.csv / Simulator/DataSimVer/0008/TrainerRoomRefs.csv / Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
-        }
-      ],
-      "evidence_summary_0124": {
-        "confidence": "probable",
-        "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
-        "source_priority": [
-          "OriginalRuntimeObservation",
-          "NightmareRedux",
-          "MBBSEmu",
-          "MMUDExplorer",
-          "MonsterSimulatorHistorical",
-          "DataSimEvidence"
-        ]
-      },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/races.json",
-        "hot_reload_candidate": false,
-        "output_collection": "races",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
-      },
-      "id": "race.advanced",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/races/race_records_0123.json",
-      "name": "Advanced",
-      "object_type": "race",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/races.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
-      },
-      "validation_rules_0124": [
-        "id_required",
-        "object_type_required",
-        "world_scope_required",
-        "evidence_required_for_classic",
-        "runtime_mapping_required",
-        "generator_mapping_required"
-      ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
+      "id": "race.human",
+      "name": "Human",
+      "number": 1,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_1",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3932
     },
     {
-      "classification": "candidate_from_access_or_trainer_evidence",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "confidence": "probable",
-      "evidence": [
-        {
-          "note": "Extracted from character traversal profiles, trainer/service rooms, or trainer naming evidence.",
-          "source": "Evidence/DataSimVer0007/CharacterAccessMatrix.csv / Simulator/DataSimVer/0008/TrainerRoomRefs.csv / Evidence/DataSimVer0012/ServiceEvidenceExtract.csv"
-        }
-      ],
-      "evidence_summary_0124": {
-        "confidence": "probable",
-        "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
-        "source_priority": [
-          "OriginalRuntimeObservation",
-          "NightmareRedux",
-          "MBBSEmu",
-          "MMUDExplorer",
-          "MonsterSimulatorHistorical",
-          "DataSimEvidence"
-        ]
-      },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/races.json",
-        "hot_reload_candidate": false,
-        "output_collection": "races",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
-      },
-      "id": "race.human",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/races/race_records_0123.json",
-      "name": "Human",
-      "object_type": "race",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/races.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
-      },
-      "validation_rules_0124": [
-        "id_required",
-        "object_type_required",
-        "world_scope_required",
-        "evidence_required_for_classic",
-        "runtime_mapping_required",
-        "generator_mapping_required"
-      ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
+      "id": "race.dwarf",
+      "name": "Dwarf",
+      "number": 2,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_2",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3768
+    },
+    {
+      "id": "race.gnome",
+      "name": "Gnome",
+      "number": 3,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_3",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3604
+    },
+    {
+      "id": "race.halfling",
+      "name": "Halfling",
+      "number": 4,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_4",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3437
+    },
+    {
+      "id": "race.elf",
+      "name": "Elf",
+      "number": 5,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_5",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3275
+    },
+    {
+      "id": "race.half_elf",
+      "name": "Half-Elf",
+      "number": 6,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_6",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 3108
+    },
+    {
+      "id": "race.dark_elf",
+      "name": "Dark-Elf",
+      "number": 7,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_7",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2941
+    },
+    {
+      "id": "race.half_orc",
+      "name": "Half-Orc",
+      "number": 8,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_8",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2774
+    },
+    {
+      "id": "race.goblin",
+      "name": "Goblin",
+      "number": 9,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_9",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2609
+    },
+    {
+      "id": "race.half_ogre",
+      "name": "Half-Ogre",
+      "number": 10,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_10",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2441
+    },
+    {
+      "id": "race.kang",
+      "name": "Kang",
+      "number": 11,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_11",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2278
+    },
+    {
+      "id": "race.nekojin",
+      "name": "Nekojin",
+      "number": 12,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_12",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 2112
+    },
+    {
+      "id": "race.gaunt_one",
+      "name": "Gaunt One",
+      "number": 13,
+      "classification": "playable_classic_catalog_record",
+      "evidence_state": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "source_record_id": "mmud_sql_race_13",
+      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
+      "source_kind": "MMExplorer SQL/MDB race row",
+      "source_owner_table_page": 1660,
+      "source_page": 1662,
+      "source_offset": 1944
     }
-  ],
-  "source_file": "Librarium/Objects/races/race_records_0123.json",
-  "world_id": "Classic",
-  "world_type": "classic"
+  ]
 }

@@ -1,9 +1,9 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0135",
+  "codeUpdate": "0137-internal",
   "databaseVersion": "0010",
-  "milestone": "CodeUpdate0136 - Complete Classic Gameplay",
+  "milestone": "CodeUpdate0137 - Complete Classic Gameplay",
   "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Data artifacts are generated runtime output and are not edited manually.",
   "runtimePolicy": "Runtime consumes generated /Data only. The client is read-only for gameplay state.",
   "updatePolicy": "Codex updates the local repository only and waits for user push plus green GitHub Actions before continuing to the next public Code Update.",
@@ -17,20 +17,21 @@
     "ImportedDatabases"
   ],
   "developmentStatus": {
-    "currentMilestone": "CodeUpdate0136 - Complete Classic Gameplay",
-    "currentCodeUpdate": "0135",
+    "currentMilestone": "CodeUpdate0137 - Complete Classic Gameplay",
+    "currentCodeUpdate": "0137-internal",
     "currentDatabaseVersion": "0010",
     "completedMilestones": [
       "Milestone 1 - Core Framework"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate 0135 is green by user report. Internal CodeUpdate0136 work has started with Classic kill-time drop percent roll repair: Librarium records full-width integer 1..100 roll semantics and Runtime enforces roll <= drop_percent.",
-    "lastUpdateName": "CodeUpdate-0136-Internal-ClassicDropRollRepair",
+    "milestone2Status": "CodeUpdate 0135 and internal CodeUpdate0136 Classic drop-roll repair are green by user report. Internal CodeUpdate0137 Character Foundation local verification passed 53/53: generated playable race/class catalog, runtime account/character persistence, telnet selection plumbing, and explicit generated-start blocker.",
+    "lastUpdateName": "CodeUpdate-0137-Internal-CharacterFoundationCatalogRuntimeSlice",
     "nextRecommendedWork": [
-      "Push internal CodeUpdate0136 Classic drop-roll repair after local commit.",
+      "Push internal CodeUpdate0137 Character Foundation catalog/runtime slice after local commit.",
       "Wait for user-reported green GitHub Actions before continuing.",
-      "Continue CodeUpdate0136 internally only; do not create partial public 0136 packages or commits.",
-      "Complete Classic single-player gameplay with zero executable failures and zero Classic single-player gameplay blockers before consolidated 0136 publication."
+      "Continue CodeUpdate0137 internally only; do not create partial public 0137 packages.",
+      "Resolve verified generated Classic character-start evidence before enabling real character creation.",
+      "Complete Classic gameplay with zero executable failures and zero Classic gameplay blockers before consolidated publication."
     ]
   },
   "handoffPolicy": {
@@ -57,9 +58,9 @@
     "requiresManifest": true,
     "requiresVerificationBeforeAnnouncement": true
   },
-  "buildVerification": "LOCAL_PASS; Internal CodeUpdate0136 Classic drop-roll repair passed targeted validation and complete runtime verification 50/50. GitHub Actions remains pending until user push.",
+  "buildVerification": "LOCAL_PASS; Internal CodeUpdate0137 Character Foundation passed targeted validation, Server Release build, server character-foundation smoke, and complete runtime verification 53/53. GitHub Actions remains pending until user push.",
   "current_codeupdate": "0135",
-  "last_update": "Internal Classic Drop Roll Repair",
+  "last_update": "Internal Character Foundation Catalog Runtime Slice",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
     "Runtime state/event foundation",
@@ -72,10 +73,12 @@
     "Runtime static NPC definition and spawn loading",
     "DLL-verified single-swing Classic combat smoke",
     "Final exhaustive Classic fix policy records",
-    "Classic kill-time drop percent roll repair"
+    "Classic kill-time drop percent roll repair",
+    "Character Foundation playable catalog generation",
+    "Runtime account/character persistence foundation"
   ],
   "gitIgnorePolicy": "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
-  "current_milestone": "CodeUpdate0136 - Complete Classic Gameplay",
+  "current_milestone": "CodeUpdate0137 - Complete Classic Gameplay",
   "librarium_authoritative": true,
   "data_generated_from_librarium": true,
   "librariumAuthority": "Librarium is the source of truth; /Data is generated runtime output.",
@@ -86,8 +89,8 @@
     "NightmareRedux",
     "MajorMUD-PHP-Monster-Sim"
   ],
-  "baseline": "CodeUpdate 0135 - Final Exhaustive Classic Fixes",
-  "updatedUtc": "2026-07-10T22:31:40Z",
+  "baseline": "CodeUpdate 0137 Internal - Character Foundation Catalog Runtime Slice",
+  "updatedUtc": "2026-07-11T01:23:20Z",
   "dataPolicy": "/Data is generated output per world and should not be hand-edited as canonical source.",
   "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

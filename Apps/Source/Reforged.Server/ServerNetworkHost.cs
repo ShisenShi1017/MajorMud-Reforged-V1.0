@@ -10,17 +10,20 @@ public sealed class ServerNetworkHost
     private readonly Func<IReadOnlyDictionary<string, RuntimeWorld>> _worldProvider;
     private readonly RuntimeCommandDispatcher _commands;
     private readonly RuntimeSessionManager _sessions;
+    private readonly RuntimeCharacterService _characters;
 
     public ServerNetworkHost(
         ServerRuntimeOptions options,
         Func<IReadOnlyDictionary<string, RuntimeWorld>> worldProvider,
         RuntimeCommandDispatcher commands,
-        RuntimeSessionManager sessions)
+        RuntimeSessionManager sessions,
+        RuntimeCharacterService characters)
     {
         _options = options;
         _worldProvider = worldProvider;
         _commands = commands;
         _sessions = sessions;
+        _characters = characters;
     }
 
     public async Task RunTelnetAsync(CancellationToken cancellationToken)
@@ -62,13 +65,14 @@ public sealed class ServerNetworkHost
         try
         {
             await WriteBannerAsync(writer).ConfigureAwait(false);
-            await writer.WriteAsync("Name: ").ConfigureAwait(false);
-            var playerName = await ReadLineAsync(reader, linked.Token).ConfigureAwait(false);
-            if (string.IsNullOrWhiteSpace(playerName))
+            await writer.WriteAsync("Account: ").ConfigureAwait(false);
+            var accountName = await ReadLineAsync(reader, linked.Token).ConfigureAwait(false);
+            if (string.IsNullOrWhiteSpace(accountName))
             {
-                await writer.WriteLineAsync("Connection closed: blank names are not accepted.").ConfigureAwait(false);
+                await writer.WriteLineAsync("Connection closed: blank account names are not accepted.").ConfigureAwait(false);
                 return;
             }
+            var account = _characters.GetOrCreateAccount(accountName);
 
             var selectedWorld = await SelectWorldAsync(reader, writer, linked.Token).ConfigureAwait(false);
             if (selectedWorld is null)
@@ -77,7 +81,14 @@ public sealed class ServerNetworkHost
                 return;
             }
 
-            var session = _sessions.CreateSession(sessionId, selectedWorld, playerName);
+            var character = await SelectOrCreateCharacterAsync(account, selectedWorld, reader, writer, linked.Token).ConfigureAwait(false);
+            if (character is null)
+            {
+                await writer.WriteLineAsync("Connection closed: no character selected.").ConfigureAwait(false);
+                return;
+            }
+
+            var session = _sessions.CreateCharacterSession(sessionId, selectedWorld, character);
             if (!_sessions.TryAdd(session, Math.Max(1, _options.Network.MaxSessions), out var message))
             {
                 await writer.WriteLineAsync($"Connection refused: {message}").ConfigureAwait(false);
@@ -135,6 +146,54 @@ public sealed class ServerNetworkHost
         await writer.WriteLineAsync("MajorMUD Reforged Runtime Milestone 1").ConfigureAwait(false);
         await writer.WriteLineAsync("Host authoritative. Classic-first. No client-side state mutation.").ConfigureAwait(false);
         await writer.WriteLineAsync().ConfigureAwait(false);
+    }
+
+    private async Task<RuntimeCharacterRecord?> SelectOrCreateCharacterAsync(
+        RuntimeAccountRecord account,
+        RuntimeWorld world,
+        StreamReader reader,
+        StreamWriter writer,
+        CancellationToken cancellationToken)
+    {
+        var existing = _characters.ListCharacters(account.AccountId)
+            .Where(character => string.Equals(character.WorldId, world.Definition.Id, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        if (existing.Length > 0)
+        {
+            await writer.WriteLineAsync("Characters:").ConfigureAwait(false);
+            foreach (var character in existing)
+            {
+                await writer.WriteLineAsync($"- {character.DisplayName} [{character.RaceName} {character.ClassName}, level {character.Level}]").ConfigureAwait(false);
+            }
+
+            await writer.WriteAsync("Character name, or NEW: ").ConfigureAwait(false);
+            var selection = await ReadLineAsync(reader, cancellationToken).ConfigureAwait(false);
+            if (!string.Equals(selection?.Trim(), "new", StringComparison.OrdinalIgnoreCase))
+            {
+                return existing.FirstOrDefault(character => string.Equals(character.DisplayName, selection?.Trim(), StringComparison.OrdinalIgnoreCase));
+            }
+        }
+
+        var catalog = _characters.GetCatalog(world.Definition.Id);
+        await writer.WriteAsync("New character name: ").ConfigureAwait(false);
+        var name = await ReadLineAsync(reader, cancellationToken).ConfigureAwait(false);
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            return null;
+        }
+
+        await writer.WriteLineAsync("Generated races: " + string.Join(", ", catalog.Races.Select(value => value.Name))).ConfigureAwait(false);
+        await writer.WriteAsync("Race: ").ConfigureAwait(false);
+        var race = await ReadLineAsync(reader, cancellationToken).ConfigureAwait(false);
+        await writer.WriteLineAsync("Generated classes: " + string.Join(", ", catalog.Classes.Select(value => value.Name))).ConfigureAwait(false);
+        await writer.WriteAsync("Class: ").ConfigureAwait(false);
+        var characterClass = await ReadLineAsync(reader, cancellationToken).ConfigureAwait(false);
+        if (string.IsNullOrWhiteSpace(race) || string.IsNullOrWhiteSpace(characterClass))
+        {
+            return null;
+        }
+
+        return _characters.CreateCharacter(account, world, name, race, characterClass);
     }
 
     private async Task<RuntimeWorld?> SelectWorldAsync(StreamReader reader, StreamWriter writer, CancellationToken cancellationToken)
