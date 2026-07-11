@@ -1,0 +1,959 @@
+{
+  "codeupdate": "0137",
+  "gate": "complete_runtime_verification",
+  "timestamp_utc": "2026-07-11T14:37:35.453714+00:00",
+  "status": "PASS",
+  "total": 76,
+  "passed": 76,
+  "failed": 0,
+  "results": [
+    {
+      "name": "python:Librarium/Tools/validate_librarium.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Librarium/Tools/validate_librarium.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 1.019,
+      "output": "{\n  \"status\": \"PASS\",\n  \"source\": \"Librarium/Assertions/knowledge_*_0011.json\",\n  \"nodes\": 20826,\n  \"relationships\": 71026,\n  \"missingSources\": 0,\n  \"missingEntityTargets\": 0,\n  \"duplicateEdgesDiagnostic\": 0\n}\n"
+    },
+    {
+      "name": "python:Librarium/Validation/validate_librarium_0009.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Librarium/Validation/validate_librarium_0009.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.102,
+      "output": "{\n  \"milestone\": \"Librarium-0009\",\n  \"status\": \"PASS\",\n  \"missing\": [],\n  \"serviceCount\": 8,\n  \"serviceIds\": [\n    \"relationship_explorer\",\n    \"impact_analysis\",\n    \"world_diff\",\n    \"promotion_workflow\",\n    \"documentation_generator\",\n    \"validation_generator\",\n    \"runtime_consumer_api\",\n    \"natural_language_query_map\"\n  ]\n}\n"
+    },
+    {
+      "name": "python:Librarium/Validation/validate_librarium_0011.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Librarium/Validation/validate_librarium_0011.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.844,
+      "output": "{\n  \"status\": \"PASS\",\n  \"entities\": 20826,\n  \"assertions\": 71026\n}\n"
+    },
+    {
+      "name": "python:Librarium/Validation/validate_validation_0001.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Librarium/Validation/validate_validation_0001.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.115,
+      "output": "PASS: Validation-0001 report present\n{\n  \"status\": \"PASS_WITH_FINDINGS\",\n  \"files_scanned\": 167,\n  \"entities\": 20826,\n  \"assertions\": 71026,\n  \"promotion_candidates\": 0,\n  \"integrity\": {\n    \"duplicate_assertion_keys\": 0,\n    \"possible_conflicts\": 0,\n    \"assertions_missing_required_fields\": 50200,\n    \"orphan_entities\": 0\n  }\n}\n"
+    },
+    {
+      "name": "python:Runtime/test_harness/full_game_test_harness.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Runtime/test_harness/full_game_test_harness.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.49,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_ability_quest_engine.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_ability_quest_engine.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.156,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_class_race_engine.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_class_race_engine.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.139,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_combat.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_combat.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.165,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_command_gameloop.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_command_gameloop.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.098,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_data_load.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_data_load.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.146,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_exp_leveling.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_exp_leveling.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.175,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_formula_engine.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_formula_engine.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.155,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_full_game_harness.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_full_game_harness.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.124,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_gameplay_completion.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_gameplay_completion.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.108,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_loot_economy_npc.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_loot_economy_npc.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.201,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_monster_ai.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_monster_ai.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.151,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_movement.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_movement.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.142,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_persistence.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_persistence.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.123,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_reference_integrity.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_reference_integrity.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.145,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_regeneration.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_regeneration.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.184,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_runtime_placeholders.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_runtime_placeholders.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.056,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_schema_adapters.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_schema_adapters.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.184,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_snapshot_equipment.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_snapshot_equipment.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.213,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_spawn.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_spawn.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.212,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_spells_status.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_spells_status.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.188,
+      "output": ""
+    },
+    {
+      "name": "python:Sim/validators/validate_world_integration.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_world_integration.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.138,
+      "output": ""
+    },
+    {
+      "name": "python:Tests/test_librarium_export_0116.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tests/test_librarium_export_0116.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.127,
+      "output": ""
+    },
+    {
+      "name": "python:Tools/Librarium/validate_0127_world_outputs.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Librarium/validate_0127_world_outputs.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.107,
+      "output": "{\n  \"status\": \"PASS\",\n  \"validated_outputs\": [\n    \"Data\\\\Classic\",\n    \"Data\\\\Worlds\\\\CustomTemplate\",\n    \"Data\\\\Worlds\\\\AIFromClassic\"\n  ],\n  \"overlay_sources_present\": true\n}\n"
+    },
+    {
+      "name": "python:Tools/Librarium/validate_generation_readiness.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Librarium/validate_generation_readiness.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.146,
+      "output": "{\n  \"status\": \"PASS\",\n  \"object_families\": 32,\n  \"failures\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Librarium/validate_librarium_phase2_3.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Librarium/validate_librarium_phase2_3.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.1,
+      "output": "PASS CodeUpdate 0121 Phase 2/3 Librarium completion validation\n{\n  \"total_files\": 941,\n  \"text_files_scanned\": 657,\n  \"binary_or_asset_files\": 284,\n  \"raw_evidence_count\": 115756,\n  \"object_type_count\": 32,\n  \"open_conflict_count\": 3\n}\n"
+    },
+    {
+      "name": "python:Tools/Librarium/validate_librarium_population_0122.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Librarium/validate_librarium_population_0122.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.33,
+      "output": "PASS\n{'items': 1950, 'spells': 1350, 'npcs': 1100, 'rooms': 950, 'spawns': 962, 'shops': 178, 'relationships': 13254}\n"
+    },
+    {
+      "name": "python:Tools/Librarium/validate_librarium_population_0123.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Librarium/validate_librarium_population_0123.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.228,
+      "output": "PASS\n{\n  \"commands\": 25,\n  \"status_effects\": 111,\n  \"economy_rules\": 23,\n  \"banks\": 27,\n  \"classes\": 58,\n  \"races\": 2,\n  \"guilds\": 44,\n  \"skills\": 13,\n  \"events\": 1501,\n  \"triggers\": 328,\n  \"quests\": 2100,\n  \"ai_profiles\": 27,\n  \"worlds\": 3,\n  \"world_overlays\": 2,\n  \"formulas\": 36,\n  \"relationships_added\": 4838\n}\n"
+    },
+    {
+      "name": "python:Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/tests/smoke_test.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/tests/smoke_test.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.152,
+      "output": ""
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0130_server_classic_readiness.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0130_server_classic_readiness.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.466,
+      "output": "{\n  \"code_update\": \"0130\",\n  \"status\": \"PASS\",\n  \"errors\": [],\n  \"data_classic_family_counts\": {\n    \"world_manifest\": 1,\n    \"compile_manifest\": 1,\n    \"rooms\": 950,\n    \"exits\": 693,\n    \"spawns\": 962,\n    \"npcs\": 1100,\n    \"items\": 1950,\n    \"spells\": 1350,\n    \"formulas\": 41,\n    \"shops\": 178,\n    \"quests\": 2100\n  },\n  \"evidence_sha256\": \"42cc3bd7501c0bb76b7bf82a94daaaef64847eb12e02a12bb513be1730b0619b\",\n  \"dotnet_sdk_available_here\": false,\n  \"codex_required_commands\": [\n    \"dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj\",\n    \"dotnet run --project Apps/Source/Reforged.Server -- --smoke-generated-data\",\n    \"dotnet run --project Apps/Source/Reforged.Server -- --run-local\"\n  ]\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.129,
+      "output": "{\n  \"code_update\": \"0132\",\n  \"exit_records\": 693,\n  \"issues\": [],\n  \"rooms\": 950,\n  \"rooms_with_embedded_exits\": 343,\n  \"rooms_with_names\": 928,\n  \"start_room\": {\n    \"exit_count\": 3,\n    \"exits\": [\n      \"N->3\",\n      \"E->1381\",\n      \"W->101\"\n    ],\n    \"id\": \"room.1\",\n    \"name\": \"Town Gates\"\n  },\n  \"status\": \"PASS\"\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.242,
+      "output": "NPC definitions: 1100\nNPC groups: 30\nSpawns: 962\nSpawn maps: {1: 275, 2: 76, 3: 2, 6: 187, 7: 68, 8: 34, 10: 5, 12: 59, 16: 126, 17: 130}\nLinked population records: 748\nLinked population records missing map context: 0\nPrimary spawn rooms available in current generated room slice: 275\nPrimary spawn rooms outside current generated room slice: 687\nCodeUpdate0134 complete map-qualified NPC population validation: PASS\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0135_combat_execution.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0135_combat_execution.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.094,
+      "output": "PASS CodeUpdate0135 combat validation\nVerified generated formula contracts and runtime resolver source bindings.\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.413,
+      "output": "PASS CodeUpdate0135 exhaustive repairs\ntriggers=328 rooms=950 classic_bug_fixes=8\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0136_classic_drop_roll.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0136_classic_drop_roll.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.156,
+      "output": "PASS CodeUpdate0136 Classic drop roll validation\n1% => 1/100 buckets; 3% => 3/100 buckets; roll contract: floor(random()*100)+1 semantics\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0137_character_foundation_librarium.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0137_character_foundation_librarium.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.354,
+      "output": "PASS character foundation compile: races=13 classes=15 compatibility=195 authority=Librarium\nPASS CodeUpdate0137 Librarium character foundation\n13 races; 15 classes; all 195 combinations allowed; race/class ability trees promoted\nStarting inventory/equipment empty; HP/mana formulas and Newhaven start generated\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0137_character_foundation.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0137_character_foundation.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.407,
+      "output": "PASS character foundation compile: races=13 classes=15 compatibility=195 authority=Librarium\nPASS CodeUpdate0137 character foundation static/runtime-contract validation\ncreation enabled from generated Librarium rules; all combinations; derived HP/mana; tree abilities; empty equipment; persistent Newhaven start\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0137_character_foundation_phase003.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0137_character_foundation_phase003.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.298,
+      "output": "PASS character foundation compile: races=13 classes=15 compatibility=195 authority=Librarium\nPASS CodeUpdate0137 Character Foundation Phase003\n195/195 allowed; HP/mana verification passed; creation blockers=0\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0137_items_equipment.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0137_items_equipment.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.12,
+      "output": "{\n  \"status\": \"PASS\",\n  \"items\": 1950,\n  \"equipment\": 532,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_codeupdate0137_item_runtime_complete.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_codeupdate0137_item_runtime_complete.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.105,
+      "output": "{\n  \"passed\": true,\n  \"missing\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_item_runtime_complete_0137.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_item_runtime_complete_0137.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.11,
+      "output": "{\n  \"passed\": true,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_server_generated_data_bootstrap_0137.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_server_generated_data_bootstrap_0137.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.427,
+      "output": "{\n  \"passed\": true,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_combat_runtime.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_combat_runtime.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.111,
+      "output": "{\n  \"passed\": true,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_combat_runtime_part2.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_combat_runtime_part2.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.103,
+      "output": "{\n  \"passed\": true,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_gameplay_group1.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_gameplay_group1.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.167,
+      "output": "{\n  \"passed\": true,\n  \"skill_count\": 13,\n  \"npc_count\": 1100,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_gameplay_group2.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_gameplay_group2.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.203,
+      "output": "{\n  \"passed\": true,\n  \"quest_count\": 2100,\n  \"text_record_count\": 1501,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_gameplay_group3.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_gameplay_group3.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.107,
+      "output": "{\n  \"passed\": true,\n  \"shop_count\": 178,\n  \"bank_count\": 27,\n  \"economy_rule_count\": 23,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Tools/Validation/validate_gameplay_group4.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Tools/Validation/validate_gameplay_group4.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.097,
+      "output": "{\n  \"passed\": true,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Sim/validators/validate_spell_runtime_0137.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_spell_runtime_0137.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.17,
+      "output": "{\n  \"passed\": true,\n  \"spell_count\": 1350,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "python:Sim/validators/validate_spell_runtime_part2_0137.py",
+      "command": [
+        "C:\\Users\\djkao\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "Sim/validators/validate_spell_runtime_part2_0137.py"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.175,
+      "output": "{\n  \"passed\": true,\n  \"spell_count\": 1350,\n  \"errors\": []\n}\n"
+    },
+    {
+      "name": "dotnet_info",
+      "command": [
+        "dotnet",
+        "--info"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.315,
+      "output": ".NET SDK:\n Version:           8.0.422\n Commit:            34560b12f2\n Workload version:  8.0.400-manifests.eed48583\n MSBuild version:   17.11.48+02bf66295\n\nRuntime Environment:\n OS Name:     Windows\n OS Version:  10.0.19045\n OS Platform: Windows\n RID:         win-x64\n Base Path:   C:\\Program Files\\dotnet\\sdk\\8.0.422\\\n\n.NET workloads installed:\nConfigured to use loose manifests when installing new manifests.\nThere are no installed workloads to display.\n\nHost:\n  Version:      10.0.9\n  Architecture: x64\n  Commit:       901ca94124\n\n.NET SDKs installed:\n  8.0.422 [C:\\Program Files\\dotnet\\sdk]\n  10.0.301 [C:\\Program Files\\dotnet\\sdk]\n\n.NET runtimes installed:\n  Microsoft.AspNetCore.App 8.0.28 [C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App]\n  Microsoft.AspNetCore.App 10.0.9 [C:\\Program Files\\dotnet\\shared\\Microsoft.AspNetCore.App]\n  Microsoft.NETCore.App 6.0.36 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 8.0.28 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 9.0.14 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 9.0.17 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.NETCore.App 10.0.9 [C:\\Program Files\\dotnet\\shared\\Microsoft.NETCore.App]\n  Microsoft.WindowsDesktop.App 8.0.28 [C:\\Program Files\\dotnet\\shared\\Microsoft.WindowsDesktop.App]\n  Microsoft.WindowsDesktop.App 9.0.14 [C:\\Program Files\\dotnet\\shared\\Microsoft.WindowsDesktop.App]\n  Microsoft.WindowsDesktop.App 10.0.9 [C:\\Program Files\\dotnet\\shared\\Microsoft.WindowsDesktop.App]\n\nOther architectures found:\n  x86   [C:\\Program Files (x86)\\dotnet]\n    registered at [HKLM\\SOFTWARE\\dotnet\\Setup\\InstalledVersions\\x86\\InstallLocation]\n\nEnvironment variables:\n  Not set\n\nglobal.json file:\n  E:\\MajorMud-Reforged Github\\global.json\n\nLearn more:\n  https://aka.ms/dotnet/info\n\nDownload .NET:\n  https://aka.ms/dotnet/download\n"
+    },
+    {
+      "name": "solution_restore",
+      "command": [
+        "dotnet",
+        "restore",
+        "MajorMud.Reforged.sln"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.433,
+      "output": "  Determining projects to restore...\nC:\\Program Files\\dotnet\\sdk\\8.0.422\\NuGet.targets(174,5): warning : Unable to find a project to restore! [E:\\MajorMud-Reforged Github\\MajorMud.Reforged.sln]\n"
+    },
+    {
+      "name": "solution_build",
+      "command": [
+        "dotnet",
+        "build",
+        "MajorMud.Reforged.sln",
+        "--configuration",
+        "Release",
+        "--no-restore"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.482,
+      "output": "\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:00.16\n"
+    },
+    {
+      "name": "compiler_tests_build",
+      "command": [
+        "dotnet",
+        "build",
+        "Apps/Compiler.Tests/MajorMud.Reforged.Compiler.Tests.csproj",
+        "--configuration",
+        "Release",
+        "--no-restore"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 1.259,
+      "output": "  MajorMud.Reforged.Compiler -> E:\\MajorMud-Reforged Github\\Apps\\Compiler\\bin\\Release\\net8.0\\MajorMud.Reforged.Compiler.dll\n  MajorMud.Reforged.Compiler.Tests -> E:\\MajorMud-Reforged Github\\Apps\\Compiler.Tests\\bin\\Release\\net8.0\\MajorMud.Reforged.Compiler.Tests.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:00.96\n"
+    },
+    {
+      "name": "compiler_tests_run",
+      "command": [
+        "dotnet",
+        "test",
+        "Apps/Compiler.Tests/MajorMud.Reforged.Compiler.Tests.csproj",
+        "--configuration",
+        "Release",
+        "--no-build"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 0.654,
+      "output": ""
+    },
+    {
+      "name": "core_tests_build",
+      "command": [
+        "dotnet",
+        "build",
+        "Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj",
+        "--configuration",
+        "Release",
+        "--no-restore"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 1.329,
+      "output": "  Reforged.Core -> E:\\MajorMud-Reforged Github\\Core\\Source\\Reforged.Core\\bin\\Release\\net8.0\\Reforged.Core.dll\n  Reforged.Server -> E:\\MajorMud-Reforged Github\\Apps\\Source\\Reforged.Server\\bin\\Release\\net8.0\\Reforged.Server.dll\n  Reforged.Core.Tests -> E:\\MajorMud-Reforged Github\\Tests\\Source\\Reforged.Core.Tests\\bin\\Release\\net8.0\\Reforged.Core.Tests.dll\n\nBuild succeeded.\n    0 Warning(s)\n    0 Error(s)\n\nTime Elapsed 00:00:01.06\n"
+    },
+    {
+      "name": "core_tests_run",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj",
+        "--configuration",
+        "Release",
+        "--no-build"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 3.414,
+      "output": "PASS dependency-injection resolves required services\nPASS configuration loads defaults and flattened json\nPASS event system publishes and disposes\nPASS repository health checks run\nPASS startup diagnostics run\nPASS server startup diagnostics run\nPASS server bootstrap runs\nPASS server host configuration keeps runtime disabled\nPASS server data catalog loads canonical data\nPASS server world projection indexes canonical rooms\nPASS server module readiness keeps gameplay disabled\nPASS server host lifecycle reports runtime-disabled readiness\nPASS server scheduler bootstrap keeps channels disabled\nPASS server scheduler status commands stay guarded\nPASS server runtime state and event dispatcher track host-owned changes\nPASS classic parity audit inventories canonical and imported data\nPASS classic bug-fix policies enforce corrected behavior\nAll Reforged core/server smoke tests passed.\n"
+    },
+    {
+      "name": "server_generated_data",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-generated-data"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 3.15,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nGenerated World Smoke Report\n{\n  \"WorldCount\": 1,\n  \"Worlds\": [\n    {\n      \"Id\": \"classic\",\n      \"Name\": \"Classic World\",\n      \"Type\": \"Classic\",\n      \"RoomCount\": 950,\n      \"DataRoot\": \"E:\\\\MajorMud-Reforged Github\\\\Data/Classic\",\n      \"FamilyCount\": 11,\n      \"TotalGeneratedRecords\": 9326,\n      \"StartRoomId\": \"room.2147\",\n      \"StartRoomName\": \"Newhaven, Adventurer\\u0027s Guild\",\n      \"StartRoomNumber\": 2147,\n      \"StartRoomExitCount\": 0,\n      \"StartRoomResolved\": true,\n      \"StartRoomExits\": [],\n      \"Diagnostics\": []\n    }\n  ],\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_room_exits",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-room-exits"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 3.224,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Room/Exit Smoke Report\n{\n  \"Worlds\": [\n    {\n      \"Id\": \"classic\",\n      \"Name\": \"Classic World\",\n      \"StartRoomId\": \"room.1\",\n      \"StartRoomName\": \"Town Gates\",\n      \"StartRoomNumber\": 1,\n      \"StartRoomExitCount\": 3,\n      \"MovementChecks\": [\n        {\n          \"Direction\": \"E\",\n          \"TargetRoomNumber\": 1381,\n          \"TargetRoomId\": \"room.1381\",\n          \"TargetRoomName\": \"Town Gates, Inner Bailey\",\n          \"Resolved\": true\n        },\n        {\n          \"Direction\": \"N\",\n          \"TargetRoomNumber\": 3,\n          \"TargetRoomId\": \"room.3\",\n          \"TargetRoomName\": \"Estwall Street\",\n          \"Resolved\": true\n        },\n        {\n          \"Direction\": \"W\",\n          \"TargetRoomNumber\": 101,\n          \"TargetRoomId\": \"room.101\",\n          \"TargetRoomName\": \"Silver Street, Eastern End\",\n          \"Resolved\": true\n        }\n      ],\n      \"Passed\": true\n    }\n  ],\n  \"WorldCount\": 1,\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_npcs",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-npcs"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.973,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime NPC Smoke Report\n{\n  \"Worlds\": [\n    {\n      \"Id\": \"classic\",\n      \"NpcDefinitionCount\": 1100,\n      \"SpawnCount\": 962,\n      \"GroupSpawnCount\": 934,\n      \"BossSpawnCount\": 114,\n      \"ResolvedSpawnCount\": 962,\n      \"UnresolvedSpawnCount\": 0,\n      \"UnresolvedGroupCount\": 0,\n      \"UnresolvedBossCount\": 0,\n      \"SpawnRoomCount\": 275,\n      \"AvailablePrimaryRoomCount\": 275,\n      \"UnavailablePrimaryRoomCount\": 687,\n      \"MissingMapIdentityCount\": 0,\n      \"LinkedPopulationRecordCount\": 748,\n      \"MapQualifiedLinkedPopulationCount\": 748,\n      \"MissingLinkedMapContextCount\": 0,\n      \"Diagnostics\": [\n        \"687 map-qualified spawn rooms are outside the currently generated room slice; their identities remain valid and will attach when those maps are emitted.\"\n      ],\n      \"Passed\": true\n    }\n  ],\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_character_foundation",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-character-foundation"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 3.133,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Character Foundation Smoke Report\n{\n  \"Passed\": true,\n  \"AccountId\": \"smoke-99d08feb\",\n  \"CharacterId\": \"classic:smokejjnaipol\",\n  \"StartRoomId\": \"room.2147\",\n  \"RestoredRoomId\": \"room.2147\",\n  \"Checks\": [\n    \"account-created\",\n    \"generated-race-selected\",\n    \"generated-class-selected\",\n    \"generated-start-room-used\",\n    \"character-atomically-saved\",\n    \"character-restored\"\n  ]\n}\n"
+    },
+    {
+      "name": "server_items",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-items"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 3.015,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Item Smoke Report\n{\n  \"Passed\": true,\n  \"Checks\": [\n    \"create-ground\",\n    \"get\",\n    \"find-lookup\",\n    \"drop\",\n    \"get-all\",\n    \"give\",\n    \"give-back\",\n    \"equip\",\n    \"unequip\",\n    \"wear-remove\",\n    \"container-put-get\",\n    \"container-open-close\",\n    \"corpse-create-transfer\",\n    \"corpse-loot\",\n    \"duplicate-prevention-and-rollback\",\n    \"save-load-world-state\",\n    \"disconnect-reconnect-snapshot\",\n    \"runtime-validator\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_spells",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-spells"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.964,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Spell Smoke Report\n{\n  \"Passed\": true,\n  \"CatalogSpellCount\": 1350,\n  \"Checks\": [\n    \"catalog-load\",\n    \"learn\",\n    \"duplicate-learn-prevention\",\n    \"resources\",\n    \"cast\",\n    \"generated-cost-deduction\",\n    \"active-effect\",\n    \"unknown-spell-prevention\",\n    \"save-load\",\n    \"forget\",\n    \"validator\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_spell_execution",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-spell-execution"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.721,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Spell Execution Smoke Report\n{\n  \"Passed\": true,\n  \"Checks\": [\n    \"target-policy\",\n    \"execute-cast\",\n    \"event-sink\",\n    \"dispel\",\n    \"validator\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_combat",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-combat"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.624,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nClassic Combat Smoke Report\n{\n  \"Checks\": [\n    \"normal-hit-formula\",\n    \"backstab-ignores-ac\",\n    \"backstab-dodge-divided-by-five\",\n    \"dr-produces-glance\",\n    \"dodge-negates-post-dr-hit\",\n    \"smash-multiplier-after-dr\"\n  ],\n  \"Failures\": [],\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_combat_runtime",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-combat-runtime"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.571,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Combat Smoke Report\n{\n  \"Checks\": [\n    \"participants\",\n    \"round\",\n    \"initiative\",\n    \"attack\",\n    \"death\",\n    \"corpse-hook\",\n    \"complete\",\n    \"validator\",\n    \"rollback\"\n  ],\n  \"Failures\": [],\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_combat_runtime_part2",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-combat-runtime-part2"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.949,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Combat Part 2 Smoke Report\n{\n  \"Checks\": [\n    \"round-effects\",\n    \"threat\",\n    \"npc-ai\",\n    \"persistence\",\n    \"rewards\",\n    \"validator\",\n    \"reward-rollback\"\n  ],\n  \"Failures\": [],\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_actors_abilities",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-actors-abilities"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.733,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Actors and Abilities Smoke Report\n{\n  \"Checks\": [\n    \"ability-catalog\",\n    \"learn\",\n    \"duplicate-prevention\",\n    \"execute\",\n    \"cooldown\",\n    \"ability-persistence\",\n    \"ability-validator\",\n    \"npc-register\",\n    \"npc-death\",\n    \"npc-respawn\",\n    \"npc-persistence\",\n    \"npc-validator\",\n    \"ability-rollback\",\n    \"trainer-policy-contract\"\n  ],\n  \"Failures\": [],\n  \"AbilityDefinitionCount\": 13,\n  \"Passed\": true\n}\n"
+    },
+    {
+      "name": "server_interaction_narrative",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-interaction-narrative"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.851,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Interaction and Narrative Smoke Report\n{\n  \"Passed\": true,\n  \"QuestCount\": 2100,\n  \"TextRecordCount\": 1501,\n  \"Checks\": [\n    \"quest-catalog\",\n    \"text-catalog\",\n    \"accept\",\n    \"progress\",\n    \"dialogue\",\n    \"complete-reward\",\n    \"persistence-validator\",\n    \"rollback\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_services_economy",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-services-economy"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.937,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime Services and Economy Smoke Report\n{\n  \"Passed\": true,\n  \"ServiceCount\": 205,\n  \"EconomyRuleCount\": 23,\n  \"Checks\": [\n    \"catalog\",\n    \"shop-buy\",\n    \"shop-sell\",\n    \"trainer-contract\",\n    \"bank-deposit-withdraw\",\n    \"ledger-persistence\",\n    \"trade-confirmation\",\n    \"rollback\",\n    \"validator\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_world_multiplayer",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--smoke-world-multiplayer"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 2.866,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nRuntime World and Multiplayer Smoke Report\n{\n  \"Passed\": true,\n  \"Checks\": [\n    \"world-interaction\",\n    \"movement\",\n    \"party\",\n    \"reputation\",\n    \"communication\",\n    \"scheduler\",\n    \"persistence\",\n    \"validator\",\n    \"rollback\"\n  ],\n  \"Failures\": []\n}\n"
+    },
+    {
+      "name": "server_scripted_local_session",
+      "command": [
+        "dotnet",
+        "run",
+        "--project",
+        "Apps/Source/Reforged.Server",
+        "--configuration",
+        "Release",
+        "--",
+        "--run-local"
+      ],
+      "status": "PASS",
+      "exit_code": 0,
+      "seconds": 3.15,
+      "output": "Reforged Server Bootstrap\nProjectRoot: E:\\MajorMud-Reforged Github\nProject: Reforged\nCodeUpdate: 0137\nDatabaseVersion: 0010\nMilestone: CodeUpdate0137 - Complete Classic Gameplay\nChecks: project-root, required-directories, project-manifest, host-configuration, server-data-catalog, world-projection, game-module-catalog, module-readiness, host-lifecycle, scheduler-bootstrap, scheduler-status-commands, startup-diagnostics, classic-parity-audit\nReadiness: host-tools-ready; gameplay=disabled\nRequiredDirectories: 6/6 present, 0 missing\nValidation: 0 issue(s), 0 info, 0 warning(s), 0 error(s), 0 fatal\nDirectory: present Apps -> E:\\MajorMud-Reforged Github\\Apps\nDirectory: present Core -> E:\\MajorMud-Reforged Github\\Core\nDirectory: present Data -> E:\\MajorMud-Reforged Github\\Data\nDirectory: present Docs -> E:\\MajorMud-Reforged Github\\Docs\nDirectory: present Reports -> E:\\MajorMud-Reforged Github\\Reports\nDirectory: present Bin -> E:\\MajorMud-Reforged Github\\Bin\nHostConfiguration: configured-runtime-disabled; name=Reforged Local Host; bind=127.0.0.1; port=4000; maxSessions=64; worldTickMs=1000; combatTickMs=6000; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False; configFileExists=False\nServerDataCatalog: runtime-ready; categories=32/32; runtimeReady=32; runtimeBlocked=0; placeholders=0; records=11998\nWorldProjection: projection-ready; worldRooms=950; uniqueWorldRooms=950; canonicalRooms=950; missingRooms=0; duplicateWorldRooms=0; startRoom=room.1; startRoomExists=True\nGameModules: modules-registered; modules=1; gameplayEnabled=0; gameplayDisabled=1\nModuleReadiness: host-ready-gameplay-disabled; modules=1; hostReady=1; gameplayEnabled=0; runtimeRuleProfilesEnabled=0\nHostLifecycle: ready-runtime-disabled; initialized=True; configured=True; dataReady=True; worldProjectionReady=True; moduleReady=True; runtimeDisabled=True; gameplayEnabled=False; networkingEnabled=False; worldSimulationEnabled=False\nSchedulerBootstrap: scheduler-bootstrap-registered-runtime-disabled; channels=10; runtimeEnabled=0; runtimeDisabled=10; hostLifecycleReady=True; diagnosticOnly=True\nSchedulerStatusCommands: scheduler-status-commands-registered-runtime-disabled; commands=7; runtimeEnabled=0; runtimeDisabled=7; guarded=7; mutating=0; schedulerReady=True; diagnosticOnly=True\nClassicParity: inventory-ready; canonicalFiles=147; importedReferenceFiles=3890; exactNameMatches=1\nReforged Realms Host\nWorld: Classic World [Classic] rules=classic ai=Off\nLocal console session. Host is authoritative. Type 'help' or 'quit'.\nActor: Developer [developer-avatar] persistentCharacter=False spawn=developer-diagnostic-room\nTown Gates\n\n\nExits: E, N, W\n> Commands: look, where, world, worlds, sessions, state, events, north/south/east/west or n/s/e/w, quit\n> Town Gates\n\n\nExits: E, N, W\n> World=classic; Room=room.1; Map=1; Number=1\n> Classic World (Classic) rooms=950; rules=classic; ai=Off; classicProtected=True; transfersAllowed=False; evidence=E:\\MajorMud-Reforged Github\\Data/Classic\\rooms.json\n> classic: Classic World [Classic] rooms=950; rules=classic; ai=Off; protected=True\n> local-console: actor=Developer; kind=developer-avatar; world=classic; room=room.1; connectedUtc=2026-07-11T14:37:35.3825980+00:00\n> Worlds=1; Sessions=1; Characters=0\n> #3 session.started world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; actor=Developer; kind=developer-avatar\n#4 runtime.local-console-started world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; host=authoritative\n#5 command.received world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; help\n#6 command.received world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; look\n#7 command.received world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; where\n#8 command.received world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; world\n#9 command.received world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; worlds\n#10 command.received world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; sessions\n#11 command.received world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; state\n#12 command.received world=classic; session=local-console; entity=developer-avatar:2948bfc6162143d88a14f9d3fa06394d; events\n> Estwall Street\n\n\nExits: N, S\n> Estwall Street\n\n\nExits: N, S\n> Town Gates\n\n\nExits: E, N, W\n> "
+    }
+  ]
+}

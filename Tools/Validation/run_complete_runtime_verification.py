@@ -54,9 +54,23 @@ PYTHON_SCRIPTS = [
     "Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py",
     "Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py",
     "Tools/Validation/validate_codeupdate0135_combat_execution.py",
+    "Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py",
     "Tools/Validation/validate_codeupdate0136_classic_drop_roll.py",
     "Tools/Validation/validate_codeupdate0137_character_foundation_librarium.py",
     "Tools/Validation/validate_codeupdate0137_character_foundation.py",
+    "Tools/Validation/validate_codeupdate0137_character_foundation_phase003.py",
+    "Tools/Validation/validate_codeupdate0137_items_equipment.py",
+    "Tools/Validation/validate_codeupdate0137_item_runtime_complete.py",
+    "Tools/Validation/validate_item_runtime_complete_0137.py",
+    "Tools/Validation/validate_server_generated_data_bootstrap_0137.py",
+    "Tools/Validation/validate_combat_runtime.py",
+    "Tools/Validation/validate_combat_runtime_part2.py",
+    "Tools/Validation/validate_gameplay_group1.py",
+    "Tools/Validation/validate_gameplay_group2.py",
+    "Tools/Validation/validate_gameplay_group3.py",
+    "Tools/Validation/validate_gameplay_group4.py",
+    "Sim/validators/validate_spell_runtime_0137.py",
+    "Sim/validators/validate_spell_runtime_part2_0137.py",
 ]
 
 DOTNET_STEPS = [
@@ -71,7 +85,16 @@ DOTNET_STEPS = [
     ("server_room_exits", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-room-exits"]),
     ("server_npcs", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-npcs"]),
     ("server_character_foundation", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-character-foundation"]),
+    ("server_items", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-items"]),
+    ("server_spells", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-spells"]),
+    ("server_spell_execution", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-spell-execution"]),
     ("server_combat", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-combat"]),
+    ("server_combat_runtime", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-combat-runtime"]),
+    ("server_combat_runtime_part2", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-combat-runtime-part2"]),
+    ("server_actors_abilities", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-actors-abilities"]),
+    ("server_interaction_narrative", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-interaction-narrative"]),
+    ("server_services_economy", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-services-economy"]),
+    ("server_world_multiplayer", ["dotnet", "run", "--project", "Apps/Source/Reforged.Server", "--configuration", "Release", "--", "--smoke-world-multiplayer"]),
 ]
 
 LOCAL_COMMANDS = "help\nlook\nwhere\nworld\nworlds\nsessions\nstate\nevents\nnorth\nlook\nsouth\nquit\n"
@@ -171,7 +194,7 @@ def main() -> int:
         print(f"{result['status']:7} {result['name']} ({result['seconds']}s)")
 
     summary = {
-        "codeupdate": "0135+0136+0137-internal",
+        "codeupdate": "0137",
         "gate": "complete_runtime_verification",
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "status": "PASS" if results and all(r["status"] == "PASS" for r in results) else "FAIL",
@@ -187,7 +210,7 @@ def main() -> int:
     lines = [
         "# Complete Runtime Verification",
         "",
-        f"- CodeUpdate: 0135+0136+0137-internal",
+        f"- CodeUpdate: 0137",
         f"- Status: **{summary['status']}**",
         f"- Passed: {summary['passed']}/{summary['total']}",
         f"- Timestamp: {summary['timestamp_utc']}",

@@ -18,5 +18,12 @@
   "schema": "generated_world_manifest_v1",
   "status": "runtime_room_exit_slice_ready",
   "world_id": "Classic",
-  "world_type": "classic"
+  "world_type": "classic",
+  "character_start_room": "room.2147",
+  "character_spawning": {
+    "start_room": "room.2147",
+    "map_id": 1,
+    "room_number": 2147,
+    "classification": "Librarium_promoted_classic_character_start"
+  }
 }

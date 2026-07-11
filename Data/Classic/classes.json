@@ -18,7 +18,54 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 3959
+      "source_offset": 3959,
+      "hit_points": {
+        "minimum_per_level": 6,
+        "maximum_bonus_per_level": 4,
+        "maximum_per_level": 10,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 0,
+        "level": 0
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 0,
+        "class_percent": 100
+      },
+      "combat_level": 0,
+      "ability_slots": [
+        {
+          "ability_id": 8,
+          "value": 9
+        },
+        {
+          "ability_id": 6,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.witchunter",
@@ -32,7 +79,62 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 3819
+      "source_offset": 3819,
+      "hit_points": {
+        "minimum_per_level": 6,
+        "maximum_bonus_per_level": 4,
+        "maximum_per_level": 10,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 0,
+        "level": 0
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 30,
+        "class_percent": 130
+      },
+      "combat_level": 51,
+      "ability_slots": [
+        {
+          "ability_id": 36,
+          "value": 142
+        },
+        {
+          "ability_id": 8,
+          "value": 8
+        },
+        {
+          "ability_id": 7,
+          "value": 0
+        },
+        {
+          "ability_id": 5,
+          "value": -99
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.paladin",
@@ -46,7 +148,58 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 3682
+      "source_offset": 3682,
+      "hit_points": {
+        "minimum_per_level": 5,
+        "maximum_bonus_per_level": 4,
+        "maximum_per_level": 9,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 2,
+        "level": 1
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 120,
+        "class_percent": 220
+      },
+      "combat_level": 0,
+      "ability_slots": [
+        {
+          "ability_id": 2,
+          "value": 1
+        },
+        {
+          "ability_id": 8,
+          "value": 9
+        },
+        {
+          "ability_id": 6,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.cleric",
@@ -60,7 +213,58 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 3546
+      "source_offset": 3546,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 4,
+        "maximum_per_level": 8,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 2,
+        "level": 2
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 120,
+        "class_percent": 220
+      },
+      "combat_level": 0,
+      "ability_slots": [
+        {
+          "ability_id": 2,
+          "value": 2
+        },
+        {
+          "ability_id": 7,
+          "value": 9
+        },
+        {
+          "ability_id": 5,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.priest",
@@ -74,7 +278,58 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 3410
+      "source_offset": 3410,
+      "hit_points": {
+        "minimum_per_level": 3,
+        "maximum_bonus_per_level": 3,
+        "maximum_per_level": 6,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 2,
+        "level": 3
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 40,
+        "class_percent": 140
+      },
+      "combat_level": 0,
+      "ability_slots": [
+        {
+          "ability_id": 2,
+          "value": 3
+        },
+        {
+          "ability_id": 7,
+          "value": 1
+        },
+        {
+          "ability_id": 3,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.missionary",
@@ -88,11 +343,66 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 3270
+      "source_offset": 3270,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 3,
+        "maximum_per_level": 7,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 2,
+        "level": 2
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 103
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 120,
+        "class_percent": 220
+      },
+      "combat_level": 37,
+      "ability_slots": [
+        {
+          "ability_id": 40,
+          "value": 31
+        },
+        {
+          "ability_id": 2,
+          "value": 2
+        },
+        {
+          "ability_id": 4,
+          "value": 6
+        },
+        {
+          "ability_id": 4,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.ninja",
-      "name": "Ninja}",
+      "name": "Ninja",
       "number": 7,
       "classification": "playable_classic_catalog_record",
       "evidence_state": "sql_mdb_extracted",
@@ -102,11 +412,74 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 3135
+      "source_offset": 3135,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 4,
+        "maximum_per_level": 8,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 0,
+        "level": 0
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 85,
+        "class_percent": 185
+      },
+      "combat_level": 103,
+      "ability_slots": [
+        {
+          "ability_id": 40,
+          "value": 37
+        },
+        {
+          "ability_id": 38,
+          "value": 34
+        },
+        {
+          "ability_id": 58,
+          "value": 0
+        },
+        {
+          "ability_id": 8,
+          "value": 2
+        },
+        {
+          "ability_id": 5,
+          "value": 0
+        },
+        {
+          "ability_id": 25,
+          "value": 10
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.thief",
-      "name": "Thief}",
+      "name": "Thief",
       "number": 8,
       "classification": "playable_classic_catalog_record",
       "evidence_state": "sql_mdb_extracted",
@@ -116,11 +489,66 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 3000
+      "source_offset": 3000,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 3,
+        "maximum_per_level": 7,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 0,
+        "level": 0
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 103
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": -20,
+        "class_percent": 80
+      },
+      "combat_level": 39,
+      "ability_slots": [
+        {
+          "ability_id": 40,
+          "value": 31
+        },
+        {
+          "ability_id": 37,
+          "value": 0
+        },
+        {
+          "ability_id": 4,
+          "value": 6
+        },
+        {
+          "ability_id": 4,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.bard",
-      "name": "Bard|",
+      "name": "Bard",
       "number": 9,
       "classification": "playable_classic_catalog_record",
       "evidence_state": "sql_mdb_extracted",
@@ -130,11 +558,70 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 2866
+      "source_offset": 2866,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 3,
+        "maximum_per_level": 7,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 4,
+        "level": 2
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 103
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 110,
+        "class_percent": 210
+      },
+      "combat_level": 40,
+      "ability_slots": [
+        {
+          "ability_id": 39,
+          "value": 37
+        },
+        {
+          "ability_id": 31,
+          "value": 0
+        },
+        {
+          "ability_id": 4,
+          "value": 2
+        },
+        {
+          "ability_id": 4,
+          "value": 6
+        },
+        {
+          "ability_id": 5,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.gypsy",
-      "name": "Gypsy}",
+      "name": "Gypsy",
       "number": 10,
       "classification": "playable_classic_catalog_record",
       "evidence_state": "sql_mdb_extracted",
@@ -144,7 +631,66 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 2731
+      "source_offset": 2731,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 3,
+        "maximum_per_level": 7,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 1,
+        "level": 2
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 103
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 120,
+        "class_percent": 220
+      },
+      "combat_level": 37,
+      "ability_slots": [
+        {
+          "ability_id": 39,
+          "value": 40
+        },
+        {
+          "ability_id": 31,
+          "value": 0
+        },
+        {
+          "ability_id": 1,
+          "value": 2
+        },
+        {
+          "ability_id": 4,
+          "value": 6
+        },
+        {
+          "ability_id": 4,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.warlock",
@@ -158,11 +704,62 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 2594
+      "source_offset": 2594,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 4,
+        "maximum_per_level": 8,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 1,
+        "level": 2
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 85,
+        "class_percent": 185
+      },
+      "combat_level": 0,
+      "ability_slots": [
+        {
+          "ability_id": 1,
+          "value": 2
+        },
+        {
+          "ability_id": 4,
+          "value": 7
+        },
+        {
+          "ability_id": 5,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.mage",
-      "name": "Mage|",
+      "name": "Mage",
       "number": 12,
       "classification": "playable_classic_catalog_record",
       "evidence_state": "sql_mdb_extracted",
@@ -172,11 +769,62 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 2460
+      "source_offset": 2460,
+      "hit_points": {
+        "minimum_per_level": 3,
+        "maximum_bonus_per_level": 3,
+        "maximum_per_level": 6,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 1,
+        "level": 3
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 40,
+        "class_percent": 140
+      },
+      "combat_level": 0,
+      "ability_slots": [
+        {
+          "ability_id": 1,
+          "value": 3
+        },
+        {
+          "ability_id": 9,
+          "value": 1
+        },
+        {
+          "ability_id": 3,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.druid",
-      "name": "Druid}",
+      "name": "Druid",
       "number": 13,
       "classification": "playable_classic_catalog_record",
       "evidence_state": "sql_mdb_extracted",
@@ -186,7 +834,62 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 2325
+      "source_offset": 2325,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 3,
+        "maximum_per_level": 7,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 3,
+        "level": 3
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 90,
+        "class_percent": 190
+      },
+      "combat_level": 59,
+      "ability_slots": [
+        {
+          "ability_id": 3,
+          "value": 3
+        },
+        {
+          "ability_id": 7,
+          "value": 6
+        },
+        {
+          "ability_id": 4,
+          "value": 0
+        },
+        {
+          "ability_id": 74,
+          "value": -99
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.ranger",
@@ -200,7 +903,62 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 2189
+      "source_offset": 2189,
+      "hit_points": {
+        "minimum_per_level": 5,
+        "maximum_bonus_per_level": 4,
+        "maximum_per_level": 9,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 3,
+        "level": 1
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 31
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 150,
+        "class_percent": 250
+      },
+      "combat_level": 38,
+      "ability_slots": [
+        {
+          "ability_id": 103,
+          "value": 0
+        },
+        {
+          "ability_id": 3,
+          "value": 1
+        },
+        {
+          "ability_id": 8,
+          "value": 6
+        },
+        {
+          "ability_id": 6,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "class.mystic",
@@ -214,7 +972,82 @@
       "source_kind": "MMExplorer SQL/MDB class row",
       "source_owner_table_page": 15,
       "source_page": 17,
-      "source_offset": 2053
+      "source_offset": 2053,
+      "hit_points": {
+        "minimum_per_level": 4,
+        "maximum_bonus_per_level": 4,
+        "maximum_per_level": 8,
+        "classification": "Librarium promoted native table evidence"
+      },
+      "magic": {
+        "type": 5,
+        "level": 1
+      },
+      "equipment_categories": {
+        "weapon_type": 0,
+        "armour_type": 103
+      },
+      "phase003_promoted_fields": {
+        "class_prefix_fields": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "MinHits",
+            "MaxHits",
+            "ExpTable",
+            "MageryType",
+            "MageryLVL",
+            "WeaponType",
+            "ArmourType"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words",
+          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
+        }
+      },
+      "experience": {
+        "stored_modifier": 150,
+        "class_percent": 250
+      },
+      "combat_level": 34,
+      "ability_slots": [
+        {
+          "ability_id": 29,
+          "value": 30
+        },
+        {
+          "ability_id": 35,
+          "value": 142
+        },
+        {
+          "ability_id": 58,
+          "value": 31
+        },
+        {
+          "ability_id": 5,
+          "value": 1
+        },
+        {
+          "ability_id": 9,
+          "value": 1
+        },
+        {
+          "ability_id": 5,
+          "value": 0
+        },
+        {
+          "ability_id": 25,
+          "value": 1
+        },
+        {
+          "ability_id": 1,
+          "value": 1
+        },
+        {
+          "ability_id": 5,
+          "value": 10
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     }
   ]
 }

@@ -1,37 +1,33 @@
-# Patch Instructions — CodeUpdate0135 Final
+# Patch Instructions - CodeUpdate0137
 
-Apply this update-only patch over the verified CodeUpdate0134 repository. It supersedes all earlier CodeUpdate0135 patches and addenda. In Codex, this gate passed locally and GitHub Actions remains pending until the user pushes.
+This is a local Codex repository update, not a ChatGPT ZIP patch.
 
-From repository root run:
+## Verify Locally
 
-```powershell
-python Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py
-python Tools/Validation/run_complete_runtime_verification.py
-
-dotnet restore Apps/Source/Reforged.Server/Reforged.Server.csproj
-dotnet build Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-restore
-dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-generated-data
-dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-room-exits
-dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-npcs
-dotnet run --project Apps/Source/Reforged.Server --configuration Release -- --smoke-combat
-
-dotnet restore Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj
-dotnet build Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-restore
-dotnet run --project Tests/Source/Reforged.Core.Tests/Reforged.Core.Tests.csproj --configuration Release --no-build
-```
-
-Promotion requires zero failures.
-
-## Internal CodeUpdate0136 Drop Roll Repair Verification
-
-After applying the internal Classic drop-roll repair, run:
+From the repository root:
 
 ```powershell
-python Tools/Validation/validate_codeupdate0136_classic_drop_roll.py
-python Tools/Validation/run_complete_runtime_verification.py
+python Tools\Validation\run_complete_runtime_verification.py
 ```
 
 Expected result:
 
-- Drop-roll validator PASS.
-- Complete runtime verification PASS, 50/50.
+```text
+PASS 76/76
+Reports\RuntimeVerification\complete_runtime_verification_20260711T143632Z.md
+```
+
+## Commit/Push Gate
+
+1. Clean smoke artifacts from `Saves/`.
+2. Commit CodeUpdate0137.
+3. Push the commit.
+4. Wait for green GitHub Actions before starting the next public update.
+
+## Rules
+
+- Do not hand-edit generated `/Data` as canonical source.
+- Keep Librarium authoritative.
+- Preserve `ImportedDatabases/`.
+- Do not commit smoke saves under `Saves/Runtime0137`.
+- Do not claim GitHub Actions green until the current pushed commit is verified.

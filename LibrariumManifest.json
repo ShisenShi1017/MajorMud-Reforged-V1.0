@@ -1,103 +1,20 @@
 {
   "name": "MajorMUD-Reforged Librarium Canonical Manifest",
   "version": "0010",
-  "codeUpdate": "0118",
-  "generated_utc": "2026-07-08T01:05:06.120753Z",
-  "source_repo_zip": "MajorMud-Reforged-V1.0-main(22).zip",
-  "librarium_validation_baseline_zip": "MajorMUD-Reforged-Validation-0007-Final-Librarium-Completion-Compiler-Foundation.zip",
+  "codeUpdate": "0137",
+  "generated_utc": "2026-07-11T14:37:35Z",
   "canonical_source": "/Librarium",
   "generated_runtime_output": [
-    "/Generated/RuntimeData",
     "/Data"
   ],
-  "top_level": [
-    ".gitattributes",
-    ".github",
-    ".gitignore",
-    "AGENTS.md",
-    "AI_CONTEXT.md",
-    "Apps",
-    "Bin",
-    "CHANGELOG.md",
-    "CODEX_HANDOFF.md",
-    "CanonicalPromotion",
-    "Codex",
-    "Core",
-    "DEVELOPMENT_PRINCIPLES.md",
-    "Data",
-    "DataDecodeCheckpoints",
-    "Docs",
-    "Documentation",
-    "EngineKnowledge.md",
-    "Evidence",
-    "GOVERNING_PRINCIPLES.md",
-    "Generated",
-    "GitHubActions",
-    "ImportedDatabases",
-    "KnowledgeBase",
-    "Legacy",
-    "Librarium",
-    "MIGRATION_REPORT.md",
-    "ProjectManifest.json",
-    "README.md",
-    "README.txt",
-    "ReleaseNotes.md",
-    "Reports",
-    "Runtime",
-    "Sim",
-    "Simulator",
-    "SourceData",
-    "Tests",
-    "Tools",
-    "UpdateManifest.json",
-    "VERSION.md",
-    "Validation"
-  ],
-  "excluded_local_clutter": [
-    "Backups",
-    "Logs",
-    "Saves",
-    "Updates",
-    "__pycache__",
-    "*.pyc"
-  ],
-  "validation": {
-    "status": "PASS",
-    "required": {
-      "Librarium": true,
-      "Generated": true,
-      "Data": true,
-      "Apps": true,
-      "Core": true,
-      "Tools": true,
-      "Validation": true,
-      "Documentation": true,
-      "README.md": true,
-      "GOVERNING_PRINCIPLES.md": true,
-      "CODEX_HANDOFF.md": true
-    },
-    "missing": []
-  },
-  "governing_rule": "The Librarium is the canonical source of truth. Runtime data, server data, editor data, documentation exports, validation reports, and AI/world overlays are generated from or linked back to Librarium records.",
-  "evidence_states": [
-    "Verified",
-    "Derived",
-    "Observed",
-    "Hypothesis",
-    "WorldOverride",
-    "AIProposal"
-  ],
-  "required_record_metadata": [
-    "id",
-    "type",
-    "name",
-    "evidenceState",
-    "confidence",
-    "provenance",
-    "relationships",
-    "runtimeConsumers",
-    "validationStatus"
-  ],
+  "librariumAuthority": "Librarium is the source of truth; /Data is generated runtime output.",
+  "dataPolicy": "/Data is generated output per world and should not be hand-edited as canonical source.",
+  "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world.",
+  "importedDatabasesPolicy": "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
+  "current_codeupdate": "0137",
+  "current_milestone": "CodeUpdate0137 - Complete Classic Gameplay",
+  "baseline": "CodeUpdate0137 complete local Classic gameplay baseline",
+  "runtimeFinished": true,
   "consumer_policy": {
     "runtime": "Consumes generated outputs from Librarium; does not define canonical game truth.",
     "server": "Executes and hosts generated runtime data; does not invent independent game logic.",
@@ -105,21 +22,22 @@
     "validation": "Validates Librarium records, relationships, assertions, generated outputs, and evidence transitions.",
     "ai_worlds": "Use overlay graphs and proposal records; never overwrite Classic canonical records directly."
   },
-  "current_codeupdate": "0109",
-  "last_update": "Dialogue / Text Reconstruction",
-  "subsystems_completed": [
-    "Dialogue / Text"
+  "current_verified_slices": [
+    "Character Foundation creation",
+    "Items/equipment runtime foundation",
+    "Classic repair contract enforcement",
+    "Spell runtime and spell execution smoke",
+    "Combat runtime smoke",
+    "Actors/abilities runtime smoke",
+    "Interaction/narrative runtime smoke",
+    "Services/economy runtime smoke",
+    "World/multiplayer runtime smoke",
+    "Scripted local server session smoke"
   ],
-  "librariumAuthority": "Librarium is the source of truth; /Data is generated runtime output.",
-  "importedDatabasesPolicy": "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
-  "retainedImportedDatabases": [
-    "MBBSEmu",
-    "MMUD-Explorer",
-    "NightmareRedux",
-    "MajorMUD-PHP-Monster-Sim"
-  ],
-  "baseline": "CodeUpdate 0118 - Librarium Baseline Cleanup and Import Retention",
-  "updatedUtc": "2026-07-09T18:49:01Z",
-  "dataPolicy": "/Data is generated output per world and should not be hand-edited as canonical source.",
-  "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
+  "validation": {
+    "status": "LOCAL_COMPLETE_RUNTIME_PASS",
+    "complete_runtime_verification": "PASS 76/76 at Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md",
+    "github_actions": "PENDING until pushed and confirmed green"
+  },
+  "updatedUtc": "2026-07-11T14:37:35Z"
 }

@@ -1,0 +1,20 @@
+{
+  "authority": "Librarium",
+  "compiler_code_update": "0137",
+  "generated_by": "compile_items_equipment_0137.py",
+  "record_count": 3,
+  "records": [
+    {
+      "id": "two-handed-shield-conflict",
+      "rule": "TWO_HANDED_EXCLUDES_OFF_HAND_AND_SHIELD"
+    },
+    {
+      "id": "single-instance-single-location",
+      "rule": "ITEM_INSTANCE_HAS_EXACTLY_ONE_LOCATION"
+    },
+    {
+      "id": "mask-face-slot",
+      "rule": "MASK_EQUIPS_FACE"
+    }
+  ]
+}

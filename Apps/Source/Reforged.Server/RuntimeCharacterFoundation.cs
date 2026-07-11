@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -35,13 +37,31 @@ public sealed record RuntimeCharacterRecord(
     IReadOnlyDictionary<string, string> Conditions,
     DateTimeOffset CreatedAtUtc,
     DateTimeOffset UpdatedAtUtc,
-    int SaveVersion = 1);
+    int SaveVersion = 1,
+    RuntimeItemState? ItemState = null);
 
 public sealed record RuntimeCharacterDefinition(
     string Id,
     string Name,
     string Confidence,
-    string Classification);
+    string Classification,
+    IReadOnlyDictionary<string, int> MinimumStats,
+    IReadOnlyDictionary<string, int> MaximumStats,
+    int HitPointsPerLevelAdjustment,
+    IReadOnlyList<RuntimeAbilityGrant> AbilitySlots,
+    RuntimeClassHitPointDefinition? HitPoints,
+    RuntimeMagicDefinition? Magic);
+
+public sealed record RuntimeAbilityGrant(int AbilityId, int Value);
+
+public sealed record RuntimeClassHitPointDefinition(
+    int MinimumPerLevel,
+    int MaximumBonusPerLevel,
+    int MaximumPerLevel);
+
+public sealed record RuntimeMagicDefinition(
+    int Type,
+    int Level);
 
 public sealed class RuntimeCharacterCatalog
 {
@@ -50,6 +70,8 @@ public sealed class RuntimeCharacterCatalog
 
     public IReadOnlyCollection<RuntimeCharacterDefinition> Races => _races.Values.OrderBy(value => value.Name).ToArray();
     public IReadOnlyCollection<RuntimeCharacterDefinition> Classes => _classes.Values.OrderBy(value => value.Name).ToArray();
+    public bool CreationGateReady { get; private set; }
+    public IReadOnlyList<string> CreationGateBlockers { get; private set; } = Array.Empty<string>();
 
     public static RuntimeCharacterCatalog Load(string projectRoot, string worldId)
     {
@@ -90,6 +112,11 @@ public sealed class RuntimeCharacterCatalog
 
         LoadArray(root, "races", _races);
         LoadArray(root, "classes", _classes);
+        if (root.TryGetProperty("creation_gate", out var gate) && gate.ValueKind == JsonValueKind.Object)
+        {
+            CreationGateReady = gate.TryGetProperty("ready", out var ready) && ready.ValueKind == JsonValueKind.True;
+            CreationGateBlockers = ReadStringArray(gate, "blockers");
+        }
     }
 
     private static void LoadArray(JsonElement root, string property, Dictionary<string, RuntimeCharacterDefinition> destination)
@@ -112,12 +139,84 @@ public sealed class RuntimeCharacterCatalog
                 id,
                 name,
                 ReadString(record, "confidence"),
-                ReadString(record, "classification"));
+                ReadString(record, "classification"),
+                ReadIntDictionary(record, "minimum_stats"),
+                ReadIntDictionary(record, "maximum_stats"),
+                ReadInt(record, "hp_per_level_adjustment"),
+                ReadAbilitySlots(record),
+                ReadHitPoints(record),
+                ReadMagic(record));
         }
     }
 
     private static string ReadString(JsonElement element, string name) =>
         element.TryGetProperty(name, out var value) && value.ValueKind == JsonValueKind.String ? value.GetString() ?? string.Empty : string.Empty;
+
+    private static IReadOnlyDictionary<string, int> ReadIntDictionary(JsonElement element, string name)
+    {
+        if (!element.TryGetProperty(name, out var values) || values.ValueKind != JsonValueKind.Object)
+        {
+            return new Dictionary<string, int>();
+        }
+
+        return values.EnumerateObject()
+            .Where(property => property.Value.ValueKind == JsonValueKind.Number && property.Value.TryGetInt32(out _))
+            .ToDictionary(property => property.Name, property => property.Value.GetInt32(), StringComparer.OrdinalIgnoreCase);
+    }
+
+
+    private static IReadOnlyList<RuntimeAbilityGrant> ReadAbilitySlots(JsonElement element)
+    {
+        if (!element.TryGetProperty("ability_slots", out var values) || values.ValueKind != JsonValueKind.Array)
+        {
+            return Array.Empty<RuntimeAbilityGrant>();
+        }
+
+        return values.EnumerateArray()
+            .Where(value => value.ValueKind == JsonValueKind.Object)
+            .Select(value => new RuntimeAbilityGrant(ReadInt(value, "ability_id"), ReadInt(value, "value")))
+            .Where(value => value.AbilityId > 0)
+            .ToArray();
+    }
+    private static RuntimeClassHitPointDefinition? ReadHitPoints(JsonElement element)
+    {
+        if (!element.TryGetProperty("hit_points", out var hitPoints) || hitPoints.ValueKind != JsonValueKind.Object)
+        {
+            return null;
+        }
+
+        return new RuntimeClassHitPointDefinition(
+            ReadInt(hitPoints, "minimum_per_level"),
+            ReadInt(hitPoints, "maximum_bonus_per_level"),
+            ReadInt(hitPoints, "maximum_per_level"));
+    }
+
+    private static RuntimeMagicDefinition? ReadMagic(JsonElement element)
+    {
+        if (!element.TryGetProperty("magic", out var magic) || magic.ValueKind != JsonValueKind.Object)
+        {
+            return null;
+        }
+
+        return new RuntimeMagicDefinition(ReadInt(magic, "type"), ReadInt(magic, "level"));
+    }
+
+    private static int ReadInt(JsonElement element, string name) =>
+        element.TryGetProperty(name, out var value) && value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var parsed) ? parsed : 0;
+
+    private static IReadOnlyList<string> ReadStringArray(JsonElement element, string name)
+    {
+        if (!element.TryGetProperty(name, out var values) || values.ValueKind != JsonValueKind.Array)
+        {
+            return Array.Empty<string>();
+        }
+
+        return values.EnumerateArray()
+            .Where(value => value.ValueKind == JsonValueKind.String)
+            .Select(value => value.GetString() ?? string.Empty)
+            .Where(value => !string.IsNullOrWhiteSpace(value))
+            .ToArray();
+    }
 }
 
 public sealed class RuntimeCharacterRepository
@@ -152,7 +251,7 @@ public sealed class RuntimeCharacterRepository
     }
 
     public RuntimeAccountRecord? TryLoadAccount(string accountId) => Read<RuntimeAccountRecord>(AccountPath(RuntimeIdentity.Normalize(accountId, "account")));
-    public RuntimeCharacterRecord? TryLoadCharacter(string characterId) => Read<RuntimeCharacterRecord>(CharacterPath(RuntimeIdentity.Normalize(characterId, "character")));
+    public RuntimeCharacterRecord? TryLoadCharacter(string characterId) => Read<RuntimeCharacterRecord>(CharacterPath(CanonicalCharacterId(characterId)));
 
     public IReadOnlyList<RuntimeCharacterRecord> ListCharacters(string accountId)
     {
@@ -195,7 +294,37 @@ public sealed class RuntimeCharacterRepository
     }
 
     private string AccountPath(string id) => Path.Combine(_root, "accounts", id + ".json");
-    private string CharacterPath(string id) => Path.Combine(_root, "characters", id + ".json");
+    private string CharacterPath(string id)
+    {
+        id = CanonicalCharacterId(id);
+        return Path.Combine(_root, "characters", PersistenceFileKey(id) + ".json");
+    }
+
+    private static string CanonicalCharacterId(string characterId)
+    {
+        var raw = (characterId ?? string.Empty).Trim();
+        var separator = raw.IndexOf(':');
+        if (separator < 0)
+        {
+            return RuntimeIdentity.Normalize(raw, "character");
+        }
+
+        var world = RuntimeIdentity.Normalize(raw[..separator], "world");
+        var name = RuntimeIdentity.Normalize(raw[(separator + 1)..], "character");
+        return $"{world}:{name}";
+    }
+
+    private static string PersistenceFileKey(string stableId)
+    {
+        // Character IDs are logical identifiers and may contain ':' (for example
+        // "classic:hero"). A colon is not a legal normal filename character on
+        // Windows and can be interpreted as an alternate data stream, causing
+        // File.Move/File.Replace to fail with ERROR_INVALID_PARAMETER. Keep the
+        // logical ID inside the JSON record and use a deterministic SHA-256 key
+        // only for the on-disk filename.
+        var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(stableId));
+        return Convert.ToHexString(bytes).ToLowerInvariant();
+    }
 
     private static T? Read<T>(string path)
     {
@@ -209,10 +338,85 @@ public sealed class RuntimeCharacterRepository
 
     private static void WriteAtomic<T>(string path, T value)
     {
-        Directory.CreateDirectory(Path.GetDirectoryName(path)!);
-        var temporary = path + "." + Guid.NewGuid().ToString("N") + ".tmp";
-        File.WriteAllText(temporary, JsonSerializer.Serialize(value, JsonOptions) + Environment.NewLine);
-        File.Move(temporary, path, true);
+        var directory = Path.GetDirectoryName(path)
+            ?? throw new InvalidOperationException($"Persistence path '{path}' has no parent directory.");
+        Directory.CreateDirectory(directory);
+
+        var temporary = Path.Combine(directory, Path.GetFileName(path) + "." + Guid.NewGuid().ToString("N") + ".tmp");
+        var backup = path + ".bak";
+        var payload = JsonSerializer.Serialize(value, JsonOptions) + Environment.NewLine;
+
+        try
+        {
+            using (var stream = new FileStream(temporary, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+            using (var writer = new StreamWriter(stream))
+            {
+                writer.Write(payload);
+                writer.Flush();
+                stream.Flush(flushToDisk: true);
+            }
+
+            if (!File.Exists(path))
+            {
+                File.Move(temporary, path);
+                return;
+            }
+
+            try
+            {
+                File.Replace(temporary, path, backup, ignoreMetadataErrors: true);
+                TryDelete(backup);
+            }
+            catch (PlatformNotSupportedException)
+            {
+                ReplaceWithCopyFallback(temporary, path, backup);
+            }
+            catch (IOException)
+            {
+                // Some Windows filesystems and mounted/synchronized folders reject
+                // File.Replace/File.Move overwrite semantics with ERROR_INVALID_PARAMETER.
+                ReplaceWithCopyFallback(temporary, path, backup);
+            }
+        }
+        finally
+        {
+            TryDelete(temporary);
+        }
+    }
+
+    private static void ReplaceWithCopyFallback(string temporary, string path, string backup)
+    {
+        File.Copy(path, backup, overwrite: true);
+        try
+        {
+            File.Copy(temporary, path, overwrite: true);
+            TryDelete(backup);
+        }
+        catch
+        {
+            if (File.Exists(backup))
+            {
+                File.Copy(backup, path, overwrite: true);
+            }
+
+            throw;
+        }
+    }
+
+    private static void TryDelete(string path)
+    {
+        try
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+        catch
+        {
+            // Cleanup failure must not hide the persistence result. A later save can
+            // safely replace stale .tmp/.bak files because names are unique/versioned.
+        }
     }
 }
 
@@ -238,10 +442,50 @@ public sealed class RuntimeCharacterService
         var catalog = RuntimeCharacterCatalog.Load(_projectRoot, world.Definition.Id);
         var raceDefinition = catalog.RequireRace(race);
         var classDefinition = catalog.RequireClass(characterClass);
+        if (!catalog.CreationGateReady)
+        {
+            var blockers = catalog.CreationGateBlockers.Count == 0 ? "unknown blockers" : string.Join(", ", catalog.CreationGateBlockers);
+            throw new InvalidOperationException($"Character Foundation Phase003 creation gate is blocked: {blockers}.");
+        }
+
         var start = world.ResolveGeneratedCharacterStartRoom()
             ?? throw new InvalidOperationException($"World '{world.Definition.Id}' has no generated Classic character-start room. Character creation is blocked rather than guessing a start.");
         var characterId = RuntimeIdentity.CharacterId(world.Definition.Id, name);
         var now = DateTimeOffset.UtcNow;
+        const int startingLevel = 1;
+        var health = raceDefinition.MinimumStats.TryGetValue("hea", out var startingHealth) ? startingHealth : 0;
+        var classHitPoints = classDefinition.HitPoints ?? throw new InvalidOperationException($"Generated class '{classDefinition.Name}' has no hit-point definition.");
+        // DLL-verified calculate_secondary_stats @0x0041a424.
+        var healthAdjustmentProduct = (health - 50) * startingLevel;
+        if (healthAdjustmentProduct < 0)
+        {
+            healthAdjustmentProduct += 15;
+        }
+        var constitutionAdjustment = healthAdjustmentProduct >> 4;
+        var accumulatedHitPointRolls = classHitPoints.MaximumBonusPerLevel; // creation seeds the full roll cap
+        var maximumHitPoints = (health / 2)
+            + (startingLevel * classHitPoints.MinimumPerLevel)
+            + (startingLevel * raceDefinition.HitPointsPerLevelAdjustment)
+            + constitutionAdjustment
+            + accumulatedHitPointRolls
+            + constitutionAdjustment; // the Classic DLL adds con_adj twice
+        maximumHitPoints = Math.Max(1, maximumHitPoints);
+        var magic = classDefinition.Magic;
+        var maximumMana = magic switch
+        {
+            null => 0,
+            { Type: 0 } => 0,
+            { Type: 5 } => Math.Max(0, startingLevel - 1),
+            { Type: >= 1 and <= 4 } => (magic.Level * startingLevel * 2) + 6,
+            _ => 0
+        };
+        var startingAbilities = raceDefinition.AbilitySlots
+            .Concat(classDefinition.AbilitySlots)
+            .GroupBy(value => value.AbilityId)
+            .ToDictionary(
+                group => $"ability.{group.Key}",
+                group => group.Last().Value,
+                StringComparer.OrdinalIgnoreCase);
         var character = new RuntimeCharacterRecord(
             characterId,
             account.AccountId,
@@ -251,20 +495,20 @@ public sealed class RuntimeCharacterService
             raceDefinition.Name,
             classDefinition.Id,
             classDefinition.Name,
-            1,
+            startingLevel,
             0,
-            1,
-            1,
-            0,
-            0,
+            maximumHitPoints,
+            maximumHitPoints,
+            maximumMana,
+            maximumMana,
             start.Id,
             start.RoomNumber,
-            new Dictionary<string, int>(),
-            new Dictionary<string, int>(),
+            raceDefinition.MinimumStats,
+            startingAbilities,
             Array.Empty<string>(),
             Array.Empty<string>(),
             new Dictionary<string, string?>(),
-            new Dictionary<string, string>(),
+            new Dictionary<string, string> { ["alignment"] = "Neutral", ["evil_points"] = "0", ["online_alignment_minutes"] = "0" },
             now,
             now);
         return _repository.CreateCharacter(account, character);

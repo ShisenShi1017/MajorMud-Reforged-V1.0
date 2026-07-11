@@ -18,7 +18,43 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 3932
+      "source_offset": 3932,
+      "minimum_stats": {
+        "int": 40,
+        "wil": 40,
+        "str": 40,
+        "hea": 40,
+        "agl": 40,
+        "cha": 40
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 100,
+        "wil": 100,
+        "str": 100,
+        "hea": 100,
+        "agl": 100,
+        "cha": 100
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 0,
+      "experience_add_percent": 0,
+      "ability_slots": [],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.dwarf",
@@ -32,7 +68,52 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 3768
+      "source_offset": 3768,
+      "minimum_stats": {
+        "int": 30,
+        "wil": 50,
+        "str": 50,
+        "hea": 50,
+        "agl": 30,
+        "cha": 30
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 90,
+        "wil": 110,
+        "str": 110,
+        "hea": 120,
+        "agl": 90,
+        "cha": 85
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 10,
+      "experience_add_percent": 30,
+      "ability_slots": [
+        {
+          "ability_id": 75,
+          "value": 20
+        },
+        {
+          "ability_id": 1,
+          "value": 2
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.gnome",
@@ -46,7 +127,52 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 3604
+      "source_offset": 3604,
+      "minimum_stats": {
+        "int": 45,
+        "wil": 40,
+        "str": 35,
+        "hea": 40,
+        "agl": 45,
+        "cha": 35
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 110,
+        "wil": 100,
+        "str": 90,
+        "hea": 100,
+        "agl": 110,
+        "cha": 90
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 5,
+      "experience_add_percent": 20,
+      "ability_slots": [
+        {
+          "ability_id": 65,
+          "value": 0
+        },
+        {
+          "ability_id": 10,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.halfling",
@@ -60,7 +186,48 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 3437
+      "source_offset": 3437,
+      "minimum_stats": {
+        "int": 30,
+        "wil": 40,
+        "str": 20,
+        "hea": 40,
+        "agl": 60,
+        "cha": 40
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 90,
+        "wil": 100,
+        "str": 60,
+        "hea": 100,
+        "agl": 150,
+        "cha": 100
+      },
+      "hp_per_level_adjustment": -1,
+      "base_cp": 0,
+      "experience_add_percent": 25,
+      "ability_slots": [
+        {
+          "ability_id": 10,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.elf",
@@ -74,7 +241,43 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 3275
+      "source_offset": 3275,
+      "minimum_stats": {
+        "int": 50,
+        "wil": 40,
+        "str": 35,
+        "hea": 30,
+        "agl": 50,
+        "cha": 50
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 120,
+        "wil": 100,
+        "str": 90,
+        "hea": 80,
+        "agl": 120,
+        "cha": 120
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 50,
+      "experience_add_percent": 45,
+      "ability_slots": [],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.half_elf",
@@ -88,7 +291,48 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 3108
+      "source_offset": 3108,
+      "minimum_stats": {
+        "int": 45,
+        "wil": 40,
+        "str": 40,
+        "hea": 30,
+        "agl": 45,
+        "cha": 50
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 110,
+        "wil": 100,
+        "str": 90,
+        "hea": 100,
+        "agl": 110,
+        "cha": 110
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 10,
+      "experience_add_percent": 15,
+      "ability_slots": [
+        {
+          "ability_id": 25,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.dark_elf",
@@ -102,7 +346,48 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 2941
+      "source_offset": 2941,
+      "minimum_stats": {
+        "int": 50,
+        "wil": 30,
+        "str": 40,
+        "hea": 30,
+        "agl": 50,
+        "cha": 40
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 120,
+        "wil": 100,
+        "str": 90,
+        "hea": 90,
+        "agl": 120,
+        "cha": 110
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 80,
+      "experience_add_percent": 45,
+      "ability_slots": [
+        {
+          "ability_id": 3,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.half_orc",
@@ -116,7 +401,43 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 2774
+      "source_offset": 2774,
+      "minimum_stats": {
+        "int": 30,
+        "wil": 30,
+        "str": 45,
+        "hea": 50,
+        "agl": 40,
+        "cha": 30
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 90,
+        "wil": 95,
+        "str": 110,
+        "hea": 120,
+        "agl": 100,
+        "cha": 80
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 0,
+      "experience_add_percent": 0,
+      "ability_slots": [],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.goblin",
@@ -130,7 +451,43 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 2609
+      "source_offset": 2609,
+      "minimum_stats": {
+        "int": 45,
+        "wil": 40,
+        "str": 30,
+        "hea": 40,
+        "agl": 55,
+        "cha": 40
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 115,
+        "wil": 100,
+        "str": 70,
+        "hea": 100,
+        "agl": 125,
+        "cha": 100
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 65,
+      "experience_add_percent": 35,
+      "ability_slots": [],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.half_ogre",
@@ -144,7 +501,52 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 2441
+      "source_offset": 2441,
+      "minimum_stats": {
+        "int": 20,
+        "wil": 25,
+        "str": 70,
+        "hea": 60,
+        "agl": 20,
+        "cha": 25
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 60,
+        "wil": 70,
+        "str": 150,
+        "hea": 150,
+        "agl": 60,
+        "cha": 60
+      },
+      "hp_per_level_adjustment": 1,
+      "base_cp": 15,
+      "experience_add_percent": 30,
+      "ability_slots": [
+        {
+          "ability_id": 20,
+          "value": 100
+        },
+        {
+          "ability_id": 3,
+          "value": 0
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.kang",
@@ -158,7 +560,48 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 2278
+      "source_offset": 2278,
+      "minimum_stats": {
+        "int": 30,
+        "wil": 45,
+        "str": 55,
+        "hea": 50,
+        "agl": 30,
+        "cha": 30
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 90,
+        "wil": 110,
+        "str": 120,
+        "hea": 110,
+        "agl": 90,
+        "cha": 85
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 100,
+      "experience_add_percent": 35,
+      "ability_slots": [
+        {
+          "ability_id": 10,
+          "value": 5
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.nekojin",
@@ -172,7 +615,52 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 2112
+      "source_offset": 2112,
+      "minimum_stats": {
+        "int": 40,
+        "wil": 30,
+        "str": 40,
+        "hea": 30,
+        "agl": 60,
+        "cha": 50
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 100,
+        "wil": 90,
+        "str": 100,
+        "hea": 80,
+        "agl": 130,
+        "cha": 110
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 0,
+      "experience_add_percent": 50,
+      "ability_slots": [
+        {
+          "ability_id": 50,
+          "value": 0
+        },
+        {
+          "ability_id": 10,
+          "value": -10
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     },
     {
       "id": "race.gaunt_one",
@@ -186,7 +674,48 @@
       "source_kind": "MMExplorer SQL/MDB race row",
       "source_owner_table_page": 1660,
       "source_page": 1662,
-      "source_offset": 1944
+      "source_offset": 1944,
+      "minimum_stats": {
+        "int": 60,
+        "wil": 50,
+        "str": 40,
+        "hea": 30,
+        "agl": 50,
+        "cha": 30
+      },
+      "phase003_promoted_fields": {
+        "minimum_stats": {
+          "classification": "sql_mdb_prefix_and_schema_alignment",
+          "columns": [
+            "mINT",
+            "mWIL",
+            "mSTR",
+            "mHEA",
+            "mAGL",
+            "mCHM"
+          ],
+          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
+          "byte_evidence": "source.hexPrefix even-padded little-endian words"
+        }
+      },
+      "maximum_stats": {
+        "int": 140,
+        "wil": 100,
+        "str": 100,
+        "hea": 70,
+        "agl": 110,
+        "cha": 80
+      },
+      "hp_per_level_adjustment": 0,
+      "base_cp": 200,
+      "experience_add_percent": 50,
+      "ability_slots": [
+        {
+          "ability_id": 10,
+          "value": 10
+        }
+      ],
+      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
     }
   ]
 }

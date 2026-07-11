@@ -1,1 +1,0 @@
-Use this promotion package as the repository update baseline.

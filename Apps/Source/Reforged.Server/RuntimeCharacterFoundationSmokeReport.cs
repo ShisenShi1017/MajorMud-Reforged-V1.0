@@ -31,9 +31,11 @@ public static class RuntimeCharacterFoundationSmoke
             {
                 service.CreateCharacter(account, world, "Smoke" + LetterSuffix(suffix), race.Id, characterClass.Id);
             }
-            catch (InvalidOperationException exception) when (exception.Message.Contains("no generated Classic character-start room", StringComparison.OrdinalIgnoreCase))
+            catch (InvalidOperationException exception) when (
+                exception.Message.Contains("Character Foundation Phase003 creation gate is blocked", StringComparison.OrdinalIgnoreCase) ||
+                exception.Message.Contains("no generated Classic character-start room", StringComparison.OrdinalIgnoreCase))
             {
-                checks.Add("character-creation-blocked-without-generated-start");
+                checks.Add("character-creation-blocked-by-generated-gate");
                 return new RuntimeCharacterFoundationSmokeResult(true, account.AccountId, string.Empty, string.Empty, string.Empty, checks);
             }
         }

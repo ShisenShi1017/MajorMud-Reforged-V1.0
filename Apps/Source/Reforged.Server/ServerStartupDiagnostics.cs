@@ -24,7 +24,7 @@ public sealed class ServerStartupDiagnostics
         var services = new ServiceRegistry();
         var configuration = new RuntimeConfigurationProvider()
             .AddDefault("runtime:root", projectRoot)
-            .AddDefault("runtime:data", Path.Combine(projectRoot, "Data"))
+            .AddDefault("runtime:data", ServerDataRootResolver.ResolveDefault(projectRoot).DataRoot)
             .AddDefault("server:role", ApplicationRole.Server.ToString())
             .AddDefault("server:diagnostics", "startup-only");
 
@@ -63,7 +63,8 @@ public sealed class ServerStartupDiagnostics
         }
 
         report.AddCheck("core-startup-diagnostics");
-        var coreReport = new CoreStartupDiagnostics().Run(projectRoot);
+        var configuredDataRoot = ServerDataRootResolver.ResolveDefault(projectRoot).DataRoot;
+        var coreReport = new CoreStartupDiagnostics().Run(projectRoot, configuredDataRoot);
         report.AttachCoreReport(coreReport);
 
         logger.Write(

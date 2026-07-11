@@ -1,64 +1,64 @@
 {
-  "codeUpdate": "0137-internal",
-  "name": "CodeUpdate0137-Internal-CharacterFoundationCatalogRuntimeSlice",
-  "packageType": "internal-local-commit",
-  "supersedes": [
-    "CodeUpdate0136-Internal-ClassicDropRollRepair",
-    "CodeUpdate0135-FinalExhaustiveClassicFixes"
-  ],
+  "codeUpdate": "0137",
+  "name": "CodeUpdate0137-CompleteClassicGameplay",
+  "packageType": "local-repository-update",
+  "publicRelease": true,
+  "runtimeFinished": true,
   "librariumAuthoritative": true,
   "dataGeneratedOnly": true,
   "importedDatabasesRetained": true,
+  "savesPreserved": true,
   "runtimeGameplayChanged": true,
   "serverSourceChanged": true,
   "generatedClassicDataChanged": true,
-  "purpose": "Internal CodeUpdate0137 phase: generate the playable Classic Character Foundation catalog from Librarium SQL/MDB-backed records and add runtime account/character persistence plus telnet character-selection plumbing while preserving the verified generated-start blocker.",
-  "includedUpdates": [
-    "CodeUpdate0135-FinalExhaustiveClassicFixes",
+  "purpose": "Complete local CodeUpdate0137 Classic gameplay baseline and consolidate active documentation.",
+  "includedSlices": [
     "CodeUpdate0136-Internal-ClassicDropRollRepair",
-    "CodeUpdate0137-Internal-CharacterFoundationCatalogRuntimeSlice"
+    "CodeUpdate0137-CharacterFoundation",
+    "CodeUpdate0137-ItemsEquipmentRuntime",
+    "CodeUpdate0137-SpellRuntime",
+    "CodeUpdate0137-CombatRuntime",
+    "CodeUpdate0137-ActorsAbilitiesRuntime",
+    "CodeUpdate0137-InteractionNarrativeRuntime",
+    "CodeUpdate0137-ServicesEconomyRuntime",
+    "CodeUpdate0137-WorldMultiplayerRuntime",
+    "CodeUpdate0137-DocumentationCleanup"
   ],
   "newServerCommands": [
     "--smoke-combat",
-    "--smoke-character-foundation"
+    "--smoke-combat-runtime",
+    "--smoke-combat-runtime-part2",
+    "--smoke-character-foundation",
+    "--smoke-items",
+    "--smoke-spells",
+    "--smoke-spell-execution",
+    "--smoke-actors-abilities",
+    "--smoke-interaction-narrative",
+    "--smoke-services-economy",
+    "--smoke-world-multiplayer"
   ],
   "evidencePolicy": "Librarium remains authoritative. /Data is generated runtime output. ImportedDatabases remains untouched. Classic is immutable/evidence-locked. Unknown Classic behavior must not be guessed.",
-  "validationStatus": "LOCAL_PASS",
+  "validationStatus": "LOCAL_COMPLETE_RUNTIME_PASS",
   "dotnetSdkAvailableHere": true,
   "requiredCodexCommands": [
-    "python Tools/Validation/validate_codeupdate0136_classic_drop_roll.py",
-    "python Tools/Validation/validate_codeupdate0137_character_foundation_librarium.py",
-    "python Tools/Validation/validate_codeupdate0137_character_foundation.py",
     "python Tools/Validation/run_complete_runtime_verification.py"
   ],
   "reports": [
-    "Reports/SimulationVerification/CodeUpdate0135-FinalSimulationReport.md",
-    "Reports/SimulationVerification/CodeUpdate0135-FinalSimulationResults.json",
-    "Reports/RuntimeVerification/complete_runtime_verification_20260711T012717Z.md",
-    "Reports/RuntimeVerification/complete_runtime_verification_20260711T012717Z.json",
-    "HANDOFF.md",
-    "MANIFEST.md",
-    "PATCH_INSTRUCTIONS.md"
+    "Docs/PROJECT_STATUS.md",
+    "Reports/CodeUpdate0137/character_foundation_phase003_matrix.md",
+    "Reports/CodeUpdate0137/character_foundation_phase003_matrix.json",
+    "Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md",
+    "Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.json"
   ],
   "knownLimitations": [
-    "GitHub Actions remains pending until user push and green report for this internal 0137 phase.",
-    "CodeUpdate0137 remains required for complete Classic gameplay.",
-    "Do not publish partial CodeUpdate0137 packages.",
-    "Exact race/class compatibility, starting stats, HP/mana, skills, spells, equipment, and alignment remain blocked until evidence is promoted.",
-    "Verified generated Classic character-start evidence remains blocked; real character creation blocks rather than guessing or using diagnostic room.1.",
-    "Unknown shop item rows must be classified before treating them as missing data."
+    "GitHub Actions remains pending until this commit is pushed and confirmed green.",
+    "ImportedDatabases remains preserved and reference-only unless explicitly approved for cleanup.",
+    "Future multiplayer, custom/AI overlays, telnet client expansion, and host editor work remain later updates."
   ],
-  "updatedUtc": "2026-07-11T01:23:20Z",
-  "verificationStatus": "LOCAL_PASS; Internal CodeUpdate0137 Character Foundation passed targeted validation, Server Release build, server character-foundation smoke, and complete runtime verification 53/53. GitHub Actions remains pending until user push.",
+  "updatedUtc": "2026-07-11T14:37:35Z",
+  "verificationStatus": "LOCAL_COMPLETE_RUNTIME_PASS; Complete runtime verification passed 76/76 locally. GitHub Actions remains pending until pushed and confirmed green.",
   "localVerification": {
-    "exhaustiveRepairs": "PASS: python Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py; triggers=328 rooms=950 classic_bug_fixes=8.",
-    "classicDropRoll": "PASS: python Tools/Validation/validate_codeupdate0136_classic_drop_roll.py; 1% => 1/100 buckets and 3% => 3/100 buckets.",
-    "characterFoundationLibrarium": "PASS: python Tools/Validation/validate_codeupdate0137_character_foundation_librarium.py; 13 races, 15 classes, 195 classified compatibility pairs.",
-    "characterFoundationRuntime": "PASS: python Tools/Validation/validate_codeupdate0137_character_foundation.py; static/runtime contracts present.",
-    "serverCharacterFoundationSmoke": "PASS: dotnet run --project Apps/Source/Reforged.Server/Reforged.Server.csproj --configuration Release --no-build -- --smoke-character-foundation; generated-start blocker is enforced.",
-    "completeRuntimeVerification": "PASS: python Tools/Validation/run_complete_runtime_verification.py; 53/53 checks passed.",
-    "finalSimulation": "PASS: Reports/SimulationVerification/CodeUpdate0135-FinalSimulationReport.md records 38/38 validators/simulators passed.",
-    "dotnetGate": "PASS: complete runtime verification included solution restore/build and server/Core smoke coverage.",
-    "githubActions": "PENDING until user push and green report."
+    "completeRuntimeVerification": "PASS: python Tools/Validation/run_complete_runtime_verification.py (76/76), report Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md",
+    "githubActions": "PENDING until pushed and confirmed green"
   }
 }

@@ -1,1 +1,0 @@
-Repository integration validation summary.

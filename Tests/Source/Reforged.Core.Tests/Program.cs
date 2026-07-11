@@ -336,7 +336,7 @@ void ServerDataCatalogAuditSmoke()
     if (report.CategoryCount < 10 ||
         report.LoadedRecordCount == 0 ||
         report.RuntimeReadyCategoryCount == 0 ||
-        report.Status != "loaded-with-runtime-gaps" && report.Status != "missing-data-files" ||
+        report.Status != "runtime-ready" && report.Status != "loaded-with-runtime-gaps" && report.Status != "missing-data-files" ||
         string.IsNullOrWhiteSpace(report.Status))
     {
         throw new InvalidOperationException("Server data catalog did not expose expected category readiness.");
@@ -350,7 +350,7 @@ void ServerDataCatalogAuditSmoke()
         }
     }
 
-    foreach (var category in new[] { "loot_tables", "rooms", "shops" })
+    foreach (var category in new[] { "loot_rules", "rooms", "shops" })
     {
         var summary = report.Categories.FirstOrDefault(item => item.Category == category);
         if (summary is null ||

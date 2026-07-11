@@ -76,12 +76,70 @@ if (!report.Passed)
     return report.ExitCode;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-world-multiplayer", StringComparison.OrdinalIgnoreCase)))
+{
+    var worldMultiplayerReport = RuntimeWorldMultiplayerSmokeReport.Run();
+    Console.WriteLine("Runtime World and Multiplayer Smoke Report");
+    Console.WriteLine(worldMultiplayerReport.ToJson());
+    return worldMultiplayerReport.Passed ? 0 : 15;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-services-economy", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate services and economy because project root was not resolved."); return 2; }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var economyReport = RuntimeServicesEconomySmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Services and Economy Smoke Report");
+    Console.WriteLine(economyReport.ToJson());
+    return economyReport.Passed ? 0 : 14;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-interaction-narrative", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate interaction and narrative because project root was not resolved."); return 2; }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var narrativeReport = RuntimeInteractionNarrativeSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Interaction and Narrative Smoke Report");
+    Console.WriteLine(narrativeReport.ToJson());
+    return narrativeReport.Passed ? 0 : 13;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-actors-abilities", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot validate actors and abilities because project root was not resolved.");
+        return 2;
+    }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var actorsAbilitiesReport = RuntimeActorsAbilitiesSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Actors and Abilities Smoke Report");
+    Console.WriteLine(actorsAbilitiesReport.ToJson());
+    return actorsAbilitiesReport.Passed ? 0 : 12;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-combat", StringComparison.OrdinalIgnoreCase)))
 {
     var combatSmoke = ClassicCombatSmokeReport.Run();
     Console.WriteLine("Classic Combat Smoke Report");
     Console.WriteLine(combatSmoke.ToJson());
     return combatSmoke.Passed ? 0 : 6;
+}
+
+
+if (args.Any(arg => string.Equals(arg, "--smoke-combat-runtime-part2", StringComparison.OrdinalIgnoreCase)))
+{
+    var combatPart2Report = RuntimeCombatPart2SmokeReport.Run();
+    Console.WriteLine("Runtime Combat Part 2 Smoke Report");
+    Console.WriteLine(combatPart2Report.ToJson());
+    return combatPart2Report.Passed ? 0 : 1;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-combat-runtime", StringComparison.OrdinalIgnoreCase)))
+{
+    var combatRuntimeSmoke = RuntimeCombatSmokeReport.Run();
+    Console.WriteLine("Runtime Combat Smoke Report");
+    Console.WriteLine(combatRuntimeSmoke.ToJson());
+    return combatRuntimeSmoke.Passed ? 0 : 11;
 }
 
 if (args.Any(arg => string.Equals(arg, "--smoke-npcs", StringComparison.OrdinalIgnoreCase)))
@@ -119,6 +177,51 @@ if (args.Any(arg => string.Equals(arg, "--smoke-character-foundation", StringCom
     Console.WriteLine("Runtime Character Foundation Smoke Report");
     Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(characterSmoke, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
     return characterSmoke.Passed ? 0 : 7;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-items", StringComparison.OrdinalIgnoreCase) || string.Equals(arg, "--smoke-item-runtime", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot validate item runtime because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var smoke = RuntimeItemSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Item Smoke Report");
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 8;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-spells", StringComparison.OrdinalIgnoreCase) || string.Equals(arg, "--smoke-spell-runtime", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot validate spell runtime because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var smoke = RuntimeSpellSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Spell Smoke Report");
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 9;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-spell-execution", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null)
+    {
+        Console.Error.WriteLine("Cannot validate spell execution because project root was not resolved.");
+        return 2;
+    }
+
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var smoke = RuntimeSpellExecutionSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Spell Execution Smoke Report");
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 10;
 }
 
 if (args.Any(arg => string.Equals(arg, "--smoke-room-exits", StringComparison.OrdinalIgnoreCase)))

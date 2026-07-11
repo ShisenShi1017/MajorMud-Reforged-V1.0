@@ -51,7 +51,7 @@ else:
     if count<=0:
         errors.append('empty relationship artifact')
 # source-of-truth invariants
-for required_path in ['SOURCE_OF_TRUTH.md','REPOSITORY_RULES.md','Data/README.md','ImportedDatabases']:
+for required_path in ['AGENTS.md','Docs/PROJECT_STATUS.md','Data/README.md','ImportedDatabases']:
     if not (root/required_path).exists():
         errors.append(f'missing invariant path {required_path}')
 if errors:

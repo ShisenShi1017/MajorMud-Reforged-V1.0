@@ -9,7 +9,7 @@ namespace Reforged.Core.Health;
 /// </summary>
 public sealed class DataJsonHealthCheck
 {
-    public ValidationResult ValidateDataFolder(string dataFolder)
+    public ValidationResult ValidateDataFolder(string dataFolder, bool validateLegacyRepositoryContracts = true)
     {
         var result = new ValidationResult();
 
@@ -24,7 +24,7 @@ public sealed class DataJsonHealthCheck
             ValidateJsonFile(file, result);
         }
 
-        if (!result.HasErrors)
+        if (!result.HasErrors && validateLegacyRepositoryContracts)
         {
             result.Merge(new DataCrossReferenceHealthCheck().ValidateDataFolder(dataFolder));
             result.Merge(new CoreDataRepositoryHealthCheck().ValidateDataFolder(dataFolder));

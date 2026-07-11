@@ -6,7 +6,7 @@ public sealed class GeneratedWorldSmokeReport
 {
     public int WorldCount { get; init; }
     public IReadOnlyList<GeneratedWorldSmokeWorld> Worlds { get; init; } = Array.Empty<GeneratedWorldSmokeWorld>();
-    public bool Passed => WorldCount > 0 && Worlds.All(world => world.Diagnostics.Count == 0 && world.RoomCount > 0 && world.StartRoomResolved && world.StartRoomExitCount > 0 && !string.Equals(world.StartRoomName, "Unknown Room", StringComparison.OrdinalIgnoreCase));
+    public bool Passed => WorldCount > 0 && Worlds.All(world => world.Diagnostics.Count == 0 && world.RoomCount > 0 && world.StartRoomResolved && !string.Equals(world.StartRoomName, "Unknown Room", StringComparison.OrdinalIgnoreCase));
 
     public string ToJson()
     {

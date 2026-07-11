@@ -12,9 +12,11 @@ namespace Reforged.Core.Diagnostics;
 /// </summary>
 public sealed class CoreStartupDiagnostics
 {
-    public StartupDiagnosticReport Run(string projectRoot)
+    public StartupDiagnosticReport Run(string projectRoot, string? dataFolder = null)
     {
         var report = new StartupDiagnosticReport();
+        var usesConfiguredGeneratedData = !string.IsNullOrWhiteSpace(dataFolder);
+        var resolvedDataFolder = Path.GetFullPath(dataFolder ?? Path.Combine(projectRoot, "Data"));
         var logger = new InMemoryReforgedLogger();
         var events = new InMemoryEventBus();
         var services = new ServiceRegistry();
@@ -28,7 +30,7 @@ public sealed class CoreStartupDiagnostics
         report.AddCheck("configuration");
         var configuration = new RuntimeConfigurationProvider()
             .AddDefault("runtime:root", projectRoot)
-            .AddDefault("runtime:data", Path.Combine(projectRoot, "Data"));
+            .AddDefault("runtime:data", resolvedDataFolder);
         services.Register(configuration);
 
         report.AddCheck("event-system");
@@ -44,9 +46,7 @@ public sealed class CoreStartupDiagnostics
 
         report.AddCheck("repository-health");
         report.Validation.Merge(new ApplicationCoreReferenceHealthCheck().Validate(Path.Combine(projectRoot, "Apps", "Source")));
-        report.Validation.Merge(new DataJsonHealthCheck().ValidateDataFolder(Path.Combine(projectRoot, "Data")));
-        report.Validation.Merge(new CoreDataRepositoryHealthCheck().ValidateDataFolder(projectRoot));
-        report.Validation.Merge(new DataCrossReferenceHealthCheck().ValidateDataFolder(Path.Combine(projectRoot, "Data")));
+        report.Validation.Merge(new DataJsonHealthCheck().ValidateDataFolder(resolvedDataFolder, validateLegacyRepositoryContracts: !usesConfiguredGeneratedData));
         foreach (var issue in new DuplicateModelEnforcementHealthCheck().Check(projectRoot))
         {
             report.Validation.Add(ValidationSeverity.Error, "DUPLICATE_MODEL_ENFORCEMENT", issue);

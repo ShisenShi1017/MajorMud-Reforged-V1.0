@@ -126,7 +126,7 @@ public sealed class ServerRuntimeHost
     {
         var worlds = _worlds.Values.Select(world =>
         {
-            var startRoom = world.ResolveGeneratedCharacterStartRoom() ?? world.ResolveDiagnosticRoom();
+            var startRoom = world.ResolveDiagnosticRoom() ?? world.ResolveGeneratedCharacterStartRoom();
             var movementChecks = new List<RuntimeRoomExitMovementCheck>();
             foreach (var exit in startRoom?.Exits ?? Array.Empty<RuntimeExit>())
             {

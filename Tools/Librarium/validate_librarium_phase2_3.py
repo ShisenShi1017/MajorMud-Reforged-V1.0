@@ -7,7 +7,7 @@ required=[
  f'Librarium/Indexes/librarium_metrics_{code}.json',
  f'Librarium/Indexes/librarium_completion_index_{code}.json',
  'Librarium/Worlds/world_branches_0121.json',
- 'SOURCE_OF_TRUTH.md','REPOSITORY_RULES.md','Data/README.md']
+ 'AGENTS.md','Docs/PROJECT_STATUS.md','Data/README.md']
 errors=[]
 relationship_candidates=[
  'Librarium/Relationships/librarium_relationship_graph_0121.json',

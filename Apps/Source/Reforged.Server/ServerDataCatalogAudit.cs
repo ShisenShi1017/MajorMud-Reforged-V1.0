@@ -1,149 +1,139 @@
-using Reforged.Core.Loading;
+using System.Text.Json;
 using Reforged.Core.Validation;
 
 namespace Reforged.Server;
 
 /// <summary>
-/// Loads canonical Reforged Data/ categories through Core loaders for server startup readiness.
-/// This is not gameplay startup; it verifies the live data catalog is readable by the server.
+/// Audits the configured generated world catalog using the compiler manifest as authority.
 /// </summary>
 public sealed class ServerDataCatalogAudit
 {
-    private static readonly IReadOnlyDictionary<string, string> GeneratedCategoryFiles = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-    {
-        ["loot_tables"] = "loot_rules.json",
-        ["monsters"] = "npcs.json",
-        ["world"] = "worlds.json"
-    };
-
-    private static readonly IReadOnlyDictionary<string, string> PlaceholderCategories = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-    {
-        ["loot_tables"] = "Present but empty; loot population rules are not runtime-ready yet.",
-        ["quests"] = "Present but empty; quest content is not runtime-ready yet.",
-        ["rooms"] = "Present but empty; current room content is loaded through world_rooms until room data is normalized.",
-        ["shops"] = "Present but empty; shop inventories are not runtime-ready yet.",
-        ["trainers"] = "Present but empty; trainer data is not runtime-ready yet."
-    };
-
     public ServerDataCatalogAuditReport Run(string projectRoot, ValidationResult validation)
     {
+        ArgumentException.ThrowIfNullOrWhiteSpace(projectRoot);
+        ArgumentNullException.ThrowIfNull(validation);
+
         var root = Path.GetFullPath(projectRoot);
-        var dataRoot = ResolveDataRoot(root);
-        var generatedDataMode = dataRoot.EndsWith(Path.Combine("Data", "Classic"), StringComparison.OrdinalIgnoreCase);
-        var report = new ServerDataCatalogAuditReport
-        {
-            ProjectRoot = root,
-            DataRoot = dataRoot
-        };
+        var report = new ServerDataCatalogAuditReport { ProjectRoot = root };
 
-        var catalog = generatedDataMode
-            ? null
-            : new CoreDataRepositoryLoader().LoadCatalog(root, validation);
-        foreach (var descriptor in CoreDataCategoryRegistry.Current)
+        string worldId;
+        string dataRoot;
+        try
         {
-            var fileName = GeneratedCategoryFiles.TryGetValue(descriptor.Category, out var generatedFile)
-                ? generatedFile
-                : descriptor.FileName;
-            var path = Path.Combine(dataRoot, fileName);
-            var exists = File.Exists(path);
-            var size = exists ? new FileInfo(path).Length : 0;
-            var recordCount = catalog is not null && catalog.TryGetCategory(descriptor.Category, out var loadedCategory)
-                ? loadedCategory.Records.Count
-                : CountGeneratedRecords(path);
-            var isPlaceholder = recordCount == 0 && PlaceholderCategories.ContainsKey(descriptor.Category);
-            var runtimeReady = exists && recordCount > 0;
+            (worldId, dataRoot) = ServerDataRootResolver.ResolveDefault(root);
+            report.DataRoot = dataRoot;
+        }
+        catch (Exception ex) when (ex is InvalidOperationException or IOException or JsonException)
+        {
+            validation.Add(ValidationSeverity.Error, "SERVER_DATA_ROOT_CONFIGURATION", ex.Message, Path.Combine(root, "Config", "server.worlds.json"), "generated-data");
+            return report;
+        }
 
-            if (!exists)
+        var manifestPath = Path.Combine(dataRoot, "compile_manifest.json");
+        if (!File.Exists(manifestPath))
+        {
+            validation.Add(ValidationSeverity.Error, "SERVER_COMPILE_MANIFEST_MISSING", $"Configured world '{worldId}' has no compile_manifest.json.", manifestPath, "generated-data");
+            return report;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(File.ReadAllText(manifestPath));
+            if (!document.RootElement.TryGetProperty("families", out var families) || families.ValueKind != JsonValueKind.Array)
             {
-                validation.Add(
-                    generatedDataMode ? ValidationSeverity.Warning : ValidationSeverity.Error,
-                    "SERVER_DATA_FILE_MISSING",
-                    generatedDataMode
-                        ? $"Legacy canonical server data file is absent from generated Classic output: {descriptor.RelativePath}"
-                        : $"Required canonical server data file is missing: {descriptor.RelativePath}",
-                    path,
-                    descriptor.Category);
+                validation.Add(ValidationSeverity.Error, "SERVER_COMPILE_MANIFEST_FAMILIES", "compile_manifest.json does not contain a families array.", manifestPath, "generated-data");
+                return report;
             }
 
-            report.AddCategory(new ServerDataCategorySummary(
-                descriptor.Category,
-                descriptor.RelativePath,
-                path,
-                exists,
-                size,
-                recordCount,
-                isPlaceholder,
-                runtimeReady,
-                DetermineStatus(exists, recordCount, isPlaceholder),
-                DetermineReadinessNote(descriptor.Category, exists, recordCount, isPlaceholder)));
+            foreach (var family in families.EnumerateArray())
+            {
+                var familyName = family.TryGetProperty("family", out var nameValue) ? nameValue.GetString() : null;
+                if (string.IsNullOrWhiteSpace(familyName))
+                {
+                    validation.Add(ValidationSeverity.Error, "SERVER_COMPILE_MANIFEST_FAMILY_NAME", "compile_manifest.json contains an unnamed family.", manifestPath, "generated-data");
+                    continue;
+                }
+
+                var expectedCount = family.TryGetProperty("record_count", out var countValue) && countValue.TryGetInt32(out var parsedCount)
+                    ? parsedCount
+                    : 0;
+                var fileName = $"{familyName}.json";
+                var path = Path.Combine(dataRoot, fileName);
+                var exists = File.Exists(path);
+                var actualCount = exists ? CountRecords(path) : 0;
+                var runtimeReady = exists && actualCount > 0;
+
+                if (!exists)
+                {
+                    validation.Add(ValidationSeverity.Error, "SERVER_GENERATED_FAMILY_MISSING", $"Generated family file is missing: {fileName}", path, familyName);
+                }
+                else if (actualCount == 0 && expectedCount > 0)
+                {
+                    validation.Add(ValidationSeverity.Error, "SERVER_GENERATED_FAMILY_EMPTY", $"Generated family '{familyName}' declares {expectedCount} records but loaded zero.", path, familyName);
+                }
+
+                report.AddCategory(new ServerDataCategorySummary(
+                    familyName,
+                    Path.GetRelativePath(root, path),
+                    path,
+                    exists,
+                    exists ? new FileInfo(path).Length : 0,
+                    actualCount,
+                    false,
+                    runtimeReady,
+                    runtimeReady ? "runtime-ready" : exists ? "empty-or-invalid" : "missing",
+                    runtimeReady
+                        ? $"Generated family loaded from configured world data; compiler manifest declares {expectedCount} source records."
+                        : "Generated family is missing, empty, or invalid."));
+            }
+        }
+        catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException)
+        {
+            validation.Add(ValidationSeverity.Error, "SERVER_COMPILE_MANIFEST_READ", ex.Message, manifestPath, "generated-data");
         }
 
         return report;
     }
 
-    private static string ResolveDataRoot(string projectRoot)
+    private static int CountRecords(string path)
     {
-        var flatRoot = Path.Combine(projectRoot, "Data");
-        return File.Exists(Path.Combine(flatRoot, "rooms.json"))
-            ? flatRoot
-            : Path.Combine(flatRoot, "Classic");
-    }
-
-    private static int CountGeneratedRecords(string path)
-    {
-        if (!File.Exists(path))
-        {
-            return 0;
-        }
-
         try
         {
-            using var document = System.Text.Json.JsonDocument.Parse(File.ReadAllText(path));
-            return document.RootElement.ValueKind switch
+            using var document = JsonDocument.Parse(File.ReadAllText(path));
+            var root = document.RootElement;
+            if (root.ValueKind == JsonValueKind.Array)
             {
-                System.Text.Json.JsonValueKind.Array => document.RootElement.GetArrayLength(),
-                System.Text.Json.JsonValueKind.Object when document.RootElement.TryGetProperty("records", out var records) && records.ValueKind == System.Text.Json.JsonValueKind.Array => records.GetArrayLength(),
-                _ => 0
-            };
+                return root.GetArrayLength();
+            }
+
+            if (root.ValueKind != JsonValueKind.Object)
+            {
+                return 0;
+            }
+
+            if (root.TryGetProperty("records", out var records) && records.ValueKind == JsonValueKind.Array)
+            {
+                return records.GetArrayLength();
+            }
+
+            if (root.TryGetProperty("record_count", out var declared) && declared.TryGetInt32(out var declaredCount))
+            {
+                return declaredCount;
+            }
+
+            foreach (var property in root.EnumerateObject())
+            {
+                if (property.Value.ValueKind == JsonValueKind.Array)
+                {
+                    return property.Value.GetArrayLength();
+                }
+            }
+
+            return 1;
         }
-        catch (System.Text.Json.JsonException)
+        catch (JsonException)
         {
             return 0;
         }
-    }
-
-    private static string DetermineStatus(bool exists, int recordCount, bool isPlaceholder)
-    {
-        if (!exists)
-        {
-            return "missing";
-        }
-
-        if (recordCount > 0)
-        {
-            return "runtime-ready";
-        }
-
-        return isPlaceholder ? "placeholder-empty-needs-data" : "empty-needs-data";
-    }
-
-    private static string DetermineReadinessNote(string category, bool exists, int recordCount, bool isPlaceholder)
-    {
-        if (!exists)
-        {
-            return "Required canonical data file is missing.";
-        }
-
-        if (recordCount > 0)
-        {
-            return "Canonical data file is present and records loaded.";
-        }
-
-        if (isPlaceholder && PlaceholderCategories.TryGetValue(category, out var note))
-        {
-            return note;
-        }
-
-        return "Canonical data file is present but no records loaded.";
     }
 }
