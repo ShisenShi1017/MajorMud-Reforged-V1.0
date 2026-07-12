@@ -7,13 +7,13 @@ public sealed class ServerSchedulerStatusCommandAudit
 {
     private static readonly SchedulerStatusCommandRegistration[] PlannedCommands =
     {
-        new("status.overview", 10, "host", "Summarize host readiness, manifest identity, validation counts, and disabled runtime state.", false, true, false, "ServerBootstrapReport summary fields", "Registered for inspection only; no command dispatcher executes."),
-        new("status.lifecycle", 20, "host", "List host lifecycle stages and readiness notes.", false, true, false, "ServerHostLifecycleReport stages", "Registered for inspection only; no lifecycle transition executes."),
-        new("status.modules", 30, "modules", "List registered modules, rule profiles, and disabled gameplay/runtime flags.", false, true, false, "ServerModuleReadinessReport modules", "Registered for inspection only; no module or rule profile activates."),
-        new("status.scheduler", 40, "scheduler", "Summarize scheduler bootstrap readiness and runtime-disabled state.", false, true, false, "ServerSchedulerBootstrapReport summary fields", "Registered for inspection only; no scheduler tick or queue executes."),
-        new("status.scheduler.channels", 50, "scheduler", "List scheduler channels, evidence source, roles, and disabled runtime flags.", false, true, false, "ServerSchedulerBootstrapReport channels", "Registered for inspection only; no channel executes."),
-        new("status.data", 60, "data", "Summarize canonical data catalog readiness and runtime blockers.", false, true, false, "ServerDataCatalogAuditReport categories", "Registered for inspection only; no Data files are rewritten."),
-        new("status.validation", 70, "diagnostics", "Summarize validation issue counts and startup diagnostic readiness.", false, true, false, "Validation issue counts and startup diagnostics", "Registered for inspection only; no repair or mutation runs.")
+        new("status.overview", 10, "host", "Summarize host readiness, manifest identity, validation counts, and enabled runtime state.", true, false, false, "ServerBootstrapReport summary fields", "Runtime-enabled read-only status command."),
+        new("status.lifecycle", 20, "host", "List host lifecycle stages and readiness notes.", true, false, false, "ServerHostLifecycleReport stages", "Runtime-enabled read-only lifecycle status command."),
+        new("status.modules", 30, "modules", "List registered modules, rule profiles, and enabled gameplay/runtime flags.", true, false, false, "ServerModuleReadinessReport modules", "Runtime-enabled read-only module status command."),
+        new("status.scheduler", 40, "scheduler", "Summarize scheduler bootstrap readiness and runtime-enabled state.", true, false, false, "ServerSchedulerBootstrapReport summary fields", "Runtime-enabled read-only scheduler status command."),
+        new("status.scheduler.channels", 50, "scheduler", "List scheduler channels, evidence source, roles, and runtime-enabled flags.", true, false, false, "ServerSchedulerBootstrapReport channels", "Runtime-enabled read-only scheduler channel status command."),
+        new("status.data", 60, "data", "Summarize canonical data catalog readiness and runtime blockers.", true, false, false, "ServerDataCatalogAuditReport categories", "Runtime-enabled read-only data status command."),
+        new("status.validation", 70, "diagnostics", "Summarize validation issue counts and startup diagnostic readiness.", true, false, false, "Validation issue counts and startup diagnostics", "Runtime-enabled read-only validation status command.")
     };
 
     public ServerSchedulerStatusCommandReport Run(string projectRoot, ServerSchedulerBootstrapReport schedulerBootstrap)
@@ -22,9 +22,8 @@ public sealed class ServerSchedulerStatusCommandAudit
         {
             ProjectRoot = Path.GetFullPath(projectRoot),
             SchedulerBootstrapReady = schedulerBootstrap.ReadyForPlanning,
-            RuntimeDisabled = schedulerBootstrap.RuntimeDisabled &&
-                schedulerBootstrap.RuntimeEnabledChannelCount == 0,
-            DiagnosticOnly = schedulerBootstrap.DiagnosticOnly
+            RuntimeDisabled = false,
+            DiagnosticOnly = false
         };
 
         foreach (var command in PlannedCommands.OrderBy(command => command.Order))

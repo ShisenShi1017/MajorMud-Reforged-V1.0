@@ -1,10 +1,11 @@
 {
   "object_type": "exit",
-  "code_update": "0125",
+  "code_update": "0140",
   "schema_ref": "../../Schemas/librarium_object_schema_0121.json",
   "records": [
     "catalog_seed_0119.json",
-    "exit_catalog_0121.json"
+    "exit_catalog_0121.json",
+    "mmexplorer_exit_records_0140.json"
   ],
   "phase2_status": "foundation_complete",
   "phase3_status": "population_complete_for_current_evidence_corpus",
@@ -45,5 +46,6 @@
       "world_scope_valid",
       "export_mapping_present"
     ]
-  }
+  },
+  "population_note_0140": "Registered direct MMExplorer movement decode as canonical promotion records; Librarium remains authoritative and /Data remains compiler output."
 }

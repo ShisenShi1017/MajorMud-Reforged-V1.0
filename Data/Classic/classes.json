@@ -1,1053 +1,506 @@
 {
-  "schema_version": 1,
-  "generated_by": "Tools/Librarium/compile_character_foundation_0137.py",
-  "world_id": "Classic",
   "authority": "Librarium",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "compiler_code_update": "0127",
+  "world_id": "Classic",
   "family": "classes",
+  "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
   "record_count": 15,
   "records": [
     {
-      "id": "class.warrior",
+      "id": "mmud_sql_class_1",
+      "type": "class",
       "name": "Warrior",
-      "number": 1,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_1",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3959,
-      "hit_points": {
-        "minimum_per_level": 6,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 10,
-        "classification": "Librarium promoted native table evidence"
+      "sourceNumbers": {
+        "number": 1
       },
-      "magic": {
-        "type": 0,
-        "level": 0
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 0,
+        "offset": 3959,
+        "length": 137,
+        "hexPrefix": "1e00010000000600000004000000000000000000000000000000080000000900",
+        "hexSuffix": "617272696f727f0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 0,
-        "class_percent": 100
-      },
-      "combat_level": 0,
-      "ability_slots": [
-        {
-          "ability_id": 8,
-          "value": 9
-        },
-        {
-          "ability_id": 6,
-          "value": 0
-        }
+      "printableSegments": [
+        "Warrior"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.witchunter",
+      "id": "mmud_sql_class_2",
+      "type": "class",
       "name": "Witchunter",
-      "number": 2,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_2",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3819,
-      "hit_points": {
-        "minimum_per_level": 6,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 10,
-        "classification": "Librarium promoted native table evidence"
+      "sourceNumbers": {
+        "number": 2
       },
-      "magic": {
-        "type": 0,
-        "level": 0
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 1,
+        "offset": 3819,
+        "length": 140,
+        "hexPrefix": "1e000200000006000000040000001e0000000000000000000000080000000800",
+        "hexSuffix": "68756e746572820076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 30,
-        "class_percent": 130
-      },
-      "combat_level": 51,
-      "ability_slots": [
-        {
-          "ability_id": 36,
-          "value": 142
-        },
-        {
-          "ability_id": 8,
-          "value": 8
-        },
-        {
-          "ability_id": 7,
-          "value": 0
-        },
-        {
-          "ability_id": 5,
-          "value": -99
-        }
+      "printableSegments": [
+        "Witchunter"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.paladin",
+      "id": "mmud_sql_class_3",
+      "type": "class",
       "name": "Paladin",
-      "number": 3,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_3",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3682,
-      "hit_points": {
-        "minimum_per_level": 5,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 9,
-        "classification": "Librarium promoted native table evidence"
+      "sourceNumbers": {
+        "number": 3
       },
-      "magic": {
-        "type": 2,
-        "level": 1
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 2,
+        "offset": 3682,
+        "length": 137,
+        "hexPrefix": "1e00030000000500000004000000780000000200000001000000080000000900",
+        "hexSuffix": "616c6164696e7f0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 120,
-        "class_percent": 220
-      },
-      "combat_level": 0,
-      "ability_slots": [
-        {
-          "ability_id": 2,
-          "value": 1
-        },
-        {
-          "ability_id": 8,
-          "value": 9
-        },
-        {
-          "ability_id": 6,
-          "value": 0
-        }
+      "printableSegments": [
+        "Paladin"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.cleric",
-      "name": "Cleric",
-      "number": 4,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_4",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3546,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 8,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_4",
+      "type": "class",
+      "name": "Cleric~",
+      "sourceNumbers": {
+        "number": 4
       },
-      "magic": {
-        "type": 2,
-        "level": 2
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 3,
+        "offset": 3546,
+        "length": 136,
+        "hexPrefix": "1e00040000000400000004000000780000000200000002000000070000000900",
+        "hexSuffix": "436c657269637e0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 120,
-        "class_percent": 220
-      },
-      "combat_level": 0,
-      "ability_slots": [
-        {
-          "ability_id": 2,
-          "value": 2
-        },
-        {
-          "ability_id": 7,
-          "value": 9
-        },
-        {
-          "ability_id": 5,
-          "value": 0
-        }
+      "printableSegments": [
+        "Cleric~"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.priest",
-      "name": "Priest",
-      "number": 5,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_5",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3410,
-      "hit_points": {
-        "minimum_per_level": 3,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 6,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_5",
+      "type": "class",
+      "name": "Priest~",
+      "sourceNumbers": {
+        "number": 5
       },
-      "magic": {
-        "type": 2,
-        "level": 3
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 4,
+        "offset": 3410,
+        "length": 136,
+        "hexPrefix": "1e00050000000300000003000000280000000200000003000000070000000100",
+        "hexSuffix": "5072696573747e0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 40,
-        "class_percent": 140
-      },
-      "combat_level": 0,
-      "ability_slots": [
-        {
-          "ability_id": 2,
-          "value": 3
-        },
-        {
-          "ability_id": 7,
-          "value": 1
-        },
-        {
-          "ability_id": 3,
-          "value": 0
-        }
+      "printableSegments": [
+        "Priest~"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.missionary",
+      "id": "mmud_sql_class_6",
+      "type": "class",
       "name": "Missionary",
-      "number": 6,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_6",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3270,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
+      "sourceNumbers": {
+        "number": 6
       },
-      "magic": {
-        "type": 2,
-        "level": 2
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 5,
+        "offset": 3270,
+        "length": 140,
+        "hexPrefix": "1e00060000000400000003000000780000000200000002000000040000000600",
+        "hexSuffix": "696f6e617279820076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 120,
-        "class_percent": 220
-      },
-      "combat_level": 37,
-      "ability_slots": [
-        {
-          "ability_id": 40,
-          "value": 31
-        },
-        {
-          "ability_id": 2,
-          "value": 2
-        },
-        {
-          "ability_id": 4,
-          "value": 6
-        },
-        {
-          "ability_id": 4,
-          "value": 0
-        }
+      "printableSegments": [
+        "Missionary"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.ninja",
-      "name": "Ninja",
-      "number": 7,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_7",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3135,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 8,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_7",
+      "type": "class",
+      "name": "Ninja}",
+      "sourceNumbers": {
+        "number": 7
       },
-      "magic": {
-        "type": 0,
-        "level": 0
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 6,
+        "offset": 3135,
+        "length": 135,
+        "hexPrefix": "1e00070000000400000004000000550000000000000000000000080000000200",
+        "hexSuffix": "fe4e696e6a617d0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 85,
-        "class_percent": 185
-      },
-      "combat_level": 103,
-      "ability_slots": [
-        {
-          "ability_id": 40,
-          "value": 37
-        },
-        {
-          "ability_id": 38,
-          "value": 34
-        },
-        {
-          "ability_id": 58,
-          "value": 0
-        },
-        {
-          "ability_id": 8,
-          "value": 2
-        },
-        {
-          "ability_id": 5,
-          "value": 0
-        },
-        {
-          "ability_id": 25,
-          "value": 10
-        }
+      "printableSegments": [
+        "Ninja}"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.thief",
-      "name": "Thief",
-      "number": 8,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_8",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3000,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_8",
+      "type": "class",
+      "name": "Thief}",
+      "sourceNumbers": {
+        "number": 8
       },
-      "magic": {
-        "type": 0,
-        "level": 0
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 7,
+        "offset": 3000,
+        "length": 135,
+        "hexPrefix": "1e00080000000400000003000000ecffffff0000000000000000040000000600",
+        "hexSuffix": "fe54686965667d0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": -20,
-        "class_percent": 80
-      },
-      "combat_level": 39,
-      "ability_slots": [
-        {
-          "ability_id": 40,
-          "value": 31
-        },
-        {
-          "ability_id": 37,
-          "value": 0
-        },
-        {
-          "ability_id": 4,
-          "value": 6
-        },
-        {
-          "ability_id": 4,
-          "value": 0
-        }
+      "printableSegments": [
+        "Thief}"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.bard",
-      "name": "Bard",
-      "number": 9,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_9",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2866,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_9",
+      "type": "class",
+      "name": "Bard|",
+      "sourceNumbers": {
+        "number": 9
       },
-      "magic": {
-        "type": 4,
-        "level": 2
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 8,
+        "offset": 2866,
+        "length": 134,
+        "hexPrefix": "1e000900000004000000030000006e0000000400000002000000040000000600",
+        "hexSuffix": "fffe426172647c0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 110,
-        "class_percent": 210
-      },
-      "combat_level": 40,
-      "ability_slots": [
-        {
-          "ability_id": 39,
-          "value": 37
-        },
-        {
-          "ability_id": 31,
-          "value": 0
-        },
-        {
-          "ability_id": 4,
-          "value": 2
-        },
-        {
-          "ability_id": 4,
-          "value": 6
-        },
-        {
-          "ability_id": 5,
-          "value": 0
-        }
+      "printableSegments": [
+        "Bard|"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.gypsy",
-      "name": "Gypsy",
-      "number": 10,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_10",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2731,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_10",
+      "type": "class",
+      "name": "Gypsy}",
+      "sourceNumbers": {
+        "number": 10
       },
-      "magic": {
-        "type": 1,
-        "level": 2
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 9,
+        "offset": 2731,
+        "length": 135,
+        "hexPrefix": "1e000a0000000400000003000000780000000100000002000000040000000600",
+        "hexSuffix": "fe47797073797d0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 120,
-        "class_percent": 220
-      },
-      "combat_level": 37,
-      "ability_slots": [
-        {
-          "ability_id": 39,
-          "value": 40
-        },
-        {
-          "ability_id": 31,
-          "value": 0
-        },
-        {
-          "ability_id": 1,
-          "value": 2
-        },
-        {
-          "ability_id": 4,
-          "value": 6
-        },
-        {
-          "ability_id": 4,
-          "value": 0
-        }
+      "printableSegments": [
+        "Gypsy}"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.warlock",
+      "id": "mmud_sql_class_11",
+      "type": "class",
       "name": "Warlock",
-      "number": 11,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_11",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2594,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 8,
-        "classification": "Librarium promoted native table evidence"
+      "sourceNumbers": {
+        "number": 11
       },
-      "magic": {
-        "type": 1,
-        "level": 2
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 10,
+        "offset": 2594,
+        "length": 137,
+        "hexPrefix": "1e000b0000000400000004000000550000000100000002000000040000000700",
+        "hexSuffix": "61726c6f636b7f0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 85,
-        "class_percent": 185
-      },
-      "combat_level": 0,
-      "ability_slots": [
-        {
-          "ability_id": 1,
-          "value": 2
-        },
-        {
-          "ability_id": 4,
-          "value": 7
-        },
-        {
-          "ability_id": 5,
-          "value": 0
-        }
+      "printableSegments": [
+        "Warlock"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.mage",
-      "name": "Mage",
-      "number": 12,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_12",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2460,
-      "hit_points": {
-        "minimum_per_level": 3,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 6,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_12",
+      "type": "class",
+      "name": "Mage|",
+      "sourceNumbers": {
+        "number": 12
       },
-      "magic": {
-        "type": 1,
-        "level": 3
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 11,
+        "offset": 2460,
+        "length": 134,
+        "hexPrefix": "1e000c0000000300000003000000280000000100000003000000090000000100",
+        "hexSuffix": "fffe4d6167657c0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 40,
-        "class_percent": 140
-      },
-      "combat_level": 0,
-      "ability_slots": [
-        {
-          "ability_id": 1,
-          "value": 3
-        },
-        {
-          "ability_id": 9,
-          "value": 1
-        },
-        {
-          "ability_id": 3,
-          "value": 0
-        }
+      "printableSegments": [
+        "Mage|"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.druid",
-      "name": "Druid",
-      "number": 13,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_13",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2325,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_13",
+      "type": "class",
+      "name": "Druid}",
+      "sourceNumbers": {
+        "number": 13
       },
-      "magic": {
-        "type": 3,
-        "level": 3
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 12,
+        "offset": 2325,
+        "length": 135,
+        "hexPrefix": "1e000d00000004000000030000005a0000000300000003000000070000000600",
+        "hexSuffix": "fe44727569647d0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 90,
-        "class_percent": 190
-      },
-      "combat_level": 59,
-      "ability_slots": [
-        {
-          "ability_id": 3,
-          "value": 3
-        },
-        {
-          "ability_id": 7,
-          "value": 6
-        },
-        {
-          "ability_id": 4,
-          "value": 0
-        },
-        {
-          "ability_id": 74,
-          "value": -99
-        }
+      "printableSegments": [
+        "Druid}"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.ranger",
-      "name": "Ranger",
-      "number": 14,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_14",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2189,
-      "hit_points": {
-        "minimum_per_level": 5,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 9,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_14",
+      "type": "class",
+      "name": "Ranger~",
+      "sourceNumbers": {
+        "number": 14
       },
-      "magic": {
-        "type": 3,
-        "level": 1
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 13,
+        "offset": 2189,
+        "length": 136,
+        "hexPrefix": "1e000e0000000500000004000000960000000300000001000000080000000600",
+        "hexSuffix": "52616e6765727e0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 150,
-        "class_percent": 250
-      },
-      "combat_level": 38,
-      "ability_slots": [
-        {
-          "ability_id": 103,
-          "value": 0
-        },
-        {
-          "ability_id": 3,
-          "value": 1
-        },
-        {
-          "ability_id": 8,
-          "value": 6
-        },
-        {
-          "ability_id": 6,
-          "value": 0
-        }
+      "printableSegments": [
+        "Ranger~"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "class.mystic",
-      "name": "Mystic",
-      "number": 15,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_15",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2053,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 8,
-        "classification": "Librarium promoted native table evidence"
+      "id": "mmud_sql_class_15",
+      "type": "class",
+      "name": "Mystic~",
+      "sourceNumbers": {
+        "number": 15
       },
-      "magic": {
-        "type": 5,
-        "level": 1
+      "source": {
+        "kind": "MMExplorer SQL/MDB class row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 15,
+        "page": 17,
+        "rowIndexOnPage": 14,
+        "offset": 2053,
+        "length": 136,
+        "hexPrefix": "1e000f0000000400000004000000960000000500000001000000090000000100",
+        "hexSuffix": "4d79737469637e0076000100ffffff3f"
       },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 150,
-        "class_percent": 250
-      },
-      "combat_level": 34,
-      "ability_slots": [
-        {
-          "ability_id": 29,
-          "value": 30
-        },
-        {
-          "ability_id": 35,
-          "value": 142
-        },
-        {
-          "ability_id": 58,
-          "value": 31
-        },
-        {
-          "ability_id": 5,
-          "value": 1
-        },
-        {
-          "ability_id": 9,
-          "value": 1
-        },
-        {
-          "ability_id": 5,
-          "value": 0
-        },
-        {
-          "ability_id": 25,
-          "value": 1
-        },
-        {
-          "ability_id": 1,
-          "value": 1
-        },
-        {
-          "ability_id": 5,
-          "value": 10
-        }
+      "printableSegments": [
+        "Mystic~"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "classes",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     }
   ]
 }

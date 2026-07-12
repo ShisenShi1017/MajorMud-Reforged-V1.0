@@ -1,0 +1,15 @@
+{
+  "server": {
+    "host": {
+      "name": "Reforged Local Host",
+      "bindAddress": "127.0.0.1",
+      "port": 4000,
+      "maxSessions": 64,
+      "worldTickMilliseconds": 1000,
+      "combatTickMilliseconds": 6000,
+      "gameplayEnabled": true,
+      "networkingEnabled": true,
+      "worldSimulationEnabled": true
+    }
+  }
+}

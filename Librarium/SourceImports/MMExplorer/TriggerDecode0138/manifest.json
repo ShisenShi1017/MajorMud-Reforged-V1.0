@@ -1,0 +1,45 @@
+{
+  "bundle": "MMExplorer Trigger Librarium Upload",
+  "files": [
+    {
+      "path": "Source/data-v1.11n.mdb",
+      "bytes": 11816960,
+      "sha256": "f38ecd31ef87b9d2a31388a48e91d29b7f24b15d58c61145b453b71d942c061f"
+    },
+    {
+      "path": "Source/owner_table_summary.json",
+      "bytes": 548036,
+      "sha256": "ef2a03b6ab443740c8c82e1018f483241366150c7c86000c29d064cea472e7a3"
+    },
+    {
+      "path": "Source/mdb_page_inventory.json",
+      "bytes": 1024453,
+      "sha256": "11c039539fa6012859bbcc34c184cfcd02e97a1fab939e6121896f9cea0e4c59"
+    },
+    {
+      "path": "Source/PlayerStateTraversalEvidence.csv",
+      "bytes": 1449304,
+      "sha256": "d79e1563cc20981afdd27d0a4cc82546e6d2e2a62dc48354e59858fe7c540ed8"
+    },
+    {
+      "path": "Source/current_classic_triggers.json",
+      "bytes": 1031531,
+      "sha256": "c731558cc64a23c412d490c60c56182ce0e39e7b41dfef27a24d8b138dd5e6e4"
+    },
+    {
+      "path": "Source/mmexplorer_room_table_raw_rows.json",
+      "bytes": 15587208,
+      "sha256": "70e8084716d76cd4a155108752ddf7c4dec3d87b2e7e903c09f1577f5fbbb0ff"
+    },
+    {
+      "path": "Normalized/mmexplorer_movement_trigger_index.json",
+      "bytes": 166772,
+      "sha256": "f443eb8435baade0731eca684ad3b6c2598cb3f43fcc1cfc86a7af9f10efc440"
+    },
+    {
+      "path": "Normalized/mmexplorer_movement_trigger_index.csv",
+      "bytes": 43381,
+      "sha256": "260bf6347f7b933cdc153a8568ab599a9e869d3bbdb3bc114775aad32cab3c7c"
+    }
+  ]
+}

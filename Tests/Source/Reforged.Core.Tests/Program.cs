@@ -16,13 +16,13 @@ var tests = new List<(string Name, Action Body)>
     ("startup diagnostics run", StartupDiagnosticsSmoke),
     ("server startup diagnostics run", ServerStartupDiagnosticsSmoke),
     ("server bootstrap runs", ServerBootstrapSmoke),
-    ("server host configuration keeps runtime disabled", ServerHostConfigurationAuditSmoke),
+    ("server host configuration enables runtime", ServerHostConfigurationAuditSmoke),
     ("server data catalog loads canonical data", ServerDataCatalogAuditSmoke),
-    ("server world projection indexes canonical rooms", ServerWorldProjectionAuditSmoke),
-    ("server module readiness keeps gameplay disabled", ServerModuleReadinessAuditSmoke),
-    ("server host lifecycle reports runtime-disabled readiness", ServerHostLifecycleAuditSmoke),
-    ("server scheduler bootstrap keeps channels disabled", ServerSchedulerBootstrapAuditSmoke),
-    ("server scheduler status commands stay guarded", ServerSchedulerStatusCommandAuditSmoke),
+    ("server world projection indexes map-qualified rooms", ServerWorldProjectionAuditSmoke),
+    ("server module readiness enables current host boundary", ServerModuleReadinessAuditSmoke),
+    ("server host lifecycle reports runtime-enabled readiness", ServerHostLifecycleAuditSmoke),
+    ("server scheduler bootstrap enables channels", ServerSchedulerBootstrapAuditSmoke),
+    ("server scheduler status commands are runtime-enabled read-only", ServerSchedulerStatusCommandAuditSmoke),
     ("server runtime state and event dispatcher track host-owned changes", ServerRuntimeStateAndEventsSmoke),
     ("classic parity audit inventories canonical and imported data", ClassicParityAuditSmoke),
     ("classic bug-fix policies enforce corrected behavior", ClassicBugFixPolicySmoke)
@@ -169,14 +169,14 @@ void ServerBootstrapSmoke()
     }
 
     if (report.HostConfiguration is null ||
-        report.HostConfiguration.Status != "configured-runtime-disabled" ||
-        !report.HostConfiguration.RuntimeDisabled ||
+        report.HostConfiguration.Status != "runtime-enabled" ||
+        report.HostConfiguration.RuntimeDisabled ||
         report.HostConfiguration.Port != 4000 ||
         report.HostConfiguration.MaxSessions != 64 ||
         report.HostConfiguration.WorldTickMilliseconds != 1000 ||
         report.HostConfiguration.CombatTickMilliseconds != 6000)
     {
-        throw new InvalidOperationException("Server bootstrap did not attach expected non-gameplay host configuration.");
+        throw new InvalidOperationException("Server bootstrap did not attach expected runtime-enabled host configuration.");
     }
 
     if (report.ServerDataCatalog is null ||
@@ -200,72 +200,72 @@ void ServerBootstrapSmoke()
         report.WorldProjection.DuplicateWorldRoomCount != 0 ||
         !report.WorldProjection.StartRoomExists)
     {
-        throw new InvalidOperationException("Server bootstrap did not attach the expected read-only world projection.");
+        throw new InvalidOperationException("Server bootstrap did not attach the expected map-qualified world projection.");
     }
 
     if (report.GameModuleCatalog is null ||
         report.GameModuleCatalog.ModuleCount != 1 ||
-        report.GameModuleCatalog.GameplayEnabledModuleCount != 0 ||
-        report.GameModuleCatalog.GameplayDisabledModuleCount != 1)
+        report.GameModuleCatalog.GameplayEnabledModuleCount != 1 ||
+        report.GameModuleCatalog.GameplayDisabledModuleCount != 0)
     {
-        throw new InvalidOperationException("Server bootstrap did not attach the expected non-gameplay game module catalog.");
+        throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-enabled game module catalog.");
     }
 
     var majorMudModule = report.GameModuleCatalog.Modules.FirstOrDefault(module => module.Id == "majormud-classic");
     if (majorMudModule is null ||
-        majorMudModule.GameplayEnabled ||
+        !majorMudModule.GameplayEnabled ||
         majorMudModule.DataRoot != "Data" ||
         majorMudModule.RuleProfiles.Count != 1 ||
-        majorMudModule.RuleProfiles[0].RuntimeEnabled)
+        !majorMudModule.RuleProfiles[0].RuntimeEnabled)
     {
-        throw new InvalidOperationException("Server module catalog did not register MajorMUD Classic as a disabled data-driven module baseline.");
+        throw new InvalidOperationException("Server module catalog did not register MajorMUD Classic as an enabled data-driven module.");
     }
 
     if (report.ModuleReadiness is null ||
-        report.ModuleReadiness.Status != "host-ready-gameplay-disabled" && report.ModuleReadiness.Status != "host-readiness-has-gaps" ||
         report.ModuleReadiness.ModuleCount != 1 ||
-        report.ModuleReadiness.HostReadyModuleCount < 0 ||
-        report.ModuleReadiness.GameplayEnabledModuleCount != 0 ||
-        report.ModuleReadiness.RuntimeRuleProfileEnabledCount != 0)
+        report.ModuleReadiness.HostReadyModuleCount != 1 ||
+        report.ModuleReadiness.GameplayEnabledModuleCount != 1 ||
+        report.ModuleReadiness.RuntimeRuleProfileEnabledCount != 1)
     {
         throw new InvalidOperationException("Server bootstrap did not attach the expected module readiness report.");
     }
 
     if (report.HostLifecycle is null ||
-        report.HostLifecycle.Status != "ready-runtime-disabled" && report.HostLifecycle.Status != "readiness-has-gaps" ||
         !report.HostLifecycle.Initialized ||
         !report.HostLifecycle.Configured ||
+        !report.HostLifecycle.DataReady ||
         !report.HostLifecycle.WorldProjectionReady ||
-        !report.HostLifecycle.RuntimeDisabled ||
-        report.HostLifecycle.GameplayEnabled ||
-        report.HostLifecycle.NetworkingEnabled ||
-        report.HostLifecycle.WorldSimulationEnabled ||
+        !report.HostLifecycle.ModuleReady ||
+        report.HostLifecycle.RuntimeDisabled ||
+        !report.HostLifecycle.GameplayEnabled ||
+        !report.HostLifecycle.NetworkingEnabled ||
+        !report.HostLifecycle.WorldSimulationEnabled ||
         report.HostLifecycle.Stages.Count != 6)
     {
-        throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-disabled host lifecycle report.");
+        throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-enabled host lifecycle report.");
     }
 
     if (report.SchedulerBootstrap is null ||
-        report.SchedulerBootstrap.Status != "scheduler-bootstrap-registered-runtime-disabled" && report.SchedulerBootstrap.Status != "scheduler-bootstrap-has-gaps" ||
-        !report.SchedulerBootstrap.RuntimeDisabled ||
-        !report.SchedulerBootstrap.DiagnosticOnly ||
+        report.SchedulerBootstrap.Status != "scheduler-runtime-enabled" ||
+        report.SchedulerBootstrap.RuntimeDisabled ||
+        report.SchedulerBootstrap.DiagnosticOnly ||
         report.SchedulerBootstrap.ChannelCount != 10 ||
-        report.SchedulerBootstrap.RuntimeEnabledChannelCount != 0 ||
-        report.SchedulerBootstrap.RuntimeDisabledChannelCount != 10)
+        report.SchedulerBootstrap.RuntimeEnabledChannelCount != 10 ||
+        report.SchedulerBootstrap.RuntimeDisabledChannelCount != 0)
     {
-        throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-disabled scheduler bootstrap report.");
+        throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-enabled scheduler bootstrap report.");
     }
 
     if (report.SchedulerStatusCommands is null ||
-        report.SchedulerStatusCommands.Status != "scheduler-status-commands-registered-runtime-disabled" && report.SchedulerStatusCommands.Status != "scheduler-status-command-surface-has-gaps" ||
-        !report.SchedulerStatusCommands.RuntimeDisabled ||
-        !report.SchedulerStatusCommands.DiagnosticOnly ||
+        report.SchedulerStatusCommands.Status != "scheduler-status-command-runtime-enabled" ||
+        report.SchedulerStatusCommands.RuntimeDisabled ||
+        report.SchedulerStatusCommands.DiagnosticOnly ||
         report.SchedulerStatusCommands.CommandCount != 7 ||
-        report.SchedulerStatusCommands.RuntimeEnabledCommandCount != 0 ||
+        report.SchedulerStatusCommands.RuntimeEnabledCommandCount != 7 ||
         report.SchedulerStatusCommands.StateMutatingCommandCount != 0 ||
-        report.SchedulerStatusCommands.GuardedCommandCount != 7)
+        report.SchedulerStatusCommands.GuardedCommandCount != 0)
     {
-        throw new InvalidOperationException("Server bootstrap did not attach the expected guarded scheduler status command surface.");
+        throw new InvalidOperationException("Server bootstrap did not attach the expected runtime-enabled scheduler status command surface.");
     }
 
     if (report.ExitCode != 0)
@@ -375,19 +375,19 @@ void ServerHostConfigurationAuditSmoke()
         throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    if (report.Status != "configured-runtime-disabled" ||
-        !report.RuntimeDisabled ||
+    if (report.Status != "runtime-enabled" ||
+        report.RuntimeDisabled ||
         report.HostName != "Reforged Local Host" ||
         report.BindAddress != "127.0.0.1" ||
         report.Port != 4000 ||
         report.MaxSessions != 64 ||
         report.WorldTickMilliseconds != 1000 ||
         report.CombatTickMilliseconds != 6000 ||
-        report.GameplayEnabled ||
-        report.NetworkingEnabled ||
-        report.WorldSimulationEnabled)
+        !report.GameplayEnabled ||
+        !report.NetworkingEnabled ||
+        !report.WorldSimulationEnabled)
     {
-        throw new InvalidOperationException("Server host configuration did not expose the expected disabled runtime defaults.");
+        throw new InvalidOperationException("Server host configuration did not expose the expected enabled runtime configuration.");
     }
 }
 
@@ -407,10 +407,10 @@ void ServerWorldProjectionAuditSmoke()
         report.CanonicalRoomCount != report.WorldRoomCount ||
         report.MissingRoomCount != 0 ||
         report.DuplicateWorldRoomCount != 0 ||
-        report.StartRoom != "room.1" ||
+        report.StartRoom != "room.map1.2140" ||
         !report.StartRoomExists)
     {
-        throw new InvalidOperationException("Server world projection did not expose the expected canonical world room index.");
+        throw new InvalidOperationException("Server world projection did not expose the expected map-qualified world room index.");
     }
 }
 
@@ -427,13 +427,12 @@ void ServerModuleReadinessAuditSmoke()
         throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    if ((report.Status != "host-ready-gameplay-disabled" && report.Status != "host-readiness-has-gaps") ||
-        report.ModuleCount != 1 ||
-        report.HostReadyModuleCount < 0 ||
-        report.GameplayEnabledModuleCount != 0 ||
-        report.RuntimeRuleProfileEnabledCount != 0)
+    if (report.ModuleCount != 1 ||
+        report.HostReadyModuleCount != 1 ||
+        report.GameplayEnabledModuleCount != 1 ||
+        report.RuntimeRuleProfileEnabledCount != 1)
     {
-        throw new InvalidOperationException("Server module readiness did not expose the expected disabled host-ready module state.");
+        throw new InvalidOperationException("Server module readiness did not expose the expected enabled host-ready module state.");
     }
 
     var module = report.Modules.FirstOrDefault(item => item.ModuleId == "majormud-classic");
@@ -441,11 +440,11 @@ void ServerModuleReadinessAuditSmoke()
         !module.DataRootExists ||
         !module.WorldProjectionReady ||
         module.WorldRoomCount == 0 ||
-        module.GameplayEnabled ||
-        !module.RuleProfilesDisabled ||
-        module.RuntimeRuleProfileEnabledCount != 0)
+        !module.GameplayEnabled ||
+        module.RuleProfilesDisabled ||
+        module.RuntimeRuleProfileEnabledCount != 1)
     {
-        throw new InvalidOperationException("MajorMUD Classic module readiness did not preserve the expected non-gameplay boundary.");
+        throw new InvalidOperationException("MajorMUD Classic module readiness did not expose the expected runtime-enabled boundary.");
     }
 }
 
@@ -464,19 +463,20 @@ void ServerHostLifecycleAuditSmoke()
         throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    if ((report.Status != "ready-runtime-disabled" && report.Status != "readiness-has-gaps") ||
-        !report.Initialized ||
+    if (!report.Initialized ||
         !report.Configured ||
+        !report.DataReady ||
         !report.WorldProjectionReady ||
-        !report.RuntimeDisabled ||
-        report.GameplayEnabled ||
-        report.NetworkingEnabled ||
-        report.WorldSimulationEnabled)
+        !report.ModuleReady ||
+        report.RuntimeDisabled ||
+        !report.GameplayEnabled ||
+        !report.NetworkingEnabled ||
+        !report.WorldSimulationEnabled)
     {
-        throw new InvalidOperationException("Server host lifecycle did not expose the expected runtime-disabled readiness state.");
+        throw new InvalidOperationException("Server host lifecycle did not expose the expected runtime-enabled readiness state.");
     }
 
-    foreach (var requiredStage in new[] { "initialized", "configured", "data-ready", "world-projection-ready", "module-ready", "runtime-disabled" })
+    foreach (var requiredStage in new[] { "initialized", "configured", "data-ready", "world-projection-ready", "module-ready", "runtime-enabled" })
     {
         if (!report.Stages.Any(stage => stage.Name == requiredStage && !string.IsNullOrWhiteSpace(stage.Status)))
         {
@@ -501,21 +501,21 @@ void ServerSchedulerBootstrapAuditSmoke()
         throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    if ((report.Status != "scheduler-bootstrap-registered-runtime-disabled" && report.Status != "scheduler-bootstrap-has-gaps") ||
-        !report.RuntimeDisabled ||
-        !report.DiagnosticOnly ||
+    if (report.Status != "scheduler-runtime-enabled" ||
+        report.RuntimeDisabled ||
+        report.DiagnosticOnly ||
         report.ChannelCount != 10 ||
-        report.RuntimeEnabledChannelCount != 0 ||
-        report.RuntimeDisabledChannelCount != 10)
+        report.RuntimeEnabledChannelCount != 10 ||
+        report.RuntimeDisabledChannelCount != 0)
     {
-        throw new InvalidOperationException("Server scheduler bootstrap did not expose the expected disabled channel registration state.");
+        throw new InvalidOperationException("Server scheduler bootstrap did not expose the expected enabled channel registration state.");
     }
 
     foreach (var requiredChannel in new[] { "Ingress", "Validation", "Planning", "Dispatch", "Mutation", "TimedWork", "EventWork", "Persistence", "Observation", "Maintenance" })
     {
-        if (!report.Channels.Any(channel => channel.Name == requiredChannel && !channel.RuntimeEnabled && channel.EvidenceSource == "ServerSim0036"))
+        if (!report.Channels.Any(channel => channel.Name == requiredChannel && channel.RuntimeEnabled && channel.EvidenceSource == "RuntimeLivingWorld"))
         {
-            throw new InvalidOperationException($"Server scheduler bootstrap did not expose expected disabled channel: {requiredChannel}");
+            throw new InvalidOperationException($"Server scheduler bootstrap did not expose expected enabled channel: {requiredChannel}");
         }
     }
 }
@@ -537,23 +537,23 @@ void ServerSchedulerStatusCommandAuditSmoke()
         throw new InvalidOperationException(string.Join(" | ", validation.Issues.Where(i => i.Severity.ToString() is "Error" or "Fatal").Select(i => $"{i.Code}: {i.Message}")));
     }
 
-    if ((report.Status != "scheduler-status-commands-registered-runtime-disabled" && report.Status != "scheduler-status-command-surface-has-gaps") ||
-        !report.RuntimeDisabled ||
-        !report.DiagnosticOnly ||
+    if (report.Status != "scheduler-status-command-runtime-enabled" ||
+        report.RuntimeDisabled ||
+        report.DiagnosticOnly ||
         report.CommandCount != 7 ||
-        report.RuntimeEnabledCommandCount != 0 ||
-        report.RuntimeDisabledCommandCount != 7 ||
+        report.RuntimeEnabledCommandCount != 7 ||
+        report.RuntimeDisabledCommandCount != 0 ||
         report.StateMutatingCommandCount != 0 ||
-        report.GuardedCommandCount != 7)
+        report.GuardedCommandCount != 0)
     {
-        throw new InvalidOperationException("Scheduler status command audit did not expose the expected guarded command registrations.");
+        throw new InvalidOperationException("Scheduler status command audit did not expose the expected runtime-enabled command registrations.");
     }
 
     foreach (var requiredCommand in new[] { "status.overview", "status.lifecycle", "status.modules", "status.scheduler", "status.scheduler.channels", "status.data", "status.validation" })
     {
-        if (!report.Commands.Any(command => command.Name == requiredCommand && command.Guarded && !command.RuntimeEnabled && !command.MutatesState))
+        if (!report.Commands.Any(command => command.Name == requiredCommand && !command.Guarded && command.RuntimeEnabled && !command.MutatesState))
         {
-            throw new InvalidOperationException($"Scheduler status command audit did not expose expected guarded command: {requiredCommand}");
+            throw new InvalidOperationException($"Scheduler status command audit did not expose expected runtime-enabled command: {requiredCommand}");
         }
     }
 }
@@ -587,17 +587,32 @@ void ServerRuntimeStateAndEventsSmoke()
     }
 
     var dispatcher = new RuntimeCommandDispatcher(() => host.Worlds, host.Sessions, host.State, host.Events);
-    var where = dispatcher.Dispatch(session, "where");
-    if (!where.Contains("World=classic", StringComparison.Ordinal) ||
-        !where.Contains("Room=room.1", StringComparison.Ordinal))
+    var expectedStart = world.ResolveDiagnosticRoom() ?? world.ResolveGeneratedCharacterStartRoom();
+    if (expectedStart is null || expectedStart.MapId <= 0 || expectedStart.RoomNumber <= 0)
     {
-        throw new InvalidOperationException("Runtime command dispatcher did not report the expected starting location.");
+        throw new InvalidOperationException("Runtime world did not expose a map-qualified diagnostic or generated start room.");
     }
 
-    var move = dispatcher.Dispatch(session, "north");
-    if (!move.Contains("Estwall Street", StringComparison.OrdinalIgnoreCase))
+    var where = dispatcher.Dispatch(session, "where");
+    if (!where.Contains("World=classic", StringComparison.Ordinal) ||
+        !where.Contains($"Room={expectedStart.Id}", StringComparison.Ordinal) ||
+        !string.Equals(session.CurrentRoom.Id, expectedStart.Id, StringComparison.OrdinalIgnoreCase))
     {
-        throw new InvalidOperationException("Runtime movement did not resolve the generated north exit from the diagnostic room.");
+        throw new InvalidOperationException($"Runtime command dispatcher did not report the resolved starting location '{expectedStart.Id}'.");
+    }
+
+    var traversableExit = expectedStart.Exits.FirstOrDefault(exit => !exit.HasBlockedDestination && world.FindRoom(exit.TargetMapId, exit.TargetRoomNumber) is not null);
+    if (traversableExit is null)
+    {
+        throw new InvalidOperationException($"Runtime starting room '{expectedStart.Id}' has no traversable generated exit for movement smoke testing.");
+    }
+
+    var expectedTarget = world.FindRoom(traversableExit.TargetMapId, traversableExit.TargetRoomNumber)!;
+    var move = dispatcher.Dispatch(session, traversableExit.Direction);
+    if (!string.Equals(session.CurrentRoom.Id, expectedTarget.Id, StringComparison.OrdinalIgnoreCase) ||
+        !move.Contains(expectedTarget.Name, StringComparison.OrdinalIgnoreCase))
+    {
+        throw new InvalidOperationException($"Runtime movement did not resolve generated exit '{traversableExit.Direction}' from '{expectedStart.Id}' to '{expectedTarget.Id}'.");
     }
 
     var state = dispatcher.Dispatch(session, "state");

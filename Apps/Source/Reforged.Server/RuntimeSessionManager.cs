@@ -71,6 +71,7 @@ public sealed class RuntimeSessionManager
         if (!_sessions.TryAdd(session.Id, session)) { message = $"Session '{session.Id}' is already active."; return false; }
         _state?.TrackSession(session);
         _events?.Publish("session", "started", session.World.Definition.Id, session.Id, session.Actor.Id, $"actor={session.Actor.DisplayName}; kind={session.Actor.Kind}");
+        BroadcastRoom(session, $"{session.Actor.DisplayName} enters the world.");
         message = "accepted";
         return true;
     }
@@ -78,9 +79,60 @@ public sealed class RuntimeSessionManager
     public bool Remove(string sessionId)
     {
         if (!_sessions.TryRemove(sessionId, out var session)) return false;
+        foreach (var target in InRoom(session.World.Definition.Id, session.CurrentRoom.Id))
+        {
+            target.EnqueueMessage($"{session.Actor.DisplayName} leaves the world.");
+        }
         _characters?.SaveSession(session);
         _state?.RemoveSession(sessionId);
         _events?.Publish("session", "ended", session.World.Definition.Id, session.Id, session.Actor.Id, $"actor={session.Actor.DisplayName}; kind={session.Actor.Kind}");
+        return true;
+    }
+
+    public RuntimeSession? FindByActor(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query)) return null;
+        var matches = _sessions.Values.Where(session =>
+            session.Actor.Id.Equals(query, StringComparison.OrdinalIgnoreCase)
+            || session.Actor.DisplayName.Equals(query, StringComparison.OrdinalIgnoreCase)
+            || session.Actor.DisplayName.Contains(query, StringComparison.OrdinalIgnoreCase)).ToArray();
+        return matches.Length == 1 ? matches[0] : null;
+    }
+
+
+    public RuntimeSession? FindUniqueInRoom(RuntimeSession source, string query)
+    {
+        if (string.IsNullOrWhiteSpace(query)) return null;
+        var matches = InRoom(source.World.Definition.Id, source.CurrentRoom.Id)
+            .Where(session => !session.Id.Equals(source.Id, StringComparison.OrdinalIgnoreCase))
+            .Where(session => session.Actor.Id.Equals(query, StringComparison.OrdinalIgnoreCase)
+                || session.Actor.DisplayName.Equals(query, StringComparison.OrdinalIgnoreCase)
+                || session.Actor.DisplayName.Contains(query, StringComparison.OrdinalIgnoreCase))
+            .ToArray();
+        return matches.Length == 1 ? matches[0] : null;
+    }
+
+    public IReadOnlyList<RuntimeSession> InRoom(string worldId, string roomId) => _sessions.Values
+        .Where(session => session.World.Definition.Id.Equals(worldId, StringComparison.OrdinalIgnoreCase)
+            && session.CurrentRoom.Id.Equals(roomId, StringComparison.OrdinalIgnoreCase))
+        .OrderBy(session => session.Actor.DisplayName, StringComparer.OrdinalIgnoreCase)
+        .ToArray();
+
+    public void BroadcastRoom(RuntimeSession source, string message, bool includeSource = false)
+    {
+        foreach (var target in InRoom(source.World.Definition.Id, source.CurrentRoom.Id))
+        {
+            if (!includeSource && target.Id.Equals(source.Id, StringComparison.OrdinalIgnoreCase)) continue;
+            target.EnqueueMessage(message);
+        }
+    }
+
+    public bool SendTell(RuntimeSession source, string targetQuery, string message, out string response)
+    {
+        var target = FindByActor(targetQuery);
+        if (target is null) { response = $"No connected character uniquely matches '{targetQuery}'."; return false; }
+        target.EnqueueMessage($"{source.Actor.DisplayName} tells you, '{message}'");
+        response = $"You tell {target.Actor.DisplayName}, '{message}'";
         return true;
     }
 

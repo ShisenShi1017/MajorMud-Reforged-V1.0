@@ -60,7 +60,7 @@ public sealed class ServerWorldProjectionAudit
                 .Select(group => group.Key)
                 .OrderBy(roomId => roomId, StringComparer.OrdinalIgnoreCase)
                 .ToArray();
-            var startRoom = TryGetString(worldDocument.RootElement, "startRoom") ?? "room.1";
+            var startRoom = ResolveGeneratedStartRoom(dataRoot, worldDocument.RootElement);
             var startRoomExists = !string.IsNullOrWhiteSpace(startRoom) && canonicalRoomIds.Contains(startRoom);
 
             report.StartRoom = startRoom;
@@ -144,6 +144,64 @@ public sealed class ServerWorldProjectionAudit
         return File.Exists(Path.Combine(flatRoot, "rooms.json"))
             ? flatRoot
             : Path.Combine(flatRoot, "Classic");
+    }
+
+    private static string ResolveGeneratedStartRoom(string dataRoot, JsonElement worldRoot)
+    {
+        var configured = TryGetString(worldRoot, "startRoom");
+        if (!string.IsNullOrWhiteSpace(configured))
+        {
+            return NormalizeRoomId(configured, 1);
+        }
+
+        var manifestPath = Path.Combine(dataRoot, "world_manifest.json");
+        if (File.Exists(manifestPath))
+        {
+            using var manifest = JsonDocument.Parse(File.ReadAllText(manifestPath), DocumentOptions);
+            var root = manifest.RootElement;
+            var direct = TryGetString(root, "character_start_room");
+            if (!string.IsNullOrWhiteSpace(direct))
+            {
+                var mapId = 1;
+                if (root.TryGetProperty("character_spawning", out var spawning) && spawning.ValueKind == JsonValueKind.Object)
+                {
+                    mapId = TryGetInt(spawning, "map_id") ?? mapId;
+                }
+                return NormalizeRoomId(direct, mapId);
+            }
+        }
+
+        return "room.map1.2140";
+    }
+
+    private static string NormalizeRoomId(string roomId, int mapId)
+    {
+        if (roomId.StartsWith("room.map", StringComparison.OrdinalIgnoreCase))
+        {
+            return roomId;
+        }
+
+        var prefix = "room.";
+        if (roomId.StartsWith(prefix, StringComparison.OrdinalIgnoreCase) &&
+            int.TryParse(roomId[prefix.Length..], out var roomNumber) && roomNumber > 0)
+        {
+            return $"room.map{Math.Max(1, mapId)}.{roomNumber}";
+        }
+
+        return roomId;
+    }
+
+    private static int? TryGetInt(JsonElement element, string propertyName)
+    {
+        if (!element.TryGetProperty(propertyName, out var value))
+        {
+            return null;
+        }
+        if (value.ValueKind == JsonValueKind.Number && value.TryGetInt32(out var number))
+        {
+            return number;
+        }
+        return value.ValueKind == JsonValueKind.String && int.TryParse(value.GetString(), out var parsed) ? parsed : null;
     }
 
     private static string? TryGetString(JsonElement element, string name)

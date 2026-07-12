@@ -11,7 +11,7 @@
       "dataRoot": "Data/Classic",
       "roomsFile": "rooms.json",
       "exitsFile": "exits.json",
-      "diagnosticRoom": "room.1",
+      "diagnosticRoom": "room.map1.1",
       "aiMode": "Off",
       "runtimeEnabled": true,
       "transfersAllowed": false,
@@ -33,11 +33,11 @@
     "The Host remains authoritative for world state, character state, combat, items, NPCs, quests, economy, timers, resets, and permissions.",
     "Runtime Milestone 1 adds opt-in telnet networking and multiple sessions while keeping Classic as the only enabled world.",
     "0133 creates a runtime-only test character when no saved or generated Classic character start is available. This character never modifies Librarium or generated Data.",
-    "worlds[].diagnosticRoom is set to room.1 for explicit developer smoke testing only. This does not promote Town Gates as verified new-character spawn evidence.",
+    "worlds[].diagnosticRoom is map-qualified as room.map1.1 for explicit developer smoke testing only.",
     "The runtime test avatar has no selected Classic class and bypasses character-creation validation only because IsRuntimeTestCharacter is true."
   ],
   "network": {
-    "enabled": false,
+    "enabled": true,
     "bindAddress": "127.0.0.1",
     "telnetPort": 4000,
     "maxSessions": 32,

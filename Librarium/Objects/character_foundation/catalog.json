@@ -1,0 +1,45 @@
+{
+  "object_type": "character_foundation",
+  "code_update": "0137",
+  "schema_ref": "../../Schemas/librarium_object_schema_0121.json",
+  "records": [
+    "character_foundation_records_0137.json",
+    "native_runtime_promoted_0137.json"
+  ],
+  "catalog_role": "librarium_object_catalog_index",
+  "librarium_authority": "source_of_truth",
+  "data_generation_policy": "/Data is generated from Librarium and must not be manually edited",
+  "imported_database_retention": "retain until Librarium is 100% complete",
+  "generation_readiness": "ready_for_compiler_contract_pass",
+  "export_contract_summary": {
+    "export_scope": "world_runtime",
+    "runtime_destination": "Data/{world_id}/character_foundation.json",
+    "serialization": "canonical_json",
+    "world_inheritance": "classic_locked_custom_ai_overlay",
+    "override_behavior": "classic_locked; custom/ai validated overlays allowed",
+    "runtime_consumer": "Runtime.Characters.CharacterFoundationRuntime",
+    "client_visibility": "world_filtered_read_only",
+    "generation_order": 6,
+    "dependencies": [
+      "races",
+      "classes",
+      "skills",
+      "spells",
+      "items",
+      "rooms"
+    ],
+    "required_fields": [
+      "races",
+      "classes",
+      "race_class_matrix",
+      "creation_gate",
+      "starting_location"
+    ],
+    "validation_rules": [
+      "native_promoted_source_present",
+      "race_class_matrix_complete",
+      "starting_location_resolves",
+      "generated_data_matches_librarium_source"
+    ]
+  }
+}

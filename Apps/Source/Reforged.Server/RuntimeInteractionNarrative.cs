@@ -8,7 +8,23 @@ public sealed class RuntimeNarrativeCatalog
     private readonly Dictionary<string,RuntimeNarrativeDefinition> _records;
     private RuntimeNarrativeCatalog(IEnumerable<RuntimeNarrativeDefinition> records) => _records=records.ToDictionary(x=>x.Id,StringComparer.OrdinalIgnoreCase);
     public int Count=>_records.Count;
+    public int ExecutableCount=>_records.Values.Count(IsExecutable);
     public bool TryGet(string id,out RuntimeNarrativeDefinition value)=>_records.TryGetValue(id,out value!);
+    public bool TryGetExecutable(string id,out RuntimeNarrativeDefinition value)
+    {
+        if (_records.TryGetValue(id,out value!) && IsExecutable(value)) return true;
+        value=null!;
+        return false;
+    }
+    public RuntimeNarrativeDefinition RequireFirstExecutable() => _records.Values.FirstOrDefault(IsExecutable)
+        ?? throw new InvalidOperationException("No executable generated quest definitions were found.");
+    public IReadOnlyList<RuntimeNarrativeDefinition> ExecutableDefinitions() => _records.Values.Where(IsExecutable).OrderBy(x=>x.Name).ToArray();
+    private static bool IsExecutable(RuntimeNarrativeDefinition value)
+    {
+        if (value.Raw.TryGetProperty("runtime_mapping",out var mapping) && mapping.ValueKind==JsonValueKind.Object && mapping.TryGetProperty("status",out var status))
+            return string.Equals(status.GetString(),"executable",StringComparison.OrdinalIgnoreCase);
+        return value.Raw.TryGetProperty("execution_status",out var execution) && string.Equals(execution.GetString(),"authoritative_script_graph",StringComparison.OrdinalIgnoreCase);
+    }
     public static RuntimeNarrativeCatalog Load(string projectRoot,string worldId,string family)
     {
         var configured=ServerDataRootResolver.ResolveDefault(projectRoot); if(!string.IsNullOrWhiteSpace(worldId)&&!string.Equals(configured.WorldId,worldId,StringComparison.OrdinalIgnoreCase)) throw new InvalidOperationException($"Configured world '{configured.WorldId}' does not match requested world '{worldId}'."); var path=Path.Combine(configured.DataRoot,$"{family}.json");
@@ -57,7 +73,65 @@ public sealed class RuntimeInteractionNarrativeEngine
     public RuntimeInteractionNarrativeEngine(RuntimeNarrativeCatalog quests,IRuntimeQuestPolicy questPolicy,IRuntimeDialoguePolicy dialoguePolicy,IRuntimeNarrativeEventSink sink){_quests=quests;_questPolicy=questPolicy;_dialoguePolicy=dialoguePolicy;_sink=sink;}
     public RuntimeNarrativeResult Talk(RuntimeQuestJournal journal,RuntimeDialogueRequest request,DateTimeOffset now)
     { var plan=_dialoguePolicy.Resolve(request,journal.Capture(),now); if(!plan.Allowed)return new(false,plan.FailureCode,null,Array.Empty<RuntimeDialogueChoice>(),Array.Empty<RuntimeNarrativeEvent>());var applied=new List<RuntimeNarrativeEvent>();try{foreach(var e in plan.Events){_sink.Apply(e);applied.Add(e);}return new(true,null,plan.TextKey,plan.Choices,applied);}catch{for(var i=applied.Count-1;i>=0;i--)try{_sink.Revert(applied[i]);}catch{}throw;} }
-    public bool AcceptQuest(RuntimeQuestJournal journal,string questId,DateTimeOffset now){if(!_quests.TryGet(questId,out var q))return false;return journal.Accept(questId,_questPolicy.ResolveObjectives(q,journal.ActorId,now),now);}
+    public bool AcceptQuest(RuntimeQuestJournal journal,string questId,DateTimeOffset now){if(!_quests.TryGetExecutable(questId,out var q))return false;return journal.Accept(questId,_questPolicy.ResolveObjectives(q,journal.ActorId,now),now);}
     public RuntimeNarrativeResult CompleteQuest(RuntimeQuestJournal journal,string questId,DateTimeOffset now)
-    {if(!_quests.TryGet(questId,out var q))return new(false,"unknown-quest",null,Array.Empty<RuntimeDialogueChoice>(),Array.Empty<RuntimeNarrativeEvent>());var before=journal.Capture();if(!journal.Complete(questId,now))return new(false,"quest-not-completable",null,Array.Empty<RuntimeDialogueChoice>(),Array.Empty<RuntimeNarrativeEvent>());var events=_questPolicy.ResolveRewards(q,journal.Capture(),now);var applied=new List<RuntimeNarrativeEvent>();try{foreach(var e in events){_sink.Apply(e);applied.Add(e);}return new(true,null,null,Array.Empty<RuntimeDialogueChoice>(),applied);}catch{for(var i=applied.Count-1;i>=0;i--)try{_sink.Revert(applied[i]);}catch{}journal.Restore(before);throw;}}
+    {if(!_quests.TryGetExecutable(questId,out var q))return new(false,"unknown-or-non-executable-quest",null,Array.Empty<RuntimeDialogueChoice>(),Array.Empty<RuntimeNarrativeEvent>());var before=journal.Capture();if(!journal.Complete(questId,now))return new(false,"quest-not-completable",null,Array.Empty<RuntimeDialogueChoice>(),Array.Empty<RuntimeNarrativeEvent>());var events=_questPolicy.ResolveRewards(q,journal.Capture(),now);var applied=new List<RuntimeNarrativeEvent>();try{foreach(var e in events){_sink.Apply(e);applied.Add(e);}return new(true,null,null,Array.Empty<RuntimeDialogueChoice>(),applied);}catch{for(var i=applied.Count-1;i>=0;i--)try{_sink.Revert(applied[i]);}catch{}journal.Restore(before);throw;}}
+}
+
+
+public sealed class RuntimeGeneratedQuestPolicy : IRuntimeQuestPolicy
+{
+    public IReadOnlyList<RuntimeQuestObjectiveProgress> ResolveObjectives(RuntimeNarrativeDefinition quest,string actorId,DateTimeOffset nowUtc)
+    {
+        var objectives=new List<RuntimeQuestObjectiveProgress>();
+        if (quest.Raw.TryGetProperty("item_actions",out var items) && items.ValueKind==JsonValueKind.Array)
+        {
+            foreach (var item in items.EnumerateArray())
+            {
+                var id=ReadInt(item,"item_id");
+                if(id<=0)continue;
+                var objectiveId=$"item.{id}";
+                if(objectives.Any(x=>x.ObjectiveId.Equals(objectiveId,StringComparison.OrdinalIgnoreCase)))continue;
+                objectives.Add(new(objectiveId,0,1,false,new Dictionary<string,string>{{"kind","takeitem"},{"item_ref",objectiveId}}));
+            }
+        }
+        if(objectives.Count==0)
+        {
+            var ability=ReadInt(quest.Raw,"quest_ability_id");
+            objectives.Add(new($"ability.{ability}.stage",0,1,false,new Dictionary<string,string>{{"kind","script-stage"}}));
+        }
+        return objectives;
+    }
+
+    public IReadOnlyList<RuntimeNarrativeEvent> ResolveRewards(RuntimeNarrativeDefinition quest,RuntimeQuestJournalSnapshot journal,DateTimeOffset nowUtc)
+    {
+        var events=new List<RuntimeNarrativeEvent>();
+        if(quest.Raw.TryGetProperty("ability_mutations",out var mutations)&&mutations.ValueKind==JsonValueKind.Array)
+        {
+            foreach(var mutation in mutations.EnumerateArray())
+            {
+                var ability=ReadInt(mutation,"ability_id");
+                var value=ReadInt(mutation,"ability_value");
+                if(ability<=0)continue;
+                events.Add(new(Guid.NewGuid().ToString("N"),"quest-ability",journal.ActorId,$"ability.{ability}",quest.Id,value,nowUtc,new Dictionary<string,string>{{"opcode","giveability"}}));
+            }
+        }
+        return events;
+    }
+
+    private static int ReadInt(JsonElement root,string name)=>root.TryGetProperty(name,out var value)&&int.TryParse(value.ToString(),out var parsed)?parsed:0;
+}
+
+public static class RuntimeQuestJournalPersistence
+{
+    private static readonly JsonSerializerOptions Options=new(){WriteIndented=false};
+    public static string Serialize(RuntimeQuestJournal journal)=>JsonSerializer.Serialize(journal.Capture(),Options);
+    public static RuntimeQuestJournal Restore(string actorId,string? json)
+    {
+        var journal=new RuntimeQuestJournal(actorId);
+        if(string.IsNullOrWhiteSpace(json))return journal;
+        var snapshot=JsonSerializer.Deserialize<RuntimeQuestJournalSnapshot>(json,Options)??throw new InvalidOperationException("quest-journal-invalid");
+        journal.Restore(snapshot);
+        return journal;
+    }
 }

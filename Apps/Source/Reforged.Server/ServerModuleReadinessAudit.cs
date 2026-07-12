@@ -21,13 +21,13 @@ public sealed class ServerModuleReadinessAudit
         {
             var dataRootPath = Path.Combine(root, module.DataRoot);
             var dataRootExists = Directory.Exists(dataRootPath);
-            var ruleProfilesDisabled = module.RuleProfiles.Count > 0 && module.RuleProfiles.All(profile => !profile.RuntimeEnabled);
+            var ruleProfilesReady = module.RuleProfiles.Count > 0 && module.RuleProfiles.All(profile => profile.RuntimeEnabled);
             var hostReady = dataRootExists &&
                 dataCatalog.MissingCategoryCount == 0 &&
                 dataCatalog.LoadedRecordCount > 0 &&
                 worldProjection.ProjectionReady &&
-                !module.GameplayEnabled &&
-                ruleProfilesDisabled;
+                module.GameplayEnabled &&
+                ruleProfilesReady;
 
             report.AddModule(new ModuleReadinessSummary(
                 module.Id,
@@ -39,7 +39,7 @@ public sealed class ServerModuleReadinessAudit
                 module.GameplayEnabled,
                 module.RuleProfiles.Count,
                 module.RuleProfiles.Count(profile => profile.RuntimeEnabled),
-                ruleProfilesDisabled,
+                !ruleProfilesReady,
                 dataCatalog.CategoryCount,
                 dataCatalog.RuntimeReadyCategoryCount,
                 dataCatalog.RuntimeBlockedCategoryCount,
@@ -48,18 +48,18 @@ public sealed class ServerModuleReadinessAudit
                 worldProjection.WorldRoomCount,
                 worldProjection.MissingRoomCount,
                 hostReady,
-                DetermineStatus(hostReady, dataRootExists, ruleProfilesDisabled, worldProjection.ProjectionReady),
-                DetermineReadinessNote(hostReady, dataRootExists, ruleProfilesDisabled, dataCatalog, worldProjection)));
+                DetermineStatus(hostReady, dataRootExists, ruleProfilesReady, worldProjection.ProjectionReady),
+                DetermineReadinessNote(hostReady, dataRootExists, ruleProfilesReady, dataCatalog, worldProjection)));
         }
 
         return report;
     }
 
-    private static string DetermineStatus(bool hostReady, bool dataRootExists, bool ruleProfilesDisabled, bool worldProjectionReady)
+    private static string DetermineStatus(bool hostReady, bool dataRootExists, bool ruleProfilesReady, bool worldProjectionReady)
     {
         if (hostReady)
         {
-            return "host-ready-gameplay-disabled";
+            return "host-ready-runtime-enabled";
         }
 
         if (!dataRootExists)
@@ -72,7 +72,7 @@ public sealed class ServerModuleReadinessAudit
             return "world-projection-has-gaps";
         }
 
-        if (!ruleProfilesDisabled)
+        if (!ruleProfilesReady)
         {
             return "runtime-rule-profile-enabled";
         }
@@ -83,13 +83,13 @@ public sealed class ServerModuleReadinessAudit
     private static string DetermineReadinessNote(
         bool hostReady,
         bool dataRootExists,
-        bool ruleProfilesDisabled,
+        bool ruleProfilesReady,
         ServerDataCatalogAuditReport dataCatalog,
         ServerWorldProjectionAuditReport worldProjection)
     {
         if (hostReady)
         {
-            return "Module data root, catalog, and world projection are ready for non-gameplay host planning; gameplay remains disabled.";
+            return "Module data root, catalog, world projection, gameplay, and runtime rule profiles are enabled.";
         }
 
         if (!dataRootExists)
@@ -102,14 +102,14 @@ public sealed class ServerModuleReadinessAudit
             return "World projection must be ready before host planning can use the module.";
         }
 
-        if (!ruleProfilesDisabled)
+        if (!ruleProfilesReady)
         {
-            return "Runtime rule profiles must remain disabled until an approved gameplay/runtime slice.";
+            return "Runtime rule profiles must be enabled for the production host.";
         }
 
         if (dataCatalog.RuntimeBlockedCategoryCount > 0)
         {
-            return "Canonical data still has runtime-blocked categories; keep module in non-gameplay host planning.";
+            return "Canonical data still has runtime-blocked categories; block live host startup.";
         }
 
         return "Module readiness has unresolved gaps.";

@@ -7,11 +7,11 @@ These instructions are mandatory for every Codex, ChatGPT, AI assistant, and dev
 - Mode: Codex local repository work.
 - Repository: `ShisenShi1017/MajorMud-Reforged-V1.0`.
 - Local path: `E:\MajorMud-Reforged Github`.
-- Current Code Update: `0137`.
+- Current Code Update: `0138`.
 - Current Database Version: `0010`.
-- Current Milestone: `CodeUpdate0137 - Complete Classic Gameplay`.
-- Current status: complete locally, awaiting commit/push and green GitHub Actions confirmation.
-- Latest local verification: PASS 76/76 at `Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md`.
+- Current Milestone: `CodeUpdate0138 - Server Runtime and Host Enablement`.
+- Current status: closed locally, awaiting commit/push and green GitHub Actions confirmation.
+- Latest local verification: PASS 55/55 at `Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md`.
 
 ## Active Documentation
 
@@ -87,17 +87,16 @@ Every Code Update must:
 - Record verification status and known limitations.
 - Wait for green GitHub Actions before moving to the next public update, unless the user explicitly overrides the gate.
 
-## CodeUpdate0137 State
+## CodeUpdate0138 State
 
 Verified locally in this working copy:
 
-- Character Foundation generation and creation smoke.
-- 13 races and 15 classes generated from Librarium-backed records.
-- 195/195 race/class combinations accounted for.
-- New character start resolves to `room.2147`, `Newhaven, Adventurer's Guild`.
-- Runtime character smoke creates, saves, and reloads.
-- Item/equipment generated data and runtime smoke.
-- Classic repair contracts enforced.
-- Complete runtime verification gate passes 76/76.
+- Server runtime and host enablement surfaces.
+- Host configuration, module readiness, lifecycle, scheduler bootstrap, and scheduler status command audits.
+- Runtime live gameplay, multiplayer, living world, combat, interaction/narrative, services/economy, and world systems.
+- Generated Classic data refresh from Librarium.
+- Map-qualified movement promotion from MMExplorer evidence through Librarium.
+- Textblock quest-flow fix 0142 promoted into Librarium quests.
+- Complete runtime verification gate passes 55/55.
 
-Next update begins only after CodeUpdate0137 is pushed and GitHub Actions is green.
+Next update begins only after CodeUpdate0138 is pushed and GitHub Actions is green.

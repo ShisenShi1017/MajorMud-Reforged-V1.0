@@ -7,16 +7,17 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 - Active mode: Codex local repository work.
 - Repository: `ShisenShi1017/MajorMud-Reforged-V1.0`.
 - Local path: `E:\MajorMud-Reforged Github`.
-- Current user request: verify, commit, and push completed CodeUpdate0137.
+- Current user request: close, verify, commit, and push CodeUpdate0138.
 
 ## Current Baseline
 
-- Current Code Update: `0137`.
+- Current Code Update: `0138`.
 - Current Database Version: `0010`.
-- Current Milestone: `CodeUpdate0137 - Complete Classic Gameplay`.
+- Current Milestone: `CodeUpdate0138 - Server Runtime and Host Enablement`.
 - Milestone 1: complete and frozen.
-- CodeUpdate0137 local status: complete.
-- GitHub Actions status for this local commit: pending until pushed and confirmed green.
+- CodeUpdate0137: complete and folded into the local baseline.
+- CodeUpdate0138 local status: closed and locally verified.
+- GitHub Actions status for this commit: pending until pushed and confirmed green.
 
 ## Architecture Rules
 
@@ -27,37 +28,18 @@ This is the current live handoff for Codex, ChatGPT, and human project work.
 - Custom and AI worlds use overlays.
 - Client is read-only for gameplay state.
 - `ImportedDatabases/` remains untouched unless the user explicitly approves a reviewed cleanup.
-- Preserve `Saves/` and do not commit smoke-save artifacts.
+- Preserve real `Saves/`; do not commit smoke-save artifacts.
 
-## CodeUpdate0137 Verified Local State
+## CodeUpdate0138 Verified Local State
 
-Character Foundation:
-
-- 13 playable races generated from Librarium-backed records.
-- 15 playable classes generated from Librarium-backed records.
-- 195/195 race/class combinations accounted for.
-- Race minimum and maximum stats are generated.
-- Class hit point bounds, experience percentages, magery fields, weapon/armour categories, combat level, and ability slots are generated.
-- Character creation, save, reload, and start-room smoke pass.
-- New character start resolves to `room.2147` / `Newhaven, Adventurer's Guild`.
-
-Items, equipment, and Classic repairs:
-
-- `Data/Classic/items.json` contains 1,950 generated item records.
-- `Data/Classic/equipment.json` contains 532 generated equipment records.
-- `Data/Classic/equipment_slots.json` and `Data/Classic/equipment_rules.json` are generated.
-- Runtime item engine covers create, get, get-all, drop, give, equip, wear, unequip, containers, corpses, loot, duplicate rollback, validation, snapshot/reconnect, and world-state save/load.
-- Classic repair validator confirms mask face-slot correction, Lyrist's Companion `spell.1055`, bard 10% shop minimum, cloaked figure 10,000 XP, no `room.unknown`, trigger canonicalization, and runtime correction contracts.
-
-Server/runtime:
-
-- Generated data bootstrap passes.
-- Room/exit smoke passes.
-- NPC loading smoke passes.
-- Spell and spell-execution smoke pass.
-- Classic combat and runtime combat smokes pass.
-- Actors/abilities, interaction/narrative, services/economy, and world/multiplayer smokes pass.
-- Scripted local server session smoke passes.
+- Server runtime and host enablement slices are integrated.
+- Host configuration, module readiness, lifecycle, scheduler bootstrap, and scheduler status command audit surfaces are present.
+- Runtime multiplayer, live gameplay, combat, living world, interaction/narrative, services/economy, and world-system smoke surfaces are present.
+- Generated Classic data compiles from Librarium and includes map-qualified room/exit movement data.
+- MMExplorer movement evidence is promoted through Librarium records, not consumed directly by runtime.
+- MMExplorer textblock quest-flow fix 0142 is promoted into Librarium quest records.
+- Quest records now include 83 textblock quest-flow records, with 2,183 total quest records.
+- The complete runtime gate includes the 0142 quest/textblock validator.
 
 ## Verification
 
@@ -70,16 +52,16 @@ python Tools\Validation\run_complete_runtime_verification.py
 Result:
 
 ```text
-PASS 76/76
-Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md
-Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.json
+PASS 55/55
+Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md
+Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.json
 ```
 
 GitHub Actions is not claimed green until the pushed commit is verified.
 
 ## Next Step
 
-Commit and push CodeUpdate0137, then wait for green GitHub Actions before beginning the next public update.
+Push CodeUpdate0138 and wait for green GitHub Actions before beginning the next public update.
 
 ## Documentation Cleanup Policy
 

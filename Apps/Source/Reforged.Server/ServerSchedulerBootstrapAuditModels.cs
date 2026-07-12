@@ -25,10 +25,10 @@ public sealed class ServerSchedulerBootstrapReport
 
     public bool ReadyForPlanning =>
         HostLifecycleReady &&
-        RuntimeDisabled &&
-        DiagnosticOnly &&
+        !RuntimeDisabled &&
+        !DiagnosticOnly &&
         ChannelCount > 0 &&
-        RuntimeEnabledChannelCount == 0;
+        RuntimeEnabledChannelCount == ChannelCount;
 
     public string Status
     {

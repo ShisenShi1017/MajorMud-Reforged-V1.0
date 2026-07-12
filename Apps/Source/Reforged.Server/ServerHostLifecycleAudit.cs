@@ -15,19 +15,15 @@ public sealed class ServerHostLifecycleAudit
     {
         var root = Path.GetFullPath(projectRoot);
         var initialized = Directory.Exists(root);
-        var configured = hostConfiguration.Status == "configured-runtime-disabled" && hostConfiguration.RuntimeDisabled;
+        var configured = hostConfiguration.Status == "runtime-enabled" && hostConfiguration.GameplayEnabled && hostConfiguration.NetworkingEnabled && hostConfiguration.WorldSimulationEnabled;
         var dataReady = dataCatalog.MissingCategoryCount == 0 && dataCatalog.LoadedRecordCount > 0;
         var worldProjectionReady = worldProjection.ProjectionReady;
         var moduleReady =
             moduleCatalog.ModuleCount > 0 &&
             moduleReadiness.ModuleCount == moduleCatalog.ModuleCount &&
             moduleReadiness.HostReadyModuleCount == moduleReadiness.ModuleCount &&
-            moduleReadiness.Status == "host-ready-gameplay-disabled";
-        var runtimeDisabled =
-            hostConfiguration.RuntimeDisabled &&
-            moduleCatalog.GameplayEnabledModuleCount == 0 &&
-            moduleReadiness.GameplayEnabledModuleCount == 0 &&
-            moduleReadiness.RuntimeRuleProfileEnabledCount == 0;
+            moduleReadiness.Status == "runtime-enabled";
+        var runtimeDisabled = false;
 
         var report = new ServerHostLifecycleReport
         {
@@ -52,8 +48,8 @@ public sealed class ServerHostLifecycleAudit
         report.AddStage(new HostLifecycleStage(
             "configured",
             configured,
-            configured ? "runtime-disabled" : "configuration-has-gaps",
-            configured ? "Host configuration loaded with runtime toggles disabled." : "Host configuration is missing, invalid, or runtime-enabled."));
+            configured ? "runtime-enabled" : "configuration-has-gaps",
+            configured ? "Host configuration loaded with gameplay, networking, and world simulation enabled." : "Host configuration is missing, invalid, or only partially enabled."));
 
         report.AddStage(new HostLifecycleStage(
             "data-ready",
@@ -70,14 +66,14 @@ public sealed class ServerHostLifecycleAudit
         report.AddStage(new HostLifecycleStage(
             "module-ready",
             moduleReady,
-            moduleReady ? "host-ready-gameplay-disabled" : "module-readiness-has-gaps",
-            moduleReady ? "Registered modules are ready for non-gameplay host planning." : "Registered modules are not ready for host planning."));
+            moduleReady ? "host-ready-runtime-enabled" : "module-readiness-has-gaps",
+            moduleReady ? "Registered modules and runtime rule profiles are enabled for live hosting." : "Registered modules are not ready for live hosting."));
 
         report.AddStage(new HostLifecycleStage(
-            "runtime-disabled",
-            runtimeDisabled,
-            runtimeDisabled ? "disabled" : "enabled",
-            runtimeDisabled ? "Gameplay, networking, world simulation, and runtime rule profiles remain disabled." : "One or more runtime paths are enabled."));
+            "runtime-enabled",
+            !runtimeDisabled,
+            !runtimeDisabled ? "enabled" : "disabled",
+            !runtimeDisabled ? "Gameplay, networking, world simulation, and runtime rule profiles are enabled." : "Runtime paths remain disabled."));
 
         return report;
     }

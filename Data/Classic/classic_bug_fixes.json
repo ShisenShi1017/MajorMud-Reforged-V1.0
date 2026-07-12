@@ -1,9 +1,11 @@
 {
-  "object_type": "classic_bug_fix_contract_set",
-  "world_scope": [
-    "classic"
-  ],
-  "code_update": "0135",
+  "authority": "Librarium",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "compiler_code_update": "0127",
+  "world_id": "Classic",
+  "family": "classic_bug_fixes",
+  "source_file": "Librarium/Objects/classic_bug_fixes/classic_bug_fix_records_0135.json",
+  "record_count": 8,
   "records": [
     {
       "id": "classic_fix.bard_shop_minimum_percent",
@@ -57,14 +59,5 @@
       "status": "runtime_contract",
       "rule": "invalid former owner may not retain deed after gang ownership reset"
     }
-  ],
-  "evidence_refs": [
-    {
-      "source": "OperatorClassicBugList",
-      "path": "Evidence/ClassicBugFixes/CodeUpdate0135/CLASSIC_BUG_FIXES.md",
-      "status": "operator_confirmed_classic_correction"
-    }
-  ],
-  "compiled_from_librarium": true,
-  "generated_by": "CodeUpdate0135"
+  ]
 }

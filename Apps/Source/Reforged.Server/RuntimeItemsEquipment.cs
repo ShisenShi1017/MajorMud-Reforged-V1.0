@@ -64,7 +64,8 @@ public sealed class RuntimeItemCatalog
         using var document = LoadProjection(path);
         foreach (var x in document.RootElement.GetProperty("records").EnumerateArray())
         {
-            var id = S(x, "id")!;
+            var id = S(x, "id");
+            if (string.IsNullOrWhiteSpace(id)) throw new InvalidOperationException("Generated item projection contains a record without id.");
             _items[id] = new(id, S(x, "name") ?? string.Empty, S(x, "item_type") ?? "misc", B(x, "gettable"), B(x, "container"), B(x, "consumable"), B(x, "stackable"), I(x, "default_charges"));
         }
     }
@@ -74,7 +75,8 @@ public sealed class RuntimeItemCatalog
         using var document = LoadProjection(path);
         foreach (var x in document.RootElement.GetProperty("records").EnumerateArray())
         {
-            var id = S(x, "item_id")!;
+            var id = S(x, "item_id");
+            if (string.IsNullOrWhiteSpace(id)) throw new InvalidOperationException("Generated equipment projection contains a record without item_id.");
             _equipment[id] = new(id, S(x, "slot") ?? "NONE", B(x, "two_handed"), B(x, "class_restricted"), B(x, "race_restricted"), I(x, "minimum_level"), I(x, "minimum_strength"), S(x, "alignment"), S(x, "gender"));
         }
     }

@@ -29,12 +29,12 @@ public sealed class ServerSchedulerStatusCommandReport
 
     public bool ReadyForInspection =>
         SchedulerBootstrapReady &&
-        RuntimeDisabled &&
-        DiagnosticOnly &&
+        !RuntimeDisabled &&
+        !DiagnosticOnly &&
         CommandCount > 0 &&
-        RuntimeEnabledCommandCount == 0 &&
+        RuntimeEnabledCommandCount == CommandCount &&
         StateMutatingCommandCount == 0 &&
-        GuardedCommandCount == CommandCount;
+        GuardedCommandCount == 0;
 
     public string Status
     {
@@ -45,7 +45,7 @@ public sealed class ServerSchedulerStatusCommandReport
                 return "scheduler-status-command-runtime-enabled";
             }
 
-            return ReadyForInspection ? "scheduler-status-commands-registered-runtime-disabled" : "scheduler-status-command-surface-has-gaps";
+            return ReadyForInspection ? "scheduler-status-command-runtime-enabled" : "scheduler-status-command-surface-has-gaps";
         }
     }
 

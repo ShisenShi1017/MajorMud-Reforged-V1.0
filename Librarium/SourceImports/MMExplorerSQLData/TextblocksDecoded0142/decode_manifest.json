@@ -1,0 +1,15 @@
+{
+  "decoder": "decode_mmexplorer_textblocks.py",
+  "source": "ImportedDatabases/data-v1.11n.mdb",
+  "source_sha256": "f38ecd31ef87b9d2a31388a48e91d29b7f24b15d58c61145b453b71d942c061f",
+  "textblock_rows": 2279,
+  "decoded_textblocks": 2279,
+  "decode_errors": 0,
+  "npc_textblock_links": 771,
+  "quest_flows": 83,
+  "relationship_edges": 9322,
+  "unknown_opcodes": [],
+  "unclassified_tokens": 0,
+  "source_directives": 0,
+  "policy": "Every token is syntactically classified. Known operations are semantically decoded; source directives are preserved exactly without invented gameplay behavior."
+}

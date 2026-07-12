@@ -1,6 +1,6 @@
 {
-  "codeUpdate": "0137",
-  "name": "CodeUpdate0137-CompleteClassicGameplay",
+  "codeUpdate": "0138",
+  "name": "CodeUpdate0138-ServerRuntimeHostEnablement",
   "packageType": "local-repository-update",
   "publicRelease": true,
   "runtimeFinished": true,
@@ -11,18 +11,16 @@
   "runtimeGameplayChanged": true,
   "serverSourceChanged": true,
   "generatedClassicDataChanged": true,
-  "purpose": "Complete local CodeUpdate0137 Classic gameplay baseline and consolidate active documentation.",
+  "purpose": "Close the local CodeUpdate0138 server runtime and host enablement baseline with Librarium movement and quest-flow promotions.",
   "includedSlices": [
-    "CodeUpdate0136-Internal-ClassicDropRollRepair",
-    "CodeUpdate0137-CharacterFoundation",
-    "CodeUpdate0137-ItemsEquipmentRuntime",
-    "CodeUpdate0137-SpellRuntime",
-    "CodeUpdate0137-CombatRuntime",
-    "CodeUpdate0137-ActorsAbilitiesRuntime",
-    "CodeUpdate0137-InteractionNarrativeRuntime",
-    "CodeUpdate0137-ServicesEconomyRuntime",
-    "CodeUpdate0137-WorldMultiplayerRuntime",
-    "CodeUpdate0137-DocumentationCleanup"
+    "CodeUpdate0137-CompleteClassicGameplay",
+    "CodeUpdate0138-LivingWorldRuntime",
+    "CodeUpdate0138-QuestSystem",
+    "CodeUpdate0138-MultiplayerRuntime",
+    "CodeUpdate0138-HostEnablement",
+    "Librarium-MMExplorer-Movement-0140",
+    "Librarium-MMExplorer-TextblockQuestFix-0142",
+    "CodeUpdate0138-DocumentationConsolidation"
   ],
   "newServerCommands": [
     "--smoke-combat",
@@ -45,20 +43,18 @@
   ],
   "reports": [
     "Docs/PROJECT_STATUS.md",
-    "Reports/CodeUpdate0137/character_foundation_phase003_matrix.md",
-    "Reports/CodeUpdate0137/character_foundation_phase003_matrix.json",
-    "Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md",
-    "Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.json"
+    "Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md",
+    "Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.json"
   ],
   "knownLimitations": [
     "GitHub Actions remains pending until this commit is pushed and confirmed green.",
     "ImportedDatabases remains preserved and reference-only unless explicitly approved for cleanup.",
-    "Future multiplayer, custom/AI overlays, telnet client expansion, and host editor work remain later updates."
+    "Future telnet client expansion, custom/AI overlays, and host editor work remain later updates."
   ],
-  "updatedUtc": "2026-07-11T14:37:35Z",
-  "verificationStatus": "LOCAL_COMPLETE_RUNTIME_PASS; Complete runtime verification passed 76/76 locally. GitHub Actions remains pending until pushed and confirmed green.",
+  "updatedUtc": "2026-07-12T17:27:04Z",
+  "verificationStatus": "LOCAL_COMPLETE_RUNTIME_PASS; Complete runtime verification passed 55/55 locally. GitHub Actions remains pending until pushed and confirmed green.",
   "localVerification": {
-    "completeRuntimeVerification": "PASS: python Tools/Validation/run_complete_runtime_verification.py (76/76), report Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md",
+    "completeRuntimeVerification": "PASS: python Tools/Validation/run_complete_runtime_verification.py (55/55), report Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md",
     "githubActions": "PENDING until pushed and confirmed green"
   }
 }

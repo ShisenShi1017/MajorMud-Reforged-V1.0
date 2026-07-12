@@ -4,21 +4,20 @@ This is the compact roadmap for the current repository. Historical update chains
 
 ## Current Milestone
 
-- Current Code Update: `0137`
+- Current Code Update: `0138`
 - Current Database Version: `0010`
-- Current Milestone: `CodeUpdate0137 - Complete Classic Gameplay`
-- Status: complete locally, awaiting pushed GitHub Actions confirmation
-- Verification: local complete runtime gate PASS 76/76 at `Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md`
+- Current Milestone: `CodeUpdate0138 - Server Runtime and Host Enablement`
+- Status: closed locally, awaiting pushed GitHub Actions confirmation
+- Verification: local complete runtime gate PASS 55/55 at `Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md`
 
-## CodeUpdate0137 Completed Scope
+## CodeUpdate0138 Completed Scope
 
-- Character Foundation generation and runtime creation smoke.
-- Race/class generation and validation for 195/195 combinations.
-- Newhaven start at `room.2147`.
-- Character save/reload smoke.
-- Item/equipment generation and runtime smoke.
-- Classic bug-fix contract enforcement, including mask face-slot and Lyrist's Companion repair.
-- Generated data, room/exit, NPC, spell, spell-execution, combat, actors/abilities, interaction/narrative, services/economy, world/multiplayer, and scripted local-session smokes.
+- Server runtime and host enablement.
+- Host configuration, module readiness, lifecycle, scheduler bootstrap, and scheduler status command audit surfaces.
+- Runtime live gameplay, multiplayer, living world, combat, interaction/narrative, services/economy, and world-system smoke coverage.
+- Generated Classic data refresh from Librarium.
+- Map-qualified movement data promotion through Librarium.
+- Textblock quest-flow fix 0142 promotion into Librarium quests.
 - Active documentation cleanup into a compact root/docs surface.
 
 ## Architecture Direction
@@ -46,7 +45,6 @@ Classic is the first target because it is the verified baseline. The design must
 
 ## Planned Public Updates
 
-- `0138`: Multiplayer/server expansion after CodeUpdate0137 is pushed and GitHub Actions is green.
 - `0139`: MegaMUD-style telnet client, excluding BBS features.
 - `0140`: Custom/AI overlay-world support.
 - `0141`: Host editor.

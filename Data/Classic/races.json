@@ -1,721 +1,440 @@
 {
-  "schema_version": 1,
-  "generated_by": "Tools/Librarium/compile_character_foundation_0137.py",
-  "world_id": "Classic",
   "authority": "Librarium",
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "compiler_code_update": "0127",
+  "world_id": "Classic",
   "family": "races",
+  "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
   "record_count": 13,
   "records": [
     {
-      "id": "race.human",
+      "id": "mmud_sql_race_1",
+      "type": "race",
       "name": "Human",
-      "number": 1,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
+      "sourceNumbers": {
+        "number": 1
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 0,
+        "offset": 3932,
+        "length": 164,
+        "hexPrefix": "2500010000002800000028000000280000002800000028000000280000006400",
+        "hexSuffix": "48756d616e990092000100ffffffff1f"
+      },
+      "printableSegments": [
+        "Human"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
       "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_1",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3932,
-      "minimum_stats": {
-        "int": 40,
-        "wil": 40,
-        "str": 40,
-        "hea": 40,
-        "agl": 40,
-        "cha": 40
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
-      },
-      "maximum_stats": {
-        "int": 100,
-        "wil": 100,
-        "str": 100,
-        "hea": 100,
-        "agl": 100,
-        "cha": 100
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 0,
-      "experience_add_percent": 0,
-      "ability_slots": [],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.dwarf",
+      "id": "mmud_sql_race_2",
+      "type": "race",
       "name": "Dwarf",
-      "number": 2,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_2",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3768,
-      "minimum_stats": {
-        "int": 30,
-        "wil": 50,
-        "str": 50,
-        "hea": 50,
-        "agl": 30,
-        "cha": 30
+      "sourceNumbers": {
+        "number": 2
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 1,
+        "offset": 3768,
+        "length": 164,
+        "hexPrefix": "2500020000001e0000003200000032000000320000001e0000001e0000005a00",
+        "hexSuffix": "4477617266990092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 90,
-        "wil": 110,
-        "str": 110,
-        "hea": 120,
-        "agl": 90,
-        "cha": 85
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 10,
-      "experience_add_percent": 30,
-      "ability_slots": [
-        {
-          "ability_id": 75,
-          "value": 20
-        },
-        {
-          "ability_id": 1,
-          "value": 2
-        }
+      "printableSegments": [
+        "Dwarf"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.gnome",
+      "id": "mmud_sql_race_3",
+      "type": "race",
       "name": "Gnome",
-      "number": 3,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_3",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3604,
-      "minimum_stats": {
-        "int": 45,
-        "wil": 40,
-        "str": 35,
-        "hea": 40,
-        "agl": 45,
-        "cha": 35
+      "sourceNumbers": {
+        "number": 3
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 2,
+        "offset": 3604,
+        "length": 164,
+        "hexPrefix": "2500030000002d0000002800000023000000280000002d000000230000006e00",
+        "hexSuffix": "476e6f6d65990092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 110,
-        "wil": 100,
-        "str": 90,
-        "hea": 100,
-        "agl": 110,
-        "cha": 90
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 5,
-      "experience_add_percent": 20,
-      "ability_slots": [
-        {
-          "ability_id": 65,
-          "value": 0
-        },
-        {
-          "ability_id": 10,
-          "value": 0
-        }
+      "printableSegments": [
+        "Gnome"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.halfling",
+      "id": "mmud_sql_race_4",
+      "type": "race",
       "name": "Halfling",
-      "number": 4,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_4",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3437,
-      "minimum_stats": {
-        "int": 30,
-        "wil": 40,
-        "str": 20,
-        "hea": 40,
-        "agl": 60,
-        "cha": 40
+      "sourceNumbers": {
+        "number": 4
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 3,
+        "offset": 3437,
+        "length": 167,
+        "hexPrefix": "2500040000001e0000002800000014000000280000003c000000280000005a00",
+        "hexSuffix": "666c696e679c0092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 90,
-        "wil": 100,
-        "str": 60,
-        "hea": 100,
-        "agl": 150,
-        "cha": 100
-      },
-      "hp_per_level_adjustment": -1,
-      "base_cp": 0,
-      "experience_add_percent": 25,
-      "ability_slots": [
-        {
-          "ability_id": 10,
-          "value": 0
-        }
+      "printableSegments": [
+        "Halfling"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.elf",
+      "id": "mmud_sql_race_5",
+      "type": "race",
       "name": "Elf",
-      "number": 5,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
+      "sourceNumbers": {
+        "number": 5
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 4,
+        "offset": 3275,
+        "length": 162,
+        "hexPrefix": "2500050000003200000028000000230000001e00000032000000320000007800",
+        "hexSuffix": "fffe456c66970092000100ffffffff1f"
+      },
+      "printableSegments": [
+        "Elf"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
       "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_5",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3275,
-      "minimum_stats": {
-        "int": 50,
-        "wil": 40,
-        "str": 35,
-        "hea": 30,
-        "agl": 50,
-        "cha": 50
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
-      },
-      "maximum_stats": {
-        "int": 120,
-        "wil": 100,
-        "str": 90,
-        "hea": 80,
-        "agl": 120,
-        "cha": 120
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 50,
-      "experience_add_percent": 45,
-      "ability_slots": [],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.half_elf",
+      "id": "mmud_sql_race_6",
+      "type": "race",
       "name": "Half-Elf",
-      "number": 6,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_6",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3108,
-      "minimum_stats": {
-        "int": 45,
-        "wil": 40,
-        "str": 40,
-        "hea": 30,
-        "agl": 45,
-        "cha": 50
+      "sourceNumbers": {
+        "number": 6
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 5,
+        "offset": 3108,
+        "length": 167,
+        "hexPrefix": "2500060000002d00000028000000280000001e0000002d000000320000006e00",
+        "hexSuffix": "662d456c669c0092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 110,
-        "wil": 100,
-        "str": 90,
-        "hea": 100,
-        "agl": 110,
-        "cha": 110
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 10,
-      "experience_add_percent": 15,
-      "ability_slots": [
-        {
-          "ability_id": 25,
-          "value": 0
-        }
+      "printableSegments": [
+        "Half-Elf"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.dark_elf",
+      "id": "mmud_sql_race_7",
+      "type": "race",
       "name": "Dark-Elf",
-      "number": 7,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_7",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2941,
-      "minimum_stats": {
-        "int": 50,
-        "wil": 30,
-        "str": 40,
-        "hea": 30,
-        "agl": 50,
-        "cha": 40
+      "sourceNumbers": {
+        "number": 7
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 6,
+        "offset": 2941,
+        "length": 167,
+        "hexPrefix": "250007000000320000001e000000280000001e00000032000000280000007800",
+        "hexSuffix": "6b2d456c669c0092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 120,
-        "wil": 100,
-        "str": 90,
-        "hea": 90,
-        "agl": 120,
-        "cha": 110
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 80,
-      "experience_add_percent": 45,
-      "ability_slots": [
-        {
-          "ability_id": 3,
-          "value": 0
-        }
+      "printableSegments": [
+        "Dark-Elf"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.half_orc",
+      "id": "mmud_sql_race_8",
+      "type": "race",
       "name": "Half-Orc",
-      "number": 8,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
+      "sourceNumbers": {
+        "number": 8
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 7,
+        "offset": 2774,
+        "length": 167,
+        "hexPrefix": "2500080000001e0000001e0000002d00000032000000280000001e0000005a00",
+        "hexSuffix": "662d4f72639c0092000100ffffffff1f"
+      },
+      "printableSegments": [
+        "Half-Orc"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
       "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_8",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2774,
-      "minimum_stats": {
-        "int": 30,
-        "wil": 30,
-        "str": 45,
-        "hea": 50,
-        "agl": 40,
-        "cha": 30
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
-      },
-      "maximum_stats": {
-        "int": 90,
-        "wil": 95,
-        "str": 110,
-        "hea": 120,
-        "agl": 100,
-        "cha": 80
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 0,
-      "experience_add_percent": 0,
-      "ability_slots": [],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.goblin",
+      "id": "mmud_sql_race_9",
+      "type": "race",
       "name": "Goblin",
-      "number": 9,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
+      "sourceNumbers": {
+        "number": 9
+      },
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 8,
+        "offset": 2609,
+        "length": 165,
+        "hexPrefix": "2500090000002d000000280000001e0000002800000037000000280000007300",
+        "hexSuffix": "6f626c696e9a0092000100ffffffff1f"
+      },
+      "printableSegments": [
+        "Goblin"
+      ],
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
       "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_9",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2609,
-      "minimum_stats": {
-        "int": 45,
-        "wil": 40,
-        "str": 30,
-        "hea": 40,
-        "agl": 55,
-        "cha": 40
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
-      },
-      "maximum_stats": {
-        "int": 115,
-        "wil": 100,
-        "str": 70,
-        "hea": 100,
-        "agl": 125,
-        "cha": 100
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 65,
-      "experience_add_percent": 35,
-      "ability_slots": [],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.half_ogre",
+      "id": "mmud_sql_race_10",
+      "type": "race",
       "name": "Half-Ogre",
-      "number": 10,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_10",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2441,
-      "minimum_stats": {
-        "int": 20,
-        "wil": 25,
-        "str": 70,
-        "hea": 60,
-        "agl": 20,
-        "cha": 25
+      "sourceNumbers": {
+        "number": 10
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 9,
+        "offset": 2441,
+        "length": 168,
+        "hexPrefix": "25000a0000001400000019000000460000003c00000014000000190000003c00",
+        "hexSuffix": "2d4f6772659d0092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 60,
-        "wil": 70,
-        "str": 150,
-        "hea": 150,
-        "agl": 60,
-        "cha": 60
-      },
-      "hp_per_level_adjustment": 1,
-      "base_cp": 15,
-      "experience_add_percent": 30,
-      "ability_slots": [
-        {
-          "ability_id": 20,
-          "value": 100
-        },
-        {
-          "ability_id": 3,
-          "value": 0
-        }
+      "printableSegments": [
+        "Half-Ogre"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.kang",
+      "id": "mmud_sql_race_11",
+      "type": "race",
       "name": "Kang",
-      "number": 11,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_11",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2278,
-      "minimum_stats": {
-        "int": 30,
-        "wil": 45,
-        "str": 55,
-        "hea": 50,
-        "agl": 30,
-        "cha": 30
+      "sourceNumbers": {
+        "number": 11
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 10,
+        "offset": 2278,
+        "length": 163,
+        "hexPrefix": "25000b0000001e0000002d00000037000000320000001e0000001e0000005a00",
+        "hexSuffix": "fe4b616e67980092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 90,
-        "wil": 110,
-        "str": 120,
-        "hea": 110,
-        "agl": 90,
-        "cha": 85
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 100,
-      "experience_add_percent": 35,
-      "ability_slots": [
-        {
-          "ability_id": 10,
-          "value": 5
-        }
+      "printableSegments": [
+        "Kang"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.nekojin",
+      "id": "mmud_sql_race_12",
+      "type": "race",
       "name": "Nekojin",
-      "number": 12,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_12",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2112,
-      "minimum_stats": {
-        "int": 40,
-        "wil": 30,
-        "str": 40,
-        "hea": 30,
-        "agl": 60,
-        "cha": 50
+      "sourceNumbers": {
+        "number": 12
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 11,
+        "offset": 2112,
+        "length": 166,
+        "hexPrefix": "25000c000000280000001e000000280000001e0000003c000000320000006400",
+        "hexSuffix": "6b6f6a696e9b0092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 100,
-        "wil": 90,
-        "str": 100,
-        "hea": 80,
-        "agl": 130,
-        "cha": 110
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 0,
-      "experience_add_percent": 50,
-      "ability_slots": [
-        {
-          "ability_id": 50,
-          "value": 0
-        },
-        {
-          "ability_id": 10,
-          "value": -10
-        }
+      "printableSegments": [
+        "Nekojin"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     },
     {
-      "id": "race.gaunt_one",
+      "id": "mmud_sql_race_13",
+      "type": "race",
       "name": "Gaunt One",
-      "number": 13,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_13",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 1944,
-      "minimum_stats": {
-        "int": 60,
-        "wil": 50,
-        "str": 40,
-        "hea": 30,
-        "agl": 50,
-        "cha": 30
+      "sourceNumbers": {
+        "number": 13
       },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
+      "source": {
+        "kind": "MMExplorer SQL/MDB race row",
+        "canonicalFile": "ImportedDatabases/data-v1.11n.mdb",
+        "extractedFrom": "Librarium/SourceImports/MMExplorerSQLData/owner_table_rows.json",
+        "ownerTablePage": 1660,
+        "page": 1662,
+        "rowIndexOnPage": 12,
+        "offset": 1944,
+        "length": 168,
+        "hexPrefix": "25000d0000003c00000032000000280000001e000000320000001e0000008c00",
+        "hexSuffix": "74204f6e659d0092000100ffffffff1f"
       },
-      "maximum_stats": {
-        "int": 140,
-        "wil": 100,
-        "str": 100,
-        "hea": 70,
-        "agl": 110,
-        "cha": 80
-      },
-      "hp_per_level_adjustment": 0,
-      "base_cp": 200,
-      "experience_add_percent": 50,
-      "ability_slots": [
-        {
-          "ability_id": 10,
-          "value": 10
-        }
+      "printableSegments": [
+        "Gaunt One"
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "relationships": [],
+      "evidenceState": "sql_mdb_extracted",
+      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
+      "runtimeMapping": {
+        "exportFamily": "races",
+        "generationSource": "Librarium",
+        "dataGeneratedOnly": true,
+        "classicLocked": true
+      },
+      "notes": "Imported from MMExplorer data-v1.11n MDB/SQL-era source into Librarium for completion and future formula/gameplay reconstruction."
     }
   ]
 }

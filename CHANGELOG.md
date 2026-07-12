@@ -1,34 +1,22 @@
 # Changelog
 
-## CodeUpdate-0137 - Complete Classic Gameplay
+## CodeUpdate0138 - Server Runtime and Host Enablement
 
-CodeUpdate0137 is complete locally and ready for commit/push.
+- Closed the local CodeUpdate0138 baseline.
+- Integrated server runtime and host enablement surfaces.
+- Added/updated host configuration, module readiness, lifecycle, scheduler bootstrap, and scheduler status command audit coverage.
+- Integrated live gameplay, multiplayer, living world, combat, interaction/narrative, services/economy, and world-system smoke surfaces.
+- Promoted map-qualified MMExplorer movement records through Librarium and compiler-generated `/Data`.
+- Applied MMExplorer textblock quest-flow fix 0142.
+- Updated Librarium quests to 2,183 total quest records, including 83 `npc_textblock_quest_flow` records.
+- Added the 0142 textblock quest validator to the complete runtime verification gate.
+- Consolidated active handoff docs to the compact root/docs surface.
+- Removed copied update package folders, generated Python caches, compiler smoke output, and smoke-save artifacts from the working tree.
 
-### Character Foundation
+Verification:
 
-- Generates 13 playable races and 15 playable classes from Librarium-backed records.
-- Accounts for all 195 race/class combinations.
-- Promotes generated race stats, class HP/mana-related fields, class/race ability slots, and Newhaven character start data.
-- Runtime character creation smoke creates, saves, and reloads at `room.2147`, `Newhaven, Adventurer's Guild`.
+- `python Tools\Validation\run_complete_runtime_verification.py`
+- PASS 55/55
+- Latest report: `Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md`
 
-### Items, Equipment, and Classic Repairs
-
-- Adds generated Classic item/equipment projections.
-- Adds runtime item/equipment engine coverage for inventory, equipment, containers, corpses, loot, validation, duplicate rollback, snapshot/reconnect, and world-state save/load.
-- Folds evidence-backed Classic bug-fix contracts into generated item data, including mask face-slot correction and Lyrist's Companion `spell.1055`.
-- Keeps bard 10% shop minimum, cloaked figure 10,000 XP, no `room.unknown`, duplicate trigger canonicalization, drop-roll uniformity, and runtime correction contracts under verification.
-
-### Runtime Verification
-
-- Adds the expanded complete runtime verification gate for all current 0137 validators and server smoke modes.
-- Generated data, room/exit, NPC, spell, spell-execution, combat, combat-runtime, actors/abilities, interaction/narrative, services/economy, world/multiplayer, and scripted local-session smokes pass.
-- Compiler tests, core tests, solution restore/build, Python validators, and simulator validators pass.
-- Latest local complete runtime verification passed 76/76:
-  `Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md`
-
-### Documentation Cleanup
-
-- Consolidates active continuity into the root docs/manifests plus [Docs/PROJECT_STATUS.md](Docs/PROJECT_STATUS.md) and [Docs/Architecture/PROJECT_ROADMAP.md](Docs/Architecture/PROJECT_ROADMAP.md).
-- Removes duplicate historical handoff, changelog, manifest, and old planning doc trees to reduce repository clutter.
-
-GitHub Actions remains pending until this commit is pushed and the current pushed commit is confirmed green.
+GitHub Actions is pending until pushed and confirmed green.

@@ -1,21 +1,26 @@
 # Release Notes
 
-## CodeUpdate0137
+## CodeUpdate0138
 
-CodeUpdate0137 is complete locally and ready for commit/push.
+CodeUpdate0138 is closed locally and ready for commit/push.
 
 Highlights:
 
-- Character Foundation creation is generated and locally verified.
-- New characters start at `room.2147`, `Newhaven, Adventurer's Guild`.
-- Item and equipment runtime surfaces are generated and smoke-tested.
-- Classic repair contracts are enforced in generated/runtime validation.
-- Expanded complete runtime verification passes 76/76.
-- Duplicate historical docs/manifests were removed; active continuity now lives in the compact root docs plus `Docs/PROJECT_STATUS.md`.
-- The project remains Librarium-authoritative and `/Data` remains generated output.
+- Extends the server runtime and host enablement baseline.
+- Adds host configuration, module readiness, lifecycle, scheduler bootstrap, and scheduler status command audit surfaces.
+- Expands runtime smoke coverage for live gameplay, multiplayer, living world, combat, interaction/narrative, services/economy, and world systems.
+- Promotes MMExplorer map-qualified movement evidence through Librarium records.
+- Applies MMExplorer textblock quest-flow fix 0142, promoting 83 quest-flow records into Librarium quests.
+- Keeps Librarium authoritative and `/Data` generated-only.
+- Keeps `ImportedDatabases/` reference-only and preserves real `Saves/`.
+- The complete runtime gate now includes the 0142 textblock quest validator.
 
 Latest local report:
 
-- `Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md`
+- `Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md`
+
+Verification:
+
+- PASS 55/55 from `python Tools\Validation\run_complete_runtime_verification.py`.
 
 GitHub Actions is pending until this commit is pushed and confirmed green.

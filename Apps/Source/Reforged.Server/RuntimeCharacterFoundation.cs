@@ -110,16 +110,23 @@ public sealed class RuntimeCharacterCatalog
             throw new InvalidOperationException("Character foundation is not a Librarium-authoritative projection.");
         }
 
-        LoadArray(root, "races", _races);
-        LoadArray(root, "classes", _classes);
+        LoadArray(root, "races", "race", _races);
+        LoadArray(root, "classes", "class", _classes);
         if (root.TryGetProperty("creation_gate", out var gate) && gate.ValueKind == JsonValueKind.Object)
         {
             CreationGateReady = gate.TryGetProperty("ready", out var ready) && ready.ValueKind == JsonValueKind.True;
             CreationGateBlockers = ReadStringArray(gate, "blockers");
         }
+        else if (root.TryGetProperty("character_creation_rules", out var rules) && rules.ValueKind == JsonValueKind.Object)
+        {
+            CreationGateReady = rules.TryGetProperty("all_race_class_combinations_allowed", out var allowed) && allowed.ValueKind == JsonValueKind.True;
+            CreationGateBlockers = CreationGateReady
+                ? Array.Empty<string>()
+                : new[] { "generated character creation rules are not ready" };
+        }
     }
 
-    private static void LoadArray(JsonElement root, string property, Dictionary<string, RuntimeCharacterDefinition> destination)
+    private static void LoadArray(JsonElement root, string property, string kind, Dictionary<string, RuntimeCharacterDefinition> destination)
     {
         if (!root.TryGetProperty(property, out var records) || records.ValueKind != JsonValueKind.Array)
         {
@@ -129,6 +136,11 @@ public sealed class RuntimeCharacterCatalog
         foreach (var record in records.EnumerateArray())
         {
             var id = ReadString(record, "id");
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var number = ReadInt(record, "number");
+                if (number > 0) id = $"{kind}.{number}";
+            }
             var name = ReadString(record, "name");
             if (string.IsNullOrWhiteSpace(id) || string.IsNullOrWhiteSpace(name))
             {
@@ -138,8 +150,8 @@ public sealed class RuntimeCharacterCatalog
             destination[id] = new RuntimeCharacterDefinition(
                 id,
                 name,
-                ReadString(record, "confidence"),
-                ReadString(record, "classification"),
+                ReadString(record, "confidence") is { Length: > 0 } confidence ? confidence : ReadNestedString(record, "source", "classification"),
+                ReadString(record, "classification") is { Length: > 0 } classification ? classification : ReadNestedString(record, "source", "classification"),
                 ReadIntDictionary(record, "minimum_stats"),
                 ReadIntDictionary(record, "maximum_stats"),
                 ReadInt(record, "hp_per_level_adjustment"),
@@ -180,25 +192,41 @@ public sealed class RuntimeCharacterCatalog
     }
     private static RuntimeClassHitPointDefinition? ReadHitPoints(JsonElement element)
     {
-        if (!element.TryGetProperty("hit_points", out var hitPoints) || hitPoints.ValueKind != JsonValueKind.Object)
+        if (element.TryGetProperty("hit_points", out var hitPoints) && hitPoints.ValueKind == JsonValueKind.Object)
         {
-            return null;
+            return new RuntimeClassHitPointDefinition(
+                ReadInt(hitPoints, "minimum_per_level"),
+                ReadInt(hitPoints, "maximum_bonus_per_level"),
+                ReadInt(hitPoints, "maximum_per_level"));
         }
 
-        return new RuntimeClassHitPointDefinition(
-            ReadInt(hitPoints, "minimum_per_level"),
-            ReadInt(hitPoints, "maximum_bonus_per_level"),
-            ReadInt(hitPoints, "maximum_per_level"));
+        var minimum = ReadInt(element, "min_hits");
+        var bonus = ReadInt(element, "max_hits_bonus");
+        return minimum > 0 || bonus > 0
+            ? new RuntimeClassHitPointDefinition(minimum, bonus, minimum + bonus)
+            : null;
     }
 
     private static RuntimeMagicDefinition? ReadMagic(JsonElement element)
     {
-        if (!element.TryGetProperty("magic", out var magic) || magic.ValueKind != JsonValueKind.Object)
+        if (element.TryGetProperty("magic", out var magic) && magic.ValueKind == JsonValueKind.Object)
         {
-            return null;
+            return new RuntimeMagicDefinition(ReadInt(magic, "type"), ReadInt(magic, "level"));
         }
 
-        return new RuntimeMagicDefinition(ReadInt(magic, "type"), ReadInt(magic, "level"));
+        var type = ReadInt(element, "magery_type");
+        var level = ReadInt(element, "magery_level");
+        return type > 0 || level > 0 ? new RuntimeMagicDefinition(type, level) : null;
+    }
+
+    private static string ReadNestedString(JsonElement element, string objectName, string propertyName)
+    {
+        if (!element.TryGetProperty(objectName, out var nested) || nested.ValueKind != JsonValueKind.Object)
+        {
+            return string.Empty;
+        }
+
+        return ReadString(nested, propertyName);
     }
 
     private static int ReadInt(JsonElement element, string name) =>
@@ -290,6 +318,30 @@ public sealed class RuntimeCharacterRepository
         lock (_gate)
         {
             WriteAtomic(CharacterPath(character.CharacterId), character with { UpdatedAtUtc = DateTimeOffset.UtcNow });
+        }
+    }
+
+    public T ExecuteCharacterTransaction<T>(string firstCharacterId, string secondCharacterId, Func<RuntimeCharacterRecord, RuntimeCharacterRecord, (RuntimeCharacterRecord First, RuntimeCharacterRecord Second, T Result)> action)
+    {
+        lock (_gate)
+        {
+            var first = TryLoadCharacter(firstCharacterId) ?? throw new InvalidOperationException($"Character '{firstCharacterId}' was not found.");
+            var second = TryLoadCharacter(secondCharacterId) ?? throw new InvalidOperationException($"Character '{secondCharacterId}' was not found.");
+            var outcome = action(first, second);
+            var firstPath = CharacterPath(first.CharacterId);
+            var secondPath = CharacterPath(second.CharacterId);
+            try
+            {
+                WriteAtomic(firstPath, outcome.First with { UpdatedAtUtc = DateTimeOffset.UtcNow });
+                WriteAtomic(secondPath, outcome.Second with { UpdatedAtUtc = DateTimeOffset.UtcNow });
+                return outcome.Result;
+            }
+            catch
+            {
+                WriteAtomic(firstPath, first);
+                WriteAtomic(secondPath, second);
+                throw;
+            }
         }
     }
 
@@ -431,10 +483,13 @@ public sealed class RuntimeCharacterService
         _repository = new RuntimeCharacterRepository(projectRoot);
     }
 
+    public string ProjectRoot => _projectRoot;
     public RuntimeAccountRecord GetOrCreateAccount(string accountName) => _repository.GetOrCreateAccount(accountName);
     public RuntimeCharacterCatalog GetCatalog(string worldId) => RuntimeCharacterCatalog.Load(_projectRoot, worldId);
     public IReadOnlyList<RuntimeCharacterRecord> ListCharacters(string accountId) => _repository.ListCharacters(accountId);
     public RuntimeCharacterRecord? LoadCharacter(string id) => _repository.TryLoadCharacter(id);
+    public void SaveCharacter(RuntimeCharacterRecord character) => _repository.SaveCharacter(character);
+    public T ExecuteCharacterTransaction<T>(string firstCharacterId, string secondCharacterId, Func<RuntimeCharacterRecord, RuntimeCharacterRecord, (RuntimeCharacterRecord First, RuntimeCharacterRecord Second, T Result)> action) => _repository.ExecuteCharacterTransaction(firstCharacterId, secondCharacterId, action);
 
     public RuntimeCharacterRecord CreateCharacter(RuntimeAccountRecord account, RuntimeWorld world, string name, string race, string characterClass)
     {

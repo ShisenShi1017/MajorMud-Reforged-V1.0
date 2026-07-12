@@ -13,10 +13,10 @@ public sealed class ServerGameModuleCatalog
             "MajorMUD Classic",
             "First game module and data baseline for Reforged server construction.",
             "Data",
-            GameplayEnabled: false,
+            GameplayEnabled: true,
             new[]
             {
-                new RuleProfileRegistration("classic", "Classic", "planned-data-driven-baseline", RuntimeEnabled: false)
+                new RuleProfileRegistration("classic", "Classic", "planned-data-driven-baseline", RuntimeEnabled: true)
             }));
 
         return catalog;

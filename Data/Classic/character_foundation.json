@@ -1,28 +1,12 @@
 {
-  "schema_version": 1,
-  "generated_by": "Tools/Librarium/compile_character_foundation_0137.py",
-  "code_update": "0137-internal-character-foundation",
-  "world_id": "Classic",
+  "schema_version": 2,
   "authority": "Librarium",
-  "classic_locked": true,
-  "source_policy": "Generated from Librarium SQL/MDB-backed playable race/class records. ImportedDatabases are not runtime sources.",
-  "race_count": 13,
-  "class_count": 15,
-  "compatibility_count": 195,
+  "classification": "promoted_native_runtime_table_evidence",
+  "promotion_note": "Native DAT evidence was decoded once and promoted into this Librarium artifact. Compiler/runtime do not read ImportedDatabases.",
   "races": [
     {
-      "id": "race.human",
-      "name": "Human",
       "number": 1,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_1",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3932,
+      "name": "Human",
       "minimum_stats": {
         "int": 40,
         "wil": 40,
@@ -30,21 +14,6 @@
         "hea": 40,
         "agl": 40,
         "cha": 40
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 100,
@@ -54,25 +23,20 @@
         "agl": 100,
         "cha": 100
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 0,
       "experience_add_percent": 0,
       "ability_slots": [],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 1150,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.dwarf",
-      "name": "Dwarf",
       "number": 2,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_2",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3768,
+      "name": "Dwarf",
       "minimum_stats": {
         "int": 30,
         "wil": 50,
@@ -80,21 +44,6 @@
         "hea": 50,
         "agl": 30,
         "cha": 30
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 90,
@@ -104,7 +53,6 @@
         "agl": 90,
         "cha": 85
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 10,
       "experience_add_percent": 30,
       "ability_slots": [
@@ -117,21 +65,17 @@
           "value": 2
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 1276,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.gnome",
-      "name": "Gnome",
       "number": 3,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_3",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3604,
+      "name": "Gnome",
       "minimum_stats": {
         "int": 45,
         "wil": 40,
@@ -139,21 +83,6 @@
         "hea": 40,
         "agl": 45,
         "cha": 35
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 110,
@@ -163,7 +92,6 @@
         "agl": 110,
         "cha": 90
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 5,
       "experience_add_percent": 20,
       "ability_slots": [
@@ -176,21 +104,17 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 1402,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.halfling",
-      "name": "Halfling",
       "number": 4,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_4",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3437,
+      "name": "Halfling",
       "minimum_stats": {
         "int": 30,
         "wil": 40,
@@ -198,21 +122,6 @@
         "hea": 40,
         "agl": 60,
         "cha": 40
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 90,
@@ -222,7 +131,6 @@
         "agl": 150,
         "cha": 100
       },
-      "hp_per_level_adjustment": -1,
       "base_cp": 0,
       "experience_add_percent": 25,
       "ability_slots": [
@@ -231,21 +139,17 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 1536,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": -1
     },
     {
-      "id": "race.elf",
-      "name": "Elf",
       "number": 5,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_5",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3275,
+      "name": "Elf",
       "minimum_stats": {
         "int": 50,
         "wil": 40,
@@ -253,21 +157,6 @@
         "hea": 30,
         "agl": 50,
         "cha": 50
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 120,
@@ -277,25 +166,20 @@
         "agl": 120,
         "cha": 120
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 50,
       "experience_add_percent": 45,
       "ability_slots": [],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 1662,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.half_elf",
-      "name": "Half-Elf",
       "number": 6,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_6",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 3108,
+      "name": "Half-Elf",
       "minimum_stats": {
         "int": 45,
         "wil": 40,
@@ -303,21 +187,6 @@
         "hea": 30,
         "agl": 45,
         "cha": 50
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 110,
@@ -327,7 +196,6 @@
         "agl": 110,
         "cha": 110
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 10,
       "experience_add_percent": 15,
       "ability_slots": [
@@ -336,21 +204,17 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 1788,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.dark_elf",
-      "name": "Dark-Elf",
       "number": 7,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_7",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2941,
+      "name": "Dark-Elf",
       "minimum_stats": {
         "int": 50,
         "wil": 30,
@@ -358,21 +222,6 @@
         "hea": 30,
         "agl": 50,
         "cha": 40
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 120,
@@ -382,7 +231,6 @@
         "agl": 120,
         "cha": 110
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 80,
       "experience_add_percent": 45,
       "ability_slots": [
@@ -391,21 +239,17 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 1914,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.half_orc",
-      "name": "Half-Orc",
       "number": 8,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_8",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2774,
+      "name": "Half-Orc",
       "minimum_stats": {
         "int": 30,
         "wil": 30,
@@ -413,21 +257,6 @@
         "hea": 50,
         "agl": 40,
         "cha": 30
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 90,
@@ -437,25 +266,20 @@
         "agl": 100,
         "cha": 80
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 0,
       "experience_add_percent": 0,
       "ability_slots": [],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 2048,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.goblin",
-      "name": "Goblin",
       "number": 9,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_9",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2609,
+      "name": "Goblin",
       "minimum_stats": {
         "int": 45,
         "wil": 40,
@@ -463,21 +287,6 @@
         "hea": 40,
         "agl": 55,
         "cha": 40
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 115,
@@ -487,25 +296,20 @@
         "agl": 125,
         "cha": 100
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 65,
       "experience_add_percent": 35,
       "ability_slots": [],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 2174,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.half_ogre",
-      "name": "Half-Ogre",
       "number": 10,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_10",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2441,
+      "name": "Half-Ogre",
       "minimum_stats": {
         "int": 20,
         "wil": 25,
@@ -513,21 +317,6 @@
         "hea": 60,
         "agl": 20,
         "cha": 25
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 60,
@@ -537,7 +326,6 @@
         "agl": 60,
         "cha": 60
       },
-      "hp_per_level_adjustment": 1,
       "base_cp": 15,
       "experience_add_percent": 30,
       "ability_slots": [
@@ -550,21 +338,17 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 1024,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 1
     },
     {
-      "id": "race.kang",
-      "name": "Kang",
       "number": 11,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_11",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2278,
+      "name": "Kang",
       "minimum_stats": {
         "int": 30,
         "wil": 45,
@@ -572,21 +356,6 @@
         "hea": 50,
         "agl": 30,
         "cha": 30
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 90,
@@ -596,7 +365,6 @@
         "agl": 90,
         "cha": 85
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 100,
       "experience_add_percent": 35,
       "ability_slots": [
@@ -605,21 +373,17 @@
           "value": 5
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 2300,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.nekojin",
-      "name": "Nekojin",
       "number": 12,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_12",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 2112,
+      "name": "Nekojin",
       "minimum_stats": {
         "int": 40,
         "wil": 30,
@@ -627,21 +391,6 @@
         "hea": 30,
         "agl": 60,
         "cha": 50
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 100,
@@ -651,7 +400,6 @@
         "agl": 130,
         "cha": 110
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 0,
       "experience_add_percent": 50,
       "ability_slots": [
@@ -664,21 +412,17 @@
           "value": -10
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 2426,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     },
     {
-      "id": "race.gaunt_one",
-      "name": "Gaunt One",
       "number": 13,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_race_13",
-      "source_file": "Librarium/Objects/races/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB race row",
-      "source_owner_table_page": 1660,
-      "source_page": 1662,
-      "source_offset": 1944,
+      "name": "Gaunt One",
       "minimum_stats": {
         "int": 60,
         "wil": 50,
@@ -686,21 +430,6 @@
         "hea": 30,
         "agl": 50,
         "cha": 30
-      },
-      "phase003_promoted_fields": {
-        "minimum_stats": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "mINT",
-            "mWIL",
-            "mSTR",
-            "mHEA",
-            "mAGL",
-            "mCHM"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:races.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words"
-        }
       },
       "maximum_stats": {
         "int": 140,
@@ -710,7 +439,6 @@
         "agl": 110,
         "cha": 80
       },
-      "hp_per_level_adjustment": 0,
       "base_cp": 200,
       "experience_add_percent": 50,
       "ability_slots": [
@@ -719,58 +447,27 @@
           "value": 10
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCRACE.DAT",
+        "record_offset": 2560,
+        "schema": "races.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "hp_per_level_adjustment": 0
     }
   ],
   "classes": [
     {
-      "id": "class.warrior",
-      "name": "Warrior",
       "number": 1,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_1",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3959,
-      "hit_points": {
-        "minimum_per_level": 6,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 10,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 0,
-        "level": 0
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 0,
-        "class_percent": 100
-      },
+      "name": "Warrior",
+      "min_hits": 6,
+      "max_hits_bonus": 4,
+      "experience_stored": 0,
+      "experience_percent": 100,
+      "magery_type": 0,
+      "magery_level": 0,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 0,
       "ability_slots": [
         {
@@ -782,56 +479,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 3072,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "None"
     },
     {
-      "id": "class.witchunter",
-      "name": "Witchunter",
       "number": 2,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_2",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3819,
-      "hit_points": {
-        "minimum_per_level": 6,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 10,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 0,
-        "level": 0
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 30,
-        "class_percent": 130
-      },
+      "name": "Witchunter",
+      "min_hits": 6,
+      "max_hits_bonus": 4,
+      "experience_stored": 30,
+      "experience_percent": 130,
+      "magery_type": 0,
+      "magery_level": 0,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 51,
       "ability_slots": [
         {
@@ -851,56 +517,25 @@
           "value": -99
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 3225,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "None"
     },
     {
-      "id": "class.paladin",
-      "name": "Paladin",
       "number": 3,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_3",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3682,
-      "hit_points": {
-        "minimum_per_level": 5,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 9,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 2,
-        "level": 1
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 120,
-        "class_percent": 220
-      },
+      "name": "Paladin",
+      "min_hits": 5,
+      "max_hits_bonus": 4,
+      "experience_stored": 120,
+      "experience_percent": 220,
+      "magery_type": 2,
+      "magery_level": 1,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 0,
       "ability_slots": [
         {
@@ -916,56 +551,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 3378,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Priest"
     },
     {
-      "id": "class.cleric",
-      "name": "Cleric",
       "number": 4,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_4",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3546,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 8,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 2,
-        "level": 2
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 120,
-        "class_percent": 220
-      },
+      "name": "Cleric",
+      "min_hits": 4,
+      "max_hits_bonus": 4,
+      "experience_stored": 120,
+      "experience_percent": 220,
+      "magery_type": 2,
+      "magery_level": 2,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 0,
       "ability_slots": [
         {
@@ -981,56 +585,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 3531,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Priest"
     },
     {
-      "id": "class.priest",
-      "name": "Priest",
       "number": 5,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_5",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3410,
-      "hit_points": {
-        "minimum_per_level": 3,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 6,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 2,
-        "level": 3
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 40,
-        "class_percent": 140
-      },
+      "name": "Priest",
+      "min_hits": 3,
+      "max_hits_bonus": 3,
+      "experience_stored": 40,
+      "experience_percent": 140,
+      "magery_type": 2,
+      "magery_level": 3,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 0,
       "ability_slots": [
         {
@@ -1046,56 +619,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 3684,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Priest"
     },
     {
-      "id": "class.missionary",
-      "name": "Missionary",
       "number": 6,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_6",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3270,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 2,
-        "level": 2
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 120,
-        "class_percent": 220
-      },
+      "name": "Missionary",
+      "min_hits": 4,
+      "max_hits_bonus": 3,
+      "experience_stored": 120,
+      "experience_percent": 220,
+      "magery_type": 2,
+      "magery_level": 2,
+      "weapon_type": 0,
+      "armour_type": 103,
       "combat_level": 37,
       "ability_slots": [
         {
@@ -1115,56 +657,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 3837,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Priest"
     },
     {
-      "id": "class.ninja",
-      "name": "Ninja",
       "number": 7,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_7",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3135,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 8,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 0,
-        "level": 0
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 85,
-        "class_percent": 185
-      },
+      "name": "Ninja",
+      "min_hits": 4,
+      "max_hits_bonus": 4,
+      "experience_stored": 85,
+      "experience_percent": 185,
+      "magery_type": 0,
+      "magery_level": 0,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 103,
       "ability_slots": [
         {
@@ -1192,56 +703,25 @@
           "value": 10
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 3990,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "None"
     },
     {
-      "id": "class.thief",
-      "name": "Thief",
       "number": 8,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_8",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 3000,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 0,
-        "level": 0
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": -20,
-        "class_percent": 80
-      },
+      "name": "Thief",
+      "min_hits": 4,
+      "max_hits_bonus": 3,
+      "experience_stored": -20,
+      "experience_percent": 80,
+      "magery_type": 0,
+      "magery_level": 0,
+      "weapon_type": 0,
+      "armour_type": 103,
       "combat_level": 39,
       "ability_slots": [
         {
@@ -1261,56 +741,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 4143,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "None"
     },
     {
-      "id": "class.bard",
-      "name": "Bard",
       "number": 9,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_9",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2866,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 4,
-        "level": 2
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 110,
-        "class_percent": 210
-      },
+      "name": "Bard",
+      "min_hits": 4,
+      "max_hits_bonus": 3,
+      "experience_stored": 110,
+      "experience_percent": 210,
+      "magery_type": 4,
+      "magery_level": 2,
+      "weapon_type": 0,
+      "armour_type": 103,
       "combat_level": 40,
       "ability_slots": [
         {
@@ -1334,56 +783,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 4296,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Bard"
     },
     {
-      "id": "class.gypsy",
-      "name": "Gypsy",
       "number": 10,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_10",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2731,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 1,
-        "level": 2
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 120,
-        "class_percent": 220
-      },
+      "name": "Gypsy",
+      "min_hits": 4,
+      "max_hits_bonus": 3,
+      "experience_stored": 120,
+      "experience_percent": 220,
+      "magery_type": 1,
+      "magery_level": 2,
+      "weapon_type": 0,
+      "armour_type": 103,
       "combat_level": 37,
       "ability_slots": [
         {
@@ -1407,56 +825,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 4449,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Mage"
     },
     {
-      "id": "class.warlock",
-      "name": "Warlock",
       "number": 11,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_11",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2594,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 8,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 1,
-        "level": 2
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 85,
-        "class_percent": 185
-      },
+      "name": "Warlock",
+      "min_hits": 4,
+      "max_hits_bonus": 4,
+      "experience_stored": 85,
+      "experience_percent": 185,
+      "magery_type": 1,
+      "magery_level": 2,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 0,
       "ability_slots": [
         {
@@ -1472,56 +859,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 4608,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Mage"
     },
     {
-      "id": "class.mage",
-      "name": "Mage",
       "number": 12,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_12",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2460,
-      "hit_points": {
-        "minimum_per_level": 3,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 6,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 1,
-        "level": 3
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 40,
-        "class_percent": 140
-      },
+      "name": "Mage",
+      "min_hits": 3,
+      "max_hits_bonus": 3,
+      "experience_stored": 40,
+      "experience_percent": 140,
+      "magery_type": 1,
+      "magery_level": 3,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 0,
       "ability_slots": [
         {
@@ -1537,56 +893,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 4761,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Mage"
     },
     {
-      "id": "class.druid",
-      "name": "Druid",
       "number": 13,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_13",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2325,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 3,
-        "maximum_per_level": 7,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 3,
-        "level": 3
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 90,
-        "class_percent": 190
-      },
+      "name": "Druid",
+      "min_hits": 4,
+      "max_hits_bonus": 3,
+      "experience_stored": 90,
+      "experience_percent": 190,
+      "magery_type": 3,
+      "magery_level": 3,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 59,
       "ability_slots": [
         {
@@ -1606,56 +931,25 @@
           "value": -99
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 4914,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Druid"
     },
     {
-      "id": "class.ranger",
-      "name": "Ranger",
       "number": 14,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_14",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2189,
-      "hit_points": {
-        "minimum_per_level": 5,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 9,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 3,
-        "level": 1
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 31
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 150,
-        "class_percent": 250
-      },
+      "name": "Ranger",
+      "min_hits": 5,
+      "max_hits_bonus": 4,
+      "experience_stored": 150,
+      "experience_percent": 250,
+      "magery_type": 3,
+      "magery_level": 1,
+      "weapon_type": 0,
+      "armour_type": 31,
       "combat_level": 38,
       "ability_slots": [
         {
@@ -1675,56 +969,25 @@
           "value": 0
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 5067,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Druid"
     },
     {
-      "id": "class.mystic",
-      "name": "Mystic",
       "number": 15,
-      "classification": "playable_classic_catalog_record",
-      "evidence_state": "sql_mdb_extracted",
-      "confidence": "High for record identity/name/printable references; field semantics remain evidence-backed but not fully byte-decoded.",
-      "source_record_id": "mmud_sql_class_15",
-      "source_file": "Librarium/Objects/classes/sql_mdb_records_0128.json",
-      "source_kind": "MMExplorer SQL/MDB class row",
-      "source_owner_table_page": 15,
-      "source_page": 17,
-      "source_offset": 2053,
-      "hit_points": {
-        "minimum_per_level": 4,
-        "maximum_bonus_per_level": 4,
-        "maximum_per_level": 8,
-        "classification": "Librarium promoted native table evidence"
-      },
-      "magic": {
-        "type": 5,
-        "level": 1
-      },
-      "equipment_categories": {
-        "weapon_type": 0,
-        "armour_type": 103
-      },
-      "phase003_promoted_fields": {
-        "class_prefix_fields": {
-          "classification": "sql_mdb_prefix_and_schema_alignment",
-          "columns": [
-            "MinHits",
-            "MaxHits",
-            "ExpTable",
-            "MageryType",
-            "MageryLVL",
-            "WeaponType",
-            "ArmourType"
-          ],
-          "schema_evidence": "Docs/DatabaseAudit/csv_dat_name_alignment.json:classes.TXT",
-          "byte_evidence": "source.hexPrefix even-padded little-endian words",
-          "blocked_note": "CombatLVL and Abil/AbilVal columns are not promoted from the stored 32-byte prefix alone."
-        }
-      },
-      "experience": {
-        "stored_modifier": 150,
-        "class_percent": 250
-      },
+      "name": "Mystic",
+      "min_hits": 4,
+      "max_hits_bonus": 4,
+      "experience_stored": 150,
+      "experience_percent": 250,
+      "magery_type": 5,
+      "magery_level": 1,
+      "weapon_type": 0,
+      "armour_type": 103,
       "combat_level": 34,
       "ability_slots": [
         {
@@ -1764,2589 +1027,22 @@
           "value": 10
         }
       ],
-      "promoted_source": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
+      "source": {
+        "file": "ImportedDatabases/NativeRuntime/WCCCLASS.DAT",
+        "record_offset": 5220,
+        "schema": "classes.TXT alignment",
+        "classification": "byte_decoded_and_promoted"
+      },
+      "magery_name": "Kai"
     }
   ],
-  "compatibility": [
-    {
-      "race_id": "race.human",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 0,
-        "combined_chart_percent": 100,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 0,
-        "combined_chart_percent": 130,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 0,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 0,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 0,
-        "combined_chart_percent": 140,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 0,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 0,
-        "combined_chart_percent": 185,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 0,
-        "combined_chart_percent": 80,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 0,
-        "combined_chart_percent": 210,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 0,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 0,
-        "combined_chart_percent": 185,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 0,
-        "combined_chart_percent": 140,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 0,
-        "combined_chart_percent": 190,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 0,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.human",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 0,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 30,
-        "combined_chart_percent": 130,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 30,
-        "combined_chart_percent": 160,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 30,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 30,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 30,
-        "combined_chart_percent": 170,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 30,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 30,
-        "combined_chart_percent": 215,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 30,
-        "combined_chart_percent": 110,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 30,
-        "combined_chart_percent": 240,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 30,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 30,
-        "combined_chart_percent": 215,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 30,
-        "combined_chart_percent": 170,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 30,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 30,
-        "combined_chart_percent": 280,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dwarf",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 30,
-        "combined_chart_percent": 280,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 20,
-        "combined_chart_percent": 120,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 20,
-        "combined_chart_percent": 150,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 20,
-        "combined_chart_percent": 240,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 20,
-        "combined_chart_percent": 240,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 20,
-        "combined_chart_percent": 160,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 20,
-        "combined_chart_percent": 240,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 20,
-        "combined_chart_percent": 205,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 20,
-        "combined_chart_percent": 100,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 20,
-        "combined_chart_percent": 230,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 20,
-        "combined_chart_percent": 240,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 20,
-        "combined_chart_percent": 205,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 20,
-        "combined_chart_percent": 160,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 20,
-        "combined_chart_percent": 210,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 20,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gnome",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 20,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 25,
-        "combined_chart_percent": 125,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 25,
-        "combined_chart_percent": 155,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 25,
-        "combined_chart_percent": 245,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 25,
-        "combined_chart_percent": 245,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 25,
-        "combined_chart_percent": 165,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 25,
-        "combined_chart_percent": 245,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 25,
-        "combined_chart_percent": 210,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 25,
-        "combined_chart_percent": 105,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 25,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 25,
-        "combined_chart_percent": 245,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 25,
-        "combined_chart_percent": 210,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 25,
-        "combined_chart_percent": 165,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 25,
-        "combined_chart_percent": 215,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 25,
-        "combined_chart_percent": 275,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.halfling",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 25,
-        "combined_chart_percent": 275,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 45,
-        "combined_chart_percent": 145,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 45,
-        "combined_chart_percent": 175,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 45,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 45,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 45,
-        "combined_chart_percent": 185,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 45,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 45,
-        "combined_chart_percent": 230,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 45,
-        "combined_chart_percent": 125,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 45,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 45,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 45,
-        "combined_chart_percent": 230,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 45,
-        "combined_chart_percent": 185,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 45,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 45,
-        "combined_chart_percent": 295,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.elf",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 45,
-        "combined_chart_percent": 295,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 15,
-        "combined_chart_percent": 115,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 15,
-        "combined_chart_percent": 145,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 15,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 15,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 15,
-        "combined_chart_percent": 155,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 15,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 15,
-        "combined_chart_percent": 200,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 15,
-        "combined_chart_percent": 95,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 15,
-        "combined_chart_percent": 225,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 15,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 15,
-        "combined_chart_percent": 200,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 15,
-        "combined_chart_percent": 155,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 15,
-        "combined_chart_percent": 205,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 15,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_elf",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 15,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 45,
-        "combined_chart_percent": 145,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 45,
-        "combined_chart_percent": 175,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 45,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 45,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 45,
-        "combined_chart_percent": 185,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 45,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 45,
-        "combined_chart_percent": 230,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 45,
-        "combined_chart_percent": 125,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 45,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 45,
-        "combined_chart_percent": 265,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 45,
-        "combined_chart_percent": 230,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 45,
-        "combined_chart_percent": 185,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 45,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 45,
-        "combined_chart_percent": 295,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.dark_elf",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 45,
-        "combined_chart_percent": 295,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 0,
-        "combined_chart_percent": 100,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 0,
-        "combined_chart_percent": 130,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 0,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 0,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 0,
-        "combined_chart_percent": 140,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 0,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 0,
-        "combined_chart_percent": 185,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 0,
-        "combined_chart_percent": 80,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 0,
-        "combined_chart_percent": 210,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 0,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 0,
-        "combined_chart_percent": 185,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 0,
-        "combined_chart_percent": 140,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 0,
-        "combined_chart_percent": 190,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 0,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_orc",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 0,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 35,
-        "combined_chart_percent": 135,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 35,
-        "combined_chart_percent": 165,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 35,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 35,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 35,
-        "combined_chart_percent": 175,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 35,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 35,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 35,
-        "combined_chart_percent": 115,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 35,
-        "combined_chart_percent": 245,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 35,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 35,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 35,
-        "combined_chart_percent": 175,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 35,
-        "combined_chart_percent": 225,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 35,
-        "combined_chart_percent": 285,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.goblin",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 35,
-        "combined_chart_percent": 285,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 30,
-        "combined_chart_percent": 130,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 30,
-        "combined_chart_percent": 160,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 30,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 30,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 30,
-        "combined_chart_percent": 170,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 30,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 30,
-        "combined_chart_percent": 215,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 30,
-        "combined_chart_percent": 110,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 30,
-        "combined_chart_percent": 240,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 30,
-        "combined_chart_percent": 250,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 30,
-        "combined_chart_percent": 215,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 30,
-        "combined_chart_percent": 170,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 30,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 30,
-        "combined_chart_percent": 280,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.half_ogre",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 30,
-        "combined_chart_percent": 280,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 35,
-        "combined_chart_percent": 135,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 35,
-        "combined_chart_percent": 165,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 35,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 35,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 35,
-        "combined_chart_percent": 175,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 35,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 35,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 35,
-        "combined_chart_percent": 115,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 35,
-        "combined_chart_percent": 245,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 35,
-        "combined_chart_percent": 255,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 35,
-        "combined_chart_percent": 220,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 35,
-        "combined_chart_percent": 175,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 35,
-        "combined_chart_percent": 225,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 35,
-        "combined_chart_percent": 285,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.kang",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 35,
-        "combined_chart_percent": 285,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 50,
-        "combined_chart_percent": 150,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 50,
-        "combined_chart_percent": 180,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 50,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 50,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 50,
-        "combined_chart_percent": 190,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 50,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 50,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 50,
-        "combined_chart_percent": 130,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 50,
-        "combined_chart_percent": 260,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 50,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 50,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 50,
-        "combined_chart_percent": 190,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 50,
-        "combined_chart_percent": 240,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 50,
-        "combined_chart_percent": 300,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.nekojin",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 50,
-        "combined_chart_percent": 300,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.warrior",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 100,
-        "race_add_percent": 50,
-        "combined_chart_percent": 150,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.witchunter",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 130,
-        "race_add_percent": 50,
-        "combined_chart_percent": 180,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.paladin",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 50,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.cleric",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 50,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.priest",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 50,
-        "combined_chart_percent": 190,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.missionary",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 50,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.ninja",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 50,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.thief",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 80,
-        "race_add_percent": 50,
-        "combined_chart_percent": 130,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.bard",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 210,
-        "race_add_percent": 50,
-        "combined_chart_percent": 260,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.gypsy",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 220,
-        "race_add_percent": 50,
-        "combined_chart_percent": 270,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.warlock",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 185,
-        "race_add_percent": 50,
-        "combined_chart_percent": 235,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.mage",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 140,
-        "race_add_percent": 50,
-        "combined_chart_percent": 190,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.druid",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 190,
-        "race_add_percent": 50,
-        "combined_chart_percent": 240,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.ranger",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 50,
-        "combined_chart_percent": 300,
-        "formula": "class_percent + race_add_percent"
-      }
-    },
-    {
-      "race_id": "race.gaunt_one",
-      "class_id": "class.mystic",
-      "classification": "all_classic_combinations_allowed",
-      "runtime_allowed": true,
-      "reason": "Classic character creation permits every playable race with every playable class.",
-      "experience": {
-        "class_percent": 250,
-        "race_add_percent": 50,
-        "combined_chart_percent": 300,
-        "formula": "class_percent + race_add_percent"
-      }
-    }
-  ],
-  "creation_gate": {
-    "ready": true,
-    "classification": "phase003_character_creation_rules_complete",
-    "required_for_promotion": [
-      "race_class_compatibility",
-      "race_minimum_stats",
-      "race_maximum_stats",
-      "class_hit_points",
-      "alignment_rules",
-      "starting_hit_points",
-      "starting_mana",
-      "starting_skills",
-      "starting_spells",
-      "starting_inventory",
-      "starting_equipment",
-      "generated_character_start_room",
-      "persistence_round_trip",
-      "exhaustive_195_combo_matrix"
-    ],
-    "promoted_this_phase": [
-      "all_195_race_class_combinations_allowed",
-      "race_minimum_and_maximum_stats",
-      "class_hit_point_roll_bounds_and_level_one_formula",
-      "class_and_race_experience_percentages",
-      "combined_experience_chart_percent_for_all_195_pairs",
-      "class_magery_type_and_level",
-      "class_weapon_and_armour_type",
-      "race_hp_per_level_adjustment",
-      "race_and_class_ability_slots",
-      "empty_starting_inventory_and_equipment",
-      "race_plus_class_tree_starting_abilities",
-      "starting_mana_formula",
-      "newhaven_adventurers_guild_character_start"
-    ],
-    "blockers": []
-  },
-  "start_location": {
-    "classification": "Librarium_promoted_classic_character_start",
-    "map_id": 1,
-    "room_id": "room.2147",
-    "room_number": 2147,
-    "name": "Newhaven, Adventurer's Guild",
-    "runtime_resolution": "RuntimeWorld.ResolveGeneratedCharacterStartRoom"
+  "xp_rule": {
+    "class_percent_formula": "class.experience_stored \u002B 100",
+    "race_add_percent_formula": "race.experience_add_percent",
+    "combined_percent_formula": "class.experience_percent \u002B race.experience_add_percent",
+    "evidence": [
+      "MMUDExplorer CalcExpNeededByRaceClass: nClassExp=ExpTable\u002B100; nRaceExp=race ExpTable; chart=nClassExp\u002BnRaceExp"
+    ]
   },
   "character_creation_rules": {
     "all_race_class_combinations_allowed": true,
@@ -4361,9 +1057,9 @@
     "starting_alignment_classification": "neutral/uncommitted initial state; alignment changes through gameplay",
     "new_character_start": {
       "map_id": 1,
-      "room_id": "room.2147",
-      "room_number": 2147,
-      "name": "Newhaven, Adventurer's Guild"
+      "room_id": "room.map1.2140",
+      "room_number": 2140,
+      "name": "Newhaven, Village Entrance"
     },
     "sources": [
       "user supplied MMUD Explorer runtime screenshots and observations (2026-07-10)",
@@ -4398,12 +1094,12 @@
           "base_reduction": 3,
           "cycle_minutes": 60,
           "cycle_amount": 1,
-          "formula": "3 + floor(minutes_played / EPCYCLE) * EPAMOUNT",
+          "formula": "3 \u002B floor(minutes_played / EPCYCLE) * EPAMOUNT",
           "default_epcycle_minutes": 60,
           "default_epamount": 1,
           "maximum_daily_reduction": "MAXEPDAY configuration cap"
         },
-        "negative_ep_exception": "When moving from Neutral toward Good/Saint (EP < 0), the base 2-point portion does not apply, per Classic documentation."
+        "negative_ep_exception": "When moving from Neutral toward Good/Saint (EP \u003C 0), the base 2-point portion does not apply, per Classic documentation."
       },
       "fiend_attack_lockout": {
         "threshold": 300,
@@ -4416,15 +1112,15 @@
   },
   "derived_stat_formulas": {
     "maximum_hit_points": {
-      "formula": "HEA/2 + level*class.hp_per_level + level*race.hp_bonus + con_adj + accumulated_hp_rolls + con_adj + MaxHP_ability",
-      "con_adj": "iVar=(HEA-50)*level; if iVar<0 then iVar+=15; con_adj=iVar>>4 (signed arithmetic shift)",
+      "formula": "HEA/2 \u002B level*class.hp_per_level \u002B level*race.hp_bonus \u002B con_adj \u002B accumulated_hp_rolls \u002B con_adj \u002B MaxHP_ability",
+      "con_adj": "iVar=(HEA-50)*level; if iVar\u003C0 then iVar\u002B=15; con_adj=iVar\u003E\u003E4 (signed arithmetic shift)",
       "creation_accumulated_hp_rolls": "class.hp_roll_cap (deterministic full cap)",
       "level_up_roll": "random integer 0..class.hp_roll_cap added to accumulator",
       "source": "Librarium/Evidence/Character/CHARACTER_HP_MANA_CALC_MUDBRAIN_0137.md; wccmmud.dll calculate_secondary_stats @0x0041a424"
     },
     "maximum_mana": {
       "magic_type_0": "0",
-      "magic_type_1_to_4": "MaxMana_ability + class.magic_level*level*2 + equipment_cache + 6",
+      "magic_type_1_to_4": "MaxMana_ability \u002B class.magic_level*level*2 \u002B equipment_cache \u002B 6",
       "magic_type_5": "level-1",
       "creation_ability_and_equipment_cache": 0,
       "source": "Librarium/Evidence/Character/CHARACTER_HP_MANA_CALC_MUDBRAIN_0137.md; wccmmud.dll calculate_secondary_stats @0x0041a424"
@@ -4440,18 +1136,9 @@
       "source": "MMUDExplorer/modMMudFunc.bas CalcSpellCasting lines 4338-4367"
     }
   },
-  "blocked_fields": [],
-  "rule_evidence": {
-    "class_rules": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_CLASS_RULES.json",
-    "race_rules": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_RACE_RULES.json",
-    "hp_mp_rules": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_HP_MP_GAIN.json",
-    "stats": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_STATS.json",
-    "training": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_TRAINING.json",
-    "xp_level": "Librarium/MajorMUDKnowledgeBase/MechanicsFull/CHAR_XP_LEVEL.json",
-    "promoted_native_character_tables": "Librarium/Objects/character_foundation/native_runtime_promoted_0137.json"
-  },
-  "initialization_policy": {
-    "no_guessed_values": true,
-    "rule": "Runtime creates level-one characters from generated Librarium race/class records, formulas, empty inventory/equipment, and race/class ability trees."
-  }
+  "generated_by": "MajorMud.Reforged.Compiler",
+  "compiler_code_update": "0138",
+  "world_id": "Classic",
+  "family": "character_foundation",
+  "source_catalog_file": "Librarium/Objects/character_foundation/character_foundation_records_0137.json"
 }

@@ -98,9 +98,10 @@ public sealed class ServerNetworkHost
             try
             {
                 await writer.WriteLineAsync(selectedWorld.Definition.Motd).ConfigureAwait(false);
-                await writer.WriteLineAsync(RoomRenderer.Render(session.World, session.CurrentRoom)).ConfigureAwait(false);
+                await writer.WriteLineAsync(_commands.Dispatch(session, "look")).ConfigureAwait(false);
                 while (!hostCancellationToken.IsCancellationRequested && connection.Connected)
                 {
+                    foreach (var pending in session.DrainMessages()) await writer.WriteLineAsync(pending).ConfigureAwait(false);
                     await writer.WriteAsync("> ").ConfigureAwait(false);
                     var input = await ReadLineAsync(reader, hostCancellationToken).ConfigureAwait(false);
                     if (input is null)
@@ -108,7 +109,7 @@ public sealed class ServerNetworkHost
                         break;
                     }
 
-                    if (string.Equals(input.Trim(), "quit", StringComparison.OrdinalIgnoreCase) || string.Equals(input.Trim(), "exit", StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(input.Trim(), "quit", StringComparison.OrdinalIgnoreCase) || string.Equals(input.Trim(), "exit", StringComparison.OrdinalIgnoreCase) || string.Equals(input.Trim(), "logout", StringComparison.OrdinalIgnoreCase))
                     {
                         await writer.WriteLineAsync("Goodbye.").ConfigureAwait(false);
                         break;
@@ -143,7 +144,7 @@ public sealed class ServerNetworkHost
     private async Task WriteBannerAsync(StreamWriter writer)
     {
         await writer.WriteLineAsync(_options.HostName).ConfigureAwait(false);
-        await writer.WriteLineAsync("MajorMUD Reforged Runtime Milestone 1").ConfigureAwait(false);
+        await writer.WriteLineAsync("MajorMUD Reforged CodeUpdate0138 Live Gameplay Integration").ConfigureAwait(false);
         await writer.WriteLineAsync("Host authoritative. Classic-first. No client-side state mutation.").ConfigureAwait(false);
         await writer.WriteLineAsync().ConfigureAwait(false);
     }

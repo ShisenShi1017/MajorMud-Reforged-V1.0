@@ -76,6 +76,140 @@ if (!report.Passed)
     return report.ExitCode;
 }
 
+
+if (args.Any(arg => string.Equals(arg, "--smoke-world-systems-bundle", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate world systems because project root was not resolved."); return 2; }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var worldSystemsReport = RuntimeWorldSystemsBundleSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime World Systems Bundle Smoke Report");
+    Console.WriteLine(worldSystemsReport.ToJson());
+    return worldSystemsReport.Passed ? 0 : 29;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-living-world", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate living world because project root was not resolved."); return 2; }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var livingReport = RuntimeLivingWorldSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Living World Smoke Report");
+    Console.WriteLine(livingReport.ToJson());
+    return livingReport.Passed ? 0 : 18;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-live-powers", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate live powers because project root was not resolved."); return 2; }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var powersReport = RuntimeLivePowersSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Live Powers Smoke Report");
+    Console.WriteLine(powersReport.ToJson());
+    return powersReport.Passed ? 0 : 28;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-combat-completion", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate combat completion because project root was not resolved."); return 2; }
+    var combatCompletionReport = RuntimeCombatCompletionSmokeReport.Run(report.ProjectRoot);
+    Console.WriteLine("Runtime Combat Completion Smoke Report");
+    Console.WriteLine(combatCompletionReport.ToJson());
+    return combatCompletionReport.Passed ? 0 : 27;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-live-combat-round", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate live combat rounds because project root was not resolved."); return 2; }
+    var liveCombatRoundReport = RuntimeLiveCombatRoundSmokeReport.Run(report.ProjectRoot);
+    Console.WriteLine("Runtime Live Combat Round Smoke Report");
+    Console.WriteLine(liveCombatRoundReport.ToJson());
+    return liveCombatRoundReport.Passed ? 0 : 26;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-npc-defensive-profile", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate NPC defensive profiles because project root was not resolved."); return 2; }
+    var npcDefensiveProfileReport = RuntimeNpcDefensiveProfileSmokeReport.Run(report.ProjectRoot);
+    Console.WriteLine("Runtime NPC Defensive Profile Smoke Report");
+    Console.WriteLine(npcDefensiveProfileReport.ToJson());
+    return npcDefensiveProfileReport.Passed ? 0 : 25;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-player-combat-profile", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate player combat profile because project root was not resolved."); return 2; }
+    var playerCombatProfileReport = RuntimePlayerCombatProfileSmokeReport.Run(report.ProjectRoot);
+    Console.WriteLine("Runtime Player Combat Profile Smoke Report");
+    Console.WriteLine(playerCombatProfileReport.ToJson());
+    return playerCombatProfileReport.Passed ? 0 : 24;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-combat-profile-promotion", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate combat profile promotion because project root was not resolved."); return 2; }
+    var combatProfilePromotionReport = RuntimeCombatProfilePromotionSmokeReport.Run(report.ProjectRoot);
+    Console.WriteLine("Runtime Combat Profile Promotion Smoke Report");
+    Console.WriteLine(combatProfilePromotionReport.ToJson());
+    return combatProfilePromotionReport.Passed ? 0 : 23;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-live-combat-admission", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate live combat admission because project root was not resolved."); return 2; }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var liveCombatReport = RuntimeLiveCombatSmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Live Combat Admission Smoke Report");
+    Console.WriteLine(liveCombatReport.ToJson());
+    return liveCombatReport.Passed ? 0 : 22;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-live-gameplay-part6", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate live services because project root was not resolved."); return 2; }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var liveGameplayPart6Report = RuntimeLiveGameplayPart6SmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Live Gameplay Integration Part 6 Smoke Report");
+    Console.WriteLine(liveGameplayPart6Report.ToJson());
+    return liveGameplayPart6Report.Passed ? 0 : 21;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-live-gameplay-part5", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate live banking because project root was not resolved."); return 2; }
+    var options = ServerRuntimeOptions.Load(report.ProjectRoot);
+    var liveGameplayPart5Report = RuntimeLiveGameplayPart5SmokeReport.Run(report.ProjectRoot, options.DefaultWorldId);
+    Console.WriteLine("Runtime Live Gameplay Integration Part 5 Smoke Report");
+    Console.WriteLine(liveGameplayPart5Report.ToJson());
+    return liveGameplayPart5Report.Passed ? 0 : 20;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-live-gameplay-part4", StringComparison.OrdinalIgnoreCase)))
+{
+    var liveGameplayPart4Report = RuntimeLiveGameplayPart4SmokeReport.Run();
+    Console.WriteLine("Runtime Live Gameplay Integration Part 4 Smoke Report");
+    Console.WriteLine(liveGameplayPart4Report.ToJson());
+    return liveGameplayPart4Report.Passed ? 0 : 19;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-live-gameplay-part3", StringComparison.OrdinalIgnoreCase)))
+{
+    var liveGameplayPart3Report = RuntimeLiveGameplayPart3SmokeReport.Run();
+    Console.WriteLine("Runtime Live Gameplay Integration Part 3 Smoke Report");
+    Console.WriteLine(liveGameplayPart3Report.ToJson());
+    return liveGameplayPart3Report.Passed ? 0 : 18;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-live-gameplay-part2", StringComparison.OrdinalIgnoreCase)))
+{
+    var liveGameplayPart2Report = RuntimeLiveGameplayPart2SmokeReport.Run();
+    Console.WriteLine("Runtime Live Gameplay Integration Part 2 Smoke Report");
+    Console.WriteLine(liveGameplayPart2Report.ToJson());
+    return liveGameplayPart2Report.Passed ? 0 : 1;
+}
+if (args.Any(arg => string.Equals(arg, "--smoke-live-gameplay", StringComparison.OrdinalIgnoreCase)))
+{
+    var liveGameplayReport = RuntimeLiveGameplaySmokeReport.Run();
+    Console.WriteLine("Runtime Live Gameplay Integration Smoke Report");
+    Console.WriteLine(liveGameplayReport.ToJson());
+    return liveGameplayReport.Passed ? 0 : 16;
+}
+
+if (args.Any(arg => string.Equals(arg, "--smoke-multiplayer-completion", StringComparison.OrdinalIgnoreCase)))
+{
+    var multiplayerCompletionReport = RuntimeMultiplayerCompletionSmokeReport.Run();
+    Console.WriteLine("Runtime Multiplayer Completion Smoke Report");
+    Console.WriteLine(multiplayerCompletionReport.ToJson());
+    return multiplayerCompletionReport.Passed ? 0 : 24;
+}
+
 if (args.Any(arg => string.Equals(arg, "--smoke-world-multiplayer", StringComparison.OrdinalIgnoreCase)))
 {
     var worldMultiplayerReport = RuntimeWorldMultiplayerSmokeReport.Run();
@@ -258,6 +392,15 @@ if (args.Any(arg => string.Equals(arg, "--smoke-generated-data", StringCompariso
     return smoke.Passed ? 0 : 3;
 }
 
+if (args.Any(arg => string.Equals(arg, "--smoke-host-enablement", StringComparison.OrdinalIgnoreCase)))
+{
+    if (report.ProjectRoot is null) { Console.Error.WriteLine("Cannot validate host enablement because project root was not resolved."); return 2; }
+    var smoke = RuntimeHostEnablementSmokeReport.Run(report.ProjectRoot);
+    Console.WriteLine("Runtime Host Enablement Smoke Report");
+    Console.WriteLine(smoke.ToJson());
+    return smoke.Passed ? 0 : 31;
+}
+
 if (args.Any(arg => string.Equals(arg, "--run-local", StringComparison.OrdinalIgnoreCase)))
 {
     if (report.ProjectRoot is null)
@@ -288,5 +431,5 @@ if (args.Any(arg => string.Equals(arg, "--run-network", StringComparison.Ordinal
     return 0;
 }
 
-Console.WriteLine("Server bootstrap completed successfully. Runtime remains opt-in; pass --run-local for console or --run-network for the Milestone 1 telnet host.");
+Console.WriteLine("Server bootstrap completed successfully. Host runtime is enabled; pass --run-local for console or --run-network for telnet hosting.");
 return report.ExitCode;

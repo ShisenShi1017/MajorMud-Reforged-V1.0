@@ -1,9 +1,9 @@
 {
   "project": "Reforged",
   "projectVersion": "0.1.0",
-  "codeUpdate": "0137",
+  "codeUpdate": "0138",
   "databaseVersion": "0010",
-  "milestone": "CodeUpdate0137 - Complete Classic Gameplay",
+  "milestone": "CodeUpdate0138 - Server Runtime and Host Enablement",
   "sourceOfTruth": "/Librarium records, evidence, assertions, manifests, and tools are canonical; /Data artifacts are generated runtime output and are not edited manually.",
   "runtimePolicy": "Runtime consumes generated /Data only. The client is read-only for gameplay state.",
   "updatePolicy": "Codex updates the local repository unless the user explicitly asks Codex to commit/push. GitHub Actions is the pushed verification gate.",
@@ -15,20 +15,21 @@
     "ImportedDatabases"
   ],
   "developmentStatus": {
-    "currentMilestone": "CodeUpdate0137 - Complete Classic Gameplay",
-    "currentCodeUpdate": "0137",
+    "currentMilestone": "CodeUpdate0138 - Server Runtime and Host Enablement",
+    "currentCodeUpdate": "0138",
     "currentDatabaseVersion": "0010",
     "completedMilestones": [
       "Milestone 1 - Core Framework",
-      "CodeUpdate0137 - Complete Classic Gameplay local baseline"
+      "CodeUpdate0137 - Complete Classic Gameplay local baseline",
+      "CodeUpdate0138 - Server Runtime and Host Enablement local baseline"
     ],
     "milestone1Status": "Complete/frozen",
-    "milestone2Status": "CodeUpdate0137 complete locally. Complete runtime verification passed 76/76. GitHub Actions is pending until the pushed commit is confirmed green.",
-    "lastUpdateName": "CodeUpdate0137-CompleteClassicGameplay",
+    "milestone2Status": "CodeUpdate0138 closed locally. Complete runtime verification passed 55/55. GitHub Actions is pending until the pushed commit is confirmed green.",
+    "lastUpdateName": "CodeUpdate0138-ServerRuntimeHostEnablement",
     "nextRecommendedWork": [
-      "Push CodeUpdate0137.",
+      "Push CodeUpdate0138.",
       "Wait for green GitHub Actions.",
-      "Begin CodeUpdate0138 multiplayer/server expansion only after the gate is green or explicitly overridden."
+      "Begin the next approved public update only after the gate is green or explicitly overridden."
     ]
   },
   "handoffPolicy": {
@@ -49,9 +50,9 @@
       "DEVELOPMENT_PRINCIPLES.md"
     ]
   },
-  "buildVerification": "LOCAL_PASS; CodeUpdate0137 complete runtime verification passed 76/76 at Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md. GitHub Actions remains pending until pushed and confirmed green.",
-  "current_codeupdate": "0137",
-  "last_update": "Complete Classic Gameplay local baseline",
+  "buildVerification": "LOCAL_PASS; CodeUpdate0138 complete runtime verification passed 55/55 at Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md. GitHub Actions remains pending until pushed and confirmed green.",
+  "current_codeupdate": "0138",
+  "last_update": "Server Runtime and Host Enablement local baseline",
   "subsystems_completed": [
     "Server Runtime Milestone 1",
     "Runtime state/event foundation",
@@ -67,14 +68,17 @@
     "Character Foundation playable catalog generation",
     "Runtime account/character persistence foundation",
     "Runtime item/equipment foundation",
-    "Spell, combat, actors/abilities, interaction/narrative, services/economy, and world/multiplayer runtime smoke surfaces"
+    "Spell, combat, actors/abilities, interaction/narrative, services/economy, and world/multiplayer runtime smoke surfaces",
+    "Host configuration and scheduler audit surfaces",
+    "MMExplorer movement promotion through Librarium",
+    "MMExplorer textblock quest-flow fix 0142"
   ],
   "gitIgnorePolicy": "Root .gitignore excludes generated graph/index/database artifacts including Generated/Librarium, Generated/LibrariumLocal, core_graph/query_index/runtime_index/evidence_index/formula_index, *.sqlite, *.db, and graph directories.",
-  "current_milestone": "CodeUpdate0137 - Complete Classic Gameplay",
+  "current_milestone": "CodeUpdate0138 - Server Runtime and Host Enablement",
   "librarium_authoritative": true,
   "data_generated_from_librarium": true,
   "importedDatabasesPolicy": "Retain /ImportedDatabases until Librarium is 100% complete and user explicitly approves retirement.",
-  "updatedUtc": "2026-07-11T14:37:35Z",
+  "updatedUtc": "2026-07-12T17:27:04Z",
   "dataPolicy": "/Data is generated output per world and should not be hand-edited as canonical source.",
   "hostClientPolicy": "Host/server/editor may edit validated Librarium worlds; client is read-only by connected world."
 }

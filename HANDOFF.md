@@ -1,35 +1,24 @@
-# Handoff - CodeUpdate0137
+# Handoff
 
-Read `Docs/PROJECT_STATUS.md` for the concise current status.
+CodeUpdate0138 is closed locally.
 
-## Current Local State
+Current baseline:
 
-CodeUpdate0137 is complete locally and ready for commit/push.
+- Code Update: `0138`
+- Database Version: `0010`
+- Milestone: `CodeUpdate0138 - Server Runtime and Host Enablement`
+- Verification: PASS 55/55
+- Latest report: `Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md`
 
-Completed scope:
+Important rules:
 
-- Character Foundation creation.
-- Item/equipment runtime foundation.
-- Classic repair contract enforcement.
-- Expanded complete runtime verification gate.
-- Documentation and manifest consolidation.
+- Librarium is authoritative.
+- `/Data` is generated runtime output.
+- Runtime consumes generated `/Data` only.
+- Classic remains immutable and evidence-locked.
+- `ImportedDatabases/` remains reference-only unless the user explicitly approves cleanup.
+- Do not commit smoke-save artifacts.
 
-## Verified Locally
+CodeUpdate0138 includes server runtime/host enablement work plus the latest Librarium movement and quest-flow promotions. The complete runtime gate now includes the 0142 MMExplorer textblock quest validator.
 
-Complete runtime verification passed 76/76:
-
-```text
-python Tools\Validation\run_complete_runtime_verification.py
-Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md
-```
-
-Coverage includes Python validators, simulator validators, solution restore/build, compiler tests, core tests, server generated-data smoke, room/exit smoke, NPC smoke, character foundation smoke, item smoke, spell smoke, spell execution smoke, combat smokes, actors/abilities smoke, interaction/narrative smoke, services/economy smoke, world/multiplayer smoke, and scripted local-session smoke.
-
-## Continue Next
-
-1. Keep `Saves/Runtime0137` smoke artifacts out of commits.
-2. Commit and push CodeUpdate0137.
-3. Wait for green GitHub Actions on the pushed commit.
-4. Start the next approved update only after the gate is green or explicitly overridden.
-
-Do not claim GitHub Actions green until the current pushed commit is confirmed green.
+Next step: push this commit and wait for green GitHub Actions before beginning the next public update.

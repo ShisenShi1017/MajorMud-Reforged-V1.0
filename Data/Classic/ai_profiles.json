@@ -1,72 +1,23 @@
 {
-  "base_world": null,
-  "compiler_code_update": "0127",
-  "family": "ai_profiles",
+  "authority": "Librarium",
   "generated_by": "MajorMud.Reforged.Compiler",
-  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "compiler_code_update": "0127",
+  "world_id": "Classic",
+  "family": "ai_profiles",
+  "source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
   "record_count": 27,
   "records": [
     {
-      "ability_counts": {
-        "Magical": 386
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
-      "evidence_summary_0124": {
-        "confidence": "unscored",
-        "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
-        "source_priority": [
-          "OriginalRuntimeObservation",
-          "NightmareRedux",
-          "MBBSEmu",
-          "MMUDExplorer",
-          "MonsterSimulatorHistorical",
-          "DataSimEvidence"
-        ]
-      },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
-      },
       "id": "ai_profile.magical",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 386,
       "name": "magical",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 386,
+      "ability_counts": {
+        "Magical": 386
       },
       "sample_monsters": [
         "502",
@@ -170,6 +121,37 @@
         "700",
         "815"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -178,31 +160,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "NonLiving": 185
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -210,44 +170,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_nonliving",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 184,
       "name": "ability nonliving",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 184,
+      "ability_counts": {
+        "NonLiving": 185
       },
       "sample_monsters": [
         "5",
@@ -351,6 +299,37 @@
         "707",
         "671"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -359,31 +338,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "ImmuPoison": 209
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -391,44 +348,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_immupoison",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 209,
       "name": "ability immupoison",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 209,
+      "ability_counts": {
+        "ImmuPoison": 209
       },
       "sample_monsters": [
         "1023",
@@ -532,6 +477,37 @@
         "505",
         "394"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -540,31 +516,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Animal": 155
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -572,44 +526,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_animal",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 155,
       "name": "ability animal",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 155,
+      "ability_counts": {
+        "Animal": 155
       },
       "sample_monsters": [
         "1023",
@@ -713,6 +655,37 @@
         "733",
         "690"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -721,31 +694,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "ResistWater": 9
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -753,44 +704,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_resistwater",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 9,
       "name": "ability resistwater",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 9,
+      "ability_counts": {
+        "ResistWater": 9
       },
       "sample_monsters": [
         "975",
@@ -803,6 +742,37 @@
         "414",
         "974"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -811,31 +781,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "SpellImmu": 387
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -843,44 +791,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_spellimmu",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 387,
       "name": "ability spellimmu",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 387,
+      "ability_counts": {
+        "SpellImmu": 387
       },
       "sample_monsters": [
         "975",
@@ -984,6 +920,37 @@
         "850",
         "700"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -992,31 +959,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Rlit": 36
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -1024,44 +969,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_rlit",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 36,
       "name": "ability rlit",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 36,
+      "ability_counts": {
+        "Rlit": 36
       },
       "sample_monsters": [
         "986",
@@ -1101,6 +1034,37 @@
         "119",
         "985"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -1109,31 +1073,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Rfir": 171
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -1141,44 +1083,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_rfir",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 171,
       "name": "ability rfir",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 171,
+      "ability_counts": {
+        "Rfir": 171
       },
       "sample_monsters": [
         "1105",
@@ -1282,6 +1212,37 @@
         "707",
         "671"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -1290,31 +1251,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Rcol": 153
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -1322,44 +1261,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_rcol",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 153,
       "name": "ability rcol",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 153,
+      "ability_counts": {
+        "Rcol": 153
       },
       "sample_monsters": [
         "979",
@@ -1463,6 +1390,37 @@
         "164",
         "678"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -1471,31 +1429,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "SeeHidden": 181
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -1503,44 +1439,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_seehidden",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 181,
       "name": "ability seehidden",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 181,
+      "ability_counts": {
+        "SeeHidden": 181
       },
       "sample_monsters": [
         "185",
@@ -1644,6 +1568,37 @@
         "394",
         "257"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -1652,31 +1607,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "ResistStone": 7
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -1684,44 +1617,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_resiststone",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 7,
       "name": "ability resiststone",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 7,
+      "ability_counts": {
+        "ResistStone": 7
       },
       "sample_monsters": [
         "649",
@@ -1732,6 +1653,37 @@
         "641",
         "640"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -1740,31 +1692,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Dodge": 167
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -1772,44 +1702,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_dodge",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 167,
       "name": "ability dodge",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 167,
+      "ability_counts": {
+        "Dodge": 167
       },
       "sample_monsters": [
         "186",
@@ -1913,6 +1831,37 @@
         "1006",
         "1084"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -1921,31 +1870,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "AntiMagic": 22
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -1953,44 +1880,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_antimagic",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 22,
       "name": "ability antimagic",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 22,
+      "ability_counts": {
+        "AntiMagic": 22
       },
       "sample_monsters": [
         "106",
@@ -2016,6 +1931,37 @@
         "1084",
         "831"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2024,31 +1970,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "MonsGuards": 159
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2056,44 +1980,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_monsguards",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 112,
       "name": "ability monsguards",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 112,
+      "ability_counts": {
+        "MonsGuards": 159
       },
       "sample_monsters": [
         "654",
@@ -2197,6 +2109,37 @@
         "617",
         "616"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2205,31 +2148,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "BadAttk": 18
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2237,44 +2158,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_badattk",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 18,
       "name": "ability badattk",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 18,
+      "ability_counts": {
+        "BadAttk": 18
       },
       "sample_monsters": [
         "516",
@@ -2296,6 +2205,37 @@
         "866",
         "824"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2304,31 +2244,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "ReqToHit": 9
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2336,44 +2254,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_reqtohit",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 9,
       "name": "ability reqtohit",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 9,
+      "ability_counts": {
+        "ReqToHit": 9
       },
       "sample_monsters": [
         "263",
@@ -2386,6 +2292,37 @@
         "539",
         "409"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2394,31 +2331,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Freedom": 11
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2426,44 +2341,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_freedom",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 11,
       "name": "ability freedom",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 11,
+      "ability_counts": {
+        "Freedom": 11
       },
       "sample_monsters": [
         "328",
@@ -2478,6 +2381,37 @@
         "805",
         "40"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2486,31 +2420,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "DamageShield": 9
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2518,44 +2430,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_damageshield",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 9,
       "name": "ability damageshield",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 9,
+      "ability_counts": {
+        "DamageShield": 9
       },
       "sample_monsters": [
         "952",
@@ -2568,6 +2468,37 @@
         "956",
         "928"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2576,31 +2507,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Shock": 6
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2608,44 +2517,32 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_shock",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 6,
       "name": "ability shock",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 6,
+      "ability_counts": {
+        "Shock": 6
       },
       "sample_monsters": [
         "952",
@@ -2655,6 +2552,37 @@
         "1048",
         "956"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2663,31 +2591,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Illu": 3
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2695,50 +2601,69 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_illu",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 3,
       "name": "ability illu",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 3,
+      "ability_counts": {
+        "Illu": 3
       },
       "sample_monsters": [
         "8",
         "264",
         "269"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2747,31 +2672,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "ProtGood": 1
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2779,48 +2682,67 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_protgood",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 1,
       "name": "ability protgood",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 1,
+      "ability_counts": {
+        "ProtGood": 1
       },
       "sample_monsters": [
         "790"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2829,31 +2751,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "RoomIllu": 3
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2861,50 +2761,69 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_roomillu",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 3,
       "name": "ability roomillu",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 3,
+      "ability_counts": {
+        "RoomIllu": 3
       },
       "sample_monsters": [
         "631",
         "676",
         "736"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2913,31 +2832,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Shadowform": 1
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -2945,48 +2842,67 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_shadowform",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 1,
       "name": "ability shadowform",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 1,
+      "ability_counts": {
+        "Shadowform": 1
       },
       "sample_monsters": [
         "384"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -2995,80 +2911,77 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
       "version_history_0124": {
         "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
     },
     {
+      "id": "ai_profile.ability_drain",
+      "name": "ability drain",
+      "object_type": "ai_profile",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 1,
       "ability_counts": {
         "Drain": 1
       },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
+      "sample_monsters": [
+        "632"
+      ],
       "evidence": [
         {
           "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
         }
       ],
-      "evidence_summary_0124": {
-        "confidence": "unscored",
-        "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
-        "source_priority": [
-          "OriginalRuntimeObservation",
-          "NightmareRedux",
-          "MBBSEmu",
-          "MMUDExplorer",
-          "MonsterSimulatorHistorical",
-          "DataSimEvidence"
-        ]
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
       },
       "generator_mapping_0124": {
         "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
         "target_worlds": [
           "classic"
-        ]
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
       },
-      "id": "ai_profile.ability_drain",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 1,
-      "name": "ability drain",
-      "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
-      },
-      "sample_monsters": [
-        "632"
-      ],
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -3077,80 +2990,77 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
       "version_history_0124": {
         "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
     },
     {
+      "id": "ai_profile.ability_magebind",
+      "name": "ability magebind",
+      "object_type": "ai_profile",
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 1,
       "ability_counts": {
         "MageBind": 1
       },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
+      "sample_monsters": [
+        "632"
+      ],
       "evidence": [
         {
           "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
         }
       ],
-      "evidence_summary_0124": {
-        "confidence": "unscored",
-        "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
-        "source_priority": [
-          "OriginalRuntimeObservation",
-          "NightmareRedux",
-          "MBBSEmu",
-          "MMUDExplorer",
-          "MonsterSimulatorHistorical",
-          "DataSimEvidence"
-        ]
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
       },
       "generator_mapping_0124": {
         "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
         "target_worlds": [
           "classic"
-        ]
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
       },
-      "id": "ai_profile.ability_magebind",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 1,
-      "name": "ability magebind",
-      "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
-      },
-      "sample_monsters": [
-        "632"
-      ],
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -3159,31 +3069,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "Damage": 1
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -3191,48 +3079,67 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_damage",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 1,
       "name": "ability damage",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 1,
+      "ability_counts": {
+        "Damage": 1
       },
       "sample_monsters": [
         "15"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -3241,31 +3148,9 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
-      "version_history_0124": {
-        "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
-    },
-    {
-      "ability_counts": {
-        "NegateAbility": 2
-      },
-      "classification": "candidate_from_monster_ability_inventory",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "evidence": [
-        {
-          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
-        }
-      ],
+      "relationship_summary_0124": [],
       "evidence_summary_0124": {
-        "confidence": "unscored",
         "evidence_ref_count": 1,
-        "has_imported_database_anchor": false,
         "source_priority": [
           "OriginalRuntimeObservation",
           "NightmareRedux",
@@ -3273,49 +3158,68 @@
           "MMUDExplorer",
           "MonsterSimulatorHistorical",
           "DataSimEvidence"
-        ]
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
       },
-      "generator_mapping_0124": {
-        "compiler_stage": "librarium_to_data",
-        "export_path": "/Data/<world>/ai_profiles.json",
-        "hot_reload_candidate": false,
-        "output_collection": "ai_profiles",
-        "requires_validation": true,
-        "target_worlds": [
-          "classic"
-        ]
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
       },
+      "version_history_0124": {
+        "code_update": "0124",
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
+    },
+    {
       "id": "ai_profile.ability_negateability",
-      "librarium_enrichment_0124": {
-        "classic_lock": "classic world records require evidence-backed edits",
-        "client_visibility": "read_only_world_scoped",
-        "data_role": "definition_source_for_generated_data",
-        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
-        "runtime_mutability": "runtime must not edit Librarium records",
-        "source_of_truth": "Librarium",
-        "status": "enriched_pass_1"
-      },
-      "librarium_source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-      "monster_count": 2,
       "name": "ability negateability",
       "object_type": "ai_profile",
-      "override_policy_0124": {
-        "ai": "ai_editable_working_copy_after_validation_and_host_policy",
-        "classic": "locked_evidence_backed_only",
-        "custom": "host_editable_after_validation"
-      },
-      "relationship_summary_0124": [],
-      "runtime_mapping": {
-        "exports_to": "/Data/<world>/ai_profiles.json",
-        "generated_only": true,
-        "runtime_reads_generated_data": true,
-        "source": "Librarium/Objects",
-        "status": "pending"
+      "world_scope": [
+        "classic"
+      ],
+      "classification": "candidate_from_monster_ability_inventory",
+      "monster_count": 2,
+      "ability_counts": {
+        "NegateAbility": 2
       },
       "sample_monsters": [
         "514",
         "508"
       ],
+      "evidence": [
+        {
+          "source": "Simulator/DataSimVer/0008/MonsterAbilityInventory.csv"
+        }
+      ],
+      "runtime_mapping": {
+        "status": "pending",
+        "exports_to": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "source": "Librarium/Objects",
+        "generated_only": true,
+        "runtime_reads_generated_data": true
+      },
+      "librarium_enrichment_0124": {
+        "status": "enriched_pass_1",
+        "source_of_truth": "Librarium",
+        "data_role": "definition_source_for_generated_data",
+        "classic_lock": "classic world records require evidence-backed edits",
+        "imported_database_retention": "ImportedDatabases retained until Librarium is declared 100% complete",
+        "runtime_mutability": "runtime must not edit Librarium records",
+        "client_visibility": "read_only_world_scoped"
+      },
+      "generator_mapping_0124": {
+        "compiler_stage": "librarium_to_data",
+        "target_worlds": [
+          "classic"
+        ],
+        "output_collection": "ai_profiles",
+        "export_path": "/Data/\u003Cworld\u003E/ai_profiles.json",
+        "requires_validation": true,
+        "hot_reload_candidate": false
+      },
       "validation_rules_0124": [
         "id_required",
         "object_type_required",
@@ -3324,17 +3228,30 @@
         "runtime_mapping_required",
         "generator_mapping_required"
       ],
+      "relationship_summary_0124": [],
+      "evidence_summary_0124": {
+        "evidence_ref_count": 1,
+        "source_priority": [
+          "OriginalRuntimeObservation",
+          "NightmareRedux",
+          "MBBSEmu",
+          "MMUDExplorer",
+          "MonsterSimulatorHistorical",
+          "DataSimEvidence"
+        ],
+        "has_imported_database_anchor": false,
+        "confidence": "unscored"
+      },
+      "override_policy_0124": {
+        "classic": "locked_evidence_backed_only",
+        "custom": "host_editable_after_validation",
+        "ai": "ai_editable_working_copy_after_validation_and_host_policy"
+      },
       "version_history_0124": {
         "code_update": "0124",
-        "date": "2026-07-09",
-        "operation": "librarium_enrichment_pass_1"
-      },
-      "world_scope": [
-        "classic"
-      ]
+        "operation": "librarium_enrichment_pass_1",
+        "date": "2026-07-09"
+      }
     }
-  ],
-  "source_file": "Librarium/Objects/ai_profiles/ai_profile_records_0123.json",
-  "world_id": "Classic",
-  "world_type": "classic"
+  ]
 }

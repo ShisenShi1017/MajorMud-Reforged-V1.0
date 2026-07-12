@@ -13,6 +13,7 @@ public sealed class ServerRuntimeOptions
     public string HostName { get; init; } = "Reforged Realms Host";
     public string DefaultWorldId { get; init; } = "classic";
     public int WorldTickMilliseconds { get; init; } = 1000;
+    public int CombatTickMilliseconds { get; init; } = 6000;
     public NetworkRuntimeOptions Network { get; init; } = new();
     public RuntimeDevelopmentOptions Development { get; init; } = new();
     public IReadOnlyList<WorldRuntimeDefinition> Worlds { get; init; } = Array.Empty<WorldRuntimeDefinition>();
@@ -44,6 +45,7 @@ public sealed class ServerRuntimeOptions
                         DataRoot = ReadString(world, "dataRoot", "Data"),
                         RoomsFile = ReadString(world, "roomsFile", "rooms.json"),
                         ExitsFile = ReadString(world, "exitsFile", "exits.json"),
+                        TriggersFile = ReadString(world, "triggersFile", "triggers.json"),
                         NpcsFile = ReadString(world, "npcsFile", "npcs.json"),
                         SpawnsFile = ReadString(world, "spawnsFile", "spawns.json"),
                         DiagnosticRoom = ReadString(world, "diagnosticRoom", ReadString(world, "startRoom", string.Empty)),
@@ -68,6 +70,7 @@ public sealed class ServerRuntimeOptions
                 HostName = ReadString(root, "hostName", "Reforged Realms Host"),
                 DefaultWorldId = ReadString(root, "defaultWorldId", worlds[0].Id),
                 WorldTickMilliseconds = ReadInt(root, "worldTickMilliseconds", 1000),
+                CombatTickMilliseconds = ReadInt(root, "combatTickMilliseconds", 6000),
                 Network = ReadNetwork(root),
                 Development = ReadDevelopment(root),
                 Worlds = worlds
@@ -86,6 +89,7 @@ public sealed class ServerRuntimeOptions
             HostName = "Reforged Realms Host",
             DefaultWorldId = "classic",
             WorldTickMilliseconds = 1000,
+            CombatTickMilliseconds = 6000,
             Network = new NetworkRuntimeOptions(),
             Development = new RuntimeDevelopmentOptions(),
             Worlds = new[]
@@ -100,6 +104,7 @@ public sealed class ServerRuntimeOptions
                     DataRoot = "Data",
                     RoomsFile = "rooms.json",
                     ExitsFile = "exits.json",
+                    TriggersFile = "triggers.json",
                     NpcsFile = "npcs.json",
                     SpawnsFile = "spawns.json",
                     DiagnosticRoom = string.Empty,
@@ -198,6 +203,7 @@ public sealed class WorldRuntimeDefinition
     public string DataRoot { get; init; } = "Data";
     public string RoomsFile { get; init; } = "rooms.json";
     public string ExitsFile { get; init; } = "exits.json";
+    public string TriggersFile { get; init; } = "triggers.json";
     public string NpcsFile { get; init; } = "npcs.json";
     public string SpawnsFile { get; init; } = "spawns.json";
     public string DiagnosticRoom { get; init; } = string.Empty;

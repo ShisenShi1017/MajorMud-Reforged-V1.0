@@ -30,12 +30,8 @@ public sealed class ServerHostLifecycleReport
     public bool WorldSimulationEnabled { get; internal set; }
 
     public bool ReadyForRuntimePlanning =>
-        Initialized &&
-        Configured &&
-        DataReady &&
-        WorldProjectionReady &&
-        ModuleReady &&
-        RuntimeDisabled;
+        Initialized && Configured && DataReady && WorldProjectionReady && ModuleReady &&
+        GameplayEnabled && NetworkingEnabled && WorldSimulationEnabled && !RuntimeDisabled;
 
     public string Status
     {
@@ -46,7 +42,7 @@ public sealed class ServerHostLifecycleReport
                 return "runtime-enabled";
             }
 
-            return ReadyForRuntimePlanning ? "ready-runtime-disabled" : "readiness-has-gaps";
+            return ReadyForRuntimePlanning ? "runtime-enabled" : "readiness-has-gaps";
         }
     }
 

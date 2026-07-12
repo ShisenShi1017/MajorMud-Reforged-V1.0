@@ -19,9 +19,9 @@ public sealed class ServerHostConfigurationAudit
             .AddDefault("server:host:maxSessions", "64")
             .AddDefault("server:host:worldTickMilliseconds", "1000")
             .AddDefault("server:host:combatTickMilliseconds", "6000")
-            .AddDefault("server:host:gameplayEnabled", "false")
-            .AddDefault("server:host:networkingEnabled", "false")
-            .AddDefault("server:host:worldSimulationEnabled", "false")
+            .AddDefault("server:host:gameplayEnabled", "true")
+            .AddDefault("server:host:networkingEnabled", "true")
+            .AddDefault("server:host:worldSimulationEnabled", "true")
             .LoadJsonFile(configPath, optional: true)
             .LoadEnvironment("REFORGED_");
 
@@ -36,9 +36,9 @@ public sealed class ServerHostConfigurationAudit
             MaxSessions = configuration.GetInt32("server:host:maxSessions", 64),
             WorldTickMilliseconds = configuration.GetInt32("server:host:worldTickMilliseconds", 1000),
             CombatTickMilliseconds = configuration.GetInt32("server:host:combatTickMilliseconds", 6000),
-            GameplayEnabled = configuration.GetBoolean("server:host:gameplayEnabled", false),
-            NetworkingEnabled = configuration.GetBoolean("server:host:networkingEnabled", false),
-            WorldSimulationEnabled = configuration.GetBoolean("server:host:worldSimulationEnabled", false)
+            GameplayEnabled = configuration.GetBoolean("server:host:gameplayEnabled", true),
+            NetworkingEnabled = configuration.GetBoolean("server:host:networkingEnabled", true),
+            WorldSimulationEnabled = configuration.GetBoolean("server:host:worldSimulationEnabled", true)
         };
 
         Validate(report, validation);
@@ -72,9 +72,10 @@ public sealed class ServerHostConfigurationAudit
             validation.Add(ValidationSeverity.Error, "SERVER_HOST_COMBAT_TICK_INVALID", "Server combat tick milliseconds must be greater than zero.", report.ConfigurationPath, "server-host");
         }
 
-        if (report.GameplayEnabled || report.NetworkingEnabled || report.WorldSimulationEnabled)
+        var enabledCount = new[] { report.GameplayEnabled, report.NetworkingEnabled, report.WorldSimulationEnabled }.Count(value => value);
+        if (enabledCount is > 0 and < 3)
         {
-            validation.Add(ValidationSeverity.Error, "SERVER_HOST_RUNTIME_ENABLED", "Server host runtime toggles must remain disabled during non-gameplay bootstrap.", report.ConfigurationPath, "server-host");
+            validation.Add(ValidationSeverity.Error, "SERVER_HOST_PARTIALLY_ENABLED", "Gameplay, networking, and world simulation must be enabled or disabled as one host lifecycle boundary.", report.ConfigurationPath, "server-host");
         }
     }
 }

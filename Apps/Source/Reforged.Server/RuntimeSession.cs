@@ -1,3 +1,5 @@
+using System.Collections.Concurrent;
+
 namespace Reforged.Server;
 
 public sealed class RuntimeSession
@@ -25,6 +27,19 @@ public sealed class RuntimeSession
     public string SpawnSource { get; private set; }
     public DateTimeOffset ConnectedAtUtc { get; }
     public DateTimeOffset LastCommandAtUtc { get; private set; }
+    private readonly ConcurrentQueue<string> _messages = new();
+
+    public void EnqueueMessage(string message)
+    {
+        if (!string.IsNullOrWhiteSpace(message)) _messages.Enqueue(message);
+    }
+
+    public IReadOnlyList<string> DrainMessages()
+    {
+        var messages = new List<string>();
+        while (_messages.TryDequeue(out var message)) messages.Add(message);
+        return messages;
+    }
 
     public void Touch() => LastCommandAtUtc = DateTimeOffset.UtcNow;
 
@@ -47,10 +62,16 @@ public sealed class RuntimeSession
             return false;
         }
 
-        var target = World.FindRoomByNumber(exit.TargetRoomNumber);
+        if (exit.HasBlockedDestination)
+        {
+            message = $"Exit {normalized} points to unresolved destination {exit.TargetKey}. Movement blocked until evidence is reconciled.";
+            return false;
+        }
+
+        var target = World.FindRoom(exit.TargetMapId, exit.TargetRoomNumber);
         if (target is null)
         {
-            message = $"Exit {normalized} points to unresolved room number {exit.TargetRoomNumber}. Movement blocked until evidence is reconciled.";
+            message = $"Exit {normalized} points to unresolved destination {exit.TargetKey}. Movement blocked until evidence is reconciled.";
             return false;
         }
 

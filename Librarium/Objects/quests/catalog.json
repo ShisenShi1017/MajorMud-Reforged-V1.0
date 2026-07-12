@@ -1,6 +1,6 @@
 {
   "object_type": "quest",
-  "code_update": "0125",
+  "code_update": "0142",
   "schema_ref": "../../Schemas/librarium_object_schema_0121.json",
   "records": [
     "catalog_seed_0119.json",
@@ -9,12 +9,17 @@
   ],
   "phase2_status": "foundation_complete",
   "phase3_status": "true_population_pass_2_enriched",
-  "population_note": "Pass 2 adds quest/key/condition candidate records from action and condition clue evidence.",
+  "population_note": "Pass 2 adds quest/key/condition candidate records from action and condition clue evidence. Update 0142 replaces the incomplete 0141 textblock quest-flow grammar import in quest_records_0123.json without creating a separate compiler-selected quest records file.",
   "catalog_role": "librarium_object_catalog_index",
   "librarium_authority": "source_of_truth",
   "data_generation_policy": "/Data is generated from Librarium and must not be manually edited",
   "imported_database_retention": "retain until Librarium is 100% complete",
-  "enrichment_pointer": "See *_records_0122.json or *_records_0123.json for populated records where available.",
+  "enrichment_pointer": "See quest_records_0123.json for populated records; 0142 textblock quest-flow imports are upserted there to preserve full quest generation.",
+  "textblock_quest_flow_import_0142": {
+    "source": "../../SourceImports/MMExplorerSQLData/TextblocksDecoded0142/quest_flows_decoded.json",
+    "decoded_quest_flows": 83,
+    "policy": "0142 replaces incomplete 0141 grammar classification; exact source scripts remain preserved with zero unknown opcodes and zero unclassified tokens."
+  },
   "generation_readiness": "ready_for_compiler_contract_pass",
   "generation_contract_ref": "../../GenerationReadiness/generation_contracts_0125.json",
   "export_contract_summary": {

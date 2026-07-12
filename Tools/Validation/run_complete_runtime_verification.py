@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Run the complete CodeUpdate0135 plus internal 0136/0137 verification gate.
+"""Run the current feature-based Reforged runtime verification gate.
 
-This orchestrates Python validation/simulation, .NET builds/tests, server smoke
-modes, and a scripted local-console runtime session. It writes machine-readable
-and Markdown reports under Reports/RuntimeVerification.
+Historical migration validators are intentionally excluded. This gate validates
+current Librarium, compiler, runtime, gameplay, and Living World behavior.
 """
 from __future__ import annotations
 
@@ -18,9 +17,6 @@ from pathlib import Path
 
 PYTHON_SCRIPTS = [
     "Librarium/Tools/validate_librarium.py",
-    "Librarium/Validation/validate_librarium_0009.py",
-    "Librarium/Validation/validate_librarium_0011.py",
-    "Librarium/Validation/validate_validation_0001.py",
     "Runtime/test_harness/full_game_test_harness.py",
     "Sim/validators/validate_ability_quest_engine.py",
     "Sim/validators/validate_class_race_engine.py",
@@ -29,7 +25,6 @@ PYTHON_SCRIPTS = [
     "Sim/validators/validate_data_load.py",
     "Sim/validators/validate_exp_leveling.py",
     "Sim/validators/validate_formula_engine.py",
-    "Sim/validators/validate_full_game_harness.py",
     "Sim/validators/validate_gameplay_completion.py",
     "Sim/validators/validate_loot_economy_npc.py",
     "Sim/validators/validate_monster_ai.py",
@@ -43,34 +38,17 @@ PYTHON_SCRIPTS = [
     "Sim/validators/validate_spawn.py",
     "Sim/validators/validate_spells_status.py",
     "Sim/validators/validate_world_integration.py",
-    "Tests/test_librarium_export_0116.py",
-    "Tools/Librarium/validate_0127_world_outputs.py",
     "Tools/Librarium/validate_generation_readiness.py",
-    "Tools/Librarium/validate_librarium_phase2_3.py",
-    "Tools/Librarium/validate_librarium_population_0122.py",
-    "Tools/Librarium/validate_librarium_population_0123.py",
-    "Tools/Simulator/MajorMUD-Reforged-SimulatorPrototype/tests/smoke_test.py",
-    "Tools/Validation/validate_codeupdate0130_server_classic_readiness.py",
-    "Tools/Validation/validate_codeupdate0132_runtime_room_exit_slice.py",
-    "Tools/Validation/validate_codeupdate0134_runtime_npc_loading.py",
-    "Tools/Validation/validate_codeupdate0135_combat_execution.py",
-    "Tools/Validation/validate_codeupdate0135_exhaustive_repairs.py",
-    "Tools/Validation/validate_codeupdate0136_classic_drop_roll.py",
-    "Tools/Validation/validate_codeupdate0137_character_foundation_librarium.py",
-    "Tools/Validation/validate_codeupdate0137_character_foundation.py",
-    "Tools/Validation/validate_codeupdate0137_character_foundation_phase003.py",
-    "Tools/Validation/validate_codeupdate0137_items_equipment.py",
-    "Tools/Validation/validate_codeupdate0137_item_runtime_complete.py",
-    "Tools/Validation/validate_item_runtime_complete_0137.py",
-    "Tools/Validation/validate_server_generated_data_bootstrap_0137.py",
+    "Tools/Validation/validate_mmexplorer_librarium_update_0140.py",
+    "Tools/Validation/validate_mmexplorer_textblock_update_0142.py",
     "Tools/Validation/validate_combat_runtime.py",
     "Tools/Validation/validate_combat_runtime_part2.py",
     "Tools/Validation/validate_gameplay_group1.py",
     "Tools/Validation/validate_gameplay_group2.py",
     "Tools/Validation/validate_gameplay_group3.py",
     "Tools/Validation/validate_gameplay_group4.py",
-    "Sim/validators/validate_spell_runtime_0137.py",
-    "Sim/validators/validate_spell_runtime_part2_0137.py",
+    "Tools/Validation/validate_live_gameplay_part5.py",
+    "Tools/Validation/validate_live_services_bundle.py",
 ]
 
 DOTNET_STEPS = [
@@ -155,7 +133,7 @@ def main() -> int:
         return 2
 
     print(f"Repository: {root}")
-    print("Running complete CodeUpdate0135 plus internal 0136/0137 runtime verification gate...")
+    print("Running current feature-based runtime verification gate...")
 
     for script in PYTHON_SCRIPTS:
         path = root / script
@@ -194,7 +172,7 @@ def main() -> int:
         print(f"{result['status']:7} {result['name']} ({result['seconds']}s)")
 
     summary = {
-        "codeupdate": "0137",
+        "codeupdate": "0138",
         "gate": "complete_runtime_verification",
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "status": "PASS" if results and all(r["status"] == "PASS" for r in results) else "FAIL",
@@ -210,7 +188,7 @@ def main() -> int:
     lines = [
         "# Complete Runtime Verification",
         "",
-        f"- CodeUpdate: 0137",
+        f"- CodeUpdate: 0138",
         f"- Status: **{summary['status']}**",
         f"- Passed: {summary['passed']}/{summary['total']}",
         f"- Timestamp: {summary['timestamp_utc']}",

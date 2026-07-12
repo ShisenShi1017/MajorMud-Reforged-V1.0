@@ -11,6 +11,7 @@ public sealed class ServerRuntimeHost
     private readonly RuntimeSessionManager _sessions;
     private readonly RuntimeCharacterService _characters;
     private readonly ServerTickScheduler _scheduler = new();
+    private readonly RuntimeLiveGameplayFacade _gameplay;
     private RuntimeCommandDispatcher _commands;
 
     public ServerRuntimeHost(string projectRoot, ServerRuntimeOptions options)
@@ -19,7 +20,8 @@ public sealed class ServerRuntimeHost
         _options = options;
         _characters = new RuntimeCharacterService(projectRoot);
         _sessions = new RuntimeSessionManager(_state, _events, _options.Development, _characters);
-        _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions, _state, _events);
+        _gameplay = new RuntimeLiveGameplayFacade(_characters, _sessions);
+        _commands = new RuntimeCommandDispatcher(() => _worlds, _sessions, _state, _events, _gameplay);
     }
 
     public IReadOnlyDictionary<string, RuntimeWorld> Worlds => _worlds;
@@ -130,7 +132,7 @@ public sealed class ServerRuntimeHost
             var movementChecks = new List<RuntimeRoomExitMovementCheck>();
             foreach (var exit in startRoom?.Exits ?? Array.Empty<RuntimeExit>())
             {
-                var target = world.FindRoomByNumber(exit.TargetRoomNumber);
+                var target = exit.HasBlockedDestination ? null : world.FindRoom(exit.TargetMapId, exit.TargetRoomNumber);
                 movementChecks.Add(new RuntimeRoomExitMovementCheck
                 {
                     Direction = exit.Direction,
@@ -172,7 +174,8 @@ public sealed class ServerRuntimeHost
             throw new InvalidOperationException("No runtime-enabled worlds are configured.");
         }
 
-        _scheduler.Register("world-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.WorldTickMilliseconds)), _ => Task.CompletedTask);
+        _scheduler.Register("world-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.WorldTickMilliseconds)), token => _gameplay.TickLivingWorldsAsync(token));
+        _scheduler.Register("combat-tick", TimeSpan.FromMilliseconds(Math.Max(100, _options.CombatTickMilliseconds)), token => _gameplay.TickLiveCombatsAsync(token));
         _scheduler.Register("session-heartbeat", TimeSpan.FromSeconds(30), _ => Task.CompletedTask);
     }
 

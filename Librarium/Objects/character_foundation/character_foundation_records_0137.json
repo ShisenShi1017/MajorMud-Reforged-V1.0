@@ -1,0 +1,22 @@
+{
+  "object_type": "character_foundation_record_set",
+  "code_update": "0137",
+  "authority": "Librarium",
+  "records": [
+    {
+      "id": "character_foundation.classic.native_runtime_promoted_0137",
+      "name": "Classic Character Foundation Native Runtime Promotion",
+      "object_type": "character_foundation",
+      "world_scope": "classic",
+      "status": "promoted",
+      "source_file": "native_runtime_promoted_0137.json",
+      "runtime_destination": "Data/Classic/character_foundation.json",
+      "description": "Catalog record for the promoted native race/class/start-location character foundation evidence used by the generated Classic runtime.",
+      "validation": {
+        "race_class_matrix_required": true,
+        "starting_location_required": true,
+        "generated_data_matches_librarium_source": true
+      }
+    }
+  ]
+}

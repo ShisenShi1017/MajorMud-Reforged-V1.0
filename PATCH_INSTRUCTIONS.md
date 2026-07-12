@@ -1,33 +1,23 @@
-# Patch Instructions - CodeUpdate0137
+# Patch Instructions
 
-This is a local Codex repository update, not a ChatGPT ZIP patch.
+This is a local Codex repository update, not a standalone ZIP patch.
 
-## Verify Locally
+To verify the closed CodeUpdate0138 baseline locally:
 
-From the repository root:
-
-```powershell
+```text
 python Tools\Validation\run_complete_runtime_verification.py
 ```
 
 Expected result:
 
 ```text
-PASS 76/76
-Reports\RuntimeVerification\complete_runtime_verification_20260711T143632Z.md
+PASS 55/55
 ```
 
-## Commit/Push Gate
+Latest verified report:
 
-1. Clean smoke artifacts from `Saves/`.
-2. Commit CodeUpdate0137.
-3. Push the commit.
-4. Wait for green GitHub Actions before starting the next public update.
+```text
+Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md
+```
 
-## Rules
-
-- Do not hand-edit generated `/Data` as canonical source.
-- Keep Librarium authoritative.
-- Preserve `ImportedDatabases/`.
-- Do not commit smoke saves under `Saves/Runtime0137`.
-- Do not claim GitHub Actions green until the current pushed commit is verified.
+After commit and push, treat the update as accepted only when GitHub Actions is green for the pushed commit.

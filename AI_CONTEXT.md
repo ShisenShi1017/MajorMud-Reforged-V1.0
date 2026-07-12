@@ -6,12 +6,12 @@ Read `AGENTS.md` first, then read this file, then read `Docs/PROJECT_STATUS.md`.
 
 ## Current Position
 
-- Current Code Update: `0137`.
+- Current Code Update: `0138`.
 - Current Database Version: `0010`.
-- Current Milestone: `CodeUpdate0137 - Complete Classic Gameplay`.
-- Current local status: complete and verified locally.
-- Latest local complete runtime verification: PASS 76/76.
-- Latest report: `Reports/RuntimeVerification/complete_runtime_verification_20260711T143632Z.md`.
+- Current Milestone: `CodeUpdate0138 - Server Runtime and Host Enablement`.
+- Current local status: closed and verified locally.
+- Latest local complete runtime verification: PASS 55/55.
+- Latest report: `Reports/RuntimeVerification/complete_runtime_verification_20260712T173531Z.md`.
 - GitHub Actions is pending until this commit is pushed and the current pushed commit is reported green.
 
 ## Non-Negotiable Rules
@@ -22,23 +22,24 @@ Read `AGENTS.md` first, then read this file, then read `Docs/PROJECT_STATUS.md`.
 - Classic is immutable and evidence-locked.
 - Custom and AI worlds use overlays.
 - Client is read-only for gameplay state.
-- Preserve `Saves/` and `ImportedDatabases/`.
+- Preserve real `Saves/` and `ImportedDatabases/`.
 - Do not commit smoke-save artifacts.
-- Do not move to the next public update until CodeUpdate0137 is pushed and GitHub Actions is green, unless the user explicitly overrides the gate.
+- Do not move to the next public update until CodeUpdate0138 is pushed and GitHub Actions is green, unless the user explicitly overrides the gate.
 
-## CodeUpdate0137 Summary
+## CodeUpdate0138 Summary
 
-- Character Foundation generation and runtime smoke are complete.
-- 13 races, 15 classes, and 195/195 race/class combinations are generated and verified.
-- New characters start at `room.2147`, `Newhaven, Adventurer's Guild`.
-- Items and equipment generation/runtime smoke are complete.
-- Classic bug-fix contracts remain enforced, including mask face-slot correction, Lyrist's Companion spell binding, bard 10% shop minimum, cloaked figure XP, and drop-roll uniformity.
-- Runtime slices for spells, spell execution, combat, actors/abilities, interaction/narrative, services/economy, world/multiplayer, generated data, rooms/exits, NPC loading, local session, compiler tests, and core tests pass in the complete gate.
-- Active documentation was consolidated into the root docs/manifests plus `Docs/PROJECT_STATUS.md` and `Docs/Architecture/PROJECT_ROADMAP.md`.
+- Server runtime and host enablement are integrated.
+- Host configuration, module readiness, lifecycle, scheduler bootstrap, and scheduler status command audits are present.
+- Live gameplay, multiplayer, living world, combat, interaction/narrative, services/economy, and world-system runtime smokes are covered.
+- Generated Classic data compiles from Librarium.
+- MMExplorer movement evidence is promoted through Librarium records and generated `/Data`.
+- MMExplorer textblock quest-flow fix 0142 is promoted into Librarium quests.
+- Quest records include 83 textblock quest-flow records and 2,183 total quest records.
+- Active documentation is consolidated into the root docs/manifests plus `Docs/PROJECT_STATUS.md` and `Docs/Architecture/PROJECT_ROADMAP.md`.
 
 ## Next Gate
 
-1. Commit and push CodeUpdate0137.
+1. Commit and push CodeUpdate0138.
 2. Wait for GitHub Actions green on the pushed commit.
 3. Only then start the next approved update.
 

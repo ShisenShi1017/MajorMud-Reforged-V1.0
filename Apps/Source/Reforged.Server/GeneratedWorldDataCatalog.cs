@@ -7,7 +7,7 @@ public sealed class GeneratedWorldDataCatalog
 {
     private static readonly string[] RequiredFamilies =
     {
-        "rooms", "exits", "spawns", "npcs", "items", "spells", "formulas", "shops", "quests", "world_manifest", "compile_manifest"
+        "rooms", "exits", "triggers", "spawns", "npcs", "items", "spells", "formulas", "shops", "quests", "world_manifest", "compile_manifest"
     };
 
     public string WorldId { get; init; } = string.Empty;

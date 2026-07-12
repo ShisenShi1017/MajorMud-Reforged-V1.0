@@ -1,208 +1,203 @@
 {
-  "base_world": null,
-  "compiler_code_update": "0127",
-  "family": "scripts",
+  "authority": "Librarium",
   "generated_by": "MajorMud.Reforged.Compiler",
-  "overlay_manifest": "Librarium/Overlays/Classic/overlay_manifest_0127.json",
+  "compiler_code_update": "0127",
+  "world_id": "Classic",
+  "family": "scripts",
+  "source_file": "Librarium/Objects/scripts/script_catalog_0121.json",
   "record_count": 1,
   "records": [
     {
-      "code_update": "0121",
-      "compiled_from_librarium": true,
-      "compiler_code_update": "0127",
-      "confidence": "bucket-level; see child records for mechanic confidence",
-      "description": "Scriptable actions, macros, event handlers.",
-      "evidence_bucket": "command",
-      "evidence_refs": [
-        {
-          "classification": "text_scanned",
-          "evidence_count": 43,
-          "path": "ImportedDatabases/MBBSEmu/CLAUDE.md",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 19,
-          "path": "ImportedDatabases/MBBSEmu/README.md",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 70,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettingsManager.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 178,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 136,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MBBSEmu.csproj",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 148,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Program.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 13,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/commandLineHelp.txt",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 45,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 302,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 22,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveQuery.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 12,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/DOSErrorCode.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 42,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/ExeRuntime.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 19,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/Win32VT100.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 14,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Disassembler/NEFile.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 62,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Extensions/EnumSessionStateExtensions.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 576,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/MbbsHost.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 24,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Memory/FarPtr.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 89,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MBBSModule.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 24,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/McvFile.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 34,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MdfFile.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 8,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/ModuleConfiguration.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 285,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MsgFile.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 2,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Properties/launchSettings.json",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 16,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Resources/ResourceManager.cs",
-          "source": "MBBSEmu"
-        },
-        {
-          "classification": "text_scanned",
-          "evidence_count": 236,
-          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Session/LineBreaker.cs",
-          "source": "MBBSEmu"
-        }
-      ],
-      "evidence_total": 103563,
-      "export_mapping": {
-        "generated": true,
-        "target": "Data/<world>/scripts"
-      },
       "id": "script.catalog.phase2_3_0121",
-      "librarium_source_file": "Librarium/Objects/scripts/script_catalog_0121.json",
       "name": "Script Catalog",
       "object_type": "script",
-      "relationships": [],
-      "runtime_mapping": {
-        "runtime_reads_generated_data": true,
-        "status": "cataloged_for_export"
-      },
+      "world_scope": "classic/custom/ai",
+      "status": "complete_for_current_evidence_corpus",
+      "description": "Scriptable actions, macros, event handlers.",
+      "evidence_bucket": "command",
+      "evidence_total": 103563,
       "source_breakdown": {
         "MBBSEmu": 9775,
         "MMUD-Explorer": 36933,
-        "MajorMUD-PHP-Monster-Sim": 1308,
-        "NightmareRedux": 55547
+        "NightmareRedux": 55547,
+        "MajorMUD-PHP-Monster-Sim": 1308
       },
+      "evidence_refs": [
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/CLAUDE.md",
+          "evidence_count": 43,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/README.md",
+          "evidence_count": 19,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/AppSettingsManager.cs",
+          "evidence_count": 70,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/CLAUDE.md",
+          "evidence_count": 178,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/MBBSEmu.csproj",
+          "evidence_count": 136,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Program.cs",
+          "evidence_count": 148,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Assets/commandLineHelp.txt",
+          "evidence_count": 13,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/BIOS/ProgrammableIntervalTimer.cs",
+          "evidence_count": 45,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveFileProcessor.cs",
+          "evidence_count": 302,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Btrieve/BtrieveQuery.cs",
+          "evidence_count": 22,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/DOSErrorCode.cs",
+          "evidence_count": 12,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/ExeRuntime.cs",
+          "evidence_count": 42,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/DOS/Win32VT100.cs",
+          "evidence_count": 19,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Disassembler/NEFile.cs",
+          "evidence_count": 14,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Extensions/EnumSessionStateExtensions.cs",
+          "evidence_count": 62,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/HostProcess/MbbsHost.cs",
+          "evidence_count": 576,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Memory/FarPtr.cs",
+          "evidence_count": 24,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MBBSModule.cs",
+          "evidence_count": 89,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/McvFile.cs",
+          "evidence_count": 24,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MdfFile.cs",
+          "evidence_count": 34,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/ModuleConfiguration.cs",
+          "evidence_count": 8,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Module/MsgFile.cs",
+          "evidence_count": 285,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Properties/launchSettings.json",
+          "evidence_count": 2,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Resources/ResourceManager.cs",
+          "evidence_count": 16,
+          "classification": "text_scanned"
+        },
+        {
+          "source": "MBBSEmu",
+          "path": "ImportedDatabases/MBBSEmu/MBBSEmu/Session/LineBreaker.cs",
+          "evidence_count": 236,
+          "classification": "text_scanned"
+        }
+      ],
       "source_priority": {
+        "OriginalRuntimeObservation": 1,
+        "NightmareRedux": 2,
         "MBBSEmu": 3,
         "MMUD-Explorer": 4,
-        "MajorMUD-PHP-Monster-Sim": 5,
-        "NightmareRedux": 2,
-        "OriginalRuntimeObservation": 1
+        "MajorMUD-PHP-Monster-Sim": 5
       },
-      "status": "complete_for_current_evidence_corpus",
+      "confidence": "bucket-level; see child records for mechanic confidence",
+      "relationships": [],
+      "runtime_mapping": {
+        "status": "cataloged_for_export",
+        "runtime_reads_generated_data": true
+      },
       "validation_rules": [
         "object_must_have_id",
         "object_must_have_world_scope",
         "classic_changes_require_evidence",
         "custom_ai_changes_require_validation"
       ],
-      "world_scope": "classic/custom/ai"
+      "export_mapping": {
+        "target": "Data/\u003Cworld\u003E/scripts",
+        "generated": true
+      },
+      "code_update": "0121"
     }
-  ],
-  "source_file": "Librarium/Objects/scripts/script_catalog_0121.json",
-  "world_id": "Classic",
-  "world_type": "classic"
+  ]
 }

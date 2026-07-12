@@ -1,11 +1,14 @@
 {
-  "client_rule": "Client reads world-scoped Librarium/Data projections only; client never edits gameplay definitions.",
+  "world_id": "Classic",
+  "projection": "read_only_client_librarium_projection_v1",
   "families_available": [
     "ai_profiles",
     "areas",
     "assets",
     "banks",
+    "character_foundation",
     "classes",
+    "classic_bug_fixes",
     "client_views",
     "commands",
     "conflicts",
@@ -22,6 +25,7 @@
     "quests",
     "races",
     "regions",
+    "room_interactions",
     "rooms",
     "scripts",
     "shops",
@@ -34,8 +38,5 @@
     "world_overlays",
     "worlds"
   ],
-  "projection": "read_only_client_librarium_projection_v1",
-  "source_world": "Classic",
-  "world_id": "Classic",
-  "world_type": "classic"
+  "client_rule": "Client reads world-scoped Librarium/Data projections only; client never edits gameplay definitions."
 }
