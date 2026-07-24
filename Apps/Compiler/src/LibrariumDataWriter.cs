@@ -189,7 +189,7 @@ public sealed class LibrariumDataWriter
                 ["source_files"] = new JsonArray((f.SourceFiles ?? [f.SourceFile])
                     .Select(path => JsonValue.Create(path.Replace('\\', '/')))
                     .ToArray()),
-                ["record_count"] = f.Records.Count
+                ["record_count"] = CountGeneratedRecords(result.OutputRoot, f.Name) ?? f.Records.Count
             }).ToArray()),
             ["diagnostics"] = new JsonArray(result.Diagnostics.Select(d => new JsonObject
             {
@@ -199,6 +199,31 @@ public sealed class LibrariumDataWriter
                 ["path"] = d.Path
             }).ToArray())
         };
+
+    private static int? CountGeneratedRecords(string outputRoot, string familyName)
+    {
+        var path = Path.Combine(outputRoot, familyName.Replace('-', '_').ToLowerInvariant() + ".json");
+        if (!File.Exists(path)) return null;
+        try
+        {
+            using var document = JsonDocument.Parse(File.ReadAllText(path));
+            var root = document.RootElement;
+            if (root.ValueKind == JsonValueKind.Array) return root.GetArrayLength();
+            if (root.ValueKind == JsonValueKind.Object &&
+                root.TryGetProperty("records", out var records) &&
+                records.ValueKind == JsonValueKind.Array)
+                return records.GetArrayLength();
+            if (root.ValueKind == JsonValueKind.Object &&
+                root.TryGetProperty("record_count", out var declared) &&
+                declared.TryGetInt32(out var count))
+                return count;
+            return 0;
+        }
+        catch (JsonException)
+        {
+            return null;
+        }
+    }
 
     private static JsonObject CreateClientProjection(CompileResult result, IReadOnlyList<LibrariumFamily> families)
         => new()
